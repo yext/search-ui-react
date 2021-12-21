@@ -123,7 +123,7 @@ export default function SearchBar({
           options.length > 0 &&
           <DropdownSection
             options={options}
-            optionIdPrefix='Autocomplete__option-0'
+            optionIdPrefix='0'
             onFocusChange={value => {
               answersActions.setQuery(value);
             }}
