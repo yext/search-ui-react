@@ -1,4 +1,4 @@
-import { useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
+import { SearchTypeEnum, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import InputDropdown, { InputDropdownCssClasses } from './InputDropdown';
 import { ReactComponent as YextLogoIcon } from '../icons/yext_logo.svg';
 import '../sass/Autocomplete.scss';
@@ -45,7 +45,6 @@ export interface SearchBarCssClasses
 
 interface Props {
   placeholder?: string,
-  isVertical: boolean,
   geolocationOptions?: PositionOptions,
   screenReaderInstructionsId: string,
   customCssClasses?: SearchBarCssClasses,
@@ -57,7 +56,6 @@ interface Props {
  */
 export default function SearchBar({
   placeholder,
-  isVertical,
   geolocationOptions,
   screenReaderInstructionsId,
   customCssClasses,
@@ -67,12 +65,13 @@ export default function SearchBar({
   const answersActions = useAnswersActions();
   const query = useAnswersState(state => state.query.input);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
+  const isVertical = useAnswersState(s => s.meta.searchType) === SearchTypeEnum.Vertical;
   const [autocompleteResponse, executeAutocomplete] = useSynchronizedRequest(() => {
     return isVertical
       ? answersActions.executeVerticalAutocomplete()
       : answersActions.executeUniversalAutocomplete();
   });
-  const [executeQuery, autocompletePromiseRef] = useSearchWithNearMeHandling(answersActions, isVertical, geolocationOptions);
+  const [executeQuery, autocompletePromiseRef] = useSearchWithNearMeHandling(answersActions, geolocationOptions);
 
   const options: Option[] = autocompleteResponse?.results.map(result => {
     return {
