@@ -17,7 +17,7 @@ import { ReactComponent as MagnifyingGlassIcon } from '../icons/magnifying_glass
 const SCREENREADER_INSTRUCTIONS = 'When autocomplete results are available, use up and down arrows to review and enter to select.'
 
 export const builtInCssClasses: SearchBarCssClasses = {
-  container: 'h-12 mb-4',
+  container: 'h-12 mb-3',
   divider: 'border-t border-gray-200 mx-2.5',
   dropdownContainer: 'relative bg-white pt-4 pb-3 z-10',
   inputContainer: 'inline-flex items-center justify-between w-full',
