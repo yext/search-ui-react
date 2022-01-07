@@ -46,7 +46,6 @@ export interface SearchBarCssClasses
 interface Props {
   placeholder?: string,
   geolocationOptions?: PositionOptions,
-  screenReaderInstructionsId: string,
   customCssClasses?: SearchBarCssClasses,
   cssCompositionMethod?: CompositionMethod
 }
@@ -57,7 +56,6 @@ interface Props {
 export default function SearchBar({
   placeholder,
   geolocationOptions,
-  screenReaderInstructionsId,
   customCssClasses,
   cssCompositionMethod
 }: Props) {
@@ -104,7 +102,6 @@ export default function SearchBar({
         inputValue={query}
         placeholder={placeholder}
         screenReaderInstructions={SCREENREADER_INSTRUCTIONS}
-        screenReaderInstructionsId={screenReaderInstructionsId}
         screenReaderText={screenReaderText}
         onSubmit={executeQuery}
         onInputChange={value => {
