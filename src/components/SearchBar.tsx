@@ -79,7 +79,7 @@ export default function SearchBar({
         answersActions.setQuery(result.value);
         executeQuery();
       },
-      display: renderAutocompleteResult(result, cssClasses, MagnifyingGlassIcon)
+      display: renderAutocompleteResult(result, cssClasses, MagnifyingGlassIcon, `autocomplete option: ${result.value}`)
     }
   }) ?? [];
 
