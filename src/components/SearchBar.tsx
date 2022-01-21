@@ -25,7 +25,7 @@ export const builtInCssClasses: SearchBarCssClasses = {
   inputDropdownContainer___active: 'shadow-lg',
   inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2',
   logoContainer: 'w-7 mx-2.5 my-2',
-  optionContainer: 'flex items-stretch mb-3 mx-3.5 cursor-pointer',
+  optionContainer: 'flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100',
   resultIconContainer: 'opacity-20 w-7 h-7 pl-1 mr-4',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
   submitButton: 'h-7 w-7',
