@@ -265,6 +265,9 @@ export default function SearchBar({
             autocompletePromiseRef.current = executeAutocomplete()
           }
         }}
+        onFocusItem={query => {
+          updateEntityPreviews(query || '');
+        }}
       >
         <div className={cssClasses?.inputContainer}>
           <div className={cssClasses.logoContainer}>
