@@ -7,7 +7,9 @@ import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import useRecentSearches from '../hooks/useRecentSearches';
 import useSearchWithNearMeHandling from '../hooks/useSearchWithNearMeHandling';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
+import { ReactComponent as VerticalDividerIcon } from '../icons/bar.svg';
 import { ReactComponent as RecentSearchIcon } from '../icons/history.svg';
+import { ReactComponent as CloseIcon } from '../icons/light_x.svg';
 import { ReactComponent as MagnifyingGlassIcon } from '../icons/magnifying_glass.svg';
 import { ReactComponent as YextLogoIcon } from '../icons/yext_logo.svg';
 import { BrowserState } from '../PageRouter';
@@ -40,13 +42,13 @@ const builtInCssClasses: SearchBarCssClasses = {
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
   submitButton: 'h-7 w-7',
   focusedOption: 'bg-gray-100',
-
+  clearButton: 'mr-3.5 cursor-pointer',
+  verticalDivider: 'mr-0.5',
   recentSearchesOptionContainer: 'flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100',
   recentSearchesIcon: 'w-5 mr-1 text-gray-300',
   recentSearchesOption: 'pl-3',
   recentSearchesNonHighlighted: 'font-normal', // Swap this to semibold once we apply highlighting to recent searches
   verticalLink: 'ml-12 pl-1 text-gray-500 italic',
-
   ...AutocompleteResultBuiltInCssClasses
 };
 
@@ -71,7 +73,9 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   recentSearchesIcon?: string,
   recentSearchesOption?: string,
   recentSearchesNonHighlighted?: string,
-  verticalLink?: string
+  verticalLink?: string,
+  clearButton?: string,
+  verticalDivider?: string
 }
 
 type RenderEntityPreviews = (
@@ -245,7 +249,27 @@ export default function SearchBar({
     ))
   }
 
-  const hasItems = !!(autocompleteResponse?.results.length  || (!isVertical && filteredRecentSearches?.length));
+  function renderClearButton() {
+    return (
+      <>
+        <button
+          aria-label='Clear the search bar'
+          className={cssClasses.clearButton}
+          onClick={() => {
+            updateEntityPreviews('');
+            answersActions.setQuery('');
+            executeQuery();
+            autocompletePromiseRef.current = executeAutocomplete();
+          }}
+        >
+          <CloseIcon />
+        </button>
+        <VerticalDividerIcon className={cssClasses.verticalDivider}/>
+      </>
+    );
+  }
+
+  const hasItems = !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
   const screenReaderText = getScreenReaderText(autocompleteResponse?.results.length, filteredRecentSearches?.length)
   const activeClassName = classNames(cssClasses.inputDropdownContainer, {
     [cssClasses.inputDropdownContainer___active ?? '']: hasItems
@@ -274,6 +298,7 @@ export default function SearchBar({
             <YextLogoIcon />
           </div>
           {renderInput()}
+          {query && renderClearButton()}
           <DropdownSearchButton
             executeQuery={executeQuery}
             cssClasses={cssClasses}
@@ -291,6 +316,7 @@ export default function SearchBar({
     </div>
   );
 }
+
 
 function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   cssClasses: {
