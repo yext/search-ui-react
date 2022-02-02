@@ -60,9 +60,6 @@
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setup/setup-env.ts"
     ],
-    "testMatch": [
-      "<rootDir>/tests/**/*.(test).ts(x)?"
-    ],
     "testEnvironment": "jsdom",
     "globals": {
       "ts-jest": {
