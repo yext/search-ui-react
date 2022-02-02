@@ -38,9 +38,8 @@ const builtInCssClasses: SearchBarCssClasses = {
   inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2',
   logoContainer: 'w-7 mx-2.5 my-2',
   optionContainer: 'flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100',
-  resultIconContainer: 'opacity-20 w-7 h-7 pl-1 mr-4',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
-  submitButton: 'h-7 w-7',
+  searchButton: 'h-7 w-7',
   focusedOption: 'bg-gray-100',
   clearButton: 'mr-3.5 cursor-pointer',
   verticalDivider: 'mr-0.5',
@@ -54,33 +53,31 @@ const builtInCssClasses: SearchBarCssClasses = {
 
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   container?: string,
-  inputDropdownContainer?: string,
-  inputDropdownContainer___active?: string,
-  resultIconContainer?: string,
-  submitButton?: string,
-  dropdownContainer?: string,
   inputElement?: string,
   inputContainer?: string,
+  inputDropdownContainer?: string,
+  inputDropdownContainer___active?: string,
+  clearButton?: string,
+  searchButton?: string,
+  searchButtonContainer?: string,
+  dropdownContainer?: string,
   divider?: string,
   logoContainer?: string,
-  searchButtonContainer?: string,
-  sectionContainer?: string,
-  sectionLabel?: string,
-  optionsContainer?: string,
   optionContainer?: string,
+  optionIcon?: string,
   focusedOption?: string,
   recentSearchesOptionContainer?: string,
   recentSearchesIcon?: string,
   recentSearchesOption?: string,
   recentSearchesNonHighlighted?: string,
   verticalLink?: string,
-  clearButton?: string,
   verticalDivider?: string
 }
 
 type RenderEntityPreviews = (
   autocompleteLoading: boolean,
-  verticalResultsArray: VerticalResults[]
+  verticalResultsArray: VerticalResults[],
+  onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
 ) => JSX.Element;
 
 interface Props {
@@ -147,18 +144,6 @@ export default function SearchBar({
     executeQueryWithNearMeHandling();
   }
 
-  const [entityPreviewsState, executeEntityPreviewsQuery] = useEntityPreviews(entityPreviewsDebouncingTime);
-  const { verticalResultsArray, isLoading: entityPreviewsLoading } = entityPreviewsState;
-  const entityPreviews = renderEntityPreviews && renderEntityPreviews(entityPreviewsLoading, verticalResultsArray);
-  function updateEntityPreviews(query: string) {
-    if (!renderEntityPreviews) {
-      return;
-    }
-    const restrictVerticals = calculateRestrictVerticals(entityPreviews);
-    const universalLimit = calculateUniversalLimit(entityPreviews);
-    executeEntityPreviewsQuery(query, universalLimit, restrictVerticals);
-  }
-
   const handleSubmit = (value: string, _index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
     if (itemData && typeof itemData.verticalLink === 'string') {
@@ -168,6 +153,18 @@ export default function SearchBar({
     } else {
       executeQuery();
     }
+  }
+
+  const [entityPreviewsState, executeEntityPreviewsQuery] = useEntityPreviews(entityPreviewsDebouncingTime);
+  const { verticalResultsArray, isLoading: entityPreviewsLoading } = entityPreviewsState;
+  const entityPreviews = renderEntityPreviews && renderEntityPreviews(entityPreviewsLoading, verticalResultsArray, handleSubmit);
+  function updateEntityPreviews(query: string) {
+    if (!renderEntityPreviews) {
+      return;
+    }
+    const restrictVerticals = calculateRestrictVerticals(entityPreviews);
+    const universalLimit = calculateUniversalLimit(entityPreviews);
+    executeEntityPreviewsQuery(query, universalLimit, restrictVerticals);
   }
 
   function renderInput() {
@@ -228,7 +225,12 @@ export default function SearchBar({
           value={result.value}
           onClick={handleSubmit}
         >
-          {renderAutocompleteResult(result, cssClasses, MagnifyingGlassIcon, `autocomplete option: ${result.value}`)}
+          {renderAutocompleteResult(
+            result,
+            { ...cssClasses, icon: cssClasses.optionIcon },
+            MagnifyingGlassIcon,
+            `autocomplete option: ${result.value}`
+          )}
         </DropdownItem>
         {!hideVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
           <DropdownItem
@@ -286,11 +288,8 @@ export default function SearchBar({
           if (!isActive) {
             updateEntityPreviews(value);
             answersActions.setQuery(value);
-            autocompletePromiseRef.current = executeAutocomplete()
+            autocompletePromiseRef.current = executeAutocomplete();
           }
-        }}
-        onFocusItem={query => {
-          updateEntityPreviews(query || '');
         }}
       >
         <div className={cssClasses?.inputContainer}>
@@ -321,20 +320,14 @@ export default function SearchBar({
 function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   cssClasses: {
     divider?: string,
-    dropdownContainer?: string,
-    sectionContainer?: string,
-    optionsContainer?: string
+    dropdownContainer?: string
   }
 }>) {
   return (
     <DropdownMenu>
       <div className={cssClasses.divider} />
       <div className={cssClasses.dropdownContainer}>
-        <div className={cssClasses.sectionContainer}>
-          <div className={cssClasses.optionsContainer}>
-            {children}
-          </div>
-        </div>
+        {children}
       </div>
     </DropdownMenu>
   )
@@ -361,14 +354,14 @@ function DropdownSearchButton({ executeQuery, isLoading, cssClasses }: {
   isLoading: boolean,
   cssClasses: {
     searchButtonContainer?: string,
-    submitButton?: string
+    searchButton?: string
   }
 }) {
   const { toggleDropdown } = useDropdownContext();
   return (
     <div className={cssClasses.searchButtonContainer}>
       <SearchButton
-        className={cssClasses.submitButton}
+        className={cssClasses.searchButton}
         handleClick={() => {
           executeQuery();
           toggleDropdown(false);
