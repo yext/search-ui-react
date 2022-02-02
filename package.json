@@ -1,29 +1,44 @@
 {
-  "name": "answers react components",
+  "name": "answers-react-components",
   "version": "0.0.0",
   "description": "",
   "author": "slapshot@yext.com",
-  "main": "./lib/commonjs/index.js",
-  "module": "./lib/esm/index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/types/index.d.ts",
   "files": [
     "lib"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
+    "tsc": "tsc -p tsconfig.json",
+    "build": "webpack",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
     "test": "jest"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.14.5",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
     "@types/jest": "^26.0.24",
+    "@types/react": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "babel-jest": "^27.0.6",
+    "babel-loader": "^8.2.3",
     "eslint": "^7.30.0",
     "jest": "^27.0.6",
-    "typescript": "^4.1.5"
+    "msw": "^0.36.8",
+    "react": "^17.0.2",
+    "ts-loader": "^9.2.6",
+    "typescript": "~4.4.3",
+    "uuid": "^8.3.2",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
   },
   "jest": {
     "bail": 0,
@@ -33,19 +48,26 @@
       "src/**"
     ],
     "moduleFileExtensions": [
-      "ts"
+      "js",
+      "ts",
+      "tsx"
     ],
     "moduleDirectories": [
       "node_modules",
       "<rootDir>"
     ],
-    "testMatch": [
-      "<rootDir>/tests/**/*.ts"
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup/setup-env.ts"
     ],
+    "testMatch": [
+      "<rootDir>/tests/**/*.(test).ts(x)?"
+    ],
+    "testEnvironment": "jsdom",
     "globals": {
       "ts-jest": {
-        "tsconfig": "tsconfig.esm.json"
+        "tsconfig": "tsconfig.json"
       }
-    }
+    },
+    "resetMocks": true
   }
 }

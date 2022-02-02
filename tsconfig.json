@@ -7,9 +7,13 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
+    "isolatedModules": true,
     "declarationMap": true,
     "sourceMap": true,
-    // "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "target": "es2017",
+    "module": "es6",
+    "outDir": "lib/types"
   },
   "include": [
     "src"
