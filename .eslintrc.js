@@ -19,7 +19,7 @@ module.exports = {
     'quote-props': ['error', 'as-needed'],
     'max-len': ['error', {
       code: 110,
-      ignorePattern: '^import\\s.+\\sfrom\\s.+;$'
+      ignorePatterns: ['^import\\s.+\\sfrom\\s.+;$', '<path.+<\/path>$']
     }],
     '@typescript-eslint/semi': ['error'],
     '@typescript-eslint/type-annotation-spacing': ['error'],
