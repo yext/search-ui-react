@@ -20,7 +20,7 @@ import DropdownInput from './Dropdown/DropdownInput';
 import DropdownItem from './Dropdown/DropdownItem';
 import DropdownMenu from './Dropdown/DropdownMenu';
 import { FocusedItemData } from './Dropdown/FocusContext';
-import { calculateRestrictVerticals, calculateUniversalLimit, transformEntityPreviews } from './EntityPreviews';
+import { calculateEntityPreviewsCount, calculateRestrictVerticals, calculateUniversalLimit, transformEntityPreviews } from './EntityPreviews';
 import SearchButton from './SearchButton';
 import { processTranslation } from './utils/processTranslation';
 import renderAutocompleteResult, {
@@ -271,8 +271,10 @@ export default function SearchBar({
     );
   }
 
-  const hasItems = !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
-  const screenReaderText = getScreenReaderText(autocompleteResponse?.results.length, filteredRecentSearches?.length)
+  const transformedEntityPreviews = entityPreviews && transformEntityPreviews(entityPreviews, verticalResultsArray);
+  const entityPreviewsCount = calculateEntityPreviewsCount(transformedEntityPreviews);
+  const hasItems = !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length) || entityPreviewsCount);
+  const screenReaderText = getScreenReaderText(autocompleteResponse?.results.length, filteredRecentSearches?.length, entityPreviewsCount);
   const activeClassName = classNames(cssClasses.inputDropdownContainer, {
     [cssClasses.inputDropdownContainer___active ?? '']: hasItems
   });
@@ -308,14 +310,13 @@ export default function SearchBar({
           <StyledDropdownMenu cssClasses={cssClasses}>
             {renderRecentSearches()}
             {renderQuerySuggestions()}
-            {entityPreviews && transformEntityPreviews(entityPreviews, verticalResultsArray)}
+            {transformedEntityPreviews}
           </StyledDropdownMenu>
         }
       </Dropdown>
     </div>
   );
 }
-
 
 function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   cssClasses: {
@@ -333,7 +334,7 @@ function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   )
 }
 
-function getScreenReaderText(autocompleteOptions = 0, recentSearchesOptions = 0) {
+function getScreenReaderText(autocompleteOptions = 0, recentSearchesOptions = 0, entityPreviewsCount = 0): string {
   const recentSearchesText = recentSearchesOptions > 0
     ? processTranslation({
       phrase: `${recentSearchesOptions} recent search found.`,
@@ -341,12 +342,30 @@ function getScreenReaderText(autocompleteOptions = 0, recentSearchesOptions = 0)
       count: recentSearchesOptions
     })
     : '';
-  const autocompleteText = processTranslation({
-    phrase: `${autocompleteOptions} autocomplete suggestion found.`,
-    pluralForm: `${autocompleteOptions} autocomplete suggestions found.`,
-    count: autocompleteOptions
-  });
-  return (recentSearchesText + ' ' + autocompleteText).trim();
+  const entityPreviewsText = entityPreviewsCount > 0
+    ? ' ' + processTranslation({
+      phrase: `${entityPreviewsCount} result preview found.`,
+      pluralForm: `${entityPreviewsCount} result previews found.`,
+      count: entityPreviewsCount
+    })
+    : '';
+  const autocompleteText = autocompleteOptions > 0
+    ? ' ' + processTranslation({
+      phrase: `${autocompleteOptions} autocomplete suggestion found.`,
+      pluralForm: `${autocompleteOptions} autocomplete suggestions found.`,
+      count: autocompleteOptions
+    })
+    : '';
+
+  const text = recentSearchesText + autocompleteText + entityPreviewsText;
+  if (text === '') {
+    return processTranslation({
+      phrase: '0 autocomplete suggestion found.',
+      pluralForm: '0 autocomplete suggestions found.',
+      count: 0
+    });
+  }
+  return text.trim();
 }
 
 function DropdownSearchButton({ executeQuery, isLoading, cssClasses }: {
