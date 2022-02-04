@@ -1,4 +1,4 @@
-import { QuerySource, SearchTypeEnum, useAnswersActions, useAnswersState, useAnswersUtilities, VerticalResults } from '@yext/answers-headless-react';
+import { AnswersHeadless, QuerySource, SearchTypeEnum, useAnswersActions, useAnswersState, useAnswersUtilities, VerticalResults } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { Fragment, PropsWithChildren, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -58,6 +58,7 @@ interface Props {
   placeholder?: string,
   geolocationOptions?: PositionOptions,
   customCssClasses?: SearchBarCssClasses
+  entityPreviewSearcher?: AnswersHeadless,
   // The debouncing time, in milliseconds, for making API requests for entity previews
   entityPreviewsDebouncingTime?: number,
   renderEntityPreviews?: RenderEntityPreviews,
@@ -70,10 +71,11 @@ interface Props {
 /**
  * Renders a SearchBar that is hooked up with an InputDropdown component
  */
-export default function SearchBar({
+export function SearchBar({
   placeholder,
   geolocationOptions,
   hideRecentSearches,
+  entityPreviewSearcher,
   renderEntityPreviews,
   hideVerticalLinks,
   verticalKeyToLabel,
@@ -127,7 +129,10 @@ export default function SearchBar({
     }
   };
 
-  const [entityPreviewsState, executeEntityPreviewsQuery] = useEntityPreviews(entityPreviewsDebouncingTime);
+  const [
+    entityPreviewsState,
+    executeEntityPreviewsQuery
+  ] = useEntityPreviews(entityPreviewSearcher, entityPreviewsDebouncingTime);
   const { verticalResultsArray, isLoading: entityPreviewsLoading } = entityPreviewsState;
   const entityPreviews = renderEntityPreviews
     && renderEntityPreviews(entityPreviewsLoading, verticalResultsArray, handleSubmit);

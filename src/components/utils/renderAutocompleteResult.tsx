@@ -8,11 +8,6 @@ export interface AutocompleteResultCssClasses {
   nonHighlighted?: string
 }
 
-export const builtInCssClasses = {
-  option: 'flex whitespace-pre-wrap h-6.5 pl-3',
-  icon: 'w-6 text-gray-300'
-};
-
 /**
  * Renders an autocomplete result, including an icon to the left if provided.
  * @param result The result to render
