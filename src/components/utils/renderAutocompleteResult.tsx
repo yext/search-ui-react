@@ -11,7 +11,7 @@ export interface AutocompleteResultCssClasses {
 export const builtInCssClasses = {
   option: 'flex whitespace-pre-wrap h-6.5 pl-3',
   icon: 'w-6 text-gray-300'
-}
+};
 
 /**
  * Renders an autocomplete result, including an icon to the left if provided.
@@ -23,13 +23,13 @@ export default function renderAutocompleteResult(
   cssClasses: AutocompleteResultCssClasses = {},
   Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
   ariaLabel?: string
-) {
-  return <>
+): JSX.Element {
+  return (<>
     {Icon && <div className={cssClasses.icon}>
       <Icon />
     </div>}
     <div aria-label={ariaLabel || ''} className={cssClasses.option}>
       {renderHighlightedValue(result, cssClasses)}
     </div>
-  </>
+  </>);
 }

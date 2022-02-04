@@ -10,7 +10,7 @@ export type FocusContextType = {
   focusedValue: string | null,
   focusedItemData: FocusedItemData | undefined,
   updateFocusedItem: (index: number, value?: string) => void
-}
+};
 
 const focusContext = createContext<FocusContextType | null>(null);
 export default focusContext;
@@ -18,7 +18,7 @@ export default focusContext;
 export function useFocusContext(): FocusContextType {
   const focusContextInstance = useContext(focusContext);
   if (focusContextInstance === null) {
-    throw new Error('Tried to use FocusContext when none exists.')
+    throw new Error('Tried to use FocusContext when none exists.');
   }
   return focusContextInstance;
 }

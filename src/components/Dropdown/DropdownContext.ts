@@ -8,7 +8,7 @@ export type DropdownContextType = {
   screenReaderUUID?: string,
   toggleDropdown: (visible: boolean) => void,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void
-}
+};
 
 const dropdownContext = createContext<DropdownContextType | null>(null);
 export default dropdownContext;
@@ -16,7 +16,7 @@ export default dropdownContext;
 export function useDropdownContext(): DropdownContextType {
   const dropdownContextInstance = useContext(dropdownContext);
   if (dropdownContextInstance === null) {
-    throw new Error('Tried to use DropdownContext when none exists.')
+    throw new Error('Tried to use DropdownContext when none exists.');
   }
   return dropdownContextInstance;
 }

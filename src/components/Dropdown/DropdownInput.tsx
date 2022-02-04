@@ -1,5 +1,5 @@
-import { ChangeEvent, KeyboardEvent, useRef } from 'react'
-import { useDropdownContext } from './DropdownContext'
+import { ChangeEvent, KeyboardEvent, useRef } from 'react';
+import { useDropdownContext } from './DropdownContext';
 import { useFocusContext, FocusedItemData } from './FocusContext';
 import generateDropdownId from './generateDropdownId';
 import { useInputContext } from './InputContext';
@@ -14,7 +14,7 @@ export default function DropdownInput(props: {
   onFocus?: (value: string) => void,
   onChange?: (value: string) => void,
   submitCriteria?: (index: number) => boolean
-}) {
+}): JSX.Element {
   const {
     className,
     placeholder,
@@ -76,5 +76,5 @@ export default function DropdownInput(props: {
       aria-describedby={screenReaderUUID}
       aria-activedescendant={screenReaderUUID && generateDropdownId(screenReaderUUID, focusedIndex)}
     />
-  )
+  );
 }

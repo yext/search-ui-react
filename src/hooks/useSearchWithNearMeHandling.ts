@@ -4,8 +4,8 @@ import { MutableRefObject, useRef } from 'react';
 import { AutocompleteResponse, SearchIntent } from '@yext/answers-headless-react';
 import { useHistory } from 'react-router-dom';
 
-type QueryFunc = () => Promise<void>
-export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | undefined> | undefined>
+type QueryFunc = () => Promise<void>;
+export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | undefined> | undefined>;
 
 /**
  * Returns a search action that will handle near me searches, by first checking

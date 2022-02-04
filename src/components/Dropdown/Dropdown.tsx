@@ -29,7 +29,7 @@ export default function Dropdown(props: PropsWithChildren<{
   onToggle?: (isActive: boolean, value: string) => void,
   className?: string,
   activeClassName?: string
-}>) {
+}>): JSX.Element {
   const {
     children,
     screenReaderText,
@@ -50,7 +50,13 @@ export default function Dropdown(props: PropsWithChildren<{
   const inputContext = useInputContextInstance(initialValue);
   const { value, setValue, lastTypedOrSubmittedValue, setLastTypedOrSubmittedValue } = inputContext;
 
-  const focusContext = useFocusContextInstance(items, lastTypedOrSubmittedValue, setValue, screenReaderKey, setScreenReaderKey);
+  const focusContext = useFocusContextInstance(
+    items,
+    lastTypedOrSubmittedValue,
+    setValue,
+    screenReaderKey,
+    setScreenReaderKey
+  );
   const { focusedIndex, updateFocusedItem } = focusContext;
 
   const dropdownContext = useDropdownContextInstance(value, screenReaderUUID, onToggle, onSelect);
@@ -61,7 +67,7 @@ export default function Dropdown(props: PropsWithChildren<{
       setLastTypedOrSubmittedValue(parentQuery);
       updateFocusedItem(-1, parentQuery);
     }
-  }, [parentQuery, lastTypedOrSubmittedValue, updateFocusedItem, setLastTypedOrSubmittedValue])
+  }, [parentQuery, lastTypedOrSubmittedValue, updateFocusedItem, setLastTypedOrSubmittedValue]);
 
   useRootClose(containerRef, () => {
     toggleDropdown(false);
@@ -173,7 +179,7 @@ function useDropdownContextInstance(
 }
 
 function getTransformedChildrenAndItemData(children: ReactNode): [ReactNode, DropdownItemData[]] {
-  const items: DropdownItemData [] = []
+  const items: DropdownItemData [] = [];
   const childrenWithDropdownItemsTransformed = recursivelyMapChildren(children, (child => {
     if (!(isValidElement(child) && child.type === DropdownItem)) {
       return child;
@@ -183,7 +189,7 @@ function getTransformedChildrenAndItemData(children: ReactNode): [ReactNode, Dro
       value: props.value,
       itemData: props.itemData
     });
-    const transformedItem = createElement(DropdownItemWithIndex, { ...props, index: items.length - 1 })
+    const transformedItem = createElement(DropdownItemWithIndex, { ...props, index: items.length - 1 });
     return transformedItem;
   }));
 

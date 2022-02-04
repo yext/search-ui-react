@@ -1,22 +1,18 @@
-import LoadingIndicator from './LoadingIndicator';
-import { ReactComponent as MagnifyingGlassIcon } from '../icons/magnifying_glass.svg';
+import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
 
 interface Props {
   handleClick: () => void,
-  isLoading: boolean,
   className?: string
 }
 
-export default function SearchButton ({ handleClick, isLoading, className }: Props) {
+export default function SearchButton({ handleClick, className }: Props): JSX.Element {
   return (
     <button
       className={className}
       onClick={handleClick}
       aria-label='Submit Search'
     >
-      {isLoading
-        ? <LoadingIndicator />
-        : <MagnifyingGlassIcon />}
+      <MagnifyingGlassIcon />
     </button>
-  )
+  );
 }

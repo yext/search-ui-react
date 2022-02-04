@@ -17,14 +17,18 @@ interface EntityPreviewsProps {
  * You can optionally specify a limit for the results. This limit will be shared between
  * instances of EntityPreviews with the same verticalKey.
  */
-export default function EntityPreviews(_: EntityPreviewsProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null {
   return null;
 }
 
 /**
  * Recursively passes vertical results into instances of EntityPreview.
  */
-export function transformEntityPreviews(entityPreviews: JSX.Element, verticalResultsArray: VerticalResults[]): ReactNode {
+export function transformEntityPreviews(
+  entityPreviews: JSX.Element,
+  verticalResultsArray: VerticalResults[]
+): ReactNode {
   const verticalKeyToResults = getVerticalKeyToResults(verticalResultsArray);
   const renderedChildren = recursivelyMapChildren(entityPreviews, child => {
     if (!isValidElement(child) || child.type !== EntityPreviews) {
@@ -79,7 +83,7 @@ export function calculateUniversalLimit(children: ReactNode): UniversalLimit {
   return Object.keys(universalLimit).reduce<UniversalLimit>((limitWithDefaults, verticalKey) => {
     limitWithDefaults[verticalKey] = universalLimit[verticalKey] ?? 4;
     return limitWithDefaults;
-  }, {})
+  }, {});
 }
 
 /**

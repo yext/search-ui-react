@@ -2,9 +2,9 @@ export function processTranslation(args: {
   phrase: string,
   pluralForm?: string,
   count?: number
-}) {
+}): string {
   if (args.count != null && args.pluralForm && args.count !== 1) {
-    return args.pluralForm
+    return args.pluralForm;
   } else {
     return args.phrase;
   }

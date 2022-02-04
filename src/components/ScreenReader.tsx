@@ -1,5 +1,3 @@
-import '../sass/ScreenReader.scss';
-
 interface Props {
   instructionsId: string,
   instructions: string,
@@ -31,4 +29,4 @@ export default function ScreenReader({
       </div>
     </>
   );
-};
+}

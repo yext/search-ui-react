@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react'
-import { useDropdownContext } from './DropdownContext'
+import { PropsWithChildren } from 'react';
+import { useDropdownContext } from './DropdownContext';
 import { FocusedItemData, useFocusContext } from './FocusContext';
 import generateDropdownId from './generateDropdownId';
 import { useInputContext } from './InputContext';
@@ -10,15 +10,16 @@ export type DropdownItemProps = PropsWithChildren<{
   focusedClassName?: string,
   itemData?: Record<string, unknown> | undefined,
   onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void
-}>
+}>;
 
 /**
  * A wrapper component for specifying a DropdownItemWithIndex.
  * The index will be automatically provided by the {@link Dropdown} component instance.
  */
-export default function DropdownItem(_props: DropdownItemProps) { return null; }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function DropdownItem(_props: DropdownItemProps): JSX.Element | null { return null; }
 
-export function DropdownItemWithIndex(props: DropdownItemProps & { index: number }) {
+export function DropdownItemWithIndex(props: DropdownItemProps & { index: number }): JSX.Element {
   const {
     children,
     value,

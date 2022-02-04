@@ -1,4 +1,4 @@
-import { AnswersActions, SearchIntent } from "@yext/answers-headless-react";
+import { AnswersActions, SearchIntent } from '@yext/answers-headless-react';
 
 const defaultGeolocationOptions: PositionOptions = {
   enableHighAccuracy: false,
@@ -14,7 +14,7 @@ export async function updateLocationIfNeeded(
   answersActions: AnswersActions,
   intents: SearchIntent[],
   geolocationOptions?: PositionOptions
-) {
+): Promise<void> {
   if (intents.includes(SearchIntent.NearMe) && !answersActions.state.location.userLocation) {
     try {
       const position = await getUserLocation(geolocationOptions);
@@ -31,7 +31,7 @@ export async function updateLocationIfNeeded(
 /**
  * Executes a universal/vertical search
  */
-export async function executeSearch(answersActions: AnswersActions, isVertical: boolean) {
+export async function executeSearch(answersActions: AnswersActions, isVertical: boolean): Promise<void> {
   isVertical
     ? answersActions.executeVerticalQuery()
     : answersActions.executeUniversalQuery();
@@ -40,7 +40,10 @@ export async function executeSearch(answersActions: AnswersActions, isVertical: 
 /**
  * Get search intents of the current query stored in headless using autocomplete request.
  */
-export async function getSearchIntents(answersActions: AnswersActions, isVertical: boolean) {
+export async function getSearchIntents(
+  answersActions: AnswersActions,
+  isVertical: boolean
+): Promise<SearchIntent[] | undefined> {
   const results = isVertical
     ? await answersActions.executeVerticalAutocomplete()
     : await answersActions.executeUniversalAutocomplete();
@@ -55,9 +58,9 @@ export async function getUserLocation(geolocationOptions?: PositionOptions): Pro
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
         position => resolve(position),
-        err => { 
+        err => {
           console.error('Error occured using geolocation API. Unable to determine user\'s location.');
-          reject(err); 
+          reject(err);
         },
         { ...defaultGeolocationOptions, ...geolocationOptions }
       );

@@ -16,7 +16,7 @@ export default inputContext;
 export function useInputContext(): InputContextType {
   const inputContextInstance = useContext(inputContext);
   if (inputContextInstance === null) {
-    throw new Error('Tried to use InputContext when none exists.')
+    throw new Error('Tried to use InputContext when none exists.');
   }
   return inputContextInstance;
 }
