@@ -25,6 +25,7 @@ module.exports = {
     '@typescript-eslint/semi': ['error'],
     '@typescript-eslint/type-annotation-spacing': ['error'],
     '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
   },
   ignorePatterns: ['lib', 'tests/setup/responses']
 };

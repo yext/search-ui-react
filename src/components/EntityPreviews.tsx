@@ -17,7 +17,6 @@ interface EntityPreviewsProps {
  * You can optionally specify a limit for the results. This limit will be shared between
  * instances of EntityPreviews with the same verticalKey.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null {
   return null;
 }
