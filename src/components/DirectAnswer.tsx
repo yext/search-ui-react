@@ -4,12 +4,12 @@ import classNames from 'classnames';
 import { ReactNode } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
-interface DirectAnswerProps {
+export interface DirectAnswerProps {
   customCssClasses?: DirectAnswerCssClasses,
   cssCompositionMethod?: CompositionMethod
 }
 
-interface DirectAnswerCssClasses {
+export interface DirectAnswerCssClasses {
   container?: string,
   container___loading?: string,
   fieldValueTitle?: string,
