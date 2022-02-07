@@ -1,5 +1,9 @@
 import { HighlightedValue } from '@yext/answers-headless-react';
 
+const defaultCssClasses: HighlightedValueCssClasses = {
+  highlighted: 'font-normal',
+  nonHighlighted: 'font-semibold'
+};
 
 interface HighlightedValueCssClasses {
   highlighted?: string,
@@ -11,8 +15,9 @@ interface HighlightedValueCssClasses {
  * @returns JSX.Element
  */
 export default function renderHighlightedValue(
-  { value = '', matchedSubstrings }: Partial<HighlightedValue>, cssClasses: HighlightedValueCssClasses = {}
+  { value = '', matchedSubstrings }: Partial<HighlightedValue>, customCssClasses?: HighlightedValueCssClasses
 ): JSX.Element {
+  const cssClasses = { ...defaultCssClasses, ...customCssClasses };
   if (!matchedSubstrings || matchedSubstrings.length === 0) {
     return <span>{value}</span>;
   }

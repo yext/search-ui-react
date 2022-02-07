@@ -1,4 +1,4 @@
-import { AnswersHeadless, UniversalLimit, VerticalResults, QuerySource } from '@yext/answers-headless-react';
+import { AnswersHeadless, UniversalLimit, VerticalResults } from '@yext/answers-headless-react';
 import { useState } from 'react';
 import useComponentMountStatus from './useComponentMountStatus';
 import useDebouncedFunction from './useDebouncedFunction';

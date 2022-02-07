@@ -16,12 +16,13 @@ export default function ScreenReader({
     <>
       <div
         id={instructionsId}
-        className='ScreenReader__instructions'
+        className='hidden'
       >
         {instructions}
       </div>
       <div
-        className='ScreenReader__announcementText'
+        //TODO: Investigate tailwindcss 'sr-only'
+        className='absolute p-0 -m-px w-px h-px overflow-hidden whitespace-nowrap border-0'
         key={announcementKey}
         aria-live='assertive'
       >
