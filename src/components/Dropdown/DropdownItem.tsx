@@ -16,7 +16,6 @@ export type DropdownItemProps = PropsWithChildren<{
  * A wrapper component for specifying a DropdownItemWithIndex.
  * The index will be automatically provided by the {@link Dropdown} component instance.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function DropdownItem(_props: DropdownItemProps): JSX.Element | null { return null; }
 
 export function DropdownItemWithIndex(props: DropdownItemProps & { index: number }): JSX.Element {
