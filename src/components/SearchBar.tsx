@@ -80,15 +80,19 @@ type RenderEntityPreviews = (
   onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
 ) => JSX.Element;
 
+interface VisualAutocompleteConfig {
+  entityPreviewSearcher?: AnswersHeadless,
+  // The debouncing time, in milliseconds, for making API requests for entity previews
+  entityPreviewsDebouncingTime?: number,
+  renderEntityPreviews?: RenderEntityPreviews,
+}
+
 interface Props {
   placeholder?: string,
   geolocationOptions?: PositionOptions,
   customCssClasses?: SearchBarCssClasses,
   cssCompositionMethod?: CompositionMethod,
-  entityPreviewSearcher?: AnswersHeadless,
-  // The debouncing time, in milliseconds, for making API requests for entity previews
-  entityPreviewsDebouncingTime?: number,
-  renderEntityPreviews?: RenderEntityPreviews,
+  visualAutocompleteConfig?: VisualAutocompleteConfig,
   hideVerticalLinks?: boolean,
   verticalKeyToLabel?: (verticalKey: string) => string,
   hideRecentSearches?: boolean,
@@ -102,15 +106,18 @@ export function SearchBar({
   placeholder,
   geolocationOptions,
   hideRecentSearches,
-  entityPreviewSearcher,
-  renderEntityPreviews,
+  visualAutocompleteConfig = {},
   hideVerticalLinks,
   verticalKeyToLabel,
   recentSearchesLimit = 5,
   customCssClasses,
-  cssCompositionMethod,
-  entityPreviewsDebouncingTime = 500
+  cssCompositionMethod
 }: Props): JSX.Element {
+  const {
+    entityPreviewSearcher,
+    renderEntityPreviews,
+    entityPreviewsDebouncingTime = 500
+  } = visualAutocompleteConfig;
   const browserHistory = useHistory<BrowserState>();
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
