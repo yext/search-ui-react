@@ -5,7 +5,7 @@ import recursivelyMapChildren from './utils/recursivelyMapChildren';
 
 interface EntityPreviewsProps {
   verticalKey: string,
-  children: (results: Result[]) => JSX.Element,
+  children: (results: Result[], index: number) => JSX.Element,
   limit?: number
 }
 
@@ -29,6 +29,7 @@ export function transformEntityPreviews(
   verticalResultsArray: VerticalResults[]
 ): ReactNode {
   const verticalKeyToResults = getVerticalKeyToResults(verticalResultsArray);
+  let index = 0;
   const renderedChildren = recursivelyMapChildren(entityPreviews, child => {
     if (!isValidElement(child) || child.type !== EntityPreviews) {
       return child;
@@ -37,7 +38,7 @@ export function transformEntityPreviews(
     if (!(verticalKey in verticalKeyToResults)) {
       return null;
     }
-    return children(verticalKeyToResults[verticalKey]);
+    return children(verticalKeyToResults[verticalKey], index++);
   });
   return renderedChildren;
 }

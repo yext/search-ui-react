@@ -13,13 +13,15 @@ export function useSynchronizedRequest<RequestDataType, ResponseType>(
   executeRequest: (data?: RequestDataType) => Promise<ResponseType | undefined>
 ): [
     ResponseType | undefined,
-    (data?: RequestDataType) => Promise<ResponseType | undefined>
+    (data?: RequestDataType) => Promise<ResponseType | undefined>,
+    () => void
   ]
 {
   const isMountedRef = useComponentMountStatus();
   const networkIds = useRef({ latestRequest: 0, responseInState: 0 });
   const [synchronizedResponse, setSynchronizedResponse] = useState<ResponseType>();
-  async function executeSynchronizedRequest(data?: RequestDataType): Promise<ResponseType | undefined> {
+
+  async function executeSynchronizedRequest (data?: RequestDataType): Promise<ResponseType | undefined> {
     const requestId = ++networkIds.current.latestRequest;
     return new Promise(async (resolve) => {
       const response = await executeRequest(data);
@@ -37,5 +39,10 @@ export function useSynchronizedRequest<RequestDataType, ResponseType>(
       resolve(response);
     });
   }
-  return [synchronizedResponse, executeSynchronizedRequest];
+
+  function clearResponseData() {
+    setSynchronizedResponse(undefined);
+  }
+
+  return [synchronizedResponse, executeSynchronizedRequest, clearResponseData]
 }

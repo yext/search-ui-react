@@ -27,33 +27,9 @@ import renderAutocompleteResult, {
   builtInCssClasses as AutocompleteResultBuiltInCssClasses
 } from './utils/renderAutocompleteResult';
 
-
-export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
-  container?: string,
-  inputElement?: string,
-  inputContainer?: string,
-  inputDropdownContainer?: string,
-  inputDropdownContainer___active?: string,
-  clearButton?: string,
-  searchButton?: string,
-  searchButtonContainer?: string,
-  dropdownContainer?: string,
-  divider?: string,
-  logoContainer?: string,
-  optionContainer?: string,
-  optionIcon?: string,
-  focusedOption?: string,
-  recentSearchesOptionContainer?: string,
-  recentSearchesIcon?: string,
-  recentSearchesOption?: string,
-  recentSearchesNonHighlighted?: string,
-  verticalLink?: string,
-  verticalDivider?: string
-}
-
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-3',
-  divider: 'border-t border-gray-200 mx-2.5',
+  inputDivider: 'border-t border-gray-200 mx-2.5',
   dropdownContainer: 'relative bg-white pt-4 pb-3 z-10',
   inputContainer: 'inline-flex items-center justify-between w-full',
   inputDropdownContainer: 'bg-white border rounded-3xl border-gray-200 w-full overflow-hidden',
@@ -71,8 +47,33 @@ const builtInCssClasses: SearchBarCssClasses = {
   recentSearchesOption: 'pl-3',
   recentSearchesNonHighlighted: 'font-normal', // Swap this to semibold once we apply highlighting to recent searches
   verticalLink: 'ml-12 pl-1 text-gray-500 italic',
+  entityPreviewsDivider: 'h-px bg-gray-200 mt-1 mb-4 mx-3.5',
   ...AutocompleteResultBuiltInCssClasses
 };
+
+export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
+  container?: string,
+  inputElement?: string,
+  inputContainer?: string,
+  inputDropdownContainer?: string,
+  inputDropdownContainer___active?: string,
+  inputDivider?: string,
+  clearButton?: string,
+  searchButton?: string,
+  searchButtonContainer?: string,
+  dropdownContainer?: string,
+  divider?: string,
+  logoContainer?: string,
+  optionContainer?: string,
+  focusedOption?: string,
+  recentSearchesOptionContainer?: string,
+  recentSearchesIcon?: string,
+  recentSearchesOption?: string,
+  recentSearchesNonHighlighted?: string,
+  verticalLink?: string,
+  verticalDivider?: string,
+  entityPreviewsDivider?: string
+}
 
 type RenderEntityPreviews = (
   autocompleteLoading: boolean,
@@ -126,14 +127,14 @@ export function SearchBar({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const isVertical = useAnswersState(s => s.meta.searchType) === SearchTypeEnum.Vertical;
 
-  const [autocompleteResponse, executeAutocomplete] = useSynchronizedRequest(() => {
+  const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(() => {
     return isVertical
       ? answersActions.executeVerticalAutocomplete()
       : answersActions.executeUniversalAutocomplete();
   });
   const [
     executeQueryWithNearMeHandling,
-    autocompletePromiseRef
+    autocompletePromiseRef,
   ] = useSearchWithNearMeHandling(answersActions, geolocationOptions);
   const [recentSearches, setRecentSearch, clearRecentSearches] = useRecentSearches(recentSearchesLimit);
   const filteredRecentSearches = recentSearches?.filter(search =>
@@ -145,6 +146,11 @@ export function SearchBar({
       clearRecentSearches();
     }
   }, [clearRecentSearches, hideRecentSearches]);
+
+  function clearAutocomplete() {
+    clearAutocompleteData();
+    autocompletePromiseRef.current = undefined;
+  }
 
   function executeQuery() {
     if (!hideRecentSearches) {
@@ -241,7 +247,7 @@ export function SearchBar({
         >
           {renderAutocompleteResult(
             result,
-            { ...cssClasses, icon: cssClasses.optionIcon },
+            cssClasses,
             MagnifyingGlassIcon,
             `autocomplete option: ${result.value}`
           )}
@@ -275,7 +281,6 @@ export function SearchBar({
             updateEntityPreviews('');
             answersActions.setQuery('');
             executeQuery();
-            autocompletePromiseRef.current = executeAutocomplete();
           }}
         >
           <CloseIcon />
@@ -288,11 +293,14 @@ export function SearchBar({
   const transformedEntityPreviews = entityPreviews
     && transformEntityPreviews(entityPreviews, verticalResultsArray);
   const entityPreviewsCount = calculateEntityPreviewsCount(transformedEntityPreviews);
+  const showEntityPreviewsDivider = entityPreviewsCount > 0
+    && !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
   const hasItems = !!(autocompleteResponse?.results.length
     || (!isVertical && filteredRecentSearches?.length) || entityPreviewsCount);
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
-    filteredRecentSearches?.length, entityPreviewsCount
+    filteredRecentSearches?.length,
+    entityPreviewsCount
   );
   const activeClassName = classNames(cssClasses.inputDropdownContainer, {
     [cssClasses.inputDropdownContainer___active ?? '']: hasItems
@@ -305,15 +313,13 @@ export function SearchBar({
         activeClassName={activeClassName}
         screenReaderText={screenReaderText}
         parentQuery={query}
-        onToggle={(isActive, value = '') => {
+        onToggle={isActive => {
           if (!isActive) {
-            updateEntityPreviews(value);
-            answersActions.setQuery(value);
-            autocompletePromiseRef.current = executeAutocomplete();
+            clearAutocomplete();
           }
         }}
       >
-        <div className={cssClasses?.inputContainer}>
+        <div className={cssClasses.inputContainer}>
           <div className={cssClasses.logoContainer}>
             <YextLogoIcon />
           </div>
@@ -328,6 +334,7 @@ export function SearchBar({
           <StyledDropdownMenu cssClasses={cssClasses}>
             {renderRecentSearches()}
             {renderQuerySuggestions()}
+            {showEntityPreviewsDivider && <div className={cssClasses.entityPreviewsDivider}></div>}
             {transformedEntityPreviews}
           </StyledDropdownMenu>
         }
@@ -338,13 +345,13 @@ export function SearchBar({
 
 function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   cssClasses: {
-    divider?: string,
+    inputDivider?: string,
     dropdownContainer?: string
   }
 }>) {
   return (
     <DropdownMenu>
-      <div className={cssClasses.divider} />
+      <div className={cssClasses.inputDivider} />
       <div className={cssClasses.dropdownContainer}>
         {children}
       </div>
