@@ -88,7 +88,7 @@ interface VisualAutocompleteConfig {
   renderEntityPreviews?: RenderEntityPreviews,
 }
 
-interface Props {
+export interface SearchBarProps {
   placeholder?: string,
   geolocationOptions?: PositionOptions,
   customCssClasses?: SearchBarCssClasses,
@@ -103,7 +103,7 @@ interface Props {
 /**
  * Renders a SearchBar that is hooked up with an InputDropdown component
  */
-export function SearchBar({
+export default function SearchBar({
   placeholder,
   geolocationOptions,
   hideRecentSearches,
@@ -113,7 +113,7 @@ export function SearchBar({
   recentSearchesLimit = 5,
   customCssClasses,
   cssCompositionMethod
-}: Props): JSX.Element {
+}: SearchBarProps): JSX.Element {
   const {
     entityPreviewSearcher,
     renderEntityPreviews,
