@@ -6,7 +6,7 @@ import { getFilterDisplayValue } from './filterutils';
  * Convert a list of facets to DisplayableFilter format with only selected facets returned.
  */
 export function getDisplayableAppliedFacets(facets: DisplayableFacet[] | undefined): DisplayableFilter[] {
-  let appliedFacets: DisplayableFilter[] = [];
+  const appliedFacets: DisplayableFilter[] = [];
   facets?.forEach(facet => {
     facet.options.forEach(option => {
       if(option.selected) {
@@ -33,7 +33,7 @@ export function getDisplayableStaticFilters(
   staticFilters: SelectableFilter[] | undefined,
   groupLabels: Record<string, string>
 ): DisplayableFilter[] {
-  let appliedStaticFilters: DisplayableFilter[] = [];
+  const appliedStaticFilters: DisplayableFilter[] = [];
   staticFilters && staticFilters.forEach(selectableFilter => {
     const { selected, ...filter } = selectableFilter;
     if (selected) {
@@ -52,7 +52,7 @@ export function getDisplayableStaticFilters(
  * Convert a list of nlp filters to DisplayableFilter format.
  */
 export function getDisplayableNlpFilters(filters: AppliedQueryFilter[]): DisplayableFilter[] {
-  let appliedNlpFilters: DisplayableFilter[] = [];
+  const appliedNlpFilters: DisplayableFilter[] = [];
   filters?.forEach(filter => {
     appliedNlpFilters.push({
       filterType: 'NLP_FILTER',
