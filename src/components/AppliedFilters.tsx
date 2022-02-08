@@ -1,12 +1,10 @@
-import { DisplayableFilter } from '../models/displayableFilter';
-import CloseIcon from '../icons/CloseIcon';
-import { useAnswersActions, AppliedQueryFilter, useAnswersState, FiltersState } from '@yext/answers-headless-react';
-import { isNearFilterValue } from '../utils/filterutils';
+import { useAnswersState, FiltersState } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { GroupedFilters } from '../models/groupedFilters';
 import { getGroupedAppliedFilters } from '../utils/appliedfilterutils';
 import { useRef } from 'react';
 import classNames from 'classnames';
+import AppliedFiltersDisplay from './AppliedFiltersDisplay';
 
 export interface AppliedFiltersCssClasses {
   appliedFiltersContainer?: string,
@@ -26,22 +24,12 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
   removeFilterButton: 'w-2 h-2 text-gray-500 m-1.5'
 };
 
-interface AppliedFiltersDisplayProps {
-  showFieldNames?: boolean,
-  labelText?: string,
-  delimiter?: string,
-  displayableFilters: DisplayableFilter[],
-  cssClasses?: AppliedFiltersCssClasses
-}
-
 export interface AppliedFiltersProps {
   hiddenFields?: Array<string>,
-  labelText?: string,
   /**
    * A mapping of static filter fieldIds to their displayed group labels.
    */
   staticFiltersGroupLabels?: Record<string, string>,
-  appliedQueryFilters?: AppliedQueryFilter[],
   customCssClasses?: AppliedFiltersCssClasses,
   cssCompositionMethod?: CompositionMethod
 }
@@ -73,63 +61,4 @@ export default function AppliedFilters(props: AppliedFiltersProps): JSX.Element 
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
   });
   return <AppliedFiltersDisplay displayableFilters={appliedFilters} cssClasses={cssClasses} {...otherProps}/>;
-}
-
-export function AppliedFiltersDisplay({
-  labelText,
-  displayableFilters,
-  cssClasses = {}
-}: AppliedFiltersDisplayProps): JSX.Element {
-
-  function NlpFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
-    return (
-      <div className={cssClasses.nlpFilter}>
-        <span className={cssClasses.filterLabel}>{filter.label}</span>
-      </div>
-    );
-  }
-
-  function RemovableFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
-    const answersAction = useAnswersActions();
-
-    const onRemoveFacetOption = () => {
-      const { fieldId, matcher, value } = filter.filter;
-      if (isNearFilterValue(value)) {
-        console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
-        return;
-      }
-      answersAction.setFacetOption(fieldId, { matcher, value }, false);
-      answersAction.executeVerticalQuery();
-    };
-
-    const onRemoveStaticFilterOption = () => {
-      answersAction.setFilterOption({ ...filter.filter, selected: false });
-      answersAction.executeVerticalQuery();
-    };
-
-    const onRemoveFilter = filter.filterType === 'FACET' ? onRemoveFacetOption : onRemoveStaticFilterOption;
-
-    return (
-      <div className={cssClasses.removableFilter}>
-        <div className={cssClasses.filterLabel}>{filter.label}</div>
-        <button className={cssClasses.removeFilterButton} onClick={onRemoveFilter}><CloseIcon/></button>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      { displayableFilters.length > 0 &&
-        <div className={cssClasses.appliedFiltersContainer} aria-label={labelText}>
-          {displayableFilters.map((filter: DisplayableFilter) => {
-            const key = `${filter.filterType}-${filter.label}`;
-            if (filter.filterType === 'NLP_FILTER') {
-              return <NlpFilter filter={filter} key={key}/>;
-            }
-            return <RemovableFilter filter={filter} key={key}/>;
-          })}
-        </div>
-      }
-    </>
-  );
 }
