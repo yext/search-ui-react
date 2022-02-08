@@ -50,11 +50,14 @@ export default function FilterSearch({
   const answersActions = useAnswersActions();
   const selectedFilterOptionRef = useRef<Filter>();
   const searchParamFields = searchFields.map((searchField) => {
-    return { ...searchField, fetchEntities: false }
+    return { ...searchField, fetchEntities: false };
   });
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
-  const [filterSearchResponse, executeFilterSearch] = useSynchronizedRequest<string, FilterSearchResponse>(inputValue =>
+  const [
+    filterSearchResponse,
+    executeFilterSearch
+  ] = useSynchronizedRequest<string, FilterSearchResponse>(inputValue =>
     answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields)
   );
   const sections = filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
@@ -82,7 +85,7 @@ export default function FilterSearch({
             ))}
           </div>
         </div>
-      )
+      );
     });
   }
 
@@ -128,8 +131,8 @@ function getScreenReaderText(sections: {
   label?: string
 }[]) {
   let screenReaderText = processTranslation({
-    phrase: `0 autocomplete option found.`,
-    pluralForm: `0 autocomplete options found.`,
+    phrase: '0 autocomplete option found.',
+    pluralForm: '0 autocomplete options found.',
     count: 0
   });
   if (sections.length > 0) {
