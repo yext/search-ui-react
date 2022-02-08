@@ -23,3 +23,9 @@ export type {
   FilterSearchCssClasses,
   FilterSearchProps
 } from './FilterSearch';
+
+export { default as LocationBias } from './LocationBias';
+export type {
+  LocationBiasCssClasses,
+  LocationBiasProps
+} from './LocationBias';
