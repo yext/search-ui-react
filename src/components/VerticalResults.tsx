@@ -4,19 +4,53 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
 import PageNavigationIcon from '../icons/ChevronIcon';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
 
+/**
+ * The CSS classes used for {@link VerticalResults}.
+ */
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
+  /**
+   * Styling to apply when the results are loading.
+   */
   results___loading?: string
 }
 
+/**
+ * Props needed for the VerticalResults component.
+ */
 export interface VerticalResultsProps {
+  /**
+   * {@inheritDoc CardComponent}
+   */
   CardComponent: CardComponent,
+  /**
+   * Configuration passed to the {@link CardComponent}.
+   */
   cardConfig?: Record<string, unknown>,
+  /**
+   * Whether or not all results should be displayed when there are none returned from the search.
+   * Defaults to true.
+   */
   displayAllOnNoResults?: boolean,
+  /**
+   * Any CSS classes for customizing the component styling.
+   */
   customCssClasses?: VerticalResultsCssClasses,
+  /**
+   * {@inheritDoc CompositionMethod}
+   */
   cssCompositionMethod?: CompositionMethod,
+  /**
+   * Whether to include pagination of the results. Defaults to true.
+   */
   allowPagination?: boolean
 }
 
+/**
+ * A functional component that renders search results for a vertical page.
+ *
+ * @param props - {@inheritDoc VerticalResultsProps}
+ * @returns A React element for the results, or null if no results should be displayed
+ */
 export default function VerticalResults(props: VerticalResultsProps): JSX.Element | null {
   const { displayAllOnNoResults = true, allowPagination = true, ...otherProps } = props;
   const verticalResults = useAnswersState(state => state.vertical.results) || [];
@@ -48,6 +82,9 @@ export default function VerticalResults(props: VerticalResultsProps): JSX.Elemen
   );
 }
 
+/**
+ * The CSS classes used for pagination.
+ */
 export interface PaginationCssClasses {
   container?: string,
   labelContainer?: string,

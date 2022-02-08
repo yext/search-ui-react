@@ -1,5 +1,5 @@
 /**
- * Infers the type associated with the provided type guard
+ * Infers the type associated with the provided type guard.
  */
 type InferTypeGuard<TypeGuard> = TypeGuard extends (data: any) => data is infer Type ? Type : never;
 
@@ -26,7 +26,7 @@ export function isNumber(data: any): data is number {
 }
 
 /**
- * Returns data which passes the corresponding typeGuard validation
+ * Returns data which passes the corresponding typeGuard validation.
  */
 export function validateData<TypeGuards extends TypeGuardRecord>(
   data: any,
