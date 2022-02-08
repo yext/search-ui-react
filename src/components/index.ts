@@ -18,3 +18,8 @@ export type {
   DirectAnswerProps
 } from './DirectAnswer';
 
+export { default as FilterSearch } from './FilterSearch';
+export type {
+  FilterSearchCssClasses,
+  FilterSearchProps
+} from './FilterSearch';
