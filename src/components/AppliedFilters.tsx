@@ -1,6 +1,6 @@
 import { DisplayableFilter } from '../models/displayableFilter';
-import { ReactComponent as CloseX } from '../icons/x.svg';
-import { useAnswersActions, AppliedQueryFilter, useAnswersState, FiltersState } from '@yext/answers-headless-react'
+import CloseIcon from '../icons/CloseIcon';
+import { useAnswersActions, AppliedQueryFilter, useAnswersState, FiltersState } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { GroupedFilters } from '../models/groupedFilters';
@@ -23,8 +23,8 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
   appliedFiltersContainer___loading: 'opacity-50',
   nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-800 mr-2 mb-4',
   removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-900 mr-2 mb-4',
-  removeFilterButton: 'w-2 h-2 text-blue-500 m-1.5'
-}
+  removeFilterButton: 'w-2 h-2 text-gray-500 m-1.5'
+};
 
 interface AppliedFiltersDisplayProps {
   showFieldNames?: boolean,
@@ -46,9 +46,7 @@ export interface AppliedFiltersProps {
   cssCompositionMethod?: CompositionMethod
 }
 
-export default function AppliedFilters (
-  props : AppliedFiltersProps
-): JSX.Element {
+export default function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters) || [];
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const verticalResults = useAnswersState(state => state.vertical.results);
@@ -59,18 +57,25 @@ export default function AppliedFilters (
     filterState.current = verticalResults ? filters : {};
   }
 
-  const { hiddenFields = [], staticFiltersGroupLabels = {}, customCssClasses = {}, cssCompositionMethod, ...otherProps } = props;
-  const groupedFilters: Array<GroupedFilters> = getGroupedAppliedFilters(filterState.current, nlpFilters, hiddenFields, staticFiltersGroupLabels);
+  const {
+    hiddenFields = [],
+    staticFiltersGroupLabels = {},
+    customCssClasses = {},
+    cssCompositionMethod,
+    ...otherProps
+  } = props;
+  const groupedFilters: Array<GroupedFilters> = getGroupedAppliedFilters(
+    filterState.current,nlpFilters, hiddenFields, staticFiltersGroupLabels);
   const appliedFilters = groupedFilters.flatMap(groupedFilters => groupedFilters.filters);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
   });
-  return <AppliedFiltersDisplay displayableFilters={appliedFilters} cssClasses={cssClasses} {...otherProps}/>
-};
+  return <AppliedFiltersDisplay displayableFilters={appliedFilters} cssClasses={cssClasses} {...otherProps}/>;
+}
 
-export function AppliedFiltersDisplay ({
+export function AppliedFiltersDisplay({
   labelText,
   displayableFilters,
   cssClasses = {}
@@ -83,10 +88,10 @@ export function AppliedFiltersDisplay ({
       </div>
     );
   }
-  
+
   function RemovableFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
     const answersAction = useAnswersActions();
-  
+
     const onRemoveFacetOption = () => {
       const { fieldId, matcher, value } = filter.filter;
       if (isNearFilterValue(value)) {
@@ -95,19 +100,19 @@ export function AppliedFiltersDisplay ({
       }
       answersAction.setFacetOption(fieldId, { matcher, value }, false);
       answersAction.executeVerticalQuery();
-    }
-  
+    };
+
     const onRemoveStaticFilterOption = () => {
       answersAction.setFilterOption({ ...filter.filter, selected: false });
       answersAction.executeVerticalQuery();
-    }
-  
+    };
+
     const onRemoveFilter = filter.filterType === 'FACET' ? onRemoveFacetOption : onRemoveStaticFilterOption;
-  
+
     return (
       <div className={cssClasses.removableFilter}>
         <div className={cssClasses.filterLabel}>{filter.label}</div>
-        <button className={cssClasses.removeFilterButton} onClick={onRemoveFilter}><CloseX className='text-blue-600'/></button>
+        <button className={cssClasses.removeFilterButton} onClick={onRemoveFilter}><CloseIcon/></button>
       </div>
     );
   }
@@ -119,12 +124,12 @@ export function AppliedFiltersDisplay ({
           {displayableFilters.map((filter: DisplayableFilter) => {
             const key = `${filter.filterType}-${filter.label}`;
             if (filter.filterType === 'NLP_FILTER') {
-              return <NlpFilter filter={filter} key={key}/>
+              return <NlpFilter filter={filter} key={key}/>;
             }
-            return <RemovableFilter filter={filter} key={key}/>
+            return <RemovableFilter filter={filter} key={key}/>;
           })}
         </div>
       }
     </>
-  )
+  );
 }
