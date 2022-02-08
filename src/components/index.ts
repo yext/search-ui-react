@@ -5,6 +5,7 @@ export type {
 } from './SearchBar';
 export { default as EntityPreviews } from './EntityPreviews';
 export { default as DropdownItem } from './Dropdown/DropdownItem';
+
 export { default as SpellCheck } from './SpellCheck';
 export type {
   SpellCheckCssClasses,
