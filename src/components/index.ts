@@ -18,6 +18,18 @@ export type {
   DirectAnswerProps
 } from './DirectAnswer';
 
+export { default as FilterSearch } from './FilterSearch';
+export type {
+  FilterSearchCssClasses,
+  FilterSearchProps
+} from './FilterSearch';
+
+export { default as LocationBias } from './LocationBias';
+export type {
+  LocationBiasCssClasses,
+  LocationBiasProps
+} from './LocationBias';
+
 export { default as VerticalResults } from './VerticalResults';
 export type {
   VerticalResultsCssClasses,
