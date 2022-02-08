@@ -29,3 +29,12 @@ export type {
   LocationBiasCssClasses,
   LocationBiasProps
 } from './LocationBias';
+
+export { default as VerticalResults } from './VerticalResults';
+export type {
+  VerticalResultsCssClasses,
+  VerticalResultsProps,
+  PaginationCssClasses
+} from './VerticalResults';
+
+export * from './cards/StandardCard';
