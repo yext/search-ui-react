@@ -46,7 +46,7 @@ export interface VerticalResultsProps {
 }
 
 /**
- * A functional component that renders search results for a vertical page.
+ * A component that renders search results for a vertical page.
  *
  * @param props - {@inheritDoc VerticalResultsProps}
  * @returns A React element for the results, or null if no results should be displayed
