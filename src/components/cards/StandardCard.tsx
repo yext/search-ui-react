@@ -54,7 +54,7 @@ const defaultFieldMappings: Record<string, FieldData> = {
  */
 export interface StandardCardCssClasses {
   /**
-   * Styling applied to outermost container of the card.
+   * Styling applied to the outermost container of the card.
    */
   container?: string,
   /**
