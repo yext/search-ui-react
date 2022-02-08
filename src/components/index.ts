@@ -11,3 +11,10 @@ export type {
   SpellCheckCssClasses,
   SpellCheckProps
 } from './SpellCheck';
+
+export { default as DirectAnswer } from './DirectAnswer';
+export type {
+  DirectAnswerCssClasses,
+  DirectAnswerProps
+} from './DirectAnswer';
+
