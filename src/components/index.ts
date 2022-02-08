@@ -18,7 +18,7 @@ export type {
   DirectAnswerProps
 } from './DirectAnswer';
 
-export { default as VerticalResults, VerticalResultsDisplay } from './VerticalResults';
+export { default as VerticalResults } from './VerticalResults';
 export type {
   VerticalResultsCssClasses,
   VerticalResultsProps,

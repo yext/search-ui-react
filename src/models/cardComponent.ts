@@ -1,16 +1,11 @@
 import { Result } from '@yext/answers-headless-react';
-import { StandardCardConfig } from '../components/cards/StandardCard';
-
-/**
- * The config types for each supported card.
- */
-export type CardConfigTypes = StandardCardConfig;
 
 /**
  * CardComponent and the corresponding config options
  */
-export interface CardConfig extends CardConfigTypes {
-  CardComponent: CardComponent
+export interface CardConfig {
+  CardComponent: CardComponent,
+  [additionalProps: string]: unknown
 }
 
 /**
@@ -18,7 +13,7 @@ export interface CardConfig extends CardConfigTypes {
  */
 export interface CardProps {
   result: Result,
-  configuration: CardConfigTypes
+  [additionalProps: string]: unknown
 }
 
 /**
