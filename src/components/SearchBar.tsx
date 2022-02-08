@@ -11,7 +11,7 @@ import RecentSearchIcon from '../icons/HistoryIcon';
 import CloseIcon from '../icons/CloseIcon';
 import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
 import YextLogoIcon from '../icons/YextIcon';
-import { BrowserState } from '../models/BrowserState';
+import { BrowserState } from '../models/browserState';
 import Dropdown from './Dropdown/Dropdown';
 import { useDropdownContext } from './Dropdown/DropdownContext';
 import DropdownInput from './Dropdown/DropdownInput';
