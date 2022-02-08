@@ -39,3 +39,12 @@ export { default as AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 export type {
   AppliedFiltersDisplayProps
 } from './AppliedFiltersDisplay';
+
+export { default as VerticalResults } from './VerticalResults';
+export type {
+  VerticalResultsCssClasses,
+  VerticalResultsProps,
+  PaginationCssClasses
+} from './VerticalResults';
+
+export * from './cards/StandardCard';
