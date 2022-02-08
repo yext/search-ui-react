@@ -3,15 +3,30 @@ import { CardProps } from '../../models/cardComponent';
 import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
 import { isString, validateData } from '../utils/validateData';
 
+/**
+ * Props needed for a StandardCard.
+ */
 export interface StandardCardProps extends CardProps {
+  /**
+   * Whether or not to show an ordinal for numbering the card.
+   */
   showOrdinal?: boolean,
+  /**
+   * Custom mappings for the data fields used in the card.
+   */
   fieldMappings?: {
     title?: FieldData,
     description?: FieldData,
     cta1?: FieldData,
     cta2?: FieldData
   },
+  /**
+   * Any CSS classes for customizing the component styling.
+   */
   customCssClasses?: StandardCardCssClasses,
+  /**
+   * {@inheritDoc CompositionMethod}
+   */
   cssCompositionMethod?: CompositionMethod
 }
 
@@ -34,15 +49,45 @@ const defaultFieldMappings: Record<string, FieldData> = {
   },
 };
 
+/**
+ * The CSS classes used for {@link StandardCard}.
+ */
 export interface StandardCardCssClasses {
+  /**
+   * Styling applied to outermost container of the card.
+   */
   container?: string,
+  /**
+   * Styling applied to the card's header, including the ordinal and title.
+   */
   header?: string,
+  /**
+   * Styling applied to the body of the card, including the description and CTAs.
+   */
   body?: string,
+  /**
+   * Styling applied to the result description.
+   */
   descriptionContainer?: string,
+  /**
+   * Styling applied to the container of the CTAs.
+   */
   ctaContainer?: string,
+  /**
+   * Styling applied to the primary CTA.
+   */
   cta1?: string,
+  /**
+   * Styling applied to the secondary CTA.
+   */
   cta2?: string,
+  /**
+   * Styling applied to the ordinal number.
+   */
   ordinal?: string,
+  /**
+   * Styling applied to the result title.
+   */
   title?: string
 }
 
@@ -77,7 +122,9 @@ function isCtaData(data: unknown): data is CtaData {
 /**
  * This Component renders the base result card.
  *
- * @param props - An object containing the result itself.
+ * @param props - An object containing the result itself and any additional information needed
+ *                to render the card
+ * @returns A React element for the result card
  */
 export function StandardCard(props: StandardCardProps): JSX.Element {
   const {

@@ -23,7 +23,7 @@ function applyFieldDataPath(data: any, fieldMap: FieldDataPath): any {
 }
 
 /**
- * Collects data based on the provided fields mappings
+ * Collects data based on the provided fields mappings.
  *
  * @examle
  * Suppose rawData is:
@@ -49,8 +49,8 @@ function applyFieldDataPath(data: any, fieldMap: FieldDataPath): any {
  *    answer: 'Yext'
  *  }
  *
- * @param rawData The rawData from an {@link Result}
- * @param fieldMappings Indicates where data is located within the rawData field
+ * @param rawData - The rawData from an {@link Result}
+ * @param fieldMappings - Indicates where data is located within the rawData field
  * @returns An object of fields to data
  */
 export function applyFieldMappings(

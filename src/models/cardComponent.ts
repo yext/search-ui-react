@@ -1,7 +1,7 @@
 import { Result } from '@yext/answers-headless-react';
 
 /**
- * CardComponent and the corresponding config options
+ * CardComponent and the corresponding config options.
  */
 export interface CardConfig {
   CardComponent: CardComponent,
