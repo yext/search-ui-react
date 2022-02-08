@@ -4,18 +4,28 @@ import { useAnswersActions } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
 
+/**
+ * Properties for {@link AppliedFilters}.
+ */
 export interface AppliedFiltersDisplayProps {
-  showFieldNames?: boolean,
-  delimiter?: string,
+  /**
+   * List of {@link DisplayableFilter} to construct the applied filter tags from.
+   */
   displayableFilters: DisplayableFilter[],
+  /**
+   * CSS classes for customizing the component styling ({@link AppliedFiltersCssClasses}).
+   */
   cssClasses?: AppliedFiltersCssClasses
 }
 
-export default function AppliedFiltersDisplay({
-  displayableFilters,
-  cssClasses = {}
-}: AppliedFiltersDisplayProps): JSX.Element {
-
+/**
+ * A component that renders applied filters based on a given list of {@link DisplayableFilter}.
+ *
+ * @param props - {@inheritdoc AppliedFiltersDisplayProps}
+ * @returns A React element for the applied filters
+ */
+export default function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element {
+  const { displayableFilters, cssClasses = {} } = props;
   function NlpFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
     return (
       <div className={cssClasses.nlpFilter}>

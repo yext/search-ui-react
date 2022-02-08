@@ -6,12 +6,33 @@ import { useRef } from 'react';
 import classNames from 'classnames';
 import AppliedFiltersDisplay from './AppliedFiltersDisplay';
 
+/**
+ * The CSS classes used for {@link AppliedFilters}.
+ */
 export interface AppliedFiltersCssClasses {
+  /**
+   * Styling applied to outermost container of the applied filters.
+   */
   appliedFiltersContainer?: string,
+  /**
+   * Styling to apply when the results are loading.
+   */
   appliedFiltersContainer___loading?: string,
+  /**
+   * Styling applied to natural language processed filters.
+   */
   nlpFilter?: string,
+  /**
+   * Styling applied to container of individual removable filters.
+   */
   removableFilter?: string,
+  /**
+   * Styling applied the remove button for all removable filters.
+   */
   removeFilterButton?: string,
+  /**
+   * Styling applied the text label for all applied filters.
+   */
   filterLabel?: string
 }
 
@@ -24,16 +45,36 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
   removeFilterButton: 'w-2 h-2 text-gray-500 m-1.5'
 };
 
+/**
+ * Properties for {@link AppliedFilters}.
+ */
 export interface AppliedFiltersProps {
+  /**
+   * List of filters that should not be displayed.
+   */
   hiddenFields?: Array<string>,
   /**
    * A mapping of static filter fieldIds to their displayed group labels.
    */
   staticFiltersGroupLabels?: Record<string, string>,
+  /**
+   * CSS classes for customizing the component styling ({@link AppliedFiltersCssClasses}).
+   */
   customCssClasses?: AppliedFiltersCssClasses,
+  /**
+   * {@inheritDoc CompositionMethod}
+   */
   cssCompositionMethod?: CompositionMethod
 }
 
+/**
+ * A component that displays a list of filters applied to current vertical
+ * search, which may include any selected options from static filters, facets, and
+ * natural language processed filters.
+ *
+ * @param props - {@inheritdoc AppliedFiltersProps}
+ * @returns A React element for the applied filters
+ */
 export default function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters) || [];
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
