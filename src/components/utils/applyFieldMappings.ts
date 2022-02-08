@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import get from 'lodash/get';
 
 export type FieldDataConstant = {
