@@ -9,7 +9,7 @@ export function getDisplayableAppliedFacets(facets: DisplayableFacet[] | undefin
   const appliedFacets: DisplayableFilter[] = [];
   facets?.forEach(facet => {
     facet.options.forEach(option => {
-      if(option.selected) {
+      if (option.selected) {
         appliedFacets.push({
           filterType: 'FACET',
           filter: {

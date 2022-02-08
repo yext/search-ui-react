@@ -35,10 +35,10 @@ export function isCombinedFilter(obj: Filter | CombinedFilter): obj is CombinedF
  */
 export function flattenFilters(filter: Filter | CombinedFilter | null | undefined): Array<Filter> {
   let filters: Array<Filter> = [];
-  if(!filter) {
+  if (!filter) {
     return filters;
   }
-  if(isCombinedFilter(filter)) {
+  if (isCombinedFilter(filter)) {
     filter.filters.forEach(fltr => filters = filters.concat(flattenFilters(fltr)));
   } else {
     filters.push(filter);
