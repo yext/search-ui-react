@@ -2,7 +2,7 @@ import { useAnswersState, useAnswersActions, Filter } from '@yext/answers-headle
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import Filters, { FiltersCssClasses } from './Filters';
 
-interface FacetsProps {
+export interface FacetsProps {
   searchOnChange?: boolean,
   searchable?: boolean,
   collapsible?: boolean,
@@ -12,7 +12,7 @@ interface FacetsProps {
   cssCompositionMethod?: CompositionMethod
 }
 
-export interface FacetConfig {
+interface FacetConfig {
   searchable?: boolean,
   placeholderText?: string,
   label?: string,
@@ -20,7 +20,7 @@ export interface FacetConfig {
   defaultExpanded?: boolean
 }
 
-interface FacetsCssClasses extends FiltersCssClasses {
+export interface FacetsCssClasses extends FiltersCssClasses {
   facetsContainer?: string,
   buttonsContainer?: string,
   button?: string

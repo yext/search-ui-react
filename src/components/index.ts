@@ -24,6 +24,12 @@ export type {
   FilterSearchProps
 } from './FilterSearch';
 
+export { default as Facets } from './Facets';
+export type {
+  FacetsCssClasses,
+  FacetsProps
+} from './Facets';
+
 export { default as LocationBias } from './LocationBias';
 export type {
   LocationBiasCssClasses,
