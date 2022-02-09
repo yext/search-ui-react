@@ -28,7 +28,7 @@ export default function LocationBias({
 }: LocationBiasProps): JSX.Element | null {
   const answersActions = useAnswersActions();
   const isVertical = useAnswersState(s => s.meta.searchType) === 'vertical';
-  const locationBias = useAnswersState(s => s.location.locationBias)
+  const locationBias = useAnswersState(s => s.location.locationBias);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
   if (!locationBias?.displayName) return null;
