@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import AppliedFiltersDisplay from './AppliedFiltersDisplay';
 
 /**
- * The CSS classes used for {@link AppliedFilters}.
+ * The CSS class interface used for {@link AppliedFilters}.
  */
 export interface AppliedFiltersCssClasses {
   /**
