@@ -13,7 +13,7 @@ export interface AppliedFiltersDisplayProps {
    */
   displayableFilters: DisplayableFilter[],
   /**
-   * CSS classes for customizing the component styling ({@link AppliedFiltersCssClasses}).
+   * CSS classes for customizing the component styling.
    */
   cssClasses?: AppliedFiltersCssClasses
 }
@@ -25,6 +25,7 @@ export interface AppliedFiltersDisplayProps {
  * @returns A React element for the applied filters
  */
 export default function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element {
+  console.log('aaaa');
   const { displayableFilters, cssClasses = {} } = props;
   function NlpFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
     return (

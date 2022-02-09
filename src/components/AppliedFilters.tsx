@@ -58,7 +58,7 @@ export interface AppliedFiltersProps {
    */
   staticFiltersGroupLabels?: Record<string, string>,
   /**
-   * CSS classes for customizing the component styling ({@link AppliedFiltersCssClasses}).
+   * CSS classes for customizing the component styling.
    */
   customCssClasses?: AppliedFiltersCssClasses,
   /**
