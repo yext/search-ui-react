@@ -19,7 +19,7 @@ export interface AppliedFiltersCssClasses {
    */
   appliedFiltersContainer___loading?: string,
   /**
-   * Styling applied to natural language processed filters.
+   * Styling applied to NLP filters.
    */
   nlpFilter?: string,
   /**
@@ -68,9 +68,9 @@ export interface AppliedFiltersProps {
 }
 
 /**
- * A component that displays a list of filters applied to current vertical
+ * A component that displays a list of filters applied to the current vertical
  * search, which may include any selected options from static filters, facets, and
- * natural language processed filters.
+ * NLP filters.
  *
  * @param props - {@inheritdoc AppliedFiltersProps}
  * @returns A React element for the applied filters
