@@ -5,7 +5,7 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
 import classNames from 'classnames';
 
 /**
- * The CSS classes used for {@link AlternativeVerticals}.
+ * The CSS class interface used for {@link AlternativeVerticals}.
  */
 export interface AlternativeVerticalsCssClasses {
   /**
@@ -99,7 +99,7 @@ export interface AlternativeVerticalsProps {
    */
   displayAllOnNoResults?: boolean,
   /**
-   * Any CSS classes for customizing the component styling.
+   * CSS classes for customizing the component styling.
    */
   customCssClasses?: AlternativeVerticalsCssClasses,
   /**
