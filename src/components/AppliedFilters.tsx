@@ -50,7 +50,7 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
  */
 export interface AppliedFiltersProps {
   /**
-   * List of filters that should not be displayed.
+   * List of filters that should not be displayed. By default, builtin.entityType will be hidden.
    */
   hiddenFields?: Array<string>,
   /**
@@ -87,7 +87,7 @@ export default function AppliedFilters(props: AppliedFiltersProps): JSX.Element 
   }
 
   const {
-    hiddenFields = [],
+    hiddenFields = ['builtin.entityType'],
     staticFiltersGroupLabels = {},
     customCssClasses = {},
     cssCompositionMethod,
