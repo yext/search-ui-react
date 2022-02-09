@@ -25,7 +25,6 @@ export interface AppliedFiltersDisplayProps {
  * @returns A React element for the applied filters
  */
 export default function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element {
-  console.log('aaaa');
   const { displayableFilters, cssClasses = {} } = props;
   function NlpFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
     return (
