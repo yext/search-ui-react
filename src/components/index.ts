@@ -38,3 +38,9 @@ export type {
 } from './VerticalResults';
 
 export * from './cards/StandardCard';
+
+export { default as AlternativeVerticals } from './AlternativeVerticals';
+export type {
+  AlternativeVerticalsCssClasses,
+  AlternativeVerticalsProps
+} from './AlternativeVerticals';
