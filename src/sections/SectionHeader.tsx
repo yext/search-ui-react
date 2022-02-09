@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { AppliedFiltersCssClasses, AppliedFiltersProps } from '../components/AppliedFilters';
 import AppliedFiltersDisplay from '../components/AppliedFiltersDisplay';
 // import { ResultsCountConfig } from '../components/ResultsCount';
@@ -89,9 +88,9 @@ export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
       }
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>
-          <Link className={cssClasses.viewMoreLink} to={`/${verticalKey}?query=${latestQuery}`}>
+          <a className={cssClasses.viewMoreLink} href={`/${verticalKey}?query=${latestQuery}`}>
             View all
-          </Link>
+          </a>
         </div>}
     </div>
   );
