@@ -1,4 +1,4 @@
-import { useAnswersState, useAnswersActions, Filter } from '@yext/answers-headless-react'
+import { useAnswersState, useAnswersActions, Filter } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import Filters, { FiltersCssClasses } from './Filters';
 
@@ -30,7 +30,7 @@ const builtInCssClasses: FacetsCssClasses = {
   facetsContainer: 'md:w-40',
   buttonsContainer: 'flex justify-between mt-5',
   button: 'border border-gray-300 px-2.5 py-1 rounded-md',
-}
+};
 
 export default function Facets(props: FacetsProps): JSX.Element {
   const {
@@ -43,9 +43,7 @@ export default function Facets(props: FacetsProps): JSX.Element {
     cssCompositionMethod
   } = props;
   const facets = useAnswersState(state => state.filters?.facets) || [];
-
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-
   const answersActions = useAnswersActions();
   const executeSearch = () => answersActions.executeVerticalQuery();
 
@@ -54,7 +52,7 @@ export default function Facets(props: FacetsProps): JSX.Element {
     if (searchOnChange) {
       executeSearch();
     }
-  }
+  };
 
   const onFacetOptionClick = (filter: Filter, selected: boolean) => {
     if (typeof filter.value !== 'string' &&
@@ -65,12 +63,12 @@ export default function Facets(props: FacetsProps): JSX.Element {
     const option = {
       matcher: filter.matcher,
       value: filter.value
-    }
+    };
     answersActions.setFacetOption(filter.fieldId, option, selected);
     if (searchOnChange) {
       executeSearch();
     }
-  }
+  };
 
   const filtersConfig = facets
     .filter(facet => facet.options?.length > 0)
@@ -81,8 +79,7 @@ export default function Facets(props: FacetsProps): JSX.Element {
         collapsible,
         defaultExpanded,
         ...overrideConfig
-      }
-
+      };
       const filterOptions = facet.options.map(option => {
         return {
           fieldId: facet.fieldId,
@@ -90,9 +87,8 @@ export default function Facets(props: FacetsProps): JSX.Element {
           label: `${option.displayName} (${option.count})`,
           isSelected: option.selected,
           onClick: onFacetOptionClick
-        }
+        };
       });
-
       return ({
         label: facet.displayName,
         options: filterOptions,
@@ -112,5 +108,5 @@ export default function Facets(props: FacetsProps): JSX.Element {
         <button onClick={handleResetFacets} className={cssClasses.button}>Reset all</button>
       </div>
     </div>
-  )
+  );
 }

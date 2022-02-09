@@ -49,12 +49,12 @@ const builtInCssClasses: FiltersCssClasses = {
   button: 'border border-gray-300 px-2.5 py-1 rounded-md',
   searchableInputElement: 'text-sm bg-white h-9 w-full outline-none p-2 mb-2 rounded-md border border-gray-300 focus:border-blue-600',
   optionsContainer: 'flex flex-col space-y-3',
-}
+};
 
 export default function Filters(props: FiltersProps): JSX.Element {
   const { filterConfigs, customCssClasses, cssCompositionMethod } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-  // Maintain the state of the search inputs where the key is the index of the filterConfig, and the 
+  // Maintain the state of the search inputs where the key is the index of the filterConfig, and the
   // value is the search input
   const [ searchTerms, setSearchTerms ] = useState<Record<number, string>>({});
   const answersUtilities = useAnswersUtilities();
@@ -62,22 +62,22 @@ export default function Filters(props: FiltersProps): JSX.Element {
   function renderSearchInput({
     value = '',
     placeholderText = 'Search here...',
-    index 
-  }: { 
+    index
+  }: {
     value?: string,
     placeholderText?: string,
     index: number
   }) {
-    return <input
-      className={cssClasses.searchableInputElement} 
-      type='text' 
-      placeholder={placeholderText} 
-      value={value} 
-      onChange={e => setSearchTerms({ 
+    return (<input
+      className={cssClasses.searchableInputElement}
+      type='text'
+      placeholder={placeholderText}
+      value={value}
+      onChange={e => setSearchTerms({
         ...searchTerms,
         [index]: e.target.value
       })}
-    />
+    />);
   }
 
   return (
@@ -88,7 +88,7 @@ export default function Filters(props: FiltersProps): JSX.Element {
           ? filterConfig.options.filter(o => answersUtilities.isCloseMatch(o.label ?? '', searchTerms[index] ?? ''))
           : filterConfig.options;
         const hasSelectedFilterOption = !!options.find(o => o.isSelected);
- 
+
         return (
           <div key={`${filterConfig.label}-${index}`}>
             <CollapsibleLabel
@@ -103,13 +103,13 @@ export default function Filters(props: FiltersProps): JSX.Element {
                 placeholderText: filterConfig.placeholderText,
                 index
               })}
-              <div className={cssClasses.optionsContainer}> 
+              <div className={cssClasses.optionsContainer}>
                 {options.map((option, index) => {
                   const filter = {
                     fieldId: option.fieldId,
                     matcher: Matcher.Equals,
                     value: option.value
-                  }
+                  };
                   return renderCheckboxOption({
                     option: { id: `${option.label}-${index}`, label: option.label },
                     onClick: selected => option.onClick?.(filter, selected),
@@ -134,10 +134,10 @@ interface DividerProps {
   cssCompositionMethod?: CompositionMethod
 }
 
-export function Divider({ customCssClasses, cssCompositionMethod }: DividerProps) {
+export function Divider({ customCssClasses, cssCompositionMethod }: DividerProps): JSX.Element {
   const builtInCssClasses = {
     divider: 'w-full h-px bg-gray-200 my-4'
-  }
+  };
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-  return <div className={cssClasses.divider}></div>
+  return <div className={cssClasses.divider}></div>;
 }

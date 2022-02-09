@@ -18,10 +18,10 @@ interface CheckBoxOptionProps {
 
 export default function renderCheckboxOption({
   option, selected, onClick, cssClasses = {}
-}: CheckBoxOptionProps) {
+}: CheckBoxOptionProps): JSX.Element {
   return (
     <div className={cssClasses.option} key={option.id}>
-      <input 
+      <input
         type="checkbox"
         id={option.id}
         checked={selected}

@@ -1,8 +1,8 @@
-import useCollapse from "react-collapsed";
-import { CompositionMethod, useComposedCssClasses } from "../hooks/useComposedCssClasses";
-import { CheckboxOptionCssClasses } from "./utils/renderCheckboxOption";
-import { ReactComponent as DropdownIcon } from '../icons/chevron.svg';
-import { PropsWithChildren } from "react";
+import useCollapse from 'react-collapsed';
+import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { CheckboxOptionCssClasses } from './utils/renderCheckboxOption';
+import DropdownIcon from '../icons/ChevronIcon';
+import { PropsWithChildren } from 'react';
 
 interface CollapsibleLabelProps {
   collapsible?: boolean,
@@ -16,7 +16,7 @@ const builtInCssClasses: CollapsibleLabelCssClasses = {
   label: 'text-gray-900 text-sm font-medium text-left',
   labelIcon: 'w-3',
   labelContainer: 'w-full flex justify-between items-center mb-4'
-}
+};
 
 export interface CollapsibleLabelCssClasses extends CheckboxOptionCssClasses {
   label?: string,
@@ -27,7 +27,7 @@ export interface CollapsibleLabelCssClasses extends CheckboxOptionCssClasses {
 /**
  * A label which can collapse its contents
  */
-export default function CollapsibleLabel(props: PropsWithChildren<CollapsibleLabelProps>) {
+export default function CollapsibleLabel(props: PropsWithChildren<CollapsibleLabelProps>): JSX.Element {
   const {
     label,
     collapsible = true,
@@ -40,7 +40,7 @@ export default function CollapsibleLabel(props: PropsWithChildren<CollapsibleLab
   const modifiedLabelIconCssClasses = isExpanded
     ? cssClasses.labelIcon
     : cssClasses.labelIcon + ' transform rotate-180';
- 
+
   return (
     <fieldset>
       <button className={cssClasses.labelContainer} {...(collapsible ? getToggleProps() : {})}>
