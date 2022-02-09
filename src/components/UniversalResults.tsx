@@ -1,6 +1,5 @@
 import { useAnswersState, VerticalResults } from '@yext/answers-headless-react';
 import StandardSection from '../sections/StandardSection';
-import { AppliedFiltersProps } from '../components/AppliedFilters';
 import SectionHeader from '../sections/SectionHeader';
 import { SectionComponent } from '../models/sectionComponent';
 import { CardConfig } from '../models/cardComponent';
@@ -36,16 +35,12 @@ export interface VerticalConfig {
   viewAllButton?: boolean
 }
 
-interface AppliedFiltersConfig extends Omit<AppliedFiltersProps, 'appliedQueryFilters'> {
-  show: boolean
-}
-
 /**
  * Props needed for {@link UniversalResults}.
  */
 export interface UniversalResultsProps {
-  /** The configuration for the applied filters, including whether or not to show them. */
-  appliedFiltersConfig?: AppliedFiltersConfig,
+  /** Whether or not to show the applied filters. */
+  showAppliedFilters?: boolean,
   /** The configuration for the verticals. */
   verticalConfigs: Record<string, VerticalConfig>,
   /** The CSS class interface used for {@link UniversalResults}. */
@@ -62,7 +57,7 @@ export interface UniversalResultsProps {
  */
 export default function UniversalResults({
   verticalConfigs,
-  appliedFiltersConfig,
+  showAppliedFilters,
   customCssClasses,
   cssCompositionMethod
 }: UniversalResultsProps): JSX.Element | null {
@@ -80,7 +75,7 @@ export default function UniversalResults({
 
   return (
     <div className={resultsClassNames}>
-      {renderVerticalSections({ resultsFromAllVerticals, appliedFiltersConfig, verticalConfigs })}
+      {renderVerticalSections({ resultsFromAllVerticals, showAppliedFilters, verticalConfigs })}
     </div>
   );
 }
@@ -107,9 +102,8 @@ function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
 
         const SectionComponent = verticalConfig.SectionComponent || StandardSection;
 
-        const { show, ...filterconfig } = props.appliedFiltersConfig || {};
-        const appliedFiltersConfig = show
-          ? { ...filterconfig, appliedQueryFilters: verticalResults.appliedQueryFilters }
+        const appliedQueryFilters = props.showAppliedFilters
+          ? verticalResults.appliedQueryFilters
           : undefined;
 
         /* const resultsCountConfig = {
@@ -124,7 +118,7 @@ function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
             header={<SectionHeader {...{
               label,
               // resultsCountConfig,
-              appliedFiltersConfig,
+              appliedQueryFilters,
               verticalKey,
               viewAllButton: verticalConfig.viewAllButton
             }}/>}
