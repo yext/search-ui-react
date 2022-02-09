@@ -4,18 +4,51 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
 import CollapsibleLabel, { CollapsibleLabelCssClasses } from './CollapsibleLabel';
 import renderCheckboxOption from './utils/renderCheckboxOption';
 
+/**
+ * Properties for {@link Filters}.
+ */
 interface FiltersProps {
+  /**
+   * Configurations for individual filter groups.
+   */
   filterConfigs: FilterConfig[],
+  /**
+   * CSS classes for customizing the component styling.
+   */
   customCssClasses?: FiltersCssClasses,
+  /**
+   * {@inheritDoc CompositionMethod}
+   */
   cssCompositionMethod?: CompositionMethod
 }
 
+/**
+ * Configuration for a filter.
+ */
 export interface FilterConfig {
+  /**
+   * Options to display together in a group.
+   */
   options: FilterOption[],
+  /**
+   * Whether or not to display the filter option search input.
+   */
   searchable?: boolean,
+  /**
+   * The placeholder text used for the filter option search input
+   */
   placeholderText?: string,
+  /**
+   * Label for the filter group.
+   */
   label?: string,
+  /**
+   * Allow expanding and collapsing the group of filters. Defaults to true.
+   */
   collapsible?: boolean,
+  /**
+   * Whether or not the group of filters should be expanded on initial page load. Defaults to true.
+   */
   defaultExpanded?: boolean
 }
 
@@ -27,16 +60,26 @@ interface FilterOption {
   isSelected?: boolean
 }
 
+/**
+ * The CSS class interface used for {@link Filters}.
+ */
 export interface FiltersCssClasses extends CollapsibleLabelCssClasses {
+  /**
+   * Styling applied to outermost container of the groups of filters.
+   */
   container?: string,
+  /**
+   * Styling applied to the divider between groups of filters.
+   */
   divider?: string,
-  buttonsContainer?: string,
-  button?: string,
+  /**
+   * Styling applied to the filter option search input.
+   */
   searchableInputElement?: string,
-  optionsContainer?: string,
-  option?: string,
-  optionInput?: string,
-  optionLabel?: string
+  /**
+   * Styling applied to container of individual group of filters.
+   */
+  optionsContainer?: string
 }
 
 const builtInCssClasses: FiltersCssClasses = {
@@ -45,8 +88,6 @@ const builtInCssClasses: FiltersCssClasses = {
   optionLabel: 'text-gray-500 text-sm font-normal cursor-pointer',
   container: 'md:w-40',
   divider: 'w-full h-px bg-gray-200 my-4',
-  buttonsContainer: 'flex justify-between mt-5',
-  button: 'border border-gray-300 px-2.5 py-1 rounded-md',
   searchableInputElement: 'text-sm bg-white h-9 w-full outline-none p-2 mb-2 rounded-md border border-gray-300 focus:border-blue-600',
   optionsContainer: 'flex flex-col space-y-3',
 };

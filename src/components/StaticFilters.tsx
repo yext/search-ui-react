@@ -10,28 +10,49 @@ interface StaticFilterOption {
   label: string
 }
 
-interface StaticFiltersProps {
+/**
+ * Properties for {@link StaticFilters}.
+ */
+export interface StaticFiltersProps {
+  /**
+   * Configurations for individual group of filters.
+   */
   filterConfigs: FilterConfig[],
+  /**
+   * CSS classes for customizing the component styling.
+   */
   customCssClasses?: StaticFiltersCssClasses,
+  /**
+   * {@inheritDoc CompositionMethod}
+   */
   cssCompositionMethod?: CompositionMethod
 }
 
-interface StaticFiltersCssClasses extends FiltersCssClasses {};
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface StaticFiltersCssClasses extends FiltersCssClasses {}
 
+
+/**
+ * A component that display groups of user-configured filters
+ * that will be apply to the current vertical search.
+ *
+ * @param props - {@inheritdoc StaticFiltersProps}
+ * @returns A React element for the static filters
+ */
 export default function StaticFilters(props: StaticFiltersProps): JSX.Element {
   const answersActions = useAnswersActions();
   const { filterConfigs: staticFilterConfigs, customCssClasses, cssCompositionMethod } = props;
 
-  const selectableFilters = useAnswersState(state =>  state.filters.static);
+  const selectableFilters = useAnswersState(state => state.filters.static);
   const isOptionSelected = (option: StaticFilterOption): boolean => {
     const foundFilter = selectableFilters?.find(storedSelectableFilter => {
-      const { selected, ...storedFilter } = storedSelectableFilter;
+      const { selected:_, ...storedFilter } = storedSelectableFilter;
       const targetFilter = {
         fieldId: option.fieldId,
         matcher: Matcher.Equals,
         value: option.value
       };
-      return isDuplicateFilter(storedFilter, targetFilter); 
+      return isDuplicateFilter(storedFilter, targetFilter);
     });
     return !!foundFilter && foundFilter.selected;
   };
@@ -40,7 +61,7 @@ export default function StaticFilters(props: StaticFiltersProps): JSX.Element {
     answersActions.resetFacets();
     answersActions.setFilterOption({ ...option, selected: isChecked });
     answersActions.executeVerticalQuery();
-  }
+  };
 
   const filterConfigs: FilterConfig[] = staticFilterConfigs.map(staticFilterConfig => {
     const filterOptions = staticFilterConfig.options.map(staticFilterOption => {
@@ -48,13 +69,13 @@ export default function StaticFilters(props: StaticFiltersProps): JSX.Element {
         ...staticFilterOption,
         onClick: handleFilterOptionClick,
         isSelected: isOptionSelected(staticFilterOption)
-      }
-    })
+      };
+    });
     return {
       ...staticFilterConfig,
       options: filterOptions,
-    }
-  })
+    };
+  });
 
   return (
     <Filters
