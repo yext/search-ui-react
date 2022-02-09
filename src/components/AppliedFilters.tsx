@@ -1,4 +1,4 @@
-import { useAnswersState, FiltersState } from '@yext/answers-headless-react';
+import { useAnswersState, FiltersState, AppliedQueryFilter } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { GroupedFilters } from '../models/groupedFilters';
 import { getGroupedAppliedFilters } from '../utils/appliedfilterutils';
@@ -41,6 +41,8 @@ export interface AppliedFiltersProps {
   hiddenFields?: Array<string>,
   /** A mapping of static filter fieldIds to their displayed group labels. */
   staticFiltersGroupLabels?: Record<string, string>,
+  /** Filters applied by the Answers API to the search based on the query. */
+   appliedQueryFilters?: AppliedQueryFilter[],
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AppliedFiltersCssClasses,
   /** {@inheritDoc CompositionMethod} */

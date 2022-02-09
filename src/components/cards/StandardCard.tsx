@@ -16,7 +16,7 @@ export interface StandardCardProps extends CardProps {
     cta1?: FieldData,
     cta2?: FieldData
   },
-  /** Any CSS classes for customizing the component styling. */
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardCardCssClasses,
   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
@@ -42,7 +42,7 @@ const defaultFieldMappings: Record<string, FieldData> = {
 };
 
 /**
- * The CSS classes used for {@link StandardCard}.
+ * The CSS class interface used for {@link StandardCard}.
  */
 export interface StandardCardCssClasses {
   /** Applies to the outermost container of the card. */
