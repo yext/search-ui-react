@@ -5,7 +5,7 @@ import PageNavigationIcon from '../icons/ChevronIcon';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
 
 /**
- * The CSS classes used for {@link VerticalResults}.
+ * The CSS class interface used for {@link VerticalResults}.
  */
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
   /**
@@ -32,7 +32,7 @@ export interface VerticalResultsProps {
    */
   displayAllOnNoResults?: boolean,
   /**
-   * Any CSS classes for customizing the component styling.
+   * CSS classes for customizing the component styling.
    */
   customCssClasses?: VerticalResultsCssClasses,
   /**
