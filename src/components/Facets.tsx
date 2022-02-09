@@ -2,27 +2,81 @@ import { useAnswersState, useAnswersActions, Filter } from '@yext/answers-headle
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import Filters, { FiltersCssClasses } from './Filters';
 
+/**
+ * Properties for {@link Facets}.
+ */
 export interface FacetsProps {
+  /**
+   * Executes a new search whenever a facet selection changes.
+   */
   searchOnChange?: boolean,
+  /**
+   * Whether or not to display the facet option search input.
+   */
   searchable?: boolean,
+  /**
+   * Allow expanding and collapsing entire groups of facets.
+   */
   collapsible?: boolean,
+  /**
+   * Whether or not the groups of facets should be expanded on initial page load.
+   */
   defaultExpanded?: boolean,
+  /**
+   * Configurations for individual facet groups.
+   */
   facetConfigs?: Record<string, FacetConfig>,
+  /**
+   * CSS classes for customizing the component styling.
+   */
   customCssClasses?: FacetsCssClasses,
+  /**
+   * {@inheritDoc CompositionMethod}
+   */
   cssCompositionMethod?: CompositionMethod
 }
 
-interface FacetConfig {
+/**
+ * Configuration for a group of facets.
+ */
+export interface FacetConfig {
+  /**
+   * Whether or not to display the facet option search input.
+   */
   searchable?: boolean,
+  /**
+   * The placeholder text used for the filter option search input
+   */
   placeholderText?: string,
+  /**
+   * Custom label to override the default facet group's display name.
+   */
   label?: string,
+  /**
+   * Allow expanding and collapsing the group of facets.
+   */
   collapsible?: boolean,
+  /**
+   * Whether or not the group of facets should be expanded on initial page load.
+   */
   defaultExpanded?: boolean
 }
 
+/**
+ * The CSS class interface used for {@link Facets}.
+ */
 export interface FacetsCssClasses extends FiltersCssClasses {
+  /**
+   * Styling applied to outermost container of Facets.
+   */
   facetsContainer?: string,
+  /**
+   * Styling applied to container of Apply button and Reset button.
+   */
   buttonsContainer?: string,
+  /**
+   * Styling applied to Apply button and Reset button.
+   */
   button?: string
 }
 
@@ -32,6 +86,12 @@ const builtInCssClasses: FacetsCssClasses = {
   button: 'border border-gray-300 px-2.5 py-1 rounded-md',
 };
 
+/**
+ * A component that displays a list of selectable facets applicable to the current vertical search.
+ *
+ * @param props - {@inheritdoc FacetsProps}
+ * @returns A React element for the facets
+ */
 export default function Facets(props: FacetsProps): JSX.Element {
   const {
     searchOnChange,

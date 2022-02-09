@@ -27,7 +27,8 @@ export type {
 export { default as Facets } from './Facets';
 export type {
   FacetsCssClasses,
-  FacetsProps
+  FacetsProps,
+  FacetConfig
 } from './Facets';
 
 export { default as LocationBias } from './LocationBias';

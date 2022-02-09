@@ -51,6 +51,12 @@ const builtInCssClasses: FiltersCssClasses = {
   optionsContainer: 'flex flex-col space-y-3',
 };
 
+/**
+ * A component that display groups of filter options based on the provided list of filter configurations.
+ *
+ * @param props - {@inheritdoc FiltersProps}
+ * @returns A React element for the Filters
+ */
 export default function Filters(props: FiltersProps): JSX.Element {
   const { filterConfigs, customCssClasses, cssCompositionMethod } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
