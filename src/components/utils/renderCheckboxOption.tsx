@@ -7,17 +7,11 @@ interface CheckboxOption {
  * The CSS class interface used in {@link renderCheckboxOption}.
  */
 export interface CheckboxOptionCssClasses {
-  /**
-   * Styling applied to the container of the option.
-   */
+  /** Applies to the container of the option. */
   option?: string,
-  /**
-   * Styling applied to the option's checkbox.
-   */
+  /** Applies to the option's checkbox. */
   optionInput?: string,
-  /**
-   * Styling applied to the option's label.
-   */
+  /** Applies to the option's label. */
   optionLabel?: string,
 }
 

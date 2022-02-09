@@ -7,36 +7,28 @@ import Filters, { FiltersCssClasses } from './Filters';
  * Properties for {@link Facets}.
  */
 export interface FacetsProps {
-  /**
-   * Executes a new search whenever a facet selection changes.
-   */
+  /** Executes a new search whenever a facet selection changes. */
   searchOnChange?: boolean,
   /**
    * {@inheritdoc FilterConfig.searchable}
-   * Apply to all groups of facets.
+   * Applies to all groups of facets.
    */
   searchable?: boolean,
   /**
    * {@inheritdoc FilterConfig.collapsible}
-   * Apply to all groups of facets.
+   * Applies to all groups of facets.
    */
   collapsible?: boolean,
   /**
    * {@inheritdoc FilterConfig.defaultExpanded}
-   * Apply to all groups of facets.
+   * Applies to all groups of facets.
    */
   defaultExpanded?: boolean,
-  /**
-   * Configurations for individual facet groups.
-   */
+  /** Configurations for individual facet groups. */
   facetConfigs?: Record<string, FacetConfig>,
-  /**
-   * CSS classes for customizing the component styling.
-   */
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: FacetsCssClasses,
-  /**
-   * {@inheritDoc CompositionMethod}
-   */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
@@ -50,17 +42,11 @@ export interface FacetConfig extends Omit<FilterConfig, 'options'> {}
  * The CSS class interface used for {@link Facets}.
  */
 export interface FacetsCssClasses extends FiltersCssClasses {
-  /**
-   * Styling applied to outermost container of Facets.
-   */
+  /** Applies to outermost container of Facets. */
   facetsContainer?: string,
-  /**
-   * Styling applied to container of Apply button and Reset button.
-   */
+  /** Applies to container of Apply button and Reset button. */
   buttonsContainer?: string,
-  /**
-   * Styling applied to Apply button and Reset button.
-   */
+  /** Applies to Apply button and Reset button. */
   button?: string
 }
 

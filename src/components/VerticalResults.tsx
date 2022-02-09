@@ -8,9 +8,7 @@ import { VerticalResultsDisplay } from './VerticalResultsDisplay';
  * The CSS class interface used for {@link VerticalResults}.
  */
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
-  /**
-   * Styling to apply when the results are loading.
-   */
+  /** Applies when the results are loading. */
   results___loading?: string
 }
 
@@ -18,30 +16,20 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
  * Props needed for the VerticalResults component.
  */
 export interface VerticalResultsProps {
-  /**
-   * {@inheritDoc CardComponent}
-   */
+  /** {@inheritDoc CardComponent} */
   CardComponent: CardComponent,
-  /**
-   * Configuration passed to the {@link CardComponent}.
-   */
+  /** Configuration passed to the {@link CardComponent}. */
   cardConfig?: Record<string, unknown>,
   /**
    * Whether or not all results should be displayed when there are none returned from the search.
    * Defaults to true.
    */
   displayAllOnNoResults?: boolean,
-  /**
-   * CSS classes for customizing the component styling.
-   */
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: VerticalResultsCssClasses,
-  /**
-   * {@inheritDoc CompositionMethod}
-   */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
-  /**
-   * Whether to include pagination of the results. Defaults to true.
-   */
+  /** Whether to include pagination of the results. Defaults to true. */
   allowPagination?: boolean
 }
 

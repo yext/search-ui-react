@@ -8,17 +8,11 @@ import renderCheckboxOption from './utils/renderCheckboxOption';
  * Properties for {@link Filters}.
  */
 interface FiltersProps {
-  /**
-   * Configurations for individual filter groups.
-   */
+  /** Configurations for individual filter groups. */
   filterConfigs: FilterConfig[],
-  /**
-   * CSS classes for customizing the component styling.
-   */
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: FiltersCssClasses,
-  /**
-   * {@inheritDoc CompositionMethod}
-   */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
@@ -26,29 +20,17 @@ interface FiltersProps {
  * Configuration for a filter.
  */
 export interface FilterConfig {
-  /**
-   * Options to display together in a group.
-   */
+  /** Options to display together in a group. */
   options: FilterOption[],
-  /**
-   * Whether or not to display the filter option search input.
-   */
+  /** Whether or not to display the filter option search input. */
   searchable?: boolean,
-  /**
-   * The placeholder text used for the filter option search input
-   */
+  /** The placeholder text used for the filter option search input */
   placeholderText?: string,
-  /**
-   * Label for the filter group.
-   */
+  /** Label for the filter group. */
   label?: string,
-  /**
-   * Allow expanding and collapsing the group of filters. Defaults to true.
-   */
+  /** Allow expanding and collapsing the group of filters. Defaults to true. */
   collapsible?: boolean,
-  /**
-   * Whether or not the group of filters should be expanded on initial page load. Defaults to true.
-   */
+  /** Whether or not the group of filters should be expanded on initial page load. Defaults to true. */
   defaultExpanded?: boolean
 }
 
@@ -64,21 +46,13 @@ interface FilterOption {
  * The CSS class interface used for {@link Filters}.
  */
 export interface FiltersCssClasses extends CollapsibleLabelCssClasses {
-  /**
-   * Styling applied to outermost container of the groups of filters.
-   */
+  /** Applies to outermost container of the groups of filters. */
   container?: string,
-  /**
-   * Styling applied to the divider between groups of filters.
-   */
+  /** Applies to the divider between groups of filters. */
   divider?: string,
-  /**
-   * Styling applied to the filter option search input.
-   */
+  /** Applies to the filter option search input. */
   searchableInputElement?: string,
-  /**
-   * Styling applied to container of individual group of filters.
-   */
+  /** Applies to container of individual group of filters. */
   optionsContainer?: string
 }
 

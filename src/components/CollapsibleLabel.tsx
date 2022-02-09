@@ -22,17 +22,11 @@ const builtInCssClasses: CollapsibleLabelCssClasses = {
  * The CSS class interface used for {@link CollapsibleLabel}.
  */
 export interface CollapsibleLabelCssClasses extends CheckboxOptionCssClasses {
-  /**
-   * Styling applied to the label.
-   */
+  /** Applies to the label. */
   label?: string,
-  /**
-   * Styling applied to the dropdown icon.
-   */
+  /** Applies to the dropdown icon. */
   labelIcon?: string,
-    /**
-   * Styling applied to outermost container of the label and its children element.
-   */
+  /** Applies to outermost container of the label and its children element. */
   labelContainer?: string
 }
 

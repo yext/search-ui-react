@@ -14,17 +14,11 @@ interface StaticFilterOption {
  * Properties for {@link StaticFilters}.
  */
 export interface StaticFiltersProps {
-  /**
-   * Configurations for individual group of filters.
-   */
+  /** Configurations for individual filter groups. */
   filterConfigs: FilterConfig[],
-  /**
-   * CSS classes for customizing the component styling.
-   */
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: StaticFiltersCssClasses,
-  /**
-   * {@inheritDoc CompositionMethod}
-   */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
