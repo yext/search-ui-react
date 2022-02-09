@@ -36,6 +36,16 @@ export type {
   LocationBiasProps
 } from './LocationBias';
 
+export { default as AppliedFilters } from './AppliedFilters';
+export type {
+  AppliedFiltersCssClasses,
+  AppliedFiltersProps
+} from './AppliedFilters';
+export { default as AppliedFiltersDisplay } from './AppliedFiltersDisplay';
+export type {
+  AppliedFiltersDisplayProps
+} from './AppliedFiltersDisplay';
+
 export { default as VerticalResults } from './VerticalResults';
 export type {
   VerticalResultsCssClasses,
