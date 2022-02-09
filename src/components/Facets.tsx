@@ -1,4 +1,5 @@
 import { useAnswersState, useAnswersActions, Filter } from '@yext/answers-headless-react';
+import { FilterConfig } from './Filters';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import Filters, { FiltersCssClasses } from './Filters';
 
@@ -6,77 +7,46 @@ import Filters, { FiltersCssClasses } from './Filters';
  * Properties for {@link Facets}.
  */
 export interface FacetsProps {
-  /**
-   * Executes a new search whenever a facet selection changes.
-   */
+  /** Executes a new search whenever a facet selection changes. */
   searchOnChange?: boolean,
   /**
-   * Whether or not to display the facet option search input.
+   * {@inheritdoc FilterConfig.searchable}
+   * Applies to all groups of facets.
    */
   searchable?: boolean,
   /**
-   * Allow expanding and collapsing entire groups of facets.
+   * {@inheritdoc FilterConfig.collapsible}
+   * Applies to all groups of facets.
    */
   collapsible?: boolean,
   /**
-   * Whether or not the groups of facets should be expanded on initial page load.
+   * {@inheritdoc FilterConfig.defaultExpanded}
+   * Applies to all groups of facets.
    */
   defaultExpanded?: boolean,
-  /**
-   * Configurations for individual facet groups.
-   */
+  /** Configurations for individual facet groups. */
   facetConfigs?: Record<string, FacetConfig>,
-  /**
-   * CSS classes for customizing the component styling.
-   */
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: FacetsCssClasses,
-  /**
-   * {@inheritDoc CompositionMethod}
-   */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
 /**
  * Configuration for a group of facets.
  */
-export interface FacetConfig {
-  /**
-   * Whether or not to display the facet option search input.
-   */
-  searchable?: boolean,
-  /**
-   * The placeholder text used for the filter option search input
-   */
-  placeholderText?: string,
-  /**
-   * Custom label to override the default facet group's display name.
-   */
-  label?: string,
-  /**
-   * Allow expanding and collapsing the group of facets.
-   */
-  collapsible?: boolean,
-  /**
-   * Whether or not the group of facets should be expanded on initial page load.
-   */
-  defaultExpanded?: boolean
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface FacetConfig extends Omit<FilterConfig, 'options'> {}
 
 /**
  * The CSS class interface used for {@link Facets}.
  */
 export interface FacetsCssClasses extends FiltersCssClasses {
-  /**
-   * Styling applied to outermost container of Facets.
-   */
+  /** Applies to outermost container of Facets. */
   facetsContainer?: string,
-  /**
-   * Styling applied to container of Apply button and Reset button.
-   */
+  /** Applies to container of Apply button and Reset button. */
   buttonsContainer?: string,
-  /**
-   * Styling applied to Apply button and Reset button.
-   */
+  /** Applies to Apply button and Reset button. */
   button?: string
 }
 

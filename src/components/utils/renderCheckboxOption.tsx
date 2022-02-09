@@ -3,10 +3,16 @@ interface CheckboxOption {
   label: string
 }
 
+/**
+ * The CSS class interface used in {@link renderCheckboxOption}.
+ */
 export interface CheckboxOptionCssClasses {
+  /** Applies to the container of the option. */
   option?: string,
+  /** Applies to the option's checkbox. */
+  optionInput?: string,
+  /** Applies to the option's label. */
   optionLabel?: string,
-  optionInput?: string
 }
 
 interface CheckBoxOptionProps {

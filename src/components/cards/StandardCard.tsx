@@ -7,26 +7,18 @@ import { isString, validateData } from '../utils/validateData';
  * Props needed for a StandardCard.
  */
 export interface StandardCardProps extends CardProps {
-  /**
-   * Whether or not to show an ordinal for numbering the card.
-   */
+  /** Whether or not to show an ordinal for numbering the card. */
   showOrdinal?: boolean,
-  /**
-   * Custom mappings for the data fields used in the card.
-   */
+  /** Custom mappings for the data fields used in the card. */
   fieldMappings?: {
     title?: FieldData,
     description?: FieldData,
     cta1?: FieldData,
     cta2?: FieldData
   },
-  /**
-   * Any CSS classes for customizing the component styling.
-   */
+  /** Any CSS classes for customizing the component styling. */
   customCssClasses?: StandardCardCssClasses,
-  /**
-   * {@inheritDoc CompositionMethod}
-   */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
@@ -53,41 +45,23 @@ const defaultFieldMappings: Record<string, FieldData> = {
  * The CSS classes used for {@link StandardCard}.
  */
 export interface StandardCardCssClasses {
-  /**
-   * Styling applied to the outermost container of the card.
-   */
+  /** Applies to the outermost container of the card. */
   container?: string,
-  /**
-   * Styling applied to the card's header, including the ordinal and title.
-   */
+  /** Applies to the card's header, including the ordinal and title. */
   header?: string,
-  /**
-   * Styling applied to the body of the card, including the description and CTAs.
-   */
+  /** Applies to the body of the card, including the description and CTAs. */
   body?: string,
-  /**
-   * Styling applied to the result description.
-   */
+  /** Applies to the result description. */
   descriptionContainer?: string,
-  /**
-   * Styling applied to the container of the CTAs.
-   */
+  /** Applies to the container of the CTAs. */
   ctaContainer?: string,
-  /**
-   * Styling applied to the primary CTA.
-   */
+  /** Applies to the primary CTA. */
   cta1?: string,
-  /**
-   * Styling applied to the secondary CTA.
-   */
+  /** Applies to the secondary CTA. */
   cta2?: string,
-  /**
-   * Styling applied to the ordinal number.
-   */
+  /** Applies to the ordinal number. */
   ordinal?: string,
-  /**
-   * Styling applied to the result title.
-   */
+  /** Applies to the result title. */
   title?: string
 }
 

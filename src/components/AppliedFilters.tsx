@@ -10,29 +10,17 @@ import AppliedFiltersDisplay from './AppliedFiltersDisplay';
  * The CSS class interface used for {@link AppliedFilters}.
  */
 export interface AppliedFiltersCssClasses {
-  /**
-   * Styling applied to outermost container of the applied filters.
-   */
+  /** Applies to outermost container of the applied filters. */
   appliedFiltersContainer?: string,
-  /**
-   * Styling to apply when the results are loading.
-   */
+  /** Applies when the results are loading. */
   appliedFiltersContainer___loading?: string,
-  /**
-   * Styling applied to NLP filters.
-   */
+  /** Applies to NLP filters. */
   nlpFilter?: string,
-  /**
-   * Styling applied to container of individual removable filters.
-   */
+  /** Applies to container of individual removable filters. */
   removableFilter?: string,
-  /**
-   * Styling applied the remove button for all removable filters.
-   */
+  /** Applies to the remove button for all removable filters. */
   removeFilterButton?: string,
-  /**
-   * Styling applied the text label for all applied filters.
-   */
+  /** Applies to text label for all applied filters. */
   filterLabel?: string
 }
 
@@ -49,21 +37,13 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
  * Properties for {@link AppliedFilters}.
  */
 export interface AppliedFiltersProps {
-  /**
-   * List of filters that should not be displayed. By default, builtin.entityType will be hidden.
-   */
+  /** List of filters that should not be displayed. By default, builtin.entityType will be hidden. */
   hiddenFields?: Array<string>,
-  /**
-   * A mapping of static filter fieldIds to their displayed group labels.
-   */
+  /** A mapping of static filter fieldIds to their displayed group labels. */
   staticFiltersGroupLabels?: Record<string, string>,
-  /**
-   * CSS classes for customizing the component styling.
-   */
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: AppliedFiltersCssClasses,
-  /**
-   * {@inheritDoc CompositionMethod}
-   */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 

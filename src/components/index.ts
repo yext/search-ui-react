@@ -31,6 +31,23 @@ export type {
   FacetConfig
 } from './Facets';
 
+export { default as StaticFilters } from './StaticFilters';
+export type {
+  StaticFiltersCssClasses,
+  StaticFiltersProps
+} from './StaticFilters';
+
+export type {
+  FilterConfig,
+  FiltersCssClasses
+} from './Filters';
+export type {
+  CollapsibleLabelCssClasses
+} from './CollapsibleLabel';
+export type {
+  CheckboxOptionCssClasses
+} from './utils/renderCheckboxOption';
+
 export { default as LocationBias } from './LocationBias';
 export type {
   LocationBiasCssClasses,

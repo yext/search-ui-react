@@ -8,49 +8,27 @@ import classNames from 'classnames';
  * The CSS class interface used for {@link AlternativeVerticals}.
  */
 export interface AlternativeVerticalsCssClasses {
-  /**
-   * Styling applied to the outermost container of the card.
-   */
+  /** Applies to the outermost container of the card. */
   container?: string,
-  /**
-   * Styling to apply when the results are loading.
-   */
+  /** Applies when the results are loading. */
   alternativeVerticals___loading?: string,
-  /**
-   * Styling applied to the text for no results being found.
-   */
+  /** Applies to the text for no results being found. */
   noResultsText?: string,
-  /**
-   * Styling applied to the text for there being other categories with results.
-   */
+  /** Applies to the text for there being other categories with results. */
   categoriesText?: string,
-  /**
-   * Styling applied to the categories text and suggestions.
-   */
+  /** Applies to the categories text and suggestions. */
   suggestions?: string,
-  /**
-   * Styling applied to the overall list of vertical suggestions.
-   */
+  /** Applies to the overall list of vertical suggestions. */
   suggestionList?: string,
-  /**
-   * Styling applied to a single vertical suggestion.
-   */
+  /** Applies to a single vertical suggestion. */
   suggestion?: string,
-  /**
-   * Styling applied to the button for a vertical suggestion, including the icon and link.
-   */
+  /** Applies to the button for a vertical suggestion, including the icon and link. */
   suggestionButton?: string,
-  /**
-   * Styling applied to the icon for a vertical suggestion.
-   */
+  /** Applies to the icon for a vertical suggestion. */
   verticalIcon?: string,
-  /**
-   * Styling applied to the link for a vertical suggestion.
-   */
+  /** Applies to the link for a vertical suggestion. */
   verticalLink?: string,
-  /**
-   * Styling applied to the text for viewing results across all verticals.
-   */
+  /** Applies to the text for viewing results across all verticals. */
   allCategoriesLink?: string
 }
 
@@ -85,26 +63,18 @@ function isVerticalSuggestion(suggestion: VerticalSuggestion | null): suggestion
  * Props needed for {@link AlternativeVerticals}.
  */
 export interface AlternativeVerticalsProps {
-  /**
-   * The label for the current vertical.
-   */
+  /** The label for the current vertical. */
   currentVerticalLabel: string,
-  /**
-   * An array containing the label and verticalKey of each vertical.
-   */
+  /** An array containing the label and verticalKey of each vertical. */
   verticalsConfig: VerticalConfig[],
   /**
    * Whether or not all results should be displayed when there are none returned from the search.
    * Defaults to true.
    */
   displayAllOnNoResults?: boolean,
-  /**
-   * CSS classes for customizing the component styling.
-   */
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: AlternativeVerticalsCssClasses,
-  /**
-   * {@inheritDoc CompositionMethod}
-   */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 

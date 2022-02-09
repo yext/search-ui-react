@@ -18,9 +18,15 @@ const builtInCssClasses: CollapsibleLabelCssClasses = {
   labelContainer: 'w-full flex justify-between items-center mb-4'
 };
 
+/**
+ * The CSS class interface used for {@link CollapsibleLabel}.
+ */
 export interface CollapsibleLabelCssClasses extends CheckboxOptionCssClasses {
+  /** Applies to the label. */
   label?: string,
+  /** Applies to the dropdown icon. */
   labelIcon?: string,
+  /** Applies to outermost container of the label and its children element. */
   labelContainer?: string
 }
 
