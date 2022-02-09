@@ -36,12 +36,12 @@ export interface VerticalConfig {
 }
 
 /**
- * Props needed for {@link UniversalResults}.
+ * Properties for {@link UniversalResults}.
  */
 export interface UniversalResultsProps {
   /** Whether or not to show the applied filters. */
   showAppliedFilters?: boolean,
-  /** The configuration for the verticals. */
+  /** A mapping of verticalKey to the configuration for each vertical. */
   verticalConfigs: Record<string, VerticalConfig>,
   /** The CSS class interface used for {@link UniversalResults}. */
   customCssClasses?: UniversalResultsCssClasses,
@@ -50,7 +50,8 @@ export interface UniversalResultsProps {
 }
 
 /**
- * A component that displays all the vertical results of a universal search.
+ * Displays the results of a universal search with the results for each vertical separated
+ * into sections.
  *
  * @param props - {@inheritDoc UniversalResultsProps}
  * @returns A React element for the universal results, or null if there are none
@@ -85,8 +86,8 @@ interface VerticalSectionsProps extends UniversalResultsProps {
 }
 
 /**
- * Renders a list of SectionComponent based on the given list of vertical results and corresponding configs,
- * including specifing what section template to use.
+ * Renders a list of {@link SectionComponent}s based on the given list of vertical results and
+ * corresponding configs, including specifying which section template to use.
  */
 function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
   const { resultsFromAllVerticals, verticalConfigs } = props;
