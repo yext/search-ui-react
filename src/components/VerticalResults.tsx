@@ -13,7 +13,7 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
 }
 
 /**
- * Props needed for the VerticalResults component.
+ * Props for the VerticalResults component.
  */
 export interface VerticalResultsProps {
   /** {@inheritDoc CardComponent} */

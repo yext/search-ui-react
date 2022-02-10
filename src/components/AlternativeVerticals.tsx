@@ -8,7 +8,7 @@ import classNames from 'classnames';
  * The CSS class interface used for {@link AlternativeVerticals}.
  */
 export interface AlternativeVerticalsCssClasses {
-  /** Applies to the outermost container of the card. */
+  /** Applies to the outermost container of the alternative verticals. */
   container?: string,
   /** Applies when the results are loading. */
   alternativeVerticals___loading?: string,
@@ -60,7 +60,7 @@ function isVerticalSuggestion(suggestion: VerticalSuggestion | null): suggestion
 }
 
 /**
- * Props needed for {@link AlternativeVerticals}.
+ * Props for {@link AlternativeVerticals}.
  */
 export interface AlternativeVerticalsProps {
   /** The label for the current vertical. */

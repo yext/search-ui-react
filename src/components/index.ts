@@ -64,6 +64,13 @@ export type {
   AppliedFiltersDisplayProps
 } from './AppliedFiltersDisplay';
 
+export { default as UniversalResults } from './UniversalResults';
+export type {
+  UniversalResultsCssClasses,
+  UniversalResultsProps,
+  VerticalConfig
+} from './UniversalResults';
+
 export { default as VerticalResults } from './VerticalResults';
 export type {
   VerticalResultsCssClasses,
