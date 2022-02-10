@@ -123,7 +123,7 @@ export default function SearchBar({
   const browserHistory = useHistory<BrowserState>();
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
-  const analyticsReporter = useAnalytics();
+  const analytics = useAnalytics();
 
   const query = useAnswersState(state => state.query.input) ?? '';
   const queryId = useAnswersState(state => state.query.queryId);
@@ -284,12 +284,12 @@ export default function SearchBar({
           onClick={() => {
             updateEntityPreviews('');
             answersActions.setQuery('');
-            analyticsReporter.report({
+            executeQuery();
+            analytics.report({
               type: 'SEARCH_CLEAR_BUTTON',
               queryId: queryId ?? '',
               verticalKey
             });
-            executeQuery();
           }}
         >
           <CloseIcon />

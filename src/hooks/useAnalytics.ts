@@ -1,9 +1,9 @@
-import { AnalyticsReporter } from '@yext/analytics';
+import { AnalyticsService } from '@yext/analytics';
 import { createContext, useContext } from 'react';
 
-export const AnalyticsContext = createContext<AnalyticsReporter>({} as AnalyticsReporter);
+export const AnalyticsContext = createContext<AnalyticsService>({} as AnalyticsService);
 
-export function useAnalytics(): AnalyticsReporter {
+export function useAnalytics(): AnalyticsService {
   const analyticsReporter = useContext(AnalyticsContext);
   if (analyticsReporter.report === undefined) {
     throw new Error('Attempted to call useAnalytics() outside of AnalyticsProvider.'
