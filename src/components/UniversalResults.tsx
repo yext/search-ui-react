@@ -10,9 +10,7 @@ import classNames from 'classnames';
  * The CSS class interface used for {@link UniversalResults}.
  */
 export interface UniversalResultsCssClasses {
-  /** Applies to the outermost container of the results. */
   container?: string,
-  /** Applies when the results are loading. */
   results___loading?: string
 }
 
@@ -36,14 +34,14 @@ export interface VerticalConfig {
 }
 
 /**
- * Properties for {@link UniversalResults}.
+ * Props for {@link UniversalResults}.
  */
 export interface UniversalResultsProps {
   /** Whether or not to show the applied filters. */
   showAppliedFilters?: boolean,
   /** A mapping of verticalKey to the configuration for each vertical. */
   verticalConfigs: Record<string, VerticalConfig>,
-  /** The CSS class interface used for {@link UniversalResults}. */
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: UniversalResultsCssClasses,
   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod

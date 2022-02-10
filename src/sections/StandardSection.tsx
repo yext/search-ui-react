@@ -7,7 +7,6 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
  * The CSS class interface used for {@link StandardSection}.
  */
 export interface StandardSectionCssClasses {
-  /** Applies to the section as a whole. */
   section?: string
 }
 

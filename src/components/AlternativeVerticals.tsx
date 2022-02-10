@@ -60,7 +60,7 @@ function isVerticalSuggestion(suggestion: VerticalSuggestion | null): suggestion
 }
 
 /**
- * Properties for {@link AlternativeVerticals}.
+ * Props for {@link AlternativeVerticals}.
  */
 export interface AlternativeVerticalsProps {
   /** The label for the current vertical. */

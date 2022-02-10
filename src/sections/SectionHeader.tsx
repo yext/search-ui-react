@@ -11,15 +11,10 @@ import classNames from 'classnames';
  * The CSS class interface used for {@link SectionHeader}.
  */
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
-  /** Applies to the outermost container of the section header. */
   sectionHeaderContainer?: string,
-  /** Applies to the container for the section's icon. */
   sectionHeaderIconContainer?: string,
-  /** Applies to the label for the section. */
   sectionHeaderLabel?: string,
-  /** Applies to the container of the view more link. */
   viewMoreContainer?: string,
-  /** Applies to the view more link. */
   viewMoreLink?: string
 }
 

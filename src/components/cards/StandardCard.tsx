@@ -4,7 +4,7 @@ import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
 import { isString, validateData } from '../utils/validateData';
 
 /**
- * Properties for a StandardCard.
+ * Props for a StandardCard.
  */
 export interface StandardCardProps extends CardProps {
   /** Whether or not to show an ordinal for numbering the card. */
