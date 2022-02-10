@@ -2,7 +2,7 @@ import { useAnswersState, VerticalResults } from '@yext/answers-headless-react';
 import StandardSection from '../sections/StandardSection';
 import SectionHeader from '../sections/SectionHeader';
 import { SectionComponent } from '../models/sectionComponent';
-import { CardConfig } from '../models/cardComponent';
+import { CardComponent } from '../models/cardComponent';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 
@@ -26,7 +26,7 @@ export interface VerticalConfig {
   /** {@inheritDoc SectionComponent} */
   SectionComponent?: SectionComponent,
   /** The configuration for cards in this vertical. */
-  cardConfig?: CardConfig,
+  card?: CardComponent,
   /** The label for the vertical. */
   label?: string,
   /** Whether or not this vertical should show a button to view all results on the vertical page. */
@@ -121,7 +121,7 @@ function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
               verticalKey,
               viewAllButton: verticalConfig.viewAllButton
             }}/>}
-            cardConfig={verticalConfig.cardConfig}
+            card={verticalConfig.card}
             key={verticalKey}
           />
         );

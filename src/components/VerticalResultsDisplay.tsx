@@ -10,7 +10,6 @@ const builtInCssClasses: VerticalResultsCssClasses = {
 
 interface VerticalResultsDisplayProps {
   CardComponent: CardComponent,
-  cardConfig?: Record<string, unknown>,
   isLoading?: boolean,
   results: Result[],
   customCssClasses?: VerticalResultsCssClasses,
@@ -27,7 +26,6 @@ export function VerticalResultsDisplay(props: VerticalResultsDisplayProps): JSX.
   const {
     CardComponent,
     results,
-    cardConfig = {},
     isLoading = false,
     customCssClasses,
     cssCompositionMethod
@@ -44,7 +42,7 @@ export function VerticalResultsDisplay(props: VerticalResultsDisplayProps): JSX.
 
   return (
     <div className={resultsClassNames}>
-      {results && results.map(result => renderResult(CardComponent, cardConfig, result))}
+      {results && results.map(result => renderResult(CardComponent, result))}
     </div>
   );
 }
@@ -53,13 +51,11 @@ export function VerticalResultsDisplay(props: VerticalResultsDisplayProps): JSX.
  * Renders a single result using the specified card type and configuration.
  *
  * @param CardComponent - The card for the vertical.
- * @param cardConfig - Any card-specific configuration.
  * @param result - The result to render.
  */
 function renderResult(
   CardComponent: CardComponent,
-  cardConfig: Record<string, unknown>,
   result: Result
 ): JSX.Element {
-  return <CardComponent result={result} {...cardConfig} key={result.id || result.index}/>;
+  return <CardComponent result={result} key={result.id || result.index}/>;
 }
