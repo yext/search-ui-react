@@ -26,6 +26,7 @@ import renderAutocompleteResult, {
   AutocompleteResultCssClasses,
   builtInCssClasses as AutocompleteResultBuiltInCssClasses
 } from './utils/renderAutocompleteResult';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-3',
@@ -122,10 +123,13 @@ export default function SearchBar({
   const browserHistory = useHistory<BrowserState>();
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
+  const analytics = useAnalytics();
 
   const query = useAnswersState(state => state.query.input) ?? '';
+  const queryId = useAnswersState(state => state.query.queryId);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const isVertical = useAnswersState(s => s.meta.searchType) === SearchTypeEnum.Vertical;
+  const verticalKey = useAnswersState( s => s.vertical.verticalKey);
 
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(() => {
     return isVertical
@@ -281,6 +285,11 @@ export default function SearchBar({
             updateEntityPreviews('');
             answersActions.setQuery('');
             executeQuery();
+            analytics.report({
+              type: 'SEARCH_CLEAR_BUTTON',
+              queryId: queryId ?? '',
+              verticalKey
+            });
           }}
         >
           <CloseIcon />
