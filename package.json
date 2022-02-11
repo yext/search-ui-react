@@ -14,7 +14,7 @@
     "dev": "tsc --watch",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",

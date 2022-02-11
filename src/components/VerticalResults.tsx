@@ -18,8 +18,6 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
 export interface VerticalResultsProps {
   /** {@inheritDoc CardComponent} */
   CardComponent: CardComponent,
-  /** Configuration passed to the {@link CardComponent}. */
-  cardConfig?: Record<string, unknown>,
   /**
    * Whether or not all results should be displayed when there are none returned from the search.
    * Defaults to true.

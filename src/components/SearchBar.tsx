@@ -287,11 +287,13 @@ export default function SearchBar({
             updateEntityPreviews('');
             answersActions.setQuery('');
             executeQuery();
-            analytics.report({
-              type: 'SEARCH_CLEAR_BUTTON',
-              queryId: queryId ?? '',
-              verticalKey
-            });
+            if (analytics && queryId) {
+              analytics.report({
+                type: 'SEARCH_CLEAR_BUTTON',
+                queryId: queryId,
+                verticalKey
+              });
+            }
           }}
         >
           <CloseIcon />

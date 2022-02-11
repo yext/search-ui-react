@@ -1,4 +1,4 @@
-export * from './useAnalytics';
+export { useAnalytics } from './useAnalytics';
 
 export { default as useSearchWithNearMeHandling } from './useSearchWithNearMeHandling';
 export type {
