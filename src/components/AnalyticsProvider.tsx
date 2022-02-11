@@ -1,12 +1,14 @@
-import { ReactChild, ReactChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { provideAnalytics, AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsContext } from '../hooks/useAnalytics';
 
-type Props = AnalyticsConfig & {
-  children?: ReactChildren | ReactChild | (ReactChildren | ReactChild)[]
-};
-
-export function AnalyticsProvider(props: Props): JSX.Element {
+/**
+ * A component that provides analytics for its children.
+ *
+ * @param props - The configuration for the analytics service
+ * @returns A React element that provides analytics context
+ */
+export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element {
   const { children, ...analyticsConfig } = props;
   const analyticsReporter = provideAnalytics(analyticsConfig);
 

@@ -85,3 +85,5 @@ export type {
   AlternativeVerticalsCssClasses,
   AlternativeVerticalsProps
 } from './AlternativeVerticals';
+
+export * from './AnalyticsProvider';
