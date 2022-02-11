@@ -285,7 +285,7 @@ export default function SearchBar({
             updateEntityPreviews('');
             answersActions.setQuery('');
             executeQuery();
-            analytics.report({
+            analytics?.report({
               type: 'SEARCH_CLEAR_BUTTON',
               queryId: queryId ?? '',
               verticalKey
