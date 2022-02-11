@@ -125,13 +125,13 @@ function Pagination(props: PaginationProps): JSX.Element | null {
   const pageNumber = (offset / limit) + 1;
   const paginationLabels: string[] = generatePaginationLabels(pageNumber, maxPageCount);
 
-  const sendAnalyticsReport = (newPageNumber: number) => {
+  const reportPaginateEvent = (newPageNumber: number) => {
     if(!queryId) {
-      console.error('Unable to send analytics report for a pagination event. Missing field: queryId.');
+      console.error('Unable to report a pagination event. Missing field: queryId.');
       return;
     }
     if(!verticalKey) {
-      console.error('Unable to send analytics report for a pagination event. Missing field: verticalKey.');
+      console.error('Unable to report a pagination event. Missing field: verticalKey.');
       return;
     }
     analytics.report({
@@ -148,7 +148,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
     const newOffset = limit * (newPageNumber - 1);
     answersAction.setOffset(newOffset);
     answersAction.executeVerticalQuery();
-    analytics && sendAnalyticsReport(newPageNumber);
+    analytics && reportPaginateEvent(newPageNumber);
   };
 
   return (
