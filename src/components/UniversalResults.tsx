@@ -25,8 +25,8 @@ const builtInCssClasses: UniversalResultsCssClasses = {
 export interface VerticalConfig {
   /** {@inheritDoc SectionComponent} */
   SectionComponent?: SectionComponent,
-  /** The configuration for cards in this vertical. */
-  card?: CardComponent,
+  /** The card to use for this vertical. */
+  CardComponent?: CardComponent,
   /** The label for the vertical. */
   label?: string,
   /** Whether or not this vertical should show a button to view all results on the vertical page. */
@@ -121,7 +121,7 @@ function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
               verticalKey,
               viewAllButton: verticalConfig.viewAllButton
             }}/>}
-            card={verticalConfig.card}
+            CardComponent={verticalConfig.CardComponent}
             key={verticalKey}
           />
         );

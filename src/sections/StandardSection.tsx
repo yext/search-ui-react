@@ -36,7 +36,7 @@ const StandardSection: SectionComponent = function(props: StandardSectionConfig)
     props.customCssClasses,
     props.compositionmethod
   );
-  const { results, card = StandardCard, header } = props;
+  const { results, CardComponent = StandardCard, header } = props;
 
   if (results.length === 0) {
     return null;
@@ -47,7 +47,7 @@ const StandardSection: SectionComponent = function(props: StandardSectionConfig)
       {header}
       <VerticalResultsDisplay
         results={results}
-        CardComponent={card}
+        CardComponent={CardComponent}
       />
     </section>
   );

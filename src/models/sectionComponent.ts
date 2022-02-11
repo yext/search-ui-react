@@ -12,7 +12,7 @@ export interface SectionConfig {
   /** A header to display above the results. */
   header?: JSX.Element,
   /** The card to use for this vertical. */
-  card?: CardComponent,
+  CardComponent?: CardComponent,
   /** Whether or not to allow more results to be viewed. */
   viewMore?: boolean
 }
