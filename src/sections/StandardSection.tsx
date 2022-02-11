@@ -36,20 +36,18 @@ const StandardSection: SectionComponent = function(props: StandardSectionConfig)
     props.customCssClasses,
     props.compositionmethod
   );
-  const { results, cardConfig, header } = props;
+  const { results, CardComponent = StandardCard, header } = props;
 
   if (results.length === 0) {
     return null;
   }
-  const cardComponent = cardConfig?.CardComponent || StandardCard;
 
   return (
     <section className={cssClasses.section}>
       {header}
       <VerticalResultsDisplay
         results={results}
-        CardComponent={cardComponent}
-        {...cardConfig}
+        CardComponent={CardComponent}
       />
     </section>
   );

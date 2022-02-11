@@ -1,19 +1,10 @@
 import { Result } from '@yext/answers-headless-react';
 
 /**
- * CardComponent and the corresponding config options.
- */
-export interface CardConfig {
-  CardComponent: CardComponent,
-  [additionalProps: string]: unknown
-}
-
-/**
  * The props provided to every {@link CardComponent).
  */
 export interface CardProps {
   result: Result,
-  [additionalProps: string]: unknown
 }
 
 /**

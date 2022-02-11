@@ -1,5 +1,5 @@
 import { Result } from '@yext/answers-headless-react';
-import { CardConfig } from './cardComponent';
+import { CardComponent } from './cardComponent';
 
 /**
  * The configuration of a section template for a vertical's results on a universal page.
@@ -11,8 +11,8 @@ export interface SectionConfig {
   verticalKey: string,
   /** A header to display above the results. */
   header?: JSX.Element,
-  /** The configuration for cards in this vertical. */
-  cardConfig?: CardConfig,
+  /** The card to use for this vertical. */
+  CardComponent?: CardComponent,
   /** Whether or not to allow more results to be viewed. */
   viewMore?: boolean
 }
