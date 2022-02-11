@@ -22,6 +22,8 @@ export default function useSearchWithNearMeHandling(
    */
   const autocompletePromiseRef = useRef<Promise<AutocompleteResponse | undefined>>();
   const isVertical = answersActions.state.meta.searchType === SearchTypeEnum.Vertical;
+  const verticalKey = answersActions.state.vertical.verticalKey ?? '';
+  const query = answersActions.state.query.input ?? '';
 
   async function executeQuery() {
     let intents: SearchIntent[] = [];
@@ -36,6 +38,7 @@ export default function useSearchWithNearMeHandling(
       await updateLocationIfNeeded(answersActions, intents, geolocationOptions);
     }
     executeSearch(answersActions, isVertical);
+    window.history.pushState({ query }, '', `/${verticalKey}?query=${query}`);
   }
   return [executeQuery, autocompletePromiseRef];
 }
