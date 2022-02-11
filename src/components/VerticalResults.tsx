@@ -129,14 +129,16 @@ function Pagination(props: PaginationProps): JSX.Element | null {
     const newOffset = limit * (newPageNumber - 1);
     answersAction.setOffset(newOffset);
     answersAction.executeVerticalQuery();
-    analytics.report({
-      type: 'PAGINATE',
-      queryId: queryId ?? '',
-      verticalKey: verticalKey ?? '',
-      newPage: newPageNumber,
-      currentPage: pageNumber,
-      totalPageCount: maxPageCount
-    });
+    if (queryId && verticalKey && analytics) {
+      analytics.report({
+        type: 'PAGINATE',
+        queryId: queryId,
+        verticalKey: verticalKey,
+        newPage: newPageNumber,
+        currentPage: pageNumber,
+        totalPageCount: maxPageCount
+      });
+    }
   };
 
   return (
