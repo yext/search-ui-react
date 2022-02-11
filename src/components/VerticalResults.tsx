@@ -118,11 +118,6 @@ function Pagination(props: PaginationProps): JSX.Element | null {
   const verticalKey = useAnswersState(state => state.vertical.verticalKey);
   const queryId = useAnswersState(state => state.query.queryId);
 
-  const executeSearchWithNewOffset = (newOffset: number) => {
-    answersAction.setOffset(newOffset);
-    answersAction.executeVerticalQuery();
-  };
-
   const maxPageCount = Math.ceil(numResults / limit);
   if (maxPageCount <= 1) {
     return null;
@@ -130,9 +125,10 @@ function Pagination(props: PaginationProps): JSX.Element | null {
   const pageNumber = (offset / limit) + 1;
   const paginationLabels: string[] = generatePaginationLabels(pageNumber, maxPageCount);
 
-  const onSelectNewPage = (evt: React.MouseEvent) => {
-    const newPageNumber = Number(evt.currentTarget.textContent);
-    newPageNumber && executeSearchWithNewOffset(limit * (newPageNumber - 1));
+  const executeSearchWithNewOffset = (newPageNumber: number) => {
+    const newOffset = limit * (newPageNumber - 1);
+    answersAction.setOffset(newOffset);
+    answersAction.executeVerticalQuery();
     analytics.report({
       type: 'PAGINATE',
       queryId: queryId ?? '',
@@ -149,7 +145,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
         <button
           aria-label='Navigate to the previous results page'
           className={cssClasses.leftIconContainer}
-          onClick={() => executeSearchWithNewOffset(offset - limit)} disabled={pageNumber === 1}
+          onClick={() => executeSearchWithNewOffset(pageNumber - 1)} disabled={pageNumber === 1}
         >
           <PageNavigationIcon className={cssClasses.icon + ' transform -rotate-90'}/>
         </button>
@@ -169,7 +165,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
                 <button
                   key={index}
                   className={cssClasses.selectedLabel}
-                  onClick={onSelectNewPage}
+                  onClick={() => executeSearchWithNewOffset(pageNumber)}
                 >
                   {label}
                 </button>
@@ -179,7 +175,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
                 <button
                   key={index}
                   className={cssClasses.label}
-                  onClick={onSelectNewPage}
+                  onClick={() => executeSearchWithNewOffset(Number(label))}
                 >
                   {label}
                 </button>
@@ -189,7 +185,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
         <button
           aria-label='Navigate to the next results page'
           className={cssClasses.rightIconContainer}
-          onClick={() => executeSearchWithNewOffset(offset + limit)} disabled={pageNumber === maxPageCount}
+          onClick={() => executeSearchWithNewOffset(pageNumber + 1)} disabled={pageNumber === maxPageCount}
         >
           <PageNavigationIcon className={cssClasses.icon + ' transform rotate-90'}/>
         </button>
