@@ -48,7 +48,7 @@ export function VerticalResultsDisplay(props: VerticalResultsDisplayProps): JSX.
 }
 
 /**
- * Renders a single result using the specified card type and configuration.
+ * Renders a single result using the specified card and configuration.
  *
  * @param CardComponent - The card for the vertical.
  * @param result - The result to render.
