@@ -128,8 +128,8 @@ export default function SearchBar({
   const query = useAnswersState(state => state.query.input) ?? '';
   const queryId = useAnswersState(state => state.query.queryId);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-  const isVertical = useAnswersState(s => s.meta.searchType) === SearchTypeEnum.Vertical;
-  const verticalKey = useAnswersState( s => s.vertical.verticalKey);
+  const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
+  const verticalKey = useAnswersState(state => state.vertical.verticalKey);
 
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(() => {
     return isVertical

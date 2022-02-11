@@ -3,6 +3,7 @@ import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import PageNavigationIcon from '../icons/ChevronIcon';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.
@@ -111,16 +112,15 @@ function Pagination(props: PaginationProps): JSX.Element | null {
     cssCompositionMethod
   );
   const answersAction = useAnswersActions();
+  const analytics = useAnalytics();
   const offset = useAnswersState(state => state.vertical.offset) || 0;
   const limit = useAnswersState(state => state.vertical.limit) || 10;
+  const verticalKey = useAnswersState(state => state.vertical.verticalKey);
+  const queryId = useAnswersState(state => state.query.queryId);
 
   const executeSearchWithNewOffset = (newOffset: number) => {
     answersAction.setOffset(newOffset);
     answersAction.executeVerticalQuery();
-  };
-  const onSelectNewPage = (evt: React.MouseEvent) => {
-    const newPageNumber = Number(evt.currentTarget.textContent);
-    newPageNumber && executeSearchWithNewOffset(limit * (newPageNumber - 1));
   };
 
   const maxPageCount = Math.ceil(numResults / limit);
@@ -129,6 +129,19 @@ function Pagination(props: PaginationProps): JSX.Element | null {
   }
   const pageNumber = (offset / limit) + 1;
   const paginationLabels: string[] = generatePaginationLabels(pageNumber, maxPageCount);
+
+  const onSelectNewPage = (evt: React.MouseEvent) => {
+    const newPageNumber = Number(evt.currentTarget.textContent);
+    newPageNumber && executeSearchWithNewOffset(limit * (newPageNumber - 1));
+    analytics.report({
+      type: 'PAGINATE',
+      queryId: queryId ?? '',
+      verticalKey: verticalKey ?? '',
+      newPage: newPageNumber,
+      currentPage: pageNumber,
+      totalPageCount: maxPageCount
+    });
+  };
 
   return (
     <div className={cssClasses.container}>
