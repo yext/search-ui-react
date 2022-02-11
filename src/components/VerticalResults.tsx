@@ -3,6 +3,7 @@ import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import PageNavigationIcon from '../icons/ChevronIcon';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.
@@ -109,17 +110,11 @@ function Pagination(props: PaginationProps): JSX.Element | null {
     cssCompositionMethod
   );
   const answersAction = useAnswersActions();
+  const analytics = useAnalytics();
   const offset = useAnswersState(state => state.vertical.offset) || 0;
   const limit = useAnswersState(state => state.vertical.limit) || 10;
-
-  const executeSearchWithNewOffset = (newOffset: number) => {
-    answersAction.setOffset(newOffset);
-    answersAction.executeVerticalQuery();
-  };
-  const onSelectNewPage = (evt: React.MouseEvent) => {
-    const newPageNumber = Number(evt.currentTarget.textContent);
-    newPageNumber && executeSearchWithNewOffset(limit * (newPageNumber - 1));
-  };
+  const verticalKey = useAnswersState(state => state.vertical.verticalKey);
+  const queryId = useAnswersState(state => state.query.queryId);
 
   const maxPageCount = Math.ceil(numResults / limit);
   if (maxPageCount <= 1) {
@@ -128,13 +123,39 @@ function Pagination(props: PaginationProps): JSX.Element | null {
   const pageNumber = (offset / limit) + 1;
   const paginationLabels: string[] = generatePaginationLabels(pageNumber, maxPageCount);
 
+  const reportPaginateEvent = (newPageNumber: number) => {
+    if(!queryId) {
+      console.error('Unable to report a pagination event. Missing field: queryId.');
+      return;
+    }
+    if(!verticalKey) {
+      console.error('Unable to report a pagination event. Missing field: verticalKey.');
+      return;
+    }
+    analytics.report({
+      type: 'PAGINATE',
+      queryId: queryId,
+      verticalKey: verticalKey,
+      newPage: newPageNumber,
+      currentPage: pageNumber,
+      totalPageCount: maxPageCount
+    });
+  };
+
+  const executeSearchWithNewOffset = (newPageNumber: number) => {
+    const newOffset = limit * (newPageNumber - 1);
+    answersAction.setOffset(newOffset);
+    answersAction.executeVerticalQuery();
+    analytics && reportPaginateEvent(newPageNumber);
+  };
+
   return (
     <div className={cssClasses.container}>
       <nav className={cssClasses.labelContainer} aria-label="Pagination">
         <button
           aria-label='Navigate to the previous results page'
           className={cssClasses.leftIconContainer}
-          onClick={() => executeSearchWithNewOffset(offset - limit)} disabled={pageNumber === 1}
+          onClick={() => executeSearchWithNewOffset(pageNumber - 1)} disabled={pageNumber === 1}
         >
           <PageNavigationIcon className={cssClasses.icon + ' transform -rotate-90'}/>
         </button>
@@ -154,7 +175,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
                 <button
                   key={index}
                   className={cssClasses.selectedLabel}
-                  onClick={onSelectNewPage}
+                  onClick={() => executeSearchWithNewOffset(pageNumber)}
                 >
                   {label}
                 </button>
@@ -164,7 +185,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
                 <button
                   key={index}
                   className={cssClasses.label}
-                  onClick={onSelectNewPage}
+                  onClick={() => executeSearchWithNewOffset(Number(label))}
                 >
                   {label}
                 </button>
@@ -174,7 +195,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
         <button
           aria-label='Navigate to the next results page'
           className={cssClasses.rightIconContainer}
-          onClick={() => executeSearchWithNewOffset(offset + limit)} disabled={pageNumber === maxPageCount}
+          onClick={() => executeSearchWithNewOffset(pageNumber + 1)} disabled={pageNumber === maxPageCount}
         >
           <PageNavigationIcon className={cssClasses.icon + ' transform rotate-90'}/>
         </button>
