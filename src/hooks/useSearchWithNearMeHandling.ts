@@ -5,6 +5,7 @@ import { AutocompleteResponse, SearchIntent } from '@yext/answers-headless-react
 
 type QueryFunc = () => Promise<void>;
 export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | undefined> | undefined>;
+export type onSearchFunc = (searchEventData: { verticalKey?: string, query?: string }) => void;
 
 /**
  * Returns a search action that will handle near me searches, by first checking
@@ -15,6 +16,7 @@ export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | un
 export default function useSearchWithNearMeHandling(
   answersActions: AnswersHeadless,
   geolocationOptions?: PositionOptions,
+  onSearch?: onSearchFunc
 ): [QueryFunc, AutocompleteRef] {
   /**
    * Allow a query search to wait on the response to the autocomplete request right
@@ -38,7 +40,7 @@ export default function useSearchWithNearMeHandling(
       await updateLocationIfNeeded(answersActions, intents, geolocationOptions);
     }
     executeSearch(answersActions, isVertical);
-    window.history.pushState({ query }, '', `/${verticalKey}?query=${query}`);
+    onSearch?.({ verticalKey, query });
   }
   return [executeQuery, autocompletePromiseRef];
 }

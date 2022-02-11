@@ -4,7 +4,7 @@ import { Fragment, PropsWithChildren, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import useRecentSearches from '../hooks/useRecentSearches';
-import useSearchWithNearMeHandling from '../hooks/useSearchWithNearMeHandling';
+import useSearchWithNearMeHandling, { onSearchFunc } from '../hooks/useSearchWithNearMeHandling';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import VerticalDividerIcon from '../icons/BarIcon';
 import RecentSearchIcon from '../icons/HistoryIcon';
@@ -98,7 +98,8 @@ export interface SearchBarProps {
   hideVerticalLinks?: boolean,
   verticalKeyToLabel?: (verticalKey: string) => string,
   hideRecentSearches?: boolean,
-  recentSearchesLimit?: number
+  recentSearchesLimit?: number,
+  onSearch?: onSearchFunc
 }
 
 /**
@@ -113,7 +114,8 @@ export default function SearchBar({
   verticalKeyToLabel,
   recentSearchesLimit = 5,
   customCssClasses,
-  cssCompositionMethod
+  cssCompositionMethod,
+  onSearch
 }: SearchBarProps): JSX.Element {
   const {
     entityPreviewSearcher,
@@ -139,7 +141,7 @@ export default function SearchBar({
   const [
     executeQueryWithNearMeHandling,
     autocompletePromiseRef,
-  ] = useSearchWithNearMeHandling(answersActions, geolocationOptions);
+  ] = useSearchWithNearMeHandling(answersActions, geolocationOptions, onSearch);
   const [recentSearches, setRecentSearch, clearRecentSearches] = useRecentSearches(recentSearchesLimit);
   const filteredRecentSearches = recentSearches?.filter(search =>
     answersUtilities.isCloseMatch(search.query, query)
