@@ -4,7 +4,12 @@ import { CheckboxOptionCssClasses } from './utils/renderCheckboxOption';
 import DropdownIcon from '../icons/ChevronIcon';
 import { PropsWithChildren } from 'react';
 
-interface CollapsibleLabelProps {
+/**
+ * The props for {@link CollapsibleLabel}
+ *
+ * @public
+ */
+export interface CollapsibleLabelProps {
   collapsible?: boolean,
   label: string,
   defaultExpanded?: boolean,
@@ -20,6 +25,8 @@ const builtInCssClasses: CollapsibleLabelCssClasses = {
 
 /**
  * The CSS class interface used for {@link CollapsibleLabel}.
+ *
+ * @public
  */
 export interface CollapsibleLabelCssClasses extends CheckboxOptionCssClasses {
   /** Applies to the label. */
@@ -32,6 +39,8 @@ export interface CollapsibleLabelCssClasses extends CheckboxOptionCssClasses {
 
 /**
  * A label which can collapse its contents
+ *
+ * @public
  */
 export default function CollapsibleLabel(props: PropsWithChildren<CollapsibleLabelProps>): JSX.Element {
   const {

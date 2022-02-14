@@ -5,6 +5,8 @@ import { AnalyticsContext } from '../hooks/useAnalytics';
 /**
  * A component that provides analytics for its children.
  *
+ * @public
+ *
  * @param props - The configuration for the analytics service
  * @returns A React element that provides analytics context
  */

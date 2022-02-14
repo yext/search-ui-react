@@ -6,6 +6,8 @@ import { AppliedFiltersCssClasses } from './AppliedFilters';
 
 /**
  * Properties for {@link AppliedFilters}.
+ *
+ * @public
  */
 export interface AppliedFiltersDisplayProps {
   /**
@@ -21,7 +23,9 @@ export interface AppliedFiltersDisplayProps {
 /**
  * A component that renders applied filters based on a given list of {@link DisplayableFilter}.
  *
- * @param props - {@inheritdoc AppliedFiltersDisplayProps}
+ * @public
+ *
+ * @param props - {@link AppliedFiltersDisplayProps}
  * @returns A React element for the applied filters
  */
 export default function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element {

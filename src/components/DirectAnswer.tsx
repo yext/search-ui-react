@@ -4,11 +4,21 @@ import classNames from 'classnames';
 import { ReactNode } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
+/**
+ * Props for {@link DirectAnswer}.
+ *
+ * @public
+ */
 export interface DirectAnswerProps {
   customCssClasses?: DirectAnswerCssClasses,
   cssCompositionMethod?: CompositionMethod
 }
 
+/**
+ *  The CSS class interface for {@link DirectAnswer}.
+ *
+ * @public
+ */
 export interface DirectAnswerCssClasses {
   container?: string,
   container___loading?: string,
@@ -35,6 +45,14 @@ const builtInCssClasses: DirectAnswerCssClasses = {
   highlighted: 'bg-blue-100'
 };
 
+/**
+ * Renders Direct Answers provided by the Answers API
+ *
+ * @public
+ *
+ * @param props - {@link DirectAnswerProps}
+ * @returns A react element for DirectAnswer
+ */
 export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   const directAnswerResult = useAnswersState(state => state.directAnswer.result);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading || false);

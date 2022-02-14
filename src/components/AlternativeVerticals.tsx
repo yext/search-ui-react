@@ -6,6 +6,8 @@ import classNames from 'classnames';
 
 /**
  * The CSS class interface used for {@link AlternativeVerticals}.
+ *
+ * @public
  */
 export interface AlternativeVerticalsCssClasses {
   /** Applies to the outermost container of the alternative verticals. */
@@ -61,6 +63,8 @@ function isVerticalSuggestion(suggestion: VerticalSuggestion | null): suggestion
 
 /**
  * Props for {@link AlternativeVerticals}.
+ *
+ * @public
  */
 export interface AlternativeVerticalsProps {
   /** The label for the current vertical. */
@@ -82,7 +86,9 @@ export interface AlternativeVerticalsProps {
  * A component that displays the alternative verticals that have results if a search returns none
  * on the current vertical.
  *
- * @param props - {@inheritDoc AlternativeVerticalsProps}
+ * @public
+ *
+ * @param props - {@link AlternativeVerticalsProps}
  * @returns A React element for the alternative verticals, or null if there are none with results
  */
 export default function AlternativeVerticals({

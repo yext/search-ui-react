@@ -42,9 +42,6 @@ export type {
   FiltersCssClasses
 } from './Filters';
 export type {
-  CollapsibleLabelCssClasses
-} from './CollapsibleLabel';
-export type {
   CheckboxOptionCssClasses
 } from './utils/renderCheckboxOption';
 
@@ -87,3 +84,10 @@ export type {
 } from './AlternativeVerticals';
 
 export * from './AnalyticsProvider';
+
+export { default as CollapsibleLabel } from './CollapsibleLabel';
+export type {
+  CollapsibleLabelCssClasses,
+  CollapsibleLabelProps,
+} from './CollapsibleLabel';
+export * from './CollapsibleLabel';

@@ -8,6 +8,8 @@ import AppliedFiltersDisplay from './AppliedFiltersDisplay';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
+ *
+ * @public
  */
 export interface AppliedFiltersCssClasses {
   /** Applies to outermost container of the applied filters. */
@@ -35,6 +37,8 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
 
 /**
  * Properties for {@link AppliedFilters}.
+ *
+ * @public
  */
 export interface AppliedFiltersProps {
   /** List of filters that should not be displayed. By default, builtin.entityType will be hidden. */
@@ -52,7 +56,9 @@ export interface AppliedFiltersProps {
  * search, which may include any selected options from static filters, facets, and
  * NLP filters.
  *
- * @param props - {@inheritdoc AppliedFiltersProps}
+ * @public
+ *
+ * @param props - {@link AppliedFiltersProps}
  * @returns A React element for the applied filters
  */
 export default function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
