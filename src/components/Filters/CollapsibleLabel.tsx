@@ -9,6 +9,12 @@ export type CollapsibleLabelProps = {
   children?: ReactNode
 };
 
+/**
+ * CollapsibleLabel is a convenience wrapper for a {@link CollapseButton}
+ * with a simple {@link Label} and rotating icon.
+ *
+ * For more customization, use the individual subcomponents.
+ */
 export default function CollapsibleLabel({ children }: CollapsibleLabelProps): JSX.Element {
   const { isExpanded } = useGroupContext();
   const iconClassName = classNames('w-3', {

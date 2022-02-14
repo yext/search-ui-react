@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react';
 import { UseCollapseOutput } from 'react-collapsed/dist/types';
 
 /**
- * The Context responsible for the Dropdown state.
+ * GroupContext is responsible for searchable filters and also collapsible filter groups.
  */
 export type GroupContextType = {
   searchValue: string,

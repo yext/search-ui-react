@@ -2,7 +2,7 @@ import { Filter } from '@yext/answers-headless-react';
 import { createContext, useContext } from 'react';
 
 /**
- * The Context responsible for the Dropdown state.
+ * FiltersContext is responsible for handling filter selection.
  */
 export type FiltersContextType = {
   handleFilterSelect: (filter: Filter, checked: boolean) => void

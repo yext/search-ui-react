@@ -8,6 +8,13 @@ export type FacetsProps = {
   children?: (facets: DisplayableFacet[]) => ReactNode
 };
 
+/**
+ * The Facets component is a wrapper component around {@link Filters} that updates facet options
+ * when a child filter is updated.
+ *
+ * The representation of the facets is configured using a FACC (function as a child component)
+ * The FACC is passed the facets data, and is intended for use with components like {@link CheckboxOption}.
+ */
 export default function Facets(props: FacetsProps): JSX.Element {
   const {
     children,

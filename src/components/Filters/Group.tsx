@@ -7,6 +7,10 @@ export type GroupProps = PropsWithChildren<{
   defaultFieldId?: string
 }>;
 
+/**
+ * The Filters.Group component represents a group of filters, for the purpose
+ * of searchable filters and collapsibility.
+ */
 export default function Group(props: GroupProps): JSX.Element {
   const {
     children,

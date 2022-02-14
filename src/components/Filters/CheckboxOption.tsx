@@ -26,6 +26,9 @@ const builtInCssClasses: CheckboxCssClasses = {
   container: 'flex items-center space-x-3'
 };
 
+/**
+ * A checkbox component that represents a single Filter.
+ */
 export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const { searchValue, defaultFieldId } = useGroupContext();
   const {
