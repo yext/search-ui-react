@@ -6,6 +6,7 @@ import CollectionIcon from '../icons/CollectionIcon';
 import { AppliedQueryFilter, useAnswersState } from '@yext/answers-headless-react';
 import { DisplayableFilter } from '../models/displayableFilter';
 import classNames from 'classnames';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 /**
  * The CSS class interface used for {@link SectionHeader}.
@@ -62,6 +63,20 @@ export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
     }
   ) ?? [];
 
+  const analytics = useAnalytics();
+  const queryId = useAnswersState(state => state.query.queryId);
+  const reportViewAllEvent = () => {
+    if(!queryId) {
+      console.error('Unable to report a vertical view all event. Missing field: queryId.');
+      return;
+    }
+    analytics?.report({
+      type: 'VERTICAL_VIEW_ALL',
+      queryId,
+      verticalKey
+    });
+  };
+
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
@@ -84,7 +99,9 @@ export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>
           <a className={cssClasses.viewMoreLink} href={`/${verticalKey}?query=${latestQuery}`}>
-            View all
+            <button onClick={() => analytics && reportViewAllEvent()}>
+              View all
+            </button>
           </a>
         </div>}
     </div>
