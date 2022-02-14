@@ -8,14 +8,14 @@
 
 import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
-import { AnswersHeadless } from '@yext/answers-headless';
-import { AutocompleteResponse } from '@yext/answers-headless';
-import { Filter } from '@yext/answers-headless';
+import { AnswersHeadless } from '@yext/answers-headless-react';
+import { AutocompleteResponse } from '@yext/answers-headless-react';
+import { Filter } from '@yext/answers-headless-react';
 import { MutableRefObject } from 'react';
 import { PropsWithChildren } from 'react';
-import { Result } from '@yext/answers-headless';
-import { SearchParameterField } from '@yext/answers-headless';
-import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless';
+import { Result } from '@yext/answers-headless-react';
+import { SearchParameterField } from '@yext/answers-headless-react';
+import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
 export function AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
