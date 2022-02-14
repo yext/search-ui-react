@@ -1,5 +1,5 @@
 import { Result, VerticalResults, UniversalLimit } from '@yext/answers-headless-react';
-import { isValidElement, ReactNode } from 'react';
+import { cloneElement, isValidElement, ReactNode } from 'react';
 import DropdownItem from './Dropdown/DropdownItem';
 import recursivelyMapChildren from './utils/recursivelyMapChildren';
 
@@ -40,7 +40,14 @@ export function transformEntityPreviews(
     }
     return children(verticalKeyToResults[verticalKey], index++);
   });
-  return renderedChildren;
+  const decoratedRenderedChildren = recursivelyMapChildren(renderedChildren, child => {
+    if (!isValidElement(child) || child.type !== DropdownItem) {
+      return child;
+    }
+    return cloneElement(child, { itemData: { isEntityPreview: true, ...child.props.itemData } });
+  });
+
+  return decoratedRenderedChildren;
 }
 
 /**
