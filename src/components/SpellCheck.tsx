@@ -1,7 +1,7 @@
 import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react';
 import classNames from 'classnames';
-import { useHistory } from 'react-router-dom';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { executeSearch } from '../utils/search-operations';
 
 export interface SpellCheckCssClasses {
   container?: string,
@@ -19,12 +19,14 @@ const builtInCssClasses: SpellCheckCssClasses = {
 
 export interface SpellCheckProps {
   customCssClasses?: SpellCheckCssClasses,
-  cssCompositionMethod?: CompositionMethod
+  cssCompositionMethod?: CompositionMethod,
+  onClick?: (data: { correctedQuery: string, verticalKey: string }) => void
 }
 
 export default function SpellCheck({
   customCssClasses,
-  cssCompositionMethod
+  cssCompositionMethod,
+  onClick
 }: SpellCheckProps): JSX.Element | null {
   const verticalKey = useAnswersState(state => state.vertical.verticalKey) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
@@ -34,7 +36,6 @@ export default function SpellCheck({
     [cssClasses.spellCheck___loading ?? '']: isLoading
   });
   const answersActions = useAnswersActions();
-  const browserHistory = useHistory();
   if (!correctedQuery) {
     return null;
   }
@@ -43,7 +44,9 @@ export default function SpellCheck({
       <span className={cssClasses.helpText}>Did you mean </span>
       <button className={cssClasses.link} onClick={() => {
         answersActions.setQuery(correctedQuery);
-        browserHistory.push(`/${verticalKey}?query=${correctedQuery}`);
+        onClick
+          ? onClick({ correctedQuery, verticalKey })
+          : executeSearch(answersActions, !!verticalKey);
       }}>{correctedQuery}</button>
     </div>
   );

@@ -1,7 +1,6 @@
 import { AnswersHeadless, QuerySource, SearchTypeEnum, useAnswersActions, useAnswersState, useAnswersUtilities, VerticalResults } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { Fragment, PropsWithChildren, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import useRecentSearches from '../hooks/useRecentSearches';
 import useSearchWithNearMeHandling, { onSearchFunc } from '../hooks/useSearchWithNearMeHandling';
@@ -11,7 +10,6 @@ import RecentSearchIcon from '../icons/HistoryIcon';
 import CloseIcon from '../icons/CloseIcon';
 import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
 import YextLogoIcon from '../icons/YextIcon';
-import { BrowserState } from '../models/browserState';
 import Dropdown from './Dropdown/Dropdown';
 import { useDropdownContext } from './Dropdown/DropdownContext';
 import DropdownInput from './Dropdown/DropdownInput';
@@ -96,10 +94,11 @@ export interface SearchBarProps {
   cssCompositionMethod?: CompositionMethod,
   visualAutocompleteConfig?: VisualAutocompleteConfig,
   hideVerticalLinks?: boolean,
+  onClickVerticalLink?: (data: { verticalLink: string, querySource: QuerySource }) => void,
   verticalKeyToLabel?: (verticalKey: string) => string,
   hideRecentSearches?: boolean,
   recentSearchesLimit?: number,
-  onSearch?: onSearchFunc
+  onSearch?: onSearchFunc,
 }
 
 /**
@@ -111,6 +110,7 @@ export default function SearchBar({
   hideRecentSearches,
   visualAutocompleteConfig = {},
   hideVerticalLinks,
+  onClickVerticalLink,
   verticalKeyToLabel,
   recentSearchesLimit = 5,
   customCssClasses,
@@ -122,7 +122,6 @@ export default function SearchBar({
     renderEntityPreviews,
     entityPreviewsDebouncingTime = 500
   } = visualAutocompleteConfig;
-  const browserHistory = useHistory<BrowserState>();
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
   const analytics = useAnalytics();
@@ -168,10 +167,8 @@ export default function SearchBar({
 
   const handleSubmit = (value: string, _index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
-    if (itemData && typeof itemData.verticalLink === 'string') {
-      browserHistory.push(itemData.verticalLink, {
-        querySource: QuerySource.Autocomplete
-      });
+    if (itemData && typeof itemData.verticalLink === 'string' && onClickVerticalLink) {
+      onClickVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
       executeQuery();
     }
