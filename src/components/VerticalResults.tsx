@@ -132,7 +132,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
       console.error('Unable to report a pagination event. Missing field: verticalKey.');
       return;
     }
-    analytics.report({
+    analytics?.report({
       type: 'PAGINATE',
       queryId: queryId,
       verticalKey: verticalKey,
