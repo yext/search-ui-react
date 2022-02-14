@@ -278,7 +278,7 @@ export default function SearchBar({
   }
 
   const reportSearchClearEvent = () => {
-    if(!queryId) {
+    if (!queryId) {
       console.error('Unable to report a search clear event. Missing field: queryId.');
       return;
     }
@@ -304,7 +304,7 @@ export default function SearchBar({
         >
           <CloseIcon />
         </button>
-        <VerticalDividerIcon className={cssClasses.verticalDivider}/>
+        <VerticalDividerIcon className={cssClasses.verticalDivider} />
       </>
     );
   }

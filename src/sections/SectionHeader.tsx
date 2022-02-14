@@ -66,7 +66,7 @@ export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
   const analytics = useAnalytics();
   const queryId = useAnswersState(state => state.query.queryId);
   const reportViewAllEvent = () => {
-    if(!queryId) {
+    if (!queryId) {
       console.error('Unable to report a vertical view all event. Missing field: queryId.');
       return;
     }
@@ -94,7 +94,7 @@ export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
         resultsCount={resultsCountConfig.resultsCount}
       />} */}
       {appliedQueryFilters &&
-        <AppliedFiltersDisplay displayableFilters={displayableFilters} cssClasses={cssClasses}/>
+        <AppliedFiltersDisplay displayableFilters={displayableFilters} cssClasses={cssClasses} />
       }
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>
