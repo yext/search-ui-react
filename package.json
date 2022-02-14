@@ -70,7 +70,7 @@
     "@css-modules-theme/core": "^2.3.0",
     "@restart/hooks": "^0.4.5",
     "@restart/ui": "^1.0.1",
-    "@yext/analytics": "^0.2.0-beta.0",
+    "@yext/analytics": "^0.2.0-beta.3",
     "@yext/answers-headless-react": "^1.1.0-beta.3",
     "classnames": "^2.3.1",
     "react-collapsed": "^3.3.0",
