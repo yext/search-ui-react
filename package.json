@@ -32,10 +32,11 @@
     "eslint": "^7.30.0",
     "jest": "^27.0.6",
     "msw": "^0.36.8",
-    "react": "file:../react-site-search-starter/node_modules/react",
+    "react": "^17.0.2",
     "typescript": "~4.4.3"
   },
   "peerDependencies": {
+    "react": "^17.0.2",
     "react-router-dom": "^5.3.0"
   },
   "jest": {
@@ -69,12 +70,12 @@
     "@css-modules-theme/core": "^2.3.0",
     "@restart/hooks": "^0.4.5",
     "@restart/ui": "^1.0.1",
-    "@yext/analytics": "^0.2.0-beta.3",
-    "@yext/answers-headless-react": "file:../react-site-search-starter/node_modules/@yext/answers-headless-react",
+    "@yext/analytics": "^0.2.0-beta.0",
+    "@yext/answers-headless-react": "^1.1.0-beta.3",
     "classnames": "^2.3.1",
     "react-collapsed": "^3.3.0",
-    "react-router-dom": "^5.3.0",
     "recent-searches": "^1.0.5",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "react-router-dom": "^5.3.0"
   }
 }
