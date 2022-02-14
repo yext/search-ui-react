@@ -98,7 +98,7 @@ export interface SearchBarProps {
   verticalKeyToLabel?: (verticalKey: string) => string,
   hideRecentSearches?: boolean,
   recentSearchesLimit?: number,
-  onSearch?: onSearchFunc,
+  onSearch?: onSearchFunc
 }
 
 /**
