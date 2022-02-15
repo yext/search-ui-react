@@ -1,6 +1,6 @@
 The following NPM packages may be included in this product:
 
- - @babel/runtime-corejs3@7.17.2
+ - @babel/runtime-corejs3@7.17.0
  - @babel/runtime@7.16.7
 
 These packages each contain the following license and notice below:
