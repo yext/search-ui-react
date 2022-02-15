@@ -92,6 +92,10 @@ interface VerticalLink {
   query: string
 }
 
+const isVerticalLink = (obj: unknown): obj is VerticalLink => {
+  return typeof obj === 'object' && !!obj && 'verticalKey' in obj && 'query' in obj;
+};
+
 export interface SearchBarProps {
   placeholder?: string,
   geolocationOptions?: PositionOptions,
@@ -172,9 +176,6 @@ export default function SearchBar({
 
   const handleSubmit = (value: string, _index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
-    const isVerticalLink = (obj: unknown): obj is VerticalLink => {
-      return typeof obj === 'object' && !!obj && 'verticalKey' in obj && 'query' in obj;
-    };
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
       onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
