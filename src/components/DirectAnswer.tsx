@@ -75,7 +75,9 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
 
   const reportCtaEvent = () => {
     const entityId = directAnswerResult.relatedResult.id;
-    const fieldName = directAnswerResult.relatedResult.name;
+    const fieldName = directAnswerResult.type === DirectAnswerType.FeaturedSnippet
+      ? undefined
+      : directAnswerResult.fieldName;
     if(!queryId) {
       console.error('Unable to report a CTA event. Missing field: queryId.');
       return;
