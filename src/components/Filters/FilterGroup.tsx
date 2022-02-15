@@ -3,7 +3,9 @@ import useCollapse from 'react-collapsed';
 import FilterGroupContext from './FilterGroupContext';
 
 export type FilterGroupProps = PropsWithChildren<{
+  /** Whether the FilterGroup should start out expanded, defaults to true */
   defaultExpanded?: boolean,
+  /** The default fieldId to use with child filter components e.g. {@link CheckboxOption} */
   defaultFieldId?: string
 }>;
 
