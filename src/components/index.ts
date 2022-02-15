@@ -5,6 +5,7 @@ export type {
 } from './SearchBar';
 export { default as EntityPreviews } from './EntityPreviews';
 export { default as DropdownItem } from './Dropdown/DropdownItem';
+export { default as Dropdown } from './Dropdown/Dropdown';
 
 export { default as SpellCheck } from './SpellCheck';
 export type {
@@ -39,10 +40,12 @@ export type {
 
 export type {
   FilterConfig,
-  FiltersCssClasses
+  FiltersCssClasses,
+  default as Filters
 } from './Filters';
 export type {
-  CheckboxOptionCssClasses
+  CheckboxOptionCssClasses,
+  default as renderCheckboxOption
 } from './utils/renderCheckboxOption';
 
 export { default as LocationBias } from './LocationBias';

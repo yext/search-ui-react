@@ -4,7 +4,7 @@
 
 ## AlternativeVerticals() function
 
-Props for [AlternativeVerticals()](./answers-react-components.alternativeverticals.md)<!-- -->.
+A component that displays the alternative verticals that have results if a search returns none on the current vertical.
 
 <b>Signature:</b>
 
@@ -21,4 +21,6 @@ export default function AlternativeVerticals({ currentVerticalLabel, verticalsCo
 <b>Returns:</b>
 
 JSX.Element \| null
+
+A React element for the alternative verticals, or null if there are none with results
 

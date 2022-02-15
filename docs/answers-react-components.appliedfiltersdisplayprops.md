@@ -17,5 +17,5 @@ export interface AppliedFiltersDisplayProps
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [cssClasses?](./answers-react-components.appliedfiltersdisplayprops.cssclasses.md) | [AppliedFiltersCssClasses](./answers-react-components.appliedfilterscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [displayableFilters](./answers-react-components.appliedfiltersdisplayprops.displayablefilters.md) | DisplayableFilter\[\] | List of  to construct the applied filter tags from. |
+|  [displayableFilters](./answers-react-components.appliedfiltersdisplayprops.displayablefilters.md) | [DisplayableFilter](./answers-react-components.displayablefilter.md)<!-- -->\[\] | List of [DisplayableFilter](./answers-react-components.displayablefilter.md) to construct the applied filter tags from. |
 

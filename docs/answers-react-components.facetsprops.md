@@ -17,7 +17,7 @@ export interface FacetsProps
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [collapsible?](./answers-react-components.facetsprops.collapsible.md) | boolean | <i>(Optional)</i> Allow expanding and collapsing the group of filters. Defaults to true. |
-|  [cssCompositionMethod?](./answers-react-components.facetsprops.csscompositionmethod.md) | CompositionMethod | <i>(Optional)</i> |
+|  [cssCompositionMethod?](./answers-react-components.facetsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes |
 |  [customCssClasses?](./answers-react-components.facetsprops.customcssclasses.md) | [FacetsCssClasses](./answers-react-components.facetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./answers-react-components.facetsprops.defaultexpanded.md) | boolean | <i>(Optional)</i> Whether or not the group of filters should be expanded on initial page load. Defaults to true. |
 |  [facetConfigs?](./answers-react-components.facetsprops.facetconfigs.md) | Record&lt;string, [FacetConfig](./answers-react-components.facetconfig.md)<!-- -->&gt; | <i>(Optional)</i> Configurations for individual facet groups. |

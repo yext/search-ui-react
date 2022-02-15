@@ -4,6 +4,8 @@
 
 ## DirectAnswerCssClasses interface
 
+The CSS class interface for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript

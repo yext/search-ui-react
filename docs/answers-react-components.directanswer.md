@@ -4,6 +4,8 @@
 
 ## DirectAnswer() function
 
+Renders Direct Answers provided by the Answers API
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,9 +16,11 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [DirectAnswerProps](./answers-react-components.directanswerprops.md) |  |
+|  props | [DirectAnswerProps](./answers-react-components.directanswerprops.md) | [DirectAnswerProps](./answers-react-components.directanswerprops.md) |
 
 <b>Returns:</b>
 
 JSX.Element \| null
+
+A react element for DirectAnswer
 

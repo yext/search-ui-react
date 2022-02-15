@@ -14,7 +14,7 @@ export interface FilterSearchProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.filtersearchprops.csscompositionmethod.md) | CompositionMethod | <i>(Optional)</i> |
+|  [cssCompositionMethod?](./answers-react-components.filtersearchprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> |
 |  [customCssClasses?](./answers-react-components.filtersearchprops.customcssclasses.md) | [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | <i>(Optional)</i> |
 |  [label](./answers-react-components.filtersearchprops.label.md) | string |  |
 |  [searchFields](./answers-react-components.filtersearchprops.searchfields.md) | Omit&lt;SearchParameterField, 'fetchEntities'&gt;\[\] |  |

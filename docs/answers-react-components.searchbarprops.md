@@ -14,7 +14,7 @@ export interface SearchBarProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.searchbarprops.csscompositionmethod.md) | CompositionMethod | <i>(Optional)</i> |
+|  [cssCompositionMethod?](./answers-react-components.searchbarprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> |
 |  [customCssClasses?](./answers-react-components.searchbarprops.customcssclasses.md) | [SearchBarCssClasses](./answers-react-components.searchbarcssclasses.md) | <i>(Optional)</i> |
 |  [geolocationOptions?](./answers-react-components.searchbarprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> |
 |  [hideRecentSearches?](./answers-react-components.searchbarprops.hiderecentsearches.md) | boolean | <i>(Optional)</i> |

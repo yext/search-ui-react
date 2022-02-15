@@ -14,7 +14,7 @@ export interface LocationBiasProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.locationbiasprops.csscompositionmethod.md) | CompositionMethod | <i>(Optional)</i> |
+|  [cssCompositionMethod?](./answers-react-components.locationbiasprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> |
 |  [customCssClasses?](./answers-react-components.locationbiasprops.customcssclasses.md) | [LocationBiasCssClasses](./answers-react-components.locationbiascssclasses.md) | <i>(Optional)</i> |
 |  [geolocationOptions?](./answers-react-components.locationbiasprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> |
 

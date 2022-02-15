@@ -8,12 +8,14 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, cssCompositionMethod })](./answers-react-components.alternativeverticals.md) | Props for [AlternativeVerticals()](./answers-react-components.alternativeverticals.md)<!-- -->. |
+|  [AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, cssCompositionMethod })](./answers-react-components.alternativeverticals.md) | A component that displays the alternative verticals that have results if a search returns none on the current vertical. |
 |  [AnalyticsProvider(props)](./answers-react-components.analyticsprovider.md) | A component that provides analytics for its children. |
-|  [AppliedFilters(props)](./answers-react-components.appliedfilters.md) | Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
-|  [AppliedFiltersDisplay(props)](./answers-react-components.appliedfiltersdisplay.md) | Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
-|  [DirectAnswer(props)](./answers-react-components.directanswer.md) |  |
-|  [DropdownItem(\_props)](./answers-react-components.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the  component instance. |
+|  [AppliedFilters(props)](./answers-react-components.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters. |
+|  [AppliedFiltersDisplay(props)](./answers-react-components.appliedfiltersdisplay.md) | A component that renders applied filters based on a given list of [DisplayableFilter](./answers-react-components.displayablefilter.md)<!-- -->. |
+|  [CollapsibleLabel(props)](./answers-react-components.collapsiblelabel.md) | A label which can collapse its contents |
+|  [DirectAnswer(props)](./answers-react-components.directanswer.md) | Renders Direct Answers provided by the Answers API |
+|  [Dropdown(props)](./answers-react-components.dropdown.md) | Dropdown is the parent component for a set of Dropdown-related components.<!-- -->It provides multiple shared contexts, which are consumed by its child components, and also registers some global event listeners. |
+|  [DropdownItem(\_props)](./answers-react-components.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the [Dropdown()](./answers-react-components.dropdown.md) component instance. |
 |  [EntityPreviews(\_)](./answers-react-components.entitypreviews.md) | EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews. It provides results corresponding to its verticalKey through a props.children FACC. |
 |  [Facets(props)](./answers-react-components.facets.md) | Properties for [Facets()](./answers-react-components.facets.md)<!-- -->. |
 |  [FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod })](./answers-react-components.filtersearch.md) |  |
@@ -38,9 +40,11 @@
 |  [AppliedFiltersProps](./answers-react-components.appliedfiltersprops.md) | Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
 |  [CardProps](./answers-react-components.cardprops.md) | The props provided to every {@<!-- -->link CardComponent). |
 |  [CheckboxOptionCssClasses](./answers-react-components.checkboxoptioncssclasses.md) | The CSS class interface used in . |
-|  [CollapsibleLabelCssClasses](./answers-react-components.collapsiblelabelcssclasses.md) | The CSS class interface used for . |
-|  [DirectAnswerCssClasses](./answers-react-components.directanswercssclasses.md) |  |
-|  [DirectAnswerProps](./answers-react-components.directanswerprops.md) |  |
+|  [CollapsibleLabelCssClasses](./answers-react-components.collapsiblelabelcssclasses.md) | The CSS class interface used for [CollapsibleLabel()](./answers-react-components.collapsiblelabel.md)<!-- -->. |
+|  [CollapsibleLabelProps](./answers-react-components.collapsiblelabelprops.md) | The props for [CollapsibleLabel()](./answers-react-components.collapsiblelabel.md) |
+|  [DirectAnswerCssClasses](./answers-react-components.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
+|  [DirectAnswerProps](./answers-react-components.directanswerprops.md) | Props for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
+|  [DisplayableFilter](./answers-react-components.displayablefilter.md) | Represents a filter which may be displayed by the UI. |
 |  [FacetConfig](./answers-react-components.facetconfig.md) | Configuration for a group of facets. |
 |  [FacetsCssClasses](./answers-react-components.facetscssclasses.md) | The CSS class interface used for [Facets()](./answers-react-components.facets.md)<!-- -->. |
 |  [FacetsProps](./answers-react-components.facetsprops.md) | Properties for [Facets()](./answers-react-components.facets.md)<!-- -->. |
@@ -80,6 +84,7 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [CardComponent](./answers-react-components.cardcomponent.md) | A functional component that can be used to render a result card. |
+|  [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining a component's built-in CSS classes with custom CSS classes |
 |  [onSearchFunc](./answers-react-components.onsearchfunc.md) |  |
 |  [SectionComponent](./answers-react-components.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 

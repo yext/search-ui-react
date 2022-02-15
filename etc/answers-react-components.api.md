@@ -37,10 +37,6 @@ export interface AlternativeVerticalsCssClasses {
 
 // @public
 export interface AlternativeVerticalsProps {
-    // Warning: (ae-forgotten-export) The symbol "CompositionMethod" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     currentVerticalLabel: string;
     customCssClasses?: AlternativeVerticalsCssClasses;
@@ -71,15 +67,11 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
 // @public
 export interface AppliedFiltersDisplayProps {
     cssClasses?: AppliedFiltersCssClasses;
-    // Warning: (ae-forgotten-export) The symbol "DisplayableFilter" needs to be exported by the entry point index.d.ts
     displayableFilters: DisplayableFilter[];
 }
 
 // @public
 export interface AppliedFiltersProps {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: AppliedFiltersCssClasses;
     hiddenFields?: Array<string>;
@@ -103,16 +95,36 @@ export interface CheckboxOptionCssClasses {
 }
 
 // @public
+export function CollapsibleLabel(props: PropsWithChildren<CollapsibleLabelProps>): JSX.Element;
+
+// @public
 export interface CollapsibleLabelCssClasses extends CheckboxOptionCssClasses {
     label?: string;
     labelContainer?: string;
     labelIcon?: string;
 }
 
-// @public (undocumented)
+// @public
+export interface CollapsibleLabelProps {
+    // (undocumented)
+    collapsible?: boolean;
+    // (undocumented)
+    cssCompositionMethod?: CompositionMethod;
+    // (undocumented)
+    customCssClasses?: CollapsibleLabelCssClasses;
+    // (undocumented)
+    defaultExpanded?: boolean;
+    // (undocumented)
+    label: string;
+}
+
+// @public
+export type CompositionMethod = 'merge' | 'replace' | 'assign';
+
+// @public
 export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
 
-// @public (undocumented)
+// @public
 export interface DirectAnswerCssClasses {
     // (undocumented)
     container?: string;
@@ -136,13 +148,33 @@ export interface DirectAnswerCssClasses {
     viewDetailsLinkContainer?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DirectAnswerProps {
     // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     // (undocumented)
     customCssClasses?: DirectAnswerCssClasses;
 }
+
+// @public
+export interface DisplayableFilter {
+    filter: Filter;
+    filterType: 'NLP_FILTER' | 'STATIC_FILTER' | 'FACET';
+    groupLabel: string;
+    label: string;
+}
+
+// @public
+export function Dropdown(props: PropsWithChildren<{
+    screenReaderText: string;
+    screenReaderInstructions?: string;
+    initialValue?: string;
+    parentQuery?: string;
+    onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void;
+    onToggle?: (isActive: boolean, value: string) => void;
+    className?: string;
+    activeClassName?: string;
+}>): JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "DropdownItemProps" needs to be exported by the entry point index.d.ts
 //
@@ -171,9 +203,6 @@ export interface FacetsCssClasses extends FiltersCssClasses {
 // @public
 export interface FacetsProps {
     collapsible?: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: FacetsCssClasses;
     defaultExpanded?: boolean;
@@ -433,9 +462,6 @@ export interface StandardCardCssClasses {
 
 // @public
 export interface StandardCardProps extends CardProps {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardCardCssClasses;
     fieldMappings?: {
@@ -452,9 +478,6 @@ export const StandardSection: SectionComponent;
 
 // @public
 export interface StandardSectionConfig extends SectionConfig {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     compositionmethod?: CompositionMethod;
     customCssClasses?: StandardSectionCssClasses;
 }
@@ -474,9 +497,6 @@ export interface StaticFiltersCssClasses extends FiltersCssClasses {
 
 // @public
 export interface StaticFiltersProps {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StaticFiltersCssClasses;
     filterConfigs: FilterConfig[];
@@ -495,9 +515,6 @@ export interface UniversalResultsCssClasses {
 
 // @public
 export interface UniversalResultsProps {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
@@ -533,9 +550,6 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
 export interface VerticalResultsProps {
     allowPagination?: boolean;
     CardComponent: CardComponent;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;

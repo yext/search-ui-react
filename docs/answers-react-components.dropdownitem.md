@@ -4,7 +4,7 @@
 
 ## DropdownItem() function
 
-A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the  component instance.
+A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the [Dropdown()](./answers-react-components.dropdown.md) component instance.
 
 <b>Signature:</b>
 

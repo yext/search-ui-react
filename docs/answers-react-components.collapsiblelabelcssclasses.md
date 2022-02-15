@@ -4,7 +4,7 @@
 
 ## CollapsibleLabelCssClasses interface
 
-The CSS class interface used for .
+The CSS class interface used for [CollapsibleLabel()](./answers-react-components.collapsiblelabel.md)<!-- -->.
 
 <b>Signature:</b>
 

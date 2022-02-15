@@ -16,7 +16,7 @@ export interface StaticFiltersProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.staticfiltersprops.csscompositionmethod.md) | CompositionMethod | <i>(Optional)</i> |
+|  [cssCompositionMethod?](./answers-react-components.staticfiltersprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes |
 |  [customCssClasses?](./answers-react-components.staticfiltersprops.customcssclasses.md) | [StaticFiltersCssClasses](./answers-react-components.staticfilterscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [filterConfigs](./answers-react-components.staticfiltersprops.filterconfigs.md) | [FilterConfig](./answers-react-components.filterconfig.md)<!-- -->\[\] | Configurations for individual filter groups. |
 

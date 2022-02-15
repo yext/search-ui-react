@@ -4,6 +4,8 @@
 
 ## DirectAnswerProps interface
 
+Props for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,6 +16,6 @@ export interface DirectAnswerProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.directanswerprops.csscompositionmethod.md) | CompositionMethod | <i>(Optional)</i> |
+|  [cssCompositionMethod?](./answers-react-components.directanswerprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> |
 |  [customCssClasses?](./answers-react-components.directanswerprops.customcssclasses.md) | [DirectAnswerCssClasses](./answers-react-components.directanswercssclasses.md) | <i>(Optional)</i> |
 

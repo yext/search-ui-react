@@ -4,6 +4,9 @@ import { FocusedItemData, useFocusContext } from './FocusContext';
 import generateDropdownId from './generateDropdownId';
 import { useInputContext } from './InputContext';
 
+/**
+ * @public
+ */
 export type DropdownItemProps = PropsWithChildren<{
   value: string,
   className?: string,
@@ -15,6 +18,8 @@ export type DropdownItemProps = PropsWithChildren<{
 /**
  * A wrapper component for specifying a DropdownItemWithIndex.
  * The index will be automatically provided by the {@link Dropdown} component instance.
+ *
+ * @public
  */
 export default function DropdownItem(_props: DropdownItemProps): JSX.Element | null { return null; }
 

@@ -4,7 +4,7 @@
 
 ## AppliedFiltersDisplay() function
 
-Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->.
+A component that renders applied filters based on a given list of [DisplayableFilter](./answers-react-components.displayablefilter.md)<!-- -->.
 
 <b>Signature:</b>
 
@@ -16,9 +16,11 @@ export default function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps)
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [AppliedFiltersDisplayProps](./answers-react-components.appliedfiltersdisplayprops.md) |  |
+|  props | [AppliedFiltersDisplayProps](./answers-react-components.appliedfiltersdisplayprops.md) | [AppliedFiltersDisplayProps](./answers-react-components.appliedfiltersdisplayprops.md) |
 
 <b>Returns:</b>
 
 JSX.Element
+
+A React element for the applied filters
 
