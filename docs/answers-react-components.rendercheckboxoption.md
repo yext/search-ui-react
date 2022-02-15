@@ -4,19 +4,23 @@
 
 ## renderCheckboxOption() function
 
+Renders a checkbox option
+
 <b>Signature:</b>
 
 ```typescript
-export default function renderCheckboxOption({ option, selected, onClick, cssClasses }: CheckBoxOptionProps): JSX.Element;
+export default function renderCheckboxOption({ option, selected, onClick, cssClasses }: CheckboxOptionProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { option, selected, onClick, cssClasses } | CheckBoxOptionProps |  |
+|  { option, selected, onClick, cssClasses } | [CheckboxOptionProps](./answers-react-components.checkboxoptionprops.md) |  |
 
 <b>Returns:</b>
 
 JSX.Element
+
+A checkbox option react component
 

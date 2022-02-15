@@ -4,6 +4,8 @@
 
 ## FilterSearchProps interface
 
+The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component.
+
 <b>Signature:</b>
 
 ```typescript

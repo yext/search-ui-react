@@ -5,6 +5,8 @@ import { isString, validateData } from '../utils/validateData';
 
 /**
  * Props for a StandardCard.
+ *
+ * @public
  */
 export interface StandardCardProps extends CardProps {
   /** Whether or not to show an ordinal for numbering the card. */
@@ -43,6 +45,8 @@ const defaultFieldMappings: Record<string, FieldData> = {
 
 /**
  * The CSS class interface used for {@link StandardCard}.
+ *
+ * @public
  */
 export interface StandardCardCssClasses {
   /** Applies to the outermost container of the card. */
@@ -95,6 +99,8 @@ function isCtaData(data: unknown): data is CtaData {
 
 /**
  * This Component renders the base result card.
+ *
+ * @public
  *
  * @param props - An object containing the result itself and any additional information needed
  *                to render the card

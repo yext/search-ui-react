@@ -4,6 +4,8 @@
 
 ## SearchBarCssClasses interface
 
+The CSS class interface for the [SearchBar()](./answers-react-components.searchbar.md)
+
 <b>Signature:</b>
 
 ```typescript

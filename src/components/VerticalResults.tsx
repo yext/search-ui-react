@@ -7,6 +7,8 @@ import { useAnalytics } from '../hooks/useAnalytics';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.
+ *
+ * @public
  */
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
   /** Applies when the results are loading. */
@@ -15,6 +17,8 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
 
 /**
  * Props for the VerticalResults component.
+ *
+ * @public
  */
 export interface VerticalResultsProps {
   /** {@inheritDoc CardComponent} */
@@ -35,7 +39,9 @@ export interface VerticalResultsProps {
 /**
  * A component that renders search results for a vertical page.
  *
- * @param props - {@inheritDoc VerticalResultsProps}
+ * @public
+ *
+ * @param props - {@link VerticalResultsProps}
  * @returns A React element for the results, or null if no results should be displayed
  */
 export default function VerticalResults(props: VerticalResultsProps): JSX.Element | null {
@@ -71,6 +77,8 @@ export default function VerticalResults(props: VerticalResultsProps): JSX.Elemen
 
 /**
  * The CSS classes used for pagination.
+ *
+ * @public
  */
 export interface PaginationCssClasses {
   container?: string,
@@ -92,6 +100,11 @@ const builtInPaginationCssClasses: PaginationCssClasses = {
   icon: 'w-3 text-gray-500'
 };
 
+/**
+ * The props for the {@link Pagination} component
+ *
+ * @public
+ */
 interface PaginationProps {
   numResults: number,
   customCssClasses?: PaginationCssClasses,
@@ -101,6 +114,8 @@ interface PaginationProps {
 /**
  * Renders a component that divide a series of results into chunks across multiple pages
  * and enable user to navigate between those pages.
+ *
+ * @public
  */
 function Pagination(props: PaginationProps): JSX.Element | null {
   const { numResults, customCssClasses = {}, cssCompositionMethod } = props;

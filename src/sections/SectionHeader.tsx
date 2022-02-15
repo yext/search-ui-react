@@ -51,7 +51,10 @@ export interface SectionHeaderConfig {
 /**
  * The header of a section which includes an icon, the section title, applied query filters, and optionally
  * a view all button.
- * @param props {@link SectionHeaderConfig}
+ *
+ * @public
+ *
+ * @param props - {@link SectionHeaderConfig}
  * @returns A React element for a Section Header
  */
 export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {

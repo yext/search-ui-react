@@ -6,6 +6,8 @@ import renderCheckboxOption from './utils/renderCheckboxOption';
 
 /**
  * Properties for {@link Filters}.
+ *
+ * @public
  */
 export interface FiltersProps {
   /** Configurations for individual filter groups. */
@@ -18,6 +20,8 @@ export interface FiltersProps {
 
 /**
  * Configuration for a filter.
+ *
+ * @public
  */
 export interface FilterConfig {
   /** Options to display together in a group. */
@@ -44,6 +48,8 @@ interface FilterOption {
 
 /**
  * The CSS class interface used for {@link Filters}.
+ *
+ * @public
  */
 export interface FiltersCssClasses extends CollapsibleLabelCssClasses {
   /** Applies to outermost container of the groups of filters. */
@@ -69,7 +75,9 @@ const builtInCssClasses: FiltersCssClasses = {
 /**
  * A component that display groups of filter options based on the provided list of filter configurations.
  *
- * @param props - {@inheritdoc FiltersProps}
+ * @public
+ *
+ * @param props - {@link FiltersProps}
  * @returns A React element for the Filters
  */
 export default function Filters(props: FiltersProps): JSX.Element {

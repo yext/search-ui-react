@@ -15,17 +15,19 @@ import { useMemo } from 'react';
  * Suppose a component has a built-in theme of `{ icon: 'Icon', button: 'Button' }`,
  * and it is provided a custom theme of `{ icon: 'Blue' }`.
  * The various composition methods would result in the following composed themes:
- * Merge: { icon: 'Icon Blue', button: 'Button' }
- * Replace: { icon: 'Blue' }
- * Assign: { icon: 'Blue', button: 'Button' }
+ * Merge: `{ icon: 'Icon Blue', button: 'Button' }`
+ * Replace: `{ icon: 'Blue' }`
+ * Assign: `{ icon: 'Blue', button: 'Button' }`
+ *
+ * @public
  */
 export type CompositionMethod = 'merge' | 'replace' | 'assign';
 
 /**
  * A react hook which combines a component's built-in CSS classes with custom CSS classes.
- * @param builtInClasses The component's built-in css classes
- * @param customClasses The custom classes to combine with the built-in ones
- * @param cssCompositionMethod The method of combining the built-in classes with the custom classes
+ * @param builtInClasses - The component's built-in css classes
+ * @param customClasses - The custom classes to combine with the built-in ones
+ * @param cssCompositionMethod - The method of combining the built-in classes with the custom classes
  * @returns The composed CSS classes
  */
 export function useComposedCssClasses<ClassInterface>(
@@ -47,7 +49,7 @@ export function useComposedCssClasses<ClassInterface>(
 
 /**
  * Transforms the CompositionMethod types to the Compose types of the css-modules-theme library
- * @param cssCompositionMethod The cssCompositionMethod method
+ * @param cssCompositionMethod - The cssCompositionMethod method
  * @returns The css-modules-theme Compose type
  */
 function getCssModulesCompose(cssCompositionMethod: CompositionMethod = 'merge'): Compose {

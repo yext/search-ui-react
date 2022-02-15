@@ -5,23 +5,23 @@ import Filters, { FiltersCssClasses } from './Filters';
 
 /**
  * Properties for {@link Facets}.
+ *
+ * @public
  */
 export interface FacetsProps {
   /** Executes a new search whenever a facet selection changes. */
   searchOnChange?: boolean,
   /**
-   * {@inheritdoc FilterConfig.searchable}
-   * Applies to all groups of facets.
+   * Whether or not to display the filter option search input for all facets.
    */
   searchable?: boolean,
   /**
-   * {@inheritdoc FilterConfig.collapsible}
-   * Applies to all groups of facets.
+   * Allow expanding and collapsing the group of filters. Applies to all facets and defaults to true.
    */
   collapsible?: boolean,
   /**
-   * {@inheritdoc FilterConfig.defaultExpanded}
-   * Applies to all groups of facets.
+   * Whether or not the group of filters should be expanded on initial page load. Applies to all facets
+   * and defaults to true.
    */
   defaultExpanded?: boolean,
   /** Configurations for individual facet groups. */
@@ -34,12 +34,16 @@ export interface FacetsProps {
 
 /**
  * Configuration for a group of facets.
+ *
+ * @public
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface FacetConfig extends Omit<FilterConfig, 'options'> {}
 
 /**
  * The CSS class interface used for {@link Facets}.
+ *
+ * @public
  */
 export interface FacetsCssClasses extends FiltersCssClasses {
   /** Applies to outermost container of Facets. */
@@ -59,7 +63,9 @@ const builtInCssClasses: FacetsCssClasses = {
 /**
  * A component that displays a list of selectable facets applicable to the current vertical search.
  *
- * @param props - {@inheritdoc FacetsProps}
+ * @public
+ *
+ * @param props - {@link FacetsProps}
  * @returns A React element for the facets
  */
 export default function Facets(props: FacetsProps): JSX.Element {

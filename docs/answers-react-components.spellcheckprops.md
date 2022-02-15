@@ -4,6 +4,8 @@
 
 ## SpellCheckProps interface
 
+The props for the [SpellCheck()](./answers-react-components.spellcheck.md) component.
+
 <b>Signature:</b>
 
 ```typescript

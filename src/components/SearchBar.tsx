@@ -52,6 +52,11 @@ const builtInCssClasses: SearchBarCssClasses = {
   ...AutocompleteResultBuiltInCssClasses
 };
 
+/**
+ * The CSS class interface for the {@link SearchBar}
+ *
+ * @public
+ */
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   container?: string,
   inputElement?: string,
@@ -76,12 +81,26 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   entityPreviewsDivider?: string
 }
 
+/**
+ * The type of a functional React component which renders entity previews based on the autocomplete loading
+ * state and the vertical results array.
+ *
+ * @remarks
+ * An onSubmit function is provided to allow an entity preview to be submitted.
+ *
+ * @public
+ */
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalResultsArray: VerticalResults[],
   onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
 ) => JSX.Element;
 
+/**
+ * The configuration options for Visual Autocomplete
+ *
+ * @public
+ */
 export interface VisualAutocompleteConfig {
   entityPreviewSearcher?: AnswersHeadless,
   // The debouncing time, in milliseconds, for making API requests for entity previews
@@ -89,6 +108,11 @@ export interface VisualAutocompleteConfig {
   renderEntityPreviews?: RenderEntityPreviews,
 }
 
+/**
+ * The props for the {@link SearchBar} component.
+ *
+ * @public
+ */
 export interface SearchBarProps {
   placeholder?: string,
   geolocationOptions?: PositionOptions,
@@ -103,7 +127,9 @@ export interface SearchBarProps {
 }
 
 /**
- * Renders a SearchBar that is hooked up with an InputDropdown component
+ * Renders a SearchBar that is hooked up with an InputDropdown component.
+ *
+ * @public
  */
 export default function SearchBar({
   placeholder,

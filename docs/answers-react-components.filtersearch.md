@@ -4,6 +4,8 @@
 
 ## FilterSearch() function
 
+A component which allows a user to search for filters associated with specific entities and fields.
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,6 @@ export default function FilterSearch({ label, sectioned, searchFields, customCss
 <b>Returns:</b>
 
 JSX.Element
+
+A react component for Filter Search
 

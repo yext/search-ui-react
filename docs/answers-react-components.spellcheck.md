@@ -4,6 +4,8 @@
 
 ## SpellCheck() function
 
+Renders a suggested query if the Answers API provides one.
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,6 @@ export default function SpellCheck({ customCssClasses, cssCompositionMethod }: S
 <b>Returns:</b>
 
 JSX.Element \| null
+
+A react component for spell check, or null if none exists
 

@@ -4,7 +4,7 @@
 
 ## FacetsProps.defaultExpanded property
 
-Whether or not the group of filters should be expanded on initial page load. Defaults to true.
+Whether or not the group of filters should be expanded on initial page load. Applies to all facets and defaults to true.
 
 <b>Signature:</b>
 

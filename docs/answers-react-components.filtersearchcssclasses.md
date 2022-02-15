@@ -4,6 +4,8 @@
 
 ## FilterSearchCssClasses interface
 
+The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)
+
 <b>Signature:</b>
 
 ```typescript

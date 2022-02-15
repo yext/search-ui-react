@@ -6,5 +6,6 @@ export type {
 
 export { default as SectionHeader } from './SectionHeader';
 export type {
+  SectionHeaderConfig,
   SectionHeaderCssClasses
 } from './SectionHeader';

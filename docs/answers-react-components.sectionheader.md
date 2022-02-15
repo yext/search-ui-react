@@ -16,7 +16,7 @@ export default function SectionHeader(props: SectionHeaderConfig): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | SectionHeaderConfig |  |
+|  props | [SectionHeaderConfig](./answers-react-components.sectionheaderconfig.md) | [SectionHeaderConfig](./answers-react-components.sectionheaderconfig.md) |
 
 <b>Returns:</b>
 

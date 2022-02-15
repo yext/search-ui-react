@@ -4,7 +4,7 @@
 
 ## Filters() function
 
-Properties for [Filters()](./answers-react-components.filters.md)<!-- -->.
+A component that display groups of filter options based on the provided list of filter configurations.
 
 <b>Signature:</b>
 
@@ -16,9 +16,11 @@ export default function Filters(props: FiltersProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [FiltersProps](./answers-react-components.filtersprops.md) |  |
+|  props | [FiltersProps](./answers-react-components.filtersprops.md) | [FiltersProps](./answers-react-components.filtersprops.md) |
 
 <b>Returns:</b>
 
 JSX.Element
+
+A React element for the Filters
 

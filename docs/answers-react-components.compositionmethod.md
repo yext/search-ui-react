@@ -18,5 +18,5 @@ Merge keeps the component's built-in classes and adds the custom classes to them
 
 ## Example
 
-Suppose a component has a built-in theme of `{ icon: 'Icon', button: 'Button' }`<!-- -->, and it is provided a custom theme of `{ icon: 'Blue' }`<!-- -->. The various composition methods would result in the following composed themes: Merge: { icon: 'Icon Blue', button: 'Button' } Replace: { icon: 'Blue' } Assign: { icon: 'Blue', button: 'Button' }
+Suppose a component has a built-in theme of `{ icon: 'Icon', button: 'Button' }`<!-- -->, and it is provided a custom theme of `{ icon: 'Blue' }`<!-- -->. The various composition methods would result in the following composed themes: Merge: `{ icon: 'Icon Blue', button: 'Button' }` Replace: `{ icon: 'Blue' }` Assign: `{ icon: 'Blue', button: 'Button' }`
 

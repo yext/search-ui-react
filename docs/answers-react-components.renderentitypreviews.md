@@ -4,8 +4,15 @@
 
 ## RenderEntityPreviews type
 
+The type of a functional React component which renders entity previews based on the autocomplete loading state and the vertical results array.
+
 <b>Signature:</b>
 
 ```typescript
 export declare type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 ```
+
+## Remarks
+
+An onSubmit function is provided to allow an entity preview to be submitted.
+

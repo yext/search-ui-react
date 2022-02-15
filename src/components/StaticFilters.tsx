@@ -4,7 +4,12 @@ import { isDuplicateFilter } from '../utils/filterutils';
 import { FilterConfig } from './Filters';
 import Filters, { FiltersCssClasses } from './Filters';
 
-interface StaticFilterOption {
+/**
+ * A particular static filter
+ *
+ * @public
+ */
+export interface StaticFilterOption {
   fieldId: string,
   value: string | number | boolean,
   label: string
@@ -12,6 +17,8 @@ interface StaticFilterOption {
 
 /**
  * Properties for {@link StaticFilters}.
+ *
+ * @public
  */
 export interface StaticFiltersProps {
   /** Configurations for individual filter groups. */
@@ -22,6 +29,12 @@ export interface StaticFiltersProps {
   cssCompositionMethod?: CompositionMethod
 }
 
+
+/**
+ * The CSS class interface for Static Filters.
+ *
+ * @public
+ */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface StaticFiltersCssClasses extends FiltersCssClasses {}
 
@@ -30,7 +43,9 @@ export interface StaticFiltersCssClasses extends FiltersCssClasses {}
  * A component that display groups of user-configured filters
  * that will be apply to the current vertical search.
  *
- * @param props - {@inheritdoc StaticFiltersProps}
+ * @public
+ *
+ * @param props - {@link StaticFiltersProps}
  * @returns A React element for the static filters
  */
 export default function StaticFilters(props: StaticFiltersProps): JSX.Element {

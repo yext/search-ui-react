@@ -9,6 +9,11 @@ import DropdownMenu from './Dropdown/DropdownMenu';
 import { processTranslation } from './utils/processTranslation';
 import renderAutocompleteResult, { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 
+/**
+ * The CSS class interface for {@link FilterSearch}
+ *
+ * @public
+ */
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
   container?: string,
   label?: string,
@@ -32,6 +37,11 @@ const builtInCssClasses: FilterSearchCssClasses = {
   option: 'text-sm text-gray-700 pb-1 cursor-pointer',
 };
 
+/**
+ * The props for the {@link FilterSearch} component.
+ *
+ * @public
+ */
 export interface FilterSearchProps {
   label: string,
   sectioned: boolean,
@@ -40,6 +50,14 @@ export interface FilterSearchProps {
   cssCompositionMethod?: CompositionMethod
 }
 
+/**
+ * A component which allows a user to search for filters associated with specific entities and fields.
+ *
+ * @public
+ *
+ * @param props - {@link FilterSearchProps}
+ * @returns A react component for Filter Search
+ */
 export default function FilterSearch({
   label,
   sectioned,

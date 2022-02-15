@@ -4,7 +4,7 @@
 
 ## StaticFilters() function
 
-Properties for [StaticFilters()](./answers-react-components.staticfilters.md)<!-- -->.
+A component that display groups of user-configured filters that will be apply to the current vertical search.
 
 <b>Signature:</b>
 
@@ -16,9 +16,11 @@ export default function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [StaticFiltersProps](./answers-react-components.staticfiltersprops.md) |  |
+|  props | [StaticFiltersProps](./answers-react-components.staticfiltersprops.md) | [StaticFiltersProps](./answers-react-components.staticfiltersprops.md) |
 
 <b>Returns:</b>
 
 JSX.Element
+
+A React element for the static filters
 

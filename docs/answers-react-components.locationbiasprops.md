@@ -4,6 +4,8 @@
 
 ## LocationBiasProps interface
 
+The props for the [LocationBias()](./answers-react-components.locationbias.md) component.
+
 <b>Signature:</b>
 
 ```typescript

@@ -4,7 +4,7 @@
 
 ## VerticalResults() function
 
-Props for the VerticalResults component.
+A component that renders search results for a vertical page.
 
 <b>Signature:</b>
 
@@ -16,9 +16,11 @@ export default function VerticalResults(props: VerticalResultsProps): JSX.Elemen
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [VerticalResultsProps](./answers-react-components.verticalresultsprops.md) |  |
+|  props | [VerticalResultsProps](./answers-react-components.verticalresultsprops.md) | [VerticalResultsProps](./answers-react-components.verticalresultsprops.md) |
 
 <b>Returns:</b>
 
 JSX.Element \| null
+
+A React element for the results, or null if no results should be displayed
 

@@ -4,7 +4,7 @@
 
 ## CardProps interface
 
-The props provided to every {@<!-- -->link CardComponent).
+The props provided to every [CardComponent](./answers-react-components.cardcomponent.md)<!-- -->.
 
 <b>Signature:</b>
 

@@ -4,6 +4,8 @@
 
 ## SearchBarProps interface
 
+The props for the [SearchBar()](./answers-react-components.searchbar.md) component.
+
 <b>Signature:</b>
 
 ```typescript

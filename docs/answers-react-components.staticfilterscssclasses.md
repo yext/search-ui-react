@@ -4,6 +4,8 @@
 
 ## StaticFiltersCssClasses interface
 
+The CSS class interface for Static Filters.
+
 <b>Signature:</b>
 
 ```typescript

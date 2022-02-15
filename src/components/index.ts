@@ -5,6 +5,7 @@ export type {
   VisualAutocompleteConfig,
   RenderEntityPreviews
 } from './SearchBar';
+export type { EntityPreviewsProps } from './EntityPreviews';
 export { default as EntityPreviews } from './EntityPreviews';
 export { default as DropdownItem } from './Dropdown/DropdownItem';
 export { default as Dropdown } from './Dropdown/Dropdown';
@@ -48,6 +49,7 @@ export type {
 } from './Filters';
 export type {
   CheckboxOptionCssClasses,
+  CheckboxOptionProps,
   default as renderCheckboxOption
 } from './utils/renderCheckboxOption';
 

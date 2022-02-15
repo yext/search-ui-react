@@ -3,6 +3,11 @@ import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
+/**
+ * The CSS Class interface for SpellCheck.
+ *
+ * @public
+ */
 export interface SpellCheckCssClasses {
   container?: string,
   helpText?: string,
@@ -17,11 +22,24 @@ const builtInCssClasses: SpellCheckCssClasses = {
   link: 'text-blue-600 font-bold cursor-pointer hover:underline focus:underline'
 };
 
+/**
+ * The props for the {@link SpellCheck} component.
+ *
+ * @public
+ */
 export interface SpellCheckProps {
   customCssClasses?: SpellCheckCssClasses,
   cssCompositionMethod?: CompositionMethod
 }
 
+/**
+ * Renders a suggested query if the Answers API provides one.
+ *
+ * @public
+ *
+ * @param props - {@link SpellCheckProps}
+ * @returns A react component for spell check, or null if none exists
+ */
 export default function SpellCheck({
   customCssClasses,
   cssCompositionMethod

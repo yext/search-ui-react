@@ -4,7 +4,7 @@
 
 ## Facets() function
 
-Properties for [Facets()](./answers-react-components.facets.md)<!-- -->.
+A component that displays a list of selectable facets applicable to the current vertical search.
 
 <b>Signature:</b>
 
@@ -16,9 +16,11 @@ export default function Facets(props: FacetsProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [FacetsProps](./answers-react-components.facetsprops.md) |  |
+|  props | [FacetsProps](./answers-react-components.facetsprops.md) | [FacetsProps](./answers-react-components.facetsprops.md) |
 
 <b>Returns:</b>
 
 JSX.Element
+
+A React element for the facets
 

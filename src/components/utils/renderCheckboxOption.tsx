@@ -1,3 +1,8 @@
+/**
+ * Represents the data for a checkbox option
+ *
+ * @public
+ */
 interface CheckboxOption {
   id: string,
   label: string
@@ -5,6 +10,8 @@ interface CheckboxOption {
 
 /**
  * The CSS class interface used in {@link renderCheckboxOption}.
+ *
+ * @public
  */
 export interface CheckboxOptionCssClasses {
   /** Applies to the container of the option. */
@@ -15,16 +22,29 @@ export interface CheckboxOptionCssClasses {
   optionLabel?: string,
 }
 
-interface CheckBoxOptionProps {
+/**
+ * The props of a checkbox option
+ *
+ * @public
+ */
+export interface CheckboxOptionProps {
   option: CheckboxOption,
   onClick: (isChecked: boolean) => void,
   selected?: boolean,
   cssClasses?: CheckboxOptionCssClasses
 }
 
+/**
+ * Renders a checkbox option
+ *
+ * @public
+ *
+ * @param props - {@link CheckboxOptionProps}
+ * @returns A checkbox option react component
+ */
 export default function renderCheckboxOption({
   option, selected, onClick, cssClasses = {}
-}: CheckBoxOptionProps): JSX.Element {
+}: CheckboxOptionProps): JSX.Element {
   return (
     <div className={cssClasses.option} key={option.id}>
       <input

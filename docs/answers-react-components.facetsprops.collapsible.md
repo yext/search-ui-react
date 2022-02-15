@@ -4,7 +4,7 @@
 
 ## FacetsProps.collapsible property
 
-Allow expanding and collapsing the group of filters. Defaults to true.
+Allow expanding and collapsing the group of filters. Applies to all facets and defaults to true.
 
 <b>Signature:</b>
 

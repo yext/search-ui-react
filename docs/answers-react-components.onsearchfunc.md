@@ -4,6 +4,8 @@
 
 ## onSearchFunc type
 
+The interface of a function which is called on a search when provied to [useSearchWithNearMeHandling()](./answers-react-components.usesearchwithnearmehandling.md)<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript

@@ -4,7 +4,7 @@
 
 ## FacetsProps.searchable property
 
-Whether or not to display the filter option search input.
+Whether or not to display the filter option search input for all facets.
 
 <b>Signature:</b>
 

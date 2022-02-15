@@ -96,6 +96,20 @@ export interface CheckboxOptionCssClasses {
 }
 
 // @public
+export interface CheckboxOptionProps {
+    // (undocumented)
+    cssClasses?: CheckboxOptionCssClasses;
+    // (undocumented)
+    onClick: (isChecked: boolean) => void;
+    // Warning: (ae-forgotten-export) The symbol "CheckboxOption" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    option: CheckboxOption;
+    // (undocumented)
+    selected?: boolean;
+}
+
+// @public
 export function CollapsibleLabel(props: PropsWithChildren<CollapsibleLabelProps>): JSX.Element;
 
 // @public
@@ -182,10 +196,18 @@ export function Dropdown(props: PropsWithChildren<{
 // @public
 export function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
 
-// Warning: (ae-forgotten-export) The symbol "EntityPreviewsProps" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
+
+// @public
+export interface EntityPreviewsProps {
+    // (undocumented)
+    children: (results: Result[], index: number) => JSX.Element;
+    // (undocumented)
+    limit?: number;
+    // (undocumented)
+    verticalKey: string;
+}
 
 // @public
 export interface FacetConfig extends Omit<FilterConfig, 'options'> {
@@ -234,12 +256,12 @@ export interface FiltersCssClasses extends CollapsibleLabelCssClasses {
     searchableInputElement?: string;
 }
 
-// @public (undocumented)
+// @public
 export function FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod }: FilterSearchProps): JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "AutocompleteResultCssClasses" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
+// @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
     // (undocumented)
     container?: string;
@@ -261,7 +283,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
     sectionLabel?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface FilterSearchProps {
     // (undocumented)
     cssCompositionMethod?: CompositionMethod;
@@ -282,10 +304,10 @@ export interface FiltersProps {
     filterConfigs: FilterConfig[];
 }
 
-// @public (undocumented)
+// @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
 
-// @public (undocumented)
+// @public
 export interface LocationBiasCssClasses {
     // (undocumented)
     button?: string;
@@ -297,7 +319,7 @@ export interface LocationBiasCssClasses {
     source?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface LocationBiasProps {
     // (undocumented)
     cssCompositionMethod?: CompositionMethod;
@@ -307,7 +329,7 @@ export interface LocationBiasProps {
     geolocationOptions?: PositionOptions;
 }
 
-// @public (undocumented)
+// @public
 export type onSearchFunc = (searchEventData: {
     verticalKey?: string;
     query?: string;
@@ -331,20 +353,18 @@ export interface PaginationCssClasses {
     selectedLabel?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "CheckBoxOptionProps" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export function renderCheckboxOption({ option, selected, onClick, cssClasses }: CheckBoxOptionProps): JSX.Element;
+// @public
+export function renderCheckboxOption({ option, selected, onClick, cssClasses }: CheckboxOptionProps): JSX.Element;
 
 // Warning: (ae-forgotten-export) The symbol "FocusedItemData" needs to be exported by the entry point index.d.ts
 //
-// @public (undocumented)
+// @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
 // @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
 
-// @public (undocumented)
+// @public
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
     // (undocumented)
     clearButton?: string;
@@ -390,7 +410,7 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
     verticalLink?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface SearchBarProps {
     // (undocumented)
     cssCompositionMethod?: CompositionMethod;
@@ -426,10 +446,24 @@ export interface SectionConfig {
     viewMore?: boolean;
 }
 
-// Warning: (ae-forgotten-export) The symbol "SectionHeaderConfig" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function SectionHeader(props: SectionHeaderConfig): JSX.Element;
+
+// @public
+export interface SectionHeaderConfig {
+    // (undocumented)
+    appliedQueryFilters?: AppliedQueryFilter[];
+    // (undocumented)
+    cssCompositionMethod?: CompositionMethod;
+    // (undocumented)
+    customCssClasses?: SectionHeaderCssClasses;
+    // (undocumented)
+    label: string;
+    // (undocumented)
+    verticalKey: string;
+    // (undocumented)
+    viewAllButton?: boolean;
+}
 
 // @public
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
@@ -445,10 +479,10 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
     viewMoreLink?: string;
 }
 
-// @public (undocumented)
+// @public
 export function SpellCheck({ customCssClasses, cssCompositionMethod }: SpellCheckProps): JSX.Element | null;
 
-// @public (undocumented)
+// @public
 export interface SpellCheckCssClasses {
     // (undocumented)
     container?: string;
@@ -460,7 +494,7 @@ export interface SpellCheckCssClasses {
     spellCheck___loading?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface SpellCheckProps {
     // (undocumented)
     cssCompositionMethod?: CompositionMethod;
@@ -515,7 +549,7 @@ export interface StandardSectionCssClasses {
 // @public
 export function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
-// @public (undocumented)
+// @public
 export interface StaticFiltersCssClasses extends FiltersCssClasses {
 }
 
@@ -579,7 +613,7 @@ export interface VerticalResultsProps {
     displayAllOnNoResults?: boolean;
 }
 
-// @public (undocumented)
+// @public
 export interface VisualAutocompleteConfig {
     // (undocumented)
     entityPreviewsDebouncingTime?: number;
@@ -591,7 +625,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// src/components/cards/StandardCard.tsx:14:5 - (ae-forgotten-export) The symbol "FieldData" needs to be exported by the entry point index.d.ts
+// src/components/cards/StandardCard.tsx:16:5 - (ae-forgotten-export) The symbol "FieldData" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
