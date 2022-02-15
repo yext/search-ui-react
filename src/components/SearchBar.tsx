@@ -87,6 +87,11 @@ interface VisualAutocompleteConfig {
   renderEntityPreviews?: RenderEntityPreviews,
 }
 
+interface VerticalLink {
+  verticalKey: string
+  query: string
+}
+
 export interface SearchBarProps {
   placeholder?: string,
   geolocationOptions?: PositionOptions,
@@ -94,7 +99,7 @@ export interface SearchBarProps {
   cssCompositionMethod?: CompositionMethod,
   visualAutocompleteConfig?: VisualAutocompleteConfig,
   hideVerticalLinks?: boolean,
-  onClickVerticalLink?: (data: { verticalLink: string, querySource: QuerySource }) => void,
+  onSelectVerticalLink?: (data: { verticalLink: VerticalLink, querySource: QuerySource }) => void,
   verticalKeyToLabel?: (verticalKey: string) => string,
   hideRecentSearches?: boolean,
   recentSearchesLimit?: number,
@@ -110,7 +115,7 @@ export default function SearchBar({
   hideRecentSearches,
   visualAutocompleteConfig = {},
   hideVerticalLinks,
-  onClickVerticalLink,
+  onSelectVerticalLink,
   verticalKeyToLabel,
   recentSearchesLimit = 5,
   customCssClasses,
@@ -167,8 +172,11 @@ export default function SearchBar({
 
   const handleSubmit = (value: string, _index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
-    if (itemData && typeof itemData.verticalLink === 'string' && onClickVerticalLink) {
-      onClickVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
+    const isVerticalLink = (obj: unknown): obj is VerticalLink => {
+      return typeof obj === 'object' && !!obj && 'verticalKey' in obj && 'query' in obj;
+    };
+    if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
+      onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
       executeQuery();
     }
@@ -261,7 +269,7 @@ export default function SearchBar({
             className={cssClasses.optionContainer}
             focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
             value={result.value}
-            itemData={{ verticalLink: `/${verticalKey}?query=${result.value}` }}
+            itemData={{ verticalLink: { verticalKey, query: result.value }}}
             onClick={handleSubmit}
           >
             {renderAutocompleteResult(
