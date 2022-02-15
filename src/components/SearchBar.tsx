@@ -288,6 +288,18 @@ export default function SearchBar({
     ));
   }
 
+  const reportSearchClearEvent = () => {
+    if (!queryId) {
+      console.error('Unable to report a search clear event. Missing field: queryId.');
+      return;
+    }
+    analytics?.report({
+      type: 'SEARCH_CLEAR_BUTTON',
+      queryId,
+      verticalKey
+    });
+  };
+
   function renderClearButton() {
     return (
       <>
@@ -298,18 +310,12 @@ export default function SearchBar({
             updateEntityPreviews('');
             answersActions.setQuery('');
             executeQuery();
-            if (analytics && queryId) {
-              analytics.report({
-                type: 'SEARCH_CLEAR_BUTTON',
-                queryId: queryId,
-                verticalKey
-              });
-            }
+            analytics && reportSearchClearEvent();
           }}
         >
           <CloseIcon />
         </button>
-        <VerticalDividerIcon className={cssClasses.verticalDivider}/>
+        <VerticalDividerIcon className={cssClasses.verticalDivider} />
       </>
     );
   }
