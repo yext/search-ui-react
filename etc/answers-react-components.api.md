@@ -14,6 +14,7 @@ import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { Filter } from '@yext/answers-headless-react';
 import { MutableRefObject } from 'react';
 import { PropsWithChildren } from 'react';
+import { QuerySource } from '@yext/answers-headless-react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
@@ -84,7 +85,6 @@ export type CardComponent = (props: CardProps) => JSX.Element;
 
 // @public
 export interface CardProps {
-    // (undocumented)
     result: Result;
 }
 
@@ -142,6 +142,8 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
 // @public
 export interface DirectAnswerCssClasses {
     // (undocumented)
+    answerContainer?: string;
+    // (undocumented)
     container?: string;
     // (undocumented)
     container___loading?: string;
@@ -152,11 +154,19 @@ export interface DirectAnswerCssClasses {
     // (undocumented)
     featuredSnippetTitle?: string;
     // (undocumented)
+    feedbackButton?: string;
+    // (undocumented)
+    feedbackButtonsContainer?: string;
+    // (undocumented)
     fieldValueDescription?: string;
     // (undocumented)
     fieldValueTitle?: string;
     // (undocumented)
     highlighted?: string;
+    // (undocumented)
+    thumbsDownIcon?: string;
+    // (undocumented)
+    thumbsUpIcon?: string;
     // (undocumented)
     viewDetailsLink?: string;
     // (undocumented)
@@ -362,7 +372,7 @@ export function renderCheckboxOption({ option, selected, onClick, cssClasses }: 
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
 // @public
-export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
+export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
 
 // @public
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
@@ -425,6 +435,11 @@ export interface SearchBarProps {
     // (undocumented)
     onSearch?: onSearchFunc;
     // (undocumented)
+    onSelectVerticalLink?: (data: {
+        verticalLink: VerticalLink;
+        querySource: QuerySource;
+    }) => void;
+    // (undocumented)
     placeholder?: string;
     // (undocumented)
     recentSearchesLimit?: number;
@@ -480,7 +495,7 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
 }
 
 // @public
-export function SpellCheck({ customCssClasses, cssCompositionMethod }: SpellCheckProps): JSX.Element | null;
+export function SpellCheck({ customCssClasses, cssCompositionMethod, onClick }: SpellCheckProps): JSX.Element | null;
 
 // @public
 export interface SpellCheckCssClasses {
@@ -500,6 +515,11 @@ export interface SpellCheckProps {
     cssCompositionMethod?: CompositionMethod;
     // (undocumented)
     customCssClasses?: SpellCheckCssClasses;
+    // (undocumented)
+    onClick?: (data: {
+        correctedQuery: string;
+        verticalKey: string;
+    }) => void;
 }
 
 // @public
@@ -594,6 +614,14 @@ export interface VerticalConfig {
     label?: string;
     SectionComponent?: SectionComponent;
     viewAllButton?: boolean;
+}
+
+// @public
+export interface VerticalLink {
+    // (undocumented)
+    query: string;
+    // (undocumented)
+    verticalKey: string;
 }
 
 // @public

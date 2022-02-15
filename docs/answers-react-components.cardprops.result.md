@@ -4,6 +4,8 @@
 
 ## CardProps.result property
 
+The result data provided to the card for rendering.
+
 <b>Signature:</b>
 
 ```typescript

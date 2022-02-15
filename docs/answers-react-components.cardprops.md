@@ -16,5 +16,5 @@ export interface CardProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [result](./answers-react-components.cardprops.result.md) | Result |  |
+|  [result](./answers-react-components.cardprops.result.md) | Result | The result data provided to the card for rendering. |
 

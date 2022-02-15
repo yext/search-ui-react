@@ -3,7 +3,8 @@ export type {
   SearchBarCssClasses,
   SearchBarProps,
   VisualAutocompleteConfig,
-  RenderEntityPreviews
+  RenderEntityPreviews,
+  VerticalLink
 } from './SearchBar';
 export type { EntityPreviewsProps } from './EntityPreviews';
 export { default as EntityPreviews } from './EntityPreviews';

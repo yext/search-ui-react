@@ -3,7 +3,7 @@ import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import PageNavigationIcon from '../icons/ChevronIcon';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
-import { useAnalytics } from '../hooks/useAnalytics';
+import { usePaginationAnalytics } from '../hooks/usePaginationAnalytics';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.
@@ -125,11 +125,9 @@ function Pagination(props: PaginationProps): JSX.Element | null {
     cssCompositionMethod
   );
   const answersAction = useAnswersActions();
-  const analytics = useAnalytics();
   const offset = useAnswersState(state => state.vertical.offset) || 0;
   const limit = useAnswersState(state => state.vertical.limit) || 10;
-  const verticalKey = useAnswersState(state => state.vertical.verticalKey);
-  const queryId = useAnswersState(state => state.query.queryId);
+  const reportAnalyticsEvent = usePaginationAnalytics();
 
   const maxPageCount = Math.ceil(numResults / limit);
   if (maxPageCount <= 1) {
@@ -138,30 +136,11 @@ function Pagination(props: PaginationProps): JSX.Element | null {
   const pageNumber = (offset / limit) + 1;
   const paginationLabels: string[] = generatePaginationLabels(pageNumber, maxPageCount);
 
-  const reportPaginateEvent = (newPageNumber: number) => {
-    if (!queryId) {
-      console.error('Unable to report a pagination event. Missing field: queryId.');
-      return;
-    }
-    if (!verticalKey) {
-      console.error('Unable to report a pagination event. Missing field: verticalKey.');
-      return;
-    }
-    analytics?.report({
-      type: 'PAGINATE',
-      queryId: queryId,
-      verticalKey: verticalKey,
-      newPage: newPageNumber,
-      currentPage: pageNumber,
-      totalPageCount: maxPageCount
-    });
-  };
-
   const executeSearchWithNewOffset = (newPageNumber: number) => {
     const newOffset = limit * (newPageNumber - 1);
     answersAction.setOffset(newOffset);
     answersAction.executeVerticalQuery();
-    analytics && reportPaginateEvent(newPageNumber);
+    reportAnalyticsEvent(newPageNumber, pageNumber, maxPageCount);
   };
 
   return (

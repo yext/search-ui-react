@@ -1,7 +1,6 @@
 import { AnswersHeadless, QuerySource, SearchTypeEnum, useAnswersActions, useAnswersState, useAnswersUtilities, VerticalResults } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { Fragment, PropsWithChildren, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import useRecentSearches from '../hooks/useRecentSearches';
 import useSearchWithNearMeHandling, { onSearchFunc } from '../hooks/useSearchWithNearMeHandling';
@@ -11,7 +10,6 @@ import RecentSearchIcon from '../icons/HistoryIcon';
 import CloseIcon from '../icons/CloseIcon';
 import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
 import YextLogoIcon from '../icons/YextIcon';
-import { BrowserState } from '../models/browserState';
 import Dropdown from './Dropdown/Dropdown';
 import { useDropdownContext } from './Dropdown/DropdownContext';
 import DropdownInput from './Dropdown/DropdownInput';
@@ -26,7 +24,7 @@ import renderAutocompleteResult, {
   AutocompleteResultCssClasses,
   builtInCssClasses as AutocompleteResultBuiltInCssClasses
 } from './utils/renderAutocompleteResult';
-import { useAnalytics } from '../hooks/useAnalytics';
+import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-3',
@@ -109,6 +107,20 @@ export interface VisualAutocompleteConfig {
 }
 
 /**
+ * The data model for a vertical link
+ *
+ * @public
+ */
+export interface VerticalLink {
+  verticalKey: string
+  query: string
+}
+
+const isVerticalLink = (obj: unknown): obj is VerticalLink => {
+  return typeof obj === 'object' && !!obj && 'verticalKey' in obj && 'query' in obj;
+};
+
+/**
  * The props for the {@link SearchBar} component.
  *
  * @public
@@ -120,6 +132,7 @@ export interface SearchBarProps {
   cssCompositionMethod?: CompositionMethod,
   visualAutocompleteConfig?: VisualAutocompleteConfig,
   hideVerticalLinks?: boolean,
+  onSelectVerticalLink?: (data: { verticalLink: VerticalLink, querySource: QuerySource }) => void,
   verticalKeyToLabel?: (verticalKey: string) => string,
   hideRecentSearches?: boolean,
   recentSearchesLimit?: number,
@@ -137,6 +150,7 @@ export default function SearchBar({
   hideRecentSearches,
   visualAutocompleteConfig = {},
   hideVerticalLinks,
+  onSelectVerticalLink,
   verticalKeyToLabel,
   recentSearchesLimit = 5,
   customCssClasses,
@@ -148,16 +162,13 @@ export default function SearchBar({
     renderEntityPreviews,
     entityPreviewsDebouncingTime = 500
   } = visualAutocompleteConfig;
-  const browserHistory = useHistory<BrowserState>();
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
-  const analytics = useAnalytics();
+  const reportAnalyticsEvent = useSearchBarAnalytics();
 
   const query = useAnswersState(state => state.query.input) ?? '';
-  const queryId = useAnswersState(state => state.query.queryId);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
-  const verticalKey = useAnswersState(state => state.vertical.verticalKey);
 
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(() => {
     return isVertical
@@ -192,25 +203,15 @@ export default function SearchBar({
     executeQueryWithNearMeHandling();
   }
 
-  const reportAutocompleteEvent = (suggestedSearchText: string) => {
-    analytics?.report({
-      type: 'AUTO_COMPLETE_SELECTION',
-      ...(queryId && { queryId }),
-      suggestedSearchText
-    });
-  };
-
   const handleSubmit = (value: string, index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
-    if (itemData && typeof itemData.verticalLink === 'string') {
-      browserHistory.push(itemData.verticalLink, {
-        querySource: QuerySource.Autocomplete
-      });
+    if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
+      onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
       executeQuery();
     }
     if (index >= 0 && !itemData?.isEntityPreview) {
-      reportAutocompleteEvent(value);
+      reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
     }
   };
 
@@ -301,7 +302,7 @@ export default function SearchBar({
             className={cssClasses.optionContainer}
             focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
             value={result.value}
-            itemData={{ verticalLink: `/${verticalKey}?query=${result.value}` }}
+            itemData={{ verticalLink: { verticalKey, query: result.value }}}
             onClick={handleSubmit}
           >
             {renderAutocompleteResult(
@@ -314,18 +315,6 @@ export default function SearchBar({
     ));
   }
 
-  const reportSearchClearEvent = () => {
-    if (!queryId) {
-      console.error('Unable to report a search clear event. Missing field: queryId.');
-      return;
-    }
-    analytics?.report({
-      type: 'SEARCH_CLEAR_BUTTON',
-      queryId,
-      verticalKey
-    });
-  };
-
   function renderClearButton() {
     return (
       <>
@@ -336,7 +325,7 @@ export default function SearchBar({
             updateEntityPreviews('');
             answersActions.setQuery('');
             executeQuery();
-            analytics && reportSearchClearEvent();
+            reportAnalyticsEvent('SEARCH_CLEAR_BUTTON');
           }}
         >
           <CloseIcon />

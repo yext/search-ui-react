@@ -31,12 +31,10 @@ export default function useSearchWithNearMeHandling(
    * before the search execution in order to retrieve the search intents
    */
   const autocompletePromiseRef = useRef<Promise<AutocompleteResponse | undefined>>();
-  const isVertical = answersActions.state.meta.searchType === SearchTypeEnum.Vertical;
-  const verticalKey = answersActions.state.vertical.verticalKey ?? '';
-  const query = answersActions.state.query.input ?? '';
 
   async function executeQuery() {
     let intents: SearchIntent[] = [];
+    const isVertical = answersActions.state.meta.searchType === SearchTypeEnum.Vertical;
     if (!answersActions.state.location.userLocation) {
       if (!autocompletePromiseRef.current) {
         autocompletePromiseRef.current = isVertical
@@ -47,8 +45,11 @@ export default function useSearchWithNearMeHandling(
       intents = autocompleteResponseBeforeSearch?.inputIntents || [];
       await updateLocationIfNeeded(answersActions, intents, geolocationOptions);
     }
-    executeSearch(answersActions, isVertical);
-    onSearch?.({ verticalKey, query });
+    const verticalKey = answersActions.state.vertical.verticalKey ?? '';
+    const query = answersActions.state.query.input ?? '';
+    onSearch
+      ? onSearch({ verticalKey, query })
+      : executeSearch(answersActions, isVertical);
   }
   return [executeQuery, autocompletePromiseRef];
 }

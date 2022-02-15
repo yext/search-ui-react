@@ -18,4 +18,5 @@ export interface SpellCheckProps
 |  --- | --- | --- |
 |  [cssCompositionMethod?](./answers-react-components.spellcheckprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> |
 |  [customCssClasses?](./answers-react-components.spellcheckprops.customcssclasses.md) | [SpellCheckCssClasses](./answers-react-components.spellcheckcssclasses.md) | <i>(Optional)</i> |
+|  [onClick?](./answers-react-components.spellcheckprops.onclick.md) | (data: { correctedQuery: string; verticalKey: string; }) =&gt; void | <i>(Optional)</i> |
 
