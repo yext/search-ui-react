@@ -10,7 +10,7 @@ export type { CollapsibleLabelProps } from './CollapsibleLabel';
 export { default as CollapsibleSection } from './CollapsibleSection';
 export type { CollapsibleSectionProps } from './CollapsibleSection';
 
-export { default as Divider } from './Divider';
+export { default as ResponsiveDivider } from './ResponsiveDivider';
 
 export { default as Facets } from './Facets';
 export type { FacetsProps } from './Facets';
