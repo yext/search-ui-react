@@ -1,8 +1,8 @@
 import { PropsWithChildren, useState } from 'react';
 import useCollapse from 'react-collapsed';
-import GroupContext from './GroupContext';
+import FilterGroupContext from './FilterGroupContext';
 
-export type GroupProps = PropsWithChildren<{
+export type FilterGroupProps = PropsWithChildren<{
   defaultExpanded?: boolean,
   defaultFieldId?: string
 }>;
@@ -11,7 +11,7 @@ export type GroupProps = PropsWithChildren<{
  * The Filters.Group component represents a group of filters, for the purpose
  * of searchable filters and collapsibility.
  */
-export default function Group(props: GroupProps): JSX.Element {
+export default function FilterGroup(props: FilterGroupProps): JSX.Element {
   const {
     children,
     defaultExpanded = true,
@@ -20,7 +20,7 @@ export default function Group(props: GroupProps): JSX.Element {
 
   const [searchValue, setSearchValue] = useState('');
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({ defaultExpanded });
-  const groupContextInstance = {
+  const FilterGroupContextInstance = {
     defaultFieldId,
     searchValue,
     setSearchValue,
@@ -30,8 +30,8 @@ export default function Group(props: GroupProps): JSX.Element {
   };
 
   return (
-    <GroupContext.Provider value={groupContextInstance}>
+    <FilterGroupContext.Provider value={FilterGroupContextInstance}>
       {children}
-    </GroupContext.Provider>
+    </FilterGroupContext.Provider>
   );
 }

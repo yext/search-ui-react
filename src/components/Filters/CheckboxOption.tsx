@@ -2,7 +2,7 @@ import { Matcher, useAnswersUtilities } from '@yext/answers-headless-react';
 import { useMemo, useState, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
-import { useGroupContext } from './GroupContext';
+import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 
 export type CheckboxOptionProps = {
@@ -35,7 +35,7 @@ const builtInCssClasses: CheckboxCssClasses = {
  * A checkbox component that represents a single Filter.
  */
 export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
-  const { searchValue, defaultFieldId } = useGroupContext();
+  const { searchValue, defaultFieldId } = useFilterGroupContext();
   const {
     fieldId = defaultFieldId,
     value,

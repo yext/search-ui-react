@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { useGroupContext } from './GroupContext';
+import { useFilterGroupContext } from './FilterGroupContext';
 
 export type CollapseButtonProps = PropsWithChildren<{
   className?: string
@@ -14,7 +14,7 @@ export default function CollapseButton(props: CollapseButtonProps): JSX.Element 
     className = 'w-full flex justify-between items-center mb-4',
     children
   } = props;
-  const { getToggleProps } = useGroupContext();
+  const { getToggleProps } = useFilterGroupContext();
 
   return (
     <button className={className} {...getToggleProps()}>

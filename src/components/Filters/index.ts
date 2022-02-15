@@ -24,14 +24,14 @@ export {
 } from './FiltersContext';
 export type { FiltersContextType } from './FiltersContext';
 
-export { default as Group } from './Group';
-export type { GroupProps } from './Group';
+export { default as FilterGroup } from './FilterGroup';
+export type { FilterGroupProps } from './FilterGroup';
 
 export {
-  default as GroupContext,
-  useGroupContext
-} from './GroupContext';
-export type { GroupContextType } from './GroupContext';
+  default as FilterGroupContext,
+  useFilterGroupContext
+} from './FilterGroupContext';
+export type { FilterGroupContextType } from './FilterGroupContext';
 
 export { default as Label } from './Label';
 

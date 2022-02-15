@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { useGroupContext } from './GroupContext';
+import { useFilterGroupContext } from './FilterGroupContext';
 
 export type CollapsibleSectionProps = PropsWithChildren<{
   className?: string
@@ -15,7 +15,7 @@ export default function CollapsibleSection(props: CollapsibleSectionProps): JSX.
     children
   } = props;
 
-  const { getCollapseProps } = useGroupContext();
+  const { getCollapseProps } = useFilterGroupContext();
 
   return (
     <div className={className} {...getCollapseProps()}>
