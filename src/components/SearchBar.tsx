@@ -76,13 +76,13 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   entityPreviewsDivider?: string
 }
 
-type RenderEntityPreviews = (
+export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalResultsArray: VerticalResults[],
   onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
 ) => JSX.Element;
 
-interface VisualAutocompleteConfig {
+export interface VisualAutocompleteConfig {
   entityPreviewSearcher?: AnswersHeadless,
   // The debouncing time, in milliseconds, for making API requests for entity previews
   entityPreviewsDebouncingTime?: number,
@@ -166,7 +166,15 @@ export default function SearchBar({
     executeQueryWithNearMeHandling();
   }
 
-  const handleSubmit = (value: string, _index: number, itemData?: FocusedItemData) => {
+  const reportAutocompleteEvent = (suggestedSearchText: string) => {
+    analytics?.report({
+      type: 'AUTO_COMPLETE_SELECTION',
+      ...(queryId && { queryId }),
+      suggestedSearchText
+    });
+  };
+
+  const handleSubmit = (value: string, index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
     if (itemData && typeof itemData.verticalLink === 'string') {
       browserHistory.push(itemData.verticalLink, {
@@ -174,6 +182,9 @@ export default function SearchBar({
       });
     } else {
       executeQuery();
+    }
+    if (index >= 0 && !itemData?.isEntityPreview) {
+      reportAutocompleteEvent(value);
     }
   };
 
@@ -277,6 +288,18 @@ export default function SearchBar({
     ));
   }
 
+  const reportSearchClearEvent = () => {
+    if (!queryId) {
+      console.error('Unable to report a search clear event. Missing field: queryId.');
+      return;
+    }
+    analytics?.report({
+      type: 'SEARCH_CLEAR_BUTTON',
+      queryId,
+      verticalKey
+    });
+  };
+
   function renderClearButton() {
     return (
       <>
@@ -287,18 +310,12 @@ export default function SearchBar({
             updateEntityPreviews('');
             answersActions.setQuery('');
             executeQuery();
-            if (analytics && queryId) {
-              analytics.report({
-                type: 'SEARCH_CLEAR_BUTTON',
-                queryId: queryId,
-                verticalKey
-              });
-            }
+            analytics && reportSearchClearEvent();
           }}
         >
           <CloseIcon />
         </button>
-        <VerticalDividerIcon className={cssClasses.verticalDivider}/>
+        <VerticalDividerIcon className={cssClasses.verticalDivider} />
       </>
     );
   }

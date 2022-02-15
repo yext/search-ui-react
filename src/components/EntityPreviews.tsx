@@ -1,5 +1,5 @@
 import { Result, VerticalResults, UniversalLimit } from '@yext/answers-headless-react';
-import { isValidElement, ReactNode } from 'react';
+import { cloneElement, isValidElement, ReactNode } from 'react';
 import DropdownItem from './Dropdown/DropdownItem';
 import recursivelyMapChildren from './utils/recursivelyMapChildren';
 
@@ -22,7 +22,9 @@ export default function EntityPreviews(_: EntityPreviewsProps): JSX.Element | nu
 }
 
 /**
- * Recursively passes vertical results into instances of EntityPreview.
+ * Recursively passes vertical results into instances of EntityPreview. To identify
+ * entity preview elements, "isEntityPreview" is injected into the props of the rendered
+ * children with type DropdownItem.
  */
 export function transformEntityPreviews(
   entityPreviews: JSX.Element,
@@ -38,7 +40,13 @@ export function transformEntityPreviews(
     if (!(verticalKey in verticalKeyToResults)) {
       return null;
     }
-    return children(verticalKeyToResults[verticalKey], index++);
+    const childrenWithResults = children(verticalKeyToResults[verticalKey], index++);
+    return recursivelyMapChildren(childrenWithResults, child => {
+      if (!isValidElement(child) || child.type !== DropdownItem) {
+        return child;
+      }
+      return cloneElement(child, { itemData: { isEntityPreview: true, ...child.props.itemData } });
+    });
   });
   return renderedChildren;
 }
