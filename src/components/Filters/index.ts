@@ -1,9 +1,6 @@
 export { default as CheckboxOption } from './CheckboxOption';
 export type { CheckboxOptionProps } from './CheckboxOption';
 
-export { default as CollapseButton } from './CollapseButton';
-export type { CollapseButtonProps } from './CollapseButton';
-
 export { default as CollapsibleLabel } from './CollapsibleLabel';
 export type { CollapsibleLabelProps } from './CollapsibleLabel';
 
@@ -32,8 +29,6 @@ export {
   useFilterGroupContext
 } from './FilterGroupContext';
 export type { FilterGroupContextType } from './FilterGroupContext';
-
-export { default as Label } from './Label';
 
 export { default as SearchInput } from './SearchInput';
 export type { SearchInputProps } from './SearchInput';

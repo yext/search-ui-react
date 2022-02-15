@@ -7,7 +7,7 @@ export type CollapsibleSectionProps = PropsWithChildren<{
 
 /**
  * CollapsibleSection are used for collapsing and un-collapsing groups of filters.
- * It is intended to be used with {@link CollapsibleButton}s within the same {@link Group}.
+ * It is intended to be used with {@link CollapsibleButton}s within the same {@link FilterGroup}.
  */
 export default function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element {
   const {
