@@ -1,6 +1,6 @@
 import { DisplayableFacet, Filter, SelectableFilter, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
-import Filters from './Filters';
+import FiltersContext from './FiltersContext';
 
 export type FacetsProps = {
   className?: string,
@@ -47,11 +47,13 @@ export default function Facets(props: FacetsProps): JSX.Element {
     }
   }
 
+  const filtersContextInstance = { handleFilterSelect, filters };
+
   return (
     <div className={className}>
-      <Filters handleFilterSelect={handleFilterSelect} filters={filters}>
+      <FiltersContext.Provider value={filtersContextInstance}>
         {children?.(facets)}
-      </Filters>
+      </FiltersContext.Provider>
     </div>
   );
 }

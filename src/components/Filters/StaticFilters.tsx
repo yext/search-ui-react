@@ -1,6 +1,6 @@
 import { Filter, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
-import Filters from './Filters';
+import FiltersContext from './FiltersContext';
 
 export type StaticFiltersProps = PropsWithChildren<{
   className?: string
@@ -21,18 +21,20 @@ export default function StaticFilters(props: StaticFiltersProps): JSX.Element {
   const answersActions = useAnswersActions();
   const filters = useAnswersState(state => state.filters.static) || [];
 
+  const filtersContextInstance = {
+    filters,
+    handleFilterSelect: (filter: Filter, selected: boolean) => {
+      answersActions.resetFacets();
+      answersActions.setFilterOption({ ...filter, selected });
+      answersActions.executeVerticalQuery();
+    }
+  };
+
   return (
     <div className={className}>
-      <Filters
-        filters={filters}
-        handleFilterSelect={(filter: Filter, selected: boolean) => {
-          answersActions.resetFacets();
-          answersActions.setFilterOption({ ...filter, selected });
-          answersActions.executeVerticalQuery();
-        }}
-      >
+      <FiltersContext.Provider value={filtersContextInstance}>
         {children}
-      </Filters>
+      </FiltersContext.Provider>
     </div>
   );
 }

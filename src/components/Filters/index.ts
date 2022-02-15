@@ -12,9 +12,6 @@ export { default as ResponsiveDivider } from './ResponsiveDivider';
 export { default as Facets } from './Facets';
 export type { FacetsProps } from './Facets';
 
-export { default as Filters } from './Filters';
-export type { FiltersProps } from './Filters';
-
 export {
   default as FiltersContext,
   useFiltersContext

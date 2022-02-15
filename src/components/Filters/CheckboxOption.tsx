@@ -1,5 +1,5 @@
-import { Matcher, useAnswersState, useAnswersUtilities } from '@yext/answers-headless-react';
-import { useMemo, useState } from 'react';
+import { Matcher, useAnswersUtilities } from '@yext/answers-headless-react';
+import { useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
