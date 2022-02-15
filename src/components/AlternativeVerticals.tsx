@@ -3,6 +3,7 @@ import Star from '../icons/StarIcon';
 import { useAnswersState, VerticalResults } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
+import { VerticalLink } from '../models/verticalLink';
 
 /**
  * The CSS class interface used for {@link AlternativeVerticals}.
@@ -72,6 +73,11 @@ export interface AlternativeVerticalsProps {
    * Defaults to true.
    */
   displayAllOnNoResults?: boolean,
+  /**
+   * A function to provide user defined url path for vertical and universal sugestion links.
+   * Defaults to "/[verticalKey]?query=[query]"
+   */
+  getSuggestionUrl?: (data: VerticalLink) => string
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AlternativeVerticalsCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -90,6 +96,7 @@ export default function AlternativeVerticals({
   verticalsConfig,
   displayAllOnNoResults = true,
   customCssClasses,
+  getSuggestionUrl,
   cssCompositionMethod
 }: AlternativeVerticalsProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
@@ -168,9 +175,12 @@ export default function AlternativeVerticals({
   }
 
   function renderSuggestion(suggestion: VerticalSuggestion) {
+    const href = getSuggestionUrl
+      ? getSuggestionUrl({ verticalKey: suggestion.verticalKey, query })
+      : `/${suggestion.verticalKey}?query=${query}`;
     return (
       <li key={suggestion.verticalKey} className={cssClasses.suggestion}>
-        <a className={cssClasses.suggestionButton} href={`/${suggestion.verticalKey}?query=${query}`}>
+        <a className={cssClasses.suggestionButton} href={href}>
           <div className={cssClasses.verticalIcon}><Star/></div>
           <span className={cssClasses.verticalLink}>{suggestion.label}</span>
         </a>
@@ -179,10 +189,13 @@ export default function AlternativeVerticals({
   }
 
   function renderUniversalDetails() {
+    const href = getSuggestionUrl
+      ? getSuggestionUrl({ verticalKey: undefined, query })
+      : `/?query=${query}`;
     return (
       <div className={cssClasses.categoriesText}>
         <span>View results across </span>
-        <a className={cssClasses.allCategoriesLink} href={`/?query=${query}`}>
+        <a className={cssClasses.allCategoriesLink} href={href}>
           all search categories.
         </a>
       </div>

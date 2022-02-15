@@ -25,6 +25,7 @@ import renderAutocompleteResult, {
   builtInCssClasses as AutocompleteResultBuiltInCssClasses
 } from './utils/renderAutocompleteResult';
 import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
+import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-3',
@@ -87,15 +88,6 @@ export interface VisualAutocompleteConfig {
   renderEntityPreviews?: RenderEntityPreviews,
 }
 
-interface VerticalLink {
-  verticalKey: string
-  query: string
-}
-
-const isVerticalLink = (obj: unknown): obj is VerticalLink => {
-  return typeof obj === 'object' && !!obj && 'verticalKey' in obj && 'query' in obj;
-};
-
 export interface SearchBarProps {
   placeholder?: string,
   geolocationOptions?: PositionOptions,
@@ -103,7 +95,7 @@ export interface SearchBarProps {
   cssCompositionMethod?: CompositionMethod,
   visualAutocompleteConfig?: VisualAutocompleteConfig,
   hideVerticalLinks?: boolean,
-  onSelectVerticalLink?: (data: { verticalLink: VerticalLink, querySource: QuerySource }) => void,
+  onSelectVerticalLink?: (data: { verticalLink: VerticalLink , querySource: QuerySource }) => void,
   verticalKeyToLabel?: (verticalKey: string) => string,
   hideRecentSearches?: boolean,
   recentSearchesLimit?: number,
