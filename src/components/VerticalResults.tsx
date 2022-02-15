@@ -57,7 +57,7 @@ export default function VerticalResults(props: VerticalResultsProps): JSX.Elemen
 
   return (
     <>
-      <VerticalResultsDisplay results={results} isLoading={isLoading} {...otherProps}/>
+      <VerticalResultsDisplay results={results} isLoading={isLoading} {...otherProps} />
       {allowPagination
         && <Pagination
           numResults={resultsCount}
@@ -124,15 +124,15 @@ function Pagination(props: PaginationProps): JSX.Element | null {
   const paginationLabels: string[] = generatePaginationLabels(pageNumber, maxPageCount);
 
   const reportPaginateEvent = (newPageNumber: number) => {
-    if(!queryId) {
+    if (!queryId) {
       console.error('Unable to report a pagination event. Missing field: queryId.');
       return;
     }
-    if(!verticalKey) {
+    if (!verticalKey) {
       console.error('Unable to report a pagination event. Missing field: verticalKey.');
       return;
     }
-    analytics.report({
+    analytics?.report({
       type: 'PAGINATE',
       queryId: queryId,
       verticalKey: verticalKey,
@@ -157,7 +157,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
           className={cssClasses.leftIconContainer}
           onClick={() => executeSearchWithNewOffset(pageNumber - 1)} disabled={pageNumber === 1}
         >
-          <PageNavigationIcon className={cssClasses.icon + ' transform -rotate-90'}/>
+          <PageNavigationIcon className={cssClasses.icon + ' transform -rotate-90'} />
         </button>
         {paginationLabels.map((label, index) => {
           switch (label) {
@@ -197,7 +197,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
           className={cssClasses.rightIconContainer}
           onClick={() => executeSearchWithNewOffset(pageNumber + 1)} disabled={pageNumber === maxPageCount}
         >
-          <PageNavigationIcon className={cssClasses.icon + ' transform rotate-90'}/>
+          <PageNavigationIcon className={cssClasses.icon + ' transform rotate-90'} />
         </button>
       </nav>
     </div>
