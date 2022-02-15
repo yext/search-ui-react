@@ -1,4 +1,4 @@
-import { DisplayableFacet, Filter, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
+import { DisplayableFacet, Filter, SelectableFilter, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
 import Filters from './Filters';
 
@@ -23,6 +23,14 @@ export default function Facets(props: FacetsProps): JSX.Element {
   } = props;
   const answersActions = useAnswersActions();
   const facets = useAnswersState(state => state.filters.facets) ?? [];
+  const filters: SelectableFilter[] = facets.flatMap(f => f.options.map(o => {
+    return {
+      fieldId: f.fieldId,
+      selected: o.selected,
+      value: o.value,
+      matcher: o.matcher
+    };
+  }));
 
   function handleFilterSelect(filter: Filter, selected: boolean) {
     if (typeof filter.value === 'object') {
@@ -41,7 +49,7 @@ export default function Facets(props: FacetsProps): JSX.Element {
 
   return (
     <div className={className}>
-      <Filters handleFilterSelect={handleFilterSelect}>
+      <Filters handleFilterSelect={handleFilterSelect} filters={filters}>
         {children?.(facets)}
       </Filters>
     </div>

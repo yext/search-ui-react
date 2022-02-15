@@ -1,9 +1,10 @@
-import { Matcher, useAnswersUtilities } from '@yext/answers-headless-react';
+import { Matcher, useAnswersState, useAnswersUtilities } from '@yext/answers-headless-react';
 import { useMemo, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { isDuplicateFilter } from '../../utils/filterutils';
 
 export type CheckboxOptionProps = {
   value: string | number | boolean,
@@ -14,7 +15,6 @@ export type CheckboxOptionProps = {
   fieldId?: string,
   /** If unspecified, label defaults to the value prop */
   label?: string,
-  defaultChecked?: boolean
   cssClasses?: CheckboxCssClasses,
   cssCompositionMethod?: CompositionMethod,
 };
@@ -44,8 +44,7 @@ export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element 
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.cssClasses, props.cssCompositionMethod);
   const optionId = useMemo(() => uuid(), []);
   const answersUtilities = useAnswersUtilities();
-  const { handleFilterSelect } = useFiltersContext();
-  const [ checked, setChecked ] = useState<boolean>(!!props.defaultChecked);
+  const { handleFilterSelect, filters } = useFiltersContext();
 
   if (!fieldId) {
     console.error('No fieldId found for filter with value', value);
@@ -56,8 +55,20 @@ export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element 
     return null;
   }
 
+  const isSelected = !!filters?.find(storedSelectableFilter => {
+    const { selected, ...storedFilter } = storedSelectableFilter;
+    if (!selected) {
+      return false;
+    }
+    const targetFilter = {
+      fieldId,
+      matcher: Matcher.Equals,
+      value
+    };
+    return isDuplicateFilter(storedFilter, targetFilter);
+  });
+
   function onClick(checked: boolean) {
-    setChecked(checked);
     fieldId && handleFilterSelect({
       matcher: Matcher.Equals,
       fieldId,
@@ -70,7 +81,7 @@ export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element 
       <input
         type='checkbox'
         id={optionId}
-        checked={checked}
+        checked={isSelected}
         className={cssClasses.input}
         onChange={evt => onClick(evt.target.checked)}
       />

@@ -1,9 +1,10 @@
-import { Filter } from '@yext/answers-headless-react';
+import { Filter, SelectableFilter } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import FiltersContext from './FiltersContext';
 
 export type FiltersProps = PropsWithChildren<{
-  handleFilterSelect: (filter: Filter, selected: boolean) => void
+  handleFilterSelect: (filter: Filter, selected: boolean) => void,
+  filters: SelectableFilter[]
 }>;
 
 /**
@@ -12,9 +13,10 @@ export type FiltersProps = PropsWithChildren<{
 export default function Filters(props: FiltersProps): JSX.Element {
   const {
     children,
-    handleFilterSelect
+    handleFilterSelect,
+    filters
   } = props;
-  const filtersContextInstance = { handleFilterSelect };
+  const filtersContextInstance = { handleFilterSelect, filters };
 
   return (
     <FiltersContext.Provider value={filtersContextInstance}>

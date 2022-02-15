@@ -1,4 +1,4 @@
-import { Filter } from '@yext/answers-headless-react';
+import { Filter, SelectableFilter } from '@yext/answers-headless-react';
 import { createContext, useContext } from 'react';
 
 /**
@@ -6,6 +6,7 @@ import { createContext, useContext } from 'react';
  */
 export type FiltersContextType = {
   handleFilterSelect: (filter: Filter, checked: boolean) => void
+  filters: SelectableFilter[]
 };
 
 const FiltersContext = createContext<FiltersContextType | null>(null);
