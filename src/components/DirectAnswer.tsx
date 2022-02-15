@@ -3,8 +3,8 @@ import renderHighlightedValue from './utils/renderHighlightedValue';
 import classNames from 'classnames';
 import { ReactNode, useState, useLayoutEffect } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { useAnalytics } from '../hooks';
 import ThumbIcon from '../icons/ThumbIcon';
+import { FeedbackType, useDirectAnswersAnalytics } from '../hooks/useDirectAnswerAnalytics';
 
 export interface DirectAnswerProps {
   customCssClasses?: DirectAnswerCssClasses,
@@ -29,8 +29,6 @@ export interface DirectAnswerCssClasses {
   thumbsDownIcon?: string
 }
 
-type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
-
 const builtInCssClasses: DirectAnswerCssClasses = {
   container: '',
   container___loading: 'opacity-50',
@@ -49,13 +47,11 @@ const builtInCssClasses: DirectAnswerCssClasses = {
 };
 
 export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
-  const analytics = useAnalytics();
   const directAnswerResult = useAnswersState(state => state.directAnswer.result);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading || false);
   const composedCssClasses = useComposedCssClasses(
     builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
-  const verticalKey = useAnswersState(state => state.vertical.verticalKey);
-  const queryId = useAnswersState(state => state.query.queryId);
+  const reportAnalyticsEvent = useDirectAnswersAnalytics();
   const [isFeedbackProvided, updateFeedbackStatus] = useState(false);
   useLayoutEffect(() => {
     updateFeedbackStatus(false);
@@ -64,6 +60,7 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
   if (!directAnswerResult) {
     return null;
   }
+
   const cssClasses = getCssClassesForAnswerType(composedCssClasses, directAnswerResult.type);
   const title = directAnswerResult.type === DirectAnswerType.FeaturedSnippet
     ? directAnswerResult.value
@@ -73,52 +70,11 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
     : directAnswerResult.value;
   const link = directAnswerResult.relatedResult.link;
 
-  const reportCtaEvent = () => {
-    const entityId = directAnswerResult.relatedResult.id;
-    const fieldName = directAnswerResult.type === DirectAnswerType.FeaturedSnippet
-      ? undefined
-      : directAnswerResult.fieldName;
-    if (!queryId) {
-      console.error('Unable to report a CTA event. Missing field: queryId.');
-      return;
-    }
-    if (!entityId) {
-      console.error('Unable to report a CTA event. Missing field: entityId.');
-      return;
-    }
-    analytics?.report({
-      type: 'CTA_CLICK',
-      entityId,
-      searcher: verticalKey ? 'VERTICAL' : 'UNIVERSAL',
-      queryId,
-      verticalKey: verticalKey || '',
-      directAnswer: true,
-      url: link,
-      fieldName
-    });
-  };
-
-  const reportFeedbackEvent = (feedbackType: FeedbackType) => {
-    if (!queryId) {
-      console.error('Unable to report a direct answer feedback event. Missing field: queryId.');
-      return;
-    }
-    const entityId = directAnswerResult.relatedResult.id;
-    analytics?.report({
-      type: feedbackType,
-      entityId,
-      searcher: verticalKey ? 'VERTICAL' : 'UNIVERSAL',
-      queryId: queryId,
-      verticalKey: verticalKey || '',
-      directAnswer: true,
-    });
-  };
-
   function getLinkText(directAnswerResult: DirectAnswerModel) {
     const isSnippet = directAnswerResult.type === DirectAnswerType.FeaturedSnippet;
     const name = directAnswerResult.relatedResult.name;
     const onClick = () => {
-      analytics && reportCtaEvent();
+      reportAnalyticsEvent(directAnswerResult, 'CTA_CLICK');
     };
 
     return (<>
@@ -139,7 +95,7 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
 
   const onClickFeedbackButton = (feedbackType: FeedbackType) => {
     updateFeedbackStatus(true);
-    analytics && reportFeedbackEvent(feedbackType);
+    reportAnalyticsEvent(directAnswerResult, feedbackType);
   };
 
   return (
