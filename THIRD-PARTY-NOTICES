@@ -1061,10 +1061,8 @@ SOFTWARE.
 
 The following NPM packages may be included in this product:
 
- - react-dom@17.0.2
  - react-is@16.13.1
  - react@17.0.2
- - scheduler@0.20.2
 
 These packages each contain the following license and notice below:
 
