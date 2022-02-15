@@ -78,11 +78,11 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
     const fieldName = directAnswerResult.type === DirectAnswerType.FeaturedSnippet
       ? undefined
       : directAnswerResult.fieldName;
-    if(!queryId) {
+    if (!queryId) {
       console.error('Unable to report a CTA event. Missing field: queryId.');
       return;
     }
-    if(!entityId) {
+    if (!entityId) {
       console.error('Unable to report a CTA event. Missing field: entityId.');
       return;
     }
@@ -99,7 +99,7 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
   };
 
   const reportFeedbackEvent = (feedbackType: FeedbackType) => {
-    if(!queryId) {
+    if (!queryId) {
       console.error('Unable to report a direct answer feedback event. Missing field: queryId.');
       return;
     }
@@ -117,18 +117,18 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
   function getLinkText(directAnswerResult: DirectAnswerModel) {
     const isSnippet = directAnswerResult.type === DirectAnswerType.FeaturedSnippet;
     const name = directAnswerResult.relatedResult.name;
-    const onclick = () => {
+    const onClick = () => {
       analytics && reportCtaEvent();
     };
 
     return (<>
       {isSnippet && name && <div className={cssClasses.viewDetailsLinkContainer}>
-        Read more about <a className={cssClasses.viewDetailsLink} href={link} onClick={onclick}>
+        Read more about <a className={cssClasses.viewDetailsLink} href={link} onClick={onClick}>
           {directAnswerResult.relatedResult.name}
         </a>
       </div>}
       {!isSnippet && link && <div className={cssClasses.viewDetailsLinkContainer}>
-        <a href={link} className={cssClasses.viewDetailsLink} onClick={onclick}>View Details</a>
+        <a href={link} className={cssClasses.viewDetailsLink} onClick={onClick}>View Details</a>
       </div>}
     </>);
   }
@@ -155,7 +155,8 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
       <div className={cssClasses.feedbackButtonsContainer}>
         {isFeedbackProvided
           ? 'Thank you for your feedback!'
-          : <>Feedback
+          : <>
+            Feedback
             <button
               className={cssClasses.thumbsUpIcon}
               onClick={() => onClickFeedbackButton('THUMBS_UP')}
@@ -167,7 +168,8 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
               onClick={() => onClickFeedbackButton('THUMBS_DOWN')}
             >
               <ThumbIcon/>
-            </button></>
+            </button>
+          </>
         }
       </div>
     </div>
