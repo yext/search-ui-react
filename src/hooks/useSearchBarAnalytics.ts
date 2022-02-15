@@ -33,7 +33,6 @@ export function useSearchBarAnalytics(): (
     analyticsEventType: SearchBarAnalyticsType,
     suggestedSearchText?: string
   ) => {
-    console.log('asds');
     if (!analytics) {
       return;
     }
