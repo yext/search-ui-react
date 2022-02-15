@@ -5,14 +5,14 @@ import { Children, cloneElement, isValidElement, ReactElement, ReactNode, ReactP
  */
 export default function recursivelyMapChildren(
   children: ReactNode,
-  elementReplacer: (c: ReactElement | ReactPortal, index: number) => ReactElement | null
+  elementReplacer: (c: ReactElement | ReactPortal, index: number) => ReactNode | null
 ): ReactNode {
   return Children.map<ReactNode, ReactNode>(children, (c, index) => {
     if (!isValidElement(c)) {
       return c;
     }
     const replacedElement = elementReplacer(c, index);
-    if (!replacedElement) {
+    if (!replacedElement || !isValidElement(replacedElement)) {
       return replacedElement;
     }
     const grandchildren = replacedElement.props.children;
