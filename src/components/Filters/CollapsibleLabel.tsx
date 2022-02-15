@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import { PropsWithChildren, ReactNode, ComponentPropsWithRef } from 'react';
+import { PropsWithChildren, ComponentPropsWithRef } from 'react';
 import ChevronIcon from '../../icons/ChevronIcon';
 import { useFilterGroupContext } from './FilterGroupContext';
 
 export type CollapsibleLabelProps = {
-  children?: ReactNode
+  label?: string
 };
 
 /**
@@ -13,7 +13,7 @@ export type CollapsibleLabelProps = {
  *
  * For more customization, use the {@link FilterGroupContext} directly.
  */
-export default function CollapsibleLabel({ children }: CollapsibleLabelProps): JSX.Element {
+export default function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element {
   const { isExpanded } = useFilterGroupContext();
   const iconClassName = classNames('w-3', {
     'transform rotate-180': !isExpanded
@@ -21,7 +21,7 @@ export default function CollapsibleLabel({ children }: CollapsibleLabelProps): J
 
   return (
     <CollapseButton>
-      <Label>{children}</Label>
+      <Label>{label}</Label>
       <ChevronIcon className={iconClassName}/>
     </CollapseButton>
   );
