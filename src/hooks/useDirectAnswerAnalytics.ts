@@ -1,12 +1,12 @@
 import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerModel, FieldValueDirectAnswer } from '@yext/answers-headless-react';
-import { useAnalytics } from '../hooks';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
-type AnalyticsType = FeedbackType | 'CTA_CLICK';
+type DirectAnswerAnalyticsType = FeedbackType | 'CTA_CLICK';
 
 export function useDirectAnswersAnalytics(): (
   directAnswerResult: DirectAnswerModel,
-  analyticsEventType: AnalyticsType
+  analyticsEventType: DirectAnswerAnalyticsType
 ) => void {
   const analytics = useAnalytics();
   const verticalKey = useAnswersState(state => state.vertical.verticalKey);
@@ -52,7 +52,10 @@ export function useDirectAnswersAnalytics(): (
       directAnswer: true,
     });
   };
-  const reportAnalyticsEvent = (directAnswerResult: DirectAnswerModel, analyticsEventType: AnalyticsType) => {
+  const reportAnalyticsEvent = (
+    directAnswerResult: DirectAnswerModel,
+    analyticsEventType: DirectAnswerAnalyticsType
+  ) => {
     if (!analytics) {
       return;
     }
