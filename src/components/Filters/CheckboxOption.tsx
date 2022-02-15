@@ -7,11 +7,16 @@ import { CompositionMethod, useComposedCssClasses } from '../../hooks/useCompose
 
 export type CheckboxOptionProps = {
   value: string | number | boolean,
+  /**
+   * When fieldId is unspecified, it defaults to the defaultFieldId of the nearest {@link Filters.Group}.
+   * If there is no fieldId and no defaultFieldId, then an error is logged.
+   */
   fieldId?: string,
+  /** If unspecified, label defaults to the value prop */
+  label?: string,
+  defaultChecked?: boolean
   cssClasses?: CheckboxCssClasses,
   cssCompositionMethod?: CompositionMethod,
-  label?: string, // defaults to the value if unspecified
-  defaultChecked?: boolean
 };
 
 export interface CheckboxCssClasses {
