@@ -4,6 +4,7 @@ export type {
   StandardSectionConfig
 } from './StandardSection';
 
+export { default as SectionHeader } from './SectionHeader';
 export type {
   SectionHeaderCssClasses
 } from './SectionHeader';

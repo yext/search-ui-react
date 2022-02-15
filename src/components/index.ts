@@ -43,6 +43,7 @@ export type {
 export type {
   FilterConfig,
   FiltersCssClasses,
+  FiltersProps,
   default as Filters
 } from './Filters';
 export type {

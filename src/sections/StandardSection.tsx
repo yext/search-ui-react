@@ -5,6 +5,8 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
 
 /**
  * The CSS class interface used for {@link StandardSection}.
+ *
+ * @public
  */
 export interface StandardSectionCssClasses {
   section?: string
@@ -16,6 +18,8 @@ const builtInCssClasses: StandardSectionCssClasses = {
 
 /**
  * The configuration for a StandardSection.
+ *
+ * @public
  */
 export interface StandardSectionConfig extends SectionConfig {
   /** CSS classes for customizing the component styling. */
@@ -27,7 +31,9 @@ export interface StandardSectionConfig extends SectionConfig {
 /**
  * A component that displays all the results for a vertical using a standard section template.
  *
- * @param props - {@inheritDoc StandardSectionConfig}
+ * @public
+ *
+ * @param props - {@link StandardSectionConfig}
  * @returns A React element for a standard section, or null if there are no results to display
  */
 const StandardSection: SectionComponent = function(props: StandardSectionConfig): JSX.Element | null {

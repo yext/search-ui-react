@@ -4,7 +4,7 @@
 
 ## FiltersCssClasses interface
 
-The CSS class interface used for .
+The CSS class interface used for [Filters()](./answers-react-components.filters.md)<!-- -->.
 
 <b>Signature:</b>
 

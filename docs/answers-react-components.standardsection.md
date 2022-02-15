@@ -4,7 +4,7 @@
 
 ## StandardSection variable
 
-The configuration for a StandardSection.
+A component that displays all the results for a vertical using a standard section template.
 
 <b>Signature:</b>
 

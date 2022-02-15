@@ -9,6 +9,7 @@
 import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AnswersHeadless } from '@yext/answers-headless-react';
+import { AppliedQueryFilter } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { Filter } from '@yext/answers-headless-react';
 import { MutableRefObject } from 'react';
@@ -223,6 +224,9 @@ export interface FilterConfig {
 }
 
 // @public
+export function Filters(props: FiltersProps): JSX.Element;
+
+// @public
 export interface FiltersCssClasses extends CollapsibleLabelCssClasses {
     container?: string;
     divider?: string;
@@ -269,6 +273,13 @@ export interface FilterSearchProps {
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
     // (undocumented)
     sectioned: boolean;
+}
+
+// @public
+export interface FiltersProps {
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: FiltersCssClasses;
+    filterConfigs: FilterConfig[];
 }
 
 // @public (undocumented)
@@ -319,6 +330,16 @@ export interface PaginationCssClasses {
     // (undocumented)
     selectedLabel?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "CheckBoxOptionProps" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export function renderCheckboxOption({ option, selected, onClick, cssClasses }: CheckBoxOptionProps): JSX.Element;
+
+// Warning: (ae-forgotten-export) The symbol "FocusedItemData" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
 // @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
@@ -389,8 +410,6 @@ export interface SearchBarProps {
     recentSearchesLimit?: number;
     // (undocumented)
     verticalKeyToLabel?: (verticalKey: string) => string;
-    // Warning: (ae-forgotten-export) The symbol "VisualAutocompleteConfig" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     visualAutocompleteConfig?: VisualAutocompleteConfig;
 }
@@ -406,6 +425,11 @@ export interface SectionConfig {
     verticalKey: string;
     viewMore?: boolean;
 }
+
+// Warning: (ae-forgotten-export) The symbol "SectionHeaderConfig" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function SectionHeader(props: SectionHeaderConfig): JSX.Element;
 
 // @public
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
@@ -553,6 +577,16 @@ export interface VerticalResultsProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
+}
+
+// @public (undocumented)
+export interface VisualAutocompleteConfig {
+    // (undocumented)
+    entityPreviewsDebouncingTime?: number;
+    // (undocumented)
+    entityPreviewSearcher?: AnswersHeadless;
+    // (undocumented)
+    renderEntityPreviews?: RenderEntityPreviews;
 }
 
 // Warnings were encountered during analysis:

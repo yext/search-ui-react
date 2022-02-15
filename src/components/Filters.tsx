@@ -7,7 +7,7 @@ import renderCheckboxOption from './utils/renderCheckboxOption';
 /**
  * Properties for {@link Filters}.
  */
-interface FiltersProps {
+export interface FiltersProps {
   /** Configurations for individual filter groups. */
   filterConfigs: FilterConfig[],
   /** CSS classes for customizing the component styling. */

@@ -4,7 +4,7 @@
 
 ## CheckboxOptionCssClasses interface
 
-The CSS class interface used in .
+The CSS class interface used in [renderCheckboxOption()](./answers-react-components.rendercheckboxoption.md)<!-- -->.
 
 <b>Signature:</b>
 

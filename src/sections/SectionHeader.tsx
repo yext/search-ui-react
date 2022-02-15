@@ -10,6 +10,8 @@ import { useAnalytics } from '../hooks/useAnalytics';
 
 /**
  * The CSS class interface used for {@link SectionHeader}.
+ *
+ * @public
  */
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
   sectionHeaderContainer?: string,
@@ -31,7 +33,12 @@ const builtInCssClasses: SectionHeaderCssClasses = {
   removeFilterButton: 'w-2 h-2 text-gray-500 m-1.5'
 };
 
-interface SectionHeaderConfig {
+/**
+ * The props for a Secction Header
+ *
+ * @public
+ */
+export interface SectionHeaderConfig {
   label: string,
   // resultsCountConfig?: ResultsCountConfig,
   appliedQueryFilters?: AppliedQueryFilter[],
@@ -41,6 +48,12 @@ interface SectionHeaderConfig {
   viewAllButton?: boolean
 }
 
+/**
+ * The header of a section which includes an icon, the section title, applied query filters, and optionally
+ * a view all button.
+ * @param props {@link SectionHeaderConfig}
+ * @returns A React element for a Section Header
+ */
 export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
   const {
     label,
