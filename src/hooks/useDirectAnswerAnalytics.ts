@@ -56,7 +56,6 @@ export function useDirectAnswersAnalytics(): (
     if (!analytics) {
       return;
     }
-    console.log('report');
     analyticsEventType === 'CTA_CLICK'
       ? reportCtaEvent(directAnswerResult)
       : reportFeedbackEvent(directAnswerResult, analyticsEventType);
