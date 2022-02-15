@@ -1,5 +1,5 @@
 import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerModel, FieldValueDirectAnswer } from '@yext/answers-headless-react';
-import { useAnalytics } from '../hooks/useAnalytics';
+import { useAnalytics } from './useAnalytics';
 
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 type DirectAnswerAnalyticsType = FeedbackType | 'CTA_CLICK';

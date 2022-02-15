@@ -24,7 +24,7 @@ import renderAutocompleteResult, {
   AutocompleteResultCssClasses,
   builtInCssClasses as AutocompleteResultBuiltInCssClasses
 } from './utils/renderAutocompleteResult';
-import { useAnalytics } from '../hooks/useAnalytics';
+import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-3',
@@ -133,13 +133,11 @@ export default function SearchBar({
   } = visualAutocompleteConfig;
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
-  const analytics = useAnalytics();
+  const reportAnalyticsEvent = useSearchBarAnalytics();
 
   const query = useAnswersState(state => state.query.input) ?? '';
-  const queryId = useAnswersState(state => state.query.queryId);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
-  const verticalKey = useAnswersState(state => state.vertical.verticalKey);
 
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(() => {
     return isVertical
@@ -174,14 +172,6 @@ export default function SearchBar({
     executeQueryWithNearMeHandling();
   }
 
-  const reportAutocompleteEvent = (suggestedSearchText: string) => {
-    analytics?.report({
-      type: 'AUTO_COMPLETE_SELECTION',
-      ...(queryId && { queryId }),
-      suggestedSearchText
-    });
-  };
-
   const handleSubmit = (value: string, index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
@@ -190,7 +180,7 @@ export default function SearchBar({
       executeQuery();
     }
     if (index >= 0 && !itemData?.isEntityPreview) {
-      reportAutocompleteEvent(value);
+      reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
     }
   };
 
@@ -294,18 +284,6 @@ export default function SearchBar({
     ));
   }
 
-  const reportSearchClearEvent = () => {
-    if (!queryId) {
-      console.error('Unable to report a search clear event. Missing field: queryId.');
-      return;
-    }
-    analytics?.report({
-      type: 'SEARCH_CLEAR_BUTTON',
-      queryId,
-      verticalKey
-    });
-  };
-
   function renderClearButton() {
     return (
       <>
@@ -316,7 +294,7 @@ export default function SearchBar({
             updateEntityPreviews('');
             answersActions.setQuery('');
             executeQuery();
-            analytics && reportSearchClearEvent();
+            reportAnalyticsEvent('SEARCH_CLEAR_BUTTON');
           }}
         >
           <CloseIcon />
