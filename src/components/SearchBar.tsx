@@ -1,7 +1,6 @@
 import { AnswersHeadless, QuerySource, SearchTypeEnum, useAnswersActions, useAnswersState, useAnswersUtilities, VerticalResults } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { Fragment, PropsWithChildren, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import useRecentSearches from '../hooks/useRecentSearches';
 import useSearchWithNearMeHandling, { onSearchFunc } from '../hooks/useSearchWithNearMeHandling';
@@ -11,7 +10,6 @@ import RecentSearchIcon from '../icons/HistoryIcon';
 import CloseIcon from '../icons/CloseIcon';
 import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
 import YextLogoIcon from '../icons/YextIcon';
-import { BrowserState } from '../models/browserState';
 import Dropdown from './Dropdown/Dropdown';
 import { useDropdownContext } from './Dropdown/DropdownContext';
 import DropdownInput from './Dropdown/DropdownInput';
@@ -76,18 +74,27 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   entityPreviewsDivider?: string
 }
 
-type RenderEntityPreviews = (
+export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalResultsArray: VerticalResults[],
   onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
 ) => JSX.Element;
 
-interface VisualAutocompleteConfig {
+export interface VisualAutocompleteConfig {
   entityPreviewSearcher?: AnswersHeadless,
   // The debouncing time, in milliseconds, for making API requests for entity previews
   entityPreviewsDebouncingTime?: number,
   renderEntityPreviews?: RenderEntityPreviews,
 }
+
+interface VerticalLink {
+  verticalKey: string
+  query: string
+}
+
+const isVerticalLink = (obj: unknown): obj is VerticalLink => {
+  return typeof obj === 'object' && !!obj && 'verticalKey' in obj && 'query' in obj;
+};
 
 export interface SearchBarProps {
   placeholder?: string,
@@ -96,6 +103,7 @@ export interface SearchBarProps {
   cssCompositionMethod?: CompositionMethod,
   visualAutocompleteConfig?: VisualAutocompleteConfig,
   hideVerticalLinks?: boolean,
+  onSelectVerticalLink?: (data: { verticalLink: VerticalLink, querySource: QuerySource }) => void,
   verticalKeyToLabel?: (verticalKey: string) => string,
   hideRecentSearches?: boolean,
   recentSearchesLimit?: number,
@@ -111,6 +119,7 @@ export default function SearchBar({
   hideRecentSearches,
   visualAutocompleteConfig = {},
   hideVerticalLinks,
+  onSelectVerticalLink,
   verticalKeyToLabel,
   recentSearchesLimit = 5,
   customCssClasses,
@@ -122,7 +131,6 @@ export default function SearchBar({
     renderEntityPreviews,
     entityPreviewsDebouncingTime = 500
   } = visualAutocompleteConfig;
-  const browserHistory = useHistory<BrowserState>();
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
   const analytics = useAnalytics();
@@ -166,14 +174,23 @@ export default function SearchBar({
     executeQueryWithNearMeHandling();
   }
 
-  const handleSubmit = (value: string, _index: number, itemData?: FocusedItemData) => {
+  const reportAutocompleteEvent = (suggestedSearchText: string) => {
+    analytics?.report({
+      type: 'AUTO_COMPLETE_SELECTION',
+      ...(queryId && { queryId }),
+      suggestedSearchText
+    });
+  };
+
+  const handleSubmit = (value: string, index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
-    if (itemData && typeof itemData.verticalLink === 'string') {
-      browserHistory.push(itemData.verticalLink, {
-        querySource: QuerySource.Autocomplete
-      });
+    if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
+      onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
       executeQuery();
+    }
+    if (index >= 0 && !itemData?.isEntityPreview) {
+      reportAutocompleteEvent(value);
     }
   };
 
@@ -264,7 +281,7 @@ export default function SearchBar({
             className={cssClasses.optionContainer}
             focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
             value={result.value}
-            itemData={{ verticalLink: `/${verticalKey}?query=${result.value}` }}
+            itemData={{ verticalLink: { verticalKey, query: result.value }}}
             onClick={handleSubmit}
           >
             {renderAutocompleteResult(
