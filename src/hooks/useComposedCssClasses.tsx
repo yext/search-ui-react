@@ -3,7 +3,7 @@ import { Compose, Theme } from '@css-modules-theme/core';
 import { useMemo } from 'react';
 
 /**
- * The method of combining a component's built-in CSS classes with custom CSS classes
+ * The method of combining a component's built-in CSS classes with custom CSS classes.
  *
  * @remarks
  * Merge keeps the component's built-in classes and adds the custom classes to them (default).

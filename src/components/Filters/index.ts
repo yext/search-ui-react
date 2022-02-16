@@ -1,5 +1,5 @@
 export { default as CheckboxOption } from './CheckboxOption';
-export type { CheckboxOptionProps } from './CheckboxOption';
+export type { CheckboxOptionProps, CheckboxCssClasses } from './CheckboxOption';
 
 export { default as CollapsibleLabel } from './CollapsibleLabel';
 export type { CollapsibleLabelProps } from './CollapsibleLabel';

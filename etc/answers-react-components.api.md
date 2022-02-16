@@ -110,12 +110,21 @@ export interface CardProps {
 }
 
 // @public
+interface CheckboxCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    input?: string;
+    // (undocumented)
+    label?: string;
+}
+
+// @public
 function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
 
 // @public
 interface CheckboxOptionProps {
     cssCompositionMethod?: CompositionMethod;
-    // Warning: (ae-forgotten-export) The symbol "CheckboxCssClasses" needs to be exported by the entry point index.d.ts
     customCssClasses?: CheckboxCssClasses;
     fieldId?: string;
     label?: string;
@@ -268,6 +277,7 @@ declare namespace Filters {
     export {
         CheckboxOption,
         CheckboxOptionProps,
+        CheckboxCssClasses,
         CollapsibleLabel,
         CollapsibleLabelProps,
         CollapsibleSection,

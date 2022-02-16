@@ -17,6 +17,6 @@ export interface StandardSectionConfig extends SectionConfig
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [compositionmethod?](./answers-react-components.standardsectionconfig.compositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes |
+|  [compositionmethod?](./answers-react-components.standardsectionconfig.compositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.standardsectionconfig.customcssclasses.md) | [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 

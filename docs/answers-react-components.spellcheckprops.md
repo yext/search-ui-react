@@ -16,7 +16,7 @@ export interface SpellCheckProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.spellcheckprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes |
+|  [cssCompositionMethod?](./answers-react-components.spellcheckprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.spellcheckprops.customcssclasses.md) | [SpellCheckCssClasses](./answers-react-components.spellcheckcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [onClick?](./answers-react-components.spellcheckprops.onclick.md) | (data: { correctedQuery: string; verticalKey: string; }) =&gt; void | <i>(Optional)</i> A function which is called when a spell check suggestion is clicked. |
 

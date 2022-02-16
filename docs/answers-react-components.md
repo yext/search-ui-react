@@ -84,7 +84,7 @@
 |  --- | --- |
 |  [AutocompleteRef](./answers-react-components.autocompleteref.md) | A ref which contains a promise of the latest autocomplete response in order get the latest search intents. |
 |  [CardComponent](./answers-react-components.cardcomponent.md) | A functional component that can be used to render a result card. |
-|  [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining a component's built-in CSS classes with custom CSS classes |
+|  [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [DropdownItemProps](./answers-react-components.dropdownitemprops.md) | Props for the [DropdownItem()](./answers-react-components.dropdownitem.md) |
 |  [FocusedItemData](./answers-react-components.focuseditemdata.md) | The data associated with the currently focused item. |
 |  [onSearchFunc](./answers-react-components.onsearchfunc.md) | The interface of a function which is called on a search when provied to [useSearchWithNearMeHandling()](./answers-react-components.usesearchwithnearmehandling.md)<!-- -->. |

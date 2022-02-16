@@ -4,7 +4,7 @@
 
 ## CompositionMethod type
 
-The method of combining a component's built-in CSS classes with custom CSS classes
+The method of combining a component's built-in CSS classes with custom CSS classes.
 
 <b>Signature:</b>
 

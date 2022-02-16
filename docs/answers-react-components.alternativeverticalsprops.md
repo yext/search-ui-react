@@ -16,7 +16,7 @@ export interface AlternativeVerticalsProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.alternativeverticalsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes |
+|  [cssCompositionMethod?](./answers-react-components.alternativeverticalsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [currentVerticalLabel](./answers-react-components.alternativeverticalsprops.currentverticallabel.md) | string | The label for the current vertical. |
 |  [customCssClasses?](./answers-react-components.alternativeverticalsprops.customcssclasses.md) | [AlternativeVerticalsCssClasses](./answers-react-components.alternativeverticalscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [displayAllOnNoResults?](./answers-react-components.alternativeverticalsprops.displayallonnoresults.md) | boolean | <i>(Optional)</i> Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |

@@ -12,7 +12,7 @@ import { isDuplicateFilter } from '../../utils/filterutils';
  * @public
  */
 export interface CheckboxOptionProps {
-  /** The value used to perform filtering */
+  /** The value used to perform filtering. */
   value: string | number | boolean,
   /**
    * The fieldId used for filtering.

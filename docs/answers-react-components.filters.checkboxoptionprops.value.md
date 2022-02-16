@@ -4,7 +4,7 @@
 
 ## Filters.CheckboxOptionProps.value property
 
-The value used to perform filtering
+The value used to perform filtering.
 
 <b>Signature:</b>
 

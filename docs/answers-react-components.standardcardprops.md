@@ -17,7 +17,7 @@ export interface StandardCardProps extends CardProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.standardcardprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes |
+|  [cssCompositionMethod?](./answers-react-components.standardcardprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.standardcardprops.customcssclasses.md) | [StandardCardCssClasses](./answers-react-components.standardcardcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [fieldMappings?](./answers-react-components.standardcardprops.fieldmappings.md) | { title?: FieldData; description?: FieldData; cta1?: FieldData; cta2?: FieldData; } | <i>(Optional)</i> Custom mappings for the data fields used in the card. |
 |  [showOrdinal?](./answers-react-components.standardcardprops.showordinal.md) | boolean | <i>(Optional)</i> Whether or not to show an ordinal for numbering the card. |

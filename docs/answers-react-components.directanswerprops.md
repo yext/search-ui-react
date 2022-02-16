@@ -16,6 +16,6 @@ export interface DirectAnswerProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.directanswerprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes |
+|  [cssCompositionMethod?](./answers-react-components.directanswerprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.directanswerprops.customcssclasses.md) | [DirectAnswerCssClasses](./answers-react-components.directanswercssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 

@@ -23,6 +23,7 @@
 
 |  Interface | Description |
 |  --- | --- |
+|  [CheckboxCssClasses](./answers-react-components.filters.checkboxcssclasses.md) | The CSS class interface for [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
 |  [CheckboxOptionProps](./answers-react-components.filters.checkboxoptionprops.md) | Props for the [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md) |
 |  [CollapsibleLabelProps](./answers-react-components.filters.collapsiblelabelprops.md) | Props for [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->. |
 |  [FacetsProps](./answers-react-components.filters.facetsprops.md) | Props for [Filters.Facets()](./answers-react-components.filters.facets.md) |

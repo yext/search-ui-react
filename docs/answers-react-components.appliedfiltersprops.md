@@ -16,7 +16,7 @@ export interface AppliedFiltersProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.appliedfiltersprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes |
+|  [cssCompositionMethod?](./answers-react-components.appliedfiltersprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.appliedfiltersprops.customcssclasses.md) | [AppliedFiltersCssClasses](./answers-react-components.appliedfilterscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [hiddenFields?](./answers-react-components.appliedfiltersprops.hiddenfields.md) | Array&lt;string&gt; | <i>(Optional)</i> List of filters that should not be displayed. By default, builtin.entityType will be hidden. |
 |  [staticFiltersGroupLabels?](./answers-react-components.appliedfiltersprops.staticfiltersgrouplabels.md) | Record&lt;string, string&gt; | <i>(Optional)</i> A mapping of static filter fieldIds to their displayed group labels. |
