@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 /**
- * The Context responsibile for the Dropdown state.
+ * The Context responsible for the Dropdown state.
  */
 export type DropdownContextType = {
   isActive: boolean,
