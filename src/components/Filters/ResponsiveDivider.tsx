@@ -3,6 +3,8 @@ import { PageSize, usePageSize } from '../../hooks/usePageView';
 
 /**
  * Props for {@link Filters.ResponsiveDivider}.
+ * 
+ * @public
  */
 export type ResponsiveDividerProps = {
   /** The browser width in pixels at which the class names for the divider is switched.

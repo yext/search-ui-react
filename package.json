@@ -10,6 +10,7 @@
     "src"
   ],
   "scripts": {
+    "build-test": "npm run generate-docs",
     "build": "tsc && npm run api-extractor && npm run generate-docs",
     "build-ci": "tsc && npm run api-extractor-ci && npm run generate-docs",
     "dev": "tsc --watch",

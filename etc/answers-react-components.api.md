@@ -109,6 +109,8 @@ export interface CardProps {
     result: Result;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 interface CheckboxCssClasses {
     // (undocumented)
@@ -119,29 +121,47 @@ interface CheckboxCssClasses {
     label?: string;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 interface CheckboxOptionProps {
     cssCompositionMethod?: CompositionMethod;
+    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     customCssClasses?: CheckboxCssClasses;
+    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     fieldId?: string;
     label?: string;
     value: string | number | boolean;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 interface CollapsibleLabelProps {
     label?: string;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 type CollapsibleSectionProps = PropsWithChildren<{
     className?: string;
@@ -235,9 +255,15 @@ export interface EntityPreviewsProps {
     verticalKey: string;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function Facets(props: FacetsProps): JSX.Element;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 interface FacetsProps {
     children?: (facets: DisplayableFacet[]) => ReactNode;
@@ -245,6 +271,11 @@ interface FacetsProps {
     searchOnChange?: boolean;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function FilterGroup(props: FilterGroupProps): JSX.Element;
 
@@ -267,6 +298,8 @@ interface FilterGroupContextType {
     setSearchValue: (value: string) => void;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 type FilterGroupProps = PropsWithChildren<{
     defaultExpanded?: boolean;
@@ -402,9 +435,13 @@ export type QueryFunc = () => Promise<void>;
 // @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 type ResponsiveDividerProps = {
     mobileBreakpoint?: number;
@@ -479,9 +516,14 @@ export interface SearchBarProps {
     visualAutocompleteConfig?: VisualAutocompleteConfig;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function SearchInput(props: SearchInputProps): JSX.Element;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 interface SearchInputProps {
     className?: string;
@@ -596,9 +638,15 @@ export interface StandardSectionCssClasses {
     section?: string;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 type StaticFiltersProps = PropsWithChildren<{
     className?: string;
@@ -675,6 +723,8 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
+// src/components/Filters/FilterGroup.tsx:12:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// src/components/Filters/FilterGroup.tsx:14:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // src/components/cards/StandardCard.tsx:16:5 - (ae-forgotten-export) The symbol "FieldData" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)

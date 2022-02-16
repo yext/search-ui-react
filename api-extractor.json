@@ -330,14 +330,17 @@
       "default": {
         "logLevel": "warning"
         // "addToApiReportFile": false
-      }
+      },
 
-      // "ae-extra-release-tag": {
-      //   "logLevel": "warning",
-      //   "addToApiReportFile": true
-      // },
-      //
-      // . . .
+      /**
+       * API Extractor reports links to the 'Filters' namespace as warning which causes production API extractor builds
+       * to fail. Despite the warning, the links in the generated docs work just fine. By setting loglevel to none,
+       * Production builds can pass, however the warning isn't completely ignored since we are adding it to the apiReportFile
+       */
+      "ae-unresolved-link": {
+        "logLevel": "none",
+        "addToApiReportFile": true
+      }
     },
 
     /**
