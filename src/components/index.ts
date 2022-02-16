@@ -32,31 +32,6 @@ export type {
   FilterSearchProps
 } from './FilterSearch';
 
-export { default as Facets } from './Facets';
-export type {
-  FacetsCssClasses,
-  FacetsProps,
-  FacetConfig
-} from './Facets';
-
-export { default as StaticFilters } from './StaticFilters';
-export type {
-  StaticFiltersCssClasses,
-  StaticFiltersProps
-} from './StaticFilters';
-
-export type {
-  FilterConfig,
-  FiltersCssClasses,
-  FiltersProps,
-  default as Filters
-} from './Filters';
-export type {
-  CheckboxOptionCssClasses,
-  CheckboxOptionProps,
-  default as renderCheckboxOption
-} from './utils/renderCheckboxOption';
-
 export { default as LocationBias } from './LocationBias';
 export type {
   LocationBiasCssClasses,
@@ -97,9 +72,5 @@ export type {
 
 export * from './AnalyticsProvider';
 
-export { default as CollapsibleLabel } from './CollapsibleLabel';
-export type {
-  CollapsibleLabelCssClasses,
-  CollapsibleLabelProps,
-} from './CollapsibleLabel';
-export * from './CollapsibleLabel';
+import * as Filters from './Filters';
+export { Filters };

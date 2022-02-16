@@ -12,21 +12,16 @@
 |  [AnalyticsProvider(props)](./answers-react-components.analyticsprovider.md) | A component that provides analytics for its children. |
 |  [AppliedFilters(props)](./answers-react-components.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters. |
 |  [AppliedFiltersDisplay(props)](./answers-react-components.appliedfiltersdisplay.md) | A component that renders applied filters based on a given list of [DisplayableFilter](./answers-react-components.displayablefilter.md)<!-- -->. |
-|  [CollapsibleLabel(props)](./answers-react-components.collapsiblelabel.md) | A label which can collapse its contents |
 |  [DirectAnswer(props)](./answers-react-components.directanswer.md) | Renders Direct Answers provided by the Answers API |
 |  [Dropdown(props)](./answers-react-components.dropdown.md) | Dropdown is the parent component for a set of Dropdown-related components.<!-- -->It provides multiple shared contexts, which are consumed by its child components, and also registers some global event listeners. |
 |  [DropdownItem(\_props)](./answers-react-components.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the [Dropdown()](./answers-react-components.dropdown.md) component instance. |
 |  [EntityPreviews(\_)](./answers-react-components.entitypreviews.md) | EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews. It provides results corresponding to its verticalKey through a props.children Function as Compound Component (FACC). |
-|  [Facets(props)](./answers-react-components.facets.md) | A component that displays a list of selectable facets applicable to the current vertical search. |
-|  [Filters(props)](./answers-react-components.filters.md) | A component that display groups of filter options based on the provided list of filter configurations. |
 |  [FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
-|  [renderCheckboxOption({ option, selected, onClick, cssClasses })](./answers-react-components.rendercheckboxoption.md) | Renders a checkbox option |
 |  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch })](./answers-react-components.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
 |  [SectionHeader(props)](./answers-react-components.sectionheader.md) | The header of a section which includes an icon, the section title, applied query filters, and optionally a view all button. |
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
-|  [StaticFilters(props)](./answers-react-components.staticfilters.md) | A component that display groups of user-configured filters that will be apply to the current vertical search. |
 |  [UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod })](./answers-react-components.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
 |  [useAnalytics()](./answers-react-components.useanalytics.md) | Returns a service that can be used to report analytics events. |
 |  [useSearchWithNearMeHandling(answersActions, geolocationOptions, onSearch)](./answers-react-components.usesearchwithnearmehandling.md) | Returns a search action that will handle near me searches, by first checking for near me intents using an autocomplete request. You can optionally use the provided ref to store autocomplete responses, to avoid making unnecessary autocomplete requests. |
@@ -43,22 +38,12 @@
 |  [AppliedFiltersProps](./answers-react-components.appliedfiltersprops.md) | Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
 |  [AutocompleteResultCssClasses](./answers-react-components.autocompleteresultcssclasses.md) | The CSS class interface for the Autocomplete Result. |
 |  [CardProps](./answers-react-components.cardprops.md) | The props provided to every [CardComponent](./answers-react-components.cardcomponent.md)<!-- -->. |
-|  [CheckboxOptionCssClasses](./answers-react-components.checkboxoptioncssclasses.md) | The CSS class interface used in [renderCheckboxOption()](./answers-react-components.rendercheckboxoption.md)<!-- -->. |
-|  [CheckboxOptionProps](./answers-react-components.checkboxoptionprops.md) | The props of a checkbox option |
-|  [CollapsibleLabelCssClasses](./answers-react-components.collapsiblelabelcssclasses.md) | The CSS class interface used for [CollapsibleLabel()](./answers-react-components.collapsiblelabel.md)<!-- -->. |
-|  [CollapsibleLabelProps](./answers-react-components.collapsiblelabelprops.md) | The props for [CollapsibleLabel()](./answers-react-components.collapsiblelabel.md) |
 |  [DirectAnswerCssClasses](./answers-react-components.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [DirectAnswerProps](./answers-react-components.directanswerprops.md) | Props for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [DisplayableFilter](./answers-react-components.displayablefilter.md) | Represents a filter which may be displayed by the UI. |
 |  [EntityPreviewsProps](./answers-react-components.entitypreviewsprops.md) | The props for the [EntityPreviews()](./answers-react-components.entitypreviews.md) component. |
-|  [FacetConfig](./answers-react-components.facetconfig.md) | Configuration for a group of facets. |
-|  [FacetsCssClasses](./answers-react-components.facetscssclasses.md) | The CSS class interface used for [Facets()](./answers-react-components.facets.md)<!-- -->. |
-|  [FacetsProps](./answers-react-components.facetsprops.md) | Properties for [Facets()](./answers-react-components.facets.md)<!-- -->. |
-|  [FilterConfig](./answers-react-components.filterconfig.md) | Configuration for a filter. |
-|  [FiltersCssClasses](./answers-react-components.filterscssclasses.md) | The CSS class interface used for [Filters()](./answers-react-components.filters.md)<!-- -->. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md) |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |
-|  [FiltersProps](./answers-react-components.filtersprops.md) | Properties for [Filters()](./answers-react-components.filters.md)<!-- -->. |
 |  [LocationBiasCssClasses](./answers-react-components.locationbiascssclasses.md) | The CSS class interface for the [LocationBias()](./answers-react-components.locationbias.md) component. |
 |  [LocationBiasProps](./answers-react-components.locationbiasprops.md) | The props for the [LocationBias()](./answers-react-components.locationbias.md) component. |
 |  [PaginationCssClasses](./answers-react-components.paginationcssclasses.md) | The CSS classes used for pagination. |
@@ -73,8 +58,6 @@
 |  [StandardCardProps](./answers-react-components.standardcardprops.md) | Props for a StandardCard. |
 |  [StandardSectionConfig](./answers-react-components.standardsectionconfig.md) | The configuration for a StandardSection. |
 |  [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection](./answers-react-components.standardsection.md)<!-- -->. |
-|  [StaticFiltersCssClasses](./answers-react-components.staticfilterscssclasses.md) | The CSS class interface for Static Filters. |
-|  [StaticFiltersProps](./answers-react-components.staticfiltersprops.md) | Properties for [StaticFilters()](./answers-react-components.staticfilters.md)<!-- -->. |
 |  [UniversalResultsCssClasses](./answers-react-components.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./answers-react-components.universalresultsprops.md) | Props for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [VerticalConfig](./answers-react-components.verticalconfig.md) | The configuration for a vertical. |
@@ -82,6 +65,12 @@
 |  [VerticalResultsCssClasses](./answers-react-components.verticalresultscssclasses.md) | The CSS class interface used for [VerticalResults()](./answers-react-components.verticalresults.md)<!-- -->. |
 |  [VerticalResultsProps](./answers-react-components.verticalresultsprops.md) | Props for the VerticalResults component. |
 |  [VisualAutocompleteConfig](./answers-react-components.visualautocompleteconfig.md) | The configuration options for Visual Autocomplete |
+
+## Namespaces
+
+|  Namespace | Description |
+|  --- | --- |
+|  [Filters](./answers-react-components.filters.md) |  |
 
 ## Variables
 

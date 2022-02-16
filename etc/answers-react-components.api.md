@@ -11,12 +11,18 @@ import { AnalyticsService } from '@yext/analytics';
 import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AppliedQueryFilter } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
+import { ComponentPropsWithRef } from 'react';
+import { Context } from 'react';
+import { DisplayableFacet } from '@yext/answers-headless-react';
 import { Filter } from '@yext/answers-headless-react';
 import { MutableRefObject } from 'react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
+import { ReactNode } from 'react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
+import { SelectableFilter } from '@yext/answers-headless-react';
+import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
@@ -104,49 +110,32 @@ export interface CardProps {
 }
 
 // @public
-export interface CheckboxOptionCssClasses {
-    option?: string;
-    optionInput?: string;
-    optionLabel?: string;
-}
+function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
 
 // @public
-export interface CheckboxOptionProps {
-    // (undocumented)
-    cssClasses?: CheckboxOptionCssClasses;
-    // (undocumented)
-    onClick: (isChecked: boolean) => void;
-    // Warning: (ae-forgotten-export) The symbol "CheckboxOption" needs to be exported by the entry point index.d.ts
-    //
-    // (undocumented)
-    option: CheckboxOption;
-    // (undocumented)
-    selected?: boolean;
-}
-
-// @public
-export function CollapsibleLabel(props: PropsWithChildren<CollapsibleLabelProps>): JSX.Element;
-
-// @public
-export interface CollapsibleLabelCssClasses extends CheckboxOptionCssClasses {
+type CheckboxOptionProps = {
+    value: string | number | boolean;
+    fieldId?: string;
     label?: string;
-    labelContainer?: string;
-    labelIcon?: string;
-}
+    customCssClasses?: CheckboxCssClasses;
+    cssCompositionMethod?: CompositionMethod;
+};
 
 // @public
-export interface CollapsibleLabelProps {
-    // (undocumented)
-    collapsible?: boolean;
-    // (undocumented)
-    cssCompositionMethod?: CompositionMethod;
-    // (undocumented)
-    customCssClasses?: CollapsibleLabelCssClasses;
-    // (undocumented)
-    defaultExpanded?: boolean;
-    // (undocumented)
-    label: string;
-}
+function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element;
+
+// @public
+type CollapsibleLabelProps = {
+    label?: string;
+};
+
+// @public
+function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element;
+
+// @public
+type CollapsibleSectionProps = PropsWithChildren<{
+    className?: string;
+}>;
 
 // @public
 export type CompositionMethod = 'merge' | 'replace' | 'assign';
@@ -237,51 +226,72 @@ export interface EntityPreviewsProps {
 }
 
 // @public
-export interface FacetConfig extends Omit<FilterConfig, 'options'> {
-}
+function Facets(props: FacetsProps): JSX.Element;
 
 // @public
-export function Facets(props: FacetsProps): JSX.Element;
-
-// @public
-export interface FacetsCssClasses extends FiltersCssClasses {
-    button?: string;
-    buttonsContainer?: string;
-    facetsContainer?: string;
-}
-
-// @public
-export interface FacetsProps {
-    collapsible?: boolean;
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: FacetsCssClasses;
-    defaultExpanded?: boolean;
-    facetConfigs?: Record<string, FacetConfig>;
-    searchable?: boolean;
+type FacetsProps = {
+    className?: string;
     searchOnChange?: boolean;
-}
+    children?: (facets: DisplayableFacet[]) => ReactNode;
+};
 
 // @public
-export interface FilterConfig {
-    collapsible?: boolean;
+function FilterGroup(props: FilterGroupProps): JSX.Element;
+
+// @public
+const FilterGroupContext: Context<FilterGroupContextType | null>;
+
+// @public
+type FilterGroupContextType = {
+    searchValue: string;
+    defaultFieldId?: string;
+    setSearchValue: (value: string) => void;
+    getCollapseProps: UseCollapseOutput['getCollapseProps'];
+    getToggleProps: UseCollapseOutput['getToggleProps'];
+    isExpanded: boolean;
+};
+
+// @public
+type FilterGroupProps = PropsWithChildren<{
     defaultExpanded?: boolean;
-    label?: string;
-    // Warning: (ae-forgotten-export) The symbol "FilterOption" needs to be exported by the entry point index.d.ts
-    options: FilterOption[];
-    placeholderText?: string;
-    searchable?: boolean;
+    defaultFieldId?: string;
+}>;
+
+declare namespace Filters {
+    export {
+        CheckboxOption,
+        CheckboxOptionProps,
+        CollapsibleLabel,
+        CollapsibleLabelProps,
+        CollapsibleSection,
+        CollapsibleSectionProps,
+        ResponsiveDivider,
+        Facets,
+        FacetsProps,
+        FiltersContext,
+        useFiltersContext,
+        FiltersContextType,
+        FilterGroup,
+        FilterGroupProps,
+        FilterGroupContext,
+        useFilterGroupContext,
+        FilterGroupContextType,
+        SearchInput,
+        SearchInputProps,
+        StaticFilters,
+        StaticFiltersProps
+    }
 }
+export { Filters }
 
 // @public
-export function Filters(props: FiltersProps): JSX.Element;
+const FiltersContext: Context<FiltersContextType | null>;
 
 // @public
-export interface FiltersCssClasses extends CollapsibleLabelCssClasses {
-    container?: string;
-    divider?: string;
-    optionsContainer?: string;
-    searchableInputElement?: string;
-}
+type FiltersContextType = {
+    handleFilterSelect: (filter: Filter, checked: boolean) => void;
+    filters: SelectableFilter[];
+};
 
 // @public
 export function FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod }: FilterSearchProps): JSX.Element;
@@ -315,13 +325,6 @@ export interface FilterSearchProps {
     label: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
     sectioned: boolean;
-}
-
-// @public
-export interface FiltersProps {
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: FiltersCssClasses;
-    filterConfigs: FilterConfig[];
 }
 
 // @public
@@ -377,10 +380,12 @@ export interface PaginationCssClasses {
 export type QueryFunc = () => Promise<void>;
 
 // @public
-export function renderCheckboxOption({ option, selected, onClick, cssClasses }: CheckboxOptionProps): JSX.Element;
-
-// @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
+
+// Warning: (ae-forgotten-export) The symbol "ResponsiveDividerProps" needs to be exported by the entry point index.d.ts
+//
+// @public
+function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element;
 
 // @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
@@ -448,6 +453,15 @@ export interface SearchBarProps {
     verticalKeyToLabel?: (verticalKey: string) => string;
     visualAutocompleteConfig?: VisualAutocompleteConfig;
 }
+
+// @public
+function SearchInput(props: SearchInputProps): JSX.Element;
+
+// @public
+type SearchInputProps = {
+    className?: string;
+    placeholderText?: string;
+};
 
 // @public
 export type SectionComponent = (props: SectionConfig) => JSX.Element | null;
@@ -558,18 +572,12 @@ export interface StandardSectionCssClasses {
 }
 
 // @public
-export function StaticFilters(props: StaticFiltersProps): JSX.Element;
+function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
 // @public
-export interface StaticFiltersCssClasses extends FiltersCssClasses {
-}
-
-// @public
-export interface StaticFiltersProps {
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: StaticFiltersCssClasses;
-    filterConfigs: FilterConfig[];
-}
+type StaticFiltersProps = PropsWithChildren<{
+    className?: string;
+}>;
 
 // @public
 export function UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
@@ -592,6 +600,12 @@ export interface UniversalResultsProps {
 
 // @public
 export function useAnalytics(): AnalyticsService | null;
+
+// @public
+function useFilterGroupContext(): FilterGroupContextType;
+
+// @public
+function useFiltersContext(): FiltersContextType;
 
 // @public
 export function useSearchWithNearMeHandling(answersActions: AnswersHeadless, geolocationOptions?: PositionOptions, onSearch?: onSearchFunc): [QueryFunc, AutocompleteRef];
@@ -636,6 +650,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
+// src/components/Filters/CheckboxOption.tsx:28:3 - (ae-forgotten-export) The symbol "CheckboxCssClasses" needs to be exported by the entry point index.d.ts
 // src/components/cards/StandardCard.tsx:16:5 - (ae-forgotten-export) The symbol "FieldData" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
