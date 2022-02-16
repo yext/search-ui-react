@@ -16,7 +16,7 @@ export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element 
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | CheckboxOptionProps |  |
+|  props | CheckboxOptionProps | [Filters.CheckboxOptionProps](./answers-react-components.filters.checkboxoptionprops.md) |
 
 <b>Returns:</b>
 

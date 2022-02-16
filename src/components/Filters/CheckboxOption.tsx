@@ -51,6 +51,8 @@ const builtInCssClasses: CheckboxCssClasses = {
  * A checkbox component that represents a single Filter.
  * 
  * @public
+ * 
+ * @param props - {@link Filters.CheckboxOptionProps}
  */
 export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const { searchValue, defaultFieldId } = useFilterGroupContext();
