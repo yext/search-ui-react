@@ -20,8 +20,9 @@ export interface SearchBarProps
 |  [hideRecentSearches?](./answers-react-components.searchbarprops.hiderecentsearches.md) | boolean | <i>(Optional)</i> |
 |  [hideVerticalLinks?](./answers-react-components.searchbarprops.hideverticallinks.md) | boolean | <i>(Optional)</i> |
 |  [onSearch?](./answers-react-components.searchbarprops.onsearch.md) | [onSearchFunc](./answers-react-components.onsearchfunc.md) | <i>(Optional)</i> |
+|  [onSelectVerticalLink?](./answers-react-components.searchbarprops.onselectverticallink.md) | (data: { verticalLink: VerticalLink; querySource: QuerySource; }) =&gt; void | <i>(Optional)</i> |
 |  [placeholder?](./answers-react-components.searchbarprops.placeholder.md) | string | <i>(Optional)</i> |
 |  [recentSearchesLimit?](./answers-react-components.searchbarprops.recentsearcheslimit.md) | number | <i>(Optional)</i> |
 |  [verticalKeyToLabel?](./answers-react-components.searchbarprops.verticalkeytolabel.md) | (verticalKey: string) =&gt; string | <i>(Optional)</i> |
-|  [visualAutocompleteConfig?](./answers-react-components.searchbarprops.visualautocompleteconfig.md) | VisualAutocompleteConfig | <i>(Optional)</i> |
+|  [visualAutocompleteConfig?](./answers-react-components.searchbarprops.visualautocompleteconfig.md) | [VisualAutocompleteConfig](./answers-react-components.visualautocompleteconfig.md) | <i>(Optional)</i> |
 
