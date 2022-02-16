@@ -5,7 +5,6 @@ import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { isDuplicateFilter } from '../../utils/filterutils';
-import * as Filters from './index';
 
 /**
  * Props for the {@link Filters.CheckboxOption}
@@ -25,8 +24,8 @@ export interface CheckboxOptionProps {
   fieldId?: string,
   /** The display label. Defaults to the value prop. */
   label?: string,
-  /** CSS classes for customizing the component styling. */
-  customCssClasses?: Filters.CheckboxCssClasses,
+  /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses} */
+  customCssClasses?: CheckboxCssClasses,
   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
 };

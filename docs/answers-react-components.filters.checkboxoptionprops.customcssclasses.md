@@ -4,10 +4,10 @@
 
 ## Filters.CheckboxOptionProps.customCssClasses property
 
-CSS classes for customizing the component styling.
+CSS classes for customizing the component styling defined by [Filters.CheckboxCssClasses](./answers-react-components.filters.checkboxcssclasses.md)
 
 <b>Signature:</b>
 
 ```typescript
-customCssClasses?: Filters.CheckboxCssClasses;
+customCssClasses?: CheckboxCssClasses;
 ```
