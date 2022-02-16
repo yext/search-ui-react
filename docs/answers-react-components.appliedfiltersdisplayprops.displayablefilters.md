@@ -4,7 +4,7 @@
 
 ## AppliedFiltersDisplayProps.displayableFilters property
 
-List of  to construct the applied filter tags from.
+List of [DisplayableFilter](./answers-react-components.displayablefilter.md) to construct the applied filter tags from.
 
 <b>Signature:</b>
 

@@ -4,3 +4,5 @@ export { default as useSearchWithNearMeHandling } from './useSearchWithNearMeHan
 export type {
   onSearchFunc
 } from './useSearchWithNearMeHandling';
+
+export type { CompositionMethod } from './useComposedCssClasses';

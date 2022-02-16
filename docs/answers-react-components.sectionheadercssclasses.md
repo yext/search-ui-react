@@ -4,7 +4,7 @@
 
 ## SectionHeaderCssClasses interface
 
-The CSS class interface used for .
+The CSS class interface used for SectionHeader.
 
 <b>Signature:</b>
 

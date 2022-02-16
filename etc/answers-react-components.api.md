@@ -10,11 +10,18 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
+import { ComponentPropsWithRef } from 'react';
+import { Context } from 'react';
+import { DisplayableFacet } from '@yext/answers-headless-react';
 import { Filter } from '@yext/answers-headless-react';
 import { MutableRefObject } from 'react';
 import { PropsWithChildren } from 'react';
+import { QuerySource } from '@yext/answers-headless-react';
+import { ReactNode } from 'react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
+import { SelectableFilter } from '@yext/answers-headless-react';
+import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
@@ -37,10 +44,6 @@ export interface AlternativeVerticalsCssClasses {
 
 // @public
 export interface AlternativeVerticalsProps {
-    // Warning: (ae-forgotten-export) The symbol "CompositionMethod" needs to be exported by the entry point index.d.ts
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     currentVerticalLabel: string;
     customCssClasses?: AlternativeVerticalsCssClasses;
@@ -71,15 +74,11 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
 // @public
 export interface AppliedFiltersDisplayProps {
     cssClasses?: AppliedFiltersCssClasses;
-    // Warning: (ae-forgotten-export) The symbol "DisplayableFilter" needs to be exported by the entry point index.d.ts
     displayableFilters: DisplayableFilter[];
 }
 
 // @public
 export interface AppliedFiltersProps {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: AppliedFiltersCssClasses;
     hiddenFields?: Array<string>;
@@ -96,24 +95,43 @@ export interface CardProps {
 }
 
 // @public
-export interface CheckboxOptionCssClasses {
-    option?: string;
-    optionInput?: string;
-    optionLabel?: string;
-}
+function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
+
+// @public (undocumented)
+type CheckboxOptionProps = {
+    value: string | number | boolean;
+    fieldId?: string;
+    label?: string;
+    customCssClasses?: CheckboxCssClasses;
+    cssCompositionMethod?: CompositionMethod;
+};
 
 // @public
-export interface CollapsibleLabelCssClasses extends CheckboxOptionCssClasses {
+function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element;
+
+// @public (undocumented)
+type CollapsibleLabelProps = {
     label?: string;
-    labelContainer?: string;
-    labelIcon?: string;
-}
+};
+
+// @public
+function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element;
+
+// @public (undocumented)
+type CollapsibleSectionProps = PropsWithChildren<{
+    className?: string;
+}>;
+
+// @public
+export type CompositionMethod = 'merge' | 'replace' | 'assign';
 
 // @public (undocumented)
 export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
 
 // @public (undocumented)
 export interface DirectAnswerCssClasses {
+    // (undocumented)
+    answerContainer?: string;
     // (undocumented)
     container?: string;
     // (undocumented)
@@ -125,11 +143,19 @@ export interface DirectAnswerCssClasses {
     // (undocumented)
     featuredSnippetTitle?: string;
     // (undocumented)
+    feedbackButton?: string;
+    // (undocumented)
+    feedbackButtonsContainer?: string;
+    // (undocumented)
     fieldValueDescription?: string;
     // (undocumented)
     fieldValueTitle?: string;
     // (undocumented)
     highlighted?: string;
+    // (undocumented)
+    thumbsDownIcon?: string;
+    // (undocumented)
+    thumbsUpIcon?: string;
     // (undocumented)
     viewDetailsLink?: string;
     // (undocumented)
@@ -144,6 +170,18 @@ export interface DirectAnswerProps {
     customCssClasses?: DirectAnswerCssClasses;
 }
 
+// @public (undocumented)
+export interface DisplayableFilter {
+    // (undocumented)
+    filter: Filter;
+    // (undocumented)
+    filterType: 'NLP_FILTER' | 'STATIC_FILTER' | 'FACET';
+    // (undocumented)
+    groupLabel: string;
+    // (undocumented)
+    label: string;
+}
+
 // Warning: (ae-forgotten-export) The symbol "DropdownItemProps" needs to be exported by the entry point index.d.ts
 //
 // @public
@@ -155,51 +193,72 @@ export function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
 export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
 
 // @public
-export interface FacetConfig extends Omit<FilterConfig, 'options'> {
-}
+function Facets(props: FacetsProps): JSX.Element;
 
-// @public
-export function Facets(props: FacetsProps): JSX.Element;
-
-// @public
-export interface FacetsCssClasses extends FiltersCssClasses {
-    button?: string;
-    buttonsContainer?: string;
-    facetsContainer?: string;
-}
-
-// @public
-export interface FacetsProps {
-    collapsible?: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: FacetsCssClasses;
-    defaultExpanded?: boolean;
-    facetConfigs?: Record<string, FacetConfig>;
-    searchable?: boolean;
+// @public (undocumented)
+type FacetsProps = {
+    className?: string;
     searchOnChange?: boolean;
-}
+    children?: (facets: DisplayableFacet[]) => ReactNode;
+};
 
 // @public
-export interface FilterConfig {
-    collapsible?: boolean;
+function FilterGroup(props: FilterGroupProps): JSX.Element;
+
+// @public (undocumented)
+const FilterGroupContext: Context<FilterGroupContextType | null>;
+
+// @public
+type FilterGroupContextType = {
+    searchValue: string;
+    defaultFieldId?: string;
+    setSearchValue: (value: string) => void;
+    getCollapseProps: UseCollapseOutput['getCollapseProps'];
+    getToggleProps: UseCollapseOutput['getToggleProps'];
+    isExpanded: boolean;
+};
+
+// @public (undocumented)
+type FilterGroupProps = PropsWithChildren<{
     defaultExpanded?: boolean;
-    label?: string;
-    // Warning: (ae-forgotten-export) The symbol "FilterOption" needs to be exported by the entry point index.d.ts
-    options: FilterOption[];
-    placeholderText?: string;
-    searchable?: boolean;
+    defaultFieldId?: string;
+}>;
+
+declare namespace Filters {
+    export {
+        CheckboxOption,
+        CheckboxOptionProps,
+        CollapsibleLabel,
+        CollapsibleLabelProps,
+        CollapsibleSection,
+        CollapsibleSectionProps,
+        ResponsiveDivider,
+        Facets,
+        FacetsProps,
+        FiltersContext,
+        useFiltersContext,
+        FiltersContextType,
+        FilterGroup,
+        FilterGroupProps,
+        FilterGroupContext,
+        useFilterGroupContext,
+        FilterGroupContextType,
+        SearchInput,
+        SearchInputProps,
+        StaticFilters,
+        StaticFiltersProps
+    }
 }
+export { Filters }
+
+// @public (undocumented)
+const FiltersContext: Context<FiltersContextType | null>;
 
 // @public
-export interface FiltersCssClasses extends CollapsibleLabelCssClasses {
-    container?: string;
-    divider?: string;
-    optionsContainer?: string;
-    searchableInputElement?: string;
-}
+type FiltersContextType = {
+    handleFilterSelect: (filter: Filter, checked: boolean) => void;
+    filters: SelectableFilter[];
+};
 
 // @public (undocumented)
 export function FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod }: FilterSearchProps): JSX.Element;
@@ -291,8 +350,18 @@ export interface PaginationCssClasses {
     selectedLabel?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "FocusedItemData" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
+
+// Warning: (ae-forgotten-export) The symbol "ResponsiveDividerProps" needs to be exported by the entry point index.d.ts
+//
 // @public
-export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
+function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element;
+
+// @public
+export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
 
 // @public (undocumented)
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
@@ -355,16 +424,28 @@ export interface SearchBarProps {
     // (undocumented)
     onSearch?: onSearchFunc;
     // (undocumented)
+    onSelectVerticalLink?: (data: {
+        verticalLink: VerticalLink;
+        querySource: QuerySource;
+    }) => void;
+    // (undocumented)
     placeholder?: string;
     // (undocumented)
     recentSearchesLimit?: number;
     // (undocumented)
     verticalKeyToLabel?: (verticalKey: string) => string;
-    // Warning: (ae-forgotten-export) The symbol "VisualAutocompleteConfig" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     visualAutocompleteConfig?: VisualAutocompleteConfig;
 }
+
+// @public
+function SearchInput(props: SearchInputProps): JSX.Element;
+
+// @public (undocumented)
+type SearchInputProps = {
+    className?: string;
+    placeholderText?: string;
+};
 
 // @public
 export type SectionComponent = (props: SectionConfig) => JSX.Element | null;
@@ -393,7 +474,7 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
 }
 
 // @public (undocumented)
-export function SpellCheck({ customCssClasses, cssCompositionMethod }: SpellCheckProps): JSX.Element | null;
+export function SpellCheck({ customCssClasses, cssCompositionMethod, onClick }: SpellCheckProps): JSX.Element | null;
 
 // @public (undocumented)
 export interface SpellCheckCssClasses {
@@ -413,6 +494,11 @@ export interface SpellCheckProps {
     cssCompositionMethod?: CompositionMethod;
     // (undocumented)
     customCssClasses?: SpellCheckCssClasses;
+    // (undocumented)
+    onClick?: (data: {
+        correctedQuery: string;
+        verticalKey: string;
+    }) => void;
 }
 
 // @public
@@ -433,9 +519,6 @@ export interface StandardCardCssClasses {
 
 // @public
 export interface StandardCardProps extends CardProps {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardCardCssClasses;
     fieldMappings?: {
@@ -452,10 +535,7 @@ export const StandardSection: SectionComponent;
 
 // @public
 export interface StandardSectionConfig extends SectionConfig {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
-    compositionmethod?: CompositionMethod;
+    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardSectionCssClasses;
 }
 
@@ -466,21 +546,12 @@ export interface StandardSectionCssClasses {
 }
 
 // @public
-export function StaticFilters(props: StaticFiltersProps): JSX.Element;
+function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
 // @public (undocumented)
-export interface StaticFiltersCssClasses extends FiltersCssClasses {
-}
-
-// @public
-export interface StaticFiltersProps {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: StaticFiltersCssClasses;
-    filterConfigs: FilterConfig[];
-}
+type StaticFiltersProps = PropsWithChildren<{
+    className?: string;
+}>;
 
 // @public
 export function UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
@@ -495,9 +566,6 @@ export interface UniversalResultsCssClasses {
 
 // @public
 export interface UniversalResultsProps {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
@@ -506,6 +574,12 @@ export interface UniversalResultsProps {
 
 // @public
 export function useAnalytics(): AnalyticsService | null;
+
+// @public (undocumented)
+function useFilterGroupContext(): FilterGroupContextType;
+
+// @public (undocumented)
+function useFiltersContext(): FiltersContextType;
 
 // Warning: (ae-forgotten-export) The symbol "QueryFunc" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "AutocompleteRef" needs to be exported by the entry point index.d.ts
@@ -533,16 +607,25 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
 export interface VerticalResultsProps {
     allowPagination?: boolean;
     CardComponent: CardComponent;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "CompositionMethod"
-    //
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
 }
 
+// @public (undocumented)
+export interface VisualAutocompleteConfig {
+    // (undocumented)
+    entityPreviewsDebouncingTime?: number;
+    // (undocumented)
+    entityPreviewSearcher?: AnswersHeadless;
+    // (undocumented)
+    renderEntityPreviews?: RenderEntityPreviews;
+}
+
 // Warnings were encountered during analysis:
 //
+// src/components/Filters/CheckboxOption.tsx:18:3 - (ae-forgotten-export) The symbol "CheckboxCssClasses" needs to be exported by the entry point index.d.ts
+// src/components/SearchBar.tsx:106:35 - (ae-forgotten-export) The symbol "VerticalLink" needs to be exported by the entry point index.d.ts
 // src/components/cards/StandardCard.tsx:14:5 - (ae-forgotten-export) The symbol "FieldData" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)

@@ -8,9 +8,9 @@ export type CollapsibleLabelProps = {
 
 /**
  * CollapsibleLabel is a button for collapsing and expanding filters
- * within a parent {@link FilterGroup}.
+ * within a parent {@link Filters.FilterGroup}.
  *
- * For more customization, use {@link FilterGroupContext} directly.
+ * For more customization, use {@link Filters.FilterGroupContext} directly.
  */
 export default function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element {
   const { isExpanded, getToggleProps } = useFilterGroupContext();

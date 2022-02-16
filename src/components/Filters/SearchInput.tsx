@@ -7,7 +7,7 @@ export type SearchInputProps = {
 
 /**
  * SearchInput is a simple input component that updates the
- * active searchValue for a particular {@link FilterGroup}.
+ * active searchValue for a particular {@link Filters.FilterGroup}.
  */
 export default function SearchInput(props: SearchInputProps): JSX.Element {
   const {

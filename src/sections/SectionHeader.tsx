@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import { useAnalytics } from '../hooks/useAnalytics';
 
 /**
- * The CSS class interface used for {@link SectionHeader}.
+ * The CSS class interface used for SectionHeader.
  */
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
   sectionHeaderContainer?: string,

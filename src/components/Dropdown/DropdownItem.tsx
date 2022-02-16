@@ -14,7 +14,7 @@ export type DropdownItemProps = PropsWithChildren<{
 
 /**
  * A wrapper component for specifying a DropdownItemWithIndex.
- * The index will be automatically provided by the {@link Dropdown} component instance.
+ * The index will be automatically provided by the Dropdown component instance.
  */
 export default function DropdownItem(_props: DropdownItemProps): JSX.Element | null { return null; }
 

@@ -7,14 +7,14 @@
 <b>Signature:</b>
 
 ```typescript
-export default function SpellCheck({ customCssClasses, cssCompositionMethod }: SpellCheckProps): JSX.Element | null;
+export default function SpellCheck({ customCssClasses, cssCompositionMethod, onClick }: SpellCheckProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { customCssClasses, cssCompositionMethod } | [SpellCheckProps](./answers-react-components.spellcheckprops.md) |  |
+|  { customCssClasses, cssCompositionMethod, onClick } | [SpellCheckProps](./answers-react-components.spellcheckprops.md) |  |
 
 <b>Returns:</b>
 

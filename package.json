@@ -1,6 +1,6 @@
 {
   "name": "@yext/answers-react-components",
-  "version": "0.1.0-beta.5",
+  "version": "0.1.0-beta.6",
   "description": "",
   "author": "slapshot@yext.com",
   "main": "./lib/index.js",
@@ -17,7 +17,6 @@
     "api-extractor": "api-extractor run --local --verbose",
     "api-extractor-ci": "api-extractor run --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
-    "prepublishOnly": "npm run build",
     "test": "jest --passWithNoTests"
   },
   "devDependencies": {
