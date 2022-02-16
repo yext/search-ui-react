@@ -242,6 +242,21 @@ interface FacetsProps {
     searchOnChange?: boolean;
 }
 
+// @public
+export type FieldData = FieldDataConstant | FieldDataPath;
+
+// @public
+export type FieldDataConstant = {
+    mappingType: 'CONSTANT';
+    value: string;
+};
+
+// @public
+export type FieldDataPath = {
+    mappingType: 'FIELD';
+    apiName: string | string[];
+};
+
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -377,6 +392,12 @@ export interface LocationBiasProps {
 }
 
 // @public
+export type onSearchFunc = (searchEventData: {
+    verticalKey?: string;
+    query?: string;
+}) => void;
+
+// @public
 export interface PaginationCssClasses {
     // (undocumented)
     container?: string;
@@ -467,7 +488,6 @@ export interface SearchBarProps {
     geolocationOptions?: PositionOptions;
     hideRecentSearches?: boolean;
     hideVerticalLinks?: boolean;
-    // Warning: (ae-forgotten-export) The symbol "onSearchFunc" needs to be exported by the entry point index.d.ts
     onSearch?: onSearchFunc;
     onSelectVerticalLink?: (data: {
         verticalLink: VerticalLink;
@@ -689,7 +709,6 @@ export interface VisualAutocompleteConfig {
 //
 // src/components/Filters/FilterGroup.tsx:12:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // src/components/Filters/FilterGroup.tsx:14:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// src/components/cards/StandardCard.tsx:16:5 - (ae-forgotten-export) The symbol "FieldData" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

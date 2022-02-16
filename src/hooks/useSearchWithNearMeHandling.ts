@@ -11,8 +11,9 @@ export type QueryFunc = () => Promise<void>;
  */
 export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | undefined> | undefined>;
 /**
- * The interface of a function which is called on a search when provied to
- * {@link useSearchWithNearMeHandling}.
+ * The interface of a function which is called on a search.
+ * 
+ * @public
  */
 export type onSearchFunc = (searchEventData: { verticalKey?: string, query?: string }) => void;
 

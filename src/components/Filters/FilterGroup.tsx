@@ -10,7 +10,7 @@ import FilterGroupContext from './FilterGroupContext';
 export type FilterGroupProps = PropsWithChildren<{
   /** Whether the {@link Filters.FilterGroup} should start out expanded. Defaults to true. */
   defaultExpanded?: boolean,
-  /** The default fieldId to use with child filter components e.g. {@link Filters.CheckboxOption}. */
+  /** {@inheritDoc Filters.FilterGroupContextType.defaultFieldId} */
   defaultFieldId?: string
 }>;
 

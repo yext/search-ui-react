@@ -11,6 +11,8 @@ export type { EntityPreviewsProps } from './EntityPreviews';
 export { default as EntityPreviews } from './EntityPreviews';
 export type { FocusedItemData } from './Dropdown/FocusContext';
 
+export type { FieldData, FieldDataConstant, FieldDataPath } from './utils/applyFieldMappings';
+
 export { default as SpellCheck } from './SpellCheck';
 export type {
   SpellCheckCssClasses,

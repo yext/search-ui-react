@@ -2,16 +2,55 @@
 
 import get from 'lodash/get';
 
+/**
+ * Indicates a field should equal a constant value. Ignores the API response.
+ *
+ * @public
+ */
 export type FieldDataConstant = {
+  /** Indicates that the field data is constant. */
   mappingType: 'CONSTANT',
+  /** The constant field data value. */
   value: string
 };
 
+/**
+ * Denotes the path to the field data on the Result's raw dadta.
+ * 
+ * @public
+ */
 export type FieldDataPath = {
+  /** Indicates that the field data is mapped from the Result's raw data */
   mappingType: 'FIELD',
+  /** The api name which denotes the path to the field data. 
+   * 
+   * @remarks
+   * The path is a string separated by periods '.'.
+   * An array may also be supplied to denote fallbacks.
+   * 
+   * @example
+   * A result's rawData may contain the following object:
+   * ```
+   * {
+   *    title: {
+   *       fullName: 'Yext Answers'
+   *       subtitle: 'An AI Search Platform'
+   *    }
+   * }
+   * ```
+   * To indicate the subtitle, the apiName would be 'title.subtitle'.
+   * Fallbacks could be indicated with an array such as:
+   * `['title.fullName', 'title.subtitle']`
+   * In this example, if the title is not present, it will fallback to the subtitle.
+  */
   apiName: string | string[]
 };
 
+/**
+ * Indicates either a constant field data value, or a field data mapping.
+ * 
+ * @public
+ */
 export type FieldData = FieldDataConstant | FieldDataPath;
 
 function applyFieldDataPath(data: any, fieldMap: FieldDataPath): any {
