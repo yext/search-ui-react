@@ -19,8 +19,7 @@ export interface AppliedFiltersDisplayProps {
 }
 
 /**
- * A component that renders applied filters based on a given list of
- * {@link DisplayableFilter}.
+ * A component that renders applied filters based on a given list of {@link DisplayableFilter}.
  *
  * @param props - {@inheritdoc AppliedFiltersDisplayProps}
  * @returns A React element for the applied filters
