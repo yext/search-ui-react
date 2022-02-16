@@ -9,5 +9,5 @@ CSS classes for customizing the component styling.
 <b>Signature:</b>
 
 ```typescript
-customCssClasses?: CheckboxCssClasses;
+customCssClasses?: Filters.CheckboxCssClasses;
 ```

@@ -125,7 +125,7 @@ function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
 // @public
 interface CheckboxOptionProps {
     cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: CheckboxCssClasses;
+    customCssClasses?: Filters.CheckboxCssClasses;
     fieldId?: string;
     label?: string;
     value: string | number | boolean;
