@@ -24,7 +24,7 @@ const FilterGroupContext = createContext<FilterGroupContextType | null>(null);
 export default FilterGroupContext;
 
 /**
- * A hook used to access the FilterGroup context.
+ * A hook used to access the {@link Filters.FilterGroupContextType}
  * 
  * @public
  */

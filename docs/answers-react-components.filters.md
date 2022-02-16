@@ -16,8 +16,8 @@
 |  [ResponsiveDivider(props)](./answers-react-components.filters.responsivedivider.md) | A convenience component for our recommended divider styling. |
 |  [SearchInput(props)](./answers-react-components.filters.searchinput.md) | SearchInput is a simple input component that updates the active searchValue for a particular [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
 |  [StaticFilters(props)](./answers-react-components.filters.staticfilters.md) | The StaticFilters component is a wrapper component around [Filters](./answers-react-components.filters.md) that updates static filter options when a child filter is updated.<!-- -->The representation of the facets is configured using props.children, and is intended for use with components like [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
-|  [useFilterGroupContext()](./answers-react-components.filters.usefiltergroupcontext.md) | A hook used to access the FilterGroup context. |
-|  [useFiltersContext()](./answers-react-components.filters.usefilterscontext.md) | A hook used to access the FiltersContext. |
+|  [useFilterGroupContext()](./answers-react-components.filters.usefiltergroupcontext.md) | A hook used to access the [Filters.FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md) |
+|  [useFiltersContext()](./answers-react-components.filters.usefilterscontext.md) | A hook used to access the [Filters.FiltersContextType](./answers-react-components.filters.filterscontexttype.md)<!-- -->. |
 
 ## Interfaces
 

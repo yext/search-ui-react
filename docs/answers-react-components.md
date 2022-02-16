@@ -20,9 +20,9 @@
 |  [SectionHeader(props)](./answers-react-components.sectionheader.md) | The header of a section which includes an icon, the section title, applied query filters, and optionally a view all button. |
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
+|  [StandardSection(props)](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
 |  [UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod })](./answers-react-components.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
 |  [useAnalytics()](./answers-react-components.useanalytics.md) | Returns a service that can be used to report analytics events. |
-|  [useSearchWithNearMeHandling(answersActions, geolocationOptions, onSearch)](./answers-react-components.usesearchwithnearmehandling.md) | Returns a search action that will handle near me searches, by first checking for near me intents using an autocomplete request. You can optionally use the provided ref to store autocomplete responses, to avoid making unnecessary autocomplete requests. |
 |  [VerticalResults(props)](./answers-react-components.verticalresults.md) | A component that renders search results for a vertical page. |
 
 ## Interfaces
@@ -55,7 +55,7 @@
 |  [StandardCardCssClasses](./answers-react-components.standardcardcssclasses.md) | The CSS class interface used for [StandardCard()](./answers-react-components.standardcard.md)<!-- -->. |
 |  [StandardCardProps](./answers-react-components.standardcardprops.md) | Props for a StandardCard. |
 |  [StandardSectionConfig](./answers-react-components.standardsectionconfig.md) | The configuration for a StandardSection. |
-|  [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection](./answers-react-components.standardsection.md)<!-- -->. |
+|  [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection()](./answers-react-components.standardsection.md)<!-- -->. |
 |  [UniversalResultsCssClasses](./answers-react-components.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./answers-react-components.universalresultsprops.md) | Props for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [VerticalConfig](./answers-react-components.verticalconfig.md) | The configuration for a vertical. |
@@ -70,22 +70,13 @@
 |  --- | --- |
 |  [Filters](./answers-react-components.filters.md) |  |
 
-## Variables
-
-|  Variable | Description |
-|  --- | --- |
-|  [StandardSection](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
-
 ## Type Aliases
 
 |  Type Alias | Description |
 |  --- | --- |
-|  [AutocompleteRef](./answers-react-components.autocompleteref.md) | A ref which contains a promise of the latest autocomplete response in order get the latest search intents. |
 |  [CardComponent](./answers-react-components.cardcomponent.md) | A functional component that can be used to render a result card. |
 |  [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [FocusedItemData](./answers-react-components.focuseditemdata.md) | The data associated with the currently focused item. |
-|  [onSearchFunc](./answers-react-components.onsearchfunc.md) | The interface of a function which is called on a search when provied to [useSearchWithNearMeHandling()](./answers-react-components.usesearchwithnearmehandling.md)<!-- -->. |
-|  [QueryFunc](./answers-react-components.queryfunc.md) | The type of a function for executing a query and returning a promise. |
 |  [RenderEntityPreviews](./answers-react-components.renderentitypreviews.md) | The type of a functional React component which renders entity previews based on the autocomplete loading state and the vertical results array. |
 |  [SectionComponent](./answers-react-components.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 

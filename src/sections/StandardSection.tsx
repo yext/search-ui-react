@@ -36,7 +36,7 @@ export interface StandardSectionConfig extends SectionConfig {
  * @param props - {@link StandardSectionConfig}
  * @returns A React element for a standard section, or null if there are no results to display
  */
-const StandardSection: SectionComponent = function(props: StandardSectionConfig): JSX.Element | null {
+export default function StandardSection(props: StandardSectionConfig): JSX.Element | null {
   const cssClasses = useComposedCssClasses(
     builtInCssClasses,
     props.customCssClasses,
@@ -58,4 +58,3 @@ const StandardSection: SectionComponent = function(props: StandardSectionConfig)
     </section>
   );
 };
-export default StandardSection;

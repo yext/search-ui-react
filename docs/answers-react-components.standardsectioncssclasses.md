@@ -4,7 +4,7 @@
 
 ## StandardSectionCssClasses interface
 
-The CSS class interface used for [StandardSection](./answers-react-components.standardsection.md)<!-- -->.
+The CSS class interface used for [StandardSection()](./answers-react-components.standardsection.md)<!-- -->.
 
 <b>Signature:</b>
 

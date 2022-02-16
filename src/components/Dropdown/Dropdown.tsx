@@ -17,10 +17,9 @@ interface DropdownItemData {
 /**
  * Dropdown is the parent component for a set of Dropdown-related components.
  *
+ * @remarks
  * It provides multiple shared contexts, which are consumed by its child components,
  * and also registers some global event listeners.
- *
- * @public
  */
 export default function Dropdown(props: PropsWithChildren<{
   screenReaderText: string,

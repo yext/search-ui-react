@@ -20,7 +20,7 @@ const FiltersContext = createContext<FiltersContextType | null>(null);
 export default FiltersContext;
 
 /**
- * A hook used to access the FiltersContext.
+ * A hook used to access the {@link Filters.FiltersContextType}.
  * 
  * @public
  */

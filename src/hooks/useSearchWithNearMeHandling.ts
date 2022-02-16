@@ -13,8 +13,6 @@ export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | un
 /**
  * The interface of a function which is called on a search when provied to
  * {@link useSearchWithNearMeHandling}.
- *
- * @public
  */
 export type onSearchFunc = (searchEventData: { verticalKey?: string, query?: string }) => void;
 
@@ -23,8 +21,6 @@ export type onSearchFunc = (searchEventData: { verticalKey?: string, query?: str
  * for near me intents using an autocomplete request.
  * You can optionally use the provided ref to store autocomplete responses, to avoid
  * making unnecessary autocomplete requests.
- *
- * @public
  */
 export default function useSearchWithNearMeHandling(
   answersActions: AnswersHeadless,

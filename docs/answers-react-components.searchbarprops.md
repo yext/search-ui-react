@@ -21,7 +21,7 @@ export interface SearchBarProps
 |  [geolocationOptions?](./answers-react-components.searchbarprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface) |
 |  [hideRecentSearches?](./answers-react-components.searchbarprops.hiderecentsearches.md) | boolean | <i>(Optional)</i> Hides recent searches if true. |
 |  [hideVerticalLinks?](./answers-react-components.searchbarprops.hideverticallinks.md) | boolean | <i>(Optional)</i> Hides vertical links if true. |
-|  [onSearch?](./answers-react-components.searchbarprops.onsearch.md) | [onSearchFunc](./answers-react-components.onsearchfunc.md) | <i>(Optional)</i> A callback which is called whena search is ran. |
+|  [onSearch?](./answers-react-components.searchbarprops.onsearch.md) | onSearchFunc | <i>(Optional)</i> A callback which is called whena search is ran. |
 |  [onSelectVerticalLink?](./answers-react-components.searchbarprops.onselectverticallink.md) | (data: { verticalLink: [VerticalLink](./answers-react-components.verticallink.md)<!-- -->; querySource: QuerySource; }) =&gt; void | <i>(Optional)</i> A function which is called when a vertical link is selected. |
 |  [placeholder?](./answers-react-components.searchbarprops.placeholder.md) | string | <i>(Optional)</i> The search bar's placeholder text. |
 |  [recentSearchesLimit?](./answers-react-components.searchbarprops.recentsearcheslimit.md) | number | <i>(Optional)</i> Limits the number of recent searches shown. |

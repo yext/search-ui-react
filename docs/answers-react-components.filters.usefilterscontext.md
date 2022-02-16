@@ -4,7 +4,7 @@
 
 ## Filters.useFiltersContext() function
 
-A hook used to access the FiltersContext.
+A hook used to access the [Filters.FiltersContextType](./answers-react-components.filters.filterscontexttype.md)<!-- -->.
 
 <b>Signature:</b>
 

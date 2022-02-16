@@ -10,12 +10,10 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AppliedQueryFilter } from '@yext/answers-headless-react';
-import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { ComponentPropsWithRef } from 'react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
 import { Filter } from '@yext/answers-headless-react';
-import { MutableRefObject } from 'react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
@@ -85,9 +83,6 @@ export interface AppliedFiltersProps {
     hiddenFields?: Array<string>;
     staticFiltersGroupLabels?: Record<string, string>;
 }
-
-// @public
-export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | undefined> | undefined>;
 
 // @public
 export interface AutocompleteResultCssClasses {
@@ -382,12 +377,6 @@ export interface LocationBiasProps {
 }
 
 // @public
-export type onSearchFunc = (searchEventData: {
-    verticalKey?: string;
-    query?: string;
-}) => void;
-
-// @public
 export interface PaginationCssClasses {
     // (undocumented)
     container?: string;
@@ -404,9 +393,6 @@ export interface PaginationCssClasses {
     // (undocumented)
     selectedLabel?: string;
 }
-
-// @public
-export type QueryFunc = () => Promise<void>;
 
 // @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
@@ -481,6 +467,7 @@ export interface SearchBarProps {
     geolocationOptions?: PositionOptions;
     hideRecentSearches?: boolean;
     hideVerticalLinks?: boolean;
+    // Warning: (ae-forgotten-export) The symbol "onSearchFunc" needs to be exported by the entry point index.d.ts
     onSearch?: onSearchFunc;
     onSelectVerticalLink?: (data: {
         verticalLink: VerticalLink;
@@ -600,7 +587,7 @@ export interface StandardCardProps extends CardProps {
 }
 
 // @public
-export const StandardSection: SectionComponent;
+export function StandardSection(props: StandardSectionConfig): JSX.Element | null;
 
 // @public
 export interface StandardSectionConfig extends SectionConfig {
@@ -650,14 +637,15 @@ export interface UniversalResultsProps {
 // @public
 export function useAnalytics(): AnalyticsService | null;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function useFilterGroupContext(): FilterGroupContextType;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
 function useFiltersContext(): FiltersContextType;
-
-// @public
-export function useSearchWithNearMeHandling(answersActions: AnswersHeadless, geolocationOptions?: PositionOptions, onSearch?: onSearchFunc): [QueryFunc, AutocompleteRef];
 
 // @public
 export interface VerticalConfig {
