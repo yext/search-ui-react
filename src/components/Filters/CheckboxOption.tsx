@@ -15,7 +15,7 @@ export type CheckboxOptionProps = {
   fieldId?: string,
   /** If unspecified, label defaults to the value prop */
   label?: string,
-  cssClasses?: CheckboxCssClasses,
+  customCssClasses?: CheckboxCssClasses,
   cssCompositionMethod?: CompositionMethod,
 };
 
@@ -41,7 +41,8 @@ export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element 
     value,
     label = props.value,
   } = props;
-  const cssClasses = useComposedCssClasses(builtInCssClasses, props.cssClasses, props.cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(
+    builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
   const optionId = useMemo(() => uuid(), []);
   const answersUtilities = useAnswersUtilities();
   const { handleFilterSelect, filters } = useFiltersContext();
