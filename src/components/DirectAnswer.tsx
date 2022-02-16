@@ -12,7 +12,9 @@ import { FeedbackType, useDirectAnswersAnalytics } from '../hooks/useDirectAnswe
  * @public
  */
 export interface DirectAnswerProps {
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: DirectAnswerCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 

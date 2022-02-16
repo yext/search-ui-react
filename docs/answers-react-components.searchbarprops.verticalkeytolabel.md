@@ -4,6 +4,8 @@
 
 ## SearchBarProps.verticalKeyToLabel property
 
+A function which returns a display label for the given verticalKey.
+
 <b>Signature:</b>
 
 ```typescript

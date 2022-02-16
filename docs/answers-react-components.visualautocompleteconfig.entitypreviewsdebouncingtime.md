@@ -4,6 +4,8 @@
 
 ## VisualAutocompleteConfig.entityPreviewsDebouncingTime property
 
+The debouncing time, in milliseconds, for making API requests for entity previews.
+
 <b>Signature:</b>
 
 ```typescript

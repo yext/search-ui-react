@@ -4,6 +4,8 @@
 
 ## SectionHeaderConfig.viewAllButton property
 
+Display a button to view all results for that section, if true.
+
 <b>Signature:</b>
 
 ```typescript

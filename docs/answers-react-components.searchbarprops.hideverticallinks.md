@@ -4,6 +4,8 @@
 
 ## SearchBarProps.hideVerticalLinks property
 
+Hides vertical links if true.
+
 <b>Signature:</b>
 
 ```typescript

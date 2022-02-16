@@ -4,6 +4,8 @@
 
 ## VerticalLink.query property
 
+The query used when the vertical link is selected.
+
 <b>Signature:</b>
 
 ```typescript

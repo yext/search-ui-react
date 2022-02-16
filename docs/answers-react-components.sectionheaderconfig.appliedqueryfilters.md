@@ -4,6 +4,8 @@
 
 ## SectionHeaderConfig.appliedQueryFilters property
 
+An array of AppliedQueryFilters which are displayed in the section header.
+
 <b>Signature:</b>
 
 ```typescript

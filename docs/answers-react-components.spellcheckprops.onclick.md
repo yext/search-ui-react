@@ -4,6 +4,8 @@
 
 ## SpellCheckProps.onClick property
 
+A function which is called when a spell check suggestion is clicked.
+
 <b>Signature:</b>
 
 ```typescript

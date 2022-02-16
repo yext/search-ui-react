@@ -4,12 +4,15 @@ export type {
   SearchBarProps,
   VisualAutocompleteConfig,
   RenderEntityPreviews,
-  VerticalLink
+  VerticalLink,
 } from './SearchBar';
+export type { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 export type { EntityPreviewsProps } from './EntityPreviews';
 export { default as EntityPreviews } from './EntityPreviews';
+export type { DropdownItemProps } from './Dropdown/DropdownItem';
 export { default as DropdownItem } from './Dropdown/DropdownItem';
 export { default as Dropdown } from './Dropdown/Dropdown';
+export type { FocusedItemData } from './Dropdown/FocusContext';
 
 export { default as SpellCheck } from './SpellCheck';
 export type {

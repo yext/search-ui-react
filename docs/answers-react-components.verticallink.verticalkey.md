@@ -4,6 +4,8 @@
 
 ## VerticalLink.verticalKey property
 
+The vertical key associated with the vertical link.
+
 <b>Signature:</b>
 
 ```typescript

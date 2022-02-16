@@ -28,8 +28,11 @@ const builtInCssClasses: SpellCheckCssClasses = {
  * @public
  */
 export interface SpellCheckProps {
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: SpellCheckCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
+  /** A function which is called when a spell check suggestion is clicked. */
   onClick?: (data: { correctedQuery: string, verticalKey: string }) => void
 }
 

@@ -2,6 +2,8 @@ export { useAnalytics } from './useAnalytics';
 
 export { default as useSearchWithNearMeHandling } from './useSearchWithNearMeHandling';
 export type {
-  onSearchFunc
+  onSearchFunc,
+  QueryFunc,
+  AutocompleteRef
 } from './useSearchWithNearMeHandling';
 export type { CompositionMethod } from './useComposedCssClasses';

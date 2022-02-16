@@ -4,6 +4,8 @@
 
 ## EntityPreviewsProps.children property
 
+The entity preview render function which is provided results for the specified vertical.
+
 <b>Signature:</b>
 
 ```typescript

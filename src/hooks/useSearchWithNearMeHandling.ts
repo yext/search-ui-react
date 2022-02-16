@@ -3,7 +3,12 @@ import { executeSearch, updateLocationIfNeeded } from '../utils/search-operation
 import { MutableRefObject, useRef } from 'react';
 import { AutocompleteResponse, SearchIntent } from '@yext/answers-headless-react';
 
-type QueryFunc = () => Promise<void>;
+/** The type of a function for executing a query and returning a promise. @public */
+export type QueryFunc = () => Promise<void>;
+/**
+ * A ref which contains a promise of the latest autocomplete response in order get the
+ * latest search intents. @public
+ */
 export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | undefined> | undefined>;
 /**
  * The interface of a function which is called on a search when provied to

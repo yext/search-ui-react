@@ -4,6 +4,8 @@
 
 ## SectionHeaderConfig.verticalKey property
 
+The verticalKey associated with the section.
+
 <b>Signature:</b>
 
 ```typescript

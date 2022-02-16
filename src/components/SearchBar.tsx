@@ -100,9 +100,11 @@ export type RenderEntityPreviews = (
  * @public
  */
 export interface VisualAutocompleteConfig {
+  /** The Answers Headless instance used to perform visual autocomplete searches. */
   entityPreviewSearcher?: AnswersHeadless,
-  // The debouncing time, in milliseconds, for making API requests for entity previews
+  /** The debouncing time, in milliseconds, for making API requests for entity previews. */
   entityPreviewsDebouncingTime?: number,
+  /** Renders entity previeews based on the autocomplete loading state and results. */
   renderEntityPreviews?: RenderEntityPreviews,
 }
 
@@ -112,7 +114,9 @@ export interface VisualAutocompleteConfig {
  * @public
  */
 export interface VerticalLink {
+  /** The vertical key associated with the vertical link. */
   verticalKey: string
+  /** The query used when the vertical link is selected. */
   query: string
 }
 
@@ -126,16 +130,27 @@ const isVerticalLink = (obj: unknown): obj is VerticalLink => {
  * @public
  */
 export interface SearchBarProps {
+  /** The search bar's placeholder text. */
   placeholder?: string,
+  /** {@inheritDoc LocationBiasProps.geolocationOptions} */
   geolocationOptions?: PositionOptions,
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: SearchBarCssClasses,
+   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
+  /** {@inheritDoc VisualAutocompleteConfig} */
   visualAutocompleteConfig?: VisualAutocompleteConfig,
+  /** Hides vertical links if true. */
   hideVerticalLinks?: boolean,
+  /** A function which is called when a vertical link is selected. */
   onSelectVerticalLink?: (data: { verticalLink: VerticalLink, querySource: QuerySource }) => void,
+  /** A function which returns a display label for the given verticalKey. */
   verticalKeyToLabel?: (verticalKey: string) => string,
+  /** Hides recent searches if true. */
   hideRecentSearches?: boolean,
+  /** Limits the number of recent searches shown. */
   recentSearchesLimit?: number,
+  /** A callback which is called whena search is ran. */
   onSearch?: onSearchFunc
 }
 

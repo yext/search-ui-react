@@ -11,7 +11,7 @@ The CSS class interface for the [SearchBar()](./answers-react-components.searchb
 ```typescript
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses 
 ```
-<b>Extends:</b> AutocompleteResultCssClasses
+<b>Extends:</b> [AutocompleteResultCssClasses](./answers-react-components.autocompleteresultcssclasses.md)
 
 ## Properties
 

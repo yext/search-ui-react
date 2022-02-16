@@ -4,6 +4,8 @@
 
 ## SearchBarProps.placeholder property
 
+The search bar's placeholder text.
+
 <b>Signature:</b>
 
 ```typescript

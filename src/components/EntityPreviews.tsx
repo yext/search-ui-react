@@ -9,8 +9,11 @@ import recursivelyMapChildren from './utils/recursivelyMapChildren';
  * @public
  */
 export interface EntityPreviewsProps {
+  /** Results associated with the provided verticalKey are passed to the EntityPreviews children function. */
   verticalKey: string,
+  /** The entity preview render function which is provided results for the specified vertical. */
   children: (results: Result[], index: number) => JSX.Element,
+  /** Limits the number of results provided to the render function. */
   limit?: number
 }
 

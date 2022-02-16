@@ -1,5 +1,10 @@
 import { createContext, useContext } from 'react';
 
+/**
+ * The data associated with the currently focused item.
+ *
+ * @public
+ */
 export type FocusedItemData = Record<string, unknown>;
 
 /**

@@ -16,10 +16,10 @@ export interface SectionHeaderConfig
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [appliedQueryFilters?](./answers-react-components.sectionheaderconfig.appliedqueryfilters.md) | AppliedQueryFilter\[\] | <i>(Optional)</i> |
-|  [cssCompositionMethod?](./answers-react-components.sectionheaderconfig.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> |
-|  [customCssClasses?](./answers-react-components.sectionheaderconfig.customcssclasses.md) | [SectionHeaderCssClasses](./answers-react-components.sectionheadercssclasses.md) | <i>(Optional)</i> |
-|  [label](./answers-react-components.sectionheaderconfig.label.md) | string |  |
-|  [verticalKey](./answers-react-components.sectionheaderconfig.verticalkey.md) | string |  |
-|  [viewAllButton?](./answers-react-components.sectionheaderconfig.viewallbutton.md) | boolean | <i>(Optional)</i> |
+|  [appliedQueryFilters?](./answers-react-components.sectionheaderconfig.appliedqueryfilters.md) | AppliedQueryFilter\[\] | <i>(Optional)</i> An array of AppliedQueryFilters which are displayed in the section header. |
+|  [cssCompositionMethod?](./answers-react-components.sectionheaderconfig.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes |
+|  [customCssClasses?](./answers-react-components.sectionheaderconfig.customcssclasses.md) | [SectionHeaderCssClasses](./answers-react-components.sectionheadercssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [label](./answers-react-components.sectionheaderconfig.label.md) | string | The display label for the section header. |
+|  [verticalKey](./answers-react-components.sectionheaderconfig.verticalkey.md) | string | The verticalKey associated with the section. |
+|  [viewAllButton?](./answers-react-components.sectionheaderconfig.viewallbutton.md) | boolean | <i>(Optional)</i> Display a button to view all results for that section, if true. |
 

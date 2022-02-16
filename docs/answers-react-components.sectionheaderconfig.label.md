@@ -4,6 +4,8 @@
 
 ## SectionHeaderConfig.label property
 
+The display label for the section header.
+
 <b>Signature:</b>
 
 ```typescript

@@ -81,6 +81,21 @@ export interface AppliedFiltersProps {
 }
 
 // @public
+export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | undefined> | undefined>;
+
+// @public
+export interface AutocompleteResultCssClasses {
+    // (undocumented)
+    highlighted?: string;
+    // (undocumented)
+    icon?: string;
+    // (undocumented)
+    nonHighlighted?: string;
+    // (undocumented)
+    option?: string;
+}
+
+// @public
 export type CardComponent = (props: CardProps) => JSX.Element;
 
 // @public
@@ -175,9 +190,7 @@ export interface DirectAnswerCssClasses {
 
 // @public
 export interface DirectAnswerProps {
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
-    // (undocumented)
     customCssClasses?: DirectAnswerCssClasses;
 }
 
@@ -201,21 +214,25 @@ export function Dropdown(props: PropsWithChildren<{
     activeClassName?: string;
 }>): JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "DropdownItemProps" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
+
+// @public
+export type DropdownItemProps = PropsWithChildren<{
+    value: string;
+    className?: string;
+    focusedClassName?: string;
+    itemData?: Record<string, unknown> | undefined;
+    onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
+}>;
 
 // @public
 export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
 
 // @public
 export interface EntityPreviewsProps {
-    // (undocumented)
     children: (results: Result[], index: number) => JSX.Element;
-    // (undocumented)
     limit?: number;
-    // (undocumented)
     verticalKey: string;
 }
 
@@ -269,8 +286,6 @@ export interface FiltersCssClasses extends CollapsibleLabelCssClasses {
 // @public
 export function FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod }: FilterSearchProps): JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "AutocompleteResultCssClasses" needs to be exported by the entry point index.d.ts
-//
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
     // (undocumented)
@@ -295,15 +310,10 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 
 // @public
 export interface FilterSearchProps {
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
-    // (undocumented)
     customCssClasses?: FilterSearchCssClasses;
-    // (undocumented)
     label: string;
-    // (undocumented)
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
-    // (undocumented)
     sectioned: boolean;
 }
 
@@ -313,6 +323,9 @@ export interface FiltersProps {
     customCssClasses?: FiltersCssClasses;
     filterConfigs: FilterConfig[];
 }
+
+// @public
+export type FocusedItemData = Record<string, unknown>;
 
 // @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
@@ -331,11 +344,8 @@ export interface LocationBiasCssClasses {
 
 // @public
 export interface LocationBiasProps {
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
-    // (undocumented)
     customCssClasses?: LocationBiasCssClasses;
-    // (undocumented)
     geolocationOptions?: PositionOptions;
 }
 
@@ -364,10 +374,11 @@ export interface PaginationCssClasses {
 }
 
 // @public
+export type QueryFunc = () => Promise<void>;
+
+// @public
 export function renderCheckboxOption({ option, selected, onClick, cssClasses }: CheckboxOptionProps): JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "FocusedItemData" needs to be exported by the entry point index.d.ts
-//
 // @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
@@ -422,30 +433,19 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 
 // @public
 export interface SearchBarProps {
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
-    // (undocumented)
     customCssClasses?: SearchBarCssClasses;
-    // (undocumented)
     geolocationOptions?: PositionOptions;
-    // (undocumented)
     hideRecentSearches?: boolean;
-    // (undocumented)
     hideVerticalLinks?: boolean;
-    // (undocumented)
     onSearch?: onSearchFunc;
-    // (undocumented)
     onSelectVerticalLink?: (data: {
         verticalLink: VerticalLink;
         querySource: QuerySource;
     }) => void;
-    // (undocumented)
     placeholder?: string;
-    // (undocumented)
     recentSearchesLimit?: number;
-    // (undocumented)
     verticalKeyToLabel?: (verticalKey: string) => string;
-    // (undocumented)
     visualAutocompleteConfig?: VisualAutocompleteConfig;
 }
 
@@ -466,17 +466,11 @@ export function SectionHeader(props: SectionHeaderConfig): JSX.Element;
 
 // @public
 export interface SectionHeaderConfig {
-    // (undocumented)
     appliedQueryFilters?: AppliedQueryFilter[];
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
-    // (undocumented)
     customCssClasses?: SectionHeaderCssClasses;
-    // (undocumented)
     label: string;
-    // (undocumented)
     verticalKey: string;
-    // (undocumented)
     viewAllButton?: boolean;
 }
 
@@ -511,11 +505,8 @@ export interface SpellCheckCssClasses {
 
 // @public
 export interface SpellCheckProps {
-    // (undocumented)
     cssCompositionMethod?: CompositionMethod;
-    // (undocumented)
     customCssClasses?: SpellCheckCssClasses;
-    // (undocumented)
     onClick?: (data: {
         correctedQuery: string;
         verticalKey: string;
@@ -602,9 +593,6 @@ export interface UniversalResultsProps {
 // @public
 export function useAnalytics(): AnalyticsService | null;
 
-// Warning: (ae-forgotten-export) The symbol "QueryFunc" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "AutocompleteRef" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function useSearchWithNearMeHandling(answersActions: AnswersHeadless, geolocationOptions?: PositionOptions, onSearch?: onSearchFunc): [QueryFunc, AutocompleteRef];
 
@@ -618,9 +606,7 @@ export interface VerticalConfig {
 
 // @public
 export interface VerticalLink {
-    // (undocumented)
     query: string;
-    // (undocumented)
     verticalKey: string;
 }
 
@@ -643,11 +629,8 @@ export interface VerticalResultsProps {
 
 // @public
 export interface VisualAutocompleteConfig {
-    // (undocumented)
     entityPreviewsDebouncingTime?: number;
-    // (undocumented)
     entityPreviewSearcher?: AnswersHeadless;
-    // (undocumented)
     renderEntityPreviews?: RenderEntityPreviews;
 }
 

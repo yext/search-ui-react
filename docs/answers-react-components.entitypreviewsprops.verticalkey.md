@@ -4,6 +4,8 @@
 
 ## EntityPreviewsProps.verticalKey property
 
+Results associated with the provided verticalKey are passed to the EntityPreviews children function.
+
 <b>Signature:</b>
 
 ```typescript

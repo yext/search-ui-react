@@ -4,6 +4,8 @@
 
 ## EntityPreviewsProps.limit property
 
+Limits the number of results provided to the render function.
+
 <b>Signature:</b>
 
 ```typescript

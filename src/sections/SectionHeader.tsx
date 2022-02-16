@@ -39,12 +39,18 @@ const builtInCssClasses: SectionHeaderCssClasses = {
  * @public
  */
 export interface SectionHeaderConfig {
+  /** The display label for the section header. */
   label: string,
   // resultsCountConfig?: ResultsCountConfig,
+  /** An array of AppliedQueryFilters which are displayed in the section header. */
   appliedQueryFilters?: AppliedQueryFilter[],
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: SectionHeaderCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
+  /** The verticalKey associated with the section. */
   verticalKey: string,
+  /** Display a button to view all results for that section, if true. */
   viewAllButton?: boolean
 }
 

@@ -41,6 +41,7 @@
 |  [AppliedFiltersCssClasses](./answers-react-components.appliedfilterscssclasses.md) | The CSS class interface used for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
 |  [AppliedFiltersDisplayProps](./answers-react-components.appliedfiltersdisplayprops.md) | Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
 |  [AppliedFiltersProps](./answers-react-components.appliedfiltersprops.md) | Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
+|  [AutocompleteResultCssClasses](./answers-react-components.autocompleteresultcssclasses.md) | The CSS class interface for the Autocomplete Result. |
 |  [CardProps](./answers-react-components.cardprops.md) | The props provided to every [CardComponent](./answers-react-components.cardcomponent.md)<!-- -->. |
 |  [CheckboxOptionCssClasses](./answers-react-components.checkboxoptioncssclasses.md) | The CSS class interface used in [renderCheckboxOption()](./answers-react-components.rendercheckboxoption.md)<!-- -->. |
 |  [CheckboxOptionProps](./answers-react-components.checkboxoptionprops.md) | The props of a checkbox option |
@@ -92,9 +93,13 @@
 
 |  Type Alias | Description |
 |  --- | --- |
+|  [AutocompleteRef](./answers-react-components.autocompleteref.md) | A ref which contains a promise of the latest autocomplete response in order get the latest search intents. |
 |  [CardComponent](./answers-react-components.cardcomponent.md) | A functional component that can be used to render a result card. |
 |  [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining a component's built-in CSS classes with custom CSS classes |
+|  [DropdownItemProps](./answers-react-components.dropdownitemprops.md) | Props for the [DropdownItem()](./answers-react-components.dropdownitem.md) |
+|  [FocusedItemData](./answers-react-components.focuseditemdata.md) | The data associated with the currently focused item. |
 |  [onSearchFunc](./answers-react-components.onsearchfunc.md) | The interface of a function which is called on a search when provied to [useSearchWithNearMeHandling()](./answers-react-components.usesearchwithnearmehandling.md)<!-- -->. |
+|  [QueryFunc](./answers-react-components.queryfunc.md) | The type of a function for executing a query and returning a promise. |
 |  [RenderEntityPreviews](./answers-react-components.renderentitypreviews.md) | The type of a functional React component which renders entity previews based on the autocomplete loading state and the vertical results array. |
 |  [SectionComponent](./answers-react-components.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 

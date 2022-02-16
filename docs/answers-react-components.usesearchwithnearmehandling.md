@@ -22,5 +22,5 @@ export default function useSearchWithNearMeHandling(answersActions: AnswersHeadl
 
 <b>Returns:</b>
 
-\[QueryFunc, AutocompleteRef\]
+\[[QueryFunc](./answers-react-components.queryfunc.md)<!-- -->, [AutocompleteRef](./answers-react-components.autocompleteref.md)<!-- -->\]
 
