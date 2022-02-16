@@ -51,7 +51,7 @@ const builtInCssClasses: SearchBarCssClasses = {
 };
 
 /**
- * The CSS class interface for the {@link SearchBar}
+ * The CSS class interface for the {@link SearchBar}.
  *
  * @public
  */
@@ -95,7 +95,7 @@ export type RenderEntityPreviews = (
 ) => JSX.Element;
 
 /**
- * The configuration options for Visual Autocomplete
+ * The configuration options for Visual Autocomplete.
  *
  * @public
  */
@@ -109,7 +109,7 @@ export interface VisualAutocompleteConfig {
 }
 
 /**
- * The data model for a vertical link
+ * The data model for a vertical link.
  *
  * @public
  */

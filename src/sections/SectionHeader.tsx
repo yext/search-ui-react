@@ -34,11 +34,11 @@ const builtInCssClasses: SectionHeaderCssClasses = {
 };
 
 /**
- * The props for a Secction Header
+ * The props for a {@link SectionHeader}.
  *
  * @public
  */
-export interface SectionHeaderConfig {
+export interface SectionHeaderProps {
   /** The display label for the section header. */
   label: string,
   // resultsCountConfig?: ResultsCountConfig,
@@ -60,10 +60,10 @@ export interface SectionHeaderConfig {
  *
  * @public
  *
- * @param props - {@link SectionHeaderConfig}
+ * @param props - {@link SectionHeaderProps}
  * @returns A React element for a Section Header
  */
-export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
+export default function SectionHeader(props: SectionHeaderProps): JSX.Element {
   const {
     label,
     verticalKey,

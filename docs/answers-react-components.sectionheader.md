@@ -9,14 +9,14 @@ The header of a section which includes an icon, the section title, applied query
 <b>Signature:</b>
 
 ```typescript
-export default function SectionHeader(props: SectionHeaderConfig): JSX.Element;
+export default function SectionHeader(props: SectionHeaderProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [SectionHeaderConfig](./answers-react-components.sectionheaderconfig.md) | [SectionHeaderConfig](./answers-react-components.sectionheaderconfig.md) |
+|  props | [SectionHeaderProps](./answers-react-components.sectionheaderprops.md) | [SectionHeaderProps](./answers-react-components.sectionheaderprops.md) |
 
 <b>Returns:</b>
 

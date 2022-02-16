@@ -4,7 +4,7 @@
 
 ## VisualAutocompleteConfig interface
 
-The configuration options for Visual Autocomplete
+The configuration options for Visual Autocomplete.
 
 <b>Signature:</b>
 

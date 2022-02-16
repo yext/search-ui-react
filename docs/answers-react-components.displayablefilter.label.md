@@ -4,7 +4,7 @@
 
 ## DisplayableFilter.label property
 
-The label of the filter which is displayed by the UI
+The label of the filter which is displayed by the UI.
 
 <b>Signature:</b>
 

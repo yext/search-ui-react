@@ -12,6 +12,6 @@ export interface DisplayableFilter {
   filter: Filter,
   /** The label which designates which group this filter belongs to. */
   groupLabel: string,
-  /** The label of the filter which is displayed by the UI */
+  /** The label of the filter which is displayed by the UI. */
   label: string
 }

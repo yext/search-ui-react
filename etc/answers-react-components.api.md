@@ -222,30 +222,6 @@ export interface DisplayableFilter {
 }
 
 // @public
-export function Dropdown(props: PropsWithChildren<{
-    screenReaderText: string;
-    screenReaderInstructions?: string;
-    initialValue?: string;
-    parentQuery?: string;
-    onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void;
-    onToggle?: (isActive: boolean, value: string) => void;
-    className?: string;
-    activeClassName?: string;
-}>): JSX.Element;
-
-// @public
-export function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
-
-// @public
-export type DropdownItemProps = PropsWithChildren<{
-    value: string;
-    className?: string;
-    focusedClassName?: string;
-    itemData?: Record<string, unknown> | undefined;
-    onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
-}>;
-
-// @public
 export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
 
 // @public
@@ -543,17 +519,7 @@ export interface SectionConfig {
 }
 
 // @public
-export function SectionHeader(props: SectionHeaderConfig): JSX.Element;
-
-// @public
-export interface SectionHeaderConfig {
-    appliedQueryFilters?: AppliedQueryFilter[];
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: SectionHeaderCssClasses;
-    label: string;
-    verticalKey: string;
-    viewAllButton?: boolean;
-}
+export function SectionHeader(props: SectionHeaderProps): JSX.Element;
 
 // @public
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
@@ -567,6 +533,16 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
     viewMoreContainer?: string;
     // (undocumented)
     viewMoreLink?: string;
+}
+
+// @public
+export interface SectionHeaderProps {
+    appliedQueryFilters?: AppliedQueryFilter[];
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: SectionHeaderCssClasses;
+    label: string;
+    verticalKey: string;
+    viewAllButton?: boolean;
 }
 
 // @public

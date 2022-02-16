@@ -4,7 +4,7 @@
 
 ## VerticalLink interface
 
-The data model for a vertical link
+The data model for a vertical link.
 
 <b>Signature:</b>
 

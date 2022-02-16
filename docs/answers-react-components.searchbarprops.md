@@ -26,5 +26,5 @@ export interface SearchBarProps
 |  [placeholder?](./answers-react-components.searchbarprops.placeholder.md) | string | <i>(Optional)</i> The search bar's placeholder text. |
 |  [recentSearchesLimit?](./answers-react-components.searchbarprops.recentsearcheslimit.md) | number | <i>(Optional)</i> Limits the number of recent searches shown. |
 |  [verticalKeyToLabel?](./answers-react-components.searchbarprops.verticalkeytolabel.md) | (verticalKey: string) =&gt; string | <i>(Optional)</i> A function which returns a display label for the given verticalKey. |
-|  [visualAutocompleteConfig?](./answers-react-components.searchbarprops.visualautocompleteconfig.md) | [VisualAutocompleteConfig](./answers-react-components.visualautocompleteconfig.md) | <i>(Optional)</i> The configuration options for Visual Autocomplete |
+|  [visualAutocompleteConfig?](./answers-react-components.searchbarprops.visualautocompleteconfig.md) | [VisualAutocompleteConfig](./answers-react-components.visualautocompleteconfig.md) | <i>(Optional)</i> The configuration options for Visual Autocomplete. |
 

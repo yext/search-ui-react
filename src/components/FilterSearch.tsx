@@ -10,7 +10,7 @@ import { processTranslation } from './utils/processTranslation';
 import renderAutocompleteResult, { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 
 /**
- * The CSS class interface for {@link FilterSearch}
+ * The CSS class interface for {@link FilterSearch}.
  *
  * @public
  */

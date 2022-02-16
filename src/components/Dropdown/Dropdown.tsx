@@ -9,7 +9,7 @@ import ScreenReader from '../ScreenReader';
 import recursivelyMapChildren from '../utils/recursivelyMapChildren';
 import DropdownItem, { DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 
-type DropdownItemData = {
+interface DropdownItemData {
   value: string,
   itemData?: Record<string, unknown>
 };
