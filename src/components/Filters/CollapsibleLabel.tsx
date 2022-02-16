@@ -7,7 +7,7 @@ import { useFilterGroupContext } from './FilterGroupContext';
  * 
  * @public
  */
-export type CollapsibleLabelProps = {
+export interface CollapsibleLabelProps {
   /** The label's text value which is displayed by the component. */
   label?: string
 };

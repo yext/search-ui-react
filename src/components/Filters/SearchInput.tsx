@@ -5,7 +5,7 @@ import { useFilterGroupContext } from './FilterGroupContext';
  * 
  * @public
  */
-export type SearchInputProps = {
+export interface SearchInputProps {
   /** CSS class names applied to the input element. */
   className?: string,
   /** The input's placeholder text when no text has been entered by the user. */

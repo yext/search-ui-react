@@ -2,14 +2,19 @@
 
 [Home](./index.md) &gt; [@yext/answers-react-components](./answers-react-components.md) &gt; [Filters](./answers-react-components.filters.md) &gt; [CollapsibleLabelProps](./answers-react-components.filters.collapsiblelabelprops.md)
 
-## Filters.CollapsibleLabelProps type
+## Filters.CollapsibleLabelProps interface
 
 Props for [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->.
 
 <b>Signature:</b>
 
 ```typescript
-export declare type CollapsibleLabelProps = {
-    label?: string;
-};
+export interface CollapsibleLabelProps 
 ```
+
+## Properties
+
+|  Property | Type | Description |
+|  --- | --- | --- |
+|  [label?](./answers-react-components.filters.collapsiblelabelprops.label.md) | string | <i>(Optional)</i> The label's text value which is displayed by the component. |
+

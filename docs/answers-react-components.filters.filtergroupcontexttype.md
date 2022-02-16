@@ -2,19 +2,24 @@
 
 [Home](./index.md) &gt; [@yext/answers-react-components](./answers-react-components.md) &gt; [Filters](./answers-react-components.filters.md) &gt; [FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md)
 
-## Filters.FilterGroupContextType type
+## Filters.FilterGroupContextType interface
 
 FilterGroupContext is responsible for searchable filters and collapsible filter groups.
 
 <b>Signature:</b>
 
 ```typescript
-export declare type FilterGroupContextType = {
-    searchValue: string;
-    defaultFieldId?: string;
-    setSearchValue: (value: string) => void;
-    getCollapseProps: UseCollapseOutput['getCollapseProps'];
-    getToggleProps: UseCollapseOutput['getToggleProps'];
-    isExpanded: boolean;
-};
+export interface FilterGroupContextType 
 ```
+
+## Properties
+
+|  Property | Type | Description |
+|  --- | --- | --- |
+|  [defaultFieldId?](./answers-react-components.filters.filtergroupcontexttype.defaultfieldid.md) | string | <i>(Optional)</i> |
+|  [getCollapseProps](./answers-react-components.filters.filtergroupcontexttype.getcollapseprops.md) | UseCollapseOutput\['getCollapseProps'\] |  |
+|  [getToggleProps](./answers-react-components.filters.filtergroupcontexttype.gettoggleprops.md) | UseCollapseOutput\['getToggleProps'\] |  |
+|  [isExpanded](./answers-react-components.filters.filtergroupcontexttype.isexpanded.md) | boolean |  |
+|  [searchValue](./answers-react-components.filters.filtergroupcontexttype.searchvalue.md) | string |  |
+|  [setSearchValue](./answers-react-components.filters.filtergroupcontexttype.setsearchvalue.md) | (value: string) =&gt; void |  |
+

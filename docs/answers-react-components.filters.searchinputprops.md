@@ -2,15 +2,20 @@
 
 [Home](./index.md) &gt; [@yext/answers-react-components](./answers-react-components.md) &gt; [Filters](./answers-react-components.filters.md) &gt; [SearchInputProps](./answers-react-components.filters.searchinputprops.md)
 
-## Filters.SearchInputProps type
+## Filters.SearchInputProps interface
 
 Props for the [Filters.SearchInput()](./answers-react-components.filters.searchinput.md)<!-- -->.
 
 <b>Signature:</b>
 
 ```typescript
-export declare type SearchInputProps = {
-    className?: string;
-    placeholderText?: string;
-};
+export interface SearchInputProps 
 ```
+
+## Properties
+
+|  Property | Type | Description |
+|  --- | --- | --- |
+|  [className?](./answers-react-components.filters.searchinputprops.classname.md) | string | <i>(Optional)</i> CSS class names applied to the input element. |
+|  [placeholderText?](./answers-react-components.filters.searchinputprops.placeholdertext.md) | string | <i>(Optional)</i> The input's placeholder text when no text has been entered by the user. |
+

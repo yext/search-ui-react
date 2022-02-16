@@ -11,14 +11,14 @@ import { isDuplicateFilter } from '../../utils/filterutils';
  * 
  * @public
  */
-export type CheckboxOptionProps = {
+export interface CheckboxOptionProps {
   /** The value used to perform filtering */
   value: string | number | boolean,
   /**
    * The fieldId used for filtering.
    * 
    * @remarks
-   * When fieldId is unspecified, it defaults to the defaultFieldId of the nearest {@link Filters.Group}.
+   * When fieldId is unspecified, it defaults to the defaultFieldId of the nearest {@link Filters.FilterGroup}.
    * If there is no fieldId or defaultFieldId, the component does not render and an error is logged.
    */
   fieldId?: string,

@@ -6,7 +6,7 @@ import { UseCollapseOutput } from 'react-collapsed/dist/types';
  *
  * @public
  */
-export type FilterGroupContextType = {
+export interface FilterGroupContextType {
   searchValue: string,
   defaultFieldId?: string,
   setSearchValue: (value: string) => void,

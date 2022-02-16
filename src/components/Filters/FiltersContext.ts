@@ -6,7 +6,7 @@ import { createContext, useContext } from 'react';
  * 
  * @public
  */
-export type FiltersContextType = {
+export interface FiltersContextType {
   handleFilterSelect: (filter: Filter, checked: boolean) => void
   filters: SelectableFilter[]
 };

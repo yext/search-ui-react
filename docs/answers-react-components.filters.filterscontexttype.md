@@ -2,15 +2,20 @@
 
 [Home](./index.md) &gt; [@yext/answers-react-components](./answers-react-components.md) &gt; [Filters](./answers-react-components.filters.md) &gt; [FiltersContextType](./answers-react-components.filters.filterscontexttype.md)
 
-## Filters.FiltersContextType type
+## Filters.FiltersContextType interface
 
 FiltersContext is responsible for handling filter selection.
 
 <b>Signature:</b>
 
 ```typescript
-export declare type FiltersContextType = {
-    handleFilterSelect: (filter: Filter, checked: boolean) => void;
-    filters: SelectableFilter[];
-};
+export interface FiltersContextType 
 ```
+
+## Properties
+
+|  Property | Type | Description |
+|  --- | --- | --- |
+|  [filters](./answers-react-components.filters.filterscontexttype.filters.md) | SelectableFilter\[\] |  |
+|  [handleFilterSelect](./answers-react-components.filters.filterscontexttype.handlefilterselect.md) | (filter: Filter, checked: boolean) =&gt; void |  |
+

@@ -7,7 +7,7 @@ import FiltersContext from './FiltersContext';
  * 
  * @public
  */
-export type FacetsProps = {
+export interface FacetsProps {
   /** CSS class names applied to the component's container div. */
   className?: string,
   /** Whether or not a search is ran when a filter is selected. */

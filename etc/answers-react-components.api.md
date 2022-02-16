@@ -113,21 +113,22 @@ export interface CardProps {
 function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
 
 // @public
-type CheckboxOptionProps = {
-    value: string | number | boolean;
+interface CheckboxOptionProps {
+    cssCompositionMethod?: CompositionMethod;
+    // Warning: (ae-forgotten-export) The symbol "CheckboxCssClasses" needs to be exported by the entry point index.d.ts
+    customCssClasses?: CheckboxCssClasses;
     fieldId?: string;
     label?: string;
-    customCssClasses?: CheckboxCssClasses;
-    cssCompositionMethod?: CompositionMethod;
-};
+    value: string | number | boolean;
+}
 
 // @public
 function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element;
 
 // @public
-type CollapsibleLabelProps = {
+interface CollapsibleLabelProps {
     label?: string;
-};
+}
 
 // @public
 function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element;
@@ -229,11 +230,11 @@ export interface EntityPreviewsProps {
 function Facets(props: FacetsProps): JSX.Element;
 
 // @public
-type FacetsProps = {
+interface FacetsProps {
+    children?: (facets: DisplayableFacet[]) => ReactNode;
     className?: string;
     searchOnChange?: boolean;
-    children?: (facets: DisplayableFacet[]) => ReactNode;
-};
+}
 
 // @public
 function FilterGroup(props: FilterGroupProps): JSX.Element;
@@ -242,14 +243,20 @@ function FilterGroup(props: FilterGroupProps): JSX.Element;
 const FilterGroupContext: Context<FilterGroupContextType | null>;
 
 // @public
-type FilterGroupContextType = {
-    searchValue: string;
+interface FilterGroupContextType {
+    // (undocumented)
     defaultFieldId?: string;
-    setSearchValue: (value: string) => void;
+    // (undocumented)
     getCollapseProps: UseCollapseOutput['getCollapseProps'];
+    // (undocumented)
     getToggleProps: UseCollapseOutput['getToggleProps'];
+    // (undocumented)
     isExpanded: boolean;
-};
+    // (undocumented)
+    searchValue: string;
+    // (undocumented)
+    setSearchValue: (value: string) => void;
+}
 
 // @public
 type FilterGroupProps = PropsWithChildren<{
@@ -288,10 +295,12 @@ export { Filters }
 const FiltersContext: Context<FiltersContextType | null>;
 
 // @public
-type FiltersContextType = {
-    handleFilterSelect: (filter: Filter, checked: boolean) => void;
+interface FiltersContextType {
+    // (undocumented)
     filters: SelectableFilter[];
-};
+    // (undocumented)
+    handleFilterSelect: (filter: Filter, checked: boolean) => void;
+}
 
 // @public
 export function FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod }: FilterSearchProps): JSX.Element;
@@ -458,10 +467,10 @@ export interface SearchBarProps {
 function SearchInput(props: SearchInputProps): JSX.Element;
 
 // @public
-type SearchInputProps = {
+interface SearchInputProps {
     className?: string;
     placeholderText?: string;
-};
+}
 
 // @public
 export type SectionComponent = (props: SectionConfig) => JSX.Element | null;
@@ -650,7 +659,6 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// src/components/Filters/CheckboxOption.tsx:28:3 - (ae-forgotten-export) The symbol "CheckboxCssClasses" needs to be exported by the entry point index.d.ts
 // src/components/cards/StandardCard.tsx:16:5 - (ae-forgotten-export) The symbol "FieldData" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
