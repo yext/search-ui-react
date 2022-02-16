@@ -8,6 +8,7 @@ export { default as CollapsibleSection } from './CollapsibleSection';
 export type { CollapsibleSectionProps } from './CollapsibleSection';
 
 export { default as ResponsiveDivider } from './ResponsiveDivider';
+export type { ResponsiveDividerProps } from './ResponsiveDivider';
 
 export { default as Facets } from './Facets';
 export type { FacetsProps } from './Facets';

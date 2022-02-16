@@ -16,7 +16,7 @@ export default function FilterGroup(props: FilterGroupProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | FilterGroupProps |  |
+|  props | FilterGroupProps | [Filters.FilterGroupProps](./answers-react-components.filters.filtergroupprops.md) |
 
 <b>Returns:</b>
 

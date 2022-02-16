@@ -16,7 +16,7 @@ export default function ResponsiveDivider(props: ResponsiveDividerProps): JSX.El
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | ResponsiveDividerProps |  |
+|  props | ResponsiveDividerProps | [Filters.ResponsiveDividerProps](./answers-react-components.filters.responsivedividerprops.md) |
 
 <b>Returns:</b>
 

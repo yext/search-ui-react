@@ -19,6 +19,8 @@ export type StaticFiltersProps = PropsWithChildren<{
  * The representation of the facets is configured using props.children,
  * and is intended for use with components like {@link Filters.CheckboxOption}.
  * 
+ * @param props - {@link Filters.StaticFiltersProps}
+ * 
  * @public
  */
 export default function StaticFilters(props: StaticFiltersProps): JSX.Element {

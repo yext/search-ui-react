@@ -44,5 +44,6 @@
 |  --- | --- |
 |  [CollapsibleSectionProps](./answers-react-components.filters.collapsiblesectionprops.md) | Props for the [Filters.CollapsibleSection()](./answers-react-components.filters.collapsiblesection.md)<!-- -->. |
 |  [FilterGroupProps](./answers-react-components.filters.filtergroupprops.md) | Props for a [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
+|  [ResponsiveDividerProps](./answers-react-components.filters.responsivedividerprops.md) | Props for [Filters.ResponsiveDivider()](./answers-react-components.filters.responsivedivider.md)<!-- -->. |
 |  [StaticFiltersProps](./answers-react-components.filters.staticfiltersprops.md) | Props for the [Filters.StaticFilters()](./answers-react-components.filters.staticfilters.md)<!-- -->. |
 

@@ -23,6 +23,8 @@ export type ResponsiveDividerProps = {
  * @remarks
  * By default, automatically resizes to full screen width at our default mobile breakpoint.
  * 
+ * @param props - {@link Filters.ResponsiveDividerProps}
+ * 
  * @public
  */
 export default function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element {

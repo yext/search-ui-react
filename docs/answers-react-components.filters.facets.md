@@ -18,7 +18,7 @@ export default function Facets(props: FacetsProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | FacetsProps |  |
+|  props | FacetsProps | [Filters.FacetsProps](./answers-react-components.filters.facetsprops.md) |
 
 <b>Returns:</b>
 

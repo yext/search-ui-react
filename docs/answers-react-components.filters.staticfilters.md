@@ -18,7 +18,7 @@ export default function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | StaticFiltersProps |  |
+|  props | StaticFiltersProps | [Filters.StaticFiltersProps](./answers-react-components.filters.staticfiltersprops.md) |
 
 <b>Returns:</b>
 

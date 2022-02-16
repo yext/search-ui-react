@@ -283,6 +283,7 @@ declare namespace Filters {
         CollapsibleSection,
         CollapsibleSectionProps,
         ResponsiveDivider,
+        ResponsiveDividerProps,
         Facets,
         FacetsProps,
         FiltersContext,
@@ -401,10 +402,15 @@ export type QueryFunc = () => Promise<void>;
 // @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "ResponsiveDividerProps" needs to be exported by the entry point index.d.ts
-//
 // @public
 function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element;
+
+// @public
+type ResponsiveDividerProps = {
+    mobileBreakpoint?: number;
+    desktopClassName?: string;
+    mobileClassName?: string;
+} & ComponentPropsWithRef<'div'>;
 
 // @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;

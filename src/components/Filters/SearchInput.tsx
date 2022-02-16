@@ -16,6 +16,8 @@ export interface SearchInputProps {
  * SearchInput is a simple input component that updates the
  * active searchValue for a particular {@link Filters.FilterGroup}.
  * 
+ * @param props - {@link Filters.SearchInputProps}
+ * 
  * @public
  */
 export default function SearchInput(props: SearchInputProps): JSX.Element {

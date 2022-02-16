@@ -16,7 +16,7 @@ export default function CollapsibleSection(props: CollapsibleSectionProps): JSX.
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | CollapsibleSectionProps |  |
+|  props | CollapsibleSectionProps | [Filters.CollapsibleSectionProps](./answers-react-components.filters.collapsiblesectionprops.md) |
 
 <b>Returns:</b>
 

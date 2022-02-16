@@ -18,6 +18,8 @@ export interface CollapsibleLabelProps {
  *
  * For more customization, use {@link Filters.FilterGroupContext} directly.
  * 
+ * @param props - {@link Filters.CollapsibleLabelProps}
+ * 
  * @public
  */
 export default function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element {

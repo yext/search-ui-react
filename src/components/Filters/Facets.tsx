@@ -28,6 +28,8 @@ export interface FacetsProps {
  * The representation of the facets is configured using a FACC (function as a child component)
  * The FACC is passed the facets data, and is intended for use with components like {@link Filters.CheckboxOption}.
  * 
+ * @param props - {@link Filters.FacetsProps}
+ * 
  * @public
  */
 export default function Facets(props: FacetsProps): JSX.Element {

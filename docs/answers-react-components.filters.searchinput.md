@@ -16,7 +16,7 @@ export default function SearchInput(props: SearchInputProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | SearchInputProps |  |
+|  props | SearchInputProps | [Filters.SearchInputProps](./answers-react-components.filters.searchinputprops.md) |
 
 <b>Returns:</b>
 
