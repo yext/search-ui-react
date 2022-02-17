@@ -118,12 +118,12 @@ export default function AlternativeVerticals({
   });
 
   const getSuggestionUrl = customGetSuggestionUrl 
-  ? customGetSuggestionUrl
-  : (data: VerticalLink | UniversalLink) => {
-      return isVerticalLink(data)
-      ? `/${data.verticalKey}?query=${data.query}`
-      :`/?query=${data.query}`;
-    };
+    ? customGetSuggestionUrl
+    : (data: VerticalLink | UniversalLink) => {
+        return isVerticalLink(data)
+        ? `/${data.verticalKey}?query=${data.query}`
+        :`/?query=${data.query}`;
+      };
 
   function buildVerticalSuggestions(
     verticalsConfig: VerticalConfig[],
