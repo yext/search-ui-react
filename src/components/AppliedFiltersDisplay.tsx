@@ -6,8 +6,6 @@ import { AppliedFiltersCssClasses } from './AppliedFilters';
 
 /**
  * Properties for {@link AppliedFilters}.
- *
- * @public
  */
 export interface AppliedFiltersDisplayProps {
   /**
@@ -22,8 +20,6 @@ export interface AppliedFiltersDisplayProps {
 
 /**
  * A component that renders applied filters based on a given list of {@link DisplayableFilter}.
- *
- * @public
  *
  * @param props - {@link AppliedFiltersDisplayProps}
  * @returns A React element for the applied filters

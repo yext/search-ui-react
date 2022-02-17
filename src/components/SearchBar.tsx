@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Fragment, PropsWithChildren, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import useRecentSearches from '../hooks/useRecentSearches';
-import useSearchWithNearMeHandling, { onSearchFunc } from '../hooks/useSearchWithNearMeHandling';
+import useSearchWithNearMeHandling from '../hooks/useSearchWithNearMeHandling';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import VerticalDividerIcon from '../icons/BarIcon';
 import RecentSearchIcon from '../icons/HistoryIcon';
@@ -125,6 +125,13 @@ const isVerticalLink = (obj: unknown): obj is VerticalLink => {
 };
 
 /**
+ * The interface of a function which is called on a search.
+ * 
+ * @public
+ */
+export type onSearchFunc = (searchEventData: { verticalKey?: string, query?: string }) => void;
+
+/**
  * The props for the {@link SearchBar} component.
  *
  * @public
@@ -150,8 +157,8 @@ export interface SearchBarProps {
   hideRecentSearches?: boolean,
   /** Limits the number of recent searches shown. */
   recentSearchesLimit?: number,
-  /** A callback which is called whena search is ran. */
-  onSearch?: onSearchFunc
+  /** A callback which is called when a search is ran. */
+  onSearch?: onSearchFunc;
 }
 
 /**

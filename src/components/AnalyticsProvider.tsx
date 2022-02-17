@@ -3,7 +3,7 @@ import { provideAnalytics, AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsContext } from '../hooks/useAnalytics';
 
 /**
- * A component that provides analytics for its children.
+ * A higher-order component which provides analytics for its children.
  *
  * @public
  *

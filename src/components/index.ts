@@ -5,6 +5,7 @@ export type {
   VisualAutocompleteConfig,
   RenderEntityPreviews,
   VerticalLink,
+  onSearchFunc
 } from './SearchBar';
 export type { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 export type { EntityPreviewsProps } from './EntityPreviews';
@@ -42,10 +43,6 @@ export type {
   AppliedFiltersCssClasses,
   AppliedFiltersProps
 } from './AppliedFilters';
-export { default as AppliedFiltersDisplay } from './AppliedFiltersDisplay';
-export type {
-  AppliedFiltersDisplayProps
-} from './AppliedFiltersDisplay';
 
 export { default as UniversalResults } from './UniversalResults';
 export type {

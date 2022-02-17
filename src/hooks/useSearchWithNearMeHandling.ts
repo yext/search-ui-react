@@ -2,22 +2,15 @@ import { AnswersHeadless, SearchTypeEnum } from '@yext/answers-headless-react';
 import { executeSearch, updateLocationIfNeeded } from '../utils/search-operations';
 import { MutableRefObject, useRef } from 'react';
 import { AutocompleteResponse, SearchIntent } from '@yext/answers-headless-react';
+import { onSearchFunc } from '../components/SearchBar';
 
 /** The type of a function for executing a query and returning a promise. @public */
 export type QueryFunc = () => Promise<void>;
 /**
  * A ref which contains a promise of the latest autocomplete response in order get the
  * latest search intents.
- * 
- * @public
  */
 export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | undefined> | undefined>;
-/**
- * The interface of a function which is called on a search.
- * 
- * @public
- */
-export type onSearchFunc = (searchEventData: { verticalKey?: string, query?: string }) => void;
 
 /**
  * Returns a search action that will handle near me searches, by first checking
