@@ -4,7 +4,7 @@
 
 ## DisplayableFilter.filter property
 
-The associated filter.
+The Filter associated with the DisplayableFilter.
 
 <b>Signature:</b>
 

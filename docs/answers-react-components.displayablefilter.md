@@ -16,7 +16,7 @@ export interface DisplayableFilter
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [filter](./answers-react-components.displayablefilter.filter.md) | Filter | The associated filter. |
+|  [filter](./answers-react-components.displayablefilter.filter.md) | Filter | The Filter associated with the DisplayableFilter. |
 |  [filterType](./answers-react-components.displayablefilter.filtertype.md) | 'NLP\_FILTER' \| 'STATIC\_FILTER' \| 'FACET' | The type of filter. |
 |  [groupLabel](./answers-react-components.displayablefilter.grouplabel.md) | string | The label which designates which group this filter belongs to. |
 |  [label](./answers-react-components.displayablefilter.label.md) | string | The label of the filter which is displayed by the UI. |

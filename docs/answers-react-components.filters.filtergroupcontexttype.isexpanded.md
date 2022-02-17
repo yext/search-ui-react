@@ -4,6 +4,8 @@
 
 ## Filters.FilterGroupContextType.isExpanded property
 
+Indicates whether or not the filter group is expanded.
+
 <b>Signature:</b>
 
 ```typescript

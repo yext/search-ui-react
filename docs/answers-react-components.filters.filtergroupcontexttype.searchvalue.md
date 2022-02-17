@@ -4,6 +4,8 @@
 
 ## Filters.FilterGroupContextType.searchValue property
 
+The value which is being used to search the FilterGroup.
+
 <b>Signature:</b>
 
 ```typescript

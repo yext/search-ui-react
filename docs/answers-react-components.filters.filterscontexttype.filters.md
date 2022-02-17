@@ -4,6 +4,8 @@
 
 ## Filters.FiltersContextType.filters property
 
+The list of SelectableFilters provided by the context.
+
 <b>Signature:</b>
 
 ```typescript

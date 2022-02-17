@@ -270,17 +270,12 @@ const FilterGroupContext: Context<FilterGroupContextType | null>;
 
 // @public
 interface FilterGroupContextType {
-    // (undocumented)
+    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     defaultFieldId?: string;
-    // (undocumented)
     getCollapseProps: UseCollapseOutput['getCollapseProps'];
-    // (undocumented)
     getToggleProps: UseCollapseOutput['getToggleProps'];
-    // (undocumented)
     isExpanded: boolean;
-    // (undocumented)
     searchValue: string;
-    // (undocumented)
     setSearchValue: (value: string) => void;
 }
 
@@ -326,9 +321,7 @@ const FiltersContext: Context<FiltersContextType | null>;
 
 // @public
 interface FiltersContextType {
-    // (undocumented)
     filters: SelectableFilter[];
-    // (undocumented)
     handleFilterSelect: (filter: Filter, checked: boolean) => void;
 }
 
@@ -708,7 +701,7 @@ export interface VisualAutocompleteConfig {
 // Warnings were encountered during analysis:
 //
 // src/components/Filters/FilterGroup.tsx:12:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// src/components/Filters/FilterGroup.tsx:14:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// src/components/Filters/FilterGroup.tsx:14:3 - (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
 
 // (No @packageDocumentation comment for this package)
 

@@ -4,6 +4,8 @@
 
 ## Filters.FilterGroupContextType.getCollapseProps property
 
+Returns the attributes used to collapse the filter group.
+
 <b>Signature:</b>
 
 ```typescript

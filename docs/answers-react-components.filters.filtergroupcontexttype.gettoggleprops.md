@@ -4,6 +4,8 @@
 
 ## Filters.FilterGroupContextType.getToggleProps property
 
+Returns the attributes used to toggle the filter group.
+
 <b>Signature:</b>
 
 ```typescript

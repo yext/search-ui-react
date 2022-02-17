@@ -4,7 +4,7 @@
 
 ## Filters.useFilterGroupContext() function
 
-A hook used to access the [Filters.FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md)
+A hook used to access the [Filters.FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md)<!-- -->.
 
 <b>Signature:</b>
 

@@ -4,6 +4,8 @@
 
 ## Filters.FiltersContextType.handleFilterSelect property
 
+A function called when a filter is selected.
+
 <b>Signature:</b>
 
 ```typescript

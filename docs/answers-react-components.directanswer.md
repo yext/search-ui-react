@@ -4,7 +4,7 @@
 
 ## DirectAnswer() function
 
-Renders Direct Answers provided by the Answers API
+Renders Direct Answers provided by the Answers API.
 
 <b>Signature:</b>
 
