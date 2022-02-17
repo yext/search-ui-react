@@ -5,6 +5,7 @@ import { SectionComponent } from '../models/sectionComponent';
 import { CardComponent } from '../models/cardComponent';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
+import { VerticalLink } from '../models/verticalLink';
 
 /**
  * The CSS class interface used for {@link UniversalResults}.
@@ -34,7 +35,14 @@ export interface VerticalConfig {
   /** The label for the vertical. */
   label?: string,
   /** Whether or not this vertical should show a button to view all results on the vertical page. */
-  viewAllButton?: boolean
+  viewAllButton?: boolean,
+  /**
+   * A function to provide user defined url path for each vertical's view all link.
+   * 
+   * @remarks
+   * Defaults to "/[verticalKey]?query=[query]"
+   */
+  getViewAllUrl?: (data: VerticalLink) => string
 }
 
 /**
@@ -127,7 +135,8 @@ function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
               // resultsCountConfig,
               appliedQueryFilters,
               verticalKey,
-              viewAllButton: verticalConfig.viewAllButton
+              viewAllButton: verticalConfig.viewAllButton,
+              getViewAllUrl: verticalConfig.getViewAllUrl
             }}/>}
             CardComponent={verticalConfig.CardComponent}
             key={verticalKey}

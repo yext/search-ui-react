@@ -25,6 +25,7 @@ import renderAutocompleteResult, {
   builtInCssClasses as AutocompleteResultBuiltInCssClasses
 } from './utils/renderAutocompleteResult';
 import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
+import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-3',
@@ -107,22 +108,6 @@ export interface VisualAutocompleteConfig {
   /** Renders entity previeews based on the autocomplete loading state and results. */
   renderEntityPreviews?: RenderEntityPreviews,
 }
-
-/**
- * The data model for a vertical link.
- *
- * @public
- */
-export interface VerticalLink {
-  /** The vertical key associated with the vertical link. */
-  verticalKey: string
-  /** The query used when the vertical link is selected. */
-  query: string
-}
-
-const isVerticalLink = (obj: unknown): obj is VerticalLink => {
-  return typeof obj === 'object' && !!obj && 'verticalKey' in obj && 'query' in obj;
-};
 
 /**
  * The interface of a function which is called on a search.
