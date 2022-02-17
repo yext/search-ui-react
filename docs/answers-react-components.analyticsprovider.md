@@ -4,7 +4,7 @@
 
 ## AnalyticsProvider() function
 
-A component that provides analytics for its children.
+A higher-order component which provides analytics for its children.
 
 <b>Signature:</b>
 

@@ -68,15 +68,6 @@ export interface AppliedFiltersCssClasses {
 }
 
 // @public
-export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element;
-
-// @public
-export interface AppliedFiltersDisplayProps {
-    cssClasses?: AppliedFiltersCssClasses;
-    displayableFilters: DisplayableFilter[];
-}
-
-// @public
 export interface AppliedFiltersProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: AppliedFiltersCssClasses;
@@ -206,14 +197,6 @@ export interface DirectAnswerCssClasses {
 export interface DirectAnswerProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: DirectAnswerCssClasses;
-}
-
-// @public
-export interface DisplayableFilter {
-    filter: Filter;
-    filterType: 'NLP_FILTER' | 'STATIC_FILTER' | 'FACET';
-    groupLabel: string;
-    label: string;
 }
 
 // @public

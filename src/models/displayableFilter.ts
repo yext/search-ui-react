@@ -2,8 +2,6 @@ import { Filter } from '@yext/answers-headless-react';
 
 /**
  * Represents a filter which may be displayed by the UI.
- *
- * @public
  */
 export interface DisplayableFilter {
   /** The type of filter. */

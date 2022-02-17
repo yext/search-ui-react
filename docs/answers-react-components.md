@@ -9,9 +9,8 @@
 |  Function | Description |
 |  --- | --- |
 |  [AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, cssCompositionMethod })](./answers-react-components.alternativeverticals.md) | A component that displays the alternative verticals that have results if a search returns none on the current vertical. |
-|  [AnalyticsProvider(props)](./answers-react-components.analyticsprovider.md) | A component that provides analytics for its children. |
+|  [AnalyticsProvider(props)](./answers-react-components.analyticsprovider.md) | A higher-order component which provides analytics for its children. |
 |  [AppliedFilters(props)](./answers-react-components.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters. |
-|  [AppliedFiltersDisplay(props)](./answers-react-components.appliedfiltersdisplay.md) | A component that renders applied filters based on a given list of [DisplayableFilter](./answers-react-components.displayablefilter.md)<!-- -->. |
 |  [DirectAnswer(props)](./answers-react-components.directanswer.md) | Renders Direct Answers provided by the Answers API. |
 |  [EntityPreviews(\_)](./answers-react-components.entitypreviews.md) | EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews. It provides results corresponding to its verticalKey through a props.children Function as Compound Component (FACC). |
 |  [FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
@@ -32,13 +31,11 @@
 |  [AlternativeVerticalsCssClasses](./answers-react-components.alternativeverticalscssclasses.md) | The CSS class interface used for [AlternativeVerticals()](./answers-react-components.alternativeverticals.md)<!-- -->. |
 |  [AlternativeVerticalsProps](./answers-react-components.alternativeverticalsprops.md) | Props for [AlternativeVerticals()](./answers-react-components.alternativeverticals.md)<!-- -->. |
 |  [AppliedFiltersCssClasses](./answers-react-components.appliedfilterscssclasses.md) | The CSS class interface used for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
-|  [AppliedFiltersDisplayProps](./answers-react-components.appliedfiltersdisplayprops.md) | Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
 |  [AppliedFiltersProps](./answers-react-components.appliedfiltersprops.md) | Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
 |  [AutocompleteResultCssClasses](./answers-react-components.autocompleteresultcssclasses.md) | The CSS class interface for the Autocomplete Result. |
 |  [CardProps](./answers-react-components.cardprops.md) | The props provided to every [CardComponent](./answers-react-components.cardcomponent.md)<!-- -->. |
 |  [DirectAnswerCssClasses](./answers-react-components.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [DirectAnswerProps](./answers-react-components.directanswerprops.md) | Props for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
-|  [DisplayableFilter](./answers-react-components.displayablefilter.md) | Represents a filter which may be displayed by the UI. |
 |  [EntityPreviewsProps](./answers-react-components.entitypreviewsprops.md) | The props for the [EntityPreviews()](./answers-react-components.entitypreviews.md) component. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |

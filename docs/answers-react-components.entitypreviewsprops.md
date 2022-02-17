@@ -16,7 +16,7 @@ export interface EntityPreviewsProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [children](./answers-react-components.entitypreviewsprops.children.md) | (results: Result\[\], index: number) =&gt; JSX.Element | The entity preview render function which is provided results for the specified vertical. |
+|  [children](./answers-react-components.entitypreviewsprops.children.md) | (results: Result\[\], index: number) =&gt; JSX.Element | The entity preview render function which is passed results for the specified vertical. |
 |  [limit?](./answers-react-components.entitypreviewsprops.limit.md) | number | <i>(Optional)</i> Limits the number of results provided to the render function. |
 |  [verticalKey](./answers-react-components.entitypreviewsprops.verticalkey.md) | string | Results associated with the provided verticalKey are passed to the EntityPreviews children function. |
 
