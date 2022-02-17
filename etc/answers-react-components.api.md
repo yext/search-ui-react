@@ -587,7 +587,7 @@ export function StandardSection(props: StandardSectionConfig): JSX.Element | nul
 
 // @public
 export interface StandardSectionConfig extends SectionConfig {
-    compositionmethod?: CompositionMethod;
+    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardSectionCssClasses;
 }
 

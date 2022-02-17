@@ -25,7 +25,7 @@ export interface StandardSectionConfig extends SectionConfig {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardSectionCssClasses,
   /** {@inheritDoc CompositionMethod} */
-  compositionmethod?: CompositionMethod
+  cssCompositionMethod?: CompositionMethod
 }
 
 /**
@@ -40,7 +40,7 @@ export default function StandardSection(props: StandardSectionConfig): JSX.Eleme
   const cssClasses = useComposedCssClasses(
     builtInCssClasses,
     props.customCssClasses,
-    props.compositionmethod
+    props.cssCompositionMethod
   );
   const { results, CardComponent = StandardCard, header } = props;
 
