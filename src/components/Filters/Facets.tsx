@@ -4,7 +4,7 @@ import FiltersContext from './FiltersContext';
 
 /**
  * Props for {@link Filters.Facets}
- * 
+ *
  * @public
  */
 export interface FacetsProps {
@@ -13,23 +13,24 @@ export interface FacetsProps {
   /** Whether or not a search is ran when a filter is selected. */
   searchOnChange?: boolean,
   /** A function which renders the Facets UI with the provided facets data.
-   * 
+   *
    * @remarks
-   * It is intended to be used with the Filters subcomponents including Filters.FilterGroup, 
+   * It is intended to be used with the Filters subcomponents including Filters.FilterGroup,
    * Filters.CollapsibleLabel, Filters.SearchInput, Filters.CheckboxOption, Filters.CollapsibleSection
    */
   children?: (facets: DisplayableFacet[]) => ReactNode
-};
+}
 
 /**
  * The Facets component is a wrapper component around {@link Filters} that updates facet options
  * when a child filter is updated.
  *
  * The representation of the facets is configured using a FACC (function as a child component)
- * The FACC is passed the facets data, and is intended for use with components like {@link Filters.CheckboxOption}.
- * 
+ * The FACC is passed the facets data, and is intended for use with components like
+ * {@link Filters.CheckboxOption}.
+ *
  * @public
- * 
+ *
  * @param props - {@link Filters.FacetsProps}
  */
 export default function Facets(props: FacetsProps): JSX.Element {

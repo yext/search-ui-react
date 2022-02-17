@@ -1,6 +1,6 @@
 import { processTranslation } from './utils/processTranslation';
 import Star from '../icons/StarIcon';
-import { useAnswersState, VerticalResults } from '@yext/answers-headless-react';
+import { useAnswersState, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
@@ -13,27 +13,16 @@ import { VerticalConfig } from '../models/verticalConfig';
  * @public
  */
 export interface AlternativeVerticalsCssClasses {
-  /** Applies to the outermost container of the alternative verticals. */
   container?: string,
-  /** Applies when the results are loading. */
   alternativeVerticals___loading?: string,
-  /** Applies to the text for no results being found. */
   noResultsText?: string,
-  /** Applies to the text for there being other categories with results. */
   categoriesText?: string,
-  /** Applies to the categories text and suggestions. */
   suggestions?: string,
-  /** Applies to the overall list of vertical suggestions. */
   suggestionList?: string,
-  /** Applies to a single vertical suggestion. */
   suggestion?: string,
-  /** Applies to the button for a vertical suggestion, including the icon and link. */
   suggestionButton?: string,
-  /** Applies to the icon for a vertical suggestion. */
   verticalIcon?: string,
-  /** Applies to the link for a vertical suggestion. */
   verticalLink?: string,
-  /** Applies to the text for viewing results across all verticals. */
   allCategoriesLink?: string
 }
 
@@ -127,28 +116,28 @@ export default function AlternativeVerticals({
     [cssClasses.alternativeVerticals___loading ?? '']: isLoading
   });
 
-  const getSuggestionUrl = customGetSuggestionUrl 
+  const getSuggestionUrl = customGetSuggestionUrl
     ? customGetSuggestionUrl
     : (data: VerticalLink | UniversalLink) => {
-        return isVerticalLink(data)
+      return isVerticalLink(data)
         ? `/${data.verticalKey}?query=${data.query}`
         :`/?query=${data.query}`;
-      };
+    };
 
   function buildVerticalSuggestions(
     verticalLabelMap: VerticalLabelMap,
-    alternativeVerticals: VerticalResults[]): VerticalSuggestion[] {
+    alternativeVerticals: VerticalResultsData[]): VerticalSuggestion[] {
 
     return alternativeVerticals
-      .filter((alternativeResults: VerticalResults) => {
+      .filter((alternativeResults: VerticalResultsData) => {
         return !!verticalLabelMap[alternativeResults.verticalKey];
       })
-      .map((alternativeResults: VerticalResults) => {
+      .map((alternativeResults: VerticalResultsData) => {
         return {
           label: verticalLabelMap[alternativeResults.verticalKey].label,
           verticalKey: alternativeResults.verticalKey,
           resultsCount: alternativeResults.resultsCount
-        }
+        };
       })
       .filter(isVerticalSuggestion)
       .filter(verticalSuggestion => verticalSuggestion.resultsCount > 0);

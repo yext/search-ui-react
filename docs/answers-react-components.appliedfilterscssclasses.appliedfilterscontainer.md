@@ -4,8 +4,6 @@
 
 ## AppliedFiltersCssClasses.appliedFiltersContainer property
 
-Applies to outermost container of the applied filters.
-
 <b>Signature:</b>
 
 ```typescript

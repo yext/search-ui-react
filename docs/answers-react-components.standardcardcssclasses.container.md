@@ -4,8 +4,6 @@
 
 ## StandardCardCssClasses.container property
 
-Applies to the outermost container of the card.
-
 <b>Signature:</b>
 
 ```typescript

@@ -4,7 +4,7 @@ import FilterGroupContext from './FilterGroupContext';
 
 /**
  * Props for a {@link Filters.FilterGroup}.
- * 
+ *
  * @public
  */
 export type FilterGroupProps = PropsWithChildren<{
@@ -16,15 +16,15 @@ export type FilterGroupProps = PropsWithChildren<{
 
 /**
  * The Filters.FilterGroup component represents a group of filters to support for searching and collapsing.
- * 
+ *
  * @remarks
  * A Filter.Group designates a set of filters which may be collapsed through the
  * {@link Filters.CollapsibleLabel} and {@link Filters.CollapsibleSection} components. A Filter.Group
  * also designates a set of filters which may be searched with the {@link Filters.SearchInput}
  * component.
- * 
+ *
  * @public
- * 
+ *
  * @param props - {@link Filters.FilterGroupProps}
  */
 export default function FilterGroup(props: FilterGroupProps): JSX.Element {

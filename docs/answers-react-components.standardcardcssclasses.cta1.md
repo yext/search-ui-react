@@ -4,8 +4,6 @@
 
 ## StandardCardCssClasses.cta1 property
 
-Applies to the primary CTA.
-
 <b>Signature:</b>
 
 ```typescript

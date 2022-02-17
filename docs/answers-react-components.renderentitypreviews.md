@@ -9,7 +9,7 @@ The type of a functional React component which renders entity previews based on 
 <b>Signature:</b>
 
 ```typescript
-export declare type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
+export declare type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResultsData[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 ```
 <b>References:</b> [FocusedItemData](./answers-react-components.focuseditemdata.md)
 

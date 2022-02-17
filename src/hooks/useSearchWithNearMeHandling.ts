@@ -15,7 +15,7 @@ export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | un
 /**
  * Returns a search action that will handle near me searches, by first checking
  * for near me intents using an autocomplete request.
- * 
+ *
  * @remarks
  * You can optionally use the provided ref to store autocomplete responses, to avoid
  * making unnecessary autocomplete requests.

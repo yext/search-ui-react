@@ -3,7 +3,7 @@ import { useFilterGroupContext } from './FilterGroupContext';
 
 /**
  * Props for the {@link Filters.CollapsibleSection}.
- * 
+ *
  * @public
  */
 export type CollapsibleSectionProps = PropsWithChildren<{
@@ -13,10 +13,11 @@ export type CollapsibleSectionProps = PropsWithChildren<{
 
 /**
  * CollapsibleSection are used for collapsing and un-collapsing groups of filters.
- * It is intended to be used with {@link Filters.CollapsibleLabel}s within the same {@link Filters.FilterGroup}.
- * 
+ * It is intended to be used with {@link Filters.CollapsibleLabel}s within the same
+ * {@link Filters.FilterGroup}.
+ *
  * @param props - {@link Filters.CollapsibleSectionProps}
- * 
+ *
  * @public
  */
 export default function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element {
