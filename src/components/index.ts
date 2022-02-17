@@ -66,4 +66,5 @@ export type {
 
 export * from './AnalyticsProvider';
 
-export * as Filters from './Filters';
+import * as Filters from './Filters';
+export { Filters };

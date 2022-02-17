@@ -7,6 +7,7 @@ import { AppliedQueryFilter, useAnswersState } from '@yext/answers-headless-reac
 import { DisplayableFilter } from '../models/displayableFilter';
 import classNames from 'classnames';
 import { useAnalytics } from '../hooks/useAnalytics';
+import { VerticalLink } from '../models/verticalLink';
 
 /**
  * The CSS class interface used for {@link SectionHeader}.
@@ -38,7 +39,8 @@ interface SectionHeaderConfig {
   customCssClasses?: SectionHeaderCssClasses,
   cssCompositionMethod?: CompositionMethod,
   verticalKey: string,
-  viewAllButton?: boolean
+  viewAllButton?: boolean,
+  getViewAllUrl?: (data: VerticalLink) => string
 }
 
 export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
@@ -48,7 +50,8 @@ export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
     viewAllButton = false,
     appliedQueryFilters,
     customCssClasses,
-    cssCompositionMethod
+    cssCompositionMethod,
+    getViewAllUrl
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const latestQuery = useAnswersState(state => state.query.mostRecentSearch);
@@ -82,6 +85,10 @@ export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
   });
 
+  const href = getViewAllUrl
+    ? getViewAllUrl({ verticalKey, query: latestQuery })
+    : `/${verticalKey}?query=${latestQuery}`;
+
   return (
     <div className={cssClasses.sectionHeaderContainer}>
       <div className={cssClasses.sectionHeaderIconContainer}>
@@ -98,7 +105,7 @@ export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
       }
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>
-          <a className={cssClasses.viewMoreLink} href={`/${verticalKey}?query=${latestQuery}`}>
+          <a className={cssClasses.viewMoreLink} href={href}>
             <button onClick={() => analytics && reportViewAllEvent()}>
               View all
             </button>
