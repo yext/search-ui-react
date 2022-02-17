@@ -1,5 +1,5 @@
 export interface VerticalLink {
-  verticalKey: string | undefined
+  verticalKey: string
   query: string | undefined
 }
 

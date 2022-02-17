@@ -3,7 +3,8 @@ import Star from '../icons/StarIcon';
 import { useAnswersState, VerticalResults } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
-import { VerticalLink } from '../models/verticalLink';
+import { isVerticalLink, VerticalLink } from '../models/verticalLink';
+import { UniversalLink } from '../models/universalLink';
 
 /**
  * The CSS class interface used for {@link AlternativeVerticals}.
@@ -75,9 +76,11 @@ export interface AlternativeVerticalsProps {
   displayAllOnNoResults?: boolean,
   /**
    * A function to provide user defined url path for vertical and universal sugestion links.
-   * Defaults to "/[verticalKey]?query=[query]"
+   *
+   * Defaults to "/[verticalKey]?query=[query]" for vertical links and "/?query=[query]"
+   * for universal links.
    */
-  getSuggestionUrl?: (data: VerticalLink) => string
+  getSuggestionUrl?: (data: VerticalLink | UniversalLink) => string
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AlternativeVerticalsCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -96,7 +99,7 @@ export default function AlternativeVerticals({
   verticalsConfig,
   displayAllOnNoResults = true,
   customCssClasses,
-  getSuggestionUrl,
+  getSuggestionUrl: customGetSuggestionUrl,
   cssCompositionMethod
 }: AlternativeVerticalsProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
@@ -113,6 +116,14 @@ export default function AlternativeVerticals({
   const containerClassNames = classNames(cssClasses.container, {
     [cssClasses.alternativeVerticals___loading ?? '']: isLoading
   });
+
+  const getSuggestionUrl = customGetSuggestionUrl 
+  ? customGetSuggestionUrl
+  : (data: VerticalLink | UniversalLink) => {
+      return isVerticalLink(data)
+      ? `/${data.verticalKey}?query=${data.query}`
+      :`/?query=${data.query}`;
+    };
 
   function buildVerticalSuggestions(
     verticalsConfig: VerticalConfig[],
@@ -175,9 +186,7 @@ export default function AlternativeVerticals({
   }
 
   function renderSuggestion(suggestion: VerticalSuggestion) {
-    const href = getSuggestionUrl
-      ? getSuggestionUrl({ verticalKey: suggestion.verticalKey, query })
-      : `/${suggestion.verticalKey}?query=${query}`;
+    const href = getSuggestionUrl({ verticalKey: suggestion.verticalKey, query });
     return (
       <li key={suggestion.verticalKey} className={cssClasses.suggestion}>
         <a className={cssClasses.suggestionButton} href={href}>
@@ -189,9 +198,7 @@ export default function AlternativeVerticals({
   }
 
   function renderUniversalDetails() {
-    const href = getSuggestionUrl
-      ? getSuggestionUrl({ verticalKey: undefined, query })
-      : `/?query=${query}`;
+    const href = getSuggestionUrl({ query });
     return (
       <div className={cssClasses.categoriesText}>
         <span>View results across </span>
