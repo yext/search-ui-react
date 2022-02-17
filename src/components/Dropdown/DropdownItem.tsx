@@ -5,9 +5,7 @@ import generateDropdownId from './generateDropdownId';
 import { useInputContext } from './InputContext';
 
 /**
- * Props for the {@link DropdownItem}
- *
- * @public
+ * Props for the {@link DropdownItem}.
  */
 export type DropdownItemProps = PropsWithChildren<{
   /** The value associated with the dropdown item. */
@@ -25,8 +23,6 @@ export type DropdownItemProps = PropsWithChildren<{
 /**
  * A wrapper component for specifying a DropdownItemWithIndex.
  * The index will be automatically provided by the {@link Dropdown} component instance.
- *
- * @public
  */
 export default function DropdownItem(_props: DropdownItemProps): JSX.Element | null { return null; }
 

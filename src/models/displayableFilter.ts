@@ -8,7 +8,7 @@ import { Filter } from '@yext/answers-headless-react';
 export interface DisplayableFilter {
   /** The type of filter. */
   filterType: 'NLP_FILTER' | 'STATIC_FILTER' | 'FACET',
-  /** The associated filter. */
+  /** The Filter associated with the DisplayableFilter. */
   filter: Filter,
   /** The label which designates which group this filter belongs to. */
   groupLabel: string,

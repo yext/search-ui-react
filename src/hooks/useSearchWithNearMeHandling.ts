@@ -7,7 +7,9 @@ import { AutocompleteResponse, SearchIntent } from '@yext/answers-headless-react
 export type QueryFunc = () => Promise<void>;
 /**
  * A ref which contains a promise of the latest autocomplete response in order get the
- * latest search intents. @public
+ * latest search intents.
+ * 
+ * @public
  */
 export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | undefined> | undefined>;
 /**
@@ -20,6 +22,8 @@ export type onSearchFunc = (searchEventData: { verticalKey?: string, query?: str
 /**
  * Returns a search action that will handle near me searches, by first checking
  * for near me intents using an autocomplete request.
+ * 
+ * @remarks
  * You can optionally use the provided ref to store autocomplete responses, to avoid
  * making unnecessary autocomplete requests.
  */
@@ -30,7 +34,7 @@ export default function useSearchWithNearMeHandling(
 ): [QueryFunc, AutocompleteRef] {
   /**
    * Allow a query search to wait on the response to the autocomplete request right
-   * before the search execution in order to retrieve the search intents
+   * before the search execution in order to retrieve the search intents.
    */
   const autocompletePromiseRef = useRef<Promise<AutocompleteResponse | undefined>>();
 

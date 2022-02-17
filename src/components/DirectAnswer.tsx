@@ -59,7 +59,7 @@ const builtInCssClasses: DirectAnswerCssClasses = {
 };
 
 /**
- * Renders Direct Answers provided by the Answers API
+ * Renders Direct Answers provided by the Answers API.
  *
  * @public
  *

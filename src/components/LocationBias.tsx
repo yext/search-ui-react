@@ -27,7 +27,7 @@ const builtInCssClasses: LocationBiasCssClasses = {
  */
 export interface LocationBiasProps {
   /** Configuration used when collecting the user's location.
-   * Definition: {@link https://w3c.github.io/geolocation-api/#position_options_interface}
+   * Definition: {@link https://w3c.github.io/geolocation-api/#position_options_interface}.
    */
   geolocationOptions?: PositionOptions,
   /** CSS classes for customizing the component styling. */

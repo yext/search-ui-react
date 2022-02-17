@@ -23,9 +23,9 @@ export type FilterGroupProps = PropsWithChildren<{
  * also designates a set of filters which may be searched with the {@link Filters.SearchInput}
  * component.
  * 
- * @param props - {@link Filters.FilterGroupProps}
- * 
  * @public
+ * 
+ * @param props - {@link Filters.FilterGroupProps}
  */
 export default function FilterGroup(props: FilterGroupProps): JSX.Element {
   const {
