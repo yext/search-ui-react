@@ -23,7 +23,7 @@ import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
-export function AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
+export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
 
 // @public
 export interface AlternativeVerticalsCssClasses {
@@ -47,8 +47,7 @@ export interface AlternativeVerticalsProps {
     customCssClasses?: AlternativeVerticalsCssClasses;
     displayAllOnNoResults?: boolean;
     getSuggestionUrl?: (data: VerticalLink | UniversalLink) => string;
-    // Warning: (ae-forgotten-export) The symbol "VerticalConfig" needs to be exported by the entry point index.d.ts
-    verticalsConfig: VerticalConfig_2[];
+    verticalConfigMap: Record<string, VerticalConfig>;
 }
 
 // @public
@@ -590,7 +589,7 @@ export interface UniversalLink {
 }
 
 // @public
-export function UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
+export function UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
 
 // @public
 export interface UniversalResultsCssClasses {
@@ -605,7 +604,8 @@ export interface UniversalResultsProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
-    verticalConfigs: Record<string, VerticalConfig>;
+    // Warning: (ae-forgotten-export) The symbol "VerticalConfigMap" needs to be exported by the entry point index.d.ts
+    verticalConfigMap: VerticalConfigMap;
 }
 
 // @public
