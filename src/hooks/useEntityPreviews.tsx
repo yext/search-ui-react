@@ -1,10 +1,10 @@
-import { AnswersHeadless, UniversalLimit, VerticalResults } from '@yext/answers-headless-react';
+import { AnswersHeadless, UniversalLimit, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
 import { useState } from 'react';
 import useComponentMountStatus from './useComponentMountStatus';
 import useDebouncedFunction from './useDebouncedFunction';
 
 interface EntityPreviewsState {
-  verticalResultsArray: VerticalResults[],
+  verticalResultsArray: VerticalResultsData[],
   isLoading: boolean
 }
 
@@ -26,7 +26,7 @@ export function useEntityPreviews(
   debounceTime: number
 ): [ EntityPreviewsState, ExecuteEntityPreviewsQuery ] {
   const isMountedRef = useComponentMountStatus();
-  const [verticalResultsArray, setVerticalResultsArray] = useState<VerticalResults[]>([]);
+  const [verticalResultsArray, setVerticalResultsArray] = useState<VerticalResultsData[]>([]);
   const debouncedUniversalSearch = useDebouncedFunction(async () => {
     if (!entityPreviewSearcher) {
       return;

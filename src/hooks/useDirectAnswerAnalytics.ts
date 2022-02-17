@@ -1,18 +1,18 @@
-import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerModel, FieldValueDirectAnswer } from '@yext/answers-headless-react';
+import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData, FieldValueDirectAnswer } from '@yext/answers-headless-react';
 import { useAnalytics } from './useAnalytics';
 
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 type DirectAnswerAnalyticsType = FeedbackType | 'CTA_CLICK';
 
 export function useDirectAnswersAnalytics(): (
-  directAnswerResult: DirectAnswerModel,
+  directAnswerResult: DirectAnswerData,
   analyticsEventType: DirectAnswerAnalyticsType
 ) => void {
   const analytics = useAnalytics();
   const verticalKey = useAnswersState(state => state.vertical.verticalKey);
   const queryId = useAnswersState(state => state.query.queryId);
 
-  const reportCtaEvent = (directAnswerResult: DirectAnswerModel) => {
+  const reportCtaEvent = (directAnswerResult: DirectAnswerData) => {
     const link = directAnswerResult.relatedResult.link;
     const entityId = directAnswerResult.relatedResult.id;
     const fieldName = directAnswerResult.type === DirectAnswerType.FeaturedSnippet
@@ -37,7 +37,7 @@ export function useDirectAnswersAnalytics(): (
       fieldName
     });
   };
-  const reportFeedbackEvent = (directAnswerResult: DirectAnswerModel, feedbackType: FeedbackType) => {
+  const reportFeedbackEvent = (directAnswerResult: DirectAnswerData, feedbackType: FeedbackType) => {
     if (!queryId) {
       console.error('Unable to report a direct answer feedback event. Missing field: queryId.');
       return;
@@ -53,7 +53,7 @@ export function useDirectAnswersAnalytics(): (
     });
   };
   const reportAnalyticsEvent = (
-    directAnswerResult: DirectAnswerModel,
+    directAnswerResult: DirectAnswerData,
     analyticsEventType: DirectAnswerAnalyticsType
   ) => {
     if (!analytics) {

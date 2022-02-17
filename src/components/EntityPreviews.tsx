@@ -1,4 +1,4 @@
-import { Result, VerticalResults, UniversalLimit } from '@yext/answers-headless-react';
+import { Result, VerticalResults as VerticalResultsData, UniversalLimit } from '@yext/answers-headless-react';
 import { cloneElement, isValidElement, ReactNode } from 'react';
 import DropdownItem from './Dropdown/DropdownItem';
 import recursivelyMapChildren from './utils/recursivelyMapChildren';
@@ -28,7 +28,7 @@ export default function EntityPreviews(_: EntityPreviewsProps): JSX.Element | nu
  */
 export function transformEntityPreviews(
   entityPreviews: JSX.Element,
-  verticalResultsArray: VerticalResults[]
+  verticalResultsArray: VerticalResultsData[]
 ): ReactNode {
   const verticalKeyToResults = getVerticalKeyToResults(verticalResultsArray);
   let index = 0;
@@ -54,7 +54,7 @@ export function transformEntityPreviews(
 /**
  * @returns a mapping of vertical key to VerticalResults
  */
-function getVerticalKeyToResults(verticalResultsArray: VerticalResults[]): Record<string, Result[]> {
+function getVerticalKeyToResults(verticalResultsArray: VerticalResultsData[]): Record<string, Result[]> {
   return verticalResultsArray.reduce<Record<string, Result[]>>((prev, current) => {
     prev[current.verticalKey] = current.results;
     return prev;
