@@ -3,9 +3,3 @@ export type {
   StandardSectionCssClasses,
   StandardSectionConfig
 } from './StandardSection';
-
-export { default as SectionHeader } from './SectionHeader';
-export type {
-  SectionHeaderProps,
-  SectionHeaderCssClasses
-} from './SectionHeader';

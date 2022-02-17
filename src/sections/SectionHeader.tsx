@@ -11,8 +11,6 @@ import { VerticalLink } from '../models/verticalLink';
 
 /**
  * The CSS class interface used for {@link SectionHeader}.
- *
- * @public
  */
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
   sectionHeaderContainer?: string,
@@ -36,8 +34,6 @@ const builtInCssClasses: SectionHeaderCssClasses = {
 
 /**
  * The props for a {@link SectionHeader}.
- *
- * @public
  */
 export interface SectionHeaderProps {
   /** The display label for the section header. */
@@ -60,8 +56,6 @@ export interface SectionHeaderProps {
 /**
  * The header of a section which includes an icon, the section title, applied query filters, and optionally
  * a view all button.
- *
- * @public
  *
  * @param props - {@link SectionHeaderProps}
  * @returns A React element for a Section Header
