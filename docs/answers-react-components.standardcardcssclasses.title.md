@@ -4,8 +4,6 @@
 
 ## StandardCardCssClasses.title property
 
-Applies to the result title.
-
 <b>Signature:</b>
 
 ```typescript

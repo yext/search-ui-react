@@ -49,23 +49,14 @@ const defaultFieldMappings: Record<string, FieldData> = {
  * @public
  */
 export interface StandardCardCssClasses {
-  /** Applies to the outermost container of the card. */
   container?: string,
-  /** Applies to the card's header, including the ordinal and title. */
   header?: string,
-  /** Applies to the body of the card, including the description and CTAs. */
   body?: string,
-  /** Applies to the result description. */
   descriptionContainer?: string,
-  /** Applies to the container of the CTAs. */
   ctaContainer?: string,
-  /** Applies to the primary CTA. */
   cta1?: string,
-  /** Applies to the secondary CTA. */
   cta2?: string,
-  /** Applies to the ordinal number. */
   ordinal?: string,
-  /** Applies to the result title. */
   title?: string
 }
 

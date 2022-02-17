@@ -4,8 +4,6 @@
 
 ## AppliedFiltersCssClasses.filterLabel property
 
-Applies to text label for all applied filters.
-
 <b>Signature:</b>
 
 ```typescript

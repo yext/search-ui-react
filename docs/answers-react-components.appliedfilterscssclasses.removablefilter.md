@@ -4,8 +4,6 @@
 
 ## AppliedFiltersCssClasses.removableFilter property
 
-Applies to container of individual removable filters.
-
 <b>Signature:</b>
 
 ```typescript

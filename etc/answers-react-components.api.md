@@ -27,16 +27,27 @@ export function AlternativeVerticals({ currentVerticalLabel, verticalsConfig, di
 
 // @public
 export interface AlternativeVerticalsCssClasses {
+    // (undocumented)
     allCategoriesLink?: string;
+    // (undocumented)
     alternativeVerticals___loading?: string;
+    // (undocumented)
     categoriesText?: string;
+    // (undocumented)
     container?: string;
+    // (undocumented)
     noResultsText?: string;
+    // (undocumented)
     suggestion?: string;
+    // (undocumented)
     suggestionButton?: string;
+    // (undocumented)
     suggestionList?: string;
+    // (undocumented)
     suggestions?: string;
+    // (undocumented)
     verticalIcon?: string;
+    // (undocumented)
     verticalLink?: string;
 }
 
@@ -59,11 +70,17 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 
 // @public
 export interface AppliedFiltersCssClasses {
+    // (undocumented)
     appliedFiltersContainer?: string;
+    // (undocumented)
     appliedFiltersContainer___loading?: string;
+    // (undocumented)
     filterLabel?: string;
+    // (undocumented)
     nlpFilter?: string;
+    // (undocumented)
     removableFilter?: string;
+    // (undocumented)
     removeFilterButton?: string;
 }
 
@@ -531,14 +548,23 @@ export function StandardCard(props: StandardCardProps): JSX.Element;
 
 // @public
 export interface StandardCardCssClasses {
+    // (undocumented)
     body?: string;
+    // (undocumented)
     container?: string;
+    // (undocumented)
     cta1?: string;
+    // (undocumented)
     cta2?: string;
+    // (undocumented)
     ctaContainer?: string;
+    // (undocumented)
     descriptionContainer?: string;
+    // (undocumented)
     header?: string;
+    // (undocumented)
     ordinal?: string;
+    // (undocumented)
     title?: string;
 }
 
@@ -641,6 +667,7 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
 
 // @public
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
+    // (undocumented)
     results___loading?: string;
 }
 

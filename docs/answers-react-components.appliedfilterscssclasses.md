@@ -16,10 +16,10 @@ export interface AppliedFiltersCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [appliedFiltersContainer\_\_\_loading?](./answers-react-components.appliedfilterscssclasses.appliedfilterscontainer___loading.md) | string | <i>(Optional)</i> Applies when the results are loading. |
-|  [appliedFiltersContainer?](./answers-react-components.appliedfilterscssclasses.appliedfilterscontainer.md) | string | <i>(Optional)</i> Applies to outermost container of the applied filters. |
-|  [filterLabel?](./answers-react-components.appliedfilterscssclasses.filterlabel.md) | string | <i>(Optional)</i> Applies to text label for all applied filters. |
-|  [nlpFilter?](./answers-react-components.appliedfilterscssclasses.nlpfilter.md) | string | <i>(Optional)</i> Applies to NLP filters. |
-|  [removableFilter?](./answers-react-components.appliedfilterscssclasses.removablefilter.md) | string | <i>(Optional)</i> Applies to container of individual removable filters. |
-|  [removeFilterButton?](./answers-react-components.appliedfilterscssclasses.removefilterbutton.md) | string | <i>(Optional)</i> Applies to the remove button for all removable filters. |
+|  [appliedFiltersContainer\_\_\_loading?](./answers-react-components.appliedfilterscssclasses.appliedfilterscontainer___loading.md) | string | <i>(Optional)</i> |
+|  [appliedFiltersContainer?](./answers-react-components.appliedfilterscssclasses.appliedfilterscontainer.md) | string | <i>(Optional)</i> |
+|  [filterLabel?](./answers-react-components.appliedfilterscssclasses.filterlabel.md) | string | <i>(Optional)</i> |
+|  [nlpFilter?](./answers-react-components.appliedfilterscssclasses.nlpfilter.md) | string | <i>(Optional)</i> |
+|  [removableFilter?](./answers-react-components.appliedfilterscssclasses.removablefilter.md) | string | <i>(Optional)</i> |
+|  [removeFilterButton?](./answers-react-components.appliedfilterscssclasses.removefilterbutton.md) | string | <i>(Optional)</i> |
 

@@ -4,8 +4,6 @@
 
 ## StandardCardCssClasses.ctaContainer property
 
-Applies to the container of the CTAs.
-
 <b>Signature:</b>
 
 ```typescript

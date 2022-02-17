@@ -12,17 +12,11 @@ import AppliedFiltersDisplay from './AppliedFiltersDisplay';
  * @public
  */
 export interface AppliedFiltersCssClasses {
-  /** Applies to outermost container of the applied filters. */
   appliedFiltersContainer?: string,
-  /** Applies when the results are loading. */
   appliedFiltersContainer___loading?: string,
-  /** Applies to NLP filters. */
   nlpFilter?: string,
-  /** Applies to container of individual removable filters. */
   removableFilter?: string,
-  /** Applies to the remove button for all removable filters. */
   removeFilterButton?: string,
-  /** Applies to text label for all applied filters. */
   filterLabel?: string
 }
 

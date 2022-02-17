@@ -4,8 +4,6 @@
 
 ## StandardCardCssClasses.header property
 
-Applies to the card's header, including the ordinal and title.
-
 <b>Signature:</b>
 
 ```typescript

@@ -12,27 +12,16 @@ import { UniversalLink } from '../models/universalLink';
  * @public
  */
 export interface AlternativeVerticalsCssClasses {
-  /** Applies to the outermost container of the alternative verticals. */
   container?: string,
-  /** Applies when the results are loading. */
   alternativeVerticals___loading?: string,
-  /** Applies to the text for no results being found. */
   noResultsText?: string,
-  /** Applies to the text for there being other categories with results. */
   categoriesText?: string,
-  /** Applies to the categories text and suggestions. */
   suggestions?: string,
-  /** Applies to the overall list of vertical suggestions. */
   suggestionList?: string,
-  /** Applies to a single vertical suggestion. */
   suggestion?: string,
-  /** Applies to the button for a vertical suggestion, including the icon and link. */
   suggestionButton?: string,
-  /** Applies to the icon for a vertical suggestion. */
   verticalIcon?: string,
-  /** Applies to the link for a vertical suggestion. */
   verticalLink?: string,
-  /** Applies to the text for viewing results across all verticals. */
   allCategoriesLink?: string
 }
 

@@ -4,8 +4,6 @@
 
 ## StandardCardCssClasses.cta2 property
 
-Applies to the secondary CTA.
-
 <b>Signature:</b>
 
 ```typescript

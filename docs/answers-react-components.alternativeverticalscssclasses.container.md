@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.container property
 
-Applies to the outermost container of the alternative verticals.
-
 <b>Signature:</b>
 
 ```typescript

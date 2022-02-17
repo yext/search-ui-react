@@ -4,8 +4,6 @@
 
 ## AppliedFiltersCssClasses.removeFilterButton property
 
-Applies to the remove button for all removable filters.
-
 <b>Signature:</b>
 
 ```typescript

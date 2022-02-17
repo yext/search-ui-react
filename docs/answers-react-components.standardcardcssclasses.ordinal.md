@@ -4,8 +4,6 @@
 
 ## StandardCardCssClasses.ordinal property
 
-Applies to the ordinal number.
-
 <b>Signature:</b>
 
 ```typescript

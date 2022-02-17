@@ -4,8 +4,6 @@
 
 ## StandardCardCssClasses.descriptionContainer property
 
-Applies to the result description.
-
 <b>Signature:</b>
 
 ```typescript
