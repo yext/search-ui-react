@@ -1,6 +1,6 @@
 {
   "name": "@yext/answers-react-components",
-  "version": "0.1.0-beta.4",
+  "version": "0.1.0-beta.5",
   "description": "",
   "author": "slapshot@yext.com",
   "main": "./lib/index.js",
@@ -10,9 +10,13 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run api-extractor && npm run generate-docs",
+    "build-ci": "tsc && npm run api-extractor-ci && npm run generate-docs",
     "dev": "tsc --watch",
     "lint": "eslint .",
+    "api-extractor": "api-extractor run --local --verbose",
+    "api-extractor-ci": "api-extractor run --verbose",
+    "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
     "test": "jest --passWithNoTests"
   },
@@ -29,6 +33,7 @@
     "@typescript-eslint/parser": "^4.28.2",
     "babel-jest": "^27.0.6",
     "eslint": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "jest": "^27.0.6",
     "msw": "^0.36.8",
     "react": "^17.0.2",
@@ -66,12 +71,15 @@
   },
   "dependencies": {
     "@css-modules-theme/core": "^2.3.0",
+    "@microsoft/api-documenter": "^7.15.3",
+    "@microsoft/api-extractor": "^7.19.4",
     "@restart/hooks": "^0.4.5",
     "@restart/ui": "^1.0.1",
-    "@yext/analytics": "^0.2.0-beta.2",
+    "@yext/analytics": "^0.2.0-beta.3",
     "@yext/answers-headless-react": "^1.1.0-beta.3",
     "classnames": "^2.3.1",
     "react-collapsed": "^3.3.0",
+    "react-router-dom": "^5.3.0",
     "recent-searches": "^1.0.5",
     "uuid": "^8.3.2"
   }
