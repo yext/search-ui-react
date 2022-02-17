@@ -4,7 +4,6 @@ export type {
   SearchBarProps,
   VisualAutocompleteConfig,
   RenderEntityPreviews,
-  VerticalLink,
   onSearchFunc
 } from './SearchBar';
 export type { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';

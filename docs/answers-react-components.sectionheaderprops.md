@@ -19,6 +19,7 @@ export interface SectionHeaderProps
 |  [appliedQueryFilters?](./answers-react-components.sectionheaderprops.appliedqueryfilters.md) | AppliedQueryFilter\[\] | <i>(Optional)</i> An array of AppliedQueryFilters which are displayed in the section header. |
 |  [cssCompositionMethod?](./answers-react-components.sectionheaderprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.sectionheaderprops.customcssclasses.md) | [SectionHeaderCssClasses](./answers-react-components.sectionheadercssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [getViewAllUrl?](./answers-react-components.sectionheaderprops.getviewallurl.md) | (data: [VerticalLink](./answers-react-components.verticallink.md)<!-- -->) =&gt; string | <i>(Optional)</i> A function which returns the viewAll link based on the vertical and query. |
 |  [label](./answers-react-components.sectionheaderprops.label.md) | string | The display label for the section header. |
 |  [verticalKey](./answers-react-components.sectionheaderprops.verticalkey.md) | string | The verticalKey associated with the section. |
 |  [viewAllButton?](./answers-react-components.sectionheaderprops.viewallbutton.md) | boolean | <i>(Optional)</i> Display a button to view all results for that section, if true. |

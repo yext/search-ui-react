@@ -24,7 +24,7 @@ import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
-export function AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
+export function AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
 
 // @public
 export interface AlternativeVerticalsCssClasses {
@@ -47,6 +47,7 @@ export interface AlternativeVerticalsProps {
     currentVerticalLabel: string;
     customCssClasses?: AlternativeVerticalsCssClasses;
     displayAllOnNoResults?: boolean;
+    getSuggestionUrl?: (data: VerticalLink | UniversalLink) => string;
     // Warning: (ae-forgotten-export) The symbol "VerticalConfig" needs to be exported by the entry point index.d.ts
     verticalsConfig: VerticalConfig_2[];
 }
@@ -523,6 +524,7 @@ export interface SectionHeaderProps {
     appliedQueryFilters?: AppliedQueryFilter[];
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: SectionHeaderCssClasses;
+    getViewAllUrl?: (data: VerticalLink) => string;
     label: string;
     verticalKey: string;
     viewAllButton?: boolean;
@@ -612,6 +614,11 @@ type StaticFiltersProps = PropsWithChildren<{
 }>;
 
 // @public
+export interface UniversalLink {
+    query: string | undefined;
+}
+
+// @public
 export function UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
 
 // @public
@@ -646,6 +653,7 @@ function useFiltersContext(): FiltersContextType;
 // @public
 export interface VerticalConfig {
     CardComponent?: CardComponent;
+    getViewAllUrl?: (data: VerticalLink) => string;
     label?: string;
     SectionComponent?: SectionComponent;
     viewAllButton?: boolean;
@@ -653,7 +661,7 @@ export interface VerticalConfig {
 
 // @public
 export interface VerticalLink {
-    query: string;
+    query?: string;
     verticalKey: string;
 }
 

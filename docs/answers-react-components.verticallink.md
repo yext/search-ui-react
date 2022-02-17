@@ -4,7 +4,7 @@
 
 ## VerticalLink interface
 
-The data model for a vertical link.
+Data needed to create a URL to a vertical search page.
 
 <b>Signature:</b>
 
@@ -16,6 +16,6 @@ export interface VerticalLink
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [query](./answers-react-components.verticallink.query.md) | string | The query used when the vertical link is selected. |
+|  [query?](./answers-react-components.verticallink.query.md) | string | <i>(Optional)</i> The query used when the vertical link is selected. |
 |  [verticalKey](./answers-react-components.verticallink.verticalkey.md) | string | The vertical key associated with the vertical link. |
 
