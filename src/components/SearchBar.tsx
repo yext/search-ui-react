@@ -5,7 +5,7 @@ import {
   useAnswersActions,
   useAnswersState,
   useAnswersUtilities,
-  VerticalResults as VerticalResultsModel
+  VerticalResults as VerticalResultsData
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { Fragment, PropsWithChildren, useEffect } from 'react';
@@ -89,7 +89,7 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
-  verticalResultsArray: VerticalResultsModel[],
+  verticalResultsArray: VerticalResultsData[],
   onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
 ) => JSX.Element;
 

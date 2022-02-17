@@ -1,4 +1,4 @@
-import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerModel } from '@yext/answers-headless-react';
+import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData } from '@yext/answers-headless-react';
 import renderHighlightedValue from './utils/renderHighlightedValue';
 import classNames from 'classnames';
 import { ReactNode, useState, useLayoutEffect } from 'react';
@@ -70,7 +70,7 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
     : directAnswerResult.value;
   const link = directAnswerResult.relatedResult.link;
 
-  function getLinkText(directAnswerResult: DirectAnswerModel) {
+  function getLinkText(directAnswerResult: DirectAnswerData) {
     const isSnippet = directAnswerResult.type === DirectAnswerType.FeaturedSnippet;
     const name = directAnswerResult.relatedResult.name;
     const onClick = () => {
