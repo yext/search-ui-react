@@ -1,6 +1,6 @@
 import { processTranslation } from './utils/processTranslation';
 import Star from '../icons/StarIcon';
-import { useAnswersState, VerticalResults } from '@yext/answers-headless-react';
+import { useAnswersState, VerticalResults as VerticalResultsModel } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 
@@ -109,10 +109,10 @@ export default function AlternativeVerticals({
 
   function buildVerticalSuggestions(
     verticalsConfig: VerticalConfig[],
-    alternativeVerticals: VerticalResults[]): VerticalSuggestion[] {
+    alternativeVerticals: VerticalResultsModel[]): VerticalSuggestion[] {
 
     return alternativeVerticals
-      .map((alternativeResults: VerticalResults) => {
+      .map((alternativeResults: VerticalResultsModel) => {
         const matchingVerticalConfig = verticalsConfig.find(config => {
           return config.verticalKey === alternativeResults.verticalKey;
         });

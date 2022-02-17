@@ -1,4 +1,12 @@
-import { AnswersHeadless, QuerySource, SearchTypeEnum, useAnswersActions, useAnswersState, useAnswersUtilities, VerticalResults } from '@yext/answers-headless-react';
+import {
+  AnswersHeadless,
+  QuerySource,
+  SearchTypeEnum,
+  useAnswersActions,
+  useAnswersState,
+  useAnswersUtilities,
+  VerticalResults as VerticalResultsModel
+} from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { Fragment, PropsWithChildren, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
@@ -17,7 +25,12 @@ import DropdownItem from './Dropdown/DropdownItem';
 import DropdownMenu from './Dropdown/DropdownMenu';
 import { FocusedItemData } from './Dropdown/FocusContext';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { calculateEntityPreviewsCount, calculateRestrictVerticals, calculateUniversalLimit, transformEntityPreviews } from './EntityPreviews';
+import {
+  calculateEntityPreviewsCount,
+  calculateRestrictVerticals,
+  calculateUniversalLimit,
+  transformEntityPreviews
+} from './EntityPreviews';
 import SearchButton from './SearchButton';
 import { processTranslation } from './utils/processTranslation';
 import renderAutocompleteResult, {
@@ -76,7 +89,7 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
-  verticalResultsArray: VerticalResults[],
+  verticalResultsArray: VerticalResultsModel[],
   onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
 ) => JSX.Element;
 

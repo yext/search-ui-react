@@ -1,4 +1,4 @@
-import { useAnswersState, VerticalResults } from '@yext/answers-headless-react';
+import { useAnswersState, VerticalResults as VerticalResultsModel } from '@yext/answers-headless-react';
 import StandardSection from '../sections/StandardSection';
 import SectionHeader from '../sections/SectionHeader';
 import { SectionComponent } from '../models/sectionComponent';
@@ -80,7 +80,7 @@ export default function UniversalResults({
 }
 
 interface VerticalSectionsProps extends UniversalResultsProps {
-  resultsFromAllVerticals: VerticalResults[]
+  resultsFromAllVerticals: VerticalResultsModel[]
 }
 
 /**
