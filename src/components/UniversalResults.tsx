@@ -38,7 +38,7 @@ export interface VerticalConfig {
   viewAllButton?: boolean,
   /**
    * A function to provide user defined url path for each vertical's view all link.
-   * 
+   *
    * @remarks
    * Defaults to "/[verticalKey]?query=[query]"
    */

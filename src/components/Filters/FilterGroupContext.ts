@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import { UseCollapseOutput } from 'react-collapsed/dist/types';
 
-/** 
+/**
  * FilterGroupContext is responsible for searchable filters and collapsible filter groups.
  *
  * @public
@@ -19,11 +19,11 @@ export interface FilterGroupContextType {
   getToggleProps: UseCollapseOutput['getToggleProps'],
   /** Indicates whether or not the filter group is expanded. */
   isExpanded: boolean
-};
+}
 
 /**
- * Filter context to support searchable filters and collapsible filter groups. 
- * 
+ * Filter context to support searchable filters and collapsible filter groups.
+ *
  * @public
  */
 const FilterGroupContext = createContext<FilterGroupContextType | null>(null);
@@ -31,7 +31,7 @@ export default FilterGroupContext;
 
 /**
  * A hook used to access the {@link Filters.FilterGroupContextType}.
- * 
+ *
  * @public
  */
 export function useFilterGroupContext(): FilterGroupContextType {

@@ -1,5 +1,5 @@
 import { VerticalResultsDisplay } from '../components/VerticalResultsDisplay';
-import { SectionComponent, SectionConfig } from '../models/sectionComponent';
+import { SectionConfig } from '../models/sectionComponent';
 import { StandardCard } from '../components/cards/StandardCard';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
@@ -57,4 +57,4 @@ export default function StandardSection(props: StandardSectionConfig): JSX.Eleme
       />
     </section>
   );
-};
+}

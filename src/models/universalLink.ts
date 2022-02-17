@@ -1,6 +1,6 @@
 /**
  * Data needed to create a URL to a universal search page.
- * 
+ *
  * @public
  */
 export interface UniversalLink {

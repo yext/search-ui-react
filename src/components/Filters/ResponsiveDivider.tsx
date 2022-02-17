@@ -3,12 +3,12 @@ import { PageSize, usePageSize } from '../../hooks/usePageView';
 
 /**
  * Props for {@link Filters.ResponsiveDivider}.
- * 
+ *
  * @public
  */
 export type ResponsiveDividerProps = {
   /** The browser width in pixels at which the class names for the divider is switched.
-   * 
+   *
    * @remarks
    * Defaults to 768.
    */
@@ -24,9 +24,9 @@ export type ResponsiveDividerProps = {
  *
  * @remarks
  * By default, automatically resizes to full screen width at our default mobile breakpoint.
- * 
+ *
  * @param props - {@link Filters.ResponsiveDividerProps}
- * 
+ *
  * @public
  */
 export default function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element {

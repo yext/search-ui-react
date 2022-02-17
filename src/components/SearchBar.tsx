@@ -111,7 +111,7 @@ export interface VisualAutocompleteConfig {
 
 /**
  * The interface of a function which is called on a search.
- * 
+ *
  * @public
  */
 export type onSearchFunc = (searchEventData: { verticalKey?: string, query?: string }) => void;

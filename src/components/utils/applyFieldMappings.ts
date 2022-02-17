@@ -16,18 +16,18 @@ export type FieldDataConstant = {
 
 /**
  * Denotes the path to the field data on the Result's raw dadta.
- * 
+ *
  * @public
  */
 export type FieldDataPath = {
   /** Indicates that the field data is mapped from the Result's raw data */
   mappingType: 'FIELD',
-  /** The api name which denotes the path to the field data. 
-   * 
+  /** The api name which denotes the path to the field data.
+   *
    * @remarks
    * The path is a string separated by periods '.'.
    * An array may also be supplied to denote fallbacks.
-   * 
+   *
    * @example
    * A result's rawData may contain the following object:
    * ```
@@ -48,7 +48,7 @@ export type FieldDataPath = {
 
 /**
  * Indicates either a constant field data value, or a field data mapping.
- * 
+ *
  * @public
  */
 export type FieldData = FieldDataConstant | FieldDataPath;

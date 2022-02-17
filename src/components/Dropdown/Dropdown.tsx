@@ -12,7 +12,7 @@ import DropdownItem, { DropdownItemProps, DropdownItemWithIndex } from './Dropdo
 interface DropdownItemData {
   value: string,
   itemData?: Record<string, unknown>
-};
+}
 
 /**
  * Dropdown is the parent component for a set of Dropdown-related components.

@@ -3,7 +3,7 @@
  *
  * @public
  */
- export interface VerticalLink {
+export interface VerticalLink {
   /** The vertical key associated with the vertical link. */
   verticalKey: string
   /** The query used when the vertical link is selected. */
