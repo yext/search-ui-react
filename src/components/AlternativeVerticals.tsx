@@ -117,13 +117,13 @@ export default function AlternativeVerticals({
     [cssClasses.alternativeVerticals___loading ?? '']: isLoading
   });
 
-  const getSuggestionUrl = customGetSuggestionUrl 
+  const getSuggestionUrl = customGetSuggestionUrl
     ? customGetSuggestionUrl
     : (data: VerticalLink | UniversalLink) => {
-        return isVerticalLink(data)
+      return isVerticalLink(data)
         ? `/${data.verticalKey}?query=${data.query}`
         :`/?query=${data.query}`;
-      };
+    };
 
   function buildVerticalSuggestions(
     verticalsConfig: VerticalConfig[],

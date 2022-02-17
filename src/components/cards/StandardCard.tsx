@@ -1,5 +1,12 @@
+import { useCardAnalytics } from '../../hooks/useCardAnalytics';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { CardProps } from '../../models/cardComponent';
+import {
+  FeedbackType,
+  ThumbsFeedback,
+  ThumbsFeedbackCssClasses,
+  builtInCssClasses as ThumbsFeedbackBuiltInCssClasses
+} from '../ThumbsFeedback';
 import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
 import { isString, validateData } from '../utils/validateData';
 
@@ -16,6 +23,8 @@ export interface StandardCardProps extends CardProps {
     cta1?: FieldData,
     cta2?: FieldData
   },
+  /** Whether or not to show thumbs up/down buttons to provide feedback on the result card */
+  showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardCardCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -44,7 +53,7 @@ const defaultFieldMappings: Record<string, FieldData> = {
 /**
  * The CSS class interface used for {@link StandardCard}.
  */
-export interface StandardCardCssClasses {
+export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
   /** Applies to the outermost container of the card. */
   container?: string,
   /** Applies to the card's header, including the ordinal and title. */
@@ -62,7 +71,9 @@ export interface StandardCardCssClasses {
   /** Applies to the ordinal number. */
   ordinal?: string,
   /** Applies to the result title. */
-  title?: string
+  title?: string,
+  /** Applies to the result title in link form. */
+  title___link?: string
 }
 
 const builtInCssClasses: StandardCardCssClasses = {
@@ -74,7 +85,9 @@ const builtInCssClasses: StandardCardCssClasses = {
   cta1: 'min-w-max bg-blue-600 text-white font-medium rounded-lg py-2 px-5 shadow',
   cta2: 'min-w-max bg-white text-blue-600 font-medium rounded-lg py-2 px-5 mt-2 shadow',
   ordinal: 'mr-1.5 text-lg font-medium',
-  title: 'text-lg font-medium'
+  title: 'text-lg font-medium',
+  title___link: 'text-lg font-medium text-blue-600 cursor-pointer hover:underline focus:underline',
+  ...ThumbsFeedbackBuiltInCssClasses
 };
 
 interface CtaData {
@@ -106,9 +119,11 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     showOrdinal,
     result,
     customCssClasses,
-    cssCompositionMethod
+    cssCompositionMethod,
+    showFeedbackButtons
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const reportAnalyticsEvent = useCardAnalytics();
 
   const transformedFieldData = applyFieldMappings(result.rawData, {
     ...defaultFieldMappings,
@@ -124,11 +139,14 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
 
   // TODO (cea2aj) We need to handle the various linkType so these CTAs are clickable
   function renderCTAs(cta1?: CtaData, cta2?: CtaData) {
+    const onClick = () => {
+      reportAnalyticsEvent(result, 'CTA_CLICK');
+    };
     return (<>
       {(cta1 ?? cta2) &&
         <div className={cssClasses.ctaContainer}>
-          {cta1 && <button className={cssClasses.cta1}>{cta1.label}</button>}
-          {cta2 && <button className={cssClasses.cta2}>{cta2.label}</button>}
+          {cta1 && <button className={cssClasses.cta1} onClick={onClick}>{cta1.label}</button>}
+          {cta2 && <button className={cssClasses.cta2} onClick={onClick}>{cta2.label}</button>}
         </div>
       }
     </>);
@@ -143,12 +161,19 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   }
 
   function renderTitle(title: string) {
+    const onClick = () => {
+      reportAnalyticsEvent(result, 'TITLE_CLICK');
+    };
     return (
-      <div className={cssClasses.title}>
-        {title}
-      </div>
+      result.link
+        ? <a href={result.link} className={cssClasses.title___link} onClick={onClick}>{title}</a>
+        : <div className={cssClasses.title}>{title}</div>
     );
   }
+
+  const onClickFeedbackButton = (feedbackType: FeedbackType) => {
+    reportAnalyticsEvent(result, feedbackType);
+  };
 
   return (
     <div className={cssClasses.container}>
@@ -165,6 +190,10 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
           {renderCTAs(data.cta1, data.cta2)}
         </div>
       }
+      {showFeedbackButtons && <ThumbsFeedback
+        onClick={onClickFeedbackButton}
+        cssClasses={cssClasses}
+      />}
     </div>
   );
 }

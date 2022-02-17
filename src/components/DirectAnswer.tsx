@@ -1,17 +1,18 @@
 import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData } from '@yext/answers-headless-react';
 import renderHighlightedValue from './utils/renderHighlightedValue';
 import classNames from 'classnames';
-import { ReactNode, useState, useLayoutEffect } from 'react';
+import { ReactNode } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import ThumbIcon from '../icons/ThumbIcon';
-import { FeedbackType, useDirectAnswersAnalytics } from '../hooks/useDirectAnswerAnalytics';
+import { useDirectAnswersAnalytics } from '../hooks/useDirectAnswerAnalytics';
+import { FeedbackType, ThumbsFeedbackCssClasses } from './ThumbsFeedback';
+import { ThumbsFeedback, builtInCssClasses as thumbsFeedbackBuiltInCssClasses } from './ThumbsFeedback';
 
 export interface DirectAnswerProps {
   customCssClasses?: DirectAnswerCssClasses,
   cssCompositionMethod?: CompositionMethod
 }
 
-export interface DirectAnswerCssClasses {
+export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
   container?: string,
   container___loading?: string,
   fieldValueTitle?: string,
@@ -41,9 +42,7 @@ const builtInCssClasses: DirectAnswerCssClasses = {
   viewDetailsLinkContainer: 'pt-4 text-gray-500',
   highlighted: 'bg-blue-100',
   answerContainer: 'p-4 border rounded-lg shadow-sm',
-  feedbackButtonsContainer: 'flex justify-end mt-2 text-sm text-gray-400 font-medium',
-  thumbsUpIcon: 'ml-3 w-5',
-  thumbsDownIcon: 'w-5 ml-1 transform rotate-180',
+  ...thumbsFeedbackBuiltInCssClasses
 };
 
 export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
@@ -52,10 +51,6 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
   const composedCssClasses = useComposedCssClasses(
     builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
   const reportAnalyticsEvent = useDirectAnswersAnalytics();
-  const [isFeedbackProvided, updateFeedbackStatus] = useState(false);
-  useLayoutEffect(() => {
-    updateFeedbackStatus(false);
-  }, [directAnswerResult, updateFeedbackStatus]);
 
   if (!directAnswerResult) {
     return null;
@@ -94,7 +89,6 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
   });
 
   const onClickFeedbackButton = (feedbackType: FeedbackType) => {
-    updateFeedbackStatus(true);
     reportAnalyticsEvent(directAnswerResult, feedbackType);
   };
 
@@ -108,26 +102,10 @@ export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | nu
           {link && getLinkText(directAnswerResult)}
         </div>
       </div>
-      <div className={cssClasses.feedbackButtonsContainer}>
-        {isFeedbackProvided
-          ? 'Thank you for your feedback!'
-          : <>
-            Feedback
-            <button
-              className={cssClasses.thumbsUpIcon}
-              onClick={() => onClickFeedbackButton('THUMBS_UP')}
-            >
-              <ThumbIcon/>
-            </button>
-            <button
-              className={cssClasses.thumbsDownIcon}
-              onClick={() => onClickFeedbackButton('THUMBS_DOWN')}
-            >
-              <ThumbIcon/>
-            </button>
-          </>
-        }
-      </div>
+      <ThumbsFeedback
+        onClick={onClickFeedbackButton}
+        cssClasses={composedCssClasses}
+      />
     </div>
   );
 }
