@@ -48,7 +48,6 @@ interface VerticalSuggestion {
 
 function isVerticalSuggestion(suggestion: unknown): suggestion is VerticalSuggestion {
   return (suggestion as VerticalSuggestion)?.resultsCount !== undefined &&
-    (suggestion as VerticalSuggestion)?.label !== undefined &&
     (suggestion as VerticalSuggestion)?.verticalKey !== undefined;
 }
 
@@ -109,6 +108,7 @@ export default function AlternativeVerticals({
 }: AlternativeVerticalsProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
+  const currentVerticalKey = useAnswersState(state => state.vertical.verticalKey);
   const alternativeVerticals = useAnswersState(state => state.vertical.noResults?.alternativeVerticals) || [];
   const allResultsForVertical =
     useAnswersState(state => state.vertical.noResults?.allResultsForVertical.results) || [];
@@ -136,7 +136,8 @@ export default function AlternativeVerticals({
 
     return alternativeVerticals
       .filter((alternativeResults: VerticalResultsData) => {
-        return !!verticalConfigMap[alternativeResults.verticalKey];
+        return alternativeResults.verticalKey !== currentVerticalKey &&
+          !!verticalConfigMap[alternativeResults.verticalKey];
       })
       .map((alternativeResults: VerticalResultsData) => {
         return {
