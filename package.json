@@ -11,11 +11,9 @@
   ],
   "scripts": {
     "build": "tsc && npm run api-extractor && npm run generate-docs",
-    "build-ci": "tsc && npm run api-extractor-ci && npm run generate-docs",
     "dev": "tsc --watch",
     "lint": "eslint .",
     "api-extractor": "api-extractor run --local --verbose",
-    "api-extractor-ci": "api-extractor run --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
     "test": "jest --passWithNoTests"
