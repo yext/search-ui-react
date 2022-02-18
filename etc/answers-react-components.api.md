@@ -248,6 +248,9 @@ interface FacetsProps {
 }
 
 // @public
+export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
+
+// @public
 export type FieldData = FieldDataConstant | FieldDataPath;
 
 // @public
@@ -619,7 +622,7 @@ type StaticFiltersProps = PropsWithChildren<{
 }>;
 
 // @public
-export function ThumbsFeedback({ onClick, feedbackTextOnSubmission, cssClasses }: ThumbsFeedbackProps): JSX.Element;
+export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
 
 // @public
 export interface ThumbsFeedbackCssClasses {
@@ -635,7 +638,6 @@ export interface ThumbsFeedbackCssClasses {
 export interface ThumbsFeedbackProps {
     cssClasses: ThumbsFeedbackCssClasses;
     feedbackTextOnSubmission?: string;
-    // Warning: (ae-forgotten-export) The symbol "FeedbackType" needs to be exported by the entry point index.d.ts
     onClick: (feedbackType: FeedbackType) => void;
 }
 

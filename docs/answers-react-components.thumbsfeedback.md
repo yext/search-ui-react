@@ -9,16 +9,18 @@ Renders a quality feedback widget compose of thumbs up and thumbs down buttons.
 <b>Signature:</b>
 
 ```typescript
-export declare function ThumbsFeedback({ onClick, feedbackTextOnSubmission, cssClasses }: ThumbsFeedbackProps): JSX.Element;
+export declare function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { onClick, feedbackTextOnSubmission, cssClasses } | [ThumbsFeedbackProps](./answers-react-components.thumbsfeedbackprops.md) |  |
+|  props | [ThumbsFeedbackProps](./answers-react-components.thumbsfeedbackprops.md) | The configuration for the the feedback component. |
 
 <b>Returns:</b>
 
 JSX.Element
+
+A React element for quality feedback widget.
 

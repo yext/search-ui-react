@@ -20,7 +20,7 @@
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
 |  [StandardSection(props)](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
-|  [ThumbsFeedback({ onClick, feedbackTextOnSubmission, cssClasses })](./answers-react-components.thumbsfeedback.md) | Renders a quality feedback widget compose of thumbs up and thumbs down buttons. |
+|  [ThumbsFeedback(props)](./answers-react-components.thumbsfeedback.md) | Renders a quality feedback widget compose of thumbs up and thumbs down buttons. |
 |  [UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod })](./answers-react-components.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
 |  [useAnalytics()](./answers-react-components.useanalytics.md) | Returns a service that can be used to report analytics events. |
 |  [VerticalResults(props)](./answers-react-components.verticalresults.md) | A component that renders search results for a vertical page. |
@@ -75,6 +75,7 @@
 |  --- | --- |
 |  [CardComponent](./answers-react-components.cardcomponent.md) | A functional component that can be used to render a result card. |
 |  [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining a component's built-in CSS classes with custom CSS classes. |
+|  [FeedbackType](./answers-react-components.feedbacktype.md) | Analytics event types for quality feedback. |
 |  [FieldData](./answers-react-components.fielddata.md) | Indicates either a constant field data value, or a field data mapping. |
 |  [FieldDataConstant](./answers-react-components.fielddataconstant.md) | Indicates a field should equal a constant value. Ignores the API response. |
 |  [FieldDataPath](./answers-react-components.fielddatapath.md) | Denotes the path to the field data on the Result's raw dadta. |

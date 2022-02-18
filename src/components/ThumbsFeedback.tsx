@@ -2,6 +2,11 @@ import { useAnswersState } from '@yext/answers-headless-react';
 import { useLayoutEffect, useState } from 'react';
 import ThumbIcon from '../icons/ThumbIcon';
 
+/**
+ * Analytics event types for quality feedback.
+ *
+ * @public
+ */
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
 /**
@@ -39,12 +44,16 @@ export const builtInCssClasses: ThumbsFeedbackCssClasses = {
  * Renders a quality feedback widget compose of thumbs up and thumbs down buttons.
  *
  * @public
+ *
+ * @param props - The configuration for the the feedback component.
+ * @returns A React element for quality feedback widget.
  */
-export function ThumbsFeedback({
-  onClick,
-  feedbackTextOnSubmission = 'Thank you for your feedback!',
-  cssClasses = builtInCssClasses
-}: ThumbsFeedbackProps): JSX.Element {
+export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
+  const {
+    onClick,
+    feedbackTextOnSubmission = 'Thank you for your feedback!',
+    cssClasses = builtInCssClasses
+  } = props;
   const query = useAnswersState(state => state.query.mostRecentSearch);
   const [isFeedbackProvided, updateFeedbackStatus] = useState(false);
   useLayoutEffect(() => {

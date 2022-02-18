@@ -29,6 +29,7 @@ export type {
 
 export { ThumbsFeedback } from './ThumbsFeedback';
 export type {
+  FeedbackType,
   ThumbsFeedbackCssClasses,
   ThumbsFeedbackProps
 } from './ThumbsFeedback';
