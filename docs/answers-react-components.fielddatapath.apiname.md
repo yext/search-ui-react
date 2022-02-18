@@ -11,22 +11,3 @@ The api name which denotes the path to the field data.
 ```typescript
 apiName: string | string[];
 ```
-
-## Remarks
-
-The path is a string separated by periods '.'. An array may also be supplied to denote fallbacks.
-
-## Example
-
-A result's rawData may contain the following object:
-
-```
-{
-   title: {
-      fullName: 'Yext Answers'
-      subtitle: 'An AI Search Platform'
-   }
-}
-```
-To indicate the subtitle, the apiName would be 'title.subtitle'. Fallbacks could be indicated with an array such as: `['title.fullName', 'title.subtitle']` In this example, if the title is not present, it will fallback to the subtitle.
-
