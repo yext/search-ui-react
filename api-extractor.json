@@ -32,7 +32,7 @@
    * SUPPORTED TOKENS: <lookup>
    * DEFAULT VALUE: "<lookup>"
    */
-  // "projectFolder": "..",
+  "projectFolder": ".",
 
   /**
    * (REQUIRED) Specifies the .d.ts file to be used as the starting point for analysis.  API Extractor
@@ -330,17 +330,17 @@
       "default": {
         "logLevel": "error"
         // "addToApiReportFile": false
-      },
-
-      /**
-       * API Extractor reports links to the 'Filters' namespace as warning which causes production API extractor builds
-       * to fail. Despite the warning, the links in the generated docs work just fine. By setting loglevel to none,
-       * production builds can pass, however the warning isn't completely ignored since we are adding it to the apiReportFile
-       */
-      "ae-unresolved-link": {
-        "logLevel": "none",
-        "addToApiReportFile": true
       }
+
+      // /**
+      //  * API Extractor reports links to the 'Filters' namespace as warning which causes production API extractor builds
+      //  * to fail. Despite the warning, the links in the generated docs work just fine. By setting loglevel to none,
+      //  * production builds can pass, however the warning isn't completely ignored since we are adding it to the apiReportFile
+      //  */
+      // "ae-unresolved-link": {
+      //   "logLevel": "none",
+      //   "addToApiReportFile": true
+      // }
     },
 
     /**
