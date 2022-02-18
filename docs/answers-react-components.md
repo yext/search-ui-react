@@ -8,7 +8,7 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod })](./answers-react-components.alternativeverticals.md) | A component that displays the alternative verticals that have results if a search returns none on the current vertical. |
+|  [AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod })](./answers-react-components.alternativeverticals.md) | A component that displays the alternative verticals that have results if a search returns none on the current vertical. |
 |  [AnalyticsProvider(props)](./answers-react-components.analyticsprovider.md) | A higher-order component which provides analytics for its children. |
 |  [AppliedFilters(props)](./answers-react-components.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters. |
 |  [DirectAnswer(props)](./answers-react-components.directanswer.md) | Renders Direct Answers provided by the Answers API. |
@@ -19,7 +19,7 @@
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
 |  [StandardSection(props)](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
-|  [UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod })](./answers-react-components.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
+|  [UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod })](./answers-react-components.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
 |  [useAnalytics()](./answers-react-components.useanalytics.md) | Returns a service that can be used to report analytics events. |
 |  [VerticalResults(props)](./answers-react-components.verticalresults.md) | A component that renders search results for a vertical page. |
 
@@ -54,6 +54,8 @@
 |  [UniversalResultsCssClasses](./answers-react-components.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./answers-react-components.universalresultsprops.md) | Props for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [VerticalConfig](./answers-react-components.verticalconfig.md) | The configuration for a vertical. |
+|  [VerticalConfigMap](./answers-react-components.verticalconfigmap.md) | A map of verticalKey to a VerticalConfig. |
+|  [VerticalLabelMap](./answers-react-components.verticallabelmap.md) | A map of vertical keys to labels. |
 |  [VerticalLink](./answers-react-components.verticallink.md) | Data needed to create a URL to a vertical search page. |
 |  [VerticalResultsCssClasses](./answers-react-components.verticalresultscssclasses.md) | The CSS class interface used for [VerticalResults()](./answers-react-components.verticalresults.md)<!-- -->. |
 |  [VerticalResultsProps](./answers-react-components.verticalresultsprops.md) | Props for the VerticalResults component. |

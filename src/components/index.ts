@@ -47,7 +47,6 @@ export { default as UniversalResults } from './UniversalResults';
 export type {
   UniversalResultsCssClasses,
   UniversalResultsProps,
-  VerticalConfig
 } from './UniversalResults';
 
 export { default as VerticalResults } from './VerticalResults';
@@ -62,7 +61,8 @@ export * from './cards/StandardCard';
 export { default as AlternativeVerticals } from './AlternativeVerticals';
 export type {
   AlternativeVerticalsCssClasses,
-  AlternativeVerticalsProps
+  AlternativeVerticalsProps,
+  VerticalLabelMap
 } from './AlternativeVerticals';
 
 export * from './AnalyticsProvider';
