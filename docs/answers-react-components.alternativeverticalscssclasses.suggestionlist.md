@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.suggestionList property
 
-Applies to the overall list of vertical suggestions.
-
 <b>Signature:</b>
 
 ```typescript

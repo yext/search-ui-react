@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { Fragment, PropsWithChildren, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import useRecentSearches from '../hooks/useRecentSearches';
-import useSearchWithNearMeHandling, { onSearchFunc } from '../hooks/useSearchWithNearMeHandling';
+import useSearchWithNearMeHandling from '../hooks/useSearchWithNearMeHandling';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import VerticalDividerIcon from '../icons/BarIcon';
 import RecentSearchIcon from '../icons/HistoryIcon';
@@ -64,6 +64,11 @@ const builtInCssClasses: SearchBarCssClasses = {
   ...AutocompleteResultBuiltInCssClasses
 };
 
+/**
+ * The CSS class interface for the {@link SearchBar}.
+ *
+ * @public
+ */
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   container?: string,
   inputElement?: string,
@@ -88,35 +93,76 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   entityPreviewsDivider?: string
 }
 
+/**
+ * The type of a functional React component which renders entity previews based on the autocomplete loading
+ * state and the vertical results array.
+ *
+ * @remarks
+ * An onSubmit function is provided to allow an entity preview to be submitted.
+ *
+ * @public
+ */
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalResultsArray: VerticalResultsData[],
   onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
 ) => JSX.Element;
 
+/**
+ * The configuration options for Visual Autocomplete.
+ *
+ * @public
+ */
 export interface VisualAutocompleteConfig {
+  /** The Answers Headless instance used to perform visual autocomplete searches. */
   entityPreviewSearcher?: AnswersHeadless,
-  // The debouncing time, in milliseconds, for making API requests for entity previews
+  /** The debouncing time, in milliseconds, for making API requests for entity previews. */
   entityPreviewsDebouncingTime?: number,
+  /** Renders entity previeews based on the autocomplete loading state and results. */
   renderEntityPreviews?: RenderEntityPreviews,
 }
 
+/**
+ * The interface of a function which is called on a search.
+ *
+ * @public
+ */
+export type onSearchFunc = (searchEventData: { verticalKey?: string, query?: string }) => void;
+
+/**
+ * The props for the {@link SearchBar} component.
+ *
+ * @public
+ */
 export interface SearchBarProps {
+  /** The search bar's placeholder text. */
   placeholder?: string,
+  /** {@inheritDoc LocationBiasProps.geolocationOptions} */
   geolocationOptions?: PositionOptions,
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: SearchBarCssClasses,
+   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
+  /** {@inheritDoc VisualAutocompleteConfig} */
   visualAutocompleteConfig?: VisualAutocompleteConfig,
+  /** Hides vertical links if true. */
   hideVerticalLinks?: boolean,
+  /** A function which is called when a vertical link is selected. */
   onSelectVerticalLink?: (data: { verticalLink: VerticalLink, querySource: QuerySource }) => void,
+  /** A function which returns a display label for the given verticalKey. */
   verticalKeyToLabel?: (verticalKey: string) => string,
+  /** Hides recent searches if true. */
   hideRecentSearches?: boolean,
+  /** Limits the number of recent searches shown. */
   recentSearchesLimit?: number,
-  onSearch?: onSearchFunc
+  /** A callback which is called when a search is ran. */
+  onSearch?: onSearchFunc;
 }
 
 /**
- * Renders a SearchBar that is hooked up with an InputDropdown component
+ * Renders a SearchBar that is hooked up with an InputDropdown component.
+ *
+ * @public
  */
 export default function SearchBar({
   placeholder,

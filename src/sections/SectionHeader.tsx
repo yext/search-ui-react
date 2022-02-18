@@ -32,18 +32,35 @@ const builtInCssClasses: SectionHeaderCssClasses = {
   removeFilterButton: 'w-2 h-2 text-gray-500 m-1.5'
 };
 
-interface SectionHeaderConfig {
+/**
+ * The props for a {@link SectionHeader}.
+ */
+export interface SectionHeaderProps {
+  /** The display label for the section header. */
   label: string,
   // resultsCountConfig?: ResultsCountConfig,
+  /** An array of AppliedQueryFilters which are displayed in the section header. */
   appliedQueryFilters?: AppliedQueryFilter[],
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: SectionHeaderCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
+  /** The verticalKey associated with the section. */
   verticalKey: string,
+  /** Display a button to view all results for that section, if true. */
   viewAllButton?: boolean,
+  /** A function which returns the viewAll link based on the vertical and query. */
   getViewAllUrl?: (data: VerticalLink) => string
 }
 
-export default function SectionHeader(props: SectionHeaderConfig): JSX.Element {
+/**
+ * The header of a section which includes an icon, the section title, applied query filters, and optionally
+ * a view all button.
+ *
+ * @param props - {@link SectionHeaderProps}
+ * @returns A React element for a Section Header
+ */
+export default function SectionHeader(props: SectionHeaderProps): JSX.Element {
   const {
     label,
     verticalKey,

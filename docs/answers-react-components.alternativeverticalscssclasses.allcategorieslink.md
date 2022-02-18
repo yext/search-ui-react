@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.allCategoriesLink property
 
-Applies to the text for viewing results across all verticals.
-
 <b>Signature:</b>
 
 ```typescript

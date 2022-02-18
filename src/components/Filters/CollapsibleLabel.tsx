@@ -2,15 +2,25 @@ import classNames from 'classnames';
 import ChevronIcon from '../../icons/ChevronIcon';
 import { useFilterGroupContext } from './FilterGroupContext';
 
-export type CollapsibleLabelProps = {
+/**
+ * Props for {@link Filters.CollapsibleLabel}.
+ *
+ * @public
+ */
+export interface CollapsibleLabelProps {
+  /** The label's text value which is displayed by the component. */
   label?: string
-};
+}
 
 /**
- * CollapsibleLabel is a button for collapsing and expanding filters
- * within a parent {@link FilterGroup}.
+ * CollapsibleLabel is a button for collapsing and expanding filters within a parent
+ * {@link Filters.FilterGroup}.
  *
- * For more customization, use {@link FilterGroupContext} directly.
+ * For more customization, use {@link Filters.FilterGroupContext} directly.
+ *
+ * @param props - {@link Filters.CollapsibleLabelProps}
+ *
+ * @public
  */
 export default function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element {
   const { isExpanded, getToggleProps } = useFilterGroupContext();

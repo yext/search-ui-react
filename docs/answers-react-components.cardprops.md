@@ -4,7 +4,7 @@
 
 ## CardProps interface
 
-The props provided to every {@<!-- -->link CardComponent).
+The props provided to every [CardComponent](./answers-react-components.cardcomponent.md)<!-- -->.
 
 <b>Signature:</b>
 
@@ -16,5 +16,5 @@ export interface CardProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [result](./answers-react-components.cardprops.result.md) | Result |  |
+|  [result](./answers-react-components.cardprops.result.md) | Result | The result data provided to the card for rendering. |
 

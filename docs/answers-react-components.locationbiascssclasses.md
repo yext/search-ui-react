@@ -4,6 +4,8 @@
 
 ## LocationBiasCssClasses interface
 
+The CSS class interface for the [LocationBias()](./answers-react-components.locationbias.md) component.
+
 <b>Signature:</b>
 
 ```typescript

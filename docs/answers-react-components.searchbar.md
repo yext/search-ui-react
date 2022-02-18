@@ -4,19 +4,19 @@
 
 ## SearchBar() function
 
-Renders a SearchBar that is hooked up with an InputDropdown component
+Renders a SearchBar that is hooked up with an InputDropdown component.
 
 <b>Signature:</b>
 
 ```typescript
-export default function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
+export default function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch } | [SearchBarProps](./answers-react-components.searchbarprops.md) |  |
+|  { placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch } | [SearchBarProps](./answers-react-components.searchbarprops.md) |  |
 
 <b>Returns:</b>
 

@@ -16,15 +16,15 @@ export interface AlternativeVerticalsCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [allCategoriesLink?](./answers-react-components.alternativeverticalscssclasses.allcategorieslink.md) | string | <i>(Optional)</i> Applies to the text for viewing results across all verticals. |
-|  [alternativeVerticals\_\_\_loading?](./answers-react-components.alternativeverticalscssclasses.alternativeverticals___loading.md) | string | <i>(Optional)</i> Applies when the results are loading. |
-|  [categoriesText?](./answers-react-components.alternativeverticalscssclasses.categoriestext.md) | string | <i>(Optional)</i> Applies to the text for there being other categories with results. |
-|  [container?](./answers-react-components.alternativeverticalscssclasses.container.md) | string | <i>(Optional)</i> Applies to the outermost container of the alternative verticals. |
-|  [noResultsText?](./answers-react-components.alternativeverticalscssclasses.noresultstext.md) | string | <i>(Optional)</i> Applies to the text for no results being found. |
-|  [suggestion?](./answers-react-components.alternativeverticalscssclasses.suggestion.md) | string | <i>(Optional)</i> Applies to a single vertical suggestion. |
-|  [suggestionButton?](./answers-react-components.alternativeverticalscssclasses.suggestionbutton.md) | string | <i>(Optional)</i> Applies to the button for a vertical suggestion, including the icon and link. |
-|  [suggestionList?](./answers-react-components.alternativeverticalscssclasses.suggestionlist.md) | string | <i>(Optional)</i> Applies to the overall list of vertical suggestions. |
-|  [suggestions?](./answers-react-components.alternativeverticalscssclasses.suggestions.md) | string | <i>(Optional)</i> Applies to the categories text and suggestions. |
-|  [verticalIcon?](./answers-react-components.alternativeverticalscssclasses.verticalicon.md) | string | <i>(Optional)</i> Applies to the icon for a vertical suggestion. |
-|  [verticalLink?](./answers-react-components.alternativeverticalscssclasses.verticallink.md) | string | <i>(Optional)</i> Applies to the link for a vertical suggestion. |
+|  [allCategoriesLink?](./answers-react-components.alternativeverticalscssclasses.allcategorieslink.md) | string | <i>(Optional)</i> |
+|  [alternativeVerticals\_\_\_loading?](./answers-react-components.alternativeverticalscssclasses.alternativeverticals___loading.md) | string | <i>(Optional)</i> |
+|  [categoriesText?](./answers-react-components.alternativeverticalscssclasses.categoriestext.md) | string | <i>(Optional)</i> |
+|  [container?](./answers-react-components.alternativeverticalscssclasses.container.md) | string | <i>(Optional)</i> |
+|  [noResultsText?](./answers-react-components.alternativeverticalscssclasses.noresultstext.md) | string | <i>(Optional)</i> |
+|  [suggestion?](./answers-react-components.alternativeverticalscssclasses.suggestion.md) | string | <i>(Optional)</i> |
+|  [suggestionButton?](./answers-react-components.alternativeverticalscssclasses.suggestionbutton.md) | string | <i>(Optional)</i> |
+|  [suggestionList?](./answers-react-components.alternativeverticalscssclasses.suggestionlist.md) | string | <i>(Optional)</i> |
+|  [suggestions?](./answers-react-components.alternativeverticalscssclasses.suggestions.md) | string | <i>(Optional)</i> |
+|  [verticalIcon?](./answers-react-components.alternativeverticalscssclasses.verticalicon.md) | string | <i>(Optional)</i> |
+|  [verticalLink?](./answers-react-components.alternativeverticalscssclasses.verticallink.md) | string | <i>(Optional)</i> |
 

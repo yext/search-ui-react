@@ -4,6 +4,8 @@
 
 ## SearchBarProps.hideRecentSearches property
 
+Hides recent searches if true.
+
 <b>Signature:</b>
 
 ```typescript

@@ -3,6 +3,11 @@ import classNames from 'classnames';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { executeSearch } from '../utils/search-operations';
 
+/**
+ * The CSS Class interface for SpellCheck.
+ *
+ * @public
+ */
 export interface SpellCheckCssClasses {
   container?: string,
   helpText?: string,
@@ -17,12 +22,28 @@ const builtInCssClasses: SpellCheckCssClasses = {
   link: 'text-blue-600 font-bold cursor-pointer hover:underline focus:underline'
 };
 
+/**
+ * The props for the {@link SpellCheck} component.
+ *
+ * @public
+ */
 export interface SpellCheckProps {
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: SpellCheckCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
+  /** A function which is called when a spell check suggestion is clicked. */
   onClick?: (data: { correctedQuery: string, verticalKey: string }) => void
 }
 
+/**
+ * Renders a suggested query if the Answers API provides one.
+ *
+ * @public
+ *
+ * @param props - {@link SpellCheckProps}
+ * @returns A react component for spell check, or null if none exists
+ */
 export default function SpellCheck({
   customCssClasses,
   cssCompositionMethod,

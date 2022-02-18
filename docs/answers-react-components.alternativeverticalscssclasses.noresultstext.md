@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.noResultsText property
 
-Applies to the text for no results being found.
-
 <b>Signature:</b>
 
 ```typescript

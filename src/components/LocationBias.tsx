@@ -2,6 +2,11 @@ import { useAnswersActions, useAnswersState, LocationBiasMethod } from '@yext/an
 import { executeSearch, getUserLocation } from '../utils/search-operations';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
+/**
+ * The CSS class interface for the {@link LocationBias} component.
+ *
+ * @public
+ */
 export interface LocationBiasCssClasses {
   container?: string,
   location?: string,
@@ -15,12 +20,30 @@ const builtInCssClasses: LocationBiasCssClasses = {
   button: 'text-blue-600 cursor-pointer hover:underline focus:underline',
 };
 
+/**
+ * The props for the {@link LocationBias} component.
+ *
+ * @public
+ */
 export interface LocationBiasProps {
+  /** Configuration used when collecting the user's location.
+   * Definition: {@link https://w3c.github.io/geolocation-api/#position_options_interface}.
+   */
   geolocationOptions?: PositionOptions,
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: LocationBiasCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
+/**
+ * A React Component which displays and collects location information in order to bias searches.
+ *
+ * @public
+ *
+ * @param props - {@link LocationBiasProps}
+ * @returns A react component for Location Bias
+ */
 export default function LocationBias({
   geolocationOptions,
   customCssClasses,

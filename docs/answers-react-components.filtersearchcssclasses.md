@@ -4,12 +4,14 @@
 
 ## FilterSearchCssClasses interface
 
+The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses 
 ```
-<b>Extends:</b> AutocompleteResultCssClasses
+<b>Extends:</b> [AutocompleteResultCssClasses](./answers-react-components.autocompleteresultcssclasses.md)
 
 ## Properties
 

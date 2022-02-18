@@ -8,19 +8,15 @@ import AppliedFiltersDisplay from './AppliedFiltersDisplay';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
+ *
+ * @public
  */
 export interface AppliedFiltersCssClasses {
-  /** Applies to outermost container of the applied filters. */
   appliedFiltersContainer?: string,
-  /** Applies when the results are loading. */
   appliedFiltersContainer___loading?: string,
-  /** Applies to NLP filters. */
   nlpFilter?: string,
-  /** Applies to container of individual removable filters. */
   removableFilter?: string,
-  /** Applies to the remove button for all removable filters. */
   removeFilterButton?: string,
-  /** Applies to text label for all applied filters. */
   filterLabel?: string
 }
 
@@ -35,6 +31,8 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
 
 /**
  * Properties for {@link AppliedFilters}.
+ *
+ * @public
  */
 export interface AppliedFiltersProps {
   /** List of filters that should not be displayed. By default, builtin.entityType will be hidden. */
@@ -52,7 +50,9 @@ export interface AppliedFiltersProps {
  * search, which may include any selected options from static filters, facets, and
  * NLP filters.
  *
- * @param props - {@inheritdoc AppliedFiltersProps}
+ * @public
+ *
+ * @param props - {@link AppliedFiltersProps}
  * @returns A React element for the applied filters
  */
 export default function AppliedFilters(props: AppliedFiltersProps): JSX.Element {

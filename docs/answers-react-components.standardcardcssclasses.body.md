@@ -4,8 +4,6 @@
 
 ## StandardCardCssClasses.body property
 
-Applies to the body of the card, including the description and CTAs.
-
 <b>Signature:</b>
 
 ```typescript

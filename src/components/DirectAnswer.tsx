@@ -6,11 +6,23 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
 import ThumbIcon from '../icons/ThumbIcon';
 import { FeedbackType, useDirectAnswersAnalytics } from '../hooks/useDirectAnswerAnalytics';
 
+/**
+ * Props for {@link DirectAnswer}.
+ *
+ * @public
+ */
 export interface DirectAnswerProps {
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: DirectAnswerCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
+/**
+ *  The CSS class interface for {@link DirectAnswer}.
+ *
+ * @public
+ */
 export interface DirectAnswerCssClasses {
   container?: string,
   container___loading?: string,
@@ -46,6 +58,14 @@ const builtInCssClasses: DirectAnswerCssClasses = {
   thumbsDownIcon: 'w-5 ml-1 transform rotate-180',
 };
 
+/**
+ * Renders Direct Answers provided by the Answers API.
+ *
+ * @public
+ *
+ * @param props - {@link DirectAnswerProps}
+ * @returns A react element for DirectAnswer
+ */
 export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   const directAnswerResult = useAnswersState(state => state.directAnswer.result);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading || false);

@@ -4,6 +4,8 @@
 
 ## SpellCheckCssClasses interface
 
+The CSS Class interface for SpellCheck.
+
 <b>Signature:</b>
 
 ```typescript

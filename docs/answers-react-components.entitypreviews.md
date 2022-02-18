@@ -4,7 +4,7 @@
 
 ## EntityPreviews() function
 
-EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews. It provides results corresponding to its verticalKey through a props.children FACC.
+EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews. It provides results corresponding to its verticalKey through a props.children Function as Compound Component (FACC).
 
 <b>Signature:</b>
 
@@ -16,7 +16,7 @@ export default function EntityPreviews(_: EntityPreviewsProps): JSX.Element | nu
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  \_ | EntityPreviewsProps |  |
+|  \_ | [EntityPreviewsProps](./answers-react-components.entitypreviewsprops.md) |  |
 
 <b>Returns:</b>
 

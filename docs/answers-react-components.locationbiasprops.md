@@ -4,6 +4,8 @@
 
 ## LocationBiasProps interface
 
+The props for the [LocationBias()](./answers-react-components.locationbias.md) component.
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,7 +16,7 @@ export interface LocationBiasProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.locationbiasprops.csscompositionmethod.md) | CompositionMethod | <i>(Optional)</i> |
-|  [customCssClasses?](./answers-react-components.locationbiasprops.customcssclasses.md) | [LocationBiasCssClasses](./answers-react-components.locationbiascssclasses.md) | <i>(Optional)</i> |
-|  [geolocationOptions?](./answers-react-components.locationbiasprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> |
+|  [cssCompositionMethod?](./answers-react-components.locationbiasprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
+|  [customCssClasses?](./answers-react-components.locationbiasprops.customcssclasses.md) | [LocationBiasCssClasses](./answers-react-components.locationbiascssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [geolocationOptions?](./answers-react-components.locationbiasprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->. |
 

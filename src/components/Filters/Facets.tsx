@@ -2,18 +2,36 @@ import { DisplayableFacet, Filter, SelectableFilter, useAnswersActions, useAnswe
 import { ReactNode } from 'react';
 import FiltersContext from './FiltersContext';
 
-export type FacetsProps = {
+/**
+ * Props for {@link Filters.Facets}
+ *
+ * @public
+ */
+export interface FacetsProps {
+  /** CSS class names applied to the component's container div. */
   className?: string,
+  /** Whether or not a search is ran when a filter is selected. */
   searchOnChange?: boolean,
+  /** A function which renders the Facets UI with the provided facets data.
+   *
+   * @remarks
+   * It is intended to be used with the Filters subcomponents including Filters.FilterGroup,
+   * Filters.CollapsibleLabel, Filters.SearchInput, Filters.CheckboxOption, Filters.CollapsibleSection
+   */
   children?: (facets: DisplayableFacet[]) => ReactNode
-};
+}
 
 /**
  * The Facets component is a wrapper component around {@link Filters} that updates facet options
  * when a child filter is updated.
  *
  * The representation of the facets is configured using a FACC (function as a child component)
- * The FACC is passed the facets data, and is intended for use with components like {@link CheckboxOption}.
+ * The FACC is passed the facets data, and is intended for use with components like
+ * {@link Filters.CheckboxOption}.
+ *
+ * @public
+ *
+ * @param props - {@link Filters.FacetsProps}
  */
 export default function Facets(props: FacetsProps): JSX.Element {
   const {

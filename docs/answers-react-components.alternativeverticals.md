@@ -4,21 +4,23 @@
 
 ## AlternativeVerticals() function
 
-Props for [AlternativeVerticals()](./answers-react-components.alternativeverticals.md)<!-- -->.
+A component that displays the alternative verticals that have results if a search returns none on the current vertical.
 
 <b>Signature:</b>
 
 ```typescript
-export default function AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
+export default function AlternativeVerticals({ currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, cssCompositionMethod } | [AlternativeVerticalsProps](./answers-react-components.alternativeverticalsprops.md) |  |
+|  { currentVerticalLabel, verticalsConfig, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod } | [AlternativeVerticalsProps](./answers-react-components.alternativeverticalsprops.md) |  |
 
 <b>Returns:</b>
 
 JSX.Element \| null
+
+A React element for the alternative verticals, or null if there are none with results
 

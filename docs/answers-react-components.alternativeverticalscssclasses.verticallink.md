@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.verticalLink property
 
-Applies to the link for a vertical suggestion.
-
 <b>Signature:</b>
 
 ```typescript

@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.suggestions property
 
-Applies to the categories text and suggestions.
-
 <b>Signature:</b>
 
 ```typescript

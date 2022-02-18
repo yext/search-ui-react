@@ -4,8 +4,15 @@
 
 ## DirectAnswerProps.cssCompositionMethod property
 
+The method of combining a component's built-in CSS classes with custom CSS classes.
+
 <b>Signature:</b>
 
 ```typescript
 cssCompositionMethod?: CompositionMethod;
 ```
+
+## Remarks
+
+Merge keeps the component's built-in classes and adds the custom classes to them (default). Replace ignore all of the component’s built-in classes and only uses the custom classes. Assign keeps the component's built-in classes, however custom classes will completely override their associated built-in classes.
+

@@ -4,6 +4,8 @@
 
 ## onSearchFunc type
 
+The interface of a function which is called on a search.
+
 <b>Signature:</b>
 
 ```typescript

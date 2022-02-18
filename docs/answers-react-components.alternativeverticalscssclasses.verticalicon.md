@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.verticalIcon property
 
-Applies to the icon for a vertical suggestion.
-
 <b>Signature:</b>
 
 ```typescript

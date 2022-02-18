@@ -4,6 +4,8 @@
 
 ## SearchBarProps.onSearch property
 
+A callback which is called when a search is ran.
+
 <b>Signature:</b>
 
 ```typescript

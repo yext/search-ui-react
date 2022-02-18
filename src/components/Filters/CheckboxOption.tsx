@@ -6,19 +6,36 @@ import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { isDuplicateFilter } from '../../utils/filterutils';
 
-export type CheckboxOptionProps = {
+/**
+ * Props for the {@link Filters.CheckboxOption}
+ *
+ * @public
+ */
+export interface CheckboxOptionProps {
+  /** The value used to perform filtering. */
   value: string | number | boolean,
   /**
-   * When fieldId is unspecified, it defaults to the defaultFieldId of the nearest {@link Filters.Group}.
-   * If there is no fieldId or defaultFieldId, the component does not render and an error is logged.
+   * The fieldId used for filtering.
+   *
+   * @remarks
+   * When fieldId is unspecified, it defaults to the defaultFieldId of the nearest
+   * {@link Filters.FilterGroup}. If there is no fieldId or defaultFieldId, the component does not render and
+   * an error is logged.
    */
   fieldId?: string,
-  /** If unspecified, label defaults to the value prop */
+  /** The display label. Defaults to the value prop. */
   label?: string,
+  /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses} */
   customCssClasses?: CheckboxCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
-};
+}
 
+/**
+ * The CSS class interface for {@link Filters.CheckboxOption}.
+ *
+ * @public
+ */
 export interface CheckboxCssClasses {
   input?: string,
   label?: string,
@@ -33,6 +50,10 @@ const builtInCssClasses: CheckboxCssClasses = {
 
 /**
  * A checkbox component that represents a single Filter.
+ *
+ * @public
+ *
+ * @param props - {@link Filters.CheckboxOptionProps}
  */
 export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const { searchValue, defaultFieldId } = useFilterGroupContext();

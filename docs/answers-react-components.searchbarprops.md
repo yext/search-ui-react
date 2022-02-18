@@ -4,6 +4,8 @@
 
 ## SearchBarProps interface
 
+The props for the [SearchBar()](./answers-react-components.searchbar.md) component.
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,14 +16,15 @@ export interface SearchBarProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.searchbarprops.csscompositionmethod.md) | CompositionMethod | <i>(Optional)</i> |
-|  [customCssClasses?](./answers-react-components.searchbarprops.customcssclasses.md) | [SearchBarCssClasses](./answers-react-components.searchbarcssclasses.md) | <i>(Optional)</i> |
-|  [geolocationOptions?](./answers-react-components.searchbarprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> |
-|  [hideRecentSearches?](./answers-react-components.searchbarprops.hiderecentsearches.md) | boolean | <i>(Optional)</i> |
-|  [hideVerticalLinks?](./answers-react-components.searchbarprops.hideverticallinks.md) | boolean | <i>(Optional)</i> |
-|  [onSearch?](./answers-react-components.searchbarprops.onsearch.md) | [onSearchFunc](./answers-react-components.onsearchfunc.md) | <i>(Optional)</i> |
-|  [placeholder?](./answers-react-components.searchbarprops.placeholder.md) | string | <i>(Optional)</i> |
-|  [recentSearchesLimit?](./answers-react-components.searchbarprops.recentsearcheslimit.md) | number | <i>(Optional)</i> |
-|  [verticalKeyToLabel?](./answers-react-components.searchbarprops.verticalkeytolabel.md) | (verticalKey: string) =&gt; string | <i>(Optional)</i> |
-|  [visualAutocompleteConfig?](./answers-react-components.searchbarprops.visualautocompleteconfig.md) | VisualAutocompleteConfig | <i>(Optional)</i> |
+|  [cssCompositionMethod?](./answers-react-components.searchbarprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
+|  [customCssClasses?](./answers-react-components.searchbarprops.customcssclasses.md) | [SearchBarCssClasses](./answers-react-components.searchbarcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [geolocationOptions?](./answers-react-components.searchbarprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->. |
+|  [hideRecentSearches?](./answers-react-components.searchbarprops.hiderecentsearches.md) | boolean | <i>(Optional)</i> Hides recent searches if true. |
+|  [hideVerticalLinks?](./answers-react-components.searchbarprops.hideverticallinks.md) | boolean | <i>(Optional)</i> Hides vertical links if true. |
+|  [onSearch?](./answers-react-components.searchbarprops.onsearch.md) | [onSearchFunc](./answers-react-components.onsearchfunc.md) | <i>(Optional)</i> A callback which is called when a search is ran. |
+|  [onSelectVerticalLink?](./answers-react-components.searchbarprops.onselectverticallink.md) | (data: { verticalLink: [VerticalLink](./answers-react-components.verticallink.md)<!-- -->; querySource: QuerySource; }) =&gt; void | <i>(Optional)</i> A function which is called when a vertical link is selected. |
+|  [placeholder?](./answers-react-components.searchbarprops.placeholder.md) | string | <i>(Optional)</i> The search bar's placeholder text. |
+|  [recentSearchesLimit?](./answers-react-components.searchbarprops.recentsearcheslimit.md) | number | <i>(Optional)</i> Limits the number of recent searches shown. |
+|  [verticalKeyToLabel?](./answers-react-components.searchbarprops.verticalkeytolabel.md) | (verticalKey: string) =&gt; string | <i>(Optional)</i> A function which returns a display label for the given verticalKey. |
+|  [visualAutocompleteConfig?](./answers-react-components.searchbarprops.visualautocompleteconfig.md) | [VisualAutocompleteConfig](./answers-react-components.visualautocompleteconfig.md) | <i>(Optional)</i> The configuration options for Visual Autocomplete. |
 

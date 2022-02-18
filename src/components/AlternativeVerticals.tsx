@@ -8,29 +8,20 @@ import { UniversalLink } from '../models/universalLink';
 
 /**
  * The CSS class interface used for {@link AlternativeVerticals}.
+ *
+ * @public
  */
 export interface AlternativeVerticalsCssClasses {
-  /** Applies to the outermost container of the alternative verticals. */
   container?: string,
-  /** Applies when the results are loading. */
   alternativeVerticals___loading?: string,
-  /** Applies to the text for no results being found. */
   noResultsText?: string,
-  /** Applies to the text for there being other categories with results. */
   categoriesText?: string,
-  /** Applies to the categories text and suggestions. */
   suggestions?: string,
-  /** Applies to the overall list of vertical suggestions. */
   suggestionList?: string,
-  /** Applies to a single vertical suggestion. */
   suggestion?: string,
-  /** Applies to the button for a vertical suggestion, including the icon and link. */
   suggestionButton?: string,
-  /** Applies to the icon for a vertical suggestion. */
   verticalIcon?: string,
-  /** Applies to the link for a vertical suggestion. */
   verticalLink?: string,
-  /** Applies to the text for viewing results across all verticals. */
   allCategoriesLink?: string
 }
 
@@ -63,6 +54,8 @@ function isVerticalSuggestion(suggestion: VerticalSuggestion | null): suggestion
 
 /**
  * Props for {@link AlternativeVerticals}.
+ *
+ * @public
  */
 export interface AlternativeVerticalsProps {
   /** The label for the current vertical. */
@@ -91,7 +84,9 @@ export interface AlternativeVerticalsProps {
  * A component that displays the alternative verticals that have results if a search returns none
  * on the current vertical.
  *
- * @param props - {@inheritDoc AlternativeVerticalsProps}
+ * @public
+ *
+ * @param props - {@link AlternativeVerticalsProps}
  * @returns A React element for the alternative verticals, or null if there are none with results
  */
 export default function AlternativeVerticals({
@@ -117,13 +112,13 @@ export default function AlternativeVerticals({
     [cssClasses.alternativeVerticals___loading ?? '']: isLoading
   });
 
-  const getSuggestionUrl = customGetSuggestionUrl 
+  const getSuggestionUrl = customGetSuggestionUrl
     ? customGetSuggestionUrl
     : (data: VerticalLink | UniversalLink) => {
-        return isVerticalLink(data)
+      return isVerticalLink(data)
         ? `/${data.verticalKey}?query=${data.query}`
         :`/?query=${data.query}`;
-      };
+    };
 
   function buildVerticalSuggestions(
     verticalsConfig: VerticalConfig[],

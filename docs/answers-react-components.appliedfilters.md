@@ -4,7 +4,7 @@
 
 ## AppliedFilters() function
 
-Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->.
+A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters.
 
 <b>Signature:</b>
 
@@ -16,9 +16,11 @@ export default function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [AppliedFiltersProps](./answers-react-components.appliedfiltersprops.md) |  |
+|  props | [AppliedFiltersProps](./answers-react-components.appliedfiltersprops.md) | [AppliedFiltersProps](./answers-react-components.appliedfiltersprops.md) |
 
 <b>Returns:</b>
 
 JSX.Element
+
+A React element for the applied filters
 
