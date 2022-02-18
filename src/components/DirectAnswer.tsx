@@ -3,8 +3,13 @@ import renderHighlightedValue from './utils/renderHighlightedValue';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { FeedbackType, ThumbsFeedbackCssClasses } from './ThumbsFeedback';
-import { ThumbsFeedback, builtInCssClasses as thumbsFeedbackBuiltInCssClasses } from './ThumbsFeedback';
+import {
+  FeedbackType,
+  ThumbsFeedbackCssClasses,
+  ThumbsFeedback,
+  builtInCssClasses as thumbsFeedbackBuiltInCssClasses
+} from './ThumbsFeedback';
+
 import { useCardAnalytics } from '../hooks/useCardAnalytics';
 
 /**
