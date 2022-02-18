@@ -246,16 +246,16 @@ interface FacetsProps {
 export type FieldData = FieldDataConstant | FieldDataPath;
 
 // @public
-export type FieldDataConstant = {
+export interface FieldDataConstant {
     mappingType: 'CONSTANT';
     value: string;
-};
+}
 
 // @public
-export type FieldDataPath = {
-    mappingType: 'FIELD';
+export interface FieldDataPath {
     apiName: string | string[];
-};
+    mappingType: 'FIELD';
+}
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver

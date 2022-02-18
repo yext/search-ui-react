@@ -7,19 +7,19 @@ import get from 'lodash/get';
  *
  * @public
  */
-export type FieldDataConstant = {
+export interface FieldDataConstant {
   /** Indicates that the field data is constant. */
   mappingType: 'CONSTANT',
   /** The constant field data value. */
   value: string
-};
+}
 
 /**
  * Denotes the path to the field data on the Result's raw dadta.
  *
  * @public
  */
-export type FieldDataPath = {
+export interface FieldDataPath {
   /** Indicates that the field data is mapped from the Result's raw data */
   mappingType: 'FIELD',
   /** The api name which denotes the path to the field data.
@@ -44,7 +44,7 @@ export type FieldDataPath = {
    * In this example, if the title is not present, it will fallback to the subtitle.
   */
   apiName: string | string[]
-};
+}
 
 /**
  * Indicates either a constant field data value, or a field data mapping.

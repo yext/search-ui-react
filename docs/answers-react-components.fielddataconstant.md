@@ -2,15 +2,20 @@
 
 [Home](./index.md) &gt; [@yext/answers-react-components](./answers-react-components.md) &gt; [FieldDataConstant](./answers-react-components.fielddataconstant.md)
 
-## FieldDataConstant type
+## FieldDataConstant interface
 
 Indicates a field should equal a constant value. Ignores the API response.
 
 <b>Signature:</b>
 
 ```typescript
-export declare type FieldDataConstant = {
-    mappingType: 'CONSTANT';
-    value: string;
-};
+export interface FieldDataConstant 
 ```
+
+## Properties
+
+|  Property | Type | Description |
+|  --- | --- | --- |
+|  [mappingType](./answers-react-components.fielddataconstant.mappingtype.md) | 'CONSTANT' | Indicates that the field data is constant. |
+|  [value](./answers-react-components.fielddataconstant.value.md) | string | The constant field data value. |
+
