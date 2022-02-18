@@ -18,7 +18,7 @@ export interface FieldDataConstant {
  * Denotes the path to the field data on the Result's raw dadta.
  *
  * @remarks
- * The apiName is a string separated by periods '.'.
+ * The apiName is a string separated by periods `.`.
  * An array may also be supplied to denote fallbacks.
  *
  * @example

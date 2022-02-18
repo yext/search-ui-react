@@ -14,7 +14,7 @@ export interface FieldDataPath
 
 ## Remarks
 
-The apiName is a string separated by periods '.'. An array may also be supplied to denote fallbacks.
+The apiName is a string separated by periods `.`<!-- -->. An array may also be supplied to denote fallbacks.
 
 ## Example
 
