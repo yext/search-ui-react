@@ -1,19 +1,44 @@
-import { Result, useAnswersState } from '@yext/answers-headless-react';
+import {
+  DirectAnswer as DirectAnswerData,
+  DirectAnswerType,
+  FieldValueDirectAnswer,
+  Result,
+  useAnswersState
+} from '@yext/answers-headless-react';
 import { FeedbackType } from '../components/ThumbsFeedback';
 import { useAnalytics } from './useAnalytics';
 
-type CtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
-type CardAnalyticsType = CtaEventType | FeedbackType;
+type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
+type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
 export function useCardAnalytics(): (
-  cardResult: Result, analyticsEventType: CardAnalyticsType
+  cardResult: Result | DirectAnswerData, analyticsEventType: CardAnalyticsType
 ) => void {
   const analytics = useAnalytics();
   const verticalKey = useAnswersState(state => state.vertical.verticalKey);
   const queryId = useAnswersState(state => state.query.queryId);
 
-  const reportCtaEvent = (result: Result, eventType: CtaEventType) => {
-    const entityId = result.id;
+  function isDirectAnswer(data: DirectAnswerData | Result): data is DirectAnswerData {
+    return 'type' in data
+      && (data.type === DirectAnswerType.FeaturedSnippet
+      || data.type === DirectAnswerType.FieldValue);
+  }
+
+  const reportCtaEvent = (result: DirectAnswerData | Result, eventType: CardCtaEventType) => {
+    let url: string | undefined, entityId: string | undefined, fieldName: string | undefined;
+    let directAnswer = false;
+    if (isDirectAnswer(result)) {
+      url = result.relatedResult.link;
+      entityId = result.relatedResult.id;
+      fieldName = result.type === DirectAnswerType.FeaturedSnippet
+        ? undefined
+        : (result as FieldValueDirectAnswer).fieldName;
+      directAnswer = true;
+    } else {
+      url = result.link;
+      entityId = result.id;
+    }
+
     if (!queryId) {
       console.error('Unable to report a CTA event. Missing field: queryId.');
       return;
@@ -28,25 +53,36 @@ export function useCardAnalytics(): (
       searcher: verticalKey ? 'VERTICAL' : 'UNIVERSAL',
       queryId,
       verticalKey: verticalKey || '',
-      url: result.link
+      url,
+      fieldName,
+      directAnswer
     });
   };
-  const reportFeedbackEvent = (result: Result, feedbackType: FeedbackType) => {
+
+  const reportFeedbackEvent = (result: DirectAnswerData | Result, feedbackType: FeedbackType) => {
     if (!queryId) {
       console.error('Unable to report a result feedback event. Missing field: queryId.');
       return;
     }
-    const entityId = result.id;
+    let directAnswer = false;
+    let entityId: string | undefined;
+    if (isDirectAnswer(result)) {
+      directAnswer = true;
+      entityId = result.relatedResult.id;
+    } else {
+      entityId = result.id;
+    }
     analytics?.report({
       type: feedbackType,
       entityId,
       searcher: verticalKey ? 'VERTICAL' : 'UNIVERSAL',
       queryId: queryId,
-      verticalKey: verticalKey || ''
+      verticalKey: verticalKey || '',
+      directAnswer
     });
   };
   const reportAnalyticsEvent = (
-    cardResult: Result,
+    cardResult: DirectAnswerData | Result,
     analyticsEventType: CardAnalyticsType
   ) => {
     if (!analytics) {
