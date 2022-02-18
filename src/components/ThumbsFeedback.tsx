@@ -15,9 +15,17 @@ export interface ThumbsFeedbackCssClasses {
   thumbsDownIcon?: string
 }
 
+/**
+ * Props for {@link ThumbsFeedback}.
+ *
+ * @public
+ */
 export interface ThumbsFeedbackProps {
+  /** A function which is called when a quality feedback button is clicked. */
   onClick: (feedbackType: FeedbackType) => void,
+  /** Text to display after a quality feedback button is clicked. */
   feedbackTextOnSubmission?: string,
+  /** CSS classes for customizing the component styling. */
   cssClasses: ThumbsFeedbackCssClasses
 }
 

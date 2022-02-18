@@ -16,7 +16,7 @@ export declare function ThumbsFeedback({ onClick, feedbackTextOnSubmission, cssC
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { onClick, feedbackTextOnSubmission, cssClasses } | ThumbsFeedbackProps |  |
+|  { onClick, feedbackTextOnSubmission, cssClasses } | [ThumbsFeedbackProps](./answers-react-components.thumbsfeedbackprops.md) |  |
 
 <b>Returns:</b>
 

@@ -618,8 +618,6 @@ type StaticFiltersProps = PropsWithChildren<{
     className?: string;
 }>;
 
-// Warning: (ae-forgotten-export) The symbol "ThumbsFeedbackProps" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function ThumbsFeedback({ onClick, feedbackTextOnSubmission, cssClasses }: ThumbsFeedbackProps): JSX.Element;
 
@@ -631,6 +629,14 @@ export interface ThumbsFeedbackCssClasses {
     thumbsDownIcon?: string;
     // (undocumented)
     thumbsUpIcon?: string;
+}
+
+// @public
+export interface ThumbsFeedbackProps {
+    cssClasses: ThumbsFeedbackCssClasses;
+    feedbackTextOnSubmission?: string;
+    // Warning: (ae-forgotten-export) The symbol "FeedbackType" needs to be exported by the entry point index.d.ts
+    onClick: (feedbackType: FeedbackType) => void;
 }
 
 // @public

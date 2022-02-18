@@ -29,7 +29,8 @@ export type {
 
 export { ThumbsFeedback } from './ThumbsFeedback';
 export type {
-  ThumbsFeedbackCssClasses
+  ThumbsFeedbackCssClasses,
+  ThumbsFeedbackProps
 } from './ThumbsFeedback';
 
 export { default as FilterSearch } from './FilterSearch';

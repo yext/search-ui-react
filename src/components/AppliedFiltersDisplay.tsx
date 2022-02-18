@@ -8,13 +8,9 @@ import { AppliedFiltersCssClasses } from './AppliedFilters';
  * Properties for {@link AppliedFilters}.
  */
 export interface AppliedFiltersDisplayProps {
-  /**
-   * List of {@link DisplayableFilter} to construct the applied filter tags from.
-   */
+  /** List of {@link DisplayableFilter} to construct the applied filter tags from. */
   displayableFilters: DisplayableFilter[],
-  /**
-   * CSS classes for customizing the component styling.
-   */
+  /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses
 }
 
