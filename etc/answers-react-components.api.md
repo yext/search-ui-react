@@ -630,7 +630,6 @@ export interface UniversalResultsProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
-    // Warning: (ae-forgotten-export) The symbol "VerticalConfigMap" needs to be exported by the entry point index.d.ts
     verticalConfigMap: VerticalConfigMap;
 }
 
@@ -657,8 +656,12 @@ export interface VerticalConfig {
 }
 
 // @public
+export interface VerticalConfigMap {
+    [verticalKey: string]: VerticalConfig;
+}
+
+// @public
 export interface VerticalLabelMap {
-    // (undocumented)
     [verticalKey: string]: Pick<VerticalConfig, 'label'>;
 }
 

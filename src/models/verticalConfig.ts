@@ -26,10 +26,11 @@ export interface VerticalConfig {
 }
 
 /**
- * A map of verticalKey to a VerticalConfig
+ * A map of verticalKey to a VerticalConfig.
  *
  * @public
  */
 export interface VerticalConfigMap {
+  /** Config mapped to a vertical. */
   [verticalKey: string]: VerticalConfig;
 }

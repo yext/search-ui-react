@@ -58,6 +58,7 @@ function isVerticalSuggestion(suggestion: unknown): suggestion is VerticalSugges
  * @public
  */
 export interface VerticalLabelMap {
+  /** Config mapped to a vertical. */
   [verticalKey: string]: Pick<VerticalConfig, 'label'>;
 }
 
