@@ -12,6 +12,7 @@ export { default as EntityPreviews } from './EntityPreviews';
 export type { FocusedItemData } from './Dropdown/FocusContext';
 
 export { default as DropdownItem } from './Dropdown/DropdownItem';
+export type { DropdownItemProps } from './Dropdown/DropdownItem';
 
 export type { FieldData, FieldDataConstant, FieldDataPath } from './utils/applyFieldMappings';
 

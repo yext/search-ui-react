@@ -216,10 +216,17 @@ export interface DirectAnswerProps {
     customCssClasses?: DirectAnswerCssClasses;
 }
 
-// Warning: (ae-forgotten-export) The symbol "DropdownItemProps" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
+
+// @public
+export type DropdownItemProps = PropsWithChildren<{
+    value: string;
+    className?: string;
+    focusedClassName?: string;
+    itemData?: Record<string, unknown> | undefined;
+    onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
+}>;
 
 // @public
 export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;

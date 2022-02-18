@@ -16,7 +16,7 @@ export default function DropdownItem(_props: DropdownItemProps): JSX.Element | n
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  \_props | DropdownItemProps |  |
+|  \_props | [DropdownItemProps](./answers-react-components.dropdownitemprops.md) |  |
 
 <b>Returns:</b>
 

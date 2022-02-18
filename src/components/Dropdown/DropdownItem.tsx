@@ -6,6 +6,8 @@ import { useInputContext } from './InputContext';
 
 /**
  * Props for the {@link DropdownItem}.
+ *
+ * @public
  */
 export type DropdownItemProps = PropsWithChildren<{
   /** The value associated with the dropdown item. */
