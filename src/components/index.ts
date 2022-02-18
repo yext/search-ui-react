@@ -3,10 +3,15 @@ export type {
   SearchBarCssClasses,
   SearchBarProps,
   VisualAutocompleteConfig,
-  RenderEntityPreviews
+  RenderEntityPreviews,
+  onSearchFunc
 } from './SearchBar';
+export type { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
+export type { EntityPreviewsProps } from './EntityPreviews';
 export { default as EntityPreviews } from './EntityPreviews';
-export { default as DropdownItem } from './Dropdown/DropdownItem';
+export type { FocusedItemData } from './Dropdown/FocusContext';
+
+export type { FieldData, FieldDataConstant, FieldDataPath } from './utils/applyFieldMappings';
 
 export { default as SpellCheck } from './SpellCheck';
 export type {
@@ -37,10 +42,6 @@ export type {
   AppliedFiltersCssClasses,
   AppliedFiltersProps
 } from './AppliedFilters';
-export { default as AppliedFiltersDisplay } from './AppliedFiltersDisplay';
-export type {
-  AppliedFiltersDisplayProps
-} from './AppliedFiltersDisplay';
 
 export { default as UniversalResults } from './UniversalResults';
 export type {

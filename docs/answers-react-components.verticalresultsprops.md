@@ -18,7 +18,7 @@ export interface VerticalResultsProps
 |  --- | --- | --- |
 |  [allowPagination?](./answers-react-components.verticalresultsprops.allowpagination.md) | boolean | <i>(Optional)</i> Whether to include pagination of the results. Defaults to true. |
 |  [CardComponent](./answers-react-components.verticalresultsprops.cardcomponent.md) | [CardComponent](./answers-react-components.cardcomponent.md) | A functional component that can be used to render a result card. |
-|  [cssCompositionMethod?](./answers-react-components.verticalresultsprops.csscompositionmethod.md) | CompositionMethod | <i>(Optional)</i> |
+|  [cssCompositionMethod?](./answers-react-components.verticalresultsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.verticalresultsprops.customcssclasses.md) | [VerticalResultsCssClasses](./answers-react-components.verticalresultscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [displayAllOnNoResults?](./answers-react-components.verticalresultsprops.displayallonnoresults.md) | boolean | <i>(Optional)</i> Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |
 

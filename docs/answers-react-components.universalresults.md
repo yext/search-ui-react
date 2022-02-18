@@ -4,7 +4,7 @@
 
 ## UniversalResults() function
 
-Props for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->.
+Displays the results of a universal search with the results for each vertical separated into sections.
 
 <b>Signature:</b>
 
@@ -21,4 +21,6 @@ export default function UniversalResults({ verticalConfigs, showAppliedFilters, 
 <b>Returns:</b>
 
 JSX.Element \| null
+
+A React element for the universal results, or null if there are none
 

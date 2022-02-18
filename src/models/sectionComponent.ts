@@ -3,6 +3,8 @@ import { CardComponent } from './cardComponent';
 
 /**
  * The configuration of a section template for a vertical's results on a universal page.
+ *
+ * @public
  */
 export interface SectionConfig {
   /** The results from this vertical. */
@@ -19,5 +21,7 @@ export interface SectionConfig {
 
 /**
  * A component that can be used to render a section template for vertical results.
+ *
+ * @public
  */
 export type SectionComponent = (props: SectionConfig) => JSX.Element | null;

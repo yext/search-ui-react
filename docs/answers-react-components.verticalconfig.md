@@ -17,6 +17,7 @@ export interface VerticalConfig
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [CardComponent?](./answers-react-components.verticalconfig.cardcomponent.md) | [CardComponent](./answers-react-components.cardcomponent.md) | <i>(Optional)</i> The card to use for this vertical. |
+|  [getViewAllUrl?](./answers-react-components.verticalconfig.getviewallurl.md) | (data: [VerticalLink](./answers-react-components.verticallink.md)<!-- -->) =&gt; string | <i>(Optional)</i> A function to provide user defined url path for each vertical's view all link. |
 |  [label?](./answers-react-components.verticalconfig.label.md) | string | <i>(Optional)</i> The label for the vertical. |
 |  [SectionComponent?](./answers-react-components.verticalconfig.sectioncomponent.md) | [SectionComponent](./answers-react-components.sectioncomponent.md) | <i>(Optional)</i> A component that can be used to render a section template for vertical results. |
 |  [viewAllButton?](./answers-react-components.verticalconfig.viewallbutton.md) | boolean | <i>(Optional)</i> Whether or not this vertical should show a button to view all results on the vertical page. |

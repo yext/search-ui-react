@@ -12,6 +12,8 @@ import { isString, validateData } from '../utils/validateData';
 
 /**
  * Props for a StandardCard.
+ *
+ * @public
  */
 export interface StandardCardProps extends CardProps {
   /** Whether or not to show an ordinal for numbering the card. */
@@ -52,27 +54,19 @@ const defaultFieldMappings: Record<string, FieldData> = {
 
 /**
  * The CSS class interface used for {@link StandardCard}.
+ *
+ * @public
  */
 export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
-  /** Applies to the outermost container of the card. */
   container?: string,
-  /** Applies to the card's header, including the ordinal and title. */
   header?: string,
-  /** Applies to the body of the card, including the description and CTAs. */
   body?: string,
-  /** Applies to the result description. */
   descriptionContainer?: string,
-  /** Applies to the container of the CTAs. */
   ctaContainer?: string,
-  /** Applies to the primary CTA. */
   cta1?: string,
-  /** Applies to the secondary CTA. */
   cta2?: string,
-  /** Applies to the ordinal number. */
   ordinal?: string,
-  /** Applies to the result title. */
   title?: string,
-  /** Applies to the result title in link form. */
   title___link?: string
 }
 
@@ -108,6 +102,8 @@ function isCtaData(data: unknown): data is CtaData {
 
 /**
  * This Component renders the base result card.
+ *
+ * @public
  *
  * @param props - An object containing the result itself and any additional information needed
  *                to render the card

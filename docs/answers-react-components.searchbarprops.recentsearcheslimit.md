@@ -4,6 +4,8 @@
 
 ## SearchBarProps.recentSearchesLimit property
 
+Limits the number of recent searches shown.
+
 <b>Signature:</b>
 
 ```typescript

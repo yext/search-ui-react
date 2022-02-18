@@ -7,11 +7,23 @@ import { FeedbackType, ThumbsFeedbackCssClasses } from './ThumbsFeedback';
 import { ThumbsFeedback, builtInCssClasses as thumbsFeedbackBuiltInCssClasses } from './ThumbsFeedback';
 import { useCardAnalytics } from '../hooks/useCardAnalytics';
 
+/**
+ * Props for {@link DirectAnswer}.
+ *
+ * @public
+ */
 export interface DirectAnswerProps {
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: DirectAnswerCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
+/**
+ *  The CSS class interface for {@link DirectAnswer}.
+ *
+ * @public
+ */
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
   container?: string,
   container___loading?: string,
@@ -45,6 +57,14 @@ const builtInCssClasses: DirectAnswerCssClasses = {
   ...thumbsFeedbackBuiltInCssClasses
 };
 
+/**
+ * Renders Direct Answers provided by the Answers API.
+ *
+ * @public
+ *
+ * @param props - {@link DirectAnswerProps}
+ * @returns A react element for DirectAnswer
+ */
 export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   const directAnswerResult = useAnswersState(state => state.directAnswer.result);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading || false);

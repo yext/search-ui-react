@@ -3,15 +3,26 @@ import { cloneElement, isValidElement, ReactNode } from 'react';
 import DropdownItem from './Dropdown/DropdownItem';
 import recursivelyMapChildren from './utils/recursivelyMapChildren';
 
-interface EntityPreviewsProps {
+/**
+ * The props for the {@link EntityPreviews} component.
+ *
+ * @public
+ */
+export interface EntityPreviewsProps {
+  /** Results associated with the provided verticalKey are passed to the EntityPreviews children function. */
   verticalKey: string,
+  /** The entity preview render function which is passed results for the specified vertical. */
   children: (results: Result[], index: number) => JSX.Element,
+  /** Limits the number of results provided to the render function. */
   limit?: number
 }
 
 /**
  * EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews.
- * It provides results corresponding to its verticalKey through a props.children FACC.
+ * It provides results corresponding to its verticalKey through a props.children
+ * Function as Compound Component (FACC).
+ *
+ * @public
  *
  * @remarks
  * You can optionally specify a limit for the results. This limit will be shared between

@@ -4,6 +4,8 @@
 
 ## FilterSearchProps.sectioned property
 
+Determines whether or not the results of the filter search are separated by field.
+
 <b>Signature:</b>
 
 ```typescript

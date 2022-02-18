@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.suggestionButton property
 
-Applies to the button for a vertical suggestion, including the icon and link.
-
 <b>Signature:</b>
 
 ```typescript

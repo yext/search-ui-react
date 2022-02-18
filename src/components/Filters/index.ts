@@ -1,5 +1,5 @@
 export { default as CheckboxOption } from './CheckboxOption';
-export type { CheckboxOptionProps } from './CheckboxOption';
+export type { CheckboxOptionProps, CheckboxCssClasses } from './CheckboxOption';
 
 export { default as CollapsibleLabel } from './CollapsibleLabel';
 export type { CollapsibleLabelProps } from './CollapsibleLabel';
@@ -8,6 +8,7 @@ export { default as CollapsibleSection } from './CollapsibleSection';
 export type { CollapsibleSectionProps } from './CollapsibleSection';
 
 export { default as ResponsiveDivider } from './ResponsiveDivider';
+export type { ResponsiveDividerProps } from './ResponsiveDivider';
 
 export { default as Facets } from './Facets';
 export type { FacetsProps } from './Facets';

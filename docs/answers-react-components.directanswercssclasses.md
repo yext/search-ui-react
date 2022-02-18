@@ -4,6 +4,8 @@
 
 ## DirectAnswerCssClasses interface
 
+The CSS class interface for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->.
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,14 +16,19 @@ export interface DirectAnswerCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
+|  [answerContainer?](./answers-react-components.directanswercssclasses.answercontainer.md) | string | <i>(Optional)</i> |
 |  [container\_\_\_loading?](./answers-react-components.directanswercssclasses.container___loading.md) | string | <i>(Optional)</i> |
 |  [container?](./answers-react-components.directanswercssclasses.container.md) | string | <i>(Optional)</i> |
 |  [content?](./answers-react-components.directanswercssclasses.content.md) | string | <i>(Optional)</i> |
 |  [featuredSnippetDescription?](./answers-react-components.directanswercssclasses.featuredsnippetdescription.md) | string | <i>(Optional)</i> |
 |  [featuredSnippetTitle?](./answers-react-components.directanswercssclasses.featuredsnippettitle.md) | string | <i>(Optional)</i> |
+|  [feedbackButton?](./answers-react-components.directanswercssclasses.feedbackbutton.md) | string | <i>(Optional)</i> |
+|  [feedbackButtonsContainer?](./answers-react-components.directanswercssclasses.feedbackbuttonscontainer.md) | string | <i>(Optional)</i> |
 |  [fieldValueDescription?](./answers-react-components.directanswercssclasses.fieldvaluedescription.md) | string | <i>(Optional)</i> |
 |  [fieldValueTitle?](./answers-react-components.directanswercssclasses.fieldvaluetitle.md) | string | <i>(Optional)</i> |
 |  [highlighted?](./answers-react-components.directanswercssclasses.highlighted.md) | string | <i>(Optional)</i> |
+|  [thumbsDownIcon?](./answers-react-components.directanswercssclasses.thumbsdownicon.md) | string | <i>(Optional)</i> |
+|  [thumbsUpIcon?](./answers-react-components.directanswercssclasses.thumbsupicon.md) | string | <i>(Optional)</i> |
 |  [viewDetailsLink?](./answers-react-components.directanswercssclasses.viewdetailslink.md) | string | <i>(Optional)</i> |
 |  [viewDetailsLinkContainer?](./answers-react-components.directanswercssclasses.viewdetailslinkcontainer.md) | string | <i>(Optional)</i> |
 

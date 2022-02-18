@@ -4,8 +4,6 @@
 
 ## AppliedFiltersCssClasses.appliedFiltersContainer\_\_\_loading property
 
-Applies when the results are loading.
-
 <b>Signature:</b>
 
 ```typescript

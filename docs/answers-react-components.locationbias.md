@@ -4,6 +4,8 @@
 
 ## LocationBias() function
 
+A React Component which displays and collects location information in order to bias searches.
+
 <b>Signature:</b>
 
 ```typescript
@@ -19,4 +21,6 @@ export default function LocationBias({ geolocationOptions, customCssClasses, css
 <b>Returns:</b>
 
 JSX.Element \| null
+
+A react component for Location Bias
 

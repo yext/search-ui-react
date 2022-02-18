@@ -1,10 +1,12 @@
 import { VerticalResultsDisplay } from '../components/VerticalResultsDisplay';
-import { SectionComponent, SectionConfig } from '../models/sectionComponent';
+import { SectionConfig } from '../models/sectionComponent';
 import { StandardCard } from '../components/cards/StandardCard';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
 /**
  * The CSS class interface used for {@link StandardSection}.
+ *
+ * @public
  */
 export interface StandardSectionCssClasses {
   section?: string
@@ -16,25 +18,29 @@ const builtInCssClasses: StandardSectionCssClasses = {
 
 /**
  * The configuration for a StandardSection.
+ *
+ * @public
  */
 export interface StandardSectionConfig extends SectionConfig {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardSectionCssClasses,
   /** {@inheritDoc CompositionMethod} */
-  compositionmethod?: CompositionMethod
+  cssCompositionMethod?: CompositionMethod
 }
 
 /**
  * A component that displays all the results for a vertical using a standard section template.
  *
- * @param props - {@inheritDoc StandardSectionConfig}
+ * @public
+ *
+ * @param props - {@link StandardSectionConfig}
  * @returns A React element for a standard section, or null if there are no results to display
  */
-const StandardSection: SectionComponent = function(props: StandardSectionConfig): JSX.Element | null {
+export default function StandardSection(props: StandardSectionConfig): JSX.Element | null {
   const cssClasses = useComposedCssClasses(
     builtInCssClasses,
     props.customCssClasses,
-    props.compositionmethod
+    props.cssCompositionMethod
   );
   const { results, CardComponent = StandardCard, header } = props;
 
@@ -51,5 +57,4 @@ const StandardSection: SectionComponent = function(props: StandardSectionConfig)
       />
     </section>
   );
-};
-export default StandardSection;
+}

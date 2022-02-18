@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.suggestion property
 
-Applies to a single vertical suggestion.
-
 <b>Signature:</b>
 
 ```typescript

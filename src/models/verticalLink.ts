@@ -1,6 +1,13 @@
+/**
+ * Data needed to create a URL to a vertical search page.
+ *
+ * @public
+ */
 export interface VerticalLink {
+  /** The vertical key associated with the vertical link. */
   verticalKey: string
-  query: string | undefined
+  /** The query used when the vertical link is selected. */
+  query?: string
 }
 
 export const isVerticalLink = (obj: unknown): obj is VerticalLink => {

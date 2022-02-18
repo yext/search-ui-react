@@ -9,6 +9,8 @@ import { VerticalLink } from '../models/verticalLink';
 
 /**
  * The CSS class interface used for {@link UniversalResults}.
+ *
+ * @public
  */
 export interface UniversalResultsCssClasses {
   container?: string,
@@ -22,6 +24,8 @@ const builtInCssClasses: UniversalResultsCssClasses = {
 
 /**
  * The configuration for a vertical.
+ *
+ * @public
  */
 export interface VerticalConfig {
   /** {@inheritDoc SectionComponent} */
@@ -34,6 +38,8 @@ export interface VerticalConfig {
   viewAllButton?: boolean,
   /**
    * A function to provide user defined url path for each vertical's view all link.
+   *
+   * @remarks
    * Defaults to "/[verticalKey]?query=[query]"
    */
   getViewAllUrl?: (data: VerticalLink) => string
@@ -41,6 +47,8 @@ export interface VerticalConfig {
 
 /**
  * Props for {@link UniversalResults}.
+ *
+ * @public
  */
 export interface UniversalResultsProps {
   /** Whether or not to show the applied filters. */
@@ -57,7 +65,9 @@ export interface UniversalResultsProps {
  * Displays the results of a universal search with the results for each vertical separated
  * into sections.
  *
- * @param props - {@inheritDoc UniversalResultsProps}
+ * @public
+ *
+ * @param props - {@link UniversalResultsProps}
  * @returns A React element for the universal results, or null if there are none
  */
 export default function UniversalResults({

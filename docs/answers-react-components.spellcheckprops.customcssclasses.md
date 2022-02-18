@@ -4,6 +4,8 @@
 
 ## SpellCheckProps.customCssClasses property
 
+CSS classes for customizing the component styling.
+
 <b>Signature:</b>
 
 ```typescript

@@ -4,8 +4,6 @@
 
 ## AlternativeVerticalsCssClasses.categoriesText property
 
-Applies to the text for there being other categories with results.
-
 <b>Signature:</b>
 
 ```typescript

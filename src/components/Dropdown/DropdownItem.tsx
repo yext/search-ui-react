@@ -4,11 +4,19 @@ import { FocusedItemData, useFocusContext } from './FocusContext';
 import generateDropdownId from './generateDropdownId';
 import { useInputContext } from './InputContext';
 
+/**
+ * Props for the {@link DropdownItem}.
+ */
 export type DropdownItemProps = PropsWithChildren<{
+  /** The value associated with the dropdown item. */
   value: string,
+  /** The CSS classes which put on the dropdown item. */
   className?: string,
+  /** The CSS classes put on the dropdown item when it is focused. */
   focusedClassName?: string,
+  /** Data associated with the dropdown item which is passed to the onClick and the onSelect handlers. */
   itemData?: Record<string, unknown> | undefined,
+  /** A function which is fired when the item is clicked. */
   onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void
 }>;
 

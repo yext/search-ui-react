@@ -16,13 +16,13 @@ export interface StandardCardCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [body?](./answers-react-components.standardcardcssclasses.body.md) | string | <i>(Optional)</i> Applies to the body of the card, including the description and CTAs. |
-|  [container?](./answers-react-components.standardcardcssclasses.container.md) | string | <i>(Optional)</i> Applies to the outermost container of the card. |
-|  [cta1?](./answers-react-components.standardcardcssclasses.cta1.md) | string | <i>(Optional)</i> Applies to the primary CTA. |
-|  [cta2?](./answers-react-components.standardcardcssclasses.cta2.md) | string | <i>(Optional)</i> Applies to the secondary CTA. |
-|  [ctaContainer?](./answers-react-components.standardcardcssclasses.ctacontainer.md) | string | <i>(Optional)</i> Applies to the container of the CTAs. |
-|  [descriptionContainer?](./answers-react-components.standardcardcssclasses.descriptioncontainer.md) | string | <i>(Optional)</i> Applies to the result description. |
-|  [header?](./answers-react-components.standardcardcssclasses.header.md) | string | <i>(Optional)</i> Applies to the card's header, including the ordinal and title. |
-|  [ordinal?](./answers-react-components.standardcardcssclasses.ordinal.md) | string | <i>(Optional)</i> Applies to the ordinal number. |
-|  [title?](./answers-react-components.standardcardcssclasses.title.md) | string | <i>(Optional)</i> Applies to the result title. |
+|  [body?](./answers-react-components.standardcardcssclasses.body.md) | string | <i>(Optional)</i> |
+|  [container?](./answers-react-components.standardcardcssclasses.container.md) | string | <i>(Optional)</i> |
+|  [cta1?](./answers-react-components.standardcardcssclasses.cta1.md) | string | <i>(Optional)</i> |
+|  [cta2?](./answers-react-components.standardcardcssclasses.cta2.md) | string | <i>(Optional)</i> |
+|  [ctaContainer?](./answers-react-components.standardcardcssclasses.ctacontainer.md) | string | <i>(Optional)</i> |
+|  [descriptionContainer?](./answers-react-components.standardcardcssclasses.descriptioncontainer.md) | string | <i>(Optional)</i> |
+|  [header?](./answers-react-components.standardcardcssclasses.header.md) | string | <i>(Optional)</i> |
+|  [ordinal?](./answers-react-components.standardcardcssclasses.ordinal.md) | string | <i>(Optional)</i> |
+|  [title?](./answers-react-components.standardcardcssclasses.title.md) | string | <i>(Optional)</i> |
 

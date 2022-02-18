@@ -4,8 +4,6 @@
 
 ## AppliedFiltersCssClasses.nlpFilter property
 
-Applies to NLP filters.
-
 <b>Signature:</b>
 
 ```typescript

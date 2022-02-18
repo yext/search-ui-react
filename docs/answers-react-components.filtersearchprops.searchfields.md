@@ -4,6 +4,8 @@
 
 ## FilterSearchProps.searchFields property
 
+An array of fieldApiName and entityType which indicates what to perform the filter search against.
+
 <b>Signature:</b>
 
 ```typescript

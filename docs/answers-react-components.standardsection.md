@@ -2,12 +2,25 @@
 
 [Home](./index.md) &gt; [@yext/answers-react-components](./answers-react-components.md) &gt; [StandardSection](./answers-react-components.standardsection.md)
 
-## StandardSection variable
+## StandardSection() function
 
-The configuration for a StandardSection.
+A component that displays all the results for a vertical using a standard section template.
 
 <b>Signature:</b>
 
 ```typescript
-StandardSection: SectionComponent
+export default function StandardSection(props: StandardSectionConfig): JSX.Element | null;
 ```
+
+## Parameters
+
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | [StandardSectionConfig](./answers-react-components.standardsectionconfig.md) | [StandardSectionConfig](./answers-react-components.standardsectionconfig.md) |
+
+<b>Returns:</b>
+
+JSX.Element \| null
+
+A React element for a standard section, or null if there are no results to display
+

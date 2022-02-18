@@ -9,14 +9,15 @@ import ScreenReader from '../ScreenReader';
 import recursivelyMapChildren from '../utils/recursivelyMapChildren';
 import DropdownItem, { DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 
-type DropdownItemData = {
+interface DropdownItemData {
   value: string,
   itemData?: Record<string, unknown>
-};
+}
 
 /**
  * Dropdown is the parent component for a set of Dropdown-related components.
  *
+ * @remarks
  * It provides multiple shared contexts, which are consumed by its child components,
  * and also registers some global event listeners.
  */
