@@ -10,7 +10,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc && npm run api-extractor && npm run generate-docs",
+    "build": "rm -rf lib && tsc && npm run api-extractor && npm run generate-docs",
     "dev": "tsc --watch",
     "lint": "eslint .",
     "api-extractor": "api-extractor run --local --verbose",
