@@ -16,5 +16,5 @@ export interface UniversalLink
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [query](./answers-react-components.universallink.query.md) | string \| undefined | The query to fire on that page. |
+|  [query?](./answers-react-components.universallink.query.md) | string | <i>(Optional)</i> The query to fire on that page. |
 

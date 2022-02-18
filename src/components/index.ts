@@ -11,6 +11,8 @@ export type { EntityPreviewsProps } from './EntityPreviews';
 export { default as EntityPreviews } from './EntityPreviews';
 export type { FocusedItemData } from './Dropdown/FocusContext';
 
+export { default as DropdownItem } from './Dropdown/DropdownItem';
+
 export type { FieldData, FieldDataConstant, FieldDataPath } from './utils/applyFieldMappings';
 
 export { default as SpellCheck } from './SpellCheck';
@@ -24,6 +26,10 @@ export type {
   DirectAnswerCssClasses,
   DirectAnswerProps
 } from './DirectAnswer';
+
+export type {
+  ThumbsFeedbackCssClasses
+} from './ThumbsFeedback';
 
 export { default as FilterSearch } from './FilterSearch';
 export type {

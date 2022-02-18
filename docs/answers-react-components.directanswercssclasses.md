@@ -9,8 +9,9 @@ The CSS class interface for [DirectAnswer()](./answers-react-components.directan
 <b>Signature:</b>
 
 ```typescript
-export interface DirectAnswerCssClasses 
+export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses 
 ```
+<b>Extends:</b> [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md)
 
 ## Properties
 

@@ -6,6 +6,8 @@ export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
 /**
  * The CSS class interface used for {@link ThumbsFeedback}.
+ *
+ * @public
  */
 export interface ThumbsFeedbackCssClasses {
   feedbackButtonsContainer?: string,
@@ -25,6 +27,9 @@ export const builtInCssClasses: ThumbsFeedbackCssClasses = {
   thumbsDownIcon: 'w-5 ml-1 transform rotate-180'
 };
 
+/**
+ * Renders a quality feedback widget compose of thumbs up and thumbs down buttons.
+ */
 export function ThumbsFeedback({
   onClick,
   feedbackTextOnSubmission = 'Thank you for your feedback!',

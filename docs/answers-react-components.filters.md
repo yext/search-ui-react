@@ -8,42 +8,13 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [CheckboxOption(props)](./answers-react-components.filters.checkboxoption.md) | A checkbox component that represents a single Filter. |
-|  [CollapsibleLabel({ label })](./answers-react-components.filters.collapsiblelabel.md) | CollapsibleLabel is a button for collapsing and expanding filters within a parent [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->.<!-- -->For more customization, use [Filters.FilterGroupContext](./answers-react-components.filters.filtergroupcontext.md) directly. |
-|  [CollapsibleSection(props)](./answers-react-components.filters.collapsiblesection.md) | CollapsibleSection are used for collapsing and un-collapsing groups of filters. It is intended to be used with [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->s within the same [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
-|  [Facets(props)](./answers-react-components.filters.facets.md) | The Facets component is a wrapper component around [Filters](./answers-react-components.filters.md) that updates facet options when a child filter is updated.<!-- -->The representation of the facets is configured using a FACC (function as a child component) The FACC is passed the facets data, and is intended for use with components like [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
-|  [FilterGroup(props)](./answers-react-components.filters.filtergroup.md) | The Filters.FilterGroup component represents a group of filters to support for searching and collapsing. |
-|  [ResponsiveDivider(props)](./answers-react-components.filters.responsivedivider.md) | A convenience component for our recommended divider styling. |
-|  [SearchInput(props)](./answers-react-components.filters.searchinput.md) | SearchInput is a simple input component that updates the active searchValue for a particular [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
-|  [StaticFilters(props)](./answers-react-components.filters.staticfilters.md) | The StaticFilters component is a wrapper component around [Filters](./answers-react-components.filters.md) that updates static filter options when a child filter is updated.<!-- -->The representation of the facets is configured using props.children, and is intended for use with components like [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
-|  [useFilterGroupContext()](./answers-react-components.filters.usefiltergroupcontext.md) | A hook used to access the [Filters.FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md)<!-- -->. |
-|  [useFiltersContext()](./answers-react-components.filters.usefilterscontext.md) | A hook used to access the [Filters.FiltersContextType](./answers-react-components.filters.filterscontexttype.md)<!-- -->. |
+|  [default(props)](./answers-react-components.filters.default.md) | A component that display groups of filter options based on the provided list of filter configurations. |
+|  [Divider({ customCssClasses, cssCompositionMethod })](./answers-react-components.filters.divider.md) |  |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
-|  [CheckboxCssClasses](./answers-react-components.filters.checkboxcssclasses.md) | The CSS class interface for [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
-|  [CheckboxOptionProps](./answers-react-components.filters.checkboxoptionprops.md) | Props for the [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md) |
-|  [CollapsibleLabelProps](./answers-react-components.filters.collapsiblelabelprops.md) | Props for [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->. |
-|  [FacetsProps](./answers-react-components.filters.facetsprops.md) | Props for [Filters.Facets()](./answers-react-components.filters.facets.md) |
-|  [FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md) | FilterGroupContext is responsible for searchable filters and collapsible filter groups. |
-|  [FiltersContextType](./answers-react-components.filters.filterscontexttype.md) | FiltersContext is responsible for handling filter selection. |
-|  [SearchInputProps](./answers-react-components.filters.searchinputprops.md) | Props for the [Filters.SearchInput()](./answers-react-components.filters.searchinput.md)<!-- -->. |
-
-## Variables
-
-|  Variable | Description |
-|  --- | --- |
-|  [FilterGroupContext](./answers-react-components.filters.filtergroupcontext.md) | Filter context to support searchable filters and collapsible filter groups. |
-|  [FiltersContext](./answers-react-components.filters.filterscontext.md) | Filters context which provides the filters to render and a handler for selecting a filter. |
-
-## Type Aliases
-
-|  Type Alias | Description |
-|  --- | --- |
-|  [CollapsibleSectionProps](./answers-react-components.filters.collapsiblesectionprops.md) | Props for the [Filters.CollapsibleSection()](./answers-react-components.filters.collapsiblesection.md)<!-- -->. |
-|  [FilterGroupProps](./answers-react-components.filters.filtergroupprops.md) | Props for a [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
-|  [ResponsiveDividerProps](./answers-react-components.filters.responsivedividerprops.md) | Props for [Filters.ResponsiveDivider()](./answers-react-components.filters.responsivedivider.md)<!-- -->. |
-|  [StaticFiltersProps](./answers-react-components.filters.staticfiltersprops.md) | Props for the [Filters.StaticFilters()](./answers-react-components.filters.staticfilters.md)<!-- -->. |
+|  [FilterConfig](./answers-react-components.filters.filterconfig.md) | Configuration for a filter. |
+|  [FiltersCssClasses](./answers-react-components.filters.filterscssclasses.md) | The CSS class interface used for [Filters](./answers-react-components.filters.md)<!-- -->. |
 
