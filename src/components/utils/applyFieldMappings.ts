@@ -15,7 +15,7 @@ export interface FieldDataConstant {
 }
 
 /**
- * Denotes the path to the field data on the Result's raw dadta.
+ * Denotes the path to the field data on the Result's raw data.
  *
  * @remarks
  * The apiName is a string separated by periods `.`.

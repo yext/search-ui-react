@@ -37,7 +37,7 @@
 |  [DirectAnswerProps](./answers-react-components.directanswerprops.md) | Props for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [EntityPreviewsProps](./answers-react-components.entitypreviewsprops.md) | The props for the [EntityPreviews()](./answers-react-components.entitypreviews.md) component. |
 |  [FieldDataConstant](./answers-react-components.fielddataconstant.md) | Indicates a field should equal a constant value. Ignores the API response. |
-|  [FieldDataPath](./answers-react-components.fielddatapath.md) | Denotes the path to the field data on the Result's raw dadta. |
+|  [FieldDataPath](./answers-react-components.fielddatapath.md) | Denotes the path to the field data on the Result's raw data. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |
 |  [LocationBiasCssClasses](./answers-react-components.locationbiascssclasses.md) | The CSS class interface for the [LocationBias()](./answers-react-components.locationbias.md) component. |
