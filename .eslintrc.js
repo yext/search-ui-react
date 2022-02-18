@@ -8,6 +8,9 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module'
   },
+  plugins: [
+    'eslint-plugin-import'
+  ],
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
     'no-trailing-spaces' : ['error'],
@@ -27,6 +30,7 @@ module.exports = {
     '@typescript-eslint/type-annotation-spacing': ['error'],
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    'import/no-default-export': ['error']
   },
   ignorePatterns: ['lib', 'tests/setup/responses']
 };

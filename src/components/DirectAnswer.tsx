@@ -1,5 +1,5 @@
 import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData } from '@yext/answers-headless-react';
-import { renderHighlightedValue} from './utils/renderHighlightedValue';
+import { renderHighlightedValue } from './utils/renderHighlightedValue';
 import classNames from 'classnames';
 import { ReactNode, useState, useLayoutEffect } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
