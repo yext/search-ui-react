@@ -69,8 +69,8 @@ export interface VerticalLabelMap {
 export interface AlternativeVerticalsProps {
   /** The label for the current vertical. */
   currentVerticalLabel: string,
-  /** An array containing the label and verticalKey of each vertical. */
-  verticalLabelMap: VerticalLabelMap,
+  /** A map of verticalKeys to the display label for that vertical. */
+  verticalConfigMap: VerticalLabelMap,
   /**
    * Whether or not all results should be displayed when there are none returned from the search.
    * Defaults to true.
@@ -100,7 +100,7 @@ export interface AlternativeVerticalsProps {
  */
 export default function AlternativeVerticals({
   currentVerticalLabel,
-  verticalLabelMap,
+  verticalConfigMap,
   displayAllOnNoResults = true,
   customCssClasses,
   getSuggestionUrl: customGetSuggestionUrl,
@@ -113,7 +113,7 @@ export default function AlternativeVerticals({
     useAnswersState(state => state.vertical.noResults?.allResultsForVertical.results) || [];
   const query = useAnswersState(state => state.query.mostRecentSearch);
 
-  const verticalSuggestions = buildVerticalSuggestions(verticalLabelMap, alternativeVerticals);
+  const verticalSuggestions = buildVerticalSuggestions(verticalConfigMap, alternativeVerticals);
   const isShowingAllResults = displayAllOnNoResults && allResultsForVertical.length > 0;
 
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
@@ -130,16 +130,16 @@ export default function AlternativeVerticals({
     };
 
   function buildVerticalSuggestions(
-    verticalLabelMap: VerticalLabelMap,
+    verticalConfigMap: VerticalLabelMap,
     alternativeVerticals: VerticalResultsData[]): VerticalSuggestion[] {
 
     return alternativeVerticals
       .filter((alternativeResults: VerticalResultsData) => {
-        return !!verticalLabelMap[alternativeResults.verticalKey];
+        return !!verticalConfigMap[alternativeResults.verticalKey];
       })
       .map((alternativeResults: VerticalResultsData) => {
         return {
-          label: verticalLabelMap[alternativeResults.verticalKey].label,
+          label: verticalConfigMap[alternativeResults.verticalKey].label,
           verticalKey: alternativeResults.verticalKey,
           resultsCount: alternativeResults.resultsCount
         };

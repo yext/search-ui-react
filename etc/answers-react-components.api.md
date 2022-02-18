@@ -23,7 +23,7 @@ import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
-export function AlternativeVerticals({ currentVerticalLabel, verticalLabelMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
+export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
 
 // @public
 export interface AlternativeVerticalsCssClasses {
@@ -58,7 +58,7 @@ export interface AlternativeVerticalsProps {
     customCssClasses?: AlternativeVerticalsCssClasses;
     displayAllOnNoResults?: boolean;
     getSuggestionUrl?: (data: VerticalLink | UniversalLink) => string;
-    verticalLabelMap: VerticalLabelMap;
+    verticalConfigMap: VerticalLabelMap;
 }
 
 // @public
