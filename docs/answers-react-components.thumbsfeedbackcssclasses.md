@@ -4,7 +4,7 @@
 
 ## ThumbsFeedbackCssClasses interface
 
-The CSS class interface used for .
+The CSS class interface used for [ThumbsFeedback()](./answers-react-components.thumbsfeedback.md)<!-- -->.
 
 <b>Signature:</b>
 

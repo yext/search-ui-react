@@ -12,7 +12,7 @@
 |  [AnalyticsProvider(props)](./answers-react-components.analyticsprovider.md) | A higher-order component which provides analytics for its children. |
 |  [AppliedFilters(props)](./answers-react-components.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters. |
 |  [DirectAnswer(props)](./answers-react-components.directanswer.md) | Renders Direct Answers provided by the Answers API. |
-|  [DropdownItem(\_props)](./answers-react-components.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the  component instance. |
+|  [DropdownItem(\_props)](./answers-react-components.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
 |  [EntityPreviews(\_)](./answers-react-components.entitypreviews.md) | EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews. It provides results corresponding to its verticalKey through a props.children Function as Compound Component (FACC). |
 |  [FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
@@ -20,6 +20,7 @@
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
 |  [StandardSection(props)](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
+|  [ThumbsFeedback({ onClick, feedbackTextOnSubmission, cssClasses })](./answers-react-components.thumbsfeedback.md) | Renders a quality feedback widget compose of thumbs up and thumbs down buttons. |
 |  [UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod })](./answers-react-components.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
 |  [useAnalytics()](./answers-react-components.useanalytics.md) | Returns a service that can be used to report analytics events. |
 |  [VerticalResults(props)](./answers-react-components.verticalresults.md) | A component that renders search results for a vertical page. |
@@ -51,7 +52,7 @@
 |  [StandardCardProps](./answers-react-components.standardcardprops.md) | Props for a StandardCard. |
 |  [StandardSectionConfig](./answers-react-components.standardsectionconfig.md) | The configuration for a StandardSection. |
 |  [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection()](./answers-react-components.standardsection.md)<!-- -->. |
-|  [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md) | The CSS class interface used for . |
+|  [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md) | The CSS class interface used for [ThumbsFeedback()](./answers-react-components.thumbsfeedback.md)<!-- -->. |
 |  [UniversalLink](./answers-react-components.universallink.md) | Data needed to create a URL to a universal search page. |
 |  [UniversalResultsCssClasses](./answers-react-components.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./answers-react-components.universalresultsprops.md) | Props for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |

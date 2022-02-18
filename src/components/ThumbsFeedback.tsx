@@ -29,6 +29,8 @@ export const builtInCssClasses: ThumbsFeedbackCssClasses = {
 
 /**
  * Renders a quality feedback widget compose of thumbs up and thumbs down buttons.
+ *
+ * @public
  */
 export function ThumbsFeedback({
   onClick,

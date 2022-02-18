@@ -9,11 +9,17 @@
 import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AnswersHeadless } from '@yext/answers-headless-react';
+import { ComponentPropsWithRef } from 'react';
+import { Context } from 'react';
+import { DisplayableFacet } from '@yext/answers-headless-react';
 import { Filter } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
+import { ReactNode } from 'react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
+import { SelectableFilter } from '@yext/answers-headless-react';
+import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
@@ -106,6 +112,64 @@ export interface CardProps {
     result: Result;
 }
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface CheckboxCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    input?: string;
+    // (undocumented)
+    label?: string;
+}
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface CheckboxOptionProps {
+    cssCompositionMethod?: CompositionMethod;
+    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+    customCssClasses?: CheckboxCssClasses;
+    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+    fieldId?: string;
+    label?: string;
+    value: string | number | boolean;
+}
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface CollapsibleLabelProps {
+    label?: string;
+}
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+type CollapsibleSectionProps = PropsWithChildren<{
+    className?: string;
+}>;
+
 // @public
 export type CompositionMethod = 'merge' | 'replace' | 'assign';
 
@@ -152,13 +216,7 @@ export interface DirectAnswerProps {
     customCssClasses?: DirectAnswerCssClasses;
 }
 
-// Warning: (ae-forgotten-export) The symbol "DividerProps" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-function Divider({ customCssClasses, cssCompositionMethod }: DividerProps): JSX.Element;
-
 // Warning: (ae-forgotten-export) The symbol "DropdownItemProps" needs to be exported by the entry point index.d.ts
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/answers-react-components" does not have an export "Dropdown"
 //
 // @public
 export function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
@@ -171,6 +229,22 @@ export interface EntityPreviewsProps {
     children: (results: Result[], index: number) => JSX.Element;
     limit?: number;
     verticalKey: string;
+}
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function Facets(props: FacetsProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface FacetsProps {
+    children?: (facets: DisplayableFacet[]) => ReactNode;
+    className?: string;
+    searchOnChange?: boolean;
 }
 
 // @public
@@ -188,42 +262,72 @@ export type FieldDataPath = {
     apiName: string | string[];
 };
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
 // @public
-interface FilterConfig {
-    collapsible?: boolean;
-    defaultExpanded?: boolean;
-    label?: string;
-    // Warning: (ae-forgotten-export) The symbol "FilterOption" needs to be exported by the entry point index.d.ts
-    options: FilterOption[];
-    placeholderText?: string;
-    searchable?: boolean;
+function FilterGroup(props: FilterGroupProps): JSX.Element;
+
+// @public
+const FilterGroupContext: Context<FilterGroupContextType | null>;
+
+// @public
+interface FilterGroupContextType {
+    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+    defaultFieldId?: string;
+    getCollapseProps: UseCollapseOutput['getCollapseProps'];
+    getToggleProps: UseCollapseOutput['getToggleProps'];
+    isExpanded: boolean;
+    searchValue: string;
+    setSearchValue: (value: string) => void;
 }
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+type FilterGroupProps = PropsWithChildren<{
+    defaultExpanded?: boolean;
+    defaultFieldId?: string;
+}>;
 
 declare namespace Filters {
     export {
-        Filters_2 as default,
-        Divider,
-        FilterConfig,
-        FiltersCssClasses
+        CheckboxOption,
+        CheckboxOptionProps,
+        CheckboxCssClasses,
+        CollapsibleLabel,
+        CollapsibleLabelProps,
+        CollapsibleSection,
+        CollapsibleSectionProps,
+        ResponsiveDivider,
+        ResponsiveDividerProps,
+        Facets,
+        FacetsProps,
+        FiltersContext,
+        useFiltersContext,
+        FiltersContextType,
+        FilterGroup,
+        FilterGroupProps,
+        FilterGroupContext,
+        useFilterGroupContext,
+        FilterGroupContextType,
+        SearchInput,
+        SearchInputProps,
+        StaticFilters,
+        StaticFiltersProps
     }
 }
 export { Filters }
 
-// Warning: (ae-forgotten-export) The symbol "FiltersProps" needs to be exported by the entry point index.d.ts
-// Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: The package "@yext/answers-react-components" does not have an export "FiltersProps"
-//
 // @public
-function Filters_2(props: FiltersProps): JSX.Element;
+const FiltersContext: Context<FiltersContextType | null>;
 
-// Warning: (ae-forgotten-export) The symbol "CollapsibleLabelCssClasses" needs to be exported by the entry point index.d.ts
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-interface FiltersCssClasses extends CollapsibleLabelCssClasses {
-    container?: string;
-    divider?: string;
-    optionsContainer?: string;
-    searchableInputElement?: string;
+interface FiltersContextType {
+    filters: SelectableFilter[];
+    handleFilterSelect: (filter: Filter, checked: boolean) => void;
 }
 
 // @public
@@ -312,6 +416,20 @@ export interface PaginationCssClasses {
 // @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+type ResponsiveDividerProps = {
+    mobileBreakpoint?: number;
+    desktopClassName?: string;
+    mobileClassName?: string;
+} & ComponentPropsWithRef<'div'>;
+
 // @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
 
@@ -377,6 +495,20 @@ export interface SearchBarProps {
     recentSearchesLimit?: number;
     verticalKeyToLabel?: (verticalKey: string) => string;
     visualAutocompleteConfig?: VisualAutocompleteConfig;
+}
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function SearchInput(props: SearchInputProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface SearchInputProps {
+    className?: string;
+    placeholderText?: string;
 }
 
 // @public
@@ -472,8 +604,25 @@ export interface StandardSectionCssClasses {
     section?: string;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/answers-react-components" does not have an export "ThumbsFeedback"
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
+// @public
+function StaticFilters(props: StaticFiltersProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+type StaticFiltersProps = PropsWithChildren<{
+    className?: string;
+}>;
+
+// Warning: (ae-forgotten-export) The symbol "ThumbsFeedbackProps" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function ThumbsFeedback({ onClick, feedbackTextOnSubmission, cssClasses }: ThumbsFeedbackProps): JSX.Element;
+
 // @public
 export interface ThumbsFeedbackCssClasses {
     // (undocumented)
@@ -510,6 +659,16 @@ export interface UniversalResultsProps {
 
 // @public
 export function useAnalytics(): AnalyticsService | null;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function useFilterGroupContext(): FilterGroupContextType;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function useFiltersContext(): FiltersContextType;
 
 // @public
 export interface VerticalConfig {
@@ -550,6 +709,11 @@ export interface VisualAutocompleteConfig {
     entityPreviewSearcher?: AnswersHeadless;
     renderEntityPreviews?: RenderEntityPreviews;
 }
+
+// Warnings were encountered during analysis:
+//
+// src/components/Filters/FilterGroup.tsx:12:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// src/components/Filters/FilterGroup.tsx:14:3 - (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
 
 // (No @packageDocumentation comment for this package)
 

@@ -27,6 +27,7 @@ export type {
   DirectAnswerProps
 } from './DirectAnswer';
 
+export { ThumbsFeedback } from './ThumbsFeedback';
 export type {
   ThumbsFeedbackCssClasses
 } from './ThumbsFeedback';
