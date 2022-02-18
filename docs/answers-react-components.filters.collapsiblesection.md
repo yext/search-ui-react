@@ -9,7 +9,7 @@ CollapsibleSection are used for collapsing and un-collapsing groups of filters. 
 <b>Signature:</b>
 
 ```typescript
-export default function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element;
+export declare function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element;
 ```
 
 ## Parameters

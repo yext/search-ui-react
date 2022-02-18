@@ -1,6 +1,6 @@
 import { Filter, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
-import FiltersContext from './FiltersContext';
+import { FiltersContext } from './FiltersContext';
 
 /**
  * Props for the {@link Filters.StaticFilters}.
@@ -23,7 +23,7 @@ export type StaticFiltersProps = PropsWithChildren<{
  *
  * @public
  */
-export default function StaticFilters(props: StaticFiltersProps): JSX.Element {
+export function StaticFilters(props: StaticFiltersProps): JSX.Element {
   const {
     children,
     className = 'md:w-40'

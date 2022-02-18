@@ -44,7 +44,7 @@ export interface SpellCheckProps {
  * @param props - {@link SpellCheckProps}
  * @returns A react component for spell check, or null if none exists
  */
-export default function SpellCheck({
+export function SpellCheck({
   customCssClasses,
   cssCompositionMethod,
   onClick

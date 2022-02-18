@@ -5,7 +5,7 @@ interface Props {
   announcementText: string
 }
 
-export default function ScreenReader({
+export function ScreenReader({
   instructionsId,
   instructions,
   announcementKey,

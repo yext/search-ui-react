@@ -1,13 +1,13 @@
 import { createElement, isValidElement, PropsWithChildren, ReactNode, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import DropdownContext, { DropdownContextType } from './DropdownContext';
-import InputContext, { InputContextType } from './InputContext';
+import { DropdownContext, DropdownContextType } from './DropdownContext';
+import { InputContext, InputContextType } from './InputContext';
 import useGlobalListener from '@restart/hooks/useGlobalListener';
 import useRootClose from '@restart/ui/useRootClose';
-import FocusContext, { FocusContextType } from './FocusContext';
+import { FocusContext, FocusContextType } from './FocusContext';
 import { v4 as uuid } from 'uuid';
-import ScreenReader from '../ScreenReader';
-import recursivelyMapChildren from '../utils/recursivelyMapChildren';
-import DropdownItem, { DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
+import { ScreenReader } from '../ScreenReader';
+import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
+import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 
 interface DropdownItemData {
   value: string,
@@ -21,7 +21,7 @@ interface DropdownItemData {
  * It provides multiple shared contexts, which are consumed by its child components,
  * and also registers some global event listeners.
  */
-export default function Dropdown(props: PropsWithChildren<{
+export function Dropdown(props: PropsWithChildren<{
   screenReaderText: string,
   screenReaderInstructions?: string,
   initialValue?: string,

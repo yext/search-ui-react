@@ -1,6 +1,6 @@
 import { useAnswersState, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
-import StandardSection from '../sections/StandardSection';
-import SectionHeader from '../sections/SectionHeader';
+import { StandardSection } from '../sections/StandardSection';
+import { SectionHeader } from '../sections/SectionHeader';
 import { SectionComponent } from '../models/sectionComponent';
 import { CardComponent } from '../models/cardComponent';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
@@ -70,7 +70,7 @@ export interface UniversalResultsProps {
  * @param props - {@link UniversalResultsProps}
  * @returns A React element for the universal results, or null if there are none
  */
-export default function UniversalResults({
+export function UniversalResults({
   verticalConfigs,
   showAppliedFilters,
   customCssClasses,

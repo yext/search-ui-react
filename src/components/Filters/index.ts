@@ -1,36 +1,36 @@
-export { default as CheckboxOption } from './CheckboxOption';
-export type { CheckboxOptionProps, CheckboxCssClasses } from './CheckboxOption';
+export { CheckboxOption } from './CheckboxOption';
+export { CheckboxOptionProps, CheckboxCssClasses } from './CheckboxOption';
 
-export { default as CollapsibleLabel } from './CollapsibleLabel';
-export type { CollapsibleLabelProps } from './CollapsibleLabel';
+export { CollapsibleLabel } from './CollapsibleLabel';
+export { CollapsibleLabelProps } from './CollapsibleLabel';
 
-export { default as CollapsibleSection } from './CollapsibleSection';
-export type { CollapsibleSectionProps } from './CollapsibleSection';
+export { CollapsibleSection } from './CollapsibleSection';
+export { CollapsibleSectionProps } from './CollapsibleSection';
 
-export { default as ResponsiveDivider } from './ResponsiveDivider';
-export type { ResponsiveDividerProps } from './ResponsiveDivider';
+export { ResponsiveDivider } from './ResponsiveDivider';
+export { ResponsiveDividerProps } from './ResponsiveDivider';
 
-export { default as Facets } from './Facets';
-export type { FacetsProps } from './Facets';
+export { Facets } from './Facets';
+export { FacetsProps } from './Facets';
 
 export {
-  default as FiltersContext,
+  FiltersContext,
   useFiltersContext
 } from './FiltersContext';
-export type { FiltersContextType } from './FiltersContext';
+export { FiltersContextType } from './FiltersContext';
 
-export { default as FilterGroup } from './FilterGroup';
-export type { FilterGroupProps } from './FilterGroup';
+export { FilterGroup } from './FilterGroup';
+export { FilterGroupProps } from './FilterGroup';
 
 export {
-  default as FilterGroupContext,
+  FilterGroupContext,
   useFilterGroupContext
 } from './FilterGroupContext';
-export type { FilterGroupContextType } from './FilterGroupContext';
+export { FilterGroupContextType } from './FilterGroupContext';
 
-export { default as SearchInput } from './SearchInput';
-export type { SearchInputProps } from './SearchInput';
+export { SearchInput } from './SearchInput';
+export { SearchInputProps } from './SearchInput';
 
-export { default as StaticFilters } from './StaticFilters';
-export type { StaticFiltersProps } from './StaticFilters';
+export { StaticFilters } from './StaticFilters';
+export { StaticFiltersProps } from './StaticFilters';
 

@@ -10,11 +10,10 @@ export type DropdownContextType = {
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void
 };
 
-const dropdownContext = createContext<DropdownContextType | null>(null);
-export default dropdownContext;
+export const DropdownContext = createContext<DropdownContextType | null>(null);
 
 export function useDropdownContext(): DropdownContextType {
-  const dropdownContextInstance = useContext(dropdownContext);
+  const dropdownContextInstance = useContext(DropdownContext);
   if (dropdownContextInstance === null) {
     throw new Error('Tried to use DropdownContext when none exists.');
   }

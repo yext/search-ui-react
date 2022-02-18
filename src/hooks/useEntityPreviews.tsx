@@ -1,7 +1,7 @@
 import { AnswersHeadless, UniversalLimit, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
 import { useState } from 'react';
-import useComponentMountStatus from './useComponentMountStatus';
-import useDebouncedFunction from './useDebouncedFunction';
+import { useComponentMountStatus } from './useComponentMountStatus';
+import { useDebouncedFunction } from './useDebouncedFunction';
 
 interface EntityPreviewsState {
   verticalResultsArray: VerticalResultsData[],

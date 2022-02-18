@@ -7,7 +7,6 @@
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "isolatedModules": true,
     "declarationMap": true,
     "sourceMap": true,
     "jsx": "react-jsx",

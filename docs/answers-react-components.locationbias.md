@@ -9,7 +9,7 @@ A React Component which displays and collects location information in order to b
 <b>Signature:</b>
 
 ```typescript
-export default function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
+export declare function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
 ```
 
 ## Parameters

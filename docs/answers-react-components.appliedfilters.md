@@ -9,7 +9,7 @@ A component that displays a list of filters applied to the current vertical sear
 <b>Signature:</b>
 
 ```typescript
-export default function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
+export declare function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 ```
 
 ## Parameters

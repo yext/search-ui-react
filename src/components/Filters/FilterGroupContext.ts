@@ -26,8 +26,7 @@ export interface FilterGroupContextType {
  *
  * @public
  */
-const FilterGroupContext = createContext<FilterGroupContextType | null>(null);
-export default FilterGroupContext;
+export const FilterGroupContext = createContext<FilterGroupContextType | null>(null);
 
 /**
  * A hook used to access the {@link Filters.FilterGroupContextType}.

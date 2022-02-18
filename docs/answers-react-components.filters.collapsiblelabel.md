@@ -11,7 +11,7 @@ For more customization, use [Filters.FilterGroupContext](./answers-react-compone
 <b>Signature:</b>
 
 ```typescript
-export default function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element;
+export declare function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element;
 ```
 
 ## Parameters

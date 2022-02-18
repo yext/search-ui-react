@@ -2,12 +2,12 @@ import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField,
 import { useRef } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
-import Dropdown from './Dropdown/Dropdown';
-import DropdownInput from './Dropdown/DropdownInput';
-import DropdownItem from './Dropdown/DropdownItem';
-import DropdownMenu from './Dropdown/DropdownMenu';
+import { Dropdown } from './Dropdown/Dropdown';
+import { DropdownInput }from './Dropdown/DropdownInput';
+import { DropdownItem } from './Dropdown/DropdownItem';
+import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { processTranslation } from './utils/processTranslation';
-import renderAutocompleteResult, { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
+import { renderAutocompleteResult, AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 
 /**
  * The CSS class interface for {@link FilterSearch}.
@@ -63,7 +63,7 @@ export interface FilterSearchProps {
  * @param props - {@link FilterSearchProps}
  * @returns A react component for Filter Search
  */
-export default function FilterSearch({
+export function FilterSearch({
   label,
   sectioned,
   searchFields,

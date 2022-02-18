@@ -1,7 +1,7 @@
 import { Result, VerticalResults as VerticalResultsData, UniversalLimit } from '@yext/answers-headless-react';
 import { cloneElement, isValidElement, ReactNode } from 'react';
-import DropdownItem from './Dropdown/DropdownItem';
-import recursivelyMapChildren from './utils/recursivelyMapChildren';
+import { DropdownItem } from './Dropdown/DropdownItem';
+import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 
 /**
  * The props for the {@link EntityPreviews} component.
@@ -28,7 +28,7 @@ export interface EntityPreviewsProps {
  * You can optionally specify a limit for the results. This limit will be shared between
  * instances of EntityPreviews with the same verticalKey.
  */
-export default function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null {
+export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null {
   return null;
 }
 

@@ -1,7 +1,7 @@
 import { CardComponent } from '../models/cardComponent';
 import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import PageNavigationIcon from '../icons/ChevronIcon';
+import { ChevronIcon as PageNavigationIcon } from '../icons/ChevronIcon';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
 import { usePaginationAnalytics } from '../hooks/usePaginationAnalytics';
 
@@ -43,7 +43,7 @@ export interface VerticalResultsProps {
  * @param props - {@link VerticalResultsProps}
  * @returns A React element for the results, or null if no results should be displayed
  */
-export default function VerticalResults(props: VerticalResultsProps): JSX.Element | null {
+export function VerticalResults(props: VerticalResultsProps): JSX.Element | null {
   const { displayAllOnNoResults = true, allowPagination = true, ...otherProps } = props;
   const verticalResults = useAnswersState(state => state.vertical.results) || [];
   const allResultsForVertical =

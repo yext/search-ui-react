@@ -14,7 +14,7 @@ interface HighlightedValueCssClasses {
  * Renders a HighlightedValue with highlighting based on its matchedSubstrings.
  * @returns JSX.Element
  */
-export default function renderHighlightedValue(
+export function renderHighlightedValue(
   { value = '', matchedSubstrings }: Partial<HighlightedValue>, customCssClasses?: HighlightedValueCssClasses
 ): JSX.Element {
   const cssClasses = { ...defaultCssClasses, ...customCssClasses };

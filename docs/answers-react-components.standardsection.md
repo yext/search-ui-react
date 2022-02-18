@@ -9,7 +9,7 @@ A component that displays all the results for a vertical using a standard sectio
 <b>Signature:</b>
 
 ```typescript
-export default function StandardSection(props: StandardSectionConfig): JSX.Element | null;
+export declare function StandardSection(props: StandardSectionConfig): JSX.Element | null;
 ```
 
 ## Parameters

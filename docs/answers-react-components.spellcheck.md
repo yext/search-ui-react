@@ -9,7 +9,7 @@ Renders a suggested query if the Answers API provides one.
 <b>Signature:</b>
 
 ```typescript
-export default function SpellCheck({ customCssClasses, cssCompositionMethod, onClick }: SpellCheckProps): JSX.Element | null;
+export declare function SpellCheck({ customCssClasses, cssCompositionMethod, onClick }: SpellCheckProps): JSX.Element | null;
 ```
 
 ## Parameters
