@@ -54,6 +54,7 @@
 |  [UniversalResultsCssClasses](./answers-react-components.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./answers-react-components.universalresultsprops.md) | Props for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [VerticalConfig](./answers-react-components.verticalconfig.md) | The configuration for a vertical. |
+|  [VerticalLabelMap](./answers-react-components.verticallabelmap.md) | A map of vertical keys to labels. |
 |  [VerticalLink](./answers-react-components.verticallink.md) | Data needed to create a URL to a vertical search page. |
 |  [VerticalResultsCssClasses](./answers-react-components.verticalresultscssclasses.md) | The CSS class interface used for [VerticalResults()](./answers-react-components.verticalresults.md)<!-- -->. |
 |  [VerticalResultsProps](./answers-react-components.verticalresultsprops.md) | Props for the VerticalResults component. |

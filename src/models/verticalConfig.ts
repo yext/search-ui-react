@@ -1,13 +1,13 @@
-import { CardComponent } from "./cardComponent";
-import { SectionComponent } from "./sectionComponent";
-import { VerticalLink } from "./verticalLink";
+import { CardComponent } from './cardComponent';
+import { SectionComponent } from './sectionComponent';
+import { VerticalLink } from './verticalLink';
 
 /**
  * The configuration for a vertical.
  *
  * @public
  */
- export interface VerticalConfig {
+export interface VerticalConfig {
   /** {@inheritDoc SectionComponent} */
   SectionComponent?: SectionComponent,
   /** The card to use for this vertical. */
@@ -18,16 +18,16 @@ import { VerticalLink } from "./verticalLink";
   viewAllButton?: boolean,
   /**
    * A function to provide user defined url path for each vertical's view all link.
-   * 
+   *
    * @remarks
    * Defaults to "/[verticalKey]?query=[query]"
    */
   getViewAllUrl?: (data: VerticalLink) => string
 }
 
-/** 
- * A map of verticalKey to a VerticalConfig 
- * 
+/**
+ * A map of verticalKey to a VerticalConfig
+ *
  * @public
  */
 export interface VerticalConfigMap {

@@ -61,7 +61,8 @@ export * from './cards/StandardCard';
 export { default as AlternativeVerticals } from './AlternativeVerticals';
 export type {
   AlternativeVerticalsCssClasses,
-  AlternativeVerticalsProps
+  AlternativeVerticalsProps,
+  VerticalLabelMap
 } from './AlternativeVerticals';
 
 export * from './AnalyticsProvider';

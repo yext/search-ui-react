@@ -58,7 +58,6 @@ export interface AlternativeVerticalsProps {
     customCssClasses?: AlternativeVerticalsCssClasses;
     displayAllOnNoResults?: boolean;
     getSuggestionUrl?: (data: VerticalLink | UniversalLink) => string;
-    // Warning: (ae-forgotten-export) The symbol "VerticalLabelMap" needs to be exported by the entry point index.d.ts
     verticalLabelMap: VerticalLabelMap;
 }
 
@@ -655,6 +654,12 @@ export interface VerticalConfig {
     label?: string;
     SectionComponent?: SectionComponent;
     viewAllButton?: boolean;
+}
+
+// @public
+export interface VerticalLabelMap {
+    // (undocumented)
+    [verticalKey: string]: Pick<VerticalConfig, 'label'>;
 }
 
 // @public

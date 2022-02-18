@@ -52,6 +52,11 @@ function isVerticalSuggestion(suggestion: unknown): suggestion is VerticalSugges
     (suggestion as VerticalSuggestion)?.verticalKey !== undefined;
 }
 
+/**
+ * A map of vertical keys to labels.
+ *
+ * @public
+ */
 export interface VerticalLabelMap {
   [verticalKey: string]: Pick<VerticalConfig, 'label'>;
 }
