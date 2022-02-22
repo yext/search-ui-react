@@ -642,7 +642,8 @@ export interface ThumbsFeedbackCssClasses {
 
 // @public
 export interface ThumbsFeedbackProps {
-    cssClasses: ThumbsFeedbackCssClasses;
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses: ThumbsFeedbackCssClasses;
     feedbackText?: string;
     feedbackTextOnSubmission?: string;
     onClick: (feedbackType: FeedbackType) => void;

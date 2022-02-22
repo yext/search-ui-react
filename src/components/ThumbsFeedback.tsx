@@ -1,5 +1,7 @@
 import { useAnswersState } from '@yext/answers-headless-react';
 import { useLayoutEffect, useState } from 'react';
+import { CompositionMethod } from '..';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { ThumbIcon } from '../icons/ThumbIcon';
 
 /**
@@ -33,7 +35,9 @@ export interface ThumbsFeedbackProps {
   /** Text to display after a quality feedback button is clicked. */
   feedbackTextOnSubmission?: string,
   /** CSS classes for customizing the component styling. */
-  cssClasses: ThumbsFeedbackCssClasses
+  customCssClasses: ThumbsFeedbackCssClasses,
+  /** {@inheritDoc CompositionMethod} */
+  cssCompositionMethod?: CompositionMethod
 }
 
 export const builtInCssClasses: ThumbsFeedbackCssClasses = {
@@ -55,8 +59,10 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
     onClick,
     feedbackText = 'Feedback',
     feedbackTextOnSubmission = 'Thank you for your feedback!',
-    cssClasses = builtInCssClasses
+    customCssClasses,
+    cssCompositionMethod
   } = props;
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const query = useAnswersState(state => state.query.mostRecentSearch);
   const [isFeedbackProvided, setIsFeedbackProvided] = useState(false);
   useLayoutEffect(() => {

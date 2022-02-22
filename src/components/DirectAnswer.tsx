@@ -6,8 +6,7 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
 import {
   FeedbackType,
   ThumbsFeedbackCssClasses,
-  ThumbsFeedback,
-  builtInCssClasses as thumbsFeedbackBuiltInCssClasses
+  ThumbsFeedback
 } from './ThumbsFeedback';
 
 import { useCardAnalytics } from '../hooks/useCardAnalytics';
@@ -48,7 +47,6 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
 }
 
 const builtInCssClasses: DirectAnswerCssClasses = {
-  ...thumbsFeedbackBuiltInCssClasses,
   container: '',
   container___loading: 'opacity-50',
   fieldValueTitle: 'mb-4 text-gray-500',
@@ -129,7 +127,8 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
       </div>
       <ThumbsFeedback
         onClick={onClickFeedbackButton}
-        cssClasses={composedCssClasses}
+        customCssClasses={composedCssClasses}
+        cssCompositionMethod={props.cssCompositionMethod}
       />
     </div>
   );
