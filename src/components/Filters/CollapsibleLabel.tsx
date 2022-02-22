@@ -24,7 +24,7 @@ export interface CollapsibleLabelProps {
  */
 export function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element {
   const { isExpanded, getToggleProps } = useFilterGroupContext();
-  const iconClassName = classNames('w-3', {
+  const iconClassName = classNames('w-3 text-gray-400', {
     'transform rotate-180': !isExpanded
   });
 

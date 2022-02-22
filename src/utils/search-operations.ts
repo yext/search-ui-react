@@ -9,6 +9,8 @@ const defaultGeolocationOptions: PositionOptions = {
 /**
  * If the provided search intents include a 'NEAR_ME' intent and there's no existing
  * user's location in state, retrieve and store user's location in headless state.
+ *
+ * @public
  */
 export async function updateLocationIfNeeded(
   answersActions: AnswersActions,
@@ -29,7 +31,9 @@ export async function updateLocationIfNeeded(
 }
 
 /**
- * Executes a universal/vertical search
+ * Executes a universal/vertical search.
+ *
+ * @public
  */
 export async function executeSearch(answersActions: AnswersActions, isVertical: boolean): Promise<void> {
   isVertical
@@ -39,6 +43,8 @@ export async function executeSearch(answersActions: AnswersActions, isVertical: 
 
 /**
  * Get search intents of the current query stored in headless using autocomplete request.
+ *
+ * @public
  */
 export async function getSearchIntents(
   answersActions: AnswersActions,
@@ -51,7 +57,9 @@ export async function getSearchIntents(
 }
 
 /**
- * Retrieves user's location using nagivator.geolocation API
+ * Retrieves user's location using nagivator.geolocation API.
+ *
+ * @public
  */
 export async function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition> {
   return new Promise((resolve, reject) => {
