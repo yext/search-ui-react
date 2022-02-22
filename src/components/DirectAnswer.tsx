@@ -48,6 +48,7 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
 }
 
 const builtInCssClasses: DirectAnswerCssClasses = {
+  ...thumbsFeedbackBuiltInCssClasses,
   container: '',
   container___loading: 'opacity-50',
   fieldValueTitle: 'mb-4 text-gray-500',
@@ -59,7 +60,6 @@ const builtInCssClasses: DirectAnswerCssClasses = {
   viewDetailsLinkContainer: 'pt-4 text-gray-500',
   highlighted: 'bg-blue-100',
   answerContainer: 'p-4 border rounded-lg shadow-sm',
-  ...thumbsFeedbackBuiltInCssClasses
 };
 
 /**

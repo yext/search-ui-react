@@ -28,6 +28,8 @@ export interface ThumbsFeedbackCssClasses {
 export interface ThumbsFeedbackProps {
   /** A function which is called when a quality feedback button is clicked. */
   onClick: (feedbackType: FeedbackType) => void,
+  /** Text to display alongside the quality feedback buttons. */
+  feedbackText?: string,
   /** Text to display after a quality feedback button is clicked. */
   feedbackTextOnSubmission?: string,
   /** CSS classes for customizing the component styling. */
@@ -41,7 +43,7 @@ export const builtInCssClasses: ThumbsFeedbackCssClasses = {
 };
 
 /**
- * Renders a quality feedback widget compose of thumbs up and thumbs down buttons.
+ * Renders a quality feedback widget composed of thumbs up and thumbs down buttons.
  *
  * @public
  *
@@ -51,26 +53,27 @@ export const builtInCssClasses: ThumbsFeedbackCssClasses = {
 export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
   const {
     onClick,
+    feedbackText = 'Feedback',
     feedbackTextOnSubmission = 'Thank you for your feedback!',
     cssClasses = builtInCssClasses
   } = props;
   const query = useAnswersState(state => state.query.mostRecentSearch);
-  const [isFeedbackProvided, updateFeedbackStatus] = useState(false);
+  const [isFeedbackProvided, setIsFeedbackProvided] = useState(false);
   useLayoutEffect(() => {
-    updateFeedbackStatus(false);
-  }, [query, updateFeedbackStatus]);
+    setIsFeedbackProvided(false);
+  }, [query, setIsFeedbackProvided]);
 
   return (
     <div className={cssClasses.feedbackButtonsContainer}>
       {isFeedbackProvided
         ? feedbackTextOnSubmission
         : <>
-          Feedback
+          {feedbackText}
           <button
             className={cssClasses.thumbsUpIcon}
             onClick={() => {
               onClick('THUMBS_UP');
-              updateFeedbackStatus(true);
+              setIsFeedbackProvided(true);
             }}
           >
             <ThumbIcon/>
@@ -79,7 +82,7 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
             className={cssClasses.thumbsDownIcon}
             onClick={() => {
               onClick('THUMBS_DOWN');
-              updateFeedbackStatus(true);
+              setIsFeedbackProvided(true);
             }}
           >
             <ThumbIcon/>

@@ -4,7 +4,7 @@
 
 ## ThumbsFeedback() function
 
-Renders a quality feedback widget compose of thumbs up and thumbs down buttons.
+Renders a quality feedback widget composed of thumbs up and thumbs down buttons.
 
 <b>Signature:</b>
 

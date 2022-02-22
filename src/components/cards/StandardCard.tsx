@@ -5,7 +5,7 @@ import {
   FeedbackType,
   ThumbsFeedback,
   ThumbsFeedbackCssClasses,
-  builtInCssClasses as ThumbsFeedbackBuiltInCssClasses
+  builtInCssClasses as thumbsFeedbackBuiltInCssClasses
 } from '../ThumbsFeedback';
 import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
 import { isString, validateData } from '../utils/validateData';
@@ -71,6 +71,7 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
 }
 
 const builtInCssClasses: StandardCardCssClasses = {
+  ...thumbsFeedbackBuiltInCssClasses,
   container: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
   header: 'flex text-gray-800',
   body: 'flex justify-end pt-2.5 text-base',
@@ -81,7 +82,7 @@ const builtInCssClasses: StandardCardCssClasses = {
   ordinal: 'mr-1.5 text-lg font-medium',
   title: 'text-lg font-medium',
   title___link: 'text-lg font-medium text-blue-600 cursor-pointer hover:underline focus:underline',
-  ...ThumbsFeedbackBuiltInCssClasses
+  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium'
 };
 
 interface CtaData {
@@ -187,6 +188,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
         </div>
       }
       {showFeedbackButtons && <ThumbsFeedback
+        feedbackText=''
         onClick={onClickFeedbackButton}
         cssClasses={cssClasses}
       />}
