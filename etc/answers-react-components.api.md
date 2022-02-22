@@ -8,6 +8,7 @@
 
 import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
+import { AnswersActions } from '@yext/answers-headless-react';
 import { AnswersHeadless } from '@yext/answers-headless-react';
 import { ComponentPropsWithRef } from 'react';
 import { Context } from 'react';
@@ -17,6 +18,7 @@ import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
 import { Result } from '@yext/answers-headless-react';
+import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
 import { SelectableFilter } from '@yext/answers-headless-react';
 import { UseCollapseOutput } from 'react-collapsed/dist/types';
@@ -225,6 +227,9 @@ export interface EntityPreviewsProps {
     verticalKey: string;
 }
 
+// @public
+export function executeSearch(answersActions: AnswersActions, isVertical: boolean): Promise<void>;
+
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -360,6 +365,12 @@ export interface FilterSearchProps {
 
 // @public
 export type FocusedItemData = Record<string, unknown>;
+
+// @public
+export function getSearchIntents(answersActions: AnswersActions, isVertical: boolean): Promise<SearchIntent[] | undefined>;
+
+// @public
+export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
 
 // @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
@@ -632,6 +643,9 @@ export interface UniversalResultsProps {
     showAppliedFilters?: boolean;
     verticalConfigMap: VerticalConfigMap;
 }
+
+// @public
+export function updateLocationIfNeeded(answersActions: AnswersActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
 
 // @public
 export function useAnalytics(): AnalyticsService | null;
