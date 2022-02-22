@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef } from 'react';
-import { PageSize, usePageSize } from '../../hooks/usePageView';
+import { PageSize, usePageSize } from '../../hooks/usePageSize';
 
 /**
  * Props for {@link Filters.ResponsiveDivider}.
