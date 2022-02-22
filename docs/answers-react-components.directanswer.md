@@ -9,7 +9,7 @@ Renders Direct Answers provided by the Answers API.
 <b>Signature:</b>
 
 ```typescript
-export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
+export declare function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
 ```
 
 ## Parameters

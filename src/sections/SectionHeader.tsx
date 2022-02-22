@@ -1,8 +1,8 @@
 import { AppliedFiltersCssClasses } from '../components/AppliedFilters';
-import AppliedFiltersDisplay from '../components/AppliedFiltersDisplay';
+import { AppliedFiltersDisplay } from '../components/AppliedFiltersDisplay';
 // import { ResultsCountConfig } from '../components/ResultsCount';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
-import CollectionIcon from '../icons/CollectionIcon';
+import { CollectionIcon } from '../icons/CollectionIcon';
 import { AppliedQueryFilter, useAnswersState } from '@yext/answers-headless-react';
 import { DisplayableFilter } from '../models/displayableFilter';
 import classNames from 'classnames';
@@ -60,7 +60,7 @@ export interface SectionHeaderProps {
  * @param props - {@link SectionHeaderProps}
  * @returns A React element for a Section Header
  */
-export default function SectionHeader(props: SectionHeaderProps): JSX.Element {
+export function SectionHeader(props: SectionHeaderProps): JSX.Element {
   const {
     label,
     verticalKey,

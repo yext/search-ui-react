@@ -1,5 +1,5 @@
 import { DisplayableFilter } from '../models/displayableFilter';
-import CloseIcon from '../icons/CloseIcon';
+import { CloseIcon } from '../icons/CloseIcon';
 import { useAnswersActions } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
@@ -20,7 +20,7 @@ export interface AppliedFiltersDisplayProps {
  * @param props - {@link AppliedFiltersDisplayProps}
  * @returns A React element for the applied filters
  */
-export default function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element {
+export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element {
   const { displayableFilters, cssClasses = {} } = props;
   function NlpFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
     return (

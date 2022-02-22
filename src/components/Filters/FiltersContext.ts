@@ -18,8 +18,7 @@ export interface FiltersContextType {
  *
  * @public
  */
-const FiltersContext = createContext<FiltersContextType | null>(null);
-export default FiltersContext;
+export const FiltersContext = createContext<FiltersContextType | null>(null);
 
 /**
  * A hook used to access the {@link Filters.FiltersContextType}.

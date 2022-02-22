@@ -44,7 +44,7 @@ export interface LocationBiasProps {
  * @param props - {@link LocationBiasProps}
  * @returns A react component for Location Bias
  */
-export default function LocationBias({
+export function LocationBias({
   geolocationOptions,
   customCssClasses,
   cssCompositionMethod

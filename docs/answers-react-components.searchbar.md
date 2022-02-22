@@ -9,7 +9,7 @@ Renders a SearchBar that is hooked up with an InputDropdown component.
 <b>Signature:</b>
 
 ```typescript
-export default function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
+export declare function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
 ```
 
 ## Parameters

@@ -9,7 +9,7 @@ The Filters.FilterGroup component represents a group of filters to support for s
 <b>Signature:</b>
 
 ```typescript
-export default function FilterGroup(props: FilterGroupProps): JSX.Element;
+export declare function FilterGroup(props: FilterGroupProps): JSX.Element;
 ```
 
 ## Parameters

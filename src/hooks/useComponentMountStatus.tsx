@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
  *
  * React PR regarding the issue: https://github.com/facebook/react/pull/22114
  */
-export default function useComponentMountStatus(): React.MutableRefObject<boolean> {
+export function useComponentMountStatus(): React.MutableRefObject<boolean> {
   const isMountedRef = useRef<boolean>(false);
   useEffect(() => {
     isMountedRef.current = true;

@@ -1,4 +1,4 @@
-export default function MagnifyingGlassIcon(): JSX.Element {
+export function MagnifyingGlassIcon(): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
       <path d="M0 0h24v24H0V0z" fill="none" />

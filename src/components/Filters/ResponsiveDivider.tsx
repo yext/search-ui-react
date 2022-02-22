@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef } from 'react';
-import { PageSize, usePageSize } from '../../hooks/usePageView';
+import { PageSize, usePageSize } from '../../hooks/usePageSize';
 
 /**
  * Props for {@link Filters.ResponsiveDivider}.
@@ -29,7 +29,7 @@ export type ResponsiveDividerProps = {
  *
  * @public
  */
-export default function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element {
+export function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element {
   const {
     mobileBreakpoint,
     desktopClassName = 'w-full h-px bg-gray-200 my-4',

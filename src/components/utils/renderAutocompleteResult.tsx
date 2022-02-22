@@ -1,5 +1,5 @@
 import { AutocompleteResult } from '@yext/answers-headless-react';
-import renderHighlightedValue from '../utils/renderHighlightedValue';
+import { renderHighlightedValue } from '../utils/renderHighlightedValue';
 
 /**
  * The CSS class interface for the Autocomplete Result.
@@ -23,7 +23,7 @@ export const builtInCssClasses = {
  * @param result The result to render
  * @returns JSX.Element
  */
-export default function renderAutocompleteResult(
+export function renderAutocompleteResult(
   result: AutocompleteResult,
   cssClasses: AutocompleteResultCssClasses = {},
   Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,

@@ -1,6 +1,6 @@
 import { useAnswersState } from '@yext/answers-headless-react';
 import { useLayoutEffect, useState } from 'react';
-import ThumbIcon from '../icons/ThumbIcon';
+import { ThumbIcon } from '../icons/ThumbIcon';
 
 /**
  * Analytics event types for quality feedback.

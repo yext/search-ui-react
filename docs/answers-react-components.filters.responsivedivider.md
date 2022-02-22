@@ -9,7 +9,7 @@ A convenience component for our recommended divider styling.
 <b>Signature:</b>
 
 ```typescript
-export default function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element;
+export declare function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element;
 ```
 
 ## Parameters

@@ -10,19 +10,19 @@ import {
 import classNames from 'classnames';
 import { Fragment, PropsWithChildren, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
-import useRecentSearches from '../hooks/useRecentSearches';
-import useSearchWithNearMeHandling from '../hooks/useSearchWithNearMeHandling';
+import { useRecentSearches } from '../hooks/useRecentSearches';
+import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
-import VerticalDividerIcon from '../icons/BarIcon';
-import RecentSearchIcon from '../icons/HistoryIcon';
-import CloseIcon from '../icons/CloseIcon';
-import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
-import YextLogoIcon from '../icons/YextIcon';
-import Dropdown from './Dropdown/Dropdown';
+import { VerticalDividerIcon } from '../icons/VerticalDividerIcon';
+import { HistoryIcon as RecentSearchIcon } from '../icons/HistoryIcon';
+import { CloseIcon } from '../icons/CloseIcon';
+import { MagnifyingGlassIcon } from '../icons/MagnifyingGlassIcon';
+import { YextIcon } from '../icons/YextIcon';
+import { Dropdown } from './Dropdown/Dropdown';
 import { useDropdownContext } from './Dropdown/DropdownContext';
-import DropdownInput from './Dropdown/DropdownInput';
-import DropdownItem from './Dropdown/DropdownItem';
-import DropdownMenu from './Dropdown/DropdownMenu';
+import { DropdownInput } from './Dropdown/DropdownInput';
+import { DropdownItem } from './Dropdown/DropdownItem';
+import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { FocusedItemData } from './Dropdown/FocusContext';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import {
@@ -31,9 +31,9 @@ import {
   calculateUniversalLimit,
   transformEntityPreviews
 } from './EntityPreviews';
-import SearchButton from './SearchButton';
+import { SearchButton } from './SearchButton';
 import { processTranslation } from './utils/processTranslation';
-import renderAutocompleteResult, {
+import { renderAutocompleteResult,
   AutocompleteResultCssClasses,
   builtInCssClasses as AutocompleteResultBuiltInCssClasses
 } from './utils/renderAutocompleteResult';
@@ -164,7 +164,7 @@ export interface SearchBarProps {
  *
  * @public
  */
-export default function SearchBar({
+export function SearchBar({
   placeholder,
   geolocationOptions,
   hideRecentSearches,
@@ -322,7 +322,7 @@ export default function SearchBar({
             className={cssClasses.optionContainer}
             focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
             value={result.value}
-            itemData={{ verticalLink: { verticalKey, query: result.value }}}
+            itemData={{ verticalLink: { verticalKey, query: result.value } }}
             onClick={handleSubmit}
           >
             {renderAutocompleteResult(
@@ -386,7 +386,7 @@ export default function SearchBar({
       >
         <div className={cssClasses.inputContainer}>
           <div className={cssClasses.logoContainer}>
-            <YextLogoIcon />
+            <YextIcon />
           </div>
           {renderInput()}
           {query && renderClearButton()}

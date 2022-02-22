@@ -9,7 +9,7 @@ A wrapper component for specifying a DropdownItemWithIndex. The index will be au
 <b>Signature:</b>
 
 ```typescript
-export default function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
+export declare function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
 ```
 
 ## Parameters

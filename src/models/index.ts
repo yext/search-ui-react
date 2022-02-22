@@ -1,4 +1,5 @@
 export * from './cardComponent';
 export * from './sectionComponent';
-export type { VerticalLink } from './verticalLink';
-export type { UniversalLink } from './universalLink';
+export { VerticalLink } from './verticalLink';
+export { UniversalLink } from './universalLink';
+export { VerticalConfig, VerticalConfigMap } from './verticalConfig';

@@ -9,7 +9,7 @@ A component which allows a user to search for filters associated with specific e
 <b>Signature:</b>
 
 ```typescript
-export default function FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod }: FilterSearchProps): JSX.Element;
+export declare function FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod }: FilterSearchProps): JSX.Element;
 ```
 
 ## Parameters

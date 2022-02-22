@@ -9,7 +9,7 @@ EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews
 <b>Signature:</b>
 
 ```typescript
-export default function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
+export declare function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
 ```
 
 ## Parameters
