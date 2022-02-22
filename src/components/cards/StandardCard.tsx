@@ -67,7 +67,7 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
   cta2?: string,
   ordinal?: string,
   title?: string,
-  title___link?: string
+  titleLink?: string
 }
 
 const builtInCssClasses: StandardCardCssClasses = {
@@ -81,7 +81,7 @@ const builtInCssClasses: StandardCardCssClasses = {
   cta2: 'min-w-max bg-white text-blue-600 font-medium rounded-lg py-2 px-5 mt-2 shadow',
   ordinal: 'mr-1.5 text-lg font-medium',
   title: 'text-lg font-medium',
-  title___link: 'text-lg font-medium text-blue-600 cursor-pointer hover:underline focus:underline',
+  titleLink: 'text-lg font-medium text-blue-600 cursor-pointer hover:underline focus:underline',
   feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium'
 };
 
@@ -163,7 +163,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     };
     return (
       result.link
-        ? <a href={result.link} className={cssClasses.title___link} onClick={onClick}>{title}</a>
+        ? <a href={result.link} className={cssClasses.titleLink} onClick={onClick}>{title}</a>
         : <div className={cssClasses.title}>{title}</div>
     );
   }
