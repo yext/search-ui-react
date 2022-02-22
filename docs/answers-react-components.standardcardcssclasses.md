@@ -25,6 +25,6 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses
 |  [descriptionContainer?](./answers-react-components.standardcardcssclasses.descriptioncontainer.md) | string | <i>(Optional)</i> |
 |  [header?](./answers-react-components.standardcardcssclasses.header.md) | string | <i>(Optional)</i> |
 |  [ordinal?](./answers-react-components.standardcardcssclasses.ordinal.md) | string | <i>(Optional)</i> |
-|  [title\_\_\_link?](./answers-react-components.standardcardcssclasses.title___link.md) | string | <i>(Optional)</i> |
 |  [title?](./answers-react-components.standardcardcssclasses.title.md) | string | <i>(Optional)</i> |
+|  [titleLink?](./answers-react-components.standardcardcssclasses.titlelink.md) | string | <i>(Optional)</i> |
 

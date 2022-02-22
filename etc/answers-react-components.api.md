@@ -581,7 +581,7 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     title?: string;
     // (undocumented)
-    title___link?: string;
+    titleLink?: string;
 }
 
 // @public
