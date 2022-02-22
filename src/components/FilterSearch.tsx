@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { Dropdown } from './Dropdown/Dropdown';
-import { DropdownInput }from './Dropdown/DropdownInput';
+import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
 import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { processTranslation } from './utils/processTranslation';

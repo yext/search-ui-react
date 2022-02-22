@@ -21,6 +21,7 @@ module.exports = {
       named: 'never',
       anonymous: 'never'
     }],
+    'keyword-spacing': ['error'],
     'quote-props': ['error', 'as-needed'],
     'max-len': ['error', {
       code: 110,

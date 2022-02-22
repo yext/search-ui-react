@@ -22,7 +22,7 @@ export async function updateLocationIfNeeded(
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       });
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
