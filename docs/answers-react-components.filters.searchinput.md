@@ -9,7 +9,7 @@ SearchInput is a simple input component that updates the active searchValue for 
 <b>Signature:</b>
 
 ```typescript
-export default function SearchInput(props: SearchInputProps): JSX.Element;
+export declare function SearchInput(props: SearchInputProps): JSX.Element;
 ```
 
 ## Parameters

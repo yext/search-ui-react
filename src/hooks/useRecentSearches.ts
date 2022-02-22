@@ -3,7 +3,7 @@ import RecentSearches, { ISearch } from 'recent-searches';
 
 export const RECENT_SEARCHES_KEY = '__yxt_recent_searches__';
 
-export default function useRecentSearches(
+export function useRecentSearches(
   recentSearchesLimit: number
 ): [ISearch[]|undefined, (input: string) => void, () => void] {
   const [ recentSearches, setRecentSeaches ] = useState<RecentSearches>();

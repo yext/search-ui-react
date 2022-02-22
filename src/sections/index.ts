@@ -1,5 +1,5 @@
-export { default as StandardSection } from './StandardSection';
-export type {
+export {
+  StandardSection,
   StandardSectionCssClasses,
   StandardSectionConfig
 } from './StandardSection';

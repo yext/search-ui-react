@@ -11,7 +11,7 @@ The representation of the facets is configured using props.children, and is inte
 <b>Signature:</b>
 
 ```typescript
-export default function StaticFilters(props: StaticFiltersProps): JSX.Element;
+export declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
 ```
 
 ## Parameters

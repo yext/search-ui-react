@@ -1,56 +1,56 @@
-export { default as SearchBar } from './SearchBar';
-export type {
+export {
+  SearchBar,
   SearchBarCssClasses,
   SearchBarProps,
   VisualAutocompleteConfig,
   RenderEntityPreviews,
   onSearchFunc
 } from './SearchBar';
-export type { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
-export type { EntityPreviewsProps } from './EntityPreviews';
-export { default as EntityPreviews } from './EntityPreviews';
-export type { FocusedItemData } from './Dropdown/FocusContext';
 
-export type { FieldData, FieldDataConstant, FieldDataPath } from './utils/applyFieldMappings';
+export { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
+export { EntityPreviewsProps } from './EntityPreviews';
+export { EntityPreviews } from './EntityPreviews';
+export { FocusedItemData } from './Dropdown/FocusContext';
+export { FieldData, FieldDataConstant, FieldDataPath } from './utils/applyFieldMappings';
 
-export { default as SpellCheck } from './SpellCheck';
-export type {
+export {
+  SpellCheck,
   SpellCheckCssClasses,
   SpellCheckProps
 } from './SpellCheck';
 
-export { default as DirectAnswer } from './DirectAnswer';
-export type {
+export {
+  DirectAnswer,
   DirectAnswerCssClasses,
   DirectAnswerProps
 } from './DirectAnswer';
 
-export { default as FilterSearch } from './FilterSearch';
-export type {
+export {
+  FilterSearch,
   FilterSearchCssClasses,
   FilterSearchProps
 } from './FilterSearch';
 
-export { default as LocationBias } from './LocationBias';
-export type {
+export {
+  LocationBias,
   LocationBiasCssClasses,
   LocationBiasProps
 } from './LocationBias';
 
-export { default as AppliedFilters } from './AppliedFilters';
-export type {
+export {
+  AppliedFilters,
   AppliedFiltersCssClasses,
   AppliedFiltersProps
 } from './AppliedFilters';
 
-export { default as UniversalResults } from './UniversalResults';
-export type {
+export {
+  UniversalResults,
   UniversalResultsCssClasses,
   UniversalResultsProps,
 } from './UniversalResults';
 
-export { default as VerticalResults } from './VerticalResults';
-export type {
+export {
+  VerticalResults,
   VerticalResultsCssClasses,
   VerticalResultsProps,
   PaginationCssClasses
@@ -58,8 +58,8 @@ export type {
 
 export * from './cards/StandardCard';
 
-export { default as AlternativeVerticals } from './AlternativeVerticals';
-export type {
+export {
+  AlternativeVerticals,
   AlternativeVerticalsCssClasses,
   AlternativeVerticalsProps,
   VerticalLabelMap

@@ -1,5 +1,5 @@
 import { processTranslation } from './utils/processTranslation';
-import Star from '../icons/StarIcon';
+import { StarIcon } from '../icons/StarIcon';
 import { useAnswersState, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
@@ -98,7 +98,7 @@ export interface AlternativeVerticalsProps {
  * @param props - {@link AlternativeVerticalsProps}
  * @returns A React element for the alternative verticals, or null if there are none with results
  */
-export default function AlternativeVerticals({
+export function AlternativeVerticals({
   currentVerticalLabel,
   verticalConfigMap,
   displayAllOnNoResults = true,
@@ -192,7 +192,7 @@ export default function AlternativeVerticals({
     return (
       <li key={suggestion.verticalKey} className={cssClasses.suggestion}>
         <a className={cssClasses.suggestionButton} href={href}>
-          <div className={cssClasses.verticalIcon}><Star/></div>
+          <div className={cssClasses.verticalIcon}><StarIcon/></div>
           <span className={cssClasses.verticalLink}>{suggestion.label}</span>
         </a>
       </li>

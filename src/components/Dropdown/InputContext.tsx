@@ -10,11 +10,10 @@ export type InputContextType = {
   setLastTypedOrSubmittedValue: (newValue: string) => void
 };
 
-const inputContext = createContext<InputContextType | null>(null);
-export default inputContext;
+export const InputContext = createContext<InputContextType | null>(null);
 
 export function useInputContext(): InputContextType {
-  const inputContextInstance = useContext(inputContext);
+  const inputContextInstance = useContext(InputContext);
   if (inputContextInstance === null) {
     throw new Error('Tried to use InputContext when none exists.');
   }

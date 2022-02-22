@@ -4,7 +4,7 @@ import { GroupedFilters } from '../models/groupedFilters';
 import { getGroupedAppliedFilters } from '../utils/appliedfilterutils';
 import { useRef } from 'react';
 import classNames from 'classnames';
-import AppliedFiltersDisplay from './AppliedFiltersDisplay';
+import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
@@ -55,7 +55,7 @@ export interface AppliedFiltersProps {
  * @param props - {@link AppliedFiltersProps}
  * @returns A React element for the applied filters
  */
-export default function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
+export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters) || [];
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const verticalResults = useAnswersState(state => state.vertical.results);

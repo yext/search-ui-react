@@ -1,13 +1,13 @@
 import { ChangeEvent, KeyboardEvent, useRef } from 'react';
 import { useDropdownContext } from './DropdownContext';
 import { useFocusContext, FocusedItemData } from './FocusContext';
-import generateDropdownId from './generateDropdownId';
+import { generateDropdownId } from './generateDropdownId';
 import { useInputContext } from './InputContext';
 
 /**
  * An input component for use within a Dropdown.
  */
-export default function DropdownInput(props: {
+export function DropdownInput(props: {
   className?: string,
   placeholder?: string,
   onSubmit?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void,

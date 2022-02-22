@@ -3,7 +3,7 @@ import { Children, cloneElement, isValidElement, ReactElement, ReactNode, ReactP
 /**
  * Recursively performs React.Children.map on a given ReactNode.
  */
-export default function recursivelyMapChildren(
+export function recursivelyMapChildren(
   children: ReactNode,
   elementReplacer: (c: ReactElement | ReactPortal, index: number) => ReactNode | null
 ): ReactNode {

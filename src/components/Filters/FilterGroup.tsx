@@ -1,6 +1,6 @@
 import { PropsWithChildren, useState } from 'react';
 import useCollapse from 'react-collapsed';
-import FilterGroupContext from './FilterGroupContext';
+import { FilterGroupContext } from './FilterGroupContext';
 
 /**
  * Props for a {@link Filters.FilterGroup}.
@@ -27,7 +27,7 @@ export type FilterGroupProps = PropsWithChildren<{
  *
  * @param props - {@link Filters.FilterGroupProps}
  */
-export default function FilterGroup(props: FilterGroupProps): JSX.Element {
+export function FilterGroup(props: FilterGroupProps): JSX.Element {
   const {
     children,
     defaultExpanded = true,

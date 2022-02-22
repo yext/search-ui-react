@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import useComponentMountStatus from './useComponentMountStatus';
+import { useComponentMountStatus } from './useComponentMountStatus';
 
 /**
  * Handles the network request race condition by synchronizing requests with their responses. If multiple

@@ -1,9 +1,9 @@
 import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData } from '@yext/answers-headless-react';
-import renderHighlightedValue from './utils/renderHighlightedValue';
+import { renderHighlightedValue } from './utils/renderHighlightedValue';
 import classNames from 'classnames';
 import { ReactNode, useState, useLayoutEffect } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import ThumbIcon from '../icons/ThumbIcon';
+import { ThumbIcon } from '../icons/ThumbIcon';
 import { FeedbackType, useDirectAnswersAnalytics } from '../hooks/useDirectAnswerAnalytics';
 
 /**
@@ -66,7 +66,7 @@ const builtInCssClasses: DirectAnswerCssClasses = {
  * @param props - {@link DirectAnswerProps}
  * @returns A react element for DirectAnswer
  */
-export default function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
+export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   const directAnswerResult = useAnswersState(state => state.directAnswer.result);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading || false);
   const composedCssClasses = useComposedCssClasses(

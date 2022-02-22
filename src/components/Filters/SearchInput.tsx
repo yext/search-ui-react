@@ -20,7 +20,7 @@ export interface SearchInputProps {
  *
  * @public
  */
-export default function SearchInput(props: SearchInputProps): JSX.Element {
+export function SearchInput(props: SearchInputProps): JSX.Element {
   const {
     className = 'text-sm bg-white h-9 w-full outline-none p-2 mb-2 rounded-md border border-gray-300 focus:border-blue-600',
     placeholderText = 'Search here...'

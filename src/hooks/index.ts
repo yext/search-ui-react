@@ -1,2 +1,2 @@
 export { useAnalytics } from './useAnalytics';
-export type { CompositionMethod } from './useComposedCssClasses';
+export { CompositionMethod } from './useComposedCssClasses';

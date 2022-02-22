@@ -9,7 +9,7 @@ A component that displays the alternative verticals that have results if a searc
 <b>Signature:</b>
 
 ```typescript
-export default function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
+export declare function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
 ```
 
 ## Parameters

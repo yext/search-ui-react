@@ -7,7 +7,7 @@ import { universalQueryResponse, universalQueryResponseWithFilters } from './res
 const handlers = [
   rest.get(/answers\/vertical\/query/, (req, res, ctx) => {
     const input = req.url.searchParams.get('input');
-    switch(input) {
+    switch (input) {
       case 'resultsWithNlpFilter':
         return res(
           ctx.json(verticalQueryResponseWithNlpFilters),
@@ -20,7 +20,7 @@ const handlers = [
   }),
   rest.get(/answers\/query/, (req, res, ctx) => {
     const input = req.url.searchParams.get('input');
-    switch(input) {
+    switch (input) {
       case 'resultsWithFilter':
         return res(
           ctx.json(universalQueryResponseWithFilters),

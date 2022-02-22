@@ -1,6 +1,6 @@
 import { DisplayableFacet, Filter, SelectableFilter, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
-import FiltersContext from './FiltersContext';
+import { FiltersContext } from './FiltersContext';
 
 /**
  * Props for {@link Filters.Facets}
@@ -33,7 +33,7 @@ export interface FacetsProps {
  *
  * @param props - {@link Filters.FacetsProps}
  */
-export default function Facets(props: FacetsProps): JSX.Element {
+export function Facets(props: FacetsProps): JSX.Element {
   const {
     children,
     className = 'md:w-40',

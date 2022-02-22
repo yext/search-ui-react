@@ -9,7 +9,7 @@ A component that renders search results for a vertical page.
 <b>Signature:</b>
 
 ```typescript
-export default function VerticalResults(props: VerticalResultsProps): JSX.Element | null;
+export declare function VerticalResults(props: VerticalResultsProps): JSX.Element | null;
 ```
 
 ## Parameters

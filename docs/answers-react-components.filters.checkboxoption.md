@@ -9,7 +9,7 @@ A checkbox component that represents a single Filter.
 <b>Signature:</b>
 
 ```typescript
-export default function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
+export declare function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
 ```
 
 ## Parameters

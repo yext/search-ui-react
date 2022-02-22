@@ -20,7 +20,7 @@ export type AutocompleteRef = MutableRefObject<Promise<AutocompleteResponse | un
  * You can optionally use the provided ref to store autocomplete responses, to avoid
  * making unnecessary autocomplete requests.
  */
-export default function useSearchWithNearMeHandling(
+export function useSearchWithNearMeHandling(
   answersActions: AnswersHeadless,
   geolocationOptions?: PositionOptions,
   onSearch?: onSearchFunc

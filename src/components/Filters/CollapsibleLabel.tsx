@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import ChevronIcon from '../../icons/ChevronIcon';
+import { ChevronIcon } from '../../icons/ChevronIcon';
 import { useFilterGroupContext } from './FilterGroupContext';
 
 /**
@@ -22,7 +22,7 @@ export interface CollapsibleLabelProps {
  *
  * @public
  */
-export default function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element {
+export function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element {
   const { isExpanded, getToggleProps } = useFilterGroupContext();
   const iconClassName = classNames('w-3', {
     'transform rotate-180': !isExpanded
