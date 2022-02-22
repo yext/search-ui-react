@@ -71,7 +71,6 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
     setIsFeedbackProvided(false);
   }, [query]);
 
-  console.log('www');
   return (
     <div className={cssClasses.feedbackButtonsContainer}>
       {isFeedbackProvided
