@@ -18,10 +18,9 @@ export function useCardAnalytics(): (
   const verticalKey = useAnswersState(state => state.vertical.verticalKey);
   const queryId = useAnswersState(state => state.query.queryId);
 
-  function isDirectAnswer(data: DirectAnswerData | Result): data is DirectAnswerData {
-    return 'type' in data
-      && (data.type === DirectAnswerType.FeaturedSnippet
-      || data.type === DirectAnswerType.FieldValue);
+  function isDirectAnswer(data: unknown): data is DirectAnswerData {
+    return (data as DirectAnswerData)?.type === DirectAnswerType.FeaturedSnippet ||
+      (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
   }
 
   const reportCtaEvent = (result: DirectAnswerData | Result, eventType: CardCtaEventType) => {
@@ -76,11 +75,12 @@ export function useCardAnalytics(): (
       type: feedbackType,
       entityId,
       searcher: verticalKey ? 'VERTICAL' : 'UNIVERSAL',
-      queryId: queryId,
+      queryId,
       verticalKey: verticalKey || '',
       directAnswer
     });
   };
+
   const reportAnalyticsEvent = (
     cardResult: DirectAnswerData | Result,
     analyticsEventType: CardAnalyticsType
