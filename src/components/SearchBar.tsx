@@ -322,7 +322,7 @@ export function SearchBar({
             className={cssClasses.optionContainer}
             focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
             value={result.value}
-            itemData={{ verticalLink: { verticalKey, query: result.value }}}
+            itemData={{ verticalLink: { verticalKey, query: result.value } }}
             onClick={handleSubmit}
           >
             {renderAutocompleteResult(

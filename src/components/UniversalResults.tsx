@@ -45,7 +45,7 @@ export interface UniversalResultsProps {
  * @param props - {@link UniversalResultsProps}
  * @returns A React element for the universal results, or null if there are none
  */
-export default function UniversalResults({
+export function UniversalResults({
   verticalConfigMap,
   showAppliedFilters,
   customCssClasses,

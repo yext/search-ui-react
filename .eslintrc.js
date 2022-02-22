@@ -16,6 +16,7 @@ module.exports = {
     'no-trailing-spaces' : ['error'],
     'no-multi-spaces' : ['error'],
     quotes: ['error', 'single'],
+    'object-curly-spacing': ['error', 'always'],
     'space-before-function-paren': ['error', {
       named: 'never',
       anonymous: 'never'

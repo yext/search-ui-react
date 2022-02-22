@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ChevronIcon} from '../../icons/ChevronIcon';
+import { ChevronIcon } from '../../icons/ChevronIcon';
 import { useFilterGroupContext } from './FilterGroupContext';
 
 /**
