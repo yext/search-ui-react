@@ -7,6 +7,7 @@ export {
   onSearchFunc
 } from './SearchBar';
 
+export { DropdownItem, DropdownItemProps } from './Dropdown/DropdownItem';
 export { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 export { EntityPreviewsProps } from './EntityPreviews';
 export { EntityPreviews } from './EntityPreviews';
@@ -24,6 +25,13 @@ export {
   DirectAnswerCssClasses,
   DirectAnswerProps
 } from './DirectAnswer';
+
+export {
+  ThumbsFeedback,
+  FeedbackType,
+  ThumbsFeedbackCssClasses,
+  ThumbsFeedbackProps
+} from './ThumbsFeedback';
 
 export {
   FilterSearch,

@@ -9,8 +9,9 @@ The CSS class interface used for [StandardCard()](./answers-react-components.sta
 <b>Signature:</b>
 
 ```typescript
-export interface StandardCardCssClasses 
+export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses 
 ```
+<b>Extends:</b> [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md)
 
 ## Properties
 
@@ -25,4 +26,5 @@ export interface StandardCardCssClasses
 |  [header?](./answers-react-components.standardcardcssclasses.header.md) | string | <i>(Optional)</i> |
 |  [ordinal?](./answers-react-components.standardcardcssclasses.ordinal.md) | string | <i>(Optional)</i> |
 |  [title?](./answers-react-components.standardcardcssclasses.title.md) | string | <i>(Optional)</i> |
+|  [titleLink?](./answers-react-components.standardcardcssclasses.titlelink.md) | string | <i>(Optional)</i> |
 

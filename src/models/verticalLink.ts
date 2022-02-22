@@ -11,5 +11,5 @@ export interface VerticalLink {
 }
 
 export const isVerticalLink = (obj: unknown): obj is VerticalLink => {
-  return typeof obj === 'object' && !!obj && 'verticalKey' in obj && 'query' in obj;
+  return typeof obj === 'object' && !!obj && 'verticalKey' in obj;
 };

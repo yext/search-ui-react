@@ -178,7 +178,7 @@ export type CompositionMethod = 'merge' | 'replace' | 'assign';
 export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
 
 // @public
-export interface DirectAnswerCssClasses {
+export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     answerContainer?: string;
     // (undocumented)
@@ -218,6 +218,18 @@ export interface DirectAnswerProps {
 }
 
 // @public
+export function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
+
+// @public
+export type DropdownItemProps = PropsWithChildren<{
+    value: string;
+    className?: string;
+    focusedClassName?: string;
+    itemData?: Record<string, unknown> | undefined;
+    onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
+}>;
+
+// @public
 export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
 
 // @public
@@ -245,6 +257,9 @@ interface FacetsProps {
     className?: string;
     searchOnChange?: boolean;
 }
+
+// @public
+export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
 // @public
 export type FieldData = FieldDataConstant | FieldDataPath;
@@ -557,7 +572,7 @@ export interface SpellCheckProps {
 export function StandardCard(props: StandardCardProps): JSX.Element;
 
 // @public
-export interface StandardCardCssClasses {
+export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     body?: string;
     // (undocumented)
@@ -576,6 +591,8 @@ export interface StandardCardCssClasses {
     ordinal?: string;
     // (undocumented)
     title?: string;
+    // (undocumented)
+    titleLink?: string;
 }
 
 // @public
@@ -588,6 +605,7 @@ export interface StandardCardProps extends CardProps {
         cta1?: FieldData;
         cta2?: FieldData;
     };
+    showFeedbackButtons?: boolean;
     showOrdinal?: boolean;
 }
 
@@ -621,8 +639,30 @@ type StaticFiltersProps = PropsWithChildren<{
 }>;
 
 // @public
+export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
+
+// @public
+export interface ThumbsFeedbackCssClasses {
+    // (undocumented)
+    feedbackButtonsContainer?: string;
+    // (undocumented)
+    thumbsDownIcon?: string;
+    // (undocumented)
+    thumbsUpIcon?: string;
+}
+
+// @public
+export interface ThumbsFeedbackProps {
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses: ThumbsFeedbackCssClasses;
+    feedbackText?: string;
+    feedbackTextOnSubmission?: string;
+    onClick: (feedbackType: FeedbackType) => void;
+}
+
+// @public
 export interface UniversalLink {
-    query: string | undefined;
+    query?: string;
 }
 
 // @public

@@ -9,5 +9,5 @@ The query to fire on that page.
 <b>Signature:</b>
 
 ```typescript
-query: string | undefined;
+query?: string;
 ```

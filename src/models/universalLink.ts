@@ -5,5 +5,5 @@
  */
 export interface UniversalLink {
   /** The query to fire on that page. */
-  query: string | undefined
+  query?: string
 }

@@ -6,6 +6,8 @@ import { useInputContext } from './InputContext';
 
 /**
  * Props for the {@link DropdownItem}.
+ *
+ * @public
  */
 export type DropdownItemProps = PropsWithChildren<{
   /** The value associated with the dropdown item. */
@@ -22,7 +24,9 @@ export type DropdownItemProps = PropsWithChildren<{
 
 /**
  * A wrapper component for specifying a DropdownItemWithIndex.
- * The index will be automatically provided by the {@link Dropdown} component instance.
+ * The index will be automatically provided by the Dropdown component instance.
+ *
+ * @public
  */
 export function DropdownItem(_props: DropdownItemProps): JSX.Element | null { return null; }
 

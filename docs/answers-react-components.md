@@ -12,6 +12,7 @@
 |  [AnalyticsProvider(props)](./answers-react-components.analyticsprovider.md) | A higher-order component which provides analytics for its children. |
 |  [AppliedFilters(props)](./answers-react-components.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters. |
 |  [DirectAnswer(props)](./answers-react-components.directanswer.md) | Renders Direct Answers provided by the Answers API. |
+|  [DropdownItem(\_props)](./answers-react-components.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
 |  [EntityPreviews(\_)](./answers-react-components.entitypreviews.md) | EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews. It provides results corresponding to its verticalKey through a props.children Function as Compound Component (FACC). |
 |  [executeSearch(answersActions, isVertical)](./answers-react-components.executesearch.md) | Executes a universal/vertical search. |
 |  [FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
@@ -22,6 +23,7 @@
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
 |  [StandardSection(props)](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
+|  [ThumbsFeedback(props)](./answers-react-components.thumbsfeedback.md) | Renders a quality feedback widget composed of thumbs up and thumbs down buttons. |
 |  [UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod })](./answers-react-components.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
 |  [updateLocationIfNeeded(answersActions, intents, geolocationOptions)](./answers-react-components.updatelocationifneeded.md) | If the provided search intents include a 'NEAR\_ME' intent and there's no existing user's location in state, retrieve and store user's location in headless state. |
 |  [useAnalytics()](./answers-react-components.useanalytics.md) | Returns a service that can be used to report analytics events. |
@@ -54,6 +56,8 @@
 |  [StandardCardProps](./answers-react-components.standardcardprops.md) | Props for a StandardCard. |
 |  [StandardSectionConfig](./answers-react-components.standardsectionconfig.md) | The configuration for a StandardSection. |
 |  [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection()](./answers-react-components.standardsection.md)<!-- -->. |
+|  [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md) | The CSS class interface used for [ThumbsFeedback()](./answers-react-components.thumbsfeedback.md)<!-- -->. |
+|  [ThumbsFeedbackProps](./answers-react-components.thumbsfeedbackprops.md) | Props for [ThumbsFeedback()](./answers-react-components.thumbsfeedback.md)<!-- -->. |
 |  [UniversalLink](./answers-react-components.universallink.md) | Data needed to create a URL to a universal search page. |
 |  [UniversalResultsCssClasses](./answers-react-components.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./answers-react-components.universalresultsprops.md) | Props for [UniversalResults()](./answers-react-components.universalresults.md)<!-- -->. |
@@ -77,6 +81,8 @@
 |  --- | --- |
 |  [CardComponent](./answers-react-components.cardcomponent.md) | A functional component that can be used to render a result card. |
 |  [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining a component's built-in CSS classes with custom CSS classes. |
+|  [DropdownItemProps](./answers-react-components.dropdownitemprops.md) | Props for the [DropdownItem()](./answers-react-components.dropdownitem.md)<!-- -->. |
+|  [FeedbackType](./answers-react-components.feedbacktype.md) | Analytics event types for quality feedback. |
 |  [FieldData](./answers-react-components.fielddata.md) | Indicates either a constant field data value, or a field data mapping. |
 |  [FieldDataConstant](./answers-react-components.fielddataconstant.md) | Indicates a field should equal a constant value. Ignores the API response. |
 |  [FieldDataPath](./answers-react-components.fielddatapath.md) | Denotes the path to the field data on the Result's raw dadta. |
