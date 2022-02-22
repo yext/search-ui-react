@@ -691,6 +691,8 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
 // @public
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
     // (undocumented)
+    results?: string;
+    // (undocumented)
     results___loading?: string;
 }
 

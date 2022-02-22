@@ -11,6 +11,7 @@ import { usePaginationAnalytics } from '../hooks/usePaginationAnalytics';
  * @public
  */
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
+  results?: string,
   results___loading?: string
 }
 
