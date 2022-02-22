@@ -43,10 +43,10 @@ const builtInCssClasses: FilterSearchCssClasses = {
  * @public
  */
 export interface FilterSearchProps {
-  /** The display label for the component. */
-  label: string,
-  /** Determines whether or not the results of the filter search are separated by field. */
-  sectioned: boolean,
+  /** The display label for the component. Defaults to "Filter". */
+  label?: string,
+  /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
+  sectioned?: boolean,
   /** An array of fieldApiName and entityType which indicates what to perform the filter search against. */
   searchFields: Omit<SearchParameterField, 'fetchEntities'>[],
   /** CSS classes for customizing the component styling. */
@@ -64,8 +64,8 @@ export interface FilterSearchProps {
  * @returns A react component for Filter Search
  */
 export function FilterSearch({
-  label,
-  sectioned,
+  label = 'Filter',
+  sectioned = false,
   searchFields,
   customCssClasses,
   cssCompositionMethod

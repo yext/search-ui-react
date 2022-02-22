@@ -4,10 +4,10 @@
 
 ## FilterSearchProps.label property
 
-The display label for the component.
+The display label for the component. Defaults to "Filter".
 
 <b>Signature:</b>
 
 ```typescript
-label: string;
+label?: string;
 ```
