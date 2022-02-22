@@ -9,14 +9,14 @@ Displays the results of a universal search with the results for each vertical se
 <b>Signature:</b>
 
 ```typescript
-export declare function UniversalResults({ verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
+export declare function UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { verticalConfigs, showAppliedFilters, customCssClasses, cssCompositionMethod } | [UniversalResultsProps](./answers-react-components.universalresultsprops.md) |  |
+|  { verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod } | [UniversalResultsProps](./answers-react-components.universalresultsprops.md) |  |
 
 <b>Returns:</b>
 

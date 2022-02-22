@@ -5,6 +5,7 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
 import classNames from 'classnames';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { UniversalLink } from '../models/universalLink';
+import { VerticalConfig } from '../models/verticalConfig';
 
 /**
  * The CSS class interface used for {@link AlternativeVerticals}.
@@ -39,17 +40,25 @@ const builtInCssClasses: AlternativeVerticalsCssClasses = {
   allCategoriesLink: 'text-blue-600 cursor-pointer hover:underline focus:underline'
 };
 
-interface VerticalConfig {
-  label: string,
+interface VerticalSuggestion {
+  resultsCount: number,
+  label?: string,
   verticalKey: string
 }
 
-interface VerticalSuggestion extends VerticalConfig {
-  resultsCount: number
+function isVerticalSuggestion(suggestion: unknown): suggestion is VerticalSuggestion {
+  return (suggestion as VerticalSuggestion)?.resultsCount !== undefined &&
+    (suggestion as VerticalSuggestion)?.verticalKey !== undefined;
 }
 
-function isVerticalSuggestion(suggestion: VerticalSuggestion | null): suggestion is VerticalSuggestion {
-  return suggestion?.resultsCount !== undefined;
+/**
+ * A map of vertical keys to labels.
+ *
+ * @public
+ */
+export interface VerticalLabelMap {
+  /** Config mapped to a vertical. */
+  [verticalKey: string]: Pick<VerticalConfig, 'label'>;
 }
 
 /**
@@ -60,8 +69,8 @@ function isVerticalSuggestion(suggestion: VerticalSuggestion | null): suggestion
 export interface AlternativeVerticalsProps {
   /** The label for the current vertical. */
   currentVerticalLabel: string,
-  /** An array containing the label and verticalKey of each vertical. */
-  verticalsConfig: VerticalConfig[],
+  /** A map of verticalKeys to the display label for that vertical. */
+  verticalConfigMap: VerticalLabelMap,
   /**
    * Whether or not all results should be displayed when there are none returned from the search.
    * Defaults to true.
@@ -91,7 +100,7 @@ export interface AlternativeVerticalsProps {
  */
 export function AlternativeVerticals({
   currentVerticalLabel,
-  verticalsConfig,
+  verticalConfigMap,
   displayAllOnNoResults = true,
   customCssClasses,
   getSuggestionUrl: customGetSuggestionUrl,
@@ -104,7 +113,7 @@ export function AlternativeVerticals({
     useAnswersState(state => state.vertical.noResults?.allResultsForVertical.results) || [];
   const query = useAnswersState(state => state.query.mostRecentSearch);
 
-  const verticalSuggestions = buildVerticalSuggestions(verticalsConfig, alternativeVerticals);
+  const verticalSuggestions = buildVerticalSuggestions(verticalConfigMap, alternativeVerticals);
   const isShowingAllResults = displayAllOnNoResults && allResultsForVertical.length > 0;
 
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
@@ -121,21 +130,19 @@ export function AlternativeVerticals({
     };
 
   function buildVerticalSuggestions(
-    verticalsConfig: VerticalConfig[],
+    verticalConfigMap: VerticalLabelMap,
     alternativeVerticals: VerticalResultsData[]): VerticalSuggestion[] {
 
     return alternativeVerticals
+      .filter((alternativeResults: VerticalResultsData) => {
+        return !!verticalConfigMap[alternativeResults.verticalKey];
+      })
       .map((alternativeResults: VerticalResultsData) => {
-        const matchingVerticalConfig = verticalsConfig.find(config => {
-          return config.verticalKey === alternativeResults.verticalKey;
-        });
-
-        return matchingVerticalConfig
-          ? {
-            ...matchingVerticalConfig,
-            resultsCount: alternativeResults.resultsCount
-          }
-          : null;
+        return {
+          label: verticalConfigMap[alternativeResults.verticalKey].label,
+          verticalKey: alternativeResults.verticalKey,
+          resultsCount: alternativeResults.resultsCount
+        };
       })
       .filter(isVerticalSuggestion)
       .filter(verticalSuggestion => verticalSuggestion.resultsCount > 0);

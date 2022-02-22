@@ -19,5 +19,5 @@ export interface UniversalResultsProps
 |  [cssCompositionMethod?](./answers-react-components.universalresultsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.universalresultsprops.customcssclasses.md) | [UniversalResultsCssClasses](./answers-react-components.universalresultscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [showAppliedFilters?](./answers-react-components.universalresultsprops.showappliedfilters.md) | boolean | <i>(Optional)</i> Whether or not to show the applied filters. |
-|  [verticalConfigs](./answers-react-components.universalresultsprops.verticalconfigs.md) | Record&lt;string, [VerticalConfig](./answers-react-components.verticalconfig.md)<!-- -->&gt; | A mapping of verticalKey to the configuration for each vertical. |
+|  [verticalConfigMap](./answers-react-components.universalresultsprops.verticalconfigmap.md) | [VerticalConfigMap](./answers-react-components.verticalconfigmap.md) | A mapping of verticalKey to the configuration for each vertical. |
 

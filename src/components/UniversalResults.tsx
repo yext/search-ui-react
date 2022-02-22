@@ -1,11 +1,9 @@
 import { useAnswersState, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
 import { StandardSection } from '../sections/StandardSection';
 import { SectionHeader } from '../sections/SectionHeader';
-import { SectionComponent } from '../models/sectionComponent';
-import { CardComponent } from '../models/cardComponent';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
-import { VerticalLink } from '../models/verticalLink';
+import { VerticalConfigMap } from '../models/verticalConfig';
 
 /**
  * The CSS class interface used for {@link UniversalResults}.
@@ -23,29 +21,6 @@ const builtInCssClasses: UniversalResultsCssClasses = {
 };
 
 /**
- * The configuration for a vertical.
- *
- * @public
- */
-export interface VerticalConfig {
-  /** {@inheritDoc SectionComponent} */
-  SectionComponent?: SectionComponent,
-  /** The card to use for this vertical. */
-  CardComponent?: CardComponent,
-  /** The label for the vertical. */
-  label?: string,
-  /** Whether or not this vertical should show a button to view all results on the vertical page. */
-  viewAllButton?: boolean,
-  /**
-   * A function to provide user defined url path for each vertical's view all link.
-   *
-   * @remarks
-   * Defaults to "/[verticalKey]?query=[query]"
-   */
-  getViewAllUrl?: (data: VerticalLink) => string
-}
-
-/**
  * Props for {@link UniversalResults}.
  *
  * @public
@@ -54,7 +29,7 @@ export interface UniversalResultsProps {
   /** Whether or not to show the applied filters. */
   showAppliedFilters?: boolean,
   /** A mapping of verticalKey to the configuration for each vertical. */
-  verticalConfigs: Record<string, VerticalConfig>,
+  verticalConfigMap: VerticalConfigMap,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: UniversalResultsCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -70,8 +45,8 @@ export interface UniversalResultsProps {
  * @param props - {@link UniversalResultsProps}
  * @returns A React element for the universal results, or null if there are none
  */
-export function UniversalResults({
-  verticalConfigs,
+export default function UniversalResults({
+  verticalConfigMap,
   showAppliedFilters,
   customCssClasses,
   cssCompositionMethod
@@ -90,7 +65,7 @@ export function UniversalResults({
 
   return (
     <div className={resultsClassNames}>
-      {renderVerticalSections({ resultsFromAllVerticals, showAppliedFilters, verticalConfigs })}
+      {renderVerticalSections({ resultsFromAllVerticals, showAppliedFilters, verticalConfigMap })}
     </div>
   );
 }
@@ -104,13 +79,13 @@ interface VerticalSectionsProps extends UniversalResultsProps {
  * corresponding configs, including specifying which section template to use.
  */
 function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
-  const { resultsFromAllVerticals, verticalConfigs } = props;
+  const { resultsFromAllVerticals, verticalConfigMap } = props;
   return <>
     {resultsFromAllVerticals
       .filter(verticalResults => verticalResults.results)
       .map(verticalResults => {
         const verticalKey = verticalResults.verticalKey;
-        const verticalConfig = verticalConfigs[verticalKey] || {};
+        const verticalConfig = verticalConfigMap[verticalKey] || {};
 
         const label = verticalConfig.label ?? verticalKey;
         const results = verticalResults.results;
