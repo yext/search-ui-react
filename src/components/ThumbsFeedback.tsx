@@ -65,10 +65,13 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const query = useAnswersState(state => state.query.mostRecentSearch);
   const [isFeedbackProvided, setIsFeedbackProvided] = useState(false);
+
+  // Changes to most recent search query will trigger re-render to reset quality feedback submission.
   useLayoutEffect(() => {
     setIsFeedbackProvided(false);
-  }, [query, setIsFeedbackProvided]);
+  }, [query]);
 
+  console.log('www');
   return (
     <div className={cssClasses.feedbackButtonsContainer}>
       {isFeedbackProvided
