@@ -61,6 +61,7 @@ export function Facets(props: FacetsProps): JSX.Element {
     };
     answersActions.setFacetOption(filter.fieldId, facetOption, selected);
     if (searchOnChange) {
+      answersActions.setOffset(0);
       answersActions.executeVerticalQuery();
     }
   }
