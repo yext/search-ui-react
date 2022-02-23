@@ -34,6 +34,7 @@ export function StaticFilters(props: StaticFiltersProps): JSX.Element {
   const filtersContextInstance = {
     filters,
     handleFilterSelect: (filter: Filter, selected: boolean) => {
+      answersActions.setOffset(0);
       answersActions.resetFacets();
       answersActions.setFilterOption({ ...filter, selected });
       answersActions.executeVerticalQuery();
