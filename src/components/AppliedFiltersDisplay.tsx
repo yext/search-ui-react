@@ -31,7 +31,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   }
 
   function RemovableFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
-    const answersAction = useAnswersActions();
+    const answersActions = useAnswersActions();
 
     const onRemoveFacetOption = () => {
       const { fieldId, matcher, value } = filter.filter;
@@ -39,13 +39,15 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
         console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
         return;
       }
-      answersAction.setFacetOption(fieldId, { matcher, value }, false);
-      answersAction.executeVerticalQuery();
+      answersActions.setOffset(0);
+      answersActions.setFacetOption(fieldId, { matcher, value }, false);
+      answersActions.executeVerticalQuery();
     };
 
     const onRemoveStaticFilterOption = () => {
-      answersAction.setFilterOption({ ...filter.filter, selected: false });
-      answersAction.executeVerticalQuery();
+      answersActions.setOffset(0);
+      answersActions.setFilterOption({ ...filter.filter, selected: false });
+      answersActions.executeVerticalQuery();
     };
 
     const onRemoveFilter = filter.filterType === 'FACET' ? onRemoveFacetOption : onRemoveStaticFilterOption;
