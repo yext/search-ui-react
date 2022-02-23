@@ -373,9 +373,9 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: FilterSearchCssClasses;
-    label: string;
+    label?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
-    sectioned: boolean;
+    sectioned?: boolean;
 }
 
 // @public

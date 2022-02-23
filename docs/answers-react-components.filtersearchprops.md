@@ -18,7 +18,7 @@ export interface FilterSearchProps
 |  --- | --- | --- |
 |  [cssCompositionMethod?](./answers-react-components.filtersearchprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.filtersearchprops.customcssclasses.md) | [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [label](./answers-react-components.filtersearchprops.label.md) | string | The display label for the component. |
+|  [label?](./answers-react-components.filtersearchprops.label.md) | string | <i>(Optional)</i> The display label for the component. Defaults to "Filter". |
 |  [searchFields](./answers-react-components.filtersearchprops.searchfields.md) | Omit&lt;SearchParameterField, 'fetchEntities'&gt;\[\] | An array of fieldApiName and entityType which indicates what to perform the filter search against. |
-|  [sectioned](./answers-react-components.filtersearchprops.sectioned.md) | boolean | Determines whether or not the results of the filter search are separated by field. |
+|  [sectioned?](./answers-react-components.filtersearchprops.sectioned.md) | boolean | <i>(Optional)</i> Determines whether or not the results of the filter search are separated by field. Defaults to false. |
 
