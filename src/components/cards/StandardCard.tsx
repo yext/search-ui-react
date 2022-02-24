@@ -75,11 +75,11 @@ const builtInCssClasses: StandardCardCssClasses = {
   body: 'flex justify-end pt-2.5 text-base',
   descriptionContainer: 'w-full',
   ctaContainer: 'flex flex-col justify-end ml-4',
-  cta1: 'min-w-max bg-blue-600 text-white font-medium rounded-lg py-2 px-5 shadow',
-  cta2: 'min-w-max bg-white text-blue-600 font-medium rounded-lg py-2 px-5 mt-2 shadow',
+  cta1: 'min-w-max bg-primary-600 text-white font-medium rounded-lg py-2 px-5 shadow',
+  cta2: 'min-w-max bg-white text-primary-600 font-medium rounded-lg py-2 px-5 mt-2 shadow',
   ordinal: 'mr-1.5 text-lg font-medium',
   title: 'text-lg font-medium',
-  titleLink: 'text-lg font-medium text-blue-600 cursor-pointer hover:underline focus:underline',
+  titleLink: 'text-lg font-medium text-primary-600 cursor-pointer hover:underline focus:underline',
   feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium'
 };
 

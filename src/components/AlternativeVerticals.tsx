@@ -31,13 +31,13 @@ const builtInCssClasses: AlternativeVerticalsCssClasses = {
   alternativeVerticals___loading: 'opacity-50',
   noResultsText: 'text-lg text-gray-900 pb-2',
   categoriesText: 'text-gray-500',
-  suggestions: 'pt-4 text-blue-600',
+  suggestions: 'pt-4 text-primary-600',
   suggestionList: 'pt-4',
   suggestion: 'pb-4',
   suggestionButton: 'inline-flex items-center cursor-pointer hover:underline focus:underline',
   verticalIcon: 'w-4 mr-2',
   verticalLink: 'font-bold',
-  allCategoriesLink: 'text-blue-600 cursor-pointer hover:underline focus:underline'
+  allCategoriesLink: 'text-primary-600 cursor-pointer hover:underline focus:underline'
 };
 
 interface VerticalSuggestion {

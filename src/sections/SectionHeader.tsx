@@ -25,7 +25,7 @@ const builtInCssClasses: SectionHeaderCssClasses = {
   sectionHeaderIconContainer: 'w-5 h-5',
   sectionHeaderLabel: 'font-bold text-gray-800 text-base pl-3',
   viewMoreContainer: 'flex justify-end flex-grow ml-auto font-medium text-gray-800',
-  viewMoreLink: 'text-blue-600 pr-1 pl-3',
+  viewMoreLink: 'text-primary-600 pr-1 pl-3',
   appliedFiltersContainer: 'ml-3 flex flex-wrap',
   nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-800 mr-2',
   removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-900 mr-2',
