@@ -14,7 +14,6 @@ import { ComponentPropsWithRef } from 'react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
 import { DisplayableFilter } from '@yext/answers-headless-react';
-import { Filter } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
@@ -340,7 +339,7 @@ const FiltersContext: Context<FiltersContextType | null>;
 // @public
 interface FiltersContextType {
     filters: DisplayableFilter[];
-    handleFilterSelect: (filter: Filter, checked: boolean) => void;
+    handleFilterSelect: (filter: DisplayableFilter, checked: boolean) => void;
 }
 
 // @public

@@ -73,6 +73,11 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     return null;
   }
 
+  if (typeof label !== 'string') {
+    console.error('A string label is needed for filter with value', value);
+    return null;
+  }
+
   if (!answersUtilities.isCloseMatch(label.toString(), searchValue)) {
     return null;
   }
@@ -94,7 +99,9 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     fieldId && handleFilterSelect({
       matcher: Matcher.Equals,
       fieldId,
-      value
+      value,
+      displayName: label as string,
+      selected: isSelected
     }, checked);
   }
 

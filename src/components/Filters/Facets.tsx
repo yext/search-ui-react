@@ -47,6 +47,7 @@ export function Facets(props: FacetsProps): JSX.Element {
       value: o.value,
       matcher: o.matcher,
       selected: o.selected,
+      displayName: o.displayName
     };
   }));
 

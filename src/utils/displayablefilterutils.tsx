@@ -27,7 +27,8 @@ export function getDisplayableNlpFilters(filters: AppliedQueryFilter[]): Display
   filters?.forEach(filter => {
     appliedNlpFilters.push({
       ...filter.filter,
-      displayName: filter.displayValue
+      displayName: filter.displayValue,
+      selected: true
     });
   });
   return appliedNlpFilters;

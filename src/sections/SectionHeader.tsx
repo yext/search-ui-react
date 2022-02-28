@@ -74,7 +74,8 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
   const nlpFilters = appliedQueryFilters?.map(
     (appliedQueryFilter): DisplayableFilter => ({
       ...appliedQueryFilter.filter,
-      displayName: appliedQueryFilter.displayValue
+      displayName: appliedQueryFilter.displayValue,
+      selected: true
     })
   ) ?? [];
   const displayableFilters = { nlpFilters };
