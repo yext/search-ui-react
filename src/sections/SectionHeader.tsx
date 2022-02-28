@@ -78,7 +78,6 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
       selected: true
     })
   ) ?? [];
-  const displayableFilters = { nlpFilters };
 
   const analytics = useAnalytics();
   const queryId = useAnswersState(state => state.query.queryId);
@@ -115,7 +114,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
         resultsCount={resultsCountConfig.resultsCount}
       />} */}
       {appliedQueryFilters &&
-        <AppliedFiltersDisplay displayableFilters={displayableFilters} cssClasses={cssClasses} />
+        <AppliedFiltersDisplay displayableFilters={{ nlpFilters }} cssClasses={cssClasses} />
       }
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>

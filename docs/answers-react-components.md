@@ -44,7 +44,6 @@
 |  [EntityPreviewsProps](./answers-react-components.entitypreviewsprops.md) | The props for the [EntityPreviews()](./answers-react-components.entitypreviews.md) component. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |
-|  [GroupedFilters](./answers-react-components.groupedfilters.md) | Types of filters (static, facet, and nlp) displayable by AppliedFilters. |
 |  [LocationBiasCssClasses](./answers-react-components.locationbiascssclasses.md) | The CSS class interface for the [LocationBias()](./answers-react-components.locationbias.md) component. |
 |  [LocationBiasProps](./answers-react-components.locationbiasprops.md) | The props for the [LocationBias()](./answers-react-components.locationbias.md) component. |
 |  [PaginationCssClasses](./answers-react-components.paginationcssclasses.md) | The CSS classes used for pagination. |

@@ -8,14 +8,14 @@ import { GroupedFilters } from '../models/groupedFilters';
  * Properties for {@link AppliedFilters}.
  */
 export interface AppliedFiltersDisplayProps {
-  /** {@link GroupedFilters} to construct the applied filter tags from. */
+  /** Sets of categorized filters to construct the applied filter tags from. */
   displayableFilters: GroupedFilters,
   /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses
 }
 
 /**
- * A component that renders applied filters based on provided {@link GroupedFilters}.
+ * A component that renders applied filters based on the provided GroupedFilters.
  *
  * @param props - {@link AppliedFiltersDisplayProps}
  * @returns A React element for the applied filters

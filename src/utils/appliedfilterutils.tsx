@@ -1,6 +1,6 @@
 import { AppliedQueryFilter, FiltersState, DisplayableFilter } from '@yext/answers-headless-react';
 import { GroupedFilters } from '../models/groupedFilters';
-import { getDisplayableAppliedFacets, getDisplayableNlpFilters } from './displayablefilterutils';
+import { getDisplayableFacets, getDisplayableNlpFilters } from './displayablefilterutils';
 import { isDuplicateFilter } from './filterutils';
 
 /**
@@ -42,8 +42,7 @@ export function pruneAppliedFilters(
   hiddenFields: string[]
 ): GroupedFilters {
   const displayableStaticFilters = appliedFiltersState?.static?.filter(filter => filter.selected) || [];
-  const displayableFacets = getDisplayableAppliedFacets(appliedFiltersState?.facets)
-    .filter(facet => facet.selected);
+  const displayableFacets = getDisplayableFacets(appliedFiltersState?.facets).filter(facet => facet.selected);
   const displayableNlpFilters = getDisplayableNlpFilters(nlpFilters);
 
   const prunedStaticFilters = pruneFilters(displayableStaticFilters, hiddenFields);

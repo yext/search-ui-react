@@ -386,13 +386,6 @@ export function getSearchIntents(answersActions: AnswersActions, isVertical: boo
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
 
 // @public
-export interface GroupedFilters {
-    facets?: DisplayableFilter[];
-    nlpFilters?: DisplayableFilter[];
-    staticFilters?: DisplayableFilter[];
-}
-
-// @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
 
 // @public
