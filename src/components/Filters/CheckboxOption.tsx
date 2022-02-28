@@ -77,8 +77,8 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     return null;
   }
 
-  const isSelected = !!filters?.find(storedSelectableFilter => {
-    const { selected, ...storedFilter } = storedSelectableFilter;
+  const isSelected = !!filters?.find(storedDisplayableFilter => {
+    const { selected, displayName:_, ...storedFilter } = storedDisplayableFilter;
     if (!selected) {
       return false;
     }

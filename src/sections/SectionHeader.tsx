@@ -3,8 +3,7 @@ import { AppliedFiltersDisplay } from '../components/AppliedFiltersDisplay';
 // import { ResultsCountConfig } from '../components/ResultsCount';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
 import { CollectionIcon } from '../icons/CollectionIcon';
-import { AppliedQueryFilter, useAnswersState } from '@yext/answers-headless-react';
-import { DisplayableFilter } from '../models/displayableFilter';
+import { AppliedQueryFilter, DisplayableFilter, useAnswersState } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { VerticalLink } from '../models/verticalLink';
@@ -72,16 +71,13 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const latestQuery = useAnswersState(state => state.query.mostRecentSearch);
-  const displayableFilters = appliedQueryFilters?.map(
-    (appliedQueryFilter): DisplayableFilter => {
-      return {
-        filterType: 'NLP_FILTER',
-        filter: appliedQueryFilter.filter,
-        groupLabel: appliedQueryFilter.displayKey,
-        label: appliedQueryFilter.displayValue
-      };
-    }
+  const nlpFilters = appliedQueryFilters?.map(
+    (appliedQueryFilter): DisplayableFilter => ({
+      ...appliedQueryFilter.filter,
+      displayName: appliedQueryFilter.displayValue
+    })
   ) ?? [];
+  const displayableFilters = { nlpFilters };
 
   const analytics = useAnalytics();
   const queryId = useAnswersState(state => state.query.queryId);

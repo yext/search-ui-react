@@ -1,13 +1,7 @@
-import { AppliedQueryFilter, FiltersState } from '@yext/answers-headless-react';
-import { DisplayableFilter } from '../models/displayableFilter';
-import { GroupedFilters } from '../models/groupedFilters';
-import { mapArrayToObject } from './arrayutils';
+import { AppliedQueryFilter, FiltersState, DisplayableFilter } from '@yext/answers-headless-react';
+import { GroupedFilters } from '../models/groupedfilters';
+import { getDisplayableAppliedFacets, getDisplayableNlpFilters } from './displayablefilterutils';
 import { isDuplicateFilter } from './filterutils';
-import {
-  getDisplayableStaticFilters,
-  getDisplayableAppliedFacets,
-  getDisplayableNlpFilters
-} from './displayablefilterutils';
 
 /**
  * Returns a new list of nlp filters with duplicates of other filters and
@@ -18,61 +12,53 @@ function pruneNlpFilters(
   appliedFilters: DisplayableFilter[],
   hiddenFields: string[]
 ): DisplayableFilter[] {
-  const duplicatesRemoved = nlpFilters.filter(nlpFilter => {
-    const isDuplicate = appliedFilters.find(appliedFilter =>
-      isDuplicateFilter(nlpFilter.filter, appliedFilter.filter)
-    );
+  const duplicatesRemoved = nlpFilters.filter(nlpDisplayableFilter => {
+    const isDuplicate = appliedFilters.find(appliedDisplayableFilter => {
+      const { selected:_s1, displayName:_d1, ...nlpFilter } = nlpDisplayableFilter;
+      const { selected:_s2, displayName:_d2, ...appliedFilter } = appliedDisplayableFilter;
+      return isDuplicateFilter(nlpFilter, appliedFilter);
+    });
     return !isDuplicate;
   });
-  return pruneAppliedFilters(duplicatesRemoved, hiddenFields);
+  return pruneFilters(duplicatesRemoved, hiddenFields);
 }
 
 /**
  * Returns a new list of applied filters with filter on hiddenFields removed
  * from the given applied filter list.
  */
-function pruneAppliedFilters(
+function pruneFilters(
   appliedFilters: DisplayableFilter[], hiddenFields: string[]): DisplayableFilter[] {
   return appliedFilters.filter(appliedFilter => {
-    return !hiddenFields.includes(appliedFilter.filter.fieldId);
+    return !hiddenFields.includes(appliedFilter.fieldId);
   });
 }
 
 /**
- * Combine all of the applied filters into a list of GroupedFilters where each contains a label and
- * list of filters under that same label or category.
- */
-function createGroupedFilters(
-  appliedFilters: DisplayableFilter[],
-  nlpFilters: DisplayableFilter[]
-): Array<GroupedFilters> {
-  const getGroupLabel = (filter: DisplayableFilter) => filter.groupLabel;
-  const allFilters = [...appliedFilters, ...nlpFilters];
-  const groupedFilters: Record<string, DisplayableFilter[]> = mapArrayToObject(allFilters, getGroupLabel);
-  return Object.keys(groupedFilters).map(label => ({
-    label: label,
-    filters: groupedFilters[label]
-  }));
-}
-
-/**
  * Process all applied filter types (facets, static filters, and nlp filters) by removing
- * duplicates and specified hidden fields, and grouped the applied filters into categories.
+ * duplicates and specified hidden fields.
  */
-export function getGroupedAppliedFilters(
+export function pruneAppliedFilters(
   appliedFiltersState: FiltersState,
   nlpFilters: AppliedQueryFilter[],
-  hiddenFields: string[],
-  staticFiltersGroupLabels: Record<string, string>
-): Array<GroupedFilters> {
-  const displayableStaticFilters = getDisplayableStaticFilters(
-    appliedFiltersState?.static, staticFiltersGroupLabels);
-  const displayableFacets = getDisplayableAppliedFacets(appliedFiltersState?.facets);
+  hiddenFields: string[]
+): GroupedFilters {
+  const displayableStaticFilters = appliedFiltersState?.static?.filter(filter => filter.selected) || [];
+  const displayableFacets = getDisplayableAppliedFacets(appliedFiltersState?.facets)
+    .filter(facet => facet.selected);
   const displayableNlpFilters = getDisplayableNlpFilters(nlpFilters);
 
-  const appliedFilters = [...displayableStaticFilters, ...displayableFacets];
-  const prunedAppliedFilters = pruneAppliedFilters(appliedFilters, hiddenFields);
-  const prunedNlpFilters = pruneNlpFilters (displayableNlpFilters, prunedAppliedFilters, hiddenFields);
+  const prunedStaticFilters = pruneFilters(displayableStaticFilters, hiddenFields);
+  const prunedFacets = pruneFilters(displayableFacets, hiddenFields);
+  const prunedNlpFilters = pruneNlpFilters(
+    displayableNlpFilters,
+    [...prunedStaticFilters, ...prunedFacets],
+    hiddenFields
+  );
 
-  return createGroupedFilters(appliedFilters, prunedNlpFilters);
+  return {
+    staticFilters: prunedStaticFilters,
+    facets: prunedFacets,
+    nlpFilters: prunedNlpFilters
+  };
 }

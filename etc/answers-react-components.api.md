@@ -13,6 +13,7 @@ import { AnswersHeadless } from '@yext/answers-headless-react';
 import { ComponentPropsWithRef } from 'react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
+import { DisplayableFilter } from '@yext/answers-headless-react';
 import { Filter } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
@@ -20,7 +21,6 @@ import { ReactNode } from 'react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
-import { SelectableFilter } from '@yext/answers-headless-react';
 import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
@@ -90,7 +90,6 @@ export interface AppliedFiltersProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: AppliedFiltersCssClasses;
     hiddenFields?: Array<string>;
-    staticFiltersGroupLabels?: Record<string, string>;
 }
 
 // @public
@@ -340,7 +339,7 @@ const FiltersContext: Context<FiltersContextType | null>;
 
 // @public
 interface FiltersContextType {
-    filters: SelectableFilter[];
+    filters: DisplayableFilter[];
     handleFilterSelect: (filter: Filter, checked: boolean) => void;
 }
 

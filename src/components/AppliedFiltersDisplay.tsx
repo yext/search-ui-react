@@ -1,78 +1,82 @@
-import { DisplayableFilter } from '../models/displayableFilter';
 import { CloseIcon } from '../icons/CloseIcon';
-import { useAnswersActions } from '@yext/answers-headless-react';
+import { useAnswersActions, DisplayableFilter } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
+import { GroupedFilters } from '../models/groupedfilters';
 
 /**
  * Properties for {@link AppliedFilters}.
  */
 export interface AppliedFiltersDisplayProps {
-  /** List of {@link DisplayableFilter} to construct the applied filter tags from. */
-  displayableFilters: DisplayableFilter[],
+  /** {@link GroupedFilters} to construct the applied filter tags from. */
+  displayableFilters: GroupedFilters,
   /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses
 }
 
 /**
- * A component that renders applied filters based on a given list of {@link DisplayableFilter}.
+ * A component that renders applied filters based on provided {@link GroupedFilters}.
  *
  * @param props - {@link AppliedFiltersDisplayProps}
  * @returns A React element for the applied filters
  */
 export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element {
   const { displayableFilters, cssClasses = {} } = props;
+  const answersActions = useAnswersActions();
   function NlpFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
     return (
       <div className={cssClasses.nlpFilter}>
-        <span className={cssClasses.filterLabel}>{filter.label}</span>
+        <span className={cssClasses.filterLabel}>{filter.displayName}</span>
       </div>
     );
   }
 
-  function RemovableFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
-    const answersActions = useAnswersActions();
+  const onRemoveFacetOption = (filter: DisplayableFilter) => {
+    const { fieldId, matcher, value } = filter;
+    if (isNearFilterValue(value)) {
+      console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
+      return;
+    }
+    answersActions.setOffset(0);
+    answersActions.setFacetOption(fieldId, { matcher, value }, false);
+    answersActions.executeVerticalQuery();
+  };
 
-    const onRemoveFacetOption = () => {
-      const { fieldId, matcher, value } = filter.filter;
-      if (isNearFilterValue(value)) {
-        console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
-        return;
-      }
-      answersActions.setOffset(0);
-      answersActions.setFacetOption(fieldId, { matcher, value }, false);
-      answersActions.executeVerticalQuery();
-    };
+  const onRemoveStaticFilterOption = (filter: DisplayableFilter) => {
+    answersActions.setOffset(0);
+    answersActions.setFilterOption({ ...filter, selected: false });
+    answersActions.executeVerticalQuery();
+  };
 
-    const onRemoveStaticFilterOption = () => {
-      answersActions.setOffset(0);
-      answersActions.setFilterOption({ ...filter.filter, selected: false });
-      answersActions.executeVerticalQuery();
-    };
-
-    const onRemoveFilter = filter.filterType === 'FACET' ? onRemoveFacetOption : onRemoveStaticFilterOption;
-
+  function RemovableFilter({ filter, onRemoveFilter }: {
+    filter: DisplayableFilter,
+    onRemoveFilter: (filter: DisplayableFilter) => void
+  }): JSX.Element {
     return (
       <div className={cssClasses.removableFilter}>
-        <div className={cssClasses.filterLabel}>{filter.label}</div>
-        <button className={cssClasses.removeFilterButton} onClick={onRemoveFilter}><CloseIcon/></button>
+        <div className={cssClasses.filterLabel}>{filter.displayName}</div>
+        <button className={cssClasses.removeFilterButton} onClick={() => onRemoveFilter(filter)}>
+          <CloseIcon/>
+        </button>
       </div>
     );
   }
 
   return (
-    <>
-      { displayableFilters.length > 0 &&
-        <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
-          {displayableFilters.map((filter: DisplayableFilter) => {
-            const key = `${filter.filterType}-${filter.label}`;
-            if (filter.filterType === 'NLP_FILTER') {
-              return <NlpFilter filter={filter} key={key}/>;
-            }
-            return <RemovableFilter filter={filter} key={key}/>;
-          })}
-        </div>
-      }
-    </>
+    <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
+      {displayableFilters.nlpFilters?.map(filter =>
+        <NlpFilter filter={filter} key={filter.displayName}/>
+      )}
+      {displayableFilters.facets?.map(filter =>
+        <RemovableFilter filter={filter} onRemoveFilter={onRemoveFacetOption} key={filter.displayName}/>
+      )}
+      {displayableFilters.staticFilters?.map(filter =>
+        <RemovableFilter
+          filter={filter}
+          onRemoveFilter={onRemoveStaticFilterOption}
+          key={filter.displayName}
+        />
+      )}
+    </div>
   );
 }

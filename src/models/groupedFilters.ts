@@ -1,6 +1,7 @@
-import { DisplayableFilter } from './displayableFilter';
+import { DisplayableFilter } from "@yext/answers-headless-react";
 
 export interface GroupedFilters {
-  label: string,
-  filters: Array<DisplayableFilter>
+  staticFilters?: DisplayableFilter[],
+  facets?: DisplayableFilter[],
+  nlpFilters?: DisplayableFilter[]
 }
