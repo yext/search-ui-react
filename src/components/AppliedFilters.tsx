@@ -4,7 +4,7 @@ import { pruneAppliedFilters } from '../utils/appliedfilterutils';
 import { useRef } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
-import { GroupedFilters } from '../models/groupedfilters';
+import { GroupedFilters } from '../models/groupedFilters';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.

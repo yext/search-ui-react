@@ -2,7 +2,7 @@ import { CloseIcon } from '../icons/CloseIcon';
 import { useAnswersActions, DisplayableFilter } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
-import { GroupedFilters } from '../models/groupedfilters';
+import { GroupedFilters } from '../models/groupedFilters';
 
 /**
  * Properties for {@link AppliedFilters}.

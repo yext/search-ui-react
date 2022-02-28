@@ -1,5 +1,5 @@
 import { AppliedQueryFilter, FiltersState, DisplayableFilter } from '@yext/answers-headless-react';
-import { GroupedFilters } from '../models/groupedfilters';
+import { GroupedFilters } from '../models/groupedFilters';
 import { getDisplayableAppliedFacets, getDisplayableNlpFilters } from './displayablefilterutils';
 import { isDuplicateFilter } from './filterutils';
 
