@@ -29,7 +29,9 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "babel-jest": "^27.0.6",
+    "enzyme": "^3.11.0",
     "eslint": "^7.30.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-react-hooks": "^4.3.0",
@@ -61,6 +63,12 @@
       "<rootDir>/tests/setup/setup-env.ts"
     ],
     "testEnvironment": "jsdom",
+    "testMatch": [
+      "<rootDir>/tests/**/*.tsx"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/tests/setup/*"
+    ],
     "globals": {
       "ts-jest": {
         "tsconfig": "tsconfig.json"
