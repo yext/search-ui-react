@@ -387,10 +387,8 @@ export function getUserLocation(geolocationOptions?: PositionOptions): Promise<G
 
 // @public
 export interface GroupedFilters {
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     facets?: DisplayableFilter[];
     nlpFilters?: DisplayableFilter[];
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     staticFilters?: DisplayableFilter[];
 }
 

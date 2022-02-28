@@ -7,11 +7,11 @@ import { DisplayableFilter } from '@yext/answers-headless-react';
  */
 export interface GroupedFilters {
   /**
-   * Filters that applied to the search results from {@link Filters.StaticFilters} and {@link FilterSearch}.
+   * Filters that is applied to the search results from static filters and filter search.
    */
   staticFilters?: DisplayableFilter[],
   /**
-   * Filters that applied to the search results from {@link Filters.Facets}.
+   * Filters that is applied to the search results from facets.
    */
   facets?: DisplayableFilter[],
   /**

@@ -4,7 +4,7 @@
 
 ## GroupedFilters.facets property
 
-Filters that applied to the search results from [Filters.Facets()](./answers-react-components.filters.facets.md)<!-- -->.
+Filters that is applied to the search results from facets.
 
 <b>Signature:</b>
 

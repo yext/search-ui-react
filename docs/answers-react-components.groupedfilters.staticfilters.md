@@ -4,7 +4,7 @@
 
 ## GroupedFilters.staticFilters property
 
-Filters that applied to the search results from [Filters.StaticFilters()](./answers-react-components.filters.staticfilters.md) and [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->.
+Filters that is applied to the search results from static filters and filter search.
 
 <b>Signature:</b>
 

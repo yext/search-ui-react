@@ -16,7 +16,7 @@ export interface GroupedFilters
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [facets?](./answers-react-components.groupedfilters.facets.md) | DisplayableFilter\[\] | <i>(Optional)</i> Filters that applied to the search results from [Filters.Facets()](./answers-react-components.filters.facets.md)<!-- -->. |
+|  [facets?](./answers-react-components.groupedfilters.facets.md) | DisplayableFilter\[\] | <i>(Optional)</i> Filters that is applied to the search results from facets. |
 |  [nlpFilters?](./answers-react-components.groupedfilters.nlpfilters.md) | DisplayableFilter\[\] | <i>(Optional)</i> Filters that is applied to the search results from backend. |
-|  [staticFilters?](./answers-react-components.groupedfilters.staticfilters.md) | DisplayableFilter\[\] | <i>(Optional)</i> Filters that applied to the search results from [Filters.StaticFilters()](./answers-react-components.filters.staticfilters.md) and [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
+|  [staticFilters?](./answers-react-components.groupedfilters.staticfilters.md) | DisplayableFilter\[\] | <i>(Optional)</i> Filters that is applied to the search results from static filters and filter search. |
 
