@@ -95,15 +95,15 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     return isDuplicateFilter(storedFilter, targetFilter);
   });
 
-  function onClick(checked: boolean) {
+  const onClick = (checked: boolean) => {
     fieldId && handleFilterSelect({
       matcher: Matcher.Equals,
       fieldId,
       value,
-      displayName: label as string,
+      displayName: label,
       selected: isSelected
     }, checked);
-  }
+  };
 
   return (
     <div className={cssClasses.container}>
