@@ -12,10 +12,8 @@ function pruneNlpFilters(
   appliedFilters: DisplayableFilter[],
   hiddenFields: string[]
 ): DisplayableFilter[] {
-  const duplicatesRemoved = nlpFilters.filter(nlpDisplayableFilter => {
-    const isDuplicate = appliedFilters.find(appliedDisplayableFilter => {
-      const { selected:_s1, displayName:_d1, ...nlpFilter } = nlpDisplayableFilter;
-      const { selected:_s2, displayName:_d2, ...appliedFilter } = appliedDisplayableFilter;
+  const duplicatesRemoved = nlpFilters.filter(nlpFilter => {
+    const isDuplicate = appliedFilters.find(appliedFilter => {
       return isDuplicateFilter(nlpFilter, appliedFilter);
     });
     return !isDuplicate;

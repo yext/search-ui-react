@@ -74,7 +74,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   }
 
   if (typeof label !== 'string') {
-    console.error('A string label is needed for filter with value', value);
+    console.error('A label is needed for filter with value', value);
     return null;
   }
 
