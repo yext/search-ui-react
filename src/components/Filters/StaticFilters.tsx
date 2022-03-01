@@ -1,4 +1,4 @@
-import { useAnswersActions, useAnswersState, DisplayableFilter } from '@yext/answers-headless-react';
+import { useAnswersActions, useAnswersState, DisplayableFilter, SelectableFilter } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { FiltersContext } from './FiltersContext';
 
@@ -30,9 +30,14 @@ export function StaticFilters(props: StaticFiltersProps): JSX.Element {
   } = props;
   const answersActions = useAnswersActions();
   const filters = useAnswersState(state => state.filters.static) || [];
+  const displayableFilters: DisplayableFilter[] = filters
+    .map((filter: SelectableFilter | DisplayableFilter) => 'displayName' in filter
+      ? filter
+      : { ...filter, displayName: '' }
+    );
 
   const filtersContextInstance = {
-    filters,
+    filters: displayableFilters,
     handleFilterSelect: (filter: DisplayableFilter, selected: boolean) => {
       answersActions.setOffset(0);
       answersActions.resetFacets();

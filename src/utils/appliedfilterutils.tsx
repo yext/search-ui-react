@@ -1,4 +1,4 @@
-import { AppliedQueryFilter, FiltersState, DisplayableFilter } from '@yext/answers-headless-react';
+import { AppliedQueryFilter, FiltersState, DisplayableFilter, SelectableFilter } from '@yext/answers-headless-react';
 import { GroupedFilters } from '../models/groupedFilters';
 import { getDisplayableFacets, getDisplayableNlpFilters } from './displayablefilterutils';
 import { isDuplicateFilter } from './filterutils';
@@ -18,14 +18,14 @@ function pruneNlpFilters(
     });
     return !isDuplicate;
   });
-  return pruneFilters(duplicatesRemoved, hiddenFields);
+  return filterHiddenFields(duplicatesRemoved, hiddenFields);
 }
 
 /**
  * Returns a new list of applied filters with filter on hiddenFields removed
  * from the given applied filter list.
  */
-function pruneFilters(
+function filterHiddenFields(
   appliedFilters: DisplayableFilter[], hiddenFields: string[]): DisplayableFilter[] {
   return appliedFilters.filter(appliedFilter => {
     return !hiddenFields.includes(appliedFilter.fieldId);
@@ -41,12 +41,17 @@ export function pruneAppliedFilters(
   nlpFilters: AppliedQueryFilter[],
   hiddenFields: string[]
 ): GroupedFilters {
-  const displayableStaticFilters = appliedFiltersState?.static?.filter(filter => filter.selected) || [];
+  const staticFilters = appliedFiltersState?.static?.filter(filter => filter.selected) || [];
+  const displayableStaticFilters: DisplayableFilter[] = staticFilters
+    .map((filter: SelectableFilter | DisplayableFilter) => 'displayName' in filter
+      ? filter
+      : { ...filter, displayName: filter.value.toString() }
+    );
   const displayableFacets = getDisplayableFacets(appliedFiltersState?.facets).filter(facet => facet.selected);
   const displayableNlpFilters = getDisplayableNlpFilters(nlpFilters);
 
-  const prunedStaticFilters = pruneFilters(displayableStaticFilters, hiddenFields);
-  const prunedFacets = pruneFilters(displayableFacets, hiddenFields);
+  const prunedStaticFilters = filterHiddenFields(displayableStaticFilters, hiddenFields);
+  const prunedFacets = filterHiddenFields(displayableFacets, hiddenFields);
   const prunedNlpFilters = pruneNlpFilters(
     displayableNlpFilters,
     [...prunedStaticFilters, ...prunedFacets],

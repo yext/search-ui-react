@@ -61,22 +61,25 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
       </div>
     );
   }
-
-  return (
-    <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
-      {displayableFilters.nlpFilters?.map(filter =>
-        <NlpFilter filter={filter} key={filter.displayName}/>
-      )}
-      {displayableFilters.facets?.map(filter =>
-        <RemovableFilter filter={filter} onRemoveFilter={onRemoveFacetOption} key={filter.displayName}/>
-      )}
-      {displayableFilters.staticFilters?.map(filter =>
-        <RemovableFilter
-          filter={filter}
-          onRemoveFilter={onRemoveStaticFilterOption}
-          key={filter.displayName}
-        />
-      )}
-    </div>
-  );
+  const hasAppliedFilters = Object.values(displayableFilters)
+    .some((filters: DisplayableFilter[] | undefined) => filters && filters.length > 0);
+  return (<>
+    {hasAppliedFilters &&
+      <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
+        {displayableFilters.nlpFilters?.map(filter =>
+          <NlpFilter filter={filter} key={filter.displayName}/>
+        )}
+        {displayableFilters.facets?.map(filter =>
+          <RemovableFilter filter={filter} onRemoveFilter={onRemoveFacetOption} key={filter.displayName}/>
+        )}
+        {displayableFilters.staticFilters?.map(filter =>
+          <RemovableFilter
+            filter={filter}
+            onRemoveFilter={onRemoveStaticFilterOption}
+            key={filter.displayName}
+          />
+        )}
+      </div>
+    }
+  </>);
 }
