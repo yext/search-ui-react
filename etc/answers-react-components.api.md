@@ -330,7 +330,10 @@ declare namespace Filters {
         SearchInput,
         SearchInputProps,
         StaticFilters,
-        StaticFiltersProps
+        StaticFiltersProps,
+        HierarchicalFacet,
+        HierarchicalFacetProps,
+        HierarchicalFacetCssClasses
     }
 }
 export { Filters }
@@ -386,6 +389,28 @@ export function getSearchIntents(answersActions: AnswersActions, isVertical: boo
 
 // @public
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
+
+// @public
+function HierarchicalFacet({ facet, divider, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetProps): JSX.Element;
+
+// Warning: (ae-forgotten-export) The symbol "builtInCssClasses" needs to be exported by the entry point index.d.ts
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+type HierarchicalFacetCssClasses = typeof builtInCssClasses;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface HierarchicalFacetProps {
+    cssCompositionMethod?: CompositionMethod;
+    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+    customCssClasses?: HierarchicalFacetCssClasses;
+    divider?: string;
+    // (undocumented)
+    facet: DisplayableFacet;
+    showMoreLimit?: number;
+}
 
 // @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
