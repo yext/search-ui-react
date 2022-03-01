@@ -23,7 +23,7 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.14.5",
     "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
+    "@testing-library/react": "^12.1.3",
     "@types/jest": "^26.0.24",
     "@types/react": "^17.0.38",
     "@types/uuid": "^8.3.4",
@@ -61,6 +61,12 @@
       "<rootDir>/tests/setup/setup-env.ts"
     ],
     "testEnvironment": "jsdom",
+    "testMatch": [
+      "<rootDir>/tests/**/*.tsx"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/tests/setup/*"
+    ],
     "globals": {
       "ts-jest": {
         "tsconfig": "tsconfig.json"
