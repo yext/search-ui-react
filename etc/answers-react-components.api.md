@@ -393,11 +393,25 @@ export function getUserLocation(geolocationOptions?: PositionOptions): Promise<G
 // @public
 function HierarchicalFacet({ facet, divider, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetProps): JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "builtInCssClasses" needs to be exported by the entry point index.d.ts
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-type HierarchicalFacetCssClasses = typeof builtInCssClasses;
+interface HierarchicalFacetCssClasses {
+    // (undocumented)
+    allCategoriesOptionActive?: string;
+    // (undocumented)
+    allCategoriesOptionInactive?: string;
+    // (undocumented)
+    availableOption?: string;
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    currentCategory?: string;
+    // (undocumented)
+    parentCategory?: string;
+    // (undocumented)
+    showMoreButton?: string;
+}
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //

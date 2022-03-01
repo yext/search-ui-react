@@ -30,6 +30,7 @@
 |  [FacetsProps](./answers-react-components.filters.facetsprops.md) | Props for [Filters.Facets()](./answers-react-components.filters.facets.md) |
 |  [FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md) | FilterGroupContext is responsible for searchable filters and collapsible filter groups. |
 |  [FiltersContextType](./answers-react-components.filters.filterscontexttype.md) | FiltersContext is responsible for handling filter selection. |
+|  [HierarchicalFacetCssClasses](./answers-react-components.filters.hierarchicalfacetcssclasses.md) | The CSS class interface for [Filters.HierarchicalFacet()](./answers-react-components.filters.hierarchicalfacet.md)<!-- -->. |
 |  [HierarchicalFacetProps](./answers-react-components.filters.hierarchicalfacetprops.md) | Props for [Filters.HierarchicalFacet()](./answers-react-components.filters.hierarchicalfacet.md) |
 |  [SearchInputProps](./answers-react-components.filters.searchinputprops.md) | Props for the [Filters.SearchInput()](./answers-react-components.filters.searchinput.md)<!-- -->. |
 
@@ -46,7 +47,6 @@
 |  --- | --- |
 |  [CollapsibleSectionProps](./answers-react-components.filters.collapsiblesectionprops.md) | Props for the [Filters.CollapsibleSection()](./answers-react-components.filters.collapsiblesection.md)<!-- -->. |
 |  [FilterGroupProps](./answers-react-components.filters.filtergroupprops.md) | Props for a [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
-|  [HierarchicalFacetCssClasses](./answers-react-components.filters.hierarchicalfacetcssclasses.md) | The CSS class interface for [Filters.HierarchicalFacet()](./answers-react-components.filters.hierarchicalfacet.md)<!-- -->. |
 |  [ResponsiveDividerProps](./answers-react-components.filters.responsivedividerprops.md) | Props for [Filters.ResponsiveDivider()](./answers-react-components.filters.responsivedivider.md)<!-- -->. |
 |  [StaticFiltersProps](./answers-react-components.filters.staticfiltersprops.md) | Props for the [Filters.StaticFilters()](./answers-react-components.filters.staticfilters.md)<!-- -->. |
 

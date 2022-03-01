@@ -26,8 +26,17 @@ export interface HierarchicalFacetProps {
  *
  * @public
  */
-export type HierarchicalFacetCssClasses = typeof builtInCssClasses;
-const builtInCssClasses = {
+export interface HierarchicalFacetCssClasses {
+  container?: string,
+  allCategoriesOptionActive?: string,
+  allCategoriesOptionInactive?: string,
+  availableOption?: string,
+  parentCategory?: string,
+  currentCategory?: string,
+  showMoreButton?: string
+}
+
+const builtInCssClasses: HierarchicalFacetCssClasses = {
   container: 'flex flex-col items-start',
   allCategoriesOptionActive: 'font-semibold mb-2 text-sm',
   allCategoriesOptionInactive: 'mb-2 text-sm',
