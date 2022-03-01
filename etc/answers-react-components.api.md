@@ -398,9 +398,9 @@ function HierarchicalFacet({ facet, divider, showMoreLimit, customCssClasses, cs
 // @public
 interface HierarchicalFacetCssClasses {
     // (undocumented)
-    allCategoriesOptionActive?: string;
+    allCategoriesOption___active?: string;
     // (undocumented)
-    allCategoriesOptionInactive?: string;
+    allCategoriesOption___inactive?: string;
     // (undocumented)
     availableOption?: string;
     // (undocumented)

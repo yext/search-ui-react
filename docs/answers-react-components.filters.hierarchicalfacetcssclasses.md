@@ -16,8 +16,8 @@ export interface HierarchicalFacetCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [allCategoriesOptionActive?](./answers-react-components.filters.hierarchicalfacetcssclasses.allcategoriesoptionactive.md) | string | <i>(Optional)</i> |
-|  [allCategoriesOptionInactive?](./answers-react-components.filters.hierarchicalfacetcssclasses.allcategoriesoptioninactive.md) | string | <i>(Optional)</i> |
+|  [allCategoriesOption\_\_\_active?](./answers-react-components.filters.hierarchicalfacetcssclasses.allcategoriesoption___active.md) | string | <i>(Optional)</i> |
+|  [allCategoriesOption\_\_\_inactive?](./answers-react-components.filters.hierarchicalfacetcssclasses.allcategoriesoption___inactive.md) | string | <i>(Optional)</i> |
 |  [availableOption?](./answers-react-components.filters.hierarchicalfacetcssclasses.availableoption.md) | string | <i>(Optional)</i> |
 |  [container?](./answers-react-components.filters.hierarchicalfacetcssclasses.container.md) | string | <i>(Optional)</i> |
 |  [currentCategory?](./answers-react-components.filters.hierarchicalfacetcssclasses.currentcategory.md) | string | <i>(Optional)</i> |

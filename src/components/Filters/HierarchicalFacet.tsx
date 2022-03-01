@@ -29,18 +29,18 @@ export interface HierarchicalFacetProps {
  */
 export interface HierarchicalFacetCssClasses {
   container?: string,
-  allCategoriesOptionActive?: string,
-  allCategoriesOptionInactive?: string,
+  allCategoriesOption___active?: string,
+  allCategoriesOption___inactive?: string,
   availableOption?: string,
   parentCategory?: string,
   currentCategory?: string,
   showMoreButton?: string
 }
 
-const builtInCssClasses: HierarchicalFacetCssClasses = {
+const builtInCssClasses: Required<HierarchicalFacetCssClasses> = {
   container: 'flex flex-col items-start',
-  allCategoriesOptionActive: 'font-semibold mb-2 text-sm',
-  allCategoriesOptionInactive: 'mb-2 text-sm',
+  allCategoriesOption___active: 'font-semibold mb-2 text-sm',
+  allCategoriesOption___inactive: 'mb-2 text-sm',
   availableOption: 'ml-4 mb-2 text-sm',
   parentCategory: 'mb-2 text-sm',
   currentCategory: 'font-semibold mb-2 text-sm',
@@ -96,8 +96,8 @@ export function HierarchicalFacet({
     return (
       <AllCategories
         key='_AllCategories'
-        activeClassName={cssClasses.allCategoriesOptionActive}
-        inactiveClassName={cssClasses.allCategoriesOptionInactive}
+        activeClassName={cssClasses.allCategoriesOption___active}
+        inactiveClassName={cssClasses.allCategoriesOption___inactive}
         facet={facet}
         resetShowMore={resetShowMore}
       />
