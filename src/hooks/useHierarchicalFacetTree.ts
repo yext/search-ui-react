@@ -71,7 +71,7 @@ function parseHierarchicalFacetTree(
     subtree[lastDisplayNameToken] = {
       selected: o.selected,
       displayNameTokens,
-      lastDisplayNameToken: displayNameTokens[displayNameTokens.length - 1],
+      lastDisplayNameToken,
       facetOption: {
         value: o.value,
         matcher: o.matcher

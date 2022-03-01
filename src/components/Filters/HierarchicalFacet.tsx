@@ -16,7 +16,7 @@ export interface HierarchicalFacetProps {
   divider?: string,
   /** The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4 */
   showMoreLimit?: number,
-  /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses} */
+  /** CSS classes for customizing the component styling of {@link Filters.HierarchicalFacetCssClasses} */
   customCssClasses?: HierarchicalFacetCssClasses,
   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
@@ -48,7 +48,7 @@ const builtInCssClasses: HierarchicalFacetCssClasses = {
 };
 
 /**
- * A HiearchicalFacet takes a `DisplayableFacet` and renders the facet in a way
+ * A HierarchicalFacet takes a `DisplayableFacet` and renders the facet in a way
  * to represent multiple levels of "hierarchies".
  *
  * The hierarchies are determined by the provided divider, which defaults to "\>".
