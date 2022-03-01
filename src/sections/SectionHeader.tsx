@@ -3,7 +3,7 @@ import { AppliedFiltersDisplay } from '../components/AppliedFiltersDisplay';
 // import { ResultsCountConfig } from '../components/ResultsCount';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
 import { CollectionIcon } from '../icons/CollectionIcon';
-import { AppliedQueryFilter, DisplayableFilter, useAnswersState } from '@yext/answers-headless-react';
+import { AppliedQueryFilter, SelectableFilter as DisplayableFilter, useAnswersState } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { VerticalLink } from '../models/verticalLink';

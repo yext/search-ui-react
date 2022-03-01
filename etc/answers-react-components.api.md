@@ -13,13 +13,13 @@ import { AnswersHeadless } from '@yext/answers-headless-react';
 import { ComponentPropsWithRef } from 'react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
-import { DisplayableFilter } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
+import { SelectableFilter } from '@yext/answers-headless-react';
 import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
@@ -338,8 +338,8 @@ const FiltersContext: Context<FiltersContextType | null>;
 
 // @public
 interface FiltersContextType {
-    filters: DisplayableFilter[];
-    handleFilterSelect: (filter: DisplayableFilter, checked: boolean) => void;
+    filters: SelectableFilter[];
+    handleFilterSelect: (filter: SelectableFilter, checked: boolean) => void;
 }
 
 // @public

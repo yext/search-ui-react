@@ -1,4 +1,10 @@
-import { DisplayableFacet, Filter, DisplayableFilter, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
+import {
+  DisplayableFacet,
+  Filter,
+  SelectableFilter as DisplayableFilter,
+  useAnswersActions,
+  useAnswersState
+} from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
 import { FiltersContext } from './FiltersContext';
 

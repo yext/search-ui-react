@@ -1,4 +1,9 @@
-import { AppliedQueryFilter, DisplayableFacet, DisplayableFilter, DisplayableFacetOption } from '@yext/answers-headless-react';
+import {
+  AppliedQueryFilter,
+  DisplayableFacet,
+  SelectableFilter as DisplayableFilter,
+  DisplayableFacetOption
+} from '@yext/answers-headless-react';
 
 /**
  * Convert a list of facets to DisplayableFilter format.
