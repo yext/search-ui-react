@@ -421,7 +421,6 @@ interface HierarchicalFacetProps {
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     customCssClasses?: HierarchicalFacetCssClasses;
     divider?: string;
-    // (undocumented)
     facet: DisplayableFacet;
     showMoreLimit?: number;
 }

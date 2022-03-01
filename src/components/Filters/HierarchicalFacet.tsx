@@ -10,6 +10,7 @@ import { HierarchicalFacetNode, HierarchicalFacetTree, useHierarchicalFacetTree 
  * @public
  */
 export interface HierarchicalFacetProps {
+  /** The `DisplayableFacet` to render as a HierarchicalFacet */
   facet: DisplayableFacet,
   /** The divider for determining hiearchies, defaults to "\>" */
   divider?: string,

@@ -4,6 +4,8 @@
 
 ## Filters.HierarchicalFacetProps.facet property
 
+The `DisplayableFacet` to render as a HierarchicalFacet
+
 <b>Signature:</b>
 
 ```typescript
