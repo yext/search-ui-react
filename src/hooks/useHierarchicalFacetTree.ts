@@ -21,7 +21,7 @@ export type HierarchicalFacetNode = {
 };
 
 /**
- * Parses a `DisplayableFacet` into a {@link HierarchicalFacetTree}, then memoizes it.
+ * Parses a `DisplayableFacet` into a `HierarchicalFacetTree`, then memoizes it.
  */
 export function useHierarchicalFacetTree(
   hierarchicalFacet: DisplayableFacet,

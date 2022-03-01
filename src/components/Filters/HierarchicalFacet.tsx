@@ -69,7 +69,7 @@ export function HierarchicalFacet({
   const [isShowingMore, setIsShowingMore] = useState(false);
   const resetShowMore = () => setIsShowingMore(false);
 
-  /** Iteratively parses the {@link HierarchicalFacetTree} into an array of ReactNodes */
+  /** Iteratively parses the `HierarchicalFacetTree` into an array of ReactNodes */
   function renderTree(): ReactNode[] {
     let treePointer: HierarchicalFacetTree = tree;
     const renderedNodesAndShowMoreButton: ReactNode[] = [renderAllCategoriesButton()];
