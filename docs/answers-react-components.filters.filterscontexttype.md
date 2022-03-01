@@ -16,6 +16,7 @@ export interface FiltersContextType
 
 |  Property | Type | Description |
 |  --- | --- | --- |
+|  [applyFilters](./answers-react-components.filters.filterscontexttype.applyfilters.md) | () =&gt; void | A function called when filters should be applied. |
 |  [filters](./answers-react-components.filters.filterscontexttype.filters.md) | SelectableFilter\[\] | The list of SelectableFilters provided by the context. |
 |  [handleFilterSelect](./answers-react-components.filters.filterscontexttype.handlefilterselect.md) | (filter: Filter, checked: boolean) =&gt; void | A function called when a filter is selected. |
 

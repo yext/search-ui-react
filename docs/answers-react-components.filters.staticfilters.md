@@ -11,14 +11,14 @@ The representation of the facets is configured using props.children, and is inte
 <b>Signature:</b>
 
 ```typescript
-export declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
+export declare function StaticFilters({ children, className, searchOnChange }: StaticFiltersProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | StaticFiltersProps | [Filters.StaticFiltersProps](./answers-react-components.filters.staticfiltersprops.md) |
+|  { children, className, searchOnChange } | StaticFiltersProps |  |
 
 <b>Returns:</b>
 

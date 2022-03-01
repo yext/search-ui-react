@@ -247,7 +247,7 @@ export function executeSearch(answersActions: AnswersActions, isVertical: boolea
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-function Facets(props: FacetsProps): JSX.Element;
+function Facets({ children, className, searchOnChange }: FacetsProps): JSX.Element;
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
@@ -343,6 +343,7 @@ const FiltersContext: Context<FiltersContextType | null>;
 
 // @public
 interface FiltersContextType {
+    applyFilters: () => void;
     filters: SelectableFilter[];
     handleFilterSelect: (filter: Filter, checked: boolean) => void;
 }
@@ -667,13 +668,14 @@ export interface StandardSectionCssClasses {
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-function StaticFilters(props: StaticFiltersProps): JSX.Element;
+function StaticFilters({ children, className, searchOnChange }: StaticFiltersProps): JSX.Element;
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
 type StaticFiltersProps = PropsWithChildren<{
     className?: string;
+    searchOnChange?: boolean;
 }>;
 
 // @public

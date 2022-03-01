@@ -11,14 +11,14 @@ The representation of the facets is configured using a FACC (function as a child
 <b>Signature:</b>
 
 ```typescript
-export declare function Facets(props: FacetsProps): JSX.Element;
+export declare function Facets({ children, className, searchOnChange }: FacetsProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | FacetsProps | [Filters.FacetsProps](./answers-react-components.filters.facetsprops.md) |
+|  { children, className, searchOnChange } | FacetsProps |  |
 
 <b>Returns:</b>
 

@@ -11,5 +11,6 @@ Props for the [Filters.StaticFilters()](./answers-react-components.filters.stati
 ```typescript
 export declare type StaticFiltersProps = PropsWithChildren<{
     className?: string;
+    searchOnChange?: boolean;
 }>;
 ```

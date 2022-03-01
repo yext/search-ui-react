@@ -4,7 +4,7 @@
 
 ## Filters.HierarchicalFacetProps.divider property
 
-The divider for determining hiearchies, defaults to "<!-- -->&gt;<!-- -->"
+The divider for determining hierarchies, defaults to "<!-- -->&gt;<!-- -->"
 
 <b>Signature:</b>
 
