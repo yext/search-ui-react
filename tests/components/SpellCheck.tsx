@@ -1,4 +1,5 @@
-import { shallow } from 'enzyme';
+import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { SpellCheckState } from '@yext/answers-headless/lib/esm/models/slices/spellcheck';
 import { VerticalSearchState } from '@yext/answers-headless/lib/esm/models/slices/vertical';
@@ -36,15 +37,14 @@ jest.mock('@yext/answers-headless-react', () => ({
 
 describe('SpellCheck', () => {
   it('Suggestion is formatted properly', () => {
-    const component = shallow(<SpellCheck />);
-    expect(component.text()).toEqual('Did you mean Correction');
+    const { getByText } = render(<SpellCheck />);
+    expect(getByText('Did you mean')).toBeDefined();
+    expect(getByText(mockedState.spellCheck.correctedQuery)).toBeDefined();
   });
 
   it('Button\'s label is correct', () => {
-    const component = shallow(<SpellCheck />);
-    const button = component.find('button');
-    expect(button).toHaveLength(1);
-    expect(button.text()).toEqual('Correction');
+    render(<SpellCheck />);
+    expect(screen.getByRole('button')).toHaveTextContent(mockedState.spellCheck.correctedQuery);
   });
 
   it('Fires onClick when provided', () => {
@@ -54,9 +54,8 @@ describe('SpellCheck', () => {
     const onClick = jest.spyOn(props, 'onClick');
     const useAnswersActions = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
 
-    const component = shallow(<SpellCheck {...props} />);
-    const button = component.find('button');
-    button.simulate('click');
+    render(<SpellCheck {...props} />);
+    fireEvent.click(screen.getByRole('button'));
 
     const answersActions = useAnswersActions.mock.results[0].value;
     const setQuery = jest.spyOn(answersActions, 'setQuery');
@@ -73,9 +72,8 @@ describe('SpellCheck', () => {
     const useAnswersActions = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
     const executeSearch = jest.spyOn(require('../../src/utils/search-operations'), 'executeSearch');
 
-    const component = shallow(<SpellCheck />);
-    const button = component.find('button');
-    button.simulate('click');
+    render(<SpellCheck />);
+    fireEvent.click(screen.getByRole('button'));
 
     const answersActions = useAnswersActions.mock.results[0].value;
     const setQuery = jest.spyOn(answersActions, 'setQuery');
