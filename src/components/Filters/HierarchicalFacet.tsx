@@ -1,8 +1,9 @@
-import { DisplayableFacet, FacetOption, useAnswersActions } from '@yext/answers-headless-react';
+import { DisplayableFacet, FacetOption } from '@yext/answers-headless-react';
 import { ReactNode, useState } from 'react';
 import { CompositionMethod } from '../../hooks';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { HierarchicalFacetNode, HierarchicalFacetTree, useHierarchicalFacetTree } from '../../hooks/useHierarchicalFacetTree';
+import { useFiltersContext } from './FiltersContext';
 
 /**
  * Props for {@link Filters.HierarchicalFacet}
@@ -12,7 +13,7 @@ import { HierarchicalFacetNode, HierarchicalFacetTree, useHierarchicalFacetTree 
 export interface HierarchicalFacetProps {
   /** The `DisplayableFacet` to render as a HierarchicalFacet */
   facet: DisplayableFacet,
-  /** The divider for determining hiearchies, defaults to "\>" */
+  /** The divider for determining hierarchies, defaults to "\>" */
   divider?: string,
   /** The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4 */
   showMoreLimit?: number,
@@ -159,7 +160,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
   inactiveClassName?: string,
   resetShowMore: () => void
 }) {
-  const answersActions = useAnswersActions();
+  const { applyFilters, handleFilterSelect } = useFiltersContext();
 
   if (facet.options.find(o => o.selected)) {
     return (
@@ -168,7 +169,8 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
         onClick={() => {
           facet.options
             .filter(o => o.selected)
-            .forEach(o => answersActions.setFacetOption(facet.fieldId, o, false));
+            .forEach(o => handleFilterSelect({ fieldId: facet.fieldId, ...o }, false));
+          applyFilters();
           resetShowMore();
         }}
       >
@@ -190,14 +192,14 @@ function AvailableOption({ fieldId, facetOption, displayName, className, resetSh
   className?: string,
   resetShowMore: () => void
 }) {
-  const answersActions = useAnswersActions();
+  const { applyFilters, handleFilterSelect } = useFiltersContext();
 
   return (
     <button
       className={className}
       onClick={() => {
-        answersActions.setFacetOption(fieldId, facetOption, true);
-        answersActions.executeVerticalQuery();
+        handleFilterSelect({ fieldId, ...facetOption }, true);
+        applyFilters();
         resetShowMore();
       }}
     >
@@ -213,12 +215,12 @@ function ParentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   className?: string,
   resetShowMore: () => void
 }) {
-  const answersActions = useAnswersActions();
+  const { applyFilters, handleFilterSelect } = useFiltersContext();
 
   function deselectChildOptions(node: HierarchicalFacetNode) {
     const tree = node.childTree;
     Object.values(tree).forEach(n => {
-      answersActions.setFacetOption(fieldId, n.facetOption, false);
+      handleFilterSelect({ fieldId, ...n.facetOption }, false);
       deselectChildOptions(n);
     });
   }
@@ -226,7 +228,7 @@ function ParentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   return (
     <button className={className} onClick={() => {
       deselectChildOptions(selectedNode);
-      answersActions.executeVerticalQuery();
+      applyFilters();
       resetShowMore();
     }}>
       {selectedNode.lastDisplayNameToken + ' /'}
@@ -241,13 +243,14 @@ function CurrentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   className?: string,
   resetShowMore: () => void
 }) {
-  const answersActions = useAnswersActions();
+  const { applyFilters, handleFilterSelect } = useFiltersContext();
+
   return (
     <button
       className={className}
       onClick={() => {
-        answersActions.setFacetOption(fieldId, selectedNode.facetOption, false);
-        answersActions.executeVerticalQuery();
+        handleFilterSelect({ fieldId, ...selectedNode.facetOption }, false);
+        applyFilters();
         resetShowMore();
       }}
     >

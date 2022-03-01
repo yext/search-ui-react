@@ -1,6 +1,6 @@
 import { DisplayableFacet, Filter, SelectableFilter, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
-import { FiltersContext } from './FiltersContext';
+import { FiltersContext, FiltersContextType } from './FiltersContext';
 
 /**
  * Props for {@link Filters.Facets}
@@ -10,7 +10,7 @@ import { FiltersContext } from './FiltersContext';
 export interface FacetsProps {
   /** CSS class names applied to the component's container div. */
   className?: string,
-  /** Whether or not a search is ran when a filter is selected. */
+  /** Whether or not a search is automatically run when a filter is selected. Defaults to true. */
   searchOnChange?: boolean,
   /** A function which renders the Facets UI with the provided facets data.
    *
@@ -33,12 +33,11 @@ export interface FacetsProps {
  *
  * @param props - {@link Filters.FacetsProps}
  */
-export function Facets(props: FacetsProps): JSX.Element {
-  const {
-    children,
-    className = 'md:w-40',
-    searchOnChange = true
-  } = props;
+export function Facets({
+  children,
+  className = 'md:w-40',
+  searchOnChange = true
+}: FacetsProps): JSX.Element {
   const answersActions = useAnswersActions();
   const facets = useAnswersState(state => state.filters.facets) ?? [];
   const filters: SelectableFilter[] = facets.flatMap(f => f.options.map(o => {
@@ -50,23 +49,26 @@ export function Facets(props: FacetsProps): JSX.Element {
     };
   }));
 
-  function handleFilterSelect(filter: Filter, selected: boolean) {
-    if (typeof filter.value === 'object') {
-      console.error('Facets only support string, number, and boolean. Found the following object value instead:', filter.value);
-      return;
-    }
-    const facetOption = {
-      matcher: filter.matcher,
-      value: filter.value
-    };
-    answersActions.setFacetOption(filter.fieldId, facetOption, selected);
-    if (searchOnChange) {
-      answersActions.setOffset(0);
-      answersActions.executeVerticalQuery();
-    }
-  }
-
-  const filtersContextInstance = { handleFilterSelect, filters };
+  const filtersContextInstance: FiltersContextType = {
+    handleFilterSelect(filter: Filter, selected: boolean) {
+      if (typeof filter.value === 'object') {
+        console.error('Facets only support string, number, and boolean. Found the following object value instead:', filter.value);
+        return;
+      }
+      const facetOption = {
+        matcher: filter.matcher,
+        value: filter.value
+      };
+      answersActions.setFacetOption(filter.fieldId, facetOption, selected);
+    },
+    applyFilters() {
+      if (searchOnChange) {
+        answersActions.setOffset(0);
+        answersActions.executeVerticalQuery();
+      }
+    },
+    filters
+  };
 
   return (
     <div className={className}>

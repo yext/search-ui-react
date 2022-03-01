@@ -9,7 +9,9 @@ import { FiltersContext } from './FiltersContext';
  */
 export type StaticFiltersProps = PropsWithChildren<{
   /** CSS class names applied to the StaticFilter's container div. */
-  className?: string
+  className?: string,
+  /** Whether or not a search is automatically run when a filter is selected. Defaults to true. */
+  searchOnChange?: boolean
 }>;
 
 /**
@@ -23,22 +25,26 @@ export type StaticFiltersProps = PropsWithChildren<{
  *
  * @public
  */
-export function StaticFilters(props: StaticFiltersProps): JSX.Element {
-  const {
-    children,
-    className = 'md:w-40'
-  } = props;
+export function StaticFilters({
+  children,
+  className = 'md:w-40',
+  searchOnChange = true
+}: StaticFiltersProps): JSX.Element {
   const answersActions = useAnswersActions();
   const filters = useAnswersState(state => state.filters.static) || [];
 
   const filtersContextInstance = {
-    filters,
-    handleFilterSelect: (filter: Filter, selected: boolean) => {
-      answersActions.setOffset(0);
-      answersActions.resetFacets();
+    handleFilterSelect(filter: Filter, selected: boolean) {
       answersActions.setFilterOption({ ...filter, selected });
-      answersActions.executeVerticalQuery();
-    }
+    },
+    applyFilters() {
+      if (searchOnChange) {
+        answersActions.setOffset(0);
+        answersActions.resetFacets();
+        answersActions.executeVerticalQuery();
+      }
+    },
+    filters
   };
 
   return (
