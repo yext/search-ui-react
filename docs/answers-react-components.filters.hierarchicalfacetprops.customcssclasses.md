@@ -4,7 +4,7 @@
 
 ## Filters.HierarchicalFacetProps.customCssClasses property
 
-CSS classes for customizing the component styling defined by [Filters.CheckboxCssClasses](./answers-react-components.filters.checkboxcssclasses.md)
+CSS classes for customizing the component styling of [Filters.HierarchicalFacetCssClasses](./answers-react-components.filters.hierarchicalfacetcssclasses.md)
 
 <b>Signature:</b>
 

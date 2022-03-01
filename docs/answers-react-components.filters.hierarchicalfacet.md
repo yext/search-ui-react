@@ -4,7 +4,7 @@
 
 ## Filters.HierarchicalFacet() function
 
-A HiearchicalFacet takes a `DisplayableFacet` and renders the facet in a way to represent multiple levels of "hierarchies".
+A HierarchicalFacet takes a `DisplayableFacet` and renders the facet in a way to represent multiple levels of "hierarchies".
 
 The hierarchies are determined by the provided divider, which defaults to "<!-- -->&gt;<!-- -->".
 
