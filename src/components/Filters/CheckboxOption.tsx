@@ -66,7 +66,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
   const optionId = useMemo(() => uuid(), []);
   const answersUtilities = useAnswersUtilities();
-  const { handleFilterSelect, filters, applyFilters } = useFiltersContext();
+  const { selectFilter, filters, applyFilters } = useFiltersContext();
 
   if (!fieldId) {
     console.error('No fieldId found for filter with value', value);
@@ -96,7 +96,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   });
 
   const onClick = (checked: boolean) => {
-    handleFilterSelect({
+    selectFilter({
       matcher: Matcher.Equals,
       fieldId,
       value,

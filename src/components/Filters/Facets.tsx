@@ -56,7 +56,7 @@ export function Facets({
   }));
 
   const filtersContextInstance: FiltersContextType = {
-    handleFilterSelect(filter: DisplayableFilter) {
+    selectFilter(filter: DisplayableFilter) {
       if (typeof filter.value === 'object') {
         console.error('Facets only support string, number, and boolean. Found the following object value instead:', filter.value);
         return;

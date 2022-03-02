@@ -8,7 +8,7 @@ import { createContext, useContext } from 'react';
  */
 export interface FiltersContextType {
   /** A function called when a filter is selected. */
-  handleFilterSelect: (filter: DisplayableFilter) => void
+  selectFilter: (filter: DisplayableFilter) => void
   /** A function called when filters should be applied. */
   applyFilters: () => void
   /** The list of DisplayableFilter provided by the context. */

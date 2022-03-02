@@ -1,4 +1,4 @@
-import { DisplayableFacet, FacetOption } from '@yext/answers-headless-react';
+import { DisplayableFacet } from '@yext/answers-headless-react';
 import { ReactNode, useState } from 'react';
 import { CompositionMethod } from '../../hooks';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
@@ -107,7 +107,7 @@ export function HierarchicalFacet({
     );
   }
 
-  function renderAvailableOptions(childNodes: HierarchicalFacetNode[], ) {
+  function renderAvailableOptions(childNodes: HierarchicalFacetNode[]) {
     const nodesToRender = isShowingMore ? childNodes : childNodes.slice(0, showMoreLimit);
     return nodesToRender.map(n =>
       <AvailableOption
@@ -117,7 +117,7 @@ export function HierarchicalFacet({
         fieldId={facet.fieldId}
         currentNode={n}
         resetShowMore={resetShowMore}
-        childNodes={childNodes}
+        siblingNodes={childNodes.filter(siblingNode => siblingNode !== n)}
       />
     );
   }
@@ -163,7 +163,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
   inactiveClassName?: string,
   resetShowMore: () => void
 }) {
-  const { applyFilters, handleFilterSelect } = useFiltersContext();
+  const { applyFilters, selectFilter } = useFiltersContext();
 
   if (facet.options.find(o => o.selected)) {
     return (
@@ -172,7 +172,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
         onClick={() => {
           facet.options
             .filter(o => o.selected)
-            .forEach(o => handleFilterSelect({ ...o, fieldId: facet.fieldId, selected: false }));
+            .forEach(o => selectFilter({ ...o, fieldId: facet.fieldId, selected: false }));
           applyFilters();
           resetShowMore();
         }}
@@ -187,31 +187,31 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
   );
 }
 
-/** A currently unselected option that is available for selection. */
+/** An option currently available for selection or deselection. */
 function AvailableOption(props: {
   fieldId: string,
   activeClassName?: string,
   inactiveClassName?: string,
   resetShowMore: () => void,
   currentNode: HierarchicalFacetNode,
-  childNodes: HierarchicalFacetNode[]
+  siblingNodes: HierarchicalFacetNode[]
 }) {
-  const { fieldId, currentNode, activeClassName, inactiveClassName, resetShowMore, childNodes } = props;
-  const { applyFilters, handleFilterSelect } = useFiltersContext();
+  const { fieldId, currentNode, activeClassName, inactiveClassName, resetShowMore, siblingNodes } = props;
+  const { applyFilters, selectFilter } = useFiltersContext();
   const { selected, lastDisplayNameToken, facetOption } = currentNode;
 
   return (
     <button
       className={selected ? activeClassName : inactiveClassName}
       onClick={() => {
-        childNodes.filter(n => n.selected).forEach(n => handleFilterSelect({
+        siblingNodes.filter(n => n.selected).forEach(n => selectFilter({
           ...n.facetOption,
           selected: false,
           fieldId
         }));
-        !selected && handleFilterSelect({
+        selectFilter({
           ...facetOption,
-          selected: true,
+          selected: !selected,
           fieldId
         });
         applyFilters();
@@ -230,12 +230,12 @@ function ParentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   className?: string,
   resetShowMore: () => void
 }) {
-  const { applyFilters, handleFilterSelect } = useFiltersContext();
+  const { applyFilters, selectFilter } = useFiltersContext();
 
   function deselectChildOptions(node: HierarchicalFacetNode) {
     const tree = node.childTree;
     Object.values(tree).forEach(n => {
-      handleFilterSelect({
+      selectFilter({
         ...n.facetOption,
         selected: false,
         fieldId
@@ -262,13 +262,13 @@ function CurrentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   className?: string,
   resetShowMore: () => void
 }) {
-  const { applyFilters, handleFilterSelect } = useFiltersContext();
+  const { applyFilters, selectFilter } = useFiltersContext();
 
   return (
     <button
       className={className}
       onClick={() => {
-        handleFilterSelect({
+        selectFilter({
           ...selectedNode.facetOption,
           selected: false,
           fieldId
