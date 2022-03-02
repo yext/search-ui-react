@@ -60,34 +60,36 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     answersActions.executeVerticalQuery();
   };
 
-  let hasRemovableFilters = false;
+
+  const hasRemovableFilters = (displayableFilters.facets && displayableFilters.facets.length > 0)
+    || (displayableFilters.staticFilters && displayableFilters.staticFilters.length > 0);
+
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
       {displayableFilters.nlpFilters?.map(filter =>
         <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses}/>
       )}
-      {displayableFilters.facets?.map(filter => {
-        hasRemovableFilters = true;
-        return <RemovableFilter
+      {displayableFilters.facets?.map(filter =>
+        <RemovableFilter
           filter={filter}
           onRemoveFilter={onRemoveFacetOption}
           key={filter.displayName}
           cssClasses={cssClasses}
-        />;
-      })}
-      {displayableFilters.staticFilters?.map(filter => {
-        hasRemovableFilters = true;
-        return <RemovableFilter
+        />
+      )}
+      {displayableFilters.staticFilters?.map(filter =>
+        <RemovableFilter
           filter={filter}
           onRemoveFilter={onRemoveStaticFilterOption}
           key={filter.displayName}
           cssClasses={cssClasses}
-        />;
-      })}
+        />
+      )}
       {isVertical && hasRemovableFilters &&
         <button onClick={onClickClearAllButton} className={cssClasses.clearAllButton}>
           Clear All
-        </button>}
+        </button>
+      }
     </div>
   );
 }
