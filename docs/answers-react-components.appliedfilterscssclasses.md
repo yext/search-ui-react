@@ -18,6 +18,7 @@ export interface AppliedFiltersCssClasses
 |  --- | --- | --- |
 |  [appliedFiltersContainer\_\_\_loading?](./answers-react-components.appliedfilterscssclasses.appliedfilterscontainer___loading.md) | string | <i>(Optional)</i> |
 |  [appliedFiltersContainer?](./answers-react-components.appliedfilterscssclasses.appliedfilterscontainer.md) | string | <i>(Optional)</i> |
+|  [clearAllButton?](./answers-react-components.appliedfilterscssclasses.clearallbutton.md) | string | <i>(Optional)</i> |
 |  [filterLabel?](./answers-react-components.appliedfilterscssclasses.filterlabel.md) | string | <i>(Optional)</i> |
 |  [nlpFilter?](./answers-react-components.appliedfilterscssclasses.nlpfilter.md) | string | <i>(Optional)</i> |
 |  [removableFilter?](./answers-react-components.appliedfilterscssclasses.removablefilter.md) | string | <i>(Optional)</i> |

@@ -75,6 +75,8 @@ export interface AppliedFiltersCssClasses {
     // (undocumented)
     appliedFiltersContainer___loading?: string;
     // (undocumented)
+    clearAllButton?: string;
+    // (undocumented)
     filterLabel?: string;
     // (undocumented)
     nlpFilter?: string;
