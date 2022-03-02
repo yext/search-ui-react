@@ -32,7 +32,8 @@ export interface HierarchicalFacetCssClasses {
   container?: string,
   allCategoriesOption___active?: string,
   allCategoriesOption___inactive?: string,
-  availableOption?: string,
+  availableOption__active?: string,
+  availableOption__inactive?: string,
   parentCategory?: string,
   currentCategory?: string,
   showMoreButton?: string
@@ -42,7 +43,8 @@ const builtInCssClasses: Required<HierarchicalFacetCssClasses> = {
   container: 'flex flex-col items-start',
   allCategoriesOption___active: 'font-semibold mb-2 text-sm',
   allCategoriesOption___inactive: 'mb-2 text-sm',
-  availableOption: 'ml-4 mb-2 text-sm',
+  availableOption__active: 'font-semibold ml-4 mb-2 text-sm',
+  availableOption__inactive: 'ml-4 mb-2 text-sm',
   parentCategory: 'mb-2 text-sm',
   currentCategory: 'font-semibold mb-2 text-sm',
   showMoreButton: 'ml-4 text-sm font-medium text-primary-600'
@@ -78,7 +80,7 @@ export function HierarchicalFacet({
       const childNodes = Object.values(treePointer);
       const selectedChildNode = childNodes.find(n => n.selected);
 
-      if (!selectedChildNode) {
+      if (!selectedChildNode || Object.values(selectedChildNode.childTree).length === 0) {
         renderedNodesAndShowMoreButton.push(...renderAvailableOptions(childNodes));
         if (childNodes.length > showMoreLimit) {
           renderedNodesAndShowMoreButton.push(renderShowMoreButton());
@@ -105,16 +107,17 @@ export function HierarchicalFacet({
     );
   }
 
-  function renderAvailableOptions(childNodes: HierarchicalFacetNode[]) {
+  function renderAvailableOptions(childNodes: HierarchicalFacetNode[], ) {
     const nodesToRender = isShowingMore ? childNodes : childNodes.slice(0, showMoreLimit);
     return nodesToRender.map(n =>
       <AvailableOption
         key={n.lastDisplayNameToken}
-        className={cssClasses.availableOption}
+        activeClassName={cssClasses.availableOption__active}
+        inactiveClassName={cssClasses.availableOption__inactive}
         fieldId={facet.fieldId}
-        facetOption={n.facetOption}
-        displayName={n.lastDisplayNameToken}
+        currentNode={n}
         resetShowMore={resetShowMore}
+        childNodes={childNodes}
       />
     );
   }
@@ -185,21 +188,29 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
 }
 
 /** A currently unselected option that is available for selection. */
-function AvailableOption({ fieldId, facetOption, displayName, className, resetShowMore }: {
+function AvailableOption(props: {
   fieldId: string,
-  facetOption: FacetOption,
-  displayName: string,
-  className?: string,
-  resetShowMore: () => void
+  activeClassName?: string,
+  inactiveClassName?: string,
+  resetShowMore: () => void,
+  currentNode: HierarchicalFacetNode,
+  childNodes: HierarchicalFacetNode[]
 }) {
+  const { fieldId, currentNode, activeClassName, inactiveClassName, resetShowMore, childNodes } = props;
   const { applyFilters, handleFilterSelect } = useFiltersContext();
+  const { selected, lastDisplayNameToken } = currentNode;
 
   return (
     <button
-      className={className}
+      className={selected ? activeClassName : inactiveClassName}
       onClick={() => {
-        handleFilterSelect({
-          ...facetOption,
+        childNodes.filter(n => n.selected).forEach(n => handleFilterSelect({
+          ...n.facetOption,
+          selected: false,
+          fieldId
+        }));
+        !selected && handleFilterSelect({
+          ...currentNode.facetOption,
           selected: true,
           fieldId
         });
@@ -207,7 +218,7 @@ function AvailableOption({ fieldId, facetOption, displayName, className, resetSh
         resetShowMore();
       }}
     >
-      {displayName}
+      {lastDisplayNameToken}
     </button>
   );
 }

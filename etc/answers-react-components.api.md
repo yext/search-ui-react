@@ -401,7 +401,9 @@ interface HierarchicalFacetCssClasses {
     // (undocumented)
     allCategoriesOption___inactive?: string;
     // (undocumented)
-    availableOption?: string;
+    availableOption__active?: string;
+    // (undocumented)
+    availableOption__inactive?: string;
     // (undocumented)
     container?: string;
     // (undocumented)
