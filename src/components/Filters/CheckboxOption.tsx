@@ -101,8 +101,8 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
       fieldId,
       value,
       displayName: label,
-      selected: isSelected
-    }, checked);
+      selected: checked
+    });
     applyFilters();
   };
 

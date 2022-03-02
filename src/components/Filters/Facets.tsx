@@ -57,7 +57,7 @@ export function Facets({
   }));
 
   const filtersContextInstance: FiltersContextType = {
-    handleFilterSelect(filter: Filter, selected: boolean) {
+    handleFilterSelect(filter: DisplayableFilter) {
       if (typeof filter.value === 'object') {
         console.error('Facets only support string, number, and boolean. Found the following object value instead:', filter.value);
         return;
@@ -66,7 +66,7 @@ export function Facets({
         matcher: filter.matcher,
         value: filter.value
       };
-      answersActions.setFacetOption(filter.fieldId, facetOption, selected);
+      answersActions.setFacetOption(filter.fieldId, facetOption, filter.selected);
     },
     applyFilters() {
       if (searchOnChange) {

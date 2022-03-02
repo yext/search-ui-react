@@ -169,7 +169,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
         onClick={() => {
           facet.options
             .filter(o => o.selected)
-            .forEach(o => handleFilterSelect({ fieldId: facet.fieldId, ...o }, false));
+            .forEach(o => handleFilterSelect({ ...o, fieldId: facet.fieldId, selected: false }));
           applyFilters();
           resetShowMore();
         }}
@@ -198,7 +198,11 @@ function AvailableOption({ fieldId, facetOption, displayName, className, resetSh
     <button
       className={className}
       onClick={() => {
-        handleFilterSelect({ fieldId, ...facetOption }, true);
+        handleFilterSelect({
+          ...facetOption,
+          selected: true,
+          fieldId
+        });
         applyFilters();
         resetShowMore();
       }}
@@ -220,7 +224,11 @@ function ParentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   function deselectChildOptions(node: HierarchicalFacetNode) {
     const tree = node.childTree;
     Object.values(tree).forEach(n => {
-      handleFilterSelect({ fieldId, ...n.facetOption }, false);
+      handleFilterSelect({
+        ...n.facetOption,
+        selected: false,
+        fieldId
+      });
       deselectChildOptions(n);
     });
   }
@@ -249,7 +257,11 @@ function CurrentCategory({ fieldId, selectedNode, className, resetShowMore }: {
     <button
       className={className}
       onClick={() => {
-        handleFilterSelect({ fieldId, ...selectedNode.facetOption }, false);
+        handleFilterSelect({
+          ...selectedNode.facetOption,
+          selected: false,
+          fieldId
+        });
         applyFilters();
         resetShowMore();
       }}

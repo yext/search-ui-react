@@ -34,8 +34,8 @@ export function StaticFilters({
   const displayableFilters = useAnswersState(state => state.filters.static) || [];
 
   const filtersContextInstance = {
-    handleFilterSelect(filter: Filter, selected: boolean) {
-      answersActions.setFilterOption({ ...filter, selected });
+    handleFilterSelect(filter: DisplayableFilter) {
+      answersActions.setFilterOption({ ...filter });
     },
     applyFilters() {
       if (searchOnChange) {
