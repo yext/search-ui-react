@@ -50,6 +50,9 @@ const builtInCssClasses: Required<HierarchicalFacetCssClasses> = {
   showMoreButton: 'ml-4 text-sm font-medium text-primary-600'
 };
 
+/** @private */
+export const DEFAULT_HIERARCHICAL_DELIMITER = '>';
+
 /**
  * A HierarchicalFacet takes a `DisplayableFacet` and renders the facet in a way
  * to represent multiple levels of "hierarchies".
@@ -60,7 +63,7 @@ const builtInCssClasses: Required<HierarchicalFacetCssClasses> = {
  */
 export function HierarchicalFacet({
   facet,
-  delimiter = '>',
+  delimiter = DEFAULT_HIERARCHICAL_DELIMITER,
   showMoreLimit = 4,
   customCssClasses,
   cssCompositionMethod

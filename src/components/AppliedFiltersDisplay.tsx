@@ -15,7 +15,7 @@ import { DisplayableHierarchicalFacet, GroupedFilters } from '../models/groupedF
 export interface AppliedFiltersDisplayProps {
   /** Sets of categorized filters to construct the applied filter tags from. */
   displayableFilters: GroupedFilters,
-  /** The delimiter used for hierarchical facets. */
+  /** The delimiter used for hierarchical facets. Defaults to "\>" */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses
@@ -37,7 +37,8 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   const answersActions = useAnswersActions();
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
-  const hasAppliedFilters = (nlpFilters.length + staticFilters.length + facets.length) > 0;
+  const hasAppliedFilters =(
+    nlpFilters.length + staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
   if (!hasAppliedFilters) {
     return null;
   }
@@ -54,13 +55,29 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   };
 
   const onRemoveHierarchicalFacetOption = (filter: DisplayableHierarchicalFacet) => {
-    const { fieldId, matcher, value, parentFacet } = filter;
-    if (isNearFilterValue(value)) {
-      console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
+    if (!hierarchicalFacetsDelimiter) {
       return;
     }
+    const { fieldId, parentFacet, displayNameTokens, lastDisplayNameToken } = filter;
+    const displayName = filter.displayName.trim();
+
+    // Uncheck all descendant options in the hierarchy
+    parentFacet.options.forEach(o => {
+      if (!o.displayName.startsWith(displayName)) {
+        return;
+      }
+      const otherDisplayNameTokens = o.displayName.split(hierarchicalFacetsDelimiter).map(t => t.trim());
+      if (otherDisplayNameTokens.length <= displayNameTokens.length) {
+        return;
+      }
+      if (lastDisplayNameToken !== otherDisplayNameTokens[displayNameTokens.length - 1]) {
+        return;
+      }
+      answersActions.setFacetOption(fieldId, o, false);
+    });
+
     answersActions.setOffset(0);
-    answersActions.setFacetOption(fieldId, { matcher, value }, false);
+    answersActions.setFacetOption(fieldId, filter, false);
     answersActions.executeVerticalQuery();
   };
 
@@ -77,25 +94,32 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     answersActions.executeVerticalQuery();
   };
 
-  const removableFilterWith =
-    <F extends DisplayableFilter>(onRemoveFilter: OnRemoveFilter<F>) =>
-      (filter: F) =>
+  const renderRemovableFilter =
+    (onRemoveFilter: (filter: DisplayableFilter) => void) =>
+      (filter: DisplayableFilter) =>
         <RemovableFilter
-          filter={filter}
-          onRemoveFilter={onRemoveFilter}
+          displayName={filter.displayName ?? ''}
+          onRemoveFilter={() => onRemoveFilter(filter)}
           key={filter.displayName}
           cssClasses={cssClasses}
         />;
 
-  const hasRemovableFilters = (staticFilters.length + facets.length) > 0;
+  const hasRemovableFilters = (staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
       {nlpFilters.map(filter =>
         <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses} />
       )}
-      {hierarchicalFacets.map(removableFilterWith(onRemoveHierarchicalFacetOption))}
-      {facets.map(removableFilterWith(onRemoveFacetOption))}
-      {staticFilters.map(removableFilterWith(onRemoveStaticFilterOption))}
+      {hierarchicalFacets.map(filter =>
+        <RemovableFilter
+          key={filter.lastDisplayNameToken}
+          onRemoveFilter={() => onRemoveHierarchicalFacetOption(filter)}
+          displayName={filter.lastDisplayNameToken}
+          cssClasses={cssClasses}
+        />
+      )}
+      {facets.map(renderRemovableFilter(onRemoveFacetOption))}
+      {staticFilters.map(renderRemovableFilter(onRemoveStaticFilterOption))}
       {isVertical && hasRemovableFilters &&
         <button onClick={onClickClearAllButton} className={cssClasses.clearAllButton}>
           Clear All
@@ -105,17 +129,15 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   );
 }
 
-type OnRemoveFilter<F extends DisplayableFilter> = (filter: F) => void;
-
-function RemovableFilter<F extends DisplayableFilter>({ filter, onRemoveFilter, cssClasses }: {
-  filter: F,
-  onRemoveFilter: OnRemoveFilter<F>
+function RemovableFilter({ onRemoveFilter, displayName, cssClasses }: {
+  onRemoveFilter: () => void,
+  displayName: string,
   cssClasses: AppliedFiltersCssClasses
 }): JSX.Element {
   return (
     <div className={cssClasses.removableFilter}>
-      <div className={cssClasses.filterLabel}>{filter.displayName}</div>
-      <button className={cssClasses.removeFilterButton} onClick={() => onRemoveFilter(filter)}>
+      <div className={cssClasses.filterLabel}>{displayName}</div>
+      <button className={cssClasses.removeFilterButton} onClick={() => onRemoveFilter()}>
         <CloseIcon />
       </button>
     </div>

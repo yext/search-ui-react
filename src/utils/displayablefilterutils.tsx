@@ -29,12 +29,13 @@ export function getDisplayableFacets(
 
 export function getDisplayableHierarchicalFacets(
   facets: DisplayableFacet[] | undefined,
-  hierarchicalFacetFieldIds: string[]
+  hierarchicalFieldIds: string[],
+  delimiter: string
 ): DisplayableHierarchicalFacet[] {
   const displayableFacets: DisplayableHierarchicalFacet[] = [];
 
   facets?.forEach(facet => {
-    if (!hierarchicalFacetFieldIds.includes(facet.fieldId)) {
+    if (!hierarchicalFieldIds.includes(facet.fieldId)) {
       return;
     }
     facet.options.forEach((option: DisplayableFacetOption) => {
@@ -42,10 +43,13 @@ export function getDisplayableHierarchicalFacets(
         console.error('Hierarchical Facets must have value of type "string"');
         return;
       }
+      const displayNameTokens = option.displayName.split(delimiter).map(t => t.trim());
       displayableFacets.push({
         ...convertFacetOption(facet.fieldId, option),
         value: option.value,
-        parentFacet: facet
+        parentFacet: facet,
+        lastDisplayNameToken: displayNameTokens[displayNameTokens.length - 1],
+        displayNameTokens
       });
     });
   });

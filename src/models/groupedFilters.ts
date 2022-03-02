@@ -14,8 +14,10 @@ export interface GroupedFilters {
   nlpFilters?: DisplayableFilter[]
 }
 
-export type DisplayableHierarchicalFacet = DisplayableFilter & {
+export type DisplayableHierarchicalFacet = Omit<DisplayableFilter, 'value'> & {
   parentFacet: DisplayableFacet,
+  displayName: string,
   value: string,
-  displayNameTokens: string[]
+  displayNameTokens: string[],
+  lastDisplayNameToken: string
 };
