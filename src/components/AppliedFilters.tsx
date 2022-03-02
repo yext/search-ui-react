@@ -1,10 +1,10 @@
 import { useAnswersState, FiltersState } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { GroupedFilters } from '../models/groupedFilters';
-import { getGroupedAppliedFilters } from '../utils/appliedfilterutils';
+import { pruneAppliedFilters } from '../utils/appliedfilterutils';
 import { useRef } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
+import { GroupedFilters } from '../models/groupedFilters';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
@@ -37,8 +37,6 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
 export interface AppliedFiltersProps {
   /** List of filters that should not be displayed. By default, builtin.entityType will be hidden. */
   hiddenFields?: Array<string>,
-  /** A mapping of static filter fieldIds to their displayed group labels. */
-  staticFiltersGroupLabels?: Record<string, string>,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AppliedFiltersCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -68,15 +66,11 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
 
   const {
     hiddenFields = ['builtin.entityType'],
-    staticFiltersGroupLabels = {},
     customCssClasses = {},
     cssCompositionMethod,
     ...otherProps
   } = props;
-  const groupedFilters: Array<GroupedFilters> = getGroupedAppliedFilters(
-    filterState.current,nlpFilters, hiddenFields, staticFiltersGroupLabels);
-  const appliedFilters = groupedFilters.flatMap(groupedFilters => groupedFilters.filters);
-
+  const appliedFilters: GroupedFilters = pruneAppliedFilters(filterState.current, nlpFilters, hiddenFields);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading

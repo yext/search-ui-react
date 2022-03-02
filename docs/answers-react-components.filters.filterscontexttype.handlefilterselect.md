@@ -9,5 +9,5 @@ A function called when a filter is selected.
 <b>Signature:</b>
 
 ```typescript
-handleFilterSelect: (filter: Filter, checked: boolean) => void;
+handleFilterSelect: (filter: DisplayableFilter, checked: boolean) => void;
 ```

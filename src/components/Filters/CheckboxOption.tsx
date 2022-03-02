@@ -73,12 +73,17 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     return null;
   }
 
+  if (typeof label !== 'string') {
+    console.error('A label is needed for filter with value', value);
+    return null;
+  }
+
   if (!answersUtilities.isCloseMatch(label.toString(), searchValue)) {
     return null;
   }
 
-  const isSelected = !!filters?.find(storedSelectableFilter => {
-    const { selected, ...storedFilter } = storedSelectableFilter;
+  const isSelected = !!filters?.find(storedDisplayableFilter => {
+    const { selected, displayName:_, ...storedFilter } = storedDisplayableFilter;
     if (!selected) {
       return false;
     }
@@ -90,13 +95,15 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     return isDuplicateFilter(storedFilter, targetFilter);
   });
 
-  function onClick(checked: boolean) {
+  const onClick = (checked: boolean) => {
     fieldId && handleFilterSelect({
       matcher: Matcher.Equals,
       fieldId,
-      value
+      value,
+      displayName: label,
+      selected: isSelected
     }, checked);
-  }
+  };
 
   return (
     <div className={cssClasses.container}>

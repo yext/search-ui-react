@@ -1,4 +1,4 @@
-import { Filter, SelectableFilter } from '@yext/answers-headless-react';
+import { SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
 import { createContext, useContext } from 'react';
 
 /**
@@ -8,9 +8,9 @@ import { createContext, useContext } from 'react';
  */
 export interface FiltersContextType {
   /** A function called when a filter is selected. */
-  handleFilterSelect: (filter: Filter, checked: boolean) => void
-  /** The list of SelectableFilters provided by the context. */
-  filters: SelectableFilter[]
+  handleFilterSelect: (filter: DisplayableFilter, checked: boolean) => void
+  /** The list of DisplayableFilter provided by the context. */
+  filters: DisplayableFilter[]
 }
 
 /**
