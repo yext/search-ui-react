@@ -7,7 +7,7 @@ import { useComponentMountStatus } from './useComponentMountStatus';
  * be returned.
  *
  * @param executeRequest Function that executes the network request
- * @param handleRejectedPromise Function that executes a rejected promise is received from the request
+ * @param handleRejectedPromise Function that executes when a rejected promise is received from the request
  *
  * @returns Reponse to the latest request and a function to execute the request in a synchronized manner
  */
