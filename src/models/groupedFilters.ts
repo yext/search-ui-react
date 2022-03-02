@@ -2,7 +2,6 @@ import { SelectableFilter as DisplayableFilter } from '@yext/answers-headless-re
 
 /**
  * Types of filters (static, facet, and nlp) displayable by AppliedFilters.
- *
  */
 export interface GroupedFilters {
   /** Filters that is applied to the search results from static filters and filter search. */

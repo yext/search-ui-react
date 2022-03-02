@@ -20,15 +20,14 @@ export interface AppliedFiltersDisplayProps {
  * @param props - {@link AppliedFiltersDisplayProps}
  * @returns A React element for the applied filters
  */
-export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element {
+export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
   const { displayableFilters, cssClasses = {} } = props;
   const answersActions = useAnswersActions();
-  function NlpFilter({ filter }: { filter: DisplayableFilter }): JSX.Element {
-    return (
-      <div className={cssClasses.nlpFilter}>
-        <span className={cssClasses.filterLabel}>{filter.displayName}</span>
-      </div>
-    );
+
+  const hasAppliedFilters = Object.values(displayableFilters)
+    .some((filters: DisplayableFilter[] | undefined) => filters && filters.length > 0);
+  if (!hasAppliedFilters) {
+    return null;
   }
 
   const onRemoveFacetOption = (filter: DisplayableFilter) => {
@@ -48,38 +47,53 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     answersActions.executeVerticalQuery();
   };
 
-  function RemovableFilter({ filter, onRemoveFilter }: {
-    filter: DisplayableFilter,
-    onRemoveFilter: (filter: DisplayableFilter) => void
-  }): JSX.Element {
-    return (
-      <div className={cssClasses.removableFilter}>
-        <div className={cssClasses.filterLabel}>{filter.displayName}</div>
-        <button className={cssClasses.removeFilterButton} onClick={() => onRemoveFilter(filter)}>
-          <CloseIcon/>
-        </button>
-      </div>
-    );
-  }
-  const hasAppliedFilters = Object.values(displayableFilters)
-    .some((filters: DisplayableFilter[] | undefined) => filters && filters.length > 0);
-  return (<>
-    {hasAppliedFilters &&
-      <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
-        {displayableFilters.nlpFilters?.map(filter =>
-          <NlpFilter filter={filter} key={filter.displayName}/>
-        )}
-        {displayableFilters.facets?.map(filter =>
-          <RemovableFilter filter={filter} onRemoveFilter={onRemoveFacetOption} key={filter.displayName}/>
-        )}
-        {displayableFilters.staticFilters?.map(filter =>
-          <RemovableFilter
-            filter={filter}
-            onRemoveFilter={onRemoveStaticFilterOption}
-            key={filter.displayName}
-          />
-        )}
-      </div>
-    }
-  </>);
+  return (
+    <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
+      {displayableFilters.nlpFilters?.map(filter =>
+        <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses}/>
+      )}
+      {displayableFilters.facets?.map(filter =>
+        <RemovableFilter
+          filter={filter}
+          onRemoveFilter={onRemoveFacetOption}
+          key={filter.displayName}
+          cssClasses={cssClasses}
+        />
+      )}
+      {displayableFilters.staticFilters?.map(filter =>
+        <RemovableFilter
+          filter={filter}
+          onRemoveFilter={onRemoveStaticFilterOption}
+          key={filter.displayName}
+          cssClasses={cssClasses}
+        />
+      )}
+    </div>
+  );
+}
+
+function RemovableFilter({ filter, onRemoveFilter, cssClasses }: {
+  filter: DisplayableFilter,
+  onRemoveFilter: (filter: DisplayableFilter) => void
+  cssClasses: AppliedFiltersCssClasses
+}): JSX.Element {
+  return (
+    <div className={cssClasses.removableFilter}>
+      <div className={cssClasses.filterLabel}>{filter.displayName}</div>
+      <button className={cssClasses.removeFilterButton} onClick={() => onRemoveFilter(filter)}>
+        <CloseIcon/>
+      </button>
+    </div>
+  );
+}
+
+function NlpFilter({ filter, cssClasses }: {
+  filter: DisplayableFilter,
+  cssClasses: AppliedFiltersCssClasses
+}): JSX.Element {
+  return (
+    <div className={cssClasses.nlpFilter}>
+      <span className={cssClasses.filterLabel}>{filter.displayName}</span>
+    </div>
+  );
 }
