@@ -75,6 +75,8 @@ export interface AppliedFiltersCssClasses {
     // (undocumented)
     appliedFiltersContainer___loading?: string;
     // (undocumented)
+    clearAllButton?: string;
+    // (undocumented)
     filterLabel?: string;
     // (undocumented)
     nlpFilter?: string;
@@ -89,6 +91,17 @@ export interface AppliedFiltersProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: AppliedFiltersCssClasses;
     hiddenFields?: Array<string>;
+}
+
+// @public
+function ApplyFiltersButton({ className, label }: ApplyFiltersButtonProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface ApplyFiltersButtonProps {
+    className?: string;
+    label?: string;
 }
 
 // @public
@@ -331,7 +344,9 @@ declare namespace Filters {
         StaticFiltersProps,
         HierarchicalFacet,
         HierarchicalFacetProps,
-        HierarchicalFacetCssClasses
+        HierarchicalFacetCssClasses,
+        ApplyFiltersButton,
+        ApplyFiltersButtonProps
     }
 }
 export { Filters }

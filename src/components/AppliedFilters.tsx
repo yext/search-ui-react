@@ -17,16 +17,18 @@ export interface AppliedFiltersCssClasses {
   nlpFilter?: string,
   removableFilter?: string,
   removeFilterButton?: string,
-  filterLabel?: string
+  filterLabel?: string,
+  clearAllButton?: string
 }
 
 const builtInCssClasses: AppliedFiltersCssClasses = {
   // Use negative margin to remove space above the filters on mobile
-  appliedFiltersContainer: 'flex flex-wrap -mt-3 md:mt-0',
+  appliedFiltersContainer: 'flex flex-wrap -mt-3 md:mt-0 mb-4',
   appliedFiltersContainer___loading: 'opacity-50',
-  nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-800 mr-2 mb-4',
-  removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-900 mr-2 mb-4',
-  removeFilterButton: 'w-2 h-2 text-gray-500 m-1.5'
+  nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-800 mr-2',
+  removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-900 mr-2',
+  removeFilterButton: 'w-2 h-2 text-gray-500 m-1.5',
+  clearAllButton: 'text-sm font-medium text-primary-600 hover:underline focus:underline'
 };
 
 /**
