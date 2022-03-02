@@ -1,4 +1,4 @@
-import { Filter, SelectableFilter } from '@yext/answers-headless-react';
+import { SelectableFilter } from '@yext/answers-headless-react';
 import { createContext, useContext } from 'react';
 
 /**

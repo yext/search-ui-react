@@ -1,5 +1,4 @@
 import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions } from '@yext/answers-headless-react';
-import { useRef } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { Dropdown } from './Dropdown/Dropdown';
@@ -71,7 +70,6 @@ export function FilterSearch({
   cssCompositionMethod
 }: FilterSearchProps): JSX.Element {
   const answersActions = useAnswersActions();
-  const selectedFilterOptionRef = useRef<Filter>();
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
   });
@@ -101,7 +99,7 @@ export function FilterSearch({
                 key={index}
                 focusedClassName={cssClasses.focusedOption}
                 value={result.value}
-                itemData={{ filter: result.filter }}
+                itemData={{ filter: result.filter, displayName: result.value }}
               >
                 {renderAutocompleteResult(result, cssClasses)}
               </DropdownItem>
@@ -119,12 +117,9 @@ export function FilterSearch({
         screenReaderText={getScreenReaderText(sections)}
         onSelect={(_value, _index, itemData) => {
           const filter = itemData?.filter as Filter;
-          if (filter) {
-            if (selectedFilterOptionRef.current) {
-              answersActions.setFilterOption({ ...selectedFilterOptionRef.current, selected: false });
-            }
-            selectedFilterOptionRef.current = filter;
-            answersActions.setFilterOption({ ...filter, selected: true });
+          const displayName = itemData?.displayName as string;
+          if (filter && displayName) {
+            answersActions.setFilterOption({ ...filter, displayName, selected: true });
             answersActions.executeVerticalQuery();
           }
         }}

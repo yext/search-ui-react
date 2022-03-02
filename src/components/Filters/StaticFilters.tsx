@@ -1,4 +1,4 @@
-import { Filter, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
+import { useAnswersActions, useAnswersState, SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { FiltersContext } from './FiltersContext';
 
@@ -31,7 +31,7 @@ export function StaticFilters({
   searchOnChange = true
 }: StaticFiltersProps): JSX.Element {
   const answersActions = useAnswersActions();
-  const filters = useAnswersState(state => state.filters.static) || [];
+  const displayableFilters = useAnswersState(state => state.filters.static) || [];
 
   const filtersContextInstance = {
     handleFilterSelect(filter: Filter, selected: boolean) {
@@ -44,7 +44,7 @@ export function StaticFilters({
         answersActions.executeVerticalQuery();
       }
     },
-    filters
+    filters: displayableFilters
   };
 
   return (

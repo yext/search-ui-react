@@ -1,65 +1,40 @@
-import { AppliedQueryFilter, DisplayableFacet, SelectableFilter } from '@yext/answers-headless-react';
-import { DisplayableFilter } from '../models/displayableFilter';
-import { getFilterDisplayValue } from './filterutils';
+import {
+  AppliedQueryFilter,
+  DisplayableFacet,
+  SelectableFilter as DisplayableFilter,
+  DisplayableFacetOption
+} from '@yext/answers-headless-react';
 
 /**
- * Convert a list of facets to DisplayableFilter format with only selected facets returned.
+ * Convert a list of facets to DisplayableFilter format.
  */
-export function getDisplayableAppliedFacets(facets: DisplayableFacet[] | undefined): DisplayableFilter[] {
-  const appliedFacets: DisplayableFilter[] = [];
+export function getDisplayableFacets(facets: DisplayableFacet[] | undefined): DisplayableFilter[] {
+  const displayablefilters: DisplayableFilter[] = [];
   facets?.forEach(facet => {
-    facet.options.forEach(option => {
-      if (option.selected) {
-        appliedFacets.push({
-          filterType: 'FACET',
-          filter: {
-            fieldId: facet.fieldId,
-            matcher: option.matcher,
-            value: option.value
-          },
-          groupLabel: facet.displayName,
-          label: option.displayName
-        });
-      }
+    facet.options.forEach((option: DisplayableFacetOption) => {
+      displayablefilters.push({
+        fieldId: facet.fieldId,
+        matcher: option.matcher,
+        value: option.value,
+        displayName: option.displayName,
+        selected: option.selected
+      });
     });
   });
-  return appliedFacets;
-}
-
-/**
- * Convert an array of Selectablefilter to DisplayableFilter format with only selected filters returned.
- */
-export function getDisplayableStaticFilters(
-  staticFilters: SelectableFilter[] | undefined,
-  groupLabels: Record<string, string>
-): DisplayableFilter[] {
-  const appliedStaticFilters: DisplayableFilter[] = [];
-  staticFilters && staticFilters.forEach(selectableFilter => {
-    const { selected, ...filter } = selectableFilter;
-    if (selected) {
-      appliedStaticFilters.push({
-        filterType: 'STATIC_FILTER',
-        filter: filter,
-        groupLabel: groupLabels?.[filter.fieldId] || filter.fieldId,
-        label: getFilterDisplayValue(filter)
-      });
-    }
-  });
-  return appliedStaticFilters;
+  return displayablefilters;
 }
 
 /**
  * Convert a list of nlp filters to DisplayableFilter format.
  */
 export function getDisplayableNlpFilters(filters: AppliedQueryFilter[]): DisplayableFilter[] {
-  const appliedNlpFilters: DisplayableFilter[] = [];
+  const displayablefilters: DisplayableFilter[] = [];
   filters?.forEach(filter => {
-    appliedNlpFilters.push({
-      filterType: 'NLP_FILTER',
-      filter: filter.filter,
-      groupLabel: filter.displayKey,
-      label: filter.displayValue,
+    displayablefilters.push({
+      ...filter.filter,
+      displayName: filter.displayValue,
+      selected: true
     });
   });
-  return appliedNlpFilters;
+  return displayablefilters;
 }
