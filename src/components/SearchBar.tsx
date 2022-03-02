@@ -190,11 +190,12 @@ export function SearchBar({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
-  const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(() => {
-    return isVertical
+  const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
+    () => isVertical
       ? answersActions.executeVerticalAutocomplete()
-      : answersActions.executeUniversalAutocomplete();
-  });
+      : answersActions.executeUniversalAutocomplete(),
+    (e) => console.error('Unable to execute an autocomplete request.\n', e)
+  );
   const [
     executeQueryWithNearMeHandling,
     autocompletePromiseRef,
