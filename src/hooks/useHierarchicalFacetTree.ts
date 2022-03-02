@@ -25,19 +25,19 @@ export type HierarchicalFacetNode = {
  */
 export function useHierarchicalFacetTree(
   hierarchicalFacet: DisplayableFacet,
-  divider: string
+  delimiter: string
 ): HierarchicalFacetTree {
   return useMemo(() => {
-    return parseHierarchicalFacetTree(hierarchicalFacet, divider);
-  }, [divider, hierarchicalFacet]);
+    return parseHierarchicalFacetTree(hierarchicalFacet, delimiter);
+  }, [delimiter, hierarchicalFacet]);
 }
 
 function parseHierarchicalFacetTree(
   hierarchicalFacet: DisplayableFacet,
-  divider: string
+  delimiter: string
 ): HierarchicalFacetTree {
   const optionsInAscendingLength = hierarchicalFacet?.options.map(o => {
-    const displayNameTokens = o.displayName.split(divider).map(s => s.trim());
+    const displayNameTokens = o.displayName.split(delimiter).map(s => s.trim());
     return {
       ...o,
       displayNameTokens

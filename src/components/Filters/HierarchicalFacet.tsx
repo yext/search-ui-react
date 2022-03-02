@@ -13,8 +13,8 @@ import { useFiltersContext } from './FiltersContext';
 export interface HierarchicalFacetProps {
   /** The `DisplayableFacet` to render as a HierarchicalFacet */
   facet: DisplayableFacet,
-  /** The divider for determining hierarchies, defaults to "\>" */
-  divider?: string,
+  /** The delimiter for determining hierarchies, defaults to "\>" */
+  delimiter?: string,
   /** The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4 */
   showMoreLimit?: number,
   /** CSS classes for customizing the component styling of {@link Filters.HierarchicalFacetCssClasses} */
@@ -52,20 +52,20 @@ const builtInCssClasses: Required<HierarchicalFacetCssClasses> = {
  * A HierarchicalFacet takes a `DisplayableFacet` and renders the facet in a way
  * to represent multiple levels of "hierarchies".
  *
- * The hierarchies are determined by the provided divider, which defaults to "\>".
+ * The hierarchies are determined by the provided delimiter, which defaults to "\>".
  *
  * @public
  */
 export function HierarchicalFacet({
   facet,
-  divider = '>',
+  delimiter = '>',
   showMoreLimit = 4,
   customCssClasses,
   cssCompositionMethod
 }: HierarchicalFacetProps): JSX.Element {
   const cssClasses = useComposedCssClasses(
     builtInCssClasses, customCssClasses, cssCompositionMethod);
-  const tree = useHierarchicalFacetTree(facet, divider);
+  const tree = useHierarchicalFacetTree(facet, delimiter);
   const [isShowingMore, setIsShowingMore] = useState(false);
   const resetShowMore = () => setIsShowingMore(false);
 
