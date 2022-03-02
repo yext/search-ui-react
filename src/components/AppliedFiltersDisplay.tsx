@@ -27,11 +27,11 @@ export interface AppliedFiltersDisplayProps {
  */
 export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
   const { displayableFilters, cssClasses = {} } = props;
+  const { nlpFilters = [], staticFilters = [], facets = [] } = displayableFilters;
   const answersActions = useAnswersActions();
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
-  const hasAppliedFilters = Object.values(displayableFilters)
-    .some((filters: DisplayableFilter[] | undefined) => filters && filters.length > 0);
+  const hasAppliedFilters = (nlpFilters.length + staticFilters.length + facets.length) > 0;
   if (!hasAppliedFilters) {
     return null;
   }
@@ -60,16 +60,13 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     answersActions.executeVerticalQuery();
   };
 
-
-  const hasRemovableFilters = (displayableFilters.facets && displayableFilters.facets.length > 0)
-    || (displayableFilters.staticFilters && displayableFilters.staticFilters.length > 0);
-
+  const hasRemovableFilters = (staticFilters.length + facets.length) > 0;
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
-      {displayableFilters.nlpFilters?.map(filter =>
+      {nlpFilters.map(filter =>
         <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses}/>
       )}
-      {displayableFilters.facets?.map(filter =>
+      {facets.map(filter =>
         <RemovableFilter
           filter={filter}
           onRemoveFilter={onRemoveFacetOption}
@@ -77,7 +74,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
           cssClasses={cssClasses}
         />
       )}
-      {displayableFilters.staticFilters?.map(filter =>
+      {staticFilters.map(filter =>
         <RemovableFilter
           filter={filter}
           onRemoveFilter={onRemoveStaticFilterOption}
