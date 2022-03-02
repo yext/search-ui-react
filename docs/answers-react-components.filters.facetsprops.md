@@ -18,5 +18,5 @@ export interface FacetsProps
 |  --- | --- | --- |
 |  [children?](./answers-react-components.filters.facetsprops.children.md) | (facets: DisplayableFacet\[\]) =&gt; ReactNode | <i>(Optional)</i> A function which renders the Facets UI with the provided facets data. |
 |  [className?](./answers-react-components.filters.facetsprops.classname.md) | string | <i>(Optional)</i> CSS class names applied to the component's container div. |
-|  [searchOnChange?](./answers-react-components.filters.facetsprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is ran when a filter is selected. |
+|  [searchOnChange?](./answers-react-components.filters.facetsprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |
 

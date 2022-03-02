@@ -1,6 +1,6 @@
 import { useAnswersActions, useAnswersState, SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
-import { FiltersContext } from './FiltersContext';
+import { FiltersContext, FiltersContextType } from './FiltersContext';
 
 /**
  * Props for the {@link Filters.StaticFilters}.
@@ -9,7 +9,9 @@ import { FiltersContext } from './FiltersContext';
  */
 export type StaticFiltersProps = PropsWithChildren<{
   /** CSS class names applied to the StaticFilter's container div. */
-  className?: string
+  className?: string,
+  /** Whether or not a search is automatically run when a filter is selected. Defaults to true. */
+  searchOnChange?: boolean
 }>;
 
 /**
@@ -23,22 +25,26 @@ export type StaticFiltersProps = PropsWithChildren<{
  *
  * @public
  */
-export function StaticFilters(props: StaticFiltersProps): JSX.Element {
-  const {
-    children,
-    className = 'md:w-40'
-  } = props;
+export function StaticFilters({
+  children,
+  className = 'md:w-40',
+  searchOnChange = true
+}: StaticFiltersProps): JSX.Element {
   const answersActions = useAnswersActions();
   const displayableFilters = useAnswersState(state => state.filters.static) || [];
 
-  const filtersContextInstance = {
-    filters: displayableFilters,
-    handleFilterSelect: (filter: DisplayableFilter, selected: boolean) => {
-      answersActions.setOffset(0);
-      answersActions.resetFacets();
-      answersActions.setFilterOption({ ...filter, selected });
-      answersActions.executeVerticalQuery();
-    }
+  const filtersContextInstance: FiltersContextType = {
+    selectFilter(filter: DisplayableFilter) {
+      answersActions.setFilterOption({ ...filter });
+    },
+    applyFilters() {
+      if (searchOnChange) {
+        answersActions.setOffset(0);
+        answersActions.resetFacets();
+        answersActions.executeVerticalQuery();
+      }
+    },
+    filters: displayableFilters
   };
 
   return (

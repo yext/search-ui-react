@@ -245,7 +245,7 @@ export function executeSearch(answersActions: AnswersActions, isVertical: boolea
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-function Facets(props: FacetsProps): JSX.Element;
+function Facets({ children, className, searchOnChange }: FacetsProps): JSX.Element;
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
@@ -328,7 +328,10 @@ declare namespace Filters {
         SearchInput,
         SearchInputProps,
         StaticFilters,
-        StaticFiltersProps
+        StaticFiltersProps,
+        HierarchicalFacet,
+        HierarchicalFacetProps,
+        HierarchicalFacetCssClasses
     }
 }
 export { Filters }
@@ -338,8 +341,9 @@ const FiltersContext: Context<FiltersContextType | null>;
 
 // @public
 interface FiltersContextType {
+    applyFilters: () => void;
     filters: SelectableFilter[];
-    handleFilterSelect: (filter: SelectableFilter, checked: boolean) => void;
+    selectFilter: (filter: SelectableFilter) => void;
 }
 
 // @public
@@ -384,6 +388,43 @@ export function getSearchIntents(answersActions: AnswersActions, isVertical: boo
 
 // @public
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
+
+// @public
+function HierarchicalFacet({ facet, delimiter, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface HierarchicalFacetCssClasses {
+    // (undocumented)
+    allCategoriesOption___active?: string;
+    // (undocumented)
+    allCategoriesOption___inactive?: string;
+    // (undocumented)
+    availableOption__active?: string;
+    // (undocumented)
+    availableOption__inactive?: string;
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    currentCategory?: string;
+    // (undocumented)
+    parentCategory?: string;
+    // (undocumented)
+    showMoreButton?: string;
+}
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface HierarchicalFacetProps {
+    cssCompositionMethod?: CompositionMethod;
+    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+    customCssClasses?: HierarchicalFacetCssClasses;
+    delimiter?: string;
+    facet: DisplayableFacet;
+    showMoreLimit?: number;
+}
 
 // @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
@@ -627,13 +668,14 @@ export interface StandardSectionCssClasses {
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-function StaticFilters(props: StaticFiltersProps): JSX.Element;
+function StaticFilters({ children, className, searchOnChange }: StaticFiltersProps): JSX.Element;
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
 type StaticFiltersProps = PropsWithChildren<{
     className?: string;
+    searchOnChange?: boolean;
 }>;
 
 // @public
