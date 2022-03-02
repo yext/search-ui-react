@@ -1,5 +1,10 @@
 import { CloseIcon } from '../icons/CloseIcon';
-import { useAnswersActions, SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
+import {
+  useAnswersActions,
+  SelectableFilter as DisplayableFilter,
+  useAnswersState,
+  SearchTypeEnum
+} from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { GroupedFilters } from '../models/groupedFilters';
@@ -23,6 +28,7 @@ export interface AppliedFiltersDisplayProps {
 export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
   const { displayableFilters, cssClasses = {} } = props;
   const answersActions = useAnswersActions();
+  const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
   const hasAppliedFilters = Object.values(displayableFilters)
     .some((filters: DisplayableFilter[] | undefined) => filters && filters.length > 0);
@@ -47,27 +53,41 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     answersActions.executeVerticalQuery();
   };
 
+  const onClickClearAllButton = () => {
+    answersActions.setOffset(0);
+    answersActions.resetFacets();
+    answersActions.setStaticFilters([]);
+    answersActions.executeVerticalQuery();
+  };
+
+  let hasRemovableFilters = false;
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
       {displayableFilters.nlpFilters?.map(filter =>
         <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses}/>
       )}
-      {displayableFilters.facets?.map(filter =>
-        <RemovableFilter
+      {displayableFilters.facets?.map(filter => {
+        hasRemovableFilters = true;
+        return <RemovableFilter
           filter={filter}
           onRemoveFilter={onRemoveFacetOption}
           key={filter.displayName}
           cssClasses={cssClasses}
-        />
-      )}
-      {displayableFilters.staticFilters?.map(filter =>
-        <RemovableFilter
+        />;
+      })}
+      {displayableFilters.staticFilters?.map(filter => {
+        hasRemovableFilters = true;
+        return <RemovableFilter
           filter={filter}
           onRemoveFilter={onRemoveStaticFilterOption}
           key={filter.displayName}
           cssClasses={cssClasses}
-        />
-      )}
+        />;
+      })}
+      {isVertical && hasRemovableFilters &&
+        <button onClick={onClickClearAllButton} className={cssClasses.clearAllButton}>
+          Clear All
+        </button>}
     </div>
   );
 }
