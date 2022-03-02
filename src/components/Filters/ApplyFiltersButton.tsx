@@ -1,5 +1,10 @@
 import { useAnswersActions } from '@yext/answers-headless-react';
 
+/**
+ * Props for {@link Filters.ApplyFiltersButton}
+ *
+ * @public
+ */
 export interface ApplyFiltersButtonProps {
   /** The css classes for the button */
   className?: string
@@ -10,6 +15,8 @@ export interface ApplyFiltersButtonProps {
 /**
  * Runs a vertical search.
  * By default has `position: sticky` styling that anchors it to the bottom of the page.
+ *
+ * @public
  */
 export function ApplyFiltersButton({
   className = 'border border-gray-300 px-2.5 py-1 rounded-md text-primary-600 bg-white shadow-md sticky bottom-3',
