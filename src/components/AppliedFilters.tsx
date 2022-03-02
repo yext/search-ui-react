@@ -74,12 +74,18 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     hiddenFields = ['builtin.entityType'],
     customCssClasses = {},
     cssCompositionMethod,
-    ...otherProps
+    hierarchicalFacetsDelimiter,
+    hierarchicalFacetsFieldIds
   } = props;
-  const appliedFilters: GroupedFilters = pruneAppliedFilters(filterState.current, nlpFilters, hiddenFields);
+  const appliedFilters: GroupedFilters = pruneAppliedFilters(
+    filterState.current, nlpFilters, hiddenFields, props.hierarchicalFacetsFieldIds);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
   });
-  return <AppliedFiltersDisplay displayableFilters={appliedFilters} cssClasses={cssClasses} {...otherProps}/>;
+  return <AppliedFiltersDisplay
+    displayableFilters={appliedFilters}
+    cssClasses={cssClasses}
+    hierarchicalFacetsDelimiter={hierarchicalFacetsDelimiter}
+  />;
 }

@@ -7,7 +7,7 @@ import {
 } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
-import { GroupedFilters } from '../models/groupedFilters';
+import { DisplayableHierarchicalFacet, GroupedFilters } from '../models/groupedFilters';
 
 /**
  * Properties for {@link AppliedFilters}.
@@ -15,8 +15,6 @@ import { GroupedFilters } from '../models/groupedFilters';
 export interface AppliedFiltersDisplayProps {
   /** Sets of categorized filters to construct the applied filter tags from. */
   displayableFilters: GroupedFilters,
-  /** A set of facet fieldIds that should be interpreted as "hierarchical". */
-  hierarchicalFacetFieldIds?: string[],
   /** The delimiter used for hierarchical facets. */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
@@ -32,11 +30,10 @@ export interface AppliedFiltersDisplayProps {
 export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
   const {
     displayableFilters,
-    hierarchicalFacetFieldIds,
     hierarchicalFacetsDelimiter,
     cssClasses = {}
   } = props;
-  const { nlpFilters = [], staticFilters = [], facets = [] } = displayableFilters;
+  const { nlpFilters = [], staticFilters = [], facets = [], hierarchicalFacets = [] } = displayableFilters;
   const answersActions = useAnswersActions();
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
@@ -51,15 +48,18 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
       console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
       return;
     }
-    if (typeof value !== 'string') {
-      console.error('Hierarchical Facets must have value of type "string"');
+    answersActions.setOffset(0);
+    answersActions.setFacetOption(fieldId, { matcher, value }, false);
+    answersActions.executeVerticalQuery();
+  };
+
+  const onRemoveHierarchicalFacetOption = (filter: DisplayableHierarchicalFacet) => {
+    const { fieldId, matcher, value, parentFacet } = filter;
+    if (isNearFilterValue(value)) {
+      console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
       return;
     }
     answersActions.setOffset(0);
-    if (hierarchicalFacetFieldIds?.includes(fieldId)) {
-      facets.filter(f => f.value.includes(value)).forEach(f => {
-      })
-    }
     answersActions.setFacetOption(fieldId, { matcher, value }, false);
     answersActions.executeVerticalQuery();
   };
@@ -77,28 +77,25 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     answersActions.executeVerticalQuery();
   };
 
+  const removableFilterWith =
+    <F extends DisplayableFilter>(onRemoveFilter: OnRemoveFilter<F>) =>
+      (filter: F) =>
+        <RemovableFilter
+          filter={filter}
+          onRemoveFilter={onRemoveFilter}
+          key={filter.displayName}
+          cssClasses={cssClasses}
+        />;
+
   const hasRemovableFilters = (staticFilters.length + facets.length) > 0;
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
       {nlpFilters.map(filter =>
-        <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses}/>
+        <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses} />
       )}
-      {facets.map(filter =>
-        <RemovableFilter
-          filter={filter}
-          onRemoveFilter={onRemoveFacetOption}
-          key={filter.displayName}
-          cssClasses={cssClasses}
-        />
-      )}
-      {staticFilters.map(filter =>
-        <RemovableFilter
-          filter={filter}
-          onRemoveFilter={onRemoveStaticFilterOption}
-          key={filter.displayName}
-          cssClasses={cssClasses}
-        />
-      )}
+      {hierarchicalFacets.map(removableFilterWith(onRemoveHierarchicalFacetOption))}
+      {facets.map(removableFilterWith(onRemoveFacetOption))}
+      {staticFilters.map(removableFilterWith(onRemoveStaticFilterOption))}
       {isVertical && hasRemovableFilters &&
         <button onClick={onClickClearAllButton} className={cssClasses.clearAllButton}>
           Clear All
@@ -108,16 +105,18 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   );
 }
 
-function RemovableFilter({ filter, onRemoveFilter, cssClasses }: {
-  filter: DisplayableFilter,
-  onRemoveFilter: (filter: DisplayableFilter) => void
+type OnRemoveFilter<F extends DisplayableFilter> = (filter: F) => void;
+
+function RemovableFilter<F extends DisplayableFilter>({ filter, onRemoveFilter, cssClasses }: {
+  filter: F,
+  onRemoveFilter: OnRemoveFilter<F>
   cssClasses: AppliedFiltersCssClasses
 }): JSX.Element {
   return (
     <div className={cssClasses.removableFilter}>
       <div className={cssClasses.filterLabel}>{filter.displayName}</div>
       <button className={cssClasses.removeFilterButton} onClick={() => onRemoveFilter(filter)}>
-        <CloseIcon/>
+        <CloseIcon />
       </button>
     </div>
   );
