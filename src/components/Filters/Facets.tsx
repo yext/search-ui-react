@@ -1,6 +1,5 @@
 import {
   DisplayableFacet,
-  Filter,
   SelectableFilter as DisplayableFilter,
   useAnswersActions,
   useAnswersState
