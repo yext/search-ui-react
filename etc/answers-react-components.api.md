@@ -343,7 +343,7 @@ const FiltersContext: Context<FiltersContextType | null>;
 interface FiltersContextType {
     applyFilters: () => void;
     filters: SelectableFilter[];
-    handleFilterSelect: (filter: SelectableFilter, checked: boolean) => void;
+    handleFilterSelect: (filter: SelectableFilter) => void;
 }
 
 // @public
