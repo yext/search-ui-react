@@ -18,5 +18,5 @@ export interface FiltersContextType
 |  --- | --- | --- |
 |  [applyFilters](./answers-react-components.filters.filterscontexttype.applyfilters.md) | () =&gt; void | A function called when filters should be applied. |
 |  [filters](./answers-react-components.filters.filterscontexttype.filters.md) | DisplayableFilter\[\] | The list of DisplayableFilter provided by the context. |
-|  [handleFilterSelect](./answers-react-components.filters.filterscontexttype.handlefilterselect.md) | (filter: DisplayableFilter) =&gt; void | A function called when a filter is selected. |
+|  [selectFilter](./answers-react-components.filters.filterscontexttype.selectfilter.md) | (filter: DisplayableFilter) =&gt; void | A function called when a filter is selected. |
 
