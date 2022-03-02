@@ -91,6 +91,8 @@ export interface AppliedFiltersProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: AppliedFiltersCssClasses;
     hiddenFields?: Array<string>;
+    hierarchicalFacetsDelimiter?: string;
+    hierarchicalFacetsFieldIds?: string[];
 }
 
 // @public
