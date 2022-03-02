@@ -390,7 +390,7 @@ export function getSearchIntents(answersActions: AnswersActions, isVertical: boo
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
 
 // @public
-function HierarchicalFacet({ facet, divider, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetProps): JSX.Element;
+function HierarchicalFacet({ facet, delimiter, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetProps): JSX.Element;
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
@@ -419,7 +419,7 @@ interface HierarchicalFacetProps {
     cssCompositionMethod?: CompositionMethod;
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     customCssClasses?: HierarchicalFacetCssClasses;
-    divider?: string;
+    delimiter?: string;
     facet: DisplayableFacet;
     showMoreLimit?: number;
 }

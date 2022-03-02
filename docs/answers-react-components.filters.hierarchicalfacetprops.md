@@ -18,7 +18,7 @@ export interface HierarchicalFacetProps
 |  --- | --- | --- |
 |  [cssCompositionMethod?](./answers-react-components.filters.hierarchicalfacetprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.filters.hierarchicalfacetprops.customcssclasses.md) | HierarchicalFacetCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling of [Filters.HierarchicalFacetCssClasses](./answers-react-components.filters.hierarchicalfacetcssclasses.md) |
-|  [divider?](./answers-react-components.filters.hierarchicalfacetprops.divider.md) | string | <i>(Optional)</i> The divider for determining hierarchies, defaults to "<!-- -->&gt;<!-- -->" |
+|  [delimiter?](./answers-react-components.filters.hierarchicalfacetprops.delimiter.md) | string | <i>(Optional)</i> The delimiter for determining hierarchies, defaults to "<!-- -->&gt;<!-- -->" |
 |  [facet](./answers-react-components.filters.hierarchicalfacetprops.facet.md) | DisplayableFacet | The <code>DisplayableFacet</code> to render as a HierarchicalFacet |
 |  [showMoreLimit?](./answers-react-components.filters.hierarchicalfacetprops.showmorelimit.md) | number | <i>(Optional)</i> The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4 |
 

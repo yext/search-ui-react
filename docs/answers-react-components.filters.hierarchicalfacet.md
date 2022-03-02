@@ -6,19 +6,19 @@
 
 A HierarchicalFacet takes a `DisplayableFacet` and renders the facet in a way to represent multiple levels of "hierarchies".
 
-The hierarchies are determined by the provided divider, which defaults to "<!-- -->&gt;<!-- -->".
+The hierarchies are determined by the provided delimiter, which defaults to "<!-- -->&gt;<!-- -->".
 
 <b>Signature:</b>
 
 ```typescript
-export declare function HierarchicalFacet({ facet, divider, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetProps): JSX.Element;
+export declare function HierarchicalFacet({ facet, delimiter, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { facet, divider, showMoreLimit, customCssClasses, cssCompositionMethod } | HierarchicalFacetProps |  |
+|  { facet, delimiter, showMoreLimit, customCssClasses, cssCompositionMethod } | HierarchicalFacetProps |  |
 
 <b>Returns:</b>
 
