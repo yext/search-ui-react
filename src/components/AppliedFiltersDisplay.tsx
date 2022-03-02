@@ -15,6 +15,10 @@ import { GroupedFilters } from '../models/groupedFilters';
 export interface AppliedFiltersDisplayProps {
   /** Sets of categorized filters to construct the applied filter tags from. */
   displayableFilters: GroupedFilters,
+  /** A set of facet fieldIds that should be interpreted as "hierarchical". */
+  hierarchicalFacetFieldIds?: string[],
+  /** The delimiter used for hierarchical facets. */
+  hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses
 }
@@ -26,7 +30,12 @@ export interface AppliedFiltersDisplayProps {
  * @returns A React element for the applied filters
  */
 export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
-  const { displayableFilters, cssClasses = {} } = props;
+  const {
+    displayableFilters,
+    hierarchicalFacetFieldIds,
+    hierarchicalFacetsDelimiter,
+    cssClasses = {}
+  } = props;
   const { nlpFilters = [], staticFilters = [], facets = [] } = displayableFilters;
   const answersActions = useAnswersActions();
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
@@ -42,7 +51,15 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
       console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
       return;
     }
+    if (typeof value !== 'string') {
+      console.error('Hierarchical Facets must have value of type "string"');
+      return;
+    }
     answersActions.setOffset(0);
+    if (hierarchicalFacetFieldIds?.includes(fieldId)) {
+      facets.filter(f => f.value.includes(value)).forEach(f => {
+      })
+    }
     answersActions.setFacetOption(fieldId, { matcher, value }, false);
     answersActions.executeVerticalQuery();
   };

@@ -39,6 +39,10 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
 export interface AppliedFiltersProps {
   /** List of filters that should not be displayed. By default, builtin.entityType will be hidden. */
   hiddenFields?: Array<string>,
+  /** A set of facet fieldIds that should be interpreted as "hierarchical". */
+  hierarchicalFacetsFieldIds?: string[],
+  /** The delimiter used for hierarchical facets. */
+  hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AppliedFiltersCssClasses,
   /** {@inheritDoc CompositionMethod} */

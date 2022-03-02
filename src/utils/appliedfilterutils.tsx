@@ -46,11 +46,12 @@ export function pruneAppliedFilters(
   hiddenFields: string[]
 ): GroupedFilters {
   const displayableStaticFilters = appliedFiltersState?.static?.filter(filter => filter.selected) || [];
-  const displayableFacets = getDisplayableFacets(appliedFiltersState?.facets).filter(facet => facet.selected);
+  const [displayableFacets, displayableHierarchicalFacets] = getDisplayableFacets(appliedFiltersState?.facets).filter(facet => facet.selected);
+  const selectedDisplayableFacets = 
   const displayableNlpFilters = getDisplayableNlpFilters(nlpFilters);
 
   const prunedStaticFilters = filterHiddenFields(displayableStaticFilters, hiddenFields);
-  const prunedFacets = filterHiddenFields(displayableFacets, hiddenFields);
+  const [prunedFacets = filterHiddenFields(displayableFacets, hiddenFields);
   const prunedNlpFilters = pruneNlpFilters(
     displayableNlpFilters,
     [...prunedStaticFilters, ...prunedFacets],
