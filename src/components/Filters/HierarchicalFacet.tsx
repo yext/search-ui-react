@@ -198,7 +198,7 @@ function AvailableOption(props: {
 }) {
   const { fieldId, currentNode, activeClassName, inactiveClassName, resetShowMore, childNodes } = props;
   const { applyFilters, handleFilterSelect } = useFiltersContext();
-  const { selected, lastDisplayNameToken } = currentNode;
+  const { selected, lastDisplayNameToken, facetOption } = currentNode;
 
   return (
     <button
@@ -210,7 +210,7 @@ function AvailableOption(props: {
           fieldId
         }));
         !selected && handleFilterSelect({
-          ...currentNode.facetOption,
+          ...facetOption,
           selected: true,
           fieldId
         });
