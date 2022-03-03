@@ -46,7 +46,6 @@ export function getDisplayableHierarchicalFacets(
       const displayNameTokens = option.displayName.split(delimiter).map(t => t.trim());
       displayableFacets.push({
         ...convertFacetOption(facet.fieldId, option),
-        value: option.value,
         parentFacet: facet,
         lastDisplayNameToken: displayNameTokens[displayNameTokens.length - 1],
         displayNameTokens
@@ -57,14 +56,14 @@ export function getDisplayableHierarchicalFacets(
   return displayableFacets;
 }
 
-function convertFacetOption(fieldId: string, option: DisplayableFacetOption) {
+function convertFacetOption<F extends DisplayableFilter>(fieldId: string, option: DisplayableFacetOption) {
   return {
     fieldId: fieldId,
     matcher: option.matcher,
     value: option.value,
     displayName: option.displayName,
     selected: option.selected
-  };
+  } as F;
 }
 
 /**
