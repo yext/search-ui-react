@@ -67,7 +67,7 @@ export function SpellCheck({
         answersActions.setQuery(correctedQuery);
         onClick
           ? onClick({ correctedQuery, verticalKey })
-          : executeSearch(answersActions, !!verticalKey);
+          : executeSearch(answersActions);
       }}>{correctedQuery}</button>
     </div>
   );

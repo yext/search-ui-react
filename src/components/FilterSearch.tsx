@@ -80,7 +80,7 @@ export function FilterSearch({
     executeFilterSearch
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
     inputValue => answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
-    (e) => console.error('Unable to execute a filter search request.\n', e)
+    (e) => console.error('Error occured executing afilter search request.\n', e)
   );
   const sections = filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
   const hasResults = sections.flatMap(s => s.results).length > 0;

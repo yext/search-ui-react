@@ -39,6 +39,7 @@ import { renderAutocompleteResult,
 } from './utils/renderAutocompleteResult';
 import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
+import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-3',
@@ -189,12 +190,9 @@ export function SearchBar({
   const query = useAnswersState(state => state.query.input) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
-
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
-    () => isVertical
-      ? answersActions.executeVerticalAutocomplete()
-      : answersActions.executeUniversalAutocomplete(),
-    (e) => console.error('Unable to execute an autocomplete request.\n', e)
+    () => executeAutocompleteSearch(answersActions),
+    (e) => console.log('failed from searchbar autocomplete', e)
   );
   const [
     executeQueryWithNearMeHandling,
