@@ -4,7 +4,7 @@
 
 ## executeAutocomplete() function
 
-Executes a universal/vertical autocomplete search.
+Executes a universal/vertical autocomplete search and return the corresponding response.
 
 <b>Signature:</b>
 
