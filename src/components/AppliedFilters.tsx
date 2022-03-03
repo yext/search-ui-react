@@ -42,7 +42,7 @@ export interface AppliedFiltersProps {
   hiddenFields?: Array<string>,
   /** A set of facet fieldIds that should be interpreted as "hierarchical". */
   hierarchicalFacetsFieldIds?: string[],
-  /** The delimiter used for hierarchical facets. Defaults to "\>" */
+  /** {@inheritDoc Filters.HierarchicalFacetProps.delimiter} */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AppliedFiltersCssClasses,
@@ -85,7 +85,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
   });
   return <AppliedFiltersDisplay
-    displayableFilters={appliedFilters}
+    {...appliedFilters}
     cssClasses={cssClasses}
     hierarchicalFacetsDelimiter={hierarchicalFacetsDelimiter}
   />;

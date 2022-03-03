@@ -7,15 +7,22 @@ import {
 } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
-import { DisplayableHierarchicalFacet, GroupedFilters } from '../models/groupedFilters';
+import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
+import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
 
 /**
  * Properties for {@link AppliedFilters}.
  */
 export interface AppliedFiltersDisplayProps {
-  /** Sets of categorized filters to construct the applied filter tags from. */
-  displayableFilters: GroupedFilters,
-  /** The delimiter used for hierarchical facets. Defaults to "\>" */
+  /** Filters that are applied to the search results from static filters and filter search. */
+  staticFilters?: DisplayableFilter[],
+  /** Filters that are applied to the search results from facets. */
+  facets?: DisplayableFilter[],
+  /** Filters that are applied to the search results from hierarchical facets. */
+  hierarchicalFacets?: DisplayableHierarchicalFacet[],
+  /** Filters that are applied to the search results from the backend's natural language processing. */
+  nlpFilters?: DisplayableFilter[]
+  /** {@inheritDoc Filters.HierarchicalFacetProps.delimiter} */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses
@@ -29,15 +36,17 @@ export interface AppliedFiltersDisplayProps {
  */
 export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
   const {
-    displayableFilters,
-    hierarchicalFacetsDelimiter,
+    nlpFilters = [],
+    staticFilters = [],
+    facets = [],
+    hierarchicalFacets = [],
+    hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
     cssClasses = {}
   } = props;
-  const { nlpFilters = [], staticFilters = [], facets = [], hierarchicalFacets = [] } = displayableFilters;
   const answersActions = useAnswersActions();
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
-  const hasAppliedFilters =(
+  const hasAppliedFilters = (
     nlpFilters.length + staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
   if (!hasAppliedFilters) {
     return null;
@@ -55,9 +64,6 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   };
 
   const onRemoveHierarchicalFacetOption = (filter: DisplayableHierarchicalFacet) => {
-    if (!hierarchicalFacetsDelimiter) {
-      return;
-    }
     const { fieldId, parentFacet, displayNameTokens, lastDisplayNameToken } = filter;
     const displayName = filter.displayName.trim();
 

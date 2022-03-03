@@ -10,7 +10,7 @@ export interface GroupedFilters {
   facets?: DisplayableFilter[],
   /** Filters that are applied to the search results from hierarchical facets. */
   hierarchicalFacets?: DisplayableHierarchicalFacet[],
-  /** Filters that are applied to the search results from backend. */
+  /** Filters that are applied to the search results from the backend's natural language processing. */
   nlpFilters?: DisplayableFilter[]
 }
 

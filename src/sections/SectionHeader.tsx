@@ -114,7 +114,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
         resultsCount={resultsCountConfig.resultsCount}
       />} */}
       {appliedQueryFilters &&
-        <AppliedFiltersDisplay displayableFilters={{ nlpFilters }} cssClasses={cssClasses} />
+        <AppliedFiltersDisplay nlpFilters={nlpFilters} cssClasses={cssClasses} />
       }
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>

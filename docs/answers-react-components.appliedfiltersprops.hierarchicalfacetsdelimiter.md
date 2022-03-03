@@ -4,7 +4,7 @@
 
 ## AppliedFiltersProps.hierarchicalFacetsDelimiter property
 
-The delimiter used for hierarchical facets. Defaults to "<!-- -->&gt;<!-- -->"
+The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->"
 
 <b>Signature:</b>
 

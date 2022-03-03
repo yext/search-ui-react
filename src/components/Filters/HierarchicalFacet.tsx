@@ -13,7 +13,7 @@ import { useFiltersContext } from './FiltersContext';
 export interface HierarchicalFacetProps {
   /** The `DisplayableFacet` to render as a HierarchicalFacet */
   facet: DisplayableFacet,
-  /** The delimiter for determining hierarchies, defaults to "\>" */
+  /** The delimiter for determining facet hierarchies, defaults to "\>" */
   delimiter?: string,
   /** The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4 */
   showMoreLimit?: number,
