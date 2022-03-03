@@ -9,15 +9,15 @@ const mockedResponse: QuestionSubmissionResponse = {
 /**
  * Generates a mocked QuestionSubmissionService using the provided response.
  *
- * @param respose - The QuestionSubmissionResponse to return for all requests. If one is not
+ * @param submissionResponse - The QuestionSubmissionResponse to return for all requests. If one is not
  * provided, a default will be used.
  */
 export function generateMockedQuestionSubmissionService(
-  respose?: QuestionSubmissionResponse): QuestionSubmissionService
+  submissionResponse?: QuestionSubmissionResponse): QuestionSubmissionService
 {
   return {
     submitQuestion: (request: QuestionSubmissionRequest) => {
-      const response = respose ? respose : mockedResponse;
+      const response = submissionResponse ? submissionResponse : mockedResponse;
       return Promise.resolve(response);
     }
   };
