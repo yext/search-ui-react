@@ -9,7 +9,7 @@ Executes a universal/vertical search.
 <b>Signature:</b>
 
 ```typescript
-export declare function executeSearch(answersActions: AnswersActions, isVertical: boolean): Promise<void>;
+export declare function executeSearch(answersActions: AnswersActions): Promise<void>;
 ```
 
 ## Parameters
@@ -17,7 +17,6 @@ export declare function executeSearch(answersActions: AnswersActions, isVertical
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  answersActions | AnswersActions |  |
-|  isVertical | boolean |  |
 
 <b>Returns:</b>
 
