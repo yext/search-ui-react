@@ -52,7 +52,7 @@ export async function executeSearch(answersActions: AnswersActions): Promise<voi
 }
 
 /**
- * Executes a universal/vertical autocomplete search.
+ * Executes a universal/vertical autocomplete search and return the corresponding response.
  *
  * @public
  */
