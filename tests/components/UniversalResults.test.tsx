@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { UniversalResults } from '../../src/components/UniversalResults';
 
-import { Matcher, MetaState, QueryState, SearchStatusState, Source, UniversalSearchState, VerticalResults, VerticalSearchState } from '@yext/answers-headless-react';
+import { Matcher, Source, State, VerticalResults } from '@yext/answers-headless-react';
 import { CtaData } from '../../src/components/cards/StandardCard';
 
 const mockedVertical1: VerticalResults = {
@@ -69,13 +69,7 @@ const mockedVertical3: VerticalResults = {
   verticalKey: 'vertical3'
 }
 
-const mockedState: {
-  universal: UniversalSearchState,
-  query: QueryState,
-  vertical: VerticalSearchState,
-  searchStatus: SearchStatusState,
-  meta: MetaState } =
-{
+const mockedState: Partial<State> = {
   universal: {
     verticals: [
       mockedVertical1,

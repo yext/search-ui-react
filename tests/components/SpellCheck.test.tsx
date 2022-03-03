@@ -1,17 +1,10 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { SpellCheckState } from '@yext/answers-headless/lib/esm/models/slices/spellcheck';
-import { VerticalSearchState } from '@yext/answers-headless/lib/esm/models/slices/vertical';
 import { SpellCheck } from '../../src/components/SpellCheck';
+import { State } from '@yext/answers-headless-react';
 
-import { SearchStatusState } from '@yext/answers-headless-react';
-
-const mockedState: {
-  spellCheck: SpellCheckState,
-  vertical: VerticalSearchState,
-  searchStatus: SearchStatusState } =
-{
+const mockedState: Partial<State> = {
   spellCheck: {
     correctedQuery: 'Correction',
     enabled: false
