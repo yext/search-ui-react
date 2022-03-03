@@ -16,7 +16,7 @@
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
-    "test": "jest --passWithNoTests"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",
@@ -67,6 +67,7 @@
     "testPathIgnorePatterns": [
       "<rootDir>/tests/setup/*"
     ],
+    "transformIgnorePatterns": ["/node_modules/(?!(@yext/answers-headless-react)/)"],
     "globals": {
       "ts-jest": {
         "tsconfig": "tsconfig.json"
