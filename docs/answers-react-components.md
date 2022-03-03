@@ -14,9 +14,10 @@
 |  [DirectAnswer(props)](./answers-react-components.directanswer.md) | Renders Direct Answers provided by the Answers API. |
 |  [DropdownItem(\_props)](./answers-react-components.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
 |  [EntityPreviews(\_)](./answers-react-components.entitypreviews.md) | EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews. It provides results corresponding to its verticalKey through a props.children Function as Compound Component (FACC). |
-|  [executeSearch(answersActions, isVertical)](./answers-react-components.executesearch.md) | Executes a universal/vertical search. |
+|  [executeAutocomplete(answersActions)](./answers-react-components.executeautocomplete.md) | Executes a universal/vertical autocomplete search. |
+|  [executeSearch(answersActions)](./answers-react-components.executesearch.md) | Executes a universal/vertical search. |
 |  [FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
-|  [getSearchIntents(answersActions, isVertical)](./answers-react-components.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
+|  [getSearchIntents(answersActions)](./answers-react-components.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./answers-react-components.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
 |  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch })](./answers-react-components.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
