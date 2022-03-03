@@ -39,6 +39,7 @@ import { renderAutocompleteResult,
 } from './utils/renderAutocompleteResult';
 import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
+import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-3',
@@ -189,16 +190,13 @@ export function SearchBar({
   const query = useAnswersState(state => state.query.input) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
-
-  const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(() => {
-    return isVertical
-      ? answersActions.executeVerticalAutocomplete()
-      : answersActions.executeUniversalAutocomplete();
-  });
+  const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
+    () => executeAutocompleteSearch(answersActions)
+  );
   const [
     executeQueryWithNearMeHandling,
     autocompletePromiseRef,
-  ] = useSearchWithNearMeHandling(answersActions, geolocationOptions, onSearch);
+  ] = useSearchWithNearMeHandling(geolocationOptions, onSearch);
   const [recentSearches, setRecentSearch, clearRecentSearches] = useRecentSearches(recentSearchesLimit);
   const filteredRecentSearches = recentSearches?.filter(search =>
     answersUtilities.isCloseMatch(search.query, query)

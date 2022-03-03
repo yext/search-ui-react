@@ -8,6 +8,7 @@ import {
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { GroupedFilters } from '../models/groupedFilters';
+import { executeSearch } from '../utils/search-operations';
 
 /**
  * Properties for {@link AppliedFilters}.
@@ -44,20 +45,20 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     }
     answersActions.setOffset(0);
     answersActions.setFacetOption(fieldId, { matcher, value }, false);
-    answersActions.executeVerticalQuery();
+    executeSearch(answersActions);
   };
 
   const onRemoveStaticFilterOption = (filter: DisplayableFilter) => {
     answersActions.setOffset(0);
     answersActions.setFilterOption({ ...filter, selected: false });
-    answersActions.executeVerticalQuery();
+    executeSearch(answersActions);
   };
 
   const onClickClearAllButton = () => {
     answersActions.setOffset(0);
     answersActions.resetFacets();
     answersActions.setStaticFilters([]);
-    answersActions.executeVerticalQuery();
+    executeSearch(answersActions);
   };
 
   const hasRemovableFilters = (staticFilters.length + facets.length) > 0;

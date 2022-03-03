@@ -10,6 +10,7 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AnswersActions } from '@yext/answers-headless-react';
 import { AnswersHeadless } from '@yext/answers-headless-react';
+import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { ComponentPropsWithRef } from 'react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
@@ -251,7 +252,10 @@ export interface EntityPreviewsProps {
 }
 
 // @public
-export function executeSearch(answersActions: AnswersActions, isVertical: boolean): Promise<void>;
+export function executeAutocomplete(answersActions: AnswersActions): Promise<AutocompleteResponse | undefined>;
+
+// @public
+export function executeSearch(answersActions: AnswersActions): Promise<void>;
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -399,7 +403,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function getSearchIntents(answersActions: AnswersActions, isVertical: boolean): Promise<SearchIntent[] | undefined>;
+export function getSearchIntents(answersActions: AnswersActions): Promise<SearchIntent[] | undefined>;
 
 // @public
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;

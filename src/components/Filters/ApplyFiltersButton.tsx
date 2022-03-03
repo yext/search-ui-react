@@ -1,4 +1,5 @@
 import { useAnswersActions } from '@yext/answers-headless-react';
+import { executeSearch } from '../../utils/search-operations';
 
 /**
  * Props for {@link Filters.ApplyFiltersButton}
@@ -26,7 +27,7 @@ export function ApplyFiltersButton({
 
   return (
     <button
-      onClick={() => answersActions.executeVerticalQuery()}
+      onClick={() => executeSearch(answersActions)}
       className={className}
     >
       {label}
