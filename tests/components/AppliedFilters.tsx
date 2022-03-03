@@ -3,8 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { FiltersState } from '@yext/answers-headless/lib/esm/models/slices/filters';
 import { VerticalSearchState } from '@yext/answers-headless/lib/esm/models/slices/vertical';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
-import { SearchStatusState } from '@yext/answers-headless-react';
-import { Matcher, MetaState, Source } from '@yext/answers-headless-react';
+import { SearchStatusState, Matcher, MetaState, Source } from '@yext/answers-headless-react';
 
 const mockedState: {
   filters: FiltersState,
