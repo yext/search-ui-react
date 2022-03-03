@@ -191,13 +191,12 @@ export function SearchBar({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
-    () => executeAutocompleteSearch(answersActions),
-    (e) => console.log('failed from searchbar autocomplete', e)
+    () => executeAutocompleteSearch(answersActions)
   );
   const [
     executeQueryWithNearMeHandling,
     autocompletePromiseRef,
-  ] = useSearchWithNearMeHandling(answersActions, geolocationOptions, onSearch);
+  ] = useSearchWithNearMeHandling(geolocationOptions, onSearch);
   const [recentSearches, setRecentSearch, clearRecentSearches] = useRecentSearches(recentSearchesLimit);
   const filteredRecentSearches = recentSearches?.filter(search =>
     answersUtilities.isCloseMatch(search.query, query)
