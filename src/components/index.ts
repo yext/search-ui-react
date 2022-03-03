@@ -64,7 +64,11 @@ export {
   PaginationCssClasses
 } from './VerticalResults';
 
-export * from './cards/StandardCard';
+export {
+  StandardCard,
+  StandardCardCssClasses,
+  StandardCardProps
+} from './cards/StandardCard';
 
 export {
   AlternativeVerticals,

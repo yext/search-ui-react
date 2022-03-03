@@ -83,7 +83,7 @@ const builtInCssClasses: StandardCardCssClasses = {
   feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium'
 };
 
-interface CtaData {
+export interface CtaData {
   label: string,
   link: string,
   linkType: string
