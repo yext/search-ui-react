@@ -31,6 +31,11 @@ jest.mock('@yext/answers-headless-react', () => ({
   }
 }));
 
+jest.mock('../../src/utils/search-operations', () => ({
+  __esModule: true,
+  executeSearch: jest.fn()
+}));
+
 describe('SpellCheck', () => {
   it('Suggestion is formatted properly', () => {
     const { getByText } = render(<SpellCheck />);
