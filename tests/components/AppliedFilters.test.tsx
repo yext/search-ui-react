@@ -83,6 +83,11 @@ jest.mock('@yext/answers-headless-react', () => {
   };
 });
 
+jest.mock('../../src/utils/search-operations', () => ({
+  __esModule: true,
+  executeSearch: jest.fn()
+}));
+
 describe('AppliedFilters', () => {
   it('Static filters are rendered', () => {
     const { getByText } = render(<AppliedFilters />);
