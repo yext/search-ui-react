@@ -16,7 +16,7 @@
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
-    "test": "jest --passWithNoTests"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",
@@ -36,6 +36,7 @@
     "jest": "^27.0.6",
     "msw": "^0.36.8",
     "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "typescript": "~4.4.3"
   },
   "peerDependencies": {
@@ -67,12 +68,16 @@
     "testPathIgnorePatterns": [
       "<rootDir>/tests/setup/*"
     ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(@yext/answers-headless-react)/)"
+    ],
     "globals": {
       "ts-jest": {
         "tsconfig": "tsconfig.json"
       }
     },
-    "resetMocks": true
+    "resetMocks": true,
+    "restoreMocks": true
   },
   "dependencies": {
     "@css-modules-theme/core": "^2.3.0",
