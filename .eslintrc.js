@@ -1,7 +1,8 @@
 module.exports = {
   extends: [
     'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended'
+    'plugin:react-hooks/recommended',
+    'plugin:react-perf/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -9,7 +10,8 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'eslint-plugin-import'
+    'eslint-plugin-import',
+    'react-perf'
   ],
   rules: {
     indent: ['warn', 2, { SwitchCase: 1 }],
