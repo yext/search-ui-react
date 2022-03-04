@@ -1,6 +1,7 @@
 import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
+import { executeSearch } from '../utils';
 import { Dropdown } from './Dropdown/Dropdown';
 import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
@@ -121,7 +122,7 @@ export function FilterSearch({
           const displayName = itemData?.displayName as string;
           if (filter && displayName) {
             answersActions.setFilterOption({ ...filter, displayName, selected: true });
-            answersActions.executeVerticalQuery();
+            executeSearch(answersActions);
           }
         }}
       >
