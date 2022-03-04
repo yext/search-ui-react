@@ -89,21 +89,15 @@ const mockedState: Partial<State> = {
   }
 };
 
-jest.mock('@yext/answers-headless-react', () => ({
-  __esModule: true,
-  useAnswersState: accessor => accessor(mockedState),
-  useAnswersActions: () => {},
-  SearchTypeEnum: {
-    Vertical: 'vertical',
-    Universal: 'universal'
-  },
-  Source: {
-    KnowledgeManager: 'KNOWLEDGE_MANAGER'
-  },
-  Matcher: {
-    Equals: '$eq'
-  }
-}));
+jest.mock('@yext/answers-headless-react', () => {
+  const originalModule = jest.requireActual('@yext/answers-headless-react');
+  return {
+    __esModule: true,
+    ...originalModule,
+    useAnswersState: accessor => accessor(mockedState),
+    useAnswersActions: () => {},
+  };
+});
 
 describe('UniversalResults', () => {
   it('Results are displayed', () => {
