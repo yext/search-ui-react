@@ -3,19 +3,29 @@ import {
   useAnswersActions,
   SelectableFilter as DisplayableFilter,
   useAnswersState,
-  SearchTypeEnum
+  SearchTypeEnum,
+  DisplayableFacetOption
 } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
-import { GroupedFilters } from '../models/groupedFilters';
+import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
+import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
 import { executeSearch } from '../utils/search-operations';
 
 /**
  * Properties for {@link AppliedFilters}.
  */
 export interface AppliedFiltersDisplayProps {
-  /** Sets of categorized filters to construct the applied filter tags from. */
-  displayableFilters: GroupedFilters,
+  /** Filters that are applied to the search results from static filters and filter search. */
+  staticFilters?: DisplayableFilter[],
+  /** Filters that are applied to the search results from facets. */
+  facets?: DisplayableFilter[],
+  /** Filters that are applied to the search results from hierarchical facets. */
+  hierarchicalFacets?: DisplayableHierarchicalFacet[],
+  /** Filters that are applied to the search results from the backend's natural language processing. */
+  nlpFilters?: DisplayableFilter[]
+  /** {@inheritDoc Filters.HierarchicalFacetProps.delimiter} */
+  hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses
 }
@@ -27,12 +37,19 @@ export interface AppliedFiltersDisplayProps {
  * @returns A React element for the applied filters
  */
 export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
-  const { displayableFilters, cssClasses = {} } = props;
-  const { nlpFilters = [], staticFilters = [], facets = [] } = displayableFilters;
+  const {
+    nlpFilters = [],
+    staticFilters = [],
+    facets = [],
+    hierarchicalFacets = [],
+    hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
+    cssClasses = {}
+  } = props;
   const answersActions = useAnswersActions();
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
-  const hasAppliedFilters = (nlpFilters.length + staticFilters.length + facets.length) > 0;
+  const hasAppliedFilters = (
+    nlpFilters.length + staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
   if (!hasAppliedFilters) {
     return null;
   }
@@ -45,6 +62,21 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     }
     answersActions.setOffset(0);
     answersActions.setFacetOption(fieldId, { matcher, value }, false);
+    executeSearch(answersActions);
+  };
+
+  const onRemoveHierarchicalFacetOption = (facet: DisplayableHierarchicalFacet) => {
+    const { fieldId, parentFacet } = facet;
+
+    // Uncheck all descendant options in the hierarchy
+    parentFacet.options.forEach(o => {
+      if (isDescendantHierarchicalFacet(facet, o, hierarchicalFacetsDelimiter)) {
+        answersActions.setFacetOption(fieldId, o, false);
+      }
+    });
+
+    answersActions.setOffset(0);
+    answersActions.setFacetOption(fieldId, facet, false);
     executeSearch(answersActions);
   };
 
@@ -61,28 +93,32 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     executeSearch(answersActions);
   };
 
-  const hasRemovableFilters = (staticFilters.length + facets.length) > 0;
+  const renderRemovableFilter =
+    (onRemoveFilter: (filter: DisplayableFilter) => void) =>
+      (filter: DisplayableFilter) =>
+        <RemovableFilter
+          displayName={filter.displayName ?? ''}
+          onRemoveFilter={() => onRemoveFilter(filter)}
+          key={filter.displayName}
+          cssClasses={cssClasses}
+        />;
+
+  const hasRemovableFilters = (staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
       {nlpFilters.map(filter =>
-        <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses}/>
+        <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses} />
       )}
-      {facets.map(filter =>
+      {hierarchicalFacets.map(filter =>
         <RemovableFilter
-          filter={filter}
-          onRemoveFilter={onRemoveFacetOption}
           key={filter.displayName}
+          onRemoveFilter={() => onRemoveHierarchicalFacetOption(filter)}
+          displayName={filter.lastDisplayNameToken}
           cssClasses={cssClasses}
         />
       )}
-      {staticFilters.map(filter =>
-        <RemovableFilter
-          filter={filter}
-          onRemoveFilter={onRemoveStaticFilterOption}
-          key={filter.displayName}
-          cssClasses={cssClasses}
-        />
-      )}
+      {facets.map(renderRemovableFilter(onRemoveFacetOption))}
+      {staticFilters.map(renderRemovableFilter(onRemoveStaticFilterOption))}
       {isVertical && hasRemovableFilters &&
         <button onClick={onClickClearAllButton} className={cssClasses.clearAllButton}>
           Clear All
@@ -92,16 +128,16 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   );
 }
 
-function RemovableFilter({ filter, onRemoveFilter, cssClasses }: {
-  filter: DisplayableFilter,
-  onRemoveFilter: (filter: DisplayableFilter) => void
+function RemovableFilter({ onRemoveFilter, displayName, cssClasses }: {
+  onRemoveFilter: () => void,
+  displayName: string,
   cssClasses: AppliedFiltersCssClasses
 }): JSX.Element {
   return (
     <div className={cssClasses.removableFilter}>
-      <div className={cssClasses.filterLabel}>{filter.displayName}</div>
-      <button className={cssClasses.removeFilterButton} onClick={() => onRemoveFilter(filter)}>
-        <CloseIcon/>
+      <div className={cssClasses.filterLabel}>{displayName}</div>
+      <button className={cssClasses.removeFilterButton} onClick={() => onRemoveFilter()}>
+        <CloseIcon />
       </button>
     </div>
   );
@@ -116,4 +152,36 @@ function NlpFilter({ filter, cssClasses }: {
       <span className={cssClasses.filterLabel}>{filter.displayName}</span>
     </div>
   );
+}
+
+function isDescendantHierarchicalFacet(
+  parentFacet: DisplayableHierarchicalFacet,
+  potentialChildFacet: DisplayableFacetOption,
+  delimiter: string
+) {
+  const {
+    displayNameTokens: parentTokens,
+    lastDisplayNameToken: parentLastDisplayNameToken
+  } = parentFacet;
+  const parentDisplayName = parentFacet.displayName.trim();
+
+  const { displayName: childDisplayName } = potentialChildFacet;
+
+  if (!childDisplayName.startsWith(parentDisplayName)) {
+    return false;
+  }
+
+  const otherTokens = childDisplayName.split(delimiter).map(t => t.trim());
+  if (otherTokens.length <= parentTokens.length) {
+    return false;
+  }
+
+  // Ensure that we don't return true for parent = `a > b > c` and child = `a > book > c`
+  // by checking that the second element of the child is exactly "b"
+  const tokenAtIndexOfLastParentToken = otherTokens[parentTokens.length - 1];
+  if (parentLastDisplayNameToken !== tokenAtIndexOfLastParentToken) {
+    return false;
+  }
+
+  return true;
 }

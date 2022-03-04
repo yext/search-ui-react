@@ -4,7 +4,7 @@ import {
   SelectableFilter as DisplayableFilter
 } from '@yext/answers-headless-react';
 import { GroupedFilters } from '../models/groupedFilters';
-import { getDisplayableFacets, getDisplayableNlpFilters } from './displayablefilterutils';
+import { getDisplayableFacets, getDisplayableHierarchicalFacets, getDisplayableNlpFilters } from './displayablefilterutils';
 import { isDuplicateFilter } from './filterutils';
 
 /**
@@ -29,8 +29,8 @@ function pruneNlpFilters(
  * Returns a new list of applied filters with filter on hiddenFields removed
  * from the given applied filter list.
  */
-function filterHiddenFields(
-  appliedFilters: DisplayableFilter[], hiddenFields: string[]): DisplayableFilter[] {
+function filterHiddenFields<F extends DisplayableFilter>(
+  appliedFilters: F[], hiddenFields: string[]): F[] {
   return appliedFilters.filter(appliedFilter => {
     return !hiddenFields.includes(appliedFilter.fieldId);
   });
@@ -43,14 +43,22 @@ function filterHiddenFields(
 export function pruneAppliedFilters(
   appliedFiltersState: FiltersState,
   nlpFilters: AppliedQueryFilter[],
-  hiddenFields: string[]
+  hiddenFields: string[],
+  hierarchicalFieldIds: string[],
+  hierarchicalDelimiter: string
 ): GroupedFilters {
   const displayableStaticFilters = appliedFiltersState?.static?.filter(filter => filter.selected) || [];
-  const displayableFacets = getDisplayableFacets(appliedFiltersState?.facets).filter(facet => facet.selected);
+  const displayableFacets =
+    getDisplayableFacets(appliedFiltersState?.facets, hierarchicalFieldIds)
+      .filter(facet => facet.selected);
+  const hierarchicalFacets =
+    getDisplayableHierarchicalFacets(appliedFiltersState?.facets, hierarchicalFieldIds, hierarchicalDelimiter)
+      .filter(facet => facet.selected);
   const displayableNlpFilters = getDisplayableNlpFilters(nlpFilters);
 
   const prunedStaticFilters = filterHiddenFields(displayableStaticFilters, hiddenFields);
   const prunedFacets = filterHiddenFields(displayableFacets, hiddenFields);
+  const prunedHierarchicalFacets = filterHiddenFields(hierarchicalFacets, hiddenFields);
   const prunedNlpFilters = pruneNlpFilters(
     displayableNlpFilters,
     [...prunedStaticFilters, ...prunedFacets],
@@ -60,6 +68,7 @@ export function pruneAppliedFilters(
   return {
     staticFilters: prunedStaticFilters,
     facets: prunedFacets,
+    hierarchicalFacets: prunedHierarchicalFacets,
     nlpFilters: prunedNlpFilters
   };
 }

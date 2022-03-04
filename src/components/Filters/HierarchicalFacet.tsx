@@ -13,7 +13,7 @@ import { useFiltersContext } from './FiltersContext';
 export interface HierarchicalFacetProps {
   /** The `DisplayableFacet` to render as a HierarchicalFacet */
   facet: DisplayableFacet,
-  /** The delimiter for determining hierarchies, defaults to "\>" */
+  /** The delimiter for determining facet hierarchies, defaults to "\>" */
   delimiter?: string,
   /** The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4 */
   showMoreLimit?: number,
@@ -50,6 +50,9 @@ const builtInCssClasses: Required<HierarchicalFacetCssClasses> = {
   showMoreButton: 'ml-4 text-sm font-medium text-primary-600'
 };
 
+/** @private */
+export const DEFAULT_HIERARCHICAL_DELIMITER = '>';
+
 /**
  * A HierarchicalFacet takes a `DisplayableFacet` and renders the facet in a way
  * to represent multiple levels of "hierarchies".
@@ -60,7 +63,7 @@ const builtInCssClasses: Required<HierarchicalFacetCssClasses> = {
  */
 export function HierarchicalFacet({
   facet,
-  delimiter = '>',
+  delimiter = DEFAULT_HIERARCHICAL_DELIMITER,
   showMoreLimit = 4,
   customCssClasses,
   cssCompositionMethod

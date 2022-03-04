@@ -1,13 +1,38 @@
-import { SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
+import { DisplayableFacet, SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
 
 /**
  * Types of filters (static, facet, and nlp) displayable by AppliedFilters.
  */
 export interface GroupedFilters {
-  /** Filters that is applied to the search results from static filters and filter search. */
+  /** Filters that are applied to the search results from static filters and filter search. */
   staticFilters?: DisplayableFilter[],
-  /** Filters that is applied to the search results from facets. */
+  /** Filters that are applied to the search results from facets. */
   facets?: DisplayableFilter[],
-  /** Filters that is applied to the search results from backend. */
+  /** Filters that are applied to the search results from hierarchical facets. */
+  hierarchicalFacets?: DisplayableHierarchicalFacet[],
+  /** Filters that are applied to the search results from the backend's natural language processing. */
   nlpFilters?: DisplayableFilter[]
 }
+
+/**
+ * DisplayableHierarchicalFacet is a DisplayableFilter with additional metadata, including a reference
+ * to its original parent DisplayableFacet.
+ */
+export type DisplayableHierarchicalFacet = Omit<DisplayableFilter, 'value'> & {
+  /**
+   * A DisaplaybleHierarchicalFacet is parsed from a single DisplayableFacetOption which exists
+   * as an option on a DisplayableFacet. This is a reference to that original DisplayableFacet.
+   **/
+  parentFacet: DisplayableFacet,
+  /** The displayName is a guaranteed property */
+  displayName: string,
+  /** The value on a DisplayableHierarchicalFacet is guaranteed to be a string. */
+  value: string,
+  /**
+   * The displayName but split into multiple tokens by some delimiter.
+   * This exists for convenience and to reduce the number of Array.prototype.split() calls needed.
+   **/
+  displayNameTokens: string[],
+  /** The last value of displayNameTokens, for convenience. */
+  lastDisplayNameToken: string
+};
