@@ -15,7 +15,7 @@ export interface GroupedFilters {
 }
 
 /**
- * DisplayableHierarchicalFacet is a DisplayableFilter with additional metadata, includinga reference
+ * DisplayableHierarchicalFacet is a DisplayableFilter with additional metadata, including a reference
  * to its original parent DisplayableFacet.
  */
 export type DisplayableHierarchicalFacet = Omit<DisplayableFilter, 'value'> & {
