@@ -1,5 +1,6 @@
 import { useAnswersActions, useAnswersState, SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
+import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
 /**
@@ -41,7 +42,7 @@ export function StaticFilters({
       if (searchOnChange) {
         answersActions.setOffset(0);
         answersActions.resetFacets();
-        answersActions.executeVerticalQuery();
+        executeSearch(answersActions);
       }
     },
     filters: displayableFilters

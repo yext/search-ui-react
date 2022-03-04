@@ -9,7 +9,7 @@ Get search intents of the current query stored in headless using autocomplete re
 <b>Signature:</b>
 
 ```typescript
-export declare function getSearchIntents(answersActions: AnswersActions, isVertical: boolean): Promise<SearchIntent[] | undefined>;
+export declare function getSearchIntents(answersActions: AnswersActions): Promise<SearchIntent[] | undefined>;
 ```
 
 ## Parameters
@@ -17,7 +17,6 @@ export declare function getSearchIntents(answersActions: AnswersActions, isVerti
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  answersActions | AnswersActions |  |
-|  isVertical | boolean |  |
 
 <b>Returns:</b>
 

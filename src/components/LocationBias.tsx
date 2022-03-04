@@ -50,7 +50,6 @@ export function LocationBias({
   cssCompositionMethod
 }: LocationBiasProps): JSX.Element | null {
   const answersActions = useAnswersActions();
-  const isVertical = useAnswersState(s => s.meta.searchType) === 'vertical';
   const locationBias = useAnswersState(s => s.location.locationBias);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
@@ -71,7 +70,7 @@ export function LocationBias({
     } catch (e) {
       console.error(e);
     }
-    executeSearch(answersActions, isVertical);
+    executeSearch(answersActions);
   }
 
   return (
