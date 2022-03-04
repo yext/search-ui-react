@@ -72,6 +72,6 @@ describe('SpellCheck', () => {
     const verticalKey = mockedState.vertical.verticalKey;
     const correctedQuery = mockedState.spellCheck.correctedQuery;
     expect(setQuery).toHaveBeenCalledWith(correctedQuery);
-    expect(executeSearch).toHaveBeenCalledWith(answersActions, !!verticalKey);
+    expect(executeSearch).toHaveBeenCalledWith(answersActions);
   });
 });
