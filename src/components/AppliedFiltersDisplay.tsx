@@ -77,7 +77,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
 
     answersActions.setOffset(0);
     answersActions.setFacetOption(fieldId, facet, false);
-    answersActions.executeVerticalQuery();
+    executeSearch(answersActions);
   };
 
   const onRemoveStaticFilterOption = (filter: DisplayableFilter) => {
