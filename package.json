@@ -73,7 +73,8 @@
         "tsconfig": "tsconfig.json"
       }
     },
-    "resetMocks": true
+    "resetMocks": true,
+    "restoreMocks": true
   },
   "dependencies": {
     "@css-modules-theme/core": "^2.3.0",

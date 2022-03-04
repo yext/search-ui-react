@@ -64,8 +64,6 @@ describe('SpellCheck', () => {
     const correctedQuery = mockedState.spellCheck.correctedQuery;
     expect(setQuery).toHaveBeenCalledWith(correctedQuery);
     expect(onClick).toHaveBeenCalledWith({ correctedQuery, verticalKey });
-
-    useAnswersActions.mockRestore();
   });
 
   it('Fires executeSearch when no onClick is provided', () => {
@@ -82,7 +80,5 @@ describe('SpellCheck', () => {
     const correctedQuery = mockedState.spellCheck.correctedQuery;
     expect(setQuery).toHaveBeenCalledWith(correctedQuery);
     expect(executeSearch).toHaveBeenCalledWith(answersActions, !!verticalKey);
-
-    useAnswersActions.mockRestore();
   });
 });
