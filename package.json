@@ -60,14 +60,15 @@
       "<rootDir>"
     ],
     "setupFilesAfterEnv": [
-      "<rootDir>/tests/setup/setup-env.ts"
+      "<rootDir>/tests/__setup__/setup-env.ts"
     ],
     "testEnvironment": "jsdom",
     "testMatch": [
       "<rootDir>/tests/**/*.tsx"
     ],
     "testPathIgnorePatterns": [
-      "<rootDir>/tests/setup/*"
+      "<rootDir>/tests/__setup__/*",
+      "<rootDir>/tests/__fixtures__/*"
     ],
     "transformIgnorePatterns": [
       "/node_modules/(?!(@yext/answers-headless-react)/)"
@@ -87,7 +88,7 @@
     "@restart/hooks": "^0.4.5",
     "@restart/ui": "^1.0.1",
     "@yext/analytics": "^0.2.0-beta.3",
-    "@yext/answers-headless-react": "^1.1.0-beta.6",
+    "@yext/answers-headless-react": "^1.1.0-beta.7",
     "classnames": "^2.3.1",
     "react-collapsed": "^3.3.0",
     "react-router-dom": "^5.3.0",
