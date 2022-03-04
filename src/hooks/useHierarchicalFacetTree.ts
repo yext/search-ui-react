@@ -32,7 +32,10 @@ export function useHierarchicalFacetTree(
   }, [delimiter, hierarchicalFacet]);
 }
 
-function parseHierarchicalFacetTree(
+/**
+ * Parses a `DisplayableFacet` into a `HierarchicalFacetTree`.
+ */
+export function parseHierarchicalFacetTree(
   hierarchicalFacet: DisplayableFacet,
   delimiter: string
 ): HierarchicalFacetTree {

@@ -4,6 +4,7 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
 import { ChevronIcon as PageNavigationIcon } from '../icons/ChevronIcon';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
 import { usePaginationAnalytics } from '../hooks/usePaginationAnalytics';
+import { executeSearch } from '../utils';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.
@@ -124,7 +125,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
     customCssClasses,
     cssCompositionMethod
   );
-  const answersAction = useAnswersActions();
+  const answersActions = useAnswersActions();
   const offset = useAnswersState(state => state.vertical.offset) || 0;
   const limit = useAnswersState(state => state.vertical.limit) || 10;
   const reportAnalyticsEvent = usePaginationAnalytics();
@@ -138,8 +139,8 @@ function Pagination(props: PaginationProps): JSX.Element | null {
 
   const executeSearchWithNewOffset = (newPageNumber: number) => {
     const newOffset = limit * (newPageNumber - 1);
-    answersAction.setOffset(newOffset);
-    answersAction.executeVerticalQuery();
+    answersActions.setOffset(newOffset);
+    executeSearch(answersActions);
     reportAnalyticsEvent(newPageNumber, pageNumber, maxPageCount);
   };
 

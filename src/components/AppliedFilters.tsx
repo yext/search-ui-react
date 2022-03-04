@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { GroupedFilters } from '../models/groupedFilters';
+import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
@@ -23,12 +24,12 @@ export interface AppliedFiltersCssClasses {
 
 const builtInCssClasses: AppliedFiltersCssClasses = {
   // Use negative margin to remove space above the filters on mobile
-  appliedFiltersContainer: 'flex flex-wrap -mt-3 md:mt-0 mb-4',
+  appliedFiltersContainer: 'flex flex-wrap -mt-3 md:mt-0 mb-2',
   appliedFiltersContainer___loading: 'opacity-50',
-  nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-800 mr-2',
-  removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-900 mr-2',
+  nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-800 mr-2 mb-2',
+  removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-gray-900 mr-2 mb-2',
   removeFilterButton: 'w-2 h-2 text-gray-500 m-1.5',
-  clearAllButton: 'text-sm font-medium text-primary-600 hover:underline focus:underline'
+  clearAllButton: 'text-sm font-medium text-primary-600 hover:underline focus:underline mb-2'
 };
 
 /**
@@ -39,6 +40,10 @@ const builtInCssClasses: AppliedFiltersCssClasses = {
 export interface AppliedFiltersProps {
   /** List of filters that should not be displayed. By default, builtin.entityType will be hidden. */
   hiddenFields?: Array<string>,
+  /** A set of facet fieldIds that should be interpreted as "hierarchical". */
+  hierarchicalFacetsFieldIds?: string[],
+  /** {@inheritDoc Filters.HierarchicalFacetProps.delimiter} */
+  hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AppliedFiltersCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -70,12 +75,18 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     hiddenFields = ['builtin.entityType'],
     customCssClasses = {},
     cssCompositionMethod,
-    ...otherProps
+    hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
+    hierarchicalFacetsFieldIds = []
   } = props;
-  const appliedFilters: GroupedFilters = pruneAppliedFilters(filterState.current, nlpFilters, hiddenFields);
+  const appliedFilters: GroupedFilters = pruneAppliedFilters(
+    filterState.current, nlpFilters, hiddenFields, hierarchicalFacetsFieldIds, hierarchicalFacetsDelimiter);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
   });
-  return <AppliedFiltersDisplay displayableFilters={appliedFilters} cssClasses={cssClasses} {...otherProps}/>;
+  return <AppliedFiltersDisplay
+    {...appliedFilters}
+    cssClasses={cssClasses}
+    hierarchicalFacetsDelimiter={hierarchicalFacetsDelimiter}
+  />;
 }
