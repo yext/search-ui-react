@@ -58,14 +58,15 @@
       "<rootDir>"
     ],
     "setupFilesAfterEnv": [
-      "<rootDir>/tests/setup/setup-env.ts"
+      "<rootDir>/tests/__setup__/setup-env.ts"
     ],
     "testEnvironment": "jsdom",
     "testMatch": [
       "<rootDir>/tests/**/*.tsx"
     ],
     "testPathIgnorePatterns": [
-      "<rootDir>/tests/setup/*"
+      "<rootDir>/tests/__setup__/*",
+      "<rootDir>/tests/__fixtures__/*"
     ],
     "globals": {
       "ts-jest": {
