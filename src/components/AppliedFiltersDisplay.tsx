@@ -3,7 +3,8 @@ import {
   useAnswersActions,
   SelectableFilter as DisplayableFilter,
   useAnswersState,
-  SearchTypeEnum
+  SearchTypeEnum,
+  DisplayableFacetOption
 } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
@@ -63,27 +64,18 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     answersActions.executeVerticalQuery();
   };
 
-  const onRemoveHierarchicalFacetOption = (filter: DisplayableHierarchicalFacet) => {
-    const { fieldId, parentFacet, displayNameTokens, lastDisplayNameToken } = filter;
-    const displayName = filter.displayName.trim();
+  const onRemoveHierarchicalFacetOption = (facet: DisplayableHierarchicalFacet) => {
+    const { fieldId, parentFacet } = facet;
 
     // Uncheck all descendant options in the hierarchy
     parentFacet.options.forEach(o => {
-      if (!o.displayName.startsWith(displayName)) {
-        return;
+      if (isDescendantHierarchicalFacet(facet, o, hierarchicalFacetsDelimiter)) {
+        answersActions.setFacetOption(fieldId, o, false);
       }
-      const otherDisplayNameTokens = o.displayName.split(hierarchicalFacetsDelimiter).map(t => t.trim());
-      if (otherDisplayNameTokens.length <= displayNameTokens.length) {
-        return;
-      }
-      if (lastDisplayNameToken !== otherDisplayNameTokens[displayNameTokens.length - 1]) {
-        return;
-      }
-      answersActions.setFacetOption(fieldId, o, false);
     });
 
     answersActions.setOffset(0);
-    answersActions.setFacetOption(fieldId, filter, false);
+    answersActions.setFacetOption(fieldId, facet, false);
     answersActions.executeVerticalQuery();
   };
 
@@ -118,7 +110,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
       )}
       {hierarchicalFacets.map(filter =>
         <RemovableFilter
-          key={filter.lastDisplayNameToken}
+          key={filter.displayName}
           onRemoveFilter={() => onRemoveHierarchicalFacetOption(filter)}
           displayName={filter.lastDisplayNameToken}
           cssClasses={cssClasses}
@@ -159,4 +151,36 @@ function NlpFilter({ filter, cssClasses }: {
       <span className={cssClasses.filterLabel}>{filter.displayName}</span>
     </div>
   );
+}
+
+function isDescendantHierarchicalFacet(
+  parentFacet: DisplayableHierarchicalFacet,
+  potentialChildFacet: DisplayableFacetOption,
+  delimiter: string
+) {
+  const {
+    displayNameTokens: parentTokens,
+    lastDisplayNameToken: parentLastDisplayNameToken
+  } = parentFacet;
+  const parentDisplayName = parentFacet.displayName.trim();
+
+  const { displayName: childDisplayName } = potentialChildFacet;
+
+  if (!childDisplayName.startsWith(parentDisplayName)) {
+    return false;
+  }
+
+  const otherTokens = childDisplayName.split(delimiter).map(t => t.trim());
+  if (otherTokens.length <= parentTokens.length) {
+    return false;
+  }
+
+  // Ensure that we don't return true for parent = `a > b > c` and child = `a > book > c`
+  // by checking that the second element of the child is exactly "b"
+  const tokenAtIndexOfLastParentToken = otherTokens[parentTokens.length - 1];
+  if (parentLastDisplayNameToken !== tokenAtIndexOfLastParentToken) {
+    return false;
+  }
+
+  return true;
 }

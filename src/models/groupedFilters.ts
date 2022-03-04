@@ -14,10 +14,25 @@ export interface GroupedFilters {
   nlpFilters?: DisplayableFilter[]
 }
 
+/**
+ * DisplayableHierarchicalFacet is a DisplayableFilter with additional metadata, includinga reference
+ * to its original parent DisplayableFacet.
+ */
 export type DisplayableHierarchicalFacet = Omit<DisplayableFilter, 'value'> & {
+  /**
+   * A DisaplaybleHierarchicalFacet is parsed from a single DisplayableFacetOption which exists
+   * as an option on a DisplayableFacet. This is a reference to that original DisplayableFacet.
+   **/
   parentFacet: DisplayableFacet,
+  /** The displayName is a guaranteed property */
   displayName: string,
+  /** The value on a DisplayableHierarchicalFacet is guaranteed to be a string. */
   value: string,
+  /**
+   * The displayName but split into multiple tokens by some delimiter.
+   * This exists for convenience and to reduce the number of Array.prototype.split() calls needed.
+   **/
   displayNameTokens: string[],
+  /** The last value of displayNameTokens, for convenience. */
   lastDisplayNameToken: string
 };
