@@ -7,10 +7,13 @@ import { useComponentMountStatus } from './useComponentMountStatus';
  * be returned.
  *
  * @param executeRequest Function that executes the network request
+ * @param handleRejectedPromise Function that executes when a rejected promise is received from the request
+ *
  * @returns Reponse to the latest request and a function to execute the request in a synchronized manner
  */
 export function useSynchronizedRequest<RequestDataType, ResponseType>(
-  executeRequest: (data?: RequestDataType) => Promise<ResponseType | undefined>
+  executeRequest: (data?: RequestDataType) => Promise<ResponseType | undefined>,
+  handleRejectedPromise?: (error: unknown) => void
 ): [
     ResponseType | undefined,
     (data?: RequestDataType) => Promise<ResponseType | undefined>,
@@ -24,7 +27,12 @@ export function useSynchronizedRequest<RequestDataType, ResponseType>(
   async function executeSynchronizedRequest(data?: RequestDataType): Promise<ResponseType | undefined> {
     const requestId = ++networkIds.current.latestRequest;
     return new Promise(async (resolve) => {
-      const response = await executeRequest(data);
+      let response: ResponseType | undefined = undefined;
+      try {
+        response = await executeRequest(data);
+      } catch (e) {
+        handleRejectedPromise ? handleRejectedPromise(e) : console.error(e);
+      }
       if (requestId >= networkIds.current.responseInState) {
         /**
          * Avoid performing a React state update on an unmounted component

@@ -5,6 +5,7 @@ import {
   useAnswersState
 } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
+import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
 /**
@@ -70,7 +71,7 @@ export function Facets({
     applyFilters() {
       if (searchOnChange) {
         answersActions.setOffset(0);
-        answersActions.executeVerticalQuery();
+        executeSearch(answersActions);
       }
     },
     filters

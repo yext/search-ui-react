@@ -10,6 +10,7 @@ import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
+import { executeSearch } from '../utils/search-operations';
 
 /**
  * Properties for {@link AppliedFilters}.
@@ -61,7 +62,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     }
     answersActions.setOffset(0);
     answersActions.setFacetOption(fieldId, { matcher, value }, false);
-    answersActions.executeVerticalQuery();
+    executeSearch(answersActions);
   };
 
   const onRemoveHierarchicalFacetOption = (facet: DisplayableHierarchicalFacet) => {
@@ -82,14 +83,14 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   const onRemoveStaticFilterOption = (filter: DisplayableFilter) => {
     answersActions.setOffset(0);
     answersActions.setFilterOption({ ...filter, selected: false });
-    answersActions.executeVerticalQuery();
+    executeSearch(answersActions);
   };
 
   const onClickClearAllButton = () => {
     answersActions.setOffset(0);
     answersActions.resetFacets();
     answersActions.setStaticFilters([]);
-    answersActions.executeVerticalQuery();
+    executeSearch(answersActions);
   };
 
   const renderRemovableFilter =
