@@ -122,9 +122,8 @@ describe('AppliedFilters', () => {
     fireEvent.click(removeFilterButton);
 
     const answersActions = useAnswersActions.mock.results[0].value;
-    const setFilterOption = jest.spyOn(answersActions, 'setFilterOption');
 
-    expect(setFilterOption).toHaveBeenCalledWith(expect.objectContaining({
+    expect(answersActions.setFilterOption).toHaveBeenCalledWith(expect.objectContaining({
       selected: false
     }));
   });
@@ -137,9 +136,8 @@ describe('AppliedFilters', () => {
     fireEvent.click(removeFilterButton);
 
     const answersActions = useAnswersActions.mock.results[0].value;
-    const setFacetOption = jest.spyOn(answersActions, 'setFacetOption');
 
-    const isSelected = setFacetOption.mock.calls[0][2];
+    const isSelected = answersActions.setFacetOption.mock.calls[0][2];
     expect(isSelected).toBe(false);
   });
 
@@ -151,10 +149,8 @@ describe('AppliedFilters', () => {
     fireEvent.click(clearAllButton);
 
     const answersActions = useAnswersActions.mock.results[0].value;
-    const resetFacets = jest.spyOn(answersActions, 'resetFacets');
-    const setStaticFilters = jest.spyOn(answersActions, 'setStaticFilters');
 
-    expect(resetFacets).toHaveBeenCalled();
-    expect(setStaticFilters).toHaveBeenCalledWith([]);
+    expect(answersActions.resetFacets).toHaveBeenCalled();
+    expect(answersActions.setStaticFilters).toHaveBeenCalledWith([]);
   });
 });

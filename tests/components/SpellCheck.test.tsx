@@ -14,6 +14,9 @@ const mockedState: Partial<State> = {
   },
   searchStatus: {
     isLoading: false
+  },
+  meta: {
+    searchType: 'vertical'
   }
 };
 
@@ -51,11 +54,10 @@ describe('SpellCheck', () => {
     fireEvent.click(screen.getByRole('button'));
 
     const answersActions = useAnswersActions.mock.results[0].value;
-    const setQuery = jest.spyOn(answersActions, 'setQuery');
 
     const verticalKey = mockedState.vertical.verticalKey;
     const correctedQuery = mockedState.spellCheck.correctedQuery;
-    expect(setQuery).toHaveBeenCalledWith(correctedQuery);
+    expect(answersActions.setQuery).toHaveBeenCalledWith(correctedQuery);
     expect(onClick).toHaveBeenCalledWith({ correctedQuery, verticalKey });
   });
 
@@ -67,11 +69,8 @@ describe('SpellCheck', () => {
     fireEvent.click(screen.getByRole('button'));
 
     const answersActions = useAnswersActions.mock.results[0].value;
-    const setQuery = jest.spyOn(answersActions, 'setQuery');
-
-    const verticalKey = mockedState.vertical.verticalKey;
     const correctedQuery = mockedState.spellCheck.correctedQuery;
-    expect(setQuery).toHaveBeenCalledWith(correctedQuery);
+    expect(answersActions.setQuery).toHaveBeenCalledWith(correctedQuery);
     expect(executeSearch).toHaveBeenCalledWith(answersActions);
   });
 });
