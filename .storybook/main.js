@@ -1,11 +1,11 @@
 module.exports = {
-  "stories": [
-    "../tests/**/*.stories.tsx"
+  stories: [
+    '../tests/**/*.stories.tsx'
   ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions"
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions'
   ],
-  "framework": "@storybook/react"
-}
+  framework: '@storybook/react'
+};
