@@ -1,7 +1,8 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, prettyDOM, render, screen } from '@testing-library/react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
-import { State, Matcher, Source } from '@yext/answers-headless-react';
+import { State, Matcher, Source, FiltersState, DisplayableFacet, StateSelector, AnswersHeadless } from '@yext/answers-headless-react';
+import { spyOnActions } from '../__utils__/spies';
 
 const mockedStaticFilters = [{
   selected: true,
@@ -114,48 +115,203 @@ describe('AppliedFilters', () => {
   });
 
   it('The hiddenFields prop prevents filters with a corresponding fieldId from rendering', () => {
-    const { queryByText } = render(<AppliedFilters hiddenFields={['name']}/>);
+    const { queryByText } = render(<AppliedFilters hiddenFields={['name']} />);
     const staticFilterDisplayName = mockedState.filters.static[0].value as string;
     expect(queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
   it('The "X" button for an applied static filter deselects the filter option', () => {
-    const useAnswersActions = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
+    const actions = spyOnActions();
 
     render(<AppliedFilters />);
     const removeFilterButton = screen.getByRole('button', { name: 'Remove "Yext Sites" filter' });
     fireEvent.click(removeFilterButton);
 
-    const answersActions = useAnswersActions.mock.results[0].value;
-
-    expect(answersActions.setFilterOption).toHaveBeenCalledWith(expect.objectContaining({
+    expect(actions.setFilterOption).toHaveBeenCalledWith(expect.objectContaining({
       selected: false
     }));
   });
 
   it('The "X" button for an applied facet deselects the facet option', () => {
-    const useAnswersActions = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
+    const actions = spyOnActions();
 
     render(<AppliedFilters />);
     const removeFilterButton = screen.getByRole('button', { name: 'Remove "Yext Reviews" filter' });
     fireEvent.click(removeFilterButton);
 
-    const answersActions = useAnswersActions.mock.results[0].value;
-
-    const isSelected = answersActions.setFacetOption.mock.calls[0][2];
+    const isSelected = actions.setFacetOption.mock.calls[0][2];
     expect(isSelected).toBe(false);
   });
 
   it('The clear all button clears all filters', () => {
-    const useAnswersActions = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
+    const actions = spyOnActions();
 
     render(<AppliedFilters />);
     const clearAllButton = screen.getByRole('button', { name: 'Clear All' });
     fireEvent.click(clearAllButton);
 
-    const answersActions = useAnswersActions.mock.results[0].value;
-
-    expect(answersActions.resetFacets).toHaveBeenCalled();
-    expect(answersActions.setStaticFilters).toHaveBeenCalledWith([]);
+    expect(actions.resetFacets).toHaveBeenCalled();
+    expect(actions.setStaticFilters).toHaveBeenCalledWith([]);
   });
 });
+
+describe('AppliedFilters with hierarchical facets', () => {
+  it('renders hierarchical facets in the correct order, with same fieldId facets adjacent to each other', () => {
+    spyOnAnswersState({
+      facets: [
+        createHierarchicalFacet([
+          'food > fruit > banana',
+          'food > fruit',
+          'food > fruit > apple',
+          'food'
+        ]),
+        createHierarchicalFacet([
+          'fool > bb',
+          'fool > verylonglongman',
+          'fool',
+          'fool > a',
+          'fool > longlong',
+        ]),
+      ]
+    });
+
+    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
+    const buttons = screen.queryAllByRole('button');
+    expect(buttons).toHaveLength(10);
+    expect(buttons[0]).toHaveAttribute('aria-label', 'Remove "food" filter');
+    expect(buttons[1]).toHaveAttribute('aria-label', 'Remove "fruit" filter');
+    expect(buttons[2]).toHaveAttribute('aria-label', 'Remove "apple" filter');
+    expect(buttons[3]).toHaveAttribute('aria-label', 'Remove "banana" filter');
+
+    expect(buttons[4]).toHaveAttribute('aria-label', 'Remove "fool" filter');
+    expect(buttons[5]).toHaveAttribute('aria-label', 'Remove "a" filter');
+    expect(buttons[6]).toHaveAttribute('aria-label', 'Remove "bb" filter');
+    expect(buttons[7]).toHaveAttribute('aria-label', 'Remove "longlong" filter');
+    expect(buttons[8]).toHaveAttribute('aria-label', 'Remove "verylonglongman" filter');
+
+    expect(buttons[9]).toHaveTextContent('Clear All');
+  });
+
+  it('does not render unselected hierarchical facets', () => {
+    spyOnAnswersState({
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          'food > fruit',
+          'games',
+          'games > steinsgate',
+          { value: 'games > nier', selected: false }
+        ])
+      ]
+    });
+
+    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
+    expect(screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/)).toHaveLength(4);
+    const nierButton = screen.queryByLabelText('Remove "nier" filter');
+    expect(nierButton).toBeNull();
+  });
+
+  it('can use a custom delimiter', () => {
+    spyOnAnswersState({
+      facets: [
+        createHierarchicalFacet([
+          'games',
+          'games ! steinsgate'
+        ])
+      ]
+    });
+
+    render(<AppliedFilters
+      hierarchicalFacetsFieldIds={['hier']}
+      hierarchicalFacetsDelimiter='!'
+    />);
+    const filterPills = screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/);
+    expect(filterPills).toHaveLength(2);
+    expect(filterPills[0]).toHaveAttribute('aria-label', 'Remove "games" filter');
+    expect(filterPills[1]).toHaveAttribute('aria-label', 'Remove "steinsgate" filter');
+  });
+
+  it('removing a hierarchical applied filter removes all descendants in the hierarchy', () => {
+    spyOnAnswersState({
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          'food > fruit',
+          'food > fruit > banana',
+          'food > fruit > apple',
+          'food > meat',
+          'food > meat > cow',
+          'food > meat > pig',
+          'food > cookies'
+        ]),
+        createHierarchicalFacet([
+          'fool',
+          'fool > a',
+        ]),
+      ]
+    });
+    const actions = spyOnActions();
+
+    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
+    const filterPills = screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/);
+    expect(filterPills).toHaveLength(10);
+
+    const fruitButton = screen.queryByLabelText('Remove "fruit" filter');
+    fireEvent.click(fruitButton);
+
+    expect(actions.setFacetOption).toHaveBeenCalledTimes(3);
+    expect(actions.setFacetOption).toHaveBeenCalledWith(
+      'hier',
+      { matcher: Matcher.Equals, value: 'food > fruit > banana' },
+      false
+    );
+    expect(actions.setFacetOption).toHaveBeenCalledWith(
+      'hier',
+      { matcher: Matcher.Equals, value: 'food > fruit > apple' },
+      false
+    );
+    expect(actions.setFacetOption).toHaveBeenCalledWith(
+      'hier',
+      { matcher: Matcher.Equals, value: 'food > fruit' },
+      false
+    );
+  });
+});
+
+function createHierarchicalFacet(
+  options: (string | { value: string, selected?: boolean })[],
+  fieldId = 'hier'
+): DisplayableFacet {
+  const transformedOptions = options
+    .map(o => typeof o === 'string' ? { value: o, selected: true } : o)
+    .map(o => ({
+      value: o.value,
+      displayName: o.value,
+      selected: o.selected,
+      count: 82,
+      matcher: Matcher.Equals
+    }));
+
+  return {
+    fieldId,
+    displayName: '_unused',
+    options: transformedOptions
+  };
+}
+
+function spyOnFiltersState(filters: FitlersState) {
+
+}
+
+function spyOnAnswersState(customState: Partial<State>, baseState: Partial<State>) {
+  function mockImpl<T>(stateAccessor: StateSelector<T>) {
+    return stateAccessor({
+      ...baseState,
+      filters
+    } as State);
+  }
+
+  return jest
+    .spyOn(require('@yext/answers-headless-react'), 'useAnswersState')
+    .mockImplementation(mockImpl as (...args: unknown[]) => unknown);
+}

@@ -16,7 +16,7 @@
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",
@@ -36,17 +36,17 @@
     "eslint-plugin-react-perf": "^3.3.1",
     "jest": "^27.0.6",
     "msw": "^0.36.8",
-    "react": "^17.0.2",
+    "react": "file:../react-site-search-starter/node_modules/react",
     "react-dom": "^17.0.2",
     "typescript": "~4.4.3"
   },
   "peerDependencies": {
-    "react": "^17.0.2"
+    "react": "file:../react-site-search-starter/node_modules/react"
   },
   "jest": {
     "bail": 0,
     "verbose": true,
-    "collectCoverage": true,
+    "collectCoverage": false,
     "collectCoverageFrom": [
       "src/**"
     ],
@@ -87,7 +87,7 @@
     "@restart/hooks": "^0.4.5",
     "@restart/ui": "^1.0.1",
     "@yext/analytics": "^0.2.0-beta.3",
-    "@yext/answers-headless-react": "^1.1.0-beta.6",
+    "@yext/answers-headless-react": "file:../react-site-search-starter/node_modules/@yext/answers-headless-react",
     "classnames": "^2.3.1",
     "react-collapsed": "^3.3.0",
     "react-router-dom": "^5.3.0",
