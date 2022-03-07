@@ -1,5 +1,5 @@
 import { useAnswersState } from '@yext/answers-headless-react';
-import { useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 import { CompositionMethod } from '..';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { ThumbIcon } from '../icons/ThumbIcon';
@@ -66,6 +66,16 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
   const query = useAnswersState(state => state.query.mostRecentSearch);
   const [isFeedbackProvided, setIsFeedbackProvided] = useState(false);
 
+  const onClickThumbsUp = useCallback(() => {
+    onClick('THUMBS_UP');
+    setIsFeedbackProvided(true);
+  }, [onClick]);
+
+  const onClickThumbsDown = useCallback(() => {
+    onClick('THUMBS_DOWN');
+    setIsFeedbackProvided(true);
+  }, [onClick]);
+
   // Changes to most recent search query will trigger re-render to reset quality feedback submission.
   useLayoutEffect(() => {
     setIsFeedbackProvided(false);
@@ -79,19 +89,13 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
           {feedbackText}
           <button
             className={cssClasses.thumbsUpIcon}
-            onClick={() => {
-              onClick('THUMBS_UP');
-              setIsFeedbackProvided(true);
-            }}
+            onClick={onClickThumbsUp}
           >
             <ThumbIcon/>
           </button>
           <button
             className={cssClasses.thumbsDownIcon}
-            onClick={() => {
-              onClick('THUMBS_DOWN');
-              setIsFeedbackProvided(true);
-            }}
+            onClick={onClickThumbsDown}
           >
             <ThumbIcon/>
           </button>

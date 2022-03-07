@@ -5,6 +5,7 @@ import { ChevronIcon as PageNavigationIcon } from '../icons/ChevronIcon';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
 import { usePaginationAnalytics } from '../hooks/usePaginationAnalytics';
 import { executeSearch } from '../utils';
+import { PropsWithChildren, useCallback } from 'react';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.
@@ -101,6 +102,34 @@ const builtInPaginationCssClasses: PaginationCssClasses = {
   icon: 'w-3 text-gray-500'
 };
 
+interface PaginationButtonProps {
+  key?: string,
+  className?: string,
+  navigateToPage: (newPageNumber: number) => void,
+  newPageNumber: number,
+  ariaLabel?: string,
+  disabled?: boolean
+}
+
+function PaginationButton(props: PropsWithChildren<PaginationButtonProps>): JSX.Element | null {
+  const { navigateToPage, newPageNumber } = props;
+  const onClick = useCallback(() => {
+    navigateToPage(newPageNumber);
+  }, [navigateToPage, newPageNumber]);
+
+  return (
+    <button
+      key={props.key}
+      aria-label={props.ariaLabel}
+      className={props.className}
+      onClick={onClick}
+      disabled={props.disabled}
+    >
+      {props.children}
+    </button>
+  );
+}
+
 /**
  * The props for the {@link Pagination} component
  *
@@ -128,88 +157,93 @@ function Pagination(props: PaginationProps): JSX.Element | null {
   const answersActions = useAnswersActions();
   const offset = useAnswersState(state => state.vertical.offset) || 0;
   const limit = useAnswersState(state => state.vertical.limit) || 10;
+  const currentPageNumber = (offset / limit) + 1;
+  const maxPageCount = Math.ceil(numResults / limit);
   const reportAnalyticsEvent = usePaginationAnalytics();
 
-  const maxPageCount = Math.ceil(numResults / limit);
-  if (maxPageCount <= 1) {
-    return null;
-  }
-  const pageNumber = (offset / limit) + 1;
-  const paginationLabels: string[] = generatePaginationLabels(pageNumber, maxPageCount);
-
-  const executeSearchWithNewOffset = (newPageNumber: number) => {
+  const navigateToPage = useCallback((newPageNumber: number) => {
     const newOffset = limit * (newPageNumber - 1);
     answersActions.setOffset(newOffset);
     executeSearch(answersActions);
-    reportAnalyticsEvent(newPageNumber, pageNumber, maxPageCount);
-  };
+    reportAnalyticsEvent(newPageNumber, currentPageNumber, maxPageCount);
+  }, [answersActions, limit, maxPageCount, currentPageNumber, reportAnalyticsEvent]);
+
+  if (maxPageCount <= 1) {
+    return null;
+  }
+
+  const paginationLabels: string[] = generatePaginationLabels(currentPageNumber, maxPageCount);
 
   return (
     <div className={cssClasses.container}>
       <nav className={cssClasses.labelContainer} aria-label="Pagination">
-        <button
-          aria-label='Navigate to the previous results page'
+        <PaginationButton
+          ariaLabel='Navigate to the previous results page'
           className={cssClasses.leftIconContainer}
-          onClick={() => executeSearchWithNewOffset(pageNumber - 1)} disabled={pageNumber === 1}
+          navigateToPage={navigateToPage}
+          newPageNumber={currentPageNumber - 1}
+          disabled={currentPageNumber === 1}
         >
           <PageNavigationIcon className={cssClasses.icon + ' transform -rotate-90'} />
-        </button>
+        </PaginationButton>
         {paginationLabels.map((label, index) => {
           switch (label) {
             case '...':
               return (
-                <button
+                <div
                   key={index}
                   className={cssClasses.label}
                 >
                   {label}
-                </button>
+                </div>
               );
-            case `${pageNumber}`:
+            case `${currentPageNumber}`:
               return (
-                <button
-                  key={index}
+                <PaginationButton
                   className={cssClasses.selectedLabel}
-                  onClick={() => executeSearchWithNewOffset(pageNumber)}
+                  navigateToPage={navigateToPage}
+                  newPageNumber={currentPageNumber}
                 >
                   {label}
-                </button>
+                </PaginationButton>
               );
             default:
               return (
-                <button
-                  key={index}
+                <PaginationButton
                   className={cssClasses.label}
-                  onClick={() => executeSearchWithNewOffset(Number(label))}
+                  navigateToPage={navigateToPage}
+                  newPageNumber={Number(label)}
                 >
                   {label}
-                </button>
+                </PaginationButton>
               );
           }
         })}
-        <button
+        <PaginationButton
           aria-label='Navigate to the next results page'
           className={cssClasses.rightIconContainer}
-          onClick={() => executeSearchWithNewOffset(pageNumber + 1)} disabled={pageNumber === maxPageCount}
+          navigateToPage={navigateToPage}
+          newPageNumber={currentPageNumber + 1}
+          disabled={currentPageNumber === maxPageCount}
         >
           <PageNavigationIcon className={cssClasses.icon + ' transform rotate-90'} />
-        </button>
+        </PaginationButton>
       </nav>
     </div>
   );
 }
 
-function generatePaginationLabels(pageNumber: number, maxPageCount: number): string[] {
+function generatePaginationLabels(currentPageNumber: number, maxPageCount: number): string[] {
   const paginationLabels: string[] = [];
-  const previousPageNumber = pageNumber - 1;
-  const nextPageNumber = pageNumber + 1;
+  const previousPageNumber = currentPageNumber - 1;
+  const nextPageNumber = currentPageNumber + 1;
 
   if (previousPageNumber > 3) {
     paginationLabels.push('1', '...', `${previousPageNumber}`);
   } else if (previousPageNumber !== 0) {
     [...Array(previousPageNumber)].forEach((_, index) => paginationLabels.push(`${index + 1}`));
   }
-  paginationLabels.push(`${pageNumber}`);
+  paginationLabels.push(`${currentPageNumber}`);
   if (maxPageCount - nextPageNumber > 2) {
     paginationLabels.push(`${nextPageNumber}`, '...', `${maxPageCount}`);
   } else if (nextPageNumber <= maxPageCount) {

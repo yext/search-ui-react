@@ -7,6 +7,7 @@ import { AppliedQueryFilter, SelectableFilter as DisplayableFilter, useAnswersSt
 import classNames from 'classnames';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { VerticalLink } from '../models/verticalLink';
+import { useCallback } from 'react';
 
 /**
  * The CSS class interface used for {@link SectionHeader}.
@@ -81,17 +82,6 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
 
   const analytics = useAnalytics();
   const queryId = useAnswersState(state => state.query.queryId);
-  const reportViewAllEvent = () => {
-    if (!queryId) {
-      console.error('Unable to report a vertical view all event. Missing field: queryId.');
-      return;
-    }
-    analytics?.report({
-      type: 'VERTICAL_VIEW_ALL',
-      queryId,
-      verticalKey
-    });
-  };
 
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
@@ -101,6 +91,22 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
   const href = getViewAllUrl
     ? getViewAllUrl({ verticalKey, query: latestQuery })
     : `/${verticalKey}?query=${latestQuery}`;
+
+  const onClickViewAllButton = useCallback(() => {
+    const reportViewAllEvent = () => {
+      if (!queryId) {
+        console.error('Unable to report a vertical view all event. Missing field: queryId.');
+        return;
+      }
+      analytics?.report({
+        type: 'VERTICAL_VIEW_ALL',
+        queryId,
+        verticalKey
+      });
+    };
+
+    analytics && reportViewAllEvent();
+  }, [analytics, queryId, verticalKey]);
 
   return (
     <div className={cssClasses.sectionHeaderContainer}>
@@ -119,7 +125,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>
           <a className={cssClasses.viewMoreLink} href={href}>
-            <button onClick={() => analytics && reportViewAllEvent()}>
+            <button onClick={onClickViewAllButton}>
               View all
             </button>
           </a>

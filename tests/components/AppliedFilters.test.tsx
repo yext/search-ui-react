@@ -1,3 +1,4 @@
+/* eslint-disable react-perf/jsx-no-new-array-as-prop */
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';

@@ -1,5 +1,5 @@
 import { DisplayableFacet } from '@yext/answers-headless-react';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import { CompositionMethod } from '../../hooks';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { HierarchicalFacetNode, HierarchicalFacetTree, useHierarchicalFacetTree } from '../../hooks/useHierarchicalFacetTree';
@@ -73,6 +73,9 @@ export function HierarchicalFacet({
   const tree = useHierarchicalFacetTree(facet, delimiter);
   const [isShowingMore, setIsShowingMore] = useState(false);
   const resetShowMore = () => setIsShowingMore(false);
+  const toggleShowMore = useCallback(() => {
+    setIsShowingMore(!isShowingMore);
+  }, [isShowingMore]);
 
   /** Iteratively parses the `HierarchicalFacetTree` into an array of ReactNodes */
   function renderTree(): ReactNode[] {
@@ -130,7 +133,7 @@ export function HierarchicalFacet({
       key='_ShowMoreButton'
       className={cssClasses.showMoreButton}
       isShowingMore={isShowingMore}
-      toggleShowMore={() => setIsShowingMore(!isShowingMore)}
+      toggleShowMore={toggleShowMore}
     />;
   }
 
@@ -167,18 +170,19 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
   resetShowMore: () => void
 }) {
   const { applyFilters, selectFilter } = useFiltersContext();
+  const onClickAllCategories = useCallback(() => {
+    facet.options
+      .filter(o => o.selected)
+      .forEach(o => selectFilter({ ...o, fieldId: facet.fieldId, selected: false }));
+    applyFilters();
+    resetShowMore();
+  }, [applyFilters, facet.fieldId, facet.options, resetShowMore, selectFilter]);
 
   if (facet.options.find(o => o.selected)) {
     return (
       <button
         className={inactiveClassName}
-        onClick={() => {
-          facet.options
-            .filter(o => o.selected)
-            .forEach(o => selectFilter({ ...o, fieldId: facet.fieldId, selected: false }));
-          applyFilters();
-          resetShowMore();
-        }}
+        onClick={onClickAllCategories}
       >
         All Categories /
       </button>
@@ -202,24 +206,25 @@ function AvailableOption(props: {
   const { fieldId, currentNode, activeClassName, inactiveClassName, resetShowMore, siblingNodes } = props;
   const { applyFilters, selectFilter } = useFiltersContext();
   const { selected, lastDisplayNameToken, facetOption } = currentNode;
+  const onClickAvailableOptions = useCallback(() => {
+    siblingNodes.filter(n => n.selected).forEach(n => selectFilter({
+      ...n.facetOption,
+      selected: false,
+      fieldId
+    }));
+    selectFilter({
+      ...facetOption,
+      selected: !selected,
+      fieldId
+    });
+    applyFilters();
+    resetShowMore();
+  }, [applyFilters, facetOption, fieldId, resetShowMore, selectFilter, selected, siblingNodes]);
 
   return (
     <button
       className={selected ? activeClassName : inactiveClassName}
-      onClick={() => {
-        siblingNodes.filter(n => n.selected).forEach(n => selectFilter({
-          ...n.facetOption,
-          selected: false,
-          fieldId
-        }));
-        selectFilter({
-          ...facetOption,
-          selected: !selected,
-          fieldId
-        });
-        applyFilters();
-        resetShowMore();
-      }}
+      onClick={onClickAvailableOptions}
     >
       {lastDisplayNameToken}
     </button>
@@ -235,7 +240,7 @@ function ParentCategory({ fieldId, selectedNode, className, resetShowMore }: {
 }) {
   const { applyFilters, selectFilter } = useFiltersContext();
 
-  function deselectChildOptions(node: HierarchicalFacetNode) {
+  const deselectChildOptions = useCallback((node: HierarchicalFacetNode) => {
     const tree = node.childTree;
     Object.values(tree).forEach(n => {
       selectFilter({
@@ -245,14 +250,16 @@ function ParentCategory({ fieldId, selectedNode, className, resetShowMore }: {
       });
       deselectChildOptions(n);
     });
-  }
+  }, [fieldId, selectFilter]);
+
+  const onClickParentCategory = useCallback(() => {
+    deselectChildOptions(selectedNode);
+    applyFilters();
+    resetShowMore();
+  }, [applyFilters, deselectChildOptions, resetShowMore, selectedNode]);
 
   return (
-    <button className={className} onClick={() => {
-      deselectChildOptions(selectedNode);
-      applyFilters();
-      resetShowMore();
-    }}>
+    <button className={className} onClick={onClickParentCategory}>
       {selectedNode.lastDisplayNameToken + ' /'}
     </button>
   );
@@ -266,19 +273,20 @@ function CurrentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   resetShowMore: () => void
 }) {
   const { applyFilters, selectFilter } = useFiltersContext();
+  const onClickCurrentCategory = useCallback(() => {
+    selectFilter({
+      ...selectedNode.facetOption,
+      selected: false,
+      fieldId
+    });
+    applyFilters();
+    resetShowMore();
+  }, [applyFilters, fieldId, resetShowMore, selectFilter, selectedNode.facetOption]);
 
   return (
     <button
       className={className}
-      onClick={() => {
-        selectFilter({
-          ...selectedNode.facetOption,
-          selected: false,
-          fieldId
-        });
-        applyFilters();
-        resetShowMore();
-      }}
+      onClick={onClickCurrentCategory}
     >
       {selectedNode.lastDisplayNameToken}
     </button>

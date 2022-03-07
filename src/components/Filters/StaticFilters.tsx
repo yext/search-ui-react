@@ -1,5 +1,5 @@
 import { useAnswersActions, useAnswersState, SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
@@ -14,6 +14,8 @@ export type StaticFiltersProps = PropsWithChildren<{
   /** Whether or not a search is automatically run when a filter is selected. Defaults to true. */
   searchOnChange?: boolean
 }>;
+
+const displayableFiltersFallback = [];
 
 /**
  * The StaticFilters component is a wrapper component around {@link Filters} that updates static filter
@@ -32,21 +34,23 @@ export function StaticFilters({
   searchOnChange = true
 }: StaticFiltersProps): JSX.Element {
   const answersActions = useAnswersActions();
-  const displayableFilters = useAnswersState(state => state.filters.static) || [];
+  const displayableFilters = useAnswersState(state => state.filters.static) || displayableFiltersFallback;
 
-  const filtersContextInstance: FiltersContextType = {
-    selectFilter(filter: DisplayableFilter) {
-      answersActions.setFilterOption({ ...filter });
-    },
-    applyFilters() {
-      if (searchOnChange) {
-        answersActions.setOffset(0);
-        answersActions.resetFacets();
-        executeSearch(answersActions);
-      }
-    },
-    filters: displayableFilters
-  };
+  const filtersContextInstance: FiltersContextType = useMemo(() => {
+    return {
+      selectFilter(filter: DisplayableFilter) {
+        answersActions.setFilterOption({ ...filter });
+      },
+      applyFilters() {
+        if (searchOnChange) {
+          answersActions.setOffset(0);
+          answersActions.resetFacets();
+          executeSearch(answersActions);
+        }
+      },
+      filters: displayableFilters
+    };
+  }, [answersActions, displayableFilters, searchOnChange]);
 
   return (
     <div className={className}>
