@@ -1,8 +1,7 @@
-import React from 'react';
-import { fireEvent, prettyDOM, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { DisplayableFacet, FiltersState, Matcher, Source, State } from '@yext/answers-headless-react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
-import { State, Matcher, Source, FiltersState, DisplayableFacet, StateSelector, AnswersHeadless } from '@yext/answers-headless-react';
-import { spyOnActions } from '../__utils__/spies';
+import { spyOnActions, spyOnAnswersState } from '../__utils__/spies';
 
 const mockedStaticFilters = [{
   selected: true,
@@ -157,7 +156,7 @@ describe('AppliedFilters', () => {
 
 describe('AppliedFilters with hierarchical facets', () => {
   it('renders hierarchical facets in the correct order, with same fieldId facets adjacent to each other', () => {
-    spyOnAnswersState({
+    spyOnFiltersState({
       facets: [
         createHierarchicalFacet([
           'food > fruit > banana',
@@ -193,7 +192,7 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('does not render unselected hierarchical facets', () => {
-    spyOnAnswersState({
+    spyOnFiltersState({
       facets: [
         createHierarchicalFacet([
           'food',
@@ -212,7 +211,7 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('can use a custom delimiter', () => {
-    spyOnAnswersState({
+    spyOnFiltersState({
       facets: [
         createHierarchicalFacet([
           'games',
@@ -232,7 +231,7 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('removing a hierarchical applied filter removes all descendants in the hierarchy', () => {
-    spyOnAnswersState({
+    spyOnFiltersState({
       facets: [
         createHierarchicalFacet([
           'food',
@@ -299,19 +298,9 @@ function createHierarchicalFacet(
   };
 }
 
-function spyOnFiltersState(filters: FitlersState) {
-
-}
-
-function spyOnAnswersState(customState: Partial<State>, baseState: Partial<State>) {
-  function mockImpl<T>(stateAccessor: StateSelector<T>) {
-    return stateAccessor({
-      ...baseState,
-      filters
-    } as State);
-  }
-
-  return jest
-    .spyOn(require('@yext/answers-headless-react'), 'useAnswersState')
-    .mockImplementation(mockImpl as (...args: unknown[]) => unknown);
+function spyOnFiltersState(filters: FiltersState) {
+  return spyOnAnswersState({
+    ...mockedState,
+    filters
+  });
 }
