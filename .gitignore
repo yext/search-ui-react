@@ -6,3 +6,4 @@ lib/
 
 # testing
 /coverage
+/storybook-static
