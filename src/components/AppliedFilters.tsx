@@ -61,7 +61,7 @@ export interface AppliedFiltersProps {
  * @returns A React element for the applied filters
  */
 export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
-  const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters) || [];
+  const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const verticalResults = useAnswersState(state => state.vertical.results);
   const filters = useAnswersState(state => state.filters);
@@ -82,7 +82,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const appliedFilters: GroupedFilters = useMemo(() =>
     pruneAppliedFilters(
       filterState.current,
-      nlpFilters,
+      nlpFilters ?? [],
       hiddenFields ?? ['builtin.entityType'],
       hierarchicalFacetsFieldIds ?? [],
       hierarchicalFacetsDelimiter
