@@ -103,7 +103,6 @@ const builtInPaginationCssClasses: PaginationCssClasses = {
 };
 
 interface PaginationButtonProps {
-  key?: string,
   className?: string,
   navigateToPage: (newPageNumber: number) => void,
   newPageNumber: number,
@@ -119,7 +118,6 @@ function PaginationButton(props: PropsWithChildren<PaginationButtonProps>): JSX.
 
   return (
     <button
-      key={props.key}
       aria-label={props.ariaLabel}
       className={props.className}
       onClick={handleClick}
@@ -200,6 +198,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
             case `${currentPageNumber}`:
               return (
                 <PaginationButton
+                  key={index}
                   className={cssClasses.selectedLabel}
                   navigateToPage={navigateToPage}
                   newPageNumber={currentPageNumber}
@@ -210,6 +209,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
             default:
               return (
                 <PaginationButton
+                  key={index}
                   className={cssClasses.label}
                   navigateToPage={navigateToPage}
                   newPageNumber={Number(label)}
