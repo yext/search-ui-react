@@ -47,7 +47,7 @@ export function pruneAppliedFilters(
   hierarchicalFieldIds: string[],
   hierarchicalDelimiter: string
 ): GroupedFilters {
-  const displayableStaticFilters = appliedFiltersState?.static?.filter(filter => filter.selected) || [];
+  const displayableStaticFilters = appliedFiltersState?.static?.filter(filter => filter.selected) ?? [];
   const displayableFacets =
     getDisplayableFacets(appliedFiltersState.facets ?? [], hierarchicalFieldIds)
       .filter(facet => facet.selected);
