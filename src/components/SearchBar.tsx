@@ -249,19 +249,19 @@ export function SearchBar({
     executeEntityPreviewsQuery(query, universalLimit, restrictVerticals);
   }, [entityPreviews, executeEntityPreviewsQuery, renderEntityPreviews]);
 
-  const onInputFocus = useCallback((value = '') => {
+  const handleInputFocus = useCallback((value = '') => {
     answersActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
   }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
-  const onInputChange = useCallback((value = '') => {
+  const handleInputChange = useCallback((value = '') => {
     answersActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
   }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
-  const onClickClearButton = useCallback(() => {
+  const handleClickClearButton = useCallback(() => {
     updateEntityPreviews('');
     answersActions.setQuery('');
     executeQuery();
@@ -274,8 +274,8 @@ export function SearchBar({
         className={cssClasses.inputElement}
         placeholder={placeholder}
         onSubmit={handleSubmit}
-        onFocus={onInputFocus}
-        onChange={onInputChange}
+        onFocus={handleInputFocus}
+        onChange={handleInputChange}
       />
     );
   }
@@ -350,7 +350,7 @@ export function SearchBar({
         <button
           aria-label='Clear the search bar'
           className={cssClasses.clearButton}
-          onClick={onClickClearButton}
+          onClick={handleClickClearButton}
         >
           <CloseIcon />
         </button>
@@ -375,7 +375,7 @@ export function SearchBar({
     [cssClasses.inputDropdownContainer___active ?? '']: hasItems
   });
 
-  const onToggleDropdown = useCallback(isActive => {
+  const handleToggleDropdown = useCallback(isActive => {
     if (!isActive) {
       clearAutocomplete();
     }
@@ -388,7 +388,7 @@ export function SearchBar({
         activeClassName={activeClassName}
         screenReaderText={screenReaderText}
         parentQuery={query}
-        onToggle={onToggleDropdown}
+        onToggle={handleToggleDropdown}
       >
         <div className={cssClasses.inputContainer}>
           <div className={cssClasses.logoContainer}>

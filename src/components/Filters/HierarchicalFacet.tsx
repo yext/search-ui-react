@@ -170,7 +170,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
   resetShowMore: () => void
 }) {
   const { applyFilters, selectFilter } = useFiltersContext();
-  const onClickAllCategories = useCallback(() => {
+  const handleClickAllCategories = useCallback(() => {
     facet.options
       .filter(o => o.selected)
       .forEach(o => selectFilter({ ...o, fieldId: facet.fieldId, selected: false }));
@@ -182,7 +182,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
     return (
       <button
         className={inactiveClassName}
-        onClick={onClickAllCategories}
+        onClick={handleClickAllCategories}
       >
         All Categories /
       </button>
@@ -206,7 +206,7 @@ function AvailableOption(props: {
   const { fieldId, currentNode, activeClassName, inactiveClassName, resetShowMore, siblingNodes } = props;
   const { applyFilters, selectFilter } = useFiltersContext();
   const { selected, lastDisplayNameToken, facetOption } = currentNode;
-  const onClickAvailableOptions = useCallback(() => {
+  const handleClickAvailableOptions = useCallback(() => {
     siblingNodes.filter(n => n.selected).forEach(n => selectFilter({
       ...n.facetOption,
       selected: false,
@@ -224,7 +224,7 @@ function AvailableOption(props: {
   return (
     <button
       className={selected ? activeClassName : inactiveClassName}
-      onClick={onClickAvailableOptions}
+      onClick={handleClickAvailableOptions}
     >
       {lastDisplayNameToken}
     </button>
@@ -252,14 +252,14 @@ function ParentCategory({ fieldId, selectedNode, className, resetShowMore }: {
     });
   }, [fieldId, selectFilter]);
 
-  const onClickParentCategory = useCallback(() => {
+  const handleClickParentCategory = useCallback(() => {
     deselectChildOptions(selectedNode);
     applyFilters();
     resetShowMore();
   }, [applyFilters, deselectChildOptions, resetShowMore, selectedNode]);
 
   return (
-    <button className={className} onClick={onClickParentCategory}>
+    <button className={className} onClick={handleClickParentCategory}>
       {selectedNode.lastDisplayNameToken + ' /'}
     </button>
   );
@@ -273,7 +273,7 @@ function CurrentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   resetShowMore: () => void
 }) {
   const { applyFilters, selectFilter } = useFiltersContext();
-  const onClickCurrentCategory = useCallback(() => {
+  const handleClickCurrentCategory = useCallback(() => {
     selectFilter({
       ...selectedNode.facetOption,
       selected: false,
@@ -286,7 +286,7 @@ function CurrentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   return (
     <button
       className={className}
-      onClick={onClickCurrentCategory}
+      onClick={handleClickCurrentCategory}
     >
       {selectedNode.lastDisplayNameToken}
     </button>

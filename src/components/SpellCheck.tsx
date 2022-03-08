@@ -58,7 +58,7 @@ export function SpellCheck({
     [cssClasses.spellCheck___loading ?? '']: isLoading
   });
   const answersActions = useAnswersActions();
-  const onClickSuggestion = useCallback(() => {
+  const handleClickSuggestion = useCallback(() => {
     answersActions.setQuery(correctedQuery);
     onClick
       ? onClick({ correctedQuery, verticalKey })
@@ -71,7 +71,7 @@ export function SpellCheck({
   return (
     <div className={containerClassNames}>
       <span className={cssClasses.helpText}>Did you mean </span>
-      <button className={cssClasses.link} onClick={onClickSuggestion}>{correctedQuery}</button>
+      <button className={cssClasses.link} onClick={handleClickSuggestion}>{correctedQuery}</button>
     </div>
   );
 }

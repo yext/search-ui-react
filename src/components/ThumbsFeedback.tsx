@@ -66,12 +66,12 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
   const query = useAnswersState(state => state.query.mostRecentSearch);
   const [isFeedbackProvided, setIsFeedbackProvided] = useState(false);
 
-  const onClickThumbsUp = useCallback(() => {
+  const handleClickThumbsUp = useCallback(() => {
     onClick('THUMBS_UP');
     setIsFeedbackProvided(true);
   }, [onClick]);
 
-  const onClickThumbsDown = useCallback(() => {
+  const handleClickThumbsDown = useCallback(() => {
     onClick('THUMBS_DOWN');
     setIsFeedbackProvided(true);
   }, [onClick]);
@@ -89,13 +89,13 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
           {feedbackText}
           <button
             className={cssClasses.thumbsUpIcon}
-            onClick={onClickThumbsUp}
+            onClick={handleClickThumbsUp}
           >
             <ThumbIcon/>
           </button>
           <button
             className={cssClasses.thumbsDownIcon}
-            onClick={onClickThumbsDown}
+            onClick={handleClickThumbsDown}
           >
             <ThumbIcon/>
           </button>

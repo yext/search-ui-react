@@ -133,15 +133,15 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     cta2: isCtaData
   });
 
-  const onCtaClick = useCallback(() => {
+  const handleCtaClick = useCallback(() => {
     reportAnalyticsEvent(result, 'CTA_CLICK');
   }, [reportAnalyticsEvent, result]);
 
-  const onTitleClick = useCallback(() => {
+  const handleTitleClick = useCallback(() => {
     reportAnalyticsEvent(result, 'TITLE_CLICK');
   }, [reportAnalyticsEvent, result]);
 
-  const onClickFeedbackButton = useCallback((feedbackType: FeedbackType) => {
+  const handleFeedbackButtonClick = useCallback((feedbackType: FeedbackType) => {
     reportAnalyticsEvent(result, feedbackType);
   }, [reportAnalyticsEvent, result]);
 
@@ -150,8 +150,8 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     return (<>
       {(cta1 ?? cta2) &&
         <div className={cssClasses.ctaContainer}>
-          {cta1 && <button className={cssClasses.cta1} onClick={onCtaClick}>{cta1.label}</button>}
-          {cta2 && <button className={cssClasses.cta2} onClick={onCtaClick}>{cta2.label}</button>}
+          {cta1 && <button className={cssClasses.cta1} onClick={handleCtaClick}>{cta1.label}</button>}
+          {cta2 && <button className={cssClasses.cta2} onClick={handleCtaClick}>{cta2.label}</button>}
         </div>
       }
     </>);
@@ -168,7 +168,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   function renderTitle(title: string) {
     return (
       result.link
-        ? <a href={result.link} className={cssClasses.titleLink} onClick={onTitleClick}>{title}</a>
+        ? <a href={result.link} className={cssClasses.titleLink} onClick={handleTitleClick}>{title}</a>
         : <div className={cssClasses.title}>{title}</div>
     );
   }
@@ -190,7 +190,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
       }
       {showFeedbackButtons && <ThumbsFeedback
         feedbackText=''
-        onClick={onClickFeedbackButton}
+        onClick={handleFeedbackButtonClick}
         customCssClasses={cssClasses}
         cssCompositionMethod={cssCompositionMethod}
       />}

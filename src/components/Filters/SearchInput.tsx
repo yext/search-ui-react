@@ -27,7 +27,7 @@ export function SearchInput(props: SearchInputProps): JSX.Element {
     placeholderText = 'Search here...'
   } = props;
   const { searchValue, setSearchValue } = useFilterGroupContext();
-  const onChange = useCallback(e => {
+  const handleChange = useCallback(e => {
     setSearchValue(e.target.value);
   }, [setSearchValue]);
 
@@ -37,7 +37,7 @@ export function SearchInput(props: SearchInputProps): JSX.Element {
       type='text'
       placeholder={placeholderText}
       value={searchValue}
-      onChange={onChange}
+      onChange={handleChange}
     />
   );
 }

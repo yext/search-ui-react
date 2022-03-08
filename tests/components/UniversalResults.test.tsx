@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable react-perf/jsx-no-new-object-as-prop */
 import React from 'react';
 import { render } from '@testing-library/react';
 

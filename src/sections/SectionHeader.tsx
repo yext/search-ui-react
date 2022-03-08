@@ -92,7 +92,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
     ? getViewAllUrl({ verticalKey, query: latestQuery })
     : `/${verticalKey}?query=${latestQuery}`;
 
-  const onClickViewAllButton = useCallback(() => {
+  const handleClickViewAllButton = useCallback(() => {
     const reportViewAllEvent = () => {
       if (!queryId) {
         console.error('Unable to report a vertical view all event. Missing field: queryId.');
@@ -125,7 +125,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>
           <a className={cssClasses.viewMoreLink} href={href}>
-            <button onClick={onClickViewAllButton}>
+            <button onClick={handleClickViewAllButton}>
               View all
             </button>
           </a>

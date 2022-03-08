@@ -113,7 +113,7 @@ interface PaginationButtonProps {
 
 function PaginationButton(props: PropsWithChildren<PaginationButtonProps>): JSX.Element | null {
   const { navigateToPage, newPageNumber } = props;
-  const onClick = useCallback(() => {
+  const handleClick = useCallback(() => {
     navigateToPage(newPageNumber);
   }, [navigateToPage, newPageNumber]);
 
@@ -122,7 +122,7 @@ function PaginationButton(props: PropsWithChildren<PaginationButtonProps>): JSX.
       key={props.key}
       aria-label={props.ariaLabel}
       className={props.className}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={props.disabled}
     >
       {props.children}

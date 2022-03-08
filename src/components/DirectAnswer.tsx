@@ -75,11 +75,11 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
     builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
   const reportAnalyticsEvent = useCardAnalytics();
 
-  const onClickViewDetails = useCallback(() => {
+  const handleClickViewDetails = useCallback(() => {
     reportAnalyticsEvent(directAnswerResult as DirectAnswer, 'CTA_CLICK');
   }, [directAnswerResult, reportAnalyticsEvent]);
 
-  const onClickFeedbackButton = useCallback((feedbackType: FeedbackType) => {
+  const handleClickFeedbackButton = useCallback((feedbackType: FeedbackType) => {
     reportAnalyticsEvent(directAnswerResult as DirectAnswer, feedbackType);
   }, [directAnswerResult, reportAnalyticsEvent]);
 
@@ -102,12 +102,23 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
 
     return (<>
       {isSnippet && name && <div className={cssClasses.viewDetailsLinkContainer}>
-        Read more about <a className={cssClasses.viewDetailsLink} href={link} onClick={onClickViewDetails}>
+        Read more about
+        <a
+          className={cssClasses.viewDetailsLink}
+          href={link}
+          onClick={handleClickViewDetails}
+        >
           {directAnswerResult.relatedResult.name}
         </a>
       </div>}
       {!isSnippet && link && <div className={cssClasses.viewDetailsLinkContainer}>
-        <a href={link} className={cssClasses.viewDetailsLink} onClick={onClickViewDetails}>View Details</a>
+        <a
+          href={link}
+          className={cssClasses.viewDetailsLink}
+          onClick={handleClickViewDetails}
+        >
+          View Details
+        </a>
       </div>}
     </>);
   }
@@ -127,7 +138,7 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
         </div>
       </div>
       <ThumbsFeedback
-        onClick={onClickFeedbackButton}
+        onClick={handleClickFeedbackButton}
         customCssClasses={composedCssClasses}
         cssCompositionMethod={props.cssCompositionMethod}
       />
