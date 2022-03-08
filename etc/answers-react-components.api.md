@@ -11,7 +11,6 @@ import { AnalyticsService } from '@yext/analytics';
 import { AnswersActions } from '@yext/answers-headless-react';
 import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
-import { ComponentPropsWithRef } from 'react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
@@ -335,8 +334,6 @@ declare namespace Filters {
         CollapsibleLabelProps,
         CollapsibleSection,
         CollapsibleSectionProps,
-        ResponsiveDivider,
-        ResponsiveDividerProps,
         Facets,
         FacetsProps,
         FiltersContext,
@@ -498,20 +495,6 @@ export interface PaginationCssClasses {
 
 // @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function ResponsiveDivider(props: ResponsiveDividerProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-type ResponsiveDividerProps = {
-    mobileBreakpoint?: number;
-    desktopClassName?: string;
-    mobileClassName?: string;
-} & ComponentPropsWithRef<'div'>;
 
 // @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
