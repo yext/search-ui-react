@@ -43,7 +43,7 @@ export function getDisplayableHierarchicalFacets(
         return false;
       }
       return true;
-    }).map((option) => {
+    }).map(option => {
       const displayNameTokens = option.displayName.split(delimiter).map(t => t.trim());
       return {
         ...convertFacetOption(facet.fieldId, option),
