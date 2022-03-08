@@ -1,9 +1,5 @@
 import { AnswersHeadless, State, StateSelector, useAnswersState } from '@yext/answers-headless-react';
 
-export type AnswersActionsMock = {
-  [x in keyof AnswersHeadless]: jest.MockInstance<AnswersHeadless[x], unknown[]>
-};
-
 export function spyOnActions(): jest.Mocked<AnswersHeadless> {
   const spy = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
   const proxyHandler = {
