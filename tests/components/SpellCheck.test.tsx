@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import { SpellCheck } from '../../src/components/SpellCheck';
 import { State } from '@yext/answers-headless-react';
+import { spyOnActions } from '../__utils__/spies';
 
 const mockedState: Partial<State> = {
   spellCheck: {
@@ -52,16 +53,14 @@ describe('SpellCheck', () => {
       onClick: jest.fn()
     };
     const onClick = jest.spyOn(props, 'onClick');
-    const useAnswersActions = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
+    const actions = spyOnActions();
 
     render(<SpellCheck {...props} />);
     fireEvent.click(screen.getByRole('button'));
 
-    const answersActions = useAnswersActions.mock.results[0].value;
-
     const verticalKey = mockedState.vertical.verticalKey;
     const correctedQuery = mockedState.spellCheck.correctedQuery;
-    expect(answersActions.setQuery).toHaveBeenCalledWith(correctedQuery);
+    expect(actions.setQuery).toHaveBeenCalledWith(correctedQuery);
     expect(onClick).toHaveBeenCalledWith({ correctedQuery, verticalKey });
   });
 
