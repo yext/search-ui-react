@@ -49,10 +49,11 @@ export function pruneAppliedFilters(
 ): GroupedFilters {
   const displayableStaticFilters = appliedFiltersState?.static?.filter(filter => filter.selected) || [];
   const displayableFacets =
-    getDisplayableFacets(appliedFiltersState?.facets, hierarchicalFieldIds)
+    getDisplayableFacets(appliedFiltersState.facets ?? [], hierarchicalFieldIds)
       .filter(facet => facet.selected);
   const hierarchicalFacets =
-    getDisplayableHierarchicalFacets(appliedFiltersState?.facets, hierarchicalFieldIds, hierarchicalDelimiter)
+    getDisplayableHierarchicalFacets(
+      appliedFiltersState.facets ?? [], hierarchicalFieldIds, hierarchicalDelimiter)
       .filter(facet => facet.selected);
   const displayableNlpFilters = getDisplayableNlpFilters(nlpFilters);
 
