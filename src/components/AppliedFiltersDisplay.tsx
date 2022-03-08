@@ -11,6 +11,7 @@ import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
 import { executeSearch } from '../utils/search-operations';
+import { useCallback } from 'react';
 
 /**
  * Properties for {@link AppliedFilters}.
@@ -48,13 +49,20 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   const answersActions = useAnswersActions();
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
+  const handleClickClearAllButton = useCallback(() => {
+    answersActions.setOffset(0);
+    answersActions.resetFacets();
+    answersActions.setStaticFilters([]);
+    executeSearch(answersActions);
+  }, [answersActions]);
+
   const hasAppliedFilters = (
     nlpFilters.length + staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
   if (!hasAppliedFilters) {
     return null;
   }
 
-  const onRemoveFacetOption = (filter: DisplayableFilter) => {
+  const handleRemoveFacetOption = (filter: DisplayableFilter) => {
     const { fieldId, matcher, value } = filter;
     if (isNearFilterValue(value)) {
       console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
@@ -65,7 +73,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     executeSearch(answersActions);
   };
 
-  const onRemoveHierarchicalFacetOption = (facet: DisplayableHierarchicalFacet) => {
+  const handleRemoveHierarchicalFacetOption = (facet: DisplayableHierarchicalFacet) => {
     const { fieldId, parentFacet } = facet;
 
     // Uncheck all descendant options in the hierarchy
@@ -80,25 +88,18 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     executeSearch(answersActions);
   };
 
-  const onRemoveStaticFilterOption = (filter: DisplayableFilter) => {
+  const handleRemoveStaticFilterOption = (filter: DisplayableFilter) => {
     answersActions.setOffset(0);
     answersActions.setFilterOption({ ...filter, selected: false });
     executeSearch(answersActions);
   };
 
-  const onClickClearAllButton = () => {
-    answersActions.setOffset(0);
-    answersActions.resetFacets();
-    answersActions.setStaticFilters([]);
-    executeSearch(answersActions);
-  };
-
   const renderRemovableFilter =
-    (onRemoveFilter: (filter: DisplayableFilter) => void) =>
+    (handleRemoveFilter: (filter: DisplayableFilter) => void) =>
       (filter: DisplayableFilter) =>
         <RemovableFilter
           displayName={filter.displayName ?? ''}
-          onRemoveFilter={() => onRemoveFilter(filter)}
+          handleRemoveFilter={() => handleRemoveFilter(filter)}
           key={filter.displayName}
           cssClasses={cssClasses}
         />;
@@ -112,15 +113,15 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
       {hierarchicalFacets.map(filter =>
         <RemovableFilter
           key={filter.displayName}
-          onRemoveFilter={() => onRemoveHierarchicalFacetOption(filter)}
+          handleRemoveFilter={() => handleRemoveHierarchicalFacetOption(filter)}
           displayName={filter.lastDisplayNameToken}
           cssClasses={cssClasses}
         />
       )}
-      {facets.map(renderRemovableFilter(onRemoveFacetOption))}
-      {staticFilters.map(renderRemovableFilter(onRemoveStaticFilterOption))}
+      {facets.map(renderRemovableFilter(handleRemoveFacetOption))}
+      {staticFilters.map(renderRemovableFilter(handleRemoveStaticFilterOption))}
       {isVertical && hasRemovableFilters &&
-        <button onClick={onClickClearAllButton} className={cssClasses.clearAllButton}>
+        <button onClick={handleClickClearAllButton} className={cssClasses.clearAllButton}>
           Clear All
         </button>
       }
@@ -128,8 +129,8 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   );
 }
 
-function RemovableFilter({ onRemoveFilter, displayName, cssClasses }: {
-  onRemoveFilter: () => void,
+function RemovableFilter({ handleRemoveFilter, displayName, cssClasses }: {
+  handleRemoveFilter: () => void,
   displayName: string,
   cssClasses: AppliedFiltersCssClasses
 }): JSX.Element {
@@ -138,7 +139,7 @@ function RemovableFilter({ onRemoveFilter, displayName, cssClasses }: {
       <div className={cssClasses.filterLabel}>{displayName}</div>
       <button
         className={cssClasses.removeFilterButton}
-        onClick={() => onRemoveFilter()}
+        onClick={handleRemoveFilter}
         aria-label={`Remove "${displayName}" filter`}>
         <CloseIcon />
       </button>

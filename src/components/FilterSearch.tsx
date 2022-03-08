@@ -1,4 +1,5 @@
 import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions } from '@yext/answers-headless-react';
+import { useCallback } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
@@ -86,6 +87,18 @@ export function FilterSearch({
   const sections = filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
+  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
+    const filter = itemData?.filter as Filter;
+    const displayName = itemData?.displayName as string;
+    if (filter && displayName) {
+      answersActions.setFilterOption({ ...filter, displayName, selected: true });
+      executeSearch(answersActions);
+    }
+  }, [answersActions]);
+
+  const handleChangeDropdownInput = useCallback(query => executeFilterSearch(query), [executeFilterSearch]);
+  const meetsSubmitCritera = useCallback(index => index >= 0, []);
+
   function renderDropdownItems() {
     return sections.map((section, sectionIndex) => {
       return (
@@ -117,21 +130,14 @@ export function FilterSearch({
       <h1 className={cssClasses.label}>{label}</h1>
       <Dropdown
         screenReaderText={getScreenReaderText(sections)}
-        onSelect={(_value, _index, itemData) => {
-          const filter = itemData?.filter as Filter;
-          const displayName = itemData?.displayName as string;
-          if (filter && displayName) {
-            answersActions.setFilterOption({ ...filter, displayName, selected: true });
-            executeSearch(answersActions);
-          }
-        }}
+        onSelect={handleSelectDropdown}
       >
         <div className={cssClasses.inputContainer}>
           <DropdownInput
             className={cssClasses.inputElement}
             placeholder='Search here ...'
-            onChange={query => executeFilterSearch(query)}
-            submitCriteria={index => index >= 0}
+            onChange={handleChangeDropdownInput}
+            submitCriteria={meetsSubmitCritera}
           />
         </div>
         <DropdownMenu>

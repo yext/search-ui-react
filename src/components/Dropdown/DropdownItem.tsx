@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useCallback } from 'react';
 import { useDropdownContext } from './DropdownContext';
 import { FocusedItemData, useFocusContext } from './FocusContext';
 import { generateDropdownId } from './generateDropdownId';
@@ -47,14 +47,24 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
 
   const isFocused = focusedIndex === index;
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     toggleDropdown(false);
     updateFocusedItem(-1);
     setLastTypedOrSubmittedValue(value);
     setValue(value);
     onSelect?.(value, index, itemData);
     onClick?.(value, index, itemData);
-  };
+  }, [
+    index,
+    itemData,
+    onClick,
+    onSelect,
+    setLastTypedOrSubmittedValue,
+    setValue,
+    toggleDropdown,
+    updateFocusedItem,
+    value
+  ]);
 
   return (
     <div

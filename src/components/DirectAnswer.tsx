@@ -1,7 +1,7 @@
-import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData } from '@yext/answers-headless-react';
+import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData, DirectAnswer } from '@yext/answers-headless-react';
 import { renderHighlightedValue } from './utils/renderHighlightedValue';
 import classNames from 'classnames';
-import { ReactNode } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import {
   FeedbackType,
@@ -75,6 +75,14 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
     builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
   const reportAnalyticsEvent = useCardAnalytics();
 
+  const onClickViewDetails = useCallback(() => {
+    reportAnalyticsEvent(directAnswerResult as DirectAnswer, 'CTA_CLICK');
+  }, [directAnswerResult, reportAnalyticsEvent]);
+
+  const onClickFeedbackButton = useCallback((feedbackType: FeedbackType) => {
+    reportAnalyticsEvent(directAnswerResult as DirectAnswer, feedbackType);
+  }, [directAnswerResult, reportAnalyticsEvent]);
+
   if (!directAnswerResult) {
     return null;
   }
@@ -91,18 +99,15 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   function getLinkText(directAnswerResult: DirectAnswerData) {
     const isSnippet = directAnswerResult.type === DirectAnswerType.FeaturedSnippet;
     const name = directAnswerResult.relatedResult.name;
-    const onClick = () => {
-      reportAnalyticsEvent(directAnswerResult, 'CTA_CLICK');
-    };
 
     return (<>
       {isSnippet && name && <div className={cssClasses.viewDetailsLinkContainer}>
-        Read more about <a className={cssClasses.viewDetailsLink} href={link} onClick={onClick}>
+        Read more about <a className={cssClasses.viewDetailsLink} href={link} onClick={onClickViewDetails}>
           {directAnswerResult.relatedResult.name}
         </a>
       </div>}
       {!isSnippet && link && <div className={cssClasses.viewDetailsLinkContainer}>
-        <a href={link} className={cssClasses.viewDetailsLink} onClick={onClick}>View Details</a>
+        <a href={link} className={cssClasses.viewDetailsLink} onClick={onClickViewDetails}>View Details</a>
       </div>}
     </>);
   }
@@ -110,10 +115,6 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   const containerCssClasses = classNames(cssClasses.container, {
     [cssClasses.container___loading ?? '']: isLoading
   });
-
-  const onClickFeedbackButton = (feedbackType: FeedbackType) => {
-    reportAnalyticsEvent(directAnswerResult, feedbackType);
-  };
 
   return (
     <div className={containerCssClasses}>

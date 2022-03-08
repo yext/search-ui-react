@@ -4,7 +4,7 @@ import {
   useAnswersActions,
   useAnswersState
 } from '@yext/answers-headless-react';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
@@ -56,26 +56,28 @@ export function Facets({
     };
   }));
 
-  const filtersContextInstance: FiltersContextType = {
-    selectFilter(filter: DisplayableFilter) {
-      if (typeof filter.value === 'object') {
-        console.error('Facets only support string, number, and boolean. Found the following object value instead:', filter.value);
-        return;
-      }
-      const facetOption = {
-        matcher: filter.matcher,
-        value: filter.value
-      };
-      answersActions.setFacetOption(filter.fieldId, facetOption, filter.selected);
-    },
-    applyFilters() {
-      if (searchOnChange) {
-        answersActions.setOffset(0);
-        executeSearch(answersActions);
-      }
-    },
-    filters
-  };
+  const filtersContextInstance: FiltersContextType = useMemo(() => {
+    return {
+      selectFilter(filter: DisplayableFilter) {
+        if (typeof filter.value === 'object') {
+          console.error('Facets only support string, number, and boolean. Found the following object value instead:', filter.value);
+          return;
+        }
+        const facetOption = {
+          matcher: filter.matcher,
+          value: filter.value
+        };
+        answersActions.setFacetOption(filter.fieldId, facetOption, filter.selected);
+      },
+      applyFilters() {
+        if (searchOnChange) {
+          answersActions.setOffset(0);
+          executeSearch(answersActions);
+        }
+      },
+      filters
+    };
+  }, [answersActions, filters, searchOnChange]);
 
   return (
     <div className={className}>
