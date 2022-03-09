@@ -71,12 +71,12 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     // Uncheck all descendant options in the hierarchy
     parentFacet.options.forEach(o => {
       if (isDescendantHierarchicalFacet(facet, o, hierarchicalFacetsDelimiter)) {
-        answersActions.setFacetOption(fieldId, o, false);
+        answersActions.setFacetOption(fieldId, { matcher: o.matcher, value: o.value }, false);
       }
     });
 
     answersActions.setOffset(0);
-    answersActions.setFacetOption(fieldId, facet, false);
+    answersActions.setFacetOption(fieldId, { matcher: facet.matcher, value: facet.value }, false);
     executeSearch(answersActions);
   };
 

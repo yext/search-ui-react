@@ -1,7 +1,7 @@
 import { useAnswersState, FiltersState } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { pruneAppliedFilters } from '../utils/appliedfilterutils';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { GroupedFilters } from '../models/groupedFilters';
@@ -61,7 +61,7 @@ export interface AppliedFiltersProps {
  * @returns A React element for the applied filters
  */
 export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
-  const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters) || [];
+  const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const verticalResults = useAnswersState(state => state.vertical.results);
   const filters = useAnswersState(state => state.filters);
@@ -72,14 +72,22 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   }
 
   const {
-    hiddenFields = ['builtin.entityType'],
+    hiddenFields,
     customCssClasses = {},
     cssCompositionMethod,
     hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
-    hierarchicalFacetsFieldIds = []
+    hierarchicalFacetsFieldIds
   } = props;
-  const appliedFilters: GroupedFilters = pruneAppliedFilters(
-    filterState.current, nlpFilters, hiddenFields, hierarchicalFacetsFieldIds, hierarchicalFacetsDelimiter);
+
+  const appliedFilters: GroupedFilters = useMemo(() =>
+    pruneAppliedFilters(
+      filterState.current,
+      nlpFilters ?? [],
+      hiddenFields ?? ['builtin.entityType'],
+      hierarchicalFacetsFieldIds ?? [],
+      hierarchicalFacetsDelimiter
+    ), [hiddenFields, hierarchicalFacetsDelimiter, hierarchicalFacetsFieldIds, nlpFilters]);
+
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading

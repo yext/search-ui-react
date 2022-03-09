@@ -36,5 +36,15 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     'import/no-default-export': ['warn']
   },
-  ignorePatterns: ['lib', 'tests/setup/responses', 'storybook-static', '!.storybook']
+  ignorePatterns: ['lib', 'tests/setup/responses', 'storybook-static', '!.storybook'],
+  overrides: [
+    {
+      files: ['**/*.test.*'],
+      rules: {
+        'react-perf/jsx-no-new-array-as-prop': 'off',
+        'react-perf/jsx-no-new-array-as-prop': 'off',
+        'react-perf/jsx-no-new-function-as-prop': 'off'
+      }
+    }
+  ]
 };

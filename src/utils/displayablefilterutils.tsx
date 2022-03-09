@@ -10,50 +10,44 @@ import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
  * Convert a list of facets to DisplayableFilter format.
  */
 export function getDisplayableFacets(
-  facets: DisplayableFacet[] | undefined,
+  facets: DisplayableFacet[],
   hierarchicalFacetFieldIds: string[]
 ): DisplayableFilter[] {
-  const displayableFilters: DisplayableFilter[] = [];
-
-  facets?.forEach(facet => {
-    if (hierarchicalFacetFieldIds.includes(facet.fieldId)) {
-      return;
-    }
-    facet.options.forEach(option => {
-      displayableFilters.push(convertFacetOption(facet.fieldId, option));
+  return facets.filter(facet => !hierarchicalFacetFieldIds.includes(facet.fieldId)).flatMap(facet => {
+    return facet.options.map(option => {
+      return convertFacetOption(facet.fieldId, option);
     });
   });
-
-  return displayableFilters;
 }
 
 export function getDisplayableHierarchicalFacets(
-  facets: DisplayableFacet[] | undefined,
+  facets: DisplayableFacet[],
   hierarchicalFieldIds: string[],
   delimiter: string
 ): DisplayableHierarchicalFacet[] {
-  const displayableFacets: DisplayableHierarchicalFacet[] = [];
+  return facets.filter(f => hierarchicalFieldIds.includes(f.fieldId)).flatMap(facet => {
+    const sortedOptions = [...facet.options].sort((a, b) => {
+      return a.displayName.length - b.displayName.length;
+    });
 
-  facets?.forEach(facet => {
-    if (!hierarchicalFieldIds.includes(facet.fieldId)) {
-      return;
-    }
-    facet.options.forEach((option: DisplayableFacetOption) => {
-      if (typeof option.value !== 'string') {
-        console.error('Hierarchical Facets must have value of type "string"');
-        return;
+    const facetsForCurrentFieldId: DisplayableHierarchicalFacet[] = sortedOptions.filter(o => {
+      if (typeof o.value !== 'string') {
+        console.error('Hierarchical Facets must have value of type "string", found', o.value);
+        return false;
       }
+      return true;
+    }).map(option => {
       const displayNameTokens = option.displayName.split(delimiter).map(t => t.trim());
-      displayableFacets.push({
+      return {
         ...convertFacetOption(facet.fieldId, option),
         parentFacet: facet,
         lastDisplayNameToken: displayNameTokens[displayNameTokens.length - 1],
         displayNameTokens
-      });
+      };
     });
-  });
 
-  return displayableFacets;
+    return facetsForCurrentFieldId;
+  });
 }
 
 function convertFacetOption<F extends DisplayableFilter>(fieldId: string, option: DisplayableFacetOption) {
@@ -70,15 +64,11 @@ function convertFacetOption<F extends DisplayableFilter>(fieldId: string, option
  * Convert a list of nlp filters to DisplayableFilter format.
  */
 export function getDisplayableNlpFilters(filters: AppliedQueryFilter[]): DisplayableFilter[] {
-  const displayableFilters: DisplayableFilter[] = [];
-
-  filters?.forEach(filter => {
-    displayableFilters.push({
+  return filters.map(filter => {
+    return {
       ...filter.filter,
       displayName: filter.displayValue,
       selected: true
-    });
+    };
   });
-
-  return displayableFilters;
 }
