@@ -15,8 +15,6 @@ export type StaticFiltersProps = PropsWithChildren<{
   searchOnChange?: boolean
 }>;
 
-const displayableFiltersFallback = [];
-
 /**
  * The StaticFilters component is a wrapper component around {@link Filters} that updates static filter
  * options when a child filter is updated.
@@ -34,7 +32,7 @@ export function StaticFilters({
   searchOnChange = true
 }: StaticFiltersProps): JSX.Element {
   const answersActions = useAnswersActions();
-  const displayableFilters = useAnswersState(state => state.filters.static) || displayableFiltersFallback;
+  const displayableFilters = useAnswersState(state => state.filters.static);
 
   const filtersContextInstance: FiltersContextType = useMemo(() => {
     return {
@@ -48,7 +46,7 @@ export function StaticFilters({
           executeSearch(answersActions);
         }
       },
-      filters: displayableFilters
+      filters: displayableFilters ?? []
     };
   }, [answersActions, displayableFilters, searchOnChange]);
 

@@ -1,14 +1,13 @@
-import { useCallback } from 'react';
-import { useCardAnalytics } from '../../hooks/useCardAnalytics';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useCardAnalyticsCallback } from '../../hooks/useCardAnalyticsCallback';
 import { CardProps } from '../../models/cardComponent';
 import {
-  FeedbackType,
   ThumbsFeedback,
   ThumbsFeedbackCssClasses
 } from '../ThumbsFeedback';
 import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
 import { isString, validateData } from '../utils/validateData';
+import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
 
 /**
  * Props for a StandardCard.
@@ -119,7 +118,6 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     showFeedbackButtons
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-  const reportAnalyticsEvent = useCardAnalytics();
 
   const transformedFieldData = applyFieldMappings(result.rawData, {
     ...defaultFieldMappings,
@@ -133,17 +131,9 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     cta2: isCtaData
   });
 
-  const handleCtaClick = useCallback(() => {
-    reportAnalyticsEvent(result, 'CTA_CLICK');
-  }, [reportAnalyticsEvent, result]);
-
-  const handleTitleClick = useCallback(() => {
-    reportAnalyticsEvent(result, 'TITLE_CLICK');
-  }, [reportAnalyticsEvent, result]);
-
-  const handleFeedbackButtonClick = useCallback((feedbackType: FeedbackType) => {
-    reportAnalyticsEvent(result, feedbackType);
-  }, [reportAnalyticsEvent, result]);
+  const handleCtaClick = useCardAnalyticsCallback(result, 'CTA_CLICK');
+  const handleTitleClick = useCardAnalyticsCallback(result, 'TITLE_CLICK');
+  const handleFeedbackButtonClick = useCardFeedbackCallback(result);
 
   // TODO (cea2aj) We need to handle the various linkType so these CTAs are clickable
   function renderCTAs(cta1?: CtaData, cta2?: CtaData) {

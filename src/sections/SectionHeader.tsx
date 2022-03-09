@@ -93,19 +93,18 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
     : `/${verticalKey}?query=${latestQuery}`;
 
   const handleClickViewAllButton = useCallback(() => {
-    const reportViewAllEvent = () => {
-      if (!queryId) {
-        console.error('Unable to report a vertical view all event. Missing field: queryId.');
-        return;
-      }
-      analytics?.report({
-        type: 'VERTICAL_VIEW_ALL',
-        queryId,
-        verticalKey
-      });
-    };
-
-    analytics && reportViewAllEvent();
+    if (!analytics) {
+      return;
+    }
+    if (!queryId) {
+      console.error('Unable to report a vertical view all event. Missing field: queryId.');
+      return;
+    }
+    analytics?.report({
+      type: 'VERTICAL_VIEW_ALL',
+      queryId,
+      verticalKey
+    });
   }, [analytics, queryId, verticalKey]);
 
   return (

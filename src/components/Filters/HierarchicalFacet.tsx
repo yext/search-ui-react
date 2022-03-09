@@ -72,7 +72,7 @@ export function HierarchicalFacet({
     builtInCssClasses, customCssClasses, cssCompositionMethod);
   const tree = useHierarchicalFacetTree(facet, delimiter);
   const [isShowingMore, setIsShowingMore] = useState(false);
-  const resetShowMore = () => setIsShowingMore(false);
+  const resetShowMore = useCallback(() => setIsShowingMore(false), []);
   const toggleShowMore = useCallback(() => {
     setIsShowingMore(!isShowingMore);
   }, [isShowingMore]);

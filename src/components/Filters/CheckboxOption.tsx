@@ -73,7 +73,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
       matcher: Matcher.Equals,
       fieldId: fieldId ?? '',
       value,
-      displayName: `${label}`,
+      displayName: typeof label === 'string' ? label : undefined,
       selected: checked
     });
     applyFilters();

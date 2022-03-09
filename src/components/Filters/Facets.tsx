@@ -45,16 +45,19 @@ export function Facets({
   searchOnChange = true
 }: FacetsProps): JSX.Element {
   const answersActions = useAnswersActions();
-  const facets = useAnswersState(state => state.filters.facets) ?? [];
-  const filters: DisplayableFilter[] = facets.flatMap(f => f.options.map(o => {
-    return {
-      fieldId: f.fieldId,
-      value: o.value,
-      matcher: o.matcher,
-      selected: o.selected,
-      displayName: o.displayName
-    };
-  }));
+  const facetsInState = useAnswersState(state => state.filters.facets);
+  const facets = useMemo(() => facetsInState ?? [], [facetsInState]);
+  const filters: DisplayableFilter[] = useMemo(() => {
+    return facets.flatMap(f => f.options.map(o => {
+      return {
+        fieldId: f.fieldId,
+        value: o.value,
+        matcher: o.matcher,
+        selected: o.selected,
+        displayName: o.displayName
+      };
+    }));
+  }, [facets]);
 
   const filtersContextInstance: FiltersContextType = useMemo(() => {
     return {

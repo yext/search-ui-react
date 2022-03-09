@@ -1,15 +1,15 @@
 import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData, DirectAnswer } from '@yext/answers-headless-react';
 import { renderHighlightedValue } from './utils/renderHighlightedValue';
 import classNames from 'classnames';
-import { ReactNode, useCallback } from 'react';
+import { ReactNode } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import {
-  FeedbackType,
   ThumbsFeedbackCssClasses,
   ThumbsFeedback
 } from './ThumbsFeedback';
 
-import { useCardAnalytics } from '../hooks/useCardAnalytics';
+import { useCardAnalyticsCallback } from '../hooks/useCardAnalyticsCallback';
+import { useCardFeedbackCallback } from '../hooks/useCardFeedbackCallback';
 
 /**
  * Props for {@link DirectAnswer}.
@@ -73,15 +73,9 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   const isLoading = useAnswersState(state => state.searchStatus.isLoading || false);
   const composedCssClasses = useComposedCssClasses(
     builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
-  const reportAnalyticsEvent = useCardAnalytics();
 
-  const handleClickViewDetails = useCallback(() => {
-    reportAnalyticsEvent(directAnswerResult as DirectAnswer, 'CTA_CLICK');
-  }, [directAnswerResult, reportAnalyticsEvent]);
-
-  const handleClickFeedbackButton = useCallback((feedbackType: FeedbackType) => {
-    reportAnalyticsEvent(directAnswerResult as DirectAnswer, feedbackType);
-  }, [directAnswerResult, reportAnalyticsEvent]);
+  const handleClickViewDetails = useCardAnalyticsCallback(directAnswerResult as DirectAnswerData, 'CTA_CLICK');
+  const handleClickFeedbackButton = useCardFeedbackCallback(directAnswerResult as DirectAnswerData);
 
   if (!directAnswerResult) {
     return null;
