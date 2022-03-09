@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useRef } from 'react';
+import { ChangeEvent, KeyboardEvent, useCallback, useRef } from 'react';
 import { useDropdownContext } from './DropdownContext';
 import { useFocusContext, FocusedItemData } from './FocusContext';
 import { generateDropdownId } from './generateDropdownId';
@@ -34,18 +34,16 @@ export function DropdownInput(props: {
     updateFocusedItem
   } = useFocusContext();
 
-  const handleClick = () => {
-    toggleDropdown(true);
-  };
+  const handleClick = useCallback(() => toggleDropdown(true), [toggleDropdown]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     toggleDropdown(true);
     updateFocusedItem(-1, e.target.value);
     setLastTypedOrSubmittedValue(e.target.value);
     onChange?.(e.target.value);
-  };
+  }, [onChange, setLastTypedOrSubmittedValue, toggleDropdown, updateFocusedItem]);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && (!submitCriteria || submitCriteria(focusedIndex))) {
       toggleDropdown(false);
       updateFocusedItem(-1, value);
@@ -55,12 +53,21 @@ export function DropdownInput(props: {
         onSelect?.(value, focusedIndex, focusedItemData);
       }
     }
-  };
+  }, [
+    focusedIndex,
+    focusedItemData,
+    onSelect,
+    onSubmit,
+    submitCriteria,
+    toggleDropdown,
+    updateFocusedItem,
+    value
+  ]);
 
-  const handleFocus = () => {
+  const handleFocus = useCallback(() => {
     toggleDropdown(true);
     onFocus?.(value);
-  };
+  }, [onFocus, toggleDropdown, value]);
 
   return (
     <input

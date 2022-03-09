@@ -1,15 +1,15 @@
-import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData } from '@yext/answers-headless-react';
+import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData, DirectAnswer } from '@yext/answers-headless-react';
 import { renderHighlightedValue } from './utils/renderHighlightedValue';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import {
-  FeedbackType,
   ThumbsFeedbackCssClasses,
   ThumbsFeedback
 } from './ThumbsFeedback';
 
-import { useCardAnalytics } from '../hooks/useCardAnalytics';
+import { useCardAnalyticsCallback } from '../hooks/useCardAnalyticsCallback';
+import { useCardFeedbackCallback } from '../hooks/useCardFeedbackCallback';
 
 /**
  * Props for {@link DirectAnswer}.
@@ -73,7 +73,9 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   const isLoading = useAnswersState(state => state.searchStatus.isLoading || false);
   const composedCssClasses = useComposedCssClasses(
     builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
-  const reportAnalyticsEvent = useCardAnalytics();
+
+  const handleClickViewDetails = useCardAnalyticsCallback(directAnswerResult as DirectAnswerData, 'CTA_CLICK');
+  const handleClickFeedbackButton = useCardFeedbackCallback(directAnswerResult as DirectAnswerData);
 
   if (!directAnswerResult) {
     return null;
@@ -91,18 +93,26 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   function getLinkText(directAnswerResult: DirectAnswerData) {
     const isSnippet = directAnswerResult.type === DirectAnswerType.FeaturedSnippet;
     const name = directAnswerResult.relatedResult.name;
-    const onClick = () => {
-      reportAnalyticsEvent(directAnswerResult, 'CTA_CLICK');
-    };
 
     return (<>
       {isSnippet && name && <div className={cssClasses.viewDetailsLinkContainer}>
-        Read more about <a className={cssClasses.viewDetailsLink} href={link} onClick={onClick}>
+        Read more about
+        <a
+          className={cssClasses.viewDetailsLink}
+          href={link}
+          onClick={handleClickViewDetails}
+        >
           {directAnswerResult.relatedResult.name}
         </a>
       </div>}
       {!isSnippet && link && <div className={cssClasses.viewDetailsLinkContainer}>
-        <a href={link} className={cssClasses.viewDetailsLink} onClick={onClick}>View Details</a>
+        <a
+          href={link}
+          className={cssClasses.viewDetailsLink}
+          onClick={handleClickViewDetails}
+        >
+          View Details
+        </a>
       </div>}
     </>);
   }
@@ -110,10 +120,6 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   const containerCssClasses = classNames(cssClasses.container, {
     [cssClasses.container___loading ?? '']: isLoading
   });
-
-  const onClickFeedbackButton = (feedbackType: FeedbackType) => {
-    reportAnalyticsEvent(directAnswerResult, feedbackType);
-  };
 
   return (
     <div className={containerCssClasses}>
@@ -126,7 +132,7 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
         </div>
       </div>
       <ThumbsFeedback
-        onClick={onClickFeedbackButton}
+        onClick={handleClickFeedbackButton}
         customCssClasses={composedCssClasses}
         cssCompositionMethod={props.cssCompositionMethod}
       />

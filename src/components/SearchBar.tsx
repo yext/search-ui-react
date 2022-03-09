@@ -8,7 +8,7 @@ import {
   VerticalResults as VerticalResultsData
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
-import { Fragment, PropsWithChildren, useEffect } from 'react';
+import { Fragment, PropsWithChildren, useCallback, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
@@ -208,20 +208,20 @@ export function SearchBar({
     }
   }, [clearRecentSearches, hideRecentSearches]);
 
-  function clearAutocomplete() {
+  const clearAutocomplete = useCallback(() => {
     clearAutocompleteData();
     autocompletePromiseRef.current = undefined;
-  }
+  }, [autocompletePromiseRef, clearAutocompleteData]);
 
-  function executeQuery() {
+  const executeQuery = useCallback(() => {
     if (!hideRecentSearches) {
       const input = answersActions.state.query.input;
       input && setRecentSearch(input);
     }
     executeQueryWithNearMeHandling();
-  }
+  }, [answersActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
 
-  const handleSubmit = (value: string, index: number, itemData?: FocusedItemData) => {
+  const handleSubmit = useCallback((value: string, index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
       onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
@@ -231,7 +231,7 @@ export function SearchBar({
     if (index >= 0 && !itemData?.isEntityPreview) {
       reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
     }
-  };
+  }, [answersActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 
   const [
     entityPreviewsState,
@@ -240,14 +240,33 @@ export function SearchBar({
   const { verticalResultsArray, isLoading: entityPreviewsLoading } = entityPreviewsState;
   const entityPreviews = renderEntityPreviews
     && renderEntityPreviews(entityPreviewsLoading, verticalResultsArray, handleSubmit);
-  function updateEntityPreviews(query: string) {
+  const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews) {
       return;
     }
     const restrictVerticals = calculateRestrictVerticals(entityPreviews);
     const universalLimit = calculateUniversalLimit(entityPreviews);
     executeEntityPreviewsQuery(query, universalLimit, restrictVerticals);
-  }
+  }, [entityPreviews, executeEntityPreviewsQuery, renderEntityPreviews]);
+
+  const handleInputFocus = useCallback((value = '') => {
+    answersActions.setQuery(value);
+    updateEntityPreviews(value);
+    autocompletePromiseRef.current = executeAutocomplete();
+  }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
+
+  const handleInputChange = useCallback((value = '') => {
+    answersActions.setQuery(value);
+    updateEntityPreviews(value);
+    autocompletePromiseRef.current = executeAutocomplete();
+  }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
+
+  const handleClickClearButton = useCallback(() => {
+    updateEntityPreviews('');
+    answersActions.setQuery('');
+    executeQuery();
+    reportAnalyticsEvent('SEARCH_CLEAR_BUTTON');
+  }, [answersActions, executeQuery, reportAnalyticsEvent, updateEntityPreviews]);
 
   function renderInput() {
     return (
@@ -255,16 +274,8 @@ export function SearchBar({
         className={cssClasses.inputElement}
         placeholder={placeholder}
         onSubmit={handleSubmit}
-        onFocus={(value = '') => {
-          answersActions.setQuery(value);
-          updateEntityPreviews(value);
-          autocompletePromiseRef.current = executeAutocomplete();
-        }}
-        onChange={(value = '') => {
-          answersActions.setQuery(value);
-          updateEntityPreviews(value);
-          autocompletePromiseRef.current = executeAutocomplete();
-        }}
+        onFocus={handleInputFocus}
+        onChange={handleInputChange}
       />
     );
   }
@@ -339,12 +350,7 @@ export function SearchBar({
         <button
           aria-label='Clear the search bar'
           className={cssClasses.clearButton}
-          onClick={() => {
-            updateEntityPreviews('');
-            answersActions.setQuery('');
-            executeQuery();
-            reportAnalyticsEvent('SEARCH_CLEAR_BUTTON');
-          }}
+          onClick={handleClickClearButton}
         >
           <CloseIcon />
         </button>
@@ -369,6 +375,12 @@ export function SearchBar({
     [cssClasses.inputDropdownContainer___active ?? '']: hasItems
   });
 
+  const handleToggleDropdown = useCallback(isActive => {
+    if (!isActive) {
+      clearAutocomplete();
+    }
+  }, [clearAutocomplete]);
+
   return (
     <div className={cssClasses.container}>
       <Dropdown
@@ -376,11 +388,7 @@ export function SearchBar({
         activeClassName={activeClassName}
         screenReaderText={screenReaderText}
         parentQuery={query}
-        onToggle={isActive => {
-          if (!isActive) {
-            clearAutocomplete();
-          }
-        }}
+        onToggle={handleToggleDropdown}
       >
         <div className={cssClasses.inputContainer}>
           <div className={cssClasses.logoContainer}>
@@ -468,14 +476,15 @@ function DropdownSearchButton({ executeQuery, cssClasses }: {
   }
 }) {
   const { toggleDropdown } = useDropdownContext();
+  const handleClick = useCallback(() => {
+    executeQuery();
+    toggleDropdown(false);
+  }, [executeQuery, toggleDropdown]);
   return (
     <div className={cssClasses.searchButtonContainer}>
       <SearchButton
         className={cssClasses.searchButton}
-        handleClick={() => {
-          executeQuery();
-          toggleDropdown(false);
-        }}
+        handleClick={handleClick}
       />
     </div>
   );

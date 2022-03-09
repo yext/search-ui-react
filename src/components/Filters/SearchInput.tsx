@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 
 /**
@@ -26,6 +27,9 @@ export function SearchInput(props: SearchInputProps): JSX.Element {
     placeholderText = 'Search here...'
   } = props;
   const { searchValue, setSearchValue } = useFilterGroupContext();
+  const handleChange = useCallback(e => {
+    setSearchValue(e.target.value);
+  }, [setSearchValue]);
 
   return (
     <input
@@ -33,7 +37,7 @@ export function SearchInput(props: SearchInputProps): JSX.Element {
       type='text'
       placeholder={placeholderText}
       value={searchValue}
-      onChange={e => setSearchValue(e.target.value)}
+      onChange={handleChange}
     />
   );
 }

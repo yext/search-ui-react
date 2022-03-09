@@ -42,7 +42,7 @@ const mockedVertical1: VerticalResults = {
   resultsCount: 2,
   source: Source.KnowledgeManager,
   verticalKey: 'vertical1'
-}
+};
 
 const mockedVertical2: VerticalResults = {
   appliedQueryFilters: [],
@@ -57,7 +57,7 @@ const mockedVertical2: VerticalResults = {
   resultsCount: 1,
   source: Source.KnowledgeManager,
   verticalKey: 'vertical2'
-}
+};
 
 const mockedVertical3: VerticalResults = {
   appliedQueryFilters: [],
@@ -66,7 +66,7 @@ const mockedVertical3: VerticalResults = {
   resultsCount: 0,
   source: Source.KnowledgeManager,
   verticalKey: 'vertical3'
-}
+};
 
 const mockedState: Partial<State> = {
   universal: {
@@ -131,7 +131,8 @@ describe('UniversalResults', () => {
   });
 
   it('View all button is displayed only when specified', () => {
-    const { getAllByText } = render(<UniversalResults verticalConfigMap={{ vertical1: { viewAllButton: true } }} />);
+    const { getAllByText } = render(
+      <UniversalResults verticalConfigMap={{ vertical1: { viewAllButton: true } }} />);
     expect(getAllByText('View all')).toHaveLength(1);
   });
 

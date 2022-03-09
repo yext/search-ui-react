@@ -1,5 +1,5 @@
 import { Matcher, useAnswersUtilities } from '@yext/answers-headless-react';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
@@ -68,6 +68,21 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const answersUtilities = useAnswersUtilities();
   const { selectFilter, filters, applyFilters } = useFiltersContext();
 
+  const handleClick = useCallback((checked: boolean) => {
+    selectFilter({
+      matcher: Matcher.Equals,
+      fieldId: fieldId ?? '',
+      value,
+      displayName: typeof label === 'string' ? label : undefined,
+      selected: checked
+    });
+    applyFilters();
+  }, [applyFilters, fieldId, label, selectFilter, value]);
+
+  const handleChange = useCallback(evt => {
+    handleClick(evt.target.checked);
+  }, [handleClick]);
+
   if (!fieldId) {
     console.error('No fieldId found for filter with value', value);
     return null;
@@ -95,17 +110,6 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     return isDuplicateFilter(storedFilter, targetFilter);
   });
 
-  const onClick = (checked: boolean) => {
-    selectFilter({
-      matcher: Matcher.Equals,
-      fieldId,
-      value,
-      displayName: label,
-      selected: checked
-    });
-    applyFilters();
-  };
-
   return (
     <div className={cssClasses.container}>
       <input
@@ -113,7 +117,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
         id={optionId}
         checked={isSelected}
         className={cssClasses.input}
-        onChange={evt => onClick(evt.target.checked)}
+        onChange={handleChange}
       />
       <label className={cssClasses.label} htmlFor={optionId}>{label}</label>
     </div>

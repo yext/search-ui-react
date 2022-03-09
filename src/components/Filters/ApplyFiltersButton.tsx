@@ -1,4 +1,5 @@
 import { useAnswersActions } from '@yext/answers-headless-react';
+import { useCallback } from 'react';
 import { executeSearch } from '../../utils/search-operations';
 
 /**
@@ -24,10 +25,13 @@ export function ApplyFiltersButton({
   label = 'Apply Filters'
 }: ApplyFiltersButtonProps): JSX.Element {
   const answersActions = useAnswersActions();
+  const handleClick = useCallback(() => {
+    executeSearch(answersActions);
+  }, [answersActions]);
 
   return (
     <button
-      onClick={() => executeSearch(answersActions)}
+      onClick={handleClick}
       className={className}
     >
       {label}

@@ -1,5 +1,6 @@
 import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react';
 import classNames from 'classnames';
+import { useCallback } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { executeSearch } from '../utils/search-operations';
 
@@ -51,24 +52,26 @@ export function SpellCheck({
 }: SpellCheckProps): JSX.Element | null {
   const verticalKey = useAnswersState(state => state.vertical.verticalKey) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-  const correctedQuery = useAnswersState(state => state.spellCheck.correctedQuery);
+  const correctedQuery = useAnswersState(state => state.spellCheck.correctedQuery) ?? '';
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const containerClassNames = classNames(cssClasses.container, {
     [cssClasses.spellCheck___loading ?? '']: isLoading
   });
   const answersActions = useAnswersActions();
+  const handleClickSuggestion = useCallback(() => {
+    answersActions.setQuery(correctedQuery);
+    onClick
+      ? onClick({ correctedQuery, verticalKey })
+      : executeSearch(answersActions);
+  }, [answersActions, correctedQuery, onClick, verticalKey]);
+
   if (!correctedQuery) {
     return null;
   }
   return (
     <div className={containerClassNames}>
       <span className={cssClasses.helpText}>Did you mean </span>
-      <button className={cssClasses.link} onClick={() => {
-        answersActions.setQuery(correctedQuery);
-        onClick
-          ? onClick({ correctedQuery, verticalKey })
-          : executeSearch(answersActions);
-      }}>{correctedQuery}</button>
+      <button className={cssClasses.link} onClick={handleClickSuggestion}>{correctedQuery}</button>
     </div>
   );
 }

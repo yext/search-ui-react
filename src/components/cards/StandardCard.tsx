@@ -1,13 +1,13 @@
-import { useCardAnalytics } from '../../hooks/useCardAnalytics';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useCardAnalyticsCallback } from '../../hooks/useCardAnalyticsCallback';
 import { CardProps } from '../../models/cardComponent';
 import {
-  FeedbackType,
   ThumbsFeedback,
   ThumbsFeedbackCssClasses
 } from '../ThumbsFeedback';
 import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
 import { isString, validateData } from '../utils/validateData';
+import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
 
 /**
  * Props for a StandardCard.
@@ -118,7 +118,6 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     showFeedbackButtons
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-  const reportAnalyticsEvent = useCardAnalytics();
 
   const transformedFieldData = applyFieldMappings(result.rawData, {
     ...defaultFieldMappings,
@@ -132,16 +131,17 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     cta2: isCtaData
   });
 
+  const handleCtaClick = useCardAnalyticsCallback(result, 'CTA_CLICK');
+  const handleTitleClick = useCardAnalyticsCallback(result, 'TITLE_CLICK');
+  const handleFeedbackButtonClick = useCardFeedbackCallback(result);
+
   // TODO (cea2aj) We need to handle the various linkType so these CTAs are clickable
   function renderCTAs(cta1?: CtaData, cta2?: CtaData) {
-    const onClick = () => {
-      reportAnalyticsEvent(result, 'CTA_CLICK');
-    };
     return (<>
       {(cta1 ?? cta2) &&
         <div className={cssClasses.ctaContainer}>
-          {cta1 && <button className={cssClasses.cta1} onClick={onClick}>{cta1.label}</button>}
-          {cta2 && <button className={cssClasses.cta2} onClick={onClick}>{cta2.label}</button>}
+          {cta1 && <button className={cssClasses.cta1} onClick={handleCtaClick}>{cta1.label}</button>}
+          {cta2 && <button className={cssClasses.cta2} onClick={handleCtaClick}>{cta2.label}</button>}
         </div>
       }
     </>);
@@ -156,19 +156,12 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   }
 
   function renderTitle(title: string) {
-    const onClick = () => {
-      reportAnalyticsEvent(result, 'TITLE_CLICK');
-    };
     return (
       result.link
-        ? <a href={result.link} className={cssClasses.titleLink} onClick={onClick}>{title}</a>
+        ? <a href={result.link} className={cssClasses.titleLink} onClick={handleTitleClick}>{title}</a>
         : <div className={cssClasses.title}>{title}</div>
     );
   }
-
-  const onClickFeedbackButton = (feedbackType: FeedbackType) => {
-    reportAnalyticsEvent(result, feedbackType);
-  };
 
   return (
     <div className={cssClasses.container}>
@@ -187,7 +180,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
       }
       {showFeedbackButtons && <ThumbsFeedback
         feedbackText=''
-        onClick={onClickFeedbackButton}
+        onClick={handleFeedbackButtonClick}
         customCssClasses={cssClasses}
         cssCompositionMethod={cssCompositionMethod}
       />}

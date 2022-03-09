@@ -4,7 +4,7 @@ import {
   useAnswersActions,
   useAnswersState
 } from '@yext/answers-headless-react';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
@@ -45,37 +45,42 @@ export function Facets({
   searchOnChange = true
 }: FacetsProps): JSX.Element {
   const answersActions = useAnswersActions();
-  const facets = useAnswersState(state => state.filters.facets) ?? [];
-  const filters: DisplayableFilter[] = facets.flatMap(f => f.options.map(o => {
-    return {
-      fieldId: f.fieldId,
-      value: o.value,
-      matcher: o.matcher,
-      selected: o.selected,
-      displayName: o.displayName
-    };
-  }));
-
-  const filtersContextInstance: FiltersContextType = {
-    selectFilter(filter: DisplayableFilter) {
-      if (typeof filter.value === 'object') {
-        console.error('Facets only support string, number, and boolean. Found the following object value instead:', filter.value);
-        return;
-      }
-      const facetOption = {
-        matcher: filter.matcher,
-        value: filter.value
+  const facetsInState = useAnswersState(state => state.filters.facets);
+  const facets = useMemo(() => facetsInState ?? [], [facetsInState]);
+  const filters: DisplayableFilter[] = useMemo(() => {
+    return facets.flatMap(f => f.options.map(o => {
+      return {
+        fieldId: f.fieldId,
+        value: o.value,
+        matcher: o.matcher,
+        selected: o.selected,
+        displayName: o.displayName
       };
-      answersActions.setFacetOption(filter.fieldId, facetOption, filter.selected);
-    },
-    applyFilters() {
-      if (searchOnChange) {
-        answersActions.setOffset(0);
-        executeSearch(answersActions);
-      }
-    },
-    filters
-  };
+    }));
+  }, [facets]);
+
+  const filtersContextInstance: FiltersContextType = useMemo(() => {
+    return {
+      selectFilter(filter: DisplayableFilter) {
+        if (typeof filter.value === 'object') {
+          console.error('Facets only support string, number, and boolean. Found the following object value instead:', filter.value);
+          return;
+        }
+        const facetOption = {
+          matcher: filter.matcher,
+          value: filter.value
+        };
+        answersActions.setFacetOption(filter.fieldId, facetOption, filter.selected);
+      },
+      applyFilters() {
+        if (searchOnChange) {
+          answersActions.setOffset(0);
+          executeSearch(answersActions);
+        }
+      },
+      filters
+    };
+  }, [answersActions, filters, searchOnChange]);
 
   return (
     <div className={className}>

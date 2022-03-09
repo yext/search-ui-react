@@ -5,11 +5,17 @@ import {
   Result,
   useAnswersState
 } from '@yext/answers-headless-react';
+import { useCallback } from 'react';
 import { FeedbackType } from '../components/ThumbsFeedback';
 import { useAnalytics } from './useAnalytics';
 
 type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
-type CardAnalyticsType = CardCtaEventType | FeedbackType;
+export type CardAnalyticsType = CardCtaEventType | FeedbackType;
+
+function isDirectAnswer(data: unknown): data is DirectAnswerData {
+  return (data as DirectAnswerData)?.type === DirectAnswerType.FeaturedSnippet ||
+    (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
+}
 
 export function useCardAnalytics(): (
   cardResult: Result | DirectAnswerData, analyticsEventType: CardAnalyticsType
@@ -18,12 +24,7 @@ export function useCardAnalytics(): (
   const verticalKey = useAnswersState(state => state.vertical.verticalKey);
   const queryId = useAnswersState(state => state.query.queryId);
 
-  function isDirectAnswer(data: unknown): data is DirectAnswerData {
-    return (data as DirectAnswerData)?.type === DirectAnswerType.FeaturedSnippet ||
-      (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
-  }
-
-  const reportCtaEvent = (result: DirectAnswerData | Result, eventType: CardCtaEventType) => {
+  const reportCtaEvent = useCallback((result: DirectAnswerData | Result, eventType: CardCtaEventType) => {
     let url: string | undefined, entityId: string | undefined, fieldName: string | undefined;
     let directAnswer = false;
     if (isDirectAnswer(result)) {
@@ -56,9 +57,9 @@ export function useCardAnalytics(): (
       fieldName,
       directAnswer
     });
-  };
+  }, [analytics, queryId, verticalKey]);
 
-  const reportFeedbackEvent = (result: DirectAnswerData | Result, feedbackType: FeedbackType) => {
+  const reportFeedbackEvent = useCallback((result: DirectAnswerData | Result, feedbackType: FeedbackType) => {
     if (!queryId) {
       console.error('Unable to report a result feedback event. Missing field: queryId.');
       return;
@@ -79,9 +80,9 @@ export function useCardAnalytics(): (
       verticalKey: verticalKey || '',
       directAnswer
     });
-  };
+  }, [analytics, queryId, verticalKey]);
 
-  const reportAnalyticsEvent = (
+  const reportAnalyticsEvent = useCallback((
     cardResult: DirectAnswerData | Result,
     analyticsEventType: CardAnalyticsType
   ) => {
@@ -94,6 +95,6 @@ export function useCardAnalytics(): (
     if (analyticsEventType === 'THUMBS_DOWN' || analyticsEventType === 'THUMBS_UP') {
       reportFeedbackEvent(cardResult, analyticsEventType);
     }
-  };
+  }, [analytics, reportCtaEvent, reportFeedbackEvent]);
   return reportAnalyticsEvent;
 }
