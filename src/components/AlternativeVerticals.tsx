@@ -34,10 +34,10 @@ const builtInCssClasses: AlternativeVerticalsCssClasses = {
   suggestions: 'pt-4 text-primary-600',
   suggestionList: 'pt-4',
   suggestion: 'pb-4',
-  suggestionButton: 'inline-flex items-center cursor-pointer hover:underline focus:underline',
+  suggestionButton: 'inline-flex items-center hover:underline focus:underline',
   verticalIcon: 'w-4 mr-2',
   verticalLink: 'font-bold',
-  allCategoriesLink: 'text-primary-600 cursor-pointer hover:underline focus:underline'
+  allCategoriesLink: 'text-primary-600 hover:underline focus:underline'
 };
 
 interface VerticalSuggestion {

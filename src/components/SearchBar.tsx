@@ -54,7 +54,7 @@ const builtInCssClasses: SearchBarCssClasses = {
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
   searchButton: 'h-7 w-7',
   focusedOption: 'bg-gray-100',
-  clearButton: 'h-3 w-3 mr-3.5 cursor-pointer',
+  clearButton: 'h-3 w-3 mr-3.5',
   verticalDivider: 'mr-0.5',
   recentSearchesOptionContainer: 'flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100',
   recentSearchesIcon: 'w-5 mr-1 text-gray-300',
