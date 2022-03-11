@@ -79,7 +79,7 @@ const builtInCssClasses: StandardCardCssClasses = {
   cta2: 'min-w-max bg-white text-primary-600 font-medium rounded-lg py-2 px-5 mt-2 shadow',
   ordinal: 'mr-1.5 text-lg font-medium',
   title: 'text-lg font-medium',
-  titleLink: 'text-lg font-medium text-primary-600 cursor-pointer hover:underline focus:underline',
+  titleLink: 'text-lg font-medium text-primary-600 hover:underline focus:underline',
   feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium'
 };
 
