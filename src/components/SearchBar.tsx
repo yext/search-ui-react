@@ -58,7 +58,7 @@ const builtInCssClasses: SearchBarCssClasses = {
   verticalDivider: 'mr-0.5',
   recentSearchesOptionContainer: 'flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100',
   recentSearchesIcon: 'w-5 mr-1 text-gray-300',
-  recentSearchesOption: 'pl-3',
+  recentSearchesOption: 'pl-3 text-gray-800',
   recentSearchesNonHighlighted: 'font-normal', // Swap this to semibold once we apply highlighting to recent searches
   verticalLink: 'ml-12 pl-1 text-gray-500 italic',
   entityPreviewsDivider: 'h-px bg-gray-200 mt-1 mb-4 mx-3.5',
