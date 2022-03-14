@@ -20,5 +20,6 @@ export interface CheckboxOptionProps
 |  [customCssClasses?](./answers-react-components.filters.checkboxoptionprops.customcssclasses.md) | CheckboxCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling defined by [Filters.CheckboxCssClasses](./answers-react-components.filters.checkboxcssclasses.md) |
 |  [fieldId?](./answers-react-components.filters.checkboxoptionprops.fieldid.md) | string | <i>(Optional)</i> The fieldId used for filtering. |
 |  [label?](./answers-react-components.filters.checkboxoptionprops.label.md) | string | <i>(Optional)</i> The display label. Defaults to the value prop. |
+|  [selectedByDefault?](./answers-react-components.filters.checkboxoptionprops.selectedbydefault.md) | boolean | <i>(Optional)</i> If this particular filter should be selected by default. |
 |  [value](./answers-react-components.filters.checkboxoptionprops.value.md) | string \| number \| boolean | The value used to perform filtering. |
 

@@ -23,6 +23,8 @@ export interface CheckboxOptionProps {
    * an error is logged.
    */
   fieldId?: string,
+  /** If this particular filter should be selected by default. */
+  selectedByDefault?: boolean,
   /** The display label. Defaults to the value prop. */
   label?: string,
   /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses} */
@@ -60,6 +62,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const {
     fieldId = defaultFieldId,
     value,
+    selectedByDefault = false,
     label = props.value,
   } = props;
   const cssClasses = useComposedCssClasses(
@@ -97,11 +100,8 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     return null;
   }
 
-  const isSelected = !!filters?.find(storedDisplayableFilter => {
-    const { selected, displayName:_, ...storedFilter } = storedDisplayableFilter;
-    if (!selected) {
-      return false;
-    }
+  const existingStoredFilter = filters.find(storedDisplayableFilter => {
+    const { displayName:_, ...storedFilter } = storedDisplayableFilter;
     const targetFilter = {
       fieldId,
       matcher: Matcher.Equals,
@@ -109,6 +109,21 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     };
     return isDuplicateFilter(storedFilter, targetFilter);
   });
+
+  let isSelected = false;
+  if (existingStoredFilter) {
+    isSelected = existingStoredFilter.selected;
+  } else if (selectedByDefault) {
+    isSelected = true;
+    selectFilter({
+      matcher: Matcher.Equals,
+      fieldId: fieldId ?? '',
+      value,
+      displayName: typeof label === 'string' ? label : undefined,
+      selected: true
+    });
+    applyFilters();
+  }
 
   return (
     <div className={cssClasses.container}>

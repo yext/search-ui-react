@@ -156,6 +156,7 @@ interface CheckboxOptionProps {
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     fieldId?: string;
     label?: string;
+    selectedByDefault?: boolean;
     value: string | number | boolean;
 }
 
