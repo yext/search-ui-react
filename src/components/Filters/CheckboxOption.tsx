@@ -1,10 +1,10 @@
-import { Matcher, useAnswersUtilities } from '@yext/answers-headless-react';
-import { useCallback, useMemo } from 'react';
+import { Filter, Matcher, useAnswersUtilities } from '@yext/answers-headless-react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { isDuplicateFilter } from '../../utils/filterutils';
+import { findSelectableFilter } from '../../utils/filterutils';
 
 /**
  * Props for the {@link Filters.CheckboxOption}
@@ -86,44 +86,45 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     handleClick(evt.target.checked);
   }, [handleClick]);
 
-  if (!fieldId) {
-    console.error('No fieldId found for filter with value', value);
-    return null;
-  }
-
-  if (typeof label !== 'string') {
-    console.error('A label is needed for filter with value', value);
-    return null;
-  }
-
-  if (!answersUtilities.isCloseMatch(label.toString(), searchValue)) {
-    return null;
-  }
-
-  const existingStoredFilter = filters.find(storedDisplayableFilter => {
-    const { displayName:_, ...storedFilter } = storedDisplayableFilter;
-    const targetFilter = {
-      fieldId,
+  const optionFilter: Filter = useMemo(() => {
+    return {
+      fieldId: fieldId ?? '',
       matcher: Matcher.Equals,
       value
     };
-    return isDuplicateFilter(storedFilter, targetFilter);
-  });
+  }, [fieldId, value]);
 
-  let isSelected = false;
-  if (existingStoredFilter) {
-    isSelected = existingStoredFilter.selected;
-  } else if (selectedByDefault) {
-    isSelected = true;
-    selectFilter({
-      matcher: Matcher.Equals,
-      fieldId: fieldId ?? '',
-      value,
-      displayName: typeof label === 'string' ? label : undefined,
-      selected: true
-    });
-    applyFilters();
+  const shouldRenderOption = useCallback(() => {
+    if (!fieldId) {
+      console.error('No fieldId found for filter with value', value);
+      return false;
+    }
+
+    if (typeof label !== 'string') {
+      console.error('A label is needed for filter with value', value);
+      return false;
+    }
+
+    if (!answersUtilities.isCloseMatch(label.toString(), searchValue)) {
+      return false;
+    }
+
+    return true;
+  }, [fieldId, value, answersUtilities, label, searchValue]);
+
+  useEffect(() => {
+    if (shouldRenderOption()) {
+      const existingStoredFilter = findSelectableFilter(optionFilter, filters);
+      !existingStoredFilter && selectedByDefault && handleClick(selectedByDefault);
+    }
+  }, [handleClick, selectedByDefault, filters, optionFilter, shouldRenderOption]);
+
+  if (!shouldRenderOption()) {
+    return null;
   }
+
+  const existingStoredFilter = findSelectableFilter(optionFilter, filters);
+  const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
   return (
     <div className={cssClasses.container}>
