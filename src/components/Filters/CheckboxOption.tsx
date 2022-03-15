@@ -93,8 +93,9 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
       value
     };
   }, [fieldId, value]);
+  const existingStoredFilter = findSelectableFilter(optionFilter, filters);
 
-  const shouldRenderOption = useCallback(() => {
+  const shouldRenderOption: boolean = useMemo(() => {
     if (!fieldId) {
       console.error('No fieldId found for filter with value', value);
       return false;
@@ -113,8 +114,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   }, [fieldId, value, answersUtilities, label, searchValue]);
 
   useEffect(() => {
-    if (shouldRenderOption()) {
-      const existingStoredFilter = findSelectableFilter(optionFilter, filters);
+    if (shouldRenderOption) {
       if (!existingStoredFilter && selectedByDefault) {
         selectFilter({
           matcher: Matcher.Equals,
@@ -125,13 +125,12 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
         });
       }
     }
-  }, [label, selectFilter, selectedByDefault, filters, optionFilter, shouldRenderOption]);
+  }, [label, selectFilter, selectedByDefault, existingStoredFilter, optionFilter, shouldRenderOption]);
 
-  if (!shouldRenderOption()) {
+  if (!shouldRenderOption) {
     return null;
   }
 
-  const existingStoredFilter = findSelectableFilter(optionFilter, filters);
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
   return (

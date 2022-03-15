@@ -32,9 +32,8 @@ export function isDuplicateFilter(thisFilter: Filter, otherFilter: Filter): bool
  */
 export function findSelectableFilter(
   filter: Filter,
-  selectableFilters: SelectableFilter[]):
-SelectableFilter | undefined
-{
+  selectableFilters: SelectableFilter[]
+): SelectableFilter | undefined {
   return selectableFilters.find(selectableFilter => {
     const { displayName:_, ...storedFilter } = selectableFilter;
     return isDuplicateFilter(storedFilter, filter);
