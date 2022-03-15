@@ -115,9 +115,17 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   useEffect(() => {
     if (shouldRenderOption()) {
       const existingStoredFilter = findSelectableFilter(optionFilter, filters);
-      !existingStoredFilter && selectedByDefault && handleClick(selectedByDefault);
+      if (!existingStoredFilter && selectedByDefault) {
+        selectFilter({
+          matcher: Matcher.Equals,
+          fieldId: optionFilter.fieldId,
+          value: optionFilter.value,
+          displayName: typeof label === 'string' ? label : undefined,
+          selected: true
+        });
+      }
     }
-  }, [handleClick, selectedByDefault, filters, optionFilter, shouldRenderOption]);
+  }, [label, selectFilter, selectedByDefault, filters, optionFilter, shouldRenderOption]);
 
   if (!shouldRenderOption()) {
     return null;
