@@ -29,15 +29,15 @@ export interface AlternativeVerticalsCssClasses {
 const builtInCssClasses: AlternativeVerticalsCssClasses = {
   container: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
   alternativeVerticals___loading: 'opacity-50',
-  noResultsText: 'text-lg text-gray-900 pb-2',
-  categoriesText: 'text-gray-500',
-  suggestions: 'pt-4 text-primary-600',
+  noResultsText: 'text-lg text-neutral-dark pb-2',
+  categoriesText: 'text-neutral',
+  suggestions: 'pt-4 text-primary',
   suggestionList: 'pt-4',
   suggestion: 'pb-4',
   suggestionButton: 'inline-flex items-center hover:underline focus:underline',
   verticalIcon: 'w-4 mr-2',
   verticalLink: 'font-bold',
-  allCategoriesLink: 'text-primary-600 hover:underline focus:underline'
+  allCategoriesLink: 'text-primary hover:underline focus:underline'
 };
 
 interface VerticalSuggestion {

@@ -29,13 +29,13 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 
 const builtInCssClasses: FilterSearchCssClasses = {
   container: 'mb-2',
-  label: 'mb-4 text-sm font-medium text-gray-900',
+  label: 'mb-4 text-sm font-medium text-neutral-dark',
   dropdownContainer: 'absolute z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 px-4 mt-1',
-  inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary-600',
+  inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral-light',
   sectionContainer: 'pb-2',
-  sectionLabel: 'text-sm text-gray-700 font-semibold pb-2',
+  sectionLabel: 'text-sm text-neutral-dark font-semibold pb-2',
   focusedOption: 'bg-gray-100',
-  option: 'text-sm text-gray-700 pb-1 cursor-pointer',
+  option: 'text-sm text-neutral-dark pb-1 cursor-pointer',
 };
 
 /**

@@ -71,16 +71,16 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
 
 const builtInCssClasses: StandardCardCssClasses = {
   container: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
-  header: 'flex text-gray-800',
+  header: 'flex text-neutral-dark',
   body: 'flex justify-end pt-2.5 text-base',
   descriptionContainer: 'w-full',
   ctaContainer: 'flex flex-col justify-end ml-4',
-  cta1: 'min-w-max bg-primary-600 text-white font-medium rounded-lg py-2 px-5 shadow',
-  cta2: 'min-w-max bg-white text-primary-600 font-medium rounded-lg py-2 px-5 mt-2 shadow',
+  cta1: 'min-w-max bg-primary text-white font-medium rounded-lg py-2 px-5 shadow',
+  cta2: 'min-w-max bg-white text-primary font-medium rounded-lg py-2 px-5 mt-2 shadow',
   ordinal: 'mr-1.5 text-lg font-medium',
   title: 'text-lg font-medium',
-  titleLink: 'text-lg font-medium text-primary-600 hover:underline focus:underline',
-  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium'
+  titleLink: 'text-lg font-medium text-primary hover:underline focus:underline',
+  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-neutral-light font-medium'
 };
 
 export interface CtaData {

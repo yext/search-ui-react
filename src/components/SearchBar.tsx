@@ -48,7 +48,7 @@ const builtInCssClasses: SearchBarCssClasses = {
   inputContainer: 'inline-flex items-center justify-between w-full',
   inputDropdownContainer: 'relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden',
   inputDropdownContainer___active: 'shadow-lg',
-  inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2',
+  inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2 text-neutral-dark placeholder:text-neutral-light',
   logoContainer: 'w-7 mx-2.5 my-2',
   optionContainer: 'flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
@@ -57,10 +57,10 @@ const builtInCssClasses: SearchBarCssClasses = {
   clearButton: 'h-3 w-3 mr-3.5',
   verticalDivider: 'mr-0.5',
   recentSearchesOptionContainer: 'flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100',
-  recentSearchesIcon: 'w-5 mr-1 text-gray-300',
-  recentSearchesOption: 'pl-3 text-gray-800',
+  recentSearchesIcon: 'w-5 mr-1 text-gray-400',
+  recentSearchesOption: 'pl-3 text-neutral-dark',
   recentSearchesNonHighlighted: 'font-normal', // Swap this to semibold once we apply highlighting to recent searches
-  verticalLink: 'ml-12 pl-1 text-gray-500 italic',
+  verticalLink: 'ml-12 pl-1 text-neutral italic',
   entityPreviewsDivider: 'h-px bg-gray-200 mt-1 mb-4 mx-3.5',
   ...AutocompleteResultBuiltInCssClasses
 };

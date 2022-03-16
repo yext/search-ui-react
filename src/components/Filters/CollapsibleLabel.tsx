@@ -24,13 +24,13 @@ export interface CollapsibleLabelProps {
  */
 export function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element {
   const { isExpanded, getToggleProps } = useFilterGroupContext();
-  const iconClassName = classNames('w-3 text-gray-400', {
+  const iconClassName = classNames('w-3 text-neutral-light', {
     'transform rotate-180': !isExpanded
   });
 
   return (
     <button className='w-full flex justify-between items-center mb-4' {...getToggleProps()}>
-      <div className='text-gray-900 text-sm font-medium text-left'>
+      <div className='text-neutral-dark text-sm font-medium text-left'>
         {label}
       </div>
       <ChevronIcon className={iconClassName}/>
