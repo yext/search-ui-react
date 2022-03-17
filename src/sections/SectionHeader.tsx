@@ -1,6 +1,5 @@
 import { AppliedFiltersCssClasses } from '../components/AppliedFilters';
 import { AppliedFiltersDisplay } from '../components/AppliedFiltersDisplay';
-// import { ResultsCountConfig } from '../components/ResultsCount';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
 import { CollectionIcon } from '../icons/CollectionIcon';
 import { AppliedQueryFilter, SelectableFilter as DisplayableFilter, useAnswersState } from '@yext/answers-headless-react';
@@ -38,7 +37,6 @@ const builtInCssClasses: SectionHeaderCssClasses = {
 export interface SectionHeaderProps {
   /** The display label for the section header. */
   label: string,
-  // resultsCountConfig?: ResultsCountConfig,
   /** An array of AppliedQueryFilters which are displayed in the section header. */
   appliedQueryFilters?: AppliedQueryFilter[],
   /** CSS classes for customizing the component styling. */
@@ -113,11 +111,6 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
         <CollectionIcon></CollectionIcon>
       </div>
       <h2 className={cssClasses.sectionHeaderLabel}>{label}</h2>
-      {/* TODO (cea2aj): Add support for ResultsCountDisplay once we get the mocks from UX
-      {resultsCountConfig && <ResultsCountDisplay
-        resultsLength={resultsCountConfig.resultsLength}
-        resultsCount={resultsCountConfig.resultsCount}
-      />} */}
       {appliedQueryFilters &&
         <AppliedFiltersDisplay nlpFilters={nlpFilters} cssClasses={cssClasses} />
       }
