@@ -1,7 +1,8 @@
 import {
   SearchTypeEnum,
   useAnswersState,
-  VerticalResults
+  VerticalResults,
+  VerticalSearchState
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { processTranslation } from './utils/processTranslation';
@@ -34,27 +35,16 @@ const builtInCssClasses: ResultsCountCssClasses = {
   resultCountText___loading: 'opacity-50'
 };
 
-function isUniversalSearchResults(data: unknown): data is VerticalResults[] {
-  return Array.isArray(data) && data.every(results =>
-    (results as VerticalResults).results &&
-    (results as VerticalResults).verticalKey &&
-    (results as VerticalResults).resultsCount
-  );
+function isUniversalSearchResults(data: VerticalResults[] | VerticalSearchState): data is VerticalResults[] {
+  return Array.isArray(data);
 }
 
 /**
- * Renders results count of a universal/vertical search.
- *
- * @public
- *
- * @param props - {@link ResultsCountProps}
+ * Generates a string for the results count of the recent universal/vertical search.
  */
-export function ResultsCount(props: ResultsCountProps): JSX.Element | null {
-  const { customCssClasses, cssCompositionMethod } = props;
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+function useResultsCount() {
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
   const results = useAnswersState(state => isVertical ? state.vertical : state.universal.verticals);
-  const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   let resultsCount = 0;
   if (results) {
     if (isUniversalSearchResults(results)) {
@@ -71,6 +61,21 @@ export function ResultsCount(props: ResultsCountProps): JSX.Element | null {
     pluralForm: `${resultsCount} Results`,
     count: resultsCount
   });
+  return resultsCountText;
+}
+
+/**
+ * Renders results count of a universal/vertical search.
+ *
+ * @public
+ *
+ * @param props - {@link ResultsCountProps}
+ */
+export function ResultsCount(props: ResultsCountProps): JSX.Element | null {
+  const { customCssClasses, cssCompositionMethod } = props;
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const isLoading = useAnswersState(state => state.searchStatus.isLoading);
+  const resultsCountText = useResultsCount();
 
   const resultsCountClassnames = classNames(cssClasses.resultCountText, {
     [cssClasses.resultCountText___loading ?? '']: isLoading
