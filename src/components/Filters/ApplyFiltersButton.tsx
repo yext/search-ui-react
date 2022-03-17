@@ -21,7 +21,7 @@ export interface ApplyFiltersButtonProps {
  * @public
  */
 export function ApplyFiltersButton({
-  className = 'border border-gray-300 px-2.5 py-1 rounded-md text-primary-600 bg-white shadow-md sticky bottom-3',
+  className = 'border border-gray-300 px-2.5 py-1 rounded-md text-primary bg-white shadow-md sticky bottom-3',
   label = 'Apply Filters'
 }: ApplyFiltersButtonProps): JSX.Element {
   const answersActions = useAnswersActions();

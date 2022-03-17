@@ -49,14 +49,14 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
 const builtInCssClasses: DirectAnswerCssClasses = {
   container: '',
   container___loading: 'opacity-50',
-  fieldValueTitle: 'mb-4 text-gray-500',
-  featuredSnippetTitle: 'mb-4 font-bold text-xl text-gray-800',
+  fieldValueTitle: 'mb-4 text-neutral',
+  featuredSnippetTitle: 'mb-4 font-bold text-xl text-neutral-dark',
   content: '',
-  fieldValueDescription: 'font-bold text-xl text-gray-800',
+  fieldValueDescription: 'font-bold text-xl text-neutral-dark',
   featuredSnippetDescription: '',
-  viewDetailsLink: 'text-primary-600',
-  viewDetailsLinkContainer: 'pt-4 text-gray-500',
-  highlighted: 'bg-primary-100',
+  viewDetailsLink: 'text-primary',
+  viewDetailsLinkContainer: 'pt-4 text-neutral',
+  highlighted: 'bg-primary-light',
   answerContainer: 'p-4 border rounded-lg shadow-sm',
 };
 

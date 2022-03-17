@@ -18,9 +18,9 @@ export interface SpellCheckCssClasses {
 
 const builtInCssClasses: SpellCheckCssClasses = {
   container: 'text-lg pb-3',
-  helpText: 'text-gray-600',
+  helpText: 'text-neutral',
   spellCheck___loading: 'opacity-50',
-  link: 'text-primary-600 font-bold hover:underline focus:underline'
+  link: 'text-primary font-bold hover:underline focus:underline'
 };
 
 /**
