@@ -30,7 +30,7 @@ export function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element 
 
   return (
     <button className='w-full flex justify-between items-center mb-4' {...getToggleProps()}>
-      <div className='text-gray-900 text-sm font-medium text-left'>
+      <div className='text-neutral-dark text-sm font-medium text-left'>
         {label}
       </div>
       <ChevronIcon className={iconClassName}/>

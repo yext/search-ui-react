@@ -45,8 +45,8 @@ export interface CheckboxCssClasses {
 }
 
 const builtInCssClasses: CheckboxCssClasses = {
-  label: 'text-gray-500 text-sm font-normal cursor-pointer',
-  input: 'w-3.5 h-3.5 form-checkbox cursor-pointer border border-gray-300 rounded-sm text-primary-600 focus:ring-primary-500',
+  label: 'text-neutral text-sm font-normal cursor-pointer',
+  input: 'w-3.5 h-3.5 form-checkbox cursor-pointer border border-gray-300 rounded-sm text-primary focus:ring-primary',
   container: 'flex items-center space-x-3'
 };
 

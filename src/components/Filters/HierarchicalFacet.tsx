@@ -47,7 +47,7 @@ const builtInCssClasses: Required<HierarchicalFacetCssClasses> = {
   availableOption__inactive: 'ml-4 mb-2 text-sm',
   parentCategory: 'mb-2 text-sm',
   currentCategory: 'font-semibold mb-2 text-sm',
-  showMoreButton: 'ml-4 text-sm font-medium text-primary-600'
+  showMoreButton: 'ml-4 text-sm font-medium text-primary'
 };
 
 /** @private */

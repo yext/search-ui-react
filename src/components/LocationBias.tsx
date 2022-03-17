@@ -15,9 +15,9 @@ export interface LocationBiasCssClasses {
 }
 
 const builtInCssClasses: LocationBiasCssClasses = {
-  container: 'text-sm text-gray-500 text-center m-auto',
+  container: 'text-sm text-neutral text-center m-auto',
   location: 'font-semibold',
-  button: 'text-primary-600 hover:underline focus:underline',
+  button: 'text-primary hover:underline focus:underline',
 };
 
 /**
