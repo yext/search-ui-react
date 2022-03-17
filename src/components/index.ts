@@ -77,12 +77,6 @@ export {
   VerticalLabelMap
 } from './AlternativeVerticals';
 
-export {
-  ResultsCount,
-  ResultsCountCssClasses,
-  ResultsCountProps
-} from './ResultsCount';
-
 export * from './AnalyticsProvider';
 
 import * as Filters from './Filters';

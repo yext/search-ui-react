@@ -16,7 +16,7 @@ export interface UniversalResultsCssClasses {
 }
 
 const builtInCssClasses: UniversalResultsCssClasses = {
-  container: 'space-y-8',
+  container: 'space-y-8 mt-6',
   results___loading: 'opacity-50'
 };
 

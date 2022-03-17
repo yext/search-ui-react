@@ -498,23 +498,6 @@ export interface PaginationCssClasses {
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
 // @public
-export function ResultsCount(props: ResultsCountProps): JSX.Element | null;
-
-// @public
-export interface ResultsCountCssClasses {
-    // (undocumented)
-    resultCountText?: string;
-    // (undocumented)
-    resultCountText___loading?: string;
-}
-
-// @public
-export interface ResultsCountProps {
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: ResultsCountCssClasses;
-}
-
-// @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
 
 // @public

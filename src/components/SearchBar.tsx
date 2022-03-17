@@ -42,7 +42,7 @@ import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 
 const builtInCssClasses: SearchBarCssClasses = {
-  container: 'h-12 mb-6',
+  container: 'h-12 mb-3',
   inputDivider: 'border-t border-gray-200 mx-2.5',
   dropdownContainer: 'bg-white pt-4 pb-3 z-10',
   inputContainer: 'inline-flex items-center justify-between w-full',
