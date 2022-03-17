@@ -31,7 +31,7 @@ export interface ResultsCountProps {
 }
 
 const builtInCssClasses: ResultsCountCssClasses = {
-  resultCountText: 'font-semibold text-gray-600 mb-4 py-2 mr-2.5',
+  resultCountText: 'font-semibold text-neutral mb-4 py-2 mr-2.5',
   resultCountText___loading: 'opacity-50'
 };
 
