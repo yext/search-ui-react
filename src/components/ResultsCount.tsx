@@ -35,8 +35,23 @@ const builtInCssClasses: ResultsCountCssClasses = {
   resultCountText___loading: 'opacity-50'
 };
 
-function isUniversalSearchResults(data: VerticalResults[] | VerticalSearchState): data is VerticalResults[] {
-  return Array.isArray(data);
+/**
+ * Renders results count of a universal/vertical search.
+ *
+ * @public
+ *
+ * @param props - {@link ResultsCountProps}
+ */
+export function ResultsCount(props: ResultsCountProps): JSX.Element | null {
+  const { customCssClasses, cssCompositionMethod } = props;
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const isLoading = useAnswersState(state => state.searchStatus.isLoading);
+  const resultsCountText = useResultsCount();
+
+  const resultsCountClassnames = classNames(cssClasses.resultCountText, {
+    [cssClasses.resultCountText___loading ?? '']: isLoading
+  });
+  return <div className={resultsCountClassnames}>{resultsCountText}</div>;
 }
 
 /**
@@ -64,21 +79,6 @@ function useResultsCount() {
   return resultsCountText;
 }
 
-/**
- * Renders results count of a universal/vertical search.
- *
- * @public
- *
- * @param props - {@link ResultsCountProps}
- */
-export function ResultsCount(props: ResultsCountProps): JSX.Element | null {
-  const { customCssClasses, cssCompositionMethod } = props;
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-  const isLoading = useAnswersState(state => state.searchStatus.isLoading);
-  const resultsCountText = useResultsCount();
-
-  const resultsCountClassnames = classNames(cssClasses.resultCountText, {
-    [cssClasses.resultCountText___loading ?? '']: isLoading
-  });
-  return <div className={resultsCountClassnames}>{resultsCountText}</div>;
+function isUniversalSearchResults(data: VerticalResults[] | VerticalSearchState): data is VerticalResults[] {
+  return Array.isArray(data);
 }
