@@ -48,7 +48,7 @@ const builtInCssClasses: SearchBarCssClasses = {
   inputContainer: 'inline-flex items-center justify-between w-full',
   inputDropdownContainer: 'relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden',
   inputDropdownContainer___active: 'shadow-lg',
-  inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2 text-neutral-dark placeholder:text-neutral-light',
+  inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
   logoContainer: 'w-7 mx-2.5 my-2',
   optionContainer: 'flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',

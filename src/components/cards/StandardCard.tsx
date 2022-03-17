@@ -80,7 +80,7 @@ const builtInCssClasses: StandardCardCssClasses = {
   ordinal: 'mr-1.5 text-lg font-medium',
   title: 'text-lg font-medium',
   titleLink: 'text-lg font-medium text-primary hover:underline focus:underline',
-  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-neutral-light font-medium'
+  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium'
 };
 
 export interface CtaData {
