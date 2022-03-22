@@ -10,7 +10,7 @@ export function useSnapshottedAnswersState<T>(
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const wasLoading = useRef<boolean | undefined>(isLoading);
   const currentState = useAnswersState(stateSelector);
-  const snapshottedState = useRef<T>();
+  const snapshottedState = useRef<T>(currentState);
   if (!isLoading && wasLoading.current) {
     snapshottedState.current = currentState;
   }
