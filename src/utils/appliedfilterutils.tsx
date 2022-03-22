@@ -3,7 +3,7 @@ import {
   FiltersState,
   SelectableFilter as DisplayableFilter
 } from '@yext/answers-headless-react';
-import { GroupedFilters } from '../models/groupedFilters';
+import { DisplayableHierarchicalFacet, GroupedFilters } from '../models/groupedFilters';
 import { getDisplayableFacets, getDisplayableHierarchicalFacets, getDisplayableNlpFilters } from './displayablefilterutils';
 import { isDuplicateFilter } from './filterutils';
 
@@ -53,13 +53,18 @@ export function pruneAppliedFilters(
       .filter(facet => facet.selected);
   const hierarchicalFacets =
     getDisplayableHierarchicalFacets(
-      appliedFiltersState.facets ?? [], hierarchicalFieldIds, hierarchicalDelimiter)
-      .filter(facet => facet.selected);
+      appliedFiltersState.facets ?? [], hierarchicalFieldIds, hierarchicalDelimiter);
+  const selectedHierarchicalFacets = hierarchicalFacets.filter(facet => facet.selected) ?? [];
+  const activeHierarchicalFacets = hierarchicalFacets.filter(facet => {
+    const isDescendentOfSelectedFacet = selectedHierarchicalFacets.find(selectedFacet =>
+      isDescendantHierarchicalFacet(facet, selectedFacet, hierarchicalDelimiter ));
+    return isDescendentOfSelectedFacet || selectedHierarchicalFacets.includes(facet);
+  });
   const displayableNlpFilters = getDisplayableNlpFilters(nlpFilters);
 
   const prunedStaticFilters = filterHiddenFields(displayableStaticFilters, hiddenFields);
   const prunedFacets = filterHiddenFields(displayableFacets, hiddenFields);
-  const prunedHierarchicalFacets = filterHiddenFields(hierarchicalFacets, hiddenFields);
+  const prunedHierarchicalFacets = filterHiddenFields(activeHierarchicalFacets, hiddenFields);
   const prunedNlpFilters = pruneNlpFilters(
     displayableNlpFilters,
     [...prunedStaticFilters, ...prunedFacets],
@@ -72,4 +77,36 @@ export function pruneAppliedFilters(
     hierarchicalFacets: prunedHierarchicalFacets,
     nlpFilters: prunedNlpFilters
   };
+}
+
+export function isDescendantHierarchicalFacet(
+  parentFacet: DisplayableHierarchicalFacet,
+  potentialChildFacet: Pick<DisplayableHierarchicalFacet, 'displayName'>,
+  delimiter: string
+): boolean {
+  const {
+    displayNameTokens: parentTokens,
+    lastDisplayNameToken: parentLastDisplayNameToken
+  } = parentFacet;
+  const parentDisplayName = parentFacet.displayName.trim();
+
+  const { displayName: childDisplayName } = potentialChildFacet;
+
+  if (!childDisplayName.startsWith(parentDisplayName)) {
+    return false;
+  }
+
+  const otherTokens = childDisplayName.split(delimiter).map(t => t.trim());
+  if (otherTokens.length <= parentTokens.length) {
+    return false;
+  }
+
+  // Ensure that we don't return true for parent = `a > b > c` and child = `a > book > c`
+  // by checking that the second element of the child is exactly "b"
+  const tokenAtIndexOfLastParentToken = otherTokens[parentTokens.length - 1];
+  if (parentLastDisplayNameToken !== tokenAtIndexOfLastParentToken) {
+    return false;
+  }
+
+  return true;
 }

@@ -85,8 +85,11 @@ export function HierarchicalFacet({
     while (treePointer) {
       const childNodes = Object.values(treePointer);
       const selectedChildNode = childNodes.find(n => n.selected);
+      const selectedHasNoChildren =
+        selectedChildNode && Object.values(selectedChildNode.childTree).length === 0;
+      const nodeWithSelectedChild = childNodes.find(n => n.hasSelectedChild);
 
-      if (!selectedChildNode || Object.values(selectedChildNode.childTree).length === 0) {
+      if (!selectedChildNode && !nodeWithSelectedChild || selectedHasNoChildren) {
         renderedNodesAndShowMoreButton.push(...renderAvailableOptions(childNodes));
         if (childNodes.length > showMoreLimit) {
           renderedNodesAndShowMoreButton.push(renderShowMoreButton());
@@ -94,8 +97,13 @@ export function HierarchicalFacet({
         break;
       }
 
-      renderedNodesAndShowMoreButton.push(renderCategory(selectedChildNode, facet.fieldId));
-      treePointer = selectedChildNode.childTree;
+      const activeNode = selectedChildNode ?? nodeWithSelectedChild;
+      if (!activeNode) {
+        break;
+      }
+      renderedNodesAndShowMoreButton.push(
+        renderCategory(activeNode, facet.fieldId));
+      treePointer = activeNode.childTree;
     }
 
     return renderedNodesAndShowMoreButton;
@@ -217,9 +225,24 @@ function AvailableOption(props: {
       selected: !selected,
       fieldId
     });
+    const parentFacetOption = currentNode.parentNode?.facetOption;
+    parentFacetOption && selectFilter({
+      ...parentFacetOption,
+      selected,
+      fieldId
+    });
     applyFilters();
     resetShowMore();
-  }, [applyFilters, facetOption, fieldId, resetShowMore, selectFilter, selected, siblingNodes]);
+  }, [
+    applyFilters,
+    currentNode.parentNode?.facetOption,
+    facetOption,
+    fieldId,
+    resetShowMore,
+    selectFilter,
+    selected,
+    siblingNodes
+  ]);
 
   return (
     <button
@@ -253,10 +276,15 @@ function ParentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   }, [fieldId, selectFilter]);
 
   const handleClickParentCategory = useCallback(() => {
+    selectFilter({
+      ...selectedNode.facetOption,
+      selected: true,
+      fieldId
+    });
     deselectChildOptions(selectedNode);
     applyFilters();
     resetShowMore();
-  }, [applyFilters, deselectChildOptions, resetShowMore, selectedNode]);
+  }, [applyFilters, deselectChildOptions, fieldId, resetShowMore, selectFilter, selectedNode]);
 
   return (
     <button className={className} onClick={handleClickParentCategory}>
@@ -279,9 +307,22 @@ function CurrentCategory({ fieldId, selectedNode, className, resetShowMore }: {
       selected: false,
       fieldId
     });
+    const parentFacetOption = selectedNode.parentNode?.facetOption;
+    parentFacetOption && selectFilter({
+      ...parentFacetOption,
+      selected: true,
+      fieldId
+    });
     applyFilters();
     resetShowMore();
-  }, [applyFilters, fieldId, resetShowMore, selectFilter, selectedNode.facetOption]);
+  }, [
+    applyFilters,
+    fieldId,
+    resetShowMore,
+    selectFilter,
+    selectedNode.facetOption,
+    selectedNode.parentNode?.facetOption
+  ]);
 
   return (
     <button

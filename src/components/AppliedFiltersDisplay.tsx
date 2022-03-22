@@ -4,7 +4,6 @@ import {
   SelectableFilter as DisplayableFilter,
   useAnswersState,
   SearchTypeEnum,
-  DisplayableFacetOption
 } from '@yext/answers-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
@@ -12,6 +11,7 @@ import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
 import { executeSearch } from '../utils/search-operations';
 import { useCallback } from 'react';
+import { isDescendantHierarchicalFacet } from '../utils/appliedfilterutils';
 
 /**
  * Properties for {@link AppliedFilters}.
@@ -82,6 +82,14 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
         answersActions.setFacetOption(fieldId, { matcher: o.matcher, value: o.value }, false);
       }
     });
+    const parentDisplayName = facet.displayNameTokens.slice(0, -1).join(` ${hierarchicalFacetsDelimiter} `);
+    const parentHierarchicalFacetOption = parentFacet.options
+      .find(facet => facet.displayName === parentDisplayName);
+
+    parentHierarchicalFacetOption && answersActions.setFacetOption(fieldId, {
+      matcher: parentHierarchicalFacetOption?.matcher,
+      value: parentHierarchicalFacetOption?.value
+    }, true);
 
     answersActions.setOffset(0);
     answersActions.setFacetOption(fieldId, { matcher: facet.matcher, value: facet.value }, false);
@@ -156,36 +164,4 @@ function NlpFilter({ filter, cssClasses }: {
       <span className={cssClasses.filterLabel}>{filter.displayName}</span>
     </div>
   );
-}
-
-function isDescendantHierarchicalFacet(
-  parentFacet: DisplayableHierarchicalFacet,
-  potentialChildFacet: DisplayableFacetOption,
-  delimiter: string
-) {
-  const {
-    displayNameTokens: parentTokens,
-    lastDisplayNameToken: parentLastDisplayNameToken
-  } = parentFacet;
-  const parentDisplayName = parentFacet.displayName.trim();
-
-  const { displayName: childDisplayName } = potentialChildFacet;
-
-  if (!childDisplayName.startsWith(parentDisplayName)) {
-    return false;
-  }
-
-  const otherTokens = childDisplayName.split(delimiter).map(t => t.trim());
-  if (otherTokens.length <= parentTokens.length) {
-    return false;
-  }
-
-  // Ensure that we don't return true for parent = `a > b > c` and child = `a > book > c`
-  // by checking that the second element of the child is exactly "b"
-  const tokenAtIndexOfLastParentToken = otherTokens[parentTokens.length - 1];
-  if (parentLastDisplayNameToken !== tokenAtIndexOfLastParentToken) {
-    return false;
-  }
-
-  return true;
 }
