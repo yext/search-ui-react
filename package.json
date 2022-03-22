@@ -1,6 +1,6 @@
 {
   "name": "@yext/answers-react-components",
-  "version": "0.1.1-beta.1",
+  "version": "0.2.0",
   "description": "",
   "author": "slapshot@yext.com",
   "main": "./lib/index.js",
@@ -106,5 +106,9 @@
     "react-router-dom": "^5.3.0",
     "recent-searches": "^1.0.5",
     "uuid": "^8.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yext/answers-react-components.git"
   }
 }
