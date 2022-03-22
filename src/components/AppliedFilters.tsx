@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { GroupedFilters } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
+import { useSnapshottedAnswersState } from '../hooks/useSnapshottedAnswersState';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
@@ -64,12 +65,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const verticalResults = useAnswersState(state => state.vertical.results);
-  const filters = useAnswersState(state => state.filters);
-
-  const filterState = useRef<FiltersState>({});
-  if (!isLoading) {
-    filterState.current = verticalResults ? filters : {};
-  }
+  const filters = useSnapshottedAnswersState(state => state.filters);
 
   const {
     hiddenFields,
@@ -79,14 +75,23 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     hierarchicalFacetsFieldIds
   } = props;
 
-  const appliedFilters: GroupedFilters = useMemo(() =>
-    pruneAppliedFilters(
-      filterState.current,
+  const appliedFilters: GroupedFilters = useMemo(() => {
+    const filtersHiddenForNoResults = (verticalResults && filters) ?? {};
+    return pruneAppliedFilters(
+      filtersHiddenForNoResults,
       nlpFilters ?? [],
       hiddenFields ?? ['builtin.entityType'],
       hierarchicalFacetsFieldIds ?? [],
       hierarchicalFacetsDelimiter
-    ), [hiddenFields, hierarchicalFacetsDelimiter, hierarchicalFacetsFieldIds, nlpFilters]);
+    );
+  }, [
+    verticalResults,
+    filters,
+    hiddenFields,
+    hierarchicalFacetsDelimiter,
+    hierarchicalFacetsFieldIds,
+    nlpFilters
+  ]);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
