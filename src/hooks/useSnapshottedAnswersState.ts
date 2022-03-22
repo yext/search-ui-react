@@ -2,7 +2,7 @@ import { StateSelector, useAnswersState } from '@yext/answers-headless-react';
 import { useRef } from 'react';
 
 /**
- * Returns some Answers State, but snapshotted to the last time a search was completed.
+ * Selects a portion Answers State, snapshotted to the last time a search was completed.
  */
 export function useSnapshottedAnswersState<T>(
   stateSelector: StateSelector<T>
