@@ -65,7 +65,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const verticalResults = useAnswersState(state => state.vertical.results);
-  const filters = useSnapshottedAnswersState(state => state.filters);
+  const filters = useStateSnapshottedToSearch(state => state.filters);
 
   const {
     hiddenFields,
