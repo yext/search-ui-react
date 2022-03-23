@@ -90,6 +90,7 @@ jest.mock('../../src/utils/search-operations', () => ({
 
 describe('AppliedFilters', () => {
   it('Static filters are rendered', () => {
+    render(<AppliedFilters />);
     const staticFilterDisplayName = mockedState.filters.static[0].value as string;
     expect(screen.getByText(staticFilterDisplayName)).toBeDefined();
   });
