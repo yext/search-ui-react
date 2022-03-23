@@ -1,12 +1,12 @@
-import { useAnswersState, FiltersState } from '@yext/answers-headless-react';
+import { useAnswersState } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { pruneAppliedFilters } from '../utils/appliedfilterutils';
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { GroupedFilters } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
-import { useSnapshottedAnswersState } from '../hooks/useSnapshottedAnswersState';
+import { useStateSnapshottedToSearch } from '../hooks/useStateSnapshottedToSearch';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
