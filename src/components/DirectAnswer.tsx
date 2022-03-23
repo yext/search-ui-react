@@ -1,4 +1,4 @@
-import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData, DirectAnswer } from '@yext/answers-headless-react';
+import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData } from '@yext/answers-headless-react';
 import { renderHighlightedValue } from './utils/renderHighlightedValue';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
