@@ -77,7 +77,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
 
   const appliedFilters: GroupedFilters = useMemo(() => {
     return pruneAppliedFilters(
-      hasResults ? filters : {},
+      hasResults ? (filters ?? {}) : {},
       nlpFilters ?? [],
       hiddenFields ?? ['builtin.entityType'],
       hierarchicalFacetsFieldIds ?? [],
