@@ -102,7 +102,7 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
           href={link}
           onClick={handleClickViewDetails}
         >
-          {directAnswerResult.relatedResult.name}
+          {name}
         </a>
       </div>}
       {!isSnippet && link && <div className={cssClasses.viewDetailsLinkContainer}>

@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import { SpellCheck } from '../../src/components/SpellCheck';
 import { State } from '@yext/answers-headless-react';
-import { spyOnActions } from '../__utils__/spies';
+import { spyOnActions } from '../__utils__/mocks';
 
 const mockedState: Partial<State> = {
   spellCheck: {
