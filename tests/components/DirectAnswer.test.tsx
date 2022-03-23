@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { DirectAnswerType, FeaturedSnippetDirectAnswer, FieldValueDirectAnswer } from '@yext/answers-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
-import { RecursivePartial, spyOnAnswersState } from '../__utils__/spies';
+import { RecursivePartial, mockAnswersState } from '../__utils__/mocks';
 
 jest.mock('@yext/answers-headless-react');
 
@@ -14,13 +14,13 @@ jest.mock('../../src/hooks/useAnalytics', () => {
 });
 
 it('does not render when no direct answer result', () => {
-  spyOnState();
+  mockState();
   const { container } = render(<DirectAnswer />);
   expect(container).toBeEmptyDOMElement();
 });
 
 it('applies the loading state css class', () => {
-  spyOnState({
+  mockState({
     type: DirectAnswerType.FieldValue,
     entityName: '[entityName]',
     fieldName: '[fieldName]',
@@ -36,7 +36,7 @@ it('applies the loading state css class', () => {
 
 describe('FieldValue direct answer', () => {
   beforeEach(() => {
-    spyOnFieldValueDA();
+    mockFieldValueDA();
     render(<DirectAnswer />);
   });
 
@@ -61,7 +61,7 @@ describe('FieldValue direct answer', () => {
 
 describe('FeaturedSnippet direct answer', () => {
   beforeEach(() => {
-    spyOnFeaturedSnippetDA();
+    mockFeaturedSnippetDA();
     render(<DirectAnswer customCssClasses={{ highlighted: '_highlighted' }}/>);
   });
 
@@ -123,8 +123,8 @@ function runAnalyticsTestSuite() {
   });
 }
 
-function spyOnFeaturedSnippetDA() {
-  spyOnState({
+function mockFeaturedSnippetDA() {
+  mockState({
     type: DirectAnswerType.FeaturedSnippet,
     snippet: {
       value: '[snippet.value]',
@@ -139,8 +139,8 @@ function spyOnFeaturedSnippetDA() {
   });
 }
 
-function spyOnFieldValueDA() {
-  spyOnState({
+function mockFieldValueDA() {
+  mockState({
     type: DirectAnswerType.FieldValue,
     entityName: '[entityName]',
     fieldName: '[fieldName]',
@@ -152,11 +152,11 @@ function spyOnFieldValueDA() {
   });
 }
 
-function spyOnState(
+function mockState(
   result?: RecursivePartial<FeaturedSnippetDirectAnswer | FieldValueDirectAnswer>,
   isLoading?: boolean
 ) {
-  return spyOnAnswersState({
+  return mockAnswersState({
     directAnswer: { result },
     searchStatus: { isLoading },
     vertical: {},

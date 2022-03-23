@@ -16,7 +16,7 @@ export type RecursivePartial<T> = {
     T[P];
 };
 
-export function spyOnAnswersState(
+export function mockAnswersState(
   customState: RecursivePartial<State>
 ): jest.SpyInstance<typeof useAnswersState, unknown[]> {
   function mockImpl<T>(stateAccessor: StateSelector<T>) {

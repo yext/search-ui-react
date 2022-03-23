@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { DisplayableFacet, FiltersState, Matcher, Source, State } from '@yext/answers-headless-react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
-import { spyOnActions, spyOnAnswersState } from '../__utils__/spies';
+import { spyOnActions, mockAnswersState } from '../__utils__/mocks';
 
 const mockedStaticFilters = [{
   selected: true,
@@ -156,7 +156,7 @@ describe('AppliedFilters', () => {
 
 describe('AppliedFilters with hierarchical facets', () => {
   it('renders hierarchical facets in the correct order, with same fieldId facets adjacent to each other', () => {
-    spyOnFiltersState({
+    mockFiltersState({
       facets: [
         createHierarchicalFacet([
           'food > fruit > banana',
@@ -192,7 +192,7 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('does not render unselected hierarchical facets', () => {
-    spyOnFiltersState({
+    mockFiltersState({
       facets: [
         createHierarchicalFacet([
           'food',
@@ -211,7 +211,7 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('can use a custom delimiter', () => {
-    spyOnFiltersState({
+    mockFiltersState({
       facets: [
         createHierarchicalFacet([
           'games',
@@ -231,7 +231,7 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('removing a hierarchical applied filter removes all descendants in the hierarchy', () => {
-    spyOnFiltersState({
+    mockFiltersState({
       facets: [
         createHierarchicalFacet([
           'food',
@@ -298,8 +298,8 @@ function createHierarchicalFacet(
   };
 }
 
-function spyOnFiltersState(filters: FiltersState) {
-  return spyOnAnswersState({
+function mockFiltersState(filters: FiltersState) {
+  return mockAnswersState({
     ...mockedState,
     filters
   });
