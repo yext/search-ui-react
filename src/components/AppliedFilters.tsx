@@ -1,11 +1,12 @@
-import { useAnswersState, FiltersState } from '@yext/answers-headless-react';
+import { useAnswersState } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { pruneAppliedFilters } from '../utils/appliedfilterutils';
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { GroupedFilters } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
+import { useStateUpdatedOnSearch } from '../hooks/useStateUpdatedOnSearch';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
@@ -63,13 +64,8 @@ export interface AppliedFiltersProps {
 export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
-  const verticalResults = useAnswersState(state => state.vertical.results);
-  const filters = useAnswersState(state => state.filters);
-
-  const filterState = useRef<FiltersState>({});
-  if (!isLoading) {
-    filterState.current = verticalResults ? filters : {};
-  }
+  const hasResults = !!useAnswersState(state => state.vertical.results);
+  const filters = useStateUpdatedOnSearch(state => state.filters);
 
   const {
     hiddenFields,
@@ -79,14 +75,22 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     hierarchicalFacetsFieldIds
   } = props;
 
-  const appliedFilters: GroupedFilters = useMemo(() =>
-    pruneAppliedFilters(
-      filterState.current,
+  const appliedFilters: GroupedFilters = useMemo(() => {
+    return pruneAppliedFilters(
+      hasResults ? (filters ?? {}) : {},
       nlpFilters ?? [],
       hiddenFields ?? ['builtin.entityType'],
       hierarchicalFacetsFieldIds ?? [],
       hierarchicalFacetsDelimiter
-    ), [hiddenFields, hierarchicalFacetsDelimiter, hierarchicalFacetsFieldIds, nlpFilters]);
+    );
+  }, [
+    hasResults,
+    filters,
+    hiddenFields,
+    hierarchicalFacetsDelimiter,
+    hierarchicalFacetsFieldIds,
+    nlpFilters
+  ]);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {

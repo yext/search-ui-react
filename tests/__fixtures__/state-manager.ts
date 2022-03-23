@@ -22,7 +22,7 @@ export function generateMockedStateManager(state?: State): StateManager {
     addListener<T>(listener: StateListener<T>): Unsubscribe {
       return null;
     }
-  };
+  }();
 }
 
 export const MockedStateManager: StateManager = generateMockedStateManager();

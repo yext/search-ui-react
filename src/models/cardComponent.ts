@@ -7,7 +7,7 @@ import { Result } from '@yext/answers-headless-react';
  */
 export interface CardProps {
   /** The result data provided to the card for rendering. */
-  result: Result,
+  result: Result
 }
 
 /**

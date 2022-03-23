@@ -38,9 +38,9 @@ jest.mock('../../src/utils/search-operations', () => ({
 
 describe('SpellCheck', () => {
   it('Suggestion is formatted properly', () => {
-    const { getByText } = render(<SpellCheck />);
-    expect(getByText('Did you mean')).toBeDefined();
-    expect(getByText(mockedState.spellCheck.correctedQuery)).toBeDefined();
+    render(<SpellCheck />);
+    expect(screen.getByText('Did you mean')).toBeDefined();
+    expect(screen.getByText(mockedState.spellCheck.correctedQuery)).toBeDefined();
   });
 
   it('Button\'s label is correct', () => {

@@ -18,8 +18,8 @@ type ExecuteEntityPreviewsQuery = (
  * useEntityPreviews provides state surrounding the visual entities portion of visual autocomplete,
  * which performs debounced universal searches.
  *
- * @param entityPreviewSearcher the headless instance use as searcher for entity preview related queries
- * @param debounceTime the time in milliseconds to debounce the universal search request
+ * @param entityPreviewSearcher - the headless instance use as searcher for entity preview related queries
+ * @param debounceTime - the time in milliseconds to debounce the universal search request
  */
 export function useEntityPreviews(
   entityPreviewSearcher: AnswersHeadless | undefined,

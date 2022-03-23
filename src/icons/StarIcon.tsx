@@ -1,4 +1,4 @@
-export function StarIcon({ className }: {className?: string }): JSX.Element {
+export function StarIcon({ className }: { className?: string }): JSX.Element {
   return (
     <svg
       fill="currentColor"
