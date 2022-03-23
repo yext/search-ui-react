@@ -4,7 +4,7 @@ import { useRef } from 'react';
 /**
  * Selects a portion Answers State, snapshotted to the last time a search was completed.
  */
-export function useStateSnapshottedToSearch<T>(
+export function useStateUpdatedOnSearch<T>(
   stateSelector: StateSelector<T>
 ): T | undefined {
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);

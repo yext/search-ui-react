@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { GroupedFilters } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
-import { useStateSnapshottedToSearch } from '../hooks/useStateSnapshottedToSearch';
+import { useStateUpdatedOnSearch } from '../hooks/useStateUpdatedOnSearch';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
@@ -64,8 +64,8 @@ export interface AppliedFiltersProps {
 export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const nlpFilters = useAnswersState(state => state.vertical.appliedQueryFilters);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
-  const verticalResults = useAnswersState(state => state.vertical.results);
-  const filters = useStateSnapshottedToSearch(state => state.filters);
+  const hasResults = !!useAnswersState(state => state.vertical.results);
+  const filters = useStateUpdatedOnSearch(state => state.filters);
 
   const {
     hiddenFields,
@@ -76,16 +76,15 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   } = props;
 
   const appliedFilters: GroupedFilters = useMemo(() => {
-    const filtersHiddenForNoResults = (verticalResults && filters) ?? {};
     return pruneAppliedFilters(
-      filtersHiddenForNoResults,
+      hasResults ? filters : {},
       nlpFilters ?? [],
       hiddenFields ?? ['builtin.entityType'],
       hierarchicalFacetsFieldIds ?? [],
       hierarchicalFacetsDelimiter
     );
   }, [
-    verticalResults,
+    hasResults,
     filters,
     hiddenFields,
     hierarchicalFacetsDelimiter,
