@@ -9,7 +9,7 @@ import { executeSearch } from '../../utils/search-operations';
  */
 export interface ApplyFiltersButtonProps {
   /** The css classes for the button */
-  className?: string
+  className?: string,
   /** The label for the button, defaults to 'Apply Filters' */
   label?: string
 }

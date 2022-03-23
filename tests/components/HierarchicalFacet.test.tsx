@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { FiltersState, Matcher, Source, State } from '@yext/answers-headless-react';
 import { Filters } from '../../src/components';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
-import { spyOnActions, spyOnAnswersState } from '../__utils__/spies';
+import { spyOnActions, mockAnswersState } from '../__utils__/mocks';
 import { Fragment } from 'react';
 
 const mockedState: Partial<State> = {
@@ -84,15 +84,16 @@ jest.mock('../../src/utils/search-operations', () => ({
 describe('Hierarchical facets', () => {
 
   it('Properly renders hierarchical facets', () => {
-    const facets = [
-      createHierarchicalFacet([
-        'food',
-        'food > fruit',
-        { value: 'food > fruit > banana', selected: true },
-        'food > fruit > apple',
-      ])
-    ];
-    spyOnFiltersState({ facets });
+    mockFiltersState({
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          'food > fruit',
+          { value: 'food > fruit > banana', selected: true },
+          'food > fruit > apple',
+        ])
+      ]
+    });
     render(<HierarchicalFacets/>);
 
     expect(screen.getByRole('button', { name: /food/i })).toBeTruthy();
@@ -102,16 +103,18 @@ describe('Hierarchical facets', () => {
   });
 
   it('Clicking the currently selected option deselects it and selects its parent', () => {
-    const facets = [
-      createHierarchicalFacet([
-        'food',
-        'food > fruit',
-        { value: 'food > fruit > banana', selected: true },
-        'food > fruit > apple',
-      ])
-    ];
+    mockFiltersState({
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          'food > fruit',
+          { value: 'food > fruit > banana', selected: true },
+          'food > fruit > apple',
+        ])
+      ]
+    });
     const actions = spyOnActions();
-    spyOnFiltersState({ facets });
+    
 
     render(<HierarchicalFacets/>);
 
@@ -122,17 +125,18 @@ describe('Hierarchical facets', () => {
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
   });
   it('Clicking a non-selected option selects it and deselects its siblings', () => {
-    const facets = [
-      createHierarchicalFacet([
-        'food',
-        'food > fruit',
-        { value: 'food > fruit > banana', selected: true },
-        'food > fruit > apple',
-      ])
-    ];
+    mockFiltersState({ 
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          'food > fruit',
+          { value: 'food > fruit > banana', selected: true },
+          'food > fruit > apple',
+        ])
+      ]
+    });
     const actions = spyOnActions();
-    spyOnFiltersState({ facets });
-
+    
     render(<HierarchicalFacets/>);
 
     const appleButton = screen.getByRole('button', { name: /apple/i });
@@ -142,16 +146,18 @@ describe('Hierarchical facets', () => {
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
   });
   it('Clicking the current category with a selected child selects the category and deselects the child', () => {
-    const facets = [
-      createHierarchicalFacet([
-        'food',
-        'food > fruit',
-        { value: 'food > fruit > banana', selected: true },
-        'food > fruit > apple',
-      ])
-    ];
+    mockFiltersState({ 
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          'food > fruit',
+          { value: 'food > fruit > banana', selected: true },
+          'food > fruit > apple',
+        ])
+      ]
+    });
     const actions = spyOnActions();
-    spyOnFiltersState({ facets });
+    
 
     render(<HierarchicalFacets/>);
 
@@ -163,16 +169,18 @@ describe('Hierarchical facets', () => {
   });
 
   it('Clicking a selected current category deselects it and selects its parent', () => {
-    const facets = [
-      createHierarchicalFacet([
-        'food',
-        { value: 'food > fruit', selected: true },
-        'food > fruit > banana',
-        'food > fruit > apple',
-      ])
-    ];
+    mockFiltersState({ 
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          { value: 'food > fruit', selected: true },
+          'food > fruit > banana',
+          'food > fruit > apple',
+        ])
+      ]
+    });
     const actions = spyOnActions();
-    spyOnFiltersState({ facets });
+    
 
     render(<HierarchicalFacets/>);
 
@@ -183,17 +191,17 @@ describe('Hierarchical facets', () => {
     expectFacetOptionSet(actions, { value: 'food', selected: true });
   });
   it('Clicking a parent category selects it and deselects its children', () => {
-    const facets = [
-      createHierarchicalFacet([
-        'food',
-        'food > fruit',
-        { value: 'food > fruit > banana', selected: true },
-        'food > fruit > apple',
-      ])
-    ];
-
+    mockFiltersState({ 
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          'food > fruit',
+          { value: 'food > fruit > banana', selected: true },
+          'food > fruit > apple',
+        ])
+      ]
+    });
     const actions = spyOnActions();
-    spyOnFiltersState({ facets });
 
     render(<HierarchicalFacets/>);
 
@@ -214,8 +222,8 @@ function expectFacetOptionSet(actions, facet: { value: string, selected: boolean
   );
 }
 
-function spyOnFiltersState(filters: FiltersState) {
-  return spyOnAnswersState({
+function mockFiltersState(filters: FiltersState) {
+  return mockAnswersState({
     ...mockedState,
     filters
   });

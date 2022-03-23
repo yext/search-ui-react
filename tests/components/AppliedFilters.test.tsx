@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { Matcher, Source, State, FiltersState } from '@yext/answers-headless-react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
-import { spyOnActions, spyOnAnswersState } from '../__utils__/spies';
+import { spyOnActions, mockAnswersState } from '../__utils__/mocks';
 
 const mockedStaticFilters = [{
   selected: true,
@@ -91,33 +91,33 @@ jest.mock('../../src/utils/search-operations', () => ({
 
 describe('AppliedFilters', () => {
   it('Static filters are rendered', () => {
-    const { getByText } = render(<AppliedFilters />);
+    render(<AppliedFilters />);
     const staticFilterDisplayName = mockedState.filters.static[0].value as string;
-    expect(getByText(staticFilterDisplayName)).toBeDefined();
+    expect(screen.getByText(staticFilterDisplayName)).toBeDefined();
   });
 
   it('Facets are rendered', () => {
-    const { getByText } = render(<AppliedFilters />);
+    render(<AppliedFilters />);
     const facetOptionDisplayName = mockedState.filters.facets[0].options[0].displayName;
-    expect(getByText(facetOptionDisplayName)).toBeDefined();
+    expect(screen.getByText(facetOptionDisplayName)).toBeDefined();
   });
 
   it('Applied query filters are rendered', () => {
-    const { getByText } = render(<AppliedFilters />);
+    render(<AppliedFilters />);
     const appliedFilterDisplayName = mockedState.vertical.appliedQueryFilters[0].displayValue;
-    expect(getByText(appliedFilterDisplayName)).toBeDefined();
+    expect(screen.getByText(appliedFilterDisplayName)).toBeDefined();
   });
 
   it('Filters with the fieldId of "builtin.entityType" are hidden by default', () => {
-    const { queryByText } = render(<AppliedFilters />);
+    render(<AppliedFilters />);
     const staticFilterDisplayName = mockedState.filters.static[2].value as string;
-    expect(queryByText(staticFilterDisplayName)).toBeFalsy();
+    expect(screen.queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
   it('The hiddenFields prop prevents filters with a corresponding fieldId from rendering', () => {
-    const { queryByText } = render(<AppliedFilters hiddenFields={['name']} />);
+    render(<AppliedFilters hiddenFields={['name']} />);
     const staticFilterDisplayName = mockedState.filters.static[0].value as string;
-    expect(queryByText(staticFilterDisplayName)).toBeFalsy();
+    expect(screen.queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
   it('The "X" button for an applied static filter deselects the filter option', () => {
@@ -157,23 +157,23 @@ describe('AppliedFilters', () => {
 
 describe('AppliedFilters with hierarchical facets', () => {
   it('renders hierarchical facets in the correct order, with same fieldId facets adjacent to each other', () => {
-    const facets = [
-      createHierarchicalFacet([
-        'food',
-        { value: 'food > fruit', selected: true },
-        'food > fruit > banana',
-        'food > fruit > apple',
-      ]),
-      createHierarchicalFacet([
-        'fool > bb',
-        'fool',
-        'fool > a',
-        'fool > longlong',
-        { value: 'fool > verylonglongman', selected: true },
-      ]),
-    ];
-
-    spyOnFiltersState({ facets: facets });
+    mockFiltersState({
+      facets: [
+        createHierarchicalFacet([
+          'food > fruit > banana',
+          { value: 'food > fruit', selected: true },
+          'food > fruit > apple',
+          'food'
+        ]),
+        createHierarchicalFacet([
+          'fool > bb',
+          { value: 'fool > verylonglongman', selected: true },
+          'fool',
+          'fool > a',
+          'fool > longlong',
+        ]),
+      ]
+    });
 
     render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
     const buttons = screen.queryAllByRole('button');
@@ -188,16 +188,17 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('renders only selected or parents of selected filters', () => {
-    const facets = [
-      createHierarchicalFacet([
-        'food',
-        { value: 'food > fruit', selected: true },
-        'games',
-        'games > nier',
-        { value: 'games > steinsgate', selected: true },
-      ])
-    ];
-    spyOnFiltersState({ facets });
+    mockFiltersState({
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          { value: 'food > fruit', selected: true },
+          'games',
+          { value: 'games > steinsgate', selected: true },
+          'games > nier',
+        ])
+      ]
+    });
 
     render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
     expect(screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/)).toHaveLength(4);
@@ -206,13 +207,14 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('can use a custom delimiter', () => {
-    const facets = [
-      createHierarchicalFacet([
-        { value: 'games', selected: false },
-        { value: 'games ! steinsgate', selected: true }
-      ])
-    ];
-    spyOnFiltersState({ facets });
+    mockFiltersState({
+      facets: [
+        createHierarchicalFacet([
+          { value: 'games', selected: false },
+          { value: 'games ! steinsgate', selected: true }
+        ])
+      ]
+    });
 
     render(<AppliedFilters
       hierarchicalFacetsFieldIds={['hier']}
@@ -225,24 +227,24 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('removing a hierarchical applied filter removes the facet and all descendants in the hierarchy', () => {
-    const foodFacets = [
-      'food',
-      'food > fruit',
-      { value: 'food > fruit > banana', selected: true },
-      'food > fruit > apple',
-      'food > meat',
-      'food > meat > cow',
-      'food > meat > pig',
-      'food > cookies'
-    ];
-    const facets = [
-      createHierarchicalFacet(foodFacets),
-      createHierarchicalFacet([
-        'fool',
-        'fool > a',
-      ]),
-    ];
-    spyOnFiltersState({ facets });
+    mockFiltersState({
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          'food > fruit',
+          { value: 'food > fruit > banana', selected: true },
+          'food > fruit > apple',
+          'food > meat',
+          'food > meat > cow',
+          'food > meat > pig',
+          'food > cookies'
+        ]),
+        createHierarchicalFacet([
+          'fool',
+          'fool > a',
+        ]),
+      ]
+    });
     const actions = spyOnActions();
 
     render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
@@ -271,14 +273,16 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('removing a hierarchical applied filter selects its parent', () => {
-    const facets = [
-      createHierarchicalFacet([
-        'food',
-        'food > fruit',
-        { value: 'food > fruit > banana', selected: true },
-      ]),
-    ];
-    spyOnFiltersState({ facets });
+    mockFiltersState({
+      facets: [
+        createHierarchicalFacet([
+          'food',
+          'food > fruit',
+          { value: 'food > fruit > banana', selected: true },
+        ]),
+      ]
+    });
+
     const actions = spyOnActions();
 
     render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
@@ -301,8 +305,8 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 });
 
-function spyOnFiltersState(filters: FiltersState) {
-  return spyOnAnswersState({
+function mockFiltersState(filters: FiltersState) {
+  return mockAnswersState({
     ...mockedState,
     filters
   });

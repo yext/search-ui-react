@@ -7,11 +7,10 @@ type MapFunction = (element: any, index: number) => any;
  * and the values hold an array of elements which are in that group. Mapping functions can be specified
  * which determine the key and the value for the element. An initial object may be optionally specified.
  *
- * @param {Array<any>} arr array to be grouped
- * @param {MapFunction} keyMap Mapping function that evaluates what key to give an array element.
- * @param {MapFunction} valueMap Mapping function that evaluates what value to give an array element.
- * @param {Object} intitial the initial object to add to, defaulting to {}
- * @returns {Object}
+ * @param arr - array to be grouped
+ * @param keyMap - Mapping function that evaluates what key to give an array element.
+ * @param valueMap - Mapping function that evaluates what value to give an array element.
+ * @param intitial - the initial object to add to, defaulting to \{\}
  */
 export function mapArrayToObject(
   arr: Array<any>,

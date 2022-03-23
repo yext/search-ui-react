@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import { SpellCheck } from '../../src/components/SpellCheck';
 import { State } from '@yext/answers-headless-react';
-import { spyOnActions } from '../__utils__/spies';
+import { spyOnActions } from '../__utils__/mocks';
 
 const mockedState: Partial<State> = {
   spellCheck: {
@@ -38,9 +38,9 @@ jest.mock('../../src/utils/search-operations', () => ({
 
 describe('SpellCheck', () => {
   it('Suggestion is formatted properly', () => {
-    const { getByText } = render(<SpellCheck />);
-    expect(getByText('Did you mean')).toBeDefined();
-    expect(getByText(mockedState.spellCheck.correctedQuery)).toBeDefined();
+    render(<SpellCheck />);
+    expect(screen.getByText('Did you mean')).toBeDefined();
+    expect(screen.getByText(mockedState.spellCheck.correctedQuery)).toBeDefined();
   });
 
   it('Button\'s label is correct', () => {

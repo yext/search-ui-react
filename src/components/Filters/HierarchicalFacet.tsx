@@ -20,7 +20,7 @@ export interface HierarchicalFacetProps {
   /** CSS classes for customizing the component styling of {@link Filters.HierarchicalFacetCssClasses} */
   customCssClasses?: HierarchicalFacetCssClasses,
   /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod,
+  cssCompositionMethod?: CompositionMethod
 }
 
 /**
@@ -50,7 +50,6 @@ const builtInCssClasses: Required<HierarchicalFacetCssClasses> = {
   showMoreButton: 'ml-4 text-sm font-medium text-primary'
 };
 
-/** @private */
 export const DEFAULT_HIERARCHICAL_DELIMITER = '>';
 
 /**
@@ -336,7 +335,7 @@ function CurrentCategory({ fieldId, selectedNode, className, resetShowMore }: {
 
 /** The "Show more/less" button for hiding/showing additional `AvailableOption`s */
 function ShowMoreButton({ className, isShowingMore, toggleShowMore }: {
-  className?: string
+  className?: string,
   isShowingMore: boolean,
   toggleShowMore: () => void
 }) {
