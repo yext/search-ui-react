@@ -19,6 +19,21 @@ it('does not render when no direct answer result', () => {
   expect(container).toBeEmptyDOMElement();
 });
 
+it('applies the loading state css class', () => {
+  spyOnState({
+    type: DirectAnswerType.FieldValue,
+    entityName: '[entityName]',
+    fieldName: '[fieldName]',
+    value: '[value]',
+    relatedResult: {
+      link: '[relatedResult.link]',
+      id: '[relatedResult.id]'
+    }
+  }, true);
+  render(<DirectAnswer customCssClasses={{ container___loading: '_loading' }}/>);
+  expect(document.body.querySelector('._loading')).toBeTruthy();
+});
+
 describe('FieldValue direct answer', () => {
   beforeEach(() => {
     spyOnFieldValueDA();
@@ -47,7 +62,7 @@ describe('FieldValue direct answer', () => {
 describe('FeaturedSnippet direct answer', () => {
   beforeEach(() => {
     spyOnFeaturedSnippetDA();
-    render(<DirectAnswer customCssClasses={{ highlighted: 'highlighted' }}/>);
+    render(<DirectAnswer customCssClasses={{ highlighted: '_highlighted' }}/>);
   });
 
   it('title text', () => {
@@ -56,7 +71,7 @@ describe('FeaturedSnippet direct answer', () => {
   });
 
   it('description text is highlighted and uses the "highlighted" css class', () => {
-    const highlightedNodes = document.body.querySelectorAll('.highlighted');
+    const highlightedNodes = document.body.querySelectorAll('._highlighted');
     expect(highlightedNodes).toHaveLength(1);
     expect(highlightedNodes[0]).toHaveTextContent('snip');
   });
@@ -137,10 +152,13 @@ function spyOnFieldValueDA() {
   });
 }
 
-function spyOnState(result?: RecursivePartial<FeaturedSnippetDirectAnswer | FieldValueDirectAnswer>) {
+function spyOnState(
+  result?: RecursivePartial<FeaturedSnippetDirectAnswer | FieldValueDirectAnswer>,
+  isLoading?: boolean
+) {
   return spyOnAnswersState({
     directAnswer: { result },
-    searchStatus: {},
+    searchStatus: { isLoading },
     vertical: {},
     query: {
       queryId: '[queryId]'
