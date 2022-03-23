@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { DirectAnswerType, FeaturedSnippetDirectAnswer, FieldValueDirectAnswer } from '@yext/answers-headless-react';
+import { DirectAnswerType, DirectAnswerState } from '@yext/answers-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
 import { RecursivePartial, mockAnswersState } from '../__utils__/mocks';
@@ -13,21 +13,23 @@ jest.mock('../../src/hooks/useAnalytics', () => {
   };
 });
 
-it('does not render when no direct answer result', () => {
-  mockState();
+it('renders null when there is no direct answer in state', () => {
+  mockState({ result: undefined });
   const { container } = render(<DirectAnswer />);
   expect(container).toBeEmptyDOMElement();
 });
 
 it('applies the loading state css class', () => {
   mockState({
-    type: DirectAnswerType.FieldValue,
-    entityName: '[entityName]',
-    fieldName: '[fieldName]',
-    value: '[value]',
-    relatedResult: {
-      link: '[relatedResult.link]',
-      id: '[relatedResult.id]'
+    result: {
+      type: DirectAnswerType.FieldValue,
+      entityName: '[entityName]',
+      fieldName: '[fieldName]',
+      value: '[value]',
+      relatedResult: {
+        link: '[relatedResult.link]',
+        id: '[relatedResult.id]'
+      }
     }
   }, true);
   render(<DirectAnswer customCssClasses={{ container___loading: '_loading' }}/>);
@@ -125,39 +127,43 @@ function runAnalyticsTestSuite() {
 
 function mockFeaturedSnippetDA() {
   mockState({
-    type: DirectAnswerType.FeaturedSnippet,
-    snippet: {
-      value: '[snippet.value]',
-      matchedSubstrings: [{ length: 4, offset: 1 }]
-    },
-    value: '[value]',
-    relatedResult: {
-      link: '[relatedResult.link]',
-      name: '[relatedResult.name]',
-      id: '[relatedResult.id]'
+    result: {
+      type: DirectAnswerType.FeaturedSnippet,
+      snippet: {
+        value: '[snippet.value]',
+        matchedSubstrings: [{ length: 4, offset: 1 }]
+      },
+      value: '[value]',
+      relatedResult: {
+        link: '[relatedResult.link]',
+        name: '[relatedResult.name]',
+        id: '[relatedResult.id]'
+      }
     }
   });
 }
 
 function mockFieldValueDA() {
   mockState({
-    type: DirectAnswerType.FieldValue,
-    entityName: '[entityName]',
-    fieldName: '[fieldName]',
-    value: '[value]',
-    relatedResult: {
-      link: '[relatedResult.link]',
-      id: '[relatedResult.id]'
+    result: {
+      type: DirectAnswerType.FieldValue,
+      entityName: '[entityName]',
+      fieldName: '[fieldName]',
+      value: '[value]',
+      relatedResult: {
+        link: '[relatedResult.link]',
+        id: '[relatedResult.id]'
+      }
     }
   });
 }
 
 function mockState(
-  result?: RecursivePartial<FeaturedSnippetDirectAnswer | FieldValueDirectAnswer>,
+  directAnswer: RecursivePartial<DirectAnswerState>,
   isLoading?: boolean
 ) {
   return mockAnswersState({
-    directAnswer: { result },
+    directAnswer,
     searchStatus: { isLoading },
     vertical: {},
     query: {
