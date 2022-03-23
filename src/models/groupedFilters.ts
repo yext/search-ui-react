@@ -1,4 +1,4 @@
-import { DisplayableFacet, SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
+import { SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
 
 /**
  * Types of filters (static, facet, and nlp) displayable by AppliedFilters.
@@ -19,11 +19,6 @@ export interface GroupedFilters {
  * to its original parent DisplayableFacet.
  */
 export type DisplayableHierarchicalFacet = Omit<DisplayableFilter, 'value'> & {
-  /**
-   * A DisaplaybleHierarchicalFacet is parsed from a single DisplayableFacetOption which exists
-   * as an option on a DisplayableFacet. This is a reference to that original DisplayableFacet.
-   **/
-  parentFacet: DisplayableFacet,
   /** The displayName is a guaranteed property */
   displayName: string,
   /** The value on a DisplayableHierarchicalFacet is guaranteed to be a string. */

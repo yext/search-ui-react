@@ -82,19 +82,27 @@ export function HierarchicalFacet({
     const renderedNodesAndShowMoreButton: ReactNode[] = [renderAllCategoriesButton()];
 
     while (treePointer) {
-      const childNodes = Object.values(treePointer);
-      const selectedChildNode = childNodes.find(n => n.selected);
+      const currentNodes = Object.values(treePointer);
+      const selectedChildNode = currentNodes.find(n => n.selected);
+      const selectedHasNoChildren =
+        selectedChildNode && Object.values(selectedChildNode.childTree).length === 0;
+      const activeParentNode = currentNodes.find(n => n.hasSelectedChild);
 
-      if (!selectedChildNode || Object.values(selectedChildNode.childTree).length === 0) {
-        renderedNodesAndShowMoreButton.push(...renderAvailableOptions(childNodes));
-        if (childNodes.length > showMoreLimit) {
+      if ((!selectedChildNode && !activeParentNode) || selectedHasNoChildren) {
+        renderedNodesAndShowMoreButton.push(...renderAvailableOptions(currentNodes));
+        if (currentNodes.length > showMoreLimit) {
           renderedNodesAndShowMoreButton.push(renderShowMoreButton());
         }
         break;
       }
 
-      renderedNodesAndShowMoreButton.push(renderCategory(selectedChildNode, facet.fieldId));
-      treePointer = selectedChildNode.childTree;
+      const activeNode = selectedChildNode ?? activeParentNode;
+      if (!activeNode) {
+        break;
+      }
+      renderedNodesAndShowMoreButton.push(
+        renderCategory(activeNode, facet.fieldId));
+      treePointer = activeNode.childTree;
     }
 
     return renderedNodesAndShowMoreButton;
@@ -112,8 +120,8 @@ export function HierarchicalFacet({
     );
   }
 
-  function renderAvailableOptions(childNodes: HierarchicalFacetNode[]) {
-    const nodesToRender = isShowingMore ? childNodes : childNodes.slice(0, showMoreLimit);
+  function renderAvailableOptions(nodes: HierarchicalFacetNode[]) {
+    const nodesToRender = isShowingMore ? nodes : nodes.slice(0, showMoreLimit);
     return nodesToRender.map(n =>
       <AvailableOption
         key={n.lastDisplayNameToken}
@@ -122,7 +130,7 @@ export function HierarchicalFacet({
         fieldId={facet.fieldId}
         currentNode={n}
         resetShowMore={resetShowMore}
-        siblingNodes={childNodes.filter(siblingNode => siblingNode !== n)}
+        siblingNodes={nodes.filter(siblingNode => siblingNode !== n)}
       />
     );
   }
@@ -216,9 +224,24 @@ function AvailableOption(props: {
       selected: !selected,
       fieldId
     });
+    const parentFacetOption = currentNode.parentNode?.facetOption;
+    parentFacetOption && selectFilter({
+      ...parentFacetOption,
+      selected,
+      fieldId
+    });
     applyFilters();
     resetShowMore();
-  }, [applyFilters, facetOption, fieldId, resetShowMore, selectFilter, selected, siblingNodes]);
+  }, [
+    applyFilters,
+    currentNode.parentNode?.facetOption,
+    facetOption,
+    fieldId,
+    resetShowMore,
+    selectFilter,
+    selected,
+    siblingNodes
+  ]);
 
   return (
     <button
@@ -252,10 +275,15 @@ function ParentCategory({ fieldId, selectedNode, className, resetShowMore }: {
   }, [fieldId, selectFilter]);
 
   const handleClickParentCategory = useCallback(() => {
+    selectFilter({
+      ...selectedNode.facetOption,
+      selected: true,
+      fieldId
+    });
     deselectChildOptions(selectedNode);
     applyFilters();
     resetShowMore();
-  }, [applyFilters, deselectChildOptions, resetShowMore, selectedNode]);
+  }, [applyFilters, deselectChildOptions, fieldId, resetShowMore, selectFilter, selectedNode]);
 
   return (
     <button className={className} onClick={handleClickParentCategory}>
@@ -278,9 +306,22 @@ function CurrentCategory({ fieldId, selectedNode, className, resetShowMore }: {
       selected: false,
       fieldId
     });
+    const parentFacetOption = selectedNode.parentNode?.facetOption;
+    parentFacetOption && selectFilter({
+      ...parentFacetOption,
+      selected: true,
+      fieldId
+    });
     applyFilters();
     resetShowMore();
-  }, [applyFilters, fieldId, resetShowMore, selectFilter, selectedNode.facetOption]);
+  }, [
+    applyFilters,
+    fieldId,
+    resetShowMore,
+    selectFilter,
+    selectedNode.facetOption,
+    selectedNode.parentNode?.facetOption
+  ]);
 
   return (
     <button

@@ -16,6 +16,7 @@ export type HierarchicalFacetNode = {
   hasSelectedChild: boolean,
   facetOption: FacetOption,
   childTree: HierarchicalFacetTree,
+  parentNode?: HierarchicalFacetNode,
   displayNameTokens: string[],
   lastDisplayNameToken: string
 };
@@ -55,23 +56,25 @@ export function parseHierarchicalFacetTree(
       displayName
     } = o;
 
-    let subtree: HierarchicalFacetTree = tree;
+    let currentTree: HierarchicalFacetTree = tree;
+    let parentNode: HierarchicalFacetNode | undefined = undefined;
 
     for (const token of displayNameTokens.slice(0, -1)) {
-      if (!(token in subtree)) {
+      if (!(token in currentTree)) {
         console.error(
           `Error parsing hierarchical facet option "${displayName}" at token "${token}". Current tree:`,
           JSON.stringify(tree));
         return;
       }
       if (o.selected) {
-        subtree[token].hasSelectedChild = true;
+        currentTree[token].hasSelectedChild = true;
       }
-      subtree = subtree[token].childTree;
+      parentNode = currentTree[token];
+      currentTree = currentTree[token].childTree;
     }
 
     const lastDisplayNameToken = displayNameTokens[displayNameTokens.length - 1];
-    subtree[lastDisplayNameToken] = {
+    currentTree[lastDisplayNameToken] = {
       selected: o.selected,
       displayNameTokens,
       lastDisplayNameToken,
@@ -80,7 +83,8 @@ export function parseHierarchicalFacetTree(
         matcher: o.matcher
       },
       hasSelectedChild: false,
-      childTree: {}
+      childTree: {},
+      parentNode: parentNode
     };
   });
 
