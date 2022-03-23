@@ -4,24 +4,7 @@ import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
 import { RecursivePartial, spyOnAnswersState } from '../__utils__/spies';
 
-jest.mock('@yext/answers-headless-react', () => {
-  const originalModule = jest.requireActual('@yext/answers-headless-react');
-  return {
-    __esModule: true,
-    ...originalModule
-  };
-});
-
-jest.mock('../../src/components/utils/renderHighlightedValue', () => {
-  jest.requireActual('../../src/components/utils/renderHighlightedValue');
-  return {
-    renderHighlightedValue: ({ value, matchedSubstrings }) =>
-      <strong data-testid='highlighted-value'>
-        {value}
-        {JSON.stringify(matchedSubstrings)}
-      </strong>
-  };
-});
+jest.mock('@yext/answers-headless-react');
 
 jest.mock('../../src/hooks/useAnalytics', () => {
   const report = jest.fn();
@@ -58,47 +41,13 @@ describe('FieldValue direct answer', () => {
     expect(directAnswerLink).toHaveAttribute('href', '[relatedResult.link]');
   });
 
-  it('reports link click analytics', () => {
-    const link = screen.getByRole('link');
-    fireEvent.click(link);
-    expect(useAnalytics().report).toHaveBeenCalledTimes(1);
-    expect(useAnalytics().report).toHaveBeenCalledWith(expect.objectContaining({
-      type: 'CTA_CLICK',
-      queryId: '[queryId]',
-      searcher: 'UNIVERSAL',
-      directAnswer: true
-    }));
-  });
-
-  it('reports THUMBS_UP feedback', () => {
-    const thumbsUp = screen.queryAllByRole('button')[0];
-    fireEvent.click(thumbsUp);
-    expect(useAnalytics().report).toHaveBeenCalledTimes(1);
-    expect(useAnalytics().report).toHaveBeenCalledWith(expect.objectContaining({
-      type: 'THUMBS_UP',
-      queryId: '[queryId]',
-      searcher: 'UNIVERSAL',
-      directAnswer: true
-    }));
-  });
-
-  it('reports THUMBS_DOWN feedback', () => {
-    const thumbsDown = screen.queryAllByRole('button')[1];
-    fireEvent.click(thumbsDown);
-    expect(useAnalytics().report).toHaveBeenCalledTimes(1);
-    expect(useAnalytics().report).toHaveBeenCalledWith(expect.objectContaining({
-      type: 'THUMBS_DOWN',
-      queryId: '[queryId]',
-      searcher: 'UNIVERSAL',
-      directAnswer: true
-    }));
-  });
+  runAnalyticsTestSuite();
 });
 
 describe('FeaturedSnippet direct answer', () => {
   beforeEach(() => {
     spyOnFeaturedSnippetDA();
-    render(<DirectAnswer />);
+    render(<DirectAnswer customCssClasses={{ highlighted: 'highlighted' }}/>);
   });
 
   it('title text', () => {
@@ -106,9 +55,10 @@ describe('FeaturedSnippet direct answer', () => {
     expect(screen.getByText(expectedTitle)).toBeInTheDocument();
   });
 
-  it('description text', () => {
-    const expectedValue = '[snippet.value]' + JSON.stringify([{ length: 4, offset: 1 }]);
-    expect(screen.getByTestId('highlighted-value')).toHaveTextContent(expectedValue);
+  it('description text is highlighted and uses the "highlighted" css class', () => {
+    const highlightedNodes = document.body.querySelectorAll('.highlighted');
+    expect(highlightedNodes).toHaveLength(1);
+    expect(highlightedNodes[0]).toHaveTextContent('snip');
   });
 
   it('link', () => {
@@ -117,6 +67,10 @@ describe('FeaturedSnippet direct answer', () => {
     expect(directAnswerLink).toHaveAttribute('href', '[relatedResult.link]');
   });
 
+  runAnalyticsTestSuite();
+});
+
+function runAnalyticsTestSuite() {
   it('reports link click analytics', () => {
     const link = screen.getByRole('link');
     fireEvent.click(link);
@@ -152,7 +106,7 @@ describe('FeaturedSnippet direct answer', () => {
       directAnswer: true
     }));
   });
-});
+}
 
 function spyOnFeaturedSnippetDA() {
   spyOnState({
