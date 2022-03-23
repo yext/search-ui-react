@@ -20,7 +20,7 @@ export const builtInCssClasses = {
 
 /**
  * Renders an autocomplete result, including an icon to the left if provided.
- * @param result The result to render
+ * @param result - The result to render
  * @returns JSX.Element
  */
 export function renderAutocompleteResult(

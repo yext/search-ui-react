@@ -16,7 +16,7 @@ const mockedVerticalResponse: VerticalSearchResponse = {
 
 /**
  * Generates a mocked SearchService using the provided responses.
- * 
+ *
  * @param universalResponse - The response to supply for all Universal Searches. If one is
  * not provided, a default will be used.
  * @param verticalResponse - The response to supply for all Vertical Searches. If one is

@@ -58,7 +58,7 @@ function isVerticalSuggestion(suggestion: unknown): suggestion is VerticalSugges
  */
 export interface VerticalLabelMap {
   /** Config mapped to a vertical. */
-  [verticalKey: string]: Pick<VerticalConfig, 'label'>;
+  [verticalKey: string]: Pick<VerticalConfig, 'label'>
 }
 
 /**
@@ -82,7 +82,7 @@ export interface AlternativeVerticalsProps {
    * Defaults to "/[verticalKey]?query=[query]" for vertical links and "/?query=[query]"
    * for universal links.
    */
-  getSuggestionUrl?: (data: VerticalLink | UniversalLink) => string
+  getSuggestionUrl?: (data: VerticalLink | UniversalLink) => string,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AlternativeVerticalsCssClasses,
   /** {@inheritDoc CompositionMethod} */

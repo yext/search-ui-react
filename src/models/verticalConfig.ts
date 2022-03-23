@@ -32,5 +32,5 @@ export interface VerticalConfig {
  */
 export interface VerticalConfigMap {
   /** Config mapped to a vertical. */
-  [verticalKey: string]: VerticalConfig;
+  [verticalKey: string]: VerticalConfig
 }
