@@ -160,8 +160,8 @@ export function AlternativeVerticals({
           <div className={cssClasses.categoriesText}>
             <span>
               {processTranslation({
-                phrase: 'This category yielded results for - ',
-                pluralForm: 'These categories yielded results for - ',
+                phrase: 'The following category yielded results for - ',
+                pluralForm: 'The following categories yielded results for - ',
                 count: verticalSuggestions.length
               })}
             </span>
