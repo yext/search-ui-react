@@ -89,7 +89,7 @@ export function HierarchicalFacet({
         selectedChildNode && Object.values(selectedChildNode.childTree).length === 0;
       const nodeWithSelectedChild = childNodes.find(n => n.hasSelectedChild);
 
-      if (!selectedChildNode && !nodeWithSelectedChild || selectedHasNoChildren) {
+      if ((!selectedChildNode && !nodeWithSelectedChild) || selectedHasNoChildren) {
         renderedNodesAndShowMoreButton.push(...renderAvailableOptions(childNodes));
         if (childNodes.length > showMoreLimit) {
           renderedNodesAndShowMoreButton.push(renderShowMoreButton());
