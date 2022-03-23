@@ -83,15 +83,15 @@ export function HierarchicalFacet({
     const renderedNodesAndShowMoreButton: ReactNode[] = [renderAllCategoriesButton()];
 
     while (treePointer) {
-      const childNodes = Object.values(treePointer);
-      const selectedChildNode = childNodes.find(n => n.selected);
+      const currentNodes = Object.values(treePointer);
+      const selectedChildNode = currentNodes.find(n => n.selected);
       const selectedHasNoChildren =
         selectedChildNode && Object.values(selectedChildNode.childTree).length === 0;
-      const activeParentNode = childNodes.find(n => n.hasSelectedChild);
+      const activeParentNode = currentNodes.find(n => n.hasSelectedChild);
 
       if ((!selectedChildNode && !activeParentNode) || selectedHasNoChildren) {
-        renderedNodesAndShowMoreButton.push(...renderAvailableOptions(childNodes));
-        if (childNodes.length > showMoreLimit) {
+        renderedNodesAndShowMoreButton.push(...renderAvailableOptions(currentNodes));
+        if (currentNodes.length > showMoreLimit) {
           renderedNodesAndShowMoreButton.push(renderShowMoreButton());
         }
         break;
@@ -121,8 +121,8 @@ export function HierarchicalFacet({
     );
   }
 
-  function renderAvailableOptions(childNodes: HierarchicalFacetNode[]) {
-    const nodesToRender = isShowingMore ? childNodes : childNodes.slice(0, showMoreLimit);
+  function renderAvailableOptions(nodes: HierarchicalFacetNode[]) {
+    const nodesToRender = isShowingMore ? nodes : nodes.slice(0, showMoreLimit);
     return nodesToRender.map(n =>
       <AvailableOption
         key={n.lastDisplayNameToken}
@@ -131,7 +131,7 @@ export function HierarchicalFacet({
         fieldId={facet.fieldId}
         currentNode={n}
         resetShowMore={resetShowMore}
-        siblingNodes={childNodes.filter(siblingNode => siblingNode !== n)}
+        siblingNodes={nodes.filter(siblingNode => siblingNode !== n)}
       />
     );
   }

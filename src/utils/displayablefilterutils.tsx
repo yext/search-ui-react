@@ -40,7 +40,6 @@ export function getDisplayableHierarchicalFacets(
       const displayNameTokens = option.displayName.split(delimiter).map(t => t.trim());
       return {
         ...convertFacetOption(facet.fieldId, option),
-        parentFacet: facet,
         lastDisplayNameToken: displayNameTokens[displayNameTokens.length - 1],
         displayNameTokens
       };

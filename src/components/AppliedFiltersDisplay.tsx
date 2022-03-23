@@ -74,24 +74,27 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   };
 
   const handleRemoveHierarchicalFacetOption = (facet: DisplayableHierarchicalFacet) => {
-    const { fieldId, parentFacet } = facet;
+    const { fieldId } = facet;
 
     // Uncheck all descendant options in the hierarchy
-    parentFacet.options.forEach(facetOption => {
-      if (isDescendantHierarchicalFacet(facet, facetOption, hierarchicalFacetsDelimiter)) {
-        answersActions.setFacetOption(fieldId, {
-          matcher: facetOption.matcher,
-          value: facetOption.value
-        }, false);
-      }
-    });
-    const parentDisplayName = facet.displayNameTokens.slice(0, -1).join(` ${hierarchicalFacetsDelimiter} `);
-    const parentFacetOption = parentFacet.options
-      .find(facetOption => facetOption.displayName === parentDisplayName);
+    hierarchicalFacets
+      .filter(hierarchicalFacet => hierarchicalFacet.fieldId === fieldId)
+      .forEach(hierarchicalFacet => {
+        if (isDescendantHierarchicalFacet(facet, hierarchicalFacet, hierarchicalFacetsDelimiter)) {
+          answersActions.setFacetOption(fieldId, {
+            matcher: hierarchicalFacet.matcher,
+            value: hierarchicalFacet.value
+          }, false);
+        }
+      });
 
-    parentFacetOption && answersActions.setFacetOption(fieldId, {
-      matcher: parentFacetOption?.matcher,
-      value: parentFacetOption?.value
+    const parentDisplayName = facet.displayNameTokens.slice(0, -1).join(` ${hierarchicalFacetsDelimiter} `);
+    const parentFacet = hierarchicalFacets
+      .find(hierarchicalFacet => hierarchicalFacet.displayName === parentDisplayName);
+
+    parentFacet && answersActions.setFacetOption(fieldId, {
+      matcher: parentFacet?.matcher,
+      value: parentFacet?.value
     }, true);
 
     answersActions.setOffset(0);
