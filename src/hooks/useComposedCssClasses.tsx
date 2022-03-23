@@ -62,7 +62,7 @@ function getCssModulesCompose(cssCompositionMethod: CompositionMethod = 'merge')
 
 /**
  * Returns true if the object can be used as a css-modules-theme Theme
- * @param obj The object to test
+ * @param obj - The object to test
  * @returns Whether or not the object is a Theme object
  */
 function isThemeObject(obj: unknown): obj is Theme {

@@ -90,33 +90,32 @@ jest.mock('../../src/utils/search-operations', () => ({
 
 describe('AppliedFilters', () => {
   it('Static filters are rendered', () => {
-    const { getByText } = render(<AppliedFilters />);
     const staticFilterDisplayName = mockedState.filters.static[0].value as string;
-    expect(getByText(staticFilterDisplayName)).toBeDefined();
+    expect(screen.getByText(staticFilterDisplayName)).toBeDefined();
   });
 
   it('Facets are rendered', () => {
-    const { getByText } = render(<AppliedFilters />);
+    render(<AppliedFilters />);
     const facetOptionDisplayName = mockedState.filters.facets[0].options[0].displayName;
-    expect(getByText(facetOptionDisplayName)).toBeDefined();
+    expect(screen.getByText(facetOptionDisplayName)).toBeDefined();
   });
 
   it('Applied query filters are rendered', () => {
-    const { getByText } = render(<AppliedFilters />);
+    render(<AppliedFilters />);
     const appliedFilterDisplayName = mockedState.vertical.appliedQueryFilters[0].displayValue;
-    expect(getByText(appliedFilterDisplayName)).toBeDefined();
+    expect(screen.getByText(appliedFilterDisplayName)).toBeDefined();
   });
 
   it('Filters with the fieldId of "builtin.entityType" are hidden by default', () => {
-    const { queryByText } = render(<AppliedFilters />);
+    render(<AppliedFilters />);
     const staticFilterDisplayName = mockedState.filters.static[2].value as string;
-    expect(queryByText(staticFilterDisplayName)).toBeFalsy();
+    expect(screen.queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
   it('The hiddenFields prop prevents filters with a corresponding fieldId from rendering', () => {
-    const { queryByText } = render(<AppliedFilters hiddenFields={['name']} />);
+    render(<AppliedFilters hiddenFields={['name']} />);
     const staticFilterDisplayName = mockedState.filters.static[0].value as string;
-    expect(queryByText(staticFilterDisplayName)).toBeFalsy();
+    expect(screen.queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
   it('The "X" button for an applied static filter deselects the filter option', () => {

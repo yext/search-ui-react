@@ -1,3 +1,5 @@
+import * as Filters from './Filters';
+
 export {
   SearchBar,
   SearchBarCssClasses,
@@ -84,6 +86,4 @@ export {
 } from './ResultsCount';
 
 export * from './AnalyticsProvider';
-
-import * as Filters from './Filters';
 export { Filters };
