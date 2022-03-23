@@ -137,15 +137,11 @@ function spyOnFieldValueDA() {
   });
 }
 
-function spyOnState(
-  result?: RecursivePartial<FeaturedSnippetDirectAnswer | FieldValueDirectAnswer>,
-  isLoading?: boolean,
-  verticalKey?: string,
-) {
+function spyOnState(result?: RecursivePartial<FeaturedSnippetDirectAnswer | FieldValueDirectAnswer>) {
   return spyOnAnswersState({
     directAnswer: { result },
-    searchStatus: { isLoading },
-    vertical: { verticalKey },
+    searchStatus: {},
+    vertical: {},
     query: {
       queryId: '[queryId]'
     }
