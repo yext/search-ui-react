@@ -106,7 +106,7 @@ describe('VerticalResults', () => {
       },
       alternativeVerticals: []
     };
-    spyOnVerticalSearchState({
+    mockVerticalSearchState({
       noResults: mockedNoResults
     });
     render(<VerticalResults {...verticalResultsProps}/>);
@@ -132,7 +132,7 @@ describe('Pagination', () => {
       CardComponent: StandardCard,
       allowPagination: true,
     };
-    spyOnVerticalSearchState({
+    mockVerticalSearchState({
       results: [],
       resultsCount: 0
     });
@@ -153,7 +153,7 @@ describe('Pagination', () => {
       limit: 1,
       offset: 0
     };
-    spyOnVerticalSearchState(mockedVerticalSearchState);
+    mockVerticalSearchState(mockedVerticalSearchState);
     const { container } = render(<VerticalResults {...verticalResultsProps}/>);
     const paginationNavEl = container.querySelector('nav[aria-label="Pagination"]');
     expect(paginationNavEl).toBeDefined();
@@ -166,7 +166,11 @@ describe('Pagination', () => {
   it('Pagination component is displayed with ellipses label', () => {
     const verticalResultsProps: VerticalResultsProps = {
       CardComponent: StandardCard,
-      allowPagination: true
+      allowPagination: true,
+      customCssClasses: {
+        leftIconContainer: 'leftNavButton',
+        rightIconContainer: 'rightNavButton'
+      }
     };
     const mockedVerticalSearchState: VerticalSearchState = {
       results: [mockedResults[0]],
@@ -175,7 +179,7 @@ describe('Pagination', () => {
       limit: 1,
       offset: 0
     };
-    spyOnVerticalSearchState(mockedVerticalSearchState);
+    mockVerticalSearchState(mockedVerticalSearchState);
     const { container } = render(<VerticalResults {...verticalResultsProps}/>);
     const paginationNavEl = container.querySelector('nav[aria-label="Pagination"]');
     expect(paginationNavEl).toBeDefined();
@@ -184,9 +188,11 @@ describe('Pagination', () => {
     const numLabelNavButtons = 3;
     // expected pagination layout with n results: [<] [1] [2] [...] [n] [>]
     expect(paginationButtons.length).toEqual(numIconNavButtons + numLabelNavButtons);
+    expect(paginationButtons[0].classList.contains('leftNavButton')).toBeTruthy();
     expect(paginationButtons[1].textContent).toEqual('1');
     expect(paginationButtons[2].textContent).toEqual('2');
     expect(paginationButtons[3].textContent).toEqual(`${mockedVerticalSearchState.resultsCount}`);
+    expect(paginationButtons[4].classList.contains('rightNavButton')).toBeTruthy();
     expect(screen.getByText('...')).toBeDefined();
   });
 
@@ -202,7 +208,7 @@ describe('Pagination', () => {
       limit: 1,
       offset: 0
     };
-    spyOnVerticalSearchState(mockedVerticalSearchState);
+    mockVerticalSearchState(mockedVerticalSearchState);
     const actions = spyOnActions();
     const { container } = render(<VerticalResults {...verticalResultsProps}/>);
 
@@ -217,7 +223,7 @@ describe('Pagination', () => {
   });
 });
 
-function spyOnVerticalSearchState(vertical: VerticalSearchState) {
+function mockVerticalSearchState(vertical: VerticalSearchState) {
   return spyOnAnswersState({
     ...mockedState,
     vertical

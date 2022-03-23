@@ -220,7 +220,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
           }
         })}
         <PaginationButton
-          aria-label='Navigate to the next results page'
+          ariaLabel='Navigate to the next results page'
           className={cssClasses.rightIconContainer}
           navigateToPage={navigateToPage}
           newPageNumber={currentPageNumber + 1}
