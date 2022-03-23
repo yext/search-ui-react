@@ -87,9 +87,9 @@ export function HierarchicalFacet({
       const selectedChildNode = childNodes.find(n => n.selected);
       const selectedHasNoChildren =
         selectedChildNode && Object.values(selectedChildNode.childTree).length === 0;
-      const nodeWithSelectedChild = childNodes.find(n => n.hasSelectedChild);
+      const activeParentNode = childNodes.find(n => n.hasSelectedChild);
 
-      if ((!selectedChildNode && !nodeWithSelectedChild) || selectedHasNoChildren) {
+      if ((!selectedChildNode && !activeParentNode) || selectedHasNoChildren) {
         renderedNodesAndShowMoreButton.push(...renderAvailableOptions(childNodes));
         if (childNodes.length > showMoreLimit) {
           renderedNodesAndShowMoreButton.push(renderShowMoreButton());
@@ -97,7 +97,7 @@ export function HierarchicalFacet({
         break;
       }
 
-      const activeNode = selectedChildNode ?? nodeWithSelectedChild;
+      const activeNode = selectedChildNode ?? activeParentNode;
       if (!activeNode) {
         break;
       }

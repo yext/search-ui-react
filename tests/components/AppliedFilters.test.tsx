@@ -173,9 +173,7 @@ describe('AppliedFilters with hierarchical facets', () => {
       ]),
     ];
 
-    spyOnFiltersState({
-      facets: facets
-    });
+    spyOnFiltersState({ facets: facets });
 
     render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
     const buttons = screen.queryAllByRole('button');
@@ -190,17 +188,16 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('renders only selected or parents of selected filters', () => {
-    spyOnFiltersState({
-      facets: [
-        createHierarchicalFacet([
-          'food',
-          { value: 'food > fruit', selected: true },
-          'games',
-          'games > nier',
-          { value: 'games > steinsgate', selected: true },
-        ])
-      ]
-    });
+    const facets = [
+      createHierarchicalFacet([
+        'food',
+        { value: 'food > fruit', selected: true },
+        'games',
+        'games > nier',
+        { value: 'games > steinsgate', selected: true },
+      ])
+    ];
+    spyOnFiltersState({ facets });
 
     render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
     expect(screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/)).toHaveLength(4);
@@ -209,14 +206,13 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('can use a custom delimiter', () => {
-    spyOnFiltersState({
-      facets: [
-        createHierarchicalFacet([
-          { value: 'games', selected: false },
-          { value: 'games ! steinsgate', selected: true }
-        ])
-      ]
-    });
+    const facets = [
+      createHierarchicalFacet([
+        { value: 'games', selected: false },
+        { value: 'games ! steinsgate', selected: true }
+      ])
+    ];
+    spyOnFiltersState({ facets });
 
     render(<AppliedFilters
       hierarchicalFacetsFieldIds={['hier']}
@@ -239,15 +235,14 @@ describe('AppliedFilters with hierarchical facets', () => {
       'food > meat > pig',
       'food > cookies'
     ];
-    spyOnFiltersState({
-      facets: [
-        createHierarchicalFacet(foodFacets),
-        createHierarchicalFacet([
-          'fool',
-          'fool > a',
-        ]),
-      ]
-    });
+    const facets = [
+      createHierarchicalFacet(foodFacets),
+      createHierarchicalFacet([
+        'fool',
+        'fool > a',
+      ]),
+    ];
+    spyOnFiltersState({ facets });
     const actions = spyOnActions();
 
     render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
@@ -276,15 +271,14 @@ describe('AppliedFilters with hierarchical facets', () => {
   });
 
   it('removing a hierarchical applied filter selects its parent', () => {
-    spyOnFiltersState({
-      facets: [
-        createHierarchicalFacet([
-          'food',
-          'food > fruit',
-          { value: 'food > fruit > banana', selected: true },
-        ]),
-      ]
-    });
+    const facets = [
+      createHierarchicalFacet([
+        'food',
+        'food > fruit',
+        { value: 'food > fruit > banana', selected: true },
+      ]),
+    ];
+    spyOnFiltersState({ facets });
     const actions = spyOnActions();
 
     render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);

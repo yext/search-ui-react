@@ -32,36 +32,16 @@ function HierarchicalFacets(): JSX.Element {
     <Filters.Facets searchOnChange={true}>
       {facets => {
         const filteredFacets = facets.filter(f => f.options.length > 0);
-        filteredFacets.sort((a,b) => {
-          const aValue = hierarchicalFacetFieldIds.includes(a.fieldId) ? 1 : 0;
-          const bValue = hierarchicalFacetFieldIds.includes(b.fieldId) ? 1 : 0;
-          return bValue - aValue;
-        });
         return (
           <>
             {
-              filteredFacets.map((f, i) => {
+              filteredFacets.map(f => {
                 if (hierarchicalFacetFieldIds.includes(f.fieldId)) {
                   return <Fragment key={f.fieldId}>
                     <Filters.HierarchicalFacet facet={f} />
                   </Fragment>;
                 }
-
-                return (
-                  <Filters.FilterGroup key={f.fieldId}>
-                    <Filters.CollapsibleLabel label={f.displayName} />
-                    <Filters.CollapsibleSection>
-                      <Filters.SearchInput />
-                      {f.options.map(o =>
-                        <Filters.CheckboxOption
-                          key={o.displayName}
-                          value={o.value}
-                          fieldId={f.fieldId}
-                        />
-                      )}
-                    </Filters.CollapsibleSection>
-                  </Filters.FilterGroup>
-                );
+                return null;
               })
             }
             {filteredFacets.length > 0 && <Filters.ApplyFiltersButton />}
@@ -102,10 +82,9 @@ jest.mock('../../src/utils/search-operations', () => ({
 }));
 
 describe('Hierarchical facets', () => {
-  let facets;
 
-  beforeEach(() => {
-    facets = [
+  it('Properly renders hierarchical facets', () => {
+    const facets = [
       createHierarchicalFacet([
         'food',
         'food > fruit',
@@ -113,12 +92,7 @@ describe('Hierarchical facets', () => {
         'food > fruit > apple',
       ])
     ];
-  });
-
-  it('Properly renders hierarchical facets', () => {
-    spyOnFiltersState({
-      facets: facets
-    });
+    spyOnFiltersState({ facets });
     render(<HierarchicalFacets/>);
 
     expect(screen.getByRole('button', { name: /food/i })).toBeTruthy();
@@ -128,10 +102,16 @@ describe('Hierarchical facets', () => {
   });
 
   it('Clicking the currently selected option deselects it and selects its parent', () => {
+    const facets = [
+      createHierarchicalFacet([
+        'food',
+        'food > fruit',
+        { value: 'food > fruit > banana', selected: true },
+        'food > fruit > apple',
+      ])
+    ];
     const actions = spyOnActions();
-    spyOnFiltersState({
-      facets: facets
-    });
+    spyOnFiltersState({ facets });
 
     render(<HierarchicalFacets/>);
 
@@ -142,10 +122,16 @@ describe('Hierarchical facets', () => {
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
   });
   it('Clicking a non-selected option selects it and deselects its siblings', () => {
+    const facets = [
+      createHierarchicalFacet([
+        'food',
+        'food > fruit',
+        { value: 'food > fruit > banana', selected: true },
+        'food > fruit > apple',
+      ])
+    ];
     const actions = spyOnActions();
-    spyOnFiltersState({
-      facets: facets
-    });
+    spyOnFiltersState({ facets });
 
     render(<HierarchicalFacets/>);
 
@@ -156,10 +142,16 @@ describe('Hierarchical facets', () => {
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
   });
   it('Clicking the current category with a selected child selects the category and deselects the child', () => {
+    const facets = [
+      createHierarchicalFacet([
+        'food',
+        'food > fruit',
+        { value: 'food > fruit > banana', selected: true },
+        'food > fruit > apple',
+      ])
+    ];
     const actions = spyOnActions();
-    spyOnFiltersState({
-      facets: facets
-    });
+    spyOnFiltersState({ facets });
 
     render(<HierarchicalFacets/>);
 
@@ -171,7 +163,7 @@ describe('Hierarchical facets', () => {
   });
 
   it('Clicking a selected current category deselects it and selects its parent', () => {
-    facets = [
+    const facets = [
       createHierarchicalFacet([
         'food',
         { value: 'food > fruit', selected: true },
@@ -180,9 +172,7 @@ describe('Hierarchical facets', () => {
       ])
     ];
     const actions = spyOnActions();
-    spyOnFiltersState({
-      facets: facets
-    });
+    spyOnFiltersState({ facets });
 
     render(<HierarchicalFacets/>);
 
@@ -193,10 +183,17 @@ describe('Hierarchical facets', () => {
     expectFacetOptionSet(actions, { value: 'food', selected: true });
   });
   it('Clicking a parent category selects it and deselects its children', () => {
+    const facets = [
+      createHierarchicalFacet([
+        'food',
+        'food > fruit',
+        { value: 'food > fruit > banana', selected: true },
+        'food > fruit > apple',
+      ])
+    ];
+
     const actions = spyOnActions();
-    spyOnFiltersState({
-      facets: facets
-    });
+    spyOnFiltersState({ facets });
 
     render(<HierarchicalFacets/>);
 

@@ -77,18 +77,21 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     const { fieldId, parentFacet } = facet;
 
     // Uncheck all descendant options in the hierarchy
-    parentFacet.options.forEach(o => {
-      if (isDescendantHierarchicalFacet(facet, o, hierarchicalFacetsDelimiter)) {
-        answersActions.setFacetOption(fieldId, { matcher: o.matcher, value: o.value }, false);
+    parentFacet.options.forEach(facetOption => {
+      if (isDescendantHierarchicalFacet(facet, facetOption, hierarchicalFacetsDelimiter)) {
+        answersActions.setFacetOption(fieldId, {
+          matcher: facetOption.matcher,
+          value: facetOption.value
+        }, false);
       }
     });
     const parentDisplayName = facet.displayNameTokens.slice(0, -1).join(` ${hierarchicalFacetsDelimiter} `);
-    const parentHierarchicalFacetOption = parentFacet.options
-      .find(facet => facet.displayName === parentDisplayName);
+    const parentFacetOption = parentFacet.options
+      .find(facetOption => facetOption.displayName === parentDisplayName);
 
-    parentHierarchicalFacetOption && answersActions.setFacetOption(fieldId, {
-      matcher: parentHierarchicalFacetOption?.matcher,
-      value: parentHierarchicalFacetOption?.value
+    parentFacetOption && answersActions.setFacetOption(fieldId, {
+      matcher: parentFacetOption?.matcher,
+      value: parentFacetOption?.value
     }, true);
 
     answersActions.setOffset(0);
