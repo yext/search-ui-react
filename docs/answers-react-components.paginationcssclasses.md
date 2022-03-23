@@ -16,11 +16,11 @@ export interface PaginationCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [container?](./answers-react-components.paginationcssclasses.container.md) | string | <i>(Optional)</i> |
 |  [icon?](./answers-react-components.paginationcssclasses.icon.md) | string | <i>(Optional)</i> |
 |  [label?](./answers-react-components.paginationcssclasses.label.md) | string | <i>(Optional)</i> |
 |  [labelContainer?](./answers-react-components.paginationcssclasses.labelcontainer.md) | string | <i>(Optional)</i> |
 |  [leftIconContainer?](./answers-react-components.paginationcssclasses.lefticoncontainer.md) | string | <i>(Optional)</i> |
+|  [paginationContainer?](./answers-react-components.paginationcssclasses.paginationcontainer.md) | string | <i>(Optional)</i> |
 |  [rightIconContainer?](./answers-react-components.paginationcssclasses.righticoncontainer.md) | string | <i>(Optional)</i> |
 |  [selectedLabel?](./answers-react-components.paginationcssclasses.selectedlabel.md) | string | <i>(Optional)</i> |
 
