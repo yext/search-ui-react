@@ -8,8 +8,16 @@ export function spyOnActions(): jest.Mocked<AnswersHeadless> {
   return new Proxy(spy, proxyHandler);
 }
 
-export function spyOnAnswersState(
-  customState: Partial<State>
+export type RecursivePartial<T> = {
+  [P in keyof T]?:
+    T[P] extends (infer U)[] ? RecursivePartial<U>[] :
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    T[P] extends object ? RecursivePartial<T[P]> :
+    T[P];
+};
+
+export function mockAnswersState(
+  customState: RecursivePartial<State>
 ): jest.SpyInstance<typeof useAnswersState, unknown[]> {
   function mockImpl<T>(stateAccessor: StateSelector<T>) {
     return stateAccessor({

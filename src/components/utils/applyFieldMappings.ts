@@ -66,29 +66,29 @@ function applyFieldDataPath(data: any, fieldMap: FieldDataPath): any {
 /**
  * Collects data based on the provided fields mappings.
  *
- * @examle
+ * @example
  * Suppose rawData is:
- * {
- *    faq: {
+ * \{
+ *    faq: \{
  *      question: 'Which AI search platform should we leverage?'
- *    }
- * }
+ *    \}
+ * \}
  * And the fieldMappings is:
- * {
- *    question: {
+ * \{
+ *    question: \{
  *      mappingType: 'FIELD',
  *      apiName: 'faq.question,
- *    },
- *    answer: {
+ *    \},
+ *    answer: \{
  *      mappingType: 'CONSTANT',
  *      value: 'Yext'
- *    }
- * }
+ *    \}
+ * \}
  * The function will return:
- * {
+ * \{
  *    question: 'Which AI search platform should we leverage?',
  *    answer: 'Yext'
- *  }
+ *  \}
  *
  * @param rawData - The rawData from an {@link Result}
  * @param fieldMappings - Indicates where data is located within the rawData field

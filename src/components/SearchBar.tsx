@@ -120,7 +120,7 @@ export interface VisualAutocompleteConfig {
   /** The debouncing time, in milliseconds, for making API requests for entity previews. */
   entityPreviewsDebouncingTime?: number,
   /** Renders entity previeews based on the autocomplete loading state and results. */
-  renderEntityPreviews?: RenderEntityPreviews,
+  renderEntityPreviews?: RenderEntityPreviews
 }
 
 /**
@@ -157,7 +157,7 @@ export interface SearchBarProps {
   /** Limits the number of recent searches shown. */
   recentSearchesLimit?: number,
   /** A callback which is called when a search is ran. */
-  onSearch?: onSearchFunc;
+  onSearch?: onSearchFunc
 }
 
 /**

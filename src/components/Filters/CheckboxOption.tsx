@@ -30,7 +30,7 @@ export interface CheckboxOptionProps {
   /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses} */
   customCssClasses?: CheckboxCssClasses,
   /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod,
+  cssCompositionMethod?: CompositionMethod
 }
 
 /**
