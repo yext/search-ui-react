@@ -2,14 +2,12 @@ import { AnswersCore, AnswersHeadless, SearchTypeEnum, State } from '@yext/answe
 import { MockedAutocompleteService } from './core/autocomplete-service';
 import { MockedQuestionSubmissionService } from './core/question-submission-service';
 import { MockedSearchService } from './core/search-service';
-import { generateMockedStateManager, MockedStateManager } from './state-manager';
+import { generateMockedStateManager } from './state-manager';
 import { RecursivePartial } from '../__utils__/mocks';
 import merge from 'lodash/merge';
 
 const MockedCore: AnswersCore =
   new AnswersCore(MockedSearchService, MockedQuestionSubmissionService, MockedAutocompleteService);
-
-export const MockedHeadless: AnswersHeadless = new AnswersHeadless(MockedCore, MockedStateManager, null);
 
 export function generateMockedHeadless(state: RecursivePartial<State>): AnswersHeadless {
   const emptyState: State = {
