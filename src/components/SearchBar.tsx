@@ -44,7 +44,7 @@ import { executeAutocomplete as executeAutocompleteSearch } from '../utils/searc
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-6',
   inputDivider: 'border-t border-gray-200 mx-2.5',
-  dropdownContainer: 'bg-white pt-4 pb-3 z-10',
+  dropdownContainer: 'bg-white py-4 z-10',
   inputContainer: 'inline-flex items-center justify-between w-full',
   inputDropdownContainer: 'relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden',
   inputDropdownContainer___active: 'shadow-lg',
