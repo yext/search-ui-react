@@ -31,3 +31,15 @@ export const FeaturedSnippet = () => {
     </AnswersHeadlessContext.Provider>
   );
 };
+
+export const Loading = () => {
+  return (
+    <AnswersHeadlessContext.Provider value={generateMockedHeadless({
+      directAnswer: featuredSnippetDAState,
+      searchStatus: { isLoading: true }
+    })}>
+      <DirectAnswer />
+    </AnswersHeadlessContext.Provider>
+  );
+};
+

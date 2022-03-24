@@ -20,13 +20,6 @@ it('renders null when there is no direct answer in state', () => {
   expect(container).toBeEmptyDOMElement();
 });
 
-it('applies the loading state css class', () => {
-  mockState(fieldValueDAState, true);
-  const { container } = render(<DirectAnswer customCssClasses={{ container___loading: '_loading' }}/>);
-  // eslint-disable-next-line testing-library/no-node-access
-  expect(container.firstChild).toHaveClass('_loading');
-});
-
 describe('FieldValue direct answer', () => {
   beforeEach(() => mockState(fieldValueDAState));
 
@@ -61,12 +54,17 @@ describe('FeaturedSnippet direct answer', () => {
     expect(screen.getByText(expectedTitle)).toBeInTheDocument();
   });
 
-  it('description text is highlighted and uses the "highlighted" css class', () => {
-    render(<DirectAnswer customCssClasses={{ highlighted: '_highlighted' }}/>);
-    // eslint-disable-next-line testing-library/no-node-access
-    const highlightedNodes = document.body.querySelectorAll('._highlighted');
-    expect(highlightedNodes).toHaveLength(1);
-    expect(highlightedNodes[0]).toHaveTextContent('snip');
+  it('description text is highlighted', () => {
+    render(<DirectAnswer />);
+
+    const unhighlightedAtStart = screen.getByText('[');
+    expect(unhighlightedAtStart).toBeDefined();
+
+    const highlighted = screen.getByText('snip');
+    expect(highlighted).toBeDefined();
+
+    const unhighlightedAtEnd = screen.getByText('pet.value]');
+    expect(unhighlightedAtEnd).toBeDefined();
   });
 
   it('link', () => {
