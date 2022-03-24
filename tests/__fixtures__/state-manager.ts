@@ -20,7 +20,8 @@ export function generateMockedStateManager(state?: State): StateManager {
     }
 
     addListener<T>(listener: StateListener<T>): Unsubscribe {
-      return null;
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      return () => {};
     }
   }();
 }
