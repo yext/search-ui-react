@@ -114,7 +114,7 @@ describe('Hierarchical facets', () => {
       ]
     });
     const actions = spyOnActions();
-    
+
 
     render(<HierarchicalFacets/>);
 
@@ -125,7 +125,7 @@ describe('Hierarchical facets', () => {
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
   });
   it('Clicking a non-selected option selects it and deselects its siblings', () => {
-    mockFiltersState({ 
+    mockFiltersState({
       facets: [
         createHierarchicalFacet([
           'food',
@@ -136,7 +136,7 @@ describe('Hierarchical facets', () => {
       ]
     });
     const actions = spyOnActions();
-    
+
     render(<HierarchicalFacets/>);
 
     const appleButton = screen.getByRole('button', { name: /apple/i });
@@ -146,7 +146,7 @@ describe('Hierarchical facets', () => {
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
   });
   it('Clicking the current category with a selected child selects the category and deselects the child', () => {
-    mockFiltersState({ 
+    mockFiltersState({
       facets: [
         createHierarchicalFacet([
           'food',
@@ -157,7 +157,7 @@ describe('Hierarchical facets', () => {
       ]
     });
     const actions = spyOnActions();
-    
+
 
     render(<HierarchicalFacets/>);
 
@@ -169,7 +169,7 @@ describe('Hierarchical facets', () => {
   });
 
   it('Clicking a selected current category deselects it and selects its parent', () => {
-    mockFiltersState({ 
+    mockFiltersState({
       facets: [
         createHierarchicalFacet([
           'food',
@@ -180,7 +180,7 @@ describe('Hierarchical facets', () => {
       ]
     });
     const actions = spyOnActions();
-    
+
 
     render(<HierarchicalFacets/>);
 
@@ -191,7 +191,7 @@ describe('Hierarchical facets', () => {
     expectFacetOptionSet(actions, { value: 'food', selected: true });
   });
   it('Clicking a parent category selects it and deselects its children', () => {
-    mockFiltersState({ 
+    mockFiltersState({
       facets: [
         createHierarchicalFacet([
           'food',
@@ -214,7 +214,7 @@ describe('Hierarchical facets', () => {
   });
 });
 
-function expectFacetOptionSet(actions, facet: { value: string, selected: boolean}) {
+function expectFacetOptionSet(actions, facet: { value: string, selected: boolean }) {
   expect(actions.setFacetOption).toHaveBeenCalledWith(
     'hier',
     { matcher: Matcher.Equals, value: facet.value },

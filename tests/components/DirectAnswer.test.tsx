@@ -1,8 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { DirectAnswerType, DirectAnswerState } from '@yext/answers-headless-react';
+import { DirectAnswerState } from '@yext/answers-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
 import { RecursivePartial, mockAnswersState } from '../__utils__/mocks';
+import { fieldValueDAState, featuredSnippetDAState } from './DirectAnswer.fixtures';
 
 jest.mock('@yext/answers-headless-react');
 
@@ -19,40 +20,23 @@ it('renders null when there is no direct answer in state', () => {
   expect(container).toBeEmptyDOMElement();
 });
 
-it('applies the loading state css class', () => {
-  mockState({
-    result: {
-      type: DirectAnswerType.FieldValue,
-      entityName: '[entityName]',
-      fieldName: '[fieldName]',
-      value: '[value]',
-      relatedResult: {
-        link: '[relatedResult.link]',
-        id: '[relatedResult.id]'
-      }
-    }
-  }, true);
-  render(<DirectAnswer customCssClasses={{ container___loading: '_loading' }}/>);
-  expect(document.body.querySelector('._loading')).toBeTruthy();
-});
-
 describe('FieldValue direct answer', () => {
-  beforeEach(() => {
-    mockFieldValueDA();
-    render(<DirectAnswer />);
-  });
+  beforeEach(() => mockState(fieldValueDAState));
 
   it('title text', () => {
+    render(<DirectAnswer />);
     const expectedTitle = '[entityName] / [fieldName]';
     expect(screen.getByText(expectedTitle)).toBeInTheDocument();
   });
 
   it('description text', () => {
+    render(<DirectAnswer />);
     const expectedDescription = '[value]';
     expect(screen.getByText(expectedDescription)).toBeInTheDocument();
   });
 
   it('link', () => {
+    render(<DirectAnswer />);
     const directAnswerLink = screen.getByRole('link');
     expect(directAnswerLink).toHaveTextContent('View Details');
     expect(directAnswerLink).toHaveAttribute('href', '[relatedResult.link]');
@@ -62,23 +46,29 @@ describe('FieldValue direct answer', () => {
 });
 
 describe('FeaturedSnippet direct answer', () => {
-  beforeEach(() => {
-    mockFeaturedSnippetDA();
-    render(<DirectAnswer customCssClasses={{ highlighted: '_highlighted' }}/>);
-  });
+  beforeEach(() => mockState(featuredSnippetDAState));
 
   it('title text', () => {
+    render(<DirectAnswer />);
     const expectedTitle = '[value]';
     expect(screen.getByText(expectedTitle)).toBeInTheDocument();
   });
 
-  it('description text is highlighted and uses the "highlighted" css class', () => {
-    const highlightedNodes = document.body.querySelectorAll('._highlighted');
-    expect(highlightedNodes).toHaveLength(1);
-    expect(highlightedNodes[0]).toHaveTextContent('snip');
+  it('description text is highlighted', () => {
+    render(<DirectAnswer />);
+
+    const unhighlightedAtStart = screen.getByText('[');
+    expect(unhighlightedAtStart).toBeDefined();
+
+    const highlighted = screen.getByText('snip');
+    expect(highlighted).toBeDefined();
+
+    const unhighlightedAtEnd = screen.getByText('pet.value]');
+    expect(unhighlightedAtEnd).toBeDefined();
   });
 
   it('link', () => {
+    render(<DirectAnswer />);
     const directAnswerLink = screen.getByRole('link');
     expect(directAnswerLink).toHaveTextContent('[relatedResult.name]');
     expect(directAnswerLink).toHaveAttribute('href', '[relatedResult.link]');
@@ -89,6 +79,7 @@ describe('FeaturedSnippet direct answer', () => {
 
 function runAnalyticsTestSuite() {
   it('reports link click analytics', () => {
+    render(<DirectAnswer />);
     const link = screen.getByRole('link');
     fireEvent.click(link);
     expect(useAnalytics().report).toHaveBeenCalledTimes(1);
@@ -101,6 +92,7 @@ function runAnalyticsTestSuite() {
   });
 
   it('reports THUMBS_UP feedback', () => {
+    render(<DirectAnswer />);
     const thumbsUp = screen.queryAllByRole('button')[0];
     fireEvent.click(thumbsUp);
     expect(useAnalytics().report).toHaveBeenCalledTimes(1);
@@ -113,6 +105,7 @@ function runAnalyticsTestSuite() {
   });
 
   it('reports THUMBS_DOWN feedback', () => {
+    render(<DirectAnswer />);
     const thumbsDown = screen.queryAllByRole('button')[1];
     fireEvent.click(thumbsDown);
     expect(useAnalytics().report).toHaveBeenCalledTimes(1);
@@ -125,38 +118,6 @@ function runAnalyticsTestSuite() {
   });
 }
 
-function mockFeaturedSnippetDA() {
-  mockState({
-    result: {
-      type: DirectAnswerType.FeaturedSnippet,
-      snippet: {
-        value: '[snippet.value]',
-        matchedSubstrings: [{ length: 4, offset: 1 }]
-      },
-      value: '[value]',
-      relatedResult: {
-        link: '[relatedResult.link]',
-        name: '[relatedResult.name]',
-        id: '[relatedResult.id]'
-      }
-    }
-  });
-}
-
-function mockFieldValueDA() {
-  mockState({
-    result: {
-      type: DirectAnswerType.FieldValue,
-      entityName: '[entityName]',
-      fieldName: '[fieldName]',
-      value: '[value]',
-      relatedResult: {
-        link: '[relatedResult.link]',
-        id: '[relatedResult.id]'
-      }
-    }
-  });
-}
 
 function mockState(
   directAnswer: RecursivePartial<DirectAnswerState>,
