@@ -83,7 +83,7 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
  * @public
  */
 export interface PaginationCssClasses {
-  container?: string,
+  paginationContainer?: string,
   labelContainer?: string,
   label?: string,
   selectedLabel?: string,
@@ -93,7 +93,7 @@ export interface PaginationCssClasses {
 }
 
 const builtInPaginationCssClasses: PaginationCssClasses = {
-  container: 'flex justify-center mb-4',
+  paginationContainer: 'flex justify-center mb-4',
   labelContainer: 'inline-flex shadow-sm -space-x-px',
   label: 'z-0 inline-flex items-center px-4 py-2 text-sm font-semibold border border-gray-300 text-neutral',
   selectedLabel: 'z-10 inline-flex items-center px-4 py-2 text-sm font-semibold border border-primary text-primary bg-primary-light',
@@ -173,7 +173,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
   const paginationLabels: string[] = generatePaginationLabels(currentPageNumber, maxPageCount);
 
   return (
-    <div className={cssClasses.container}>
+    <div className={cssClasses.paginationContainer}>
       <nav className={cssClasses.labelContainer} aria-label="Pagination">
         <PaginationButton
           ariaLabel='Navigate to the previous results page'
@@ -220,7 +220,7 @@ function Pagination(props: PaginationProps): JSX.Element | null {
           }
         })}
         <PaginationButton
-          aria-label='Navigate to the next results page'
+          ariaLabel='Navigate to the next results page'
           className={cssClasses.rightIconContainer}
           navigateToPage={navigateToPage}
           newPageNumber={currentPageNumber + 1}

@@ -29,15 +29,17 @@ const mockedVertical1: VerticalResults = {
         link: 'link2',
         label: 'job2',
         linkType: 'link'
-      }
+      },
     },
-    source: Source.KnowledgeManager
+    source: Source.KnowledgeManager,
+    id: 'id1'
   }, {
     rawData: {
       name: 'title2',
       description: 'text2'
     },
-    source: Source.KnowledgeManager
+    source: Source.KnowledgeManager,
+    id: 'id2'
   }],
   resultsCount: 2,
   source: Source.KnowledgeManager,
@@ -52,7 +54,8 @@ const mockedVertical2: VerticalResults = {
       name: 'title3',
       description: 'text3'
     },
-    source: Source.KnowledgeManager
+    source: Source.KnowledgeManager,
+    id: 'id3'
   }],
   resultsCount: 1,
   source: Source.KnowledgeManager,

@@ -479,8 +479,6 @@ export type onSearchFunc = (searchEventData: {
 // @public
 export interface PaginationCssClasses {
     // (undocumented)
-    container?: string;
-    // (undocumented)
     icon?: string;
     // (undocumented)
     label?: string;
@@ -488,6 +486,8 @@ export interface PaginationCssClasses {
     labelContainer?: string;
     // (undocumented)
     leftIconContainer?: string;
+    // (undocumented)
+    paginationContainer?: string;
     // (undocumented)
     rightIconContainer?: string;
     // (undocumented)
