@@ -7,13 +7,12 @@ import { SpellCheck } from '../../src/components/SpellCheck';
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 
-// eslint-disable-next-line import/no-default-export
-export default {
+const meta: ComponentMeta<typeof SpellCheck> = {
   title: 'SpellCheck',
   component: SpellCheck,
-} as ComponentMeta<typeof SpellCheck>;
+};
+export default meta;
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const Primary = () => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(VerticalSearcherState)}>

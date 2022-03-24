@@ -7,10 +7,11 @@ import { DirectAnswer } from '../../src/components/DirectAnswer';
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { featuredSnippetDAState, fieldValueDAState } from './DirectAnswer.fixtures';
 
-export default {
+const meta: ComponentMeta<typeof DirectAnswer> = {
   title: 'DirectAnswer',
   component: DirectAnswer,
-} as ComponentMeta<typeof DirectAnswer>;
+};
+export default meta;
 
 export const FieldValue = () => {
   return (
