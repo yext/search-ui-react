@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
 import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
 import { State, Source, VerticalSearchState } from '@yext/answers-headless-react';
 import { StandardCard } from '../../src/components/cards/StandardCard';
-import { spyOnActions, spyOnAnswersState } from '../__utils__/spies';
+import { spyOnActions, mockAnswersState } from '../__utils__/mocks';
 
 const ctas = {
   c_primaryCTA: {
@@ -122,12 +122,12 @@ describe('Pagination', () => {
       CardComponent: StandardCard,
       allowPagination: false
     };
-    const { container } = render(<VerticalResults {...verticalResultsProps}/>);
-    const paginationNavEl = container.querySelector('nav[aria-label="Pagination"]');
+    render(<VerticalResults {...verticalResultsProps}/>);
+    const paginationNavEl = screen.queryByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeNull();
   });
 
-  it('Don\'t display pagination component when there\s no results', () => {
+  it('Don\'t display pagination component when there\'s no results', () => {
     const verticalResultsProps: VerticalResultsProps = {
       CardComponent: StandardCard,
       allowPagination: true,
@@ -136,8 +136,8 @@ describe('Pagination', () => {
       results: [],
       resultsCount: 0
     });
-    const { container } = render(<VerticalResults {...verticalResultsProps}/>);
-    const paginationNavEl = container.querySelector('nav[aria-label="Pagination"]');
+    render(<VerticalResults {...verticalResultsProps}/>);
+    const paginationNavEl = screen.queryByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeNull();
   });
 
@@ -154,10 +154,10 @@ describe('Pagination', () => {
       offset: 0
     };
     mockVerticalSearchState(mockedVerticalSearchState);
-    const { container } = render(<VerticalResults {...verticalResultsProps}/>);
-    const paginationNavEl = container.querySelector('nav[aria-label="Pagination"]');
+    render(<VerticalResults {...verticalResultsProps}/>);
+    const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeDefined();
-    const totalPaginationButtons = paginationNavEl.querySelectorAll('button').length;
+    const totalPaginationButtons = within(paginationNavEl).queryAllByRole('button').length;
     const numIconNavButtons = 2;
     const numLabelNavButtons = mockedVerticalSearchState.resultsCount;
     expect(totalPaginationButtons).toEqual(numIconNavButtons + numLabelNavButtons);
@@ -180,10 +180,10 @@ describe('Pagination', () => {
       offset: 0
     };
     mockVerticalSearchState(mockedVerticalSearchState);
-    const { container } = render(<VerticalResults {...verticalResultsProps}/>);
-    const paginationNavEl = container.querySelector('nav[aria-label="Pagination"]');
+    render(<VerticalResults {...verticalResultsProps}/>);
+    const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeDefined();
-    const paginationButtons = paginationNavEl.querySelectorAll('button');
+    const paginationButtons = within(paginationNavEl).queryAllByRole('button');
     const numIconNavButtons = 2;
     const numLabelNavButtons = 3;
     // expected pagination layout with n results: [<] [1] [2] [...] [n] [>]
@@ -210,9 +210,9 @@ describe('Pagination', () => {
     };
     mockVerticalSearchState(mockedVerticalSearchState);
     const actions = spyOnActions();
-    const { container } = render(<VerticalResults {...verticalResultsProps}/>);
+    render(<VerticalResults {...verticalResultsProps}/>);
 
-    const paginationNavEl = container.querySelector('nav[aria-label="Pagination"]');
+    const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeDefined();
     const executeSearch = jest.spyOn(require('../../src/utils/search-operations'), 'executeSearch');
 
@@ -224,7 +224,7 @@ describe('Pagination', () => {
 });
 
 function mockVerticalSearchState(vertical: VerticalSearchState) {
-  return spyOnAnswersState({
+  return mockAnswersState({
     ...mockedState,
     vertical
   });
