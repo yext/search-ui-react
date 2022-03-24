@@ -6,7 +6,7 @@ export const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 
 export function Facets() {
   return (
-    <Filters.Facets className='min-w-fit pr-4' searchOnChange={true}>
+    <Filters.Facets searchOnChange={true}>
       {facets => {
         const filteredFacets = facets.filter(f => f.options.length > 0);
         filteredFacets.sort((a,b) => {
@@ -43,7 +43,7 @@ export function Facets() {
                 )
               })
             }
-            {filteredFacets.length > 0 && <Filters.ApplyFiltersButton />}
+            {/* {filteredFacets.length > 0 && <Filters.ApplyFiltersButton />} */}
           </>
         )
       }}

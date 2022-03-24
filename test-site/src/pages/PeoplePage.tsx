@@ -8,6 +8,7 @@ import {
 } from '@yext/answers-react-components';
 import { useEffect } from 'react';
 import { Facets, hierarchicalFacetFieldIds } from '../components/Facets';
+import { StaticFilters } from '../components/StaticFilters';
 
 export function PeoplePage() {
   const answersActions = useAnswersActions();
@@ -19,7 +20,10 @@ export function PeoplePage() {
     <div>
       <SearchBar />
       <div className='flex'>
-        <Facets />
+        <div className='min-w-fit pr-4'>
+          <Facets />
+          <StaticFilters />
+        </div>
         <div className='flex-grow'>
           <div className='flex items-baseline'>
             <ResultsCount />
@@ -33,3 +37,4 @@ export function PeoplePage() {
     </div>
   );
 }
+
