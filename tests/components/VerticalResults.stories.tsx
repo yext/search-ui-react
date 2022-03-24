@@ -32,27 +32,9 @@ const mockedHeadlessState = {
         },
         source: Source.KnowledgeManager,
         id: 'id1'
-      },
-      {
-        rawData: {
-          name: 'title2',
-          description: 'text2',
-          c_primaryCTA: {
-            link: 'link1',
-            label: 'job1',
-            linkType: 'link'
-          },
-          c_secondaryCTA: {
-            link: 'link2',
-            label: 'job2',
-            linkType: 'link'
-          }
-        },
-        source: Source.KnowledgeManager,
-        id: 'id2'
       }
     ],
-    resultsCount: 2,
+    resultsCount: 5,
     limit: 1
   }
 };
