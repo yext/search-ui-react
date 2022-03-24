@@ -7,7 +7,7 @@ import {
   VerticalResults
 } from '@yext/answers-react-components';
 import { useEffect } from 'react';
-import { Facets } from '../components/Facets';
+import { Facets, hierarchicalFacetFieldIds } from '../components/Facets';
 
 export function PeoplePage() {
   const answersActions = useAnswersActions();
@@ -23,7 +23,7 @@ export function PeoplePage() {
         <div className='flex-grow'>
           <div className='flex items-baseline'>
             <ResultsCount />
-            <AppliedFilters />
+            <AppliedFilters hierarchicalFacetsFieldIds={hierarchicalFacetFieldIds}/>
           </div>
           <VerticalResults
             CardComponent={StandardCard}

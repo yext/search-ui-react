@@ -2,7 +2,7 @@ import { Filters } from '@yext/answers-react-components';
 import { Fragment } from 'react';
 import { Divider } from './Divider';
 
-const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
+export const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 
 export function Facets() {
   return (
