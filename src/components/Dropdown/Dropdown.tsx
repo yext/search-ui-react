@@ -14,14 +14,7 @@ interface DropdownItemData {
   itemData?: Record<string, unknown>
 }
 
-/**
- * Dropdown is the parent component for a set of Dropdown-related components.
- *
- * @remarks
- * It provides multiple shared contexts, which are consumed by its child components,
- * and also registers some global event listeners.
- */
-export function Dropdown(props: PropsWithChildren<{
+export interface DropdownProps {
   screenReaderText: string,
   screenReaderInstructions?: string,
   initialValue?: string,
@@ -30,7 +23,16 @@ export function Dropdown(props: PropsWithChildren<{
   onToggle?: (isActive: boolean, value: string) => void,
   className?: string,
   activeClassName?: string
-}>): JSX.Element {
+}
+
+/**
+ * Dropdown is the parent component for a set of Dropdown-related components.
+ *
+ * @remarks
+ * It provides multiple shared contexts, which are consumed by its child components,
+ * and also registers some global event listeners.
+ */
+export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   const {
     children,
     screenReaderText,
