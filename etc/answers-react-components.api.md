@@ -10,6 +10,7 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AnswersActions } from '@yext/answers-headless-react';
 import { AnswersHeadless } from '@yext/answers-headless-react';
+import { AppliedQueryFilter } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
@@ -605,6 +606,34 @@ export interface SectionConfig {
     results: Result[];
     verticalKey: string;
     viewMore?: boolean;
+}
+
+// @public
+export function SectionHeader(props: SectionHeaderProps): JSX.Element;
+
+// @public
+export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
+    // (undocumented)
+    sectionHeaderContainer?: string;
+    // (undocumented)
+    sectionHeaderIconContainer?: string;
+    // (undocumented)
+    sectionHeaderLabel?: string;
+    // (undocumented)
+    viewMoreContainer?: string;
+    // (undocumented)
+    viewMoreLink?: string;
+}
+
+// @public
+export interface SectionHeaderProps {
+    appliedQueryFilters?: AppliedQueryFilter[];
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: SectionHeaderCssClasses;
+    getViewAllUrl?: (data: VerticalLink) => string;
+    label: string;
+    verticalKey: string;
+    viewAllButton?: boolean;
 }
 
 // @public

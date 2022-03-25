@@ -22,6 +22,7 @@
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
 |  [ResultsCount(props)](./answers-react-components.resultscount.md) | Renders results count of a universal/vertical search. |
 |  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch })](./answers-react-components.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
+|  [SectionHeader(props)](./answers-react-components.sectionheader.md) | The header of a section which includes an icon, the section title, applied query filters, and optionally a view all button. |
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
 |  [StandardSection(props)](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
@@ -54,6 +55,8 @@
 |  [SearchBarCssClasses](./answers-react-components.searchbarcssclasses.md) | The CSS class interface for the [SearchBar()](./answers-react-components.searchbar.md)<!-- -->. |
 |  [SearchBarProps](./answers-react-components.searchbarprops.md) | The props for the [SearchBar()](./answers-react-components.searchbar.md) component. |
 |  [SectionConfig](./answers-react-components.sectionconfig.md) | The configuration of a section template for a vertical's results on a universal page. |
+|  [SectionHeaderCssClasses](./answers-react-components.sectionheadercssclasses.md) | The CSS class interface used for [SectionHeader()](./answers-react-components.sectionheader.md)<!-- -->. |
+|  [SectionHeaderProps](./answers-react-components.sectionheaderprops.md) | The props for a [SectionHeader()](./answers-react-components.sectionheader.md)<!-- -->. |
 |  [SpellCheckCssClasses](./answers-react-components.spellcheckcssclasses.md) | The CSS Class interface for SpellCheck. |
 |  [SpellCheckProps](./answers-react-components.spellcheckprops.md) | The props for the [SpellCheck()](./answers-react-components.spellcheck.md) component. |
 |  [StandardCardCssClasses](./answers-react-components.standardcardcssclasses.md) | The CSS class interface used for [StandardCard()](./answers-react-components.standardcard.md)<!-- -->. |
