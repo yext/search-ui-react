@@ -6,7 +6,7 @@ import {
   ThumbsFeedbackCssClasses
 } from '../ThumbsFeedback';
 import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
-import { isHighlightedValue, isString, validateData } from '../utils/validateData';
+import { isHighlightedValue, validateData } from '../utils/validateData';
 import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
 import { HighlightedValue } from '@yext/answers-headless-react';
 import { renderHighlightedValue } from '../utils/renderHighlightedValue';
@@ -36,7 +36,7 @@ export interface StandardCardProps extends CardProps {
 
 const defaultFieldMappings: Required<StandardCardProps['fieldMappings']> = {
   title: {
-    mappingType: 'FIELD',
+    mappingType: 'HIGHLIGHTED_FIELD',
     apiName: 'name'
   },
   description: {
@@ -68,7 +68,11 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
   cta2?: string,
   ordinal?: string,
   title?: string,
-  titleLink?: string
+  titleLink?: string,
+  titleHighlighted: 'font-bold',
+  titleNonHighlighted: 'font-medium',
+  descriptionHighlighted: 'font-semibold',
+  descriptionNonHighlighted: 'font-normal'
 }
 
 const builtInCssClasses: StandardCardCssClasses = {
@@ -82,7 +86,11 @@ const builtInCssClasses: StandardCardCssClasses = {
   ordinal: 'mr-1.5 text-lg font-medium',
   title: 'text-lg font-medium',
   titleLink: 'text-lg font-medium text-primary hover:underline focus:underline',
-  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium'
+  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium',
+  titleHighlighted: 'font-bold',
+  titleNonHighlighted: 'font-medium',
+  descriptionHighlighted: 'font-semibold',
+  descriptionNonHighlighted: 'font-normal'
 };
 
 export interface CtaData {
@@ -127,7 +135,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   });
 
   const data = validateData(transformedFieldData, {
-    title: isString,
+    title: isHighlightedValue,
     description: isHighlightedValue,
     cta1: isCtaData,
     cta2: isCtaData
@@ -157,11 +165,18 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     return null;
   }
 
-  function renderTitle(title: string) {
+  function renderTitle(title: HighlightedValue) {
+    const titleJsx = renderHighlightedValue(title, {
+      highlighted: cssClasses.titleHighlighted,
+      nonHighlighted: cssClasses.titleNonHighlighted
+    });
+
     return (
       result.link
-        ? <a href={result.link} className={cssClasses.titleLink} onClick={handleTitleClick}>{title}</a>
-        : <div className={cssClasses.title}>{title}</div>
+        ? <a href={result.link} className={cssClasses.titleLink} onClick={handleTitleClick}>
+          {titleJsx}
+        </a>
+        : <div className={cssClasses.title}>{titleJsx}</div>
     );
   }
 
@@ -175,7 +190,12 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
         <div className={cssClasses.body}>
           {data.description &&
           <div className={cssClasses.descriptionContainer}>
-            <span>{renderHighlightedValue(data.description)}</span>
+            <span>
+              {renderHighlightedValue(data.description, {
+                highlighted: cssClasses.descriptionHighlighted,
+                nonHighlighted: cssClasses.descriptionNonHighlighted
+              })}
+            </span>
           </div>}
           {renderCTAs(data.cta1, data.cta2)}
         </div>

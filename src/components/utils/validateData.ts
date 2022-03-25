@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { HighlightedFields, HighlightedValue } from '@yext/answers-headless-react';
+import { HighlightedValue } from '@yext/answers-headless-react';
 
 /**
  * Infers the type associated with the provided type guard.
