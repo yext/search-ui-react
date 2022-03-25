@@ -656,13 +656,21 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     descriptionContainer?: string;
     // (undocumented)
+    descriptionHighlighted: 'font-semibold';
+    // (undocumented)
+    descriptionNonHighlighted: 'font-normal';
+    // (undocumented)
     header?: string;
     // (undocumented)
     ordinal?: string;
     // (undocumented)
     title?: string;
     // (undocumented)
+    titleHighlighted: 'font-bold';
+    // (undocumented)
     titleLink?: string;
+    // (undocumented)
+    titleNonHighlighted: 'font-medium';
 }
 
 // @public
