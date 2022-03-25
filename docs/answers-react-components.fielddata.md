@@ -9,7 +9,7 @@ Indicates either a constant field data value, or a field data mapping.
 <b>Signature:</b>
 
 ```typescript
-export declare type FieldData = FieldDataConstant | FieldDataPath;
+export declare type FieldData = FieldDataConstant | FieldDataPath | HighlightedFieldDataPath;
 ```
-<b>References:</b> [FieldDataConstant](./answers-react-components.fielddataconstant.md)<!-- -->, [FieldDataPath](./answers-react-components.fielddatapath.md)
+<b>References:</b> [FieldDataConstant](./answers-react-components.fielddataconstant.md)<!-- -->, [FieldDataPath](./answers-react-components.fielddatapath.md)<!-- -->, [HighlightedFieldDataPath](./answers-react-components.highlightedfielddatapath.md)
 

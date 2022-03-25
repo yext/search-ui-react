@@ -282,7 +282,7 @@ interface FacetsProps {
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
 // @public
-export type FieldData = FieldDataConstant | FieldDataPath;
+export type FieldData = FieldDataConstant | FieldDataPath | HighlightedFieldDataPath;
 
 // @public
 export type FieldDataConstant = {
@@ -447,6 +447,12 @@ interface HierarchicalFacetProps {
     facet: DisplayableFacet;
     showMoreLimit?: number;
 }
+
+// @public
+export type HighlightedFieldDataPath = {
+    mappingType: 'HIGHLIGHTED_FIELD';
+    apiName: string | string[];
+};
 
 // @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;

@@ -6,8 +6,10 @@ import {
   ThumbsFeedbackCssClasses
 } from '../ThumbsFeedback';
 import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
-import { isString, validateData } from '../utils/validateData';
+import { isHighlightedValue, isString, validateData } from '../utils/validateData';
 import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
+import { HighlightedValue } from '@yext/answers-headless-react';
+import { renderHighlightedValue } from '../utils/renderHighlightedValue';
 
 /**
  * Props for a StandardCard.
@@ -32,13 +34,13 @@ export interface StandardCardProps extends CardProps {
   cssCompositionMethod?: CompositionMethod
 }
 
-const defaultFieldMappings: Record<string, FieldData> = {
+const defaultFieldMappings: Required<StandardCardProps['fieldMappings']> = {
   title: {
     mappingType: 'FIELD',
     apiName: 'name'
   },
   description: {
-    mappingType: 'FIELD',
+    mappingType: 'HIGHLIGHTED_FIELD',
     apiName: 'description'
   },
   cta1: {
@@ -119,14 +121,14 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
-  const transformedFieldData = applyFieldMappings(result.rawData, {
+  const transformedFieldData = applyFieldMappings(result.rawData, result.highlightedFields, {
     ...defaultFieldMappings,
     ...customFieldMappings
   });
 
   const data = validateData(transformedFieldData, {
     title: isString,
-    description: isString,
+    description: isHighlightedValue,
     cta1: isCtaData,
     cta2: isCtaData
   });
@@ -173,7 +175,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
         <div className={cssClasses.body}>
           {data.description &&
           <div className={cssClasses.descriptionContainer}>
-            <span>{data.description}</span>
+            <span>{renderHighlightedValue(data.description)}</span>
           </div>}
           {renderCTAs(data.cta1, data.cta2)}
         </div>
@@ -187,3 +189,4 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     </div>
   );
 }
+

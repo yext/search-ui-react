@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { HighlightedFields, HighlightedValue } from '@yext/answers-headless-react';
 import get from 'lodash/get';
+import { isHighlightedValue } from './validateData';
 
 /**
  * Indicates a field should equal a constant value. Ignores the API response.
@@ -15,7 +17,7 @@ export type FieldDataConstant = {
 };
 
 /**
- * Denotes the path to the field data on the Result's raw dadta.
+ * Denotes the path to the field data on the Result's raw data.
  *
  * @public
  */
@@ -47,19 +49,58 @@ export type FieldDataPath = {
 };
 
 /**
+ * Denotes the path to the field data on the Result's raw data.
+ *
+ * @public
+ */
+export type HighlightedFieldDataPath = {
+  /** Indicates that the field data is mapped from the Result's raw data */
+  mappingType: 'HIGHLIGHTED_FIELD',
+  /** {@inheritDoc FieldDataPath.apiName} */
+  apiName: string | string[]
+};
+
+/**
  * Indicates either a constant field data value, or a field data mapping.
  *
  * @public
  */
-export type FieldData = FieldDataConstant | FieldDataPath;
+export type FieldData = FieldDataConstant | FieldDataPath | HighlightedFieldDataPath;
 
-function applyFieldDataPath(data: any, fieldMap: FieldDataPath): any {
+function applyFieldDataPath(data: Record<string, unknown>, fieldMap: FieldDataPath): any {
   if (!Array.isArray(fieldMap.apiName)) {
     return get(data, fieldMap.apiName);
   }
   const apiNameWithData = fieldMap.apiName.find(apiName => get(data, apiName));
   return apiNameWithData
     ? get(data, apiNameWithData)
+    : undefined;
+}
+
+function applyHighlightedFieldDataPath(
+  data: Record<string, unknown>,
+  highlightedFields: HighlightedFields | undefined,
+  fieldMap: HighlightedFieldDataPath
+): HighlightedValue | undefined {
+
+  function getHighlightedValueWithDefaulting(apiName: string): HighlightedValue {
+    const highlightedValue = get(highlightedFields, fieldMap.apiName);
+    if (isHighlightedValue(highlightedValue)) {
+      return highlightedValue;
+    }
+
+    return {
+      value: get(data, apiName) as string ?? '',
+      matchedSubstrings: []
+    };
+  }
+
+  if (!Array.isArray(fieldMap.apiName)) {
+    return getHighlightedValueWithDefaulting(fieldMap.apiName);
+  }
+  const apiNameWithData = fieldMap.apiName.find(apiName => getHighlightedValueWithDefaulting(apiName));
+  return apiNameWithData
+    ? getHighlightedValueWithDefaulting(apiNameWithData)
     : undefined;
 }
 
@@ -96,6 +137,7 @@ function applyFieldDataPath(data: any, fieldMap: FieldDataPath): any {
  */
 export function applyFieldMappings(
   rawData: Record<string, unknown>,
+  highlightedFields: HighlightedFields | undefined,
   fieldMappings: Partial<Record<string, FieldData>>,
 ): Record<string, any> {
 
@@ -108,10 +150,15 @@ export function applyFieldMappings(
       if (!mapping) {
         return acc;
       }
-      if (mapping.mappingType === 'CONSTANT') {
-        acc[field] = mapping.value;
-      } else {
-        acc[field] = applyFieldDataPath(rawData, mapping);
+      switch (mapping.mappingType) {
+        case 'CONSTANT':
+          acc[field] = mapping.value;
+          break;
+        case 'HIGHLIGHTED_FIELD':
+          acc[field] = applyHighlightedFieldDataPath(rawData, highlightedFields, mapping);
+          break;
+        default:
+          acc[field] = applyFieldDataPath(rawData, mapping);
       }
       return acc;
     }, {});

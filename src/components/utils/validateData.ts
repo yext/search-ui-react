@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { HighlightedFields, HighlightedValue } from '@yext/answers-headless-react';
+
 /**
  * Infers the type associated with the provided type guard.
  */
@@ -26,6 +28,21 @@ export function isBoolean(data: any): data is boolean {
 
 export function isNumber(data: any): data is number {
   return typeof data === 'number';
+}
+
+/**
+ * Whether or not the param is a HighlightedValue.
+ *
+ * Does not check that every value within matchedSubstrings is a number.
+ */
+export function isHighlightedValue(data: any): data is HighlightedValue {
+  return !!(
+    data &&
+    typeof data === 'object' &&
+    !Array.isArray(data) &&
+    data.value &&
+    Array.isArray(data.matchedSubstrings)
+  );
 }
 
 /**

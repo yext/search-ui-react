@@ -4,7 +4,7 @@
 
 ## FieldDataPath type
 
-Denotes the path to the field data on the Result's raw dadta.
+Denotes the path to the field data on the Result's raw data.
 
 <b>Signature:</b>
 
