@@ -7,5 +7,5 @@
 <b>Signature:</b>
 
 ```typescript
-titleNonHighlighted: 'font-medium';
+titleNonHighlighted?: string;
 ```

@@ -656,9 +656,9 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     descriptionContainer?: string;
     // (undocumented)
-    descriptionHighlighted: 'font-semibold';
+    descriptionHighlighted?: string;
     // (undocumented)
-    descriptionNonHighlighted: 'font-normal';
+    descriptionNonHighlighted?: string;
     // (undocumented)
     header?: string;
     // (undocumented)
@@ -666,11 +666,11 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     title?: string;
     // (undocumented)
-    titleHighlighted: 'font-bold';
+    titleHighlighted?: string;
     // (undocumented)
     titleLink?: string;
     // (undocumented)
-    titleNonHighlighted: 'font-medium';
+    titleNonHighlighted?: string;
 }
 
 // @public
