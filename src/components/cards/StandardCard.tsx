@@ -69,10 +69,10 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
   ordinal?: string,
   title?: string,
   titleLink?: string,
-  titleHighlighted: 'font-bold',
-  titleNonHighlighted: 'font-medium',
-  descriptionHighlighted: 'font-semibold',
-  descriptionNonHighlighted: 'font-normal'
+  titleHighlighted?: string,
+  titleNonHighlighted?: string,
+  descriptionHighlighted?: string,
+  descriptionNonHighlighted?: string
 }
 
 const builtInCssClasses: StandardCardCssClasses = {
