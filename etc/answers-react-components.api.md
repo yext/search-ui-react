@@ -13,6 +13,8 @@ import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
+import { Matcher } from '@yext/answers-headless-react';
+import { NumberRangeValue } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
@@ -156,8 +158,9 @@ interface CheckboxOptionProps {
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     fieldId?: string;
     label?: string;
+    matcher?: Matcher;
     selectedByDefault?: boolean;
-    value: string | number | boolean;
+    value: string | number | boolean | NumberRangeValue;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver

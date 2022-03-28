@@ -104,7 +104,7 @@
     "@restart/hooks": "^0.4.5",
     "@restart/ui": "^1.0.1",
     "@yext/analytics": "^0.2.0-beta.3",
-    "@yext/answers-headless-react": "^1.1.0-beta.8",
+    "@yext/answers-headless-react": "^1.1.0-beta.10",
     "classnames": "^2.3.1",
     "react-collapsed": "^3.3.0",
     "react-router-dom": "^5.3.0",
