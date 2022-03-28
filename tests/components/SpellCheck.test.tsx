@@ -1,8 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { SpellCheck } from '../../src/components/SpellCheck';
 import { State } from '@yext/answers-headless-react';
 import { spyOnActions } from '../__utils__/mocks';
+import userEvent from '@testing-library/user-event';
 
 const mockedState: Partial<State> = {
   spellCheck: {
@@ -56,7 +57,7 @@ describe('SpellCheck', () => {
     const actions = spyOnActions();
 
     render(<SpellCheck {...props} />);
-    fireEvent.click(screen.getByRole('button'));
+    userEvent.click(screen.getByRole('button'));
 
     const verticalKey = mockedState.vertical.verticalKey;
     const correctedQuery = mockedState.spellCheck.correctedQuery;
@@ -69,7 +70,7 @@ describe('SpellCheck', () => {
     const executeSearch = jest.spyOn(require('../../src/utils/search-operations'), 'executeSearch');
 
     render(<SpellCheck />);
-    fireEvent.click(screen.getByRole('button'));
+    userEvent.click(screen.getByRole('button'));
 
     const answersActions = useAnswersActions.mock.results[0].value;
     const correctedQuery = mockedState.spellCheck.correctedQuery;

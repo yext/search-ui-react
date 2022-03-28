@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Matcher, Source, State, FiltersState } from '@yext/answers-headless-react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
@@ -125,7 +126,7 @@ describe('AppliedFilters', () => {
 
     render(<AppliedFilters />);
     const removeFilterButton = screen.getByRole('button', { name: 'Remove "Yext Sites" filter' });
-    fireEvent.click(removeFilterButton);
+    userEvent.click(removeFilterButton);
 
     expect(actions.setFilterOption).toHaveBeenCalledWith(expect.objectContaining({
       selected: false
@@ -137,7 +138,7 @@ describe('AppliedFilters', () => {
 
     render(<AppliedFilters />);
     const removeFilterButton = screen.getByRole('button', { name: 'Remove "Yext Reviews" filter' });
-    fireEvent.click(removeFilterButton);
+    userEvent.click(removeFilterButton);
 
     const isSelected = actions.setFacetOption.mock.calls[0][2];
     expect(isSelected).toBe(false);
@@ -148,7 +149,7 @@ describe('AppliedFilters', () => {
 
     render(<AppliedFilters />);
     const clearAllButton = screen.getByRole('button', { name: 'Clear All' });
-    fireEvent.click(clearAllButton);
+    userEvent.click(clearAllButton);
 
     expect(actions.resetFacets).toHaveBeenCalled();
     expect(actions.setStaticFilters).toHaveBeenCalledWith([]);
@@ -252,7 +253,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     expect(filterPills).toHaveLength(3);
 
     const fruitButton = screen.queryByLabelText('Remove "food" filter');
-    fireEvent.click(fruitButton);
+    userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledTimes(3);
     expect(actions.setFacetOption).toHaveBeenCalledWith(
@@ -290,7 +291,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     expect(filterPills).toHaveLength(3);
 
     const fruitButton = screen.queryByLabelText('Remove "banana" filter');
-    fireEvent.click(fruitButton);
+    userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledWith(
       'hier',
