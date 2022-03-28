@@ -22,7 +22,7 @@
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
 |  [ResultsCount(props)](./answers-react-components.resultscount.md) | Renders results count of a universal/vertical search. |
 |  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch })](./answers-react-components.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
-|  [SectionHeader(props)](./answers-react-components.sectionheader.md) | The header of a section which includes an icon, the section title, applied query filters, and optionally a view all button. |
+|  [SectionHeader(props)](./answers-react-components.sectionheader.md) | The header of a section which includes an icon, the section title, applied query filters, and optionally a View All button. |
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
 |  [StandardSection(props)](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |

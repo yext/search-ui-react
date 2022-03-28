@@ -4,7 +4,7 @@
 
 ## SectionHeader() function
 
-The header of a section which includes an icon, the section title, applied query filters, and optionally a view all button.
+The header of a section which includes an icon, the section title, applied query filters, and optionally a View All button.
 
 <b>Signature:</b>
 

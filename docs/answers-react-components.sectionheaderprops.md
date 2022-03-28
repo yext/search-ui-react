@@ -22,5 +22,5 @@ export interface SectionHeaderProps
 |  [getViewAllUrl?](./answers-react-components.sectionheaderprops.getviewallurl.md) | (data: [VerticalLink](./answers-react-components.verticallink.md)<!-- -->) =&gt; string | <i>(Optional)</i> A function which returns the viewAll link based on the vertical and query. |
 |  [label](./answers-react-components.sectionheaderprops.label.md) | string | The display label for the section header. |
 |  [verticalKey](./answers-react-components.sectionheaderprops.verticalkey.md) | string | The verticalKey associated with the section. |
-|  [viewAllButton?](./answers-react-components.sectionheaderprops.viewallbutton.md) | boolean | <i>(Optional)</i> Display a button to view all results for that section, if true. |
+|  [viewAllButton?](./answers-react-components.sectionheaderprops.viewallbutton.md) | boolean | <i>(Optional)</i> If true, displays a button to view all results for the section. |
 
