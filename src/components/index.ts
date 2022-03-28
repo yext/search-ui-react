@@ -85,5 +85,6 @@ export {
   ResultsCountProps
 } from './ResultsCount';
 
+export * from './sections';
 export * from './AnalyticsProvider';
 export { Filters };

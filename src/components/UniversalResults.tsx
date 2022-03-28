@@ -1,6 +1,6 @@
 import { useAnswersState, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
-import { StandardSection } from '../sections/StandardSection';
-import { SectionHeader } from '../sections/SectionHeader';
+import { StandardSection } from './sections/StandardSection';
+import { SectionHeader } from './sections/SectionHeader';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 import { VerticalConfigMap } from '../models/verticalConfig';

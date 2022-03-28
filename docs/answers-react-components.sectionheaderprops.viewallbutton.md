@@ -4,7 +4,7 @@
 
 ## SectionHeaderProps.viewAllButton property
 
-Display a button to view all results for that section, if true.
+If true, displays a button to view all results for the section.
 
 <b>Signature:</b>
 
