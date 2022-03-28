@@ -113,7 +113,8 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
       (filter: DisplayableFilter) =>
         <RemovableFilter
           displayName={filter.displayName ?? ''}
-          handleRemoveFilter={() => handleRemoveFilter(filter)}
+          handleRemoveFilter={handleRemoveFilter}
+          filter={filter}
           key={filter.displayName}
           cssClasses={cssClasses}
         />;
@@ -127,7 +128,8 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
       {hierarchicalFacets.map(filter =>
         <RemovableFilter
           key={filter.displayName}
-          handleRemoveFilter={() => handleRemoveHierarchicalFacetOption(filter)}
+          handleRemoveFilter={handleRemoveHierarchicalFacetOption}
+          filter={filter}
           displayName={filter.lastDisplayNameToken}
           cssClasses={cssClasses}
         />
@@ -143,17 +145,19 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   );
 }
 
-function RemovableFilter({ handleRemoveFilter, displayName, cssClasses }: {
-  handleRemoveFilter: () => void,
+function RemovableFilter<FilterType>({ handleRemoveFilter, filter, displayName, cssClasses }: {
+  handleRemoveFilter: (filter: FilterType) => void,
+  filter: FilterType,
   displayName: string,
   cssClasses: AppliedFiltersCssClasses
 }): JSX.Element {
+  const handleClick = useCallback(() => handleRemoveFilter(filter), [filter, handleRemoveFilter]);
   return (
     <div className={cssClasses.removableFilter}>
       <div className={cssClasses.filterLabel}>{displayName}</div>
       <button
         className={cssClasses.removeFilterButton}
-        onClick={handleRemoveFilter}
+        onClick={handleClick}
         aria-label={`Remove "${displayName}" filter`}>
         <CloseIcon />
       </button>
