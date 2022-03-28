@@ -34,8 +34,6 @@ export function DropdownInput(props: {
     updateFocusedItem
   } = useFocusContext();
 
-  const handleClick = useCallback(() => toggleDropdown(true), [toggleDropdown]);
-
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     toggleDropdown(true);
     updateFocusedItem(-1, e.target.value);
@@ -75,7 +73,6 @@ export function DropdownInput(props: {
       className={className}
       placeholder={placeholder}
       value={value}
-      onClick={handleClick}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
