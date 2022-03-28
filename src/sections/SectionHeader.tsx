@@ -49,7 +49,7 @@ export interface SectionHeaderProps {
   cssCompositionMethod?: CompositionMethod,
   /** The verticalKey associated with the section. */
   verticalKey: string,
-  /** Display a button to view all results for that section, if true. */
+  /** If true, displays a button to view all results for the section. */
   viewAllButton?: boolean,
   /** A function which returns the viewAll link based on the vertical and query. */
   getViewAllUrl?: (data: VerticalLink) => string
@@ -57,7 +57,7 @@ export interface SectionHeaderProps {
 
 /**
  * The header of a section which includes an icon, the section title,
- * applied query filters, and optionally a view all button.
+ * applied query filters, and optionally a View All button.
  *
  * @public
  *
