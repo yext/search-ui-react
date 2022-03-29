@@ -5,7 +5,7 @@ import { AnswersHeadlessContext } from '@yext/answers-headless-react';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
 
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
-import { featuredSnippetDAState, fieldValueDAState } from './DirectAnswer.fixtures';
+import { featuredSnippetDAState, fieldValueDAState } from '../__fixtures__/data/directanswers';
 
 const meta: ComponentMeta<typeof DirectAnswer> = {
   title: 'DirectAnswer',
