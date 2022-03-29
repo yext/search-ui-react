@@ -5,6 +5,7 @@ import { AnswersHeadlessContext, SearchTypeEnum } from '@yext/answers-headless-r
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { AppliedFiltersDisplay } from '../../src/components/AppliedFiltersDisplay';
 import { DisplayableFilters, DisplayableHierarchicalFacets } from '../__fixtures__/data/filters';
+import { builtInCssClasses } from '../../src/components/AppliedFilters';
 
 const meta: ComponentMeta<typeof AppliedFiltersDisplay> = {
   title: 'AppliedFilters',
@@ -18,6 +19,7 @@ export const Primary = () => {
       meta: { searchType: SearchTypeEnum.Vertical }
     })}>
       <AppliedFiltersDisplay
+        cssClasses={builtInCssClasses}
         staticFilters={DisplayableFilters.slice(0,2)}
         nlpFilters={[DisplayableFilters[2]]}
         facets={[DisplayableFilters[3]]}
