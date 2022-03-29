@@ -141,6 +141,14 @@ interface CheckboxCssClasses {
     input?: string;
     // (undocumented)
     label?: string;
+    // (undocumented)
+    optionContainer?: string;
+    // (undocumented)
+    optionContainer___disabled?: string;
+    // (undocumented)
+    tooltip?: string;
+    // (undocumented)
+    tooltipContainer?: string;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -314,6 +322,7 @@ const FilterGroupContext: Context<FilterGroupContextType | null>;
 interface FilterGroupContextType {
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     defaultFieldId?: string;
+    disableCheckboxOptions?: boolean;
     getCollapseProps: UseCollapseOutput['getCollapseProps'];
     getToggleProps: UseCollapseOutput['getToggleProps'];
     isExpanded: boolean;

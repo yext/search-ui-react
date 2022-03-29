@@ -18,7 +18,9 @@ export interface FilterGroupContextType {
   /** Returns the attributes used to toggle the filter group. */
   getToggleProps: UseCollapseOutput['getToggleProps'],
   /** Indicates whether or not the filter group is expanded. */
-  isExpanded: boolean
+  isExpanded: boolean,
+  /** Whether or not the checkbox options should be disabled. */
+  disableCheckboxOptions?: boolean
 }
 
 /**

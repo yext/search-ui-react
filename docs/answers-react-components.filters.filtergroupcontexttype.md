@@ -17,6 +17,7 @@ export interface FilterGroupContextType
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [defaultFieldId?](./answers-react-components.filters.filtergroupcontexttype.defaultfieldid.md) | string | <i>(Optional)</i> The default fieldId to use with child filter components e.g. [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
+|  [disableCheckboxOptions?](./answers-react-components.filters.filtergroupcontexttype.disablecheckboxoptions.md) | boolean | <i>(Optional)</i> Whether or not the checkbox options should be disabled. |
 |  [getCollapseProps](./answers-react-components.filters.filtergroupcontexttype.getcollapseprops.md) | UseCollapseOutput\['getCollapseProps'\] | Returns the attributes used to collapse the filter group. |
 |  [getToggleProps](./answers-react-components.filters.filtergroupcontexttype.gettoggleprops.md) | UseCollapseOutput\['getToggleProps'\] | Returns the attributes used to toggle the filter group. |
 |  [isExpanded](./answers-react-components.filters.filtergroupcontexttype.isexpanded.md) | boolean | Indicates whether or not the filter group is expanded. |

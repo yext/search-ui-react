@@ -5,6 +5,7 @@ import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { findSelectableFilter } from '../../utils/filterutils';
+import classNames from 'classnames';
 
 /**
  * Props for the {@link Filters.CheckboxOption}
@@ -43,13 +44,21 @@ export interface CheckboxOptionProps {
 export interface CheckboxCssClasses {
   input?: string,
   label?: string,
-  container?: string
+  container?: string,
+  optionContainer?: string,
+  optionContainer___disabled?: string,
+  tooltipContainer?: string,
+  tooltip?: string
 }
 
 const builtInCssClasses: CheckboxCssClasses = {
   label: 'text-neutral text-sm font-normal cursor-pointer',
   input: 'w-3.5 h-3.5 form-checkbox cursor-pointer border border-gray-300 rounded-sm text-primary focus:ring-primary',
-  container: 'flex items-center space-x-3'
+  container: 'flex items-center',
+  optionContainer: 'flex items-center space-x-3 peer',
+  optionContainer___disabled: 'opacity-50',
+  tooltipContainer: 'invisible peer-hover:visible relative -right-5 -top-5',
+  tooltip: 'absolute z-10 left-0 -top-0.5 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-gray-700 text-gray-100'
 };
 
 /**
@@ -60,7 +69,7 @@ const builtInCssClasses: CheckboxCssClasses = {
  * @param props - {@link Filters.CheckboxOptionProps}
  */
 export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
-  const { searchValue, defaultFieldId } = useFilterGroupContext();
+  const { searchValue, defaultFieldId, disableCheckboxOptions } = useFilterGroupContext();
   const {
     fieldId = defaultFieldId,
     value,
@@ -134,16 +143,30 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
+  const optionContainerClasses = classNames(cssClasses.optionContainer, {
+    [cssClasses.optionContainer___disabled ?? '']: disableCheckboxOptions
+  });
+
   return (
     <div className={cssClasses.container}>
-      <input
-        type='checkbox'
-        id={optionId}
-        checked={isSelected}
-        className={cssClasses.input}
-        onChange={handleChange}
-      />
-      <label className={cssClasses.label} htmlFor={optionId}>{label}</label>
+      <div className={optionContainerClasses}>
+        <input
+          type='checkbox'
+          id={optionId}
+          checked={isSelected}
+          className={cssClasses.input}
+          onChange={handleChange}
+          disabled={disableCheckboxOptions}
+        />
+        <label className={cssClasses.label} htmlFor={optionId}>{label}</label>
+      </div>
+      {disableCheckboxOptions &&
+        <div className={cssClasses.tooltipContainer}>
+          <div className={cssClasses.tooltip}>
+            Clear the range to select options.
+          </div>
+        </div>
+      }
     </div>
   );
 }
