@@ -23,7 +23,7 @@ export interface AppliedFiltersCssClasses {
   clearAllButton?: string
 }
 
-const builtInCssClasses: AppliedFiltersCssClasses = {
+export const builtInCssClasses: AppliedFiltersCssClasses = {
   // Use negative margin to remove space above the filters on mobile
   appliedFiltersContainer: 'flex flex-wrap -mt-3 md:mt-0 mb-2',
   appliedFiltersContainer___loading: 'opacity-50',
