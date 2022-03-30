@@ -19,9 +19,9 @@ export interface FilterGroupContextType
 |  [defaultFieldId?](./answers-react-components.filters.filtergroupcontexttype.defaultfieldid.md) | string | <i>(Optional)</i> The default fieldId to use with child filter components e.g. [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
 |  [getCollapseProps](./answers-react-components.filters.filtergroupcontexttype.getcollapseprops.md) | UseCollapseOutput\['getCollapseProps'\] | Returns the attributes used to collapse the filter group. |
 |  [getToggleProps](./answers-react-components.filters.filtergroupcontexttype.gettoggleprops.md) | UseCollapseOutput\['getToggleProps'\] | Returns the attributes used to toggle the filter group. |
-|  [isCheckboxOptionsDisabled?](./answers-react-components.filters.filtergroupcontexttype.ischeckboxoptionsdisabled.md) | boolean | <i>(Optional)</i> Whether or not the checkbox options should be disabled. |
 |  [isExpanded](./answers-react-components.filters.filtergroupcontexttype.isexpanded.md) | boolean | Indicates whether or not the filter group is expanded. |
+|  [isNumberRangeActive?](./answers-react-components.filters.filtergroupcontexttype.isnumberrangeactive.md) | boolean | <i>(Optional)</i> Whether or not the number range has input text. |
 |  [searchValue](./answers-react-components.filters.filtergroupcontexttype.searchvalue.md) | string | The value which is being used to search the FilterGroup. |
-|  [setIsCheckboxOptionsDisabled?](./answers-react-components.filters.filtergroupcontexttype.setischeckboxoptionsdisabled.md) | (value: boolean) =&gt; void | <i>(Optional)</i> Sets the value for whether or not the checkbox options should be disabled. |
+|  [setIsNumberRangeActive?](./answers-react-components.filters.filtergroupcontexttype.setisnumberrangeactive.md) | (value: boolean) =&gt; void | <i>(Optional)</i> Sets the value for whether or not the number range has input text. |
 |  [setSearchValue](./answers-react-components.filters.filtergroupcontexttype.setsearchvalue.md) | (value: string) =&gt; void | Sets the searchValue which is used to filter the FilterGroup. |
 

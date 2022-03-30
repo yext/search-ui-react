@@ -326,10 +326,10 @@ interface FilterGroupContextType {
     defaultFieldId?: string;
     getCollapseProps: UseCollapseOutput['getCollapseProps'];
     getToggleProps: UseCollapseOutput['getToggleProps'];
-    isCheckboxOptionsDisabled?: boolean;
     isExpanded: boolean;
+    isNumberRangeActive?: boolean;
     searchValue: string;
-    setIsCheckboxOptionsDisabled?: (value: boolean) => void;
+    setIsNumberRangeActive?: (value: boolean) => void;
     setSearchValue: (value: string) => void;
 }
 

@@ -71,7 +71,7 @@ const builtInCssClasses: CheckboxCssClasses = {
  * @param props - {@link Filters.CheckboxOptionProps}
  */
 export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
-  const { searchValue, defaultFieldId, isCheckboxOptionsDisabled } = useFilterGroupContext();
+  const { searchValue, defaultFieldId, isNumberRangeActive } = useFilterGroupContext();
   const {
     fieldId = defaultFieldId,
     value,
@@ -146,10 +146,10 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
   const inputClasses = classNames(cssClasses.input, {
-    [cssClasses.input___disabled ?? '']: isCheckboxOptionsDisabled
+    [cssClasses.input___disabled ?? '']: isNumberRangeActive
   });
   const labelClasses = classNames(cssClasses.label, {
-    [cssClasses.label___disabled ?? '']: isCheckboxOptionsDisabled
+    [cssClasses.label___disabled ?? '']: isNumberRangeActive
   });
 
   return (
@@ -161,11 +161,11 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
           checked={isSelected}
           className={inputClasses}
           onChange={handleChange}
-          disabled={isCheckboxOptionsDisabled}
+          disabled={isNumberRangeActive}
         />
         <label className={labelClasses} htmlFor={optionId}>{label}</label>
       </div>
-      {isCheckboxOptionsDisabled &&
+      {isNumberRangeActive &&
         <div className={cssClasses.tooltipContainer}>
           <div className={cssClasses.tooltip}>
             Clear the range to select options.
