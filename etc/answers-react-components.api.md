@@ -13,6 +13,8 @@ import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
+import { LowerNumberRangeLimit } from '@yext/answers-headless-react';
+import { NumberRangeValue } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
@@ -20,6 +22,7 @@ import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
 import { SelectableFilter } from '@yext/answers-headless-react';
+import { UpperNumberRangeLimit } from '@yext/answers-headless-react';
 import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
@@ -157,7 +160,7 @@ interface CheckboxOptionProps {
     fieldId?: string;
     label?: string;
     selectedByDefault?: boolean;
-    value: string | number | boolean;
+    value: string | number | boolean | NumberRangeValue;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -353,7 +356,8 @@ declare namespace Filters {
         HierarchicalFacetProps,
         HierarchicalFacetCssClasses,
         ApplyFiltersButton,
-        ApplyFiltersButtonProps
+        ApplyFiltersButtonProps,
+        RangeInput
     }
 }
 export { Filters }
@@ -493,6 +497,12 @@ export interface PaginationCssClasses {
     // (undocumented)
     selectedLabel?: string;
 }
+
+// Warning: (ae-forgotten-export) The symbol "RangeInputProps" needs to be exported by the entry point index.d.ts
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function RangeInput(props: RangeInputProps): JSX.Element | null;
 
 // @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
