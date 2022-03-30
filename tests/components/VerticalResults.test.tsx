@@ -1,8 +1,9 @@
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
 import { State, Source, VerticalSearchState } from '@yext/answers-headless-react';
 import { StandardCard } from '../../src/components/cards/StandardCard';
 import { spyOnActions, mockAnswersState } from '../__utils__/mocks';
+import userEvent from '@testing-library/user-event';
 
 const ctas = {
   c_primaryCTA: {
@@ -217,7 +218,7 @@ describe('Pagination', () => {
     const executeSearch = jest.spyOn(require('../../src/utils/search-operations'), 'executeSearch');
 
     // navigate to the last results page
-    fireEvent.click(screen.getByText(`${mockedVerticalSearchState.resultsCount}`));
+    userEvent.click(screen.getByText(`${mockedVerticalSearchState.resultsCount}`));
     expect(actions.setOffset).toHaveBeenCalledWith(mockedVerticalSearchState.resultsCount - 1);
     expect(executeSearch).toHaveBeenCalledTimes(1);
   });

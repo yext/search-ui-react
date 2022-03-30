@@ -96,18 +96,12 @@ function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
           ? verticalResults.appliedQueryFilters
           : undefined;
 
-        /* const resultsCountConfig = {
-          resultsCount: verticalResults.resultsCount,
-          resultsLength: results.length
-        }; */
-
         return (
           <SectionComponent
             results={results}
             verticalKey={verticalKey}
             header={<SectionHeader {...{
               label,
-              // resultsCountConfig,
               appliedQueryFilters,
               verticalKey,
               viewAllButton: verticalConfig.viewAllButton,

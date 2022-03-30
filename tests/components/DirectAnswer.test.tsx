@@ -1,9 +1,10 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { DirectAnswerState } from '@yext/answers-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
 import { RecursivePartial, mockAnswersState } from '../__utils__/mocks';
-import { fieldValueDAState, featuredSnippetDAState } from './DirectAnswer.fixtures';
+import { fieldValueDAState, featuredSnippetDAState } from '../__fixtures__/data/directanswers';
+import userEvent from '@testing-library/user-event';
 
 jest.mock('@yext/answers-headless-react');
 
@@ -81,7 +82,7 @@ function runAnalyticsTestSuite() {
   it('reports link click analytics', () => {
     render(<DirectAnswer />);
     const link = screen.getByRole('link');
-    fireEvent.click(link);
+    userEvent.click(link);
     expect(useAnalytics().report).toHaveBeenCalledTimes(1);
     expect(useAnalytics().report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'CTA_CLICK',
@@ -94,7 +95,7 @@ function runAnalyticsTestSuite() {
   it('reports THUMBS_UP feedback', () => {
     render(<DirectAnswer />);
     const thumbsUp = screen.queryAllByRole('button')[0];
-    fireEvent.click(thumbsUp);
+    userEvent.click(thumbsUp);
     expect(useAnalytics().report).toHaveBeenCalledTimes(1);
     expect(useAnalytics().report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_UP',
@@ -107,7 +108,7 @@ function runAnalyticsTestSuite() {
   it('reports THUMBS_DOWN feedback', () => {
     render(<DirectAnswer />);
     const thumbsDown = screen.queryAllByRole('button')[1];
-    fireEvent.click(thumbsDown);
+    userEvent.click(thumbsDown);
     expect(useAnalytics().report).toHaveBeenCalledTimes(1);
     expect(useAnalytics().report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_DOWN',
