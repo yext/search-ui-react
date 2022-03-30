@@ -162,7 +162,7 @@ function dataForRender(result: Result): Partial<StandardCardData> {
     title: result.highlightedFields?.name ?? result.rawData.name,
     description: result.highlightedFields?.description ?? result.rawData.description,
     cta1: result.rawData.c_primaryCTA,
-    cta2: result.rawData.c_secondaryCTA as CtaData,
+    cta2: result.rawData.c_secondaryCTA,
   };
 
   return validateData(data, {
