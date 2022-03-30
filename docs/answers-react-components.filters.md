@@ -34,6 +34,8 @@
 |  [FiltersContextType](./answers-react-components.filters.filterscontexttype.md) | FiltersContext is responsible for handling filter selection. |
 |  [HierarchicalFacetCssClasses](./answers-react-components.filters.hierarchicalfacetcssclasses.md) | The CSS class interface for [Filters.HierarchicalFacet()](./answers-react-components.filters.hierarchicalfacet.md)<!-- -->. |
 |  [HierarchicalFacetProps](./answers-react-components.filters.hierarchicalfacetprops.md) | Props for [Filters.HierarchicalFacet()](./answers-react-components.filters.hierarchicalfacet.md) |
+|  [RangeInputCssClasses](./answers-react-components.filters.rangeinputcssclasses.md) | The CSS class interface for [Filters.RangeInput()](./answers-react-components.filters.rangeinput.md)<!-- -->. |
+|  [RangeInputProps](./answers-react-components.filters.rangeinputprops.md) | Props for the [Filters.RangeInput()](./answers-react-components.filters.rangeinput.md) |
 |  [SearchInputProps](./answers-react-components.filters.searchinputprops.md) | Props for the [Filters.SearchInput()](./answers-react-components.filters.searchinput.md)<!-- -->. |
 
 ## Variables

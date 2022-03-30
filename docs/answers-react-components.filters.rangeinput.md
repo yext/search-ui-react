@@ -16,7 +16,7 @@ export declare function RangeInput(props: RangeInputProps): JSX.Element | null;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | RangeInputProps |  |
+|  props | RangeInputProps | [Filters.RangeInputProps](./answers-react-components.filters.rangeinputprops.md) |
 
 <b>Returns:</b>
 
