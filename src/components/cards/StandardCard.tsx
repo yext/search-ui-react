@@ -137,12 +137,10 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
         <div className={cssClasses.body}>
           {data.description &&
           <div className={cssClasses.descriptionContainer}>
-            <span>
-              {renderHighlightedValue(data.description, {
-                highlighted: cssClasses.descriptionHighlighted,
-                nonHighlighted: cssClasses.descriptionNonHighlighted
-              })}
-            </span>
+            {renderHighlightedValue(data.description, {
+              highlighted: cssClasses.descriptionHighlighted,
+              nonHighlighted: cssClasses.descriptionNonHighlighted
+            })}
           </div>}
           {renderCTAs(data.cta1, data.cta2)}
         </div>
