@@ -140,11 +140,13 @@ interface CheckboxCssClasses {
     // (undocumented)
     input?: string;
     // (undocumented)
+    input___disabled?: string;
+    // (undocumented)
     label?: string;
     // (undocumented)
-    optionContainer?: string;
+    label___disabled?: string;
     // (undocumented)
-    optionContainer___disabled?: string;
+    optionContainer?: string;
     // (undocumented)
     tooltip?: string;
     // (undocumented)

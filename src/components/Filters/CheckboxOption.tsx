@@ -43,22 +43,24 @@ export interface CheckboxOptionProps {
  */
 export interface CheckboxCssClasses {
   input?: string,
+  input___disabled?: string,
   label?: string,
+  label___disabled?: string,
   container?: string,
   optionContainer?: string,
-  optionContainer___disabled?: string,
   tooltipContainer?: string,
   tooltip?: string
 }
 
 const builtInCssClasses: CheckboxCssClasses = {
   label: 'text-neutral text-sm font-normal cursor-pointer',
+  label___disabled: 'opacity-50',
   input: 'w-3.5 h-3.5 form-checkbox cursor-pointer border border-gray-300 rounded-sm text-primary focus:ring-primary',
+  input___disabled: 'border-gray-200 bg-gray-50',
   container: 'flex items-center',
   optionContainer: 'flex items-center space-x-3 peer',
-  optionContainer___disabled: 'opacity-50',
   tooltipContainer: 'invisible peer-hover:visible relative -right-5 -top-5',
-  tooltip: 'absolute z-10 left-0 -top-0.5 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-gray-700 text-gray-100'
+  tooltip: 'absolute z-10 left-0 -top-0.5 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-neutral-light'
 };
 
 /**
@@ -143,22 +145,25 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
-  const optionContainerClasses = classNames(cssClasses.optionContainer, {
-    [cssClasses.optionContainer___disabled ?? '']: isCheckboxOptionsDisabled
+  const inputClasses = classNames(cssClasses.input, {
+    [cssClasses.input___disabled ?? '']: isCheckboxOptionsDisabled
+  });
+  const labelClasses = classNames(cssClasses.label, {
+    [cssClasses.label___disabled ?? '']: isCheckboxOptionsDisabled
   });
 
   return (
     <div className={cssClasses.container}>
-      <div className={optionContainerClasses}>
+      <div className={cssClasses.optionContainer}>
         <input
           type='checkbox'
           id={optionId}
           checked={isSelected}
-          className={cssClasses.input}
+          className={inputClasses}
           onChange={handleChange}
           disabled={isCheckboxOptionsDisabled}
         />
-        <label className={cssClasses.label} htmlFor={optionId}>{label}</label>
+        <label className={labelClasses} htmlFor={optionId}>{label}</label>
       </div>
       {isCheckboxOptionsDisabled &&
         <div className={cssClasses.tooltipContainer}>
