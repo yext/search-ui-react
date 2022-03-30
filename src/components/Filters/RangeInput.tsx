@@ -72,32 +72,7 @@ const builtInCssClasses: RangeInputCssClasses = {
 };
 
 /**
- * Creates the filter's display name based on the upper and lower limits.
- */
-const getDefaultDisplayName = (start?: LowerNumberRangeLimit, end?: UpperNumberRangeLimit) => {
-  if (start && end) {
-    return `${start.value} - ${end.value}`;
-  } else if (start && !end) {
-    return `Over ${start.value}`;
-  } else if (end && !start) {
-    return `Up to ${end.value}`;
-  }
-  return '';
-};
-
-/**
- * Given a string, returns the corresponding number, or undefined if it is NaN.
- */
-const parseNumber = (num?: string) => {
-  const parsedNum = parseFloat(num ?? '');
-  if (isNaN(parsedNum)) {
-    return undefined;
-  }
-  return parsedNum;
-};
-
-/**
- * A ranger input component that represents a single number range filter.
+ * Represents a single number range static filter which accepts user input.
  *
  * @public
  *
@@ -260,4 +235,29 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       }
     </div>
   );
+}
+
+/**
+ * Creates the filter's display name based on the upper and lower limits.
+ */
+function getDefaultDisplayName(start?: LowerNumberRangeLimit, end?: UpperNumberRangeLimit) {
+  if (start && end) {
+    return `${start.value} - ${end.value}`;
+  } else if (start && !end) {
+    return `Over ${start.value}`;
+  } else if (end && !start) {
+    return `Up to ${end.value}`;
+  }
+  return '';
+}
+
+/**
+ * Given a string, returns the corresponding number, or undefined if it is NaN.
+ */
+function parseNumber(num?: string) {
+  const parsedNum = parseFloat(num ?? '');
+  if (isNaN(parsedNum)) {
+    return undefined;
+  }
+  return parsedNum;
 }
