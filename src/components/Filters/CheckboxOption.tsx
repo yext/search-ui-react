@@ -72,6 +72,7 @@ const builtInCssClasses: CheckboxCssClasses = {
  */
 export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const { searchValue, defaultFieldId, isNumberRangeActive } = useFilterGroupContext();
+  const isDisabled = isNumberRangeActive;
   const {
     fieldId = defaultFieldId,
     value,
@@ -146,10 +147,10 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
   const inputClasses = classNames(cssClasses.input, {
-    [cssClasses.input___disabled ?? '']: isNumberRangeActive
+    [cssClasses.input___disabled ?? '']: isDisabled
   });
   const labelClasses = classNames(cssClasses.label, {
-    [cssClasses.label___disabled ?? '']: isNumberRangeActive
+    [cssClasses.label___disabled ?? '']: isDisabled
   });
 
   return (
@@ -161,11 +162,11 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
           checked={isSelected}
           className={inputClasses}
           onChange={handleChange}
-          disabled={isNumberRangeActive}
+          disabled={isDisabled}
         />
         <label className={labelClasses} htmlFor={optionId}>{label}</label>
       </div>
-      {isNumberRangeActive &&
+      {isDisabled &&
         <div className={cssClasses.tooltipContainer}>
           <div className={cssClasses.tooltip}>
             Clear the range to select options.
