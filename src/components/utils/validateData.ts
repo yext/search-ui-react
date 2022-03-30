@@ -30,17 +30,21 @@ export function isNumber(data: any): data is number {
   return typeof data === 'number';
 }
 
+export function isStringOrHighlightedValue(data: any): data is string | HighlightedValue {
+  return isString(data) || isHighlightedValue(data);
+}
+
 /**
  * Whether or not the param is a HighlightedValue.
  *
  * Does not check that every value within matchedSubstrings is a number.
  */
-export function isHighlightedValue(data: any): data is HighlightedValue {
+function isHighlightedValue(data: any): data is HighlightedValue {
   return !!(
     data &&
     typeof data === 'object' &&
     !Array.isArray(data) &&
-    data.value &&
+    typeof(data.value) === 'string' &&
     Array.isArray(data.matchedSubstrings)
   );
 }

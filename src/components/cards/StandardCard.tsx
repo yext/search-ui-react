@@ -5,11 +5,11 @@ import {
   ThumbsFeedback,
   ThumbsFeedbackCssClasses
 } from '../ThumbsFeedback';
-import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
-import { isHighlightedValue, validateData } from '../utils/validateData';
 import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
-import { HighlightedValue } from '@yext/answers-headless-react';
+import { HighlightedValue, Result } from '@yext/answers-headless-react';
 import { renderHighlightedValue } from '../utils/renderHighlightedValue';
+import { CtaData, isCtaData, StandardCardData } from '../../models/StandardCardData';
+import { isStringOrHighlightedValue, validateData } from '../utils/validateData';
 
 /**
  * Props for a StandardCard.
@@ -19,13 +19,6 @@ import { renderHighlightedValue } from '../utils/renderHighlightedValue';
 export interface StandardCardProps extends CardProps {
   /** Whether or not to show an ordinal for numbering the card. */
   showOrdinal?: boolean,
-  /** Custom mappings for the data fields used in the card. */
-  fieldMappings?: {
-    title?: FieldData,
-    description?: FieldData,
-    cta1?: FieldData,
-    cta2?: FieldData
-  },
   /** Whether or not to show thumbs up/down buttons to provide feedback on the result card */
   showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -33,25 +26,6 @@ export interface StandardCardProps extends CardProps {
   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
-
-const defaultFieldMappings: Required<StandardCardProps['fieldMappings']> = {
-  title: {
-    mappingType: 'HIGHLIGHTED_FIELD',
-    apiName: 'name'
-  },
-  description: {
-    mappingType: 'HIGHLIGHTED_FIELD',
-    apiName: 'description'
-  },
-  cta1: {
-    mappingType: 'FIELD',
-    apiName: 'c_primaryCTA'
-  },
-  cta2: {
-    mappingType: 'FIELD',
-    apiName: 'c_secondaryCTA'
-  },
-};
 
 /**
  * The CSS class interface used for {@link StandardCard}.
@@ -93,22 +67,6 @@ const builtInCssClasses: StandardCardCssClasses = {
   descriptionNonHighlighted: 'font-normal'
 };
 
-export interface CtaData {
-  label: string,
-  link: string,
-  linkType: string
-}
-
-function isCtaData(data: unknown): data is CtaData {
-  if (typeof data !== 'object' || data === null) {
-    return false;
-  }
-  const expectedKeys = ['label', 'link', 'linkType'];
-  return expectedKeys.every(key => {
-    return key in data;
-  });
-}
-
 /**
  * This Component renders the base result card.
  *
@@ -120,7 +78,6 @@ function isCtaData(data: unknown): data is CtaData {
  */
 export function StandardCard(props: StandardCardProps): JSX.Element {
   const {
-    fieldMappings: customFieldMappings,
     showOrdinal,
     result,
     customCssClasses,
@@ -129,17 +86,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
-  const transformedFieldData = applyFieldMappings(result.rawData, result.highlightedFields, {
-    ...defaultFieldMappings,
-    ...customFieldMappings
-  });
-
-  const data = validateData(transformedFieldData, {
-    title: isHighlightedValue,
-    description: isHighlightedValue,
-    cta1: isCtaData,
-    cta2: isCtaData
-  });
+  const data = dataForRender(result);
 
   const handleCtaClick = useCardAnalyticsCallback(result, 'CTA_CLICK');
   const handleTitleClick = useCardAnalyticsCallback(result, 'TITLE_CLICK');
@@ -165,7 +112,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     return null;
   }
 
-  function renderTitle(title: HighlightedValue) {
+  function renderTitle(title: HighlightedValue | string) {
     const titleJsx = renderHighlightedValue(title, {
       highlighted: cssClasses.titleHighlighted,
       nonHighlighted: cssClasses.titleNonHighlighted
@@ -210,3 +157,18 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   );
 }
 
+function dataForRender(result: Result): Partial<StandardCardData> {
+  const data = {
+    title: result.highlightedFields?.name ?? result.rawData.name,
+    description: result.highlightedFields?.description ?? result.rawData.description,
+    cta1: result.rawData.c_primaryCTA,
+    cta2: result.rawData.c_secondaryCTA as CtaData,
+  };
+
+  return validateData(data, {
+    title: isStringOrHighlightedValue,
+    description: isStringOrHighlightedValue,
+    cta1: isCtaData,
+    cta2: isCtaData
+  });
+}

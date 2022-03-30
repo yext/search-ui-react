@@ -14,7 +14,6 @@ export { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 export { EntityPreviewsProps } from './EntityPreviews';
 export { EntityPreviews } from './EntityPreviews';
 export { FocusedItemData } from './Dropdown/FocusContext';
-export { FieldData, FieldDataConstant, FieldDataPath, HighlightedFieldDataPath } from './utils/applyFieldMappings';
 
 export {
   SpellCheck,
