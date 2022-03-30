@@ -322,11 +322,12 @@ const FilterGroupContext: Context<FilterGroupContextType | null>;
 interface FilterGroupContextType {
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     defaultFieldId?: string;
-    disableCheckboxOptions?: boolean;
     getCollapseProps: UseCollapseOutput['getCollapseProps'];
     getToggleProps: UseCollapseOutput['getToggleProps'];
+    isCheckboxOptionsDisabled?: boolean;
     isExpanded: boolean;
     searchValue: string;
+    setIsCheckboxOptionsDisabled?: (value: boolean) => void;
     setSearchValue: (value: string) => void;
 }
 

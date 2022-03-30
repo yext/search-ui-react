@@ -20,7 +20,9 @@ export interface FilterGroupContextType {
   /** Indicates whether or not the filter group is expanded. */
   isExpanded: boolean,
   /** Whether or not the checkbox options should be disabled. */
-  disableCheckboxOptions?: boolean
+  isCheckboxOptionsDisabled?: boolean,
+  /** Sets the value for whether or not the checkbox options should be disabled. */
+  setIsCheckboxOptionsDisabled?: (value: boolean) => void
 }
 
 /**
