@@ -31,7 +31,7 @@ const builtInCssClasses: FilterSearchCssClasses = {
   container: 'mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
   dropdownContainer: 'absolute z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 px-4 mt-1',
-  inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral-light',
+  inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
   sectionContainer: 'pb-2',
   sectionLabel: 'text-sm text-neutral-dark font-semibold pb-2',
   focusedOption: 'bg-gray-100',

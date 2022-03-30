@@ -23,7 +23,7 @@ export interface SearchInputProps {
  */
 export function SearchInput(props: SearchInputProps): JSX.Element {
   const {
-    className = 'text-sm bg-white h-9 w-full outline-none p-2 mb-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral-light',
+    className = 'text-sm form-input bg-white h-9 w-full outline-none p-2 mb-2 rounded-md border border-gray-300 focus:ring-primary focus:ring-0 text-neutral-dark placeholder:text-neutral',
     placeholderText = 'Search here...'
   } = props;
   const { searchValue, setSearchValue } = useFilterGroupContext();

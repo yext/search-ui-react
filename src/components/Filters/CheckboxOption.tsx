@@ -1,4 +1,4 @@
-import { Filter, Matcher, useAnswersUtilities } from '@yext/answers-headless-react';
+import { Filter, Matcher, NumberRangeValue, useAnswersUtilities } from '@yext/answers-headless-react';
 import { useCallback, useEffect, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
@@ -13,7 +13,7 @@ import { findSelectableFilter } from '../../utils/filterutils';
  */
 export interface CheckboxOptionProps {
   /** The value used to perform filtering. */
-  value: string | number | boolean,
+  value: string | number | boolean | NumberRangeValue,
   /**
    * The fieldId used for filtering.
    *

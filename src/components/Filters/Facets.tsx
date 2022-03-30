@@ -5,6 +5,7 @@ import {
   useAnswersState
 } from '@yext/answers-headless-react';
 import { ReactNode, useMemo } from 'react';
+import { isNearFilterValue } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
@@ -41,7 +42,7 @@ export interface FacetsProps {
  */
 export function Facets({
   children,
-  className = 'md:w-40',
+  className = 'md:w-56',
   searchOnChange = true
 }: FacetsProps): JSX.Element {
   const answersActions = useAnswersActions();
@@ -62,8 +63,8 @@ export function Facets({
   const filtersContextInstance: FiltersContextType = useMemo(() => {
     return {
       selectFilter(filter: DisplayableFilter) {
-        if (typeof filter.value === 'object') {
-          console.error('Facets only support string, number, and boolean. Found the following object value instead:', filter.value);
+        if (isNearFilterValue(filter.value)) {
+          console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
           return;
         }
         const facetOption = {

@@ -1,4 +1,5 @@
 import { NearFilterValue, Filter, SelectableFilter } from '@yext/answers-headless-react';
+import isEqual from 'lodash/isEqual';
 
 /**
  * Check if the object follows NearFilterValue interface
@@ -17,7 +18,7 @@ export function isDuplicateFilter(thisFilter: Filter, otherFilter: Filter): bool
   if (thisFilter.matcher !== otherFilter.matcher) {
     return false;
   }
-  if (thisFilter.value !== otherFilter.value) {
+  if (!isEqual(thisFilter.value, otherFilter.value)) {
     return false;
   }
   return true;
