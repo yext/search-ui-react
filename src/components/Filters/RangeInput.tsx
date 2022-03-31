@@ -1,9 +1,8 @@
 import { Filter, Matcher,NumberRangeValue, useAnswersActions, useAnswersState, LowerNumberRangeLimit, UpperNumberRangeLimit } from '@yext/answers-headless-react';
 import { useCallback, useMemo, useState } from 'react';
-import { v4 as uuid } from 'uuid';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { findSelectableFilter } from '../../utils/filterutils';
+import { findSelectableFilter, isNearFilterValue } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
 
@@ -14,18 +13,14 @@ import classNames from 'classnames';
  */
 export interface RangeInputProps {
   /**
-   * The fieldId used for filtering.
+   * Returns the filter's display name based on the range values which is used when the filter
+   * is displayed by other components such as AppliedFilters.
    *
    * @remarks
-   * When fieldId is unspecified, it defaults to the defaultFieldId of the nearest
-   * {@link Filters.FilterGroup}. If there is no fieldId or defaultFieldId, the component does not render and
-   * an error is logged.
+   * By default, the displayName separates the range with a dash such as '10 - 20'.
+   * If the range is unbounded, it will display as 'Up to 20' or 'Over 10'.
    */
-  fieldId?: string,
-  /**
-   * Returns the display name based on the range's start and end values.
-   */
-  getDisplayName?: (start?: LowerNumberRangeLimit, end?: UpperNumberRangeLimit) => string,
+  getFilterDisplayName?: (value: NumberRangeValue) => string,
   /**
    * An optional element which renders in front of the input text.
    */
@@ -79,25 +74,22 @@ const builtInCssClasses: RangeInputCssClasses = {
  * @param props - {@link Filters.RangeInputProps}
  */
 export function RangeInput(props: RangeInputProps): JSX.Element | null {
-  const { defaultFieldId } = useFilterGroupContext();
+  const { defaultFieldId: fieldId } = useFilterGroupContext();
   const {
-    fieldId = defaultFieldId,
-    getDisplayName = getDefaultDisplayName,
+    getFilterDisplayName = getDefaultFilterDisplayName,
     inputPrefix
   } = props;
   const cssClasses = useComposedCssClasses(
     builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
-  const minInputId = useMemo(() => uuid(), []);
-  const maxInputId = useMemo(() => uuid(), []);
   const answersActions = useAnswersActions();
-  const [minRangeInput, setMinRangeInput] = useState<string | undefined>(undefined);
-  const [maxRangeInput, setMaxRangeInput] = useState<string | undefined>(undefined);
+  const [minRangeInput, setMinRangeInput] = useState<string>('');
+  const [maxRangeInput, setMaxRangeInput] = useState<string>('');
   const staticFilters = useAnswersState(state => state.filters.static);
 
-  const minRange = parseNumber(minRangeInput);
-  const maxRange = parseNumber(maxRangeInput);
-
   const value: NumberRangeValue = useMemo(() => {
+    const minRange = parseNumber(minRangeInput);
+    const maxRange = parseNumber(maxRangeInput);
+
     return {
       ...(minRange !== undefined && {
         start: {
@@ -112,9 +104,9 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
         }
       })
     };
-  }, [maxRange, minRange]);
+  }, [maxRangeInput, minRangeInput]);
 
-  const displayName = getDisplayName(value.start, value.end);
+  const displayName = getFilterDisplayName(value);
 
   const rangeFilter: Filter = useMemo(() => {
     return {
@@ -124,13 +116,9 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     };
   }, [fieldId, value]);
 
-  // Find a selected static range filter with the same fieldId
-  const selectedFilterFromStorage = staticFilters?.find(filter =>
-    filter.fieldId === fieldId && filter.matcher === Matcher.Between && filter.selected === true
-  );
   // Find a static filter which matches the current range input
-  const matchingFilterFromStorage = findSelectableFilter(rangeFilter, staticFilters ?? []);
-  const isSelectedInStorage = matchingFilterFromStorage?.selected === true;
+  const matchingFilter = findSelectableFilter(rangeFilter, staticFilters ?? []);
+  const isSelectedInAnswersState = matchingFilter?.selected === true;
 
   const isValidNumberInput = useCallback(number => {
     const numberRegex = new RegExp(/^\d*\.?\d*$/);
@@ -148,9 +136,15 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   }, [isValidNumberInput]);
 
   const handleClickApply = useCallback(() => {
-    selectedFilterFromStorage && answersActions.setFilterOption({
-      ...selectedFilterFromStorage,
-      selected: false
+    // Find a selected static range filters with the same fieldId
+    const selectedRangeFilters = staticFilters?.filter(filter =>
+      filter.fieldId === fieldId && filter.selected === true && filter.matcher === Matcher.Between
+    );
+    selectedRangeFilters?.forEach(filter => {
+      answersActions.setFilterOption({
+        ...filter,
+        selected: false
+      });
     });
     answersActions.setFilterOption({
       ...rangeFilter,
@@ -159,11 +153,11 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     });
     answersActions.setOffset(0);
     executeSearch(answersActions);
-  }, [answersActions, displayName, rangeFilter, selectedFilterFromStorage]);
+  }, [answersActions, displayName, fieldId, rangeFilter, staticFilters]);
 
   const handleClickClear = useCallback(() => {
-    setMinRangeInput(undefined);
-    setMaxRangeInput(undefined);
+    setMinRangeInput('');
+    setMaxRangeInput('');
   }, []);
 
   const shouldRenderOption: boolean = useMemo(() => {
@@ -179,9 +173,8 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     return null;
   }
 
-  const isUserInput = minRangeInput || maxRangeInput;
-  const renderApplyButton = isUserInput && !isSelectedInStorage;
-  const renderButtons = isUserInput || renderApplyButton;
+  const hasUserInput = minRangeInput || maxRangeInput;
+  const renderApplyButton = hasUserInput && !isSelectedInAnswersState;
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,
@@ -198,7 +191,6 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
             inputMode='decimal'
             value={minRangeInput ?? ''}
             placeholder='Min'
-            id={minInputId}
             className={inputClasses}
             onChange={handleMinChange}
           />
@@ -211,15 +203,14 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
             inputMode='decimal'
             value={maxRangeInput ?? ''}
             placeholder='Max'
-            id={maxInputId}
             className={inputClasses}
             onChange={handleMaxChange}
           />
         </div>
       </div>
-      {renderButtons &&
+      {hasUserInput &&
         <div className={cssClasses.buttonsContainer}>
-          {isUserInput &&
+          {hasUserInput &&
             <button
               className={cssClasses.clearButton}
               onClick={handleClickClear}>Clear min and max
@@ -238,9 +229,12 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
 }
 
 /**
- * Creates the filter's display name based on the upper and lower limits.
+ * Creates the filter's display name based on the number range.
  */
-function getDefaultDisplayName(start?: LowerNumberRangeLimit, end?: UpperNumberRangeLimit) {
+function getDefaultFilterDisplayName(numberRange: NumberRangeValue) {
+  const start = numberRange.start;
+  const end = numberRange.end;
+
   if (start && end) {
     return `${start.value} - ${end.value}`;
   } else if (start && !end) {
