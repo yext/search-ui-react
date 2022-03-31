@@ -1,7 +1,7 @@
-import { VerticalResultsDisplay } from '../components/VerticalResultsDisplay';
-import { SectionProps } from '../models/sectionComponent';
-import { StandardCard } from '../components/cards/StandardCard';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { VerticalResultsDisplay } from '../VerticalResultsDisplay';
+import { SectionProps } from '../../models/sectionComponent';
+import { StandardCard } from '../cards/StandardCard';
+import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 
 /**
  * The CSS class interface used for {@link StandardSection}.

@@ -89,5 +89,6 @@ export {
   HighlightedValueCssClasses
 } from './utils/renderHighlightedValue';
 
+export * from './sections';
 export * from './AnalyticsProvider';
 export { Filters };
