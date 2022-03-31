@@ -95,20 +95,15 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     };
   }, [fieldId, maxRangeInput, minRangeInput]);
 
-  const isValidNumberInput = useCallback(number => {
-    const numberRegex = new RegExp(/^\d*\.?\d*$/);
-    return numberRegex.test(number);
-  }, []);
-
   const handleMinChange = useCallback(event => {
     const input = event?.target?.value;
-    isValidNumberInput(input) && setMinRangeInput(input);
-  }, [isValidNumberInput]);
+    validateNumericInput(input) && setMinRangeInput(input);
+  }, []);
 
   const handleMaxChange = useCallback(event => {
     const input = event?.target?.value;
-    isValidNumberInput(input) && setMaxRangeInput(input);
-  }, [isValidNumberInput]);
+    validateNumericInput(input) && setMaxRangeInput(input);
+  }, []);
 
   const handleClickApply = useCallback(() => {
     const displayName = getFilterDisplayName(rangeFilter.value);
@@ -212,4 +207,15 @@ function getDefaultFilterDisplayName(numberRange: NumberRangeValue) {
     return `Up to ${end.value}`;
   }
   return '';
+}
+
+/**
+ * Returns true only if the provided string passes the numeric validation.
+ *
+ * @remarks
+ * Allows whole numbers and numbers with a single period.
+ */
+function validateNumericInput(str: string) {
+  const numberRegex = new RegExp(/^\d*\.?\d*$/);
+  return numberRegex.test(str);
 }
