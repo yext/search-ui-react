@@ -34,6 +34,8 @@ export function Facets() {
                         <Filters.CheckboxOption
                           key={o.displayName}
                           value={o.value}
+                          matcher={o.matcher}
+                          label={o.displayName}
                           fieldId={f.fieldId}
                         />
                       )}

@@ -35,6 +35,7 @@ export function FilterGroup(props: FilterGroupProps): JSX.Element {
   } = props;
 
   const [searchValue, setSearchValue] = useState('');
+  const [isOptionsDisabled, setIsOptionsDisabled] = useState(false);
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({ defaultExpanded });
   const FilterGroupContextInstance = useMemo(() => {
     return {
@@ -43,9 +44,18 @@ export function FilterGroup(props: FilterGroupProps): JSX.Element {
       setSearchValue,
       getCollapseProps,
       getToggleProps,
-      isExpanded
+      isExpanded,
+      isOptionsDisabled,
+      setIsOptionsDisabled
     };
-  }, [defaultFieldId, getCollapseProps, getToggleProps, isExpanded, searchValue]);
+  }, [
+    defaultFieldId,
+    getCollapseProps,
+    getToggleProps,
+    isExpanded,
+    searchValue,
+    isOptionsDisabled
+  ]);
 
   return (
     <FilterGroupContext.Provider value={FilterGroupContextInstance}>
