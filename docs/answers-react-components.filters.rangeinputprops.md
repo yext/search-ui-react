@@ -18,7 +18,6 @@ export interface RangeInputProps
 |  --- | --- | --- |
 |  [cssCompositionMethod?](./answers-react-components.filters.rangeinputprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.filters.rangeinputprops.customcssclasses.md) | RangeInputCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling defined by [Filters.RangeInputCssClasses](./answers-react-components.filters.rangeinputcssclasses.md) |
-|  [fieldId?](./answers-react-components.filters.rangeinputprops.fieldid.md) | string | <i>(Optional)</i> The fieldId used for filtering. |
-|  [getDisplayName?](./answers-react-components.filters.rangeinputprops.getdisplayname.md) | (start?: LowerNumberRangeLimit, end?: UpperNumberRangeLimit) =&gt; string | <i>(Optional)</i> Returns the display name based on the range's start and end values. |
+|  [getFilterDisplayName?](./answers-react-components.filters.rangeinputprops.getfilterdisplayname.md) | (value: NumberRangeValue) =&gt; string | <i>(Optional)</i> Returns the filter's display name based on the range values which is used when the filter is displayed by other components such as AppliedFilters. |
 |  [inputPrefix?](./answers-react-components.filters.rangeinputprops.inputprefix.md) | JSX.Element | <i>(Optional)</i> An optional element which renders in front of the input text. |
 
