@@ -1,14 +1,21 @@
-import { NearFilterValue, Filter, SelectableFilter } from '@yext/answers-headless-react';
+import { NearFilterValue, Filter, SelectableFilter, NumberRangeValue } from '@yext/answers-headless-react';
 
 /**
- * Check if the object follows NearFilterValue interface
+ * Check if the object follows NearFilterValue interface.
  */
 export function isNearFilterValue(obj: unknown): obj is NearFilterValue {
   return typeof obj === 'object' && !!obj && 'radius' in obj && 'lat' in obj && 'long' in obj;
 }
 
 /**
- * Returns true if the two given filters are the same
+ * Checks if the object follows the NumberRangeValue interface.
+ */
+export function isNumberRangeValue(obj: unknown): obj is NumberRangeValue {
+  return typeof obj === 'object' && !!obj && ('start' in obj || 'end' in obj);
+}
+
+/**
+ * Returns true if the two given filters are the same.
  */
 export function isDuplicateFilter(thisFilter: Filter, otherFilter: Filter): boolean {
   if (thisFilter.fieldId !== otherFilter.fieldId) {

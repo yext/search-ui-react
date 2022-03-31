@@ -1,10 +1,11 @@
-import { Filter, Matcher, useAnswersUtilities } from '@yext/answers-headless-react';
+import { Filter, Matcher, NumberRangeValue, useAnswersUtilities } from '@yext/answers-headless-react';
 import { useCallback, useEffect, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { findSelectableFilter } from '../../utils/filterutils';
+import classNames from 'classnames';
 
 /**
  * Props for the {@link Filters.CheckboxOption}
@@ -13,7 +14,9 @@ import { findSelectableFilter } from '../../utils/filterutils';
  */
 export interface CheckboxOptionProps {
   /** The value used to perform filtering. */
-  value: string | number | boolean,
+  value: string | number | boolean | NumberRangeValue,
+  /** The type of filtering operation used. Defaults to an equals comparison. */
+  matcher?: Matcher,
   /**
    * The fieldId used for filtering.
    *
@@ -40,14 +43,24 @@ export interface CheckboxOptionProps {
  */
 export interface CheckboxCssClasses {
   input?: string,
+  input___disabled?: string,
   label?: string,
-  container?: string
+  label___disabled?: string,
+  container?: string,
+  optionContainer?: string,
+  tooltipContainer?: string,
+  tooltip?: string
 }
 
 const builtInCssClasses: CheckboxCssClasses = {
   label: 'text-neutral text-sm font-normal cursor-pointer',
+  label___disabled: 'opacity-50',
   input: 'w-3.5 h-3.5 form-checkbox cursor-pointer border border-gray-300 rounded-sm text-primary focus:ring-primary',
-  container: 'flex items-center space-x-3'
+  input___disabled: 'border-gray-200 bg-gray-50',
+  container: 'flex items-center',
+  optionContainer: 'flex items-center space-x-3 peer',
+  tooltipContainer: 'invisible peer-hover:visible relative -right-5 -top-5',
+  tooltip: 'absolute z-10 left-0 -top-0.5 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-neutral-light'
 };
 
 /**
@@ -58,10 +71,11 @@ const builtInCssClasses: CheckboxCssClasses = {
  * @param props - {@link Filters.CheckboxOptionProps}
  */
 export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
-  const { searchValue, defaultFieldId } = useFilterGroupContext();
+  const { searchValue, defaultFieldId, isOptionsDisabled } = useFilterGroupContext();
   const {
     fieldId = defaultFieldId,
     value,
+    matcher = Matcher.Equals,
     selectedByDefault = false,
     label = props.value,
   } = props;
@@ -73,14 +87,14 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const handleClick = useCallback((checked: boolean) => {
     selectFilter({
-      matcher: Matcher.Equals,
+      matcher,
       fieldId: fieldId ?? '',
       value,
       displayName: typeof label === 'string' ? label : undefined,
       selected: checked
     });
     applyFilters();
-  }, [applyFilters, fieldId, label, selectFilter, value]);
+  }, [applyFilters, fieldId, label, selectFilter, value, matcher]);
 
   const handleChange = useCallback(evt => {
     handleClick(evt.target.checked);
@@ -89,10 +103,10 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const optionFilter: Filter = useMemo(() => {
     return {
       fieldId: fieldId ?? '',
-      matcher: Matcher.Equals,
+      matcher,
       value
     };
-  }, [fieldId, value]);
+  }, [fieldId, value, matcher]);
   const existingStoredFilter = findSelectableFilter(optionFilter, filters);
 
   const shouldRenderOption: boolean = useMemo(() => {
@@ -117,9 +131,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     if (shouldRenderOption) {
       if (!existingStoredFilter && selectedByDefault) {
         selectFilter({
-          matcher: Matcher.Equals,
-          fieldId: optionFilter.fieldId,
-          value: optionFilter.value,
+          ...optionFilter,
           displayName: typeof label === 'string' ? label : undefined,
           selected: true
         });
@@ -133,16 +145,33 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
+  const inputClasses = classNames(cssClasses.input, {
+    [cssClasses.input___disabled ?? '']: isOptionsDisabled
+  });
+  const labelClasses = classNames(cssClasses.label, {
+    [cssClasses.label___disabled ?? '']: isOptionsDisabled
+  });
+
   return (
     <div className={cssClasses.container}>
-      <input
-        type='checkbox'
-        id={optionId}
-        checked={isSelected}
-        className={cssClasses.input}
-        onChange={handleChange}
-      />
-      <label className={cssClasses.label} htmlFor={optionId}>{label}</label>
+      <div className={cssClasses.optionContainer}>
+        <input
+          type='checkbox'
+          id={optionId}
+          checked={isSelected}
+          className={inputClasses}
+          onChange={handleChange}
+          disabled={isOptionsDisabled}
+        />
+        <label className={labelClasses} htmlFor={optionId}>{label}</label>
+      </div>
+      {isOptionsDisabled &&
+        <div className={cssClasses.tooltipContainer}>
+          <div className={cssClasses.tooltip}>
+            Clear the range to select options.
+          </div>
+        </div>
+      }
     </div>
   );
 }

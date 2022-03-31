@@ -13,6 +13,8 @@ import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
+import { Matcher } from '@yext/answers-headless-react';
+import { NumberRangeValue } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
@@ -138,7 +140,17 @@ interface CheckboxCssClasses {
     // (undocumented)
     input?: string;
     // (undocumented)
+    input___disabled?: string;
+    // (undocumented)
     label?: string;
+    // (undocumented)
+    label___disabled?: string;
+    // (undocumented)
+    optionContainer?: string;
+    // (undocumented)
+    tooltip?: string;
+    // (undocumented)
+    tooltipContainer?: string;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -156,8 +168,9 @@ interface CheckboxOptionProps {
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     fieldId?: string;
     label?: string;
+    matcher?: Matcher;
     selectedByDefault?: boolean;
-    value: string | number | boolean;
+    value: string | number | boolean | NumberRangeValue;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -299,7 +312,9 @@ interface FilterGroupContextType {
     getCollapseProps: UseCollapseOutput['getCollapseProps'];
     getToggleProps: UseCollapseOutput['getToggleProps'];
     isExpanded: boolean;
+    isOptionsDisabled?: boolean;
     searchValue: string;
+    setIsOptionsDisabled?: (value: boolean) => void;
     setSearchValue: (value: string) => void;
 }
 
