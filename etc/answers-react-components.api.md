@@ -13,7 +13,6 @@ import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { Context } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
-import { LowerNumberRangeLimit } from '@yext/answers-headless-react';
 import { Matcher } from '@yext/answers-headless-react';
 import { NumberRangeValue } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
@@ -23,7 +22,6 @@ import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
 import { SelectableFilter } from '@yext/answers-headless-react';
-import { UpperNumberRangeLimit } from '@yext/answers-headless-react';
 import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
@@ -541,9 +539,7 @@ interface RangeInputProps {
     cssCompositionMethod?: CompositionMethod;
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     customCssClasses?: RangeInputCssClasses;
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    fieldId?: string;
-    getDisplayName?: (start?: LowerNumberRangeLimit, end?: UpperNumberRangeLimit) => string;
+    getFilterDisplayName?: (value: NumberRangeValue) => string;
     inputPrefix?: JSX.Element;
 }
 
