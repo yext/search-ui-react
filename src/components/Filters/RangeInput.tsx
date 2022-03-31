@@ -2,7 +2,7 @@ import { Filter, Matcher,NumberRangeValue, useAnswersActions, useAnswersState } 
 import { useCallback, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { findSelectableFilter, isNumberRangeValue } from '../../utils/filterutils';
+import { findSelectableFilter, isNumberRangeValue, parseNumberRangeValue } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
 
@@ -86,25 +86,9 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const [maxRangeInput, setMaxRangeInput] = useState<string>('');
   const staticFilters = useAnswersState(state => state.filters.static);
 
-  const value: NumberRangeValue = useMemo(() => {
-    const minRange = parseNumber(minRangeInput);
-    const maxRange = parseNumber(maxRangeInput);
-
-    return {
-      ...(minRange !== undefined && {
-        start: {
-          matcher: Matcher.GreaterThanOrEqualTo,
-          value: minRange
-        }
-      }),
-      ...(maxRange !== undefined && {
-        end: {
-          matcher: Matcher.LessThanOrEqualTo,
-          value: maxRange
-        }
-      })
-    };
-  }, [maxRangeInput, minRangeInput]);
+  const value: NumberRangeValue = useMemo(() =>
+    parseNumberRangeValue(minRangeInput, maxRangeInput),
+  [maxRangeInput, minRangeInput]);
 
   const displayName = getFilterDisplayName(value);
 
@@ -126,13 +110,13 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   }, []);
 
   const handleMinChange = useCallback(event => {
-    const value = event?.target?.value;
-    isValidNumberInput(value) && setMinRangeInput(value);
+    const input = event?.target?.value;
+    isValidNumberInput(input) && setMinRangeInput(input);
   }, [isValidNumberInput]);
 
   const handleMaxChange = useCallback(event => {
-    const value = event?.target?.value;
-    isValidNumberInput(value) && setMaxRangeInput(value);
+    const input = event?.target?.value;
+    isValidNumberInput(input) && setMaxRangeInput(input);
   }, [isValidNumberInput]);
 
   const handleClickApply = useCallback(() => {
@@ -160,7 +144,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     setMaxRangeInput('');
   }, []);
 
-  const shouldRenderOption: boolean = useMemo(() => {
+  const shouldRender: boolean = useMemo(() => {
     if (!fieldId) {
       console.error('No fieldId found for filter with value', JSON.stringify(value));
       return false;
@@ -169,7 +153,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     return true;
   }, [fieldId, value]);
 
-  if (!shouldRenderOption) {
+  if (!shouldRender) {
     return null;
   }
 
@@ -243,15 +227,4 @@ function getDefaultFilterDisplayName(numberRange: NumberRangeValue) {
     return `Up to ${end.value}`;
   }
   return '';
-}
-
-/**
- * Given a string, returns the corresponding number, or undefined if it is NaN.
- */
-function parseNumber(num?: string) {
-  const parsedNum = parseFloat(num ?? '');
-  if (isNaN(parsedNum)) {
-    return undefined;
-  }
-  return parsedNum;
 }

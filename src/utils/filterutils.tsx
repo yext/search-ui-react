@@ -1,4 +1,4 @@
-import { NearFilterValue, Filter, SelectableFilter, NumberRangeValue } from '@yext/answers-headless-react';
+import { NearFilterValue, Filter, SelectableFilter, NumberRangeValue, Matcher } from '@yext/answers-headless-react';
 import isEqual from 'lodash/isEqual';
 
 /**
@@ -46,4 +46,38 @@ export function findSelectableFilter(
     const { displayName:_, ...storedFilter } = selectableFilter;
     return isDuplicateFilter(storedFilter, filter);
   });
+}
+
+/**
+ * Creates a number range value based on a min and max from user input.
+ */
+export function parseNumberRangeValue(minRangeInput?: string, maxRangeInput?: string): NumberRangeValue {
+  const minRange = parseNumber(minRangeInput);
+  const maxRange = parseNumber(maxRangeInput);
+
+  return {
+    ...(minRange !== undefined && {
+      start: {
+        matcher: Matcher.GreaterThanOrEqualTo,
+        value: minRange
+      }
+    }),
+    ...(maxRange !== undefined && {
+      end: {
+        matcher: Matcher.LessThanOrEqualTo,
+        value: maxRange
+      }
+    })
+  };
+}
+
+/**
+ * Given a string, returns the corresponding number, or undefined if it is NaN.
+ */
+function parseNumber(num?: string) {
+  const parsedNum = parseFloat(num ?? '');
+  if (isNaN(parsedNum)) {
+    return undefined;
+  }
+  return parsedNum;
 }
