@@ -31,7 +31,7 @@ function App() {
               <Route path='products' element={<ProductsPage />} />
             </Routes>
           </BrowserRouter>
-          </AnalyticsProvider>
+        </AnalyticsProvider>
       </AnswersHeadlessProvider>
     </div>
   );

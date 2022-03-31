@@ -90,8 +90,6 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     parseNumberRangeInput(minRangeInput, maxRangeInput),
   [maxRangeInput, minRangeInput]);
 
-  const displayName = getFilterDisplayName(value);
-
   const rangeFilter: Filter = useMemo(() => {
     return {
       fieldId: fieldId ?? '',
@@ -99,10 +97,6 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       value
     };
   }, [fieldId, value]);
-
-  // Find a static filter which matches the current range input
-  const matchingFilter = findSelectableFilter(rangeFilter, staticFilters ?? []);
-  const isSelectedInAnswersState = matchingFilter?.selected === true;
 
   const isValidNumberInput = useCallback(number => {
     const numberRegex = new RegExp(/^\d*\.?\d*$/);
@@ -120,6 +114,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   }, [isValidNumberInput]);
 
   const handleClickApply = useCallback(() => {
+    const displayName = getFilterDisplayName(value);
     // Find a selected static range filters with the same fieldId
     const selectedRangeFilters = staticFilters?.filter(filter =>
       filter.fieldId === fieldId && filter.selected === true && isNumberRangeValue(filter.value)
@@ -137,7 +132,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     });
     answersActions.setOffset(0);
     executeSearch(answersActions);
-  }, [answersActions, displayName, fieldId, rangeFilter, staticFilters]);
+  }, [answersActions, fieldId, getFilterDisplayName, rangeFilter, staticFilters, value]);
 
   const handleClickClear = useCallback(() => {
     setMinRangeInput('');
@@ -157,8 +152,11 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     return null;
   }
 
+  // Find a static filter which matches the current range input
+  const matchingFilter = findSelectableFilter(rangeFilter, staticFilters ?? []);
+  const isSelectedInAnswersState = matchingFilter?.selected === true;
   const hasUserInput = minRangeInput || maxRangeInput;
-  const renderApplyButton = hasUserInput && !isSelectedInAnswersState;
+  const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState;
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,
@@ -200,7 +198,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
               onClick={handleClickClear}>Clear min and max
             </button>
           }
-          {renderApplyButton &&
+          {shouldRenderApplyButton &&
             <button
               className={cssClasses.applyButton}
               onClick={handleClickApply}>Apply

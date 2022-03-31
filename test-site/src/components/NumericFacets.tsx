@@ -1,5 +1,5 @@
+import { NumberRangeValue } from '@yext/answers-headless-react';
 import { Filters } from '@yext/answers-react-components';
-import { Fragment } from 'react';
 import { Divider } from './Divider';
 
 
@@ -24,7 +24,7 @@ export function NumericFacets() {
                           fieldId={f.fieldId}
                         />
                       )}
-                      {(f.fieldId === 'price.value') && <Filters.RangeInput/>}
+                      {(f.fieldId === 'price.value') && <Filters.RangeInput getFilterDisplayName={getFilterDisplayName} inputPrefix={<>$</>}/>}
                     </Filters.CollapsibleSection>
                     {(i < facets.length - 1) && <Divider />}
                   </Filters.FilterGroup>
@@ -36,4 +36,21 @@ export function NumericFacets() {
       }}
     </Filters.Facets>
   )
+}
+
+/**
+ * Creates the filter's display name based on the number range.
+ */
+ function getFilterDisplayName(numberRange: NumberRangeValue) {
+  const start = numberRange.start;
+  const end = numberRange.end;
+
+  if (start && end) {
+    return `$${start.value} - $${end.value}`;
+  } else if (start && !end) {
+    return `Over $${start.value}`;
+  } else if (end && !start) {
+    return `Up to $${end.value}`;
+  }
+  return '';
 }
