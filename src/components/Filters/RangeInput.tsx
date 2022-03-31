@@ -1,8 +1,8 @@
-import { Filter, Matcher,NumberRangeValue, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
+import { Matcher,NumberRangeValue, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { useCallback, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput } from '../../utils/filterutils';
+import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput, NumberRangeFilter } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
 
@@ -86,7 +86,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const [maxRangeInput, setMaxRangeInput] = useState<string>('');
   const staticFilters = useAnswersState(state => state.filters.static);
 
-  const rangeFilter: Filter = useMemo(() => {
+  const rangeFilter: NumberRangeFilter = useMemo(() => {
     return {
       fieldId: fieldId ?? '',
       matcher: Matcher.Between,
@@ -110,7 +110,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   }, [isValidNumberInput]);
 
   const handleClickApply = useCallback(() => {
-    const displayName = getFilterDisplayName(rangeFilter.value as NumberRangeValue);
+    const displayName = getFilterDisplayName(rangeFilter.value);
     // Find a selected static range filters with the same fieldId
     const selectedRangeFilters = staticFilters?.filter(filter =>
       filter.fieldId === fieldId && filter.selected === true && isNumberRangeValue(filter.value)

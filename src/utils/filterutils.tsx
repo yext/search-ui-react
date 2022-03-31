@@ -71,6 +71,10 @@ export function parseNumberRangeInput(minRangeInput: string, maxRangeInput: stri
   };
 }
 
+export interface NumberRangeFilter extends Filter {
+  value: NumberRangeValue
+}
+
 /**
  * Given a string, returns the corresponding number, or undefined if it is NaN.
  */
