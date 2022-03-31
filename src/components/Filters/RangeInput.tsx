@@ -112,7 +112,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
 
   const handleClickApply = useCallback(() => {
     const displayName = getFilterDisplayName(rangeFilter.value);
-    // Find a selected static range filters with the same fieldId
+    // Find selected static range filters with the same fieldId
     const selectedRangeFilters = staticFilters?.filter(filter =>
       filter.fieldId === fieldId && filter.selected === true && isNumberRangeValue(filter.value)
     );
