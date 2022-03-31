@@ -86,17 +86,13 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const [maxRangeInput, setMaxRangeInput] = useState<string>('');
   const staticFilters = useAnswersState(state => state.filters.static);
 
-  const value: NumberRangeValue = useMemo(() =>
-    parseNumberRangeInput(minRangeInput, maxRangeInput),
-  [maxRangeInput, minRangeInput]);
-
   const rangeFilter: Filter = useMemo(() => {
     return {
       fieldId: fieldId ?? '',
       matcher: Matcher.Between,
-      value
+      value: parseNumberRangeInput(minRangeInput, maxRangeInput),
     };
-  }, [fieldId, value]);
+  }, [fieldId, maxRangeInput, minRangeInput]);
 
   const isValidNumberInput = useCallback(number => {
     const numberRegex = new RegExp(/^\d*\.?\d*$/);
@@ -114,7 +110,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   }, [isValidNumberInput]);
 
   const handleClickApply = useCallback(() => {
-    const displayName = getFilterDisplayName(value);
+    const displayName = getFilterDisplayName(rangeFilter.value as NumberRangeValue);
     // Find a selected static range filters with the same fieldId
     const selectedRangeFilters = staticFilters?.filter(filter =>
       filter.fieldId === fieldId && filter.selected === true && isNumberRangeValue(filter.value)
@@ -132,23 +128,15 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     });
     answersActions.setOffset(0);
     executeSearch(answersActions);
-  }, [answersActions, fieldId, getFilterDisplayName, rangeFilter, staticFilters, value]);
+  }, [answersActions, fieldId, getFilterDisplayName, rangeFilter, staticFilters]);
 
   const handleClickClear = useCallback(() => {
     setMinRangeInput('');
     setMaxRangeInput('');
   }, []);
 
-  const shouldRender: boolean = useMemo(() => {
-    if (!fieldId) {
-      console.error('No fieldId found for filter with value', JSON.stringify(value));
-      return false;
-    }
-
-    return true;
-  }, [fieldId, value]);
-
-  if (!shouldRender) {
+  if (fieldId === undefined) {
+    console.error('RangeInput cannot be rendered because a defaultFieldId wasn\'t specified for its FilterGroup.');
     return null;
   }
 
