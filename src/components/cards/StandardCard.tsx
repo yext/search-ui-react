@@ -5,9 +5,11 @@ import {
   ThumbsFeedback,
   ThumbsFeedbackCssClasses
 } from '../ThumbsFeedback';
-import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
-import { isString, validateData } from '../utils/validateData';
 import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
+import { HighlightedValue, Result } from '@yext/answers-headless-react';
+import { renderHighlightedValue } from '../utils/renderHighlightedValue';
+import { CtaData, isCtaData, StandardCardData } from '../../models/StandardCardData';
+import { isStringOrHighlightedValue, validateData } from '../utils/validateData';
 
 /**
  * Props for a StandardCard.
@@ -17,13 +19,6 @@ import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
 export interface StandardCardProps extends CardProps {
   /** Whether or not to show an ordinal for numbering the card. */
   showOrdinal?: boolean,
-  /** Custom mappings for the data fields used in the card. */
-  fieldMappings?: {
-    title?: FieldData,
-    description?: FieldData,
-    cta1?: FieldData,
-    cta2?: FieldData
-  },
   /** Whether or not to show thumbs up/down buttons to provide feedback on the result card */
   showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -31,25 +26,6 @@ export interface StandardCardProps extends CardProps {
   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
-
-const defaultFieldMappings: Record<string, FieldData> = {
-  title: {
-    mappingType: 'FIELD',
-    apiName: 'name'
-  },
-  description: {
-    mappingType: 'FIELD',
-    apiName: 'description'
-  },
-  cta1: {
-    mappingType: 'FIELD',
-    apiName: 'c_primaryCTA'
-  },
-  cta2: {
-    mappingType: 'FIELD',
-    apiName: 'c_secondaryCTA'
-  },
-};
 
 /**
  * The CSS class interface used for {@link StandardCard}.
@@ -66,7 +42,11 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
   cta2?: string,
   ordinal?: string,
   title?: string,
-  titleLink?: string
+  titleLink?: string,
+  titleHighlighted?: string,
+  titleNonHighlighted?: string,
+  descriptionHighlighted?: string,
+  descriptionNonHighlighted?: string
 }
 
 const builtInCssClasses: StandardCardCssClasses = {
@@ -80,24 +60,12 @@ const builtInCssClasses: StandardCardCssClasses = {
   ordinal: 'mr-1.5 text-lg font-medium',
   title: 'text-lg font-medium',
   titleLink: 'text-lg font-medium text-primary hover:underline focus:underline',
-  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium'
+  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium',
+  titleHighlighted: 'font-bold',
+  titleNonHighlighted: 'font-medium',
+  descriptionHighlighted: 'font-semibold',
+  descriptionNonHighlighted: 'font-normal'
 };
-
-export interface CtaData {
-  label: string,
-  link: string,
-  linkType: string
-}
-
-function isCtaData(data: unknown): data is CtaData {
-  if (typeof data !== 'object' || data === null) {
-    return false;
-  }
-  const expectedKeys = ['label', 'link', 'linkType'];
-  return expectedKeys.every(key => {
-    return key in data;
-  });
-}
 
 /**
  * This Component renders the base result card.
@@ -110,7 +78,6 @@ function isCtaData(data: unknown): data is CtaData {
  */
 export function StandardCard(props: StandardCardProps): JSX.Element {
   const {
-    fieldMappings: customFieldMappings,
     showOrdinal,
     result,
     customCssClasses,
@@ -119,17 +86,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
-  const transformedFieldData = applyFieldMappings(result.rawData, {
-    ...defaultFieldMappings,
-    ...customFieldMappings
-  });
-
-  const data = validateData(transformedFieldData, {
-    title: isString,
-    description: isString,
-    cta1: isCtaData,
-    cta2: isCtaData
-  });
+  const data = dataForRender(result);
 
   const handleCtaClick = useCardAnalyticsCallback(result, 'CTA_CLICK');
   const handleTitleClick = useCardAnalyticsCallback(result, 'TITLE_CLICK');
@@ -155,11 +112,18 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     return null;
   }
 
-  function renderTitle(title: string) {
+  function renderTitle(title: HighlightedValue | string) {
+    const titleJsx = renderHighlightedValue(title, {
+      highlighted: cssClasses.titleHighlighted,
+      nonHighlighted: cssClasses.titleNonHighlighted
+    });
+
     return (
       result.link
-        ? <a href={result.link} className={cssClasses.titleLink} onClick={handleTitleClick}>{title}</a>
-        : <div className={cssClasses.title}>{title}</div>
+        ? <a href={result.link} className={cssClasses.titleLink} onClick={handleTitleClick}>
+          {titleJsx}
+        </a>
+        : <div className={cssClasses.title}>{titleJsx}</div>
     );
   }
 
@@ -173,7 +137,10 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
         <div className={cssClasses.body}>
           {data.description &&
           <div className={cssClasses.descriptionContainer}>
-            <span>{data.description}</span>
+            {renderHighlightedValue(data.description, {
+              highlighted: cssClasses.descriptionHighlighted,
+              nonHighlighted: cssClasses.descriptionNonHighlighted
+            })}
           </div>}
           {renderCTAs(data.cta1, data.cta2)}
         </div>
@@ -186,4 +153,20 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
       />}
     </div>
   );
+}
+
+function dataForRender(result: Result): Partial<StandardCardData> {
+  const data = {
+    title: result.highlightedFields?.name ?? result.rawData.name,
+    description: result.highlightedFields?.description ?? result.rawData.description,
+    cta1: result.rawData.c_primaryCTA,
+    cta2: result.rawData.c_secondaryCTA,
+  };
+
+  return validateData(data, {
+    title: isStringOrHighlightedValue,
+    description: isStringOrHighlightedValue,
+    cta1: isCtaData,
+    cta2: isCtaData
+  });
 }

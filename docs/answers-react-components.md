@@ -87,9 +87,6 @@
 |  [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [DropdownItemProps](./answers-react-components.dropdownitemprops.md) | Props for the [DropdownItem()](./answers-react-components.dropdownitem.md)<!-- -->. |
 |  [FeedbackType](./answers-react-components.feedbacktype.md) | Analytics event types for quality feedback. |
-|  [FieldData](./answers-react-components.fielddata.md) | Indicates either a constant field data value, or a field data mapping. |
-|  [FieldDataConstant](./answers-react-components.fielddataconstant.md) | Indicates a field should equal a constant value. Ignores the API response. |
-|  [FieldDataPath](./answers-react-components.fielddatapath.md) | Denotes the path to the field data on the Result's raw dadta. |
 |  [FocusedItemData](./answers-react-components.focuseditemdata.md) | The data associated with the currently focused item. |
 |  [onSearchFunc](./answers-react-components.onsearchfunc.md) | The interface of a function which is called on a search. |
 |  [RenderEntityPreviews](./answers-react-components.renderentitypreviews.md) | The type of a functional React component which renders entity previews based on the autocomplete loading state and the vertical results array. |

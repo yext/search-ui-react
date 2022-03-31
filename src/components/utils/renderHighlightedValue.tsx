@@ -15,8 +15,14 @@ interface HighlightedValueCssClasses {
  * @returns JSX.Element
  */
 export function renderHighlightedValue(
-  { value = '', matchedSubstrings }: Partial<HighlightedValue>, customCssClasses?: HighlightedValueCssClasses
+  highlightedValueOrString: Partial<HighlightedValue> | string,
+  customCssClasses?: HighlightedValueCssClasses
 ): JSX.Element {
+  const { value = '', matchedSubstrings } =
+    typeof highlightedValueOrString === 'string'
+      ? { value: highlightedValueOrString, matchedSubstrings: [] }
+      : highlightedValueOrString;
+
   const cssClasses = { ...defaultCssClasses, ...customCssClasses };
   if (!matchedSubstrings || matchedSubstrings.length === 0) {
     return <span>{value}</span>;
