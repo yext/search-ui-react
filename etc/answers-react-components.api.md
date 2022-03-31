@@ -281,21 +281,6 @@ interface FacetsProps {
 // @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
-// @public
-export type FieldData = FieldDataConstant | FieldDataPath;
-
-// @public
-export type FieldDataConstant = {
-    mappingType: 'CONSTANT';
-    value: string;
-};
-
-// @public
-export type FieldDataPath = {
-    mappingType: 'FIELD';
-    apiName: string | string[];
-};
-
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -650,25 +635,27 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     descriptionContainer?: string;
     // (undocumented)
+    descriptionHighlighted?: string;
+    // (undocumented)
+    descriptionNonHighlighted?: string;
+    // (undocumented)
     header?: string;
     // (undocumented)
     ordinal?: string;
     // (undocumented)
     title?: string;
     // (undocumented)
+    titleHighlighted?: string;
+    // (undocumented)
     titleLink?: string;
+    // (undocumented)
+    titleNonHighlighted?: string;
 }
 
 // @public
 export interface StandardCardProps extends CardProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardCardCssClasses;
-    fieldMappings?: {
-        title?: FieldData;
-        description?: FieldData;
-        cta1?: FieldData;
-        cta2?: FieldData;
-    };
     showFeedbackButtons?: boolean;
     showOrdinal?: boolean;
 }
