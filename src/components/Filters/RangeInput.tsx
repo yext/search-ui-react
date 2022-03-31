@@ -2,9 +2,10 @@ import { Matcher,NumberRangeValue, useAnswersActions, useAnswersState } from '@y
 import { useCallback, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput, NumberRangeFilter } from '../../utils/filterutils';
+import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
+import { NumberRangeFilter } from '../../models/NumberRangeFilter';
 
 /**
  * Props for the {@link Filters.RangeInput}
@@ -159,7 +160,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
           <input
             type='text'
             inputMode='decimal'
-            value={minRangeInput ?? ''}
+            value={minRangeInput}
             placeholder='Min'
             className={inputClasses}
             onChange={handleMinChange}
@@ -171,7 +172,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
           <input
             type='text'
             inputMode='decimal'
-            value={maxRangeInput ?? ''}
+            value={maxRangeInput}
             placeholder='Max'
             className={inputClasses}
             onChange={handleMaxChange}
