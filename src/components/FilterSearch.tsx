@@ -92,6 +92,7 @@ export function FilterSearch({
     const displayName = itemData?.displayName as string;
     if (filter && displayName) {
       answersActions.setFilterOption({ ...filter, displayName, selected: true });
+      answersActions.setOffset(0);
       executeSearch(answersActions);
     }
   }, [answersActions]);

@@ -1,6 +1,7 @@
 import { useAnswersActions } from '@yext/answers-headless-react';
 import {
   AppliedFilters,
+  FilterSearch,
   ResultsCount,
   SearchBar,
   StandardCard,
@@ -23,6 +24,7 @@ export function PeoplePage() {
         <div className='min-w-fit pr-4'>
           <Facets />
           <StaticFilters />
+          <FilterSearch searchFields={[{fieldApiName: 'name', entityType: 'ce_person' }]}/>
         </div>
         <div className='flex-grow'>
           <div className='flex items-baseline'>
