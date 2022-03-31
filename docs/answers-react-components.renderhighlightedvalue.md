@@ -16,8 +16,8 @@ export declare function renderHighlightedValue(highlightedValueOrString: Partial
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  highlightedValueOrString | Partial&lt;HighlightedValue&gt; \| string | the text to add highlighting to. |
-|  customCssClasses | HighlightedValueCssClasses | css classes to use for the non-highlighted and highlighted text. |
+|  highlightedValueOrString | Partial&lt;HighlightedValue&gt; \| string | the text to add highlight to. |
+|  customCssClasses | HighlightedValueCssClasses | css classes use for the non-highlighted and highlighted text. |
 
 <b>Returns:</b>
 
