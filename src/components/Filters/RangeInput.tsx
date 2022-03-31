@@ -180,12 +180,10 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       </div>
       {hasUserInput &&
         <div className={cssClasses.buttonsContainer}>
-          {hasUserInput &&
-            <button
-              className={cssClasses.clearButton}
-              onClick={handleClickClear}>Clear min and max
-            </button>
-          }
+          <button
+            className={cssClasses.clearButton}
+            onClick={handleClickClear}>Clear min and max
+          </button>
           {shouldRenderApplyButton &&
             <button
               className={cssClasses.applyButton}
