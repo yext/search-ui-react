@@ -1,5 +1,8 @@
 import { HighlightedValue } from '@yext/answers-headless-react';
 
+/**
+ * The data used by the {@link StandardCard} and taken from the original Result.
+ */
 export interface StandardCardData {
   title: HighlightedValue | string,
   description: HighlightedValue | string,
@@ -7,6 +10,9 @@ export interface StandardCardData {
   cta2: CtaData
 }
 
+/**
+ * The shape of a StandardCard CTA field's data.
+ */
 export interface CtaData {
   label: string,
   link: string,
