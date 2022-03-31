@@ -12,7 +12,9 @@ import { AnswersActions } from '@yext/answers-headless-react';
 import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
 import { Context } from 'react';
+import { DirectAnswer as DirectAnswer_2 } from '@yext/answers-headless-react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
+import { HighlightedValue } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
 import { ReactNode } from 'react';
@@ -20,6 +22,7 @@ import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
 import { SelectableFilter } from '@yext/answers-headless-react';
+import { Theme } from '@css-modules-theme/core';
 import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
@@ -190,6 +193,16 @@ type CollapsibleSectionProps = PropsWithChildren<{
 
 // @public
 export type CompositionMethod = 'merge' | 'replace' | 'assign';
+
+// @public
+export interface CtaData {
+    // (undocumented)
+    label: string;
+    // (undocumented)
+    link: string;
+    // (undocumented)
+    linkType: string;
+}
 
 // @public
 export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
@@ -482,6 +495,11 @@ export interface PaginationCssClasses {
 // @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
+// Warning: (ae-forgotten-export) The symbol "HighlightedValueCssClasses" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
+
 // @public
 export function ResultsCount(props: ResultsCountProps): JSX.Element | null;
 
@@ -581,10 +599,10 @@ interface SearchInputProps {
 }
 
 // @public
-export type SectionComponent = (props: SectionConfig) => JSX.Element | null;
+export type SectionComponent = (props: SectionProps) => JSX.Element | null;
 
 // @public
-export interface SectionConfig {
+export interface SectionProps {
     CardComponent?: CardComponent;
     header?: JSX.Element;
     results: Result[];
@@ -653,6 +671,18 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
 }
 
 // @public
+export interface StandardCardData {
+    // (undocumented)
+    cta1: CtaData;
+    // (undocumented)
+    cta2: CtaData;
+    // (undocumented)
+    description: HighlightedValue | string;
+    // (undocumented)
+    title: HighlightedValue | string;
+}
+
+// @public
 export interface StandardCardProps extends CardProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardCardCssClasses;
@@ -661,18 +691,18 @@ export interface StandardCardProps extends CardProps {
 }
 
 // @public
-export function StandardSection(props: StandardSectionConfig): JSX.Element | null;
-
-// @public
-export interface StandardSectionConfig extends SectionConfig {
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: StandardSectionCssClasses;
-}
+export function StandardSection(props: StandardSectionProps): JSX.Element | null;
 
 // @public
 export interface StandardSectionCssClasses {
     // (undocumented)
     section?: string;
+}
+
+// @public
+export interface StandardSectionProps extends SectionProps {
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: StandardSectionCssClasses;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -742,6 +772,17 @@ export function updateLocationIfNeeded(answersActions: AnswersActions, intents: 
 // @public
 export function useAnalytics(): AnalyticsService | null;
 
+// Warning: (ae-forgotten-export) The symbol "CardAnalyticsType" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function useCardAnalyticsCallback(result: Result | DirectAnswer_2, analyticsType: CardAnalyticsType): () => void;
+
+// @public
+export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analyticsType: FeedbackType) => void;
+
+// @public
+export function useComposedCssClasses<ClassInterface>(builtInClasses: ClassInterface, customClasses?: ClassInterface, cssCompositionMethod?: CompositionMethod): ClassInterface | Theme;
+
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
@@ -751,6 +792,9 @@ function useFilterGroupContext(): FilterGroupContextType;
 //
 // @public
 function useFiltersContext(): FiltersContextType;
+
+// @public
+export function useStandardCardData(result: Result): Partial<StandardCardData>;
 
 // @public
 export interface VerticalConfig {

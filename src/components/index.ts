@@ -85,4 +85,5 @@ export {
 } from './ResultsCount';
 
 export * from './AnalyticsProvider';
+export { renderHighlightedValue } from './utils/renderHighlightedValue';
 export { Filters };

@@ -1,5 +1,5 @@
 export {
   StandardSection,
   StandardSectionCssClasses,
-  StandardSectionConfig
+  StandardSectionProps
 } from './StandardSection';

@@ -1,38 +1,39 @@
-import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { useCardAnalyticsCallback } from '../../hooks/useCardAnalyticsCallback';
-import { CardProps } from '../../models/cardComponent';
 import {
+  CompositionMethod,
+  useComposedCssClasses,
+  useCardAnalyticsCallback,
+  CardProps,
   ThumbsFeedback,
-  ThumbsFeedbackCssClasses
-} from '../ThumbsFeedback';
-import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
-import { renderHighlightedValue } from '../utils/renderHighlightedValue';
-import { CtaData } from '../../models/StandardCardData';
-import { useStandardCardData } from '../../hooks/useStandardCardData';
+  ThumbsFeedbackCssClasses,
+  useCardFeedbackCallback,
+  renderHighlightedValue,
+  useStandardCardData,
+  CtaData
+} from '@yext/answers-react-components';
 import { HighlightedValue } from '@yext/answers-headless-react';
 
 /**
- * Props for a StandardCard.
+ * Props for a TemplateName.
  *
  * @public
  */
-export interface StandardCardProps extends CardProps {
+export interface TemplateNameProps extends CardProps {
   /** Whether or not to show an ordinal for numbering the card. */
   showOrdinal?: boolean,
   /** Whether or not to show thumbs up/down buttons to provide feedback on the result card */
   showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: StandardCardCssClasses,
+  customCssClasses?: TemplateNameCssClasses,
   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
 /**
- * The CSS class interface used for {@link StandardCard}.
+ * The CSS class interface used for {@link TemplateName}.
  *
  * @public
  */
-export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
+export interface TemplateNameCssClasses extends ThumbsFeedbackCssClasses {
   container?: string,
   header?: string,
   body?: string,
@@ -49,7 +50,7 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
   descriptionNonHighlighted?: string
 }
 
-const builtInCssClasses: StandardCardCssClasses = {
+const builtInCssClasses: TemplateNameCssClasses = {
   container: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
   header: 'flex text-neutral-dark',
   body: 'flex justify-end pt-2.5 text-base',
@@ -76,7 +77,7 @@ const builtInCssClasses: StandardCardCssClasses = {
  *                to render the card
  * @returns A React element for the result card
  */
-export function StandardCard(props: StandardCardProps): JSX.Element {
+export function TemplateName(props: TemplateNameProps): JSX.Element {
   const {
     showOrdinal,
     result,

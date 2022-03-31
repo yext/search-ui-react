@@ -6,7 +6,7 @@ import { CardComponent } from './cardComponent';
  *
  * @public
  */
-export interface SectionConfig {
+export interface SectionProps {
   /** The results from this vertical. */
   results: Result[],
   /** The key for the vertical. */
@@ -24,4 +24,4 @@ export interface SectionConfig {
  *
  * @public
  */
-export type SectionComponent = (props: SectionConfig) => JSX.Element | null;
+export type SectionComponent = (props: SectionProps) => JSX.Element | null;

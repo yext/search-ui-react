@@ -4,6 +4,11 @@ import { CardAnalyticsType, useCardAnalytics } from './useCardAnalytics';
 
 /**
  * Creates a memoized function for reporting card analytics.
+ *
+ * @public
+ *
+ * @param result - result that contains data use in the card analytics event.
+ * @param analyticsType - the card analytics event type to report.
  */
 export function useCardAnalyticsCallback(
   result: Result | DirectAnswerData,
