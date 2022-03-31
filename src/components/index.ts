@@ -84,6 +84,10 @@ export {
   ResultsCountProps
 } from './ResultsCount';
 
+export {
+  renderHighlightedValue,
+  HighlightedValueCssClasses
+} from './utils/renderHighlightedValue';
+
 export * from './AnalyticsProvider';
-export { renderHighlightedValue } from './utils/renderHighlightedValue';
 export { Filters };

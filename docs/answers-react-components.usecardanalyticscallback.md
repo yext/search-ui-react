@@ -17,7 +17,7 @@ export declare function useCardAnalyticsCallback(result: Result | DirectAnswerDa
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  result | Result \| DirectAnswerData | result that contains data use in the card analytics event. |
-|  analyticsType | CardAnalyticsType | the card analytics event type to report. |
+|  analyticsType | [CardAnalyticsType](./answers-react-components.cardanalyticstype.md) | the card analytics event type to report. |
 
 <b>Returns:</b>
 

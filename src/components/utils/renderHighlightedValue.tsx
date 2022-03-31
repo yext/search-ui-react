@@ -5,7 +5,12 @@ const defaultCssClasses: HighlightedValueCssClasses = {
   nonHighlighted: 'font-semibold'
 };
 
-interface HighlightedValueCssClasses {
+/**
+ * The CSS class interface for {@link renderHighlightedValue}.
+ *
+ * @public
+ */
+export interface HighlightedValueCssClasses {
   highlighted?: string,
   nonHighlighted?: string
 }

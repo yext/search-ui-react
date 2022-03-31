@@ -127,7 +127,13 @@ export interface AutocompleteResultCssClasses {
 }
 
 // @public
+export type CardAnalyticsType = CardCtaEventType | FeedbackType;
+
+// @public
 export type CardComponent = (props: CardProps) => JSX.Element;
+
+// @public
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
 
 // @public
 export interface CardProps {
@@ -462,6 +468,14 @@ interface HierarchicalFacetProps {
 }
 
 // @public
+export interface HighlightedValueCssClasses {
+    // (undocumented)
+    highlighted?: string;
+    // (undocumented)
+    nonHighlighted?: string;
+}
+
+// @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
 
 // @public
@@ -510,8 +524,6 @@ export interface PaginationCssClasses {
 // @public
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
 
-// Warning: (ae-forgotten-export) The symbol "HighlightedValueCssClasses" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
 
@@ -787,8 +799,6 @@ export function updateLocationIfNeeded(answersActions: AnswersActions, intents: 
 // @public
 export function useAnalytics(): AnalyticsService | null;
 
-// Warning: (ae-forgotten-export) The symbol "CardAnalyticsType" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function useCardAnalyticsCallback(result: Result | DirectAnswer_2, analyticsType: CardAnalyticsType): () => void;
 

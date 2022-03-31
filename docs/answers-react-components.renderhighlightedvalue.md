@@ -17,7 +17,7 @@ export declare function renderHighlightedValue(highlightedValueOrString: Partial
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  highlightedValueOrString | Partial&lt;HighlightedValue&gt; \| string | the text to add highlight to. |
-|  customCssClasses | HighlightedValueCssClasses | css classes use for the non-highlighted and highlighted text. |
+|  customCssClasses | [HighlightedValueCssClasses](./answers-react-components.highlightedvaluecssclasses.md) | css classes use for the non-highlighted and highlighted text. |
 
 <b>Returns:</b>
 

@@ -9,7 +9,18 @@ import { useCallback } from 'react';
 import { FeedbackType } from '../components/ThumbsFeedback';
 import { useAnalytics } from './useAnalytics';
 
-type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
+/**
+ * Analytics event types for cta click and title click.
+ *
+ * @public
+ */
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
+
+/**
+ * Analytics event types for interactions on a card.
+ *
+ * @public
+ */
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
 function isDirectAnswer(data: unknown): data is DirectAnswerData {
