@@ -20,8 +20,8 @@ export interface FilterGroupContextType
 |  [getCollapseProps](./answers-react-components.filters.filtergroupcontexttype.getcollapseprops.md) | UseCollapseOutput\['getCollapseProps'\] | Returns the attributes used to collapse the filter group. |
 |  [getToggleProps](./answers-react-components.filters.filtergroupcontexttype.gettoggleprops.md) | UseCollapseOutput\['getToggleProps'\] | Returns the attributes used to toggle the filter group. |
 |  [isExpanded](./answers-react-components.filters.filtergroupcontexttype.isexpanded.md) | boolean | Indicates whether or not the filter group is expanded. |
-|  [isNumberRangeActive?](./answers-react-components.filters.filtergroupcontexttype.isnumberrangeactive.md) | boolean | <i>(Optional)</i> Whether or not the number range has input text. |
+|  [isOptionsDisabled?](./answers-react-components.filters.filtergroupcontexttype.isoptionsdisabled.md) | boolean | <i>(Optional)</i> Whether or not the filter options should be disabled. |
 |  [searchValue](./answers-react-components.filters.filtergroupcontexttype.searchvalue.md) | string | The value which is being used to search the FilterGroup. |
-|  [setIsNumberRangeActive?](./answers-react-components.filters.filtergroupcontexttype.setisnumberrangeactive.md) | (value: boolean) =&gt; void | <i>(Optional)</i> Sets the value for whether or not the number range has input text. |
+|  [setIsOptionsDisabled?](./answers-react-components.filters.filtergroupcontexttype.setisoptionsdisabled.md) | (value: boolean) =&gt; void | <i>(Optional)</i> Sets the value for whether or not the filter options should be disabled. |
 |  [setSearchValue](./answers-react-components.filters.filtergroupcontexttype.setsearchvalue.md) | (value: string) =&gt; void | Sets the searchValue which is used to filter the FilterGroup. |
 

@@ -19,10 +19,10 @@ export interface FilterGroupContextType {
   getToggleProps: UseCollapseOutput['getToggleProps'],
   /** Indicates whether or not the filter group is expanded. */
   isExpanded: boolean,
-  /** Whether or not the number range has input text. */
-  isNumberRangeActive?: boolean,
-  /** Sets the value for whether or not the number range has input text. */
-  setIsNumberRangeActive?: (value: boolean) => void
+  /** Whether or not the filter options should be disabled. */
+  isOptionsDisabled?: boolean,
+  /** Sets the value for whether or not the filter options should be disabled. */
+  setIsOptionsDisabled?: (value: boolean) => void
 }
 
 /**

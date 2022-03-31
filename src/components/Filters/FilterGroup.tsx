@@ -35,7 +35,7 @@ export function FilterGroup(props: FilterGroupProps): JSX.Element {
   } = props;
 
   const [searchValue, setSearchValue] = useState('');
-  const [isNumberRangeActive, setIsNumberRangeActive] = useState(false);
+  const [isOptionsDisabled, setIsOptionsDisabled] = useState(false);
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({ defaultExpanded });
   const FilterGroupContextInstance = useMemo(() => {
     return {
@@ -45,8 +45,8 @@ export function FilterGroup(props: FilterGroupProps): JSX.Element {
       getCollapseProps,
       getToggleProps,
       isExpanded,
-      isNumberRangeActive,
-      setIsNumberRangeActive
+      isOptionsDisabled,
+      setIsOptionsDisabled
     };
   }, [
     defaultFieldId,
@@ -54,7 +54,7 @@ export function FilterGroup(props: FilterGroupProps): JSX.Element {
     getToggleProps,
     isExpanded,
     searchValue,
-    isNumberRangeActive
+    isOptionsDisabled
   ]);
 
   return (

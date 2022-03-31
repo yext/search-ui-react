@@ -327,9 +327,9 @@ interface FilterGroupContextType {
     getCollapseProps: UseCollapseOutput['getCollapseProps'];
     getToggleProps: UseCollapseOutput['getToggleProps'];
     isExpanded: boolean;
-    isNumberRangeActive?: boolean;
+    isOptionsDisabled?: boolean;
     searchValue: string;
-    setIsNumberRangeActive?: (value: boolean) => void;
+    setIsOptionsDisabled?: (value: boolean) => void;
     setSearchValue: (value: string) => void;
 }
 
