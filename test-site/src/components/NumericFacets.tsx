@@ -16,11 +16,13 @@ export function NumericFacets() {
                     <Filters.CollapsibleLabel label={f.displayName} />
                     <Filters.CollapsibleSection>
                       {f.options.map(o =>
-                        // <Filters.CheckboxOption
-                        //   key={o.displayName}
-                        //   value={o.value}
-                        // />
-                        <>{o.displayName}</>
+                        <Filters.CheckboxOption
+                          key={o.displayName}
+                          value={o.value}
+                          matcher={o.matcher}
+                          label={o.displayName}
+                          fieldId={f.fieldId}
+                        />
                       )}
                       {(f.fieldId === 'price.value') && <Filters.RangeInput/>}
                     </Filters.CollapsibleSection>

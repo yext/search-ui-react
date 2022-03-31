@@ -51,7 +51,7 @@ export function findSelectableFilter(
 /**
  * Creates a number range value based on a min and max from user input.
  */
-export function parseNumberRangeInput(minRangeInput?: string, maxRangeInput?: string): NumberRangeValue {
+export function parseNumberRangeInput(minRangeInput: string, maxRangeInput: string): NumberRangeValue {
   const minRange = parseNumber(minRangeInput);
   const maxRange = parseNumber(maxRangeInput);
 
@@ -74,7 +74,7 @@ export function parseNumberRangeInput(minRangeInput?: string, maxRangeInput?: st
 /**
  * Given a string, returns the corresponding number, or undefined if it is NaN.
  */
-function parseNumber(num?: string) {
+function parseNumber(num: string) {
   const parsedNum = parseFloat(num ?? '');
   if (isNaN(parsedNum)) {
     return undefined;
