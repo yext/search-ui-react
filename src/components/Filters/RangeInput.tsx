@@ -2,7 +2,7 @@ import { Filter, Matcher,NumberRangeValue, useAnswersActions, useAnswersState } 
 import { useCallback, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { findSelectableFilter, isNumberRangeValue, parseNumberRangeValue } from '../../utils/filterutils';
+import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
 
@@ -87,7 +87,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const staticFilters = useAnswersState(state => state.filters.static);
 
   const value: NumberRangeValue = useMemo(() =>
-    parseNumberRangeValue(minRangeInput, maxRangeInput),
+    parseNumberRangeInput(minRangeInput, maxRangeInput),
   [maxRangeInput, minRangeInput]);
 
   const displayName = getFilterDisplayName(value);
