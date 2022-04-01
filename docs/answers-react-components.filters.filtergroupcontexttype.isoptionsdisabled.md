@@ -9,5 +9,5 @@ Whether or not the filter options should be disabled.
 <b>Signature:</b>
 
 ```typescript
-isOptionsDisabled?: boolean;
+isOptionsDisabled: boolean;
 ```
