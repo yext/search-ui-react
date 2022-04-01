@@ -223,7 +223,7 @@ export function SearchBar({
   }, [answersActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
 
   const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
-    answersActions.setQuery(value || '');
+    value && answersActions.setQuery(value);
     answersActions.setOffset(0);
     answersActions.resetFacets();
     clearStaticRangeFilters(answersActions);

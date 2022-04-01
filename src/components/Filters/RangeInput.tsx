@@ -61,7 +61,7 @@ export interface RangeInputCssClasses {
 
 const builtInCssClasses: RangeInputCssClasses = {
   container: 'flex flex-col',
-  input: 'w-24 h-9 form-input cursor-pointer border border-gray-300 rounded-md  text-neutral-dark text-sm focus:ring-primary focus:ring-0 appearance-none leading-9',
+  input: 'w-24 h-9 form-input cursor-pointer border border-gray-300 rounded-md text-neutral-dark text-sm focus:ring-primary focus:ring-0 appearance-none leading-9',
   input___withPrefix: 'pl-[1.375rem]',
   input___withoutPrefix: 'px-2',
   input___disabled: 'bg-gray-50 placeholder:text-neutral-light cursor-not-allowed',
