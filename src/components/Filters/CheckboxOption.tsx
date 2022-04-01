@@ -54,13 +54,13 @@ export interface CheckboxCssClasses {
 
 const builtInCssClasses: CheckboxCssClasses = {
   label: 'text-neutral text-sm font-normal cursor-pointer',
-  label___disabled: 'opacity-50',
+  label___disabled: 'opacity-50 cursor-not-allowed',
   input: 'w-3.5 h-3.5 form-checkbox cursor-pointer border border-gray-300 rounded-sm text-primary focus:ring-primary',
-  input___disabled: 'border-gray-200 bg-gray-50',
+  input___disabled: 'border-gray-200 bg-gray-50 cursor-not-allowed',
   container: 'flex items-center',
   optionContainer: 'flex items-center space-x-3 peer',
   tooltipContainer: 'invisible peer-hover:visible relative -right-5 -top-5',
-  tooltip: 'absolute z-10 left-0 -top-0.5 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-neutral-light'
+  tooltip: 'absolute z-10 left-0 -top-0.5 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-gray-100'
 };
 
 /**

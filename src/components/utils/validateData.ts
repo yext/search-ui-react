@@ -62,7 +62,7 @@ export function validateData<TypeGuards extends TypeGuardRecord>(
     if (typeCheck(data[key])) {
       validatedData[key as keyof TypeGuards] = data[key];
     } else {
-      console.warn(`The validation for the key: ${key} failed, so the data was omitted.`);
+      //console.warn(`The validation for the key: ${key} failed, so the data was omitted.`);
     }
   });
 

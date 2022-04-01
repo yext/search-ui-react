@@ -40,6 +40,7 @@ import { renderAutocompleteResult,
 import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
+import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-6',
@@ -201,12 +202,25 @@ export function SearchBar({
   const filteredRecentSearches = recentSearches?.filter(search =>
     answersUtilities.isCloseMatch(search.query, query)
   );
+  const staticFilters = useAnswersState(state => state.filters.static);
 
   useEffect(() => {
     if (hideRecentSearches) {
       clearRecentSearches();
     }
   }, [clearRecentSearches, hideRecentSearches]);
+
+  const clearStaticRangeFilters = useCallback(() => {
+    const selectedStaticRangeFilters = staticFilters?.filter(filter =>
+      isNumberRangeFilter(filter)
+    );
+    selectedStaticRangeFilters?.forEach(filter => {
+      answersActions.setFilterOption({
+        ...filter,
+        selected: false
+      });
+    });
+  }, [answersActions, staticFilters]);
 
   const clearAutocomplete = useCallback(() => {
     clearAutocompleteData();
@@ -223,6 +237,7 @@ export function SearchBar({
 
   const handleSubmit = useCallback((value: string, index: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
+    clearStaticRangeFilters();
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
       onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
@@ -231,7 +246,7 @@ export function SearchBar({
     if (index >= 0 && !itemData?.isEntityPreview) {
       reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
     }
-  }, [answersActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
+  }, [answersActions, clearStaticRangeFilters, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 
   const [
     entityPreviewsState,

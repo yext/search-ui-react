@@ -20,9 +20,9 @@ export interface FilterGroupContextType {
   /** Indicates whether or not the filter group is expanded. */
   isExpanded: boolean,
   /** Whether or not the filter options should be disabled. */
-  isOptionsDisabled?: boolean,
+  isOptionsDisabled: boolean,
   /** Sets the value for whether or not the filter options should be disabled. */
-  setIsOptionsDisabled?: (value: boolean) => void
+  setIsOptionsDisabled: (value: boolean) => void
 }
 
 /**

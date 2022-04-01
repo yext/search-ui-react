@@ -1,11 +1,12 @@
 import { Matcher,NumberRangeValue, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
 import { NumberRangeFilter } from '../../models/NumberRangeFilter';
+import { useFiltersContext } from './FiltersContext';
 
 /**
  * Props for the {@link Filters.RangeInput}
@@ -42,29 +43,41 @@ export interface RangeInputCssClasses {
   input?: string,
   input___withPrefix?: string,
   input___withoutPrefix?: string,
+  input___disabled?: string,
+  input___enabled?: string,
   inputContainer?: string,
   inputRowContainer?: string,
   buttonsContainer?: string,
   label?: string,
   inputPrefix?: string,
+  inputPrefix___disabled?: string,
+  inputPrefix___enabled?: string,
   divider?: string,
   applyButton?: string,
-  clearButton?: string
+  clearButton?: string,
+  tooltipContainer?: string,
+  tooltip?: string
 }
 
 const builtInCssClasses: RangeInputCssClasses = {
   container: 'flex flex-col',
-  input: 'w-24 h-9 form-input cursor-pointer border border-gray-300 rounded-md text-neutral-dark text-sm focus:ring-primary focus:ring-0 appearance-none leading-9 placeholder:text-neutral',
+  input: 'w-24 h-9 form-input cursor-pointer border border-gray-300 rounded-md text-sm focus:ring-primary focus:ring-0 appearance-none leading-9 text-neutral-dark',
   input___withPrefix: 'pl-[1.375rem]',
   input___withoutPrefix: 'px-2',
+  input___disabled: 'bg-gray-50 placeholder:text-neutral-light cursor-not-allowed',
+  input___enabled: 'placeholder:text-neutral',
   inputContainer: 'relative',
-  inputRowContainer: 'flex flex-row items-center space-x-3',
+  inputRowContainer: 'flex flex-row items-center space-x-3 peer',
   buttonsContainer: 'flex flex-row items-center justify-between pt-2',
   label: 'text-neutral text-sm font-normal cursor-pointer',
-  inputPrefix: 'absolute left-2 top-2 text-sm text-neutral',
+  inputPrefix: 'absolute left-2 top-2 text-sm',
+  inputPrefix___disabled: 'text-neutral-light cursor-not-allowed',
+  inputPrefix___enabled: 'text-neutral',
   divider: 'w-2.5 text-sm text-neutral',
   applyButton: 'text-sm text-primary font-medium',
-  clearButton: 'text-sm text-neutral font-medium'
+  clearButton: 'text-sm text-neutral font-medium',
+  tooltipContainer: 'invisible peer-hover:visible relative -right-60 -top-10',
+  tooltip: 'absolute z-10 left-0 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-gray-100'
 };
 
 /**
@@ -75,7 +88,8 @@ const builtInCssClasses: RangeInputCssClasses = {
  * @param props - {@link Filters.RangeInputProps}
  */
 export function RangeInput(props: RangeInputProps): JSX.Element | null {
-  const { defaultFieldId: fieldId } = useFilterGroupContext();
+  const { filters } = useFiltersContext();
+  const { defaultFieldId: fieldId, setIsOptionsDisabled } = useFilterGroupContext();
   const {
     getFilterDisplayName = getDefaultFilterDisplayName,
     inputPrefix
@@ -86,6 +100,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const [minRangeInput, setMinRangeInput] = useState<string>('');
   const [maxRangeInput, setMaxRangeInput] = useState<string>('');
   const staticFilters = useAnswersState(state => state.filters.static);
+  const isDisabled = !!filters.find(filter => filter.selected && filter.fieldId === fieldId);
 
   const rangeFilter: NumberRangeFilter = useMemo(() => {
     return {
@@ -94,6 +109,14 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       value: parseNumberRangeInput(minRangeInput, maxRangeInput),
     };
   }, [fieldId, maxRangeInput, minRangeInput]);
+
+   // Find a static filter which matches the current range input
+  const matchingFilter = findSelectableFilter(rangeFilter, staticFilters ?? []);
+  const isSelectedInAnswersState = matchingFilter?.selected === true;
+  const hasUserInput = !!(minRangeInput || maxRangeInput);
+  const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState;
+
+  useEffect(() => setIsOptionsDisabled(hasUserInput), [hasUserInput, setIsOptionsDisabled]);
 
   const handleMinChange = useCallback(event => {
     const input = event?.target?.value;
@@ -136,44 +159,54 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     return null;
   }
 
-  // Find a static filter which matches the current range input
-  const matchingFilter = findSelectableFilter(rangeFilter, staticFilters ?? []);
-  const isSelectedInAnswersState = matchingFilter?.selected === true;
-  const hasUserInput = minRangeInput || maxRangeInput;
-  const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState;
-
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,
-    [cssClasses.input___withoutPrefix ?? '']: !inputPrefix
+    [cssClasses.input___withoutPrefix ?? '']: !inputPrefix,
+    [cssClasses.input___disabled ?? '']: isDisabled,
+    [cssClasses.input___enabled ?? '']: !isDisabled
+  });
+
+  const inputPrefixClasses = classNames(cssClasses.inputPrefix, {
+    [cssClasses.inputPrefix___disabled ?? '']: isDisabled,
+    [cssClasses.inputPrefix___enabled ?? '']: !isDisabled,
   });
 
   return (
     <div className={cssClasses.container}>
       <div className={cssClasses.inputRowContainer}>
         <div className={cssClasses.inputContainer}>
-          {inputPrefix && <span className={cssClasses.inputPrefix} aria-hidden="true">{inputPrefix}</span>}
+          {inputPrefix && <span className={inputPrefixClasses} aria-hidden="true">{inputPrefix}</span>}
           <input
             type='text'
             inputMode='decimal'
             value={minRangeInput}
             placeholder='Min'
+            disabled={isDisabled}
             className={inputClasses}
             onChange={handleMinChange}
           />
         </div>
         <div className={cssClasses.divider}>-</div>
         <div className={cssClasses.inputContainer}>
-          {inputPrefix && <span className={cssClasses.inputPrefix} aria-hidden="true">{inputPrefix}</span>}
+          {inputPrefix && <span className={inputPrefixClasses} aria-hidden="true">{inputPrefix}</span>}
           <input
             type='text'
             inputMode='decimal'
             value={maxRangeInput}
             placeholder='Max'
+            disabled={isDisabled}
             className={inputClasses}
             onChange={handleMaxChange}
           />
         </div>
       </div>
+      {isDisabled &&
+        <div className={cssClasses.tooltipContainer}>
+          <div className={cssClasses.tooltip}>
+            Unselect an option to enter in a range
+          </div>
+        </div>
+      }
       {hasUserInput &&
         <div className={cssClasses.buttonsContainer}>
           <button
