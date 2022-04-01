@@ -353,7 +353,10 @@ declare namespace Filters {
         HierarchicalFacetProps,
         HierarchicalFacetCssClasses,
         ApplyFiltersButton,
-        ApplyFiltersButtonProps
+        ApplyFiltersButtonProps,
+        RangeInput,
+        RangeInputProps,
+        RangeInputCssClasses
     }
 }
 export { Filters }
@@ -492,6 +495,52 @@ export interface PaginationCssClasses {
     rightIconContainer?: string;
     // (undocumented)
     selectedLabel?: string;
+}
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function RangeInput(props: RangeInputProps): JSX.Element | null;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface RangeInputCssClasses {
+    // (undocumented)
+    applyButton?: string;
+    // (undocumented)
+    buttonsContainer?: string;
+    // (undocumented)
+    clearButton?: string;
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+    // (undocumented)
+    input?: string;
+    // (undocumented)
+    input___withoutPrefix?: string;
+    // (undocumented)
+    input___withPrefix?: string;
+    // (undocumented)
+    inputContainer?: string;
+    // (undocumented)
+    inputPrefix?: string;
+    // (undocumented)
+    inputRowContainer?: string;
+    // (undocumented)
+    label?: string;
+}
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface RangeInputProps {
+    cssCompositionMethod?: CompositionMethod;
+    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+    customCssClasses?: RangeInputCssClasses;
+    getFilterDisplayName?: (value: NumberRangeValue) => string;
+    inputPrefix?: JSX.Element;
 }
 
 // @public

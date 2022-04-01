@@ -42,7 +42,7 @@ export interface FacetsProps {
  */
 export function Facets({
   children,
-  className = 'md:w-40',
+  className = 'md:w-56',
   searchOnChange = true
 }: FacetsProps): JSX.Element {
   const answersActions = useAnswersActions();

@@ -13,6 +13,9 @@ module.exports = {
         'neutral-light': 'var(--neutral-color-light, #9ca3af)',
         'neutral-dark': 'var(--neutral-color-dark, #1f2937)'
       },
+      borderRadius: {
+        cta: 'var(--cta-border-radius, 1rem)'
+      },
     },
   },
   plugins: [

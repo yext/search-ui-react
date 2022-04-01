@@ -9,4 +9,4 @@ export { SearchInput, SearchInputProps } from './SearchInput';
 export { StaticFilters, StaticFiltersProps } from './StaticFilters';
 export { HierarchicalFacet, HierarchicalFacetProps, HierarchicalFacetCssClasses } from './HierarchicalFacet';
 export { ApplyFiltersButton, ApplyFiltersButtonProps } from './ApplyFiltersButton';
-
+export { RangeInput, RangeInputProps, RangeInputCssClasses } from './RangeInput';
