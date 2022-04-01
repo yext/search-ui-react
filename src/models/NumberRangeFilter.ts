@@ -8,11 +8,5 @@ export interface NumberRangeFilter extends Filter {
 
 export function isNumberRangeFilter(unknownFilter: unknown = {}): unknownFilter is NumberRangeFilter {
   const filter = unknownFilter as NumberRangeFilter;
-  if (filter.matcher !== Matcher.Between) {
-    return false;
-  }
-  if (!isNumberRangeValue(filter.value)) {
-    return false;
-  }
-  return true;
+  return (filter.matcher === Matcher.Between) && isNumberRangeValue(filter.value);
 }

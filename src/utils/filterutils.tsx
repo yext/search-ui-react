@@ -1,5 +1,7 @@
 import { NearFilterValue, Filter, SelectableFilter, NumberRangeValue, Matcher } from '@yext/answers-headless-react';
 import isEqual from 'lodash/isEqual';
+import { AnswersHeadless } from '@yext/answers-headless-react';
+import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 
 /**
  * Check if the object follows NearFilterValue interface.
@@ -80,4 +82,19 @@ function parseNumber(num: string) {
     return undefined;
   }
   return parsedNum;
+}
+
+/**
+ * Deselects the selected static number range filters in state.
+ */
+export function clearStaticRangeFilters(answersActions: AnswersHeadless){
+  const selectedStaticRangeFilters = answersActions.state?.filters?.static?.filter(filter =>
+    isNumberRangeFilter(filter) && filter.selected === true
+  );
+  selectedStaticRangeFilters?.forEach(filter => {
+    answersActions.setFilterOption({
+      ...filter,
+      selected: false
+    });
+  });
 }

@@ -40,7 +40,7 @@ import { renderAutocompleteResult,
 import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
-import { clearStaticRangeFilters } from '../utils/number-ranges';
+import { clearStaticRangeFilters } from '../utils/filterutils';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-6',
@@ -224,6 +224,7 @@ export function SearchBar({
 
   const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
+    answersActions.setOffset(0);
     answersActions.resetFacets();
     clearStaticRangeFilters(answersActions);
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
