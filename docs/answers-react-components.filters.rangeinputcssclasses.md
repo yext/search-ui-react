@@ -21,11 +21,17 @@ export interface RangeInputCssClasses
 |  [clearButton?](./answers-react-components.filters.rangeinputcssclasses.clearbutton.md) | string | <i>(Optional)</i> |
 |  [container?](./answers-react-components.filters.rangeinputcssclasses.container.md) | string | <i>(Optional)</i> |
 |  [divider?](./answers-react-components.filters.rangeinputcssclasses.divider.md) | string | <i>(Optional)</i> |
+|  [input\_\_\_disabled?](./answers-react-components.filters.rangeinputcssclasses.input___disabled.md) | string | <i>(Optional)</i> |
+|  [input\_\_\_enabled?](./answers-react-components.filters.rangeinputcssclasses.input___enabled.md) | string | <i>(Optional)</i> |
 |  [input\_\_\_withoutPrefix?](./answers-react-components.filters.rangeinputcssclasses.input___withoutprefix.md) | string | <i>(Optional)</i> |
 |  [input\_\_\_withPrefix?](./answers-react-components.filters.rangeinputcssclasses.input___withprefix.md) | string | <i>(Optional)</i> |
 |  [input?](./answers-react-components.filters.rangeinputcssclasses.input.md) | string | <i>(Optional)</i> |
 |  [inputContainer?](./answers-react-components.filters.rangeinputcssclasses.inputcontainer.md) | string | <i>(Optional)</i> |
+|  [inputPrefix\_\_\_disabled?](./answers-react-components.filters.rangeinputcssclasses.inputprefix___disabled.md) | string | <i>(Optional)</i> |
+|  [inputPrefix\_\_\_enabled?](./answers-react-components.filters.rangeinputcssclasses.inputprefix___enabled.md) | string | <i>(Optional)</i> |
 |  [inputPrefix?](./answers-react-components.filters.rangeinputcssclasses.inputprefix.md) | string | <i>(Optional)</i> |
 |  [inputRowContainer?](./answers-react-components.filters.rangeinputcssclasses.inputrowcontainer.md) | string | <i>(Optional)</i> |
 |  [label?](./answers-react-components.filters.rangeinputcssclasses.label.md) | string | <i>(Optional)</i> |
+|  [tooltip?](./answers-react-components.filters.rangeinputcssclasses.tooltip.md) | string | <i>(Optional)</i> |
+|  [tooltipContainer?](./answers-react-components.filters.rangeinputcssclasses.tooltipcontainer.md) | string | <i>(Optional)</i> |
 

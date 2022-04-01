@@ -312,9 +312,9 @@ interface FilterGroupContextType {
     getCollapseProps: UseCollapseOutput['getCollapseProps'];
     getToggleProps: UseCollapseOutput['getToggleProps'];
     isExpanded: boolean;
-    isOptionsDisabled?: boolean;
+    isOptionsDisabled: boolean;
     searchValue: string;
-    setIsOptionsDisabled?: (value: boolean) => void;
+    setIsOptionsDisabled: (value: boolean) => void;
     setSearchValue: (value: string) => void;
 }
 
@@ -519,6 +519,10 @@ interface RangeInputCssClasses {
     // (undocumented)
     input?: string;
     // (undocumented)
+    input___disabled?: string;
+    // (undocumented)
+    input___enabled?: string;
+    // (undocumented)
     input___withoutPrefix?: string;
     // (undocumented)
     input___withPrefix?: string;
@@ -527,9 +531,17 @@ interface RangeInputCssClasses {
     // (undocumented)
     inputPrefix?: string;
     // (undocumented)
+    inputPrefix___disabled?: string;
+    // (undocumented)
+    inputPrefix___enabled?: string;
+    // (undocumented)
     inputRowContainer?: string;
     // (undocumented)
     label?: string;
+    // (undocumented)
+    tooltip?: string;
+    // (undocumented)
+    tooltipContainer?: string;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
