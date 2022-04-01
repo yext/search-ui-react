@@ -60,7 +60,7 @@ const builtInCssClasses: CheckboxCssClasses = {
   container: 'flex items-center',
   optionContainer: 'flex items-center space-x-3 peer',
   tooltipContainer: 'invisible peer-hover:visible relative -right-5 -top-5',
-  tooltip: 'absolute z-10 left-0 -top-0.5 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-gray-100'
+  tooltip: 'absolute z-10 left-0 -top-0.5 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-white'
 };
 
 /**

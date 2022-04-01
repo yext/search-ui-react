@@ -4,8 +4,10 @@ import {
   useAnswersActions,
   useAnswersState
 } from '@yext/answers-headless-react';
-import { ReactNode, useMemo } from 'react';
+import { ReactNode, useCallback, useMemo } from 'react';
+import { isNumberRangeFilter } from '../../models/NumberRangeFilter';
 import { isNumberRangeValue } from '../../utils/filterutils';
+import { clearStaticRangeFilters } from '../../utils/number-ranges';
 import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
@@ -76,6 +78,7 @@ export function Facets({
       applyFilters() {
         if (searchOnChange) {
           answersActions.setOffset(0);
+          clearStaticRangeFilters(answersActions);
           executeSearch(answersActions);
         }
       },

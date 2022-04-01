@@ -40,7 +40,7 @@ import { renderAutocompleteResult,
 import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
-import { isNumberRangeFilter } from '../models/NumberRangeFilter';
+import { clearStaticRangeFilters } from '../utils/number-ranges';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-6',
@@ -202,25 +202,12 @@ export function SearchBar({
   const filteredRecentSearches = recentSearches?.filter(search =>
     answersUtilities.isCloseMatch(search.query, query)
   );
-  const staticFilters = useAnswersState(state => state.filters.static);
 
   useEffect(() => {
     if (hideRecentSearches) {
       clearRecentSearches();
     }
   }, [clearRecentSearches, hideRecentSearches]);
-
-  const clearStaticRangeFilters = useCallback(() => {
-    const selectedStaticRangeFilters = staticFilters?.filter(filter =>
-      isNumberRangeFilter(filter)
-    );
-    selectedStaticRangeFilters?.forEach(filter => {
-      answersActions.setFilterOption({
-        ...filter,
-        selected: false
-      });
-    });
-  }, [answersActions, staticFilters]);
 
   const clearAutocomplete = useCallback(() => {
     clearAutocompleteData();
@@ -235,18 +222,19 @@ export function SearchBar({
     executeQueryWithNearMeHandling();
   }, [answersActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
 
-  const handleSubmit = useCallback((value: string, index: number, itemData?: FocusedItemData) => {
+  const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
     answersActions.setQuery(value || '');
-    clearStaticRangeFilters();
+    answersActions.resetFacets();
+    clearStaticRangeFilters(answersActions);
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
       onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
       executeQuery();
     }
-    if (index >= 0 && !itemData?.isEntityPreview) {
+    if (typeof index === 'number' && index >= 0 && !itemData?.isEntityPreview) {
       reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
     }
-  }, [answersActions, clearStaticRangeFilters, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
+  }, [answersActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 
   const [
     entityPreviewsState,
@@ -278,10 +266,9 @@ export function SearchBar({
 
   const handleClickClearButton = useCallback(() => {
     updateEntityPreviews('');
-    answersActions.setQuery('');
-    executeQuery();
+    handleSubmit('');
     reportAnalyticsEvent('SEARCH_CLEAR_BUTTON');
-  }, [answersActions, executeQuery, reportAnalyticsEvent, updateEntityPreviews]);
+  }, [handleSubmit, reportAnalyticsEvent, updateEntityPreviews]);
 
   function renderInput() {
     return (
@@ -412,7 +399,7 @@ export function SearchBar({
           {renderInput()}
           {query && renderClearButton()}
           <DropdownSearchButton
-            executeQuery={executeQuery}
+            handleSubmit={handleSubmit}
             cssClasses={cssClasses}
           />
         </div>
@@ -483,8 +470,8 @@ function getScreenReaderText(
   return text.trim();
 }
 
-function DropdownSearchButton({ executeQuery, cssClasses }: {
-  executeQuery: () => void,
+function DropdownSearchButton({ handleSubmit, cssClasses }: {
+  handleSubmit: () => void,
   cssClasses: {
     searchButtonContainer?: string,
     searchButton?: string
@@ -492,9 +479,9 @@ function DropdownSearchButton({ executeQuery, cssClasses }: {
 }) {
   const { toggleDropdown } = useDropdownContext();
   const handleClick = useCallback(() => {
-    executeQuery();
+    handleSubmit();
     toggleDropdown(false);
-  }, [executeQuery, toggleDropdown]);
+  }, [handleSubmit, toggleDropdown]);
   return (
     <div className={cssClasses.searchButtonContainer}>
       <SearchButton

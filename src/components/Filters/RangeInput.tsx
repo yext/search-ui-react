@@ -77,7 +77,7 @@ const builtInCssClasses: RangeInputCssClasses = {
   applyButton: 'text-sm text-primary font-medium',
   clearButton: 'text-sm text-neutral font-medium',
   tooltipContainer: 'invisible peer-hover:visible relative -right-60 -top-10',
-  tooltip: 'absolute z-10 left-0 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-gray-100'
+  tooltip: 'absolute z-10 left-0 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-white'
 };
 
 /**
@@ -203,7 +203,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       {isDisabled &&
         <div className={cssClasses.tooltipContainer}>
           <div className={cssClasses.tooltip}>
-            Unselect an option to enter in a range
+            Unselect an option to enter in a range.
           </div>
         </div>
       }
