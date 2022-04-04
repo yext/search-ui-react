@@ -9,5 +9,5 @@ Sets the value for whether or not the filter options should be disabled.
 <b>Signature:</b>
 
 ```typescript
-setIsOptionsDisabled?: (value: boolean) => void;
+setIsOptionsDisabled: (value: boolean) => void;
 ```
