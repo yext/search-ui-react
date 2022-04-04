@@ -171,34 +171,29 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     [cssClasses.inputPrefix___enabled ?? '']: !isDisabled,
   });
 
+  function renderInput(value: string, onChange: (event: unknown) => void, placeholder: string) {
+    return (
+      <div className={cssClasses.inputContainer}>
+        {inputPrefix && <span className={inputPrefixClasses} aria-hidden="true">{inputPrefix}</span>}
+        <input
+          type='text'
+          inputMode='decimal'
+          value={value}
+          placeholder={placeholder}
+          disabled={isDisabled}
+          className={inputClasses}
+          onChange={onChange}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className={cssClasses.container}>
       <div className={cssClasses.inputRowContainer}>
-        <div className={cssClasses.inputContainer}>
-          {inputPrefix && <span className={inputPrefixClasses} aria-hidden="true">{inputPrefix}</span>}
-          <input
-            type='text'
-            inputMode='decimal'
-            value={minRangeInput}
-            placeholder='Min'
-            disabled={isDisabled}
-            className={inputClasses}
-            onChange={handleMinChange}
-          />
-        </div>
+        {renderInput(minRangeInput, handleMinChange, 'Min')}
         <div className={cssClasses.divider}>-</div>
-        <div className={cssClasses.inputContainer}>
-          {inputPrefix && <span className={inputPrefixClasses} aria-hidden="true">{inputPrefix}</span>}
-          <input
-            type='text'
-            inputMode='decimal'
-            value={maxRangeInput}
-            placeholder='Max'
-            disabled={isDisabled}
-            className={inputClasses}
-            onChange={handleMaxChange}
-          />
-        </div>
+        {renderInput(maxRangeInput, handleMaxChange, 'Max')}
       </div>
       {isDisabled &&
         <div className={cssClasses.tooltipContainer}>
@@ -211,12 +206,16 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
         <div className={cssClasses.buttonsContainer}>
           <button
             className={cssClasses.clearButton}
-            onClick={handleClickClear}>Clear min and max
+            onClick={handleClickClear}
+          >
+            Clear min and max
           </button>
           {shouldRenderApplyButton &&
             <button
               className={cssClasses.applyButton}
-              onClick={handleClickApply}>Apply
+              onClick={handleClickApply}
+            >
+              Apply
             </button>
           }
         </div>
