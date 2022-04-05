@@ -1,7 +1,7 @@
-import { VerticalResultsDisplay } from '../components/VerticalResultsDisplay';
-import { SectionConfig } from '../models/sectionComponent';
-import { StandardCard } from '../components/cards/StandardCard';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { VerticalResultsDisplay } from '../VerticalResultsDisplay';
+import { SectionProps } from '../../models/sectionComponent';
+import { StandardCard } from '../cards/StandardCard';
+import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 
 /**
  * The CSS class interface used for {@link StandardSection}.
@@ -21,7 +21,7 @@ const builtInCssClasses: StandardSectionCssClasses = {
  *
  * @public
  */
-export interface StandardSectionConfig extends SectionConfig {
+export interface StandardSectionProps extends SectionProps {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardSectionCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -33,10 +33,10 @@ export interface StandardSectionConfig extends SectionConfig {
  *
  * @public
  *
- * @param props - {@link StandardSectionConfig}
+ * @param props - {@link StandardSectionProps}
  * @returns A React element for a standard section, or null if there are no results to display
  */
-export function StandardSection(props: StandardSectionConfig): JSX.Element | null {
+export function StandardSection(props: StandardSectionProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(
     builtInCssClasses,
     props.customCssClasses,

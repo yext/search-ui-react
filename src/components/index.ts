@@ -84,5 +84,22 @@ export {
   ResultsCountProps
 } from './ResultsCount';
 
+export {
+  renderHighlightedValue,
+  HighlightedValueCssClasses
+} from './utils/renderHighlightedValue';
+
+export {
+  isBoolean,
+  isNumber,
+  isString,
+  isStringOrHighlightedValue,
+  validateData,
+  TypeGuardRecord,
+  InferTypeGuard,
+  ValidatedData
+} from './utils/validateData';
+
+export * from './sections';
 export * from './AnalyticsProvider';
 export { Filters };

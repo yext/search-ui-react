@@ -5,6 +5,10 @@ import { useCardAnalytics } from './useCardAnalytics';
 
 /**
  * Creates a memoized function for reporting card feedback analytics.
+ *
+ * @public
+ *
+ * @param result - card result that contains data use in the feedback analytics event.
  */
 export function useCardFeedbackCallback(
   result: Result | DirectAnswerData,

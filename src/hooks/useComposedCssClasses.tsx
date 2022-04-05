@@ -25,6 +25,9 @@ export type CompositionMethod = 'merge' | 'replace' | 'assign';
 
 /**
  * A react hook which combines a component's built-in CSS classes with custom CSS classes.
+ *
+ * @public
+ *
  * @param builtInClasses - The component's built-in css classes
  * @param customClasses - The custom classes to combine with the built-in ones
  * @param cssCompositionMethod - The method of combining the built-in classes with the custom classes

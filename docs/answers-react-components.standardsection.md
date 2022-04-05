@@ -9,14 +9,14 @@ A component that displays all the results for a vertical using a standard sectio
 <b>Signature:</b>
 
 ```typescript
-export declare function StandardSection(props: StandardSectionConfig): JSX.Element | null;
+export declare function StandardSection(props: StandardSectionProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [StandardSectionConfig](./answers-react-components.standardsectionconfig.md) | [StandardSectionConfig](./answers-react-components.standardsectionconfig.md) |
+|  props | [StandardSectionProps](./answers-react-components.standardsectionprops.md) | [StandardSectionProps](./answers-react-components.standardsectionprops.md) |
 
 <b>Returns:</b>
 

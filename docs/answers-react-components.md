@@ -19,7 +19,13 @@
 |  [FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [getSearchIntents(answersActions)](./answers-react-components.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./answers-react-components.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |
+|  [isBoolean(data)](./answers-react-components.isboolean.md) | Type guard for boolean. |
+|  [isCtaData(data)](./answers-react-components.isctadata.md) | Type guard for CtaData. |
+|  [isNumber(data)](./answers-react-components.isnumber.md) | Type guard for number. |
+|  [isString(data)](./answers-react-components.isstring.md) | Type guard for string. |
+|  [isStringOrHighlightedValue(data)](./answers-react-components.isstringorhighlightedvalue.md) | Typeguard for data of type string or HighlightedValue |
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
+|  [renderHighlightedValue(highlightedValueOrString, customCssClasses)](./answers-react-components.renderhighlightedvalue.md) | Renders a HighlightedValue with highlighting based on its matchedSubstrings. |
 |  [ResultsCount(props)](./answers-react-components.resultscount.md) | Renders results count of a universal/vertical search. |
 |  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch })](./answers-react-components.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
@@ -29,6 +35,10 @@
 |  [UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod })](./answers-react-components.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
 |  [updateLocationIfNeeded(answersActions, intents, geolocationOptions)](./answers-react-components.updatelocationifneeded.md) | If the provided search intents include a 'NEAR\_ME' intent and there's no existing user's location in state, retrieve and store user's location in headless state. |
 |  [useAnalytics()](./answers-react-components.useanalytics.md) | Returns a service that can be used to report analytics events. |
+|  [useCardAnalyticsCallback(result, analyticsType)](./answers-react-components.usecardanalyticscallback.md) | Creates a memoized function for reporting card analytics. |
+|  [useCardFeedbackCallback(result)](./answers-react-components.usecardfeedbackcallback.md) | Creates a memoized function for reporting card feedback analytics. |
+|  [useComposedCssClasses(builtInClasses, customClasses, cssCompositionMethod)](./answers-react-components.usecomposedcssclasses.md) | A react hook which combines a component's built-in CSS classes with custom CSS classes. |
+|  [validateData(data, typeGuards)](./answers-react-components.validatedata.md) | Returns data which passes the corresponding typeGuard validation. |
 |  [VerticalResults(props)](./answers-react-components.verticalresults.md) | A component that renders search results for a vertical page. |
 
 ## Interfaces
@@ -41,11 +51,13 @@
 |  [AppliedFiltersProps](./answers-react-components.appliedfiltersprops.md) | Properties for [AppliedFilters()](./answers-react-components.appliedfilters.md)<!-- -->. |
 |  [AutocompleteResultCssClasses](./answers-react-components.autocompleteresultcssclasses.md) | The CSS class interface for the Autocomplete Result. |
 |  [CardProps](./answers-react-components.cardprops.md) | The props provided to every [CardComponent](./answers-react-components.cardcomponent.md)<!-- -->. |
+|  [CtaData](./answers-react-components.ctadata.md) | The shape of a StandardCard CTA field's data. |
 |  [DirectAnswerCssClasses](./answers-react-components.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [DirectAnswerProps](./answers-react-components.directanswerprops.md) | Props for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [EntityPreviewsProps](./answers-react-components.entitypreviewsprops.md) | The props for the [EntityPreviews()](./answers-react-components.entitypreviews.md) component. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |
+|  [HighlightedValueCssClasses](./answers-react-components.highlightedvaluecssclasses.md) | The CSS class interface for [renderHighlightedValue()](./answers-react-components.renderhighlightedvalue.md)<!-- -->. |
 |  [LocationBiasCssClasses](./answers-react-components.locationbiascssclasses.md) | The CSS class interface for the [LocationBias()](./answers-react-components.locationbias.md) component. |
 |  [LocationBiasProps](./answers-react-components.locationbiasprops.md) | The props for the [LocationBias()](./answers-react-components.locationbias.md) component. |
 |  [PaginationCssClasses](./answers-react-components.paginationcssclasses.md) | The CSS classes used for pagination. |
@@ -53,13 +65,14 @@
 |  [ResultsCountProps](./answers-react-components.resultscountprops.md) | Props for [ResultsCount()](./answers-react-components.resultscount.md)<!-- -->. |
 |  [SearchBarCssClasses](./answers-react-components.searchbarcssclasses.md) | The CSS class interface for the [SearchBar()](./answers-react-components.searchbar.md)<!-- -->. |
 |  [SearchBarProps](./answers-react-components.searchbarprops.md) | The props for the [SearchBar()](./answers-react-components.searchbar.md) component. |
-|  [SectionConfig](./answers-react-components.sectionconfig.md) | The configuration of a section template for a vertical's results on a universal page. |
+|  [SectionProps](./answers-react-components.sectionprops.md) | The configuration of a section template for a vertical's results on a universal page. |
 |  [SpellCheckCssClasses](./answers-react-components.spellcheckcssclasses.md) | The CSS Class interface for SpellCheck. |
 |  [SpellCheckProps](./answers-react-components.spellcheckprops.md) | The props for the [SpellCheck()](./answers-react-components.spellcheck.md) component. |
 |  [StandardCardCssClasses](./answers-react-components.standardcardcssclasses.md) | The CSS class interface used for [StandardCard()](./answers-react-components.standardcard.md)<!-- -->. |
+|  [StandardCardData](./answers-react-components.standardcarddata.md) | The data used by the [StandardCard()](./answers-react-components.standardcard.md) and taken from the original Result. |
 |  [StandardCardProps](./answers-react-components.standardcardprops.md) | Props for a StandardCard. |
-|  [StandardSectionConfig](./answers-react-components.standardsectionconfig.md) | The configuration for a StandardSection. |
 |  [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection()](./answers-react-components.standardsection.md)<!-- -->. |
+|  [StandardSectionProps](./answers-react-components.standardsectionprops.md) | The configuration for a StandardSection. |
 |  [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md) | The CSS class interface used for [ThumbsFeedback()](./answers-react-components.thumbsfeedback.md)<!-- -->. |
 |  [ThumbsFeedbackProps](./answers-react-components.thumbsfeedbackprops.md) | Props for [ThumbsFeedback()](./answers-react-components.thumbsfeedback.md)<!-- -->. |
 |  [UniversalLink](./answers-react-components.universallink.md) | Data needed to create a URL to a universal search page. |
@@ -83,12 +96,17 @@
 
 |  Type Alias | Description |
 |  --- | --- |
+|  [CardAnalyticsType](./answers-react-components.cardanalyticstype.md) | Analytics event types for interactions on a card. |
 |  [CardComponent](./answers-react-components.cardcomponent.md) | A functional component that can be used to render a result card. |
+|  [CardCtaEventType](./answers-react-components.cardctaeventtype.md) | Analytics event types for cta click and title click. |
 |  [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [DropdownItemProps](./answers-react-components.dropdownitemprops.md) | Props for the [DropdownItem()](./answers-react-components.dropdownitem.md)<!-- -->. |
 |  [FeedbackType](./answers-react-components.feedbacktype.md) | Analytics event types for quality feedback. |
 |  [FocusedItemData](./answers-react-components.focuseditemdata.md) | The data associated with the currently focused item. |
+|  [InferTypeGuard](./answers-react-components.infertypeguard.md) | Infers the type associated with the provided type guard. |
 |  [onSearchFunc](./answers-react-components.onsearchfunc.md) | The interface of a function which is called on a search. |
 |  [RenderEntityPreviews](./answers-react-components.renderentitypreviews.md) | The type of a functional React component which renders entity previews based on the autocomplete loading state and the vertical results array. |
 |  [SectionComponent](./answers-react-components.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
+|  [TypeGuardRecord](./answers-react-components.typeguardrecord.md) | Type guard for an Object type. |
+|  [ValidatedData](./answers-react-components.validateddata.md) | Returns a partial record where the keys are the same as the provided type guard and the values are type associated with the type guard. |
 

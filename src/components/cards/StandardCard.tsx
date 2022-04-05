@@ -6,10 +6,11 @@ import {
   ThumbsFeedbackCssClasses
 } from '../ThumbsFeedback';
 import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
-import { HighlightedValue, Result } from '@yext/answers-headless-react';
 import { renderHighlightedValue } from '../utils/renderHighlightedValue';
 import { CtaData, isCtaData, StandardCardData } from '../../models/StandardCardData';
 import { isStringOrHighlightedValue, validateData } from '../utils/validateData';
+
+import { HighlightedValue, Result } from '@yext/answers-headless-react';
 
 /**
  * Props for a StandardCard.
@@ -85,7 +86,6 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     showFeedbackButtons
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-
   const data = dataForRender(result);
 
   const handleCtaClick = useCardAnalyticsCallback(result, 'CTA_CLICK');

@@ -5,7 +5,12 @@ const defaultCssClasses: HighlightedValueCssClasses = {
   nonHighlighted: 'font-semibold'
 };
 
-interface HighlightedValueCssClasses {
+/**
+ * The CSS class interface for {@link renderHighlightedValue}.
+ *
+ * @public
+ */
+export interface HighlightedValueCssClasses {
   highlighted?: string,
   nonHighlighted?: string
 }
@@ -13,6 +18,11 @@ interface HighlightedValueCssClasses {
 /**
  * Renders a HighlightedValue with highlighting based on its matchedSubstrings.
  * @returns JSX.Element
+ *
+ * @public
+ *
+ * @param highlightedValueOrString - the text to add highlight to.
+ * @param customCssClasses - css classes use for the non-highlighted and highlighted text.
  */
 export function renderHighlightedValue(
   highlightedValueOrString: Partial<HighlightedValue> | string,
