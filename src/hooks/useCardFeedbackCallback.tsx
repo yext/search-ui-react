@@ -5,7 +5,8 @@ import { useCardAnalytics } from './useCardAnalytics';
 
 /**
  * Creates a memoized function for reporting card feedback analytics.
- *  @public
+ *
+ * @public
  *
  * @param result - card result that contains data use in the feedback analytics event.
  */
