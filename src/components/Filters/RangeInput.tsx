@@ -125,7 +125,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const matchingFilter = findSelectableFilter(rangeFilter, staticFilters ?? []);
   const isSelectedInAnswersState = matchingFilter?.selected === true;
   const hasUserInput = !!(minRangeInput || maxRangeInput);
-  const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState && isValid;
+  const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState;
 
   useEffect(() => setIsOptionsDisabled(hasUserInput), [hasUserInput, setIsOptionsDisabled]);
 
@@ -141,6 +141,9 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
 
   const handleClickApply = useCallback(() => {
     if (!rangeFilter.value.start && !rangeFilter.value.end) {
+      return;
+    }
+    if (!isValid) {
       return;
     }
     const displayName = getFilterDisplayName(rangeFilter.value);
@@ -161,7 +164,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     });
     answersActions.setOffset(0);
     executeSearch(answersActions);
-  }, [answersActions, fieldId, getFilterDisplayName, rangeFilter, staticFilters]);
+  }, [answersActions, fieldId, getFilterDisplayName, isValid, rangeFilter, staticFilters]);
 
   const handleClickClear = useCallback(() => {
     setMinRangeInput('');
@@ -221,7 +224,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       {!isValid &&
         <div className={cssClasses.invalidRowContainer}>
           <InvalidIcon/>
-          <div className={cssClasses.invalidMessage}>Invalid Range</div>
+          <div className={cssClasses.invalidMessage}>Invalid range</div>
         </div>
       }
       {hasUserInput &&
@@ -274,9 +277,9 @@ function validateNumericInput(str: string) {
   return numberRegex.test(str);
 }
 
-//TODO: ask UX if we should verify the equaltiy of the matcher
-// Ask UX if the 'apply' button should be visible if the range is invalid
-// Ask UX if the 'invalid range' message should show if one of the inputs is '.' (or if the apply button should simply do nothing)
+/**
+ * Determines if the range is valid.
+ */
 function isValidRange(range: NumberRangeValue): boolean {
   if (range.start && range.end) {
     return range.start.value <= range.end.value;
