@@ -4,6 +4,8 @@
 
 ## CtaData.linkType property
 
+The CTA link type (e.g. URL, Phone, Email, Other).
+
 <b>Signature:</b>
 
 ```typescript

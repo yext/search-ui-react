@@ -4,6 +4,8 @@
 
 ## StandardCardData.description property
 
+The content to display in the card's body.
+
 <b>Signature:</b>
 
 ```typescript

@@ -4,6 +4,8 @@
 
 ## StandardCardData.title property
 
+The text to display in the card's header.
+
 <b>Signature:</b>
 
 ```typescript

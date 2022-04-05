@@ -4,6 +4,8 @@
 
 ## StandardCardData.cta2 property
 
+CTA data to render.
+
 <b>Signature:</b>
 
 ```typescript

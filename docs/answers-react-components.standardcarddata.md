@@ -16,8 +16,8 @@ export interface StandardCardData
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cta1](./answers-react-components.standardcarddata.cta1.md) | [CtaData](./answers-react-components.ctadata.md) |  |
-|  [cta2](./answers-react-components.standardcarddata.cta2.md) | [CtaData](./answers-react-components.ctadata.md) |  |
-|  [description](./answers-react-components.standardcarddata.description.md) | HighlightedValue \| string |  |
-|  [title](./answers-react-components.standardcarddata.title.md) | HighlightedValue \| string |  |
+|  [cta1](./answers-react-components.standardcarddata.cta1.md) | [CtaData](./answers-react-components.ctadata.md) | CTA data to render. |
+|  [cta2](./answers-react-components.standardcarddata.cta2.md) | [CtaData](./answers-react-components.ctadata.md) | CTA data to render. |
+|  [description](./answers-react-components.standardcarddata.description.md) | HighlightedValue \| string | The content to display in the card's body. |
+|  [title](./answers-react-components.standardcarddata.title.md) | HighlightedValue \| string | The text to display in the card's header. |
 

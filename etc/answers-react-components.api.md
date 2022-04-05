@@ -215,11 +215,8 @@ export type CompositionMethod = 'merge' | 'replace' | 'assign';
 
 // @public
 export interface CtaData {
-    // (undocumented)
     label: string;
-    // (undocumented)
     link: string;
-    // (undocumented)
     linkType: string;
 }
 
@@ -717,13 +714,9 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
 
 // @public
 export interface StandardCardData {
-    // (undocumented)
     cta1: CtaData;
-    // (undocumented)
     cta2: CtaData;
-    // (undocumented)
     description: HighlightedValue | string;
-    // (undocumented)
     title: HighlightedValue | string;
 }
 

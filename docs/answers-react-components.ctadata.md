@@ -16,7 +16,7 @@ export interface CtaData
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [label](./answers-react-components.ctadata.label.md) | string |  |
-|  [link](./answers-react-components.ctadata.link.md) | string |  |
-|  [linkType](./answers-react-components.ctadata.linktype.md) | string |  |
+|  [label](./answers-react-components.ctadata.label.md) | string | The display label for the CTA element. |
+|  [link](./answers-react-components.ctadata.link.md) | string | The CTA link source. |
+|  [linkType](./answers-react-components.ctadata.linktype.md) | string | The CTA link type (e.g. URL, Phone, Email, Other). |
 

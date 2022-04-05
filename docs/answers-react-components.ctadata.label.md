@@ -4,6 +4,8 @@
 
 ## CtaData.label property
 
+The display label for the CTA element.
+
 <b>Signature:</b>
 
 ```typescript

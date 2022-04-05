@@ -4,6 +4,8 @@
 
 ## CtaData.link property
 
+The CTA link source.
+
 <b>Signature:</b>
 
 ```typescript

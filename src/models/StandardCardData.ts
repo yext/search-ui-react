@@ -6,9 +6,13 @@ import { HighlightedValue } from '@yext/answers-headless-react';
  * @public
  */
 export interface StandardCardData {
+  /** The text to display in the card's header. */
   title: HighlightedValue | string,
+  /** The content to display in the card's body. */
   description: HighlightedValue | string,
+  /** CTA data to render. */
   cta1: CtaData,
+  /** CTA data to render. */
   cta2: CtaData
 }
 
@@ -18,8 +22,11 @@ export interface StandardCardData {
  * @public
  */
 export interface CtaData {
+  /** The display label for the CTA element. */
   label: string,
+  /** The CTA link source. */
   link: string,
+  /** The CTA link type (e.g. URL, Phone, Email, Other). */
   linkType: string
 }
 
