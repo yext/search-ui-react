@@ -63,6 +63,14 @@ export function isNumber(data: any): data is number {
   return typeof data === 'number';
 }
 
+/**
+ * Typeguard for data of type string or HighlightedValue
+ *
+ * @public
+ *
+ * @param data - the data to validate
+ * @returns whether the data is of type string or HighlightedValue
+ */
 export function isStringOrHighlightedValue(data: any): data is string | HighlightedValue {
   return isString(data) || isHighlightedValue(data);
 }

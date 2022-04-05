@@ -7,9 +7,10 @@ import {
 } from '../ThumbsFeedback';
 import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
 import { renderHighlightedValue } from '../utils/renderHighlightedValue';
-import { CtaData } from '../../models/StandardCardData';
-import { useStandardCardData } from '../../hooks/useStandardCardData';
-import { HighlightedValue } from '@yext/answers-headless-react';
+import { CtaData, isCtaData, StandardCardData } from '../../models/StandardCardData';
+import { isStringOrHighlightedValue, validateData } from '../utils/validateData';
+
+import { HighlightedValue, Result } from '@yext/answers-headless-react';
 
 /**
  * Props for a StandardCard.
@@ -85,7 +86,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     showFeedbackButtons
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-  const data = useStandardCardData(result);
+  const data = dataForRender(result);
 
   const handleCtaClick = useCardAnalyticsCallback(result, 'CTA_CLICK');
   const handleTitleClick = useCardAnalyticsCallback(result, 'TITLE_CLICK');
@@ -152,4 +153,20 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
       />}
     </div>
   );
+}
+
+function dataForRender(result: Result): Partial<StandardCardData> {
+  const data = {
+    title: result.highlightedFields?.name ?? result.rawData.name,
+    description: result.highlightedFields?.description ?? result.rawData.description,
+    cta1: result.rawData.c_primaryCTA,
+    cta2: result.rawData.c_secondaryCTA,
+  };
+
+  return validateData(data, {
+    title: isStringOrHighlightedValue,
+    description: isStringOrHighlightedValue,
+    cta1: isCtaData,
+    cta2: isCtaData
+  });
 }

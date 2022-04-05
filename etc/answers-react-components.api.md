@@ -482,10 +482,16 @@ export type InferTypeGuard<TypeGuard> = TypeGuard extends (data: any) => data is
 export function isBoolean(data: any): data is boolean;
 
 // @public
+export function isCtaData(data: unknown): data is CtaData;
+
+// @public
 export function isNumber(data: any): data is number;
 
 // @public
 export function isString(data: any): data is string;
+
+// @public
+export function isStringOrHighlightedValue(data: any): data is string | HighlightedValue;
 
 // @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
@@ -832,9 +838,6 @@ function useFilterGroupContext(): FilterGroupContextType;
 //
 // @public
 function useFiltersContext(): FiltersContextType;
-
-// @public
-export function useStandardCardData(result: Result): Partial<StandardCardData>;
 
 // @public
 export function validateData<TypeGuards extends TypeGuardRecord>(data: any, typeGuards: TypeGuards): ValidatedData<TypeGuards>;

@@ -20,8 +20,10 @@
 |  [getSearchIntents(answersActions)](./answers-react-components.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./answers-react-components.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |
 |  [isBoolean(data)](./answers-react-components.isboolean.md) | Type guard for boolean. |
+|  [isCtaData(data)](./answers-react-components.isctadata.md) | Type guard for CtaData. |
 |  [isNumber(data)](./answers-react-components.isnumber.md) | Type guard for number. |
 |  [isString(data)](./answers-react-components.isstring.md) | Type guard for string. |
+|  [isStringOrHighlightedValue(data)](./answers-react-components.isstringorhighlightedvalue.md) | Typeguard for data of type string or HighlightedValue |
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
 |  [renderHighlightedValue(highlightedValueOrString, customCssClasses)](./answers-react-components.renderhighlightedvalue.md) | Renders a HighlightedValue with highlighting based on its matchedSubstrings. |
 |  [ResultsCount(props)](./answers-react-components.resultscount.md) | Renders results count of a universal/vertical search. |
@@ -36,7 +38,6 @@
 |  [useCardAnalyticsCallback(result, analyticsType)](./answers-react-components.usecardanalyticscallback.md) | Creates a memoized function for reporting card analytics. |
 |  [useCardFeedbackCallback(result)](./answers-react-components.usecardfeedbackcallback.md) | Creates a memoized function for reporting card feedback analytics. |
 |  [useComposedCssClasses(builtInClasses, customClasses, cssCompositionMethod)](./answers-react-components.usecomposedcssclasses.md) | A react hook which combines a component's built-in CSS classes with custom CSS classes. |
-|  [useStandardCardData(result)](./answers-react-components.usestandardcarddata.md) | Transform and validate results based on the expected data type in [StandardCardData](./answers-react-components.standardcarddata.md)<!-- -->. |
 |  [validateData(data, typeGuards)](./answers-react-components.validatedata.md) | Returns data which passes the corresponding typeGuard validation. |
 |  [VerticalResults(props)](./answers-react-components.verticalresults.md) | A component that renders search results for a vertical page. |
 

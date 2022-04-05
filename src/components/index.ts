@@ -93,6 +93,7 @@ export {
   isBoolean,
   isNumber,
   isString,
+  isStringOrHighlightedValue,
   validateData,
   TypeGuardRecord,
   InferTypeGuard,

@@ -1,5 +1,5 @@
 export { CardProps, CardComponent } from './cardComponent';
-export { StandardCardData, CtaData } from './StandardCardData';
+export { StandardCardData, CtaData, isCtaData } from './StandardCardData';
 export { SectionProps, SectionComponent } from './sectionComponent';
 export { VerticalLink } from './verticalLink';
 export { UniversalLink } from './universalLink';

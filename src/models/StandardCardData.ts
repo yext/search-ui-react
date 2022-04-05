@@ -23,6 +23,14 @@ export interface CtaData {
   linkType: string
 }
 
+/**
+ * Type guard for CtaData.
+ *
+ * @public
+ *
+ * @param data - the data to validate.
+ * @returns whether the data is of type CtaData.
+ */
 export function isCtaData(data: unknown): data is CtaData {
   if (typeof data !== 'object' || data === null) {
     return false;
