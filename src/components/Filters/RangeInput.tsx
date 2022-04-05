@@ -7,6 +7,7 @@ import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
 import { NumberRangeFilter } from '../../models/NumberRangeFilter';
 import { useFiltersContext } from './FiltersContext';
+import { InvalidIcon } from '../../icons/InvalidIcon';
 
 /**
  * Props for the {@link Filters.RangeInput}
@@ -45,6 +46,8 @@ export interface RangeInputCssClasses {
   input___withoutPrefix?: string,
   input___disabled?: string,
   input___enabled?: string,
+  input___valid?: string,
+  input___invalid?: string,
   inputContainer?: string,
   inputRowContainer?: string,
   buttonsContainer?: string,
@@ -56,16 +59,20 @@ export interface RangeInputCssClasses {
   applyButton?: string,
   clearButton?: string,
   tooltipContainer?: string,
-  tooltip?: string
+  tooltip?: string,
+  invalidMessage?: string,
+  invalidRowContainer?: string
 }
 
 const builtInCssClasses: RangeInputCssClasses = {
   container: 'flex flex-col',
-  input: 'w-24 h-9 form-input cursor-pointer border border-gray-300 rounded-md text-neutral-dark text-sm focus:ring-primary focus:ring-0 appearance-none leading-9',
+  input: 'w-24 h-9 form-input cursor-pointer border rounded-md focus:ring-0 text-neutral-dark text-sm appearance-none leading-9',
   input___withPrefix: 'pl-[1.375rem]',
   input___withoutPrefix: 'px-2',
   input___disabled: 'bg-gray-50 placeholder:text-neutral-light cursor-not-allowed',
   input___enabled: 'placeholder:text-neutral',
+  input___valid: 'border-gray-300 focus:border-primary',
+  input___invalid: 'border-red-700 focus:border-red-700',
   inputContainer: 'relative',
   inputRowContainer: 'flex flex-row items-center space-x-3 peer',
   buttonsContainer: 'flex flex-row items-center justify-between pt-2',
@@ -77,7 +84,9 @@ const builtInCssClasses: RangeInputCssClasses = {
   applyButton: 'text-sm text-primary font-medium',
   clearButton: 'text-sm text-neutral font-medium',
   tooltipContainer: 'invisible peer-hover:visible relative -right-60 -top-10',
-  tooltip: 'absolute z-10 left-0 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-white'
+  tooltip: 'absolute z-10 left-0 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-white',
+  invalidMessage: 'pl-3 text-sm text-red-700',
+  invalidRowContainer: 'pt-2 flex flex-row items-center'
 };
 
 /**
@@ -110,11 +119,13 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     };
   }, [fieldId, maxRangeInput, minRangeInput]);
 
+  const isValid = isValidRange(rangeFilter.value);
+
    // Find a static filter which matches the current range input
   const matchingFilter = findSelectableFilter(rangeFilter, staticFilters ?? []);
   const isSelectedInAnswersState = matchingFilter?.selected === true;
   const hasUserInput = !!(minRangeInput || maxRangeInput);
-  const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState;
+  const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState && isValid;
 
   useEffect(() => setIsOptionsDisabled(hasUserInput), [hasUserInput, setIsOptionsDisabled]);
 
@@ -129,6 +140,9 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   }, []);
 
   const handleClickApply = useCallback(() => {
+    if (!rangeFilter.value.start && !rangeFilter.value.end) {
+      return;
+    }
     const displayName = getFilterDisplayName(rangeFilter.value);
     // Find selected static range filters with the same fieldId
     const selectedRangeFilters = staticFilters?.filter(filter =>
@@ -163,7 +177,9 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,
     [cssClasses.input___withoutPrefix ?? '']: !inputPrefix,
     [cssClasses.input___disabled ?? '']: isDisabled,
-    [cssClasses.input___enabled ?? '']: !isDisabled
+    [cssClasses.input___enabled ?? '']: !isDisabled,
+    [cssClasses.input___invalid ?? '']: !isValid,
+    [cssClasses.input___valid ?? '']: isValid
   });
 
   const inputPrefixClasses = classNames(cssClasses.inputPrefix, {
@@ -200,6 +216,12 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
           <div className={cssClasses.tooltip}>
             Unselect an option to enter in a range.
           </div>
+        </div>
+      }
+      {!isValid &&
+        <div className={cssClasses.invalidRowContainer}>
+          <InvalidIcon/>
+          <div className={cssClasses.invalidMessage}>Invalid Range</div>
         </div>
       }
       {hasUserInput &&
@@ -250,4 +272,14 @@ function getDefaultFilterDisplayName(numberRange: NumberRangeValue) {
 function validateNumericInput(str: string) {
   const numberRegex = new RegExp(/^\d*\.?\d*$/);
   return numberRegex.test(str);
+}
+
+//TODO: ask UX if we should verify the equaltiy of the matcher
+// Ask UX if the 'apply' button should be visible if the range is invalid
+// Ask UX if the 'invalid range' message should show if one of the inputs is '.' (or if the apply button should simply do nothing)
+function isValidRange(range: NumberRangeValue): boolean {
+  if (range.start && range.end) {
+    return range.start.value <= range.end.value;
+  }
+  return true;
 }
