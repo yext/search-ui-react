@@ -89,6 +89,16 @@ export {
   HighlightedValueCssClasses
 } from './utils/renderHighlightedValue';
 
+export {
+  isBoolean,
+  isNumber,
+  isString,
+  validateData,
+  TypeGuardRecord,
+  InferTypeGuard,
+  ValidatedData
+} from './utils/validateData';
+
 export * from './sections';
 export * from './AnalyticsProvider';
 export { Filters };

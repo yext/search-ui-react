@@ -19,6 +19,9 @@
 |  [FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [getSearchIntents(answersActions)](./answers-react-components.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./answers-react-components.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |
+|  [isBoolean(data)](./answers-react-components.isboolean.md) | Type guard for boolean. |
+|  [isNumber(data)](./answers-react-components.isnumber.md) | Type guard for number. |
+|  [isString(data)](./answers-react-components.isstring.md) | Type guard for string. |
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
 |  [renderHighlightedValue(highlightedValueOrString, customCssClasses)](./answers-react-components.renderhighlightedvalue.md) | Renders a HighlightedValue with highlighting based on its matchedSubstrings. |
 |  [ResultsCount(props)](./answers-react-components.resultscount.md) | Renders results count of a universal/vertical search. |
@@ -34,6 +37,7 @@
 |  [useCardFeedbackCallback(result)](./answers-react-components.usecardfeedbackcallback.md) | Creates a memoized function for reporting card feedback analytics. |
 |  [useComposedCssClasses(builtInClasses, customClasses, cssCompositionMethod)](./answers-react-components.usecomposedcssclasses.md) | A react hook which combines a component's built-in CSS classes with custom CSS classes. |
 |  [useStandardCardData(result)](./answers-react-components.usestandardcarddata.md) | Transform and validate results based on the expected data type in [StandardCardData](./answers-react-components.standardcarddata.md)<!-- -->. |
+|  [validateData(data, typeGuards)](./answers-react-components.validatedata.md) | Returns data which passes the corresponding typeGuard validation. |
 |  [VerticalResults(props)](./answers-react-components.verticalresults.md) | A component that renders search results for a vertical page. |
 
 ## Interfaces
@@ -98,7 +102,10 @@
 |  [DropdownItemProps](./answers-react-components.dropdownitemprops.md) | Props for the [DropdownItem()](./answers-react-components.dropdownitem.md)<!-- -->. |
 |  [FeedbackType](./answers-react-components.feedbacktype.md) | Analytics event types for quality feedback. |
 |  [FocusedItemData](./answers-react-components.focuseditemdata.md) | The data associated with the currently focused item. |
+|  [InferTypeGuard](./answers-react-components.infertypeguard.md) | Infers the type associated with the provided type guard. |
 |  [onSearchFunc](./answers-react-components.onsearchfunc.md) | The interface of a function which is called on a search. |
 |  [RenderEntityPreviews](./answers-react-components.renderentitypreviews.md) | The type of a functional React component which renders entity previews based on the autocomplete loading state and the vertical results array. |
 |  [SectionComponent](./answers-react-components.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
+|  [TypeGuardRecord](./answers-react-components.typeguardrecord.md) | Type guard for an Object type. |
+|  [ValidatedData](./answers-react-components.validateddata.md) | Returns a partial record where the keys are the same as the provided type guard and the values are type associated with the type guard. |
 

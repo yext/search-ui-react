@@ -476,6 +476,18 @@ export interface HighlightedValueCssClasses {
 }
 
 // @public
+export type InferTypeGuard<TypeGuard> = TypeGuard extends (data: any) => data is infer Type ? Type : never;
+
+// @public
+export function isBoolean(data: any): data is boolean;
+
+// @public
+export function isNumber(data: any): data is number;
+
+// @public
+export function isString(data: any): data is string;
+
+// @public
 export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
 
 // @public
@@ -770,6 +782,9 @@ export interface ThumbsFeedbackProps {
 }
 
 // @public
+export type TypeGuardRecord = Record<string, (data: any) => boolean>;
+
+// @public
 export interface UniversalLink {
     query?: string;
 }
@@ -820,6 +835,14 @@ function useFiltersContext(): FiltersContextType;
 
 // @public
 export function useStandardCardData(result: Result): Partial<StandardCardData>;
+
+// @public
+export function validateData<TypeGuards extends TypeGuardRecord>(data: any, typeGuards: TypeGuards): ValidatedData<TypeGuards>;
+
+// @public
+export type ValidatedData<TypeGuards extends TypeGuardRecord> = Partial<{
+    [Property in keyof TypeGuards]: InferTypeGuard<TypeGuards[Property]>;
+}>;
 
 // @public
 export interface VerticalConfig {
