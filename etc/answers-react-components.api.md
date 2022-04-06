@@ -565,6 +565,10 @@ interface RangeInputCssClasses {
     // (undocumented)
     input___enabled?: string;
     // (undocumented)
+    input___invalid?: string;
+    // (undocumented)
+    input___valid?: string;
+    // (undocumented)
     input___withoutPrefix?: string;
     // (undocumented)
     input___withPrefix?: string;
@@ -578,6 +582,10 @@ interface RangeInputCssClasses {
     inputPrefix___enabled?: string;
     // (undocumented)
     inputRowContainer?: string;
+    // (undocumented)
+    invalidMessage?: string;
+    // (undocumented)
+    invalidRowContainer?: string;
     // (undocumented)
     label?: string;
     // (undocumented)
