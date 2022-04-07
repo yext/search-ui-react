@@ -1,13 +1,11 @@
-import { AnswersCore, AnswersHeadless, SearchTypeEnum, State } from '@yext/answers-headless-react';
-import { MockedAutocompleteService } from './core/autocomplete-service';
-import { MockedQuestionSubmissionService } from './core/question-submission-service';
-import { MockedSearchService } from './core/search-service';
-import { generateMockedStateManager } from './state-manager';
+import {
+  AnswersHeadless,
+  provideAnswersHeadless,
+  SearchTypeEnum,
+  State
+} from '@yext/answers-headless-react';
 import { RecursivePartial } from '../__utils__/mocks';
 import merge from 'lodash/merge';
-
-const MockedCore: AnswersCore =
-  new AnswersCore(MockedSearchService, MockedQuestionSubmissionService, MockedAutocompleteService);
 
 export function generateMockedHeadless(state: RecursivePartial<State>): AnswersHeadless {
   const emptyState: State = {
@@ -30,6 +28,17 @@ export function generateMockedHeadless(state: RecursivePartial<State>): AnswersH
     location: {},
   };
   const mergedState = merge(emptyState, state);
-  const mockedStateManager = generateMockedStateManager(mergedState);
-  return new AnswersHeadless(MockedCore, mockedStateManager, null);
+
+  /**
+   * a mocked AnswersCore class will be use in provideAnswersHeadless:
+   * - Storybook: through resolve.alias in storybook's webpack config
+   * - Jest: through moduleNameMapper configuration
+   */
+  const headless = provideAnswersHeadless({
+    apiKey: '',
+    experienceKey: '',
+    locale: ''
+  });
+  headless.setState(mergedState);
+  return headless;
 }

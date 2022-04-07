@@ -19,5 +19,9 @@ module.exports = {
       },
     },
   ],
-  framework: '@storybook/react'
+  framework: '@storybook/react',
+  webpackFinal: async (config) => {
+    config.resolve.alias['./AnswersCore'] = require.resolve('../tests/__fixtures__/core/AnswersCore.ts');
+    return config;
+  }
 };

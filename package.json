@@ -97,6 +97,9 @@
         "tsconfig": "tsconfig.json"
       }
     },
+    "moduleNameMapper": {
+      "./AnswersCore": "<rootDir>/tests/__fixtures__/core/AnswersCore.ts"
+    },
     "resetMocks": true,
     "restoreMocks": true
   },

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { UniversalResults } from '../../src/components/UniversalResults';
 
 import { Matcher, Source, State, VerticalResults } from '@yext/answers-headless-react';
-import { CtaData } from '../../src/components/cards/StandardCard';
+import { CtaData } from '../../src/models/StandardCardData';
 
 const mockedVertical1: VerticalResults = {
   appliedQueryFilters: [{
