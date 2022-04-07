@@ -3,7 +3,7 @@ import { Filters } from '@yext/answers-react-components';
 export function StaticFilters() {
   return (
     <Filters.StaticFilters searchOnChange={true}>
-      <Filters.FilterGroup defaultFieldId='puppyPreference'>
+      <Filters.FilterGroup fieldId='puppyPreference'>
         <Filters.CollapsibleLabel label='Puppy Preference'/>
         <Filters.CollapsibleSection>
           <Filters.SearchInput />

@@ -12,7 +12,7 @@ export function NumericFacets() {
             {
               facets.map((f, i) => {
                 return (
-                  <Filters.FilterGroup key={f.fieldId} defaultFieldId={f.fieldId}>
+                  <Filters.FilterGroup key={f.fieldId} fieldId={f.fieldId}>
                     <Filters.CollapsibleLabel label={f.displayName} />
                     <Filters.CollapsibleSection>
                       {f.options.map(o =>
@@ -21,7 +21,6 @@ export function NumericFacets() {
                           value={o.value}
                           matcher={o.matcher}
                           label={o.displayName}
-                          fieldId={f.fieldId}
                         />
                       )}
                       {(f.fieldId === 'price.value') && <Filters.RangeInput getFilterDisplayName={getFilterDisplayName} inputPrefix={<>$</>}/>}

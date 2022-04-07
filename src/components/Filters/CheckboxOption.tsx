@@ -17,15 +17,6 @@ export interface CheckboxOptionProps {
   value: string | number | boolean | NumberRangeValue,
   /** The type of filtering operation used. Defaults to an equals comparison. */
   matcher?: Matcher,
-  /**
-   * The fieldId used for filtering.
-   *
-   * @remarks
-   * When fieldId is unspecified, it defaults to the defaultFieldId of the nearest
-   * {@link Filters.FilterGroup}. If there is no fieldId or defaultFieldId, the component does not render and
-   * an error is logged.
-   */
-  fieldId?: string,
   /** If this particular filter should be selected by default. */
   selectedByDefault?: boolean,
   /** The display label. Defaults to the value prop. */
@@ -71,9 +62,8 @@ const builtInCssClasses: CheckboxCssClasses = {
  * @param props - {@link Filters.CheckboxOptionProps}
  */
 export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
-  const { searchValue, defaultFieldId, isOptionsDisabled } = useFilterGroupContext();
+  const { searchValue, fieldId, isOptionsDisabled } = useFilterGroupContext();
   const {
-    fieldId = defaultFieldId,
     value,
     matcher = Matcher.Equals,
     selectedByDefault = false,
@@ -88,7 +78,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const handleClick = useCallback((checked: boolean) => {
     selectFilter({
       matcher,
-      fieldId: fieldId ?? '',
+      fieldId,
       value,
       displayName: typeof label === 'string' ? label : undefined,
       selected: checked
@@ -102,7 +92,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const optionFilter: Filter = useMemo(() => {
     return {
-      fieldId: fieldId ?? '',
+      fieldId,
       matcher,
       value
     };
@@ -110,11 +100,6 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const existingStoredFilter = findSelectableFilter(optionFilter, filters);
 
   const shouldRenderOption: boolean = useMemo(() => {
-    if (!fieldId) {
-      console.error('No fieldId found for filter with value', value);
-      return false;
-    }
-
     if (typeof label !== 'string') {
       console.error('A label is needed for filter with value', value);
       return false;
@@ -125,7 +110,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     }
 
     return true;
-  }, [fieldId, value, answersUtilities, label, searchValue]);
+  }, [value, answersUtilities, label, searchValue]);
 
   useEffect(() => {
     if (shouldRenderOption) {

@@ -10,8 +10,8 @@ import { FilterGroupContext } from './FilterGroupContext';
 export type FilterGroupProps = PropsWithChildren<{
   /** Whether the {@link Filters.FilterGroup} should start out expanded. Defaults to true. */
   defaultExpanded?: boolean,
-  /** {@inheritDoc Filters.FilterGroupContextType.defaultFieldId} */
-  defaultFieldId?: string
+  /** {@inheritDoc Filters.FilterGroupContextType.fieldId} */
+  fieldId: string
 }>;
 
 /**
@@ -31,7 +31,7 @@ export function FilterGroup(props: FilterGroupProps): JSX.Element {
   const {
     children,
     defaultExpanded = true,
-    defaultFieldId
+    fieldId
   } = props;
 
   const [searchValue, setSearchValue] = useState('');
@@ -39,7 +39,7 @@ export function FilterGroup(props: FilterGroupProps): JSX.Element {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({ defaultExpanded });
   const FilterGroupContextInstance = useMemo(() => {
     return {
-      defaultFieldId,
+      fieldId,
       searchValue,
       setSearchValue,
       getCollapseProps,
@@ -49,7 +49,7 @@ export function FilterGroup(props: FilterGroupProps): JSX.Element {
       setIsOptionsDisabled
     };
   }, [
-    defaultFieldId,
+    fieldId,
     getCollapseProps,
     getToggleProps,
     isExpanded,

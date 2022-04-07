@@ -26,7 +26,7 @@ export function Facets() {
                 }
 
                 return (
-                  <Filters.FilterGroup key={f.fieldId}>
+                  <Filters.FilterGroup key={f.fieldId} fieldId={f.fieldId}>
                     <Filters.CollapsibleLabel label={f.displayName} />
                     <Filters.CollapsibleSection>
                       <Filters.SearchInput />
@@ -36,7 +36,6 @@ export function Facets() {
                           value={o.value}
                           matcher={o.matcher}
                           label={o.displayName}
-                          fieldId={f.fieldId}
                         />
                       )}
                     </Filters.CollapsibleSection>

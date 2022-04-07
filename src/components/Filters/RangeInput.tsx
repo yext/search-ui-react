@@ -98,7 +98,7 @@ const builtInCssClasses: RangeInputCssClasses = {
  */
 export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const { filters } = useFiltersContext();
-  const { defaultFieldId: fieldId, setIsOptionsDisabled } = useFilterGroupContext();
+  const { fieldId, setIsOptionsDisabled } = useFilterGroupContext();
   const {
     getFilterDisplayName = getDefaultFilterDisplayName,
     inputPrefix
@@ -113,7 +113,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
 
   const rangeFilter: NumberRangeFilter = useMemo(() => {
     return {
-      fieldId: fieldId ?? '',
+      fieldId,
       matcher: Matcher.Between,
       value: parseNumberRangeInput(minRangeInput, maxRangeInput),
     };
@@ -170,11 +170,6 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     setMinRangeInput('');
     setMaxRangeInput('');
   }, []);
-
-  if (fieldId === undefined) {
-    console.error('RangeInput cannot be rendered because a defaultFieldId wasn\'t specified for its FilterGroup.');
-    return null;
-  }
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,
