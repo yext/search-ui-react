@@ -174,8 +174,6 @@ interface CheckboxOptionProps {
     cssCompositionMethod?: CompositionMethod;
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     customCssClasses?: CheckboxCssClasses;
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    fieldId?: string;
     label?: string;
     matcher?: Matcher;
     selectedByDefault?: boolean;
@@ -324,7 +322,7 @@ const FilterGroupContext: Context<FilterGroupContextType | null>;
 // @public
 interface FilterGroupContextType {
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    defaultFieldId?: string;
+    fieldId: string;
     getCollapseProps: UseCollapseOutput['getCollapseProps'];
     getToggleProps: UseCollapseOutput['getToggleProps'];
     isExpanded: boolean;
@@ -339,7 +337,7 @@ interface FilterGroupContextType {
 // @public
 type FilterGroupProps = PropsWithChildren<{
     defaultExpanded?: boolean;
-    defaultFieldId?: string;
+    fieldId: string;
 }>;
 
 declare namespace Filters {
