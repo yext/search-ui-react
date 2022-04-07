@@ -1,6 +1,6 @@
 {
   "name": "@yext/answers-react-components",
-  "version": "0.1.1-beta.3",
+  "version": "0.1.1-beta.4",
   "description": "",
   "author": "slapshot@yext.com",
   "main": "./lib/index.js",
@@ -15,6 +15,7 @@
     "lint": "eslint .",
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
+    "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "prepublishOnly": "npm run build",
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",

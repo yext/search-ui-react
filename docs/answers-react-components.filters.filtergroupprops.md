@@ -11,6 +11,6 @@ Props for a [Filters.FilterGroup()](./answers-react-components.filters.filtergro
 ```typescript
 export declare type FilterGroupProps = PropsWithChildren<{
     defaultExpanded?: boolean;
-    defaultFieldId?: string;
+    fieldId: string;
 }>;
 ```

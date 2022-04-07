@@ -9,8 +9,8 @@ import { UseCollapseOutput } from 'react-collapsed/dist/types';
 export interface FilterGroupContextType {
   /** The value which is being used to search the FilterGroup. */
   searchValue: string,
-  /** The default fieldId to use with child filter components e.g. {@link Filters.CheckboxOption}. */
-  defaultFieldId?: string,
+  /** The fieldId to use with child filter components e.g. {@link Filters.CheckboxOption}. */
+  fieldId: string,
   /** Sets the searchValue which is used to filter the FilterGroup. */
   setSearchValue: (value: string) => void,
   /** Returns the attributes used to collapse the filter group. */
