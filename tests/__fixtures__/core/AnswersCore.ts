@@ -31,7 +31,6 @@ export class AnswersCore {
   autoCompleteService: AutocompleteService;
   
   constructor() {
-    console.log('constructor');
     this.searchService = mockedSearchService;
     this.questionSubmissionService = mockedQuestionSubmissionService;
     this.autoCompleteService = mockedAutoCompleteService;
