@@ -38,7 +38,7 @@ export const DisplayableHierarchicalFacets: DisplayableHierarchicalFacet[] = [
     fieldId: 'hierarchicalField',
     value: 'Appliances > Small Appliances > Toaster',
     matcher: Matcher.Equals,
-    displayName: 'hierarchical',
+    displayName: 'hierarchical1',
     displayNameTokens: ['Appliances', 'Small Appliances', 'Toaster'],
     lastDisplayNameToken: 'Toaster'
   },
@@ -47,7 +47,7 @@ export const DisplayableHierarchicalFacets: DisplayableHierarchicalFacet[] = [
     fieldId: 'hierarchicalField',
     value: 'Appliances > Small Appliances > Mixer',
     matcher: Matcher.Equals,
-    displayName: 'hierarchical',
+    displayName: 'hierarchical2',
     displayNameTokens: ['Appliances', 'Small Appliances', 'Mixer'],
     lastDisplayNameToken: 'Mixer'
   }

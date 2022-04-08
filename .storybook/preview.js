@@ -1,4 +1,5 @@
 import './index.css';
+import { AnswersCoreDecorator } from '../tests/__fixtures__/core/AnswersCore';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -17,3 +18,6 @@ export const parameters = {
     }
   }
 };
+
+// Add the decorator to all stories
+export const decorators = [AnswersCoreDecorator];
