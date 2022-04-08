@@ -1,52 +1,14 @@
 import { render, screen } from '@testing-library/react';
-import { DisplayableFacet, FacetOption, Matcher, Source, State } from '@yext/answers-headless-react';
+import { AnswersHeadless, FacetOption, Source, State } from '@yext/answers-headless-react';
 import { Filters } from '../../src/components';
 import { spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
-
-const mockedFacets: DisplayableFacet[] = [{
-  fieldId: 'products',
-  options: [{
-    value: 'coffee',
-    matcher: Matcher.Equals,
-    count: 5,
-    displayName: 'coffee',
-    selected: false
-  }, {
-    value: 'tea',
-    matcher: Matcher.Equals,
-    count: 3,
-    displayName: 'tea',
-    selected: true
-  }],
-  displayName: 'Products'
-}, {
-  fieldId: 'price',
-  options: [{
-    value: {
-      start: { matcher: Matcher.GreaterThanOrEqualTo, value: 0 },
-      end: { matcher: Matcher.LessThan, value: 9 }
-    },
-    matcher: Matcher.Between,
-    count: 7,
-    displayName: '0 - 9',
-    selected: true
-  }, {
-    value: {
-      start: { matcher: Matcher.GreaterThan, value: 9 }
-    },
-    matcher: Matcher.Between,
-    count: 1,
-    displayName: 'Over 9',
-    selected: false
-  }],
-  displayName: 'Price'
-}];
+import { DisplayableFacets } from '../__fixtures__/data/filters';
 
 const mockedState: Partial<State> = {
   filters: {
     static: [],
-    facets: mockedFacets
+    facets: DisplayableFacets
   },
   vertical: {
     verticalKey: 'vertical',
@@ -125,7 +87,7 @@ describe('Facets', () => {
   it('Properly renders regular and number range facets', () => {
     render(<Facets />);
 
-    mockedFacets.forEach(f => {
+    DisplayableFacets.forEach(f => {
       f.options.forEach(o => {
         expect(screen.getByText(o.displayName)).toBeDefined();
       });
@@ -136,7 +98,7 @@ describe('Facets', () => {
     const actions = spyOnActions();
     render(<Facets />);
 
-    const productFacet = mockedFacets[0];
+    const productFacet = DisplayableFacets[0];
     const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(productFacet.options[0].displayName);
     expect(coffeeCheckbox.checked).toBeFalsy();
 
@@ -148,7 +110,7 @@ describe('Facets', () => {
     const actions = spyOnActions();
     render(<Facets />);
 
-    const productFacet = mockedFacets[0];
+    const productFacet = DisplayableFacets[0];
     const coffeeFacetOption = productFacet.options[0];
     const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(coffeeFacetOption.displayName);
     expect(coffeeCheckbox.checked).toBeFalsy();
@@ -162,7 +124,7 @@ describe('Facets', () => {
     const actions = spyOnActions();
     render(<Facets />);
 
-    const priceFacet = mockedFacets[1];
+    const priceFacet = DisplayableFacets[1];
     const cheapCheckbox: HTMLInputElement = screen.getByLabelText(priceFacet.options[1].displayName);
     expect(cheapCheckbox.checked).toBeFalsy();
 
@@ -174,7 +136,7 @@ describe('Facets', () => {
     const actions = spyOnActions();
     render(<Facets />);
 
-    const productFacet = mockedFacets[0];
+    const productFacet = DisplayableFacets[0];
     const teaCheckbox: HTMLInputElement = screen.getByLabelText(productFacet.options[1].displayName);
     expect(teaCheckbox.checked).toBeTruthy();
 
@@ -186,7 +148,7 @@ describe('Facets', () => {
     const actions = spyOnActions();
     render(<Facets />);
 
-    const priceFacet = mockedFacets[1];
+    const priceFacet = DisplayableFacets[1];
     const expensiveCheckbox: HTMLInputElement = screen.getByLabelText(priceFacet.options[0].displayName);
     expect(expensiveCheckbox.checked).toBeTruthy();
 
@@ -198,7 +160,7 @@ describe('Facets', () => {
     const actions = spyOnActions();
     render(<Facets />);
 
-    const productFacet = mockedFacets[0];
+    const productFacet = DisplayableFacets[0];
     const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(productFacet.options[0].displayName);
     expect(coffeeCheckbox.checked).toBeFalsy();
 
@@ -211,7 +173,7 @@ describe('Facets', () => {
     const actions = spyOnActions();
     render(<Facets searchOnChange={false} />);
 
-    const productFacet = mockedFacets[0];
+    const productFacet = DisplayableFacets[0];
     const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(productFacet.options[0].displayName);
     expect(coffeeCheckbox.checked).toBeFalsy();
 
@@ -225,7 +187,12 @@ describe('Facets', () => {
   });
 });
 
-function expectFacetOptionSet(actions, fieldId: string, option: FacetOption, selected: boolean) {
+function expectFacetOptionSet(
+  actions: AnswersHeadless,
+  fieldId: string,
+  option: FacetOption,
+  selected: boolean
+) {
   expect(actions.setFacetOption).toHaveBeenCalledWith(
     fieldId,
     { matcher: option.matcher, value: option.value },
