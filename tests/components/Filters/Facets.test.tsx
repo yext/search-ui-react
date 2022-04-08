@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { AnswersHeadless, FacetOption, Source, State } from '@yext/answers-headless-react';
-import { Filters } from '../../src/components';
-import { spyOnActions } from '../__utils__/mocks';
+import { Filters } from '../../../src/components';
+import { spyOnActions } from '../../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
-import { DisplayableFacets } from '../__fixtures__/data/filters';
+import { DisplayableFacets } from '../../__fixtures__/data/filters';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -78,7 +78,7 @@ jest.mock('@yext/answers-headless-react', () => {
 
 const mockedSearch = jest.fn();
 
-jest.mock('../../src/utils/search-operations', () => ({
+jest.mock('../../../src/utils/search-operations', () => ({
   __esModule: true,
   executeSearch: () => mockedSearch()
 }));
