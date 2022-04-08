@@ -63,7 +63,7 @@ export class AnswersCore {
 
 
 /**
- * The decorator to be used in ./storybook/preview to read story-specific data off
+ * The decorator to be used in .storybook/preview to read story-specific data off
  * the story's parameters to mock AnswersCore's services on a per-story basis.
  */
 export function AnswersCoreDecorator(story, { parameters }) {
