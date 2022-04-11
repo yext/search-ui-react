@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { FiltersState, Matcher, Source, State } from '@yext/answers-headless-react';
-import { Filters } from '../../src/components';
-import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
-import { spyOnActions, mockAnswersState } from '../__utils__/mocks';
+import { Filters } from '../../../src/components';
+import { createHierarchicalFacet } from '../../__utils__/hierarchicalfacets';
+import { spyOnActions, mockAnswersState } from '../../__utils__/mocks';
 import { Fragment } from 'react';
 import userEvent from '@testing-library/user-event';
 
