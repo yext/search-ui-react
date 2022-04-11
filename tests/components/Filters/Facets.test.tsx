@@ -41,7 +41,6 @@ function Facets({ searchOnChange = true }: { searchOnChange?: boolean }): JSX.El
                       key={o.displayName}
                       value={o.value}
                       matcher={o.matcher}
-                      selectedByDefault={o.selected}
                       label={o.displayName}
                     />
                   )}
