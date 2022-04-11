@@ -436,7 +436,7 @@ Apache License
 
 The following NPM package may be included in this product:
 
- - @reduxjs/toolkit@1.8.0
+ - @reduxjs/toolkit@1.8.1
 
 This package contains the following license and notice below:
 
@@ -788,7 +788,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/answers-core@1.6.0-beta.6
+ - @yext/answers-core@1.6.0-beta.7
 
 This package contains the following license and notice below:
 
@@ -826,7 +826,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/answers-headless-react@1.1.0-beta.10
+ - @yext/answers-headless-react@1.1.0-beta.11
 
 This package contains the following license and notice below:
 
@@ -867,7 +867,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/answers-headless@1.1.0-beta.11
+ - @yext/answers-headless@1.1.0-beta.12
 
 This package contains the following license and notice below:
 
