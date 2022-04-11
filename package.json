@@ -1,6 +1,6 @@
 {
   "name": "@yext/answers-react-components",
-  "version": "0.1.1-beta.5",
+  "version": "0.1.1-beta.6",
   "description": "",
   "author": "slapshot@yext.com",
   "main": "./lib/index.js",
@@ -45,7 +45,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "@yext/answers-headless-react": "^1.1.0-beta.10",
+    "@yext/answers-headless-react": "^1.1.0-beta.11",
     "@yext/eslint-config-slapshot": "^0.2.0",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.3",
@@ -63,7 +63,7 @@
   },
   "peerDependencies": {
     "react": "^17.0.2",
-    "@yext/answers-headless-react": "^1.1.0-beta.10"
+    "@yext/answers-headless-react": "^1.1.0-beta.11"
   },
   "jest": {
     "bail": 0,
