@@ -21,21 +21,21 @@ const mockedState: Partial<State> = {
   }
 };
 
-jest.mock('@yext/answers-headless-react', () => ({
-  __esModule: true,
-  useAnswersState: accessor => accessor(mockedState),
-  useAnswersActions: () => {
-    return {
-      setQuery: jest.fn(),
-      executeVerticalQuery: jest.fn()
-    };
-  }
-}));
-
-jest.mock('../../src/utils/search-operations', () => ({
-  __esModule: true,
-  executeSearch: jest.fn()
-}));
+jest.mock('@yext/answers-headless-react', () => {
+  const originalModule = jest.requireActual('@yext/answers-headless-react');
+  return {
+    __esModule: true,
+    ...originalModule,
+    useAnswersState: accessor => accessor(mockedState),
+    useAnswersActions: () => {
+      return {
+        state: mockedState,
+        setQuery: jest.fn(),
+        executeVerticalQuery: jest.fn()
+      };
+    }
+  };
+});
 
 describe('SpellCheck', () => {
   it('Suggestion is formatted properly', () => {
@@ -66,15 +66,14 @@ describe('SpellCheck', () => {
   });
 
   it('Fires executeSearch when no onClick is provided', () => {
-    const useAnswersActions = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
+    const actions = spyOnActions();
     const executeSearch = jest.spyOn(require('../../src/utils/search-operations'), 'executeSearch');
 
     render(<SpellCheck />);
     userEvent.click(screen.getByRole('button'));
 
-    const answersActions = useAnswersActions.mock.results[0].value;
     const correctedQuery = mockedState.spellCheck.correctedQuery;
-    expect(answersActions.setQuery).toHaveBeenCalledWith(correctedQuery);
-    expect(executeSearch).toHaveBeenCalledWith(answersActions);
+    expect(actions.setQuery).toHaveBeenCalledWith(correctedQuery);
+    expect(executeSearch).toHaveBeenCalledTimes(1);
   });
 });

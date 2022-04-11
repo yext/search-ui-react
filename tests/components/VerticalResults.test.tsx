@@ -72,16 +72,12 @@ jest.mock('@yext/answers-headless-react', () => {
     useAnswersState: accessor => accessor(mockedState),
     useAnswersActions: () => {
       return {
+        state: mockedState,
         setOffset: jest.fn()
       };
     }
   };
 });
-
-jest.mock('../../src/utils/search-operations', () => ({
-  __esModule: true,
-  executeSearch: jest.fn()
-}));
 
 describe('VerticalResults', () => {
   it('Results are displayed', () => {

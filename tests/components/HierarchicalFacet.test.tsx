@@ -61,6 +61,7 @@ jest.mock('@yext/answers-headless-react', () => {
     useAnswersState: accessor => accessor(mockedState),
     useAnswersActions: () => {
       return {
+        state: mockedState,
         executeVerticalQuery: jest.fn(),
         setOffset: jest.fn(),
         setFilterOption: jest.fn(),
@@ -76,11 +77,6 @@ jest.mock('@yext/answers-headless-react', () => {
     }
   };
 });
-
-jest.mock('../../src/utils/search-operations', () => ({
-  __esModule: true,
-  executeSearch: jest.fn()
-}));
 
 describe('Hierarchical facets', () => {
 
