@@ -40,23 +40,17 @@ export function mockAnswersState(
 export function mockAnswersActions(
   customActions: RecursivePartial<AnswersHeadless>
 ): jest.SpyInstance<typeof useAnswersActions, unknown[]> {
-  function mockImpl() {
-    return customActions as AnswersHeadless;
-  }
   return jest
     .spyOn(require('@yext/answers-headless-react'), 'useAnswersActions')
-    .mockImplementation(mockImpl as () => unknown);
+    .mockImplementation(() => customActions as AnswersHeadless);
 }
 
 export function mockAnswersUtils(
   customUtils: RecursivePartial<AnswersUtilities>
 ): jest.SpyInstance<typeof useAnswersUtilities, unknown[]> {
-  function mockImpl() {
-    return customUtils as AnswersUtilities;
-  }
   return jest
     .spyOn(require('@yext/answers-headless-react'), 'useAnswersUtilities')
-    .mockImplementation(mockImpl as () => unknown);
+    .mockImplementation(() => customUtils as AnswersUtilities);
 }
 
 export function mockAnswersHooks({
