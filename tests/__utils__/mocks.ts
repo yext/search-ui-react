@@ -59,8 +59,7 @@ export function mockAnswersHooks({
   mockedState?: RecursivePartial<State>,
   mockedActions?: RecursivePartial<AnswersHeadless>,
   mockedUtils?: RecursivePartial<AnswersUtilities>
-}
-) {
+}) {
   mockedUtils && mockAnswersUtils(mockedUtils);
   mockedState && mockAnswersState(mockedState);
   mockedActions && mockAnswersActions(mockedActions);
