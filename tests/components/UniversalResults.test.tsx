@@ -2,83 +2,16 @@ import { render, screen } from '@testing-library/react';
 
 import { UniversalResults } from '../../src/components/UniversalResults';
 
-import { Matcher, Source, State, VerticalResults } from '@yext/answers-headless-react';
+import { State } from '@yext/answers-headless-react';
 import { CtaData } from '../../src/models/StandardCardData';
 import { mockAnswersState } from '../__utils__/mocks';
+import { verticalResults } from '../__fixtures__/data/universalresults';
 
-const mockedVertical1: VerticalResults = {
-  appliedQueryFilters: [{
-    displayKey: 'Job Category',
-    displayValue: 'Sales',
-    filter: {
-      fieldId: 'c_jobCategory',
-      matcher: Matcher.Equals,
-      value: 'Sales'
-    }
-  }],
-  queryDurationMillis: 500,
-  results: [{
-    rawData: {
-      name: 'title1',
-      description: 'text1',
-      c_primaryCTA: {
-        link: 'link1',
-        label: 'job1',
-        linkType: 'link'
-      },
-      c_secondaryCTA: {
-        link: 'link2',
-        label: 'job2',
-        linkType: 'link'
-      },
-    },
-    source: Source.KnowledgeManager,
-    id: 'id1'
-  }, {
-    rawData: {
-      name: 'title2',
-      description: 'text2'
-    },
-    source: Source.KnowledgeManager,
-    id: 'id2'
-  }],
-  resultsCount: 2,
-  source: Source.KnowledgeManager,
-  verticalKey: 'vertical1'
-};
 
-const mockedVertical2: VerticalResults = {
-  appliedQueryFilters: [],
-  queryDurationMillis: 500,
-  results: [{
-    rawData: {
-      name: 'title3',
-      description: 'text3'
-    },
-    source: Source.KnowledgeManager,
-    id: 'id3'
-  }],
-  resultsCount: 1,
-  source: Source.KnowledgeManager,
-  verticalKey: 'vertical2'
-};
-
-const mockedVertical3: VerticalResults = {
-  appliedQueryFilters: [],
-  queryDurationMillis: 500,
-  results: [],
-  resultsCount: 0,
-  source: Source.KnowledgeManager,
-  verticalKey: 'vertical3'
-};
 
 const mockedState: Partial<State> = {
   universal: {
-    verticals: [
-      mockedVertical1,
-      mockedVertical2,
-      mockedVertical3
-    ]
+    verticals: verticalResults
   },
   query: {
     mostRecentSearch: 'test'
