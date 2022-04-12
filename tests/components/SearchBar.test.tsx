@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { SearchBar } from '../../src/components/SearchBar';
 import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import * as Analytics from '../../src/hooks/useAnalytics';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -107,6 +108,28 @@ describe('SearchBar', () => {
       expect(screen.queryByText('query suggestion 1')).not.toBeInTheDocument();
       expect(mockedUniversalAutocomplete).toBeCalledTimes(2);
     });
+
+    it('select query suggestions execute a new search', async () => {
+      jest.spyOn(AnswersCore.prototype, 'universalAutocomplete')
+        .mockResolvedValue(mockedAutocompleteResult);
+
+      const mockedUniversalSearch = jest.spyOn(AnswersCore.prototype, 'universalSearch');
+
+      render(
+        <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+          <SearchBar hideRecentSearches={true}/>
+        </AnswersHeadlessContext.Provider>
+      );
+      userEvent.click(screen.getByRole('textbox'));
+      expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
+      userEvent.keyboard('{arrowdown}');
+      userEvent.keyboard('{enter}');
+      expect(await screen.findByRole('textbox')).toHaveDisplayValue('query suggestion 1');
+      await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledTimes(1));
+      await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledWith(expect.objectContaining({
+        query: 'query suggestion 1'
+      })));
+    });
   });
 
   describe('vertical links', () => {
@@ -120,8 +143,7 @@ describe('SearchBar', () => {
     };
 
     beforeEach(() => {
-      jest
-        .spyOn(AnswersCore.prototype, 'universalAutocomplete')
+      jest.spyOn(AnswersCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedUniversalAutocompleteResult);
     });
 
@@ -314,8 +336,7 @@ describe('SearchBar', () => {
         uuid: ''
       };
       const mockedUniversalSearch = jest.spyOn(AnswersCore.prototype, 'universalSearch');
-      jest
-        .spyOn(AnswersCore.prototype, 'universalAutocomplete')
+      jest.spyOn(AnswersCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedUniversalAutocompleteResult);
 
       const mockedGetCurrentPosition = jest.fn()
@@ -338,6 +359,65 @@ describe('SearchBar', () => {
           location: userLocation
         }))
       );
+    });
+  });
+
+  describe('analytics events', () => {
+    const mockedAutocompleteResult = {
+      results: [{ value: 'query suggestion' }],
+      inputIntents: [],
+      uuid: ''
+    };
+    const mockedReport = jest.fn();
+
+    beforeEach(() => {
+      jest.spyOn(Analytics, 'useAnalytics')
+        .mockImplementation(() => ({ report: mockedReport }));
+    });
+
+    it('reports AUTO_COMPLETE_SELECTION feedback', async () => {
+      jest.spyOn(AnswersCore.prototype, 'universalAutocomplete')
+        .mockResolvedValue(mockedAutocompleteResult);
+
+      render(
+        <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+          <SearchBar hideRecentSearches={true}/>
+        </AnswersHeadlessContext.Provider>
+      );
+      userEvent.click(screen.getByRole('textbox'));
+      expect(await screen.findByText('query suggestion')).toBeInTheDocument();
+      userEvent.keyboard('{arrowdown}');
+      userEvent.keyboard('{enter}');
+      expect(await screen.findByRole('textbox')).toHaveDisplayValue('query suggestion');
+      expect(mockedReport).toHaveBeenCalledTimes(1);
+      expect(mockedReport).toHaveBeenCalledWith({
+        type: 'AUTO_COMPLETE_SELECTION',
+        suggestedSearchText: 'query suggestion'
+      });
+    });
+
+    it('reports SEARCH_CLEAR_BUTTON feedback', async () => {
+      const mockedStateWithResults = {
+        ...mockedState,
+        query: {
+          queryId: 'someId',
+          input: 't'
+        }
+      };
+      render(
+        <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedStateWithResults)}>
+          <SearchBar />
+        </AnswersHeadlessContext.Provider>
+      );
+      const clearSearchButton = screen.getByRole('button', { name: 'Clear the search bar' });
+      userEvent.click(clearSearchButton);
+      expect(await screen.findByRole('textbox')).toHaveDisplayValue('');
+      expect(mockedReport).toHaveBeenCalledTimes(1);
+      expect(mockedReport).toHaveBeenCalledWith({
+        type: 'SEARCH_CLEAR_BUTTON',
+        queryId: 'someId',
+        verticalKey: undefined
+      });
     });
   });
 });
