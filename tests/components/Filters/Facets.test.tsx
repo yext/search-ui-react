@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { AnswersHeadless, FacetOption, Source, State } from '@yext/answers-headless-react';
 import { Filters } from '../../../src/components';
-import { spyOnActions } from '../../__utils__/mocks';
+import { mockAnswersHooks, spyOnActions } from '../../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../../__fixtures__/data/filters';
 
@@ -56,34 +56,24 @@ function Facets({ searchOnChange = true }: { searchOnChange?: boolean }): JSX.El
   );
 }
 
-jest.mock('@yext/answers-headless-react', () => {
-  const originalModule = jest.requireActual('@yext/answers-headless-react');
-  return {
-    __esModule: true,
-    ...originalModule,
-    useAnswersState: accessor => accessor(mockedState),
-    useAnswersActions: () => {
-      return {
-        setOffset: jest.fn(),
-        setFacetOption: jest.fn()
-      };
-    },
-    useAnswersUtilities: () => {
-      return {
-        isCloseMatch: jest.fn(() => true)
-      };
-    }
-  };
-});
+const mockedActions = {
+  state: mockedState,
+  setOffset: jest.fn(),
+  setFacetOption: jest.fn(),
+  executeVerticalQuery: jest.fn()
+};
 
-const mockedSearch = jest.fn();
+const mockedUtils = {
+  isCloseMatch: () => true
+};
 
-jest.mock('../../../src/utils/search-operations', () => ({
-  __esModule: true,
-  executeSearch: () => mockedSearch()
-}));
+jest.mock('@yext/answers-headless-react');
 
 describe('Facets', () => {
+  beforeEach(() => {
+    mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
+  });
+
   it('Properly renders regular and number range facets', () => {
     render(<Facets />);
 
@@ -166,7 +156,7 @@ describe('Facets', () => {
 
     userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
-    expect(mockedSearch).toBeCalled();
+    expect(actions.executeVerticalQuery).toBeCalled();
   });
 
   it('Only clicking the apply button executes a search when searchOnChange is false', () => {
@@ -179,11 +169,11 @@ describe('Facets', () => {
 
     userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
-    expect(mockedSearch).toBeCalledTimes(0);
+    expect(actions.executeVerticalQuery).toBeCalledTimes(0);
 
     const applyButton = screen.getAllByRole('button', { name: 'Apply Filters' })[0];
     userEvent.click(applyButton);
-    expect(mockedSearch).toBeCalledTimes(1);
+    expect(actions.executeVerticalQuery).toBeCalledTimes(1);
   });
 });
 

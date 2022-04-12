@@ -4,7 +4,6 @@ import { SearchBar } from '../../src/components/SearchBar';
 import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 
-
 const mockedState: Partial<State> = {
   filters: {
     static: [],
@@ -23,7 +22,6 @@ const mockedState: Partial<State> = {
 };
 
 describe('SearchBar', () => {
-
   describe('query suggestions', () => {
     const mockedAutocompleteResult = {
       results: [
@@ -110,7 +108,6 @@ describe('SearchBar', () => {
       expect(mockedUniversalAutocomplete).toBeCalledTimes(2);
     });
   });
-
 
   describe('vertical links', () => {
     const mockedUniversalAutocompleteResult = {

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { SpellCheck } from '../../src/components/SpellCheck';
 import { State } from '@yext/answers-headless-react';
-import { spyOnActions } from '../__utils__/mocks';
+import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 
 const mockedState: Partial<State> = {
@@ -21,23 +21,20 @@ const mockedState: Partial<State> = {
   }
 };
 
-jest.mock('@yext/answers-headless-react', () => {
-  const originalModule = jest.requireActual('@yext/answers-headless-react');
-  return {
-    __esModule: true,
-    ...originalModule,
-    useAnswersState: accessor => accessor(mockedState),
-    useAnswersActions: () => {
-      return {
+jest.mock('@yext/answers-headless-react');
+
+describe('SpellCheck', () => {
+  beforeEach(() => {
+    mockAnswersHooks({
+      mockedState,
+      mockedActions: {
         state: mockedState,
         setQuery: jest.fn(),
         executeVerticalQuery: jest.fn()
-      };
-    }
-  };
-});
+      }
+    });
+  });
 
-describe('SpellCheck', () => {
   it('Suggestion is formatted properly', () => {
     render(<SpellCheck />);
     expect(screen.getByText('Did you mean')).toBeDefined();
@@ -67,13 +64,11 @@ describe('SpellCheck', () => {
 
   it('Fires executeSearch when no onClick is provided', () => {
     const actions = spyOnActions();
-    const executeSearch = jest.spyOn(require('../../src/utils/search-operations'), 'executeSearch');
-
     render(<SpellCheck />);
     userEvent.click(screen.getByRole('button'));
 
     const correctedQuery = mockedState.spellCheck.correctedQuery;
     expect(actions.setQuery).toHaveBeenCalledWith(correctedQuery);
-    expect(executeSearch).toHaveBeenCalledTimes(1);
+    expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
   });
 });

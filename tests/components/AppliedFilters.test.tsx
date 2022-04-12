@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { Matcher, Source, State, FiltersState } from '@yext/answers-headless-react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
-import { spyOnActions, mockAnswersState } from '../__utils__/mocks';
+import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 
 const mockedStaticFilters = [{
   selected: true,
@@ -66,27 +66,22 @@ const mockedState: Partial<State> = {
   }
 };
 
-jest.mock('@yext/answers-headless-react', () => {
-  const originalModule = jest.requireActual('@yext/answers-headless-react');
-  return {
-    __esModule: true,
-    ...originalModule,
-    useAnswersState: accessor => accessor(mockedState),
-    useAnswersActions: () => {
-      return {
-        state: mockedState,
-        executeVerticalQuery: jest.fn(),
-        setOffset: jest.fn(),
-        setFilterOption: jest.fn(),
-        setFacetOption: jest.fn(),
-        resetFacets: jest.fn(),
-        setStaticFilters: jest.fn()
-      };
-    }
-  };
-});
+const mockedActions = {
+  state: mockedState,
+  executeVerticalQuery: jest.fn(),
+  setOffset: jest.fn(),
+  setFilterOption: jest.fn(),
+  setFacetOption: jest.fn(),
+  resetFacets: jest.fn(),
+  setStaticFilters: jest.fn()
+};
+jest.mock('@yext/answers-headless-react');
 
 describe('AppliedFilters', () => {
+  beforeEach(() => {
+    mockAnswersHooks({ mockedState, mockedActions });
+  });
+
   it('Static filters are rendered', () => {
     render(<AppliedFilters />);
     const staticFilterDisplayName = mockedState.filters.static[0].value as string;
@@ -153,6 +148,9 @@ describe('AppliedFilters', () => {
 });
 
 describe('AppliedFilters with hierarchical facets', () => {
+  beforeEach(() => {
+    mockAnswersHooks({ mockedState, mockedActions });
+  });
   it('renders hierarchical facets in the correct order, with same fieldId facets adjacent to each other', () => {
     mockFiltersState({
       facets: [
