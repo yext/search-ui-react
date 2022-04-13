@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { FiltersState, Matcher, Source, State } from '@yext/answers-headless-react';
-import { Filters } from '../../../src/components';
 import { createHierarchicalFacet } from '../../__utils__/hierarchicalfacets';
 import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../../__utils__/mocks';
-import { Fragment } from 'react';
 import userEvent from '@testing-library/user-event';
+import { HierarchicalFacets } from '../../__compound-components__/Filters/HierarchicalFacet';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -26,32 +25,6 @@ const mockedState: Partial<State> = {
     searchType: 'vertical'
   }
 };
-
-function HierarchicalFacets(): JSX.Element {
-  const hierarchicalFacetFieldIds = ['hier'];
-  return (
-    <Filters.Facets searchOnChange={true}>
-      {facets => {
-        const filteredFacets = facets.filter(f => f.options.length > 0);
-        return (
-          <>
-            {
-              filteredFacets.map(f => {
-                if (hierarchicalFacetFieldIds.includes(f.fieldId)) {
-                  return <Fragment key={f.fieldId}>
-                    <Filters.HierarchicalFacet facet={f} />
-                  </Fragment>;
-                }
-                return null;
-              })
-            }
-            {filteredFacets.length > 0 && <Filters.ApplyFiltersButton />}
-          </>
-        );
-      }}
-    </Filters.Facets>
-  );
-}
 
 const mockedActions = {
   state: mockedState,
@@ -81,7 +54,8 @@ describe('Hierarchical facets', () => {
         ])
       ]
     });
-    render(<HierarchicalFacets/>);
+
+    render(<HierarchicalFacets />);
 
     expect(screen.getByRole('button', { name: /food/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /fruit/i })).toBeTruthy();
@@ -102,7 +76,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets/>);
+    render(<HierarchicalFacets />);
 
     const bananaButton = screen.getByRole('button', { name: /banana/i });
     userEvent.click(bananaButton);
@@ -123,7 +97,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets/>);
+    render(<HierarchicalFacets />);
 
     const appleButton = screen.getByRole('button', { name: /apple/i });
     userEvent.click(appleButton);
@@ -144,7 +118,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets/>);
+    render(<HierarchicalFacets />);
 
     const currentCategoryButton = screen.getByRole('button', { name: /fruit/i });
     userEvent.click(currentCategoryButton);
@@ -166,7 +140,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets/>);
+    render(<HierarchicalFacets />);
 
     const currentCategoryButton = screen.getByRole('button', { name: /fruit/i });
     userEvent.click(currentCategoryButton);
@@ -187,7 +161,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets/>);
+    render(<HierarchicalFacets />);
 
     const parentCategoryButton = screen.getByRole('button', { name: /food/i });
     userEvent.click(parentCategoryButton);

@@ -170,7 +170,7 @@ describe('AppliedFilters with hierarchical facets', () => {
       ]
     });
 
-    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
+    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']} />);
     const buttons = screen.queryAllByRole('button');
     expect(buttons).toHaveLength(5);
     expect(buttons[0]).toHaveAttribute('aria-label', 'Remove "food" filter');
@@ -195,7 +195,7 @@ describe('AppliedFilters with hierarchical facets', () => {
       ]
     });
 
-    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
+    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']} />);
     expect(screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/)).toHaveLength(4);
     const nierButton = screen.queryByLabelText('Remove "nier" filter');
     expect(nierButton).toBeNull();
@@ -242,7 +242,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
+    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']} />);
     const filterPills = screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/);
     expect(filterPills).toHaveLength(3);
 
@@ -280,7 +280,7 @@ describe('AppliedFilters with hierarchical facets', () => {
 
     const actions = spyOnActions();
 
-    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']}/>);
+    render(<AppliedFilters hierarchicalFacetsFieldIds={['hier']} />);
     const filterPills = screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/);
     expect(filterPills).toHaveLength(3);
 
