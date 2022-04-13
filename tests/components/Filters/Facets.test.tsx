@@ -3,7 +3,7 @@ import { AnswersHeadless, FacetOption, Source, State } from '@yext/answers-headl
 import { spyOnActions } from '../../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../../__fixtures__/data/filters';
-import { Facets } from '../../__fixtures__/components/Filters/Facets';
+import { Facets } from '../../__compound-components__/Filters/Facets';
 
 const mockedState: Partial<State> = {
   filters: {

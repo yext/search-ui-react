@@ -2,7 +2,7 @@ import { ComponentMeta } from '@storybook/react';
 import { AnswersHeadlessContext, State } from '@yext/answers-headless-react';
 import { Filters } from '../../../src/components';
 import { generateMockedHeadless } from '../../__fixtures__/answers-headless';
-import { HierarchicalFacets } from '../../__fixtures__/components/Filters/HierarchicalFacet';
+import { HierarchicalFacets } from '../../__compound-components__/Filters/HierarchicalFacet';
 import { createHierarchicalFacet } from '../../__utils__/hierarchicalfacets';
 import { RecursivePartial } from '../../__utils__/mocks';
 

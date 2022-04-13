@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Filters } from '../../../../src/components';
+import { Filters } from '../../../src/components';
 
 export function HierarchicalFacets(): JSX.Element {
   const hierarchicalFacetFieldIds = ['hier'];

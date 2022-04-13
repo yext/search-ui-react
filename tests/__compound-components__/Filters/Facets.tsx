@@ -1,4 +1,4 @@
-import { Filters } from '../../../../src/components';
+import { Filters } from '../../../src/components';
 
 export function Facets({ searchOnChange = true }: { searchOnChange?: boolean }): JSX.Element {
   return (

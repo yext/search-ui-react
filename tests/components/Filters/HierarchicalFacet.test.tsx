@@ -3,7 +3,7 @@ import { FiltersState, Matcher, Source, State } from '@yext/answers-headless-rea
 import { createHierarchicalFacet } from '../../__utils__/hierarchicalfacets';
 import { spyOnActions, mockAnswersState } from '../../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
-import { HierarchicalFacets } from '../../__fixtures__/components/Filters/HierarchicalFacet';
+import { HierarchicalFacets } from '../../__compound-components__/Filters/HierarchicalFacet';
 
 const mockedState: Partial<State> = {
   filters: {

@@ -6,7 +6,7 @@ import { generateMockedHeadless } from '../../__fixtures__/answers-headless';
 import { RecursivePartial } from '../../__utils__/mocks';
 import { DisplayableFacets } from '../../__fixtures__/data/filters';
 import { Filters } from '../../../src/components';
-import { Facets } from '../../__fixtures__/components/Filters/Facets';
+import { Facets } from '../../__compound-components__/Filters/Facets';
 
 
 const meta: ComponentMeta<typeof Filters.Facets> = {
