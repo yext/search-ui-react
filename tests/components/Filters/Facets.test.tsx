@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { AnswersHeadless, FacetOption, Source, State } from '@yext/answers-headless-react';
-import { Filters } from '../../../src/components';
 import { spyOnActions } from '../../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../../__fixtures__/data/filters';
+import { Facets } from '../../__compound-components__/Filters/Facets';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -25,36 +25,6 @@ const mockedState: Partial<State> = {
     searchType: 'vertical'
   }
 };
-
-function Facets({ searchOnChange = true }: { searchOnChange?: boolean }): JSX.Element {
-  return (
-    <Filters.Facets searchOnChange={searchOnChange}>
-      {facets => {
-        const filteredFacets = facets.filter(f => f.options.length > 0);
-        return (
-          <>
-            {filteredFacets.map(f => {
-              return (
-                <Filters.FilterGroup key={f.fieldId} fieldId={f.fieldId}>
-                  {f.options.map(o =>
-                    <Filters.CheckboxOption
-                      key={o.displayName}
-                      value={o.value}
-                      matcher={o.matcher}
-                      selectedByDefault={o.selected}
-                      label={o.displayName}
-                    />
-                  )}
-                  {filteredFacets.length > 0 && !searchOnChange && <Filters.ApplyFiltersButton />}
-                </Filters.FilterGroup>
-              );
-            })}
-          </>
-        );
-      }}
-    </Filters.Facets>
-  );
-}
 
 jest.mock('@yext/answers-headless-react', () => {
   const originalModule = jest.requireActual('@yext/answers-headless-react');
@@ -88,6 +58,7 @@ describe('Facets', () => {
     render(<Facets />);
 
     DisplayableFacets.forEach(f => {
+      expect(screen.getByText(f.displayName)).toBeDefined();
       f.options.forEach(o => {
         expect(screen.getByText(o.displayName)).toBeDefined();
       });
