@@ -29,7 +29,7 @@ export class AnswersCore {
   searchService: SearchService;
   questionSubmissionService: QuestionSubmissionService;
   autoCompleteService: AutocompleteService;
-  
+
   constructor() {
     this.searchService = mockedSearchService;
     this.questionSubmissionService = mockedQuestionSubmissionService;
@@ -79,5 +79,5 @@ export function AnswersCoreDecorator(story, { parameters }) {
       mockedAutoCompleteService = services.autoCompleteService;
     }
   }
-  return story();  
+  return story();
 }

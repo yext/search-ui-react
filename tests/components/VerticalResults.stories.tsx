@@ -45,7 +45,7 @@ export const NoResults = () => {
   };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless({})}>
-      <VerticalResults {...verticalResultsProps}/>
+      <VerticalResults {...verticalResultsProps} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -57,7 +57,7 @@ export const HasResultsWithoutPagination = () => {
   };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <VerticalResults {...verticalResultsProps}/>
+      <VerticalResults {...verticalResultsProps} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -69,7 +69,7 @@ export const HasResultsWithPagination = () => {
   };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <VerticalResults {...verticalResultsProps}/>
+      <VerticalResults {...verticalResultsProps} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -83,7 +83,7 @@ export const Loading = () => {
       ...mockedHeadlessState,
       searchStatus: { isLoading: true }
     })}>
-      <VerticalResults {...verticalResultsProps}/>
+      <VerticalResults {...verticalResultsProps} />
     </AnswersHeadlessContext.Provider>
   );
 };

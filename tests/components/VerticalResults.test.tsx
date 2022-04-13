@@ -88,7 +88,7 @@ describe('VerticalResults', () => {
     const verticalResultsProps: VerticalResultsProps = {
       CardComponent: StandardCard
     };
-    render(<VerticalResults {...verticalResultsProps}/>);
+    render(<VerticalResults {...verticalResultsProps} />);
     mockedState.vertical.results.forEach(result =>
       expect(screen.getByText(result.rawData.name as string)).toBeDefined()
     );
@@ -110,7 +110,7 @@ describe('VerticalResults', () => {
     mockVerticalSearchState({
       noResults: mockedNoResults
     });
-    render(<VerticalResults {...verticalResultsProps}/>);
+    render(<VerticalResults {...verticalResultsProps} />);
     mockedNoResults.allResultsForVertical.results.forEach(result =>
       expect(screen.getByText(result.rawData.name as string)).toBeDefined()
     );
@@ -123,7 +123,7 @@ describe('Pagination', () => {
       CardComponent: StandardCard,
       allowPagination: false
     };
-    render(<VerticalResults {...verticalResultsProps}/>);
+    render(<VerticalResults {...verticalResultsProps} />);
     const paginationNavEl = screen.queryByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeNull();
   });
@@ -137,7 +137,7 @@ describe('Pagination', () => {
       results: [],
       resultsCount: 0
     });
-    render(<VerticalResults {...verticalResultsProps}/>);
+    render(<VerticalResults {...verticalResultsProps} />);
     const paginationNavEl = screen.queryByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeNull();
   });
@@ -155,7 +155,7 @@ describe('Pagination', () => {
       offset: 0
     };
     mockVerticalSearchState(mockedVerticalSearchState);
-    render(<VerticalResults {...verticalResultsProps}/>);
+    render(<VerticalResults {...verticalResultsProps} />);
     const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeDefined();
     const totalPaginationButtons = within(paginationNavEl).queryAllByRole('button').length;
@@ -181,7 +181,7 @@ describe('Pagination', () => {
       offset: 0
     };
     mockVerticalSearchState(mockedVerticalSearchState);
-    render(<VerticalResults {...verticalResultsProps}/>);
+    render(<VerticalResults {...verticalResultsProps} />);
     const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeDefined();
     const paginationButtons = within(paginationNavEl).queryAllByRole('button');
@@ -211,7 +211,7 @@ describe('Pagination', () => {
     };
     mockVerticalSearchState(mockedVerticalSearchState);
     const actions = spyOnActions();
-    render(<VerticalResults {...verticalResultsProps}/>);
+    render(<VerticalResults {...verticalResultsProps} />);
 
     const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeDefined();

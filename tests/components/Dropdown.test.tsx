@@ -15,7 +15,7 @@ describe('Dropdown', () => {
     render(
       <div data-testid='container'>
         <Dropdown {...dropdownProps}>
-          <DropdownInput/>
+          <DropdownInput />
           <DropdownMenu>
             <DropdownItem value='item1'>
               item1
@@ -50,7 +50,7 @@ describe('Dropdown', () => {
     };
     render(
       <Dropdown {...dropdownProps}>
-        <DropdownInput/>
+        <DropdownInput />
         <DropdownMenu>
           <DropdownItem value='item1' focusedClassName='FocusedItem1'>
             item1
@@ -79,7 +79,7 @@ describe('Dropdown', () => {
     };
     render(
       <Dropdown {...dropdownProps}>
-        <DropdownInput/>
+        <DropdownInput />
         <DropdownMenu>
           <DropdownItem value='item1'>
             <p data-testid='item1'>item1</p>
@@ -110,7 +110,7 @@ describe('Dropdown', () => {
     };
     render(
       <Dropdown {...dropdownProps}>
-        <DropdownInput/>
+        <DropdownInput />
         <DropdownMenu>
           <DropdownItem value='item1' onClick={mockedOnClickFn}>
             <p data-testid='item1'>item1</p>
@@ -142,7 +142,7 @@ describe('Dropdown', () => {
     };
     render(
       <Dropdown {...dropdownProps}>
-        <DropdownInput onChange={mockedOnChangeFn}/>
+        <DropdownInput onChange={mockedOnChangeFn} />
         <DropdownMenu>
           <DropdownItem value='item1' focusedClassName='FocusedItem1'>
             item1
@@ -178,7 +178,7 @@ describe('Dropdown', () => {
     };
     render(
       <Dropdown {...dropdownProps}>
-        <DropdownInput onSubmit={mockedOnSubmitFn}/>
+        <DropdownInput onSubmit={mockedOnSubmitFn} />
         <DropdownMenu>
           <DropdownItem value='item1' focusedClassName='FocusedItem1'>
             item1
