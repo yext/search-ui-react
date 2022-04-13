@@ -420,4 +420,53 @@ describe('SearchBar', () => {
       });
     });
   });
+
+  describe('Screen reader text', () => {
+    it('instruction text is present in DOM', () => {
+      render(
+        <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+          <SearchBar />
+        </AnswersHeadlessContext.Provider>
+      );
+      expect(screen.getByText(
+        'When autocomplete results are available, use up and down arrows to review and enter to select.'
+      )).toBeInTheDocument();
+    });
+
+    it('description text of number of available autocomplete options is present in DOM', async () => {
+      const mockedAutocompleteResult = {
+        results: [
+          { value: 'query suggestion 1' },
+          { value: 'query suggestion 2' }
+        ],
+        inputIntents: [],
+        uuid: ''
+      };
+      jest.spyOn(AnswersCore.prototype, 'universalAutocomplete')
+        .mockResolvedValue(mockedAutocompleteResult);
+      render(
+        <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+          <SearchBar />
+        </AnswersHeadlessContext.Provider>
+      );
+      userEvent.click(screen.getByRole('textbox'));
+      expect(await screen.findByText(
+        '2 autocomplete suggestions found.'
+      )).toBeInTheDocument();
+    });
+
+    it('description text of number of available recent search options is present in DOM', async () => {
+      render(
+        <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+          <SearchBar />
+        </AnswersHeadlessContext.Provider>
+      );
+      userEvent.type(screen.getByRole('textbox'), 'yext');
+      userEvent.keyboard('{enter}');
+      userEvent.click(screen.getByRole('textbox'));
+      expect(await screen.findByText(
+        '1 recent search found.'
+      )).toBeInTheDocument();
+    });
+  });
 });
