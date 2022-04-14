@@ -1,5 +1,6 @@
 import {
   AnswersHeadless,
+  AutocompleteResponse,
   QuerySource,
   SearchTypeEnum,
   useAnswersActions,
@@ -41,6 +42,7 @@ import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 import { clearStaticRangeFilters } from '../utils/filterutils';
+import { useMemo } from 'react';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-6',
@@ -312,41 +314,6 @@ export function SearchBar({
     ));
   }
 
-  function renderQuerySuggestions() {
-    return autocompleteResponse?.results.map((result, i) => (
-      <Fragment key={i}>
-        <DropdownItem
-          className={cssClasses.optionContainer}
-          focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
-          value={result.value}
-          onClick={handleSubmit}
-        >
-          {renderAutocompleteResult(
-            result,
-            cssClasses,
-            MagnifyingGlassIcon,
-            `autocomplete option: ${result.value}`
-          )}
-        </DropdownItem>
-        {!hideVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
-          <DropdownItem
-            key={j}
-            className={cssClasses.optionContainer}
-            focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
-            value={result.value}
-            itemData={{ verticalLink: { verticalKey, query: result.value } }}
-            onClick={handleSubmit}
-          >
-            {renderAutocompleteResult(
-              { value: `in ${verticalKeyToLabel ? verticalKeyToLabel(verticalKey) : verticalKey}` },
-              { ...cssClasses, option: cssClasses.verticalLink }
-            )}
-          </DropdownItem>
-        ))}
-      </Fragment>
-    ));
-  }
-
   function renderClearButton() {
     return (
       <>
@@ -407,7 +374,13 @@ export function SearchBar({
         {hasItems &&
           <StyledDropdownMenu cssClasses={cssClasses}>
             {renderRecentSearches()}
-            {renderQuerySuggestions()}
+            <QuerySuggestions
+              autocompleteResponse={autocompleteResponse}
+              cssClasses={cssClasses}
+              handleSubmit={handleSubmit}
+              verticalKeyToLabel={verticalKeyToLabel}
+              hideVerticalLinks={hideVerticalLinks}
+            />
             {showEntityPreviewsDivider && <div className={cssClasses.entityPreviewsDivider}></div>}
             {transformedEntityPreviews}
           </StyledDropdownMenu>
@@ -491,4 +464,63 @@ function DropdownSearchButton({ handleSubmit, cssClasses }: {
       />
     </div>
   );
+}
+
+function QuerySuggestions({
+  autocompleteResponse,
+  cssClasses,
+  handleSubmit,
+  verticalKeyToLabel,
+  hideVerticalLinks
+}: {
+  autocompleteResponse: AutocompleteResponse | undefined,
+  cssClasses: SearchBarCssClasses,
+  handleSubmit: () => void,
+  verticalKeyToLabel?: (verticalKey: string) => string,
+  hideVerticalLinks?: boolean
+}) {
+  const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
+
+  const itemDataMatrix = useMemo(() => {
+    return autocompleteResponse?.results.map(result => {
+      return result.verticalKeys?.map(verticalKey => ({
+        verticalLink: { verticalKey, query: result.value }
+      })) ?? [];
+    }) ?? [];
+  }, [autocompleteResponse?.results]);
+
+  const suggestions = autocompleteResponse?.results.map((result, i) => (
+    <Fragment key={i}>
+      <DropdownItem
+        className={cssClasses.optionContainer}
+        focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
+        value={result.value}
+        onClick={handleSubmit}
+      >
+        {renderAutocompleteResult(
+          result,
+          cssClasses,
+          MagnifyingGlassIcon,
+          `autocomplete option: ${result.value}`
+        )}
+      </DropdownItem>
+      {!hideVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
+        <DropdownItem
+          key={j}
+          className={cssClasses.optionContainer}
+          focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
+          value={result.value}
+          itemData={itemDataMatrix[i][j]}
+          onClick={handleSubmit}
+        >
+          {renderAutocompleteResult(
+            { value: `in ${verticalKeyToLabel ? verticalKeyToLabel(verticalKey) : verticalKey}` },
+            { ...cssClasses, option: cssClasses.verticalLink }
+          )}
+        </DropdownItem>
+      ))}
+    </Fragment>
+  ));
+
+  return <>{suggestions}</>;
 }

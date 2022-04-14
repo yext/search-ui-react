@@ -5,7 +5,7 @@ module.exports = {
   ignorePatterns: ['lib', 'tests/setup/responses', 'storybook-static', '!.storybook'],
   overrides: [
     {
-      files: ['**/*.test.*'],
+      files: ['**/*.{test,stories}.*'],
       rules: {
         'react-perf/jsx-no-new-array-as-prop': 'off',
         'react-perf/jsx-no-new-function-as-prop': 'off',
