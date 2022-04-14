@@ -109,7 +109,7 @@ export function FilterSearch({
         filter: result.filter,
         displayName: result.value
       }));
-    }) ?? [];
+    });
   }, [sections]);
 
   function renderDropdownItems() {
