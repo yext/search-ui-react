@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import RecentSearches, { ISearch } from 'recent-searches';
 
 export const RECENT_SEARCHES_KEY = '__yxt_recent_searches__';
@@ -6,7 +6,13 @@ export const RECENT_SEARCHES_KEY = '__yxt_recent_searches__';
 export function useRecentSearches(
   recentSearchesLimit: number
 ): [ISearch[]|undefined, (input: string) => void, () => void] {
-  const [ recentSearches, setRecentSeaches ] = useState<RecentSearches>();
+  const recentSearchesLimitRef = useRef(recentSearchesLimit);
+  const [ recentSearches, setRecentSeaches ] = useState<RecentSearches>(
+    new RecentSearches({
+      limit: recentSearchesLimit,
+      namespace: RECENT_SEARCHES_KEY
+    })
+  );
 
   const clearRecentSearches = useCallback(() => {
     localStorage.removeItem(RECENT_SEARCHES_KEY);
@@ -17,15 +23,18 @@ export function useRecentSearches(
     localStorage.removeItem(RECENT_SEARCHES_KEY);
   }, [recentSearchesLimit]);
 
-  const setRecentSearch = (input: string) => {
+  const setRecentSearch = useCallback((input: string) => {
     recentSearches?.setRecentSearch(input);
-  };
+  }, [recentSearches]);
 
   useEffect(() => {
-    setRecentSeaches(new RecentSearches({
-      limit: recentSearchesLimit,
-      namespace: RECENT_SEARCHES_KEY
-    }));
+    if (recentSearchesLimit !== recentSearchesLimitRef.current) {
+      setRecentSeaches(new RecentSearches({
+        limit: recentSearchesLimit,
+        namespace: RECENT_SEARCHES_KEY
+      }));
+      recentSearchesLimitRef.current = recentSearchesLimit;
+    }
   }, [recentSearchesLimit]);
 
   return [recentSearches?.getRecentSearches(), setRecentSearch, clearRecentSearches];
