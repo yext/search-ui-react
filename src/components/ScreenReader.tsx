@@ -21,8 +21,7 @@ export function ScreenReader({
         {instructions}
       </div>
       <div
-        //TODO: Investigate tailwindcss 'sr-only'
-        className='absolute p-0 -m-px w-px h-px overflow-hidden whitespace-nowrap border-0'
+        className='sr-only'
         key={announcementKey}
         aria-live='assertive'
       >
