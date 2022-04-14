@@ -7,7 +7,7 @@ import {
 import { RecursivePartial } from '../__utils__/mocks';
 import merge from 'lodash/merge';
 
-export function generateMockedHeadless(state: RecursivePartial<State>): AnswersHeadless {
+export function generateMockedHeadless(state?: RecursivePartial<State>): AnswersHeadless {
   const emptyState: State = {
     query: {},
     universal: {},
