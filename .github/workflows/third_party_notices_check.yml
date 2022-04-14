@@ -9,9 +9,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16.x
-          token: ${{ secrets.TEST_ADD_COMMIT_TOKEN }}
       - run: npm install -g generate-license-file
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.TEST_ADD_COMMIT_TOKEN }}
       - run: npm ci
       - run: generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite
       - name: Update THIRD-PARTY-NOTICES
