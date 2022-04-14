@@ -1,6 +1,5 @@
 import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions } from '@yext/answers-headless-react';
-import { useMemo } from 'react';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
@@ -85,8 +84,11 @@ export function FilterSearch({
     inputValue => answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
     (e) => console.error('Error occured executing a filter search request.\n', e)
   );
-  const sections = filterSearchResponse?.sections.filter(section => section.results.length > 0);
-  const hasResults = sections ? sections.flatMap(s => s.results).length > 0 : false;
+  const sections = useMemo(() => {
+    return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
+  }, [filterSearchResponse?.sections]);
+
+  const hasResults = sections.flatMap(s => s.results).length > 0;
 
   const handleSelectDropdown = useCallback((_value, _index, itemData) => {
     const filter = itemData?.filter as Filter;
@@ -102,7 +104,7 @@ export function FilterSearch({
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
   const itemDataMatrix = useMemo(() => {
-    return sections?.map(section => {
+    return sections.map(section => {
       return section.results.map(result => ({
         filter: result.filter,
         displayName: result.value
@@ -111,7 +113,7 @@ export function FilterSearch({
   }, [sections]);
 
   function renderDropdownItems() {
-    return sections?.map((section, sectionIndex) => {
+    return sections.map((section, sectionIndex) => {
       return (
         <div className={cssClasses.sectionContainer} key={sectionIndex}>
           {section.label &&
@@ -166,13 +168,13 @@ export function FilterSearch({
 function getScreenReaderText(sections: {
   results: AutocompleteResult[],
   label?: string
-}[] | undefined) {
+}[]) {
   let screenReaderText = processTranslation({
     phrase: '0 autocomplete option found.',
     pluralForm: '0 autocomplete options found.',
     count: 0
   });
-  if (!sections || sections.length === 0) {
+  if (sections.length === 0) {
     return screenReaderText;
   }
   const screenReaderPhrases = sections.map(section => {
