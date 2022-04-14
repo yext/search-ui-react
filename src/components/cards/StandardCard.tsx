@@ -3,7 +3,8 @@ import { useCardAnalyticsCallback } from '../../hooks/useCardAnalyticsCallback';
 import { CardProps } from '../../models/cardComponent';
 import {
   ThumbsFeedback,
-  ThumbsFeedbackCssClasses
+  ThumbsFeedbackCssClasses,
+  builtInCssClasses as thumbsFeedbackCssClasses
 } from '../ThumbsFeedback';
 import { applyFieldMappings, FieldData } from '../utils/applyFieldMappings';
 import { isString, validateData } from '../utils/validateData';
@@ -70,6 +71,8 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
 }
 
 const builtInCssClasses: StandardCardCssClasses = {
+  thumbsUpIcon: thumbsFeedbackCssClasses.thumbsUpIcon,
+  thumbsDownIcon: thumbsFeedbackCssClasses.thumbsDownIcon,
   container: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
   header: 'flex text-neutral-dark',
   body: 'flex justify-end pt-2.5 text-base',
@@ -178,11 +181,10 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
           {renderCTAs(data.cta1, data.cta2)}
         </div>
       }
-      {showFeedbackButtons && <ThumbsFeedback
+      {<ThumbsFeedback
         feedbackText=''
         onClick={handleFeedbackButtonClick}
-        customCssClasses={cssClasses}
-        cssCompositionMethod={cssCompositionMethod}
+        cssClasses={cssClasses}
       />}
     </div>
   );

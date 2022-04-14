@@ -35,13 +35,15 @@ import { SearchButton } from './SearchButton';
 import { processTranslation } from './utils/processTranslation';
 import { renderAutocompleteResult,
   AutocompleteResultCssClasses,
-  builtInCssClasses as AutocompleteResultBuiltInCssClasses
+  builtInCssClasses as autocompleteResultCssClasses
 } from './utils/renderAutocompleteResult';
 import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 
 const builtInCssClasses: SearchBarCssClasses = {
+  option: autocompleteResultCssClasses.option,
+  icon: autocompleteResultCssClasses.icon,
   container: 'h-12 mb-3',
   inputDivider: 'border-t border-gray-200 mx-2.5',
   dropdownContainer: 'bg-white pt-4 pb-3 z-10',
@@ -62,7 +64,6 @@ const builtInCssClasses: SearchBarCssClasses = {
   recentSearchesNonHighlighted: 'font-normal', // Swap this to semibold once we apply highlighting to recent searches
   verticalLink: 'ml-12 pl-1 text-neutral italic',
   entityPreviewsDivider: 'h-px bg-gray-200 mt-1 mb-4 mx-3.5',
-  ...AutocompleteResultBuiltInCssClasses
 };
 
 /**
