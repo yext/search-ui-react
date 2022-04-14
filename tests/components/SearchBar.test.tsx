@@ -33,7 +33,7 @@ describe('SearchBar', () => {
       uuid: ''
     };
 
-    it('display when click on universal search bar', async () => {
+    it('displays universal query suggestions when click on universal search bar', async () => {
       const mockedUniversalAutocomplete = jest
         .spyOn(AnswersCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
@@ -52,7 +52,7 @@ describe('SearchBar', () => {
       expect(mockedUniversalAutocomplete).toBeCalledTimes(1);
     });
 
-    it('display when click on vertical search bar', async () => {
+    it('displays vertical query suggestions when click on vertical search bar', async () => {
       const mockedVerticalAutocomplete = jest
         .spyOn(AnswersCore.prototype, 'verticalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
@@ -79,7 +79,7 @@ describe('SearchBar', () => {
       expect(mockedVerticalAutocomplete).toBeCalledTimes(1);
     });
 
-    it('update with new results when type in search bar', async () => {
+    it('updates query suggestions with new autocomplete results when type in search bar', async () => {
       const mockedUniversalAutocompleteResultOne = {
         results: [{ value: 'query suggestion 1' }],
         inputIntents: [],
@@ -109,7 +109,7 @@ describe('SearchBar', () => {
       expect(mockedUniversalAutocomplete).toBeCalledTimes(2);
     });
 
-    it('execute a new search when an option is selected', async () => {
+    it('executes a new search when a query suggestion option is selected', async () => {
       jest.spyOn(AnswersCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
 
@@ -147,7 +147,7 @@ describe('SearchBar', () => {
         .mockResolvedValue(mockedUniversalAutocompleteResult);
     });
 
-    it('display as part of the query suggestions', async () => {
+    it('displays vertical links as part of the query suggestions', async () => {
       render(
         <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
           <SearchBar />
@@ -159,7 +159,7 @@ describe('SearchBar', () => {
       expect(await screen.findByText('in verticalKey2')).toBeInTheDocument();
     });
 
-    it('hidden when hideVerticalLinks is true', async () => {
+    it('hides vertical links when hideVerticalLinks is true', async () => {
       render(
         <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
           <SearchBar hideVerticalLinks={true}/>
@@ -171,7 +171,7 @@ describe('SearchBar', () => {
       expect(screen.queryByText('in verticalKey2')).not.toBeInTheDocument();
     });
 
-    it('use display labels from verticalKeyToLabel', async () => {
+    it('vertical links use display labels from verticalKeyToLabel when it is specified', async () => {
       render(
         <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
           <SearchBar verticalKeyToLabel={verticalKey => {
@@ -186,7 +186,7 @@ describe('SearchBar', () => {
       expect(await screen.findByText('in Vertical Two')).toBeInTheDocument();
     });
 
-    it('execute onSelectVerticalLink callback on select', async () => {
+    it('executes onSelectVerticalLink callback when a vertical link is selected', async () => {
       const mockedOnSelectVerticalLink = jest.fn();
       render(
         <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
@@ -208,7 +208,7 @@ describe('SearchBar', () => {
   });
 
   describe('recent searches', () => {
-    it('display in dropdown after performing searches', async () => {
+    it('displays recent searches in dropdown after performing searches', async () => {
       render(
         <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
           <SearchBar />
@@ -224,7 +224,7 @@ describe('SearchBar', () => {
       expect(await screen.findByText('yext')).toBeInTheDocument();
     });
 
-    it('display limited results in dropdown based on recentSearchesLimit', async () => {
+    it('displays limited recent search results in dropdown based on recentSearchesLimit', async () => {
       render(
         <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
           <SearchBar recentSearchesLimit={1}/>
@@ -241,7 +241,7 @@ describe('SearchBar', () => {
       expect(screen.queryByText('yext')).not.toBeInTheDocument();
     });
 
-    it('hidden when hideRecentSearches is true', async () => {
+    it('hides recent searches when hideRecentSearches is true', async () => {
       render(
         <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
           <SearchBar hideRecentSearches={true}/>
@@ -282,7 +282,7 @@ describe('SearchBar', () => {
     expect(await screen.findByRole('textbox')).toHaveDisplayValue('');
   });
 
-  it('execute onSearch callback when click on submit button', async () => {
+  it('executes onSearch callback when click on submit button', async () => {
     const mockedOnSearch = jest.fn();
     render(
       <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
@@ -307,7 +307,7 @@ describe('SearchBar', () => {
       longitude: 77.0369
     };
 
-    it('using user location in state', async () => {
+    it('search with near me location handling using user location in state', async () => {
       const mockedStateWithUserLocation = {
         ...mockedState,
         location: {
@@ -329,7 +329,7 @@ describe('SearchBar', () => {
       );
     });
 
-    it('using nagivator.geolocation API', async () => {
+    it('search with near me location handling using nagivator.geolocation API', async () => {
       const mockedUniversalAutocompleteResult = {
         results: [{ value: 'query suggestion 1' }],
         inputIntents: [SearchIntent.NearMe],
@@ -375,7 +375,7 @@ describe('SearchBar', () => {
         .mockImplementation(() => ({ report: mockedReport }));
     });
 
-    it('report AUTO_COMPLETE_SELECTION feedback', async () => {
+    it('reports AUTO_COMPLETE_SELECTION feedback', async () => {
       jest.spyOn(AnswersCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
 
@@ -396,7 +396,7 @@ describe('SearchBar', () => {
       });
     });
 
-    it('report SEARCH_CLEAR_BUTTON feedback', async () => {
+    it('reports SEARCH_CLEAR_BUTTON feedback', async () => {
       const mockedStateWithResults = {
         ...mockedState,
         query: {
@@ -422,7 +422,7 @@ describe('SearchBar', () => {
   });
 
   describe('Screen reader text', () => {
-    it('instruction text is present in DOM', () => {
+    it('search bar instruction text for screen reader is present in DOM', () => {
       render(
         <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
           <SearchBar />
