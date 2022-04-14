@@ -4,6 +4,7 @@ import { UniversalResults } from '../../src/components/UniversalResults';
 
 import { State } from '@yext/answers-headless-react';
 import { CtaData } from '../../src/models/StandardCardData';
+import { mockAnswersState } from '../__utils__/mocks';
 import { verticalResults } from '../__fixtures__/data/universalresults';
 
 
@@ -24,17 +25,13 @@ const mockedState: Partial<State> = {
   }
 };
 
-jest.mock('@yext/answers-headless-react', () => {
-  const originalModule = jest.requireActual('@yext/answers-headless-react');
-  return {
-    __esModule: true,
-    ...originalModule,
-    useAnswersState: accessor => accessor(mockedState),
-    useAnswersActions: jest.fn()
-  };
-});
+jest.mock('@yext/answers-headless-react');
 
 describe('UniversalResults', () => {
+  beforeEach(() => {
+    mockAnswersState(mockedState);
+  });
+
   it('Results are displayed', () => {
     render(<UniversalResults verticalConfigMap={{}} />);
     const verticals = mockedState.universal.verticals;

@@ -1,4 +1,12 @@
-import { AnswersHeadless, State, StateSelector, useAnswersState } from '@yext/answers-headless-react';
+import {
+  AnswersHeadless,
+  State,
+  StateSelector,
+  useAnswersState,
+  useAnswersActions,
+  AnswersUtilities,
+  useAnswersUtilities
+} from '@yext/answers-headless-react';
 
 export function spyOnActions(): jest.Mocked<AnswersHeadless> {
   const spy = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
@@ -24,8 +32,35 @@ export function mockAnswersState(
       ...customState
     } as State);
   }
-
   return jest
     .spyOn(require('@yext/answers-headless-react'), 'useAnswersState')
     .mockImplementation(mockImpl as (...args: unknown[]) => unknown);
+}
+
+export function mockAnswersActions(
+  customActions: RecursivePartial<AnswersHeadless>
+): jest.SpyInstance<typeof useAnswersActions, unknown[]> {
+  return jest
+    .spyOn(require('@yext/answers-headless-react'), 'useAnswersActions')
+    .mockImplementation(() => customActions as AnswersHeadless);
+}
+
+export function mockAnswersUtils(
+  customUtils: RecursivePartial<AnswersUtilities>
+): jest.SpyInstance<typeof useAnswersUtilities, unknown[]> {
+  return jest
+    .spyOn(require('@yext/answers-headless-react'), 'useAnswersUtilities')
+    .mockImplementation(() => customUtils as AnswersUtilities);
+}
+
+export function mockAnswersHooks({
+  mockedState, mockedActions, mockedUtils
+}: {
+  mockedState?: RecursivePartial<State>,
+  mockedActions?: RecursivePartial<AnswersHeadless>,
+  mockedUtils?: RecursivePartial<AnswersUtilities>
+}) {
+  mockedUtils && mockAnswersUtils(mockedUtils);
+  mockedState && mockAnswersState(mockedState);
+  mockedActions && mockAnswersActions(mockedActions);
 }

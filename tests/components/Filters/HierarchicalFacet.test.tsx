@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { FiltersState, Matcher, Source, State } from '@yext/answers-headless-react';
 import { createHierarchicalFacet } from '../../__utils__/hierarchicalfacets';
-import { spyOnActions, mockAnswersState } from '../../__utils__/mocks';
+import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { HierarchicalFacets } from '../../__compound-components__/Filters/HierarchicalFacet';
 
@@ -26,36 +26,22 @@ const mockedState: Partial<State> = {
   }
 };
 
-jest.mock('@yext/answers-headless-react', () => {
-  const originalModule = jest.requireActual('@yext/answers-headless-react');
-  return {
-    __esModule: true,
-    ...originalModule,
-    useAnswersState: accessor => accessor(mockedState),
-    useAnswersActions: () => {
-      return {
-        executeVerticalQuery: jest.fn(),
-        setOffset: jest.fn(),
-        setFilterOption: jest.fn(),
-        setFacetOption: jest.fn(),
-        resetFacets: jest.fn(),
-        setStaticFilters: jest.fn()
-      };
-    },
-    useAnswersUtilities: () => {
-      return {
-        isCloseMatch: jest.fn()
-      };
-    }
-  };
-});
+const mockedActions = {
+  state: mockedState,
+  executeVerticalQuery: jest.fn(),
+  setOffset: jest.fn(),
+  setFilterOption: jest.fn(),
+  setFacetOption: jest.fn(),
+  resetFacets: jest.fn(),
+  setStaticFilters: jest.fn()
+};
 
-jest.mock('../../../src/utils/search-operations', () => ({
-  __esModule: true,
-  executeSearch: jest.fn()
-}));
+jest.mock('@yext/answers-headless-react');
 
 describe('Hierarchical facets', () => {
+  beforeEach(() => {
+    mockAnswersHooks({ mockedState, mockedActions });
+  });
 
   it('Properly renders hierarchical facets', () => {
     mockFiltersState({
@@ -68,6 +54,7 @@ describe('Hierarchical facets', () => {
         ])
       ]
     });
+
     render(<HierarchicalFacets />);
 
     expect(screen.getByRole('button', { name: /food/i })).toBeTruthy();
@@ -88,7 +75,6 @@ describe('Hierarchical facets', () => {
       ]
     });
     const actions = spyOnActions();
-
 
     render(<HierarchicalFacets />);
 
@@ -132,7 +118,6 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-
     render(<HierarchicalFacets />);
 
     const currentCategoryButton = screen.getByRole('button', { name: /fruit/i });
@@ -154,7 +139,6 @@ describe('Hierarchical facets', () => {
       ]
     });
     const actions = spyOnActions();
-
 
     render(<HierarchicalFacets />);
 

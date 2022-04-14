@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import { SpellCheck } from '../../src/components/SpellCheck';
 import { State } from '@yext/answers-headless-react';
-import { spyOnActions } from '../__utils__/mocks';
+import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 
 const mockedState: Partial<State> = {
@@ -21,23 +21,20 @@ const mockedState: Partial<State> = {
   }
 };
 
-jest.mock('@yext/answers-headless-react', () => ({
-  __esModule: true,
-  useAnswersState: accessor => accessor(mockedState),
-  useAnswersActions: () => {
-    return {
-      setQuery: jest.fn(),
-      executeVerticalQuery: jest.fn()
-    };
-  }
-}));
-
-jest.mock('../../src/utils/search-operations', () => ({
-  __esModule: true,
-  executeSearch: jest.fn()
-}));
+jest.mock('@yext/answers-headless-react');
 
 describe('SpellCheck', () => {
+  beforeEach(() => {
+    mockAnswersHooks({
+      mockedState,
+      mockedActions: {
+        state: mockedState,
+        setQuery: jest.fn(),
+        executeVerticalQuery: jest.fn()
+      }
+    });
+  });
+
   it('Suggestion is formatted properly', () => {
     render(<SpellCheck />);
     expect(screen.getByText('Did you mean')).toBeDefined();
@@ -66,15 +63,12 @@ describe('SpellCheck', () => {
   });
 
   it('Fires executeSearch when no onClick is provided', () => {
-    const useAnswersActions = jest.spyOn(require('@yext/answers-headless-react'), 'useAnswersActions');
-    const executeSearch = jest.spyOn(require('../../src/utils/search-operations'), 'executeSearch');
-
+    const actions = spyOnActions();
     render(<SpellCheck />);
     userEvent.click(screen.getByRole('button'));
 
-    const answersActions = useAnswersActions.mock.results[0].value;
     const correctedQuery = mockedState.spellCheck.correctedQuery;
-    expect(answersActions.setQuery).toHaveBeenCalledWith(correctedQuery);
-    expect(executeSearch).toHaveBeenCalledWith(answersActions);
+    expect(actions.setQuery).toHaveBeenCalledWith(correctedQuery);
+    expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
   });
 });

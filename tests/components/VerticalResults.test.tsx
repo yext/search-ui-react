@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
 import { State, Source, VerticalSearchState } from '@yext/answers-headless-react';
 import { StandardCard } from '../../src/components/cards/StandardCard';
-import { spyOnActions, mockAnswersState } from '../__utils__/mocks';
+import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 
 const ctas = {
@@ -64,26 +64,19 @@ const mockedState: Partial<State> = {
   query: {}
 };
 
-jest.mock('@yext/answers-headless-react', () => {
-  const originalModule = jest.requireActual('@yext/answers-headless-react');
-  return {
-    __esModule: true,
-    ...originalModule,
-    useAnswersState: accessor => accessor(mockedState),
-    useAnswersActions: () => {
-      return {
-        setOffset: jest.fn()
-      };
-    }
-  };
-});
+const mockedActions = {
+  state: mockedState,
+  setOffset: jest.fn(),
+  executeVerticalQuery: jest.fn()
+};
 
-jest.mock('../../src/utils/search-operations', () => ({
-  __esModule: true,
-  executeSearch: jest.fn()
-}));
+jest.mock('@yext/answers-headless-react');
 
 describe('VerticalResults', () => {
+  beforeEach(() => {
+    mockAnswersHooks({ mockedState, mockedActions });
+  });
+
   it('Results are displayed', () => {
     const verticalResultsProps: VerticalResultsProps = {
       CardComponent: StandardCard
@@ -118,6 +111,10 @@ describe('VerticalResults', () => {
 });
 
 describe('Pagination', () => {
+  beforeEach(() => {
+    mockAnswersHooks({ mockedState, mockedActions });
+  });
+
   it('Don\'t display pagination component when allowPagination is false', () => {
     const verticalResultsProps: VerticalResultsProps = {
       CardComponent: StandardCard,
@@ -215,12 +212,11 @@ describe('Pagination', () => {
 
     const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeDefined();
-    const executeSearch = jest.spyOn(require('../../src/utils/search-operations'), 'executeSearch');
 
     // navigate to the last results page
     userEvent.click(screen.getByText(`${mockedVerticalSearchState.resultsCount}`));
     expect(actions.setOffset).toHaveBeenCalledWith(mockedVerticalSearchState.resultsCount - 1);
-    expect(executeSearch).toHaveBeenCalledTimes(1);
+    expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
   });
 });
 
