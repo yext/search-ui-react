@@ -41,6 +41,7 @@ import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 import { clearStaticRangeFilters } from '../utils/filterutils';
+import { useMemo } from 'react';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-6',
@@ -312,6 +313,14 @@ export function SearchBar({
     ));
   }
 
+  const itemDataMatrix = useMemo(() => {
+    return autocompleteResponse?.results.map(result => {
+      return result.verticalKeys?.map(verticalKey => ({
+        verticalLink: { verticalKey, query: result.value }
+      })) ?? [];
+    }) ?? [];
+  }, [autocompleteResponse?.results]);
+
   function renderQuerySuggestions() {
     return autocompleteResponse?.results.map((result, i) => (
       <Fragment key={i}>
@@ -334,7 +343,7 @@ export function SearchBar({
             className={cssClasses.optionContainer}
             focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
             value={result.value}
-            itemData={{ verticalLink: { verticalKey, query: result.value } }}
+            itemData={itemDataMatrix[i][j]}
             onClick={handleSubmit}
           >
             {renderAutocompleteResult(
