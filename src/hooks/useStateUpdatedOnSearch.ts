@@ -16,5 +16,9 @@ export function useStateUpdatedOnSearch<T>(
   }
   wasLoading.current = isLoading;
 
+  if (isLoading) {
+    console.log('test');
+  }
+
   return snapshottedState.current;
 }
