@@ -280,7 +280,7 @@ export function SearchBar({
         onSubmit={handleSubmit}
         onFocus={handleInputFocus}
         onChange={handleInputChange}
-        ariaLabel={'Conduct a search'}
+        ariaLabel='Conduct a search'
       />
     );
   }
