@@ -10,6 +10,7 @@ import { useInputContext } from './InputContext';
 export function DropdownInput(props: {
   className?: string,
   placeholder?: string,
+  ariaLabel?: string,
   onSubmit?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void,
   onFocus?: (value: string) => void,
   onChange?: (value: string) => void,
@@ -18,6 +19,7 @@ export function DropdownInput(props: {
   const {
     className,
     placeholder,
+    ariaLabel,
     onSubmit,
     onFocus,
     onChange,
@@ -79,6 +81,7 @@ export function DropdownInput(props: {
       id={screenReaderUUID && generateDropdownId(screenReaderUUID, -1)}
       aria-describedby={screenReaderUUID}
       aria-activedescendant={screenReaderUUID && generateDropdownId(screenReaderUUID, focusedIndex)}
+      aria-label={ariaLabel}
     />
   );
 }
