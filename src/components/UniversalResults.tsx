@@ -1,6 +1,10 @@
 import { useAnswersState, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
 import { StandardSection } from './sections/StandardSection';
-import { SectionHeader } from './sections/SectionHeader';
+import {
+  SectionHeader,
+  SectionHeaderCssClasses,
+  builtInCssClasses as sectionHeaderCssClasses
+} from './sections/SectionHeader';
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 import { VerticalConfigMap } from '../models/verticalConfig';
@@ -10,12 +14,13 @@ import { VerticalConfigMap } from '../models/verticalConfig';
  *
  * @public
  */
-export interface UniversalResultsCssClasses {
+export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
   container?: string,
   results___loading?: string
 }
 
 const builtInCssClasses: UniversalResultsCssClasses = {
+  ...sectionHeaderCssClasses,
   container: 'space-y-8',
   results___loading: 'opacity-50'
 };
@@ -79,7 +84,7 @@ interface VerticalSectionsProps extends UniversalResultsProps {
  * corresponding configs, including specifying which section template to use.
  */
 function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
-  const { resultsFromAllVerticals, verticalConfigMap } = props;
+  const { resultsFromAllVerticals, verticalConfigMap, customCssClasses } = props;
   return <>
     {resultsFromAllVerticals
       .filter(verticalResults => verticalResults.results)
@@ -105,7 +110,8 @@ function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
               appliedQueryFilters,
               verticalKey,
               viewAllButton: verticalConfig.viewAllButton,
-              getViewAllUrl: verticalConfig.getViewAllUrl
+              getViewAllUrl: verticalConfig.getViewAllUrl,
+              cssClasses: customCssClasses
             }}/>}
             CardComponent={verticalConfig.CardComponent}
             key={verticalKey}

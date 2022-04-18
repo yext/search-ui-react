@@ -1,6 +1,5 @@
 import { AppliedFiltersCssClasses } from '../AppliedFilters';
 import { AppliedFiltersDisplay } from '../AppliedFiltersDisplay';
-import { useComposedCssClasses, CompositionMethod } from '../../hooks/useComposedCssClasses';
 import { CollectionIcon } from '../../icons/CollectionIcon';
 import { AppliedQueryFilter, SelectableFilter as DisplayableFilter, useAnswersState } from '@yext/answers-headless-react';
 import classNames from 'classnames';
@@ -8,8 +7,12 @@ import { useAnalytics } from '../../hooks/useAnalytics';
 import { VerticalLink } from '../../models/verticalLink';
 import { useCallback } from 'react';
 
+const DEFAULT_CSS_CLASSES: SectionHeaderCssClasses = {};
+
 /**
- * The CSS class interface used for {@link SectionHeader}.
+ * The CSS class interface used for the SectionHeader component.
+ *
+ * @public
  */
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
   sectionHeaderContainer?: string,
@@ -19,7 +22,7 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
   viewMoreLink?: string
 }
 
-const builtInCssClasses: SectionHeaderCssClasses = {
+export const builtInCssClasses: SectionHeaderCssClasses = {
   sectionHeaderContainer: 'flex items-center w-full pl-1 mb-4',
   sectionHeaderIconContainer: 'w-5 h-5',
   sectionHeaderLabel: 'font-bold text-neutral-dark text-base pl-3',
@@ -40,9 +43,7 @@ export interface SectionHeaderProps {
   /** An array of AppliedQueryFilters which are displayed in the section header. */
   appliedQueryFilters?: AppliedQueryFilter[],
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: SectionHeaderCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod,
+  cssClasses?: SectionHeaderCssClasses,
   /** The verticalKey associated with the section. */
   verticalKey: string,
   /** Display a button to view all results for that section, if true. */
@@ -64,11 +65,9 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
     verticalKey,
     viewAllButton = false,
     appliedQueryFilters,
-    customCssClasses,
-    cssCompositionMethod,
+    cssClasses = DEFAULT_CSS_CLASSES,
     getViewAllUrl
   } = props;
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const latestQuery = useAnswersState(state => state.query.mostRecentSearch);
   const nlpFilters = appliedQueryFilters?.map(
     (appliedQueryFilter): DisplayableFilter => ({

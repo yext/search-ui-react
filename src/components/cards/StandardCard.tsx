@@ -3,7 +3,8 @@ import { useCardAnalyticsCallback } from '../../hooks/useCardAnalyticsCallback';
 import { CardProps } from '../../models/cardComponent';
 import {
   ThumbsFeedback,
-  ThumbsFeedbackCssClasses
+  ThumbsFeedbackCssClasses,
+  builtInCssClasses as thumbsFeedbackCssClasses
 } from '../ThumbsFeedback';
 import { useCardFeedbackCallback } from '../../hooks/useCardFeedbackCallback';
 import { renderHighlightedValue } from '../utils/renderHighlightedValue';
@@ -55,17 +56,19 @@ const builtInCssClasses: StandardCardCssClasses = {
   header: 'flex text-neutral-dark',
   body: 'flex justify-end pt-2.5 text-base',
   descriptionContainer: 'w-full',
+  descriptionHighlighted: 'font-semibold',
+  descriptionNonHighlighted: 'font-normal',
   ctaContainer: 'flex flex-col justify-end ml-4',
   cta1: 'whitespace-nowrap bg-primary text-white font-medium rounded-lg py-2 px-5 shadow',
   cta2: 'whitespace-nowrap bg-white text-primary font-medium rounded-lg py-2 px-5 mt-2 shadow',
   ordinal: 'mr-1.5 text-lg font-medium',
   title: 'text-lg font-medium',
-  titleLink: 'text-lg font-medium text-primary hover:underline focus:underline',
-  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium',
   titleHighlighted: 'font-bold',
   titleNonHighlighted: 'font-medium',
-  descriptionHighlighted: 'font-semibold',
-  descriptionNonHighlighted: 'font-normal'
+  titleLink: 'text-lg font-medium text-primary hover:underline focus:underline',
+  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-400 font-medium',
+  thumbsUpIcon: thumbsFeedbackCssClasses.thumbsUpIcon,
+  thumbsDownIcon: thumbsFeedbackCssClasses.thumbsDownIcon
 };
 
 /**
@@ -148,8 +151,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
       {showFeedbackButtons && <ThumbsFeedback
         feedbackText=''
         onClick={handleFeedbackButtonClick}
-        customCssClasses={cssClasses}
-        cssCompositionMethod={cssCompositionMethod}
+        cssClasses={cssClasses}
       />}
     </div>
   );
