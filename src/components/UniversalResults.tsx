@@ -70,13 +70,14 @@ export function UniversalResults({
 
   return (
     <div className={resultsClassNames}>
-      {renderVerticalSections({ resultsFromAllVerticals, showAppliedFilters, verticalConfigMap })}
+      {renderVerticalSections({ resultsFromAllVerticals, showAppliedFilters, verticalConfigMap, cssClasses })}
     </div>
   );
 }
 
 interface VerticalSectionsProps extends UniversalResultsProps {
-  resultsFromAllVerticals: VerticalResultsData[]
+  resultsFromAllVerticals: VerticalResultsData[],
+  cssClasses: UniversalResultsCssClasses
 }
 
 /**
@@ -84,7 +85,7 @@ interface VerticalSectionsProps extends UniversalResultsProps {
  * corresponding configs, including specifying which section template to use.
  */
 function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
-  const { resultsFromAllVerticals, verticalConfigMap, customCssClasses } = props;
+  const { resultsFromAllVerticals, verticalConfigMap, cssClasses } = props;
   return <>
     {resultsFromAllVerticals
       .filter(verticalResults => verticalResults.results)
@@ -111,7 +112,7 @@ function renderVerticalSections(props: VerticalSectionsProps): JSX.Element {
               verticalKey,
               viewAllButton: verticalConfig.viewAllButton,
               getViewAllUrl: verticalConfig.getViewAllUrl,
-              cssClasses: customCssClasses
+              cssClasses
             }}/>}
             CardComponent={verticalConfig.CardComponent}
             key={verticalKey}
