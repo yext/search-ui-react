@@ -79,6 +79,8 @@ export function DropdownInput(props: {
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
       id={screenReaderUUID && generateDropdownId(screenReaderUUID, -1)}
+      autoComplete='off'
+      type='text'
       aria-describedby={screenReaderUUID}
       aria-activedescendant={screenReaderUUID && generateDropdownId(screenReaderUUID, focusedIndex)}
       aria-label={ariaLabel}
