@@ -7,7 +7,7 @@ import { useAnalytics } from '../../hooks/useAnalytics';
 import { VerticalLink } from '../../models/verticalLink';
 import { useCallback } from 'react';
 
-const DEFAULT_CSS_CLASSES: SectionHeaderCssClasses = {};
+const FALLBACK_CSS_CLASSES: SectionHeaderCssClasses = {};
 
 /**
  * The CSS class interface used for the SectionHeader component.
@@ -65,7 +65,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
     verticalKey,
     viewAllButton = false,
     appliedQueryFilters,
-    cssClasses = DEFAULT_CSS_CLASSES,
+    cssClasses = FALLBACK_CSS_CLASSES,
     getViewAllUrl
   } = props;
   const latestQuery = useAnswersState(state => state.query.mostRecentSearch);
