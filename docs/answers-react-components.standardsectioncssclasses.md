@@ -9,8 +9,9 @@ The CSS class interface used for [StandardSection()](./answers-react-components.
 <b>Signature:</b>
 
 ```typescript
-export interface StandardSectionCssClasses 
+export interface StandardSectionCssClasses extends VerticalResultsCssClasses 
 ```
+<b>Extends:</b> [VerticalResultsCssClasses](./answers-react-components.verticalresultscssclasses.md)
 
 ## Properties
 

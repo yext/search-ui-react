@@ -2,13 +2,14 @@ import { VerticalResultsDisplay } from '../VerticalResultsDisplay';
 import { SectionProps } from '../../models/sectionComponent';
 import { StandardCard } from '../cards/StandardCard';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { VerticalResultsCssClasses } from '../VerticalResults';
 
 /**
  * The CSS class interface used for {@link StandardSection}.
  *
  * @public
  */
-export interface StandardSectionCssClasses {
+export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
   section?: string
 }
 
@@ -54,6 +55,8 @@ export function StandardSection(props: StandardSectionProps): JSX.Element | null
       <VerticalResultsDisplay
         results={results}
         CardComponent={CardComponent}
+        customCssClasses={cssClasses}
+        cssCompositionMethod='replace'
       />
     </section>
   );

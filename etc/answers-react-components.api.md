@@ -236,19 +236,11 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     featuredSnippetTitle?: string;
     // (undocumented)
-    feedbackButton?: string;
-    // (undocumented)
-    feedbackButtonsContainer?: string;
-    // (undocumented)
     fieldValueDescription?: string;
     // (undocumented)
     fieldValueTitle?: string;
     // (undocumented)
     highlighted?: string;
-    // (undocumented)
-    thumbsDownIcon?: string;
-    // (undocumented)
-    thumbsUpIcon?: string;
     // (undocumented)
     viewDetailsLink?: string;
     // (undocumented)
@@ -711,6 +703,20 @@ interface SearchInputProps {
 export type SectionComponent = (props: SectionProps) => JSX.Element | null;
 
 // @public
+export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
+    // (undocumented)
+    sectionHeaderContainer?: string;
+    // (undocumented)
+    sectionHeaderIconContainer?: string;
+    // (undocumented)
+    sectionHeaderLabel?: string;
+    // (undocumented)
+    viewMoreContainer?: string;
+    // (undocumented)
+    viewMoreLink?: string;
+}
+
+// @public
 export interface SectionProps {
     CardComponent?: CardComponent;
     header?: JSX.Element;
@@ -799,7 +805,7 @@ export interface StandardCardProps extends CardProps {
 export function StandardSection(props: StandardSectionProps): JSX.Element | null;
 
 // @public
-export interface StandardSectionCssClasses {
+export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
     // (undocumented)
     section?: string;
 }
@@ -840,8 +846,7 @@ export interface ThumbsFeedbackCssClasses {
 
 // @public
 export interface ThumbsFeedbackProps {
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses: ThumbsFeedbackCssClasses;
+    cssClasses: ThumbsFeedbackCssClasses;
     feedbackText?: string;
     feedbackTextOnSubmission?: string;
     onClick: (feedbackType: FeedbackType) => void;
@@ -859,7 +864,7 @@ export interface UniversalLink {
 export function UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
 
 // @public
-export interface UniversalResultsCssClasses {
+export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
