@@ -70,6 +70,7 @@ export function SpellCheck({
   }
   return (
     <div className={containerClassNames}>
+      <span className={cssClasses.helpText}>Did you mean </span>
       <button className={cssClasses.link} onClick={handleClickSuggestion}>{correctedQuery}</button>
     </div>
   );

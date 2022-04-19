@@ -131,6 +131,11 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
           {link && getLinkText(directAnswerResult)}
         </div>
       </div>
+      <ThumbsFeedback
+        onClick={handleClickFeedbackButton}
+        customCssClasses={composedCssClasses}
+        cssCompositionMethod={props.cssCompositionMethod}
+      />
     </div>
   );
 }
