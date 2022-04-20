@@ -31,6 +31,9 @@ The command will work with Yarn so long as NPM 6+ is installed on the machine.
 Once the library and its peer dependencies are installed, the components can be rendered using React by placing them inside the `AnswersHeadlessProvider`:
 
 ```tsx
+import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
+import { SearchBar, UniversalResults } from '@yext/answers-react-components';
+
 const config = {
   apiKey: '<apiKey>',
   experienceKey: '<experienceKey>',
