@@ -9,8 +9,9 @@ The CSS class interface used for [UniversalResults()](./answers-react-components
 <b>Signature:</b>
 
 ```typescript
-export interface UniversalResultsCssClasses 
+export interface UniversalResultsCssClasses extends SectionHeaderCssClasses 
 ```
+<b>Extends:</b> [SectionHeaderCssClasses](./answers-react-components.sectionheadercssclasses.md)
 
 ## Properties
 

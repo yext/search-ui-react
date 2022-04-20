@@ -11,8 +11,7 @@ export {
 
 export { DropdownItem, DropdownItemProps } from './Dropdown/DropdownItem';
 export { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
-export { EntityPreviewsProps } from './EntityPreviews';
-export { EntityPreviews } from './EntityPreviews';
+export { EntityPreviews, EntityPreviewsProps } from './EntityPreviews';
 export { FocusedItemData } from './Dropdown/FocusContext';
 
 export {

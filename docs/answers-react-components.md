@@ -65,6 +65,7 @@
 |  [ResultsCountProps](./answers-react-components.resultscountprops.md) | Props for [ResultsCount()](./answers-react-components.resultscount.md)<!-- -->. |
 |  [SearchBarCssClasses](./answers-react-components.searchbarcssclasses.md) | The CSS class interface for the [SearchBar()](./answers-react-components.searchbar.md)<!-- -->. |
 |  [SearchBarProps](./answers-react-components.searchbarprops.md) | The props for the [SearchBar()](./answers-react-components.searchbar.md) component. |
+|  [SectionHeaderCssClasses](./answers-react-components.sectionheadercssclasses.md) | The CSS class interface used for the SectionHeader component. |
 |  [SectionProps](./answers-react-components.sectionprops.md) | The configuration of a section template for a vertical's results on a universal page. |
 |  [SpellCheckCssClasses](./answers-react-components.spellcheckcssclasses.md) | The CSS Class interface for SpellCheck. |
 |  [SpellCheckProps](./answers-react-components.spellcheckprops.md) | The props for the [SpellCheck()](./answers-react-components.spellcheck.md) component. |
