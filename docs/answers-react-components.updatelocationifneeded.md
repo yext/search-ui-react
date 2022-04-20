@@ -18,7 +18,7 @@ export declare function updateLocationIfNeeded(answersActions: AnswersActions, i
 |  --- | --- | --- |
 |  answersActions | AnswersActions |  |
 |  intents | SearchIntent\[\] |  |
-|  geolocationOptions | PositionOptions |  |
+|  geolocationOptions | PositionOptions | <i>(Optional)</i> |
 
 <b>Returns:</b>
 

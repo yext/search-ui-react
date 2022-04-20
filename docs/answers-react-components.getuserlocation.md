@@ -16,7 +16,7 @@ export declare function getUserLocation(geolocationOptions?: PositionOptions): P
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  geolocationOptions | PositionOptions |  |
+|  geolocationOptions | PositionOptions | <i>(Optional)</i> |
 
 <b>Returns:</b>
 

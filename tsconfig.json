@@ -10,7 +10,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "jsx": "react-jsx",
-    "target": "es2017",
+    "target": "es2019",
     "module": "es6",
     "outDir": "lib"
   },

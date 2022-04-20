@@ -17,8 +17,8 @@ export declare function useComposedCssClasses<ClassInterface>(builtInClasses: Cl
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  builtInClasses | ClassInterface | The component's built-in css classes |
-|  customClasses | ClassInterface | The custom classes to combine with the built-in ones |
-|  cssCompositionMethod | [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining the built-in classes with the custom classes |
+|  customClasses | ClassInterface | <i>(Optional)</i> The custom classes to combine with the built-in ones |
+|  cssCompositionMethod | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining the built-in classes with the custom classes |
 
 <b>Returns:</b>
 
