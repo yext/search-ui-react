@@ -50,4 +50,6 @@ function App() {
     </AnswersHeadlessProvider>
   );
 }
+
+export default App;
 ```
