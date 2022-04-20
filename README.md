@@ -38,7 +38,7 @@ const config = {
   apiKey: '<apiKey>',
   experienceKey: '<experienceKey>',
   locale: 'en',
-  experienceVersion: 'STAGING',
+  experienceVersion: 'PRODUCTION',
   businessId: 123456
 }
 
