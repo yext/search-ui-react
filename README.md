@@ -28,7 +28,7 @@ If you are using NPM 6 or Yarn, you can install the library and its peer depende
 npx install-peerdeps @yext/answers-react-components
 ```
 The command will work with Yarn so long as NPM 6+ is installed on the machine.
-Once the library and its peer dependencies are installed, the components can be rendered using React by placing them inside the `AnswersHeadlessProvider`:
+Once the library and its peer dependencies are installed, the components can be rendered using React by placing them inside the `AnswersHeadlessProvider` with the appropriate credentials:
 
 ```tsx
 import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
