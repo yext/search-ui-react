@@ -44,7 +44,7 @@ const config = {
 
 function App() {
   return (
-    <AnswersHeadlessProvider {...config} >
+    <AnswersHeadlessProvider {...config}>
       <SearchBar />
       <UniversalResults />
     </AnswersHeadlessProvider>
