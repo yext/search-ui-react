@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
 import { State, Source, VerticalSearchState } from '@yext/answers-headless-react';
-import { StandardCard } from '../../src/components/cards/StandardCard';
+import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 

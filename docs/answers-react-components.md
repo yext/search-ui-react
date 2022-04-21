@@ -69,7 +69,7 @@
 |  [SectionProps](./answers-react-components.sectionprops.md) | The configuration of a section template for a vertical's results on a universal page. |
 |  [SpellCheckCssClasses](./answers-react-components.spellcheckcssclasses.md) | The CSS Class interface for SpellCheck. |
 |  [SpellCheckProps](./answers-react-components.spellcheckprops.md) | The props for the [SpellCheck()](./answers-react-components.spellcheck.md) component. |
-|  [StandardCardCssClasses](./answers-react-components.standardcardcssclasses.md) | The CSS class interface used for [StandardCard()](./answers-react-components.standardcard.md)<!-- -->. |
+|  [StandardCardCssClasses](./answers-react-components.standardcardcssclasses.md) | The CSS class interface used for the StandardCardDisplay. |
 |  [StandardCardData](./answers-react-components.standardcarddata.md) | The data used by the [StandardCard()](./answers-react-components.standardcard.md) and taken from the original Result. |
 |  [StandardCardProps](./answers-react-components.standardcardprops.md) | Props for a StandardCard. |
 |  [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection()](./answers-react-components.standardsection.md)<!-- -->. |

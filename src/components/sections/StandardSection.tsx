@@ -1,6 +1,6 @@
 import { VerticalResultsDisplay } from '../VerticalResultsDisplay';
 import { SectionProps } from '../../models/sectionComponent';
-import { StandardCard } from '../cards/StandardCard';
+import { StandardCard } from '../cards/standard/StandardCard';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { VerticalResultsCssClasses } from '../VerticalResults';
 
