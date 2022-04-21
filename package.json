@@ -11,7 +11,7 @@
     "THIRD-PARTY-NOTICES"
   ],
   "scripts": {
-    "build": "rm -rf lib/** && tsc && npm run api-extractor && npm run generate-docs",
+    "build": "rm -rf lib/** && tsc && npx tailwindcss -o ./lib/bundle.css --minify && npm run api-extractor && npm run generate-docs",
     "dev": "tsc --watch",
     "lint": "eslint .",
     "api-extractor": "api-extractor run --local --verbose",
@@ -123,5 +123,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/yext/answers-react-components.git"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./bundle.css": "./lib/bundle.css"
   }
 }
