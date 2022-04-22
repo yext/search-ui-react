@@ -1,7 +1,6 @@
 module.exports = {
   content: [
-    './src/**/*.{ts,tsx}',
-    '../lib/**/*.{js,jsx}'
+    './lib/**/*.{js,jsx}'
   ],
   theme: {
     extend: {
@@ -23,4 +22,4 @@ module.exports = {
       strategy: 'class',
     })
   ],
-}
+};

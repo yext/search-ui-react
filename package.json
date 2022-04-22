@@ -5,13 +5,14 @@
   "author": "slapshot@yext.com",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "type": "module",
   "files": [
     "lib",
     "src",
     "THIRD-PARTY-NOTICES"
   ],
   "scripts": {
-    "build": "rm -rf lib/** && tsc && npm run api-extractor && npm run generate-docs",
+    "build": "tailwindcss -o ./lib/bundle.css --minify",
     "dev": "tsc --watch",
     "lint": "eslint .",
     "api-extractor": "api-extractor run --local --verbose",
@@ -46,7 +47,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "@yext/answers-headless-react": "^1.1.0-beta.11",
+    "@yext/answers-headless-react": "file:../yext-sites-starter/node_modules/@yext/answers-headless-react",
     "@yext/eslint-config-slapshot": "^0.2.0",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.3",
@@ -57,14 +58,14 @@
     "jest": "^27.5.1",
     "lodash": "^4.17.21",
     "msw": "^0.36.8",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "file:../yext-sites-starter/node_modules/react",
+    "react-dom": "file:../yext-sites-starter/node_modules/react-dom",
     "tailwindcss": "^3.0.23",
     "typescript": "~4.4.3"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "@yext/answers-headless-react": "^1.1.0-beta.11"
+    "@yext/answers-headless-react": "file:../yext-sites-starter/node_modules/@yext/answers-headless-react",
+    "react": "file:../yext-sites-starter/node_modules/react"
   },
   "jest": {
     "bail": 0,
@@ -118,7 +119,12 @@
     "classnames": "^2.3.1",
     "react-collapsed": "^3.3.0",
     "recent-searches": "^1.0.5",
+    "use-isomorphic-layout-effect": "^1.1.2",
     "uuid": "^8.3.2"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./bundle.css": "./lib/bundle.css"
   },
   "repository": {
     "type": "git",
