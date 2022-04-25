@@ -3,25 +3,5 @@ name: Check and Update Repo's documenation
 on: pull_request
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [17.x]
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build
-    - name: Update Documentation
-      uses: EndBug/add-and-commit@v7
-      with:
-        message: "Automated update to repo's documentation from github action"
-        add: '*.md'
-        push: true
-        default_author: github_actions
+  call_update_docs:
+    uses: yext/slapshot-reusable-workflows/.github/workflows/update_docs.yml@v1
