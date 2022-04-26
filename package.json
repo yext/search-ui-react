@@ -1,6 +1,6 @@
 {
   "name": "@yext/answers-react-components",
-  "version": "0.1.1-alpha.6",
+  "version": "0.1.1-alpha.7",
   "description": "",
   "author": "slapshot@yext.com",
   "main": "./lib/index.js",
@@ -19,7 +19,7 @@
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "prepublishOnly": "npm run build",
-    "test": "jest --coverage",
+    "test": "",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
