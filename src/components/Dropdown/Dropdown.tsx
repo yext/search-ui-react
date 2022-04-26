@@ -2,13 +2,16 @@ import { createElement, isValidElement, PropsWithChildren, ReactNode, useMemo, u
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
 import useGlobalListener from '@restart/hooks/useGlobalListener';
+const useGlobalListenerHack = typeof document !== 'undefined' ? useGlobalListener : (useGlobalListener as any).default
 import useRootClose from '@restart/ui/useRootClose';
+const useRootCloseHack = typeof document !== 'undefined' ? useRootClose : (useRootClose as any).default;
 import { FocusContext, FocusContextType } from './FocusContext';
 import { v4 as uuid } from 'uuid';
 import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
+const useLayoutEffectHack = typeof document !== 'undefined' ? useLayoutEffect : (useLayoutEffect as any).default
 
 interface DropdownItemData {
   value: string,
@@ -66,18 +69,18 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   const dropdownContext = useDropdownContextInstance(value, screenReaderUUID, onToggle, onSelect);
   const { toggleDropdown, isActive } = dropdownContext;
 
-  useLayoutEffect(() => {
+  useLayoutEffectHack(() => {
     if (parentQuery !== undefined && parentQuery !== lastTypedOrSubmittedValue) {
       setLastTypedOrSubmittedValue(parentQuery);
       updateFocusedItem(-1, parentQuery);
     }
   }, [parentQuery, lastTypedOrSubmittedValue, updateFocusedItem, setLastTypedOrSubmittedValue]);
 
-  useRootClose(containerRef, () => {
+  useRootCloseHack(containerRef, () => {
     toggleDropdown(false);
   }, { disabled: !isActive });
 
-  useGlobalListener('keydown', e => {
+  useGlobalListenerHack('keydown', e => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
     }
