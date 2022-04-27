@@ -1,4 +1,4 @@
-import { createElement, isValidElement, PropsWithChildren, ReactNode, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { createElement, isValidElement, PropsWithChildren, ReactNode, useMemo, useRef, useState } from 'react';
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
 import useGlobalListener from '@restart/hooks/useGlobalListener';
@@ -8,6 +8,7 @@ import { v4 as uuid } from 'uuid';
 import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
+import useLayoutEffect from 'use-isomorphic-layout-effect';
 
 interface DropdownItemData {
   value: string,

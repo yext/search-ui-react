@@ -1,10 +1,11 @@
 {
   "name": "@yext/answers-react-components",
-  "version": "0.1.1-beta.6",
+  "version": "0.1.1-beta.7",
   "description": "",
   "author": "slapshot@yext.com",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "type": "module",
   "files": [
     "lib",
     "src",
@@ -46,7 +47,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "@yext/answers-headless-react": "^1.1.0-beta.11",
+    "@yext/answers-headless-react": "^1.1.0-beta.12",
     "@yext/eslint-config-slapshot": "^0.2.0",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.3",
@@ -63,8 +64,8 @@
     "typescript": "~4.4.3"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "@yext/answers-headless-react": "^1.1.0-beta.11"
+    "@yext/answers-headless-react": "^1.1.0-beta.12",
+    "react": "^17.0.2"
   },
   "jest": {
     "bail": 0,
@@ -118,6 +119,7 @@
     "classnames": "^2.3.1",
     "react-collapsed": "^3.3.0",
     "recent-searches": "^1.0.5",
+    "use-isomorphic-layout-effect": "^1.1.2",
     "uuid": "^8.3.2"
   },
   "repository": {
