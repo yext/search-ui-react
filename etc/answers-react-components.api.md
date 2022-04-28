@@ -764,25 +764,9 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     cta2?: string;
     // (undocumented)
-    ctaContainer?: string;
-    // (undocumented)
-    descriptionContainer?: string;
-    // (undocumented)
-    descriptionHighlighted?: string;
-    // (undocumented)
-    descriptionNonHighlighted?: string;
-    // (undocumented)
     header?: string;
     // (undocumented)
-    ordinal?: string;
-    // (undocumented)
     title?: string;
-    // (undocumented)
-    titleHighlighted?: string;
-    // (undocumented)
-    titleLink?: string;
-    // (undocumented)
-    titleNonHighlighted?: string;
 }
 
 // @public
@@ -798,7 +782,6 @@ export interface StandardCardProps extends CardProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardCardCssClasses;
     showFeedbackButtons?: boolean;
-    showOrdinal?: boolean;
 }
 
 // @public

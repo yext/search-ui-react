@@ -68,7 +68,7 @@ export {
   StandardCard,
   StandardCardCssClasses,
   StandardCardProps
-} from './cards/StandardCard';
+} from './cards/standard/StandardCard';
 
 export {
   AlternativeVerticals,

@@ -4,7 +4,7 @@ import { AnswersHeadlessContext, Source } from '@yext/answers-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
-import { StandardCard } from '../../src/components/cards/StandardCard';
+import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 
 const meta: ComponentMeta<typeof VerticalResults> = {
   title: 'VerticalResults',

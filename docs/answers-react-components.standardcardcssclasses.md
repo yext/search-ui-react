@@ -4,12 +4,12 @@
 
 ## StandardCardCssClasses interface
 
-The CSS class interface used for [StandardCard()](./answers-react-components.standardcard.md)<!-- -->.
+The CSS class interface used for the StandardCardDisplay.
 
 <b>Signature:</b>
 
 ```typescript
-export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses 
+interface StandardCardCssClasses extends ThumbsFeedbackCssClasses 
 ```
 <b>Extends:</b> [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md)
 
@@ -21,14 +21,6 @@ export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses
 |  [container?](./answers-react-components.standardcardcssclasses.container.md) | string | <i>(Optional)</i> |
 |  [cta1?](./answers-react-components.standardcardcssclasses.cta1.md) | string | <i>(Optional)</i> |
 |  [cta2?](./answers-react-components.standardcardcssclasses.cta2.md) | string | <i>(Optional)</i> |
-|  [ctaContainer?](./answers-react-components.standardcardcssclasses.ctacontainer.md) | string | <i>(Optional)</i> |
-|  [descriptionContainer?](./answers-react-components.standardcardcssclasses.descriptioncontainer.md) | string | <i>(Optional)</i> |
-|  [descriptionHighlighted?](./answers-react-components.standardcardcssclasses.descriptionhighlighted.md) | string | <i>(Optional)</i> |
-|  [descriptionNonHighlighted?](./answers-react-components.standardcardcssclasses.descriptionnonhighlighted.md) | string | <i>(Optional)</i> |
 |  [header?](./answers-react-components.standardcardcssclasses.header.md) | string | <i>(Optional)</i> |
-|  [ordinal?](./answers-react-components.standardcardcssclasses.ordinal.md) | string | <i>(Optional)</i> |
 |  [title?](./answers-react-components.standardcardcssclasses.title.md) | string | <i>(Optional)</i> |
-|  [titleHighlighted?](./answers-react-components.standardcardcssclasses.titlehighlighted.md) | string | <i>(Optional)</i> |
-|  [titleLink?](./answers-react-components.standardcardcssclasses.titlelink.md) | string | <i>(Optional)</i> |
-|  [titleNonHighlighted?](./answers-react-components.standardcardcssclasses.titlenonhighlighted.md) | string | <i>(Optional)</i> |
 
