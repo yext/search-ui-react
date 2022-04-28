@@ -2,16 +2,16 @@ import { createElement, isValidElement, PropsWithChildren, ReactNode, useMemo, u
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
 import useGlobalListener from '@restart/hooks/useGlobalListener';
-const useGlobalListenerHack = typeof document !== 'undefined' ? useGlobalListener : (useGlobalListener as any).default
+const useGlobalListenerHack = typeof document !== 'undefined' ? useGlobalListener : (useGlobalListener as any).default ?? useGlobalListener
 import useRootClose from '@restart/ui/useRootClose';
-const useRootCloseHack = typeof document !== 'undefined' ? useRootClose : (useRootClose as any).default;
+const useRootCloseHack = typeof document !== 'undefined' ? useRootClose : (useRootClose as any).default ?? useRootClose;
 import { FocusContext, FocusContextType } from './FocusContext';
 import { v4 as uuid } from 'uuid';
 import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
-const useLayoutEffectHack = typeof document !== 'undefined' ? useLayoutEffect : (useLayoutEffect as any).default
+const useLayoutEffectHack = typeof document !== 'undefined' ? useLayoutEffect : (useLayoutEffect as any).default ?? useLayoutEffect
 
 interface DropdownItemData {
   value: string,

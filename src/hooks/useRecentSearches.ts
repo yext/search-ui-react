@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import RecentSearches, { ISearch } from 'recent-searches';
-const RecentSearchesHack = (RecentSearches as any).default;
+const RecentSearchesHack = (RecentSearches as any).default ?? RecentSearches;
 
 export const RECENT_SEARCHES_KEY = '__yxt_recent_searches__';
 
