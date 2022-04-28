@@ -99,33 +99,45 @@ function StandardCardDisplay(props: StandardCardDisplayProps) {
     );
   }
 
-  function renderCTAs(cta1?: CtaData, cta2?: CtaData) {
-    return (
-      <div className='flex flex-col justify-end ml-4'>
-        {cta1 &&
-          <button className={cssClasses.cta1} onClick={clickHandlers.handleCtaClick}>{cta1.label}</button>}
-        {cta2 &&
-          <button className={cssClasses.cta2} onClick={clickHandlers.handleCtaClick}>{cta2.label}</button>}
-      </div>
-    );
+  function renderCTAs(cta1?: CtaData | undefined, cta2?: CtaData | undefined) {
+    if (cta1 || cta2) {
+      return (
+        <div className='flex flex-col justify-end ml-4'>
+          {cta1 &&
+            <button className={cssClasses.cta1} onClick={clickHandlers.handleCtaClick}>{cta1.label}</button>}
+          {cta2 &&
+            <button className={cssClasses.cta2} onClick={clickHandlers.handleCtaClick}>{cta2.label}</button>}
+        </div>
+      );
+    }
+
+    return null;
   }
 
-  function renderDescription(text: string) {
-    return (
-      <div className='w-full'>
-        {renderHighlightedValue(text, { highlighted: 'font-semibold', nonHighlighted: 'font-normal' })}
-      </div>
-    );
+  function renderDescription(text: string | undefined) {
+    if (text) {
+      return (
+        <div className='w-full'>
+          {renderHighlightedValue(text, { highlighted: 'font-semibold', nonHighlighted: 'font-normal' })}
+        </div>
+      );
+    }
+
+    return null;
   }
 
   function renderFeedbackIcons() {
-    return (
-      <ThumbsFeedback
-        feedbackText=''
-        onClick={clickHandlers.handleFeedbackClick}
-        cssClasses={cssClasses}
-      />
-    );
+    if (showFeedbackButtons) {
+      return (
+        <ThumbsFeedback
+          feedbackText=''
+          onClick={clickHandlers.handleFeedbackClick}
+          cssClasses={cssClasses}
+        />
+      );
+    }
+
+    return null;
   }
 
   return (
@@ -135,11 +147,11 @@ function StandardCardDisplay(props: StandardCardDisplayProps) {
       </div>
       {(description ?? cta1 ?? cta2) &&
         <div className={cssClasses.body}>
-          {description && renderDescription(description)}
-          {(cta1 ?? cta2) && renderCTAs(cta1, cta2)}
+          {renderDescription(description)}
+          {renderCTAs(cta1, cta2)}
         </div>
       }
-      {showFeedbackButtons && renderFeedbackIcons()}
+      {renderFeedbackIcons()}
     </div>
   );
 }

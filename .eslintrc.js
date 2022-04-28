@@ -5,12 +5,6 @@ module.exports = {
   ignorePatterns: ['lib', 'tests/setup/responses', 'storybook-static', '!.storybook'],
   overrides: [
     {
-      files: ['src/components/cards/standard/StandardCard.tsx'],
-      rules: {
-        '@typescript-eslint/ban-ts-comment': 'off'
-      }
-    },
-    {
       files: ['**/*.{test,stories}.*'],
       rules: {
         'react-perf/jsx-no-new-array-as-prop': 'off',
