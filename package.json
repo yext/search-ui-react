@@ -3,9 +3,15 @@
   "version": "0.1.1-beta.7",
   "description": "",
   "author": "slapshot@yext.com",
-  "main": "./lib/commonjs/index.js",
-  "module": "./lib/esm/index.js",
-  "types": "./lib/answers-react-components.d.ts",
+  "main": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/commonjs/index.js"
+    },
+    "./bundle.css": "./lib/bundle.css"
+  },
   "files": [
     "lib",
     "src",
@@ -16,7 +22,7 @@
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs",
-    "dev": "tsc --watch",
+    "dev": "tsc --watch -p tsconfig.esm.json",
     "lint": "eslint .",
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
@@ -129,9 +135,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/yext/answers-react-components.git"
-  },
-  "exports": {
-    ".": "./lib/index.js",
-    "./bundle.css": "./lib/bundle.css"
   }
 }
