@@ -9,10 +9,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "jsx": "react-jsx",
-    "target": "es2017",
-    "module": "es6",
-    "outDir": "lib"
+    "jsx": "react-jsx"
   },
   "include": [
     "src"
