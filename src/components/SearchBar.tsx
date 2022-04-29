@@ -27,7 +27,6 @@ import { FocusedItemData } from './Dropdown/FocusContext';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import {
   calculateEntityPreviewsCount,
-  calculateRestrictVerticals,
   calculateUniversalLimit,
   transformEntityPreviews
 } from './EntityPreviews';
@@ -122,7 +121,9 @@ export interface VisualAutocompleteConfig {
   /** The debouncing time, in milliseconds, for making API requests for entity previews. */
   entityPreviewsDebouncingTime?: number,
   /** Renders entity previeews based on the autocomplete loading state and results. */
-  renderEntityPreviews?: RenderEntityPreviews
+  renderEntityPreviews?: RenderEntityPreviews,
+  /** Verticals to include in the search. */
+  includedVerticals?: string[]
 }
 
 /**
@@ -183,7 +184,8 @@ export function SearchBar({
   const {
     entityPreviewSearcher,
     renderEntityPreviews,
-    entityPreviewsDebouncingTime = 500
+    entityPreviewsDebouncingTime = 500,
+    includedVerticals = []
   } = visualAutocompleteConfig;
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
@@ -249,7 +251,7 @@ export function SearchBar({
     if (!renderEntityPreviews) {
       return;
     }
-    const restrictVerticals = calculateRestrictVerticals(entityPreviews);
+    const restrictVerticals = includedVerticals;
     const universalLimit = calculateUniversalLimit(entityPreviews);
     executeEntityPreviewsQuery(query, universalLimit, restrictVerticals);
   }, [entityPreviews, executeEntityPreviewsQuery, renderEntityPreviews]);

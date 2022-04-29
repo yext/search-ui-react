@@ -73,21 +73,6 @@ function getVerticalKeyToResults(verticalResultsArray: VerticalResultsData[]): R
 }
 
 /**
- * Calculates the restrictVerticals query param from a ReactNode containing EntityPreviews.
- */
-export function calculateRestrictVerticals(children: ReactNode): string[] {
-  const restrictedVerticalsSet = new Set<string>();
-  recursivelyMapChildren(children, c => {
-    if (isValidElement(c) && c.type === EntityPreviews) {
-      const { verticalKey } = c.props as EntityPreviewsProps;
-      restrictedVerticalsSet.add(verticalKey);
-    }
-    return c;
-  });
-  return Array.from(restrictedVerticalsSet);
-}
-
-/**
  * Calculates the universalLimit query param from a ReactNode containing EntityPreviews.
  */
 export function calculateUniversalLimit(children: ReactNode): UniversalLimit {

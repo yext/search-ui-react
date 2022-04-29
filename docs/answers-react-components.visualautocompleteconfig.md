@@ -18,5 +18,6 @@ export interface VisualAutocompleteConfig
 |  --- | --- | --- |
 |  [entityPreviewsDebouncingTime?](./answers-react-components.visualautocompleteconfig.entitypreviewsdebouncingtime.md) | number | <i>(Optional)</i> The debouncing time, in milliseconds, for making API requests for entity previews. |
 |  [entityPreviewSearcher?](./answers-react-components.visualautocompleteconfig.entitypreviewsearcher.md) | AnswersHeadless | <i>(Optional)</i> The Answers Headless instance used to perform visual autocomplete searches. |
+|  [includedVerticals?](./answers-react-components.visualautocompleteconfig.includedverticals.md) | string\[\] | <i>(Optional)</i> Verticals to include in the search. |
 |  [renderEntityPreviews?](./answers-react-components.visualautocompleteconfig.renderentitypreviews.md) | [RenderEntityPreviews](./answers-react-components.renderentitypreviews.md) | <i>(Optional)</i> Renders entity previeews based on the autocomplete loading state and results. |
 
