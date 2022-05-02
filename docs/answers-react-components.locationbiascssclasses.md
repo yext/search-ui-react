@@ -18,6 +18,7 @@ export interface LocationBiasCssClasses
 |  --- | --- | --- |
 |  [button?](./answers-react-components.locationbiascssclasses.button.md) | string | <i>(Optional)</i> |
 |  [container?](./answers-react-components.locationbiascssclasses.container.md) | string | <i>(Optional)</i> |
+|  [loadingIndicatorContainer?](./answers-react-components.locationbiascssclasses.loadingindicatorcontainer.md) | string | <i>(Optional)</i> |
 |  [location?](./answers-react-components.locationbiascssclasses.location.md) | string | <i>(Optional)</i> |
 |  [source?](./answers-react-components.locationbiascssclasses.source.md) | string | <i>(Optional)</i> |
 
