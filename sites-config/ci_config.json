@@ -7,7 +7,7 @@
     ],
     "hbsTemplates": []
   },
-  "baseImageTag": "node-17",
+  "baseImageTag": "node-14",
   "dependencies": {
     "installDepsCmd": "echo $npm_config_auth && npm install",
     "requiredFiles": []
