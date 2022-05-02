@@ -21,7 +21,7 @@
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "prepublishOnly": "npm run build",
     "test": "jest --coverage",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 8080",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
