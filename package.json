@@ -106,11 +106,6 @@
     "transformIgnorePatterns": [
       "/node_modules/(?!(@yext/answers-headless-react)/)"
     ],
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.json"
-      }
-    },
     "moduleNameMapper": {
       "./AnswersCore": "<rootDir>/tests/__fixtures__/core/AnswersCore.ts"
     },
