@@ -5,6 +5,7 @@
   "author": "slapshot@yext.com",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "type": "module",
   "files": [
     "lib",
     "src",
@@ -126,5 +127,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/yext/answers-react-components.git"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./bundle.css": "./lib/bundle.css"
   }
 }
