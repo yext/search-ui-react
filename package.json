@@ -11,11 +11,6 @@
     "src",
     "THIRD-PARTY-NOTICES"
   ],
-  "engines": [
-    {
-      "node": ">= 14.0.0"
-    }
-  ],
   "scripts": {
     "build": "rm -rf lib/** && tsc && npm run build:css && npm run api-extractor && npm run generate-docs",
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs",
