@@ -13,8 +13,8 @@
     "requiredFiles": []
   },
   "buildArtifacts": {
-    "buildSetupCmd": "npm ci",
-    "buildCmd": "npm run build-storybook"
+    "buildSetupCmd": "nvm version && npm ci",
+    "buildCmd": "nvm version && npm run build-storybook"
   },
   "livePreview": {
       "serveCmd": "npm run storybook -p 8080"
