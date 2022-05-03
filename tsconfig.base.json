@@ -10,11 +10,5 @@
     "declarationMap": true,
     "sourceMap": true,
     "jsx": "react-jsx"
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "src/**/*.test.*"
-  ]
+  }
 }

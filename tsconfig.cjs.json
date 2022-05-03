@@ -3,6 +3,12 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
-    "outDir": "lib/commonjs"
-  }
+    "outDir": "lib"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "src/esm-wrapper.ts",
+  ]
 }

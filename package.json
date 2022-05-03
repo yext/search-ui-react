@@ -3,12 +3,12 @@
   "version": "0.1.1-beta.7",
   "description": "",
   "author": "slapshot@yext.com",
-  "main": "./lib/esm/index.js",
-  "types": "./lib/esm/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": {
-      "import": "./lib/esm/index.js",
-      "require": "./lib/commonjs/index.js"
+      "import": "./lib/esm-wrapper.js",
+      "require": "./lib/index.js"
     },
     "./bundle.css": "./lib/bundle.css"
   },

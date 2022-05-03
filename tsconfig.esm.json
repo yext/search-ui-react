@@ -3,6 +3,9 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "esnext",
-    "outDir": "lib/esm",
-  }
+    "outDir": "lib",
+  },
+  "include": [
+    "src/esm-wrapper.ts",
+  ]
 }
