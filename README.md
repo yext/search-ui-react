@@ -10,9 +10,9 @@
 </div>
 <br>
 
-A library of React Components for powering Yext Search integrations.
+A library of React Components for powering Yext Answers integrations.
 
-See the [full documentation](./docs/answers-react-components.md) here.
+[Full Documentation](./docs/answers-react-components.md)
 
 ## Getting Started
 
