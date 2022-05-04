@@ -93,4 +93,3 @@ export {
   getSearchIntents,
   getUserLocation
 } from './index.js';
-

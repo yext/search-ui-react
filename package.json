@@ -3,12 +3,12 @@
   "version": "0.1.1-beta.7",
   "description": "",
   "author": "slapshot@yext.com",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./lib/src/esm-wrapper.js",
+  "types": "./lib/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./lib/esm-wrapper.js",
-      "require": "./lib/index.js"
+      "import": "./lib/src/esm-wrapper.js",
+      "require": "./lib/src/index.js"
     },
     "./bundle.css": "./lib/bundle.css"
   },
@@ -22,7 +22,7 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs",
-    "dev": "tsc --watch -p tsconfig.esm.json",
+    "dev": "npm run build:cjs && (tsc --watch -p tsconfig.esm.json & tsc --watch -p tsconfig.cjs.json)",
     "lint": "eslint .",
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",

@@ -1,11 +1,14 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "es2017",
-    "module": "esnext",
-    "outDir": "lib",
+    "module": "esnext"
   },
   "include": [
     "src/esm-wrapper.ts",
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.cjs.json"
+    }
   ]
 }

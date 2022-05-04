@@ -9,6 +9,9 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "target": "es2017",
+    "outDir": "lib",
+    "rootDir": "."
   }
 }
