@@ -5,3 +5,4 @@ on: pull_request
 jobs:
   call_notices_check:
     uses: yext/slapshot-reusable-workflows/.github/workflows/third_party_notices_check.yml@v1
+    environment: macos-latest
