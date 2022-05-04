@@ -4,7 +4,7 @@
   "description": "",
   "author": "slapshot@yext.com",
   "main": "./lib/src/esm-wrapper.js",
-  "types": "./lib/src/index.d.ts",
+  "types": "./lib/src/esm-wrapper.d.ts",
   "exports": {
     ".": {
       "import": "./lib/src/esm-wrapper.js",
@@ -18,9 +18,9 @@
     "THIRD-PARTY-NOTICES"
   ],
   "scripts": {
-    "build": "rm -rf lib/** && npm run build:esm && npm run build:cjs && npm run build:css && npm run api-extractor && npm run generate-docs",
-    "build:esm": "tsc -p tsconfig.esm.json",
+    "build": "rm -rf lib/** && npm run build:cjs && npm run build:esm && npm run build:css && npm run api-extractor && npm run generate-docs",
     "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs",
     "dev": "npm run build:cjs && (tsc --watch -p tsconfig.esm.json & tsc --watch -p tsconfig.cjs.json)",
     "lint": "eslint .",
