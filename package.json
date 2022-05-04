@@ -18,9 +18,8 @@
     "THIRD-PARTY-NOTICES"
   ],
   "scripts": {
-    "build": "rm -rf lib/** && npm run build:esm && npm run build:cjs && npm run build:css && npm run api-extractor && npm run generate-docs",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run api-extractor && npm run generate-docs",
+    "build:js": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs",
     "dev": "tsc --watch -p tsconfig.esm.json",
     "lint": "eslint .",
