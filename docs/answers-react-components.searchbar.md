@@ -4,7 +4,7 @@
 
 ## SearchBar() function
 
-Renders a SearchBar that is hooked up with an InputDropdown component.
+Renders a SearchBar that is hooked up with an InputDropdown component. TEST
 
 <b>Signature:</b>
 
