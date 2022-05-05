@@ -163,7 +163,7 @@ export interface SearchBarProps {
 }
 
 /**
- * Renders a SearchBar that is hooked up with an InputDropdown component. TEST
+ * Renders a SearchBar that is hooked up with an InputDropdown component.
  *
  * @public
  */
