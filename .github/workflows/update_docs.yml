@@ -5,3 +5,5 @@ on: pull_request
 jobs:
   call_update_docs:
     uses: yext/slapshot-reusable-workflows/.github/workflows/update_docs.yml@v1
+    secrets:
+      REPO_SCOPED_TOKEN: ${{ secrets.BOT_REPO_SCOPED_TOKEN }}
