@@ -38,7 +38,7 @@ export interface ThumbsFeedbackProps {
 }
 
 export const builtInCssClasses: ThumbsFeedbackCssClasses = {
-  feedbackButtonsContainer: 'flex justify-end mt-2 text-sm text-gray-400 font-medium',
+  feedbackButtonsContainer: 'flex justify-end mt-2 text-sm text-gray-500 font-medium',
   thumbsUpIcon: 'ml-3 w-5',
   thumbsDownIcon: 'w-5 ml-1 transform rotate-180'
 };
@@ -85,12 +85,14 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
           <button
             className={cssClasses.thumbsUpIcon}
             onClick={handleClickThumbsUp}
+            aria-label='This answered my question'
           >
             <ThumbIcon/>
           </button>
           <button
             className={cssClasses.thumbsDownIcon}
             onClick={handleClickThumbsDown}
+            aria-label='This did not answer my question'
           >
             <ThumbIcon/>
           </button>
