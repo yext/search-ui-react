@@ -7,12 +7,15 @@
   <a href="./LICENSE">
     <img src="https://img.shields.io/badge/License-BSD%203--Clause-blue.svg" alt="License"/>
   </a>
+  <a href='https://coveralls.io/github/yext/answers-react-components?branch=main'>
+    <img src='https://coveralls.io/repos/github/yext/answers-react-components/badge.svg?branch=main' alt='Coverage Status' />
+  </a>
 </div>
 <br>
 
-A library of React Components for powering Yext Answers integrations.
+A library of React Components for powering Yext Search integrations.
 
-[Full Documentation](./docs/answers-react-components.md)
+See the [full documentation](./docs/answers-react-components.md) here.
 
 ## Getting Started
 
