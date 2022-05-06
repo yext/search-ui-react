@@ -21,7 +21,7 @@ const builtInCssClasses: LocationBiasCssClasses = {
   container: 'text-sm text-neutral text-center flex justify-center items-center',
   location: 'font-semibold mr-1',
   button: 'text-primary hover:underline focus:underline ml-1',
-  loadingIndicatorContainer: 'w-4 ml-3'
+  loadingIndicatorContainer: 'w-4 h-4 ml-3 shrink-0'
 };
 
 /**
@@ -83,7 +83,7 @@ export function LocationBias({
 
   return (
     <div className={cssClasses.container}>
-      { isFetchingLocation && <div className={cssClasses.loadingIndicatorContainer}/> }
+      {isFetchingLocation && <div className={cssClasses.loadingIndicatorContainer}/>}
       <span className={cssClasses.location}>
         {locationBias.displayName}
       </span>
@@ -96,7 +96,7 @@ export function LocationBias({
       >
         Update your location
       </button>
-      { isFetchingLocation && 
+      {isFetchingLocation &&
         <div className={cssClasses.loadingIndicatorContainer}>
           <LoadingIndicator />
         </div>
