@@ -1,6 +1,8 @@
 import { useAnswersActions, useAnswersState, LocationBiasMethod } from '@yext/answers-headless-react';
 import { executeSearch, getUserLocation } from '../utils/search-operations';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useState } from 'react';
+import LoadingIndicator from '../icons/LoadingIndicator';
 
 /**
  * The CSS class interface for the {@link LocationBias} component.
@@ -11,13 +13,15 @@ export interface LocationBiasCssClasses {
   container?: string,
   location?: string,
   source?: string,
-  button?: string
+  button?: string,
+  loadingIndicatorContainer?: string,
 }
 
 const builtInCssClasses: LocationBiasCssClasses = {
-  container: 'text-sm text-neutral text-center m-auto',
-  location: 'font-semibold',
-  button: 'text-primary hover:underline focus:underline',
+  container: 'text-sm text-neutral text-center flex justify-center items-center',
+  location: 'font-semibold mr-1',
+  button: 'text-primary hover:underline focus:underline ml-1',
+  loadingIndicatorContainer: 'w-4 h-4 ml-3 shrink-0'
 };
 
 /**
@@ -51,6 +55,7 @@ export function LocationBias({
 }: LocationBiasProps): JSX.Element | null {
   const answersActions = useAnswersActions();
   const locationBias = useAnswersState(s => s.location.locationBias);
+  const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
   if (!locationBias?.displayName) return null;
@@ -61,6 +66,7 @@ export function LocationBias({
           : ' - ';
 
   async function handleGeolocationClick() {
+    setIsFetchingLocation(true);
     try {
       const position = await getUserLocation(geolocationOptions);
       answersActions.setUserLocation({
@@ -69,12 +75,15 @@ export function LocationBias({
       });
     } catch (e) {
       console.error(e);
+    } finally {
+      setIsFetchingLocation(false);
     }
     executeSearch(answersActions);
   }
 
   return (
     <div className={cssClasses.container}>
+      {isFetchingLocation && <div className={cssClasses.loadingIndicatorContainer}/>}
       <span className={cssClasses.location}>
         {locationBias.displayName}
       </span>
@@ -87,6 +96,11 @@ export function LocationBias({
       >
         Update your location
       </button>
+      {isFetchingLocation &&
+        <div className={cssClasses.loadingIndicatorContainer}>
+          <LoadingIndicator />
+        </div>
+      }
     </div>
   );
 }

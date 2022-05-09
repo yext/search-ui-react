@@ -5,7 +5,8 @@ import {
   ResultsCount,
   SearchBar,
   StandardCard,
-  VerticalResults
+  VerticalResults,
+  LocationBias
 } from '@yext/answers-react-components';
 import { useEffect } from 'react';
 import { Facets, hierarchicalFacetFieldIds } from '../components/Facets';
@@ -34,6 +35,7 @@ export function PeoplePage() {
           <VerticalResults
             CardComponent={StandardCard}
           />
+          <LocationBias />
         </div>
       </div>
     </div>
