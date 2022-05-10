@@ -90,7 +90,7 @@ export const Primary = () => {
   );
 };
 
-export const displayAllOnNoResults = () => {
+export const DisplayAllOnNoResults = () => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <AlternativeVerticals
