@@ -4,7 +4,8 @@ import {
   ResultsCount,
   SearchBar,
   StandardCard,
-  VerticalResults
+  VerticalResults,
+  LocationBias
 } from '@yext/answers-react-components';
 import { useEffect } from 'react';
 import { NumericFacets } from '../components/NumericFacets';
@@ -30,6 +31,7 @@ export function ProductsPage() {
           <VerticalResults
             CardComponent={StandardCard}
           />
+          <LocationBias />
         </div>
       </div>
     </div>

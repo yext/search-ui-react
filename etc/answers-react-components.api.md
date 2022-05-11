@@ -493,6 +493,8 @@ export interface LocationBiasCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
+    loadingIndicatorContainer?: string;
+    // (undocumented)
     location?: string;
     // (undocumented)
     source?: string;
