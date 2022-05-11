@@ -21,7 +21,8 @@ const searchFields = [
   {
     fieldApiName: 'first_name',
     entityType: 'ce_person'
-  }, {
+  },
+  {
     fieldApiName: 'last_name',
     entityType: 'ce_person'
   }
