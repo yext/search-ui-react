@@ -4,6 +4,7 @@ import { ChevronIcon as PageNavigationIcon } from '../icons/ChevronIcon';
 import { usePaginationAnalytics } from '../hooks/usePaginationAnalytics';
 import { executeSearch } from '../utils';
 import { PropsWithChildren, useCallback } from 'react';
+import classNames from 'classnames';
 
 /**
  * Props for {@link Pagination} component
@@ -11,8 +12,15 @@ import { PropsWithChildren, useCallback } from 'react';
  * @public
  */
 export interface PaginationProps {
-  numResults: number,
+  /**
+   * Whether or not to paginate based on the total results count of
+   * the vertical when there are none returned from the search.
+   * Defaults to false.
+   */
+  paginateAllOnNoResults: boolean,
+  /** CSS classes for customizing the component styling. */
   customCssClasses?: PaginationCssClasses,
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
@@ -23,6 +31,7 @@ export interface PaginationProps {
  */
 export interface PaginationCssClasses {
   paginationContainer?: string,
+  paginationContainer___loading?: string,
   labelContainer?: string,
   label?: string,
   selectedLabel?: string,
@@ -33,6 +42,7 @@ export interface PaginationCssClasses {
 
 const builtInPaginationCssClasses: PaginationCssClasses = {
   paginationContainer: 'flex justify-center mb-4',
+  paginationContainer___loading: 'opacity-50',
   labelContainer: 'inline-flex shadow-sm -space-x-px',
   label: 'z-0 inline-flex items-center px-4 py-2 text-sm font-semibold border border-gray-300 text-neutral',
   selectedLabel: 'z-10 inline-flex items-center px-4 py-2 text-sm font-semibold border border-primary text-primary bg-primary-light',
@@ -43,25 +53,35 @@ const builtInPaginationCssClasses: PaginationCssClasses = {
 
 
 /**
- * Renders a component that divide a series of results into chunks across
- * multiple pages and enable user to navigate between those pages.
+ * Renders a component that divide a series of vertical results into chunks
+ * across multiple pages and enable user to navigate between those pages.
  *
  * @public
  */
 export function Pagination(props: PaginationProps): JSX.Element | null {
-  const { numResults, customCssClasses = {}, cssCompositionMethod } = props;
+  const { customCssClasses = {}, cssCompositionMethod, paginateAllOnNoResults = false } = props;
   const cssClasses = useComposedCssClasses(
     builtInPaginationCssClasses,
     customCssClasses,
     cssCompositionMethod
   );
   const answersActions = useAnswersActions();
+  const verticalResultsCount = useAnswersState(state => state.vertical.resultsCount) || 0;
+  const allResultsCountForVertical =
+    useAnswersState(state => state.vertical?.noResults?.allResultsForVertical.resultsCount) || 0;
+  const isLoading = useAnswersState(state => state.searchStatus.isLoading);
+
+  let resultsCount = verticalResultsCount;
+  if (verticalResultsCount === 0 && paginateAllOnNoResults) {
+    resultsCount = allResultsCountForVertical;
+  }
+
   const offset = useAnswersState(state => state.vertical.offset) || 0;
   const limit = useAnswersState(state => state.vertical.limit) || 10;
   const currentPageNumber = (offset / limit) + 1;
-  const maxPageCount = Math.ceil(numResults / limit);
-  const reportAnalyticsEvent = usePaginationAnalytics();
+  const maxPageCount = Math.ceil(resultsCount / limit);
 
+  const reportAnalyticsEvent = usePaginationAnalytics();
   const navigateToPage = useCallback((newPageNumber: number) => {
     const newOffset = limit * (newPageNumber - 1);
     answersActions.setOffset(newOffset);
@@ -74,9 +94,12 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   }
 
   const paginationLabels: string[] = generatePaginationLabels(currentPageNumber, maxPageCount);
+  const paginationContainerClassNames = classNames(cssClasses.paginationContainer, {
+    [cssClasses.paginationContainer___loading ?? '']: isLoading
+  });
 
   return (
-    <div className={cssClasses.paginationContainer}>
+    <div className={paginationContainerClassNames}>
       <nav className={cssClasses.labelContainer} aria-label="Pagination">
         <PaginationButton
           ariaLabel='Navigate to the previous results page'

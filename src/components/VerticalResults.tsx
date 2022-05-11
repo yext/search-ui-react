@@ -48,16 +48,11 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
   const verticalResults = useAnswersState(state => state.vertical.results) || [];
   const allResultsForVertical =
     useAnswersState(state => state.vertical?.noResults?.allResultsForVertical.results) || [];
-  const verticalResultsCount = useAnswersState(state => state.vertical.resultsCount) || 0;
-  const allResultsCountForVertical =
-    useAnswersState(state => state.vertical?.noResults?.allResultsForVertical.resultsCount) || 0;
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
 
   let results = verticalResults;
-  let resultsCount = verticalResultsCount;
   if (verticalResults.length === 0 && displayAllOnNoResults) {
     results = allResultsForVertical;
-    resultsCount = allResultsCountForVertical;
   }
 
   return (
@@ -65,7 +60,7 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
       <VerticalResultsDisplay results={results} isLoading={isLoading} {...otherProps} />
       {allowPagination
         && <Pagination
-          numResults={resultsCount}
+          paginateAllOnNoResults={displayAllOnNoResults}
           customCssClasses={otherProps.customCssClasses}
           cssCompositionMethod={otherProps.cssCompositionMethod}
         />
