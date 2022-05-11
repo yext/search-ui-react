@@ -1,7 +1,7 @@
 module.exports = {
   plugins: {
     tailwindcss: {
-      config: './tailwind.config.cjs'
+      config: '.storybook/tailwind.config.cjs'
     }
   }
 };
