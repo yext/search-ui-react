@@ -74,16 +74,18 @@ const mockedHeadlessState = {
   }
 };
 
+const verticalConfigMap = {
+  faqs: { label: 'FAQs' },
+  events: { label: 'Events' },
+  locations: { label: 'Locations' }
+};
+
 export const Primary = () => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <AlternativeVerticals
         currentVerticalLabel='Jobs'
-        verticalConfigMap={{
-          faqs: { label: 'FAQs' },
-          events: { label: 'Events' },
-          locations: { label: 'Locations' }
-        }}
+        verticalConfigMap={verticalConfigMap}
         displayAllOnNoResults={false}
       />
     </AnswersHeadlessContext.Provider>
@@ -95,11 +97,7 @@ export const DisplayAllOnNoResults = () => {
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <AlternativeVerticals
         currentVerticalLabel='Jobs'
-        verticalConfigMap={{
-          faqs: { label: 'FAQs' },
-          events: { label: 'Events' },
-          locations: { label: 'Locations' }
-        }}
+        verticalConfigMap={verticalConfigMap}
         displayAllOnNoResults={true}
       />
     </AnswersHeadlessContext.Provider>
@@ -117,11 +115,7 @@ export const Loading = () => {
     })}>
       <AlternativeVerticals
         currentVerticalLabel='Jobs'
-        verticalConfigMap={{
-          faqs: { label: 'FAQs' },
-          events: { label: 'Events' },
-          locations: { label: 'Locations' }
-        }}
+        verticalConfigMap={verticalConfigMap}
         displayAllOnNoResults={true}
       />
     </AnswersHeadlessContext.Provider>
