@@ -540,7 +540,7 @@ export interface PaginationCssClasses {
 export interface PaginationProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: PaginationCssClasses;
-    paginateAllOnNoResults: boolean;
+    paginateAllOnNoResults?: boolean;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver

@@ -9,5 +9,5 @@ Whether or not to paginate based on the total results count of the vertical when
 <b>Signature:</b>
 
 ```typescript
-paginateAllOnNoResults: boolean;
+paginateAllOnNoResults?: boolean;
 ```

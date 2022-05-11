@@ -4,7 +4,7 @@
 
 ## Pagination() function
 
-Renders a component that divide a series of results into chunks across multiple pages and enable user to navigate between those pages.
+Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages.
 
 <b>Signature:</b>
 

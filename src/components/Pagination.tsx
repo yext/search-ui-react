@@ -17,7 +17,7 @@ export interface PaginationProps {
    * the vertical when there are none returned from the search.
    * Defaults to false.
    */
-  paginateAllOnNoResults: boolean,
+  paginateAllOnNoResults?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: PaginationCssClasses,
   /** {@inheritDoc CompositionMethod} */

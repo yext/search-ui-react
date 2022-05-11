@@ -25,7 +25,7 @@
 |  [isString(data)](./answers-react-components.isstring.md) | Type guard for string. |
 |  [isStringOrHighlightedValue(data)](./answers-react-components.isstringorhighlightedvalue.md) | Typeguard for data of type string or HighlightedValue |
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
-|  [Pagination(props)](./answers-react-components.pagination.md) | Renders a component that divide a series of results into chunks across multiple pages and enable user to navigate between those pages. |
+|  [Pagination(props)](./answers-react-components.pagination.md) | Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages. |
 |  [renderHighlightedValue(highlightedValueOrString, customCssClasses)](./answers-react-components.renderhighlightedvalue.md) | Renders a HighlightedValue with highlighting based on its matchedSubstrings. |
 |  [ResultsCount(props)](./answers-react-components.resultscount.md) | Renders results count of a universal/vertical search. |
 |  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch })](./answers-react-components.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
