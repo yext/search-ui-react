@@ -35,16 +35,7 @@ export const Primary = () => {
   );
 };
 
-export const Loading = () => {
-  return (
-    <AnswersHeadlessContext.Provider value={generateMockedHeadless({
-      ...VerticalSearcherState,
-      location: mockedLocationData
-    })}>
-      <LocationBias />
-    </AnswersHeadlessContext.Provider>
-  );
-};
+export const Loading = Primary.bind({});
 Loading.decorators = [LocationOperationDecorator];
 Loading.parameters = {
   geoLocation: {
