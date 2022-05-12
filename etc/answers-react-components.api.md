@@ -514,6 +514,9 @@ export type onSearchFunc = (searchEventData: {
 }) => void;
 
 // @public
+export function Pagination(props: PaginationProps): JSX.Element | null;
+
+// @public
 export interface PaginationCssClasses {
     // (undocumented)
     icon?: string;
@@ -526,9 +529,18 @@ export interface PaginationCssClasses {
     // (undocumented)
     paginationContainer?: string;
     // (undocumented)
+    paginationContainer___loading?: string;
+    // (undocumented)
     rightIconContainer?: string;
     // (undocumented)
     selectedLabel?: string;
+}
+
+// @public
+export interface PaginationProps {
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: PaginationCssClasses;
+    paginateAllOnNoResults?: boolean;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver

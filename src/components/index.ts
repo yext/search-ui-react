@@ -60,9 +60,14 @@ export {
 export {
   VerticalResults,
   VerticalResultsCssClasses,
-  VerticalResultsProps,
-  PaginationCssClasses
+  VerticalResultsProps
 } from './VerticalResults';
+
+export {
+  Pagination,
+  PaginationCssClasses,
+  PaginationProps
+} from './Pagination';
 
 export {
   StandardCard,
