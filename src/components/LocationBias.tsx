@@ -1,5 +1,6 @@
 import { useAnswersActions, useAnswersState, LocationBiasMethod } from '@yext/answers-headless-react';
-import { executeSearch, getUserLocation } from '../utils/search-operations';
+import { executeSearch } from '../utils/search-operations';
+import { getUserLocation } from '../utils/location-operations';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useState } from 'react';
 import LoadingIndicator from '../icons/LoadingIndicator';
@@ -14,7 +15,7 @@ export interface LocationBiasCssClasses {
   location?: string,
   source?: string,
   button?: string,
-  loadingIndicatorContainer?: string,
+  loadingIndicatorContainer?: string
 }
 
 const builtInCssClasses: LocationBiasCssClasses = {
