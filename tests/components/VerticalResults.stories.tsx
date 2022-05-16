@@ -9,6 +9,11 @@ import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 const meta: ComponentMeta<typeof VerticalResults> = {
   title: 'VerticalResults',
   component: VerticalResults,
+  argTypes: {
+    CardComponent: {
+      control: false
+    }
+  }
 };
 export default meta;
 
@@ -39,42 +44,42 @@ const mockedHeadlessState = {
   }
 };
 
-export const NoResults = () => {
+export const NoResults = (args: VerticalResultsProps) => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard
   };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless({})}>
-      <VerticalResults {...verticalResultsProps} />
+      <VerticalResults {...verticalResultsProps} {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
 
-export const HasResultsWithoutPagination = () => {
+export const HasResultsWithoutPagination = (args: VerticalResultsProps) => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard,
     allowPagination: false
   };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <VerticalResults {...verticalResultsProps} />
+      <VerticalResults {...verticalResultsProps} {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
 
-export const HasResultsWithPagination = () => {
+export const HasResultsWithPagination = (args: VerticalResultsProps) => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard,
     allowPagination: true
   };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <VerticalResults {...verticalResultsProps} />
+      <VerticalResults {...verticalResultsProps} {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
 
-export const Loading = () => {
+export const Loading = (args: VerticalResultsProps) => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard
   };
@@ -83,7 +88,7 @@ export const Loading = () => {
       ...mockedHeadlessState,
       searchStatus: { isLoading: true }
     })}>
-      <VerticalResults {...verticalResultsProps} />
+      <VerticalResults {...verticalResultsProps} {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };

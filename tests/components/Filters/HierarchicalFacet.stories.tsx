@@ -25,10 +25,10 @@ const mockedHeadlessState: RecursivePartial<State> = {
   }
 };
 
-export function Primary(): JSX.Element {
+export function Primary(args: Filters.HierarchicalFacetProps): JSX.Element {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <HierarchicalFacets />
+      <HierarchicalFacets {...args} />
     </AnswersHeadlessContext.Provider>
   );
 }

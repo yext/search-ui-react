@@ -22,11 +22,7 @@ export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
 const builtInCssClasses: UniversalResultsCssClasses = {
   container: 'space-y-8',
   results___loading: 'opacity-50',
-  sectionHeaderContainer: sectionHeaderCssClasses.sectionHeaderContainer,
-  sectionHeaderIconContainer: sectionHeaderCssClasses.sectionHeaderIconContainer,
-  sectionHeaderLabel: sectionHeaderCssClasses.sectionHeaderLabel,
-  viewMoreContainer: sectionHeaderCssClasses.viewMoreContainer,
-  viewMoreLink: sectionHeaderCssClasses.viewMoreLink
+  ...sectionHeaderCssClasses
 };
 
 /**

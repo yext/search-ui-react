@@ -1,8 +1,9 @@
 import { Filters } from '../../../src/components';
 
-export function Facets({ searchOnChange = true }: { searchOnChange?: boolean }): JSX.Element {
+export function Facets(args: Filters.FacetsProps): JSX.Element {
+  const searchOnChange = args.searchOnChange === false ? false : true;
   return (
-    <Filters.Facets searchOnChange={searchOnChange}>
+    <Filters.Facets {...args}>
       {facets => {
         const filteredFacets = facets.filter(f => f.options.length > 0);
         return (

@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { AnswersHeadlessContext } from '@yext/answers-headless-react';
 
-import { AlternativeVerticals } from '../../src/components/AlternativeVerticals';
+import { AlternativeVerticals, AlternativeVerticalsProps } from '../../src/components/AlternativeVerticals';
 
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
@@ -25,32 +25,34 @@ const verticalConfigMap = {
   locations: { label: 'Locations' }
 };
 
-export const Primary = () => {
+export const Primary = (args: AlternativeVerticalsProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <AlternativeVerticals
         currentVerticalLabel='Jobs'
         verticalConfigMap={verticalConfigMap}
         displayAllOnNoResults={false}
+        {...args}
       />
     </AnswersHeadlessContext.Provider>
   );
 };
 
-export const DisplayAllOnNoResults = () => {
+export const DisplayAllOnNoResults = (args: AlternativeVerticalsProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <AlternativeVerticals
         currentVerticalLabel='Jobs'
         verticalConfigMap={verticalConfigMap}
         displayAllOnNoResults={true}
+        {...args}
       />
     </AnswersHeadlessContext.Provider>
   );
 };
 
 
-export const Loading = () => {
+export const Loading = (args: AlternativeVerticalsProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless({
       ...mockedHeadlessState,
@@ -62,6 +64,7 @@ export const Loading = () => {
         currentVerticalLabel='Jobs'
         verticalConfigMap={verticalConfigMap}
         displayAllOnNoResults={true}
+        {...args}
       />
     </AnswersHeadlessContext.Provider>
   );
