@@ -29,7 +29,7 @@ const verticalConfigMap = {
 export const Primary = (args: UniversalResultsProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <UniversalResults verticalConfigMap={verticalConfigMap} {...args} />
+      <UniversalResults verticalConfigMap={verticalConfigMap} showAppliedFilters={true} {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -40,7 +40,7 @@ export const Loading = (args: UniversalResultsProps) => {
       ...mockedHeadlessState,
       searchStatus: { isLoading: true }
     })}>
-      <UniversalResults verticalConfigMap={verticalConfigMap} {...args} />
+      <UniversalResults verticalConfigMap={verticalConfigMap} showAppliedFilters={true} {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
