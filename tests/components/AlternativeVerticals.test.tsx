@@ -91,4 +91,15 @@ describe('AlternativeVerticals', () => {
     expect(actualLinkHrefs).toEqual(expectedLinkHrefs);
     expect(mockedGetSuggestionUrl).toBeCalledTimes(3);
   });
+
+  it('an empty dom is rendered when there\'s no vertical suggestions', () => {
+    mockAnswersHooks({
+      mockedState: {
+        ...mockedState,
+        vertical: { verticalKey: 'jobs' }
+      }
+    });
+    const { container } = render(<AlternativeVerticals {...alternativeVerticalsProps} />);
+    expect(container).toBeEmptyDOMElement();
+  });
 });
