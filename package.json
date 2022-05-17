@@ -55,7 +55,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "@yext/answers-headless-react": "^1.1.0-beta.13",
+    "@yext/answers-headless-react": "^1.1.1",
     "@yext/eslint-config-slapshot": "^0.2.0",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.3",
@@ -73,7 +73,7 @@
     "typescript": "~4.4.3"
   },
   "peerDependencies": {
-    "@yext/answers-headless-react": "^1.1.0-beta.13",
+    "@yext/answers-headless-react": "^1.1.1",
     "react": "^17.0.2"
   },
   "jest": {
