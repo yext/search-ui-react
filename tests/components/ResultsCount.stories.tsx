@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { AnswersHeadlessContext } from '@yext/answers-headless-react';
 
-import { ResultsCount } from '../../src/components/ResultsCount';
+import { ResultsCount, ResultsCountProps } from '../../src/components/ResultsCount';
 
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
@@ -13,7 +13,7 @@ const meta: ComponentMeta<typeof ResultsCount> = {
 };
 export default meta;
 
-export const Primary = () => {
+export const Primary = (args: ResultsCountProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -21,12 +21,12 @@ export const Primary = () => {
         resultsCount: 5
       }
     })}>
-      <ResultsCount />
+      <ResultsCount {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
 
-export const Loading = () => {
+export const Loading = (args: ResultsCountProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -37,7 +37,7 @@ export const Loading = () => {
         isLoading: true
       }
     })}>
-      <ResultsCount />
+      <ResultsCount {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };

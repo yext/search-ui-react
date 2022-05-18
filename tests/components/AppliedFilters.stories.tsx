@@ -5,15 +5,20 @@ import { AnswersHeadlessContext, SearchTypeEnum } from '@yext/answers-headless-r
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { AppliedFiltersDisplay } from '../../src/components/AppliedFiltersDisplay';
 import { DisplayableFilters, DisplayableHierarchicalFacets } from '../__fixtures__/data/filters';
-import { builtInCssClasses } from '../../src/components/AppliedFilters';
+import { AppliedFiltersProps, builtInCssClasses } from '../../src/components/AppliedFilters';
 
 const meta: ComponentMeta<typeof AppliedFiltersDisplay> = {
   title: 'AppliedFilters',
   component: AppliedFiltersDisplay,
+  argTypes: {
+    hierarchicalFacetsDelimiter: {
+      control: false
+    }
+  }
 };
 export default meta;
 
-export const Primary = () => {
+export const Primary = (args: AppliedFiltersProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless({
       meta: { searchType: SearchTypeEnum.Vertical }
@@ -25,6 +30,7 @@ export const Primary = () => {
         facets={[DisplayableFilters[3]]}
         hierarchicalFacets={DisplayableHierarchicalFacets}
         hierarchicalFacetsDelimiter='>'
+        {...args}
       />
     </AnswersHeadlessContext.Provider>
   );

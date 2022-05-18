@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { AnswersHeadlessContext, LocationBiasMethod } from '@yext/answers-headless-react';
 
-import { LocationBias } from '../../src/components/LocationBias';
+import { LocationBias, LocationBiasProps } from '../../src/components/LocationBias';
 
 import { decorator as LocationOperationDecorator } from '../__fixtures__/utils/location-operations';
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
@@ -12,6 +12,11 @@ import { userEvent, within } from '@storybook/testing-library';
 const meta: ComponentMeta<typeof LocationBias> = {
   title: 'LocationBias',
   component: LocationBias,
+  argTypes: {
+    geolocationOptions: {
+      control: false
+    }
+  }
 };
 export default meta;
 
@@ -24,13 +29,13 @@ const mockedLocationData = {
   }
 };
 
-export const Primary = () => {
+export const Primary = (args: LocationBiasProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
       location: mockedLocationData
     })}>
-      <LocationBias />
+      <LocationBias {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
