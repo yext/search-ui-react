@@ -31,6 +31,14 @@ const searchFields = [
 const meta: ComponentMeta<typeof FilterSearch> = {
   title: 'FilterSearch',
   component: FilterSearch,
+  argTypes: {
+    sectioned: {
+      control: false
+    },
+    searchFields: {
+      control: false
+    }
+  }
 };
 export default meta;
 

@@ -29,6 +29,9 @@ const meta: ComponentMeta<typeof SearchBar> = {
   argTypes: {
     onSearch: {
       control: false
+    },
+    geolocationOptions: {
+      control: false
     }
   }
 };

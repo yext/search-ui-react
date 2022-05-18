@@ -12,6 +12,11 @@ import { userEvent, within } from '@storybook/testing-library';
 const meta: ComponentMeta<typeof LocationBias> = {
   title: 'LocationBias',
   component: LocationBias,
+  argTypes: {
+    geolocationOptions: {
+      control: false
+    }
+  }
 };
 export default meta;
 

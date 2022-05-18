@@ -10,6 +10,11 @@ import { AppliedFiltersProps, builtInCssClasses } from '../../src/components/App
 const meta: ComponentMeta<typeof AppliedFiltersDisplay> = {
   title: 'AppliedFilters',
   component: AppliedFiltersDisplay,
+  argTypes: {
+    hierarchicalFacetsDelimiter: {
+      control: false
+    }
+  }
 };
 export default meta;
 
