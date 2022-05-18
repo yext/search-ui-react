@@ -74,11 +74,10 @@ describe('AlternativeVerticals', () => {
     const getSuggestionUrl = (data: VerticalLink | UniversalLink) => {
       return data.query + '+' + ((data as VerticalLink).verticalKey ?? 'universal');
     };
-    const mockedGetSuggestionUrl = jest.fn().mockImplementation(getSuggestionUrl);
     render(
       <AlternativeVerticals
         {...alternativeVerticalsProps}
-        getSuggestionUrl={mockedGetSuggestionUrl}
+        getSuggestionUrl={getSuggestionUrl}
       />
     );
     const expectedLinkHrefs = [
@@ -89,7 +88,6 @@ describe('AlternativeVerticals', () => {
     const actualLinkHrefs = screen.getAllByRole('link')
       .map(link => (link as HTMLAnchorElement).href);
     expect(actualLinkHrefs).toEqual(expectedLinkHrefs);
-    expect(mockedGetSuggestionUrl).toBeCalledTimes(3);
   });
 
   it('an empty dom is rendered when there\'s no vertical suggestions', () => {
