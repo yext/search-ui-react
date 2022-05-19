@@ -6,11 +6,11 @@ import {
   SpellCheck,
   UniversalResults
 } from '@yext/answers-react-components';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 export default function UniversalPage(): JSX.Element {
   const answersActions = useAnswersActions();
-  useEffect(() => {
+  useLayoutEffect(() => {
     answersActions.setUniversal();
   });
 
