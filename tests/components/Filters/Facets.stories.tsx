@@ -21,10 +21,10 @@ const mockedHeadlessState: RecursivePartial<State> = {
   }
 };
 
-export const Primary = () => {
+export const Primary = (args: Filters.FacetsProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <Facets />
+      <Facets {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };

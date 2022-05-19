@@ -1,8 +1,12 @@
 import { Filters } from '../../../src/components';
 
-export function Facets({ searchOnChange = true }: { searchOnChange?: boolean }): JSX.Element {
+export function Facets(args: Filters.FacetsProps): JSX.Element {
+  const config = {
+    searchOnChange: true,
+    ...args
+  };
   return (
-    <Filters.Facets searchOnChange={searchOnChange}>
+    <Filters.Facets {...config}>
       {facets => {
         const filteredFacets = facets.filter(f => f.options.length > 0);
         return (
@@ -21,7 +25,7 @@ export function Facets({ searchOnChange = true }: { searchOnChange?: boolean }):
                       />
                     )}
                   </Filters.CollapsibleSection>
-                  {filteredFacets.length > 0 && !searchOnChange && <Filters.ApplyFiltersButton />}
+                  {filteredFacets.length > 0 && !config.searchOnChange && <Filters.ApplyFiltersButton />}
                 </Filters.FilterGroup>
               );
             })}
