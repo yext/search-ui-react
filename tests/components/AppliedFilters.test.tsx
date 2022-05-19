@@ -135,7 +135,7 @@ describe('AppliedFilters', () => {
     expect(isSelected).toBe(false);
   });
 
-  it('The clear all button unselect all filters', () => {
+  it('The clear all button unselects all filters', () => {
     const actions = spyOnActions();
 
     render(<AppliedFilters />);

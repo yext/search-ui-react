@@ -92,11 +92,12 @@ export function StaticFilters({
   cssCompositionMethod
 }: StaticFiltersProps): JSX.Element {
   const cssClasses = useMemo(() => {
+    const { option, optionLabel, optionInput, ...remainingClasses } = customCssClasses;
     return {
-      ...customCssClasses,
-      ...customCssClasses.option && { optionContainer: customCssClasses.option },
-      ...customCssClasses.optionLabel && { label: customCssClasses.optionLabel },
-      ...customCssClasses.optionInput && { input: customCssClasses.optionInput }
+      ...remainingClasses,
+      ...customCssClasses.option && { optionContainer: option },
+      ...customCssClasses.optionLabel && { label: optionLabel },
+      ...customCssClasses.optionInput && { input: optionInput }
     };
   }, [customCssClasses]);
 
