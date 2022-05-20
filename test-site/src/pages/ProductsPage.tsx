@@ -7,12 +7,12 @@ import {
   VerticalResults,
   LocationBias
 } from '@yext/answers-react-components';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { NumericFacets } from '../components/NumericFacets';
 
 export function ProductsPage() {
   const answersActions = useAnswersActions();
-  useEffect(() => {
+  useLayoutEffect(() => {
     answersActions.setVertical('products');
   });
 

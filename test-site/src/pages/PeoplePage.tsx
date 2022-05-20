@@ -6,15 +6,15 @@ import {
   SearchBar,
   StandardCard,
   VerticalResults,
-  LocationBias
+  LocationBias,
+  StaticFilters
 } from '@yext/answers-react-components';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { Facets, hierarchicalFacetFieldIds } from '../components/Facets';
-import { StaticFilters } from '../components/StaticFilters';
 
 export function PeoplePage() {
   const answersActions = useAnswersActions();
-  useEffect(() => {
+  useLayoutEffect(() => {
     answersActions.setVertical('people');
   });
 
@@ -24,7 +24,14 @@ export function PeoplePage() {
       <div className='flex'>
         <div className='min-w-fit pr-4'>
           <Facets />
-          <StaticFilters />
+          <StaticFilters
+            fieldId='c_puppyPreference'
+            title='Puppy Preference'
+            filterOptions={[
+              { value: 'Marty' },
+              { value: 'Frodo' }
+            ]}
+          />
           <FilterSearch searchFields={[{fieldApiName: 'name', entityType: 'ce_person' }]}/>
         </div>
         <div className='flex-grow'>

@@ -332,6 +332,22 @@ type FilterGroupProps = PropsWithChildren<{
     fieldId: string;
 }>;
 
+// @public
+export interface FilterOptionConfig {
+    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
+    //
+    // (undocumented)
+    label?: string;
+    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
+    //
+    // (undocumented)
+    selectedByDefault?: boolean;
+    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
+    //
+    // (undocumented)
+    value: string | number | boolean;
+}
+
 declare namespace Filters {
     export {
         CheckboxOption,
@@ -353,8 +369,6 @@ declare namespace Filters {
         FilterGroupContextType,
         SearchInput,
         SearchInputProps,
-        StaticFilters,
-        StaticFiltersProps,
         HierarchicalFacet,
         HierarchicalFacetProps,
         HierarchicalFacetCssClasses,
@@ -813,20 +827,39 @@ export interface StandardSectionProps extends SectionProps {
     customCssClasses?: StandardSectionCssClasses;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-function StaticFilters({ children, className, searchOnChange }: StaticFiltersProps): JSX.Element;
+export function StaticFilters({ fieldId, filterOptions, title, collapsible, defaultExpanded, searchable, searchOnChange, customCssClasses, cssCompositionMethod }: StaticFiltersProps): JSX.Element;
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-type StaticFiltersProps = PropsWithChildren<{
-    className?: string;
+export interface StaticFiltersCssClasses {
+    // (undocumented)
+    applyFiltersButton?: string;
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    option?: string;
+    // (undocumented)
+    optionInput?: string;
+    // (undocumented)
+    optionLabel?: string;
+    // (undocumented)
+    optionsContainer?: string;
+    // (undocumented)
+    searchInput?: string;
+}
+
+// @public
+export interface StaticFiltersProps {
+    collapsible?: boolean;
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: StaticFiltersCssClasses;
+    defaultExpanded?: boolean;
+    fieldId: string;
+    filterOptions: FilterOptionConfig[];
+    searchable?: boolean;
     searchOnChange?: boolean;
-}>;
+    title?: string;
+}
 
 // @public
 export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;

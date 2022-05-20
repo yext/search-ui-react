@@ -89,6 +89,13 @@ export {
 } from './ResultsCount';
 
 export {
+  StaticFilters,
+  StaticFiltersCssClasses,
+  StaticFiltersProps,
+  FilterOptionConfig
+} from './StaticFilters';
+
+export {
   renderHighlightedValue,
   HighlightedValueCssClasses
 } from './utils/renderHighlightedValue';

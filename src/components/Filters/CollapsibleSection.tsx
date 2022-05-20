@@ -22,7 +22,7 @@ export type CollapsibleSectionProps = PropsWithChildren<{
  */
 export function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element {
   const {
-    className = 'flex flex-col space-y-3',
+    className = 'space-y-3',
     children
   } = props;
 
