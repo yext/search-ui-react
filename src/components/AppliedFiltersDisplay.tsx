@@ -52,9 +52,14 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   const handleClickClearAllButton = useCallback(() => {
     answersActions.setOffset(0);
     answersActions.resetFacets();
-    answersActions.setStaticFilters([]);
+    answersActions.setStaticFilters(staticFilters.map(f => {
+      return {
+        ...f,
+        selected: false
+      };
+    }));
     executeSearch(answersActions);
-  }, [answersActions]);
+  }, [answersActions, staticFilters]);
 
   const hasAppliedFilters = (
     nlpFilters.length + staticFilters.length + facets.length + hierarchicalFacets.length) > 0;

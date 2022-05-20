@@ -32,6 +32,7 @@
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
 |  [StandardSection(props)](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
+|  [StaticFilters({ fieldId, filterOptions, title, collapsible, defaultExpanded, searchable, searchOnChange, customCssClasses, cssCompositionMethod })](./answers-react-components.staticfilters.md) | A component that displays a group of user-configured filters that will be applied to the current vertical search. |
 |  [ThumbsFeedback(props)](./answers-react-components.thumbsfeedback.md) | Renders a quality feedback widget composed of thumbs up and thumbs down buttons. |
 |  [UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod })](./answers-react-components.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
 |  [updateLocationIfNeeded(answersActions, intents, geolocationOptions)](./answers-react-components.updatelocationifneeded.md) | If the provided search intents include a 'NEAR\_ME' intent and there's no existing user's location in state, retrieve and store user's location in headless state. |
@@ -56,6 +57,7 @@
 |  [DirectAnswerCssClasses](./answers-react-components.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [DirectAnswerProps](./answers-react-components.directanswerprops.md) | Props for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [EntityPreviewsProps](./answers-react-components.entitypreviewsprops.md) | The props for the [EntityPreviews()](./answers-react-components.entitypreviews.md) component. |
+|  [FilterOptionConfig](./answers-react-components.filteroptionconfig.md) | The configuration data for a filter option. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |
 |  [HighlightedValueCssClasses](./answers-react-components.highlightedvaluecssclasses.md) | The CSS class interface for [renderHighlightedValue()](./answers-react-components.renderhighlightedvalue.md)<!-- -->. |
@@ -76,6 +78,8 @@
 |  [StandardCardProps](./answers-react-components.standardcardprops.md) | Props for a StandardCard. |
 |  [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection()](./answers-react-components.standardsection.md)<!-- -->. |
 |  [StandardSectionProps](./answers-react-components.standardsectionprops.md) | The configuration for a StandardSection. |
+|  [StaticFiltersCssClasses](./answers-react-components.staticfilterscssclasses.md) | The CSS class interface for [StaticFilters()](./answers-react-components.staticfilters.md)<!-- -->. |
+|  [StaticFiltersProps](./answers-react-components.staticfiltersprops.md) | Props for the [StaticFilters()](./answers-react-components.staticfilters.md) component. |
 |  [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md) | The CSS class interface used for [ThumbsFeedback()](./answers-react-components.thumbsfeedback.md)<!-- -->. |
 |  [ThumbsFeedbackProps](./answers-react-components.thumbsfeedbackprops.md) | Props for [ThumbsFeedback()](./answers-react-components.thumbsfeedback.md)<!-- -->. |
 |  [UniversalLink](./answers-react-components.universallink.md) | Data needed to create a URL to a universal search page. |
