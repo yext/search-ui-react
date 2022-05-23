@@ -67,6 +67,10 @@ describe('Static Filters', () => {
     expect(screen.queryByText('Marty')).toBeNull();
     expect(screen.getByText('MARTY!')).toBeDefined();
     expect(screen.getByText('Frodo')).toBeDefined();
+    expect(screen.getByText('Bleecker')).toBeDefined();
+    expect(screen.getByText('Clifford')).toBeDefined();
+
+    expect(screen.queryByRole('button', { name: 'Apply Filters' })).toBeNull();
   });
 
   it('Clicking an unselected filter option checkbox selects it', () => {
@@ -110,7 +114,7 @@ describe('Static Filters', () => {
       fieldId: staticFiltersProps.fieldId,
       matcher: '$eq',
       value: cliffordFilter.value,
-      displayName: cliffordFilter.label ?? cliffordFilter.value,
+      displayName: cliffordFilter.value,
       selected: true
     });
   });
@@ -147,8 +151,6 @@ describe('Static Filters', () => {
   it('Clicking a filter option executes a search when searchOnChange is true', () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} />);
-
-    expect(screen.queryByRole('button', { name: 'Apply Filters' })).toBeNull();
 
     const martyCheckbox: HTMLInputElement = screen.getByLabelText('MARTY!');
     userEvent.click(martyCheckbox);
