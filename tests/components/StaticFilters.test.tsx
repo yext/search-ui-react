@@ -48,7 +48,9 @@ const mockedActions = {
 };
 
 const mockedUtils = {
-  isCloseMatch: () => true
+  isCloseMatch: (_label: string, searchValue: string) => {
+    return searchValue ? false : true;
+  }
 };
 
 jest.mock('@yext/answers-headless-react');
@@ -145,7 +147,11 @@ describe('Static Filters', () => {
   it('Search input is added when searchable is true', () => {
     render(<StaticFilters {...staticFiltersProps} searchable={true} />);
 
-    expect(screen.getByRole('textbox')).toBeDefined();
+    const searchInput = screen.getByRole('textbox');
+    expect(searchInput).toBeDefined();
+    expect(screen.getAllByRole('checkbox')).toHaveLength(4);
+    userEvent.type(searchInput, 'dog');
+    expect(screen.queryByRole('checkbox')).toBeNull();
   });
 
   it('Clicking a filter option executes a search when searchOnChange is true', () => {
