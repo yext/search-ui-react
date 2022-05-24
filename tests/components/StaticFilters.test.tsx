@@ -163,7 +163,7 @@ describe('Static Filters', () => {
     expect(actions.executeVerticalQuery).toBeCalled();
   });
 
-  it('Only clicking the apply button executes a search when searchOnChange is false', () => {
+  it('When searchOnChange is false, the apply button must be clicked to execute a search', () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} searchOnChange={false} />);
 
