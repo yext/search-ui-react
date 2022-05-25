@@ -1,7 +1,7 @@
 export { CheckboxOption, CheckboxOptionProps, CheckboxCssClasses } from './CheckboxOption';
 export { CollapsibleLabel, CollapsibleLabelProps } from './CollapsibleLabel';
 export { CollapsibleSection, CollapsibleSectionProps } from './CollapsibleSection';
-// export { Facets, FacetsProps } from './Facets';
+export { Facets, FacetsProps } from './Facets';
 export { FiltersContext, useFiltersContext, FiltersContextType } from './FiltersContext';
 export { FilterGroup, FilterGroupProps } from './FilterGroup';
 export { FilterGroupContext, useFilterGroupContext, FilterGroupContextType } from './FilterGroupContext';
