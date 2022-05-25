@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { AnswersHeadless, FacetOption, Source, State } from '@yext/answers-headless-react';
-import { mockAnswersHooks, spyOnActions } from '../../__utils__/mocks';
+import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
-import { DisplayableFacets } from '../../__fixtures__/data/filters';
-import { Facets } from '../../../src/components';
+import { DisplayableFacets } from '../__fixtures__/data/filters';
+import { Facets } from '../../src/components';
 
 const mockedState: Partial<State> = {
   filters: {

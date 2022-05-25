@@ -2,10 +2,10 @@ import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { AnswersHeadlessContext, State } from '@yext/answers-headless-react';
 
-import { generateMockedHeadless } from '../../__fixtures__/answers-headless';
-import { RecursivePartial } from '../../__utils__/mocks';
-import { DisplayableFacets } from '../../__fixtures__/data/filters';
-import { Facets, FacetsProps } from '../../../src';
+import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { RecursivePartial } from '../__utils__/mocks';
+import { DisplayableFacets } from '../__fixtures__/data/filters';
+import { Facets, FacetsProps } from '../../src';
 
 
 const meta: ComponentMeta<typeof Facets> = {
