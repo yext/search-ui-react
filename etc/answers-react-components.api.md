@@ -296,21 +296,11 @@ export function Facets(props: FacetsProps): JSX.Element;
 function Facets_2({ children, className, searchOnChange }: FacetsProps_2): JSX.Element;
 
 // @public
-export interface FacetsCssClasses {
+export interface FacetsCssClasses extends FilterGroupCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
     divider?: string;
-    // (undocumented)
-    option?: string;
-    // (undocumented)
-    optionInput?: string;
-    // (undocumented)
-    optionLabel?: string;
-    // (undocumented)
-    optionsContainer?: string;
-    // (undocumented)
-    searchInput?: string;
 }
 
 // @public
@@ -341,7 +331,7 @@ export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-function FilterGroup(props: FilterGroupProps): JSX.Element;
+function FilterGroup(props: FilterGroupProps_2): JSX.Element;
 
 // @public
 const FilterGroupContext: Context<FilterGroupContextType | null>;
@@ -359,10 +349,36 @@ interface FilterGroupContextType {
     setSearchValue: (value: string) => void;
 }
 
+// @public
+export interface FilterGroupCssClasses {
+    // (undocumented)
+    option?: string;
+    // (undocumented)
+    optionInput?: string;
+    // (undocumented)
+    optionLabel?: string;
+    // (undocumented)
+    optionsContainer?: string;
+    // (undocumented)
+    searchInput?: string;
+}
+
+// @public
+export interface FilterGroupProps {
+    collapsible?: boolean;
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: FilterGroupCssClasses;
+    defaultExpanded?: boolean;
+    fieldId: string;
+    filterOptions: FilterOptionConfig[];
+    searchable?: boolean;
+    title: string;
+}
+
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-type FilterGroupProps = PropsWithChildren<{
+type FilterGroupProps_2 = PropsWithChildren<{
     defaultExpanded?: boolean;
     fieldId: string;
 }>;
@@ -385,7 +401,7 @@ declare namespace Filters {
         useFiltersContext,
         FiltersContextType,
         FilterGroup,
-        FilterGroupProps,
+        FilterGroupProps_2 as FilterGroupProps,
         FilterGroupContext,
         useFilterGroupContext,
         FilterGroupContextType,
@@ -848,25 +864,17 @@ export interface StandardSectionProps extends SectionProps {
 }
 
 // @public
-export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher'>;
+export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher' | 'value'> & {
+    value: string | number | boolean;
+};
 
 // @public
 export function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
 // @public
-export interface StaticFiltersCssClasses {
+export interface StaticFiltersCssClasses extends FilterGroupCssClasses {
     // (undocumented)
     container?: string;
-    // (undocumented)
-    option?: string;
-    // (undocumented)
-    optionInput?: string;
-    // (undocumented)
-    optionLabel?: string;
-    // (undocumented)
-    optionsContainer?: string;
-    // (undocumented)
-    searchInput?: string;
 }
 
 // @public

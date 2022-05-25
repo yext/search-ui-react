@@ -1,5 +1,5 @@
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
-import { FilterGroup, FilterOptionConfig } from './FilterGroup';
+import { FilterGroup, FilterGroupCssClasses, FilterOptionConfig } from './FilterGroup';
 import { StaticFilters as StaticFiltersCompoundComponent } from './Filters/StaticFilters';
 
 /**
@@ -7,13 +7,8 @@ import { StaticFilters as StaticFiltersCompoundComponent } from './Filters/Stati
  *
  * @public
  */
-export interface StaticFiltersCssClasses {
-  container?: string,
-  searchInput?: string,
-  optionsContainer?: string,
-  option?: string,
-  optionInput?: string,
-  optionLabel?: string
+export interface StaticFiltersCssClasses extends FilterGroupCssClasses {
+  container?: string
 }
 
 /**
@@ -21,7 +16,10 @@ export interface StaticFiltersCssClasses {
  *
  * @public
  */
-export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher'>;
+export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher' | 'value'> & {
+  /** The value used to perform filtering. */
+  value: string | number | boolean
+};
 
 /**
  * Props for the {@link StaticFilters} component.
@@ -31,18 +29,15 @@ export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher'>;
 export interface StaticFiltersProps {
   /** The fieldId corresponding to the static filter group. */
   fieldId: string,
-  /** {@inheritDoc FilterOptionConfig} */
+  /** {@inheritDoc StaticFilterOptionConfig} */
   filterOptions: StaticFilterOptionConfig[],
   /** The displayed label for the static filter group. */
   title: string,
-  /** Whether or not the filter is collapsible. Defaults to true. */
+  /** {@inheritDoc FilterGroupProps.collapsible} */
   collapsible?: boolean,
-  /**
-   * If the filter group is collapsible, whether or not it should start out
-   * expanded. Defaults to true.
-   */
+  /** {@inheritDoc FilterGroupProps.defaultExpanded} */
   defaultExpanded?: boolean,
-  /** Whether or not to display a text input to search for filter options. */
+  /** {@inheritDoc FilterGroupProps.searchable} */
   searchable?: boolean,
   /**
    * Whether or not a search is automatically run when a filter is selected.

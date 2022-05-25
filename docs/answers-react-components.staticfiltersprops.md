@@ -21,7 +21,7 @@ export interface StaticFiltersProps
 |  [customCssClasses?](./answers-react-components.staticfiltersprops.customcssclasses.md) | [StaticFiltersCssClasses](./answers-react-components.staticfilterscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./answers-react-components.staticfiltersprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
 |  [fieldId](./answers-react-components.staticfiltersprops.fieldid.md) | string | The fieldId corresponding to the static filter group. |
-|  [filterOptions](./answers-react-components.staticfiltersprops.filteroptions.md) | [StaticFilterOptionConfig](./answers-react-components.staticfilteroptionconfig.md)<!-- -->\[\] | The configuration data for a filter option. |
+|  [filterOptions](./answers-react-components.staticfiltersprops.filteroptions.md) | [StaticFilterOptionConfig](./answers-react-components.staticfilteroptionconfig.md)<!-- -->\[\] | The configuration data for a static filter option. |
 |  [searchable?](./answers-react-components.staticfiltersprops.searchable.md) | boolean | <i>(Optional)</i> Whether or not to display a text input to search for filter options. |
 |  [searchOnChange?](./answers-react-components.staticfiltersprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |
 |  [title](./answers-react-components.staticfiltersprops.title.md) | string | The displayed label for the static filter group. |

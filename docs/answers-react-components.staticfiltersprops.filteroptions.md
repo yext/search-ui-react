@@ -4,7 +4,7 @@
 
 ## StaticFiltersProps.filterOptions property
 
-The configuration data for a filter option.
+The configuration data for a static filter option.
 
 <b>Signature:</b>
 

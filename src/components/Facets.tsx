@@ -1,5 +1,5 @@
 import { Facets as FacetsCompoundComponent } from './Filters/Facets';
-import { FilterGroup } from './FilterGroup';
+import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { Fragment } from 'react';
 
@@ -8,14 +8,9 @@ import { Fragment } from 'react';
  *
  * @public
  */
-export interface FacetsCssClasses {
+export interface FacetsCssClasses extends FilterGroupCssClasses {
   container?: string,
-  divider?: string,
-  searchInput?: string,
-  optionsContainer?: string,
-  option?: string,
-  optionInput?: string,
-  optionLabel?: string
+  divider?: string
 }
 
 /**
@@ -24,14 +19,11 @@ export interface FacetsCssClasses {
  * @public
  */
 export interface FacetsProps {
-  /** Whether or not the filter is collapsible. Defaults to true. */
+  /** {@inheritDoc FilterGroupProps.collapsible} */
   collapsible?: boolean,
-  /**
-   * If the filter group is collapsible, whether or not it should start out
-   * expanded. Defaults to true.
-   */
+  /** {@inheritDoc FilterGroupProps.defaultExpanded} */
   defaultExpanded?: boolean,
-  /** Whether or not to display a text input to search for filter options. */
+  /** {@inheritDoc FilterGroupProps.searchable} */
   searchable?: boolean,
   /**
    * Whether or not a search is automatically run when a filter is selected.

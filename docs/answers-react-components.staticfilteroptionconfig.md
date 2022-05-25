@@ -9,7 +9,9 @@ The configuration data for a static filter option.
 <b>Signature:</b>
 
 ```typescript
-export declare type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher'>;
+export declare type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher' | 'value'> & {
+    value: string | number | boolean;
+};
 ```
 <b>References:</b> [FilterOptionConfig](./answers-react-components.filteroptionconfig.md)
 

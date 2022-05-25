@@ -9,8 +9,9 @@ The CSS class interface for [Facets()](./answers-react-components.facets.md)<!--
 <b>Signature:</b>
 
 ```typescript
-export interface FacetsCssClasses 
+export interface FacetsCssClasses extends FilterGroupCssClasses 
 ```
+<b>Extends:</b> [FilterGroupCssClasses](./answers-react-components.filtergroupcssclasses.md)
 
 ## Properties
 
@@ -18,9 +19,4 @@ export interface FacetsCssClasses
 |  --- | --- | --- |
 |  [container?](./answers-react-components.facetscssclasses.container.md) | string | <i>(Optional)</i> |
 |  [divider?](./answers-react-components.facetscssclasses.divider.md) | string | <i>(Optional)</i> |
-|  [option?](./answers-react-components.facetscssclasses.option.md) | string | <i>(Optional)</i> |
-|  [optionInput?](./answers-react-components.facetscssclasses.optioninput.md) | string | <i>(Optional)</i> |
-|  [optionLabel?](./answers-react-components.facetscssclasses.optionlabel.md) | string | <i>(Optional)</i> |
-|  [optionsContainer?](./answers-react-components.facetscssclasses.optionscontainer.md) | string | <i>(Optional)</i> |
-|  [searchInput?](./answers-react-components.facetscssclasses.searchinput.md) | string | <i>(Optional)</i> |
 

@@ -63,6 +63,8 @@
 |  [EntityPreviewsProps](./answers-react-components.entitypreviewsprops.md) | The props for the [EntityPreviews()](./answers-react-components.entitypreviews.md) component. |
 |  [FacetsCssClasses](./answers-react-components.facetscssclasses.md) | The CSS class interface for [Facets()](./answers-react-components.facets.md)<!-- -->. |
 |  [FacetsProps](./answers-react-components.facetsprops.md) | Props for the [Facets()](./answers-react-components.facets.md) component. |
+|  [FilterGroupCssClasses](./answers-react-components.filtergroupcssclasses.md) | The CSS class interface for FilterGroup. |
+|  [FilterGroupProps](./answers-react-components.filtergroupprops.md) | Props for the FilterGroup component. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |
 |  [HighlightedValueCssClasses](./answers-react-components.highlightedvaluecssclasses.md) | The CSS class interface for [renderHighlightedValue()](./answers-react-components.renderhighlightedvalue.md)<!-- -->. |

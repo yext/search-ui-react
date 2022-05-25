@@ -9,17 +9,13 @@ The CSS class interface for [StaticFilters()](./answers-react-components.staticf
 <b>Signature:</b>
 
 ```typescript
-export interface StaticFiltersCssClasses 
+export interface StaticFiltersCssClasses extends FilterGroupCssClasses 
 ```
+<b>Extends:</b> [FilterGroupCssClasses](./answers-react-components.filtergroupcssclasses.md)
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [container?](./answers-react-components.staticfilterscssclasses.container.md) | string | <i>(Optional)</i> |
-|  [option?](./answers-react-components.staticfilterscssclasses.option.md) | string | <i>(Optional)</i> |
-|  [optionInput?](./answers-react-components.staticfilterscssclasses.optioninput.md) | string | <i>(Optional)</i> |
-|  [optionLabel?](./answers-react-components.staticfilterscssclasses.optionlabel.md) | string | <i>(Optional)</i> |
-|  [optionsContainer?](./answers-react-components.staticfilterscssclasses.optionscontainer.md) | string | <i>(Optional)</i> |
-|  [searchInput?](./answers-react-components.staticfilterscssclasses.searchinput.md) | string | <i>(Optional)</i> |
 

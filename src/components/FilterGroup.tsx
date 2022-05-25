@@ -11,6 +11,8 @@ import {
 
 /**
  * The CSS class interface for FilterGroup.
+ *
+ * @public
  */
 export interface FilterGroupCssClasses {
   searchInput?: string,
@@ -29,6 +31,8 @@ export type FilterOptionConfig = Omit<CheckboxOptionProps, 'customCssClasses' | 
 
 /**
  * Props for the FilterGroup component.
+ *
+ * @public
  */
 export interface FilterGroupProps {
   /** The fieldId corresponding to the filter group. */
@@ -36,7 +40,7 @@ export interface FilterGroupProps {
   /** {@inheritDoc FilterOptionConfig} */
   filterOptions: FilterOptionConfig[],
   /** The displayed label for the filter group. */
-  title?: string,
+  title: string,
   /** Whether or not the filter is collapsible. Defaults to true. */
   collapsible?: boolean,
   /**
