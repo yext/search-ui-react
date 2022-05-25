@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react';
 import { useAnswersActions } from '@yext/answers-headless-react';
 import {
   AppliedFilters,
@@ -7,10 +8,12 @@ import {
   StandardCard,
   VerticalResults,
   LocationBias,
-  StaticFilters
+  StaticFilters,
+  Facets,
+  ApplyFiltersButton
 } from '@yext/answers-react-components';
-import { useLayoutEffect } from 'react';
-import { Facets, hierarchicalFacetFieldIds } from '../components/Facets';
+
+export const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 
 export function PeoplePage() {
   const answersActions = useAnswersActions();
@@ -23,7 +26,9 @@ export function PeoplePage() {
       <SearchBar />
       <div className='flex'>
         <div className='min-w-fit pr-4'>
-          <Facets />
+          <Facets
+            searchOnChange={false}
+          />
           <StaticFilters
             fieldId='c_employeeCountry'
             title='Employee Country'
@@ -31,8 +36,10 @@ export function PeoplePage() {
               { value: 'United States' },
               { value: 'UK' }
             ]}
+            searchOnChange={false}
           />
           <FilterSearch searchFields={[{fieldApiName: 'name', entityType: 'ce_person' }]}/>
+          <ApplyFiltersButton />
         </div>
         <div className='flex-grow'>
           <div className='flex items-baseline'>
@@ -48,4 +55,3 @@ export function PeoplePage() {
     </div>
   );
 }
-

@@ -104,13 +104,17 @@ export interface AppliedFiltersProps {
 }
 
 // @public
-function ApplyFiltersButton({ className, label }: ApplyFiltersButtonProps): JSX.Element;
+export function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): JSX.Element;
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-interface ApplyFiltersButtonProps {
-    className?: string;
+export interface ApplyFiltersButtonCssClasses {
+    // (undocumented)
+    button?: string;
+}
+
+// @public
+export interface ApplyFiltersButtonProps {
+    customCssClasses?: ApplyFiltersButtonCssClasses;
     label?: string;
 }
 
@@ -281,17 +285,48 @@ export function executeAutocomplete(answersActions: AnswersActions): Promise<Aut
 // @public
 export function executeSearch(answersActions: AnswersActions): Promise<void>;
 
+// @public
+export function Facets(props: FacetsProps): JSX.Element;
+
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-function Facets({ children, className, searchOnChange }: FacetsProps): JSX.Element;
+function Facets_2({ children, className, searchOnChange }: FacetsProps_2): JSX.Element;
+
+// @public
+export interface FacetsCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+    // (undocumented)
+    option?: string;
+    // (undocumented)
+    optionInput?: string;
+    // (undocumented)
+    optionLabel?: string;
+    // (undocumented)
+    optionsContainer?: string;
+    // (undocumented)
+    searchInput?: string;
+}
+
+// @public
+export interface FacetsProps {
+    collapsible?: boolean;
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: FacetsCssClasses;
+    defaultExpanded?: boolean;
+    searchable?: boolean;
+    searchOnChange?: boolean;
+}
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-interface FacetsProps {
+interface FacetsProps_2 {
     children?: (facets: DisplayableFacet[]) => ReactNode;
     className?: string;
     searchOnChange?: boolean;
@@ -333,20 +368,7 @@ type FilterGroupProps = PropsWithChildren<{
 }>;
 
 // @public
-export interface FilterOptionConfig {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
-    //
-    // (undocumented)
-    label?: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
-    //
-    // (undocumented)
-    selectedByDefault?: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
-    //
-    // (undocumented)
-    value: string | number | boolean;
-}
+export type FilterOptionConfig = Omit<CheckboxOptionProps, 'customCssClasses' | 'cssCompositionMethod'>;
 
 declare namespace Filters {
     export {
@@ -357,8 +379,8 @@ declare namespace Filters {
         CollapsibleLabelProps,
         CollapsibleSection,
         CollapsibleSectionProps,
-        Facets,
-        FacetsProps,
+        Facets_2 as Facets,
+        FacetsProps_2 as FacetsProps,
         FiltersContext,
         useFiltersContext,
         FiltersContextType,
@@ -372,8 +394,6 @@ declare namespace Filters {
         HierarchicalFacet,
         HierarchicalFacetProps,
         HierarchicalFacetCssClasses,
-        ApplyFiltersButton,
-        ApplyFiltersButtonProps,
         RangeInput,
         RangeInputProps,
         RangeInputCssClasses
@@ -828,12 +848,13 @@ export interface StandardSectionProps extends SectionProps {
 }
 
 // @public
-export function StaticFilters({ fieldId, filterOptions, title, collapsible, defaultExpanded, searchable, searchOnChange, customCssClasses, cssCompositionMethod }: StaticFiltersProps): JSX.Element;
+export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher'>;
+
+// @public
+export function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
 // @public
 export interface StaticFiltersCssClasses {
-    // (undocumented)
-    applyFiltersButton?: string;
     // (undocumented)
     container?: string;
     // (undocumented)
@@ -855,10 +876,10 @@ export interface StaticFiltersProps {
     customCssClasses?: StaticFiltersCssClasses;
     defaultExpanded?: boolean;
     fieldId: string;
-    filterOptions: FilterOptionConfig[];
+    filterOptions: StaticFilterOptionConfig[];
     searchable?: boolean;
     searchOnChange?: boolean;
-    title?: string;
+    title: string;
 }
 
 // @public

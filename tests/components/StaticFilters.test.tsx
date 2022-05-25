@@ -71,8 +71,6 @@ describe('Static Filters', () => {
     expect(screen.getByText('Frodo')).toBeDefined();
     expect(screen.getByText('Bleecker')).toBeDefined();
     expect(screen.getByText('Clifford')).toBeDefined();
-
-    expect(screen.queryByRole('button', { name: 'Apply Filters' })).toBeNull();
   });
 
   it('Clicking an unselected filter option checkbox selects it', () => {
@@ -158,12 +156,16 @@ describe('Static Filters', () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} />);
 
-    const martyCheckbox: HTMLInputElement = screen.getByLabelText('MARTY!');
+    const martyFilter = staticFiltersProps.filterOptions[0];
+    const martyCheckbox: HTMLInputElement = screen.getByLabelText(martyFilter.label);
+    expect(martyCheckbox.checked).toBeFalsy();
+
     userEvent.click(martyCheckbox);
-    expect(actions.executeVerticalQuery).toBeCalled();
+    expectFilterOptionSet(actions, staticFiltersProps.fieldId, martyFilter, true);
+    expect(actions.executeVerticalQuery).toBeCalledTimes(1);
   });
 
-  it('When searchOnChange is false, the apply button must be clicked to execute a search', () => {
+  it('Clicking a filter option does not execute a search when searchOnChange is fa;se', () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} searchOnChange={false} />);
 
@@ -174,10 +176,6 @@ describe('Static Filters', () => {
     userEvent.click(martyCheckbox);
     expectFilterOptionSet(actions, staticFiltersProps.fieldId, martyFilter, true);
     expect(actions.executeVerticalQuery).toBeCalledTimes(0);
-
-    const applyButton = screen.getByRole('button', { name: 'Apply Filters' });
-    userEvent.click(applyButton);
-    expect(actions.executeVerticalQuery).toBeCalledTimes(1);
   });
 });
 

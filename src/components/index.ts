@@ -92,8 +92,24 @@ export {
   StaticFilters,
   StaticFiltersCssClasses,
   StaticFiltersProps,
-  FilterOptionConfig
+  StaticFilterOptionConfig
 } from './StaticFilters';
+
+export {
+  Facets,
+  FacetsCssClasses,
+  FacetsProps
+} from './Facets';
+
+export {
+  FilterOptionConfig
+} from './FilterGroup';
+
+export {
+  ApplyFiltersButton,
+  ApplyFiltersButtonCssClasses,
+  ApplyFiltersButtonProps
+} from './ApplyFiltersButton';
 
 export {
   renderHighlightedValue,

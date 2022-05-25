@@ -1,18 +1,32 @@
 import { useAnswersActions } from '@yext/answers-headless-react';
 import { useCallback } from 'react';
-import { executeSearch } from '../../utils/search-operations';
+import { executeSearch } from '../utils/search-operations';
 
 /**
- * Props for {@link Filters.ApplyFiltersButton}
+ * Props for {@link ApplyFiltersButton}
  *
  * @public
  */
 export interface ApplyFiltersButtonProps {
-  /** The css classes for the button */
-  className?: string,
   /** The label for the button, defaults to 'Apply Filters' */
-  label?: string
+  label?: string,
+  /** CSS classes for customizing the component styling. */
+  customCssClasses?: ApplyFiltersButtonCssClasses
 }
+
+
+/**
+ * The CSS class interface for {@link ApplyFiltersButtonProps}.
+ *
+ * @public
+ */
+export interface ApplyFiltersButtonCssClasses {
+  button?: string
+}
+
+const builtInCssClasses: ApplyFiltersButtonCssClasses = {
+  button: 'border border-gray-300 px-2.5 py-1 rounded-md text-primary bg-white shadow-md sticky bottom-3'
+};
 
 /**
  * Runs a vertical search.
@@ -21,9 +35,10 @@ export interface ApplyFiltersButtonProps {
  * @public
  */
 export function ApplyFiltersButton({
-  className = 'border border-gray-300 px-2.5 py-1 rounded-md text-primary bg-white shadow-md sticky bottom-3',
+  customCssClasses,
   label = 'Apply Filters'
 }: ApplyFiltersButtonProps): JSX.Element {
+  const cssClasses = { ...builtInCssClasses, ...customCssClasses };
   const answersActions = useAnswersActions();
   const handleClick = useCallback(() => {
     executeSearch(answersActions);
@@ -32,7 +47,7 @@ export function ApplyFiltersButton({
   return (
     <button
       onClick={handleClick}
-      className={className}
+      className={cssClasses.button}
     >
       {label}
     </button>

@@ -9,5 +9,5 @@ The configuration data for a filter option.
 <b>Signature:</b>
 
 ```typescript
-filterOptions: FilterOptionConfig[];
+filterOptions: StaticFilterOptionConfig[];
 ```

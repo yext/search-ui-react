@@ -1,13 +1,5 @@
-import { useMemo } from 'react';
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
-import {
-  ApplyFiltersButton,
-  CheckboxOption,
-  CollapsibleLabel,
-  CollapsibleSection,
-  FilterGroup,
-  SearchInput
-} from './Filters';
+import { FilterGroup, FilterOptionConfig } from './FilterGroup';
 import { StaticFilters as StaticFiltersCompoundComponent } from './Filters/StaticFilters';
 
 /**
@@ -21,23 +13,15 @@ export interface StaticFiltersCssClasses {
   optionsContainer?: string,
   option?: string,
   optionInput?: string,
-  optionLabel?: string,
-  applyFiltersButton?: string
+  optionLabel?: string
 }
 
 /**
- * The configuration data for a filter option.
+ * The configuration data for a static filter option.
  *
  * @public
  */
-export interface FilterOptionConfig {
-  /** {@inheritDoc Filters.CheckboxOptionProps.value} */
-  value: string | number | boolean,
-  /** {@inheritDoc Filters.CheckboxOptionProps.label} */
-  label?: string,
-  /** {@inheritDoc Filters.CheckboxOptionProps.selectedByDefault} */
-  selectedByDefault?: boolean
-}
+export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher'>;
 
 /**
  * Props for the {@link StaticFilters} component.
@@ -48,9 +32,9 @@ export interface StaticFiltersProps {
   /** The fieldId corresponding to the static filter group. */
   fieldId: string,
   /** {@inheritDoc FilterOptionConfig} */
-  filterOptions: FilterOptionConfig[],
+  filterOptions: StaticFilterOptionConfig[],
   /** The displayed label for the static filter group. */
-  title?: string,
+  title: string,
   /** Whether or not the filter is collapsible. Defaults to true. */
   collapsible?: boolean,
   /**
@@ -80,55 +64,16 @@ export interface StaticFiltersProps {
  *
  * @public
  */
-export function StaticFilters({
-  fieldId,
-  filterOptions,
-  title,
-  collapsible = true,
-  defaultExpanded = true,
-  searchable,
-  searchOnChange = true,
-  customCssClasses = {},
-  cssCompositionMethod
-}: StaticFiltersProps): JSX.Element {
-  const cssClasses = useMemo(() => {
-    const { option, optionLabel, optionInput, ...remainingClasses } = customCssClasses;
-    return {
-      ...remainingClasses,
-      ...customCssClasses.option && { optionContainer: option },
-      ...customCssClasses.optionLabel && { label: optionLabel },
-      ...customCssClasses.optionInput && { input: optionInput }
-    };
-  }, [customCssClasses]);
-
-  function renderTitle() {
-    return collapsible
-      ? <CollapsibleLabel label={title} />
-      : (title &&
-        <div className='text-neutral-dark text-sm font-medium text-left mb-4'>
-          {title}
-        </div>);
-  }
-
+export function StaticFilters(props: StaticFiltersProps): JSX.Element {
+  const { searchOnChange, customCssClasses = {}, ...filterGroupProps } = props;
+  const { container:containerCssClasses, ...filterGroupCssClasses } = customCssClasses;
   return (
-    <StaticFiltersCompoundComponent searchOnChange={searchOnChange} className={cssClasses.container}>
-      <FilterGroup fieldId={fieldId} defaultExpanded={!collapsible || defaultExpanded}>
-        {renderTitle()}
-        <CollapsibleSection className={cssClasses.optionsContainer}>
-          {searchable && <SearchInput className={cssClasses.searchInput} />}
-          {filterOptions.map(o => {
-            return (
-              <CheckboxOption
-                {...o}
-                key={o.value.toString()}
-                customCssClasses={cssClasses}
-                cssCompositionMethod={cssCompositionMethod}
-              />
-            );
-          })}
-          {!searchOnChange && <ApplyFiltersButton className={customCssClasses.applyFiltersButton} />}
-        </CollapsibleSection>
-      </FilterGroup>
+    <StaticFiltersCompoundComponent searchOnChange={searchOnChange} className={containerCssClasses}>
+      <FilterGroup
+        key={filterGroupProps.fieldId}
+        customCssClasses={filterGroupCssClasses}
+        {...filterGroupProps}
+      />
     </StaticFiltersCompoundComponent>
   );
 }

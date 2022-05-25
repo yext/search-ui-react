@@ -3,7 +3,7 @@ import { AnswersHeadless, FacetOption, Source, State } from '@yext/answers-headl
 import { mockAnswersHooks, spyOnActions } from '../../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../../__fixtures__/data/filters';
-import { Facets } from '../../__compound-components__/Filters/Facets';
+import { Facets } from '../../../src/components';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -130,7 +130,7 @@ describe('Facets', () => {
     expect(actions.executeVerticalQuery).toBeCalled();
   });
 
-  it('Only clicking the apply button executes a search when searchOnChange is false', () => {
+  it('Clicking a facet option does not execute a search when searchOnChange is true', () => {
     const actions = spyOnActions();
     render(<Facets searchOnChange={false} />);
 
@@ -140,11 +140,7 @@ describe('Facets', () => {
 
     userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
-    expect(actions.executeVerticalQuery).toBeCalledTimes(0);
-
-    const applyButton = screen.getAllByRole('button', { name: 'Apply Filters' })[0];
-    userEvent.click(applyButton);
-    expect(actions.executeVerticalQuery).toBeCalledTimes(1);
+    expect(actions.executeVerticalQuery).not.toBeCalled();
   });
 });
 

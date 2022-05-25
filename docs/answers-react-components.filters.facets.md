@@ -18,7 +18,7 @@ export declare function Facets({ children, className, searchOnChange }: FacetsPr
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { children, className, searchOnChange } | FacetsProps |  |
+|  { children, className, searchOnChange } | [FacetsProps](./answers-react-components.facetsprops.md) |  |
 
 <b>Returns:</b>
 

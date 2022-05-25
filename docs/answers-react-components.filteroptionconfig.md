@@ -2,21 +2,12 @@
 
 [Home](./index.md) &gt; [@yext/answers-react-components](./answers-react-components.md) &gt; [FilterOptionConfig](./answers-react-components.filteroptionconfig.md)
 
-## FilterOptionConfig interface
+## FilterOptionConfig type
 
 The configuration data for a filter option.
 
 <b>Signature:</b>
 
 ```typescript
-export interface FilterOptionConfig 
+export declare type FilterOptionConfig = Omit<CheckboxOptionProps, 'customCssClasses' | 'cssCompositionMethod'>;
 ```
-
-## Properties
-
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [label?](./answers-react-components.filteroptionconfig.label.md) | string | <i>(Optional)</i> The display label. Defaults to the value prop. |
-|  [selectedByDefault?](./answers-react-components.filteroptionconfig.selectedbydefault.md) | boolean | <i>(Optional)</i> If this particular filter should be selected by default. |
-|  [value](./answers-react-components.filteroptionconfig.value.md) | string \| number \| boolean | The value used to perform filtering. |
-

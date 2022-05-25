@@ -8,7 +8,6 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [ApplyFiltersButton({ className, label })](./answers-react-components.filters.applyfiltersbutton.md) | Runs a vertical search. By default has <code>position: sticky</code> styling that anchors it to the bottom of the page. |
 |  [CheckboxOption(props)](./answers-react-components.filters.checkboxoption.md) | A checkbox component that represents a single Filter. |
 |  [CollapsibleLabel({ label })](./answers-react-components.filters.collapsiblelabel.md) | CollapsibleLabel is a button for collapsing and expanding filters within a parent [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->.<!-- -->For more customization, use [Filters.FilterGroupContext](./answers-react-components.filters.filtergroupcontext.md) directly. |
 |  [CollapsibleSection(props)](./answers-react-components.filters.collapsiblesection.md) | CollapsibleSection are used for collapsing and un-collapsing groups of filters. It is intended to be used with [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->s within the same [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
@@ -24,7 +23,6 @@
 
 |  Interface | Description |
 |  --- | --- |
-|  [ApplyFiltersButtonProps](./answers-react-components.filters.applyfiltersbuttonprops.md) | Props for [Filters.ApplyFiltersButton()](./answers-react-components.filters.applyfiltersbutton.md) |
 |  [CheckboxCssClasses](./answers-react-components.filters.checkboxcssclasses.md) | The CSS class interface for [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
 |  [CheckboxOptionProps](./answers-react-components.filters.checkboxoptionprops.md) | Props for the [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md) |
 |  [CollapsibleLabelProps](./answers-react-components.filters.collapsiblelabelprops.md) | Props for [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->. |

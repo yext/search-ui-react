@@ -16,7 +16,6 @@ export interface StaticFiltersCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [applyFiltersButton?](./answers-react-components.staticfilterscssclasses.applyfiltersbutton.md) | string | <i>(Optional)</i> |
 |  [container?](./answers-react-components.staticfilterscssclasses.container.md) | string | <i>(Optional)</i> |
 |  [option?](./answers-react-components.staticfilterscssclasses.option.md) | string | <i>(Optional)</i> |
 |  [optionInput?](./answers-react-components.staticfilterscssclasses.optioninput.md) | string | <i>(Optional)</i> |
