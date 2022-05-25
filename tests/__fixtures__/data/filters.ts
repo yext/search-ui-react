@@ -109,3 +109,20 @@ export const DisplayableFacets: DisplayableFacet[] = [
     displayName: 'Price'
   }
 ];
+
+export const staticFilters: DisplayableFilter[] = [
+  {
+    fieldId: 'c_puppyPreference',
+    value: 'Bleecker',
+    displayName: 'Bleecker',
+    matcher: Matcher.Equals,
+    selected: true
+  },
+  {
+    fieldId: 'c_puppyPreference',
+    value: 'Clifford',
+    displayName: 'Clifford',
+    matcher: Matcher.Equals,
+    selected: false
+  }
+];
