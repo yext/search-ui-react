@@ -25,11 +25,11 @@ export function PeoplePage() {
         <div className='min-w-fit pr-4'>
           <Facets />
           <StaticFilters
-            fieldId='c_puppyPreference'
-            title='Puppy Preference'
+            fieldId='c_employeeCountry'
+            title='Employee Country'
             filterOptions={[
-              { value: 'Marty' },
-              { value: 'Frodo' }
+              { value: 'United States' },
+              { value: 'UK' }
             ]}
           />
           <FilterSearch searchFields={[{fieldApiName: 'name', entityType: 'ce_person' }]}/>

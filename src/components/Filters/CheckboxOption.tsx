@@ -105,7 +105,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
       return false;
     }
 
-    if (!answersUtilities.isCloseMatch(label.toString(), searchValue)) {
+    if (!answersUtilities.isCloseMatch(label, searchValue)) {
       return false;
     }
 
