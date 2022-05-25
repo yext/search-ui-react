@@ -19,7 +19,6 @@ import { Matcher } from '@yext/answers-headless-react';
 import { NumberRangeValue } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
-import { ReactNode } from 'react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
@@ -288,13 +287,6 @@ export function executeSearch(answersActions: AnswersActions): Promise<void>;
 // @public
 export function Facets(props: FacetsProps): JSX.Element;
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function Facets_2({ children, className, searchOnChange }: FacetsProps_2): JSX.Element;
-
 // @public
 export interface FacetsCssClasses extends FilterGroupCssClasses {
     // (undocumented)
@@ -310,15 +302,6 @@ export interface FacetsProps {
     customCssClasses?: FacetsCssClasses;
     defaultExpanded?: boolean;
     searchable?: boolean;
-    searchOnChange?: boolean;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface FacetsProps_2 {
-    children?: (facets: DisplayableFacet[]) => ReactNode;
-    className?: string;
     searchOnChange?: boolean;
 }
 
@@ -395,8 +378,6 @@ declare namespace Filters {
         CollapsibleLabelProps,
         CollapsibleSection,
         CollapsibleSectionProps,
-        Facets_2 as Facets,
-        FacetsProps_2 as FacetsProps,
         FiltersContext,
         useFiltersContext,
         FiltersContextType,
