@@ -81,7 +81,6 @@ export function Facets(props: FacetsProps) {
   );
 }
 
-
 function Divider({
   cssClasses = 'w-full h-px bg-gray-200 my-4' 
 }: { cssClasses?: string }) {
