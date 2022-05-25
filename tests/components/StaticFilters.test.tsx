@@ -135,7 +135,7 @@ describe('Static Filters', () => {
     expect(screen.getByRole('checkbox', { name: 'Clifford' })).toBeDefined();
   });
 
-  it('Stays exapanded whenever collapsible is false, even if defaultExpanded is false', () => {
+  it('Stays expanded whenever collapsible is false, even if defaultExpanded is false', () => {
     render(<StaticFilters {...staticFiltersProps} collapsible={false} defaultExpanded={false} />);
 
     expect(screen.getByText('Puppy Preference')).toBeDefined();
@@ -156,26 +156,18 @@ describe('Static Filters', () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} />);
 
-    const martyFilter = staticFiltersProps.filterOptions[0];
-    const martyCheckbox: HTMLInputElement = screen.getByLabelText(martyFilter.label);
-    expect(martyCheckbox.checked).toBeFalsy();
-
+    const martyCheckbox: HTMLInputElement = screen.getByLabelText('MARTY!');
     userEvent.click(martyCheckbox);
-    expectFilterOptionSet(actions, staticFiltersProps.fieldId, martyFilter, true);
-    expect(actions.executeVerticalQuery).toBeCalledTimes(1);
+    expect(actions.executeVerticalQuery).toBeCalled();
   });
 
-  it('Clicking a filter option does not execute a search when searchOnChange is fa;se', () => {
+  it('Clicking a filter option does not execute a search when searchOnChange is false', () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} searchOnChange={false} />);
 
-    const martyFilter = staticFiltersProps.filterOptions[0];
-    const martyCheckbox: HTMLInputElement = screen.getByLabelText(martyFilter.label);
-    expect(martyCheckbox.checked).toBeFalsy();
-
+    const martyCheckbox: HTMLInputElement = screen.getByLabelText('MARTY!');
     userEvent.click(martyCheckbox);
-    expectFilterOptionSet(actions, staticFiltersProps.fieldId, martyFilter, true);
-    expect(actions.executeVerticalQuery).toBeCalledTimes(0);
+    expect(actions.executeVerticalQuery).not.toBeCalled();
   });
 });
 

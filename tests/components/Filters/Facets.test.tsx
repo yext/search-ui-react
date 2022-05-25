@@ -130,7 +130,7 @@ describe('Facets', () => {
     expect(actions.executeVerticalQuery).toBeCalled();
   });
 
-  it('Clicking a facet option does not execute a search when searchOnChange is true', () => {
+  it('Clicking a facet option does not execute a search when searchOnChange is false', () => {
     const actions = spyOnActions();
     render(<Facets searchOnChange={false} />);
 
