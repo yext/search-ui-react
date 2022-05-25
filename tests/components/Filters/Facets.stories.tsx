@@ -5,13 +5,12 @@ import { AnswersHeadlessContext, State } from '@yext/answers-headless-react';
 import { generateMockedHeadless } from '../../__fixtures__/answers-headless';
 import { RecursivePartial } from '../../__utils__/mocks';
 import { DisplayableFacets } from '../../__fixtures__/data/filters';
-import { Filters } from '../../../src/components';
-import { Facets } from '../../__compound-components__/Filters/Facets';
+import { Facets, FacetsProps } from '../../../src';
 
 
-const meta: ComponentMeta<typeof Filters.Facets> = {
+const meta: ComponentMeta<typeof Facets> = {
   title: 'Facets',
-  component: Filters.Facets
+  component: Facets
 };
 export default meta;
 
@@ -21,7 +20,7 @@ const mockedHeadlessState: RecursivePartial<State> = {
   }
 };
 
-export const Primary = (args: Filters.FacetsProps) => {
+export const Primary = (args: FacetsProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <Facets {...args} />
