@@ -13,5 +13,3 @@ export declare type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher
     value: string | number | boolean;
 };
 ```
-<b>References:</b> [FilterOptionConfig](./answers-react-components.filteroptionconfig.md)
-

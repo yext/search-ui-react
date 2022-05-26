@@ -1,5 +1,6 @@
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
-import { FilterGroup, FilterGroupCssClasses, FilterOptionConfig } from './FilterGroup';
+import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
+import { FilterOptionConfig } from './Filters/CheckboxOption';
 import { StaticFilters as StaticFiltersCompoundComponent } from './Filters/StaticFilters';
 
 /**

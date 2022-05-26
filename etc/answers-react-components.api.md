@@ -174,14 +174,10 @@ function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-interface CheckboxOptionProps {
+interface CheckboxOptionProps extends FilterOptionConfig {
     cssCompositionMethod?: CompositionMethod;
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
     customCssClasses?: CheckboxCssClasses;
-    label?: string;
-    matcher?: Matcher;
-    selectedByDefault?: boolean;
-    value: string | number | boolean | NumberRangeValue;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -370,6 +366,9 @@ export interface FilterGroupProps {
     customCssClasses?: FilterGroupCssClasses;
     defaultExpanded?: boolean;
     fieldId: string;
+    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
+    //
+    // (undocumented)
     filterOptions: FilterOptionConfig[];
     searchable?: boolean;
     title: string;
@@ -384,13 +383,19 @@ type FilterGroupProps_2 = PropsWithChildren<{
 }>;
 
 // @public
-export type FilterOptionConfig = Omit<CheckboxOptionProps, 'customCssClasses' | 'cssCompositionMethod'>;
+interface FilterOptionConfig {
+    displayName?: string;
+    matcher?: Matcher;
+    selectedByDefault?: boolean;
+    value: string | number | boolean | NumberRangeValue;
+}
 
 declare namespace Filters {
     export {
         CheckboxOption,
         CheckboxOptionProps,
         CheckboxCssClasses,
+        FilterOptionConfig,
         CollapsibleLabel,
         CollapsibleLabelProps,
         CollapsibleSection,

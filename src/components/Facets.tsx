@@ -48,7 +48,7 @@ export function Facets(props: FacetsProps) {
   const { searchOnChange, customCssClasses = {}, ...filterGroupProps } = props;
   const {
     container: containerClassName,
-    divider: dividerClassName = 'w-full h-px bg-gray-200 my-4',
+    divider: dividerClassName,
     ...filterGroupCssClasses
   } = customCssClasses;
   return (
@@ -56,21 +56,24 @@ export function Facets(props: FacetsProps) {
       {facets => facets
         .filter(f => f.options.length > 0)
         .map((f, i) => {
-          const filterOptions = f.options.map(option => ({ ...option, label: option.displayName }));
           return (
             <Fragment key={f.fieldId}>
               <FilterGroup
                 fieldId={f.fieldId}
-                filterOptions={filterOptions}
+                filterOptions={f.options}
                 title={f.displayName}
                 customCssClasses={filterGroupCssClasses}
                 {...filterGroupProps}
               />
-              {(i < facets.length - 1) && <div className={dividerClassName}></div>}
+              {(i < facets.length - 1) && <Divider className={dividerClassName}/>}
             </Fragment>
           );
         })
       }
     </FacetsCompoundComponent>
   );
+}
+
+function Divider({ className ='w-full h-px bg-gray-200 my-4' }: { className?: string }) {
+  return <div className={className} />;
 }

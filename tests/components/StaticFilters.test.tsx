@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { AnswersHeadless, State } from '@yext/answers-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
+import { FilterOptionConfig } from '../../src/components/Filters';
 import userEvent from '@testing-library/user-event';
-import { FilterOptionConfig, StaticFilters } from '../../src/components';
+import { StaticFilters, StaticFiltersProps } from '../../src/components';
 import { staticFilters } from '../__fixtures__/data/filters';
 
 const mockedState: Partial<State> = {
@@ -17,13 +18,13 @@ const mockedState: Partial<State> = {
   }
 };
 
-const staticFiltersProps = {
+const staticFiltersProps: StaticFiltersProps = {
   fieldId: 'c_puppyPreference',
   title: 'Puppy Preference',
   filterOptions: [
     {
       value: 'Marty',
-      label: 'MARTY!'
+      displayName: 'MARTY!'
     },
     {
       value: 'Frodo',
@@ -78,7 +79,7 @@ describe('Static Filters', () => {
     render(<StaticFilters {...staticFiltersProps} />);
 
     const martyFilter = staticFiltersProps.filterOptions[0];
-    const martyCheckbox: HTMLInputElement = screen.getByLabelText(martyFilter.label);
+    const martyCheckbox: HTMLInputElement = screen.getByLabelText(martyFilter.displayName);
     expect(martyCheckbox.checked).toBeFalsy();
 
     userEvent.click(martyCheckbox);
@@ -90,7 +91,7 @@ describe('Static Filters', () => {
     render(<StaticFilters {...staticFiltersProps} />);
 
     const bleeckerFilter = staticFiltersProps.filterOptions[2];
-    const bleeckerCheckbox: HTMLInputElement = screen.getByLabelText(bleeckerFilter.value);
+    const bleeckerCheckbox: HTMLInputElement = screen.getByLabelText(bleeckerFilter.value.toString());
     expect(bleeckerCheckbox.checked).toBeTruthy();
 
     userEvent.click(bleeckerCheckbox);
@@ -181,7 +182,7 @@ function expectFilterOptionSet(
     fieldId,
     matcher: '$eq',
     value: filterOption.value,
-    displayName: filterOption.label ?? filterOption.value,
+    displayName: filterOption.displayName ?? filterOption.value,
     selected
   });
 }

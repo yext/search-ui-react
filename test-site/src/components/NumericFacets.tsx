@@ -20,7 +20,7 @@ export function NumericFacets() {
                           key={o.displayName}
                           value={o.value}
                           matcher={o.matcher}
-                          label={o.displayName}
+                          displayName={o.displayName}
                         />
                       )}
                       {(f.fieldId === 'price.value') && <Filters.RangeInput getFilterDisplayName={getFilterDisplayName} inputPrefix={<>$</>}/>}

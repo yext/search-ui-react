@@ -102,7 +102,6 @@ export {
 } from './Facets';
 
 export {
-  FilterOptionConfig,
   FilterGroupProps,
   FilterGroupCssClasses
 } from './FilterGroup';

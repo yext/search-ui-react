@@ -1,4 +1,4 @@
-export { CheckboxOption, CheckboxOptionProps, CheckboxCssClasses } from './CheckboxOption';
+export { CheckboxOption, CheckboxOptionProps, CheckboxCssClasses, FilterOptionConfig } from './CheckboxOption';
 export { CollapsibleLabel, CollapsibleLabelProps } from './CollapsibleLabel';
 export { CollapsibleSection, CollapsibleSectionProps } from './CollapsibleSection';
 export { Facets, FacetsProps } from './Facets';

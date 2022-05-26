@@ -28,6 +28,7 @@
 |  [CollapsibleLabelProps](./answers-react-components.filters.collapsiblelabelprops.md) | Props for [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->. |
 |  [FacetsProps](./answers-react-components.filters.facetsprops.md) | Props for [Filters.Facets()](./answers-react-components.filters.facets.md) |
 |  [FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md) | FilterGroupContext is responsible for searchable filters and collapsible filter groups. |
+|  [FilterOptionConfig](./answers-react-components.filters.filteroptionconfig.md) | The configuration data for a filter option. |
 |  [FiltersContextType](./answers-react-components.filters.filterscontexttype.md) | FiltersContext is responsible for handling filter selection. |
 |  [HierarchicalFacetCssClasses](./answers-react-components.filters.hierarchicalfacetcssclasses.md) | The CSS class interface for [Filters.HierarchicalFacet()](./answers-react-components.filters.hierarchicalfacet.md)<!-- -->. |
 |  [HierarchicalFacetProps](./answers-react-components.filters.hierarchicalfacetprops.md) | Props for [Filters.HierarchicalFacet()](./answers-react-components.filters.hierarchicalfacet.md) |

@@ -21,7 +21,7 @@ export interface FilterGroupProps
 |  [customCssClasses?](./answers-react-components.filtergroupprops.customcssclasses.md) | [FilterGroupCssClasses](./answers-react-components.filtergroupcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./answers-react-components.filtergroupprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
 |  [fieldId](./answers-react-components.filtergroupprops.fieldid.md) | string | The fieldId corresponding to the filter group. |
-|  [filterOptions](./answers-react-components.filtergroupprops.filteroptions.md) | [FilterOptionConfig](./answers-react-components.filteroptionconfig.md)<!-- -->\[\] | The configuration data for a filter option. |
+|  [filterOptions](./answers-react-components.filtergroupprops.filteroptions.md) | FilterOptionConfig\[\] | The configuration data for a filter option. |
 |  [searchable?](./answers-react-components.filtergroupprops.searchable.md) | boolean | <i>(Optional)</i> Whether or not to display a text input to search for filter options. |
 |  [title](./answers-react-components.filtergroupprops.title.md) | string | The displayed label for the filter group. |
 

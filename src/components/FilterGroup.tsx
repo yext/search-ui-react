@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { CompositionMethod } from '../hooks';
 import {
   CheckboxOption,
-  CheckboxOptionProps,
   CollapsibleLabel,
   CollapsibleSection,
+  FilterOptionConfig,
   SearchInput
 } from './Filters';
 import { FilterGroup as FilterGroupCompoundComponent } from './Filters/FilterGroup';
@@ -23,13 +23,6 @@ export interface FilterGroupCssClasses {
 }
 
 /**
- * The configuration data for a filter option.
- *
- * @public
- */
-export type FilterOptionConfig = Omit<CheckboxOptionProps, 'customCssClasses' | 'cssCompositionMethod'>;
-
-/**
  * Props for the FilterGroup component.
  *
  * @public
@@ -37,7 +30,7 @@ export type FilterOptionConfig = Omit<CheckboxOptionProps, 'customCssClasses' | 
 export interface FilterGroupProps {
   /** The fieldId corresponding to the filter group. */
   fieldId: string,
-  /** {@inheritDoc FilterOptionConfig} */
+  /** {@inheritDoc Filters.FilterOptionConfig} */
   filterOptions: FilterOptionConfig[],
   /** The displayed label for the filter group. */
   title: string,
@@ -99,7 +92,7 @@ export function FilterGroup({
           return (
             <CheckboxOption
               {...o}
-              key={o.label || o.value.toString()}
+              key={o.displayName || o.value.toString()}
               customCssClasses={cssClasses}
               cssCompositionMethod={cssCompositionMethod}
             />
