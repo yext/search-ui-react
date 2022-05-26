@@ -1,44 +1,44 @@
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
-import { LocationBias } from "../../src/components/LocationBias";
-import { State, LocationBiasMethod, useAnswersActions } from "@yext/answers-headless-react";
-import * as locationOperations from "../../src/utils/location-operations";
-import { mockAnswersHooks, mockAnswersState, spyOnActions } from "../__utils__/mocks";
-import * as searchOperations from "../../src/utils/search-operations";
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { LocationBias } from '../../src/components/LocationBias';
+import { State, LocationBiasMethod } from '@yext/answers-headless-react';
+import * as locationOperations from '../../src/utils/location-operations';
+import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
+import * as searchOperations from '../../src/utils/search-operations';
 
-jest.mock("@yext/answers-headless-react");
+jest.mock('@yext/answers-headless-react');
 
 const mockedStateVaDevice: Partial<State> = {
   location: {
     locationBias: {
       latitude: 38.89552025579547,
       longitude: -77.06991520330985,
-      displayName: 'Arlington, VA', 
+      displayName: 'Arlington, VA',
       method: LocationBiasMethod.Device
     }
   }
-}
+};
 
 const mockedStateNyIP: Partial<State> = {
   location: {
     locationBias: {
       latitude: 40.741591687843005,
       longitude: -74.00530254443494,
-      displayName: 'New York City, NY', 
+      displayName: 'New York City, NY',
       method: LocationBiasMethod.Ip
     }
   }
-}
+};
 
 const mockedStateNoDisplayName: Partial<State> = {
   location: {
     locationBias: {
       latitude: null,
       longitude: null,
-      displayName: null, 
+      displayName: null,
       method: null
     }
   },
-}
+};
 
 const newGeoPosition = {
   coords: {
@@ -50,99 +50,94 @@ const newGeoPosition = {
     longitude: -74.00530254443494,
     speed: null,
   },
-timestamp: null
+  timestamp: null
 };
 
-describe("LocationBias", () => {
-  beforeEach(() => {
-    mockAnswersHooks({
-      mockedState: mockedStateVaDevice,
-      mockedActions: {
-        state: mockedStateVaDevice,
-        setUserLocation: jest.fn(),
-      } 
-    });
-    jest.spyOn(locationOperations, "getUserLocation").mockImplementation(async ()=> {
-      return Promise.resolve(newGeoPosition);
-    });
-    jest.spyOn(searchOperations, "executeSearch").mockImplementation();
-    // jest.spyOn(searchOperations, "executeSearch").mockImplementation(()=> new Promise(()=>null));
-  });
-
-  it("Proper text is rendered (Location name, method, and update btn)", () => {
-    render(<LocationBias />);
-    const expectedLocationName = mockedStateVaDevice.location.locationBias.displayName;
-    const locationNameElement = screen.getByText(expectedLocationName);
-    expect(locationNameElement).toBeDefined();
-
-    const expectedMethodMessage = "(based on your device) -";
-    const basedOnMethodElement = screen.getByText(expectedMethodMessage);
-    expect(basedOnMethodElement).toBeDefined();
-
-    const updateLocationButton = screen.getByText("Update your location");
-    expect(updateLocationButton).toBeDefined();
-  })
-
-  it("On update location click, setUserLocation is called with params being coordinates returned by getUserLocation", async () => {
-    const actions = spyOnActions();
-    render(<LocationBias />)
-    clickUpdateLocation();
-
-    const expectedCoordinates = {
-      latitude: newGeoPosition.coords.latitude,
-      longitude: newGeoPosition.coords.longitude
+beforeEach(() => {
+  mockAnswersHooks({
+    mockedState: mockedStateVaDevice,
+    mockedActions: {
+      state: mockedStateVaDevice,
+      setUserLocation: jest.fn(),
     }
-    
-    await waitFor(() => {
-      expect(locationOperations.getUserLocation).toBeCalled();
-      expect(actions.setUserLocation).toBeCalledWith(expectedCoordinates);
-    })
   });
+  jest.spyOn(locationOperations, 'getUserLocation').mockResolvedValue(newGeoPosition);
+  jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
+});
 
-  it('On location change, clicking "Update your location" updates rendered location name', async () => {
-    render(<LocationBias />);
-    const expectedLocationName = mockedStateVaDevice.location.locationBias.displayName; 
-    const locationNameElement = screen.getByText(expectedLocationName);
-    expect(locationNameElement).toBeDefined();
+it('renders the proper text (location DisplayName, method, and update btn)', () => {
+  render(<LocationBias />);
+  const expectedLocationName = mockedStateVaDevice.location.locationBias.displayName;
+  const locationNameElement = screen.getByText(expectedLocationName);
+  expect(locationNameElement).toBeDefined();
 
-    mockAnswersState(mockedStateNyIP);
-    clickUpdateLocation();
+  const expectedMethodMessage = '(based on your device) -';
+  const basedOnMethodElement = screen.getByText(expectedMethodMessage);
+  expect(basedOnMethodElement).toBeDefined();
 
-    await waitFor(() => {
-      expect(searchOperations.executeSearch).toBeCalled();
-    })
+  const updateLocationButton = screen.getByText('Update your location');
+  expect(updateLocationButton).toBeDefined();
+});
 
-    const newExpectedLocationName = mockedStateNyIP.location.locationBias.displayName; 
-    const newLocationNameElement = screen.getByText(newExpectedLocationName);
-    expect(newLocationNameElement).toBeDefined();
+it('calls setUserLocation with coordinates returned by getUserLocation as params when update location clicked', async () => {
+  const actions = spyOnActions();
+  render(<LocationBias />);
+  clickUpdateLocation();
+
+  const expectedCoordinates = {
+    latitude: newGeoPosition.coords.latitude,
+    longitude: newGeoPosition.coords.longitude
+  };
+
+  expect(locationOperations.getUserLocation).toBeCalled();
+  await waitFor(() => {
+    expect(actions.setUserLocation).toBeCalledWith(expectedCoordinates);
   });
 });
 
-it('Correct device attribution message rendered, device', () => {
+it('updates rendered DisplayName if location changes and update button is clicked', async () => {
+  render(<LocationBias />);
+  const expectedLocationName = mockedStateVaDevice.location.locationBias.displayName;
+  const locationNameElement = screen.getByText(expectedLocationName);
+  expect(locationNameElement).toBeDefined();
+
+  mockAnswersState(mockedStateNyIP);
+  clickUpdateLocation();
+
+  await waitFor(() => {
+    expect(searchOperations.executeSearch).toBeCalled();
+  });
+
+  const newExpectedLocationName = mockedStateNyIP.location.locationBias.displayName;
+  const newLocationNameElement = screen.getByText(newExpectedLocationName);
+  expect(newLocationNameElement).toBeDefined();
+});
+
+it('renders correct attribution message, device', () => {
   mockAnswersState(mockedStateVaDevice);
   render(<LocationBias />);
-  const expectedMethodMessage = "(based on your device) -";
+  const expectedMethodMessage = '(based on your device) -';
   const basedOnMethodElement = screen.getByText(expectedMethodMessage);
   expect(basedOnMethodElement).toBeDefined();
-})
+});
 
-it('Correct device attribution message rendered, IP', () => {
+it('renders correct attribution message, IP', () => {
   mockAnswersState(mockedStateNyIP);
   render(<LocationBias />);
-  const expectedMethodMessage = "(based on your internet address) -";
+  const expectedMethodMessage = '(based on your internet address) -';
   const basedOnMethodElement = screen.getByText(expectedMethodMessage);
   expect(basedOnMethodElement).toBeDefined();
-})
+});
 
-it('Nothing renders if there is no display name', () => {
+it('renders nothing if there is no display name', () => {
   mockAnswersState(mockedStateNoDisplayName);
   render(<LocationBias />);
 
-  const updateLocationButton = screen.queryByText("Update your location");
+  const updateLocationButton = screen.queryByText('Update your location');
   expect(updateLocationButton).toBeNull();
 });
 
 function clickUpdateLocation() {
-  const updateLocationButton = screen.getByText("Update your location");
+  const updateLocationButton = screen.getByText('Update your location');
   fireEvent.click(updateLocationButton);
 }
