@@ -13,7 +13,7 @@ import {
   ApplyFiltersButton
 } from '@yext/answers-react-components';
 
-export const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
+const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 
 export function PeoplePage() {
   const answersActions = useAnswersActions();
@@ -26,9 +26,7 @@ export function PeoplePage() {
       <SearchBar />
       <div className='flex'>
         <div className='min-w-fit pr-4'>
-          <Facets
-            searchOnChange={false}
-          />
+          <Facets searchOnChange={false}/>
           <StaticFilters
             fieldId='c_employeeCountry'
             title='Employee Country'

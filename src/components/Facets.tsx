@@ -46,35 +46,31 @@ export interface FacetsProps {
  */
 export function Facets(props: FacetsProps) {
   const { searchOnChange, customCssClasses = {}, ...filterGroupProps } = props;
-  const { container:containerCssClasses, divider, ...filterGroupCssClasses } = customCssClasses;
+  const {
+    container: containerClassName,
+    divider: dividerClassName = 'w-full h-px bg-gray-200 my-4',
+    ...filterGroupCssClasses
+  } = customCssClasses;
   return (
-    <FacetsCompoundComponent searchOnChange={searchOnChange} className={containerCssClasses}>
-      {facets => {
-        const filteredFacets = facets.filter(f => f.options.length > 0);
-        return (<>
-          {filteredFacets.map((f, i) => {
-            const filterOptions = f.options.map(option => ({ ...option, label: option.displayName }));
-            return (
-              <Fragment key={f.fieldId}>
-                <FilterGroup
-                  fieldId={f.fieldId}
-                  filterOptions={filterOptions}
-                  title={f.displayName}
-                  customCssClasses={filterGroupCssClasses}
-                  {...filterGroupProps}
-                />
-                {(i < facets.length - 1) && <Divider cssClasses={divider}/>}
-              </Fragment>
-            );
-          })}
-        </>);
-      }}
+    <FacetsCompoundComponent searchOnChange={searchOnChange} className={containerClassName}>
+      {facets => facets
+        .filter(f => f.options.length > 0)
+        .map((f, i) => {
+          const filterOptions = f.options.map(option => ({ ...option, label: option.displayName }));
+          return (
+            <Fragment key={f.fieldId}>
+              <FilterGroup
+                fieldId={f.fieldId}
+                filterOptions={filterOptions}
+                title={f.displayName}
+                customCssClasses={filterGroupCssClasses}
+                {...filterGroupProps}
+              />
+              {(i < facets.length - 1) && <div className={dividerClassName}></div>}
+            </Fragment>
+          );
+        })
+      }
     </FacetsCompoundComponent>
   );
-}
-
-function Divider({
-  cssClasses = 'w-full h-px bg-gray-200 my-4' 
-}: { cssClasses?: string }) {
-  return <div className={cssClasses}></div>;
 }

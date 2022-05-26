@@ -61,9 +61,9 @@ export interface StaticFiltersProps {
  */
 export function StaticFilters(props: StaticFiltersProps): JSX.Element {
   const { searchOnChange, customCssClasses = {}, ...filterGroupProps } = props;
-  const { container:containerCssClasses, ...filterGroupCssClasses } = customCssClasses;
+  const { container: containerClassName, ...filterGroupCssClasses } = customCssClasses;
   return (
-    <StaticFiltersCompoundComponent searchOnChange={searchOnChange} className={containerCssClasses}>
+    <StaticFiltersCompoundComponent searchOnChange={searchOnChange} className={containerClassName}>
       <FilterGroup
         key={filterGroupProps.fieldId}
         customCssClasses={filterGroupCssClasses}

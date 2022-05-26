@@ -5,9 +5,9 @@ import {
   CheckboxOptionProps,
   CollapsibleLabel,
   CollapsibleSection,
-  FilterGroup as FilterGroupCompoundComponent,
   SearchInput
 } from './Filters';
+import { FilterGroup as FilterGroupCompoundComponent } from './Filters/FilterGroup';
 
 /**
  * The CSS class interface for FilterGroup.
