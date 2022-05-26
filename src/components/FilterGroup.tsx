@@ -5,9 +5,9 @@ import {
   CollapsibleLabel,
   CollapsibleSection,
   FilterOptionConfig,
-  SearchInput
+  SearchInput,
+  FilterGroupProvider
 } from './Filters';
-import { FilterGroup as FilterGroupCompoundComponent } from './Filters/FilterGroup';
 
 /**
  * The CSS class interface for FilterGroup.
@@ -81,7 +81,7 @@ export function FilterGroup({
         </div>);
   }
   return (
-    <FilterGroupCompoundComponent
+    <FilterGroupProvider
       fieldId={fieldId}
       defaultExpanded={!collapsible || defaultExpanded}
     >
@@ -99,6 +99,6 @@ export function FilterGroup({
           );
         })}
       </CollapsibleSection>
-    </FilterGroupCompoundComponent>
+    </FilterGroupProvider>
   );
 }

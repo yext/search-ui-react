@@ -9,13 +9,13 @@
 |  Function | Description |
 |  --- | --- |
 |  [CheckboxOption(props)](./answers-react-components.filters.checkboxoption.md) | A checkbox component that represents a single Filter. |
-|  [CollapsibleLabel({ label })](./answers-react-components.filters.collapsiblelabel.md) | CollapsibleLabel is a button for collapsing and expanding filters within a parent [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->.<!-- -->For more customization, use [Filters.FilterGroupContext](./answers-react-components.filters.filtergroupcontext.md) directly. |
-|  [CollapsibleSection(props)](./answers-react-components.filters.collapsiblesection.md) | CollapsibleSection are used for collapsing and un-collapsing groups of filters. It is intended to be used with [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->s within the same [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
-|  [Facets({ children, className, searchOnChange })](./answers-react-components.filters.facets.md) | The Facets component is a wrapper component around [Filters](./answers-react-components.filters.md) that updates facet options when a child filter is updated.<!-- -->The representation of the facets is configured using a FACC (function as a child component) The FACC is passed the facets data, and is intended for use with components like [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
-|  [FilterGroup(props)](./answers-react-components.filters.filtergroup.md) | The Filters.FilterGroup component represents a group of filters to support for searching and collapsing. |
+|  [CollapsibleLabel({ label })](./answers-react-components.filters.collapsiblelabel.md) | CollapsibleLabel is a button for collapsing and expanding filters within a parent [Filters.FilterGroupProvider()](./answers-react-components.filters.filtergroupprovider.md)<!-- -->.<!-- -->For more customization, use [Filters.FilterGroupContext](./answers-react-components.filters.filtergroupcontext.md) directly. |
+|  [CollapsibleSection(props)](./answers-react-components.filters.collapsiblesection.md) | CollapsibleSection are used for collapsing and un-collapsing groups of filters. It is intended to be used with [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->s within the same [Filters.FilterGroupProvider()](./answers-react-components.filters.filtergroupprovider.md)<!-- -->. |
+|  [FacetsProvider({ children, className, searchOnChange })](./answers-react-components.filters.facetsprovider.md) | The Facets component is a wrapper component around [Filters](./answers-react-components.filters.md) that updates facet options when a child filter is updated.<!-- -->The representation of the facets is configured using a FACC (function as a child component) The FACC is passed the facets data, and is intended for use with components like [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
+|  [FilterGroupProvider(props)](./answers-react-components.filters.filtergroupprovider.md) | The Filters.FilterGroupProvider component represents a group of filters to support for searching and collapsing. |
 |  [HierarchicalFacet({ facet, delimiter, showMoreLimit, customCssClasses, cssCompositionMethod })](./answers-react-components.filters.hierarchicalfacet.md) | A HierarchicalFacet takes a <code>DisplayableFacet</code> and renders the facet in a way to represent multiple levels of "hierarchies".<!-- -->The hierarchies are determined by the provided delimiter, which defaults to "<!-- -->&gt;<!-- -->". |
 |  [RangeInput(props)](./answers-react-components.filters.rangeinput.md) | Represents a single number range static filter which accepts user input. |
-|  [SearchInput(props)](./answers-react-components.filters.searchinput.md) | SearchInput is a simple input component that updates the active searchValue for a particular [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
+|  [SearchInput(props)](./answers-react-components.filters.searchinput.md) | SearchInput is a simple input component that updates the active searchValue for a particular [Filters.FilterGroupProvider()](./answers-react-components.filters.filtergroupprovider.md)<!-- -->. |
 |  [useFilterGroupContext()](./answers-react-components.filters.usefiltergroupcontext.md) | A hook used to access the [Filters.FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md)<!-- -->. |
 |  [useFiltersContext()](./answers-react-components.filters.usefilterscontext.md) | A hook used to access the [Filters.FiltersContextType](./answers-react-components.filters.filterscontexttype.md)<!-- -->. |
 
@@ -26,7 +26,7 @@
 |  [CheckboxCssClasses](./answers-react-components.filters.checkboxcssclasses.md) | The CSS class interface for [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md)<!-- -->. |
 |  [CheckboxOptionProps](./answers-react-components.filters.checkboxoptionprops.md) | Props for the [Filters.CheckboxOption()](./answers-react-components.filters.checkboxoption.md) |
 |  [CollapsibleLabelProps](./answers-react-components.filters.collapsiblelabelprops.md) | Props for [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->. |
-|  [FacetsProps](./answers-react-components.filters.facetsprops.md) | Props for [Filters.Facets()](./answers-react-components.filters.facets.md) |
+|  [FacetsProviderProps](./answers-react-components.filters.facetsproviderprops.md) | Props for [Filters.FacetsProvider()](./answers-react-components.filters.facetsprovider.md) |
 |  [FilterGroupContextType](./answers-react-components.filters.filtergroupcontexttype.md) | FilterGroupContext is responsible for searchable filters and collapsible filter groups. |
 |  [FilterOptionConfig](./answers-react-components.filters.filteroptionconfig.md) | The configuration data for a filter option. |
 |  [FiltersContextType](./answers-react-components.filters.filterscontexttype.md) | FiltersContext is responsible for handling filter selection. |
@@ -48,5 +48,5 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [CollapsibleSectionProps](./answers-react-components.filters.collapsiblesectionprops.md) | Props for the [Filters.CollapsibleSection()](./answers-react-components.filters.collapsiblesection.md)<!-- -->. |
-|  [FilterGroupProps](./answers-react-components.filters.filtergroupprops.md) | Props for a [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->. |
+|  [FilterGroupProviderProps](./answers-react-components.filters.filtergroupproviderprops.md) | Props for a [Filters.FilterGroupProvider()](./answers-react-components.filters.filtergroupprovider.md)<!-- -->. |
 

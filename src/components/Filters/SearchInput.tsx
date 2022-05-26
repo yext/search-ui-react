@@ -15,7 +15,7 @@ export interface SearchInputProps {
 
 /**
  * SearchInput is a simple input component that updates the
- * active searchValue for a particular {@link Filters.FilterGroup}.
+ * active searchValue for a particular {@link Filters.FilterGroupProvider}.
  *
  * @param props - {@link Filters.SearchInputProps}
  *

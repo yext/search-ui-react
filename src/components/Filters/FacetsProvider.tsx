@@ -12,11 +12,11 @@ import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
 /**
- * Props for {@link Filters.Facets}
+ * Props for {@link Filters.FacetsProvider}
  *
  * @public
  */
-export interface FacetsProps {
+export interface FacetsProviderProps {
   /** CSS class names applied to the component's container div. */
   className?: string,
   /** Whether or not a search is automatically run when a filter is selected. Defaults to true. */
@@ -24,7 +24,7 @@ export interface FacetsProps {
   /** A function which renders the Facets UI with the provided facets data.
    *
    * @remarks
-   * It is intended to be used with the Filters subcomponents including Filters.FilterGroup,
+   * It is intended to be used with the Filters subcomponents including Filters.FilterGroupProvider,
    * Filters.CollapsibleLabel, Filters.SearchInput, Filters.CheckboxOption, Filters.CollapsibleSection
    */
   children?: (facets: DisplayableFacet[]) => ReactNode
@@ -40,13 +40,13 @@ export interface FacetsProps {
  *
  * @public
  *
- * @param props - {@link Filters.FacetsProps}
+ * @param props - {@link Filters.FacetsProviderProps}
  */
-export function Facets({
+export function FacetsProvider({
   children,
   className = 'md:w-56',
   searchOnChange = true
-}: FacetsProps): JSX.Element {
+}: FacetsProviderProps): JSX.Element {
   const answersActions = useAnswersActions();
   const facetsInState = useAnswersState(state => state.filters.facets);
   const facets = useMemo(() => facetsInState ?? [], [facetsInState]);

@@ -4,11 +4,11 @@ import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
 /**
- * Props for the {@link Filters.StaticFilters}.
+ * Props for the {@link Filters.StaticFiltersProvider}.
  *
  * @public
  */
-export type StaticFiltersProps = PropsWithChildren<{
+export type StaticFiltersProviderProps = PropsWithChildren<{
   /** CSS class names applied to the StaticFilter's container div. */
   className?: string,
   /** Whether or not a search is automatically run when a filter is selected. Defaults to true. */
@@ -22,15 +22,15 @@ export type StaticFiltersProps = PropsWithChildren<{
  * The representation of the facets is configured using props.children,
  * and is intended for use with components like {@link Filters.CheckboxOption}.
  *
- * @param props - {@link Filters.StaticFiltersProps}
+ * @param props - {@link Filters.StaticFiltersProviderProps}
  *
  * @public
  */
-export function StaticFilters({
+export function StaticFiltersProvider({
   children,
   className = 'md-56',
   searchOnChange = true
-}: StaticFiltersProps): JSX.Element {
+}: StaticFiltersProviderProps): JSX.Element {
   const answersActions = useAnswersActions();
   const displayableFilters = useAnswersState(state => state.filters.static);
 

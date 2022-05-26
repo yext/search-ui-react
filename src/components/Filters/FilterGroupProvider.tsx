@@ -3,19 +3,20 @@ import useCollapse from 'react-collapsed';
 import { FilterGroupContext } from './FilterGroupContext';
 
 /**
- * Props for a {@link Filters.FilterGroup}.
+ * Props for a {@link Filters.FilterGroupProvider}.
  *
  * @public
  */
-export type FilterGroupProps = PropsWithChildren<{
-  /** Whether the {@link Filters.FilterGroup} should start out expanded. Defaults to true. */
+export type FilterGroupProviderProps = PropsWithChildren<{
+  /** Whether the {@link Filters.FilterGroupProvider} should start out expanded. Defaults to true. */
   defaultExpanded?: boolean,
   /** {@inheritDoc Filters.FilterGroupContextType.fieldId} */
   fieldId: string
 }>;
 
 /**
- * The Filters.FilterGroup component represents a group of filters to support for searching and collapsing.
+ * The Filters.FilterGroupProvider component represents a group of filters to
+ * support for searching and collapsing.
  *
  * @remarks
  * A Filter.Group designates a set of filters which may be collapsed through the
@@ -25,9 +26,9 @@ export type FilterGroupProps = PropsWithChildren<{
  *
  * @public
  *
- * @param props - {@link Filters.FilterGroupProps}
+ * @param props - {@link Filters.FilterGroupProviderProps}
  */
-export function FilterGroup(props: FilterGroupProps): JSX.Element {
+export function FilterGroupProvider(props: FilterGroupProviderProps): JSX.Element {
   const {
     children,
     defaultExpanded = true,

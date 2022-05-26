@@ -1,4 +1,4 @@
-import { Facets as FacetsCompoundComponent } from './Filters/Facets';
+import { FacetsProvider } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { Fragment } from 'react';
@@ -52,7 +52,7 @@ export function Facets(props: FacetsProps) {
     ...filterGroupCssClasses
   } = customCssClasses;
   return (
-    <FacetsCompoundComponent searchOnChange={searchOnChange} className={containerClassName}>
+    <FacetsProvider searchOnChange={searchOnChange} className={containerClassName}>
       {facets => facets
         .filter(f => f.options.length > 0)
         .map((f, i) => {
@@ -70,7 +70,7 @@ export function Facets(props: FacetsProps) {
           );
         })
       }
-    </FacetsCompoundComponent>
+    </FacetsProvider>
   );
 }
 

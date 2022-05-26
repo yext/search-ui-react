@@ -4,7 +4,7 @@
 
 ## Filters.CollapsibleSection() function
 
-CollapsibleSection are used for collapsing and un-collapsing groups of filters. It is intended to be used with [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->s within the same [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->.
+CollapsibleSection are used for collapsing and un-collapsing groups of filters. It is intended to be used with [Filters.CollapsibleLabel()](./answers-react-components.filters.collapsiblelabel.md)<!-- -->s within the same [Filters.FilterGroupProvider()](./answers-react-components.filters.filtergroupprovider.md)<!-- -->.
 
 <b>Signature:</b>
 

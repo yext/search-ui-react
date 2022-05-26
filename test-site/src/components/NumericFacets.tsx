@@ -5,14 +5,14 @@ import { Divider } from './Divider';
 
 export function NumericFacets() {
   return (
-    <Filters.Facets searchOnChange={true}>
+    <Filters.FacetsProvider searchOnChange={true}>
       {facets => {
         return (
           <>
             {
               facets.map((f, i) => {
                 return (
-                  <Filters.FilterGroup key={f.fieldId} fieldId={f.fieldId}>
+                  <Filters.FilterGroupProvider key={f.fieldId} fieldId={f.fieldId}>
                     <Filters.CollapsibleLabel label={f.displayName} />
                     <Filters.CollapsibleSection>
                       {f.options.map(o =>
@@ -26,14 +26,14 @@ export function NumericFacets() {
                       {(f.fieldId === 'price.value') && <Filters.RangeInput getFilterDisplayName={getFilterDisplayName} inputPrefix={<>$</>}/>}
                     </Filters.CollapsibleSection>
                     {(i < facets.length - 1) && <Divider />}
-                  </Filters.FilterGroup>
+                  </Filters.FilterGroupProvider>
                 )
               })
             }
           </>
         )
       }}
-    </Filters.Facets>
+    </Filters.FacetsProvider>
   )
 }
 

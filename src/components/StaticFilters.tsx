@@ -1,7 +1,7 @@
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { FilterOptionConfig } from './Filters/CheckboxOption';
-import { StaticFilters as StaticFiltersCompoundComponent } from './Filters/StaticFilters';
+import { FilterOptionConfig } from './Filters';
+import { StaticFiltersProvider } from './Filters/StaticFiltersProvider';
 
 /**
  * The CSS class interface for {@link StaticFilters}.
@@ -64,12 +64,12 @@ export function StaticFilters(props: StaticFiltersProps): JSX.Element {
   const { searchOnChange, customCssClasses = {}, ...filterGroupProps } = props;
   const { container: containerClassName, ...filterGroupCssClasses } = customCssClasses;
   return (
-    <StaticFiltersCompoundComponent searchOnChange={searchOnChange} className={containerClassName}>
+    <StaticFiltersProvider searchOnChange={searchOnChange} className={containerClassName}>
       <FilterGroup
         key={filterGroupProps.fieldId}
         customCssClasses={filterGroupCssClasses}
         {...filterGroupProps}
       />
-    </StaticFiltersCompoundComponent>
+    </StaticFiltersProvider>
   );
 }

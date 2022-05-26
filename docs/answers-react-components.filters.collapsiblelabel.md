@@ -4,7 +4,7 @@
 
 ## Filters.CollapsibleLabel() function
 
-CollapsibleLabel is a button for collapsing and expanding filters within a parent [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->.
+CollapsibleLabel is a button for collapsing and expanding filters within a parent [Filters.FilterGroupProvider()](./answers-react-components.filters.filtergroupprovider.md)<!-- -->.
 
 For more customization, use [Filters.FilterGroupContext](./answers-react-components.filters.filtergroupcontext.md) directly.
 

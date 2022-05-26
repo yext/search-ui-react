@@ -284,13 +284,6 @@ export function executeSearch(answersActions: AnswersActions): Promise<void>;
 // @public
 export function Facets(props: FacetsProps): JSX.Element;
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function Facets_2({ children, className, searchOnChange }: FacetsProps_2): JSX.Element;
-
 // @public
 export interface FacetsCssClasses extends FilterGroupCssClasses {
     // (undocumented)
@@ -310,9 +303,16 @@ export interface FacetsProps {
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-interface FacetsProps_2 {
+function FacetsProvider({ children, className, searchOnChange }: FacetsProviderProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+interface FacetsProviderProps {
     children?: (facets: DisplayableFacet[]) => ReactNode;
     className?: string;
     searchOnChange?: boolean;
@@ -320,14 +320,6 @@ interface FacetsProps_2 {
 
 // @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function FilterGroup(props: FilterGroupProps_2): JSX.Element;
 
 // @public
 const FilterGroupContext: Context<FilterGroupContextType | null>;
@@ -375,9 +367,17 @@ export interface FilterGroupProps {
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-type FilterGroupProps_2 = PropsWithChildren<{
+function FilterGroupProvider(props: FilterGroupProviderProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+type FilterGroupProviderProps = PropsWithChildren<{
     defaultExpanded?: boolean;
     fieldId: string;
 }>;
@@ -400,13 +400,13 @@ declare namespace Filters {
         CollapsibleLabelProps,
         CollapsibleSection,
         CollapsibleSectionProps,
-        Facets_2 as Facets,
-        FacetsProps_2 as FacetsProps,
+        FacetsProvider,
+        FacetsProviderProps,
         FiltersContext,
         useFiltersContext,
         FiltersContextType,
-        FilterGroup,
-        FilterGroupProps_2 as FilterGroupProps,
+        FilterGroupProvider,
+        FilterGroupProviderProps,
         FilterGroupContext,
         useFilterGroupContext,
         FilterGroupContextType,
@@ -1030,8 +1030,8 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// src/components/Filters/FilterGroup.tsx:12:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// src/components/Filters/FilterGroup.tsx:14:3 - (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
+// src/components/Filters/FilterGroupProvider.tsx:12:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// src/components/Filters/FilterGroupProvider.tsx:14:3 - (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
 
 // (No @packageDocumentation comment for this package)
 

@@ -4,7 +4,7 @@
 
 ## Filters.SearchInput() function
 
-SearchInput is a simple input component that updates the active searchValue for a particular [Filters.FilterGroup()](./answers-react-components.filters.filtergroup.md)<!-- -->.
+SearchInput is a simple input component that updates the active searchValue for a particular [Filters.FilterGroupProvider()](./answers-react-components.filters.filtergroupprovider.md)<!-- -->.
 
 <b>Signature:</b>
 
