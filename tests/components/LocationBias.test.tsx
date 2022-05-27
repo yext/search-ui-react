@@ -1,4 +1,5 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { LocationBias } from '../../src/components/LocationBias';
 import { State, LocationBiasMethod } from '@yext/answers-headless-react';
 import * as locationOperations from '../../src/utils/location-operations';
@@ -75,11 +76,11 @@ it('renders the proper text (location DisplayName, method, and update btn)', () 
   const basedOnMethodElement = screen.getByText(expectedMethodMessage);
   expect(basedOnMethodElement).toBeDefined();
 
-  const updateLocationButton = screen.getByText('Update your location');
+  const updateLocationButton = screen.getByRole("button", {name: 'Update your location'});
   expect(updateLocationButton).toBeDefined();
 });
 
-it('calls setUserLocation with coordinates returned by getUserLocation as params when update location clicked', async () => {
+it('calls setUserLocation with coordinates returned by getUserLocation as params when update location is clicked', async () => {
   const actions = spyOnActions();
   render(<LocationBias />);
   clickUpdateLocation();
@@ -131,13 +132,12 @@ it('renders correct attribution message, IP', () => {
 
 it('renders nothing if there is no display name', () => {
   mockAnswersState(mockedStateNoDisplayName);
-  render(<LocationBias />);
-
-  const updateLocationButton = screen.queryByText('Update your location');
-  expect(updateLocationButton).toBeNull();
+  const { container }  = render(<LocationBias />);
+  console.log(container);
+  expect(container).toBeEmptyDOMElement();
 });
 
 function clickUpdateLocation() {
-  const updateLocationButton = screen.getByText('Update your location');
-  fireEvent.click(updateLocationButton);
+  const updateLocationButton = screen.getByRole('button', {name: 'Update your location'});
+  userEvent.click(updateLocationButton);
 }
