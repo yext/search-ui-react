@@ -289,8 +289,6 @@ export function getSearchIntents(answersActions: AnswersActions): Promise<Search
 // @public
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/answers-react-components" does not have an export "Filters"
-//
 // @public
 export interface HierarchicalFacetDisplayCssClasses {
     // (undocumented)
@@ -440,8 +438,6 @@ export interface PaginationProps {
     paginateAllOnNoResults?: boolean;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/answers-react-components" does not have an export "Filters"
-//
 // @public
 export interface RangeInputCssClasses {
     // (undocumented)

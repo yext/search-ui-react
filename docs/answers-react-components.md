@@ -68,7 +68,7 @@
 |  [FilterOptionConfig](./answers-react-components.filteroptionconfig.md) | The configuration data for a filter option. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |
-|  [HierarchicalFacetDisplayCssClasses](./answers-react-components.hierarchicalfacetdisplaycssclasses.md) | The CSS class interface for . |
+|  [HierarchicalFacetDisplayCssClasses](./answers-react-components.hierarchicalfacetdisplaycssclasses.md) | The CSS class interface for HierarchicalFacetDisplay. |
 |  [HierarchicalFacetsCssClasses](./answers-react-components.hierarchicalfacetscssclasses.md) | The CSS class interface for [HierarchicalFacets()](./answers-react-components.hierarchicalfacets.md)<!-- -->. |
 |  [HierarchicalFacetsProps](./answers-react-components.hierarchicalfacetsprops.md) | Props for the [HierarchicalFacets()](./answers-react-components.hierarchicalfacets.md) component. |
 |  [HighlightedValueCssClasses](./answers-react-components.highlightedvaluecssclasses.md) | The CSS class interface for [renderHighlightedValue()](./answers-react-components.renderhighlightedvalue.md)<!-- -->. |
@@ -78,7 +78,7 @@
 |  [NumericalFacetsProps](./answers-react-components.numericalfacetsprops.md) | Props for the [NumericalFacets()](./answers-react-components.numericalfacets.md) component. |
 |  [PaginationCssClasses](./answers-react-components.paginationcssclasses.md) | The CSS classes used for pagination. |
 |  [PaginationProps](./answers-react-components.paginationprops.md) | Props for [Pagination()](./answers-react-components.pagination.md) component |
-|  [RangeInputCssClasses](./answers-react-components.rangeinputcssclasses.md) | The CSS class interface for . |
+|  [RangeInputCssClasses](./answers-react-components.rangeinputcssclasses.md) | The CSS class interface for RangeInput. |
 |  [ResultsCountCssClasses](./answers-react-components.resultscountcssclasses.md) | The CSS class interface for [ResultsCount()](./answers-react-components.resultscount.md)<!-- -->. |
 |  [ResultsCountProps](./answers-react-components.resultscountprops.md) | Props for [ResultsCount()](./answers-react-components.resultscount.md)<!-- -->. |
 |  [SearchBarCssClasses](./answers-react-components.searchbarcssclasses.md) | The CSS class interface for the [SearchBar()](./answers-react-components.searchbar.md)<!-- -->. |

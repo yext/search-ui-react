@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses interface
 
-The CSS class interface for .
+The CSS class interface for RangeInput.
 
 <b>Signature:</b>
 

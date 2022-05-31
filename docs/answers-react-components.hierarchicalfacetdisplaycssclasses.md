@@ -4,7 +4,7 @@
 
 ## HierarchicalFacetDisplayCssClasses interface
 
-The CSS class interface for .
+The CSS class interface for HierarchicalFacetDisplay.
 
 <b>Signature:</b>
 

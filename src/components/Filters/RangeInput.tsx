@@ -10,7 +10,7 @@ import { useFiltersContext } from './FiltersContext';
 import { InvalidIcon } from '../../icons/InvalidIcon';
 
 /**
- * Props for the {@link Filters.RangeInput}
+ * Props for RangeInput
  *
  * @public
  */
@@ -28,14 +28,14 @@ export interface RangeInputProps {
    * An optional element which renders in front of the input text.
    */
   inputPrefix?: JSX.Element,
-  /** CSS classes for customizing the component styling defined by {@link Filters.RangeInputCssClasses} */
+  /** CSS classes for customizing the component styling defined by RangeInputCssClasses */
   customCssClasses?: RangeInputCssClasses,
   /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod
 }
 
 /**
- * The CSS class interface for {@link Filters.RangeInput}.
+ * The CSS class interface for RangeInput.
  *
  * @public
  */
@@ -92,7 +92,7 @@ const builtInCssClasses: RangeInputCssClasses = {
  *
  * @public
  *
- * @param props - {@link Filters.RangeInputProps}
+ * @param props - RangeInputProps
  */
 export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const { filters } = useFiltersContext();

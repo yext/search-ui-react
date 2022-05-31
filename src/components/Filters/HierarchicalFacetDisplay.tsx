@@ -6,7 +6,7 @@ import { HierarchicalFacetNode, HierarchicalFacetTree, useHierarchicalFacetTree 
 import { useFiltersContext } from './FiltersContext';
 
 /**
- * Props for {@link Filters.HierarchicalFacetDisplay}
+ * Props for HierarchicalFacetDisplay
  *
  * @public
  */
@@ -19,7 +19,7 @@ export interface HierarchicalFacetDisplayProps {
   showMoreLimit?: number,
   /**
    * CSS classes for customizing the component styling
-   * of {@link Filters.HierarchicalFacetDisplayCssClasses}
+   * of HierarchicalFacetDisplayCssClasses
    */
   customCssClasses?: HierarchicalFacetDisplayCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -27,7 +27,7 @@ export interface HierarchicalFacetDisplayProps {
 }
 
 /**
- * The CSS class interface for {@link Filters.HierarchicalFacetDisplay}.
+ * The CSS class interface for HierarchicalFacetDisplay.
  *
  * @public
  */
