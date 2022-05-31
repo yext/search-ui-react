@@ -4,7 +4,7 @@
 
 ## VisualAutocompleteConfig.restrictVerticals property
 
-Specify which verticals to return for VisualAutocomplete
+Specify which verticals to return for VisualAutocomplete.
 
 <b>Signature:</b>
 

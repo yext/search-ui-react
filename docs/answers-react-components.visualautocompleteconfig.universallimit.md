@@ -4,7 +4,7 @@
 
 ## VisualAutocompleteConfig.universalLimit property
 
-Specify the number of entities to return per vertical \*
+Specify the number of entities to return per vertical. \*
 
 <b>Signature:</b>
 

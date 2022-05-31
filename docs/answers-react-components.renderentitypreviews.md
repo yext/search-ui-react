@@ -4,7 +4,7 @@
 
 ## RenderEntityPreviews type
 
-The type of a functional React component which renders entity previews based on the autocomplete loading state and the vertical results array.
+The type of a functional React component which renders entity previews based on the autocomplete loading state and the vertical results array. [EntityPreviews()](./answers-react-components.entitypreviews.md) is intended to be used here.
 
 <b>Signature:</b>
 
