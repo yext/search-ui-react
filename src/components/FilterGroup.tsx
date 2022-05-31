@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { PropsWithChildren, useMemo } from 'react';
 import { CompositionMethod } from '../hooks';
 import {
   CheckboxOption,
@@ -60,15 +60,16 @@ export function FilterGroup({
   defaultExpanded = true,
   searchable,
   customCssClasses = {},
-  cssCompositionMethod
-}: FilterGroupProps) {
+  cssCompositionMethod,
+  children
+}: PropsWithChildren<FilterGroupProps>) {
   const cssClasses = useMemo(() => {
     const { option, optionLabel, optionInput, ...remainingClasses } = customCssClasses;
     return {
       ...remainingClasses,
-      ...customCssClasses.option && { optionContainer: option },
-      ...customCssClasses.optionLabel && { label: optionLabel },
-      ...customCssClasses.optionInput && { input: optionInput }
+      ...option && { optionContainer: option },
+      ...optionLabel && { label: optionLabel },
+      ...optionInput && { input: optionInput }
     };
   }, [customCssClasses]);
 
@@ -98,6 +99,7 @@ export function FilterGroup({
             />
           );
         })}
+        {children}
       </CollapsibleSection>
     </FilterGroupProvider>
   );

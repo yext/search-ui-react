@@ -281,27 +281,6 @@ export function executeAutocomplete(answersActions: AnswersActions): Promise<Aut
 // @public
 export function executeSearch(answersActions: AnswersActions): Promise<void>;
 
-// @public
-export function Facets(props: FacetsProps): JSX.Element;
-
-// @public
-export interface FacetsCssClasses extends FilterGroupCssClasses {
-    // (undocumented)
-    container?: string;
-    // (undocumented)
-    divider?: string;
-}
-
-// @public
-export interface FacetsProps {
-    collapsible?: boolean;
-    cssCompositionMethod?: CompositionMethod;
-    customCssClasses?: FacetsCssClasses;
-    defaultExpanded?: boolean;
-    searchable?: boolean;
-    searchOnChange?: boolean;
-}
-
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
@@ -412,9 +391,11 @@ declare namespace Filters {
         FilterGroupContextType,
         SearchInput,
         SearchInputProps,
-        HierarchicalFacet,
-        HierarchicalFacetProps,
-        HierarchicalFacetCssClasses,
+        StaticFiltersProvider,
+        StaticFiltersProviderProps,
+        HierarchicalFacetDisplay,
+        HierarchicalFacetDisplayProps,
+        HierarchicalFacetDisplayCssClasses,
         RangeInput,
         RangeInputProps,
         RangeInputCssClasses
@@ -476,12 +457,12 @@ export function getSearchIntents(answersActions: AnswersActions): Promise<Search
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
 
 // @public
-function HierarchicalFacet({ facet, delimiter, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetProps): JSX.Element;
+function HierarchicalFacetDisplay({ facet, delimiter, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetDisplayProps): JSX.Element;
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-interface HierarchicalFacetCssClasses {
+interface HierarchicalFacetDisplayCssClasses {
     // (undocumented)
     allCategoriesOption___active?: string;
     // (undocumented)
@@ -491,24 +472,45 @@ interface HierarchicalFacetCssClasses {
     // (undocumented)
     availableOption__inactive?: string;
     // (undocumented)
-    container?: string;
-    // (undocumented)
     currentCategory?: string;
     // (undocumented)
     parentCategory?: string;
     // (undocumented)
     showMoreButton?: string;
+    // (undocumented)
+    treeContainer?: string;
 }
 
 // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
 //
 // @public
-interface HierarchicalFacetProps {
+interface HierarchicalFacetDisplayProps {
     cssCompositionMethod?: CompositionMethod;
     // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    customCssClasses?: HierarchicalFacetCssClasses;
+    customCssClasses?: HierarchicalFacetDisplayCssClasses;
     delimiter?: string;
     facet: DisplayableFacet;
+    showMoreLimit?: number;
+}
+
+// @public
+export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, hiddenFields, fieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
+
+// @public
+export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+}
+
+// @public
+export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'searchable'> {
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: HierarchicalFacetsCssClasses;
+    delimiter?: string;
+    // (undocumented)
+    fieldIds: string[];
     showMoreLimit?: number;
 }
 
@@ -560,6 +562,31 @@ export interface LocationBiasProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: LocationBiasCssClasses;
     geolocationOptions?: PositionOptions;
+}
+
+// @public
+export function NumericalFacets({ searchOnChange, hiddenFields, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
+
+// @public
+export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+    // (undocumented)
+    rangeInputContainer?: string;
+    // (undocumented)
+    rangeInputDivider?: string;
+}
+
+// @public
+export interface NumericalFacetsProps extends StandardFacetsProps {
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: NumericalFacetsCssClasses;
+    // (undocumented)
+    getFilterDisplayName?: (numberRange: NumberRangeValue) => string;
+    // (undocumented)
+    inputPrefix?: JSX.Element;
 }
 
 // @public
@@ -645,8 +672,6 @@ interface RangeInputCssClasses {
     invalidMessage?: string;
     // (undocumented)
     invalidRowContainer?: string;
-    // (undocumented)
-    label?: string;
     // (undocumented)
     tooltip?: string;
     // (undocumented)
@@ -854,6 +879,28 @@ export interface StandardCardProps extends CardProps {
 }
 
 // @public
+export function StandardFacets(props: StandardFacetsProps): JSX.Element;
+
+// @public
+export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+}
+
+// @public
+export interface StandardFacetsProps {
+    collapsible?: boolean;
+    cssCompositionMethod?: CompositionMethod;
+    customCssClasses?: StandardFacetsCssClasses;
+    defaultExpanded?: boolean;
+    hiddenFields?: string[];
+    searchable?: boolean;
+    searchOnChange?: boolean;
+}
+
+// @public
 export function StandardSection(props: StandardSectionProps): JSX.Element | null;
 
 // @public
@@ -894,6 +941,21 @@ export interface StaticFiltersProps {
     searchOnChange?: boolean;
     title: string;
 }
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+function StaticFiltersProvider({ children, className, searchOnChange }: StaticFiltersProviderProps): JSX.Element;
+
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+//
+// @public
+type StaticFiltersProviderProps = PropsWithChildren<{
+    className?: string;
+    searchOnChange?: boolean;
+}>;
 
 // @public
 export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;

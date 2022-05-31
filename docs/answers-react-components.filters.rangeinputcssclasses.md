@@ -35,7 +35,6 @@ export interface RangeInputCssClasses
 |  [inputRowContainer?](./answers-react-components.filters.rangeinputcssclasses.inputrowcontainer.md) | string | <i>(Optional)</i> |
 |  [invalidMessage?](./answers-react-components.filters.rangeinputcssclasses.invalidmessage.md) | string | <i>(Optional)</i> |
 |  [invalidRowContainer?](./answers-react-components.filters.rangeinputcssclasses.invalidrowcontainer.md) | string | <i>(Optional)</i> |
-|  [label?](./answers-react-components.filters.rangeinputcssclasses.label.md) | string | <i>(Optional)</i> |
 |  [tooltip?](./answers-react-components.filters.rangeinputcssclasses.tooltip.md) | string | <i>(Optional)</i> |
 |  [tooltipContainer?](./answers-react-components.filters.rangeinputcssclasses.tooltipcontainer.md) | string | <i>(Optional)</i> |
 

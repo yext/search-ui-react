@@ -6,6 +6,6 @@ export { FiltersContext, useFiltersContext, FiltersContextType } from './Filters
 export { FilterGroupProvider, FilterGroupProviderProps } from './FilterGroupProvider';
 export { FilterGroupContext, useFilterGroupContext, FilterGroupContextType } from './FilterGroupContext';
 export { SearchInput, SearchInputProps } from './SearchInput';
-// export { StaticFiltersProvider, StaticFiltersProviderProps } from './StaticFiltersProvider';
-export { HierarchicalFacet, HierarchicalFacetProps, HierarchicalFacetCssClasses } from './HierarchicalFacet';
+export { StaticFiltersProvider, StaticFiltersProviderProps } from './StaticFiltersProvider';
+export { HierarchicalFacetDisplay, HierarchicalFacetDisplayProps, HierarchicalFacetDisplayCssClasses } from './HierarchicalFacetDisplay';
 export { RangeInput, RangeInputProps, RangeInputCssClasses } from './RangeInput';

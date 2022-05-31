@@ -17,22 +17,24 @@
 |  [EntityPreviews(\_)](./answers-react-components.entitypreviews.md) | EntityPreviews is intended for use within VisualSearchBar's renderEntityPreviews. It provides results corresponding to its verticalKey through a props.children Function as Compound Component (FACC). |
 |  [executeAutocomplete(answersActions)](./answers-react-components.executeautocomplete.md) | Executes a universal/vertical autocomplete search and return the corresponding response. |
 |  [executeSearch(answersActions)](./answers-react-components.executesearch.md) | Executes a universal/vertical search. |
-|  [Facets(props)](./answers-react-components.facets.md) | A component that displays all facets applicable to the current vertical search. |
 |  [FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [getSearchIntents(answersActions)](./answers-react-components.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./answers-react-components.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |
+|  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, hiddenFields, fieldIds, customCssClasses, delimiter, showMoreLimit })](./answers-react-components.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
 |  [isBoolean(data)](./answers-react-components.isboolean.md) | Type guard for boolean. |
 |  [isCtaData(data)](./answers-react-components.isctadata.md) | Type guard for CtaData. |
 |  [isNumber(data)](./answers-react-components.isnumber.md) | Type guard for number. |
 |  [isString(data)](./answers-react-components.isstring.md) | Type guard for string. |
 |  [isStringOrHighlightedValue(data)](./answers-react-components.isstringorhighlightedvalue.md) | Typeguard for data of type string or HighlightedValue |
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
+|  [NumericalFacets({ searchOnChange, hiddenFields, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps })](./answers-react-components.numericalfacets.md) | A component that displays simple facets applicable to the current vertical search. |
 |  [Pagination(props)](./answers-react-components.pagination.md) | Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages. |
 |  [renderHighlightedValue(highlightedValueOrString, customCssClasses)](./answers-react-components.renderhighlightedvalue.md) | Renders a HighlightedValue with highlighting based on its matchedSubstrings. |
 |  [ResultsCount(props)](./answers-react-components.resultscount.md) | Renders results count of a universal/vertical search. |
 |  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch })](./answers-react-components.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
 |  [SpellCheck({ customCssClasses, cssCompositionMethod, onClick })](./answers-react-components.spellcheck.md) | Renders a suggested query if the Answers API provides one. |
 |  [StandardCard(props)](./answers-react-components.standardcard.md) | This Component renders the base result card. |
+|  [StandardFacets(props)](./answers-react-components.standardfacets.md) | A component that displays simple facets applicable to the current vertical search. |
 |  [StandardSection(props)](./answers-react-components.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
 |  [StaticFilters(props)](./answers-react-components.staticfilters.md) | A component that displays a group of user-configured filters that will be applied to the current vertical search. |
 |  [ThumbsFeedback(props)](./answers-react-components.thumbsfeedback.md) | Renders a quality feedback widget composed of thumbs up and thumbs down buttons. |
@@ -61,15 +63,17 @@
 |  [DirectAnswerCssClasses](./answers-react-components.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [DirectAnswerProps](./answers-react-components.directanswerprops.md) | Props for [DirectAnswer()](./answers-react-components.directanswer.md)<!-- -->. |
 |  [EntityPreviewsProps](./answers-react-components.entitypreviewsprops.md) | The props for the [EntityPreviews()](./answers-react-components.entitypreviews.md) component. |
-|  [FacetsCssClasses](./answers-react-components.facetscssclasses.md) | The CSS class interface for [Facets()](./answers-react-components.facets.md)<!-- -->. |
-|  [FacetsProps](./answers-react-components.facetsprops.md) | Props for the [Facets()](./answers-react-components.facets.md) component. |
 |  [FilterGroupCssClasses](./answers-react-components.filtergroupcssclasses.md) | The CSS class interface for FilterGroup. |
 |  [FilterGroupProps](./answers-react-components.filtergroupprops.md) | Props for the FilterGroup component. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |
+|  [HierarchicalFacetsCssClasses](./answers-react-components.hierarchicalfacetscssclasses.md) | The CSS class interface for [HierarchicalFacets()](./answers-react-components.hierarchicalfacets.md)<!-- -->. |
+|  [HierarchicalFacetsProps](./answers-react-components.hierarchicalfacetsprops.md) | Props for the [HierarchicalFacets()](./answers-react-components.hierarchicalfacets.md) component. |
 |  [HighlightedValueCssClasses](./answers-react-components.highlightedvaluecssclasses.md) | The CSS class interface for [renderHighlightedValue()](./answers-react-components.renderhighlightedvalue.md)<!-- -->. |
 |  [LocationBiasCssClasses](./answers-react-components.locationbiascssclasses.md) | The CSS class interface for the [LocationBias()](./answers-react-components.locationbias.md) component. |
 |  [LocationBiasProps](./answers-react-components.locationbiasprops.md) | The props for the [LocationBias()](./answers-react-components.locationbias.md) component. |
+|  [NumericalFacetsCssClasses](./answers-react-components.numericalfacetscssclasses.md) | The CSS class interface for [NumericalFacets()](./answers-react-components.numericalfacets.md)<!-- -->. |
+|  [NumericalFacetsProps](./answers-react-components.numericalfacetsprops.md) | Props for the [NumericalFacets()](./answers-react-components.numericalfacets.md) component. |
 |  [PaginationCssClasses](./answers-react-components.paginationcssclasses.md) | The CSS classes used for pagination. |
 |  [PaginationProps](./answers-react-components.paginationprops.md) | Props for [Pagination()](./answers-react-components.pagination.md) component |
 |  [ResultsCountCssClasses](./answers-react-components.resultscountcssclasses.md) | The CSS class interface for [ResultsCount()](./answers-react-components.resultscount.md)<!-- -->. |
@@ -83,6 +87,8 @@
 |  [StandardCardCssClasses](./answers-react-components.standardcardcssclasses.md) | The CSS class interface used for the StandardCardDisplay. |
 |  [StandardCardData](./answers-react-components.standardcarddata.md) | The data used by the [StandardCard()](./answers-react-components.standardcard.md) and taken from the original Result. |
 |  [StandardCardProps](./answers-react-components.standardcardprops.md) | Props for a StandardCard. |
+|  [StandardFacetsCssClasses](./answers-react-components.standardfacetscssclasses.md) | The CSS class interface for [StandardFacets()](./answers-react-components.standardfacets.md)<!-- -->. |
+|  [StandardFacetsProps](./answers-react-components.standardfacetsprops.md) | Props for the [StandardFacets()](./answers-react-components.standardfacets.md) component. |
 |  [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection()](./answers-react-components.standardsection.md)<!-- -->. |
 |  [StandardSectionProps](./answers-react-components.standardsectionprops.md) | The configuration for a StandardSection. |
 |  [StaticFiltersCssClasses](./answers-react-components.staticfilterscssclasses.md) | The CSS class interface for [StaticFilters()](./answers-react-components.staticfilters.md)<!-- -->. |

@@ -96,10 +96,22 @@ export {
 } from './StaticFilters';
 
 export {
-  Facets,
-  FacetsCssClasses,
-  FacetsProps
-} from './Facets';
+  StandardFacets,
+  StandardFacetsCssClasses,
+  StandardFacetsProps
+} from './StandardFacets';
+
+export {
+  HierarchicalFacets,
+  HierarchicalFacetsCssClasses,
+  HierarchicalFacetsProps
+} from './HierarchicalFacets';
+
+export {
+  NumericalFacets,
+  NumericalFacetsCssClasses,
+  NumericalFacetsProps
+} from './NumericalFacets';
 
 export {
   FilterGroupProps,

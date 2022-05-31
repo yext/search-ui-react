@@ -9,7 +9,8 @@ import {
   VerticalResults,
   LocationBias,
   StaticFilters,
-  Facets,
+  StandardFacets,
+  HierarchicalFacets,
   ApplyFiltersButton
 } from '@yext/answers-react-components';
 
@@ -26,7 +27,16 @@ export function PeoplePage() {
       <SearchBar />
       <div className='flex'>
         <div className='min-w-fit pr-4'>
-          <Facets searchOnChange={false}/>
+          <StandardFacets
+            searchable={true}
+            searchOnChange={false}
+            hiddenFields={hierarchicalFacetFieldIds}
+          />
+          <HierarchicalFacets
+            collapsible={true}
+            searchOnChange={false}
+            fieldIds={hierarchicalFacetFieldIds}
+          />
           <StaticFilters
             fieldId='c_employeeCountry'
             title='Employee Country'
