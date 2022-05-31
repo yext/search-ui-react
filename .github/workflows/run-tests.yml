@@ -14,7 +14,6 @@ jobs:
         npm run build
       node_matrix: '["14.x", "16.x", "18.x"]'
 
-  # It's necessary to use v12 of the react-testing-library since v13 was updated to only support react 18
   call_run_tests-react-17:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
