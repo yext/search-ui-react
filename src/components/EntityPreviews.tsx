@@ -1,4 +1,4 @@
-import { Result, VerticalResults as VerticalResultsData, UniversalLimit } from '@yext/answers-headless-react';
+import { Result, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
 import { cloneElement, isValidElement, ReactNode } from 'react';
 import { DropdownItem } from './Dropdown/DropdownItem';
 import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
@@ -12,9 +12,7 @@ export interface EntityPreviewsProps {
   /** Results associated with the provided verticalKey are passed to the EntityPreviews children function. */
   verticalKey: string,
   /** The entity preview render function which is passed results for the specified vertical. */
-  children: (results: Result[], index: number) => JSX.Element,
-  /** Limits the number of results provided to the render function. */
-  limit?: number
+  children: (results: Result[], index: number) => JSX.Element
 }
 
 /**
@@ -69,39 +67,6 @@ function getVerticalKeyToResults(verticalResultsArray: VerticalResultsData[]): R
   return verticalResultsArray.reduce<Record<string, Result[]>>((prev, current) => {
     prev[current.verticalKey] = current.results;
     return prev;
-  }, {});
-}
-
-/**
- * Calculates the restrictVerticals query param from a ReactNode containing EntityPreviews.
- */
-export function calculateRestrictVerticals(children: ReactNode): string[] {
-  const restrictedVerticalsSet = new Set<string>();
-  recursivelyMapChildren(children, c => {
-    if (isValidElement(c) && c.type === EntityPreviews) {
-      const { verticalKey } = c.props as EntityPreviewsProps;
-      restrictedVerticalsSet.add(verticalKey);
-    }
-    return c;
-  });
-  return Array.from(restrictedVerticalsSet);
-}
-
-/**
- * Calculates the universalLimit query param from a ReactNode containing EntityPreviews.
- */
-export function calculateUniversalLimit(children: ReactNode): UniversalLimit {
-  const universalLimit: Record<string, number | null> = {};
-  recursivelyMapChildren(children, c => {
-    if (isValidElement(c) && c.type === EntityPreviews) {
-      const { verticalKey, limit } = c.props as EntityPreviewsProps;
-      universalLimit[verticalKey] = limit || null;
-    }
-    return c;
-  });
-  return Object.keys(universalLimit).reduce<UniversalLimit>((limitWithDefaults, verticalKey) => {
-    limitWithDefaults[verticalKey] = universalLimit[verticalKey] ?? 4;
-    return limitWithDefaults;
   }, {});
 }
 

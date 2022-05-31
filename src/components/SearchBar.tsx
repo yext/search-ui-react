@@ -2,6 +2,7 @@ import {
   AnswersHeadless,
   QuerySource,
   SearchTypeEnum,
+  UniversalLimit,
   useAnswersActions,
   useAnswersState,
   useAnswersUtilities,
@@ -27,8 +28,6 @@ import { FocusedItemData } from './Dropdown/FocusContext';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import {
   calculateEntityPreviewsCount,
-  calculateRestrictVerticals,
-  calculateUniversalLimit,
   transformEntityPreviews
 } from './EntityPreviews';
 import { SearchButton } from './SearchButton';
@@ -118,11 +117,15 @@ export type RenderEntityPreviews = (
  */
 export interface VisualAutocompleteConfig {
   /** The Answers Headless instance used to perform visual autocomplete searches. */
-  entityPreviewSearcher?: AnswersHeadless,
+  entityPreviewSearcher: AnswersHeadless,
+  /** Renders entity previews based on the autocomplete loading state and results. */
+  renderEntityPreviews: RenderEntityPreviews,
+  /** Specify which verticals to return for VisualAutocomplete */
+  restrictVerticals: string[],
+  /** Specify the number of entities to return per vertical **/
+  universalLimit?: UniversalLimit,
   /** The debouncing time, in milliseconds, for making API requests for entity previews. */
-  entityPreviewsDebouncingTime?: number,
-  /** Renders entity previeews based on the autocomplete loading state and results. */
-  renderEntityPreviews?: RenderEntityPreviews
+  entityPreviewsDebouncingTime?: number
 }
 
 /**
@@ -171,7 +174,7 @@ export function SearchBar({
   placeholder,
   geolocationOptions,
   hideRecentSearches,
-  visualAutocompleteConfig = {},
+  visualAutocompleteConfig,
   hideVerticalLinks,
   onSelectVerticalLink,
   verticalKeyToLabel,
@@ -183,8 +186,10 @@ export function SearchBar({
   const {
     entityPreviewSearcher,
     renderEntityPreviews,
+    restrictVerticals,
+    universalLimit,
     entityPreviewsDebouncingTime = 500
-  } = visualAutocompleteConfig;
+  } = visualAutocompleteConfig ?? {};
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
   const reportAnalyticsEvent = useSearchBarAnalytics();
@@ -246,13 +251,11 @@ export function SearchBar({
   const entityPreviews = renderEntityPreviews
     && renderEntityPreviews(entityPreviewsLoading, verticalResultsArray, handleSubmit);
   const updateEntityPreviews = useCallback((query: string) => {
-    if (!renderEntityPreviews) {
+    if (!renderEntityPreviews || !restrictVerticals) {
       return;
     }
-    const restrictVerticals = calculateRestrictVerticals(entityPreviews);
-    const universalLimit = calculateUniversalLimit(entityPreviews);
-    executeEntityPreviewsQuery(query, universalLimit, restrictVerticals);
-  }, [entityPreviews, executeEntityPreviewsQuery, renderEntityPreviews]);
+    executeEntityPreviewsQuery(query, universalLimit ?? {}, restrictVerticals);
+  }, [executeEntityPreviewsQuery, renderEntityPreviews, restrictVerticals, universalLimit]);
 
   const handleInputFocus = useCallback((value = '') => {
     answersActions.setQuery(value);
