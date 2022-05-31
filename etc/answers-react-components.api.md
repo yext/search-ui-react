@@ -25,6 +25,7 @@ import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
 import { SelectableFilter } from '@yext/answers-headless-react';
 import { Theme } from '@css-modules-theme/core';
+import { UniversalLimit } from '@yext/answers-headless-react';
 import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
@@ -271,7 +272,6 @@ export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
 // @public
 export interface EntityPreviewsProps {
     children: (results: Result[], index: number) => JSX.Element;
-    limit?: number;
     verticalKey: string;
 }
 
@@ -964,8 +964,10 @@ export interface VerticalResultsProps {
 // @public
 export interface VisualAutocompleteConfig {
     entityPreviewsDebouncingTime?: number;
-    entityPreviewSearcher?: AnswersHeadless;
-    renderEntityPreviews?: RenderEntityPreviews;
+    entityPreviewSearcher: AnswersHeadless;
+    renderEntityPreviews: RenderEntityPreviews;
+    restrictVerticals: string[];
+    universalLimit?: UniversalLimit;
 }
 
 // Warnings were encountered during analysis:
