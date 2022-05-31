@@ -1,5 +1,3 @@
-import * as Filters from './Filters';
-
 export {
   SearchBar,
   SearchBarCssClasses,
@@ -89,6 +87,12 @@ export {
 } from './ResultsCount';
 
 export {
+  FilterOptionConfig,
+  RangeInputCssClasses,
+  HierarchicalFacetDisplayCssClasses
+} from './Filters';
+
+export {
   StaticFilters,
   StaticFiltersCssClasses,
   StaticFiltersProps,
@@ -142,4 +146,3 @@ export {
 
 export * from './sections';
 export * from './AnalyticsProvider';
-export { Filters };

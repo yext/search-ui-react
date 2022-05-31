@@ -11,7 +11,7 @@ The CSS class interface for [NumericalFacets()](./answers-react-components.numer
 ```typescript
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses 
 ```
-<b>Extends:</b> [FilterGroupCssClasses](./answers-react-components.filtergroupcssclasses.md)<!-- -->, RangeInputCssClasses
+<b>Extends:</b> [FilterGroupCssClasses](./answers-react-components.filtergroupcssclasses.md)<!-- -->, [RangeInputCssClasses](./answers-react-components.rangeinputcssclasses.md)
 
 ## Properties
 

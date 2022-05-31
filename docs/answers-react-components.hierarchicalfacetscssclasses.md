@@ -11,7 +11,7 @@ The CSS class interface for [HierarchicalFacets()](./answers-react-components.hi
 ```typescript
 export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses 
 ```
-<b>Extends:</b> HierarchicalFacetDisplayCssClasses
+<b>Extends:</b> [HierarchicalFacetDisplayCssClasses](./answers-react-components.hierarchicalfacetdisplaycssclasses.md)
 
 ## Properties
 

@@ -30,7 +30,7 @@ export interface FilterGroupCssClasses {
 export interface FilterGroupProps {
   /** The fieldId corresponding to the filter group. */
   fieldId: string,
-  /** {@inheritDoc Filters.FilterOptionConfig} */
+  /** {@inheritDoc FilterOptionConfig} */
   filterOptions: FilterOptionConfig[],
   /** The displayed label for the filter group. */
   title: string,

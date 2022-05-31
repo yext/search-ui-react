@@ -26,10 +26,11 @@ export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCs
  * @public
  */
 export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'searchable'> {
+  /** The `DisplayableFacet` to render as a HierarchicalFacetDisplay. */
   fieldIds: string[],
-  /** The delimiter for determining facet hierarchies, defaults to "\>" */
+  /** The delimiter for determining facet hierarchies, defaults to "\>". */
   delimiter?: string,
-  /** The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4 */
+  /** The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4. */
   showMoreLimit?: number,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: HierarchicalFacetsCssClasses,
@@ -50,7 +51,7 @@ export function HierarchicalFacets({
   searchOnChange,
   collapsible,
   defaultExpanded,
-  hiddenFields = [],
+  excludeFieldIds = [],
   fieldIds,
   customCssClasses = {},
   delimiter,
@@ -60,7 +61,7 @@ export function HierarchicalFacets({
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.container}>
       {facets => facets
         .filter(f => f.options.length > 0
-          && !hiddenFields.includes(f.fieldId)
+          && !excludeFieldIds.includes(f.fieldId)
           && fieldIds.includes(f.fieldId))
         .map((f, i) => {
           return (

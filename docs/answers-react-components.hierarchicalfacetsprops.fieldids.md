@@ -4,6 +4,8 @@
 
 ## HierarchicalFacetsProps.fieldIds property
 
+The `DisplayableFacet` to render as a HierarchicalFacetDisplay.
+
 <b>Signature:</b>
 
 ```typescript

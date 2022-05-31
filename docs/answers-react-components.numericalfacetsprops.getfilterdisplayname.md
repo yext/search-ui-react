@@ -4,8 +4,15 @@
 
 ## NumericalFacetsProps.getFilterDisplayName property
 
+Returns the filter's display name based on the range values which is used when the filter is displayed by other components such as AppliedFilters.
+
 <b>Signature:</b>
 
 ```typescript
-getFilterDisplayName?: (numberRange: NumberRangeValue) => string;
+getFilterDisplayName?: (value: NumberRangeValue) => string;
 ```
+
+## Remarks
+
+By default, the displayName separates the range with a dash such as '10 - 20'. If the range is unbounded, it will display as 'Up to 20' or 'Over 10'.
+

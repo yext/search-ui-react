@@ -4,7 +4,7 @@
 
 ## HierarchicalFacetsProps.showMoreLimit property
 
-The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4
+The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4.
 
 <b>Signature:</b>
 

@@ -32,6 +32,10 @@ const builtInCssClasses: ApplyFiltersButtonCssClasses = {
  * Runs a vertical search.
  * By default has `position: sticky` styling that anchors it to the bottom of the page.
  *
+ * @remarks
+ * This is intended to be used when `searchOnChange` field is set to false on all
+ * the Facets/StaticFilters components.
+ *
  * @public
  */
 export function ApplyFiltersButton({

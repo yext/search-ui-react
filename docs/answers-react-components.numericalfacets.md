@@ -4,27 +4,23 @@
 
 ## NumericalFacets() function
 
-A component that displays simple facets applicable to the current vertical search.
+A component that displays numerical facets applicable to the current vertical search.
 
 <b>Signature:</b>
 
 ```typescript
-export declare function NumericalFacets({ searchOnChange, hiddenFields, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
+export declare function NumericalFacets({ searchOnChange, excludeFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { searchOnChange, hiddenFields, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps } | [NumericalFacetsProps](./answers-react-components.numericalfacetsprops.md) |  |
+|  { searchOnChange, excludeFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps } | [NumericalFacetsProps](./answers-react-components.numericalfacetsprops.md) |  |
 
 <b>Returns:</b>
 
 JSX.Element
 
 A React component for facets
-
-## Remarks
-
-Numerical facets is not included. Hierachical facets will not be display in a tree level structure. Use `hiddenFields` to exclude hierachical facets, if any, when using this component.
 

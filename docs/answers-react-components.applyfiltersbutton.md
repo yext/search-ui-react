@@ -22,3 +22,7 @@ export declare function ApplyFiltersButton({ customCssClasses, label }: ApplyFil
 
 JSX.Element
 
+## Remarks
+
+This is intended to be used when `searchOnChange` field is set to false on all the Facets/StaticFilters components.
+

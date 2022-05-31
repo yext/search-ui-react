@@ -11,21 +11,16 @@ import { AnalyticsService } from '@yext/analytics';
 import { AnswersActions } from '@yext/answers-headless-react';
 import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
-import { Context } from 'react';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/answers-headless-react';
-import { DisplayableFacet } from '@yext/answers-headless-react';
 import { HighlightedValue } from '@yext/answers-headless-react';
 import { Matcher } from '@yext/answers-headless-react';
 import { NumberRangeValue } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
-import { ReactNode } from 'react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
-import { SelectableFilter } from '@yext/answers-headless-react';
 import { Theme } from '@css-modules-theme/core';
-import { UseCollapseOutput } from 'react-collapsed/dist/types';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
@@ -96,9 +91,6 @@ export interface AppliedFiltersProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: AppliedFiltersCssClasses;
     hiddenFields?: Array<string>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
-    //
-    // (undocumented)
     hierarchicalFacetsDelimiter?: string;
     hierarchicalFacetsFieldIds?: string[];
 }
@@ -143,70 +135,6 @@ export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
 export interface CardProps {
     result: Result;
 }
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface CheckboxCssClasses {
-    // (undocumented)
-    container?: string;
-    // (undocumented)
-    input?: string;
-    // (undocumented)
-    input___disabled?: string;
-    // (undocumented)
-    label?: string;
-    // (undocumented)
-    label___disabled?: string;
-    // (undocumented)
-    optionContainer?: string;
-    // (undocumented)
-    tooltip?: string;
-    // (undocumented)
-    tooltipContainer?: string;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface CheckboxOptionProps extends FilterOptionConfig {
-    cssCompositionMethod?: CompositionMethod;
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    customCssClasses?: CheckboxCssClasses;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface CollapsibleLabelProps {
-    label?: string;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-type CollapsibleSectionProps = PropsWithChildren<{
-    className?: string;
-}>;
 
 // @public
 export type CompositionMethod = 'merge' | 'replace' | 'assign';
@@ -281,40 +209,8 @@ export function executeAutocomplete(answersActions: AnswersActions): Promise<Aut
 // @public
 export function executeSearch(answersActions: AnswersActions): Promise<void>;
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function FacetsProvider({ children, className, searchOnChange }: FacetsProviderProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface FacetsProviderProps {
-    children?: (facets: DisplayableFacet[]) => ReactNode;
-    className?: string;
-    searchOnChange?: boolean;
-}
-
 // @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
-
-// @public
-const FilterGroupContext: Context<FilterGroupContextType | null>;
-
-// @public
-interface FilterGroupContextType {
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    fieldId: string;
-    getCollapseProps: UseCollapseOutput['getCollapseProps'];
-    getToggleProps: UseCollapseOutput['getToggleProps'];
-    isExpanded: boolean;
-    isOptionsDisabled: boolean;
-    searchValue: string;
-    setIsOptionsDisabled: (value: boolean) => void;
-    setSearchValue: (value: string) => void;
-}
 
 // @public
 export interface FilterGroupCssClasses {
@@ -337,80 +233,17 @@ export interface FilterGroupProps {
     customCssClasses?: FilterGroupCssClasses;
     defaultExpanded?: boolean;
     fieldId: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
-    //
-    // (undocumented)
     filterOptions: FilterOptionConfig[];
     searchable?: boolean;
     title: string;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-function FilterGroupProvider(props: FilterGroupProviderProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-type FilterGroupProviderProps = PropsWithChildren<{
-    defaultExpanded?: boolean;
-    fieldId: string;
-}>;
-
-// @public
-interface FilterOptionConfig {
+export interface FilterOptionConfig {
     displayName?: string;
     matcher?: Matcher;
     selectedByDefault?: boolean;
     value: string | number | boolean | NumberRangeValue;
-}
-
-declare namespace Filters {
-    export {
-        CheckboxOption,
-        CheckboxOptionProps,
-        CheckboxCssClasses,
-        FilterOptionConfig,
-        CollapsibleLabel,
-        CollapsibleLabelProps,
-        CollapsibleSection,
-        CollapsibleSectionProps,
-        FacetsProvider,
-        FacetsProviderProps,
-        FiltersContext,
-        useFiltersContext,
-        FiltersContextType,
-        FilterGroupProvider,
-        FilterGroupProviderProps,
-        FilterGroupContext,
-        useFilterGroupContext,
-        FilterGroupContextType,
-        SearchInput,
-        SearchInputProps,
-        StaticFiltersProvider,
-        StaticFiltersProviderProps,
-        HierarchicalFacetDisplay,
-        HierarchicalFacetDisplayProps,
-        HierarchicalFacetDisplayCssClasses,
-        RangeInput,
-        RangeInputProps,
-        RangeInputCssClasses
-    }
-}
-export { Filters }
-
-// @public
-const FiltersContext: Context<FiltersContextType | null>;
-
-// @public
-interface FiltersContextType {
-    applyFilters: () => void;
-    filters: SelectableFilter[];
-    selectFilter: (filter: SelectableFilter) => void;
 }
 
 // @public
@@ -456,13 +289,10 @@ export function getSearchIntents(answersActions: AnswersActions): Promise<Search
 // @public
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
 
-// @public
-function HierarchicalFacetDisplay({ facet, delimiter, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetDisplayProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/answers-react-components" does not have an export "Filters"
 //
 // @public
-interface HierarchicalFacetDisplayCssClasses {
+export interface HierarchicalFacetDisplayCssClasses {
     // (undocumented)
     allCategoriesOption___active?: string;
     // (undocumented)
@@ -481,20 +311,8 @@ interface HierarchicalFacetDisplayCssClasses {
     treeContainer?: string;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-interface HierarchicalFacetDisplayProps {
-    cssCompositionMethod?: CompositionMethod;
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    customCssClasses?: HierarchicalFacetDisplayCssClasses;
-    delimiter?: string;
-    facet: DisplayableFacet;
-    showMoreLimit?: number;
-}
-
-// @public
-export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, hiddenFields, fieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
+export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, excludeFieldIds, fieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
 
 // @public
 export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses {
@@ -509,7 +327,6 @@ export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'sear
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: HierarchicalFacetsCssClasses;
     delimiter?: string;
-    // (undocumented)
     fieldIds: string[];
     showMoreLimit?: number;
 }
@@ -565,7 +382,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function NumericalFacets({ searchOnChange, hiddenFields, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
+export function NumericalFacets({ searchOnChange, excludeFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 
 // @public
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
@@ -583,9 +400,7 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
 export interface NumericalFacetsProps extends StandardFacetsProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: NumericalFacetsCssClasses;
-    // (undocumented)
-    getFilterDisplayName?: (numberRange: NumberRangeValue) => string;
-    // (undocumented)
+    getFilterDisplayName?: (value: NumberRangeValue) => string;
     inputPrefix?: JSX.Element;
 }
 
@@ -625,15 +440,10 @@ export interface PaginationProps {
     paginateAllOnNoResults?: boolean;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
+// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/answers-react-components" does not have an export "Filters"
 //
 // @public
-function RangeInput(props: RangeInputProps): JSX.Element | null;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface RangeInputCssClasses {
+export interface RangeInputCssClasses {
     // (undocumented)
     applyButton?: string;
     // (undocumented)
@@ -676,17 +486,6 @@ interface RangeInputCssClasses {
     tooltip?: string;
     // (undocumented)
     tooltipContainer?: string;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface RangeInputProps {
-    cssCompositionMethod?: CompositionMethod;
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    customCssClasses?: RangeInputCssClasses;
-    getFilterDisplayName?: (value: NumberRangeValue) => string;
-    inputPrefix?: JSX.Element;
 }
 
 // @public
@@ -777,20 +576,6 @@ export interface SearchBarProps {
     recentSearchesLimit?: number;
     verticalKeyToLabel?: (verticalKey: string) => string;
     visualAutocompleteConfig?: VisualAutocompleteConfig;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function SearchInput(props: SearchInputProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface SearchInputProps {
-    className?: string;
-    placeholderText?: string;
 }
 
 // @public
@@ -895,7 +680,7 @@ export interface StandardFacetsProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardFacetsCssClasses;
     defaultExpanded?: boolean;
-    hiddenFields?: string[];
+    excludeFieldIds?: string[];
     searchable?: boolean;
     searchOnChange?: boolean;
 }
@@ -941,21 +726,6 @@ export interface StaticFiltersProps {
     searchOnChange?: boolean;
     title: string;
 }
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function StaticFiltersProvider({ children, className, searchOnChange }: StaticFiltersProviderProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-type StaticFiltersProviderProps = PropsWithChildren<{
-    className?: string;
-    searchOnChange?: boolean;
-}>;
 
 // @public
 export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
@@ -1020,16 +790,6 @@ export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analy
 // @public
 export function useComposedCssClasses<ClassInterface>(builtInClasses: ClassInterface, customClasses?: ClassInterface, cssCompositionMethod?: CompositionMethod): ClassInterface | Theme;
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function useFilterGroupContext(): FilterGroupContextType;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function useFiltersContext(): FiltersContextType;
-
 // @public
 export function validateData<TypeGuards extends TypeGuardRecord>(data: any, typeGuards: TypeGuards): ValidatedData<TypeGuards>;
 
@@ -1089,11 +849,6 @@ export interface VisualAutocompleteConfig {
     entityPreviewSearcher?: AnswersHeadless;
     renderEntityPreviews?: RenderEntityPreviews;
 }
-
-// Warnings were encountered during analysis:
-//
-// src/components/Filters/FilterGroupProvider.tsx:12:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// src/components/Filters/FilterGroupProvider.tsx:14:3 - (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
 
 // (No @packageDocumentation comment for this package)
 

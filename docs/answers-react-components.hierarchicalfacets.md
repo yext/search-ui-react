@@ -9,14 +9,14 @@ A component that displays hierarchical facets, in a tree level structure, applic
 <b>Signature:</b>
 
 ```typescript
-export declare function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, hiddenFields, fieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
+export declare function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, excludeFieldIds, fieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { searchOnChange, collapsible, defaultExpanded, hiddenFields, fieldIds, customCssClasses, delimiter, showMoreLimit } | [HierarchicalFacetsProps](./answers-react-components.hierarchicalfacetsprops.md) |  |
+|  { searchOnChange, collapsible, defaultExpanded, excludeFieldIds, fieldIds, customCssClasses, delimiter, showMoreLimit } | [HierarchicalFacetsProps](./answers-react-components.hierarchicalfacetsprops.md) |  |
 
 <b>Returns:</b>
 

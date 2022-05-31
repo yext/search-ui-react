@@ -4,6 +4,8 @@
 
 ## NumericalFacetsProps.inputPrefix property
 
+An optional element which renders in front of the input text.
+
 <b>Signature:</b>
 
 ```typescript

@@ -30,7 +30,7 @@ export function PeoplePage() {
           <StandardFacets
             searchable={true}
             searchOnChange={false}
-            hiddenFields={hierarchicalFacetFieldIds}
+            excludeFieldIds={hierarchicalFacetFieldIds}
           />
           <HierarchicalFacets
             collapsible={true}

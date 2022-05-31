@@ -25,8 +25,19 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
  * @public
  */
 export interface NumericalFacetsProps extends StandardFacetsProps {
+  /**
+   * Returns the filter's display name based on the range values which is used when the filter
+   * is displayed by other components such as AppliedFilters.
+   *
+   * @remarks
+   * By default, the displayName separates the range with a dash such as '10 - 20'.
+   * If the range is unbounded, it will display as 'Up to 20' or 'Over 10'.
+   */
+  getFilterDisplayName?: (value: NumberRangeValue) => string,
+  /**
+   * An optional element which renders in front of the input text.
+   */
   inputPrefix?: JSX.Element,
-  getFilterDisplayName?: (numberRange: NumberRangeValue) => string,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: NumericalFacetsCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -34,12 +45,7 @@ export interface NumericalFacetsProps extends StandardFacetsProps {
 }
 
 /**
- * A component that displays simple facets applicable to the current vertical search.
- *
- * @remarks
- * Numerical facets is not included. Hierachical facets will not be display in a
- * tree level structure. Use `hiddenFields` to exclude hierachical facets, if any,
- * when using this component.
+ * A component that displays numerical facets applicable to the current vertical search.
  *
  * @param props - {@link NumericalFacetsProps}
  * @returns A React component for facets
@@ -48,7 +54,7 @@ export interface NumericalFacetsProps extends StandardFacetsProps {
  */
 export function NumericalFacets({
   searchOnChange,
-  hiddenFields = [],
+  excludeFieldIds = [],
   getFilterDisplayName,
   inputPrefix = <>$</>,
   customCssClasses = {},
@@ -65,7 +71,7 @@ export function NumericalFacets({
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.container}>
       {facets => facets
-        .filter(f => !hiddenFields.includes(f.fieldId) && isNumericalFacet(f))
+        .filter(f => !excludeFieldIds.includes(f.fieldId) && isNumericalFacet(f))
         .map((f, i) => {
           return (
             <Fragment key={f.fieldId}>
@@ -91,7 +97,7 @@ export function NumericalFacets({
   );
 }
 
-export function isNumericalFacet(facet: DisplayableFacet): boolean {
+function isNumericalFacet(facet: DisplayableFacet): boolean {
   return facet.options.length > 0 && isNumberRangeFilter(facet.options[0]);
 }
 

@@ -32,7 +32,7 @@ export interface StandardFacetsProps {
    */
   searchOnChange?: boolean,
   /** List of filter ids that should not be displayed. */
-  hiddenFields?: string[],
+  excludeFieldIds?: string[],
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardFacetsCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -53,11 +53,11 @@ export interface StandardFacetsProps {
  * @public
  */
 export function StandardFacets(props: StandardFacetsProps) {
-  const { searchOnChange, hiddenFields = [], customCssClasses = {}, ...filterGroupProps } = props;
+  const { searchOnChange, excludeFieldIds = [], customCssClasses = {}, ...filterGroupProps } = props;
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.container}>
       {facets => facets
-        .filter(f => !hiddenFields.includes(f.fieldId) && isStringFacet(f))
+        .filter(f => !excludeFieldIds.includes(f.fieldId) && isStringFacet(f))
         .map((f, i) => {
           return (
             <Fragment key={f.fieldId}>
@@ -77,7 +77,7 @@ export function StandardFacets(props: StandardFacetsProps) {
   );
 }
 
-export function isStringFacet(facet: DisplayableFacet): boolean {
+function isStringFacet(facet: DisplayableFacet): boolean {
   return facet.options.length > 0 && typeof facet.options[0].value === 'string';
 }
 
