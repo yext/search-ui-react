@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { AnswersHeadless, FacetOption, Source, State } from '@yext/answers-headless-react';
+import { AnswersHeadless, FacetOption, NumberRangeValue, Source, State } from '@yext/answers-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
@@ -83,6 +83,24 @@ describe('Facets', () => {
 
     userEvent.click(cheapCheckbox);
     expectFacetOptionSet(actions, priceFacet.fieldId, priceFacet.options[1], true);
+  });
+
+  // it('getFilterDisplayName field works as expected', () => {
+  //   const getFilterDisplayName = (value: NumberRangeValue) => {
+  //     return 'start-' + value.start.value + ' end-' + value.end.value;
+  //   };
+
+  //   render(<NumericalFacets getFilterDisplayName={getFilterDisplayName}/>);
+  //   const priceFacet = DisplayableFacets[1];
+  //   priceFacet.options.forEach(o => {
+  //     const expectedDisplayName = getFilterDisplayName(o.value as NumberRangeValue);
+  //     expect(screen.getByText(expectedDisplayName)).toBeDefined();
+  //   });
+  // });
+
+  it('inputPrefix field works as expected', () => {
+    render(<NumericalFacets inputPrefix={<>some prefix</>}/>);
+    expect(screen.getAllByText('some prefix').length).toEqual(2);
   });
 });
 
