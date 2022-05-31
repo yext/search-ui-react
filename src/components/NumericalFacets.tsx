@@ -63,8 +63,8 @@ export function NumericalFacets({
   const rangeInputCssClasses = useMemo(() => {
     return {
       ...customCssClasses,
-      container: customCssClasses.inputContainer,
-      divider: customCssClasses.divider
+      container: customCssClasses.rangeInputContainer,
+      divider: customCssClasses.rangeInputDivider
     };
   }, [customCssClasses]);
 
