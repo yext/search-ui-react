@@ -7,7 +7,7 @@ import {
   StandardCard,
   VerticalResults,
   LocationBias,
-  StaticFilters,
+  StaticFilters
 } from '@yext/answers-react-components';
 import { useLayoutEffect } from 'react';
 import { Facets, hierarchicalFacetFieldIds } from '../components/Facets';
@@ -20,8 +20,7 @@ export function PeoplePage() {
 
   return (
     <div>
-      <SearchBar 
-      />
+      <SearchBar />
       <div className='flex'>
         <div className='min-w-fit pr-4'>
           <Facets />

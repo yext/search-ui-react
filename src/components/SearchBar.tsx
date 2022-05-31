@@ -97,7 +97,7 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 
 /**
  * The type of a functional React component which renders entity previews based on the autocomplete loading
- * state and the vertical results array.
+ * state and the vertical results array. {@link EntityPreviews} is intended to be used here.
  *
  * @remarks
  * An onSubmit function is provided to allow an entity preview to be submitted.
@@ -118,11 +118,14 @@ export type RenderEntityPreviews = (
 export interface VisualAutocompleteConfig {
   /** The Answers Headless instance used to perform visual autocomplete searches. */
   entityPreviewSearcher: AnswersHeadless,
-  /** Renders entity previews based on the autocomplete loading state and results. */
+  /**
+   * Renders entity previews based on the autocomplete loading state and results.
+   * {@link EntityPreviews} is intended to be used here.
+   **/
   renderEntityPreviews: RenderEntityPreviews,
-  /** Specify which verticals to return for VisualAutocomplete */
+  /** Specify which verticals to return for VisualAutocomplete. */
   restrictVerticals: string[],
-  /** Specify the number of entities to return per vertical **/
+  /** Specify the number of entities to return per vertical. **/
   universalLimit?: UniversalLimit,
   /** The debouncing time, in milliseconds, for making API requests for entity previews. */
   entityPreviewsDebouncingTime?: number
