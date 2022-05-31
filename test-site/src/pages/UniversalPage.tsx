@@ -48,9 +48,7 @@ export default function UniversalPage(): JSX.Element {
 
   return (
     <div>
-      <SearchBar 
-        visualAutocompleteConfig={visualAutocompleteConfig}
-      />
+      <SearchBar visualAutocompleteConfig={visualAutocompleteConfig}/>
       <SpellCheck />
       <DirectAnswer />
       <ResultsCount />
