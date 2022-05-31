@@ -436,7 +436,7 @@ Apache License
 
 The following NPM package may be included in this product:
 
- - @reduxjs/toolkit@1.8.1
+ - @reduxjs/toolkit@1.8.2
 
 This package contains the following license and notice below:
 
@@ -832,7 +832,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/answers-headless-react@1.1.1
+ - @yext/answers-headless-react@1.1.1-alpha.123
 
 This package contains the following license and notice below:
 
@@ -873,7 +873,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/answers-headless@1.1.0
+ - @yext/answers-headless@1.1.1-alpha.0-95
 
 This package contains the following license and notice below:
 
@@ -2738,7 +2738,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - immer@9.0.13
+ - immer@9.0.14
 
 This package contains the following license and notice below:
 
@@ -4006,6 +4006,7 @@ The following NPM packages may be included in this product:
  - react-is@16.13.1
  - react@17.0.2
  - scheduler@0.20.2
+ - use-sync-external-store@1.1.0
 
 These packages each contain the following license and notice below:
 
