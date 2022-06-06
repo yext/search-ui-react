@@ -29,5 +29,3 @@ module.exports = (path, options) => {
     },
   });
 };
-
-// export default resolver;
