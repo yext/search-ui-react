@@ -267,15 +267,6 @@ export type DropdownItemProps = PropsWithChildren<{
 }>;
 
 // @public
-export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
-
-// @public
-export interface EntityPreviewsProps {
-    children: (results: Result[], index: number) => JSX.Element;
-    verticalKey: string;
-}
-
-// @public
 export function executeAutocomplete(answersActions: AnswersActions): Promise<AutocompleteResponse | undefined>;
 
 // @public
@@ -609,7 +600,7 @@ interface RangeInputProps {
 }
 
 // @public
-export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
+export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element | null;
 
 // @public
 export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;

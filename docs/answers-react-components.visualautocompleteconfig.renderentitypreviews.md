@@ -4,7 +4,7 @@
 
 ## VisualAutocompleteConfig.renderEntityPreviews property
 
-Renders entity previews based on the autocomplete loading state and results. [EntityPreviews()](./answers-react-components.entitypreviews.md) is intended to be used here.
+Renders entity previews based on the autocomplete loading state and results.
 
 <b>Signature:</b>
 
