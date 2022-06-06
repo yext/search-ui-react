@@ -26,10 +26,6 @@ import { DropdownItem } from './Dropdown/DropdownItem';
 import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { FocusedItemData } from './Dropdown/FocusContext';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import {
-  calculateEntityPreviewsCount,
-  transformEntityPreviews
-} from './EntityPreviews';
 import { SearchButton } from './SearchButton';
 import { processTranslation } from './utils/processTranslation';
 import { renderAutocompleteResult,
@@ -96,8 +92,11 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 }
 
 /**
- * The type of a functional React component which renders entity previews based on the autocomplete loading
- * state and the vertical results array. {@link EntityPreviews} is intended to be used here.
+ * The type of a functional React component which renders entity previews using
+ * a map of vertical key to the corresponding VerticalResults data.
+ *
+ * @remarks
+ * The autocomplete loading state is passed in as an optional param
  *
  * @remarks
  * An onSubmit function is provided to allow an entity preview to be submitted.
@@ -106,9 +105,9 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
  */
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
-  verticalResultsArray: VerticalResultsData[],
+  verticalKeyToResults: Record<string, VerticalResultsData>,
   onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
-) => JSX.Element;
+) => JSX.Element | null;
 
 /**
  * The configuration options for Visual Autocomplete.
@@ -118,10 +117,7 @@ export type RenderEntityPreviews = (
 export interface VisualAutocompleteConfig {
   /** The Answers Headless instance used to perform visual autocomplete searches. */
   entityPreviewSearcher: AnswersHeadless,
-  /**
-   * Renders entity previews based on the autocomplete loading state and results.
-   * {@link EntityPreviews} is intended to be used here.
-   **/
+  /** Renders entity previews based on the autocomplete loading state and results. */
   renderEntityPreviews: RenderEntityPreviews,
   /** Specify which verticals to return for VisualAutocomplete. */
   restrictVerticals: string[],
@@ -250,9 +246,9 @@ export function SearchBar({
     entityPreviewsState,
     executeEntityPreviewsQuery
   ] = useEntityPreviews(entityPreviewSearcher, entityPreviewsDebouncingTime);
-  const { verticalResultsArray, isLoading: entityPreviewsLoading } = entityPreviewsState;
+  const { verticalKeyToResults, isLoading: entityPreviewsLoading } = entityPreviewsState;
   const entityPreviews = renderEntityPreviews
-    && renderEntityPreviews(entityPreviewsLoading, verticalResultsArray, handleSubmit);
+    && renderEntityPreviews(entityPreviewsLoading, verticalKeyToResults, handleSubmit);
   const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews || !restrictVerticals) {
       return;
@@ -378,17 +374,13 @@ export function SearchBar({
     );
   }
 
-  const transformedEntityPreviews = entityPreviews
-    && transformEntityPreviews(entityPreviews, verticalResultsArray);
-  const entityPreviewsCount = calculateEntityPreviewsCount(transformedEntityPreviews);
-  const showEntityPreviewsDivider = entityPreviewsCount > 0
+  const showEntityPreviewsDivider = entityPreviews
     && !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
   const hasItems = !!(autocompleteResponse?.results.length
-    || (!isVertical && filteredRecentSearches?.length) || entityPreviewsCount);
+    || (!isVertical && filteredRecentSearches?.length) || entityPreviews);
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
-    filteredRecentSearches?.length,
-    entityPreviewsCount
+    filteredRecentSearches?.length
   );
   const activeClassName = classNames(cssClasses.inputDropdownContainer, {
     [cssClasses.inputDropdownContainer___active ?? '']: hasItems
@@ -425,7 +417,7 @@ export function SearchBar({
             {renderRecentSearches()}
             {renderQuerySuggestions()}
             {showEntityPreviewsDivider && <div className={cssClasses.entityPreviewsDivider}></div>}
-            {transformedEntityPreviews}
+            {entityPreviews}
           </StyledDropdownMenu>
         }
       </Dropdown>
@@ -451,21 +443,13 @@ function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
 
 function getScreenReaderText(
   autocompleteOptions = 0,
-  recentSearchesOptions = 0,
-  entityPreviewsCount = 0
+  recentSearchesOptions = 0
 ): string {
   const recentSearchesText = recentSearchesOptions > 0
     ? processTranslation({
       phrase: `${recentSearchesOptions} recent search found.`,
       pluralForm: `${recentSearchesOptions} recent searches found.`,
       count: recentSearchesOptions
-    })
-    : '';
-  const entityPreviewsText = entityPreviewsCount > 0
-    ? ' ' + processTranslation({
-      phrase: `${entityPreviewsCount} result preview found.`,
-      pluralForm: `${entityPreviewsCount} result previews found.`,
-      count: entityPreviewsCount
     })
     : '';
   const autocompleteText = autocompleteOptions > 0
@@ -476,7 +460,7 @@ function getScreenReaderText(
     })
     : '';
 
-  const text = recentSearchesText + autocompleteText + entityPreviewsText;
+  const text = recentSearchesText + autocompleteText;
   if (text === '') {
     return processTranslation({
       phrase: '0 autocomplete suggestion found.',

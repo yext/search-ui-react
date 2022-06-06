@@ -5,7 +5,6 @@ import {
   SearchBar,
   SpellCheck,
   UniversalResults,
-  EntityPreviews,
   VisualAutocompleteConfig
 } from '@yext/answers-react-components';
 import { useLayoutEffect } from 'react';
@@ -18,25 +17,29 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
     headlessId: 'visual-autocomplete'
   }),
   restrictVerticals: ['people'],
-  renderEntityPreviews: isLoading => (
-    <div className={isLoading ? 'opacity-50' : ''}>
-      <EntityPreviews verticalKey='people'>
-        {results => (
-          <div className='flex ml-4 mt-1'>
-            {results.map((r, index) =>
-              <div
-                key={index + '-' + r.name}
-                tabIndex={0}
-                className='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg'
-              >
-                {r.name}
-              </div>
-            )}
-          </div>
-        )}
-      </EntityPreviews>
-    </div>
-  )
+  renderEntityPreviews: (isLoading, verticalKeyToResults) => {
+    if (!verticalKeyToResults.people) {
+      return null;
+    }
+
+    const { results } = verticalKeyToResults.people;
+
+    return (
+      <div className={isLoading ? 'opacity-50' : ''}>
+        <div className='flex ml-4 mt-1'>
+          {results.map((r, index) =>
+            <div
+              key={index + '-' + r.name}
+              tabIndex={0}
+              className='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg'
+            >
+              {r.name}
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
 }
 
 
@@ -48,7 +51,7 @@ export default function UniversalPage(): JSX.Element {
 
   return (
     <div>
-      <SearchBar visualAutocompleteConfig={visualAutocompleteConfig}/>
+      <SearchBar visualAutocompleteConfig={visualAutocompleteConfig} />
       <SpellCheck />
       <DirectAnswer />
       <ResultsCount />
