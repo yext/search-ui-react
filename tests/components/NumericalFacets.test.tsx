@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { AnswersHeadless, FacetOption, NumberRangeValue, Source, State } from '@yext/answers-headless-react';
-import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
+import { AnswersHeadless, FacetOption, Matcher, NumberRangeValue, SelectableFilter, Source, State } from '@yext/answers-headless-react';
+import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { NumericalFacets } from '../../src/components';
@@ -30,6 +30,7 @@ const mockedActions = {
   state: mockedState,
   setOffset: jest.fn(),
   setFacetOption: jest.fn(),
+  setFilterOption: jest.fn(),
   executeVerticalQuery: jest.fn()
 };
 
@@ -85,18 +86,44 @@ describe('Facets', () => {
     expectFacetOptionSet(actions, priceFacet.fieldId, priceFacet.options[1], true);
   });
 
-  // it('getFilterDisplayName field works as expected', () => {
-  //   const getFilterDisplayName = (value: NumberRangeValue) => {
-  //     return 'start-' + value.start.value + ' end-' + value.end.value;
-  //   };
+  it('getFilterDisplayName field works as expected', () => {
+    const displayableFacets = [{
+      ...DisplayableFacets[1],
+      options: DisplayableFacets[1].options.map(o => ({ ...o, selected: false }))
+    }];
+    mockAnswersState({
+      ...mockedState,
+      filters: {
+        facets: displayableFacets
+      }
+    });
+    const getFilterDisplayName = (value: NumberRangeValue) => {
+      return 'start-' + value.start.value + ' end-' + value.end.value;
+    };
+    const actions = spyOnActions();
+    render(<NumericalFacets getFilterDisplayName={getFilterDisplayName}/>);
+    userEvent.type(screen.getByPlaceholderText('Min'), '1');
+    userEvent.type(screen.getByPlaceholderText('Max'), '5');
+    userEvent.click(screen.getByText('Apply'));
 
-  //   render(<NumericalFacets getFilterDisplayName={getFilterDisplayName}/>);
-  //   const priceFacet = DisplayableFacets[1];
-  //   priceFacet.options.forEach(o => {
-  //     const expectedDisplayName = getFilterDisplayName(o.value as NumberRangeValue);
-  //     expect(screen.getByText(expectedDisplayName)).toBeDefined();
-  //   });
-  // });
+    const expectedSelectableFilter: SelectableFilter = {
+      displayName: 'start-1 end-5',
+      fieldId: 'price',
+      value: {
+        start: {
+          matcher: Matcher.GreaterThanOrEqualTo,
+          value: 1
+        },
+        end: {
+          matcher: Matcher.LessThanOrEqualTo,
+          value: 5
+        }
+      },
+      matcher: Matcher.Between,
+      selected: true
+    };
+    expect(actions.setFilterOption).toHaveBeenCalledWith(expectedSelectableFilter);
+  });
 
   it('inputPrefix field works as expected', () => {
     render(<NumericalFacets inputPrefix={<>some prefix</>}/>);
