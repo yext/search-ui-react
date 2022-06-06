@@ -1,11 +1,10 @@
 import { FacetsProvider, RangeInput, RangeInputCssClasses } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { DisplayableFacet, NumberRangeValue } from '@yext/answers-headless-react';
 import { StandardFacetsProps } from './StandardFacets';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
-import { useMemo } from 'react';
 
 /**
  * The CSS class interface for {@link NumericalFacets}.

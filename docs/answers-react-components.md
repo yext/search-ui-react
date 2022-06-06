@@ -21,11 +21,7 @@
 |  [getSearchIntents(answersActions)](./answers-react-components.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./answers-react-components.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |
 |  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, excludeFieldIds, fieldIds, customCssClasses, delimiter, showMoreLimit })](./answers-react-components.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
-|  [isBoolean(data)](./answers-react-components.isboolean.md) | Type guard for boolean. |
 |  [isCtaData(data)](./answers-react-components.isctadata.md) | Type guard for CtaData. |
-|  [isNumber(data)](./answers-react-components.isnumber.md) | Type guard for number. |
-|  [isString(data)](./answers-react-components.isstring.md) | Type guard for string. |
-|  [isStringOrHighlightedValue(data)](./answers-react-components.isstringorhighlightedvalue.md) | Typeguard for data of type string or HighlightedValue |
 |  [LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
 |  [NumericalFacets({ searchOnChange, excludeFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps })](./answers-react-components.numericalfacets.md) | A component that displays numerical facets applicable to the current vertical search. |
 |  [Pagination(props)](./answers-react-components.pagination.md) | Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages. |
@@ -44,7 +40,6 @@
 |  [useCardAnalyticsCallback(result, analyticsType)](./answers-react-components.usecardanalyticscallback.md) | Creates a memoized function for reporting card analytics. |
 |  [useCardFeedbackCallback(result)](./answers-react-components.usecardfeedbackcallback.md) | Creates a memoized function for reporting card feedback analytics. |
 |  [useComposedCssClasses(builtInClasses, customClasses, cssCompositionMethod)](./answers-react-components.usecomposedcssclasses.md) | A react hook which combines a component's built-in CSS classes with custom CSS classes. |
-|  [validateData(data, typeGuards)](./answers-react-components.validatedata.md) | Returns data which passes the corresponding typeGuard validation. |
 |  [VerticalResults(props)](./answers-react-components.verticalresults.md) | A component that renders search results for a vertical page. |
 
 ## Interfaces
@@ -120,11 +115,8 @@
 |  [DropdownItemProps](./answers-react-components.dropdownitemprops.md) | Props for the [DropdownItem()](./answers-react-components.dropdownitem.md)<!-- -->. |
 |  [FeedbackType](./answers-react-components.feedbacktype.md) | Analytics event types for quality feedback. |
 |  [FocusedItemData](./answers-react-components.focuseditemdata.md) | The data associated with the currently focused item. |
-|  [InferTypeGuard](./answers-react-components.infertypeguard.md) | Infers the type associated with the provided type guard. |
 |  [onSearchFunc](./answers-react-components.onsearchfunc.md) | The interface of a function which is called on a search. |
 |  [RenderEntityPreviews](./answers-react-components.renderentitypreviews.md) | The type of a functional React component which renders entity previews based on the autocomplete loading state and the vertical results array. |
 |  [SectionComponent](./answers-react-components.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 |  [StaticFilterOptionConfig](./answers-react-components.staticfilteroptionconfig.md) | The configuration data for a static filter option. |
-|  [TypeGuardRecord](./answers-react-components.typeguardrecord.md) | Type guard for an Object type. |
-|  [ValidatedData](./answers-react-components.validateddata.md) | Returns a partial record where the keys are the same as the provided type guard and the values are type associated with the type guard. |
 
