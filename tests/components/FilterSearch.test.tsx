@@ -11,10 +11,10 @@ jest.mock('@yext/answers-headless-react');
 const mockedExecuteFilterSearch = jest.fn();
 const setFilterOption = jest.fn();
 const setOffset = jest.fn();
-const searchFieldsProp = {
+const searchFieldsProp = [{
   fieldApiName: 'name',
   entityType: 'ce-person'
-};
+}];
 
 describe('search with section labels', () => {
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe('search with section labels', () => {
   });
 
   it('renders the filter search bar and the "Filter" label', () => {
-    render(<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const label = 'Filter';
     const labelElement = screen.getByText(label);
@@ -41,7 +41,7 @@ describe('search with section labels', () => {
   });
 
   it('calls executeFilterSearch every time a character is typed or backspaced', () => {
-    render(<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
 
@@ -61,7 +61,7 @@ describe('search with section labels', () => {
   });
 
   it('does not trigger executeFilterSearch when backspacing on an empty text box', () => {
-    render(<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
 
@@ -72,7 +72,7 @@ describe('search with section labels', () => {
   });
 
   it('shows autocomplete suggestions when a character is typed and suggestions are returned by useSynchronizedSearch', () => {
-    render (<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
@@ -95,7 +95,7 @@ describe('search with section labels', () => {
   });
 
   it('populates the search bar with selected suggestions when users navigate to populated autocomplete suggestions using arrow keys', () => {
-    render (<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
@@ -114,7 +114,7 @@ describe('search with section labels', () => {
   });
 
   it('calls executeSearch when an autocomplete suggestion is selected using the arrow keys and "Enter"', () => {
-    render (<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
@@ -131,7 +131,7 @@ describe('search with section labels', () => {
   });
 
   it('does not trigger executeSearch when "Enter" is pressed if an autocomplete suggestion is not selected with the arrow keys first, even if autocomplete values are returned', () => {
-    render (<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
@@ -149,7 +149,7 @@ describe('search with section labels', () => {
   });
 
   it('calls executeSearch when an autocomplete suggestion is clicked with a cursor', () => {
-    render (<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
@@ -175,7 +175,7 @@ describe('search without section labels', () => {
       return [unsectionedFilterSearchResponse, mockedExecuteFilterSearch, null];
     });
 
-    render (<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
@@ -203,7 +203,7 @@ describe('screen reader', () => {
       return [sectionedFilterSearchResponse, mockedExecuteFilterSearch, null];
     });
 
-    render(<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
@@ -225,7 +225,7 @@ describe('screen reader', () => {
       return [unsectionedFilterSearchResponse, mockedExecuteFilterSearch, null];
     });
 
-    render(<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
@@ -246,7 +246,7 @@ describe('screen reader', () => {
       return [noResultsFilterSearchResponse, mockedExecuteFilterSearch, null];
     });
 
-    render(<FilterSearch searchFields={[searchFieldsProp]}/>);
+    render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
