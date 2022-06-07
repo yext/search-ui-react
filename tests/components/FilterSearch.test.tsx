@@ -79,42 +79,35 @@ describe('tests using data with section labels', () => {
     expect(searchBarElement.length).toBe(1);
   });
 
-  it('calls executeFilterSearch every time a charachter is entered', () => {
+  it('calls executeFilterSearch every time a character is typed or backspaced', () => {
     render(<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
-    expect(searchBarElement).toBeDefined();
 
     userEvent.type(searchBarElement, 'J');
     expect(searchBarElement).toHaveValue('J');
-    expect(mockedExecuteFilterSearch).toBeCalledWith('J');
+    expect(mockedExecuteFilterSearch).toHaveBeenLastCalledWith('J');
 
     userEvent.type(searchBarElement, 'o');
     expect(searchBarElement).toHaveValue('Jo');
-    expect(mockedExecuteFilterSearch).toBeCalledWith('Jo');
+    expect(mockedExecuteFilterSearch).toHaveBeenLastCalledWith('Jo');
 
-    expect(mockedExecuteFilterSearch.mock.calls.length).toBe(2);
+    userEvent.type(searchBarElement, '{backspace}');
+    expect(searchBarElement).toHaveValue('J');
+    expect(mockedExecuteFilterSearch).toHaveBeenLastCalledWith('J');
+
+    expect(mockedExecuteFilterSearch).toHaveBeenCalledTimes(3);
   });
 
-  it('calls executeFilterSearch when characters changed by backspace', () => {
+  it('does not trigger executeFilterSearch when backspacing on an empty text box', () => {
     render(<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
-    expect(searchBarElement).toBeDefined();
-
-    userEvent.type(searchBarElement, 'J');
-    expect(searchBarElement).toHaveValue('J');
-    expect(mockedExecuteFilterSearch).toBeCalledWith('J');
 
     userEvent.type(searchBarElement, '{backspace}');
     expect(searchBarElement).toHaveValue('');
-    expect(mockedExecuteFilterSearch).toBeCalledWith('');
 
-    // backspace on an empty text box should not trigger a search.
-    userEvent.type(searchBarElement, '{backspace}');
-    expect(searchBarElement).toHaveValue('');
-
-    expect(mockedExecuteFilterSearch.mock.calls.length).toBe(2);
+    expect(mockedExecuteFilterSearch).toHaveBeenCalledTimes(0);
   });
 
   it('shows autocomplete suggestions when a character is typed and suggestions are returned by useSynchronizedSearch', () => {
@@ -140,7 +133,7 @@ describe('tests using data with section labels', () => {
     expect(thirdAutocompleteSuggestion).toBeDefined();
   });
 
-  it('fills the search bar with selected suggestions when users navigate to populated autocomplete suggestions using arrow keys', () => {
+  it('populates the search bar with selected suggestions when users navigate to populated autocomplete suggestions using arrow keys', () => {
     render (<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -148,6 +141,9 @@ describe('tests using data with section labels', () => {
 
     const firstAutocompleteSuggestion = screen.getByText('John Doe');
     expect(firstAutocompleteSuggestion).toBeDefined();
+
+    const secondAutocompleteSuggestion = screen.getByText('Jane Doe');
+    expect(secondAutocompleteSuggestion).toBeDefined();
 
     userEvent.type(searchBarElement, '{arrowdown}');
     expect(searchBarElement).toHaveValue('John Doe');
