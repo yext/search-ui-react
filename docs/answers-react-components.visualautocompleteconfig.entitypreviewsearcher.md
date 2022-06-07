@@ -9,5 +9,5 @@ The Answers Headless instance used to perform visual autocomplete searches.
 <b>Signature:</b>
 
 ```typescript
-entityPreviewSearcher?: AnswersHeadless;
+entityPreviewSearcher: AnswersHeadless;
 ```

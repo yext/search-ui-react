@@ -9,14 +9,7 @@ import {
   Routes,
 } from 'react-router-dom';
 import { AnalyticsProvider } from '@yext/answers-react-components';
-
-const config = {
-  apiKey: '2d8c550071a64ea23e263118a2b0680b',
-  experienceKey: 'slanswers-hier-facets',
-  locale: 'en',
-  experienceVersion: 'STAGING',
-  businessId: 123123
-}
+import { config } from './config';
 
 function App() {
   return (

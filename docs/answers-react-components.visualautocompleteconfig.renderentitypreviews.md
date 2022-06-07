@@ -4,10 +4,10 @@
 
 ## VisualAutocompleteConfig.renderEntityPreviews property
 
-Renders entity previeews based on the autocomplete loading state and results.
+Renders entity previews based on the autocomplete loading state and results.
 
 <b>Signature:</b>
 
 ```typescript
-renderEntityPreviews?: RenderEntityPreviews;
+renderEntityPreviews: RenderEntityPreviews;
 ```

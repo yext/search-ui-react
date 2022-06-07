@@ -2,13 +2,14 @@ import {
   AnswersHeadless,
   QuerySource,
   SearchTypeEnum,
+  UniversalLimit,
   useAnswersActions,
   useAnswersState,
   useAnswersUtilities,
   VerticalResults as VerticalResultsData
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
-import { Fragment, PropsWithChildren, useCallback, useEffect } from 'react';
+import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
@@ -25,15 +26,10 @@ import { DropdownItem } from './Dropdown/DropdownItem';
 import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { FocusedItemData } from './Dropdown/FocusContext';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import {
-  calculateEntityPreviewsCount,
-  calculateRestrictVerticals,
-  calculateUniversalLimit,
-  transformEntityPreviews
-} from './EntityPreviews';
 import { SearchButton } from './SearchButton';
 import { processTranslation } from './utils/processTranslation';
-import { renderAutocompleteResult,
+import {
+  renderAutocompleteResult,
   AutocompleteResultCssClasses,
   builtInCssClasses as AutocompleteResultBuiltInCssClasses
 } from './utils/renderAutocompleteResult';
@@ -42,6 +38,7 @@ import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 import { clearStaticRangeFilters } from '../utils/filterutils';
 import { useMemo } from 'react';
+import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-6',
@@ -97,8 +94,11 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 }
 
 /**
- * The type of a functional React component which renders entity previews based on the autocomplete loading
- * state and the vertical results array.
+ * The type of a functional React component which renders entity previews using
+ * a map of vertical key to the corresponding VerticalResults data.
+ *
+ * @remarks
+ * The autocomplete loading state is passed in as an optional param
  *
  * @remarks
  * An onSubmit function is provided to allow an entity preview to be submitted.
@@ -107,9 +107,9 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
  */
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
-  verticalResultsArray: VerticalResultsData[],
+  verticalKeyToResults: Record<string, VerticalResultsData>,
   onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
-) => JSX.Element;
+) => JSX.Element | null;
 
 /**
  * The configuration options for Visual Autocomplete.
@@ -118,11 +118,15 @@ export type RenderEntityPreviews = (
  */
 export interface VisualAutocompleteConfig {
   /** The Answers Headless instance used to perform visual autocomplete searches. */
-  entityPreviewSearcher?: AnswersHeadless,
+  entityPreviewSearcher: AnswersHeadless,
+  /** Renders entity previews based on the autocomplete loading state and results. */
+  renderEntityPreviews: RenderEntityPreviews,
+  /** Specify which verticals to return for VisualAutocomplete. */
+  restrictVerticals: string[],
+  /** Specify the number of entities to return per vertical. **/
+  universalLimit?: UniversalLimit,
   /** The debouncing time, in milliseconds, for making API requests for entity previews. */
-  entityPreviewsDebouncingTime?: number,
-  /** Renders entity previeews based on the autocomplete loading state and results. */
-  renderEntityPreviews?: RenderEntityPreviews
+  entityPreviewsDebouncingTime?: number
 }
 
 /**
@@ -144,7 +148,7 @@ export interface SearchBarProps {
   geolocationOptions?: PositionOptions,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: SearchBarCssClasses,
-   /** {@inheritDoc CompositionMethod} */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
   /** {@inheritDoc VisualAutocompleteConfig} */
   visualAutocompleteConfig?: VisualAutocompleteConfig,
@@ -171,7 +175,7 @@ export function SearchBar({
   placeholder,
   geolocationOptions,
   hideRecentSearches,
-  visualAutocompleteConfig = {},
+  visualAutocompleteConfig,
   hideVerticalLinks,
   onSelectVerticalLink,
   verticalKeyToLabel,
@@ -183,8 +187,10 @@ export function SearchBar({
   const {
     entityPreviewSearcher,
     renderEntityPreviews,
+    restrictVerticals,
+    universalLimit,
     entityPreviewsDebouncingTime = 500
-  } = visualAutocompleteConfig;
+  } = visualAutocompleteConfig ?? {};
   const answersActions = useAnswersActions();
   const answersUtilities = useAnswersUtilities();
   const reportAnalyticsEvent = useSearchBarAnalytics();
@@ -242,17 +248,15 @@ export function SearchBar({
     entityPreviewsState,
     executeEntityPreviewsQuery
   ] = useEntityPreviews(entityPreviewSearcher, entityPreviewsDebouncingTime);
-  const { verticalResultsArray, isLoading: entityPreviewsLoading } = entityPreviewsState;
+  const { verticalKeyToResults, isLoading: entityPreviewsLoading } = entityPreviewsState;
   const entityPreviews = renderEntityPreviews
-    && renderEntityPreviews(entityPreviewsLoading, verticalResultsArray, handleSubmit);
+    && renderEntityPreviews(entityPreviewsLoading, verticalKeyToResults, handleSubmit);
   const updateEntityPreviews = useCallback((query: string) => {
-    if (!renderEntityPreviews) {
+    if (!renderEntityPreviews || !restrictVerticals) {
       return;
     }
-    const restrictVerticals = calculateRestrictVerticals(entityPreviews);
-    const universalLimit = calculateUniversalLimit(entityPreviews);
-    executeEntityPreviewsQuery(query, universalLimit, restrictVerticals);
-  }, [entityPreviews, executeEntityPreviewsQuery, renderEntityPreviews]);
+    executeEntityPreviewsQuery(query, universalLimit ?? {}, restrictVerticals);
+  }, [executeEntityPreviewsQuery, renderEntityPreviews, restrictVerticals, universalLimit]);
 
   const handleInputFocus = useCallback((value = '') => {
     answersActions.setQuery(value);
@@ -372,13 +376,11 @@ export function SearchBar({
     );
   }
 
-  const transformedEntityPreviews = entityPreviews
-    && transformEntityPreviews(entityPreviews, verticalResultsArray);
-  const entityPreviewsCount = calculateEntityPreviewsCount(transformedEntityPreviews);
-  const showEntityPreviewsDivider = entityPreviewsCount > 0
+  const entityPreviewsCount = calculateEntityPreviewsCount(entityPreviews);
+  const showEntityPreviewsDivider = entityPreviews
     && !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
   const hasItems = !!(autocompleteResponse?.results.length
-    || (!isVertical && filteredRecentSearches?.length) || entityPreviewsCount);
+    || (!isVertical && filteredRecentSearches?.length) || entityPreviews);
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
     filteredRecentSearches?.length,
@@ -419,7 +421,7 @@ export function SearchBar({
             {renderRecentSearches()}
             {renderQuerySuggestions()}
             {showEntityPreviewsDivider && <div className={cssClasses.entityPreviewsDivider}></div>}
-            {transformedEntityPreviews}
+            {entityPreviews}
           </StyledDropdownMenu>
         }
       </Dropdown>
@@ -501,4 +503,18 @@ function DropdownSearchButton({ handleSubmit, cssClasses }: {
       />
     </div>
   );
+}
+
+/**
+ * Calculates the number of navigable entity previews from a ReactNode containing DropdownItems.
+ */
+export function calculateEntityPreviewsCount(children: ReactNode): number {
+  let count = 0;
+  recursivelyMapChildren(children, c => {
+    if (isValidElement(c) && c.type === DropdownItem) {
+      count++;
+    }
+    return c;
+  });
+  return count;
 }

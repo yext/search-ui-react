@@ -21,6 +21,7 @@ import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
 import { Theme } from '@css-modules-theme/core';
+import { UniversalLimit } from '@yext/answers-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
@@ -192,16 +193,6 @@ export type DropdownItemProps = PropsWithChildren<{
     itemData?: Record<string, unknown> | undefined;
     onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
 }>;
-
-// @public
-export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
-
-// @public
-export interface EntityPreviewsProps {
-    children: (results: Result[], index: number) => JSX.Element;
-    limit?: number;
-    verticalKey: string;
-}
 
 // @public
 export function executeAutocomplete(answersActions: AnswersActions): Promise<AutocompleteResponse | undefined>;
@@ -471,7 +462,7 @@ export interface RangeInputCssClasses {
 }
 
 // @public
-export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
+export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element | null;
 
 // @public
 export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
@@ -817,8 +808,10 @@ export interface VerticalResultsProps {
 // @public
 export interface VisualAutocompleteConfig {
     entityPreviewsDebouncingTime?: number;
-    entityPreviewSearcher?: AnswersHeadless;
-    renderEntityPreviews?: RenderEntityPreviews;
+    entityPreviewSearcher: AnswersHeadless;
+    renderEntityPreviews: RenderEntityPreviews;
+    restrictVerticals: string[];
+    universalLimit?: UniversalLimit;
 }
 
 // (No @packageDocumentation comment for this package)
