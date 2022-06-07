@@ -27,7 +27,7 @@ const mockedHeadlessState: RecursivePartial<State> = {
 export function Primary(args: HierarchicalFacetsProps): JSX.Element {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <HierarchicalFacets fieldIds={['hier']} {...args} />
+      <HierarchicalFacets includedFieldIds={['hier']} {...args} />
     </AnswersHeadlessContext.Provider>
   );
 }
