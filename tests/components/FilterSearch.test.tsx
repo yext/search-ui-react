@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
 import { mockAnswersActions } from '../__utils__/mocks';
 import { sectionedFilterSearchResponse, unsectionedFilterSearchResponse, noResultsFilterSearchResponse } from '../../tests/__fixtures__/data/filtersearch';
+import { Matcher } from '@yext/answers-headless-react';
 
 jest.mock('@yext/answers-headless-react');
 
@@ -124,10 +125,23 @@ describe('search with section labels', () => {
 
     userEvent.type(searchBarElement, '{arrowdown}');
     expect(searchBarElement).toHaveValue('first name 1');
-
     userEvent.type(searchBarElement, '{enter}');
-    expect(setFilterOption).toBeCalled();
-    expect(setOffset).toBeCalled();
+
+    const expectedSetFilterOptionParam = {
+      fieldId: 'ce_person',
+      matcher: Matcher.Equals,
+      value: 'first name 1' ,
+      displayName: 'first name 1',
+      selected: true
+    };
+    const expectedSetOffsetParam = 0;
+    expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
+    expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
+
+    const setFilterOptionCallOrder = setFilterOption.mock.invocationCallOrder[0];
+    const setOffsetCallOrder = setOffset.mock.invocationCallOrder[0];
+    expect(setFilterOptionCallOrder).toBeLessThan(setOffsetCallOrder);
+
     expect(searchOperations.executeSearch).toBeCalled();
   });
 
