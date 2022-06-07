@@ -9,5 +9,5 @@ The displayed label for the static filter group.
 <b>Signature:</b>
 
 ```typescript
-title?: string;
+title: string;
 ```

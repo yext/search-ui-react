@@ -8,7 +8,7 @@ import {
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
-import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
+import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacetDisplay';
 import { executeSearch } from '../utils/search-operations';
 import { useCallback } from 'react';
 import { isDescendantHierarchicalFacet } from '../utils/appliedfilterutils';
@@ -25,7 +25,7 @@ export interface AppliedFiltersDisplayProps {
   hierarchicalFacets?: DisplayableHierarchicalFacet[],
   /** Filters that are applied to the search results from the backend's natural language processing. */
   nlpFilters?: DisplayableFilter[],
-  /** {@inheritDoc Filters.HierarchicalFacetProps.delimiter} */
+  /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses

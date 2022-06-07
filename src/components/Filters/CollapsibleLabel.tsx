@@ -14,7 +14,7 @@ export interface CollapsibleLabelProps {
 
 /**
  * CollapsibleLabel is a button for collapsing and expanding filters within a parent
- * {@link Filters.FilterGroup}.
+ * {@link Filters.FilterGroupProvider}.
  *
  * For more customization, use {@link Filters.FilterGroupContext} directly.
  *
