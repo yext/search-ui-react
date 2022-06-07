@@ -207,7 +207,7 @@ describe('tests using data with section labels', () => {
 });
 
 describe('tests using data without section labels', () => {
-  it('populates the dropdown menu with autocomplete results and excludes a section label if one is not provided', () => {
+  it('populates the dropdown menu with autocomplete results without section labels if they are not provided', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset
@@ -233,7 +233,7 @@ describe('tests using data without section labels', () => {
 });
 
 describe('tests screen reader functionality', () => {
-  it('provides ScreenReader with autocomplete results and section labels if they are provided', () => {
+  it('renders ScreenReader autocomplete result messages with section labels if they are provided', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset
@@ -255,7 +255,7 @@ describe('tests screen reader functionality', () => {
 
   });
 
-  it('provides ScreenReader with autocomplete results and omits section labels if they are not provided', () => {
+  it('renders ScreenReader autocomplete result messages and omits section labels if they are not provided', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset
@@ -276,7 +276,7 @@ describe('tests screen reader functionality', () => {
     expect(screenReaderMessage).toBeInTheDocument();
   });
 
-  it('provides ScreenReader with autocomplete results even if there is are no autocomplete suggestions', () => {
+  it('renders ScreenReader autocomplete result messages even if there is are no autocomplete suggestions', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset
