@@ -9,7 +9,7 @@ import {
   VerticalResults as VerticalResultsData
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
-import { Fragment, PropsWithChildren, useCallback, useEffect } from 'react';
+import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
@@ -28,7 +28,8 @@ import { FocusedItemData } from './Dropdown/FocusContext';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { SearchButton } from './SearchButton';
 import { processTranslation } from './utils/processTranslation';
-import { renderAutocompleteResult,
+import {
+  renderAutocompleteResult,
   AutocompleteResultCssClasses,
   builtInCssClasses as AutocompleteResultBuiltInCssClasses
 } from './utils/renderAutocompleteResult';
@@ -37,6 +38,7 @@ import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 import { clearStaticRangeFilters } from '../utils/filterutils';
 import { useMemo } from 'react';
+import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 
 const builtInCssClasses: SearchBarCssClasses = {
   container: 'h-12 mb-6',
@@ -146,7 +148,7 @@ export interface SearchBarProps {
   geolocationOptions?: PositionOptions,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: SearchBarCssClasses,
-   /** {@inheritDoc CompositionMethod} */
+  /** {@inheritDoc CompositionMethod} */
   cssCompositionMethod?: CompositionMethod,
   /** {@inheritDoc VisualAutocompleteConfig} */
   visualAutocompleteConfig?: VisualAutocompleteConfig,
@@ -374,13 +376,15 @@ export function SearchBar({
     );
   }
 
+  const entityPreviewsCount = calculateEntityPreviewsCount(entityPreviews);
   const showEntityPreviewsDivider = entityPreviews
     && !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
   const hasItems = !!(autocompleteResponse?.results.length
     || (!isVertical && filteredRecentSearches?.length) || entityPreviews);
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
-    filteredRecentSearches?.length
+    filteredRecentSearches?.length,
+    entityPreviewsCount
   );
   const activeClassName = classNames(cssClasses.inputDropdownContainer, {
     [cssClasses.inputDropdownContainer___active ?? '']: hasItems
@@ -443,13 +447,21 @@ function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
 
 function getScreenReaderText(
   autocompleteOptions = 0,
-  recentSearchesOptions = 0
+  recentSearchesOptions = 0,
+  entityPreviewsCount = 0
 ): string {
   const recentSearchesText = recentSearchesOptions > 0
     ? processTranslation({
       phrase: `${recentSearchesOptions} recent search found.`,
       pluralForm: `${recentSearchesOptions} recent searches found.`,
       count: recentSearchesOptions
+    })
+    : '';
+  const entityPreviewsText = entityPreviewsCount > 0
+    ? ' ' + processTranslation({
+      phrase: `${entityPreviewsCount} result preview found.`,
+      pluralForm: `${entityPreviewsCount} result previews found.`,
+      count: entityPreviewsCount
     })
     : '';
   const autocompleteText = autocompleteOptions > 0
@@ -460,7 +472,7 @@ function getScreenReaderText(
     })
     : '';
 
-  const text = recentSearchesText + autocompleteText;
+  const text = recentSearchesText + autocompleteText + entityPreviewsText;
   if (text === '') {
     return processTranslation({
       phrase: '0 autocomplete suggestion found.',
@@ -491,4 +503,18 @@ function DropdownSearchButton({ handleSubmit, cssClasses }: {
       />
     </div>
   );
+}
+
+/**
+ * Calculates the number of navigable entity previews from a ReactNode containing DropdownItems.
+ */
+export function calculateEntityPreviewsCount(children: ReactNode): number {
+  let count = 0;
+  recursivelyMapChildren(children, c => {
+    if (isValidElement(c) && c.type === DropdownItem) {
+      count++;
+    }
+    return c;
+  });
+  return count;
 }

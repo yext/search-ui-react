@@ -1,12 +1,14 @@
 import { provideAnswersHeadless, useAnswersActions } from '@yext/answers-headless-react';
 import {
   DirectAnswer,
+  DropdownItem,
   ResultsCount,
   SearchBar,
   SpellCheck,
   UniversalResults,
   VisualAutocompleteConfig
 } from '@yext/answers-react-components';
+import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
 import { config } from '../config';
 
@@ -23,20 +25,22 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
     }
 
     const { results } = verticalKeyToResults.people;
+    const containerClassName = classNames({
+      'opacity-50': isLoading,
+      'flex ml-4 mt-1': true
+    });
 
     return (
-      <div className={isLoading ? 'opacity-50' : ''}>
-        <div className='flex ml-4 mt-1'>
-          {results.map((r, index) =>
-            <div
-              key={index + '-' + r.name}
-              tabIndex={0}
-              className='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg'
-            >
-              {r.name}
-            </div>
-          )}
-        </div>
+      <div className={containerClassName}>
+        {results.map((r, index) =>
+          <DropdownItem
+            value={r.name ?? ''}
+            key={index + '-' + r.name}
+            className='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg'
+          >
+            {r.name}
+          </DropdownItem>
+        )}
       </div>
     )
   }
