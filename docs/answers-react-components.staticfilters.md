@@ -9,14 +9,14 @@ A component that displays a group of user-configured filters that will be applie
 <b>Signature:</b>
 
 ```typescript
-export declare function StaticFilters({ fieldId, filterOptions, title, collapsible, defaultExpanded, searchable, searchOnChange, customCssClasses, cssCompositionMethod }: StaticFiltersProps): JSX.Element;
+export declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { fieldId, filterOptions, title, collapsible, defaultExpanded, searchable, searchOnChange, customCssClasses, cssCompositionMethod } | [StaticFiltersProps](./answers-react-components.staticfiltersprops.md) |  |
+|  props | [StaticFiltersProps](./answers-react-components.staticfiltersprops.md) | [StaticFiltersProps](./answers-react-components.staticfiltersprops.md) |
 
 <b>Returns:</b>
 

@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { AnswersHeadless, State } from '@yext/answers-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
+import { FilterOptionConfig } from '../../src/components/Filters';
 import userEvent from '@testing-library/user-event';
-import { FilterOptionConfig, StaticFilters } from '../../src/components';
+import { StaticFilters, StaticFiltersProps } from '../../src/components';
 import { staticFilters } from '../__fixtures__/data/filters';
 
 const mockedState: Partial<State> = {
@@ -17,13 +18,13 @@ const mockedState: Partial<State> = {
   }
 };
 
-const staticFiltersProps = {
+const staticFiltersProps: StaticFiltersProps = {
   fieldId: 'c_puppyPreference',
   title: 'Puppy Preference',
   filterOptions: [
     {
       value: 'Marty',
-      label: 'MARTY!'
+      displayName: 'MARTY!'
     },
     {
       value: 'Frodo',
@@ -71,8 +72,6 @@ describe('Static Filters', () => {
     expect(screen.getByText('Frodo')).toBeDefined();
     expect(screen.getByText('Bleecker')).toBeDefined();
     expect(screen.getByText('Clifford')).toBeDefined();
-
-    expect(screen.queryByRole('button', { name: 'Apply Filters' })).toBeNull();
   });
 
   it('Clicking an unselected filter option checkbox selects it', () => {
@@ -80,7 +79,7 @@ describe('Static Filters', () => {
     render(<StaticFilters {...staticFiltersProps} />);
 
     const martyFilter = staticFiltersProps.filterOptions[0];
-    const martyCheckbox: HTMLInputElement = screen.getByLabelText(martyFilter.label);
+    const martyCheckbox: HTMLInputElement = screen.getByLabelText(martyFilter.displayName);
     expect(martyCheckbox.checked).toBeFalsy();
 
     userEvent.click(martyCheckbox);
@@ -92,7 +91,7 @@ describe('Static Filters', () => {
     render(<StaticFilters {...staticFiltersProps} />);
 
     const bleeckerFilter = staticFiltersProps.filterOptions[2];
-    const bleeckerCheckbox: HTMLInputElement = screen.getByLabelText(bleeckerFilter.value);
+    const bleeckerCheckbox: HTMLInputElement = screen.getByLabelText(bleeckerFilter.value.toString());
     expect(bleeckerCheckbox.checked).toBeTruthy();
 
     userEvent.click(bleeckerCheckbox);
@@ -137,7 +136,7 @@ describe('Static Filters', () => {
     expect(screen.getByRole('checkbox', { name: 'Clifford' })).toBeDefined();
   });
 
-  it('Stays exapanded whenever collapsible is false, even if defaultExpanded is false', () => {
+  it('Stays expanded whenever collapsible is false, even if defaultExpanded is false', () => {
     render(<StaticFilters {...staticFiltersProps} collapsible={false} defaultExpanded={false} />);
 
     expect(screen.getByText('Puppy Preference')).toBeDefined();
@@ -163,21 +162,13 @@ describe('Static Filters', () => {
     expect(actions.executeVerticalQuery).toBeCalled();
   });
 
-  it('When searchOnChange is false, the apply button must be clicked to execute a search', () => {
+  it('Clicking a filter option does not execute a search when searchOnChange is false', () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} searchOnChange={false} />);
 
-    const martyFilter = staticFiltersProps.filterOptions[0];
-    const martyCheckbox: HTMLInputElement = screen.getByLabelText(martyFilter.label);
-    expect(martyCheckbox.checked).toBeFalsy();
-
+    const martyCheckbox: HTMLInputElement = screen.getByLabelText('MARTY!');
     userEvent.click(martyCheckbox);
-    expectFilterOptionSet(actions, staticFiltersProps.fieldId, martyFilter, true);
-    expect(actions.executeVerticalQuery).toBeCalledTimes(0);
-
-    const applyButton = screen.getByRole('button', { name: 'Apply Filters' });
-    userEvent.click(applyButton);
-    expect(actions.executeVerticalQuery).toBeCalledTimes(1);
+    expect(actions.executeVerticalQuery).not.toBeCalled();
   });
 });
 
@@ -191,7 +182,7 @@ function expectFilterOptionSet(
     fieldId,
     matcher: '$eq',
     value: filterOption.value,
-    displayName: filterOption.label ?? filterOption.value,
+    displayName: filterOption.displayName ?? filterOption.value,
     selected
   });
 }

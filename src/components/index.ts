@@ -1,5 +1,3 @@
-import * as Filters from './Filters';
-
 export {
   SearchBar,
   SearchBarCssClasses,
@@ -88,11 +86,46 @@ export {
 } from './ResultsCount';
 
 export {
+  FilterOptionConfig,
+  RangeInputCssClasses,
+  HierarchicalFacetDisplayCssClasses
+} from './Filters';
+
+export {
   StaticFilters,
   StaticFiltersCssClasses,
   StaticFiltersProps,
-  FilterOptionConfig
+  StaticFilterOptionConfig
 } from './StaticFilters';
+
+export {
+  StandardFacets,
+  StandardFacetsCssClasses,
+  StandardFacetsProps
+} from './StandardFacets';
+
+export {
+  HierarchicalFacets,
+  HierarchicalFacetsCssClasses,
+  HierarchicalFacetsProps
+} from './HierarchicalFacets';
+
+export {
+  NumericalFacets,
+  NumericalFacetsCssClasses,
+  NumericalFacetsProps
+} from './NumericalFacets';
+
+export {
+  FilterGroupProps,
+  FilterGroupCssClasses
+} from './FilterGroup';
+
+export {
+  ApplyFiltersButton,
+  ApplyFiltersButtonCssClasses,
+  ApplyFiltersButtonProps
+} from './ApplyFiltersButton';
 
 export {
   renderHighlightedValue,
@@ -101,4 +134,3 @@ export {
 
 export * from './sections';
 export * from './AnalyticsProvider';
-export { Filters };
