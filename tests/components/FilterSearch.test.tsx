@@ -12,23 +12,17 @@ const mockedFilterSearchResponse: FilterSearchResponse = {
   sections: [{
     label: 'People',
     results: [
-      {
-        value: 'John Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' }
-      },
-      {
-        value: 'Jane Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' }
-      }
+      { value: 'John Doe',
+        filter: { fieldId: null, matcher: null, value: 'test' } },
+      { value: 'Jane Doe',
+        filter: { fieldId: null, matcher: null, value: 'test' } }
     ]
   },
   {
     label: 'Condiments',
     results: [
-      {
-        value: 'Jam',
-        filter: { fieldId: null, matcher: null, value: 'test' }
-      }
+      { value: 'Jam',
+        filter: { fieldId: null, matcher: null, value: 'test' } }
     ]
   }],
   uuid: null
@@ -37,14 +31,10 @@ const mockedFilterSearchResponse: FilterSearchResponse = {
 const mockedFilterSearchResponseNoLabels: FilterSearchResponse = {
   sections: [{
     results: [
-      {
-        value: 'John Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' }
-      },
-      {
-        value: 'Jane Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' }
-      }
+      { value: 'John Doe',
+        filter: { fieldId: null, matcher: null, value: 'test' } },
+      { value: 'Jane Doe',
+        filter: { fieldId: null, matcher: null, value: 'test' } }
     ]
   }],
   uuid: null
@@ -78,7 +68,7 @@ describe('tests using data with section labels', () => {
     });
   });
 
-  it('tests that a filter bar and "Filter" title are rendered', () => {
+  it('renders the filter search bar and the "Filter" label', () => {
     render(<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const label = 'Filter';
@@ -89,7 +79,7 @@ describe('tests using data with section labels', () => {
     expect(searchBarElement.length).toBe(1);
   });
 
-  it('tests that executeFilterSearch is called once every time a charachter is entered', () => {
+  it('calls executeFilterSearch every time a charachter is entered', () => {
     render(<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -106,7 +96,7 @@ describe('tests using data with section labels', () => {
     expect(mockedExecuteFilterSearch.mock.calls.length).toBe(2);
   });
 
-  it('tests that executeFilterSearch is called when characters changed by backspace', () => {
+  it('calls executeFilterSearch when characters changed by backspace', () => {
     render(<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -127,7 +117,7 @@ describe('tests using data with section labels', () => {
     expect(mockedExecuteFilterSearch.mock.calls.length).toBe(2);
   });
 
-  it('tests that when a character is typed and an autocomplete is returned by useSynchronizedSearch, the autocomplete suggestions and their sections show in the dropdown menu', () => {
+  it('shows autocomplete suggestions when a character is typed and suggestions are returned by useSynchronizedSearch', () => {
     render (<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -150,7 +140,7 @@ describe('tests using data with section labels', () => {
     expect(thirdAutocompleteSuggestion).toBeDefined();
   });
 
-  it('tests users can navigate autocomplete dropdown using arrow keys, causing the textbox to fill with the selected autofill option', () => {
+  it('fills the search bar with selected suggestions when users navigate to populated autocomplete suggestions using arrow keys', () => {
     render (<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -166,25 +156,29 @@ describe('tests using data with section labels', () => {
     expect(searchBarElement).toHaveValue('Jane Doe');
   });
 
-  it('tests that selecting an autocomplete suggestion using arrow keys and enter calls "executeSearch"', () => {
+  it('calls executeSearch when an autocomplete suggestion is selected using the arrow keys and "Enter"', () => {
     render (<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'J');
+
     const firstAutocompleteSuggestion = screen.getByText('John Doe');
     expect(firstAutocompleteSuggestion).toBeDefined();
 
-    userEvent.type(searchBarElement, '{arrowdown}{enter}');
+    userEvent.type(searchBarElement, '{arrowdown}');
+    expect(searchBarElement).toHaveValue('John Doe');
+    userEvent.type(searchBarElement, '{enter}');
     expect(setFilterOption).toBeCalled();
     expect(setOffset).toBeCalled();
     expect(searchOperations.executeSearch).toBeCalled();
   });
 
-  it('tests that pressing "Enter" after providing input does not trigger executeSearch if an option is not selected with the arrow keys, even if autocomplete values are returned', () => {
+  it('does not trigger executeSearch when "Enter" is pressed if an autocomplete suggestion is not selected with the arrow keys first, even if autocomplete values are returned', () => {
     render (<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'J');
+
     const firstAutocompleteSuggestion = screen.getByText('John Doe');
     expect(firstAutocompleteSuggestion).toBeDefined();
 
@@ -197,7 +191,7 @@ describe('tests using data with section labels', () => {
     expect(searchOperations.executeSearch).not.toBeCalled();
   });
 
-  it('tests that selecting an autocomplete suggestion by clicking with a cursor calls "executeSearch"', () => {
+  it('calls executeSearch when an autocomplete suggestion is clicked with a cursor', () => {
     render (<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -213,7 +207,7 @@ describe('tests using data with section labels', () => {
 });
 
 describe('tests using data without section labels', () => {
-  beforeEach(() => {
+  it('populates the dropdown menu with autocomplete results and excludes a section label if one is not provided', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset
@@ -223,9 +217,7 @@ describe('tests using data without section labels', () => {
     jest.spyOn(useSynchronizedRequestFunctions, 'useSynchronizedRequest').mockImplementation(() => {
       return [mockedFilterSearchResponseNoLabels, mockedExecuteFilterSearch, null];
     });
-  });
 
-  it('tests that dropdown functionality is preserved even when no section label is provided', () => {
     render (<FilterSearch searchFields={[searchFieldsProp]}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -240,3 +232,68 @@ describe('tests using data without section labels', () => {
   });
 });
 
+describe('tests screen reader functionality', () => {
+  it('provides ScreenReader with autocomplete results and section labels if they are provided', () => {
+    mockAnswersActions({
+      setFilterOption,
+      setOffset
+    });
+
+    jest.spyOn(useSynchronizedRequestFunctions, 'useSynchronizedRequest').mockImplementation(() => {
+      return [mockedFilterSearchResponse, mockedExecuteFilterSearch, null];
+    });
+
+    render(<FilterSearch searchFields={[searchFieldsProp]}/>);
+
+    const searchBarElement = screen.getByRole('textbox');
+    userEvent.type(searchBarElement, 'J');
+    expect(mockedExecuteFilterSearch).toBeCalledWith('J');
+
+    const expectedScreenReaderMessage = '2 People autocomplete options found. 1 Condiments autocomplete option found.';
+    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+    expect(screenReaderMessage).toBeInTheDocument();
+
+  });
+
+  it('provides ScreenReader with autocomplete results and omits section labels if they are not provided', () => {
+    mockAnswersActions({
+      setFilterOption,
+      setOffset
+    });
+
+    jest.spyOn(useSynchronizedRequestFunctions, 'useSynchronizedRequest').mockImplementation(() => {
+      return [mockedFilterSearchResponseNoLabels, mockedExecuteFilterSearch, null];
+    });
+
+    render(<FilterSearch searchFields={[searchFieldsProp]}/>);
+
+    const searchBarElement = screen.getByRole('textbox');
+    userEvent.type(searchBarElement, 'J');
+    expect(mockedExecuteFilterSearch).toBeCalledWith('J');
+
+    const expectedScreenReaderMessage = '2 autocomplete options found.';
+    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+    expect(screenReaderMessage).toBeInTheDocument();
+  });
+
+  it('provides ScreenReader with autocomplete results even if there is are no autocomplete suggestions', () => {
+    mockAnswersActions({
+      setFilterOption,
+      setOffset
+    });
+
+    jest.spyOn(useSynchronizedRequestFunctions, 'useSynchronizedRequest').mockImplementation(() => {
+      return [mockedFilterSearchResponseNoResults, mockedExecuteFilterSearch, null];
+    });
+
+    render(<FilterSearch searchFields={[searchFieldsProp]}/>);
+
+    const searchBarElement = screen.getByRole('textbox');
+    userEvent.type(searchBarElement, 'J');
+    expect(mockedExecuteFilterSearch).toBeCalledWith('J');
+
+    const expectedScreenReaderMessage = '0 autocomplete options found.';
+    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+    expect(screenReaderMessage).toBeInTheDocument();
+  });
+});
