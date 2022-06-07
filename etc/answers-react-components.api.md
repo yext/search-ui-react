@@ -310,7 +310,7 @@ export interface HierarchicalFacetDisplayCssClasses {
 }
 
 // @public
-export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, excludeFieldIds, fieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
+export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
 
 // @public
 export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses {
@@ -321,11 +321,11 @@ export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCs
 }
 
 // @public
-export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'searchable'> {
+export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'searchable' | 'excludedFieldIds'> {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: HierarchicalFacetsCssClasses;
     delimiter?: string;
-    fieldIds: string[];
+    includedFieldIds: string[];
     showMoreLimit?: number;
 }
 
@@ -365,7 +365,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function NumericalFacets({ searchOnChange, excludeFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
+export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 
 // @public
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
@@ -380,10 +380,11 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
 }
 
 // @public
-export interface NumericalFacetsProps extends StandardFacetsProps {
+export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: NumericalFacetsCssClasses;
     getFilterDisplayName?: (value: NumberRangeValue) => string;
+    includedFieldIds?: string[];
     inputPrefix?: JSX.Element;
 }
 
@@ -661,7 +662,7 @@ export interface StandardFacetsProps {
     cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardFacetsCssClasses;
     defaultExpanded?: boolean;
-    excludeFieldIds?: string[];
+    excludedFieldIds?: string[];
     searchable?: boolean;
     searchOnChange?: boolean;
 }

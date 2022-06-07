@@ -30,12 +30,12 @@ export function PeoplePage() {
           <StandardFacets
             searchable={true}
             searchOnChange={false}
-            excludeFieldIds={hierarchicalFacetFieldIds}
+            excludedFieldIds={hierarchicalFacetFieldIds}
           />
           <HierarchicalFacets
             collapsible={true}
             searchOnChange={false}
-            fieldIds={hierarchicalFacetFieldIds}
+            includedFieldIds={hierarchicalFacetFieldIds}
           />
           <StaticFilters
             fieldId='c_employeeCountry'

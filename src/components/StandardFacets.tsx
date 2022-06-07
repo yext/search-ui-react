@@ -32,7 +32,7 @@ export interface StandardFacetsProps {
    */
   searchOnChange?: boolean,
   /** List of filter ids that should not be displayed. */
-  excludeFieldIds?: string[],
+  excludedFieldIds?: string[],
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardFacetsCssClasses,
   /** {@inheritDoc CompositionMethod} */
@@ -44,7 +44,7 @@ export interface StandardFacetsProps {
  *
  * @remarks
  * Numerical facets is not included. Hierachical facets will not be display in a
- * tree level structure. Use `hiddenFields` to exclude hierachical facets, if any,
+ * tree level structure. Use `excludedFieldIds` to exclude hierachical facets, if any,
  * when using this component.
  *
  * @param props - {@link StandardFacetsProps}
@@ -53,11 +53,11 @@ export interface StandardFacetsProps {
  * @public
  */
 export function StandardFacets(props: StandardFacetsProps) {
-  const { searchOnChange, excludeFieldIds = [], customCssClasses = {}, ...filterGroupProps } = props;
+  const { searchOnChange, excludedFieldIds = [], customCssClasses = {}, ...filterGroupProps } = props;
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.container}>
       {facets => facets
-        .filter(f => !excludeFieldIds.includes(f.fieldId) && isStringFacet(f))
+        .filter(f => !excludedFieldIds.includes(f.fieldId) && isStringFacet(f))
         .map((f, i) => {
           return (
             <Fragment key={f.fieldId}>

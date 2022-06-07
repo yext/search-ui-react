@@ -9,9 +9,9 @@ Props for the [NumericalFacets()](./answers-react-components.numericalfacets.md)
 <b>Signature:</b>
 
 ```typescript
-export interface NumericalFacetsProps extends StandardFacetsProps 
+export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> 
 ```
-<b>Extends:</b> [StandardFacetsProps](./answers-react-components.standardfacetsprops.md)
+<b>Extends:</b> Omit&lt;[StandardFacetsProps](./answers-react-components.standardfacetsprops.md)<!-- -->, 'excludedFieldIds'&gt;
 
 ## Properties
 
@@ -20,5 +20,6 @@ export interface NumericalFacetsProps extends StandardFacetsProps
 |  [cssCompositionMethod?](./answers-react-components.numericalfacetsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.numericalfacetsprops.customcssclasses.md) | [NumericalFacetsCssClasses](./answers-react-components.numericalfacetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [getFilterDisplayName?](./answers-react-components.numericalfacetsprops.getfilterdisplayname.md) | (value: NumberRangeValue) =&gt; string | <i>(Optional)</i> Returns the filter's display name based on the range values which is used when the filter is displayed by other components such as AppliedFilters. |
+|  [includedFieldIds?](./answers-react-components.numericalfacetsprops.includedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids to render as numerical facets. |
 |  [inputPrefix?](./answers-react-components.numericalfacetsprops.inputprefix.md) | JSX.Element | <i>(Optional)</i> An optional element which renders in front of the input text. |
 

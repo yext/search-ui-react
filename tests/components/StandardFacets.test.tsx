@@ -39,7 +39,7 @@ const mockedUtils = {
 
 jest.mock('@yext/answers-headless-react');
 
-describe('Facets', () => {
+describe('StandardFacets', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
   });

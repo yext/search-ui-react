@@ -23,7 +23,9 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
  *
  * @public
  */
-export interface NumericalFacetsProps extends StandardFacetsProps {
+export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
+  /** List of filter ids to render as numerical facets. */
+  includedFieldIds?: string[],
   /**
    * Returns the filter's display name based on the range values which is used when the filter
    * is displayed by other components such as AppliedFilters.
@@ -43,6 +45,8 @@ export interface NumericalFacetsProps extends StandardFacetsProps {
   cssCompositionMethod?: CompositionMethod
 }
 
+const DEFAULT_RANGE_INPUT_PREFIX = <>$</>;
+
 /**
  * A component that displays numerical facets applicable to the current vertical search.
  *
@@ -53,24 +57,26 @@ export interface NumericalFacetsProps extends StandardFacetsProps {
  */
 export function NumericalFacets({
   searchOnChange,
-  excludeFieldIds = [],
+  includedFieldIds = [],
   getFilterDisplayName,
-  inputPrefix = <>$</>,
+  inputPrefix = DEFAULT_RANGE_INPUT_PREFIX,
   customCssClasses = {},
   ...filterGroupProps
 }: NumericalFacetsProps) {
   const rangeInputCssClasses = useMemo(() => {
+    const { rangeInputContainer, rangeInputDivider, ...remainingCustomCssClasses } = customCssClasses;
     return {
-      ...customCssClasses,
-      container: customCssClasses.rangeInputContainer,
-      divider: customCssClasses.rangeInputDivider
+      ...remainingCustomCssClasses,
+      container: rangeInputContainer,
+      divider: rangeInputDivider
     };
   }, [customCssClasses]);
 
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.container}>
       {facets => facets
-        .filter(f => !excludeFieldIds.includes(f.fieldId) && isNumericalFacet(f))
+        .filter(f => isNumericalFacet(f)
+          && (includedFieldIds.length === 0 || includedFieldIds.includes(f.fieldId)))
         .map((f, i) => {
           return (
             <Fragment key={f.fieldId}>

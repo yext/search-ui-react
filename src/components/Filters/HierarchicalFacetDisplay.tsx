@@ -11,15 +11,15 @@ import { useFiltersContext } from './FiltersContext';
  * @public
  */
 export interface HierarchicalFacetDisplayProps {
-  /** The `DisplayableFacet` to render as a HierarchicalFacetDisplay */
+  /** The `DisplayableFacet` to render as a HierarchicalFacetDisplay. */
   facet: DisplayableFacet,
-  /** The delimiter for determining facet hierarchies, defaults to "\>" */
+  /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
   delimiter?: string,
-  /** The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4 */
+  /** {@inheritDoc HierarchicalFacetsProps.showMoreLimit} */
   showMoreLimit?: number,
   /**
    * CSS classes for customizing the component styling
-   * of HierarchicalFacetDisplayCssClasses
+   * of HierarchicalFacetDisplayCssClasses.
    */
   customCssClasses?: HierarchicalFacetDisplayCssClasses,
   /** {@inheritDoc CompositionMethod} */

@@ -9,14 +9,14 @@ A component that displays numerical facets applicable to the current vertical se
 <b>Signature:</b>
 
 ```typescript
-export declare function NumericalFacets({ searchOnChange, excludeFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
+export declare function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { searchOnChange, excludeFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps } | [NumericalFacetsProps](./answers-react-components.numericalfacetsprops.md) |  |
+|  { searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps } | [NumericalFacetsProps](./answers-react-components.numericalfacetsprops.md) |  |
 
 <b>Returns:</b>
 

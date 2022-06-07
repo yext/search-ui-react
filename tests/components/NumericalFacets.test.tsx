@@ -40,7 +40,7 @@ const mockedUtils = {
 
 jest.mock('@yext/answers-headless-react');
 
-describe('Facets', () => {
+describe('NumericalFacets', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
   });
@@ -128,6 +128,19 @@ describe('Facets', () => {
   it('inputPrefix field works as expected', () => {
     render(<NumericalFacets inputPrefix={<>some prefix</>}/>);
     expect(screen.getAllByText('some prefix').length).toEqual(2);
+  });
+
+  it('includedFieldIds field works as expected', () => {
+    const productFacet = DisplayableFacets[0];
+    const priceFacet = DisplayableFacets[1];
+    render(<NumericalFacets includedFieldIds={[priceFacet.fieldId]}/>);
+
+    productFacet.options.forEach(o => {
+      expect(screen.queryByText(o.displayName)).toBeNull();
+    });
+    priceFacet.options.forEach(o => {
+      expect(screen.getByText(o.displayName)).toBeDefined();
+    });
   });
 });
 

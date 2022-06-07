@@ -20,7 +20,7 @@ export interface StandardFacetsProps
 |  [cssCompositionMethod?](./answers-react-components.standardfacetsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.standardfacetsprops.customcssclasses.md) | [StandardFacetsCssClasses](./answers-react-components.standardfacetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./answers-react-components.standardfacetsprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
-|  [excludeFieldIds?](./answers-react-components.standardfacetsprops.excludefieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids that should not be displayed. |
+|  [excludedFieldIds?](./answers-react-components.standardfacetsprops.excludedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids that should not be displayed. |
 |  [searchable?](./answers-react-components.standardfacetsprops.searchable.md) | boolean | <i>(Optional)</i> Whether or not to display a text input to search for filter options. |
 |  [searchOnChange?](./answers-react-components.standardfacetsprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |
 

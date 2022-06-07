@@ -26,5 +26,5 @@ A React component for facets
 
 ## Remarks
 
-Numerical facets is not included. Hierachical facets will not be display in a tree level structure. Use `hiddenFields` to exclude hierachical facets, if any, when using this component.
+Numerical facets is not included. Hierachical facets will not be display in a tree level structure. Use `excludedFieldIds` to exclude hierachical facets, if any, when using this component.
 

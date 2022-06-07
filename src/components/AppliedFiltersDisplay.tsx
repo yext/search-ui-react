@@ -25,7 +25,7 @@ export interface AppliedFiltersDisplayProps {
   hierarchicalFacets?: DisplayableHierarchicalFacet[],
   /** Filters that are applied to the search results from the backend's natural language processing. */
   nlpFilters?: DisplayableFilter[],
-  /** The delimiter for determining facet hierarchies, defaults to "\>". */
+  /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses

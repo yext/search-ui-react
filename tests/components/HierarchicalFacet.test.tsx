@@ -57,7 +57,7 @@ describe('Hierarchical facets', () => {
       ]
     });
 
-    render(<HierarchicalFacets fieldIds={hierarchicalFacetFieldIds} />);
+    render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     expect(screen.getByRole('button', { name: /food/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /fruit/i })).toBeTruthy();
@@ -78,7 +78,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets fieldIds={hierarchicalFacetFieldIds} />);
+    render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const bananaButton = screen.getByRole('button', { name: /banana/i });
     userEvent.click(bananaButton);
@@ -99,7 +99,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets fieldIds={hierarchicalFacetFieldIds} />);
+    render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const appleButton = screen.getByRole('button', { name: /apple/i });
     userEvent.click(appleButton);
@@ -120,7 +120,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets fieldIds={hierarchicalFacetFieldIds} />);
+    render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const currentCategoryButton = screen.getByRole('button', { name: /fruit/i });
     userEvent.click(currentCategoryButton);
@@ -142,7 +142,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets fieldIds={hierarchicalFacetFieldIds} />);
+    render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const currentCategoryButton = screen.getByRole('button', { name: /fruit/i });
     userEvent.click(currentCategoryButton);
@@ -163,7 +163,7 @@ describe('Hierarchical facets', () => {
     });
     const actions = spyOnActions();
 
-    render(<HierarchicalFacets fieldIds={hierarchicalFacetFieldIds} />);
+    render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const parentCategoryButton = screen.getByRole('button', { name: /food/i });
     userEvent.click(parentCategoryButton);
