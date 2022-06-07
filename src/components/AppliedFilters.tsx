@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { GroupedFilters } from '../models/groupedFilters';
-import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
+import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacetDisplay';
 import { useStateUpdatedOnSearch } from '../hooks/useStateUpdatedOnSearch';
 
 /**
@@ -43,7 +43,7 @@ export interface AppliedFiltersProps {
   hiddenFields?: Array<string>,
   /** A set of facet fieldIds that should be interpreted as "hierarchical". */
   hierarchicalFacetsFieldIds?: string[],
-  /** {@inheritDoc Filters.HierarchicalFacetProps.delimiter} */
+  /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AppliedFiltersCssClasses,

@@ -16,7 +16,7 @@ export function createHierarchicalFacet(
 
   return {
     fieldId,
-    displayName: '_unused',
+    displayName: 'Fruits',
     options: transformedOptions
   };
 }

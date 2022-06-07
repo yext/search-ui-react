@@ -9,5 +9,5 @@ The value used to perform filtering.
 <b>Signature:</b>
 
 ```typescript
-value: string | number | boolean;
+value: string | number | boolean | NumberRangeValue;
 ```

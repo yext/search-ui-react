@@ -14,7 +14,7 @@ export type CollapsibleSectionProps = PropsWithChildren<{
 /**
  * CollapsibleSection are used for collapsing and un-collapsing groups of filters.
  * It is intended to be used with {@link Filters.CollapsibleLabel}s within the same
- * {@link Filters.FilterGroup}.
+ * {@link Filters.FilterGroupProvider}.
  *
  * @param props - {@link Filters.CollapsibleSectionProps}
  *
