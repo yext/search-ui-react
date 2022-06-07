@@ -130,7 +130,7 @@ describe('search with section labels', () => {
     expect(searchOperations.executeSearch).toBeCalled();
   });
 
-  it('does not trigger executeSearch when "Enter" is pressed if an autocomplete suggestion is not selected with the arrow keys first, even if autocomplete values are returned', () => {
+  it('does not trigger executeSearch when "Enter" is pressed if no autocomplete suggestion is selected with the arrow keys first', () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
