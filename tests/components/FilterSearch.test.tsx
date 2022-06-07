@@ -1,51 +1,12 @@
 import { FilterSearch } from '../../src/components/FilterSearch';
-import { FilterSearchResponse } from '@yext/answers-headless-react';
 import { render, screen } from '@testing-library/react';
 import * as useSynchronizedRequestFunctions from '../../src/hooks/useSynchronizedRequest';
 import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
 import { mockAnswersActions } from '../__utils__/mocks';
+import { mockedFilterSearchResponse, mockedFilterSearchResponseNoResults, mockedFilterSearchResponseNoLabels} from '../../tests/__fixtures__/data/filtersearch';
 
 jest.mock('@yext/answers-headless-react');
-
-const mockedFilterSearchResponse: FilterSearchResponse = {
-  sections: [{
-    label: 'People',
-    results: [
-      { value: 'John Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' } },
-      { value: 'Jane Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' } }
-    ]
-  },
-  {
-    label: 'Condiments',
-    results: [
-      { value: 'Jam',
-        filter: { fieldId: null, matcher: null, value: 'test' } }
-    ]
-  }],
-  uuid: null
-};
-
-const mockedFilterSearchResponseNoLabels: FilterSearchResponse = {
-  sections: [{
-    results: [
-      { value: 'John Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' } },
-      { value: 'Jane Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' } }
-    ]
-  }],
-  uuid: null
-};
-
-const mockedFilterSearchResponseNoResults: FilterSearchResponse = {
-  sections: [{
-    results:[]
-  }],
-  uuid: null
-};
 
 const mockedExecuteFilterSearch = jest.fn();
 const setFilterOption = jest.fn();
@@ -272,7 +233,7 @@ describe('tests screen reader functionality', () => {
     expect(screenReaderMessage).toBeInTheDocument();
   });
 
-  it('renders ScreenReader autocomplete result messages even if there is are no autocomplete suggestions', () => {
+  it('renders ScreenReader autocomplete result messages even if there are no autocomplete suggestions', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset

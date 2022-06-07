@@ -1,3 +1,5 @@
+import { FilterSearchResponse } from '@yext/answers-headless-react';
+
 export const unsectionedFilterSearchResponse = {
   sections: [
     {
@@ -41,3 +43,43 @@ export const sectionedFilterSearchResponse = {
   ],
   uuid: ''
 };
+
+export const mockedFilterSearchResponse: FilterSearchResponse = {
+  sections: [{
+    label: 'People',
+    results: [
+      { value: 'John Doe',
+        filter: { fieldId: null, matcher: null, value: 'test' } },
+      { value: 'Jane Doe',
+        filter: { fieldId: null, matcher: null, value: 'test' } }
+    ]
+  },
+  {
+    label: 'Condiments',
+    results: [
+      { value: 'Jam',
+        filter: { fieldId: null, matcher: null, value: 'test' } }
+    ]
+  }],
+  uuid: null
+};
+
+export const mockedFilterSearchResponseNoLabels: FilterSearchResponse = {
+  sections: [{
+    results: [
+      { value: 'John Doe',
+        filter: { fieldId: null, matcher: null, value: 'test' } },
+      { value: 'Jane Doe',
+        filter: { fieldId: null, matcher: null, value: 'test' } }
+    ]
+  }],
+  uuid: null
+};
+
+export const mockedFilterSearchResponseNoResults: FilterSearchResponse = {
+  sections: [{
+    results:[]
+  }],
+  uuid: null
+};
+
