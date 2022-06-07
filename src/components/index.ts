@@ -9,7 +9,6 @@ export {
 
 export { DropdownItem, DropdownItemProps } from './Dropdown/DropdownItem';
 export { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
-export { EntityPreviews, EntityPreviewsProps } from './EntityPreviews';
 export { FocusedItemData } from './Dropdown/FocusContext';
 
 export {
