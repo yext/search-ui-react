@@ -164,7 +164,7 @@ describe('search with section labels', () => {
 });
 
 describe('search without section labels', () => {
-  it('populates the dropdown menu with autocomplete results without section labels if they are not provided', () => {
+  it('populates the dropdown menu with autocomplete results', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset
