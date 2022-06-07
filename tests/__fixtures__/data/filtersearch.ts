@@ -1,17 +1,20 @@
-import { FilterSearchResponse } from '@yext/answers-headless-react';
+import { FilterSearchResponse, Matcher } from '@yext/answers-headless-react';
 
-export const unsectionedFilterSearchResponse = {
+export const unsectionedFilterSearchResponse: FilterSearchResponse = {
   sections: [
     {
       results: [
         {
-          value: 'first name 1'
+          value: 'first name 1',
+          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'first name 1' }
         },
         {
-          value: 'first name 2'
+          value: 'first name 2',
+          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'first name 2' }
         },
         {
-          value: 'last name 1'
+          value: 'last name 1',
+          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'last name 1' }
         }
       ],
     }
@@ -19,15 +22,17 @@ export const unsectionedFilterSearchResponse = {
   uuid: ''
 };
 
-export const sectionedFilterSearchResponse = {
+export const sectionedFilterSearchResponse: FilterSearchResponse = {
   sections: [
     {
       results: [
         {
-          value: 'first name 1'
+          value: 'first name 1',
+          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'first name 1' }
         },
         {
-          value: 'first name 2'
+          value: 'first name 2',
+          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'first name 2' }
         }
       ],
       label: 'First name'
@@ -35,7 +40,8 @@ export const sectionedFilterSearchResponse = {
     {
       results: [
         {
-          value: 'last name 1'
+          value: 'last name 1',
+          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'last name 1' }
         }
       ],
       label: 'Last name'
@@ -44,39 +50,7 @@ export const sectionedFilterSearchResponse = {
   uuid: ''
 };
 
-export const mockedFilterSearchResponse: FilterSearchResponse = {
-  sections: [{
-    label: 'People',
-    results: [
-      { value: 'John Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' } },
-      { value: 'Jane Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' } }
-    ]
-  },
-  {
-    label: 'Condiments',
-    results: [
-      { value: 'Jam',
-        filter: { fieldId: null, matcher: null, value: 'test' } }
-    ]
-  }],
-  uuid: null
-};
-
-export const mockedFilterSearchResponseNoLabels: FilterSearchResponse = {
-  sections: [{
-    results: [
-      { value: 'John Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' } },
-      { value: 'Jane Doe',
-        filter: { fieldId: null, matcher: null, value: 'test' } }
-    ]
-  }],
-  uuid: null
-};
-
-export const mockedFilterSearchResponseNoResults: FilterSearchResponse = {
+export const noResultsFilterSearchResponse: FilterSearchResponse = {
   sections: [{
     results:[]
   }],
