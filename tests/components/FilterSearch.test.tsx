@@ -60,7 +60,7 @@ describe('search with section labels', () => {
     expect(mockedExecuteFilterSearch).toHaveBeenCalledTimes(3);
   });
 
-  it('does not trigger executeFilterSearch when backspacing on an empty text box', () => {
+  it('does not trigger executeFilterSearch when backspacing in an empty text box', () => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -71,7 +71,7 @@ describe('search with section labels', () => {
     expect(mockedExecuteFilterSearch).toHaveBeenCalledTimes(0);
   });
 
-  it('shows autocomplete suggestions when a character is typed and suggestions are returned by useSynchronizedSearch', () => {
+  it('shows autocomplete results, if they exist, when a character is typed', () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -94,7 +94,7 @@ describe('search with section labels', () => {
     expect(thirdAutocompleteSuggestion).toBeDefined();
   });
 
-  it('populates the search bar with selected suggestions when users navigate to populated autocomplete suggestions using arrow keys', () => {
+  it('fills the search bar with an autocomplete result when a user selects it', () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -113,7 +113,7 @@ describe('search with section labels', () => {
     expect(searchBarElement).toHaveValue('first name 2');
   });
 
-  it('calls executeSearch when an autocomplete suggestion is selected using the arrow keys and "Enter"', () => {
+  it('calls executeSearch when an autocomplete result is selected and "Enter" is pressed', () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -124,13 +124,14 @@ describe('search with section labels', () => {
 
     userEvent.type(searchBarElement, '{arrowdown}');
     expect(searchBarElement).toHaveValue('first name 1');
+
     userEvent.type(searchBarElement, '{enter}');
     expect(setFilterOption).toBeCalled();
     expect(setOffset).toBeCalled();
     expect(searchOperations.executeSearch).toBeCalled();
   });
 
-  it('does not trigger executeSearch when "Enter" is pressed if no autocomplete suggestion is selected with the arrow keys first', () => {
+  it('does not trigger executeSearch on "Enter" if no autocomplete result is selected', () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -148,7 +149,7 @@ describe('search with section labels', () => {
     expect(searchOperations.executeSearch).not.toBeCalled();
   });
 
-  it('calls executeSearch when an autocomplete suggestion is clicked with a cursor', () => {
+  it('calls executeSearch when an autocomplete result is clicked with a cursor', () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -193,7 +194,7 @@ describe('search without section labels', () => {
 });
 
 describe('screen reader', () => {
-  it('renders ScreenReader autocomplete result messages with section labels if they are provided', () => {
+  it('renders ScreenReader messages with section labels', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset
@@ -215,7 +216,7 @@ describe('screen reader', () => {
 
   });
 
-  it('renders ScreenReader autocomplete result messages and omits section labels if they are not provided', () => {
+  it('renders ScreenReader messages without section labels', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset
@@ -236,7 +237,7 @@ describe('screen reader', () => {
     expect(screenReaderMessage).toBeInTheDocument();
   });
 
-  it('renders ScreenReader autocomplete result messages even if there are no autocomplete suggestions', () => {
+  it('renders 0 results ScreenReader message when there are no results', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset
