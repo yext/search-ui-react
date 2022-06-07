@@ -24,7 +24,7 @@ import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
 import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { FocusedItemData } from './Dropdown/FocusContext';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import {
   calculateEntityPreviewsCount,
   calculateRestrictVerticals,
@@ -144,8 +144,6 @@ export interface SearchBarProps {
   geolocationOptions?: PositionOptions,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: SearchBarCssClasses,
-   /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod,
   /** {@inheritDoc VisualAutocompleteConfig} */
   visualAutocompleteConfig?: VisualAutocompleteConfig,
   /** Hides vertical links if true. */
@@ -177,7 +175,6 @@ export function SearchBar({
   verticalKeyToLabel,
   recentSearchesLimit = 5,
   customCssClasses,
-  cssCompositionMethod,
   onSearch
 }: SearchBarProps): JSX.Element {
   const {
@@ -190,7 +187,7 @@ export function SearchBar({
   const reportAnalyticsEvent = useSearchBarAnalytics();
 
   const query = useAnswersState(state => state.query.input) ?? '';
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
     () => executeAutocompleteSearch(answersActions)

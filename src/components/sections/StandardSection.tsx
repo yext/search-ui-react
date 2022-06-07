@@ -1,7 +1,7 @@
 import { VerticalResultsDisplay } from '../VerticalResultsDisplay';
 import { SectionProps } from '../../models/sectionComponent';
 import { StandardCard } from '../cards/standard/StandardCard';
-import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { VerticalResultsCssClasses } from '../VerticalResults';
 
 /**
@@ -24,9 +24,7 @@ const builtInCssClasses: StandardSectionCssClasses = {
  */
 export interface StandardSectionProps extends SectionProps {
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: StandardSectionCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: StandardSectionCssClasses
 }
 
 /**
@@ -38,11 +36,7 @@ export interface StandardSectionProps extends SectionProps {
  * @returns A React element for a standard section, or null if there are no results to display
  */
 export function StandardSection(props: StandardSectionProps): JSX.Element | null {
-  const cssClasses = useComposedCssClasses(
-    builtInCssClasses,
-    props.customCssClasses,
-    props.cssCompositionMethod
-  );
+  const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const { results, CardComponent = StandardCard, header } = props;
 
   if (results.length === 0) {
@@ -56,7 +50,6 @@ export function StandardSection(props: StandardSectionProps): JSX.Element | null
         results={results}
         CardComponent={CardComponent}
         customCssClasses={cssClasses}
-        cssCompositionMethod='replace'
       />
     </section>
   );

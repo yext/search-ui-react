@@ -1,6 +1,5 @@
 import { DisplayableFacet } from '@yext/answers-headless-react';
 import { ReactNode, useCallback, useState } from 'react';
-import { CompositionMethod } from '../../hooks';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { HierarchicalFacetNode, HierarchicalFacetTree, useHierarchicalFacetTree } from '../../hooks/useHierarchicalFacetTree';
 import { useFiltersContext } from './FiltersContext';
@@ -21,9 +20,7 @@ export interface HierarchicalFacetDisplayProps {
    * CSS classes for customizing the component styling
    * of HierarchicalFacetDisplayCssClasses.
    */
-  customCssClasses?: HierarchicalFacetDisplayCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: HierarchicalFacetDisplayCssClasses
 }
 
 /**
@@ -67,11 +64,9 @@ export function HierarchicalFacetDisplay({
   facet,
   delimiter = DEFAULT_HIERARCHICAL_DELIMITER,
   showMoreLimit = 4,
-  customCssClasses,
-  cssCompositionMethod
+  customCssClasses
 }: HierarchicalFacetDisplayProps): JSX.Element {
-  const cssClasses = useComposedCssClasses(
-    builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const tree = useHierarchicalFacetTree(facet, delimiter);
   const [isShowingMore, setIsShowingMore] = useState(false);
   const resetShowMore = useCallback(() => setIsShowingMore(false), []);

@@ -1,7 +1,7 @@
 import { useAnswersActions, useAnswersState, LocationBiasMethod } from '@yext/answers-headless-react';
 import { executeSearch } from '../utils/search-operations';
 import { getUserLocation } from '../utils/location-operations';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useState } from 'react';
 import LoadingIndicator from '../icons/LoadingIndicator';
 
@@ -36,9 +36,7 @@ export interface LocationBiasProps {
    */
   geolocationOptions?: PositionOptions,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: LocationBiasCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: LocationBiasCssClasses
 }
 
 /**
@@ -51,13 +49,12 @@ export interface LocationBiasProps {
  */
 export function LocationBias({
   geolocationOptions,
-  customCssClasses,
-  cssCompositionMethod
+  customCssClasses
 }: LocationBiasProps): JSX.Element | null {
   const answersActions = useAnswersActions();
   const locationBias = useAnswersState(s => s.location.locationBias);
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   if (!locationBias?.displayName) return null;
 
