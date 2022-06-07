@@ -16,7 +16,7 @@ const searchFieldsProp = {
   entityType: 'ce-person'
 };
 
-describe('tests using data with section labels', () => {
+describe('search with section labels', () => {
   beforeEach(() => {
     mockAnswersActions({
       setFilterOption,
@@ -163,7 +163,7 @@ describe('tests using data with section labels', () => {
   });
 });
 
-describe('tests using data without section labels', () => {
+describe('search without section labels', () => {
   it('populates the dropdown menu with autocomplete results without section labels if they are not provided', () => {
     mockAnswersActions({
       setFilterOption,
@@ -192,7 +192,7 @@ describe('tests using data without section labels', () => {
   });
 });
 
-describe('tests screen reader functionality', () => {
+describe('screen reader', () => {
   it('renders ScreenReader autocomplete result messages with section labels if they are provided', () => {
     mockAnswersActions({
       setFilterOption,
