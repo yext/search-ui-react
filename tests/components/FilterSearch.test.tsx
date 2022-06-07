@@ -4,7 +4,7 @@ import * as useSynchronizedRequestFunctions from '../../src/hooks/useSynchronize
 import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
 import { mockAnswersActions } from '../__utils__/mocks';
-import { sectionedFilterSearchResponse, unsectionedFilterSearchResponse, noResultsFilterSearchResponse} from '../../tests/__fixtures__/data/filtersearch';
+import { sectionedFilterSearchResponse, unsectionedFilterSearchResponse, noResultsFilterSearchResponse } from '../../tests/__fixtures__/data/filtersearch';
 
 jest.mock('@yext/answers-headless-react');
 
