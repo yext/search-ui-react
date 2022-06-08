@@ -1,6 +1,5 @@
 import { FacetsProvider, RangeInput, RangeInputCssClasses } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { Fragment, useMemo } from 'react';
 import { DisplayableFacet, NumberRangeValue } from '@yext/answers-headless-react';
 import { StandardFacetsProps } from './StandardFacets';
@@ -40,9 +39,7 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
    */
   inputPrefix?: JSX.Element,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: NumericalFacetsCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: NumericalFacetsCssClasses
 }
 
 const DEFAULT_RANGE_INPUT_PREFIX = <>$</>;

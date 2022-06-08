@@ -17,7 +17,6 @@ export interface StandardFacetsProps
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [collapsible?](./answers-react-components.standardfacetsprops.collapsible.md) | boolean | <i>(Optional)</i> Whether or not the filter is collapsible. Defaults to true. |
-|  [cssCompositionMethod?](./answers-react-components.standardfacetsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.standardfacetsprops.customcssclasses.md) | [StandardFacetsCssClasses](./answers-react-components.standardfacetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./answers-react-components.standardfacetsprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
 |  [excludedFieldIds?](./answers-react-components.standardfacetsprops.excludedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids that should not be displayed. |

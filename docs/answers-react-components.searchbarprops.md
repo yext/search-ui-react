@@ -16,7 +16,6 @@ export interface SearchBarProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.searchbarprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.searchbarprops.customcssclasses.md) | [SearchBarCssClasses](./answers-react-components.searchbarcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [geolocationOptions?](./answers-react-components.searchbarprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->. |
 |  [hideRecentSearches?](./answers-react-components.searchbarprops.hiderecentsearches.md) | boolean | <i>(Optional)</i> Hides recent searches if true. |

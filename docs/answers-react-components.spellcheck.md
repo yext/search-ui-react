@@ -9,14 +9,14 @@ Renders a suggested query if the Answers API provides one.
 <b>Signature:</b>
 
 ```typescript
-export declare function SpellCheck({ customCssClasses, cssCompositionMethod, onClick }: SpellCheckProps): JSX.Element | null;
+export declare function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { customCssClasses, cssCompositionMethod, onClick } | [SpellCheckProps](./answers-react-components.spellcheckprops.md) |  |
+|  { customCssClasses, onClick } | [SpellCheckProps](./answers-react-components.spellcheckprops.md) |  |
 
 <b>Returns:</b>
 

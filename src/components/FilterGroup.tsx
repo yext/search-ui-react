@@ -1,5 +1,4 @@
 import { PropsWithChildren, useMemo } from 'react';
-import { CompositionMethod } from '../hooks';
 import {
   CheckboxOption,
   CollapsibleLabel,
@@ -44,9 +43,7 @@ export interface FilterGroupProps {
   /** Whether or not to display a text input to search for filter options. */
   searchable?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: FilterGroupCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: FilterGroupCssClasses
 }
 
 /**
@@ -60,7 +57,6 @@ export function FilterGroup({
   defaultExpanded = true,
   searchable,
   customCssClasses = {},
-  cssCompositionMethod,
   children
 }: PropsWithChildren<FilterGroupProps>) {
   const cssClasses = useMemo(() => {
@@ -95,7 +91,6 @@ export function FilterGroup({
               {...o}
               key={o.displayName || o.value.toString()}
               customCssClasses={cssClasses}
-              cssCompositionMethod={cssCompositionMethod}
             />
           );
         })}
