@@ -144,7 +144,6 @@ describe('search with section labels', () => {
     });
     expect(setOffset).not.toBeCalled();
     expect(mockExecuteSearch).not.toBeCalled();
-
   });
 
   it('triggers a search when an autocomplete result is clicked', async () => {
