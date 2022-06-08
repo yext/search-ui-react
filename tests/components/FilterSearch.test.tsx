@@ -44,7 +44,7 @@ describe('search with section labels', () => {
     expect(searchBarElement.length).toBe(1);
   });
 
-  it('calls executeFilterSearch every time a character is typed or backspaced', () => {
+  it('triggers a filter search every time a character is typed or backspaced', () => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -64,7 +64,7 @@ describe('search with section labels', () => {
     expect(actions.executeFilterSearch).toHaveBeenCalledTimes(3);
   });
 
-  it('does not trigger executeFilterSearch when backspacing in an empty text box', () => {
+  it('does not trigger a filter search when backspacing in an empty text box', () => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -131,7 +131,7 @@ describe('search with section labels', () => {
     expect(searchBarElement).toHaveValue('first name 2');
   });
 
-  it('calls executeSearch when an autocomplete result is selected and "Enter" is pressed', async () => {
+  it('triggers a search on pressing "enter" when an autocomplete result is selected', async () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -164,7 +164,7 @@ describe('search with section labels', () => {
     expect(searchOperations.executeSearch).toBeCalled();
   });
 
-  it('does not trigger executeSearch on "Enter" if no autocomplete result is selected', async () => {
+  it('does not trigger a search on pressing "enter" if no autocomplete result is selected', async () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -186,7 +186,7 @@ describe('search with section labels', () => {
     expect(searchOperations.executeSearch).not.toBeCalled();
   });
 
-  it('calls executeSearch when an autocomplete result is clicked with a cursor', async () => {
+  it('triggers a search when an autocomplete result is clicked', async () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -207,7 +207,7 @@ describe('search with section labels', () => {
 });
 
 describe('search without section labels', () => {
-  it('populates the dropdown menu with autocomplete results', async () => {
+  it('shows autocomplete results, if they exist, when a character is typed', async () => {
     mockAnswersActions({
       setFilterOption,
       setOffset,
