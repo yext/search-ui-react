@@ -5,6 +5,7 @@ import * as searchOperations from '../../src/utils/search-operations';
 import { mockAnswersActions, spyOnActions } from '../__utils__/mocks';
 import { labeledFilterSearchResponse, unlabeledFilterSearchResponse, noResultsFilterSearchResponse } from '../../tests/__fixtures__/data/filtersearch';
 import { Matcher } from '@yext/answers-headless-react';
+import { act } from 'react-dom/test-utils';
 
 jest.mock('@yext/answers-headless-react');
 const actions = spyOnActions();
@@ -35,17 +36,22 @@ describe('search with section labels', () => {
     expect(searchBarElement.length).toBe(1);
   });
 
-  it('displays characters typed in search bar correctly',() => {
+  it('displays characters typed in search bar correctly', async () => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'na');
-    expect(searchBarElement).toHaveValue('na');
+    await waitFor(() => {
+      expect(searchBarElement).toHaveValue('na');
+    });
+
     userEvent.type(searchBarElement, '{backspace}');
-    expect(searchBarElement).toHaveValue('n');
+    await waitFor(() => {
+      expect(searchBarElement).toHaveValue('n');
+    });
   });
 
-  it('triggers a filter search every time a character is typed or backspaced', () => {
+  it('triggers a filter search every time a character is typed or backspaced', async () => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
     const searchBarElement = screen.getByRole('textbox');
     const expectedFilterSearchFields = [{
@@ -55,9 +61,14 @@ describe('search with section labels', () => {
     }];
 
     userEvent.type(searchBarElement, 'na');
-    expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('na', false, expectedFilterSearchFields);
+    await waitFor(() => {
+      expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('na', false, expectedFilterSearchFields);
+    });
+
     userEvent.type(searchBarElement, '{backspace}');
-    expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
+    await waitFor(() => {
+      expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
+    });
     expect(actions.executeFilterSearch).toHaveBeenCalledTimes(3);
   });
 
@@ -128,9 +139,13 @@ describe('search with section labels', () => {
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n{enter}');
-    expect(setFilterOption).not.toBeCalled();
+
+    await waitFor(() => {
+      expect(setFilterOption).not.toBeCalled();
+    });
     expect(setOffset).not.toBeCalled();
     expect(mockExecuteSearch).not.toBeCalled();
+
   });
 
   it('triggers a search when an autocomplete result is clicked', async () => {
@@ -140,7 +155,6 @@ describe('search with section labels', () => {
 
     userEvent.type(searchBarElement, 'n');
     const autocompleteSuggestion = await waitFor(() => screen.findByText('first name 1'));
-
 
     const expectedSetFilterOptionParam = {
       fieldId: 'name',
