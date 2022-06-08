@@ -5,7 +5,6 @@ import * as searchOperations from '../../src/utils/search-operations';
 import { mockAnswersActions, spyOnActions } from '../__utils__/mocks';
 import { labeledFilterSearchResponse, unlabeledFilterSearchResponse, noResultsFilterSearchResponse } from '../../tests/__fixtures__/data/filtersearch';
 import { Matcher } from '@yext/answers-headless-react';
-import { act } from 'react-dom/test-utils';
 
 jest.mock('@yext/answers-headless-react');
 const actions = spyOnActions();
