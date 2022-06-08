@@ -16,12 +16,6 @@ const searchFieldsProp = [{
   entityType: 'ce_person'
 }];
 
-const expectedFilterSearchFields = [{
-  entityType: 'ce_person',
-  fetchEntities: false,
-  fieldApiName: 'name'
-}];
-
 describe('search with section labels', () => {
   beforeEach(() => {
     mockAnswersActions({
@@ -33,7 +27,6 @@ describe('search with section labels', () => {
 
   it('renders the filter search bar and the "Filter" label', () => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
-
     const label = 'Filter';
     const labelElement = screen.getByText(label);
     const searchBarElement = screen.getAllByRole('textbox');
@@ -44,53 +37,44 @@ describe('search with section labels', () => {
 
   it('displays characters typed in search bar correctly',() => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, 'n');
-    expect(searchBarElement).toHaveValue('n');
-
-    userEvent.type(searchBarElement, 'a');
+    userEvent.type(searchBarElement, 'na');
     expect(searchBarElement).toHaveValue('na');
-
     userEvent.type(searchBarElement, '{backspace}');
     expect(searchBarElement).toHaveValue('n');
   });
 
   it('triggers a filter search every time a character is typed or backspaced', () => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
+    const expectedFilterSearchFields = [{
+      entityType: 'ce_person',
+      fetchEntities: false,
+      fieldApiName: 'name'
+    }];
 
-    userEvent.type(searchBarElement, 'n');
-    expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
-
-    userEvent.type(searchBarElement, 'a');
+    userEvent.type(searchBarElement, 'na');
     expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('na', false, expectedFilterSearchFields);
-
     userEvent.type(searchBarElement, '{backspace}');
     expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
-
     expect(actions.executeFilterSearch).toHaveBeenCalledTimes(3);
   });
 
   it('does not trigger a filter search when backspacing in an empty text box', () => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, '{backspace}');
     expect(searchBarElement).toHaveValue('');
-
     expect(actions.executeFilterSearch).toHaveBeenCalledTimes(0);
   });
 
   it('shows autocomplete results, if they exist, when a character is typed', async () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
 
+    userEvent.type(searchBarElement, 'n');
     await waitFor(() => {
       const autocompleteSection= screen.getByText('First name');
       expect(autocompleteSection).toBeDefined();
@@ -99,33 +83,25 @@ describe('search with section labels', () => {
 
   it('fills the search bar with an autocomplete result when a user selects it', async () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
 
+    userEvent.type(searchBarElement, 'n');
     await waitFor(() => screen.findByText('first name 1'));
 
     userEvent.type(searchBarElement, '{arrowdown}');
     expect(searchBarElement).toHaveValue('first name 1');
-
     userEvent.type(searchBarElement, '{arrowdown}');
     expect(searchBarElement).toHaveValue('first name 2');
   });
 
   it('triggers a search on pressing "enter" when an autocomplete result is selected', async () => {
     const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
-
     render (<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
 
+    userEvent.type(searchBarElement, 'n');
     await waitFor(() => screen.findByText('first name 1'));
 
-    userEvent.type(searchBarElement, '{arrowdown}');
-    expect(searchBarElement).toHaveValue('first name 1');
-
-    userEvent.type(searchBarElement, '{enter}');
     const expectedSetFilterOptionParam = {
       fieldId: 'name',
       matcher: Matcher.Equals,
@@ -134,23 +110,24 @@ describe('search with section labels', () => {
       selected: true
     };
     const expectedSetOffsetParam = 0;
+
+    userEvent.type(searchBarElement, '{arrowdown}{enter}');
     expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
     expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
 
     const setFilterOptionCallOrder = setFilterOption.mock.invocationCallOrder[0];
     const setOffsetCallOrder = setOffset.mock.invocationCallOrder[0];
     const mockExecuteSearchCallOrder = mockExecuteSearch.mock.invocationCallOrder[0];
-    expect(setFilterOptionCallOrder).toBeLessThan(setOffsetCallOrder);
+    expect(setFilterOptionCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
     expect(setOffsetCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
   });
 
   it('does not trigger a search on pressing "enter" if no autocomplete result is selected', async () => {
     const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
     render (<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n{enter}');
 
+    userEvent.type(searchBarElement, 'n{enter}');
     expect(setFilterOption).not.toBeCalled();
     expect(setOffset).not.toBeCalled();
     expect(mockExecuteSearch).not.toBeCalled();
@@ -159,16 +136,30 @@ describe('search with section labels', () => {
   it('triggers a search when an autocomplete result is clicked', async () => {
     const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
     render (<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
 
+    userEvent.type(searchBarElement, 'n');
     const autocompleteSuggestion = await waitFor(() => screen.findByText('first name 1'));
 
+
+    const expectedSetFilterOptionParam = {
+      fieldId: 'name',
+      matcher: Matcher.Equals,
+      value: 'first name 1' ,
+      displayName: 'first name 1',
+      selected: true
+    };
+    const expectedSetOffsetParam = 0;
+
     userEvent.click(autocompleteSuggestion);
-    expect(setFilterOption).toBeCalled();
-    expect(setOffset).toBeCalled();
-    expect(mockExecuteSearch).toBeCalled();
+    expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
+    expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
+
+    const setFilterOptionCallOrder = setFilterOption.mock.invocationCallOrder[0];
+    const setOffsetCallOrder = setOffset.mock.invocationCallOrder[0];
+    const mockExecuteSearchCallOrder = mockExecuteSearch.mock.invocationCallOrder[0];
+    expect(setFilterOptionCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
+    expect(setOffsetCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
   });
 });
 
@@ -179,14 +170,12 @@ describe('search without section labels', () => {
       setOffset,
       executeFilterSearch: jest.fn().mockResolvedValue(unlabeledFilterSearchResponse)
     });
-
     jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
 
     render (<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
 
+    userEvent.type(searchBarElement, 'n');
     await waitFor(() => {
       const autocompleteSuggestion = screen.getByText('first name 1');
       expect(autocompleteSuggestion).toBeDefined();
@@ -203,14 +192,13 @@ describe('screen reader', () => {
     });
 
     render(<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
 
+    userEvent.type(searchBarElement, 'n');
     const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found.';
     await waitFor(() => {
       const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
-      expect(screenReaderMessage).toBeInTheDocument();
+      expect(screenReaderMessage).toBeDefined();
     });
   });
 
@@ -222,14 +210,13 @@ describe('screen reader', () => {
     });
 
     render(<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
 
+    userEvent.type(searchBarElement, 'n');
     const expectedScreenReaderMessage = '3 autocomplete options found.';
     await waitFor(() => {
       const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
-      expect(screenReaderMessage).toBeInTheDocument();
+      expect(screenReaderMessage).toBeDefined();
     });
   });
 
@@ -241,14 +228,13 @@ describe('screen reader', () => {
     });
 
     render(<FilterSearch searchFields={searchFieldsProp}/>);
-
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
 
+    userEvent.type(searchBarElement, 'n');
     const expectedScreenReaderMessage = '0 autocomplete options found.';
     await waitFor(() => {
       const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
-      expect(screenReaderMessage).toBeInTheDocument();
+      expect(screenReaderMessage).toBeDefined();
     });
   });
 });
