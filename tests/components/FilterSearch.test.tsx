@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
 import { mockAnswersActions, spyOnActions } from '../__utils__/mocks';
-import { sectionedFilterSearchResponse, unsectionedFilterSearchResponse, noResultsFilterSearchResponse } from '../../tests/__fixtures__/data/filtersearch';
+import { labeledFilterSearchResponse, unlabeledFilterSearchResponse, noResultsFilterSearchResponse } from '../../tests/__fixtures__/data/filtersearch';
 import { Matcher } from '@yext/answers-headless-react';
 
 jest.mock('@yext/answers-headless-react');
@@ -13,11 +13,11 @@ const setFilterOption = jest.fn();
 const setOffset = jest.fn();
 const searchFieldsProp = [{
   fieldApiName: 'name',
-  entityType: 'ce-person'
+  entityType: 'ce_person'
 }];
 
 const expectedFilterSearchFields = [{
-  entityType: 'ce-person',
+  entityType: 'ce_person',
   fetchEntities: false,
   fieldApiName: 'name'
 }];
@@ -27,10 +27,8 @@ describe('search with section labels', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset,
-      executeFilterSearch: jest.fn().mockResolvedValue(sectionedFilterSearchResponse)
+      executeFilterSearch: jest.fn().mockResolvedValue(labeledFilterSearchResponse)
     });
-
-    jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
   });
 
   it('renders the filter search bar and the "Filter" label', () => {
@@ -94,28 +92,8 @@ describe('search with section labels', () => {
     userEvent.type(searchBarElement, 'n');
 
     await waitFor(() => {
-      const firstAutocompleteSection= screen.getByText('First name');
-      expect(firstAutocompleteSection).toBeDefined();
-    });
-
-    await waitFor(() => {
-      const firstAutocompleteSuggestion = screen.getByText('first name 1');
-      expect(firstAutocompleteSuggestion).toBeDefined();
-    });
-
-    await waitFor(() => {
-      const secondAutocompleteSuggestion = screen.getByText('first name 2');
-      expect(secondAutocompleteSuggestion).toBeDefined();
-    });
-
-    await waitFor(() => {
-      const secondAutocompleteSection= screen.getByText('Last name');
-      expect(secondAutocompleteSection).toBeDefined();
-    });
-
-    await waitFor(() => {
-      const thirdAutocompleteSuggestion = screen.getByText('last name 1');
-      expect(thirdAutocompleteSuggestion).toBeDefined();
+      const autocompleteSection= screen.getByText('First name');
+      expect(autocompleteSection).toBeDefined();
     });
   });
 
@@ -125,15 +103,7 @@ describe('search with section labels', () => {
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
 
-    await waitFor(() => {
-      const firstAutocompleteSuggestion = screen.getByText('first name 1');
-      expect(firstAutocompleteSuggestion).toBeDefined();
-    });
-
-    await waitFor(() => {
-      const secondAutocompleteSuggestion = screen.getByText('first name 2');
-      expect(secondAutocompleteSuggestion).toBeDefined();
-    });
+    await waitFor(() => screen.findByText('first name 1'));
 
     userEvent.type(searchBarElement, '{arrowdown}');
     expect(searchBarElement).toHaveValue('first name 1');
@@ -143,22 +113,21 @@ describe('search with section labels', () => {
   });
 
   it('triggers a search on pressing "enter" when an autocomplete result is selected', async () => {
+    const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
+
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
 
-    await waitFor(() => {
-      const firstAutocompleteSuggestion = screen.getByText('first name 1');
-      expect(firstAutocompleteSuggestion).toBeDefined();
-    });
+    await waitFor(() => screen.findByText('first name 1'));
 
     userEvent.type(searchBarElement, '{arrowdown}');
     expect(searchBarElement).toHaveValue('first name 1');
 
     userEvent.type(searchBarElement, '{enter}');
     const expectedSetFilterOptionParam = {
-      fieldId: 'ce_person',
+      fieldId: 'name',
       matcher: Matcher.Equals,
       value: 'first name 1' ,
       displayName: 'first name 1',
@@ -170,12 +139,13 @@ describe('search with section labels', () => {
 
     const setFilterOptionCallOrder = setFilterOption.mock.invocationCallOrder[0];
     const setOffsetCallOrder = setOffset.mock.invocationCallOrder[0];
+    const mockExecuteSearchCallOrder = mockExecuteSearch.mock.invocationCallOrder[0];
     expect(setFilterOptionCallOrder).toBeLessThan(setOffsetCallOrder);
-
-    expect(searchOperations.executeSearch).toBeCalled();
+    expect(setOffsetCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
   });
 
   it('does not trigger a search on pressing "enter" if no autocomplete result is selected', async () => {
+    const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
@@ -183,26 +153,22 @@ describe('search with section labels', () => {
 
     expect(setFilterOption).not.toBeCalled();
     expect(setOffset).not.toBeCalled();
-    expect(searchOperations.executeSearch).not.toBeCalled();
+    expect(mockExecuteSearch).not.toBeCalled();
   });
 
   it('triggers a search when an autocomplete result is clicked', async () => {
+    const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
 
-    let firstAutocompleteSuggestion;
+    const autocompleteSuggestion = await waitFor(() => screen.findByText('first name 1'));
 
-    await waitFor(() => {
-      firstAutocompleteSuggestion = screen.getByText('first name 1');
-      expect(firstAutocompleteSuggestion).toBeDefined();
-    });
-
-    userEvent.click(firstAutocompleteSuggestion);
+    userEvent.click(autocompleteSuggestion);
     expect(setFilterOption).toBeCalled();
     expect(setOffset).toBeCalled();
-    expect(searchOperations.executeSearch).toBeCalled();
+    expect(mockExecuteSearch).toBeCalled();
   });
 });
 
@@ -211,7 +177,7 @@ describe('search without section labels', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset,
-      executeFilterSearch: jest.fn().mockResolvedValue(unsectionedFilterSearchResponse)
+      executeFilterSearch: jest.fn().mockResolvedValue(unlabeledFilterSearchResponse)
     });
 
     jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
@@ -222,18 +188,8 @@ describe('search without section labels', () => {
     userEvent.type(searchBarElement, 'n');
 
     await waitFor(() => {
-      const firstAutocompleteSuggestion = screen.getByText('first name 1');
-      expect(firstAutocompleteSuggestion).toBeDefined();
-    });
-
-    await waitFor(() => {
-      const secondAutocompleteSuggestion = screen.getByText('first name 2');
-      expect(secondAutocompleteSuggestion).toBeDefined();
-    });
-
-    await waitFor(() => {
-      const thirdAutocompleteSuggestion = screen.getByText('last name 1');
-      expect(thirdAutocompleteSuggestion).toBeDefined();
+      const autocompleteSuggestion = screen.getByText('first name 1');
+      expect(autocompleteSuggestion).toBeDefined();
     });
   });
 });
@@ -243,7 +199,7 @@ describe('screen reader', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset,
-      executeFilterSearch: jest.fn().mockResolvedValue(sectionedFilterSearchResponse)
+      executeFilterSearch: jest.fn().mockResolvedValue(labeledFilterSearchResponse)
     });
 
     render(<FilterSearch searchFields={searchFieldsProp}/>);
@@ -262,7 +218,7 @@ describe('screen reader', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset,
-      executeFilterSearch: jest.fn().mockResolvedValue(unsectionedFilterSearchResponse)
+      executeFilterSearch: jest.fn().mockResolvedValue(unlabeledFilterSearchResponse)
     });
 
     render(<FilterSearch searchFields={searchFieldsProp}/>);

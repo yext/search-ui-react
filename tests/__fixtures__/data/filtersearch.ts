@@ -1,20 +1,20 @@
 import { FilterSearchResponse, Matcher } from '@yext/answers-headless-react';
 
-export const unsectionedFilterSearchResponse: FilterSearchResponse = {
+export const unlabeledFilterSearchResponse: FilterSearchResponse = {
   sections: [
     {
       results: [
         {
           value: 'first name 1',
-          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'first name 1' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 1' }
         },
         {
           value: 'first name 2',
-          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'first name 2' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 2' }
         },
         {
           value: 'last name 1',
-          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'last name 1' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'last name 1' }
         }
       ],
     }
@@ -22,17 +22,17 @@ export const unsectionedFilterSearchResponse: FilterSearchResponse = {
   uuid: ''
 };
 
-export const sectionedFilterSearchResponse: FilterSearchResponse = {
+export const labeledFilterSearchResponse: FilterSearchResponse = {
   sections: [
     {
       results: [
         {
           value: 'first name 1',
-          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'first name 1' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 1' }
         },
         {
           value: 'first name 2',
-          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'first name 2' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 2' }
         }
       ],
       label: 'First name'
@@ -41,7 +41,7 @@ export const sectionedFilterSearchResponse: FilterSearchResponse = {
       results: [
         {
           value: 'last name 1',
-          filter: { fieldId: 'ce_person', matcher: Matcher.Equals, value: 'last name 1' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'last name 1' }
         }
       ],
       label: 'Last name'
