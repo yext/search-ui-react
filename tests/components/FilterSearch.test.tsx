@@ -44,21 +44,33 @@ describe('search with section labels', () => {
     expect(searchBarElement.length).toBe(1);
   });
 
-  it('triggers a filter search every time a character is typed or backspaced', () => {
+  it('displays characters typed in search bar correctly',() => {
     render(<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
     expect(searchBarElement).toHaveValue('n');
-    expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
 
     userEvent.type(searchBarElement, 'a');
     expect(searchBarElement).toHaveValue('na');
-    expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('na', false, expectedFilterSearchFields);
 
     userEvent.type(searchBarElement, '{backspace}');
     expect(searchBarElement).toHaveValue('n');
+  });
+
+  it('triggers a filter search every time a character is typed or backspaced', () => {
+    render(<FilterSearch searchFields={searchFieldsProp}/>);
+
+    const searchBarElement = screen.getByRole('textbox');
+
+    userEvent.type(searchBarElement, 'n');
+    expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
+
+    userEvent.type(searchBarElement, 'a');
+    expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('na', false, expectedFilterSearchFields);
+
+    userEvent.type(searchBarElement, '{backspace}');
     expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
 
     expect(actions.executeFilterSearch).toHaveBeenCalledTimes(3);
@@ -80,7 +92,6 @@ describe('search with section labels', () => {
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
-    expect(actions.executeFilterSearch).toBeCalledWith('n', false, expectedFilterSearchFields);
 
     await waitFor(() => {
       const firstAutocompleteSection= screen.getByText('First name');
@@ -168,19 +179,8 @@ describe('search with section labels', () => {
     render (<FilterSearch searchFields={searchFieldsProp}/>);
 
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
+    userEvent.type(searchBarElement, 'n{enter}');
 
-    await waitFor(() => {
-      const firstAutocompleteSuggestion = screen.getByText('first name 1');
-      expect(firstAutocompleteSuggestion).toBeDefined();
-    });
-
-    await waitFor(() => {
-      const secondAutocompleteSuggestion = screen.getByText('first name 2');
-      expect(secondAutocompleteSuggestion).toBeDefined();
-    });
-
-    userEvent.type(searchBarElement, '{enter}');
     expect(setFilterOption).not.toBeCalled();
     expect(setOffset).not.toBeCalled();
     expect(searchOperations.executeSearch).not.toBeCalled();
@@ -220,7 +220,6 @@ describe('search without section labels', () => {
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
-    expect(actions.executeFilterSearch).toBeCalledWith('n', false, expectedFilterSearchFields);
 
     await waitFor(() => {
       const firstAutocompleteSuggestion = screen.getByText('first name 1');
@@ -251,7 +250,6 @@ describe('screen reader', () => {
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
-    expect(actions.executeFilterSearch).toBeCalledWith('n', false, expectedFilterSearchFields);
 
     const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found.';
     await waitFor(() => {
@@ -271,7 +269,6 @@ describe('screen reader', () => {
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
-    expect(actions.executeFilterSearch).toBeCalledWith('n', false, expectedFilterSearchFields);
 
     const expectedScreenReaderMessage = '3 autocomplete options found.';
     await waitFor(() => {
@@ -291,7 +288,6 @@ describe('screen reader', () => {
 
     const searchBarElement = screen.getByRole('textbox');
     userEvent.type(searchBarElement, 'n');
-    expect(actions.executeFilterSearch).toBeCalledWith('n', false, expectedFilterSearchFields);
 
     const expectedScreenReaderMessage = '0 autocomplete options found.';
     await waitFor(() => {
