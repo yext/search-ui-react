@@ -4,7 +4,7 @@ import { useComponentMountStatus } from './useComponentMountStatus';
 import { useDebouncedFunction } from './useDebouncedFunction';
 
 interface EntityPreviewsState {
-  verticalResultsArray: VerticalResultsData[],
+  verticalKeyToResults: Record<string, VerticalResultsData>,
   isLoading: boolean
 }
 
@@ -24,9 +24,12 @@ type ExecuteEntityPreviewsQuery = (
 export function useEntityPreviews(
   entityPreviewSearcher: AnswersHeadless | undefined,
   debounceTime: number
-): [ EntityPreviewsState, ExecuteEntityPreviewsQuery ] {
+): [EntityPreviewsState, ExecuteEntityPreviewsQuery] {
   const isMountedRef = useComponentMountStatus();
-  const [verticalResultsArray, setVerticalResultsArray] = useState<VerticalResultsData[]>([]);
+  const [
+    verticalKeyToResults,
+    setVerticalKeyToResults
+  ] = useState<Record<string, VerticalResultsData>>({});
   const debouncedUniversalSearch = useDebouncedFunction(async () => {
     if (!entityPreviewSearcher) {
       return;
@@ -40,7 +43,7 @@ export function useEntityPreviews(
       return;
     }
     const results = entityPreviewSearcher.state.universal.verticals || [];
-    setVerticalResultsArray(results);
+    setVerticalKeyToResults(getVerticalKeyToResults(results));
     setLoadingState(false);
   }, debounceTime);
   const [isLoading, setLoadingState] = useState<boolean>(false);
@@ -62,5 +65,17 @@ export function useEntityPreviews(
     entityPreviewSearcher.setUniversalLimit(universalLimit);
     debouncedUniversalSearch();
   }
-  return [{ verticalResultsArray, isLoading }, executeEntityPreviewsQuery];
+  return [{ verticalKeyToResults, isLoading }, executeEntityPreviewsQuery];
+}
+
+/**
+ * @returns a mapping of vertical key to VerticalResults
+ */
+function getVerticalKeyToResults(
+  verticalResultsArray: VerticalResultsData[]
+): Record<string, VerticalResultsData> {
+  return verticalResultsArray.reduce<Record<string, VerticalResultsData>>((prev, current) => {
+    prev[current.verticalKey] = current;
+    return prev;
+  }, {});
 }
