@@ -1,15 +1,20 @@
-export const unsectionedFilterSearchResponse = {
+import { FilterSearchResponse, Matcher } from '@yext/answers-headless-react';
+
+export const unlabeledFilterSearchResponse: FilterSearchResponse = {
   sections: [
     {
       results: [
         {
-          value: 'first name 1'
+          value: 'first name 1',
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 1' }
         },
         {
-          value: 'first name 2'
+          value: 'first name 2',
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 2' }
         },
         {
-          value: 'last name 1'
+          value: 'last name 1',
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'last name 1' }
         }
       ],
     }
@@ -17,15 +22,17 @@ export const unsectionedFilterSearchResponse = {
   uuid: ''
 };
 
-export const sectionedFilterSearchResponse = {
+export const labeledFilterSearchResponse: FilterSearchResponse = {
   sections: [
     {
       results: [
         {
-          value: 'first name 1'
+          value: 'first name 1',
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 1' }
         },
         {
-          value: 'first name 2'
+          value: 'first name 2',
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 2' }
         }
       ],
       label: 'First name'
@@ -33,7 +40,8 @@ export const sectionedFilterSearchResponse = {
     {
       results: [
         {
-          value: 'last name 1'
+          value: 'last name 1',
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'last name 1' }
         }
       ],
       label: 'Last name'
@@ -41,3 +49,11 @@ export const sectionedFilterSearchResponse = {
   ],
   uuid: ''
 };
+
+export const noResultsFilterSearchResponse: FilterSearchResponse = {
+  sections: [{
+    results:[]
+  }],
+  uuid: null
+};
+

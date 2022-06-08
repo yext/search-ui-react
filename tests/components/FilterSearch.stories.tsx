@@ -6,7 +6,7 @@ import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { FilterSearch, FilterSearchProps } from '../../src/components';
 import { userEvent, within } from '@storybook/testing-library';
 import { generateMockedAutocompleteService } from '../__fixtures__/core/autocomplete-service';
-import { sectionedFilterSearchResponse, unsectionedFilterSearchResponse } from '../__fixtures__/data/filtersearch';
+import { labeledFilterSearchResponse, unlabeledFilterSearchResponse } from '../__fixtures__/data/filtersearch';
 
 const mockedHeadlessState = {
   vertical: {
@@ -53,7 +53,7 @@ export const Primary = (args: FilterSearchProps) => {
 export const DropdownUnsectioned = Primary.bind({});
 DropdownUnsectioned.parameters = {
   answersCoreServices: {
-    autoCompleteService: generateMockedAutocompleteService(undefined, unsectionedFilterSearchResponse)
+    autoCompleteService: generateMockedAutocompleteService(undefined, unlabeledFilterSearchResponse)
   }
 };
 DropdownUnsectioned.play = ({ canvasElement }) => {
@@ -70,7 +70,7 @@ export const DropdownSectioned = (args: FilterSearchProps) => {
 };
 DropdownSectioned.parameters = {
   answersCoreServices: {
-    autoCompleteService: generateMockedAutocompleteService(undefined, sectionedFilterSearchResponse)
+    autoCompleteService: generateMockedAutocompleteService(undefined, labeledFilterSearchResponse)
   }
 };
 DropdownSectioned.play = ({ canvasElement }) => {
