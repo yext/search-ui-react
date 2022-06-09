@@ -2,12 +2,16 @@ import { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 /**
- * A react hook which combines a component's built-in CSS classes with custom CSS classes.
+ * useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes.
+ *
+ * @remarks
+ * Tailwind classes will be merged without conflict, with custom classes having higher priority
+ * than built in ones.
  *
  * @public
  *
- * @param builtInClasses - The component's built-in css classes
- * @param customClasses - The custom classes to combine with the built-in ones
+ * @param builtInClasses - The component's built-in tailwind classes
+ * @param customClasses - The custom tailwind classes to merge with the built-in ones
  * @returns The composed CSS classes
  */
 export function useComposedCssClasses<
@@ -22,7 +26,13 @@ export function useComposedCssClasses<
       return mergedCssClasses;
     }
     Object.keys(customClasses).forEach(key => {
-      mergedCssClasses[key] = twMerge(mergedCssClasses[key], customClasses[key]);
+      const builtIn = builtInClasses[key];
+      const custom = customClasses[key];
+      if (!builtIn || !custom) {
+        mergedCssClasses[key] = builtIn ?? custom;
+      } else {
+        mergedCssClasses[key] = twMerge(builtIn, custom);
+      }
     });
     return mergedCssClasses;
   }, [builtInClasses, customClasses]);

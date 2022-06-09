@@ -38,7 +38,7 @@
 |  [useAnalytics()](./answers-react-components.useanalytics.md) | Returns a service that can be used to report analytics events. |
 |  [useCardAnalyticsCallback(result, analyticsType)](./answers-react-components.usecardanalyticscallback.md) | Creates a memoized function for reporting card analytics. |
 |  [useCardFeedbackCallback(result)](./answers-react-components.usecardfeedbackcallback.md) | Creates a memoized function for reporting card feedback analytics. |
-|  [useComposedCssClasses(builtInClasses, customClasses)](./answers-react-components.usecomposedcssclasses.md) | A react hook which combines a component's built-in CSS classes with custom CSS classes. |
+|  [useComposedCssClasses(builtInClasses, customClasses)](./answers-react-components.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
 |  [VerticalResults(props)](./answers-react-components.verticalresults.md) | A component that renders search results for a vertical page. |
 
 ## Interfaces

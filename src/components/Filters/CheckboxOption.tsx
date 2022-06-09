@@ -75,8 +75,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     selectedByDefault = false,
     displayName = props.value,
   } = props;
-  const cssClasses = useComposedCssClasses(
-    builtInCssClasses, props.customCssClasses);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const optionId = useMemo(() => uuid(), []);
   const answersUtilities = useAnswersUtilities();
   const { selectFilter, filters, applyFilters } = useFiltersContext();

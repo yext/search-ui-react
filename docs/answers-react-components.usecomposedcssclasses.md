@@ -4,7 +4,7 @@
 
 ## useComposedCssClasses() function
 
-A react hook which combines a component's built-in CSS classes with custom CSS classes.
+useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes.
 
 <b>Signature:</b>
 
@@ -16,12 +16,16 @@ export declare function useComposedCssClasses<ClassInterface extends Partial<Rec
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  builtInClasses | ClassInterface | The component's built-in css classes |
-|  customClasses | Partial&lt;ClassInterface&gt; | The custom classes to combine with the built-in ones |
+|  builtInClasses | ClassInterface | The component's built-in tailwind classes |
+|  customClasses | Partial&lt;ClassInterface&gt; | The custom tailwind classes to merge with the built-in ones |
 
 <b>Returns:</b>
 
 ClassInterface
 
 The composed CSS classes
+
+## Remarks
+
+Tailwind classes will be merged without conflict, with custom classes having higher priority than built in ones.
 
