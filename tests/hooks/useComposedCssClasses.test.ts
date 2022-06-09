@@ -20,11 +20,11 @@ describe('when there are no custom classes', () => {
 });
 
 it('merges classes without conflicts', () => {
-  const builtInCssClasses = { container: 'block p-1' };
-  const customClasses = { container: 'p-2' };
+  const builtInCssClasses = { container: 'px-4 text-slate-700' };
+  const customClasses = { container: 'text-red-200 mb-3' };
   const { result } = renderHook(() => useComposedCssClasses(builtInCssClasses, customClasses));
   expect(result.current).toEqual({
-    container: 'block p-2'
+    container: 'px-4 text-red-200 mb-3'
   });
 });
 
