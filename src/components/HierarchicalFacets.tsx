@@ -8,7 +8,7 @@ import {
 } from './Filters';
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { StandardFacetsProps } from './StandardFacets';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 /**
  * The CSS class interface for {@link HierarchicalFacets}.

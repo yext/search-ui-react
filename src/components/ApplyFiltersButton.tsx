@@ -1,5 +1,5 @@
 import { useAnswersActions } from '@yext/answers-headless-react';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { executeSearch } from '../utils/search-operations';
 
 /**

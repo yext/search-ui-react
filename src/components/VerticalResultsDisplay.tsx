@@ -3,6 +3,7 @@ import { CardComponent } from '../models/cardComponent';
 import { Result } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
+import React from 'react';
 
 const builtInCssClasses: VerticalResultsCssClasses = {
   results___loading: 'opacity-50'

@@ -5,7 +5,7 @@ import { AppliedQueryFilter, SelectableFilter as DisplayableFilter, useAnswersSt
 import classNames from 'classnames';
 import { useAnalytics } from '../../hooks/useAnalytics';
 import { VerticalLink } from '../../models/verticalLink';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 const FALLBACK_CSS_CLASSES: SectionHeaderCssClasses = {};
 

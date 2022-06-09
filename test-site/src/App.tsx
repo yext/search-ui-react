@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import { AnalyticsProvider } from '@yext/answers-react-components';
 import { config } from './config';
+import React from 'react';
 
 function App() {
   return (

@@ -10,7 +10,7 @@ import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacetDisplay';
 import { executeSearch } from '../utils/search-operations';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { isDescendantHierarchicalFacet } from '../utils/appliedfilterutils';
 
 /**

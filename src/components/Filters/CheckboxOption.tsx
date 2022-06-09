@@ -1,5 +1,5 @@
 import { Filter, Matcher, NumberRangeValue, useAnswersUtilities } from '@yext/answers-headless-react';
-import { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';

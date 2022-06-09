@@ -1,5 +1,5 @@
 import { useAnswersActions, useAnswersState, SelectableFilter as DisplayableFilter } from '@yext/answers-headless-react';
-import { PropsWithChildren, useMemo } from 'react';
+import React, { PropsWithChildren, useMemo } from 'react';
 import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 

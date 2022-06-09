@@ -1,4 +1,4 @@
-import { PropsWithChildren, useMemo } from 'react';
+import React, { PropsWithChildren, useMemo } from 'react';
 import { CompositionMethod } from '../hooks';
 import {
   CheckboxOption,

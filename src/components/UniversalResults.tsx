@@ -8,6 +8,7 @@ import {
 import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 import { VerticalConfigMap } from '../models/verticalConfig';
+import React from 'react';
 
 /**
  * The CSS class interface used for {@link UniversalResults}.

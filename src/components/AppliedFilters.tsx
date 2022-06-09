@@ -1,7 +1,7 @@
 import { useAnswersState } from '@yext/answers-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { pruneAppliedFilters } from '../utils/appliedfilterutils';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { GroupedFilters } from '../models/groupedFilters';

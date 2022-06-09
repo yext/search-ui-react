@@ -7,6 +7,7 @@ import {
 import classNames from 'classnames';
 import { processTranslation } from './utils/processTranslation';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import React from 'react';
 
 /**
  *  The CSS class interface for {@link ResultsCount}.

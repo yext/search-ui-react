@@ -8,7 +8,7 @@ import {
   LocationBias,
   NumericalFacets
 } from '@yext/answers-react-components';
-import { useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 
 export function ProductsPage() {
   const answersActions = useAnswersActions();

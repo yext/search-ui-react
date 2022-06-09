@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { UniversalLink } from '../models/universalLink';
 import { VerticalConfig } from '../models/verticalConfig';
+import React from 'react';
 
 /**
  * The CSS class interface used for {@link AlternativeVerticals}.

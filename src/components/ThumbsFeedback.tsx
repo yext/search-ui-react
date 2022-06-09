@@ -1,5 +1,5 @@
 import { useAnswersState } from '@yext/answers-headless-react';
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ThumbIcon } from '../icons/ThumbIcon';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
 

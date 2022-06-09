@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useAnswersActions } from '@yext/answers-headless-react';
 import {
   AppliedFilters,

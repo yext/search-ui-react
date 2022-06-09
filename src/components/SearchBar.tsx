@@ -9,7 +9,7 @@ import {
   VerticalResults as VerticalResultsData
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
-import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
+import React, { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
@@ -383,7 +383,7 @@ export function SearchBar({
     || (!isVertical && filteredRecentSearches?.length) || entityPreviews);
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
-    filteredRecentSearches?.length,
+    isVertical ? 0 : filteredRecentSearches?.length,
     entityPreviewsCount
   );
   const activeClassName = classNames(cssClasses.inputDropdownContainer, {
