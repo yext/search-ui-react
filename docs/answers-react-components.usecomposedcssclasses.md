@@ -31,5 +31,16 @@ Tailwind classes will be merged without conflict, with custom classes having hig
 
 ## Example
 
-Suppose a component has built-in classes of `{ container: 'px-4 text-slate-700' }`<!-- -->. Passing in custom classes of: `{ container: 'text-red-200 mb-3' }` results in the classes: `{ container: 'px-4 text-red-200 mb-3' }`
+Suppose a component has built-in classes of `{ container: 'px-4 text-slate-700' }`<!-- -->.
+
+Passing in custom classes:
+
+```ts
+{ container: 'text-red-200 mb-3' }
+```
+results in the classes:
+
+```ts
+{ container: 'px-4 text-red-200 mb-3' }
+```
 
