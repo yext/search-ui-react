@@ -1,6 +1,6 @@
 {
   "name": "@yext/answers-react-components",
-  "version": "0.1.2-alpha.161",
+  "version": "0.1.2-beta.172",
   "description": "",
   "author": "slapshot@yext.com",
   "main": "./lib/esm/index.js",
