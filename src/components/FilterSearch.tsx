@@ -72,18 +72,31 @@ export function FilterSearch({
   cssCompositionMethod
 }: FilterSearchProps): JSX.Element {
   const answersActions = useAnswersActions();
-  const searchParamFields = searchFields.map((searchField) => {
-    return { ...searchField, fetchEntities: false };
-  });
+  const searchParamFields = useMemo(() => {
+    return searchFields.map((searchField) => {
+      return { ...searchField, fetchEntities: false };
+    });
+  }, [searchFields]);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+
+  const answersExecuteFilterSearch = useMemo(() => {
+    return (inputValue) => (
+      answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields)
+    );
+  }, [answersActions, searchParamFields, sectioned]);
+
+  const answersExecuteFilterSearchError = useCallback(() => {
+    return (e) => console.error('Error occured executing a filter search request.\n', e);
+  }, []);
 
   const [
     filterSearchResponse,
     executeFilterSearch
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
-    inputValue => answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
-    (e) => console.error('Error occured executing a filter search request.\n', e)
+    answersExecuteFilterSearch,
+    answersExecuteFilterSearchError
   );
+
   const sections = useMemo(() => {
     return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
   }, [filterSearchResponse?.sections]);
@@ -100,7 +113,7 @@ export function FilterSearch({
     }
   }, [answersActions]);
 
-  const handleChangeDropdownInput = useCallback(query => executeFilterSearch(query), [executeFilterSearch]);
+  const handleChangeDropdownInput = executeFilterSearch;
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
   const itemDataMatrix = useMemo(() => {
