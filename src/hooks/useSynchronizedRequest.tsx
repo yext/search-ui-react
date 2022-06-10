@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useMemo } from 'react';
+import { useRef, useState, useMemo, useEffect } from 'react';
 import { useComponentMountStatus } from './useComponentMountStatus';
 
 /**
@@ -20,6 +20,8 @@ export function useSynchronizedRequest<RequestDataType, ResponseType>(
     () => void
   ]
 {
+  const executeRequestRef = useRef(executeRequest);
+  const handleRejectedPromiseRef = useRef(handleRejectedPromise);
   const isMountedRef = useComponentMountStatus();
   const networkIds = useRef({ latestRequest: 0, responseInState: 0 });
   const [synchronizedResponse, setSynchronizedResponse] = useState<ResponseType>();
@@ -30,9 +32,9 @@ export function useSynchronizedRequest<RequestDataType, ResponseType>(
       return new Promise(async (resolve) => {
         let response: ResponseType | undefined = undefined;
         try {
-          response = await executeRequest(data);
+          response = await executeRequestRef.current(data);
         } catch (e) {
-          handleRejectedPromise ? handleRejectedPromise(e) : console.error(e);
+          handleRejectedPromiseRef.current ? handleRejectedPromiseRef.current(e) : console.error(e);
         }
         if (requestId >= networkIds.current.responseInState) {
           /**
@@ -48,11 +50,16 @@ export function useSynchronizedRequest<RequestDataType, ResponseType>(
         resolve(response);
       });
     };
-  }, [executeRequest, handleRejectedPromise, isMountedRef]);
+  }, [isMountedRef]);
 
   function clearResponseData() {
     setSynchronizedResponse(undefined);
   }
+
+  useEffect(() => {
+    executeRequestRef.current = executeRequest;
+    handleRejectedPromiseRef.current = handleRejectedPromise;
+  });
 
   return [synchronizedResponse, executeSynchronizedRequest, clearResponseData];
 }

@@ -79,22 +79,12 @@ export function FilterSearch({
   }, [searchFields]);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
-  const answersExecuteFilterSearch = useMemo(() => {
-    return (inputValue) => (
-      answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields)
-    );
-  }, [answersActions, searchParamFields, sectioned]);
-
-  const answersExecuteFilterSearchError = useCallback(() => {
-    return (e) => console.error('Error occured executing a filter search request.\n', e);
-  }, []);
-
   const [
     filterSearchResponse,
     executeFilterSearch
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
-    answersExecuteFilterSearch,
-    answersExecuteFilterSearchError
+    inputValue => answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
+    (e) => console.error('Error occured executing a filter search request.\n', e)
   );
 
   const sections = useMemo(() => {
