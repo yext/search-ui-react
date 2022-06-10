@@ -35,3 +35,23 @@ it('does not call twMerge when builtInClass is a blank string', () => {
   renderHook(() => useComposedCssClasses(builtInCssClasses, customClasses));
   expect(spy).toHaveBeenCalledTimes(0);
 });
+
+describe('works with a custom tailwind config', () => {
+  it('merges text using custom colors without conflicts', () => {
+    const builtInCssClasses = { text: 'text-primary-light' };
+    const customClasses = { text: 'text-primary-dark' };
+    const { result } = renderHook(() => useComposedCssClasses(builtInCssClasses, customClasses));
+    expect(result.current).toEqual({
+      text: 'text-primary-dark'
+    });
+  });
+
+  it('merges tailwindcss-forms without conflict', () => {
+    const builtInCssClasses = { form: 'form-checkbox' };
+    const customClasses = { form: 'form-input' };
+    const { result } = renderHook(() => useComposedCssClasses(builtInCssClasses, customClasses));
+    expect(result.current).toEqual({
+      form: 'text-primary-dark'
+    });
+  });
+});

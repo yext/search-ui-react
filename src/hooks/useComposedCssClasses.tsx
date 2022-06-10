@@ -1,5 +1,8 @@
 import { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
+import forms from '@tailwindcss/forms';
+
+console.log(forms({ strategy: 'class' }).handler.bind({})());
 
 /**
  * useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes.
