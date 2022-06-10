@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
-import { twMerge } from 'tailwind-merge';
-import forms from '@tailwindcss/forms';
+import { extendTailwindMerge } from 'tailwind-merge';
+import { additionalClassGroups } from '../../tailwind.config.js';
 
-console.log(forms({ strategy: 'class' }).handler.bind({})());
+const twMerge = extendTailwindMerge({
+  classGroups: additionalClassGroups
+});
 
 /**
  * useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes.
@@ -47,7 +49,7 @@ export function useComposedCssClasses<
       const builtIn = builtInClasses[key];
       const custom = customClasses[key];
       if (!builtIn || !custom) {
-        mergedCssClasses[key] = builtIn ?? custom;
+        mergedCssClasses[key] = custom || builtIn;
       } else {
         mergedCssClasses[key] = twMerge(builtIn, custom);
       }

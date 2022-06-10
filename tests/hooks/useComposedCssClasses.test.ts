@@ -32,8 +32,11 @@ it('does not call twMerge when builtInClass is a blank string', () => {
   const spy = jest.spyOn(require('tailwind-merge'), 'twMerge');
   const builtInCssClasses = { container: '' };
   const customClasses = { container: 'p-2' };
-  renderHook(() => useComposedCssClasses(builtInCssClasses, customClasses));
+  const { result } = renderHook(() => useComposedCssClasses(builtInCssClasses, customClasses));
   expect(spy).toHaveBeenCalledTimes(0);
+  expect(result.current).toEqual({
+    container: 'p-2'
+  });
 });
 
 describe('works with a custom tailwind config', () => {
@@ -48,10 +51,10 @@ describe('works with a custom tailwind config', () => {
 
   it('merges tailwindcss-forms without conflict', () => {
     const builtInCssClasses = { form: 'form-checkbox' };
-    const customClasses = { form: 'form-input' };
+    const customClasses = { form: 'form-input form-textarea form-select form-multiselect form-radio' };
     const { result } = renderHook(() => useComposedCssClasses(builtInCssClasses, customClasses));
     expect(result.current).toEqual({
-      form: 'text-primary-dark'
+      form: 'form-radio'
     });
   });
 });
