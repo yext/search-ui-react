@@ -103,7 +103,6 @@ export function FilterSearch({
     }
   }, [answersActions]);
 
-  const handleChangeDropdownInput = executeFilterSearch;
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
   const itemDataMatrix = useMemo(() => {
@@ -152,7 +151,7 @@ export function FilterSearch({
           <DropdownInput
             className={cssClasses.inputElement}
             placeholder='Search here ...'
-            onChange={handleChangeDropdownInput}
+            onChange={executeFilterSearch}
             submitCriteria={meetsSubmitCritera}
           />
         </div>
