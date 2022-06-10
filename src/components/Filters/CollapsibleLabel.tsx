@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { ChevronIcon } from '../../icons/ChevronIcon';
 import { useFilterGroupContext } from './FilterGroupContext';
+import React from 'react';
 
 /**
  * Props for {@link Filters.CollapsibleLabel}.

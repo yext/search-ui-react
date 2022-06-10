@@ -9,7 +9,7 @@ import {
   VisualAutocompleteConfig
 } from '@yext/answers-react-components';
 import classNames from 'classnames';
-import { useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { config } from '../config';
 
 

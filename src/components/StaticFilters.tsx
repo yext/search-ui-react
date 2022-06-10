@@ -2,6 +2,7 @@ import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { FilterOptionConfig } from './Filters';
 import { StaticFiltersProvider } from './Filters/StaticFiltersProvider';
+import React from 'react';
 
 /**
  * The CSS class interface for {@link StaticFilters}.

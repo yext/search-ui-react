@@ -3,7 +3,7 @@ import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCs
 import { ChevronIcon as PageNavigationIcon } from '../icons/ChevronIcon';
 import { usePaginationAnalytics } from '../hooks/usePaginationAnalytics';
 import { executeSearch } from '../utils';
-import { PropsWithChildren, useCallback } from 'react';
+import React, { PropsWithChildren, useCallback } from 'react';
 import classNames from 'classnames';
 
 /**

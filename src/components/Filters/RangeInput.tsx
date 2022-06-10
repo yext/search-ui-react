@@ -1,5 +1,5 @@
 import { Matcher,NumberRangeValue, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput } from '../../utils/filterutils';

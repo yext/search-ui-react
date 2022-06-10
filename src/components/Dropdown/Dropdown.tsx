@@ -1,8 +1,7 @@
-import { createElement, isValidElement, PropsWithChildren, ReactNode, useMemo, useRef, useState } from 'react';
+import React, { createElement, isValidElement, PropsWithChildren, ReactNode, useMemo, useRef, useState } from 'react';
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
 import useGlobalListener from '@restart/hooks/useGlobalListener';
-import useRootClose from '@restart/ui/useRootClose';
 import { FocusContext, FocusContextType } from './FocusContext';
 import { v4 as uuid } from 'uuid';
 import { ScreenReader } from '../ScreenReader';
@@ -73,9 +72,14 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     }
   }, [parentQuery, lastTypedOrSubmittedValue, updateFocusedItem, setLastTypedOrSubmittedValue]);
 
-  useRootClose(containerRef, () => {
-    toggleDropdown(false);
-  }, { disabled: !isActive });
+  useGlobalListener('click', e => {
+    if (isActive) {
+      const target = e.target as HTMLElement;
+      if (!containerRef.current?.contains(target)) {
+        toggleDropdown(false);
+      }
+    }
+  });
 
   useGlobalListener('keydown', e => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
@@ -88,6 +92,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       updateFocusedItem(focusedIndex + 1);
     } else if (e.key === 'ArrowUp') {
       updateFocusedItem(focusedIndex - 1);
+    } else if (e.key === 'Escape') {
+      toggleDropdown(false);
     }
   });
 

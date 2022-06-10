@@ -1,5 +1,5 @@
 import { DisplayableFacet } from '@yext/answers-headless-react';
-import { ReactNode, useCallback, useState } from 'react';
+import React, { ReactNode, useCallback, useState } from 'react';
 import { CompositionMethod } from '../../hooks';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { HierarchicalFacetNode, HierarchicalFacetTree, useHierarchicalFacetTree } from '../../hooks/useHierarchicalFacetTree';

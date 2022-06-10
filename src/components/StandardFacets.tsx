@@ -1,7 +1,7 @@
 import { FacetsProvider } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
 
 /**

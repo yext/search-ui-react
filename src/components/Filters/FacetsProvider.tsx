@@ -4,7 +4,7 @@ import {
   useAnswersActions,
   useAnswersState
 } from '@yext/answers-headless-react';
-import { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 
 import { isNumberRangeValue } from '../../utils/filterutils';
 import { clearStaticRangeFilters } from '../../utils/filterutils';

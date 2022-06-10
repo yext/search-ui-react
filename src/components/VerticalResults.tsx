@@ -3,6 +3,7 @@ import { useAnswersState } from '@yext/answers-headless-react';
 import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
 import { Pagination, PaginationCssClasses } from './Pagination';
+import React from 'react';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.

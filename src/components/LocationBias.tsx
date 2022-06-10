@@ -2,7 +2,7 @@ import { useAnswersActions, useAnswersState, LocationBiasMethod } from '@yext/an
 import { executeSearch } from '../utils/search-operations';
 import { getUserLocation } from '../utils/location-operations';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import LoadingIndicator from '../icons/LoadingIndicator';
 
 /**

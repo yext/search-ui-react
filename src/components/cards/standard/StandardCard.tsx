@@ -3,6 +3,7 @@ import { useCardAnalyticsCallback } from '../../../hooks/useCardAnalyticsCallbac
 import { CardProps } from '../../../models/cardComponent';
 import { useCardFeedbackCallback } from '../../../hooks/useCardFeedbackCallback';
 import { StandardCardDisplay, StandardCardCssClasses } from './StandardCardDisplay';
+import React from 'react';
 
 /**
  * Props for a StandardCard.

@@ -1,6 +1,6 @@
 import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react';
 import classNames from 'classnames';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { executeSearch } from '../utils/search-operations';
 

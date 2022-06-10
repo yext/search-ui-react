@@ -1,4 +1,4 @@
-import { PropsWithChildren, useCallback } from 'react';
+import React, { PropsWithChildren, useCallback } from 'react';
 import { useDropdownContext } from './DropdownContext';
 import { FocusedItemData, useFocusContext } from './FocusContext';
 import { generateDropdownId } from './generateDropdownId';

@@ -3,6 +3,7 @@ import { SectionProps } from '../../models/sectionComponent';
 import { StandardCard } from '../cards/standard/StandardCard';
 import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { VerticalResultsCssClasses } from '../VerticalResults';
+import React from 'react';
 
 /**
  * The CSS class interface used for {@link StandardSection}.
