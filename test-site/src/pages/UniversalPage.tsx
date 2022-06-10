@@ -47,7 +47,7 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
 }
 
 const customSearchBarCss = {
-  container: 'mb-3 text-emerald-800 form-input'
+  container: 'mb-3 text-emerald-800'
 };
 
 export default function UniversalPage(): JSX.Element {

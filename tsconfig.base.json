@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -10,7 +11,8 @@
     "declarationMap": true,
     "sourceMap": true,
     "jsx": "react-jsx",
-    "target": "es2017"
+    "target": "es2017",
+    "allowJs": true
   },
   "include": [
     "src"

@@ -3,12 +3,12 @@
   "version": "0.1.2-alpha.161",
   "description": "",
   "author": "slapshot@yext.com",
-  "main": "./lib/esm/index.js",
-  "types": "./lib/esm/index.d.ts",
+  "main": "./lib/esm/src/index.js",
+  "types": "./lib/esm/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./lib/esm/index.js",
-      "require": "./lib/commonjs/index.js"
+      "import": "./lib/esm/src/index.js",
+      "require": "./lib/commonjs/src/index.js"
     },
     "./bundle.css": "./lib/bundle.css"
   },
