@@ -1,11 +1,11 @@
 import { useAnswersState } from '@yext/answers-headless-react';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { pruneAppliedFilters } from '../utils/appliedfilterutils';
 import { useMemo } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { GroupedFilters } from '../models/groupedFilters';
-import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacet';
+import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacetDisplay';
 import { useStateUpdatedOnSearch } from '../hooks/useStateUpdatedOnSearch';
 
 /**
@@ -43,12 +43,10 @@ export interface AppliedFiltersProps {
   hiddenFields?: Array<string>,
   /** A set of facet fieldIds that should be interpreted as "hierarchical". */
   hierarchicalFacetsFieldIds?: string[],
-  /** {@inheritDoc Filters.HierarchicalFacetProps.delimiter} */
+  /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: AppliedFiltersCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: AppliedFiltersCssClasses
 }
 
 /**
@@ -70,7 +68,6 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const {
     hiddenFields,
     customCssClasses = {},
-    cssCompositionMethod,
     hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
     hierarchicalFacetsFieldIds
   } = props;
@@ -92,7 +89,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     nlpFilters
   ]);
 
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
   });

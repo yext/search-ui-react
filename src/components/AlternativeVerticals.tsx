@@ -1,7 +1,7 @@
 import { processTranslation } from './utils/processTranslation';
 import { StarIcon } from '../icons/StarIcon';
 import { useAnswersState, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { UniversalLink } from '../models/universalLink';
@@ -84,9 +84,7 @@ export interface AlternativeVerticalsProps {
    */
   getSuggestionUrl?: (data: VerticalLink | UniversalLink) => string,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: AlternativeVerticalsCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: AlternativeVerticalsCssClasses
 }
 
 /**
@@ -103,10 +101,9 @@ export function AlternativeVerticals({
   verticalConfigMap,
   displayAllOnNoResults = true,
   customCssClasses,
-  getSuggestionUrl: customGetSuggestionUrl,
-  cssCompositionMethod
+  getSuggestionUrl: customGetSuggestionUrl
 }: AlternativeVerticalsProps): JSX.Element | null {
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const alternativeVerticals = useAnswersState(state => state.vertical.noResults?.alternativeVerticals) || [];
   const allResultsForVertical =

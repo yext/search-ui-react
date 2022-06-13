@@ -5,7 +5,7 @@ import {
   SectionHeaderCssClasses,
   builtInCssClasses as sectionHeaderCssClasses
 } from './sections/SectionHeader';
-import { useComposedCssClasses, CompositionMethod } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 import { VerticalConfigMap } from '../models/verticalConfig';
 
@@ -36,9 +36,7 @@ export interface UniversalResultsProps {
   /** A mapping of verticalKey to the configuration for each vertical. */
   verticalConfigMap: VerticalConfigMap,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: UniversalResultsCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: UniversalResultsCssClasses
 }
 
 /**
@@ -53,10 +51,9 @@ export interface UniversalResultsProps {
 export function UniversalResults({
   verticalConfigMap,
   showAppliedFilters,
-  customCssClasses,
-  cssCompositionMethod
+  customCssClasses
 }: UniversalResultsProps): JSX.Element | null {
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const resultsFromAllVerticals = useAnswersState(state => state?.universal?.verticals) || [];
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
 

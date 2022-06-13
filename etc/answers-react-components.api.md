@@ -11,25 +11,20 @@ import { AnalyticsService } from '@yext/analytics';
 import { AnswersActions } from '@yext/answers-headless-react';
 import { AnswersHeadless } from '@yext/answers-headless-react';
 import { AutocompleteResponse } from '@yext/answers-headless-react';
-import { Context } from 'react';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/answers-headless-react';
-import { DisplayableFacet } from '@yext/answers-headless-react';
 import { HighlightedValue } from '@yext/answers-headless-react';
 import { Matcher } from '@yext/answers-headless-react';
 import { NumberRangeValue } from '@yext/answers-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/answers-headless-react';
-import { ReactNode } from 'react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
-import { SelectableFilter } from '@yext/answers-headless-react';
-import { Theme } from '@css-modules-theme/core';
-import { UseCollapseOutput } from 'react-collapsed/dist/types';
+import { UniversalLimit } from '@yext/answers-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
-export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
+export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl }: AlternativeVerticalsProps): JSX.Element | null;
 
 // @public
 export interface AlternativeVerticalsCssClasses {
@@ -59,7 +54,6 @@ export interface AlternativeVerticalsCssClasses {
 
 // @public
 export interface AlternativeVerticalsProps {
-    cssCompositionMethod?: CompositionMethod;
     currentVerticalLabel: string;
     customCssClasses?: AlternativeVerticalsCssClasses;
     displayAllOnNoResults?: boolean;
@@ -93,24 +87,24 @@ export interface AppliedFiltersCssClasses {
 
 // @public
 export interface AppliedFiltersProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: AppliedFiltersCssClasses;
     hiddenFields?: Array<string>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
-    //
-    // (undocumented)
     hierarchicalFacetsDelimiter?: string;
     hierarchicalFacetsFieldIds?: string[];
 }
 
 // @public
-function ApplyFiltersButton({ className, label }: ApplyFiltersButtonProps): JSX.Element;
+export function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): JSX.Element;
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-interface ApplyFiltersButtonProps {
-    className?: string;
+export interface ApplyFiltersButtonCssClasses {
+    // (undocumented)
+    button?: string;
+}
+
+// @public
+export interface ApplyFiltersButtonProps {
+    customCssClasses?: ApplyFiltersButtonCssClasses;
     label?: string;
 }
 
@@ -139,77 +133,6 @@ export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
 export interface CardProps {
     result: Result;
 }
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface CheckboxCssClasses {
-    // (undocumented)
-    container?: string;
-    // (undocumented)
-    input?: string;
-    // (undocumented)
-    input___disabled?: string;
-    // (undocumented)
-    label?: string;
-    // (undocumented)
-    label___disabled?: string;
-    // (undocumented)
-    optionContainer?: string;
-    // (undocumented)
-    tooltip?: string;
-    // (undocumented)
-    tooltipContainer?: string;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface CheckboxOptionProps {
-    cssCompositionMethod?: CompositionMethod;
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    customCssClasses?: CheckboxCssClasses;
-    label?: string;
-    matcher?: Matcher;
-    selectedByDefault?: boolean;
-    value: string | number | boolean | NumberRangeValue;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function CollapsibleLabel({ label }: CollapsibleLabelProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface CollapsibleLabelProps {
-    label?: string;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-type CollapsibleSectionProps = PropsWithChildren<{
-    className?: string;
-}>;
-
-// @public
-export type CompositionMethod = 'merge' | 'replace' | 'assign';
 
 // @public
 export interface CtaData {
@@ -249,7 +172,6 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
 
 // @public
 export interface DirectAnswerProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: DirectAnswerCssClasses;
 }
 
@@ -266,133 +188,49 @@ export type DropdownItemProps = PropsWithChildren<{
 }>;
 
 // @public
-export function EntityPreviews(_: EntityPreviewsProps): JSX.Element | null;
-
-// @public
-export interface EntityPreviewsProps {
-    children: (results: Result[], index: number) => JSX.Element;
-    limit?: number;
-    verticalKey: string;
-}
-
-// @public
 export function executeAutocomplete(answersActions: AnswersActions): Promise<AutocompleteResponse | undefined>;
 
 // @public
 export function executeSearch(answersActions: AnswersActions): Promise<void>;
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function Facets({ children, className, searchOnChange }: FacetsProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface FacetsProps {
-    children?: (facets: DisplayableFacet[]) => ReactNode;
-    className?: string;
-    searchOnChange?: boolean;
-}
-
 // @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-function FilterGroup(props: FilterGroupProps): JSX.Element;
-
-// @public
-const FilterGroupContext: Context<FilterGroupContextType | null>;
-
-// @public
-interface FilterGroupContextType {
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    fieldId: string;
-    getCollapseProps: UseCollapseOutput['getCollapseProps'];
-    getToggleProps: UseCollapseOutput['getToggleProps'];
-    isExpanded: boolean;
-    isOptionsDisabled: boolean;
-    searchValue: string;
-    setIsOptionsDisabled: (value: boolean) => void;
-    setSearchValue: (value: string) => void;
+export interface FilterGroupCssClasses {
+    // (undocumented)
+    option?: string;
+    // (undocumented)
+    optionInput?: string;
+    // (undocumented)
+    optionLabel?: string;
+    // (undocumented)
+    optionsContainer?: string;
+    // (undocumented)
+    searchInput?: string;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-type FilterGroupProps = PropsWithChildren<{
+export interface FilterGroupProps {
+    collapsible?: boolean;
+    customCssClasses?: FilterGroupCssClasses;
     defaultExpanded?: boolean;
     fieldId: string;
-}>;
+    filterOptions: FilterOptionConfig[];
+    searchable?: boolean;
+    title: string;
+}
 
 // @public
 export interface FilterOptionConfig {
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
-    //
-    // (undocumented)
-    label?: string;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
-    //
-    // (undocumented)
+    displayName?: string;
+    matcher?: Matcher;
     selectedByDefault?: boolean;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
-    //
-    // (undocumented)
-    value: string | number | boolean;
-}
-
-declare namespace Filters {
-    export {
-        CheckboxOption,
-        CheckboxOptionProps,
-        CheckboxCssClasses,
-        CollapsibleLabel,
-        CollapsibleLabelProps,
-        CollapsibleSection,
-        CollapsibleSectionProps,
-        Facets,
-        FacetsProps,
-        FiltersContext,
-        useFiltersContext,
-        FiltersContextType,
-        FilterGroup,
-        FilterGroupProps,
-        FilterGroupContext,
-        useFilterGroupContext,
-        FilterGroupContextType,
-        SearchInput,
-        SearchInputProps,
-        HierarchicalFacet,
-        HierarchicalFacetProps,
-        HierarchicalFacetCssClasses,
-        ApplyFiltersButton,
-        ApplyFiltersButtonProps,
-        RangeInput,
-        RangeInputProps,
-        RangeInputCssClasses
-    }
-}
-export { Filters }
-
-// @public
-const FiltersContext: Context<FiltersContextType | null>;
-
-// @public
-interface FiltersContextType {
-    applyFilters: () => void;
-    filters: SelectableFilter[];
-    selectFilter: (filter: SelectableFilter) => void;
+    value: string | number | boolean | NumberRangeValue;
 }
 
 // @public
-export function FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ label, sectioned, searchFields, customCssClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -418,7 +256,6 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 
 // @public
 export interface FilterSearchProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
@@ -435,12 +272,7 @@ export function getSearchIntents(answersActions: AnswersActions): Promise<Search
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
 
 // @public
-function HierarchicalFacet({ facet, delimiter, showMoreLimit, customCssClasses, cssCompositionMethod }: HierarchicalFacetProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface HierarchicalFacetCssClasses {
+export interface HierarchicalFacetDisplayCssClasses {
     // (undocumented)
     allCategoriesOption___active?: string;
     // (undocumented)
@@ -450,24 +282,31 @@ interface HierarchicalFacetCssClasses {
     // (undocumented)
     availableOption__inactive?: string;
     // (undocumented)
-    container?: string;
-    // (undocumented)
     currentCategory?: string;
     // (undocumented)
     parentCategory?: string;
     // (undocumented)
     showMoreButton?: string;
+    // (undocumented)
+    treeContainer?: string;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-interface HierarchicalFacetProps {
-    cssCompositionMethod?: CompositionMethod;
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    customCssClasses?: HierarchicalFacetCssClasses;
+export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
+
+// @public
+export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+}
+
+// @public
+export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'searchable' | 'excludedFieldIds'> {
+    customCssClasses?: HierarchicalFacetsCssClasses;
     delimiter?: string;
-    facet: DisplayableFacet;
+    includedFieldIds: string[];
     showMoreLimit?: number;
 }
 
@@ -480,25 +319,10 @@ export interface HighlightedValueCssClasses {
 }
 
 // @public
-export type InferTypeGuard<TypeGuard> = TypeGuard extends (data: any) => data is infer Type ? Type : never;
-
-// @public
-export function isBoolean(data: any): data is boolean;
-
-// @public
 export function isCtaData(data: unknown): data is CtaData;
 
 // @public
-export function isNumber(data: any): data is number;
-
-// @public
-export function isString(data: any): data is string;
-
-// @public
-export function isStringOrHighlightedValue(data: any): data is string | HighlightedValue;
-
-// @public
-export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
+export function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): JSX.Element | null;
 
 // @public
 export interface LocationBiasCssClasses {
@@ -516,9 +340,31 @@ export interface LocationBiasCssClasses {
 
 // @public
 export interface LocationBiasProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: LocationBiasCssClasses;
     geolocationOptions?: PositionOptions;
+}
+
+// @public
+export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
+
+// @public
+export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+    // (undocumented)
+    rangeInputContainer?: string;
+    // (undocumented)
+    rangeInputDivider?: string;
+}
+
+// @public
+export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
+    customCssClasses?: NumericalFacetsCssClasses;
+    getFilterDisplayName?: (value: NumberRangeValue) => string;
+    includedFieldIds?: string[];
+    inputPrefix?: JSX.Element;
 }
 
 // @public
@@ -552,20 +398,12 @@ export interface PaginationCssClasses {
 
 // @public
 export interface PaginationProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: PaginationCssClasses;
     paginateAllOnNoResults?: boolean;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-function RangeInput(props: RangeInputProps): JSX.Element | null;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface RangeInputCssClasses {
+export interface RangeInputCssClasses {
     // (undocumented)
     applyButton?: string;
     // (undocumented)
@@ -605,32 +443,19 @@ interface RangeInputCssClasses {
     // (undocumented)
     invalidRowContainer?: string;
     // (undocumented)
-    label?: string;
-    // (undocumented)
     tooltip?: string;
     // (undocumented)
     tooltipContainer?: string;
 }
 
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
 // @public
-interface RangeInputProps {
-    cssCompositionMethod?: CompositionMethod;
-    // Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-    customCssClasses?: RangeInputCssClasses;
-    getFilterDisplayName?: (value: NumberRangeValue) => string;
-    inputPrefix?: JSX.Element;
-}
-
-// @public
-export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalResultsArray: VerticalResults_2[], onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element;
+export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element | null;
 
 // @public
 export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
 
 // @public
-export function ResultsCount(props: ResultsCountProps): JSX.Element | null;
+export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Element | null;
 
 // @public
 export interface ResultsCountCssClasses {
@@ -642,12 +467,11 @@ export interface ResultsCountCssClasses {
 
 // @public
 export interface ResultsCountProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: ResultsCountCssClasses;
 }
 
 // @public
-export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
+export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
 
 // @public
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
@@ -697,7 +521,6 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 
 // @public
 export interface SearchBarProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: SearchBarCssClasses;
     geolocationOptions?: PositionOptions;
     hideRecentSearches?: boolean;
@@ -711,20 +534,6 @@ export interface SearchBarProps {
     recentSearchesLimit?: number;
     verticalKeyToLabel?: (verticalKey: string) => string;
     visualAutocompleteConfig?: VisualAutocompleteConfig;
-}
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function SearchInput(props: SearchInputProps): JSX.Element;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-interface SearchInputProps {
-    className?: string;
-    placeholderText?: string;
 }
 
 // @public
@@ -754,7 +563,7 @@ export interface SectionProps {
 }
 
 // @public
-export function SpellCheck({ customCssClasses, cssCompositionMethod, onClick }: SpellCheckProps): JSX.Element | null;
+export function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX.Element | null;
 
 // @public
 export interface SpellCheckCssClasses {
@@ -770,7 +579,6 @@ export interface SpellCheckCssClasses {
 
 // @public
 export interface SpellCheckProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: SpellCheckCssClasses;
     onClick?: (data: {
         correctedQuery: string;
@@ -807,9 +615,29 @@ export interface StandardCardData {
 
 // @public
 export interface StandardCardProps extends CardProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardCardCssClasses;
     showFeedbackButtons?: boolean;
+}
+
+// @public
+export function StandardFacets(props: StandardFacetsProps): JSX.Element;
+
+// @public
+export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+}
+
+// @public
+export interface StandardFacetsProps {
+    collapsible?: boolean;
+    customCssClasses?: StandardFacetsCssClasses;
+    defaultExpanded?: boolean;
+    excludedFieldIds?: string[];
+    searchable?: boolean;
+    searchOnChange?: boolean;
 }
 
 // @public
@@ -823,42 +651,33 @@ export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
 
 // @public
 export interface StandardSectionProps extends SectionProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardSectionCssClasses;
 }
 
 // @public
-export function StaticFilters({ fieldId, filterOptions, title, collapsible, defaultExpanded, searchable, searchOnChange, customCssClasses, cssCompositionMethod }: StaticFiltersProps): JSX.Element;
+export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher' | 'value'> & {
+    value: string | number | boolean;
+};
 
 // @public
-export interface StaticFiltersCssClasses {
-    // (undocumented)
-    applyFiltersButton?: string;
+export function StaticFilters(props: StaticFiltersProps): JSX.Element;
+
+// @public
+export interface StaticFiltersCssClasses extends FilterGroupCssClasses {
     // (undocumented)
     container?: string;
-    // (undocumented)
-    option?: string;
-    // (undocumented)
-    optionInput?: string;
-    // (undocumented)
-    optionLabel?: string;
-    // (undocumented)
-    optionsContainer?: string;
-    // (undocumented)
-    searchInput?: string;
 }
 
 // @public
 export interface StaticFiltersProps {
     collapsible?: boolean;
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StaticFiltersCssClasses;
     defaultExpanded?: boolean;
     fieldId: string;
-    filterOptions: FilterOptionConfig[];
+    filterOptions: StaticFilterOptionConfig[];
     searchable?: boolean;
     searchOnChange?: boolean;
-    title?: string;
+    title: string;
 }
 
 // @public
@@ -883,15 +702,12 @@ export interface ThumbsFeedbackProps {
 }
 
 // @public
-export type TypeGuardRecord = Record<string, (data: any) => boolean>;
-
-// @public
 export interface UniversalLink {
     query?: string;
 }
 
 // @public
-export function UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
+export function UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps): JSX.Element | null;
 
 // @public
 export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
@@ -903,7 +719,6 @@ export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
 
 // @public
 export interface UniversalResultsProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
     verticalConfigMap: VerticalConfigMap;
@@ -922,25 +737,7 @@ export function useCardAnalyticsCallback(result: Result | DirectAnswer_2, analyt
 export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analyticsType: FeedbackType) => void;
 
 // @public
-export function useComposedCssClasses<ClassInterface>(builtInClasses: ClassInterface, customClasses?: ClassInterface, cssCompositionMethod?: CompositionMethod): ClassInterface | Theme;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function useFilterGroupContext(): FilterGroupContextType;
-
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-//
-// @public
-function useFiltersContext(): FiltersContextType;
-
-// @public
-export function validateData<TypeGuards extends TypeGuardRecord>(data: any, typeGuards: TypeGuards): ValidatedData<TypeGuards>;
-
-// @public
-export type ValidatedData<TypeGuards extends TypeGuardRecord> = Partial<{
-    [Property in keyof TypeGuards]: InferTypeGuard<TypeGuards[Property]>;
-}>;
+export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: ClassInterface, customClasses?: Partial<ClassInterface>): ClassInterface;
 
 // @public
 export interface VerticalConfig {
@@ -982,7 +779,6 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
 export interface VerticalResultsProps {
     allowPagination?: boolean;
     CardComponent: CardComponent;
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
 }
@@ -990,14 +786,11 @@ export interface VerticalResultsProps {
 // @public
 export interface VisualAutocompleteConfig {
     entityPreviewsDebouncingTime?: number;
-    entityPreviewSearcher?: AnswersHeadless;
-    renderEntityPreviews?: RenderEntityPreviews;
+    entityPreviewSearcher: AnswersHeadless;
+    renderEntityPreviews: RenderEntityPreviews;
+    restrictVerticals: string[];
+    universalLimit?: UniversalLimit;
 }
-
-// Warnings were encountered during analysis:
-//
-// src/components/Filters/FilterGroup.tsx:12:3 - (ae-unresolved-link) The @link reference could not be resolved: This type of declaration is not supported yet by the resolver
-// src/components/Filters/FilterGroup.tsx:14:3 - (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: This type of declaration is not supported yet by the resolver
 
 // (No @packageDocumentation comment for this package)
 

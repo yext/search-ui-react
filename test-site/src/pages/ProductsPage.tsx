@@ -5,10 +5,10 @@ import {
   SearchBar,
   StandardCard,
   VerticalResults,
-  LocationBias
+  LocationBias,
+  NumericalFacets
 } from '@yext/answers-react-components';
 import { useLayoutEffect } from 'react';
-import { NumericFacets } from '../components/NumericFacets';
 
 export function ProductsPage() {
   const answersActions = useAnswersActions();
@@ -21,7 +21,7 @@ export function ProductsPage() {
       <SearchBar />
       <div className='flex'>
         <div className='min-w-fit pr-4'>
-          <NumericFacets />
+           <NumericalFacets />
         </div>
         <div className='flex-grow'>
           <div className='flex items-baseline'>

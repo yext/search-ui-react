@@ -1,5 +1,5 @@
 import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { ChevronIcon as PageNavigationIcon } from '../icons/ChevronIcon';
 import { usePaginationAnalytics } from '../hooks/usePaginationAnalytics';
 import { executeSearch } from '../utils';
@@ -19,9 +19,7 @@ export interface PaginationProps {
    */
   paginateAllOnNoResults?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: PaginationCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: PaginationCssClasses
 }
 
 /**
@@ -59,12 +57,8 @@ const builtInPaginationCssClasses: PaginationCssClasses = {
  * @public
  */
 export function Pagination(props: PaginationProps): JSX.Element | null {
-  const { customCssClasses = {}, cssCompositionMethod, paginateAllOnNoResults = false } = props;
-  const cssClasses = useComposedCssClasses(
-    builtInPaginationCssClasses,
-    customCssClasses,
-    cssCompositionMethod
-  );
+  const { customCssClasses = {}, paginateAllOnNoResults = false } = props;
+  const cssClasses = useComposedCssClasses(builtInPaginationCssClasses, customCssClasses);
   const answersActions = useAnswersActions();
   const verticalResultsCount = useAnswersState(state => state.vertical.resultsCount) || 0;
   const allResultsCountForVertical =

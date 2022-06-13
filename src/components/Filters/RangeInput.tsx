@@ -1,7 +1,7 @@
 import { Matcher,NumberRangeValue, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
-import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
@@ -10,7 +10,7 @@ import { useFiltersContext } from './FiltersContext';
 import { InvalidIcon } from '../../icons/InvalidIcon';
 
 /**
- * Props for the {@link Filters.RangeInput}
+ * Props for RangeInput
  *
  * @public
  */
@@ -28,14 +28,12 @@ export interface RangeInputProps {
    * An optional element which renders in front of the input text.
    */
   inputPrefix?: JSX.Element,
-  /** CSS classes for customizing the component styling defined by {@link Filters.RangeInputCssClasses} */
-  customCssClasses?: RangeInputCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  /** CSS classes for customizing the component styling defined by RangeInputCssClasses */
+  customCssClasses?: RangeInputCssClasses
 }
 
 /**
- * The CSS class interface for {@link Filters.RangeInput}.
+ * The CSS class interface for RangeInput.
  *
  * @public
  */
@@ -51,7 +49,6 @@ export interface RangeInputCssClasses {
   inputContainer?: string,
   inputRowContainer?: string,
   buttonsContainer?: string,
-  label?: string,
   inputPrefix?: string,
   inputPrefix___disabled?: string,
   inputPrefix___enabled?: string,
@@ -76,7 +73,6 @@ const builtInCssClasses: RangeInputCssClasses = {
   inputContainer: 'relative',
   inputRowContainer: 'flex flex-row items-center space-x-3 peer',
   buttonsContainer: 'flex flex-row items-center justify-between pt-2',
-  label: 'text-neutral text-sm font-normal cursor-pointer',
   inputPrefix: 'absolute left-2 top-2 text-sm',
   inputPrefix___disabled: 'text-neutral-light cursor-not-allowed',
   inputPrefix___enabled: 'text-neutral',
@@ -94,7 +90,7 @@ const builtInCssClasses: RangeInputCssClasses = {
  *
  * @public
  *
- * @param props - {@link Filters.RangeInputProps}
+ * @param props - RangeInputProps
  */
 export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const { filters } = useFiltersContext();
@@ -103,8 +99,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     getFilterDisplayName = getDefaultFilterDisplayName,
     inputPrefix
   } = props;
-  const cssClasses = useComposedCssClasses(
-    builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const answersActions = useAnswersActions();
   const [minRangeInput, setMinRangeInput] = useState<string>('');
   const [maxRangeInput, setMaxRangeInput] = useState<string>('');

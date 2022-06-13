@@ -16,7 +16,8 @@ export interface FilterOptionConfig
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [label?](./answers-react-components.filteroptionconfig.label.md) | string | <i>(Optional)</i> The display label. Defaults to the value prop. |
+|  [displayName?](./answers-react-components.filteroptionconfig.displayname.md) | string | <i>(Optional)</i> The display name. Defaults to the value prop. |
+|  [matcher?](./answers-react-components.filteroptionconfig.matcher.md) | Matcher | <i>(Optional)</i> The type of filtering operation used. Defaults to an equals comparison. |
 |  [selectedByDefault?](./answers-react-components.filteroptionconfig.selectedbydefault.md) | boolean | <i>(Optional)</i> If this particular filter should be selected by default. |
-|  [value](./answers-react-components.filteroptionconfig.value.md) | string \| number \| boolean | The value used to perform filtering. |
+|  [value](./answers-react-components.filteroptionconfig.value.md) | string \| number \| boolean \| NumberRangeValue | The value used to perform filtering. |
 

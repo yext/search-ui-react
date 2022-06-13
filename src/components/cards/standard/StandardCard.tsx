@@ -1,4 +1,3 @@
-import { CompositionMethod } from '../../../hooks/useComposedCssClasses';
 import { useCardAnalyticsCallback } from '../../../hooks/useCardAnalyticsCallback';
 import { CardProps } from '../../../models/cardComponent';
 import { useCardFeedbackCallback } from '../../../hooks/useCardFeedbackCallback';
@@ -13,9 +12,7 @@ export interface StandardCardProps extends CardProps {
   /** Whether or not to show thumbs up/down buttons to provide feedback on the result card */
   showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: StandardCardCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: StandardCardCssClasses
 }
 
 /**
@@ -31,7 +28,6 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   const {
     result,
     customCssClasses,
-    cssCompositionMethod,
     showFeedbackButtons
   } = props;
 
@@ -55,7 +51,6 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
   return (
     <StandardCardDisplay
       customCssClasses={customCssClasses}
-      cssCompositionMethod={cssCompositionMethod}
       showFeedbackButtons={showFeedbackButtons}
       clickHandlers={clickHandlers}
       title={data.title}

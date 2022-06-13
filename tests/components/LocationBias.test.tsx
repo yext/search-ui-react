@@ -76,7 +76,7 @@ it('renders the proper text (location DisplayName, method, and update btn)', () 
   const basedOnMethodElement = screen.getByText(expectedMethodMessage);
   expect(basedOnMethodElement).toBeDefined();
 
-  const updateLocationButton = screen.getByRole("button", {name: 'Update your location'});
+  const updateLocationButton = screen.getByRole('button', { name: 'Update your location' });
   expect(updateLocationButton).toBeDefined();
 });
 
@@ -132,12 +132,12 @@ it('renders correct attribution message, IP', () => {
 
 it('renders nothing if there is no display name', () => {
   mockAnswersState(mockedStateNoDisplayName);
-  const { container }  = render(<LocationBias />);
+  const { container } = render(<LocationBias />);
   console.log(container);
   expect(container).toBeEmptyDOMElement();
 });
 
 function clickUpdateLocation() {
-  const updateLocationButton = screen.getByRole('button', {name: 'Update your location'});
+  const updateLocationButton = screen.getByRole('button', { name: 'Update your location' });
   userEvent.click(updateLocationButton);
 }

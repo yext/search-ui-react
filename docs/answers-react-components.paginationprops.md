@@ -16,7 +16,6 @@ export interface PaginationProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.paginationprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.paginationprops.customcssclasses.md) | [PaginationCssClasses](./answers-react-components.paginationcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [paginateAllOnNoResults?](./answers-react-components.paginationprops.paginateallonnoresults.md) | boolean | <i>(Optional)</i> Whether or not to paginate based on the total results count of the vertical when there are none returned from the search. Defaults to false. |
 

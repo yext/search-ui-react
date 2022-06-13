@@ -3,28 +3,34 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
-import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { findSelectableFilter } from '../../utils/filterutils';
 import classNames from 'classnames';
 
 /**
- * Props for the {@link Filters.CheckboxOption}
+ * The configuration data for a filter option.
  *
  * @public
  */
-export interface CheckboxOptionProps {
+export interface FilterOptionConfig {
   /** The value used to perform filtering. */
   value: string | number | boolean | NumberRangeValue,
   /** The type of filtering operation used. Defaults to an equals comparison. */
   matcher?: Matcher,
   /** If this particular filter should be selected by default. */
   selectedByDefault?: boolean,
-  /** The display label. Defaults to the value prop. */
-  label?: string,
+  /** The display name. Defaults to the value prop. */
+  displayName?: string
+}
+
+/**
+ * Props for the {@link Filters.CheckboxOption}
+ *
+ * @public
+ */
+export interface CheckboxOptionProps extends FilterOptionConfig {
   /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses} */
-  customCssClasses?: CheckboxCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: CheckboxCssClasses
 }
 
 /**
@@ -67,10 +73,9 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     value,
     matcher = Matcher.Equals,
     selectedByDefault = false,
-    label = props.value,
+    displayName = props.value,
   } = props;
-  const cssClasses = useComposedCssClasses(
-    builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const optionId = useMemo(() => uuid(), []);
   const answersUtilities = useAnswersUtilities();
   const { selectFilter, filters, applyFilters } = useFiltersContext();
@@ -80,11 +85,11 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
       matcher,
       fieldId,
       value,
-      displayName: typeof label === 'string' ? label : undefined,
+      displayName: typeof displayName === 'string' ? displayName : undefined,
       selected: checked
     });
     applyFilters();
-  }, [applyFilters, fieldId, label, selectFilter, value, matcher]);
+  }, [applyFilters, fieldId, displayName, selectFilter, value, matcher]);
 
   const handleChange = useCallback(evt => {
     handleClick(evt.target.checked);
@@ -100,29 +105,29 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   const existingStoredFilter = findSelectableFilter(optionFilter, filters);
 
   const shouldRenderOption: boolean = useMemo(() => {
-    if (typeof label !== 'string') {
-      console.error('A label is needed for filter with value', value);
+    if (typeof displayName !== 'string') {
+      console.error('A displayName is needed for filter with value', value);
       return false;
     }
 
-    if (!answersUtilities.isCloseMatch(label, searchValue)) {
+    if (!answersUtilities.isCloseMatch(displayName, searchValue)) {
       return false;
     }
 
     return true;
-  }, [value, answersUtilities, label, searchValue]);
+  }, [value, answersUtilities, displayName, searchValue]);
 
   useEffect(() => {
     if (shouldRenderOption) {
       if (!existingStoredFilter && selectedByDefault) {
         selectFilter({
           ...optionFilter,
-          displayName: typeof label === 'string' ? label : undefined,
+          displayName: typeof displayName === 'string' ? displayName : undefined,
           selected: true
         });
       }
     }
-  }, [label, selectFilter, selectedByDefault, existingStoredFilter, optionFilter, shouldRenderOption]);
+  }, [displayName, selectFilter, selectedByDefault, existingStoredFilter, optionFilter, shouldRenderOption]);
 
   if (!shouldRenderOption) {
     return null;
@@ -148,7 +153,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
           onChange={handleChange}
           disabled={isOptionsDisabled}
         />
-        <label className={labelClasses} htmlFor={optionId}>{label}</label>
+        <label className={labelClasses} htmlFor={optionId}>{displayName}</label>
       </div>
       {isOptionsDisabled &&
         <div className={cssClasses.tooltipContainer}>
