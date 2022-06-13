@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo, useEffect } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import { useComponentMountStatus } from './useComponentMountStatus';
 
 /**
@@ -26,30 +26,29 @@ export function useSynchronizedRequest<RequestDataType, ResponseType>(
   const networkIds = useRef({ latestRequest: 0, responseInState: 0 });
   const [synchronizedResponse, setSynchronizedResponse] = useState<ResponseType>();
 
-  const executeSynchronizedRequest = useMemo(() => {
-    return async (data?: RequestDataType): Promise<ResponseType | undefined> => {
-      const requestId = ++networkIds.current.latestRequest;
-      return new Promise(async (resolve) => {
-        let response: ResponseType | undefined = undefined;
-        try {
-          response = await executeRequestRef.current(data);
-        } catch (e) {
-          handleRejectedPromiseRef.current ? handleRejectedPromiseRef.current(e) : console.error(e);
+  const executeSynchronizedRequest = useCallback(async (data?: RequestDataType):
+  Promise<ResponseType | undefined> => {
+    const requestId = ++networkIds.current.latestRequest;
+    return new Promise(async (resolve) => {
+      let response: ResponseType | undefined = undefined;
+      try {
+        response = await executeRequestRef.current(data);
+      } catch (e) {
+        handleRejectedPromiseRef.current ? handleRejectedPromiseRef.current(e) : console.error(e);
+      }
+      if (requestId >= networkIds.current.responseInState) {
+        /**
+         * Avoid performing a React state update on an unmounted component
+         * (e.g unmounted during async await)
+         */
+        if (!isMountedRef.current) {
+          return;
         }
-        if (requestId >= networkIds.current.responseInState) {
-          /**
-           * Avoid performing a React state update on an unmounted component
-           * (e.g unmounted during async await)
-           */
-          if (!isMountedRef.current) {
-            return;
-          }
-          setSynchronizedResponse(response);
-          networkIds.current.responseInState = requestId;
-        }
-        resolve(response);
-      });
-    };
+        setSynchronizedResponse(response);
+        networkIds.current.responseInState = requestId;
+      }
+      resolve(response);
+    });
   }, [isMountedRef]);
 
   function clearResponseData() {
