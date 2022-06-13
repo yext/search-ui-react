@@ -69,19 +69,10 @@ export function FilterSearch({
   customCssClasses
 }: FilterSearchProps): JSX.Element {
   const answersActions = useAnswersActions();
-<<<<<<< HEAD
-  const searchParamFields = useMemo(() => {
-    return searchFields.map((searchField) => {
-      return { ...searchField, fetchEntities: false };
-    });
-  }, [searchFields]);
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
-=======
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
   });
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
->>>>>>> main
 
   const [
     filterSearchResponse,
