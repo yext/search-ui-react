@@ -27,7 +27,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
   inputContainer?: string
 }
 
-const builtInCssClasses: FilterSearchCssClasses = {
+const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   container: 'mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
   dropdownContainer: 'absolute z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 px-4 mt-1',

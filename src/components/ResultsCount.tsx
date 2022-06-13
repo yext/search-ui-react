@@ -28,7 +28,7 @@ export interface ResultsCountProps {
   customCssClasses?: ResultsCountCssClasses
 }
 
-const builtInCssClasses: ResultsCountCssClasses = {
+const builtInCssClasses: Readonly<ResultsCountCssClasses> = {
   resultCountText: 'font-semibold text-neutral mb-4 py-2 mr-2.5',
   resultCountText___loading: 'opacity-50'
 };

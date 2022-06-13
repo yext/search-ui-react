@@ -737,7 +737,7 @@ export function useCardAnalyticsCallback(result: Result | DirectAnswer_2, analyt
 export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analyticsType: FeedbackType) => void;
 
 // @public
-export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: ClassInterface, customClasses?: Partial<ClassInterface>): ClassInterface;
+export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
 
 // @public
 export interface VerticalConfig {

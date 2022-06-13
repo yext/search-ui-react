@@ -13,7 +13,7 @@ export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
   section?: string
 }
 
-const builtInCssClasses: StandardSectionCssClasses = {
+const builtInCssClasses: Readonly<StandardSectionCssClasses> = {
   section: ''
 };
 

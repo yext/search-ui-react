@@ -9,14 +9,14 @@ useComposedCssClasses merges a component's built-in tailwind classes with custom
 <b>Signature:</b>
 
 ```typescript
-export declare function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: ClassInterface, customClasses?: Partial<ClassInterface>): ClassInterface;
+export declare function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  builtInClasses | ClassInterface | The component's built-in tailwind classes |
+|  builtInClasses | Readonly&lt;ClassInterface&gt; | The component's built-in tailwind classes |
 |  customClasses | Partial&lt;ClassInterface&gt; | The custom tailwind classes to merge with the built-in ones |
 
 <b>Returns:</b>
