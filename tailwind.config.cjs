@@ -1,3 +1,7 @@
+/**
+ * When custom tailwind classes are added, like `form-checkbox"` via `@tailwindcss/forms`,
+ * handling must also be added to {@link useComposedCssClasses}.
+ */
 module.exports = {
   content: [
     './lib/**/*.{js,jsx}'
@@ -32,18 +36,4 @@ module.exports = {
       strategy: 'class',
     })
   ],
-};
-
-/**
- * Additional class groups so that tailwind-merge can handle conflicts correctly.
- *
- * When new tailwind classes are introduced they should also be added to this object.
- *
- * @example
- * tailwindcss/forms adds the form-input, form-checkbox, etc. classes,
- * so we need to add the 'form' class group here for twMerge to recognize form-input
- * and form-checkbox as conflicting classes.
- */
-module.exports.additionalClassGroups = {
-  form: ['input', 'checkbox', 'textarea', 'select', 'multiselect', 'radio'].map(v => 'form-' + v)
 };

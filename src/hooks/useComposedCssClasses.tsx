@@ -1,9 +1,21 @@
 import { useMemo } from 'react';
 import { extendTailwindMerge } from 'tailwind-merge';
-import { additionalClassGroups } from '../../tailwind.config.js';
 
+/**
+ * We extend the base tailwind-merge so that conflicts between custom classes can be
+ * handled correctly.
+ *
+ * When new tailwind classes are introduced they should be added to the `classGroups` object below.
+ *
+ * @example
+ * tailwindcss/forms adds the form-input, form-checkbox, etc. classes,
+ * so we need to add the 'form' class group here for twMerge to recognize form-input
+ * and form-checkbox as conflicting classes.
+ */
 const twMerge = extendTailwindMerge({
-  classGroups: additionalClassGroups
+  classGroups: {
+    form: ['input', 'checkbox', 'textarea', 'select', 'multiselect', 'radio'].map(v => 'form-' + v)
+  }
 });
 
 /**

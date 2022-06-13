@@ -3,12 +3,12 @@
   "version": "0.1.2-alpha.161",
   "description": "",
   "author": "slapshot@yext.com",
-  "main": "./lib/esm/src/index.js",
-  "types": "./lib/esm/src/index.d.ts",
+  "main": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
   "exports": {
     ".": {
-      "import": "./lib/esm/src/index.js",
-      "require": "./lib/commonjs/src/index.js"
+      "import": "./lib/esm/index.js",
+      "require": "./lib/commonjs/index.js"
     },
     "./bundle.css": "./lib/bundle.css"
   },
@@ -20,7 +20,7 @@
   "scripts": {
     "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run api-extractor && npm run generate-docs",
     "build:js": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
-    "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.js",
+    "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs",
     "dev": "tsc --watch -p tsconfig.esm.json",
     "lint": "eslint .",
     "api-extractor": "api-extractor run --local --verbose",
