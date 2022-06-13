@@ -51,9 +51,9 @@ export function useSynchronizedRequest<RequestDataType, ResponseType>(
     });
   }, [isMountedRef]);
 
-  function clearResponseData() {
+  const clearResponseData = useCallback(() => {
     setSynchronizedResponse(undefined);
-  }
+  }, [setSynchronizedResponse]);
 
   useEffect(() => {
     executeRequestRef.current = executeRequest;
