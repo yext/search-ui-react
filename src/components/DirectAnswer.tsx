@@ -2,7 +2,7 @@ import { useAnswersState, DirectAnswerType, DirectAnswer as DirectAnswerData } f
 import { renderHighlightedValue } from './utils/renderHighlightedValue';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import {
   ThumbsFeedbackCssClasses,
   ThumbsFeedback,
@@ -19,9 +19,7 @@ import { useCardFeedbackCallback } from '../hooks/useCardFeedbackCallback';
  */
 export interface DirectAnswerProps {
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: DirectAnswerCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: DirectAnswerCssClasses
 }
 
 /**
@@ -71,8 +69,7 @@ const builtInCssClasses: DirectAnswerCssClasses = {
 export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   const directAnswerResult = useAnswersState(state => state.directAnswer.result);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading || false);
-  const composedCssClasses = useComposedCssClasses(
-    builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
+  const composedCssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
 
   const handleClickViewDetails = useCardAnalyticsCallback(directAnswerResult as DirectAnswerData, 'CTA_CLICK');
   const handleClickFeedbackButton = useCardFeedbackCallback(directAnswerResult as DirectAnswerData);

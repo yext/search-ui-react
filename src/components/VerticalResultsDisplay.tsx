@@ -1,7 +1,7 @@
 import { VerticalResultsCssClasses } from './VerticalResults';
 import { CardComponent } from '../models/cardComponent';
 import { Result } from '@yext/answers-headless-react';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 
 const builtInCssClasses: VerticalResultsCssClasses = {
@@ -12,8 +12,7 @@ interface VerticalResultsDisplayProps {
   CardComponent: CardComponent,
   isLoading?: boolean,
   results: Result[],
-  customCssClasses?: VerticalResultsCssClasses,
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: VerticalResultsCssClasses
 }
 
 /**
@@ -27,10 +26,9 @@ export function VerticalResultsDisplay(props: VerticalResultsDisplayProps): JSX.
     CardComponent,
     results,
     isLoading = false,
-    customCssClasses,
-    cssCompositionMethod
+    customCssClasses
   } = props;
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   if (results.length === 0) {
     return null;

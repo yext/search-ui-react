@@ -17,7 +17,6 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.numericalfacetsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.numericalfacetsprops.customcssclasses.md) | [NumericalFacetsCssClasses](./answers-react-components.numericalfacetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [getFilterDisplayName?](./answers-react-components.numericalfacetsprops.getfilterdisplayname.md) | (value: NumberRangeValue) =&gt; string | <i>(Optional)</i> Returns the filter's display name based on the range values which is used when the filter is displayed by other components such as AppliedFilters. |
 |  [includedFieldIds?](./answers-react-components.numericalfacetsprops.includedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids to render as numerical facets. |

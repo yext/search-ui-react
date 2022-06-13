@@ -1,4 +1,3 @@
-import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { FilterOptionConfig } from './Filters';
 import { StaticFiltersProvider } from './Filters/StaticFiltersProvider';
@@ -46,9 +45,7 @@ export interface StaticFiltersProps {
    */
   searchOnChange?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: StaticFiltersCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: StaticFiltersCssClasses
 }
 
 /**

@@ -17,7 +17,6 @@ export interface FilterGroupProps
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [collapsible?](./answers-react-components.filtergroupprops.collapsible.md) | boolean | <i>(Optional)</i> Whether or not the filter is collapsible. Defaults to true. |
-|  [cssCompositionMethod?](./answers-react-components.filtergroupprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.filtergroupprops.customcssclasses.md) | [FilterGroupCssClasses](./answers-react-components.filtergroupcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./answers-react-components.filtergroupprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
 |  [fieldId](./answers-react-components.filtergroupprops.fieldid.md) | string | The fieldId corresponding to the filter group. |

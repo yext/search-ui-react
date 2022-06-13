@@ -17,7 +17,6 @@ export interface StaticFiltersProps
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [collapsible?](./answers-react-components.staticfiltersprops.collapsible.md) | boolean | <i>(Optional)</i> Whether or not the filter is collapsible. Defaults to true. |
-|  [cssCompositionMethod?](./answers-react-components.staticfiltersprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.staticfiltersprops.customcssclasses.md) | [StaticFiltersCssClasses](./answers-react-components.staticfilterscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./answers-react-components.staticfiltersprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
 |  [fieldId](./answers-react-components.staticfiltersprops.fieldid.md) | string | The fieldId corresponding to the static filter group. |

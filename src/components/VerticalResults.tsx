@@ -1,6 +1,5 @@
 import { CardComponent } from '../models/cardComponent';
 import { useAnswersState } from '@yext/answers-headless-react';
-import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
 import { Pagination, PaginationCssClasses } from './Pagination';
 
@@ -29,8 +28,6 @@ export interface VerticalResultsProps {
   displayAllOnNoResults?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: VerticalResultsCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod,
   /** Whether to include pagination of the results. Defaults to true. */
   allowPagination?: boolean
 }
@@ -62,7 +59,6 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
         && <Pagination
           paginateAllOnNoResults={displayAllOnNoResults}
           customCssClasses={otherProps.customCssClasses}
-          cssCompositionMethod={otherProps.cssCompositionMethod}
         />
       }
     </>

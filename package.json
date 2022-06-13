@@ -48,6 +48,7 @@
     "@storybook/testing-library": "^0.0.9",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.3",
+    "@testing-library/react-hooks": "^8.0.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^28.1.1",
     "@types/lodash": "^4.14.180",
@@ -99,7 +100,7 @@
     ],
     "testEnvironment": "jsdom",
     "testMatch": [
-      "<rootDir>/tests/**/*.test.tsx"
+      "<rootDir>/tests/**/*.test.ts?(x)"
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/tests/__setup__/*",
@@ -115,7 +116,6 @@
     "restoreMocks": true
   },
   "dependencies": {
-    "@css-modules-theme/core": "^2.3.0",
     "@microsoft/api-documenter": "^7.15.3",
     "@microsoft/api-extractor": "^7.19.4",
     "@restart/hooks": "^0.4.5",
@@ -126,6 +126,7 @@
     "prop-types": "^15.8.1",
     "react-collapsed": "^3.3.0",
     "recent-searches": "^1.0.5",
+    "tailwind-merge": "^1.3.0",
     "use-isomorphic-layout-effect": "^1.1.2",
     "uuid": "^8.3.2"
   },

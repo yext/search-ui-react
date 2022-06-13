@@ -4,25 +4,43 @@
 
 ## useComposedCssClasses() function
 
-A react hook which combines a component's built-in CSS classes with custom CSS classes.
+useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes.
 
 <b>Signature:</b>
 
 ```typescript
-export declare function useComposedCssClasses<ClassInterface>(builtInClasses: ClassInterface, customClasses?: ClassInterface, cssCompositionMethod?: CompositionMethod): ClassInterface | Theme;
+export declare function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: ClassInterface, customClasses?: Partial<ClassInterface>): ClassInterface;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  builtInClasses | ClassInterface | The component's built-in css classes |
-|  customClasses | ClassInterface | The custom classes to combine with the built-in ones |
-|  cssCompositionMethod | [CompositionMethod](./answers-react-components.compositionmethod.md) | The method of combining the built-in classes with the custom classes |
+|  builtInClasses | ClassInterface | The component's built-in tailwind classes |
+|  customClasses | Partial&lt;ClassInterface&gt; | The custom tailwind classes to merge with the built-in ones |
 
 <b>Returns:</b>
 
-ClassInterface \| Theme
+ClassInterface
 
 The composed CSS classes
+
+## Remarks
+
+Tailwind classes will be merged without conflict, with custom classes having higher priority than built-in ones.
+
+## Example
+
+Suppose a component has built-in classes of `{ container: 'px-4 text-slate-700' }`<!-- -->.
+
+Passing in the custom classes:
+
+```ts
+{ container: 'text-red-200 mb-3' }
+```
+results in the merged classes of:
+
+```ts
+{ container: 'px-4 text-red-200 mb-3' }
+```
 

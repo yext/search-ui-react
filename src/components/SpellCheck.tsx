@@ -1,7 +1,7 @@
 import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { useCallback } from 'react';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { executeSearch } from '../utils/search-operations';
 
 /**
@@ -31,8 +31,6 @@ const builtInCssClasses: SpellCheckCssClasses = {
 export interface SpellCheckProps {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: SpellCheckCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod,
   /** A function which is called when a spell check suggestion is clicked. */
   onClick?: (data: { correctedQuery: string, verticalKey: string }) => void
 }
@@ -47,11 +45,10 @@ export interface SpellCheckProps {
  */
 export function SpellCheck({
   customCssClasses,
-  cssCompositionMethod,
   onClick
 }: SpellCheckProps): JSX.Element | null {
   const verticalKey = useAnswersState(state => state.vertical.verticalKey) ?? '';
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const correctedQuery = useAnswersState(state => state.spellCheck.correctedQuery) ?? '';
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const containerClassNames = classNames(cssClasses.container, {

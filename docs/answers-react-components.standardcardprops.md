@@ -17,7 +17,6 @@ export interface StandardCardProps extends CardProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.standardcardprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.standardcardprops.customcssclasses.md) | StandardCardCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [showFeedbackButtons?](./answers-react-components.standardcardprops.showfeedbackbuttons.md) | boolean | <i>(Optional)</i> Whether or not to show thumbs up/down buttons to provide feedback on the result card |
 

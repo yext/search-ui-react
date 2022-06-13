@@ -17,6 +17,5 @@ export interface StandardSectionProps extends SectionProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.standardsectionprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.standardsectionprops.customcssclasses.md) | [StandardSectionCssClasses](./answers-react-components.standardsectioncssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 

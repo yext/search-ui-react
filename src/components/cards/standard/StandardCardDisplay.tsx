@@ -1,4 +1,4 @@
-import { CompositionMethod, useComposedCssClasses } from '../../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../../hooks/useComposedCssClasses';
 import {
   ThumbsFeedback,
   builtInCssClasses as thumbsFeedbackCssClasses,
@@ -61,8 +61,7 @@ interface StandardCardDisplayProps {
   cta1?: CtaData,
   cta2?: CtaData,
   clickHandlers: ClickHandlers,
-  customCssClasses?: StandardCardCssClasses,
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: StandardCardCssClasses
 }
 
 /**
@@ -79,13 +78,12 @@ function StandardCardDisplay(props: StandardCardDisplayProps) {
     link,
     description,
     customCssClasses,
-    cssCompositionMethod,
     clickHandlers,
     showFeedbackButtons,
     cta1,
     cta2
   } = props;
-  const cssClasses = useComposedCssClasses(defaultStyling, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(defaultStyling, customCssClasses);
 
   function renderTitle(title: string | HighlightedValue, link?: string) {
     const titleJsx = renderHighlightedValue(title, { highlighted: 'font-bold', nonHighlighted: 'font-medium' });

@@ -1,6 +1,6 @@
 import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions } from '@yext/answers-headless-react';
 import { useCallback, useMemo } from 'react';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
 import { Dropdown } from './Dropdown/Dropdown';
@@ -51,9 +51,7 @@ export interface FilterSearchProps {
   /** An array of fieldApiName and entityType which indicates what to perform the filter search against. */
   searchFields: Omit<SearchParameterField, 'fetchEntities'>[],
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: FilterSearchCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: FilterSearchCssClasses
 }
 
 /**
@@ -68,14 +66,13 @@ export function FilterSearch({
   label = 'Filter',
   sectioned = false,
   searchFields,
-  customCssClasses,
-  cssCompositionMethod
+  customCssClasses
 }: FilterSearchProps): JSX.Element {
   const answersActions = useAnswersActions();
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
   });
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const [
     filterSearchResponse,
