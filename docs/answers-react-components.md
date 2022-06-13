@@ -16,7 +16,7 @@
 |  [DropdownItem(\_props)](./answers-react-components.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
 |  [executeAutocomplete(answersActions)](./answers-react-components.executeautocomplete.md) | Executes a universal/vertical autocomplete search and return the corresponding response. |
 |  [executeSearch(answersActions)](./answers-react-components.executesearch.md) | Executes a universal/vertical search. |
-|  [FilterSearch({ label, sectioned, searchFields, customCssClasses })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
+|  [FilterSearch({ label, placeholder, sectioned, searchFields, customCssClasses })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [getSearchIntents(answersActions)](./answers-react-components.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./answers-react-components.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |
 |  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./answers-react-components.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
