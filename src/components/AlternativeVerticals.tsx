@@ -26,7 +26,7 @@ export interface AlternativeVerticalsCssClasses {
   allCategoriesLink?: string
 }
 
-const builtInCssClasses: AlternativeVerticalsCssClasses = {
+const builtInCssClasses: Readonly<AlternativeVerticalsCssClasses> = {
   container: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
   alternativeVerticals___loading: 'opacity-50',
   noResultsText: 'text-lg text-neutral-dark pb-2',

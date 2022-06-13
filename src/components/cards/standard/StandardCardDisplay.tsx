@@ -29,7 +29,7 @@ interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
 /**
  * Default Tailwind styles for the StandardCardDisplay.
  */
-const defaultStyling: StandardCardCssClasses = {
+const builtInCssClasses: Readonly<StandardCardCssClasses> = {
   container: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
   header: 'flex text-neutral-dark',
   body: 'flex justify-end pt-2.5 text-base',
@@ -83,7 +83,7 @@ function StandardCardDisplay(props: StandardCardDisplayProps) {
     cta1,
     cta2
   } = props;
-  const cssClasses = useComposedCssClasses(defaultStyling, customCssClasses);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   function renderTitle(title: string | HighlightedValue, link?: string) {
     const titleJsx = renderHighlightedValue(title, { highlighted: 'font-bold', nonHighlighted: 'font-medium' });

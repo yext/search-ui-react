@@ -40,7 +40,7 @@ import { clearStaticRangeFilters } from '../utils/filterutils';
 import { useMemo } from 'react';
 import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 
-const builtInCssClasses: SearchBarCssClasses = {
+const builtInCssClasses: Readonly<SearchBarCssClasses> = {
   container: 'h-12 mb-6',
   inputDivider: 'border-t border-gray-200 mx-2.5',
   dropdownContainer: 'bg-white py-4 z-10',

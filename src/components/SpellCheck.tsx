@@ -16,7 +16,7 @@ export interface SpellCheckCssClasses {
   link?: string
 }
 
-const builtInCssClasses: SpellCheckCssClasses = {
+const builtInCssClasses: Readonly<SpellCheckCssClasses> = {
   container: 'text-lg pb-3',
   helpText: 'text-neutral',
   spellCheck___loading: 'opacity-50',

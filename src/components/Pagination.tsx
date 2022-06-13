@@ -38,7 +38,7 @@ export interface PaginationCssClasses {
   icon?: string
 }
 
-const builtInPaginationCssClasses: PaginationCssClasses = {
+const builtInPaginationCssClasses: Readonly<PaginationCssClasses> = {
   paginationContainer: 'flex justify-center mb-4',
   paginationContainer___loading: 'opacity-50',
   labelContainer: 'inline-flex shadow-sm -space-x-px',

@@ -37,7 +37,7 @@ export interface ThumbsFeedbackProps {
   cssClasses: ThumbsFeedbackCssClasses
 }
 
-export const builtInCssClasses: ThumbsFeedbackCssClasses = {
+export const builtInCssClasses: Readonly<ThumbsFeedbackCssClasses> = {
   feedbackButtonsContainer: 'flex justify-end mt-2 text-sm text-gray-500 font-medium',
   thumbsUpIcon: 'ml-3 w-5',
   thumbsDownIcon: 'w-5 ml-1 transform rotate-180'

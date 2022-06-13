@@ -49,7 +49,7 @@ export interface CheckboxCssClasses {
   tooltip?: string
 }
 
-const builtInCssClasses: CheckboxCssClasses = {
+const builtInCssClasses: Readonly<CheckboxCssClasses> = {
   label: 'text-neutral text-sm font-normal cursor-pointer',
   label___disabled: 'opacity-50 cursor-not-allowed',
   input: 'w-3.5 h-3.5 form-checkbox cursor-pointer border border-gray-300 rounded-sm text-primary focus:ring-primary',
