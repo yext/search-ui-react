@@ -230,7 +230,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ label, sectioned, searchFields, customCssClasses }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ label, placeholder, sectioned, searchFields, customCssClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -258,6 +258,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
+    placeholder?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
     sectioned?: boolean;
 }
