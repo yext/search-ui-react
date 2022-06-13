@@ -1,7 +1,7 @@
 import { Matcher,NumberRangeValue, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
-import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
@@ -29,9 +29,7 @@ export interface RangeInputProps {
    */
   inputPrefix?: JSX.Element,
   /** CSS classes for customizing the component styling defined by RangeInputCssClasses */
-  customCssClasses?: RangeInputCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: RangeInputCssClasses
 }
 
 /**
@@ -101,8 +99,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     getFilterDisplayName = getDefaultFilterDisplayName,
     inputPrefix
   } = props;
-  const cssClasses = useComposedCssClasses(
-    builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const answersActions = useAnswersActions();
   const [minRangeInput, setMinRangeInput] = useState<string>('');
   const [maxRangeInput, setMaxRangeInput] = useState<string>('');

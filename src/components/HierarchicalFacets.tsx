@@ -6,7 +6,6 @@ import {
   HierarchicalFacetDisplay,
   HierarchicalFacetDisplayCssClasses
 } from './Filters';
-import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { StandardFacetsProps } from './StandardFacets';
 import { Fragment } from 'react';
 
@@ -33,9 +32,7 @@ export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'sear
   /** The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4. */
   showMoreLimit?: number,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: HierarchicalFacetsCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: HierarchicalFacetsCssClasses
 }
 
 /**

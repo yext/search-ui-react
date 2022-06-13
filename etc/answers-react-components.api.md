@@ -20,12 +20,11 @@ import { QuerySource } from '@yext/answers-headless-react';
 import { Result } from '@yext/answers-headless-react';
 import { SearchIntent } from '@yext/answers-headless-react';
 import { SearchParameterField } from '@yext/answers-headless-react';
-import { Theme } from '@css-modules-theme/core';
 import { UniversalLimit } from '@yext/answers-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
 
 // @public
-export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl, cssCompositionMethod }: AlternativeVerticalsProps): JSX.Element | null;
+export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl }: AlternativeVerticalsProps): JSX.Element | null;
 
 // @public
 export interface AlternativeVerticalsCssClasses {
@@ -55,7 +54,6 @@ export interface AlternativeVerticalsCssClasses {
 
 // @public
 export interface AlternativeVerticalsProps {
-    cssCompositionMethod?: CompositionMethod;
     currentVerticalLabel: string;
     customCssClasses?: AlternativeVerticalsCssClasses;
     displayAllOnNoResults?: boolean;
@@ -89,7 +87,6 @@ export interface AppliedFiltersCssClasses {
 
 // @public
 export interface AppliedFiltersProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: AppliedFiltersCssClasses;
     hiddenFields?: Array<string>;
     hierarchicalFacetsDelimiter?: string;
@@ -138,9 +135,6 @@ export interface CardProps {
 }
 
 // @public
-export type CompositionMethod = 'merge' | 'replace' | 'assign';
-
-// @public
 export interface CtaData {
     label: string;
     link: string;
@@ -178,7 +172,6 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
 
 // @public
 export interface DirectAnswerProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: DirectAnswerCssClasses;
 }
 
@@ -220,7 +213,6 @@ export interface FilterGroupCssClasses {
 // @public
 export interface FilterGroupProps {
     collapsible?: boolean;
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: FilterGroupCssClasses;
     defaultExpanded?: boolean;
     fieldId: string;
@@ -238,7 +230,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ label, sectioned, searchFields, customCssClasses, cssCompositionMethod }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ label, sectioned, searchFields, customCssClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -264,7 +256,6 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 
 // @public
 export interface FilterSearchProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
@@ -313,7 +304,6 @@ export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCs
 
 // @public
 export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'searchable' | 'excludedFieldIds'> {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: HierarchicalFacetsCssClasses;
     delimiter?: string;
     includedFieldIds: string[];
@@ -332,7 +322,7 @@ export interface HighlightedValueCssClasses {
 export function isCtaData(data: unknown): data is CtaData;
 
 // @public
-export function LocationBias({ geolocationOptions, customCssClasses, cssCompositionMethod }: LocationBiasProps): JSX.Element | null;
+export function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): JSX.Element | null;
 
 // @public
 export interface LocationBiasCssClasses {
@@ -350,7 +340,6 @@ export interface LocationBiasCssClasses {
 
 // @public
 export interface LocationBiasProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: LocationBiasCssClasses;
     geolocationOptions?: PositionOptions;
 }
@@ -372,7 +361,6 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
 
 // @public
 export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: NumericalFacetsCssClasses;
     getFilterDisplayName?: (value: NumberRangeValue) => string;
     includedFieldIds?: string[];
@@ -410,7 +398,6 @@ export interface PaginationCssClasses {
 
 // @public
 export interface PaginationProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: PaginationCssClasses;
     paginateAllOnNoResults?: boolean;
 }
@@ -468,7 +455,7 @@ export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToR
 export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
 
 // @public
-export function ResultsCount(props: ResultsCountProps): JSX.Element | null;
+export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Element | null;
 
 // @public
 export interface ResultsCountCssClasses {
@@ -480,12 +467,11 @@ export interface ResultsCountCssClasses {
 
 // @public
 export interface ResultsCountProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: ResultsCountCssClasses;
 }
 
 // @public
-export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, cssCompositionMethod, onSearch }: SearchBarProps): JSX.Element;
+export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
 
 // @public
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
@@ -535,7 +521,6 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 
 // @public
 export interface SearchBarProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: SearchBarCssClasses;
     geolocationOptions?: PositionOptions;
     hideRecentSearches?: boolean;
@@ -578,7 +563,7 @@ export interface SectionProps {
 }
 
 // @public
-export function SpellCheck({ customCssClasses, cssCompositionMethod, onClick }: SpellCheckProps): JSX.Element | null;
+export function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX.Element | null;
 
 // @public
 export interface SpellCheckCssClasses {
@@ -594,7 +579,6 @@ export interface SpellCheckCssClasses {
 
 // @public
 export interface SpellCheckProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: SpellCheckCssClasses;
     onClick?: (data: {
         correctedQuery: string;
@@ -631,7 +615,6 @@ export interface StandardCardData {
 
 // @public
 export interface StandardCardProps extends CardProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardCardCssClasses;
     showFeedbackButtons?: boolean;
 }
@@ -650,7 +633,6 @@ export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
 // @public
 export interface StandardFacetsProps {
     collapsible?: boolean;
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardFacetsCssClasses;
     defaultExpanded?: boolean;
     excludedFieldIds?: string[];
@@ -669,7 +651,6 @@ export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
 
 // @public
 export interface StandardSectionProps extends SectionProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StandardSectionCssClasses;
 }
 
@@ -690,7 +671,6 @@ export interface StaticFiltersCssClasses extends FilterGroupCssClasses {
 // @public
 export interface StaticFiltersProps {
     collapsible?: boolean;
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: StaticFiltersCssClasses;
     defaultExpanded?: boolean;
     fieldId: string;
@@ -727,7 +707,7 @@ export interface UniversalLink {
 }
 
 // @public
-export function UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses, cssCompositionMethod }: UniversalResultsProps): JSX.Element | null;
+export function UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps): JSX.Element | null;
 
 // @public
 export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
@@ -739,7 +719,6 @@ export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
 
 // @public
 export interface UniversalResultsProps {
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
     verticalConfigMap: VerticalConfigMap;
@@ -758,7 +737,7 @@ export function useCardAnalyticsCallback(result: Result | DirectAnswer_2, analyt
 export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analyticsType: FeedbackType) => void;
 
 // @public
-export function useComposedCssClasses<ClassInterface>(builtInClasses: ClassInterface, customClasses?: ClassInterface, cssCompositionMethod?: CompositionMethod): ClassInterface | Theme;
+export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: ClassInterface, customClasses?: Partial<ClassInterface>): ClassInterface;
 
 // @public
 export interface VerticalConfig {
@@ -800,7 +779,6 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
 export interface VerticalResultsProps {
     allowPagination?: boolean;
     CardComponent: CardComponent;
-    cssCompositionMethod?: CompositionMethod;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
 }

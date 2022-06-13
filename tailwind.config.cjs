@@ -1,3 +1,7 @@
+/**
+ * When custom tailwind classes are added, like `form-checkbox"` via `@tailwindcss/forms`,
+ * handling must also be added to {@link useComposedCssClasses}.
+ */
 module.exports = {
   content: [
     './lib/**/*.{js,jsx}'
@@ -7,7 +11,7 @@ module.exports = {
       colors: {
         'primary': 'var(--primary-color, #2563eb)',
         'primary-light': 'var(--primary-color-light, #dbeafe)',
-        'primary-dark':  'var(--primary-color-dark, #dbeafe)',
+        'primary-dark':  'var(--primary-color-dark, #1e40af)',
         'neutral': 'var(--neutral-color, #4b5563)',
         'neutral-light': 'var(--neutral-color-light, #9ca3af)',
         'neutral-dark': 'var(--neutral-color-dark, #1f2937)'

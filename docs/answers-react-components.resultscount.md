@@ -9,14 +9,14 @@ Renders results count of a universal/vertical search.
 <b>Signature:</b>
 
 ```typescript
-export declare function ResultsCount(props: ResultsCountProps): JSX.Element | null;
+export declare function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [ResultsCountProps](./answers-react-components.resultscountprops.md) | [ResultsCountProps](./answers-react-components.resultscountprops.md) |
+|  { customCssClasses } | [ResultsCountProps](./answers-react-components.resultscountprops.md) |  |
 
 <b>Returns:</b>
 

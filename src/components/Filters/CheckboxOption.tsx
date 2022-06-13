@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
-import { CompositionMethod, useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { findSelectableFilter } from '../../utils/filterutils';
 import classNames from 'classnames';
 
@@ -30,9 +30,7 @@ export interface FilterOptionConfig {
  */
 export interface CheckboxOptionProps extends FilterOptionConfig {
   /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses} */
-  customCssClasses?: CheckboxCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: CheckboxCssClasses
 }
 
 /**
@@ -77,8 +75,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     selectedByDefault = false,
     displayName = props.value,
   } = props;
-  const cssClasses = useComposedCssClasses(
-    builtInCssClasses, props.customCssClasses, props.cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const optionId = useMemo(() => uuid(), []);
   const answersUtilities = useAnswersUtilities();
   const { selectFilter, filters, applyFilters } = useFiltersContext();

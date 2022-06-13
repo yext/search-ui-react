@@ -1,5 +1,5 @@
 import { useAnswersState } from '@yext/answers-headless-react';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { pruneAppliedFilters } from '../utils/appliedfilterutils';
 import { useMemo } from 'react';
 import classNames from 'classnames';
@@ -46,9 +46,7 @@ export interface AppliedFiltersProps {
   /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: AppliedFiltersCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: AppliedFiltersCssClasses
 }
 
 /**
@@ -70,7 +68,6 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const {
     hiddenFields,
     customCssClasses = {},
-    cssCompositionMethod,
     hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
     hierarchicalFacetsFieldIds
   } = props;
@@ -92,7 +89,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     nlpFilters
   ]);
 
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
   });

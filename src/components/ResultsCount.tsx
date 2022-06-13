@@ -6,7 +6,7 @@ import {
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
 import { processTranslation } from './utils/processTranslation';
-import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
 /**
  *  The CSS class interface for {@link ResultsCount}.
@@ -25,9 +25,7 @@ export interface ResultsCountCssClasses {
  */
 export interface ResultsCountProps {
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: ResultsCountCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: ResultsCountCssClasses
 }
 
 const builtInCssClasses: ResultsCountCssClasses = {
@@ -42,9 +40,8 @@ const builtInCssClasses: ResultsCountCssClasses = {
  *
  * @param props - {@link ResultsCountProps}
  */
-export function ResultsCount(props: ResultsCountProps): JSX.Element | null {
-  const { customCssClasses, cssCompositionMethod } = props;
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
+export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Element | null {
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const resultsCountText = useResultsCount();
 

@@ -1,6 +1,5 @@
 import { FacetsProvider } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { CompositionMethod } from '../hooks/useComposedCssClasses';
 import { Fragment } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
 
@@ -34,9 +33,7 @@ export interface StandardFacetsProps {
   /** List of filter ids that should not be displayed. */
   excludedFieldIds?: string[],
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: StandardFacetsCssClasses,
-  /** {@inheritDoc CompositionMethod} */
-  cssCompositionMethod?: CompositionMethod
+  customCssClasses?: StandardFacetsCssClasses
 }
 
 /**

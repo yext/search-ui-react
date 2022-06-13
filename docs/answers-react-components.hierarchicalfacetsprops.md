@@ -17,7 +17,6 @@ export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'sear
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssCompositionMethod?](./answers-react-components.hierarchicalfacetsprops.csscompositionmethod.md) | [CompositionMethod](./answers-react-components.compositionmethod.md) | <i>(Optional)</i> The method of combining a component's built-in CSS classes with custom CSS classes. |
 |  [customCssClasses?](./answers-react-components.hierarchicalfacetsprops.customcssclasses.md) | [HierarchicalFacetsCssClasses](./answers-react-components.hierarchicalfacetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [delimiter?](./answers-react-components.hierarchicalfacetsprops.delimiter.md) | string | <i>(Optional)</i> The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->". |
 |  [includedFieldIds](./answers-react-components.hierarchicalfacetsprops.includedfieldids.md) | string\[\] | List of filter ids to render as hierarchical facets. |
