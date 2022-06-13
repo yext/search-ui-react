@@ -44,12 +44,14 @@ const builtInCssClasses: FilterSearchCssClasses = {
  * @public
  */
 export interface FilterSearchProps {
-  /** The display label for the component. Defaults to "Filter". */
-  label?: string,
-  /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
-  sectioned?: boolean,
   /** An array of fieldApiName and entityType which indicates what to perform the filter search against. */
   searchFields: Omit<SearchParameterField, 'fetchEntities'>[],
+  /** The display label for the component. Defaults to "Filter". */
+  label?: string,
+  /** Whether to trigger a search when an option is selected. Defaults to false. */
+  searchOnSelect?: boolean,
+  /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
+  sectioned?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FilterSearchCssClasses
 }
@@ -63,9 +65,10 @@ export interface FilterSearchProps {
  * @returns A react component for Filter Search
  */
 export function FilterSearch({
-  label = 'Filter',
-  sectioned = false,
   searchFields,
+  label = 'Filter',
+  searchOnSelect = false,
+  sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
   const answersActions = useAnswersActions();
@@ -93,9 +96,11 @@ export function FilterSearch({
     if (filter && displayName) {
       answersActions.setFilterOption({ ...filter, displayName, selected: true });
       answersActions.setOffset(0);
-      executeSearch(answersActions);
+      if (searchOnSelect) {
+        executeSearch(answersActions);
+      }
     }
-  }, [answersActions]);
+  }, [answersActions, searchOnSelect]);
 
   const handleChangeDropdownInput = useCallback(query => executeFilterSearch(query), [executeFilterSearch]);
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
