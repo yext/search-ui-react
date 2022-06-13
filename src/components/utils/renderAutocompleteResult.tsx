@@ -13,7 +13,7 @@ export interface AutocompleteResultCssClasses {
   nonHighlighted?: string
 }
 
-export const builtInCssClasses = {
+export const builtInCssClasses: Readonly<AutocompleteResultCssClasses> = {
   option: 'flex whitespace-pre-wrap h-6.5 pl-3 text-neutral-dark',
   icon: 'w-6 text-gray-400'
 };

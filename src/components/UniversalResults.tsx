@@ -19,7 +19,7 @@ export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
   results___loading?: string
 }
 
-const builtInCssClasses: UniversalResultsCssClasses = {
+const builtInCssClasses: Readonly<UniversalResultsCssClasses> = {
   container: 'space-y-8',
   results___loading: 'opacity-50',
   ...sectionHeaderCssClasses

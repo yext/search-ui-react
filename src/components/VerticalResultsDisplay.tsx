@@ -4,7 +4,7 @@ import { Result } from '@yext/answers-headless-react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 
-const builtInCssClasses: VerticalResultsCssClasses = {
+const builtInCssClasses: Readonly<VerticalResultsCssClasses> = {
   results___loading: 'opacity-50'
 };
 
