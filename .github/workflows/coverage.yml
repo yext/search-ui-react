@@ -1,7 +1,7 @@
 # This workflow will run our tests, generate an lcov code coverage file,
 # and send that coverage to Coveralls 
 
-name: Code Coverage!1
+name: Code Coverage!
 
 on:
   push:
