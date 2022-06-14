@@ -18,7 +18,7 @@ export interface LocationBiasCssClasses {
   loadingIndicatorContainer?: string
 }
 
-const builtInCssClasses: LocationBiasCssClasses = {
+const builtInCssClasses: Readonly<LocationBiasCssClasses> = {
   container: 'text-sm text-neutral text-center flex justify-center items-center',
   location: 'font-semibold mr-1',
   button: 'text-primary hover:underline focus:underline ml-1',

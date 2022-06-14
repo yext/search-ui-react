@@ -27,7 +27,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
   inputContainer?: string
 }
 
-const builtInCssClasses: FilterSearchCssClasses = {
+const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   container: 'mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
   dropdownContainer: 'absolute z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 px-4 mt-1',
@@ -46,6 +46,11 @@ const builtInCssClasses: FilterSearchCssClasses = {
 export interface FilterSearchProps {
   /** The display label for the component. Defaults to "Filter". */
   label?: string,
+  /**
+   * The search input's placeholder text when no text has been entered by the user.
+   * Defaults to "Search here...".
+   */
+  placeholder?: string,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
   /** An array of fieldApiName and entityType which indicates what to perform the filter search against. */
@@ -64,6 +69,7 @@ export interface FilterSearchProps {
  */
 export function FilterSearch({
   label = 'Filter',
+  placeholder = 'Search here...',
   sectioned = false,
   searchFields,
   customCssClasses
@@ -145,7 +151,7 @@ export function FilterSearch({
         <div className={cssClasses.inputContainer}>
           <DropdownInput
             className={cssClasses.inputElement}
-            placeholder='Search here ...'
+            placeholder={placeholder}
             onChange={executeFilterSearch}
             submitCriteria={meetsSubmitCritera}
           />

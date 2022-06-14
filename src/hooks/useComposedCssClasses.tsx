@@ -49,7 +49,7 @@ const twMerge = extendTailwindMerge({
 export function useComposedCssClasses<
   ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>
 >(
-  builtInClasses: ClassInterface,
+  builtInClasses: Readonly<ClassInterface>,
   customClasses?: Partial<ClassInterface>
 ): ClassInterface {
   return useMemo(() => {

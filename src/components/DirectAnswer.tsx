@@ -41,7 +41,7 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
   answerContainer?: string
 }
 
-const builtInCssClasses: DirectAnswerCssClasses = {
+const builtInCssClasses: Readonly<DirectAnswerCssClasses> = {
   container: '',
   container___loading: 'opacity-50',
   fieldValueTitle: 'mb-4 text-neutral',

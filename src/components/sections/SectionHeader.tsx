@@ -22,7 +22,7 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
   viewMoreLink?: string
 }
 
-export const builtInCssClasses: SectionHeaderCssClasses = {
+export const builtInCssClasses: Readonly<SectionHeaderCssClasses> = {
   sectionHeaderContainer: 'flex items-center w-full pl-1 mb-4',
   sectionHeaderIconContainer: 'w-5 h-5',
   sectionHeaderLabel: 'font-bold text-neutral-dark text-base pl-3',

@@ -9,8 +9,8 @@ import { useFilterGroupContext } from './FilterGroupContext';
 export interface SearchInputProps {
   /** CSS class names applied to the input element. */
   className?: string,
-  /** The input's placeholder text when no text has been entered by the user. */
-  placeholderText?: string
+  /** {@inheritDoc FilterSearch.placeholder} */
+  placeholder?: string
 }
 
 /**
@@ -24,7 +24,7 @@ export interface SearchInputProps {
 export function SearchInput(props: SearchInputProps): JSX.Element {
   const {
     className = 'text-sm form-input bg-white h-9 w-full outline-none p-2 mb-2 rounded-md border border-gray-300 focus:ring-primary focus:ring-0 text-neutral-dark placeholder:text-neutral',
-    placeholderText = 'Search here...'
+    placeholder = 'Search here...'
   } = props;
   const { searchValue, setSearchValue } = useFilterGroupContext();
   const handleChange = useCallback(e => {
@@ -35,7 +35,7 @@ export function SearchInput(props: SearchInputProps): JSX.Element {
     <input
       className={className}
       type='text'
-      placeholder={placeholderText}
+      placeholder={placeholder}
       value={searchValue}
       onChange={handleChange}
     />

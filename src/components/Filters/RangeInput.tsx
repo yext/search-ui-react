@@ -61,7 +61,7 @@ export interface RangeInputCssClasses {
   invalidRowContainer?: string
 }
 
-const builtInCssClasses: RangeInputCssClasses = {
+const builtInCssClasses: Readonly<RangeInputCssClasses> = {
   container: 'flex flex-col',
   input: 'w-24 h-9 form-input cursor-pointer border rounded-md focus:ring-0 text-neutral-dark text-sm appearance-none leading-9',
   input___withPrefix: 'pl-[1.375rem]',
