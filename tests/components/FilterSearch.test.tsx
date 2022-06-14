@@ -186,6 +186,14 @@ describe('search with section labels', () => {
       await waitFor(() => screen.findByText('first name 1'));
 
       userEvent.type(searchBarElement, '{arrowdown}{enter}');
+      expect(setFilterOption).toBeCalledWith({
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'first name 1',
+        displayName: 'first name 1',
+        selected: true
+      });
+      expect(setOffset).toBeCalledWith(0);
       expect(mockExecuteSearch).not.toHaveBeenCalled();
     });
   });
