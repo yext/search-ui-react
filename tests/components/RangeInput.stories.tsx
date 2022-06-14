@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { RangeInput, RangeInputProps } from '../../src/components/Filters/RangeInput';
 import { AnswersHeadlessContext, State } from '@yext/answers-headless-react';
@@ -6,6 +5,8 @@ import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { RecursivePartial } from '../__utils__/mocks';
 import { FiltersContext, FiltersContextType } from '../../src/components/Filters/FiltersContext';
 import { FilterGroupContext, FilterGroupContextType } from '../../src/components/Filters/FilterGroupContext';
+import { userEvent, within } from '@storybook/testing-library';
+import { max } from 'lodash';
 
 
 const meta: ComponentMeta<typeof RangeInput> = {
@@ -44,4 +45,20 @@ export const Primary = (args: RangeInputProps) => {
       </FilterGroupContext.Provider>
     </AnswersHeadlessContext.Provider>
   );
+};
+
+export const validValues = Primary.bind({});
+validValues.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const [minTextbox, maxTextbox] = canvas.getAllByRole('textbox');
+  userEvent.type(minTextbox, '10');
+  userEvent.type(maxTextbox, '20');
+};
+
+export const invalidValues = Primary.bind({});
+invalidValues.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const [minTextbox, maxTextbox] = canvas.getAllByRole('textbox');
+  userEvent.type(minTextbox, '20');
+  userEvent.type(maxTextbox, '10');
 };
