@@ -20,5 +20,6 @@ export interface FilterSearchProps
 |  [label?](./answers-react-components.filtersearchprops.label.md) | string | <i>(Optional)</i> The display label for the component. Defaults to "Filter". |
 |  [placeholder?](./answers-react-components.filtersearchprops.placeholder.md) | string | <i>(Optional)</i> The search input's placeholder text when no text has been entered by the user. Defaults to "Search here...". |
 |  [searchFields](./answers-react-components.filtersearchprops.searchfields.md) | Omit&lt;SearchParameterField, 'fetchEntities'&gt;\[\] | An array of fieldApiName and entityType which indicates what to perform the filter search against. |
+|  [searchOnSelect?](./answers-react-components.filtersearchprops.searchonselect.md) | boolean | <i>(Optional)</i> Whether to trigger a search when an option is selected. Defaults to false. |
 |  [sectioned?](./answers-react-components.filtersearchprops.sectioned.md) | boolean | <i>(Optional)</i> Determines whether or not the results of the filter search are separated by field. Defaults to false. |
 
