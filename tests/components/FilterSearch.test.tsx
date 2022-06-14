@@ -25,14 +25,21 @@ describe('search with section labels', () => {
     });
   });
 
-  it('renders the filter search bar and the "Filter" label', () => {
+  it('renders the filter search bar, "Filter" label, and default placeholder text', () => {
     render(<FilterSearch searchFields={searchFieldsProp} />);
     const label = 'Filter';
     const labelElement = screen.getByText(label);
-    const searchBarElement = screen.getAllByRole('textbox');
+    const searchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
 
     expect(labelElement).toBeDefined();
     expect(searchBarElement.length).toBe(1);
+    expect(searchBarElement[0].placeholder).toBe('Search here...');
+  });
+
+  it('sets the placeholder text to the specified value', () => {
+    render(<FilterSearch searchFields={searchFieldsProp} placeholder='Search...' />);
+    const searchBarElement = screen.getByRole<HTMLInputElement>('textbox');
+    expect(searchBarElement.placeholder).toBe('Search...');
   });
 
   it('displays characters typed in search bar correctly', async () => {

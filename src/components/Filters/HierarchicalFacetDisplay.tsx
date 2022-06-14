@@ -39,7 +39,7 @@ export interface HierarchicalFacetDisplayCssClasses {
   showMoreButton?: string
 }
 
-const builtInCssClasses: Required<HierarchicalFacetDisplayCssClasses> = {
+const builtInCssClasses: Readonly<HierarchicalFacetDisplayCssClasses> = {
   treeContainer: 'flex flex-col items-start',
   allCategoriesOption___active: 'font-semibold mb-2 text-sm',
   allCategoriesOption___inactive: 'mb-2 text-sm',

@@ -230,7 +230,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ label, sectioned, searchFields, customCssClasses }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ label, placeholder, sectioned, searchFields, customCssClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -258,6 +258,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
+    placeholder?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
     sectioned?: boolean;
 }
@@ -737,7 +738,7 @@ export function useCardAnalyticsCallback(result: Result | DirectAnswer_2, analyt
 export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analyticsType: FeedbackType) => void;
 
 // @public
-export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: ClassInterface, customClasses?: Partial<ClassInterface>): ClassInterface;
+export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
 
 // @public
 export interface VerticalConfig {

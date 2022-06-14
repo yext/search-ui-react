@@ -27,7 +27,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
   inputContainer?: string
 }
 
-const builtInCssClasses: FilterSearchCssClasses = {
+const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   container: 'mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
   dropdownContainer: 'absolute z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 px-4 mt-1',
@@ -48,6 +48,11 @@ export interface FilterSearchProps {
   searchFields: Omit<SearchParameterField, 'fetchEntities'>[],
   /** The display label for the component. Defaults to "Filter". */
   label?: string,
+  /**
+   * The search input's placeholder text when no text has been entered by the user.
+   * Defaults to "Search here...".
+   */
+  placeholder?: string,
   /** Whether to trigger a search when an option is selected. Defaults to false. */
   searchOnSelect?: boolean,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
@@ -67,6 +72,7 @@ export interface FilterSearchProps {
 export function FilterSearch({
   searchFields,
   label = 'Filter',
+  placeholder = 'Search here...',
   searchOnSelect = false,
   sectioned = false,
   customCssClasses
@@ -84,6 +90,7 @@ export function FilterSearch({
     inputValue => answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
     (e) => console.error('Error occured executing a filter search request.\n', e)
   );
+
   const sections = useMemo(() => {
     return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
   }, [filterSearchResponse?.sections]);
@@ -102,7 +109,6 @@ export function FilterSearch({
     }
   }, [answersActions, searchOnSelect]);
 
-  const handleChangeDropdownInput = useCallback(query => executeFilterSearch(query), [executeFilterSearch]);
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
   const itemDataMatrix = useMemo(() => {
@@ -150,8 +156,8 @@ export function FilterSearch({
         <div className={cssClasses.inputContainer}>
           <DropdownInput
             className={cssClasses.inputElement}
-            placeholder='Search here ...'
-            onChange={handleChangeDropdownInput}
+            placeholder={placeholder}
+            onChange={executeFilterSearch}
             submitCriteria={meetsSubmitCritera}
           />
         </div>

@@ -24,7 +24,7 @@ export interface ApplyFiltersButtonCssClasses {
   button?: string
 }
 
-const builtInCssClasses: ApplyFiltersButtonCssClasses = {
+const builtInCssClasses: Readonly<ApplyFiltersButtonCssClasses> = {
   button: 'border border-gray-300 px-2.5 py-1 rounded-md text-primary bg-white shadow-md sticky bottom-3'
 };
 
