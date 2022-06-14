@@ -1,7 +1,7 @@
 {
   "name": "@yext/answers-react-components",
   "version": "0.1.2-alpha.161",
-  "description": "",
+  "description": "sadf",
   "author": "slapshot@yext.com",
   "main": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
