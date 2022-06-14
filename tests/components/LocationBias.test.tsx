@@ -133,7 +133,6 @@ it('renders correct attribution message, IP', () => {
 it('renders nothing if there is no display name', () => {
   mockAnswersState(mockedStateNoDisplayName);
   const { container } = render(<LocationBias />);
-  console.log(container);
   expect(container).toBeEmptyDOMElement();
 });
 
