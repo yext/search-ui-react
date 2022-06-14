@@ -87,6 +87,7 @@ export function FilterSearch({
     inputValue => answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
     (e) => console.error('Error occured executing a filter search request.\n', e)
   );
+
   const sections = useMemo(() => {
     return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
   }, [filterSearchResponse?.sections]);
@@ -103,7 +104,6 @@ export function FilterSearch({
     }
   }, [answersActions]);
 
-  const handleChangeDropdownInput = useCallback(query => executeFilterSearch(query), [executeFilterSearch]);
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
   const itemDataMatrix = useMemo(() => {
@@ -152,7 +152,7 @@ export function FilterSearch({
           <DropdownInput
             className={cssClasses.inputElement}
             placeholder={placeholder}
-            onChange={handleChangeDropdownInput}
+            onChange={executeFilterSearch}
             submitCriteria={meetsSubmitCritera}
           />
         </div>
