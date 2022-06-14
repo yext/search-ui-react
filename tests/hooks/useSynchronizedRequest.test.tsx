@@ -4,10 +4,8 @@ import { waitFor } from '@testing-library/react';
 
 it('returns an updated execute request function with the same reference', async () => {
   let requestFunction = async () => 0;
-  const errorFunction = () => 'error';
-
   const { result, rerender } = renderHook(() =>
-    useSynchronizedRequest(requestFunction, errorFunction)
+    useSynchronizedRequest(requestFunction)
   );
 
   const oldReturnedRequestFunction = result.current[1];
@@ -30,7 +28,6 @@ it('uses a new error function while returning same execute request reference', a
   const requestFunction = async () => {
     throw new Error('ERROR');
   };
-
   let mockedErrorFunction = jest.fn().mockReturnValue(0);
   const { result, rerender } = renderHook(() =>
     useSynchronizedRequest(requestFunction, mockedErrorFunction)
