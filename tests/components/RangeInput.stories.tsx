@@ -1,13 +1,10 @@
 import { ComponentMeta } from '@storybook/react';
 import { RangeInput, RangeInputProps } from '../../src/components/Filters/RangeInput';
-import { AnswersHeadlessContext, State } from '@yext/answers-headless-react';
+import { AnswersHeadlessContext, Matcher, SelectableFilter } from '@yext/answers-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
-import { RecursivePartial } from '../__utils__/mocks';
 import { FiltersContext, FiltersContextType } from '../../src/components/Filters/FiltersContext';
 import { FilterGroupContext, FilterGroupContextType } from '../../src/components/Filters/FilterGroupContext';
 import { userEvent, within } from '@storybook/testing-library';
-import { max } from 'lodash';
-
 
 const meta: ComponentMeta<typeof RangeInput> = {
   title: 'RangeInput',
@@ -16,7 +13,12 @@ const meta: ComponentMeta<typeof RangeInput> = {
 
 export default meta;
 
-const mockedHeadlessState: RecursivePartial<State> = {};
+const selectableFilter: SelectableFilter = {
+  selected: true,
+  fieldId: '123',
+  matcher: Matcher.Equals,
+  value: 'test'
+};
 
 const filterContextValue: FiltersContextType = {
   selectFilter: () => null,
@@ -24,9 +26,15 @@ const filterContextValue: FiltersContextType = {
   filters: []
 };
 
+const filterContextValueDisabled: FiltersContextType = {
+  selectFilter: () => null,
+  applyFilters: () => null,
+  filters: [selectableFilter]
+};
+
 const filterGroupContextValue: FilterGroupContextType = {
   searchValue: '',
-  fieldId: '',
+  fieldId: '123',
   setSearchValue: () => null,
   getCollapseProps: null,
   getToggleProps: null,
@@ -37,7 +45,7 @@ const filterGroupContextValue: FilterGroupContextType = {
 
 export const Primary = (args: RangeInputProps) => {
   return (
-    <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+    <AnswersHeadlessContext.Provider value={generateMockedHeadless()}>
       <FilterGroupContext.Provider value={filterGroupContextValue}>
         <FiltersContext.Provider value={filterContextValue}>
           <RangeInput {...args}/>
@@ -45,6 +53,23 @@ export const Primary = (args: RangeInputProps) => {
       </FilterGroupContext.Provider>
     </AnswersHeadlessContext.Provider>
   );
+};
+
+export const Disabled = ((args: RangeInputProps) => {
+  return (
+    <AnswersHeadlessContext.Provider value={generateMockedHeadless()}>
+      <FilterGroupContext.Provider value={filterGroupContextValue}>
+        <FiltersContext.Provider value={filterContextValueDisabled}>
+          <RangeInput {...args}/>
+        </FiltersContext.Provider>
+      </FilterGroupContext.Provider>
+    </AnswersHeadlessContext.Provider>
+  );
+}).bind({});
+Disabled.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const [minTextbox] = canvas.getAllByRole('textbox');
+  userEvent.hover(minTextbox);
 };
 
 export const validValues = Primary.bind({});
