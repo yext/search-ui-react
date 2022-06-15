@@ -1,4 +1,3 @@
-import React from 'react';
 import { Source, State } from '@yext/answers-headless-react';
 import { render, screen } from '@testing-library/react';
 import { ResultsCount } from '../../src/components/ResultsCount';
@@ -21,7 +20,6 @@ const mockedStateUniversal: Partial<State> = {
       source: Source.Google,
       verticalKey: 'string'
     },
-
 
     {
       appliedQueryFilters: [],
@@ -60,8 +58,8 @@ const mockedStateNoResult: Partial<State> = {
 
 jest.mock('@yext/answers-headless-react');
 
-describe('ResultCounts', () => {
-  describe('ResultCountVertical', () => {
+describe('ResultsCount', () => {
+  describe('Result count for vertical search', () => {
     beforeEach(() => {
       mockAnswersState(mockedStateVertical);
     });
@@ -73,12 +71,12 @@ describe('ResultCounts', () => {
     });
   });
 
-  describe('ResultCountUniversal', () => {
+  describe('Results count for universal search', () => {
     beforeEach(() => {
       mockAnswersState(mockedStateUniversal);
     });
 
-    it('Results count for vertical search is displayed correctly', () => {
+    it('Results count for universal search is displayed correctly', () => {
       render(<ResultsCount />);
       let expectedResultsCountNumber = 0;
       const results = mockedStateUniversal.universal.verticals;
@@ -94,4 +92,3 @@ describe('ResultCounts', () => {
     expect(screen.queryByText(expectedResultsCountNumber + ' Results')).toBeNull();
   });
 });
-
