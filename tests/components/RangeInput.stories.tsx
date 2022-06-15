@@ -55,7 +55,7 @@ export const Primary = (args: RangeInputProps) => {
   );
 };
 
-export const Disabled = ((args: RangeInputProps) => {
+export const Disabled = (args: RangeInputProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless()}>
       <FilterGroupContext.Provider value={filterGroupContextValue}>
@@ -65,25 +65,25 @@ export const Disabled = ((args: RangeInputProps) => {
       </FilterGroupContext.Provider>
     </AnswersHeadlessContext.Provider>
   );
-// eslint-disable-next-line no-extra-bind
-}).bind({});
-Disabled.play = ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const [minTextbox] = canvas.getAllByRole('textbox');
-  const minbox = minTextbox.parentElement.parentElement;
-  userEvent.hover(minbox);
 };
 
-export const validValues = Primary.bind({});
-validValues.play = ({ canvasElement }) => {
+export const DisabledForceDisplayTooltip = Disabled.bind({});
+DisabledForceDisplayTooltip.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const tooltip = canvas.getByText('Unselect an option to enter in a range.').parentElement;
+  tooltip.style.visibility = 'visible';
+};
+
+export const ValidValues = Primary.bind({});
+ValidValues.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const [minTextbox, maxTextbox] = canvas.getAllByRole('textbox');
   userEvent.type(minTextbox, '10');
   userEvent.type(maxTextbox, '20');
 };
 
-export const invalidValues = Primary.bind({});
-invalidValues.play = ({ canvasElement }) => {
+export const InvalidValues = Primary.bind({});
+InvalidValues.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const [minTextbox, maxTextbox] = canvas.getAllByRole('textbox');
   userEvent.type(minTextbox, '20');
