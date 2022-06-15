@@ -10,6 +10,6 @@ on:
 
 jobs:
   call_code_coverage:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@v1.1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@v1
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
