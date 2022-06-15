@@ -8,5 +8,5 @@
 
 |  Package | Description |
 |  --- | --- |
-|  [@yext/answers-react-components](./answers-react-components.md) |  |
+|  [@yext/answers-react-components-sendhelp](./answers-react-components-sendhelp.md) |  |
 
