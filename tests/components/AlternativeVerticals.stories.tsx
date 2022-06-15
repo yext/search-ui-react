@@ -51,7 +51,6 @@ export const DisplayAllOnNoResults = (args: AlternativeVerticalsProps) => {
   );
 };
 
-
 export const Loading = (args: AlternativeVerticalsProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless({
