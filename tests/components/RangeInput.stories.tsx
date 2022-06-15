@@ -65,11 +65,13 @@ export const Disabled = ((args: RangeInputProps) => {
       </FilterGroupContext.Provider>
     </AnswersHeadlessContext.Provider>
   );
+// eslint-disable-next-line no-extra-bind
 }).bind({});
 Disabled.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const [minTextbox] = canvas.getAllByRole('textbox');
-  userEvent.hover(minTextbox);
+  const minbox = minTextbox.parentElement.parentElement;
+  userEvent.hover(minbox);
 };
 
 export const validValues = Primary.bind({});
