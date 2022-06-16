@@ -111,6 +111,41 @@ describe('search with section labels', () => {
     expect(searchBarElement).toHaveValue('first name 2');
   });
 
+  it('remove old filter value when a new one is entered', async () => {
+    render(<FilterSearch searchFields={searchFieldsProp} />);
+    const searchBarElement = screen.getByRole('textbox');
+
+    userEvent.type(searchBarElement, 'n');
+    await waitFor(() => screen.findByText('first name 1'));
+
+    userEvent.type(searchBarElement, '{arrowdown}{enter}');
+    expect(setFilterOption).toBeCalledWith({
+      fieldId: 'name',
+      matcher: Matcher.Equals,
+      value: 'first name 1',
+      displayName: 'first name 1',
+      selected: true
+    });
+
+    userEvent.clear(searchBarElement);
+    userEvent.type(searchBarElement, 'n');
+    await waitFor(() => screen.findByText('first name 2'));
+    userEvent.type(searchBarElement, '{arrowdown}{arrowdown}{enter}');
+    expect(setFilterOption).toBeCalledWith({
+      fieldId: 'name',
+      matcher: Matcher.Equals,
+      value: 'first name 1',
+      selected: false
+    });
+    expect(setFilterOption).toBeCalledWith({
+      fieldId: 'name',
+      matcher: Matcher.Equals,
+      value: 'first name 2',
+      displayName: 'first name 2',
+      selected: true
+    });
+  });
+
   describe('searchOnSelect = true', () => {
     it('triggers a search on pressing "enter" when an autocomplete result is selected', async () => {
       const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
@@ -209,8 +244,6 @@ describe('search with section labels', () => {
 describe('search without section labels', () => {
   it('shows autocomplete results, if they exist, when a character is typed', async () => {
     mockAnswersActions({
-      setFilterOption,
-      setOffset,
       executeFilterSearch: jest.fn().mockResolvedValue(unlabeledFilterSearchResponse)
     });
     jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
@@ -229,8 +262,6 @@ describe('search without section labels', () => {
 describe('screen reader', () => {
   it('renders ScreenReader messages with section labels', async () => {
     mockAnswersActions({
-      setFilterOption,
-      setOffset,
       executeFilterSearch: jest.fn().mockResolvedValue(labeledFilterSearchResponse)
     });
 
@@ -247,8 +278,6 @@ describe('screen reader', () => {
 
   it('renders ScreenReader messages without section labels', async () => {
     mockAnswersActions({
-      setFilterOption,
-      setOffset,
       executeFilterSearch: jest.fn().mockResolvedValue(unlabeledFilterSearchResponse)
     });
 
@@ -265,8 +294,6 @@ describe('screen reader', () => {
 
   it('renders 0 results ScreenReader message when there are no results', async () => {
     mockAnswersActions({
-      setFilterOption,
-      setOffset,
       executeFilterSearch: jest.fn().mockResolvedValue(noResultsFilterSearchResponse)
     });
 

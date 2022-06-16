@@ -96,13 +96,13 @@ export function FilterSearch({
   }, [filterSearchResponse?.sections]);
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
-  const [currentFilter, setCurrentFilter] = useState(null as unknown as Filter);
+  const [currentFilter, setCurrentFilter] = useState<Filter>();
 
   const handleSelectDropdown = useCallback((_value, _index, itemData) => {
     const newFilter = itemData?.filter as Filter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
-      if (!!currentFilter) {
+      if (currentFilter) {
         answersActions.setFilterOption({ ...currentFilter, selected: false });
       }
       answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
