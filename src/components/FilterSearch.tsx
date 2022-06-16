@@ -1,5 +1,5 @@
 import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions } from '@yext/answers-headless-react';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
@@ -96,18 +96,23 @@ export function FilterSearch({
   }, [filterSearchResponse?.sections]);
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
+  const [currentFilter, setCurrentFilter] = useState<Filter>();
 
   const handleSelectDropdown = useCallback((_value, _index, itemData) => {
-    const filter = itemData?.filter as Filter;
-    const displayName = itemData?.displayName as string;
-    if (filter && displayName) {
-      answersActions.setFilterOption({ ...filter, displayName, selected: true });
+    const newFilter = itemData?.filter as Filter;
+    const newDisplayName = itemData?.displayName as string;
+    if (newFilter && newDisplayName) {
+      if (currentFilter) {
+        answersActions.setFilterOption({ ...currentFilter, selected: false });
+      }
+      answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+      setCurrentFilter(newFilter);
       answersActions.setOffset(0);
       if (searchOnSelect) {
         executeSearch(answersActions);
       }
     }
-  }, [answersActions, searchOnSelect]);
+  }, [answersActions, currentFilter, searchOnSelect]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
