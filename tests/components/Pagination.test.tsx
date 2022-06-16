@@ -77,7 +77,7 @@ it('Pagination component is displayed without ellipses label', () => {
   const totalPaginationButtons = within(paginationNavEl).queryAllByRole('button').length;
   const numIconNavButtons = 2;
   const numLabelNavButtons = mockedVerticalSearchState.resultsCount;
-  expect(totalPaginationButtons).toEqual(numIconNavButtons + numLabelNavButtons);
+  expect(totalPaginationButtons - numIconNavButtons).toEqual(numLabelNavButtons);
 });
 
 it('Pagination component is displayed with ellipses label', () => {
@@ -133,8 +133,10 @@ it('Pagination component navigation buttons trigger new search', () => {
   expect(paginationNavEl).toBeDefined();
 
   // navigate to the last results page
-  userEvent.click(screen.getByText(`${mockedVerticalSearchState.resultsCount}`));
-  expect(actions.setOffset).toHaveBeenCalledWith(mockedVerticalSearchState.resultsCount - 1);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const lastResultsPage: number = mockedVerticalSearchState.resultsCount!;
+  userEvent.click(screen.getByText(`${lastResultsPage}`));
+  expect(actions.setOffset).toHaveBeenCalledWith(lastResultsPage - 1);
   expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
 });
 

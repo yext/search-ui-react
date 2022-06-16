@@ -1,4 +1,4 @@
-import { Source } from "@yext/answers-headless-react";
+import { Source } from '@yext/answers-headless-react';
 
 const ctas = {
   c_primaryCTA: {

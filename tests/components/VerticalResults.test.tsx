@@ -38,7 +38,7 @@ it('Results are displayed', () => {
     CardComponent: StandardCard
   };
   render(<VerticalResults {...verticalResultsProps} />);
-  mockedState.vertical.results.forEach(result =>
+  mockedState.vertical?.results?.forEach(result =>
     expect(screen.getByText(result.rawData.name as string)).toBeDefined()
   );
 });
