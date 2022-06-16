@@ -54,6 +54,6 @@ export const noResultsFilterSearchResponse: FilterSearchResponse = {
   sections: [{
     results:[]
   }],
-  uuid: null
+  uuid: ''
 };
 
