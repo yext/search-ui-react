@@ -78,12 +78,14 @@ describe('search with section labels', () => {
     expect(actions.executeFilterSearch).toHaveBeenCalledTimes(3);
   });
 
-  it('does not trigger a filter search when backspacing in an empty text box', () => {
+  it('does not trigger a filter search when backspacing in an empty text box', async () => {
     render(<FilterSearch searchFields={searchFieldsProp} />);
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, '{backspace}');
-    expect(searchBarElement).toHaveValue('');
+    await waitFor(() => {
+      expect(searchBarElement).toHaveValue('');
+    });
     expect(actions.executeFilterSearch).toHaveBeenCalledTimes(0);
   });
 
@@ -118,23 +120,27 @@ describe('search with section labels', () => {
     userEvent.type(searchBarElement, 'n');
     await waitFor(() => screen.findByText('first name 1'));
     userEvent.type(searchBarElement, '{arrowdown}{enter}');
-    expect(setFilterOption).toBeCalledWith({
-      fieldId: 'name',
-      matcher: Matcher.Equals,
-      value: 'first name 1',
-      displayName: 'first name 1',
-      selected: true
+    await waitFor (() => {
+      expect(setFilterOption).toBeCalledWith({
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'first name 1',
+        displayName: 'first name 1',
+        selected: true
+      });
     });
 
     userEvent.clear(searchBarElement);
     userEvent.type(searchBarElement, 'n');
     await waitFor(() => screen.findByText('first name 2'));
     userEvent.type(searchBarElement, '{arrowdown}{arrowdown}{enter}');
-    expect(setFilterOption).toBeCalledWith({
-      fieldId: 'name',
-      matcher: Matcher.Equals,
-      value: 'first name 1',
-      selected: false
+    await waitFor(() => {
+      expect(setFilterOption).toBeCalledWith({
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'first name 1',
+        selected: false
+      });
     });
     expect(setFilterOption).toBeCalledWith({
       fieldId: 'name',
@@ -164,7 +170,9 @@ describe('search with section labels', () => {
       const expectedSetOffsetParam = 0;
 
       userEvent.type(searchBarElement, '{arrowdown}{enter}');
-      expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
+      await waitFor(() => {
+        expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
+      });
       expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
 
       const setFilterOptionCallOrder = setFilterOption.mock.invocationCallOrder[0];
@@ -227,12 +235,14 @@ describe('search with section labels', () => {
       await waitFor(() => screen.findByText('first name 1'));
 
       userEvent.type(searchBarElement, '{arrowdown}{enter}');
-      expect(setFilterOption).toBeCalledWith({
-        fieldId: 'name',
-        matcher: Matcher.Equals,
-        value: 'first name 1',
-        displayName: 'first name 1',
-        selected: true
+      await waitFor(() => {
+        expect(setFilterOption).toBeCalledWith({
+          fieldId: 'name',
+          matcher: Matcher.Equals,
+          value: 'first name 1',
+          displayName: 'first name 1',
+          selected: true
+        });
       });
       expect(setOffset).toBeCalledWith(0);
       expect(mockExecuteSearch).not.toHaveBeenCalled();
