@@ -4,13 +4,17 @@ import { ResultsCount } from '../../src/components/ResultsCount';
 import { mockAnswersState } from '../__utils__/mocks';
 import { RecursivePartial } from '../__utils__/mocks';
 
-const mockedStateUniversalMultiple: RecursivePartial<State> = {
+const mockedUniversalState: Partial<State> = {
   searchStatus: {
     isLoading: false
   },
   meta: {
     searchType: 'universal'
-  },
+  }
+};
+
+const mockedStateUniversalMultiple: RecursivePartial<State> = {
+  ...mockedUniversalState,
   universal: {
     verticals: [{
       resultsCount: 2,
@@ -18,69 +22,53 @@ const mockedStateUniversalMultiple: RecursivePartial<State> = {
 
     {
       resultsCount: 3,
-    }
-    ] }
+    }]
+  }
 };
 
 const mockedStateUniversalSingle: RecursivePartial<State> = {
-  searchStatus: {
-    isLoading: false
-  },
-  meta: {
-    searchType: 'universal'
-  },
+  ...mockedUniversalState,
   universal: {
     verticals: [{
       resultsCount: 1,
-    }
-    ] }
+    }]
+  }
 };
 
 const mockedStateUniversalNoResult: RecursivePartial<State> = {
-  searchStatus: {
-    isLoading: false
-  },
-  meta: {
-    searchType: 'universal'
-  },
+  ...mockedUniversalState,
   universal: {
     verticals: [{
       resultsCount: 0,
-    }
-    ] }
+    }]
+  }
 };
 
-const mockedStateVerticalMultiple: Partial<State> = {
+const mockedVerticalState: Partial<State> = {
   searchStatus: {
     isLoading: false
   },
   meta: {
     searchType: 'vertical'
-  },
+  }
+};
+
+const mockedStateVerticalMultiple: Partial<State> = {
+  ...mockedVerticalState,
   vertical: {
     resultsCount: 2
   }
 };
 
 const mockedStateVerticalSingle: Partial<State> = {
-  searchStatus: {
-    isLoading: false
-  },
-  meta: {
-    searchType: 'vertical'
-  },
+  ...mockedVerticalState,
   vertical: {
     resultsCount: 1
   }
 };
 
 const mockedStateVerticalNoResult: Partial<State> = {
-  searchStatus: {
-    isLoading: false
-  },
-  meta: {
-    searchType: 'vertical'
-  },
+  ...mockedVerticalState,
   vertical: {
     resultsCount: 0
   }
@@ -131,5 +119,3 @@ describe('Results count for universal search', () => {
     expect(screen.queryByText('0 Results')).toBeNull();
   });
 });
-
-
