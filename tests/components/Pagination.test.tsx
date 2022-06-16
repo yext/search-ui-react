@@ -140,7 +140,6 @@ it('Pagination component navigation buttons trigger new search', () => {
   expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
 });
 
-
 function mockVerticalSearchState(vertical: VerticalSearchState) {
   return mockAnswersState({
     ...mockedState,
