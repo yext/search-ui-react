@@ -117,7 +117,6 @@ describe('search with section labels', () => {
 
     userEvent.type(searchBarElement, 'n');
     await waitFor(() => screen.findByText('first name 1'));
-
     userEvent.type(searchBarElement, '{arrowdown}{enter}');
     expect(setFilterOption).toBeCalledWith({
       fieldId: 'name',
