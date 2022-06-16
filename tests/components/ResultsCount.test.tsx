@@ -1,10 +1,10 @@
-import { Source, State } from '@yext/answers-headless-react';
+import { State } from '@yext/answers-headless-react';
 import { render, screen } from '@testing-library/react';
 import { ResultsCount } from '../../src/components/ResultsCount';
 import { mockAnswersState } from '../__utils__/mocks';
+import { RecursivePartial } from '../__utils__/mocks';
 
-
-const mockedStateUniversal: Partial<State> = {
+const mockedStateUniversalMultiple: RecursivePartial<State> = {
   searchStatus: {
     isLoading: false
   },
@@ -13,26 +13,44 @@ const mockedStateUniversal: Partial<State> = {
   },
   universal: {
     verticals: [{
-      appliedQueryFilters: [],
-      queryDurationMillis: 2,
-      results: [],
       resultsCount: 2,
-      source: Source.Google,
-      verticalKey: 'string'
     },
 
     {
-      appliedQueryFilters: [],
-      queryDurationMillis: 2,
-      results: [],
       resultsCount: 3,
-      source: Source.Google,
-      verticalKey: 'string'
     }
     ] }
 };
 
-const mockedStateVertical: Partial<State> = {
+const mockedStateUniversalSingle: RecursivePartial<State> = {
+  searchStatus: {
+    isLoading: false
+  },
+  meta: {
+    searchType: 'universal'
+  },
+  universal: {
+    verticals: [{
+      resultsCount: 1,
+    }
+    ] }
+};
+
+const mockedStateUniversalNoResult: RecursivePartial<State> = {
+  searchStatus: {
+    isLoading: false
+  },
+  meta: {
+    searchType: 'universal'
+  },
+  universal: {
+    verticals: [{
+      resultsCount: 0,
+    }
+    ] }
+};
+
+const mockedStateVerticalMultiple: Partial<State> = {
   searchStatus: {
     isLoading: false
   },
@@ -44,7 +62,19 @@ const mockedStateVertical: Partial<State> = {
   }
 };
 
-const mockedStateNoResult: Partial<State> = {
+const mockedStateVerticalSingle: Partial<State> = {
+  searchStatus: {
+    isLoading: false
+  },
+  meta: {
+    searchType: 'vertical'
+  },
+  vertical: {
+    resultsCount: 1
+  }
+};
+
+const mockedStateVerticalNoResult: Partial<State> = {
   searchStatus: {
     isLoading: false
   },
@@ -58,37 +88,48 @@ const mockedStateNoResult: Partial<State> = {
 
 jest.mock('@yext/answers-headless-react');
 
-describe('ResultsCount', () => {
-  describe('Result count for vertical search', () => {
-    beforeEach(() => {
-      mockAnswersState(mockedStateVertical);
-    });
-
-    it('Results count for vertical search is displayed correctly', () => {
-      render(<ResultsCount />);
-      const expectedResultsCountNumber = mockedStateVertical.vertical.resultsCount;
-      expect(screen.getByText(expectedResultsCountNumber + ' Results')).toBeDefined();
-    });
-  });
-
-  describe('Results count for universal search', () => {
-    beforeEach(() => {
-      mockAnswersState(mockedStateUniversal);
-    });
-
-    it('Results count for universal search is displayed correctly', () => {
-      render(<ResultsCount />);
-      let expectedResultsCountNumber = 0;
-      const results = mockedStateUniversal.universal.verticals;
-      results.forEach(resultsOfAVertical => expectedResultsCountNumber += resultsOfAVertical.resultsCount);
-      expect(screen.getByText(expectedResultsCountNumber + ' Results')).toBeDefined();
-    });
-  });
-
-  it('Renders nothing if there is no results' , () => {
-    mockAnswersState(mockedStateNoResult);
+describe('Result count for vertical search', () => {
+  it('Results count is displayed correctly for multiple results', () => {
+    mockAnswersState(mockedStateVerticalMultiple);
     render(<ResultsCount />);
-    const expectedResultsCountNumber = mockedStateNoResult.vertical.resultsCount;
-    expect(screen.queryByText(expectedResultsCountNumber + ' Results')).toBeNull();
+    const expectedResultsCountNumber = mockedStateVerticalMultiple.vertical.resultsCount;
+    expect(screen.getByText(expectedResultsCountNumber + ' Results')).toBeDefined();
+  });
+
+  it('Results count is displayed correctly for single result', () => {
+    mockAnswersState(mockedStateVerticalSingle);
+    render(<ResultsCount />);
+    expect(screen.getByText('1 Result')).toBeDefined();
+  });
+
+  it('Renders nothing if there is no result', () => {
+    mockAnswersState(mockedStateVerticalNoResult);
+    render(<ResultsCount />);
+    expect(screen.queryByText('0 Results')).toBeNull();
   });
 });
+
+describe('Results count for universal search', () => {
+  it('Results count is displayed correctly for multiple results', () => {
+    mockAnswersState(mockedStateUniversalMultiple);
+    render(<ResultsCount />);
+    let expectedResultsCountNumber = 0;
+    const results = mockedStateUniversalMultiple.universal.verticals;
+    results.forEach(resultsOfAVertical => expectedResultsCountNumber += resultsOfAVertical.resultsCount);
+    expect(screen.getByText(expectedResultsCountNumber + ' Results')).toBeDefined();
+  });
+
+  it('Results count is displayed correctly for single result', () => {
+    mockAnswersState(mockedStateUniversalSingle);
+    render(<ResultsCount />);
+    expect(screen.getByText('1 Result')).toBeDefined();
+  });
+
+  it('Renders nothing if there is no result', () => {
+    mockAnswersState(mockedStateUniversalNoResult);
+    render(<ResultsCount />);
+    expect(screen.queryByText('0 Results')).toBeNull();
+  });
+});
+
+
