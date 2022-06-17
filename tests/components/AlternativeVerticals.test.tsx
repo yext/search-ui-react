@@ -3,7 +3,7 @@ import { State } from '@yext/answers-headless-react';
 
 import { AlternativeVerticals } from '../../src/components/AlternativeVerticals';
 import { mockAnswersHooks } from '../__utils__/mocks';
-import { verticalNoResults } from '../__fixtures__/data/alternativenoresults';
+import { verticalNoResults } from '../__fixtures__/data/noresults';
 import { VerticalLink } from '../../src/models/verticalLink';
 import { UniversalLink } from '../../src/models/universalLink';
 

@@ -6,7 +6,7 @@ import { AlternativeVerticals, AlternativeVerticalsProps } from '../../src/compo
 
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
-import { verticalNoResults } from '../__fixtures__/data/alternativenoresults';
+import { verticalNoResults } from '../__fixtures__/data/noresults';
 
 const meta: ComponentMeta<typeof AlternativeVerticals> = {
   title: 'AlternativeVerticals',
