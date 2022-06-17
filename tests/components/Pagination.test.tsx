@@ -118,9 +118,10 @@ it('Pagination component navigation buttons trigger new search', () => {
     CardComponent: StandardCard,
     allowPagination: true
   };
+  const mockedResultsCount = 5;
   const mockedVerticalSearchState: VerticalSearchState = {
     results: [mockedVerticalResults[0]],
-    resultsCount: 5,
+    resultsCount: mockedResultsCount,
     verticalKey: 'vertical',
     limit: 1,
     offset: 0
@@ -133,10 +134,8 @@ it('Pagination component navigation buttons trigger new search', () => {
   expect(paginationNavEl).toBeDefined();
 
   // navigate to the last results page
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const lastResultsPage: number = mockedVerticalSearchState.resultsCount!;
-  userEvent.click(screen.getByText(`${lastResultsPage}`));
-  expect(actions.setOffset).toHaveBeenCalledWith(lastResultsPage - 1);
+  userEvent.click(screen.getByText(`${mockedResultsCount}`));
+  expect(actions.setOffset).toHaveBeenCalledWith(mockedResultsCount - 1);
   expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
 });
 
