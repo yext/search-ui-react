@@ -34,7 +34,7 @@ beforeEach(() => {
   mockAnswersHooks({ mockedState, mockedActions });
 });
 
-it('Don\'t display pagination component when allowPagination is false', () => {
+it('doesn\'t display pagination component when allowPagination is false', () => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard,
     allowPagination: false
@@ -44,7 +44,7 @@ it('Don\'t display pagination component when allowPagination is false', () => {
   expect(paginationNavEl).toBeNull();
 });
 
-it('Don\'t display pagination component when there\'s no results', () => {
+it('doesn\'t display pagination component when there are no results', () => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard,
     allowPagination: true,
@@ -58,7 +58,7 @@ it('Don\'t display pagination component when there\'s no results', () => {
   expect(paginationNavEl).toBeNull();
 });
 
-it('Pagination component is displayed without ellipses label', () => {
+it('is displayed without ellipses label', () => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard,
     allowPagination: true
@@ -80,7 +80,7 @@ it('Pagination component is displayed without ellipses label', () => {
   expect(totalPaginationButtons - numIconNavButtons).toEqual(numLabelNavButtons);
 });
 
-it('Pagination component is displayed with ellipses label', () => {
+it('is displayed with ellipses label', () => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard,
     allowPagination: true,
@@ -113,7 +113,7 @@ it('Pagination component is displayed with ellipses label', () => {
   expect(screen.getByText('...')).toBeDefined();
 });
 
-it('Pagination component navigation buttons trigger new search', () => {
+it('checks that navigation buttons trigger a new search', () => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard,
     allowPagination: true
