@@ -33,7 +33,7 @@ beforeEach(() => {
   mockAnswersHooks({ mockedState, mockedActions });
 });
 
-it('Results are displayed', () => {
+it('displays results', () => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard
   };
@@ -43,7 +43,7 @@ it('Results are displayed', () => {
   );
 });
 
-it('All results are displayed when there\'s no result correspond to the search', () => {
+it('displays all results when there are no search results', () => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard,
     displayAllOnNoResults: true
@@ -63,6 +63,16 @@ it('All results are displayed when there\'s no result correspond to the search',
   mockedNoResults.allResultsForVertical.results.forEach(result =>
     expect(screen.getByText(result.rawData.name as string)).toBeDefined()
   );
+});
+
+it('doesn\'t display pagination component when allowPagination is false', () => {
+  const verticalResultsProps: VerticalResultsProps = {
+    CardComponent: StandardCard,
+    allowPagination: false
+  };
+  render(<VerticalResults {...verticalResultsProps} />);
+  const paginationNavEl = screen.queryByRole('navigation', { name: 'Pagination' });
+  expect(paginationNavEl).toBeNull();
 });
 
 function mockVerticalSearchState(vertical: VerticalSearchState) {

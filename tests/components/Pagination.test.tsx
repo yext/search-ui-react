@@ -1,10 +1,9 @@
 import { render, screen, within } from '@testing-library/react';
-import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
 import { State, VerticalSearchState } from '@yext/answers-headless-react';
-import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 import { mockedVerticalResults } from '../__fixtures__/data/verticalresults';
 import userEvent from '@testing-library/user-event';
+import { Pagination } from '../../src/components/Pagination';
 
 const mockedState: Partial<State> = {
   vertical: {
@@ -34,35 +33,17 @@ beforeEach(() => {
   mockAnswersHooks({ mockedState, mockedActions });
 });
 
-it('doesn\'t display pagination component when allowPagination is false', () => {
-  const verticalResultsProps: VerticalResultsProps = {
-    CardComponent: StandardCard,
-    allowPagination: false
-  };
-  render(<VerticalResults {...verticalResultsProps} />);
-  const paginationNavEl = screen.queryByRole('navigation', { name: 'Pagination' });
-  expect(paginationNavEl).toBeNull();
-});
-
 it('doesn\'t display pagination component when there are no results', () => {
-  const verticalResultsProps: VerticalResultsProps = {
-    CardComponent: StandardCard,
-    allowPagination: true,
-  };
   mockVerticalSearchState({
     results: [],
     resultsCount: 0
   });
-  render(<VerticalResults {...verticalResultsProps} />);
+  render(<Pagination />);
   const paginationNavEl = screen.queryByRole('navigation', { name: 'Pagination' });
   expect(paginationNavEl).toBeNull();
 });
 
 it('is displayed without ellipses label', () => {
-  const verticalResultsProps: VerticalResultsProps = {
-    CardComponent: StandardCard,
-    allowPagination: true
-  };
   const mockedVerticalSearchState: VerticalSearchState = {
     results: [mockedVerticalResults[0]],
     resultsCount: 3,
@@ -71,7 +52,7 @@ it('is displayed without ellipses label', () => {
     offset: 0
   };
   mockVerticalSearchState(mockedVerticalSearchState);
-  render(<VerticalResults {...verticalResultsProps} />);
+  render(<Pagination />);
   const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
   expect(paginationNavEl).toBeDefined();
   const totalPaginationButtons = within(paginationNavEl).queryAllByRole('button').length;
@@ -81,13 +62,9 @@ it('is displayed without ellipses label', () => {
 });
 
 it('is displayed with ellipses label', () => {
-  const verticalResultsProps: VerticalResultsProps = {
-    CardComponent: StandardCard,
-    allowPagination: true,
-    customCssClasses: {
-      leftIconContainer: 'leftNavButton',
-      rightIconContainer: 'rightNavButton'
-    }
+  const customCssClasses = {
+    leftIconContainer: 'leftNavButton',
+    rightIconContainer: 'rightNavButton'
   };
   const mockedVerticalSearchState: VerticalSearchState = {
     results: [mockedVerticalResults[0]],
@@ -97,7 +74,7 @@ it('is displayed with ellipses label', () => {
     offset: 0
   };
   mockVerticalSearchState(mockedVerticalSearchState);
-  render(<VerticalResults {...verticalResultsProps} />);
+  render(<Pagination customCssClasses={ customCssClasses }/>);
   const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
   expect(paginationNavEl).toBeDefined();
   const paginationButtons = within(paginationNavEl).queryAllByRole('button');
@@ -114,10 +91,6 @@ it('is displayed with ellipses label', () => {
 });
 
 it('checks that navigation buttons trigger a new search', () => {
-  const verticalResultsProps: VerticalResultsProps = {
-    CardComponent: StandardCard,
-    allowPagination: true
-  };
   const mockedResultsCount = 5;
   const mockedVerticalSearchState: VerticalSearchState = {
     results: [mockedVerticalResults[0]],
@@ -128,7 +101,7 @@ it('checks that navigation buttons trigger a new search', () => {
   };
   mockVerticalSearchState(mockedVerticalSearchState);
   const actions = spyOnActions();
-  render(<VerticalResults {...verticalResultsProps} />);
+  render(<Pagination />);
 
   const paginationNavEl = screen.getByRole('navigation', { name: 'Pagination' });
   expect(paginationNavEl).toBeDefined();
