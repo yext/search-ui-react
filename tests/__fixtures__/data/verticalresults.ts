@@ -1,4 +1,4 @@
-import { Source } from '@yext/answers-headless-react';
+import { Result, Source } from '@yext/answers-headless-react';
 
 const ctas = {
   c_primaryCTA: {
@@ -13,7 +13,7 @@ const ctas = {
   }
 };
 
-export const mockedVerticalResults = [
+export const mockedVerticalResults: Result[] = [
   {
     rawData: {
       name: 'title1',
