@@ -19,7 +19,6 @@ const mockedStateUniversalMultiple: RecursivePartial<State> = {
     verticals: [{
       resultsCount: 2,
     },
-
     {
       resultsCount: 3,
     }]
@@ -76,15 +75,15 @@ const mockedStateVerticalNoResult: Partial<State> = {
 
 jest.mock('@yext/answers-headless-react');
 
-describe('Result count for vertical search', () => {
-  it('Results count is displayed correctly for multiple results', () => {
+describe('Results count for vertical search', () => {
+  it('Displayed correctly for multiple results', () => {
     mockAnswersState(mockedStateVerticalMultiple);
     render(<ResultsCount />);
     const expectedResultsCountNumber = mockedStateVerticalMultiple.vertical.resultsCount;
     expect(screen.getByText(expectedResultsCountNumber + ' Results')).toBeDefined();
   });
 
-  it('Results count is displayed correctly for single result', () => {
+  it('Displayed correctly for single result', () => {
     mockAnswersState(mockedStateVerticalSingle);
     render(<ResultsCount />);
     expect(screen.getByText('1 Result')).toBeDefined();
@@ -98,7 +97,7 @@ describe('Result count for vertical search', () => {
 });
 
 describe('Results count for universal search', () => {
-  it('Results count is displayed correctly for multiple results', () => {
+  it('Displayed correctly for multiple results', () => {
     mockAnswersState(mockedStateUniversalMultiple);
     render(<ResultsCount />);
     let expectedResultsCountNumber = 0;
@@ -107,7 +106,7 @@ describe('Results count for universal search', () => {
     expect(screen.getByText(expectedResultsCountNumber + ' Results')).toBeDefined();
   });
 
-  it('Results count is displayed correctly for single result', () => {
+  it('Displayed correctly for single result', () => {
     mockAnswersState(mockedStateUniversalSingle);
     render(<ResultsCount />);
     expect(screen.getByText('1 Result')).toBeDefined();
