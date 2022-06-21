@@ -28,11 +28,11 @@ beforeEach(() => {
 });
 
 describe('no results are returned from search', () => {
-  it('doesn\'t display pagination when paginateAllOnNoResults is false', () => {
+  it('doesn\'t display pagination when there are no results to display', () => {
     mockVerticalSearchState({
       resultsCount: 0
     });
-    render(<Pagination paginateAllOnNoResults={false} />);
+    render(<Pagination />);
     const paginationNavEl = screen.queryByRole('navigation', { name: 'Pagination' });
     expect(paginationNavEl).toBeNull();
   });
