@@ -134,7 +134,6 @@ describe('Dropdown', () => {
     expect(mockedOnSelectFn).toHaveBeenCalledWith('item1', 0, undefined);
   });
 
-
   it('Update options when user provide new input', () => {
     const mockedOnChangeFn = jest.fn();
     const dropdownProps: DropdownProps = {

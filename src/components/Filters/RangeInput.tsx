@@ -1,4 +1,4 @@
-import { Matcher,NumberRangeValue, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
+import { Matcher, NumberRangeValue, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';

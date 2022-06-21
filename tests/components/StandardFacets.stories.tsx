@@ -7,7 +7,6 @@ import { RecursivePartial } from '../__utils__/mocks';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { StandardFacets, StandardFacetsProps } from '../../src';
 
-
 const meta: ComponentMeta<typeof StandardFacets> = {
   title: 'StandardFacets',
   component: StandardFacets

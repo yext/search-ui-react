@@ -7,8 +7,6 @@ import { CtaData } from '../../src/models/StandardCardData';
 import { mockAnswersState } from '../__utils__/mocks';
 import { verticalResults } from '../__fixtures__/data/universalresults';
 
-
-
 const mockedState: Partial<State> = {
   universal: {
     verticals: verticalResults

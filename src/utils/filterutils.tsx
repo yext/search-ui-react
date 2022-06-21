@@ -45,7 +45,7 @@ export function findSelectableFilter(
   selectableFilters: SelectableFilter[]
 ): SelectableFilter | undefined {
   return selectableFilters.find(selectableFilter => {
-    const { displayName:_, ...storedFilter } = selectableFilter;
+    const { displayName: _, ...storedFilter } = selectableFilter;
     return isDuplicateFilter(storedFilter, filter);
   });
 }

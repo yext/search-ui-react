@@ -40,7 +40,7 @@ export function VerticalResultsDisplay(props: VerticalResultsDisplayProps): JSX.
 
   return (
     <div className={resultsClassNames}>
-      {results && results.map(result => renderResult(CardComponent, result))}
+      {results?.map(result => renderResult(CardComponent, result))}
     </div>
   );
 }
