@@ -25,7 +25,7 @@ export const Primary = (args: AppliedFiltersProps) => {
     })}>
       <AppliedFiltersDisplay
         cssClasses={builtInCssClasses}
-        staticFilters={DisplayableFilters.slice(0,2)}
+        staticFilters={DisplayableFilters.slice(0, 2)}
         nlpFilters={[DisplayableFilters[2]]}
         facets={[DisplayableFilters[3]]}
         hierarchicalFacets={DisplayableHierarchicalFacets}

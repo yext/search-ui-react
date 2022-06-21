@@ -246,8 +246,7 @@ export function SearchBar({
     executeEntityPreviewsQuery
   ] = useEntityPreviews(entityPreviewSearcher, entityPreviewsDebouncingTime);
   const { verticalKeyToResults, isLoading: entityPreviewsLoading } = entityPreviewsState;
-  const entityPreviews = renderEntityPreviews
-    && renderEntityPreviews(entityPreviewsLoading, verticalKeyToResults, handleSubmit);
+  const entityPreviews = renderEntityPreviews?.(entityPreviewsLoading, verticalKeyToResults, handleSubmit);
   const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews || !restrictVerticals) {
       return;
