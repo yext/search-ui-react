@@ -119,7 +119,6 @@ function runAnalyticsTestSuite() {
   });
 }
 
-
 function mockState(
   directAnswer: RecursivePartial<DirectAnswerState>,
   isLoading?: boolean

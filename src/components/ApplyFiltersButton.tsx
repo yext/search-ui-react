@@ -14,7 +14,6 @@ export interface ApplyFiltersButtonProps {
   customCssClasses?: ApplyFiltersButtonCssClasses
 }
 
-
 /**
  * The CSS class interface for {@link ApplyFiltersButtonProps}.
  *

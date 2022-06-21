@@ -49,7 +49,6 @@ const builtInPaginationCssClasses: Readonly<PaginationCssClasses> = {
   icon: 'w-3 text-gray-600'
 };
 
-
 /**
  * Renders a component that divide a series of vertical results into chunks
  * across multiple pages and enable user to navigate between those pages.

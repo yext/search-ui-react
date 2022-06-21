@@ -32,7 +32,7 @@ export async function getUserLocation(_geolocationOptions?: PositionOptions): Pr
 }
 
 export function decorator(story, { parameters }) {
-  if (parameters && parameters.geoLocation) {
+  if (parameters?.geoLocation) {
     const geoLocation = parameters.geoLocation;
     if (geoLocation.isFetching) {
       isFetching = geoLocation.isFetching;

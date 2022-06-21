@@ -52,7 +52,7 @@ export const labeledFilterSearchResponse: FilterSearchResponse = {
 
 export const noResultsFilterSearchResponse: FilterSearchResponse = {
   sections: [{
-    results:[]
+    results: []
   }],
   uuid: ''
 };
