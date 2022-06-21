@@ -3,7 +3,7 @@ import { VerticalResults, VerticalResultsProps } from '../../src/components/Vert
 import { State, VerticalSearchState } from '@yext/answers-headless-react';
 import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 import { mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
-import { mockedVerticalResults } from '../__fixtures__/data/verticalresults';
+import { mockedVerticalResults } from '../__fixtures__/data/vertical/results';
 
 const mockedState: Partial<State> = {
   vertical: {

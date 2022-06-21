@@ -3,7 +3,7 @@ import { State, VerticalSearchState } from '@yext/answers-headless-react';
 import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { Pagination } from '../../src/components/Pagination';
-import { verticalNoResults } from '../__fixtures__/data/noresults';
+import { verticalNoResults } from '../__fixtures__/data/vertical/noresults';
 
 const mockedState: Partial<State> = {
   searchStatus: {
