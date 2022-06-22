@@ -16,15 +16,10 @@ export interface AlternativeVerticalsCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [allCategoriesLink?](./answers-react-components.alternativeverticalscssclasses.allcategorieslink.md) | string | <i>(Optional)</i> |
-|  [alternativeVerticals\_\_\_loading?](./answers-react-components.alternativeverticalscssclasses.alternativeverticals___loading.md) | string | <i>(Optional)</i> |
 |  [categoriesText?](./answers-react-components.alternativeverticalscssclasses.categoriestext.md) | string | <i>(Optional)</i> |
+|  [container\_\_\_loading?](./answers-react-components.alternativeverticalscssclasses.container___loading.md) | string | <i>(Optional)</i> |
 |  [container?](./answers-react-components.alternativeverticalscssclasses.container.md) | string | <i>(Optional)</i> |
 |  [noResultsText?](./answers-react-components.alternativeverticalscssclasses.noresultstext.md) | string | <i>(Optional)</i> |
 |  [suggestion?](./answers-react-components.alternativeverticalscssclasses.suggestion.md) | string | <i>(Optional)</i> |
-|  [suggestionButton?](./answers-react-components.alternativeverticalscssclasses.suggestionbutton.md) | string | <i>(Optional)</i> |
-|  [suggestionList?](./answers-react-components.alternativeverticalscssclasses.suggestionlist.md) | string | <i>(Optional)</i> |
-|  [suggestions?](./answers-react-components.alternativeverticalscssclasses.suggestions.md) | string | <i>(Optional)</i> |
 |  [verticalIcon?](./answers-react-components.alternativeverticalscssclasses.verticalicon.md) | string | <i>(Optional)</i> |
-|  [verticalLink?](./answers-react-components.alternativeverticalscssclasses.verticallink.md) | string | <i>(Optional)</i> |
 
