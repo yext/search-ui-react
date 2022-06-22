@@ -18,7 +18,6 @@ export interface AppliedFiltersCssClasses {
   appliedFiltersContainer___loading?: string,
   nlpFilter?: string,
   removableFilter?: string,
-  removeFilterButton?: string,
   filterLabel?: string,
   clearAllButton?: string
 }
@@ -29,7 +28,6 @@ export const builtInCssClasses: Readonly<AppliedFiltersCssClasses> = {
   appliedFiltersContainer___loading: 'opacity-50',
   nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2 mb-2',
   removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2 mb-2',
-  removeFilterButton: 'w-2 h-2 text-neutral m-1.5',
   clearAllButton: 'text-sm font-medium text-primary hover:underline focus:underline mb-2'
 };
 
