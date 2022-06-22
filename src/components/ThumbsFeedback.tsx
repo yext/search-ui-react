@@ -16,7 +16,7 @@ export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
  * @public
  */
 export interface ThumbsFeedbackCssClasses {
-  container?: string,
+  feedbackButtonsContainer?: string,
   thumbsUpIcon?: string,
   thumbsDownIcon?: string
 }
@@ -38,7 +38,7 @@ export interface ThumbsFeedbackProps {
 }
 
 export const builtInCssClasses: Readonly<ThumbsFeedbackCssClasses> = {
-  container: 'flex justify-end mt-2 text-sm text-gray-500 font-medium',
+  feedbackButtonsContainer: 'flex justify-end mt-2 text-sm text-gray-500 font-medium',
   thumbsUpIcon: 'ml-3 w-5',
   thumbsDownIcon: 'w-5 ml-1 transform rotate-180'
 };
@@ -77,7 +77,7 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
   }, [query]);
 
   return (
-    <div className={cssClasses.container}>
+    <div className={cssClasses.feedbackButtonsContainer}>
       {isFeedbackProvided
         ? feedbackTextOnSubmission
         : <>
