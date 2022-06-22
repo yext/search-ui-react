@@ -28,8 +28,8 @@ export interface PaginationProps {
  * @public
  */
 export interface PaginationCssClasses {
-  paginationContainer?: string,
-  paginationContainer___loading?: string,
+  container?: string,
+  container___loading?: string,
   labelContainer?: string,
   label?: string,
   selectedLabel?: string,
@@ -39,8 +39,8 @@ export interface PaginationCssClasses {
 }
 
 const builtInPaginationCssClasses: Readonly<PaginationCssClasses> = {
-  paginationContainer: 'flex justify-center mb-4',
-  paginationContainer___loading: 'opacity-50',
+  container: 'flex justify-center mb-4',
+  container___loading: 'opacity-50',
   labelContainer: 'inline-flex shadow-sm -space-x-px',
   label: 'z-0 inline-flex items-center px-4 py-2 text-sm font-semibold border border-gray-300 text-neutral',
   selectedLabel: 'z-10 inline-flex items-center px-4 py-2 text-sm font-semibold border border-primary text-primary bg-primary-light',
@@ -87,8 +87,8 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   }
 
   const paginationLabels: string[] = generatePaginationLabels(currentPageNumber, maxPageCount);
-  const paginationContainerClassNames = classNames(cssClasses.paginationContainer, {
-    [cssClasses.paginationContainer___loading ?? '']: isLoading
+  const paginationContainerClassNames = classNames(cssClasses.container, {
+    [cssClasses.container___loading ?? '']: isLoading
   });
 
   return (

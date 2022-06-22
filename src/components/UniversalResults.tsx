@@ -16,12 +16,12 @@ import { VerticalConfigMap } from '../models/verticalConfig';
  */
 export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
   container?: string,
-  results___loading?: string
+  container___loading?: string
 }
 
 const builtInCssClasses: Readonly<UniversalResultsCssClasses> = {
   container: 'space-y-8',
-  results___loading: 'opacity-50',
+  container___loading: 'opacity-50',
   ...sectionHeaderCssClasses
 };
 
@@ -62,7 +62,7 @@ export function UniversalResults({
   }
 
   const resultsClassNames = classNames(cssClasses.container, {
-    [cssClasses.results___loading ?? '']: isLoading
+    [cssClasses.container___loading ?? '']: isLoading
   });
 
   return (

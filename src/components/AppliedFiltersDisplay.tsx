@@ -126,7 +126,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
 
   const hasRemovableFilters = (staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
   return (
-    <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
+    <div className={cssClasses.container} aria-label='Applied filters to current search'>
       {nlpFilters.map(filter =>
         <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses} />
       )}

@@ -11,15 +11,15 @@ import { executeSearch } from '../utils/search-operations';
  */
 export interface SpellCheckCssClasses {
   container?: string,
+  container___loading?: string,
   helpText?: string,
-  spellCheck___loading?: string,
   link?: string
 }
 
 const builtInCssClasses: Readonly<SpellCheckCssClasses> = {
   container: 'text-lg pb-3',
+  container___loading: 'opacity-50',
   helpText: 'text-neutral',
-  spellCheck___loading: 'opacity-50',
   link: 'text-primary font-bold hover:underline focus:underline'
 };
 
@@ -52,7 +52,7 @@ export function SpellCheck({
   const correctedQuery = useAnswersState(state => state.spellCheck.correctedQuery) ?? '';
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const containerClassNames = classNames(cssClasses.container, {
-    [cssClasses.spellCheck___loading ?? '']: isLoading
+    [cssClasses.container___loading ?? '']: isLoading
   });
   const answersActions = useAnswersActions();
   const handleClickSuggestion = useCallback(() => {
