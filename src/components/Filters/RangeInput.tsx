@@ -122,7 +122,9 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const hasUserInput = !!(minRangeInput || maxRangeInput);
   const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState;
 
-  useEffect(() => setIsOptionsDisabled(hasUserInput), [hasUserInput, setIsOptionsDisabled]);
+  useEffect(() => {
+    setIsOptionsDisabled(hasUserInput)
+  }, [hasUserInput, setIsOptionsDisabled]);
 
   const handleMinChange = useCallback(event => {
     const input = event?.target?.value;
