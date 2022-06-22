@@ -29,27 +29,17 @@ export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, 
 // @public
 export interface AlternativeVerticalsCssClasses {
     // (undocumented)
-    allCategoriesLink?: string;
-    // (undocumented)
-    alternativeVerticals___loading?: string;
-    // (undocumented)
     categoriesText?: string;
     // (undocumented)
     container?: string;
+    // (undocumented)
+    container___loading?: string;
     // (undocumented)
     noResultsText?: string;
     // (undocumented)
     suggestion?: string;
     // (undocumented)
-    suggestionButton?: string;
-    // (undocumented)
-    suggestionList?: string;
-    // (undocumented)
-    suggestions?: string;
-    // (undocumented)
     verticalIcon?: string;
-    // (undocumented)
-    verticalLink?: string;
 }
 
 // @public
