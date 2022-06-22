@@ -17,13 +17,8 @@ export interface AlternativeVerticalsCssClasses {
   alternativeVerticals___loading?: string,
   noResultsText?: string,
   categoriesText?: string,
-  suggestions?: string,
-  suggestionList?: string,
   suggestion?: string,
-  suggestionButton?: string,
-  verticalIcon?: string,
-  verticalLink?: string,
-  allCategoriesLink?: string
+  verticalIcon?: string
 }
 
 const builtInCssClasses: Readonly<AlternativeVerticalsCssClasses> = {
@@ -31,13 +26,8 @@ const builtInCssClasses: Readonly<AlternativeVerticalsCssClasses> = {
   alternativeVerticals___loading: 'opacity-50',
   noResultsText: 'text-lg text-neutral-dark pb-2',
   categoriesText: 'text-neutral',
-  suggestions: 'pt-4 text-primary',
-  suggestionList: 'pt-4',
   suggestion: 'pb-4',
-  suggestionButton: 'inline-flex items-center hover:underline focus:underline',
-  verticalIcon: 'w-4 mr-2',
-  verticalLink: 'font-bold',
-  allCategoriesLink: 'text-primary hover:underline focus:underline'
+  verticalIcon: 'w-4 mr-2'
 };
 
 interface VerticalSuggestion {
@@ -153,7 +143,7 @@ export function AlternativeVerticals({
     <div className={containerClassNames}>
       {renderNoResultsInfo()}
       {verticalSuggestions &&
-        <div className={cssClasses.suggestions}>
+        <div className='pt-4 text-primary'>
           <div className={cssClasses.categoriesText}>
             <span>
               {processTranslation({
@@ -164,7 +154,7 @@ export function AlternativeVerticals({
             </span>
             <strong>{query}</strong>
           </div>
-          <ul className={cssClasses.suggestionList}>
+          <ul className='pt-4'>
             {verticalSuggestions.map(renderSuggestion)}
           </ul>
           {renderUniversalDetails()}
@@ -188,9 +178,9 @@ export function AlternativeVerticals({
     const href = getSuggestionUrl({ verticalKey: suggestion.verticalKey, query });
     return (
       <li key={suggestion.verticalKey} className={cssClasses.suggestion}>
-        <a className={cssClasses.suggestionButton} href={href}>
+        <a className='inline-flex items-center hover:underline focus:underline' href={href}>
           <div className={cssClasses.verticalIcon}><StarIcon/></div>
-          <span className={cssClasses.verticalLink}>{suggestion.label}</span>
+          <span className='font-bold'>{suggestion.label}</span>
         </a>
       </li>
     );
@@ -201,7 +191,7 @@ export function AlternativeVerticals({
     return (
       <div className={cssClasses.categoriesText}>
         <span>View results across </span>
-        <a className={cssClasses.allCategoriesLink} href={href}>
+        <a className='text-primary hover:underline focus:underline' href={href}>
           all search categories.
         </a>
       </div>
