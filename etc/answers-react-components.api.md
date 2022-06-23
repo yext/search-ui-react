@@ -123,6 +123,9 @@ export interface CardProps {
 }
 
 // @public
+export const ComponentsContentPath = "node_modules/@yext/answers-react-components/lib/**/*.{js,jsx}";
+
+// @public
 export interface CtaData {
     label: string;
     link: string;
