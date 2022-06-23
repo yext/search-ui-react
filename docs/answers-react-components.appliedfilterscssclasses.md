@@ -22,5 +22,4 @@ export interface AppliedFiltersCssClasses
 |  [filterLabel?](./answers-react-components.appliedfilterscssclasses.filterlabel.md) | string | <i>(Optional)</i> |
 |  [nlpFilter?](./answers-react-components.appliedfilterscssclasses.nlpfilter.md) | string | <i>(Optional)</i> |
 |  [removableFilter?](./answers-react-components.appliedfilterscssclasses.removablefilter.md) | string | <i>(Optional)</i> |
-|  [removeFilterButton?](./answers-react-components.appliedfilterscssclasses.removefilterbutton.md) | string | <i>(Optional)</i> |
 

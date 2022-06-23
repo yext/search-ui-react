@@ -161,7 +161,7 @@ function RemovableFilter<FilterType>({ handleRemoveFilter, filter, displayName, 
     <div className={cssClasses.removableFilter}>
       <div className={cssClasses.filterLabel}>{displayName}</div>
       <button
-        className={cssClasses.removeFilterButton}
+        className='w-2 h-2 text-neutral m-1.5'
         onClick={handleClick}
         aria-label={`Remove "${displayName}" filter`}>
         <CloseIcon />

@@ -30,8 +30,7 @@ export const builtInCssClasses: Readonly<SectionHeaderCssClasses> = {
   viewMoreLink: 'text-primary pr-1 pl-3',
   appliedFiltersContainer: 'ml-3 flex flex-wrap',
   nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2',
-  removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2',
-  removeFilterButton: 'w-2 h-2 text-neutral m-1.5'
+  removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2'
 };
 
 /**
