@@ -1,5 +1,5 @@
 import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions } from '@yext/answers-headless-react';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
@@ -21,13 +21,13 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
   inputElement?: string,
   sectionLabel?: string,
   focusedOption?: string,
-  optionsContainer?: string
+  optionsContainer?: string,
 }
 
 const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   container: 'mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
-  inputElement: 'c outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
+  inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
   sectionLabel: 'text-sm text-neutral-dark font-semibold pb-2',
   focusedOption: 'bg-gray-100',
   option: 'text-sm text-neutral-dark pb-1 cursor-pointer',
@@ -91,18 +91,23 @@ export function FilterSearch({
   }, [filterSearchResponse?.sections]);
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
+  const [currentFilter, setCurrentFilter] = useState<Filter>();
 
   const handleSelectDropdown = useCallback((_value, _index, itemData) => {
-    const filter = itemData?.filter as Filter;
-    const displayName = itemData?.displayName as string;
-    if (filter && displayName) {
-      answersActions.setFilterOption({ ...filter, displayName, selected: true });
+    const newFilter = itemData?.filter as Filter;
+    const newDisplayName = itemData?.displayName as string;
+    if (newFilter && newDisplayName) {
+      if (currentFilter) {
+        answersActions.setFilterOption({ ...currentFilter, selected: false });
+      }
+      answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+      setCurrentFilter(newFilter);
       answersActions.setOffset(0);
       if (searchOnSelect) {
         executeSearch(answersActions);
       }
     }
-  }, [answersActions, searchOnSelect]);
+  }, [answersActions, currentFilter, searchOnSelect]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
