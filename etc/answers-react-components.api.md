@@ -228,19 +228,13 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
-    dropdownContainer?: string;
-    // (undocumented)
     focusedOption?: string;
-    // (undocumented)
-    inputContainer?: string;
     // (undocumented)
     inputElement?: string;
     // (undocumented)
     label?: string;
     // (undocumented)
     optionsContainer?: string;
-    // (undocumented)
-    sectionContainer?: string;
     // (undocumented)
     sectionLabel?: string;
 }
