@@ -57,7 +57,7 @@ const filterGroupContextValue: FilterGroupContextType = {
 jest.mock('@yext/answers-headless-react');
 
 it('renders the correct inital state', () => {
-  renderRangeInput();
+  renderRangeInput(filterContextValue);
   const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
   expect(minTextbox).toBeDefined();
   expect(maxTextbox).toBeDefined();
@@ -70,7 +70,7 @@ describe('Renders correctly for min input', () => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
   it('renders input value, clear, and apply option when inputing min value', async () => {
-    renderRangeInput();
+    renderRangeInput(filterContextValue);
     const minTextbox = screen.getAllByRole('textbox')[0];
     userEvent.type(minTextbox, '10');
     await waitFor(() => {
@@ -81,7 +81,7 @@ describe('Renders correctly for min input', () => {
   });
 
   it('record proper values in state when applying min', async () => {
-    renderRangeInput();
+    renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const minTextbox = screen.getAllByRole('textbox')[0];
     userEvent.type(minTextbox, '10');
@@ -104,7 +104,7 @@ describe('Renders correctly for min input', () => {
   });
 
   it('renders correctly when clearing input and no state is set', async () => {
-    renderRangeInput();
+    renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const minTextbox = screen.getAllByRole('textbox')[0];
     userEvent.type(minTextbox, '10');
@@ -123,7 +123,7 @@ describe('Renders correctly for max input', () => {
   });
 
   it('renders input value, clear, and apply option when inputing max value', async () => {
-    renderRangeInput();
+    renderRangeInput(filterContextValue);
     const maxTextbox = screen.getAllByRole('textbox')[1];
     userEvent.type(maxTextbox, '20');
     await waitFor(() => {
@@ -134,7 +134,7 @@ describe('Renders correctly for max input', () => {
   });
 
   it('record proper values in state when applying max', async () => {
-    renderRangeInput();
+    renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const maxTextbox = screen.getAllByRole('textbox')[1];
     userEvent.type(maxTextbox, '20');
@@ -157,7 +157,7 @@ describe('Renders correctly for max input', () => {
   });
 
   it('renders correctly when clearing input and no state is set', async () => {
-    renderRangeInput();
+    renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const maxTextbox = screen.getAllByRole('textbox')[1];
     userEvent.type(maxTextbox, '20');
@@ -175,8 +175,8 @@ describe('Renders correctly for min and max inputs', () => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
 
-  it('renders input values, clear, apply options and record proper values in state when applying min and max', async () => {
-    renderRangeInput();
+  it('renders correctly when inputing and applies correct range in state', async () => {
+    renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
     userEvent.type(minTextbox, '10');
@@ -207,7 +207,7 @@ describe('Renders correctly for min and max inputs', () => {
   });
 
   it('renders correctly when clearing inputs and no state is set', async () => {
-    renderRangeInput();
+    renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
     userEvent.type(minTextbox, '10');
@@ -223,7 +223,7 @@ describe('Renders correctly for min and max inputs', () => {
   });
 
   it('renders correctly when input range is invalid and no filter is set in state', async () => {
-    renderRangeInput();
+    renderRangeInput(filterContextValue);
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
     userEvent.type(minTextbox, '20');
     userEvent.type(maxTextbox, '10');
@@ -238,23 +238,20 @@ describe('Renders correctly for min and max inputs', () => {
 });
 
 it('renders correctly when disabled', () => {
-  render(<FilterGroupContext.Provider value={filterGroupContextValue}>
-    <FiltersContext.Provider value={filterContextValueDisabled}>
-      <RangeInput />
-    </FiltersContext.Provider>
-  </FilterGroupContext.Provider>);
+  renderRangeInput(filterContextValueDisabled);
   const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
   expect(minTextbox).toHaveAttribute('disabled');
   expect(maxTextbox).toHaveAttribute('disabled');
   expect(screen.getByText('Unselect an option to enter in a range.')).toBeDefined();
 });
 
-function renderRangeInput() {
+function renderRangeInput(ContextValue) {
   return (
-    render(<FilterGroupContext.Provider value={filterGroupContextValue}>
-      <FiltersContext.Provider value={filterContextValue}>
-        <RangeInput />
-      </FiltersContext.Provider>
-    </FilterGroupContext.Provider>)
+    render(
+      <FilterGroupContext.Provider value={filterGroupContextValue}>
+        <FiltersContext.Provider value={ContextValue}>
+          <RangeInput />
+        </FiltersContext.Provider>
+      </FilterGroupContext.Provider>)
   );
 }
