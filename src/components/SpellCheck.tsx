@@ -10,16 +10,16 @@ import { executeSearch } from '../utils/search-operations';
  * @public
  */
 export interface SpellCheckCssClasses {
-  container?: string,
-  helpText?: string,
   spellCheck___loading?: string,
+  spellCheckContainer?: string,
+  helpText?: string,
   link?: string
 }
 
 const builtInCssClasses: Readonly<SpellCheckCssClasses> = {
-  container: 'text-lg pb-3',
-  helpText: 'text-neutral',
   spellCheck___loading: 'opacity-50',
+  spellCheckContainer: 'text-lg pb-3',
+  helpText: 'text-neutral',
   link: 'text-primary font-bold hover:underline focus:underline'
 };
 
@@ -51,7 +51,7 @@ export function SpellCheck({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const correctedQuery = useAnswersState(state => state.spellCheck.correctedQuery) ?? '';
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
-  const containerClassNames = classNames(cssClasses.container, {
+  const containerClassNames = classNames(cssClasses.spellCheckContainer, {
     [cssClasses.spellCheck___loading ?? '']: isLoading
   });
   const answersActions = useAnswersActions();

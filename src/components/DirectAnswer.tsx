@@ -28,8 +28,8 @@ export interface DirectAnswerProps {
  * @public
  */
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
-  container?: string,
-  container___loading?: string,
+  directAnswerContainer?: string,
+  directAnswer___loading?: string,
   fieldValueTitle?: string,
   featuredSnippetTitle?: string,
   content?: string,
@@ -42,8 +42,8 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
 }
 
 const builtInCssClasses: Readonly<DirectAnswerCssClasses> = {
-  container: '',
-  container___loading: 'opacity-50',
+  directAnswerContainer: '',
+  directAnswer___loading: 'opacity-50',
   fieldValueTitle: 'mb-4 text-neutral',
   featuredSnippetTitle: 'mb-4 font-bold text-xl text-neutral-dark',
   content: '',
@@ -53,7 +53,7 @@ const builtInCssClasses: Readonly<DirectAnswerCssClasses> = {
   viewDetailsLinkContainer: 'pt-4 text-neutral',
   highlighted: 'bg-primary-light',
   answerContainer: 'p-4 border rounded-lg shadow-sm',
-  feedbackButtonsContainer: thumbsFeedbackCssClasses.feedbackButtonsContainer,
+  thumbsFeedbackContainer: thumbsFeedbackCssClasses.thumbsFeedbackContainer,
   thumbsUpIcon: thumbsFeedbackCssClasses.thumbsUpIcon,
   thumbsDownIcon: thumbsFeedbackCssClasses.thumbsDownIcon
 };
@@ -114,8 +114,8 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
     </>);
   }
 
-  const containerCssClasses = classNames(cssClasses.container, {
-    [cssClasses.container___loading ?? '']: isLoading
+  const containerCssClasses = classNames(cssClasses.directAnswerContainer, {
+    [cssClasses.directAnswer___loading ?? '']: isLoading
   });
 
   return (

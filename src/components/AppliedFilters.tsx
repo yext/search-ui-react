@@ -15,7 +15,7 @@ import { useStateUpdatedOnSearch } from '../hooks/useStateUpdatedOnSearch';
  */
 export interface AppliedFiltersCssClasses {
   appliedFiltersContainer?: string,
-  appliedFiltersContainer___loading?: string,
+  appliedFilters___loading?: string,
   nlpFilter?: string,
   removableFilter?: string,
   filterLabel?: string,
@@ -25,7 +25,7 @@ export interface AppliedFiltersCssClasses {
 export const builtInCssClasses: Readonly<AppliedFiltersCssClasses> = {
   // Use negative margin to remove space above the filters on mobile
   appliedFiltersContainer: 'flex flex-wrap -mt-3 md:mt-0 mb-2',
-  appliedFiltersContainer___loading: 'opacity-50',
+  appliedFilters___loading: 'opacity-50',
   nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2 mb-2',
   removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2 mb-2',
   clearAllButton: 'text-sm font-medium text-primary hover:underline focus:underline mb-2'
@@ -89,7 +89,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
-    [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
+    [cssClasses.appliedFilters___loading ?? '']: isLoading
   });
   return <AppliedFiltersDisplay
     {...appliedFilters}
