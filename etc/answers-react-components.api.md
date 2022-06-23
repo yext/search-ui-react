@@ -71,8 +71,6 @@ export interface AppliedFiltersCssClasses {
     nlpFilter?: string;
     // (undocumented)
     removableFilter?: string;
-    // (undocumented)
-    removeFilterButton?: string;
 }
 
 // @public
