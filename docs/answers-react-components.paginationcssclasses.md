@@ -18,7 +18,6 @@ export interface PaginationCssClasses
 |  --- | --- | --- |
 |  [icon?](./answers-react-components.paginationcssclasses.icon.md) | string | <i>(Optional)</i> |
 |  [label?](./answers-react-components.paginationcssclasses.label.md) | string | <i>(Optional)</i> |
-|  [labelContainer?](./answers-react-components.paginationcssclasses.labelcontainer.md) | string | <i>(Optional)</i> |
 |  [leftIconContainer?](./answers-react-components.paginationcssclasses.lefticoncontainer.md) | string | <i>(Optional)</i> |
 |  [paginationContainer\_\_\_loading?](./answers-react-components.paginationcssclasses.paginationcontainer___loading.md) | string | <i>(Optional)</i> |
 |  [paginationContainer?](./answers-react-components.paginationcssclasses.paginationcontainer.md) | string | <i>(Optional)</i> |
