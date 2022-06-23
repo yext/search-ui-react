@@ -1,5 +1,5 @@
 import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions } from '@yext/answers-headless-react';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
@@ -18,21 +18,16 @@ import { renderAutocompleteResult, AutocompleteResultCssClasses } from './utils/
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
   container?: string,
   label?: string,
-  dropdownContainer?: string,
   inputElement?: string,
-  sectionContainer?: string,
   sectionLabel?: string,
   focusedOption?: string,
-  optionsContainer?: string,
-  inputContainer?: string
+  optionsContainer?: string
 }
 
 const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   container: 'mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
-  dropdownContainer: 'absolute z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 px-4 mt-1',
-  inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
-  sectionContainer: 'pb-2',
+  inputElement: 'c outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
   sectionLabel: 'text-sm text-neutral-dark font-semibold pb-2',
   focusedOption: 'bg-gray-100',
   option: 'text-sm text-neutral-dark pb-1 cursor-pointer',
@@ -96,23 +91,18 @@ export function FilterSearch({
   }, [filterSearchResponse?.sections]);
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
-  const [currentFilter, setCurrentFilter] = useState<Filter>();
 
   const handleSelectDropdown = useCallback((_value, _index, itemData) => {
-    const newFilter = itemData?.filter as Filter;
-    const newDisplayName = itemData?.displayName as string;
-    if (newFilter && newDisplayName) {
-      if (currentFilter) {
-        answersActions.setFilterOption({ ...currentFilter, selected: false });
-      }
-      answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
-      setCurrentFilter(newFilter);
+    const filter = itemData?.filter as Filter;
+    const displayName = itemData?.displayName as string;
+    if (filter && displayName) {
+      answersActions.setFilterOption({ ...filter, displayName, selected: true });
       answersActions.setOffset(0);
       if (searchOnSelect) {
         executeSearch(answersActions);
       }
     }
-  }, [answersActions, currentFilter, searchOnSelect]);
+  }, [answersActions, searchOnSelect]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
@@ -128,7 +118,7 @@ export function FilterSearch({
   function renderDropdownItems() {
     return sections.map((section, sectionIndex) => {
       return (
-        <div className={cssClasses.sectionContainer} key={sectionIndex}>
+        <div className='pb-2' key={sectionIndex}>
           {section.label &&
             <div className={cssClasses.sectionLabel}>
               {section.label}
@@ -158,17 +148,15 @@ export function FilterSearch({
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
       >
-        <div className={cssClasses.inputContainer}>
-          <DropdownInput
-            className={cssClasses.inputElement}
-            placeholder={placeholder}
-            onChange={executeFilterSearch}
-            submitCriteria={meetsSubmitCritera}
-          />
-        </div>
+        <DropdownInput
+          className={cssClasses.inputElement}
+          placeholder={placeholder}
+          onChange={executeFilterSearch}
+          submitCriteria={meetsSubmitCritera}
+        />
         <DropdownMenu>
           {hasResults &&
-            <div className={cssClasses.dropdownContainer}>
+            <div className='absolute z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 px-4 mt-1'>
               {renderDropdownItems()}
             </div>
           }
