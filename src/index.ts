@@ -16,7 +16,7 @@ export * from './utils';
  * @example
  * In user's tailwind.config.js file:
  *
- * ```
+ * ```js
  * const { ComponentsContentPath } = require('@yext/answers-react-components')
  * module.exports = {
  *  content: [ ComponentsContentPath ],

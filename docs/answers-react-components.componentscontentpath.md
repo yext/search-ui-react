@@ -20,7 +20,7 @@ This assumes that the node\_modules folder containing the component library is i
 
 In user's tailwind.config.js file:
 
-```
+```js
 const { ComponentsContentPath } = require('@yext/answers-react-components')
 module.exports = {
  content: [ ComponentsContentPath ],
