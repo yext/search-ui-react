@@ -17,6 +17,6 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [results\_\_\_loading?](./answers-react-components.verticalresultscssclasses.results___loading.md) | string | <i>(Optional)</i> |
 |  [results?](./answers-react-components.verticalresultscssclasses.results.md) | string | <i>(Optional)</i> |
+|  [verticalResults\_\_\_loading?](./answers-react-components.verticalresultscssclasses.verticalresults___loading.md) | string | <i>(Optional)</i> |
 

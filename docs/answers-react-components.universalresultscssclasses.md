@@ -17,6 +17,6 @@ export interface UniversalResultsCssClasses extends SectionHeaderCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [container?](./answers-react-components.universalresultscssclasses.container.md) | string | <i>(Optional)</i> |
-|  [results\_\_\_loading?](./answers-react-components.universalresultscssclasses.results___loading.md) | string | <i>(Optional)</i> |
+|  [universalResults\_\_\_loading?](./answers-react-components.universalresultscssclasses.universalresults___loading.md) | string | <i>(Optional)</i> |
+|  [universalResultsContainer?](./answers-react-components.universalresultscssclasses.universalresultscontainer.md) | string | <i>(Optional)</i> |
 

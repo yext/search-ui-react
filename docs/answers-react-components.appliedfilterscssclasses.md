@@ -16,7 +16,7 @@ export interface AppliedFiltersCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [appliedFiltersContainer\_\_\_loading?](./answers-react-components.appliedfilterscssclasses.appliedfilterscontainer___loading.md) | string | <i>(Optional)</i> |
+|  [appliedFilters\_\_\_loading?](./answers-react-components.appliedfilterscssclasses.appliedfilters___loading.md) | string | <i>(Optional)</i> |
 |  [appliedFiltersContainer?](./answers-react-components.appliedfilterscssclasses.appliedfilterscontainer.md) | string | <i>(Optional)</i> |
 |  [clearAllButton?](./answers-react-components.appliedfilterscssclasses.clearallbutton.md) | string | <i>(Optional)</i> |
 |  [filterLabel?](./answers-react-components.appliedfilterscssclasses.filterlabel.md) | string | <i>(Optional)</i> |
