@@ -65,6 +65,9 @@ export interface AlternativeVerticalsProps {
 export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element;
 
 // @public
+export const AnswersTailwindPath = "node_modules/@yext/answers-react-components/lib/**/*.{js,ts,jsx,tsx}";
+
+// @public
 export function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 
 // @public

@@ -102,6 +102,12 @@
 |  [VerticalResultsProps](./answers-react-components.verticalresultsprops.md) | Props for the VerticalResults component. |
 |  [VisualAutocompleteConfig](./answers-react-components.visualautocompleteconfig.md) | The configuration options for Visual Autocomplete. |
 
+## Variables
+
+|  Variable | Description |
+|  --- | --- |
+|  [AnswersTailwindPath](./answers-react-components.answerstailwindpath.md) | Content path to the source files in component library that utilizes Tailwind class names. This is intended to be used in user's custom tailwind config. |
+
 ## Type Aliases
 
 |  Type Alias | Description |
