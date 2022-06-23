@@ -373,8 +373,6 @@ export interface PaginationCssClasses {
     // (undocumented)
     label?: string;
     // (undocumented)
-    labelContainer?: string;
-    // (undocumented)
     leftIconContainer?: string;
     // (undocumented)
     paginationContainer?: string;
