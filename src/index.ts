@@ -16,10 +16,12 @@ export * from './utils';
  * @example
  * In user's tailwind.config.js file:
  *
- * const \{ AnswersTailwindPath \} = require('\@yext/answers-react-components')
- * module.exports = \{
- *  content: [ AnswersTailwindPath ],
+ * ```
+ * const { ComponentsContentPath } = require('@yext/answers-react-components')
+ * module.exports = {
+ *  content: [ ComponentsContentPath ],
  *  ...
- * \};
+ * };
+ * ```
  */
-export const AnswersTailwindPath = 'node_modules/@yext/answers-react-components/lib/**/*.{js,ts,jsx,tsx}';
+export const ComponentsContentPath = 'node_modules/@yext/answers-react-components/lib/**/*.{js,jsx}';

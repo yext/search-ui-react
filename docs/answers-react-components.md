@@ -106,7 +106,7 @@
 
 |  Variable | Description |
 |  --- | --- |
-|  [AnswersTailwindPath](./answers-react-components.answerstailwindpath.md) | Content path to the source files in component library that utilizes Tailwind class names. This is intended to be used in user's custom tailwind config. |
+|  [ComponentsContentPath](./answers-react-components.componentscontentpath.md) | Content path to the source files in component library that utilizes Tailwind class names. This is intended to be used in user's custom tailwind config. |
 
 ## Type Aliases
 

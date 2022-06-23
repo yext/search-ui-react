@@ -65,9 +65,6 @@ export interface AlternativeVerticalsProps {
 export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element;
 
 // @public
-export const AnswersTailwindPath = "node_modules/@yext/answers-react-components/lib/**/*.{js,ts,jsx,tsx}";
-
-// @public
 export function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 
 // @public
@@ -136,6 +133,9 @@ export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
 export interface CardProps {
     result: Result;
 }
+
+// @public
+export const ComponentsContentPath = "node_modules/@yext/answers-react-components/lib/**/*.{js,jsx}";
 
 // @public
 export interface CtaData {
