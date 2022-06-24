@@ -18,24 +18,19 @@ import { renderAutocompleteResult, AutocompleteResultCssClasses } from './utils/
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
   container?: string,
   label?: string,
-  dropdownContainer?: string,
   inputElement?: string,
-  sectionContainer?: string,
   sectionLabel?: string,
   focusedOption?: string,
-  optionsContainer?: string,
-  inputContainer?: string
+  optionsContainer?: string
 }
 
 const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   container: 'mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
-  dropdownContainer: 'absolute z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 px-4 mt-1',
   inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
-  sectionContainer: 'pb-2',
   sectionLabel: 'text-sm text-neutral-dark font-semibold pb-2',
   focusedOption: 'bg-gray-100',
-  option: 'text-sm text-neutral-dark pb-1 cursor-pointer',
+  option: 'text-sm text-neutral-dark pb-1 cursor-pointer'
 };
 
 /**
@@ -128,7 +123,7 @@ export function FilterSearch({
   function renderDropdownItems() {
     return sections.map((section, sectionIndex) => {
       return (
-        <div className={cssClasses.sectionContainer} key={sectionIndex}>
+        <div className='pb-2' key={sectionIndex}>
           {section.label &&
             <div className={cssClasses.sectionLabel}>
               {section.label}
@@ -158,17 +153,15 @@ export function FilterSearch({
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
       >
-        <div className={cssClasses.inputContainer}>
-          <DropdownInput
-            className={cssClasses.inputElement}
-            placeholder={placeholder}
-            onChange={executeFilterSearch}
-            submitCriteria={meetsSubmitCritera}
-          />
-        </div>
+        <DropdownInput
+          className={cssClasses.inputElement}
+          placeholder={placeholder}
+          onChange={executeFilterSearch}
+          submitCriteria={meetsSubmitCritera}
+        />
         <DropdownMenu>
           {hasResults &&
-            <div className={cssClasses.dropdownContainer}>
+            <div className='absolute z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 px-4 mt-1'>
               {renderDropdownItems()}
             </div>
           }
