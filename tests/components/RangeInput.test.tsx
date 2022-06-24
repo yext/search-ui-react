@@ -24,36 +24,6 @@ const mockedActions = {
   executeVerticalQuery: jest.fn()
 };
 
-const selectableFilter: SelectableFilter = {
-  selected: true,
-  fieldId: '123',
-  matcher: Matcher.Between,
-  value: 'test'
-};
-
-const filterContextValue: FiltersContextType = {
-  selectFilter: () => null,
-  applyFilters: () => null,
-  filters: []
-};
-
-const filterContextValueDisabled: FiltersContextType = {
-  selectFilter: () => null,
-  applyFilters: () => null,
-  filters: [selectableFilter]
-};
-
-const filterGroupContextValue: FilterGroupContextType = {
-  searchValue: '',
-  fieldId: '123',
-  setSearchValue: () => null,
-  getCollapseProps: null,
-  getToggleProps: null,
-  isExpanded: null,
-  isOptionsDisabled: null,
-  setIsOptionsDisabled: () => null
-};
-
 jest.mock('@yext/answers-headless-react');
 
 it('renders the correct inital state', () => {
@@ -69,18 +39,7 @@ describe('Renders correctly for min input', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
-  it('renders input value, clear, and apply option when inputing min value', async () => {
-    renderRangeInput(filterContextValue);
-    const minTextbox = screen.getAllByRole('textbox')[0];
-    userEvent.type(minTextbox, '10');
-    await waitFor(() => {
-      expect(minTextbox).toHaveValue('10');
-    });
-    expect(screen.getByText('Clear min and max')).toBeDefined();
-    expect(screen.getByText('Apply')).toBeDefined();
-  });
-
-  it('record proper values in state when applying min', async () => {
+  it('renders correctly when inputing min and applies proper values in state', async () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const minTextbox = screen.getAllByRole('textbox')[0];
@@ -88,6 +47,8 @@ describe('Renders correctly for min input', () => {
     await waitFor(() => {
       expect(minTextbox).toHaveValue('10');
     });
+    expect(screen.getByText('Clear min and max')).toBeDefined();
+    expect(screen.getByText('Apply')).toBeDefined();
     userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Over 10',
@@ -122,18 +83,7 @@ describe('Renders correctly for max input', () => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
 
-  it('renders input value, clear, and apply option when inputing max value', async () => {
-    renderRangeInput(filterContextValue);
-    const maxTextbox = screen.getAllByRole('textbox')[1];
-    userEvent.type(maxTextbox, '20');
-    await waitFor(() => {
-      expect(maxTextbox).toHaveValue('20');
-    });
-    expect(screen.getByText('Clear min and max')).toBeDefined();
-    expect(screen.getByText('Apply')).toBeDefined();
-  });
-
-  it('record proper values in state when applying max', async () => {
+  it('renders correctly when inputing max and applies proper values in state', async () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const maxTextbox = screen.getAllByRole('textbox')[1];
@@ -141,6 +91,8 @@ describe('Renders correctly for max input', () => {
     await waitFor(() => {
       expect(maxTextbox).toHaveValue('20');
     });
+    expect(screen.getByText('Clear min and max')).toBeDefined();
+    expect(screen.getByText('Apply')).toBeDefined();
     userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Up to 20',
@@ -238,6 +190,17 @@ describe('Renders correctly for min and max inputs', () => {
 });
 
 it('renders correctly when disabled', () => {
+  const selectableFilter: SelectableFilter = {
+    selected: true,
+    fieldId: '123',
+    matcher: Matcher.Between,
+    value: 'test'
+  };
+  const filterContextValueDisabled: FiltersContextType = {
+    selectFilter: () => null,
+    applyFilters: () => null,
+    filters: [selectableFilter]
+  };
   renderRangeInput(filterContextValueDisabled);
   const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
   expect(minTextbox).toHaveAttribute('disabled');
@@ -245,11 +208,28 @@ it('renders correctly when disabled', () => {
   expect(screen.getByText('Unselect an option to enter in a range.')).toBeDefined();
 });
 
-function renderRangeInput(expectedFilterContextValue) {
+const filterGroupContextValue: FilterGroupContextType = {
+  searchValue: '',
+  fieldId: '123',
+  setSearchValue: () => null,
+  getCollapseProps: null,
+  getToggleProps: null,
+  isExpanded: null,
+  isOptionsDisabled: null,
+  setIsOptionsDisabled: () => null
+};
+
+const filterContextValue: FiltersContextType = {
+  selectFilter: () => null,
+  applyFilters: () => null,
+  filters: []
+};
+
+function renderRangeInput(filterContextValue) {
   return (
     render(
       <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={expectedFilterContextValue}>
+        <FiltersContext.Provider value={filterContextValue}>
           <RangeInput />
         </FiltersContext.Provider>
       </FilterGroupContext.Provider>)
