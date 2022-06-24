@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import { SpellCheck } from '../../src/components/SpellCheck';
-import { Source, State } from '@yext/answers-headless-react';
+import { State } from '@yext/answers-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 

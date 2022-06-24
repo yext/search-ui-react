@@ -56,17 +56,21 @@ const filterGroupContextValue: FilterGroupContextType = {
 
 jest.mock('@yext/answers-headless-react');
 
+it('renders the correct inital state', () => {
+  renderRangeInput(filterContextValue);
+  const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
+  expect(minTextbox).toBeDefined();
+  expect(maxTextbox).toBeDefined();
+  expect(screen.queryByText('Clear min and max')).toBeNull();
+  expect(screen.queryByText('Apply')).toBeNull();
+});
+
 describe('Renders correctly for min input', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
   it('renders input value, clear, and apply option when inputing min value', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
+    renderRangeInput(filterContextValue);
     const minTextbox = screen.getAllByRole('textbox')[0];
     userEvent.type(minTextbox, '10');
     await waitFor(() => {
@@ -77,19 +81,13 @@ describe('Renders correctly for min input', () => {
   });
 
   it('record proper values in state when applying min', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
+    renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const minTextbox = screen.getAllByRole('textbox')[0];
     userEvent.type(minTextbox, '10');
     await waitFor(() => {
       expect(minTextbox).toHaveValue('10');
     });
-    expect(screen.getByText('Apply')).toBeDefined();
     userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Over 10',
@@ -105,21 +103,17 @@ describe('Renders correctly for min input', () => {
     });
   });
 
-  it('renders correctly when clearing input', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
+  it('renders correctly when clearing input and no state is set', async () => {
+    renderRangeInput(filterContextValue);
+    const actions = spyOnActions();
     const minTextbox = screen.getAllByRole('textbox')[0];
     userEvent.type(minTextbox, '10');
     await waitFor(() => {
       expect(minTextbox).toHaveValue('10');
     });
-    expect(screen.getByText('Clear min and max')).toBeDefined();
     userEvent.click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
+    expect(actions.setFilterOption).toHaveBeenCalledTimes(0);
   });
 });
 
@@ -127,13 +121,9 @@ describe('Renders correctly for max input', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
+
   it('renders input value, clear, and apply option when inputing max value', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
+    renderRangeInput(filterContextValue);
     const maxTextbox = screen.getAllByRole('textbox')[1];
     userEvent.type(maxTextbox, '20');
     await waitFor(() => {
@@ -144,19 +134,13 @@ describe('Renders correctly for max input', () => {
   });
 
   it('record proper values in state when applying max', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
+    renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const maxTextbox = screen.getAllByRole('textbox')[1];
     userEvent.type(maxTextbox, '20');
     await waitFor(() => {
       expect(maxTextbox).toHaveValue('20');
     });
-    expect(screen.getByText('Apply')).toBeDefined();
     userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Up to 20',
@@ -172,21 +156,17 @@ describe('Renders correctly for max input', () => {
     });
   });
 
-  it('renders correctly when clearing input', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
+  it('renders correctly when clearing input and no state is set', async () => {
+    renderRangeInput(filterContextValue);
+    const actions = spyOnActions();
     const maxTextbox = screen.getAllByRole('textbox')[1];
     userEvent.type(maxTextbox, '20');
     await waitFor(() => {
       expect(maxTextbox).toHaveValue('20');
     });
-    expect(screen.getByText('Clear min and max')).toBeDefined();
     userEvent.click(screen.getByText('Clear min and max'));
     expect(maxTextbox).toHaveValue('');
+    expect(actions.setFilterOption).toHaveBeenCalledTimes(0);
   });
 });
 
@@ -194,31 +174,9 @@ describe('Renders correctly for min and max inputs', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
-  it('renders input value, clear, and apply option when inputing min and max values', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
-    const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
-    userEvent.type(minTextbox, '10');
-    userEvent.type(maxTextbox, '20');
-    await waitFor(() => {
-      expect(minTextbox).toHaveValue('10');
-    });
-    expect(maxTextbox).toHaveValue('20');
-    expect(screen.getByText('Clear min and max')).toBeDefined();
-    expect(screen.getByText('Apply')).toBeDefined();
-  });
 
-  it('record proper values in state when applying min and max', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
+  it('renders correctly when inputing range and applies proper values in state', async () => {
+    renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
     userEvent.type(minTextbox, '10');
@@ -228,6 +186,7 @@ describe('Renders correctly for min and max inputs', () => {
     });
     expect(maxTextbox).toHaveValue('20');
     expect(screen.getByText('Apply')).toBeDefined();
+    expect(screen.getByText('Clear min and max')).toBeDefined();
     userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: '10 - 20',
@@ -247,13 +206,9 @@ describe('Renders correctly for min and max inputs', () => {
     });
   });
 
-  it('renders correctly when clearing inputs', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
+  it('renders correctly when clearing inputs and no state is set', async () => {
+    renderRangeInput(filterContextValue);
+    const actions = spyOnActions();
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
     userEvent.type(minTextbox, '10');
     userEvent.type(maxTextbox, '20');
@@ -261,19 +216,14 @@ describe('Renders correctly for min and max inputs', () => {
       expect(minTextbox).toHaveValue('10');
     });
     expect(maxTextbox).toHaveValue('20');
-    expect(screen.getByText('Clear min and max')).toBeDefined();
     userEvent.click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
     expect(maxTextbox).toHaveValue('');
+    expect(actions.setFilterOption).toHaveBeenCalledTimes(0);
   });
 
   it('renders correctly when input range is invalid and no filter is set in state', async () => {
-    render(
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
-          <RangeInput />
-        </FiltersContext.Provider>
-      </FilterGroupContext.Provider>);
+    renderRangeInput(filterContextValue);
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
     userEvent.type(minTextbox, '20');
     userEvent.type(maxTextbox, '10');
@@ -288,9 +238,20 @@ describe('Renders correctly for min and max inputs', () => {
 });
 
 it('renders correctly when disabled', () => {
-  render(<FilterGroupContext.Provider value={filterGroupContextValue}>
-    <FiltersContext.Provider value={filterContextValueDisabled}>
-      <RangeInput />
-    </FiltersContext.Provider>
-  </FilterGroupContext.Provider>);
+  renderRangeInput(filterContextValueDisabled);
+  const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
+  expect(minTextbox).toHaveAttribute('disabled');
+  expect(maxTextbox).toHaveAttribute('disabled');
+  expect(screen.getByText('Unselect an option to enter in a range.')).toBeDefined();
 });
+
+function renderRangeInput(expectedFilterContextValue) {
+  return (
+    render(
+      <FilterGroupContext.Provider value={filterGroupContextValue}>
+        <FiltersContext.Provider value={expectedFilterContextValue}>
+          <RangeInput />
+        </FiltersContext.Provider>
+      </FilterGroupContext.Provider>)
+  );
+}
