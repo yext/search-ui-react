@@ -13,7 +13,11 @@ import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
   numericalFacetsContainer?: string,
   divider?: string,
+<<<<<<< HEAD
   rangeInputContainer?: string
+=======
+  rangeInputDivider?: string
+>>>>>>> 25bb139 (removed excess rangeInputContainer)
 }
 
 /**
