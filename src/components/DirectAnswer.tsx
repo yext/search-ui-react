@@ -86,13 +86,13 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
 
     return (<>
       {isSnippet && name && <div className='pt-4 text-neutral'>
-        { snippetLinkMessage }
+        {snippetLinkMessage}
         <a
           className='text-primary'
           href={link}
           onClick={handleClickViewDetails}
         >
-          {' ' + name}
+          {name}
         </a>
       </div>}
       {!isSnippet && link && <div className='pt-4 text-neutral'>
