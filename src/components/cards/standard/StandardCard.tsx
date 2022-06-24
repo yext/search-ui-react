@@ -31,6 +31,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     showFeedbackButtons
   } = props;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data: any = {
     title: result.highlightedFields?.name ?? result.name ?? result.rawData.name,
     description: result.highlightedFields?.description ?? result.rawData.description,
@@ -38,6 +39,7 @@ export function StandardCard(props: StandardCardProps): JSX.Element {
     cta2: result.rawData.c_secondaryCTA,
   };
 
+  // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
   const clickHandlers = {
     handleCtaClick: useCardAnalyticsCallback(result, 'CTA_CLICK'),
     handleTitleClick: useCardAnalyticsCallback(result, 'TITLE_CLICK'),
