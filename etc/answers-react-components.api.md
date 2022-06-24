@@ -340,8 +340,6 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
     divider?: string;
     // (undocumented)
     numericalFacetsContainer?: string;
-    // (undocumented)
-    rangeInputContainer?: string;
 }
 
 // @public
@@ -735,9 +733,9 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
 // @public
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
     // (undocumented)
-    results?: string;
-    // (undocumented)
     verticalResults___loading?: string;
+    // (undocumented)
+    verticalResultsContainer?: string;
 }
 
 // @public
