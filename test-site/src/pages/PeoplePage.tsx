@@ -46,6 +46,7 @@ export function PeoplePage() {
             ]}
             searchOnChange={false}
           />
+          <br/>
           <FilterSearch searchFields={[{fieldApiName: 'name', entityType: 'ce_person' }]}/>
           <ApplyFiltersButton />
         </div>

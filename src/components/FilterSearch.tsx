@@ -153,7 +153,7 @@ export function FilterSearch({
 
   return (
     <div className={cssClasses.container}>
-      <h1 className={cssClasses.label}>{label}</h1>
+      {label != 'Filter' && <h1 className={cssClasses.label}>{label}</h1>}
       <Dropdown
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
