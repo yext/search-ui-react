@@ -19,7 +19,6 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses
 |  --- | --- | --- |
 |  [clearButton?](./answers-react-components.searchbarcssclasses.clearbutton.md) | string | <i>(Optional)</i> |
 |  [container?](./answers-react-components.searchbarcssclasses.container.md) | string | <i>(Optional)</i> |
-|  [dropdownContainer?](./answers-react-components.searchbarcssclasses.dropdowncontainer.md) | string | <i>(Optional)</i> |
 |  [entityPreviewsDivider?](./answers-react-components.searchbarcssclasses.entitypreviewsdivider.md) | string | <i>(Optional)</i> |
 |  [focusedOption?](./answers-react-components.searchbarcssclasses.focusedoption.md) | string | <i>(Optional)</i> |
 |  [inputDivider?](./answers-react-components.searchbarcssclasses.inputdivider.md) | string | <i>(Optional)</i> |
