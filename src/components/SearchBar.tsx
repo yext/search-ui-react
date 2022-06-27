@@ -312,7 +312,7 @@ export function SearchBar({
       <Fragment key={i}>
         <DropdownItem
           className='flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100'
-          focusedClassName={classNames('flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
+          focusedClassName={twMerge('flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
           value={result.value}
           onClick={handleSubmit}
         >
@@ -327,7 +327,7 @@ export function SearchBar({
           <DropdownItem
             key={j}
             className='flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100'
-            focusedClassName={classNames('flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
+            focusedClassName={twMerge('flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
             value={result.value}
             itemData={itemDataMatrix[i][j]}
             onClick={handleSubmit}
@@ -412,7 +412,7 @@ export function SearchBar({
 
 function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   cssClasses: {
-    inputDivider?: string,
+    inputDivider?: string
   }
 }>) {
   return (
