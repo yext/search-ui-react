@@ -71,7 +71,7 @@ export interface FilterSearchProps {
  */
 export function FilterSearch({
   searchFields,
-  label = 'Filter',
+  label,
   placeholder = 'Search here...',
   searchOnSelect = false,
   sectioned = false,
@@ -153,7 +153,7 @@ export function FilterSearch({
 
   return (
     <div className={cssClasses.container}>
-      {label != 'Filter' && <h1 className={cssClasses.label}>{label}</h1>}
+      {label && <h1 className={cssClasses.label}>{label}</h1>}
       <Dropdown
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
