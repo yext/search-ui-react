@@ -30,7 +30,7 @@ const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
   sectionLabel: 'text-sm text-neutral-dark font-semibold pb-2',
   focusedOption: 'bg-gray-100',
-  option: 'text-sm text-neutral-dark pb-1 cursor-pointer'
+  option: 'text-sm text-neutral-dark pb-1 cursor-pointer hover:bg-gray-100'
 };
 
 /**
