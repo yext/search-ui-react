@@ -25,7 +25,7 @@ import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
 import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { FocusedItemData } from './Dropdown/FocusContext';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses, twMerge } from '../hooks/useComposedCssClasses';
 import { SearchButton } from './SearchButton';
 import { processTranslation } from './utils/processTranslation';
 import {
@@ -43,19 +43,12 @@ import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 const builtInCssClasses: Readonly<SearchBarCssClasses> = {
   container: 'h-12 mb-6',
   inputDivider: 'border-t border-gray-200 mx-2.5',
-  dropdownContainer: 'bg-white py-4 z-10',
-  inputContainer: 'inline-flex items-center justify-between w-full',
-  inputDropdownContainer: 'relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden',
-  inputDropdownContainer___active: 'shadow-lg',
   inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
-  logoContainer: 'w-7 mx-2.5 my-2',
-  optionContainer: 'flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
   searchButton: 'h-7 w-7',
   focusedOption: 'bg-gray-100',
   clearButton: 'h-3 w-3 mr-3.5',
   verticalDivider: 'mr-0.5',
-  recentSearchesOptionContainer: 'flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100',
   recentSearchesIcon: 'w-5 mr-1 text-gray-400',
   recentSearchesOption: 'pl-3 text-neutral-dark',
   recentSearchesNonHighlighted: 'font-normal', // Swap this to semibold once we apply highlighting to recent searches
@@ -72,19 +65,11 @@ const builtInCssClasses: Readonly<SearchBarCssClasses> = {
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   container?: string,
   inputElement?: string,
-  inputContainer?: string,
-  inputDropdownContainer?: string,
-  inputDropdownContainer___active?: string,
   inputDivider?: string,
   clearButton?: string,
   searchButton?: string,
   searchButtonContainer?: string,
-  dropdownContainer?: string,
-  divider?: string,
-  logoContainer?: string,
-  optionContainer?: string,
   focusedOption?: string,
-  recentSearchesOptionContainer?: string,
   recentSearchesIcon?: string,
   recentSearchesOption?: string,
   recentSearchesNonHighlighted?: string,
@@ -298,8 +283,8 @@ export function SearchBar({
 
     return filteredRecentSearches?.map((result, i) => (
       <DropdownItem
-        className={cssClasses.recentSearchesOptionContainer}
-        focusedClassName={classNames(cssClasses.recentSearchesOptionContainer, cssClasses.focusedOption)}
+        className='flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100'
+        focusedClassName={twMerge('flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
         key={i}
         value={result.query}
         onClick={handleSubmit}
@@ -326,8 +311,8 @@ export function SearchBar({
     return autocompleteResponse?.results.map((result, i) => (
       <Fragment key={i}>
         <DropdownItem
-          className={cssClasses.optionContainer}
-          focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
+          className='flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100'
+          focusedClassName={twMerge('flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
           value={result.value}
           onClick={handleSubmit}
         >
@@ -341,8 +326,8 @@ export function SearchBar({
         {!hideVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
           <DropdownItem
             key={j}
-            className={cssClasses.optionContainer}
-            focusedClassName={classNames(cssClasses.optionContainer, cssClasses.focusedOption)}
+            className='flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100'
+            focusedClassName={twMerge('flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
             value={result.value}
             itemData={itemDataMatrix[i][j]}
             onClick={handleSubmit}
@@ -382,8 +367,8 @@ export function SearchBar({
     filteredRecentSearches?.length,
     entityPreviewsCount
   );
-  const activeClassName = classNames(cssClasses.inputDropdownContainer, {
-    [cssClasses.inputDropdownContainer___active ?? '']: hasItems
+  const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {
+    ['shadow-lg' ?? '']: hasItems
   });
 
   const handleToggleDropdown = useCallback(isActive => {
@@ -395,14 +380,14 @@ export function SearchBar({
   return (
     <div className={cssClasses.container}>
       <Dropdown
-        className={cssClasses.inputDropdownContainer}
+        className='relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden'
         activeClassName={activeClassName}
         screenReaderText={screenReaderText}
         parentQuery={query}
         onToggle={handleToggleDropdown}
       >
-        <div className={cssClasses.inputContainer}>
-          <div className={cssClasses.logoContainer}>
+        <div className='inline-flex items-center justify-between w-full'>
+          <div className='w-7 mx-2.5 my-2'>
             <YextIcon />
           </div>
           {renderInput()}
@@ -427,14 +412,13 @@ export function SearchBar({
 
 function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   cssClasses: {
-    inputDivider?: string,
-    dropdownContainer?: string
+    inputDivider?: string
   }
 }>) {
   return (
     <DropdownMenu>
       <div className={cssClasses.inputDivider} />
-      <div className={cssClasses.dropdownContainer}>
+      <div className='bg-white py-4 z-10'>
         {children}
       </div>
     </DropdownMenu>
