@@ -83,5 +83,5 @@ export const NoLabel = (args: FilterSearchProps) => {
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <FilterSearch searchFields={searchFields} {...args} />
     </AnswersHeadlessContext.Provider>
-  )
-}
+  );
+};
