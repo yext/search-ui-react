@@ -36,17 +36,6 @@ describe('search with section labels', () => {
     expect(searchBarElement[0].placeholder).toBe('Search here...');
   });
 
-  it('renders the filter search bar, no label, and default placeholder text', () => {
-    render(<FilterSearch searchFields={searchFieldsProp} />);
-    const label = 'Filter';
-    const labelElement = screen.queryByText(label);
-    const searchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
-
-    expect(labelElement).not.toBeInTheDocument();
-    expect(searchBarElement.length).toBe(1);
-    expect(searchBarElement[0].placeholder).toBe('Search here...');
-  });
-
   it('sets the placeholder text to the specified value', () => {
     render(<FilterSearch searchFields={searchFieldsProp} placeholder='Search...' />);
     const searchBarElement = screen.getByRole<HTMLInputElement>('textbox');
