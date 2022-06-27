@@ -66,7 +66,7 @@ export class AnswersCore {
  * the story's parameters to mock AnswersCore's services on a per-story basis.
  */
 export function AnswersCoreDecorator(story, { parameters }) {
-  if (parameters && parameters.answersCoreServices) {
+  if (parameters?.answersCoreServices) {
     const services = parameters.answersCoreServices;
     if (services.searchService) {
       mockedSearchService = services.searchService;

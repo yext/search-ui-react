@@ -20,7 +20,6 @@ export interface RangeInputCssClasses
 |  [buttonsContainer?](./answers-react-components.rangeinputcssclasses.buttonscontainer.md) | string | <i>(Optional)</i> |
 |  [clearButton?](./answers-react-components.rangeinputcssclasses.clearbutton.md) | string | <i>(Optional)</i> |
 |  [container?](./answers-react-components.rangeinputcssclasses.container.md) | string | <i>(Optional)</i> |
-|  [divider?](./answers-react-components.rangeinputcssclasses.divider.md) | string | <i>(Optional)</i> |
 |  [input\_\_\_disabled?](./answers-react-components.rangeinputcssclasses.input___disabled.md) | string | <i>(Optional)</i> |
 |  [input\_\_\_enabled?](./answers-react-components.rangeinputcssclasses.input___enabled.md) | string | <i>(Optional)</i> |
 |  [input\_\_\_invalid?](./answers-react-components.rangeinputcssclasses.input___invalid.md) | string | <i>(Optional)</i> |

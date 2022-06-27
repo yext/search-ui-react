@@ -52,7 +52,6 @@ export interface RangeInputCssClasses {
   inputPrefix?: string,
   inputPrefix___disabled?: string,
   inputPrefix___enabled?: string,
-  divider?: string,
   applyButton?: string,
   clearButton?: string,
   tooltipContainer?: string,
@@ -76,7 +75,6 @@ const builtInCssClasses: Readonly<RangeInputCssClasses> = {
   inputPrefix: 'absolute left-2 top-2 text-sm',
   inputPrefix___disabled: 'text-neutral-light cursor-not-allowed',
   inputPrefix___enabled: 'text-neutral',
-  divider: 'w-2.5 text-sm text-neutral',
   applyButton: 'text-sm text-primary font-medium',
   clearButton: 'text-sm text-neutral font-medium',
   tooltipContainer: 'invisible peer-hover:visible relative -right-60 -top-10',
@@ -122,7 +120,9 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const hasUserInput = !!(minRangeInput || maxRangeInput);
   const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState;
 
-  useEffect(() => setIsOptionsDisabled(hasUserInput), [hasUserInput, setIsOptionsDisabled]);
+  useEffect(() => {
+    setIsOptionsDisabled(hasUserInput);
+  }, [hasUserInput, setIsOptionsDisabled]);
 
   const handleMinChange = useCallback(event => {
     const input = event?.target?.value;
@@ -201,7 +201,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     <div className={cssClasses.container}>
       <div className={cssClasses.inputRowContainer}>
         {renderInput(minRangeInput, handleMinChange, 'Min')}
-        <div className={cssClasses.divider}>-</div>
+        <div className='w-2.5 text-sm text-neutral'>-</div>
         {renderInput(maxRangeInput, handleMaxChange, 'Max')}
       </div>
       {isDisabled &&

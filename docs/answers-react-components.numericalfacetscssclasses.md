@@ -20,5 +20,4 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
 |  [container?](./answers-react-components.numericalfacetscssclasses.container.md) | string | <i>(Optional)</i> |
 |  [divider?](./answers-react-components.numericalfacetscssclasses.divider.md) | string | <i>(Optional)</i> |
 |  [rangeInputContainer?](./answers-react-components.numericalfacetscssclasses.rangeinputcontainer.md) | string | <i>(Optional)</i> |
-|  [rangeInputDivider?](./answers-react-components.numericalfacetscssclasses.rangeinputdivider.md) | string | <i>(Optional)</i> |
 

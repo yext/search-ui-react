@@ -13,8 +13,7 @@ import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
   container?: string,
   divider?: string,
-  rangeInputContainer?: string,
-  rangeInputDivider?: string
+  rangeInputContainer?: string
 }
 
 /**
@@ -61,11 +60,10 @@ export function NumericalFacets({
   ...filterGroupProps
 }: NumericalFacetsProps) {
   const rangeInputCssClasses = useMemo(() => {
-    const { rangeInputContainer, rangeInputDivider, ...remainingCustomCssClasses } = customCssClasses;
+    const { rangeInputContainer, ...remainingCustomCssClasses } = customCssClasses;
     return {
       ...remainingCustomCssClasses,
-      container: rangeInputContainer,
-      divider: rangeInputDivider
+      container: rangeInputContainer
     };
   }, [customCssClasses]);
 

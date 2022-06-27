@@ -228,19 +228,13 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
-    dropdownContainer?: string;
-    // (undocumented)
     focusedOption?: string;
-    // (undocumented)
-    inputContainer?: string;
     // (undocumented)
     inputElement?: string;
     // (undocumented)
     label?: string;
     // (undocumented)
     optionsContainer?: string;
-    // (undocumented)
-    sectionContainer?: string;
     // (undocumented)
     sectionLabel?: string;
 }
@@ -348,8 +342,6 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
     divider?: string;
     // (undocumented)
     rangeInputContainer?: string;
-    // (undocumented)
-    rangeInputDivider?: string;
 }
 
 // @public
@@ -403,8 +395,6 @@ export interface RangeInputCssClasses {
     clearButton?: string;
     // (undocumented)
     container?: string;
-    // (undocumented)
-    divider?: string;
     // (undocumented)
     input?: string;
     // (undocumented)
