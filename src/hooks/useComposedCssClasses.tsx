@@ -12,7 +12,7 @@ import { extendTailwindMerge } from 'tailwind-merge';
  * so we need to add the 'form' class group here for twMerge to recognize form-input
  * and form-checkbox as conflicting classes.
  */
-const twMerge = extendTailwindMerge({
+export const twMerge = extendTailwindMerge({
   classGroups: {
     form: ['input', 'checkbox', 'textarea', 'select', 'multiselect', 'radio'].map(v => 'form-' + v)
   }

@@ -461,35 +461,19 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
-    divider?: string;
-    // (undocumented)
-    dropdownContainer?: string;
-    // (undocumented)
     entityPreviewsDivider?: string;
     // (undocumented)
     focusedOption?: string;
     // (undocumented)
-    inputContainer?: string;
-    // (undocumented)
     inputDivider?: string;
     // (undocumented)
-    inputDropdownContainer?: string;
-    // (undocumented)
-    inputDropdownContainer___active?: string;
-    // (undocumented)
     inputElement?: string;
-    // (undocumented)
-    logoContainer?: string;
-    // (undocumented)
-    optionContainer?: string;
     // (undocumented)
     recentSearchesIcon?: string;
     // (undocumented)
     recentSearchesNonHighlighted?: string;
     // (undocumented)
     recentSearchesOption?: string;
-    // (undocumented)
-    recentSearchesOptionContainer?: string;
     // (undocumented)
     searchButton?: string;
     // (undocumented)
