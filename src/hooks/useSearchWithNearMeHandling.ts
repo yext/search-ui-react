@@ -1,8 +1,7 @@
-import { useAnswersActions } from '@yext/answers-headless-react';
+import { useAnswersActions, AutocompleteResponse, SearchIntent } from '@yext/answers-headless-react';
 import { executeSearch, executeAutocomplete } from '../utils/search-operations';
 import { updateLocationIfNeeded } from '../utils/location-operations';
 import { MutableRefObject, useRef } from 'react';
-import { AutocompleteResponse, SearchIntent } from '@yext/answers-headless-react';
 import { onSearchFunc } from '../components/SearchBar';
 
 /** The type of a function for executing a query and returning a promise. @public */
