@@ -26,7 +26,7 @@ describe('search with section labels', () => {
   });
 
   it('renders the filter search bar, "Filter" label, and default placeholder text', () => {
-    render(<FilterSearch searchFields={searchFieldsProp} />);
+    render(<FilterSearch searchFields={searchFieldsProp} label='Filter' />);
     const label = 'Filter';
     const labelElement = screen.getByText(label);
     const searchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
