@@ -25,7 +25,7 @@ import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
 import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { FocusedItemData } from './Dropdown/FocusContext';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses, twMerge } from '../hooks/useComposedCssClasses';
 import { SearchButton } from './SearchButton';
 import { processTranslation } from './utils/processTranslation';
 import {
@@ -45,7 +45,6 @@ const builtInCssClasses: Readonly<SearchBarCssClasses> = {
   inputDivider: 'border-t border-gray-200 mx-2.5',
   inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
-  dropdownContainer: 'bg-white py-4 z-10',
   searchButton: 'h-7 w-7',
   focusedOption: 'bg-gray-100',
   clearButton: 'h-3 w-3 mr-3.5',
@@ -68,7 +67,6 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   inputElement?: string,
   inputDivider?: string,
   clearButton?: string,
-  dropdownContainer?: string,
   searchButton?: string,
   searchButtonContainer?: string,
   focusedOption?: string,
@@ -286,7 +284,7 @@ export function SearchBar({
     return filteredRecentSearches?.map((result, i) => (
       <DropdownItem
         className='flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100'
-        focusedClassName={classNames('flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
+        focusedClassName={twMerge('flex items-center h-6.5 px-3.5 py-1.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
         key={i}
         value={result.query}
         onClick={handleSubmit}
@@ -415,13 +413,12 @@ export function SearchBar({
 function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   cssClasses: {
     inputDivider?: string,
-    dropdownContainer?: string
   }
 }>) {
   return (
     <DropdownMenu>
       <div className={cssClasses.inputDivider} />
-      <div className={cssClasses.dropdownContainer}>
+      <div className='bg-white py-4 z-10'>
         {children}
       </div>
     </DropdownMenu>
