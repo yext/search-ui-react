@@ -45,7 +45,7 @@ export default meta;
 export const Primary = (args: FilterSearchProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch searchFields={searchFields} {...args} />
+      <FilterSearch searchFields={searchFields} label='Filter' {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -64,7 +64,7 @@ DropdownUnsectioned.play = ({ canvasElement }) => {
 export const DropdownSectioned = (args: FilterSearchProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch searchFields={searchFields} sectioned={true} {...args} />
+      <FilterSearch searchFields={searchFields} label='Filter' sectioned={true} {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -76,4 +76,12 @@ DropdownSectioned.parameters = {
 DropdownSectioned.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   userEvent.type(canvas.getByRole('textbox'), 'name');
+};
+
+export const NoLabel = (args: FilterSearchProps) => {
+  return (
+    <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+      <FilterSearch searchFields={searchFields} {...args} />
+    </AnswersHeadlessContext.Provider>
+  );
 };
