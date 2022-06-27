@@ -461,6 +461,8 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
     // (undocumented)
     container?: string;
     // (undocumented)
+    dropdownContainer?: string;
+    // (undocumented)
     entityPreviewsDivider?: string;
     // (undocumented)
     focusedOption?: string;
