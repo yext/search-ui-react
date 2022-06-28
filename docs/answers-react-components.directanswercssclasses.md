@@ -17,15 +17,11 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
+|  [answer?](./answers-react-components.directanswercssclasses.answer.md) | string | <i>(Optional)</i> |
 |  [answerContainer?](./answers-react-components.directanswercssclasses.answercontainer.md) | string | <i>(Optional)</i> |
 |  [content?](./answers-react-components.directanswercssclasses.content.md) | string | <i>(Optional)</i> |
+|  [description?](./answers-react-components.directanswercssclasses.description.md) | string | <i>(Optional)</i> |
 |  [directAnswerContainer?](./answers-react-components.directanswercssclasses.directanswercontainer.md) | string | <i>(Optional)</i> |
 |  [directAnswerLoading?](./answers-react-components.directanswercssclasses.directanswerloading.md) | string | <i>(Optional)</i> |
-|  [featuredSnippetDescription?](./answers-react-components.directanswercssclasses.featuredsnippetdescription.md) | string | <i>(Optional)</i> |
-|  [featuredSnippetTitle?](./answers-react-components.directanswercssclasses.featuredsnippettitle.md) | string | <i>(Optional)</i> |
-|  [fieldValueDescription?](./answers-react-components.directanswercssclasses.fieldvaluedescription.md) | string | <i>(Optional)</i> |
-|  [fieldValueTitle?](./answers-react-components.directanswercssclasses.fieldvaluetitle.md) | string | <i>(Optional)</i> |
 |  [highlighted?](./answers-react-components.directanswercssclasses.highlighted.md) | string | <i>(Optional)</i> |
-|  [viewDetailsLink?](./answers-react-components.directanswercssclasses.viewdetailslink.md) | string | <i>(Optional)</i> |
-|  [viewDetailsLinkContainer?](./answers-react-components.directanswercssclasses.viewdetailslinkcontainer.md) | string | <i>(Optional)</i> |
 
