@@ -27,7 +27,7 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
     const { results } = verticalKeyToResults.people;
     const containerClassName = classNames({
       'opacity-50': isLoading,
-      'flex ml-4 mt-1': true          
+      'flex ml-4 mt-1': true
     });
 
     return (
