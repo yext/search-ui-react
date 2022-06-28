@@ -27,7 +27,7 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
     const { results } = verticalKeyToResults.people;
     const containerClassName = classNames({
       'opacity-50': isLoading,
-      'flex ml-4 mt-1': true
+      'flex ml-4 mt-1': true          
     });
 
     return (
@@ -37,6 +37,7 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
             value={r.name ?? ''}
             key={index + '-' + r.name}
             className='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg'
+            focusedClassName='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg bg-gray-100'
           >
             {r.name}
           </DropdownItem>
