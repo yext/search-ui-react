@@ -89,6 +89,26 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     } else if (e.key === 'ArrowUp') {
       updateFocusedItem(focusedIndex - 1);
     }
+    if (e.key === 'Tab' && !e.shiftKey) {
+      if (inputContext.value) {
+        if (focusedIndex >= items.length-1) {
+          toggleDropdown(false);
+          updateFocusedItem(-1);
+        } else {
+          updateFocusedItem(focusedIndex+1);
+          e.preventDefault();
+        }
+      }
+    }
+
+    if (e.key === 'Tab' && e.shiftKey) {
+      if (focusedIndex >= 0) {
+        updateFocusedItem(focusedIndex-1);
+        e.preventDefault();
+      } else {
+        toggleDropdown(false);
+      }
+    }
   });
 
   return (
