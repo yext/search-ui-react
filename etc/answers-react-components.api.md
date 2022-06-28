@@ -439,9 +439,9 @@ export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Eleme
 // @public
 export interface ResultsCountCssClasses {
     // (undocumented)
-    resultCount___loading?: string;
+    resultsCount___loading?: string;
     // (undocumented)
-    resultCountContainer?: string;
+    resultsCountContainer?: string;
 }
 
 // @public

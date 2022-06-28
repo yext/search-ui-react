@@ -16,6 +16,6 @@ export interface ResultsCountCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [resultCount\_\_\_loading?](./answers-react-components.resultscountcssclasses.resultcount___loading.md) | string | <i>(Optional)</i> |
-|  [resultCountContainer?](./answers-react-components.resultscountcssclasses.resultcountcontainer.md) | string | <i>(Optional)</i> |
+|  [resultsCount\_\_\_loading?](./answers-react-components.resultscountcssclasses.resultscount___loading.md) | string | <i>(Optional)</i> |
+|  [resultsCountContainer?](./answers-react-components.resultscountcssclasses.resultscountcontainer.md) | string | <i>(Optional)</i> |
 
