@@ -15,7 +15,7 @@ import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
  */
 export interface ResultsCountCssClasses {
   resultsCountContainer?: string,
-  resultsCount___loading?: string
+  resultsCountLoading?: string
 }
 
 /**
@@ -30,7 +30,7 @@ export interface ResultsCountProps {
 
 const builtInCssClasses: Readonly<ResultsCountCssClasses> = {
   resultsCountContainer: 'font-semibold text-neutral mb-4 py-2 mr-2.5',
-  resultsCount___loading: 'opacity-50'
+  resultsCountLoading: 'opacity-50'
 };
 
 /**
@@ -46,7 +46,7 @@ export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Eleme
   const resultsCountText = useResultsCount();
 
   const resultsCountClassnames = classNames(cssClasses.resultsCountContainer, {
-    [cssClasses.resultsCount___loading ?? '']: isLoading
+    [cssClasses.resultsCountLoading ?? '']: isLoading
   });
   return <div className={resultsCountClassnames}>{resultsCountText}</div>;
 }

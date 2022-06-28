@@ -10,7 +10,7 @@ import { Pagination, PaginationCssClasses } from './Pagination';
  */
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
   verticalResultsContainer?: string,
-  verticalResults___loading?: string
+  verticalResultsLoading?: string
 }
 
 /**

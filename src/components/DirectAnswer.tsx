@@ -29,7 +29,7 @@ export interface DirectAnswerProps {
  */
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
   directAnswerContainer?: string,
-  directAnswer___loading?: string,
+  directAnswerLoading?: string,
   fieldValueTitle?: string,
   featuredSnippetTitle?: string,
   content?: string,
@@ -43,7 +43,7 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
 
 const builtInCssClasses: Readonly<DirectAnswerCssClasses> = {
   directAnswerContainer: '',
-  directAnswer___loading: 'opacity-50',
+  directAnswerLoading: 'opacity-50',
   fieldValueTitle: 'mb-4 text-neutral',
   featuredSnippetTitle: 'mb-4 font-bold text-xl text-neutral-dark',
   content: '',
@@ -115,7 +115,7 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   }
 
   const containerCssClasses = classNames(cssClasses.directAnswerContainer, {
-    [cssClasses.directAnswer___loading ?? '']: isLoading
+    [cssClasses.directAnswerLoading ?? '']: isLoading
   });
 
   return (

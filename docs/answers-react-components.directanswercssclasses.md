@@ -19,8 +19,8 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses
 |  --- | --- | --- |
 |  [answerContainer?](./answers-react-components.directanswercssclasses.answercontainer.md) | string | <i>(Optional)</i> |
 |  [content?](./answers-react-components.directanswercssclasses.content.md) | string | <i>(Optional)</i> |
-|  [directAnswer\_\_\_loading?](./answers-react-components.directanswercssclasses.directanswer___loading.md) | string | <i>(Optional)</i> |
 |  [directAnswerContainer?](./answers-react-components.directanswercssclasses.directanswercontainer.md) | string | <i>(Optional)</i> |
+|  [directAnswerLoading?](./answers-react-components.directanswercssclasses.directanswerloading.md) | string | <i>(Optional)</i> |
 |  [featuredSnippetDescription?](./answers-react-components.directanswercssclasses.featuredsnippetdescription.md) | string | <i>(Optional)</i> |
 |  [featuredSnippetTitle?](./answers-react-components.directanswercssclasses.featuredsnippettitle.md) | string | <i>(Optional)</i> |
 |  [fieldValueDescription?](./answers-react-components.directanswercssclasses.fieldvaluedescription.md) | string | <i>(Optional)</i> |

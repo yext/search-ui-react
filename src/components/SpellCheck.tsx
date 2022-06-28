@@ -10,14 +10,14 @@ import { executeSearch } from '../utils/search-operations';
  * @public
  */
 export interface SpellCheckCssClasses {
-  spellCheck___loading?: string,
+  spellCheckLoading?: string,
   spellCheckContainer?: string,
   helpText?: string,
   link?: string
 }
 
 const builtInCssClasses: Readonly<SpellCheckCssClasses> = {
-  spellCheck___loading: 'opacity-50',
+  spellCheckLoading: 'opacity-50',
   spellCheckContainer: 'text-lg pb-3',
   helpText: 'text-neutral',
   link: 'text-primary font-bold hover:underline focus:underline'
@@ -52,7 +52,7 @@ export function SpellCheck({
   const correctedQuery = useAnswersState(state => state.spellCheck.correctedQuery) ?? '';
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const containerClassNames = classNames(cssClasses.spellCheckContainer, {
-    [cssClasses.spellCheck___loading ?? '']: isLoading
+    [cssClasses.spellCheckLoading ?? '']: isLoading
   });
   const answersActions = useAnswersActions();
   const handleClickSuggestion = useCallback(() => {

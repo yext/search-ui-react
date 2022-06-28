@@ -16,8 +16,8 @@ export interface AlternativeVerticalsCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [alternativeVerticals\_\_\_loading?](./answers-react-components.alternativeverticalscssclasses.alternativeverticals___loading.md) | string | <i>(Optional)</i> |
 |  [alternativeVerticalsContainer?](./answers-react-components.alternativeverticalscssclasses.alternativeverticalscontainer.md) | string | <i>(Optional)</i> |
+|  [alternativeVerticalsLoading?](./answers-react-components.alternativeverticalscssclasses.alternativeverticalsloading.md) | string | <i>(Optional)</i> |
 |  [categoriesText?](./answers-react-components.alternativeverticalscssclasses.categoriestext.md) | string | <i>(Optional)</i> |
 |  [noResultsText?](./answers-react-components.alternativeverticalscssclasses.noresultstext.md) | string | <i>(Optional)</i> |
 |  [suggestion?](./answers-react-components.alternativeverticalscssclasses.suggestion.md) | string | <i>(Optional)</i> |

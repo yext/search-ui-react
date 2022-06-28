@@ -5,7 +5,7 @@ import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 
 const builtInCssClasses: Readonly<VerticalResultsCssClasses> = {
-  verticalResults___loading: 'opacity-50'
+  verticalResultsLoading: 'opacity-50'
 };
 
 interface VerticalResultsDisplayProps {
@@ -35,7 +35,7 @@ export function VerticalResultsDisplay(props: VerticalResultsDisplayProps): JSX.
   }
 
   const resultsClassNames = classNames(cssClasses.verticalResultsContainer, {
-    [cssClasses.verticalResults___loading ?? '']: isLoading
+    [cssClasses.verticalResultsLoading ?? '']: isLoading
   });
 
   return (

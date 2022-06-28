@@ -29,9 +29,9 @@ export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, 
 // @public
 export interface AlternativeVerticalsCssClasses {
     // (undocumented)
-    alternativeVerticals___loading?: string;
-    // (undocumented)
     alternativeVerticalsContainer?: string;
+    // (undocumented)
+    alternativeVerticalsLoading?: string;
     // (undocumented)
     categoriesText?: string;
     // (undocumented)
@@ -60,9 +60,9 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 // @public
 export interface AppliedFiltersCssClasses {
     // (undocumented)
-    appliedFilters___loading?: string;
-    // (undocumented)
     appliedFiltersContainer?: string;
+    // (undocumented)
+    appliedFiltersLoading?: string;
     // (undocumented)
     clearAllButton?: string;
     // (undocumented)
@@ -142,9 +142,9 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     content?: string;
     // (undocumented)
-    directAnswer___loading?: string;
-    // (undocumented)
     directAnswerContainer?: string;
+    // (undocumented)
+    directAnswerLoading?: string;
     // (undocumented)
     featuredSnippetDescription?: string;
     // (undocumented)
@@ -368,9 +368,9 @@ export interface PaginationCssClasses {
     // (undocumented)
     leftIconContainer?: string;
     // (undocumented)
-    pagination___loading?: string;
-    // (undocumented)
     paginationContainer?: string;
+    // (undocumented)
+    paginationLoading?: string;
     // (undocumented)
     rightIconContainer?: string;
     // (undocumented)
@@ -439,9 +439,9 @@ export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Eleme
 // @public
 export interface ResultsCountCssClasses {
     // (undocumented)
-    resultsCount___loading?: string;
-    // (undocumented)
     resultsCountContainer?: string;
+    // (undocumented)
+    resultsCountLoading?: string;
 }
 
 // @public
@@ -535,9 +535,9 @@ export interface SpellCheckCssClasses {
     // (undocumented)
     link?: string;
     // (undocumented)
-    spellCheck___loading?: string;
-    // (undocumented)
     spellCheckContainer?: string;
+    // (undocumented)
+    spellCheckLoading?: string;
 }
 
 // @public
@@ -675,9 +675,9 @@ export function UniversalResults({ verticalConfigMap, showAppliedFilters, custom
 // @public
 export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
     // (undocumented)
-    universalResults___loading?: string;
-    // (undocumented)
     universalResultsContainer?: string;
+    // (undocumented)
+    universalResultsLoading?: string;
 }
 
 // @public
@@ -733,9 +733,9 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
 // @public
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
     // (undocumented)
-    verticalResults___loading?: string;
-    // (undocumented)
     verticalResultsContainer?: string;
+    // (undocumented)
+    verticalResultsLoading?: string;
 }
 
 // @public
