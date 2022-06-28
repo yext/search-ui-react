@@ -55,3 +55,15 @@ DropdownExpanded.play = ({ canvasElement }) => {
   userEvent.keyboard('{enter}');
   userEvent.click(canvas.getByRole('textbox'));
 };
+
+export const HighlightDropdown = Primary.bind({});
+HighlightDropdown.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  userEvent.type(canvas.getByRole('textbox'), 'recent search 1');
+  userEvent.keyboard('{enter}');
+  userEvent.clear(canvas.getByRole('textbox'));
+  userEvent.type(canvas.getByRole('textbox'), 'recent search 2');
+  userEvent.keyboard('{enter}');
+  userEvent.click(canvas.getByRole('textbox'));
+  userEvent.keyboard('{Tab}');
+};
