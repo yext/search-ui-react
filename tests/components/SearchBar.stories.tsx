@@ -65,5 +65,6 @@ HighlightDropdown.play = ({ canvasElement }) => {
   userEvent.type(canvas.getByRole('textbox'), 'recent search 2');
   userEvent.keyboard('{enter}');
   userEvent.click(canvas.getByRole('textbox'));
+  userEvent.clear(canvas.getByRole('textbox'));
   userEvent.keyboard('{Tab}');
 };
