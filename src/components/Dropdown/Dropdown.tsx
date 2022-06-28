@@ -61,7 +61,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     screenReaderKey,
     setScreenReaderKey
   );
-  const { focusedIndex, updateFocusedItem } = focusContext;
+  const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
 
   const dropdownContext = useDropdownContextInstance(value, screenReaderUUID, onToggle, onSelect);
   const { toggleDropdown, isActive } = dropdownContext;
@@ -74,6 +74,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   }, [parentQuery, lastTypedOrSubmittedValue, updateFocusedItem, setLastTypedOrSubmittedValue]);
 
   useRootClose(containerRef, () => {
+    onSelect?.(value, focusedIndex, focusedItemData);
     toggleDropdown(false);
   }, { disabled: !isActive });
 
