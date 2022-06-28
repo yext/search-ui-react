@@ -9,5 +9,4 @@ jobs:
   linting:
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: yext/slapshot-reusable-workflows/.github/workflows/run-linting.yml@run_linting
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run-linting.yml@run_linting
