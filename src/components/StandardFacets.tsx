@@ -9,7 +9,7 @@ import { DisplayableFacet } from '@yext/answers-headless-react';
  * @public
  */
 export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
-  container?: string,
+  standardFacetsContainer?: string,
   divider?: string
 }
 
@@ -52,7 +52,7 @@ export interface StandardFacetsProps {
 export function StandardFacets(props: StandardFacetsProps) {
   const { searchOnChange, excludedFieldIds = [], customCssClasses = {}, ...filterGroupProps } = props;
   return (
-    <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.container}>
+    <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.standardFacetsContainer}>
       {facets => facets
         .filter(f => !excludedFieldIds.includes(f.fieldId) && isStringFacet(f))
         .map((f, i) => {

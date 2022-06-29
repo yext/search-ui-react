@@ -81,7 +81,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
 
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
-    [cssClasses.appliedFiltersContainer___loading ?? '']: isLoading
+    [cssClasses.appliedFiltersLoading ?? '']: isLoading
   });
 
   const href = getViewAllUrl

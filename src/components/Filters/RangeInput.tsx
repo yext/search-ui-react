@@ -38,7 +38,7 @@ export interface RangeInputProps {
  * @public
  */
 export interface RangeInputCssClasses {
-  container?: string,
+  rangeInputContainer?: string,
   input?: string,
   input___withPrefix?: string,
   input___withoutPrefix?: string,
@@ -61,7 +61,7 @@ export interface RangeInputCssClasses {
 }
 
 const builtInCssClasses: Readonly<RangeInputCssClasses> = {
-  container: 'flex flex-col',
+  rangeInputContainer: 'flex flex-col',
   input: 'w-24 h-9 form-input cursor-pointer border rounded-md focus:ring-0 text-neutral-dark text-sm appearance-none leading-9',
   input___withPrefix: 'pl-[1.375rem]',
   input___withoutPrefix: 'px-2',
@@ -198,7 +198,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   }
 
   return (
-    <div className={cssClasses.container}>
+    <div className={cssClasses.rangeInputContainer}>
       <div className={cssClasses.inputRowContainer}>
         {renderInput(minRangeInput, handleMinChange, 'Min')}
         <div className='w-2.5 text-sm text-neutral'>-</div>

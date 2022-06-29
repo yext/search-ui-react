@@ -19,7 +19,6 @@ export interface RangeInputCssClasses
 |  [applyButton?](./answers-react-components.rangeinputcssclasses.applybutton.md) | string | <i>(Optional)</i> |
 |  [buttonsContainer?](./answers-react-components.rangeinputcssclasses.buttonscontainer.md) | string | <i>(Optional)</i> |
 |  [clearButton?](./answers-react-components.rangeinputcssclasses.clearbutton.md) | string | <i>(Optional)</i> |
-|  [container?](./answers-react-components.rangeinputcssclasses.container.md) | string | <i>(Optional)</i> |
 |  [input\_\_\_disabled?](./answers-react-components.rangeinputcssclasses.input___disabled.md) | string | <i>(Optional)</i> |
 |  [input\_\_\_enabled?](./answers-react-components.rangeinputcssclasses.input___enabled.md) | string | <i>(Optional)</i> |
 |  [input\_\_\_invalid?](./answers-react-components.rangeinputcssclasses.input___invalid.md) | string | <i>(Optional)</i> |
@@ -34,6 +33,7 @@ export interface RangeInputCssClasses
 |  [inputRowContainer?](./answers-react-components.rangeinputcssclasses.inputrowcontainer.md) | string | <i>(Optional)</i> |
 |  [invalidMessage?](./answers-react-components.rangeinputcssclasses.invalidmessage.md) | string | <i>(Optional)</i> |
 |  [invalidRowContainer?](./answers-react-components.rangeinputcssclasses.invalidrowcontainer.md) | string | <i>(Optional)</i> |
+|  [rangeInputContainer?](./answers-react-components.rangeinputcssclasses.rangeinputcontainer.md) | string | <i>(Optional)</i> |
 |  [tooltip?](./answers-react-components.rangeinputcssclasses.tooltip.md) | string | <i>(Optional)</i> |
 |  [tooltipContainer?](./answers-react-components.rangeinputcssclasses.tooltipcontainer.md) | string | <i>(Optional)</i> |
 

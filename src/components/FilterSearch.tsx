@@ -16,7 +16,7 @@ import { renderAutocompleteResult, AutocompleteResultCssClasses } from './utils/
  * @public
  */
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
-  container?: string,
+  filterSearchContainer?: string,
   label?: string,
   inputElement?: string,
   sectionLabel?: string,
@@ -25,7 +25,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 }
 
 const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
-  container: 'mb-2',
+  filterSearchContainer: 'mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
   inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
   sectionLabel: 'text-sm text-neutral-dark font-semibold py-2 px-4',
@@ -163,7 +163,7 @@ export function FilterSearch({
   }
 
   return (
-    <div className={cssClasses.container}>
+    <div className={cssClasses.filterSearchContainer}>
       {label && <h1 className={cssClasses.label}>{label}</h1>}
       <Dropdown
         screenReaderText={getScreenReaderText(sections)}

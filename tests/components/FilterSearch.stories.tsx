@@ -45,7 +45,7 @@ export default meta;
 export const Primary = (args: FilterSearchProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch searchFields={searchFields} label='Filter' {...args} />
+      <FilterSearch label='Filter' {...args} searchFields={searchFields} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -64,7 +64,7 @@ DropdownUnsectioned.play = ({ canvasElement }) => {
 export const DropdownSectioned = (args: FilterSearchProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch searchFields={searchFields} label='Filter' sectioned={true} {...args} />
+      <FilterSearch label='Filter' sectioned={true} {...args} searchFields={searchFields} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -78,10 +78,29 @@ DropdownSectioned.play = ({ canvasElement }) => {
   userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
+export const DropdownHighlight = (args: FilterSearchProps) => {
+  return (
+    <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+      <FilterSearch label='Filter' sectioned={true} {...args} searchFields={searchFields} />
+    </AnswersHeadlessContext.Provider>
+  );
+};
+DropdownHighlight.parameters = {
+  answersCoreServices: {
+    autoCompleteService: generateMockedAutocompleteService(undefined, labeledFilterSearchResponse)
+  }
+};
+DropdownHighlight.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  userEvent.click(canvas.getByRole('textbox'));
+  userEvent.keyboard('name');
+  userEvent.keyboard('{Tab}{Tab}', { delay: 1 });
+};
+
 export const NoLabel = (args: FilterSearchProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch searchFields={searchFields} {...args} />
+      <FilterSearch {...args} searchFields={searchFields} />
     </AnswersHeadlessContext.Provider>
   );
 };

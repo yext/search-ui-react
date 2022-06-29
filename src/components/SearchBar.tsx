@@ -41,7 +41,7 @@ import { useMemo } from 'react';
 import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 
 const builtInCssClasses: Readonly<SearchBarCssClasses> = {
-  container: 'h-12 mb-6',
+  searchBarContainer: 'h-12 mb-6',
   inputDivider: 'border-t border-gray-200 mx-2.5',
   inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
@@ -63,7 +63,7 @@ const builtInCssClasses: Readonly<SearchBarCssClasses> = {
  * @public
  */
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
-  container?: string,
+  searchBarContainer?: string,
   inputElement?: string,
   inputDivider?: string,
   clearButton?: string,
@@ -378,7 +378,7 @@ export function SearchBar({
   }, [clearAutocomplete]);
 
   return (
-    <div className={cssClasses.container}>
+    <div className={cssClasses.searchBarContainer}>
       <Dropdown
         className='relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden'
         activeClassName={activeClassName}

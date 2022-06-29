@@ -16,8 +16,8 @@ export interface SpellCheckCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [container?](./answers-react-components.spellcheckcssclasses.container.md) | string | <i>(Optional)</i> |
 |  [helpText?](./answers-react-components.spellcheckcssclasses.helptext.md) | string | <i>(Optional)</i> |
 |  [link?](./answers-react-components.spellcheckcssclasses.link.md) | string | <i>(Optional)</i> |
-|  [spellCheck\_\_\_loading?](./answers-react-components.spellcheckcssclasses.spellcheck___loading.md) | string | <i>(Optional)</i> |
+|  [spellCheckContainer?](./answers-react-components.spellcheckcssclasses.spellcheckcontainer.md) | string | <i>(Optional)</i> |
+|  [spellCheckLoading?](./answers-react-components.spellcheckcssclasses.spellcheckloading.md) | string | <i>(Optional)</i> |
 

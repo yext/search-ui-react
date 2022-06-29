@@ -13,8 +13,8 @@ import { VerticalConfig } from '../models/verticalConfig';
  * @public
  */
 export interface AlternativeVerticalsCssClasses {
-  container?: string,
-  container___loading?: string,
+  alternativeVerticalsContainer?: string,
+  alternativeVerticalsLoading?: string,
   noResultsText?: string,
   categoriesText?: string,
   suggestion?: string,
@@ -22,8 +22,8 @@ export interface AlternativeVerticalsCssClasses {
 }
 
 const builtInCssClasses: Readonly<AlternativeVerticalsCssClasses> = {
-  container: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
-  container___loading: 'opacity-50',
+  alternativeVerticalsContainer: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
+  alternativeVerticalsLoading: 'opacity-50',
   noResultsText: 'text-lg text-neutral-dark pb-2',
   categoriesText: 'text-neutral',
   suggestion: 'pb-4',
@@ -104,8 +104,8 @@ export function AlternativeVerticals({
   const isShowingAllResults = displayAllOnNoResults && allResultsForVertical.length > 0;
 
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
-  const containerClassNames = classNames(cssClasses.container, {
-    [cssClasses.container___loading ?? '']: isLoading
+  const containerClassNames = classNames(cssClasses.alternativeVerticalsContainer, {
+    [cssClasses.alternativeVerticalsLoading ?? '']: isLoading
   });
 
   const getSuggestionUrl = customGetSuggestionUrl
