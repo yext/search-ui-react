@@ -109,6 +109,22 @@ export function FilterSearch({
     }
   }, [answersActions, currentFilter, searchOnSelect]);
 
+  const handleBlurDropdown = useCallback((_prevValue, _value, _index, itemData) => {
+    const newFilter = itemData?.filter as Filter;
+    const newDisplayName = itemData?.displayName as string;
+    if (newFilter && newDisplayName) {
+      if (currentFilter) {
+        answersActions.setFilterOption({ ...currentFilter, selected: false });
+      }
+      answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+      setCurrentFilter(newFilter);
+      answersActions.setOffset(0);
+      if (searchOnSelect) {
+        executeSearch(answersActions);
+      }
+    }
+  }, [answersActions, currentFilter, searchOnSelect]);
+
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
   const itemDataMatrix = useMemo(() => {
@@ -152,6 +168,7 @@ export function FilterSearch({
       <Dropdown
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
+        onBlur={handleBlurDropdown}
       >
         <DropdownInput
           className={cssClasses.inputElement}

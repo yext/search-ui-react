@@ -21,6 +21,7 @@ export interface DropdownProps {
   initialValue?: string,
   parentQuery?: string,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
+  onBlur?: (prevValue: string, value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
   onToggle?: (isActive: boolean, value: string) => void,
   className?: string,
   activeClassName?: string
@@ -40,6 +41,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     screenReaderInstructions = 'When autocomplete results are available, use up and down arrows to review and enter to select.',
     initialValue,
     onSelect,
+    onBlur,
     onToggle,
     className,
     activeClassName,
@@ -74,7 +76,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   }, [parentQuery, lastTypedOrSubmittedValue, updateFocusedItem, setLastTypedOrSubmittedValue]);
 
   useRootClose(containerRef, () => {
-    onSelect?.(value, focusedIndex, focusedItemData);
+    onBlur?.(lastTypedOrSubmittedValue, value, focusedIndex, focusedItemData);
     toggleDropdown(false);
   }, { disabled: !isActive });
 
