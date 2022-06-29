@@ -1,6 +1,6 @@
 import { FacetsProvider, RangeInput, RangeInputCssClasses } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { Fragment, useMemo } from 'react';
+import { Fragment } from 'react';
 import { DisplayableFacet, NumberRangeValue } from '@yext/answers-headless-react';
 import { StandardFacetsProps } from './StandardFacets';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
