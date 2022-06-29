@@ -17,6 +17,6 @@ export interface StandardFacetsCssClasses extends FilterGroupCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [container?](./answers-react-components.standardfacetscssclasses.container.md) | string | <i>(Optional)</i> |
 |  [divider?](./answers-react-components.standardfacetscssclasses.divider.md) | string | <i>(Optional)</i> |
+|  [standardFacetsContainer?](./answers-react-components.standardfacetscssclasses.standardfacetscontainer.md) | string | <i>(Optional)</i> |
 

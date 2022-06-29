@@ -14,8 +14,8 @@ import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
  * @public
  */
 export interface ResultsCountCssClasses {
-  resultCountText?: string,
-  resultCountText___loading?: string
+  resultsCountContainer?: string,
+  resultsCountLoading?: string
 }
 
 /**
@@ -29,8 +29,8 @@ export interface ResultsCountProps {
 }
 
 const builtInCssClasses: Readonly<ResultsCountCssClasses> = {
-  resultCountText: 'font-semibold text-neutral mb-4 py-2 mr-2.5',
-  resultCountText___loading: 'opacity-50'
+  resultsCountContainer: 'font-semibold text-neutral mb-4 py-2 mr-2.5',
+  resultsCountLoading: 'opacity-50'
 };
 
 /**
@@ -45,8 +45,8 @@ export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Eleme
   const isLoading = useAnswersState(state => state.searchStatus.isLoading);
   const resultsCountText = useResultsCount();
 
-  const resultsCountClassnames = classNames(cssClasses.resultCountText, {
-    [cssClasses.resultCountText___loading ?? '']: isLoading
+  const resultsCountClassnames = classNames(cssClasses.resultsCountContainer, {
+    [cssClasses.resultsCountLoading ?? '']: isLoading
   });
   return <div className={resultsCountClassnames}>{resultsCountText}</div>;
 }

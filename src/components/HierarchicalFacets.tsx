@@ -15,7 +15,7 @@ import { Fragment } from 'react';
  * @public
  */
 export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses {
-  container?: string,
+  hierarchicalFacetsContainer?: string,
   divider?: string
 }
 
@@ -54,7 +54,7 @@ export function HierarchicalFacets({
   showMoreLimit
 }: HierarchicalFacetsProps) {
   return (
-    <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.container}>
+    <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.hierarchicalFacetsContainer}>
       {facets => facets
         .filter(f => f.options.length > 0 && includedFieldIds.includes(f.fieldId))
         .map((f, i) => {

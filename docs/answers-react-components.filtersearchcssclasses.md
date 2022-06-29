@@ -17,7 +17,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [container?](./answers-react-components.filtersearchcssclasses.container.md) | string | <i>(Optional)</i> |
+|  [filterSearchContainer?](./answers-react-components.filtersearchcssclasses.filtersearchcontainer.md) | string | <i>(Optional)</i> |
 |  [focusedOption?](./answers-react-components.filtersearchcssclasses.focusedoption.md) | string | <i>(Optional)</i> |
 |  [inputElement?](./answers-react-components.filtersearchcssclasses.inputelement.md) | string | <i>(Optional)</i> |
 |  [label?](./answers-react-components.filtersearchcssclasses.label.md) | string | <i>(Optional)</i> |

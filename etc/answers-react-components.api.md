@@ -29,11 +29,11 @@ export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, 
 // @public
 export interface AlternativeVerticalsCssClasses {
     // (undocumented)
+    alternativeVerticalsContainer?: string;
+    // (undocumented)
+    alternativeVerticalsLoading?: string;
+    // (undocumented)
     categoriesText?: string;
-    // (undocumented)
-    container?: string;
-    // (undocumented)
-    container___loading?: string;
     // (undocumented)
     noResultsText?: string;
     // (undocumented)
@@ -62,7 +62,7 @@ export interface AppliedFiltersCssClasses {
     // (undocumented)
     appliedFiltersContainer?: string;
     // (undocumented)
-    appliedFiltersContainer___loading?: string;
+    appliedFiltersLoading?: string;
     // (undocumented)
     clearAllButton?: string;
     // (undocumented)
@@ -140,11 +140,11 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     answerContainer?: string;
     // (undocumented)
-    container?: string;
-    // (undocumented)
-    container___loading?: string;
-    // (undocumented)
     content?: string;
+    // (undocumented)
+    directAnswerContainer?: string;
+    // (undocumented)
+    directAnswerLoading?: string;
     // (undocumented)
     featuredSnippetDescription?: string;
     // (undocumented)
@@ -226,7 +226,7 @@ export function FilterSearch({ searchFields, label, placeholder, searchOnSelect,
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
     // (undocumented)
-    container?: string;
+    filterSearchContainer?: string;
     // (undocumented)
     focusedOption?: string;
     // (undocumented)
@@ -284,9 +284,9 @@ export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpande
 // @public
 export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses {
     // (undocumented)
-    container?: string;
-    // (undocumented)
     divider?: string;
+    // (undocumented)
+    hierarchicalFacetsContainer?: string;
 }
 
 // @public
@@ -337,11 +337,9 @@ export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDis
 // @public
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
     // (undocumented)
-    container?: string;
-    // (undocumented)
     divider?: string;
     // (undocumented)
-    rangeInputContainer?: string;
+    numericalFacetsContainer?: string;
 }
 
 // @public
@@ -372,7 +370,7 @@ export interface PaginationCssClasses {
     // (undocumented)
     paginationContainer?: string;
     // (undocumented)
-    paginationContainer___loading?: string;
+    paginationLoading?: string;
     // (undocumented)
     rightIconContainer?: string;
     // (undocumented)
@@ -393,8 +391,6 @@ export interface RangeInputCssClasses {
     buttonsContainer?: string;
     // (undocumented)
     clearButton?: string;
-    // (undocumented)
-    container?: string;
     // (undocumented)
     input?: string;
     // (undocumented)
@@ -424,6 +420,8 @@ export interface RangeInputCssClasses {
     // (undocumented)
     invalidRowContainer?: string;
     // (undocumented)
+    rangeInputContainer?: string;
+    // (undocumented)
     tooltip?: string;
     // (undocumented)
     tooltipContainer?: string;
@@ -441,9 +439,9 @@ export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Eleme
 // @public
 export interface ResultsCountCssClasses {
     // (undocumented)
-    resultCountText?: string;
+    resultsCountContainer?: string;
     // (undocumented)
-    resultCountText___loading?: string;
+    resultsCountLoading?: string;
 }
 
 // @public
@@ -459,8 +457,6 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
     // (undocumented)
     clearButton?: string;
     // (undocumented)
-    container?: string;
-    // (undocumented)
     entityPreviewsDivider?: string;
     // (undocumented)
     focusedOption?: string;
@@ -474,6 +470,8 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
     recentSearchesNonHighlighted?: string;
     // (undocumented)
     recentSearchesOption?: string;
+    // (undocumented)
+    searchBarContainer?: string;
     // (undocumented)
     searchButton?: string;
     // (undocumented)
@@ -533,13 +531,13 @@ export function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX.
 // @public
 export interface SpellCheckCssClasses {
     // (undocumented)
-    container?: string;
-    // (undocumented)
     helpText?: string;
     // (undocumented)
     link?: string;
     // (undocumented)
-    spellCheck___loading?: string;
+    spellCheckContainer?: string;
+    // (undocumented)
+    spellCheckLoading?: string;
 }
 
 // @public
@@ -590,9 +588,9 @@ export function StandardFacets(props: StandardFacetsProps): JSX.Element;
 // @public
 export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
     // (undocumented)
-    container?: string;
-    // (undocumented)
     divider?: string;
+    // (undocumented)
+    standardFacetsContainer?: string;
 }
 
 // @public
@@ -630,7 +628,7 @@ export function StaticFilters(props: StaticFiltersProps): JSX.Element;
 // @public
 export interface StaticFiltersCssClasses extends FilterGroupCssClasses {
     // (undocumented)
-    container?: string;
+    staticFiltersContainer?: string;
 }
 
 // @public
@@ -651,9 +649,9 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
 // @public
 export interface ThumbsFeedbackCssClasses {
     // (undocumented)
-    feedbackButtonsContainer?: string;
-    // (undocumented)
     thumbsDownIcon?: string;
+    // (undocumented)
+    thumbsFeedbackContainer?: string;
     // (undocumented)
     thumbsUpIcon?: string;
 }
@@ -677,9 +675,9 @@ export function UniversalResults({ verticalConfigMap, showAppliedFilters, custom
 // @public
 export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
     // (undocumented)
-    container?: string;
+    universalResultsContainer?: string;
     // (undocumented)
-    results___loading?: string;
+    universalResultsLoading?: string;
 }
 
 // @public
@@ -735,9 +733,9 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
 // @public
 export interface VerticalResultsCssClasses extends PaginationCssClasses {
     // (undocumented)
-    results?: string;
+    verticalResultsContainer?: string;
     // (undocumented)
-    results___loading?: string;
+    verticalResultsLoading?: string;
 }
 
 // @public
