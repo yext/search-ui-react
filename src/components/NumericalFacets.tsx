@@ -1,6 +1,6 @@
 import { FacetsProvider, RangeInput, RangeInputCssClasses } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { Fragment, useMemo } from 'react';
+import { Fragment } from 'react';
 import { DisplayableFacet, NumberRangeValue } from '@yext/answers-headless-react';
 import { StandardFacetsProps } from './StandardFacets';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
@@ -11,9 +11,8 @@ import { isNumberRangeFilter } from '../models/NumberRangeFilter';
  * @public
  */
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
-  container?: string,
-  divider?: string,
-  rangeInputContainer?: string
+  numericalFacetsContainer?: string,
+  divider?: string
 }
 
 /**
@@ -59,16 +58,8 @@ export function NumericalFacets({
   customCssClasses = {},
   ...filterGroupProps
 }: NumericalFacetsProps) {
-  const rangeInputCssClasses = useMemo(() => {
-    const { rangeInputContainer, ...remainingCustomCssClasses } = customCssClasses;
-    return {
-      ...remainingCustomCssClasses,
-      container: rangeInputContainer
-    };
-  }, [customCssClasses]);
-
   return (
-    <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.container}>
+    <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.numericalFacetsContainer}>
       {facets => facets
         .filter(f => isNumericalFacet(f)
           && (includedFieldIds.length === 0 || includedFieldIds.includes(f.fieldId)))
@@ -85,7 +76,7 @@ export function NumericalFacets({
                 <RangeInput
                   getFilterDisplayName={getFilterDisplayName}
                   inputPrefix={inputPrefix}
-                  customCssClasses={rangeInputCssClasses}
+                  customCssClasses={customCssClasses}
                 />
               </FilterGroup>
               {(i < facets.length - 1) && <Divider className={customCssClasses.divider}/>}

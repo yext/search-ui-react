@@ -17,5 +17,5 @@ export interface StaticFiltersCssClasses extends FilterGroupCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [container?](./answers-react-components.staticfilterscssclasses.container.md) | string | <i>(Optional)</i> |
+|  [staticFiltersContainer?](./answers-react-components.staticfilterscssclasses.staticfilterscontainer.md) | string | <i>(Optional)</i> |
 

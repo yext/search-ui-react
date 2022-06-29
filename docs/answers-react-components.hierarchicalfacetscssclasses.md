@@ -17,6 +17,6 @@ export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCs
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [container?](./answers-react-components.hierarchicalfacetscssclasses.container.md) | string | <i>(Optional)</i> |
 |  [divider?](./answers-react-components.hierarchicalfacetscssclasses.divider.md) | string | <i>(Optional)</i> |
+|  [hierarchicalFacetsContainer?](./answers-react-components.hierarchicalfacetscssclasses.hierarchicalfacetscontainer.md) | string | <i>(Optional)</i> |
 

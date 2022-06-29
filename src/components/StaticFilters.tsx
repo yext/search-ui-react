@@ -8,7 +8,7 @@ import { StaticFiltersProvider } from './Filters/StaticFiltersProvider';
  * @public
  */
 export interface StaticFiltersCssClasses extends FilterGroupCssClasses {
-  container?: string
+  staticFiltersContainer?: string
 }
 
 /**
@@ -59,7 +59,7 @@ export interface StaticFiltersProps {
  */
 export function StaticFilters(props: StaticFiltersProps): JSX.Element {
   const { searchOnChange, customCssClasses = {}, ...filterGroupProps } = props;
-  const { container: containerClassName, ...filterGroupCssClasses } = customCssClasses;
+  const { staticFiltersContainer: containerClassName, ...filterGroupCssClasses } = customCssClasses;
   return (
     <StaticFiltersProvider searchOnChange={searchOnChange} className={containerClassName}>
       <FilterGroup

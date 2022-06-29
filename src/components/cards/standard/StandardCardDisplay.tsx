@@ -36,7 +36,7 @@ const builtInCssClasses: Readonly<StandardCardCssClasses> = {
   cta1: 'whitespace-nowrap bg-primary text-white font-medium rounded-lg py-2 px-5 shadow',
   cta2: 'whitespace-nowrap bg-white text-primary font-medium rounded-lg py-2 px-5 mt-2 shadow',
   title: 'text-lg font-medium',
-  feedbackButtonsContainer: 'flex justify-end mt-4 text-sm text-gray-500 font-medium',
+  thumbsFeedbackContainer: 'flex justify-end mt-4 text-sm text-gray-500 font-medium',
   thumbsUpIcon: thumbsFeedbackCssClasses.thumbsUpIcon,
   thumbsDownIcon: thumbsFeedbackCssClasses.thumbsDownIcon
 };

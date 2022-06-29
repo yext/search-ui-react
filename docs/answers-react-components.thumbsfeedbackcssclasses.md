@@ -16,7 +16,7 @@ export interface ThumbsFeedbackCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [feedbackButtonsContainer?](./answers-react-components.thumbsfeedbackcssclasses.feedbackbuttonscontainer.md) | string | <i>(Optional)</i> |
 |  [thumbsDownIcon?](./answers-react-components.thumbsfeedbackcssclasses.thumbsdownicon.md) | string | <i>(Optional)</i> |
+|  [thumbsFeedbackContainer?](./answers-react-components.thumbsfeedbackcssclasses.thumbsfeedbackcontainer.md) | string | <i>(Optional)</i> |
 |  [thumbsUpIcon?](./answers-react-components.thumbsfeedbackcssclasses.thumbsupicon.md) | string | <i>(Optional)</i> |
 

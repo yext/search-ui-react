@@ -18,7 +18,6 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [clearButton?](./answers-react-components.searchbarcssclasses.clearbutton.md) | string | <i>(Optional)</i> |
-|  [container?](./answers-react-components.searchbarcssclasses.container.md) | string | <i>(Optional)</i> |
 |  [entityPreviewsDivider?](./answers-react-components.searchbarcssclasses.entitypreviewsdivider.md) | string | <i>(Optional)</i> |
 |  [focusedOption?](./answers-react-components.searchbarcssclasses.focusedoption.md) | string | <i>(Optional)</i> |
 |  [inputDivider?](./answers-react-components.searchbarcssclasses.inputdivider.md) | string | <i>(Optional)</i> |
@@ -26,6 +25,7 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses
 |  [recentSearchesIcon?](./answers-react-components.searchbarcssclasses.recentsearchesicon.md) | string | <i>(Optional)</i> |
 |  [recentSearchesNonHighlighted?](./answers-react-components.searchbarcssclasses.recentsearchesnonhighlighted.md) | string | <i>(Optional)</i> |
 |  [recentSearchesOption?](./answers-react-components.searchbarcssclasses.recentsearchesoption.md) | string | <i>(Optional)</i> |
+|  [searchBarContainer?](./answers-react-components.searchbarcssclasses.searchbarcontainer.md) | string | <i>(Optional)</i> |
 |  [searchButton?](./answers-react-components.searchbarcssclasses.searchbutton.md) | string | <i>(Optional)</i> |
 |  [searchButtonContainer?](./answers-react-components.searchbarcssclasses.searchbuttoncontainer.md) | string | <i>(Optional)</i> |
 |  [verticalDivider?](./answers-react-components.searchbarcssclasses.verticaldivider.md) | string | <i>(Optional)</i> |
