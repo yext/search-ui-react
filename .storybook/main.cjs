@@ -20,6 +20,7 @@ module.exports = {
     },
   ],
   framework: '@storybook/react',
+  staticDirs: ['./public'],
   webpackFinal: async (config) => {
     config.resolve.alias['./AnswersCore'] = require.resolve('../tests/__fixtures__/core/AnswersCore.ts');
     config.resolve.alias['../utils/location-operations'] = require.resolve('../tests/__fixtures__/utils/location-operations.ts');
