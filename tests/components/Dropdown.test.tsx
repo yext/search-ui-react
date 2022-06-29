@@ -184,6 +184,39 @@ describe('Dropdown', () => {
     expect(mockedOnSelectFn).toHaveBeenCalledWith('item1', 0, undefined);
   });
 
+  it('selects when an option is focused on blur', () => {
+    const mockedOnBlurFn = jest.fn();
+    const dropdownProps: DropdownProps = {
+      screenReaderText: 'screen reader text here',
+      onBlur: mockedOnBlurFn
+    };
+    render(
+      <div data-testid='container'>
+        <Dropdown {...dropdownProps}>
+          <DropdownInput />
+          <DropdownMenu>
+            <DropdownItem value='item1'>
+              <p data-testid='item1'>item1</p>
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+        <div>external div</div>
+      </div>
+    );
+    const inputNode = screen.getByRole('textbox');
+    userEvent.click(inputNode);
+    expect(screen.getByTestId('item1')).toBeDefined();
+    expect(inputNode).toHaveValue('');
+
+    userEvent.keyboard('{arrowdown}');
+    userEvent.click(screen.getByText('external div'));
+
+    expect(inputNode).toHaveValue('item1');
+    expect(screen.queryByTestId('item1')).toBeNull();
+    expect(mockedOnBlurFn).toBeCalledTimes(1);
+    expect(mockedOnBlurFn).toHaveBeenCalledWith('', 'item1', 0, undefined);
+  });
+
   it('updates options when user provide new input', () => {
     const mockedOnChangeFn = jest.fn();
     const dropdownProps: DropdownProps = {

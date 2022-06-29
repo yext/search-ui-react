@@ -119,11 +119,8 @@ export function FilterSearch({
       answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
       setCurrentFilter(newFilter);
       answersActions.setOffset(0);
-      if (searchOnSelect) {
-        executeSearch(answersActions);
-      }
     }
-  }, [answersActions, currentFilter, searchOnSelect]);
+  }, [answersActions, currentFilter]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
