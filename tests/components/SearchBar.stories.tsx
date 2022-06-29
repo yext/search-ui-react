@@ -38,6 +38,19 @@ const meta: ComponentMeta<typeof SearchBar> = {
 export default meta;
 
 export const Primary = (args: SearchBarProps) => {
+  localStorage.clear();
+  const recentSearches = [
+    {
+      query: 'recent search 2',
+      timestamp: 1656512443860
+    },
+    {
+      query: 'recent search 1',
+      timestamp: 1656512440493
+    }
+  ];
+  localStorage.setItem('__yxt_recent_searches__', JSON.stringify(recentSearches));
+
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless()}>
       <SearchBar {...args} />
@@ -48,10 +61,12 @@ export const Primary = (args: SearchBarProps) => {
 export const DropdownExpanded = Primary.bind({});
 DropdownExpanded.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.type(canvas.getByRole('textbox'), 'recent search 1');
-  userEvent.keyboard('{enter}');
-  userEvent.clear(canvas.getByRole('textbox'));
-  userEvent.type(canvas.getByRole('textbox'), 'recent search 2');
-  userEvent.keyboard('{enter}');
   userEvent.click(canvas.getByRole('textbox'));
+};
+
+export const DropdownHighlight = Primary.bind({});
+DropdownHighlight.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  userEvent.click(canvas.getByRole('textbox'));
+  userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
