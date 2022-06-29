@@ -43,9 +43,10 @@ const meta: ComponentMeta<typeof FilterSearch> = {
 export default meta;
 
 export const Primary = (args: FilterSearchProps) => {
+  args = { ...args, searchFields };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch searchFields={searchFields} label='Filter' {...args} />
+      <FilterSearch label='Filter' {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -62,9 +63,10 @@ DropdownUnsectioned.play = ({ canvasElement }) => {
 };
 
 export const DropdownSectioned = (args: FilterSearchProps) => {
+  args = { ...args, searchFields };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch searchFields={searchFields} label='Filter' sectioned={true} {...args} />
+      <FilterSearch label='Filter' sectioned={true} {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -78,10 +80,31 @@ DropdownSectioned.play = ({ canvasElement }) => {
   userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
-export const NoLabel = (args: FilterSearchProps) => {
+export const DropdownHighlight = (args: FilterSearchProps) => {
+  args = { ...args, searchFields };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch searchFields={searchFields} {...args} />
+      <FilterSearch label='Filter' sectioned={true} {...args} />
+    </AnswersHeadlessContext.Provider>
+  );
+};
+DropdownHighlight.parameters = {
+  answersCoreServices: {
+    autoCompleteService: generateMockedAutocompleteService(undefined, labeledFilterSearchResponse)
+  }
+};
+DropdownHighlight.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  userEvent.click(canvas.getByRole('textbox'));
+  userEvent.keyboard('name');
+  userEvent.keyboard('{Tab}{Tab}', { delay: 1 });
+};
+
+export const NoLabel = (args: FilterSearchProps) => {
+  args = { ...args, searchFields };
+  return (
+    <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+      <FilterSearch {...args} />
     </AnswersHeadlessContext.Provider>
   );
 };

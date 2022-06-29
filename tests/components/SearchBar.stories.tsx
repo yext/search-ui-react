@@ -64,8 +64,8 @@ DropdownExpanded.play = ({ canvasElement }) => {
   userEvent.click(canvas.getByRole('textbox'));
 };
 
-export const HighlightDropdown = Primary.bind({});
-HighlightDropdown.play = ({ canvasElement }) => {
+export const DropdownHighlight = Primary.bind({});
+DropdownHighlight.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   userEvent.click(canvas.getByRole('textbox'));
   userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
