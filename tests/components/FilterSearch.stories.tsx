@@ -43,10 +43,9 @@ const meta: ComponentMeta<typeof FilterSearch> = {
 export default meta;
 
 export const Primary = (args: FilterSearchProps) => {
-  args = { ...args, searchFields };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch label='Filter' {...args} />
+      <FilterSearch label='Filter' {...args} searchFields={searchFields} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -63,10 +62,9 @@ DropdownUnsectioned.play = ({ canvasElement }) => {
 };
 
 export const DropdownSectioned = (args: FilterSearchProps) => {
-  args = { ...args, searchFields };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch label='Filter' sectioned={true} {...args} />
+      <FilterSearch label='Filter' sectioned={true} {...args} searchFields={searchFields} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -81,10 +79,9 @@ DropdownSectioned.play = ({ canvasElement }) => {
 };
 
 export const DropdownHighlight = (args: FilterSearchProps) => {
-  args = { ...args, searchFields };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch label='Filter' sectioned={true} {...args} />
+      <FilterSearch label='Filter' sectioned={true} {...args} searchFields={searchFields} />
     </AnswersHeadlessContext.Provider>
   );
 };
@@ -101,10 +98,9 @@ DropdownHighlight.play = ({ canvasElement }) => {
 };
 
 export const NoLabel = (args: FilterSearchProps) => {
-  args = { ...args, searchFields };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch {...args} />
+      <FilterSearch {...args} searchFields={searchFields} />
     </AnswersHeadlessContext.Provider>
   );
 };
