@@ -57,7 +57,7 @@ function App() {
 export default App;
 ```
 
-To use Answers React Components stylesheet as an alternative to Tailwind CSS, import /bundle.css as follows:
+To use the Component Library's Styling without adding Tailwind to your project, add the following import: 
 
 ```tsx
 import '@yext/answers-react-components/bundle.css'
