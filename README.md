@@ -56,3 +56,9 @@ function App() {
 
 export default App;
 ```
+
+To use the Component Library's Styling without adding Tailwind to your project, add the following import: 
+
+```tsx
+import '@yext/answers-react-components/bundle.css'
+```
