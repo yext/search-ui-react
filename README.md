@@ -56,3 +56,9 @@ function App() {
 
 export default App;
 ```
+
+To use Answers React Components stylesheet, import /bundle.css as follows:
+
+```tsx
+import '@yext/answers-react-components/bundle.css'
+```
