@@ -44,7 +44,7 @@ describe('Dropdown', () => {
     expect(mockedOnToggleFn).toBeCalledWith(true, '');
   });
 
-  it('takes arrowkey navigation properly and updates focus on the option and input text', () => {
+  it('handles arrowkey navigation properly and focuses on the option and input text', () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
@@ -71,7 +71,7 @@ describe('Dropdown', () => {
     expect(inputNode).not.toHaveValue('item1');
   });
 
-  it('takes tab navigation properly and updates focus on the option and input text', () => {
+  it('handles tab navigation properly and focuses on the option and input text', () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
@@ -116,8 +116,7 @@ describe('Dropdown', () => {
     );
     const inputNode = screen.getByRole('textbox');
     userEvent.click(inputNode);
-    userEvent.keyboard('{Tab}');
-    userEvent.keyboard('{Tab}');
+    userEvent.keyboard('{Tab}{Tab}');
 
     expect(mockedOnToggleFn).toHaveBeenLastCalledWith(false, 'item1');
   });
@@ -152,7 +151,7 @@ describe('Dropdown', () => {
     expect(mockedOnSelectFn).toHaveBeenCalledWith('item1', 0, undefined);
   });
 
-  it('selects an option when it is clicked', () => {
+  it('selects an option on click', () => {
     const mockedOnSelectFn = jest.fn();
     const mockedOnClickFn = jest.fn();
     const dropdownProps: DropdownProps = {
@@ -219,7 +218,7 @@ describe('Dropdown', () => {
     expect(itemNode.className).not.toContain('FocusedItem1');
   });
 
-  it('submits when pressing "Enter" in the input box', () => {
+  it('submits on "Enter" in the input box', () => {
     const mockedOnSubmitFn = jest.fn();
     const mockedOnSelectFn = jest.fn();
     const dropdownProps: DropdownProps = {
