@@ -90,9 +90,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       updateFocusedItem(focusedIndex + 1);
     } else if (e.key === 'ArrowUp') {
       updateFocusedItem(focusedIndex - 1);
-    }
-
-    if (e.key === 'Tab' && !e.shiftKey) {
+    } else if (e.key === 'Tab' && !e.shiftKey) {
       if (items.length !== 0) {
         if (focusedIndex >= items.length - 1) {
           toggleDropdown(false);
