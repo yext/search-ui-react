@@ -22,9 +22,9 @@ export interface DropdownProps {
   parentQuery?: string,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
   onBlur?: (
-    prevValue: string, 
-    value: string, 
-    index: number, 
+    prevValue: string,
+    value: string,
+    index: number,
     focusedItemData: Record<string, unknown> | undefined
   ) => void,
   onToggle?: (isActive: boolean, value: string) => void,
