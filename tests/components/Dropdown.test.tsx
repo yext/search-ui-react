@@ -191,7 +191,7 @@ describe('Dropdown', () => {
       onToggle: mockedOnToggleFn
     };
     render(
-      <div data-testid='container'>
+      <div>
         <Dropdown {...dropdownProps}>
           <DropdownInput />
           <DropdownMenu>
