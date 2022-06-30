@@ -21,13 +21,13 @@ export interface DropdownProps {
   initialValue?: string,
   parentQuery?: string,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
-  onBlur?: (
+  onToggle?: (
     prevValue: string,
     value: string,
     index: number,
-    focusedItemData: Record<string, unknown> | undefined
+    focusedItemData: Record<string, unknown> | undefined,
+    isActive: boolean
   ) => void,
-  onToggle?: (isActive: boolean, value: string) => void,
   className?: string,
   activeClassName?: string
 }
@@ -46,7 +46,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     screenReaderInstructions = 'When autocomplete results are available, use up and down arrows to review and enter to select.',
     initialValue,
     onSelect,
-    onBlur,
     onToggle,
     className,
     activeClassName,
@@ -70,7 +69,15 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   );
   const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
 
-  const dropdownContext = useDropdownContextInstance(value, screenReaderUUID, onToggle, onSelect);
+  const dropdownContext = useDropdownContextInstance(
+    lastTypedOrSubmittedValue,
+    value,
+    focusedIndex,
+    focusedItemData,
+    screenReaderUUID,
+    onToggle,
+    onSelect
+  );
   const { toggleDropdown, isActive } = dropdownContext;
 
   useLayoutEffect(() => {
@@ -81,7 +88,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   }, [parentQuery, lastTypedOrSubmittedValue, updateFocusedItem, setLastTypedOrSubmittedValue]);
 
   useRootClose(containerRef, () => {
-    onBlur?.(lastTypedOrSubmittedValue, value, focusedIndex, focusedItemData);
     toggleDropdown(false);
   }, { disabled: !isActive });
 
@@ -191,15 +197,24 @@ function useFocusContextInstance(
 }
 
 function useDropdownContextInstance(
+  prevValue: string,
   value: string,
+  index: number,
+  focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
-  onToggle?: (isActive: boolean, value: string) => void,
+  onToggle?: (
+    prevValue: string,
+    value: string,
+    index: number,
+    focusedItemData: Record<string, unknown> | undefined,
+    isActive: boolean
+  ) => void,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
     _toggleDropdown(willBeOpen);
-    onToggle?.(willBeOpen, value);
+    onToggle?.(prevValue, value, index, focusedItemData, willBeOpen);
   };
   return {
     isActive,

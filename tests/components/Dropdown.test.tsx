@@ -31,17 +31,17 @@ describe('Dropdown', () => {
     // display when click into dropdown input
     userEvent.click(screen.getByRole('textbox'));
     expect(screen.getByText('item1')).toBeDefined();
-    expect(mockedOnToggleFn).toBeCalledWith(true, '');
+    expect(mockedOnToggleFn).toBeCalledWith('', '', -1, undefined, true);
 
     // hidden when click elsewhere outside of dropdown component
     userEvent.click(screen.getByText('external div'));
     expect(screen.queryByText('item1')).toBeNull();
-    expect(mockedOnToggleFn).toBeCalledWith(false, '');
+    expect(mockedOnToggleFn).toBeCalledWith('', '', -1, undefined, false);
 
     // display when tab into dropdown input
     userEvent.tab();
     expect(screen.getByText('item1')).toBeDefined();
-    expect(mockedOnToggleFn).toBeCalledWith(true, '');
+    expect(mockedOnToggleFn).toBeCalledWith('', '', -1, undefined, true);
   });
 
   it('handles arrowkey navigation properly and focuses on the option and input text', () => {
@@ -118,7 +118,7 @@ describe('Dropdown', () => {
     userEvent.click(inputNode);
     userEvent.keyboard('{Tab}{Tab}');
 
-    expect(mockedOnToggleFn).toHaveBeenLastCalledWith(false, 'item1');
+    expect(mockedOnToggleFn).toHaveBeenLastCalledWith('', 'item1', 0, undefined, false);
   });
 
   it('selects when an option is focused and enter is pressed', () => {
@@ -184,11 +184,11 @@ describe('Dropdown', () => {
     expect(mockedOnSelectFn).toHaveBeenCalledWith('item1', 0, undefined);
   });
 
-  it('selects when an option is focused on blur', () => {
-    const mockedOnBlurFn = jest.fn();
+  it('selects when an option is focused on toggle', () => {
+    const mockedOnToggleFn = jest.fn();
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here',
-      onBlur: mockedOnBlurFn
+      onToggle: mockedOnToggleFn
     };
     render(
       <div data-testid='container'>
@@ -208,13 +208,14 @@ describe('Dropdown', () => {
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
+    userEvent.keyboard('i');
     userEvent.keyboard('{arrowdown}');
     userEvent.click(screen.getByText('external div'));
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
-    expect(mockedOnBlurFn).toBeCalledTimes(1);
-    expect(mockedOnBlurFn).toHaveBeenCalledWith('', 'item1', 0, undefined);
+    expect(mockedOnToggleFn).toBeCalledTimes(3);
+    expect(mockedOnToggleFn).toHaveBeenCalledWith('i', 'item1', 0, undefined, false);
   });
 
   it('updates options when user provide new input', () => {

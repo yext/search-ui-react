@@ -93,7 +93,7 @@ export function FilterSearch({
   const hasResults = sections.flatMap(s => s.results).length > 0;
   const [currentFilter, setCurrentFilter] = useState<Filter>();
 
-  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
+  const handleFilterDropdown = useCallback((itemData, select) => {
     const newFilter = itemData?.filter as Filter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
@@ -103,24 +103,21 @@ export function FilterSearch({
       answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
       setCurrentFilter(newFilter);
       answersActions.setOffset(0);
-      if (searchOnSelect) {
+      if (select && searchOnSelect) {
         executeSearch(answersActions);
       }
     }
   }, [answersActions, currentFilter, searchOnSelect]);
 
-  const handleBlurDropdown = useCallback((_prevValue, _value, _index, itemData) => {
-    const newFilter = itemData?.filter as Filter;
-    const newDisplayName = itemData?.displayName as string;
-    if (newFilter && newDisplayName) {
-      if (currentFilter) {
-        answersActions.setFilterOption({ ...currentFilter, selected: false });
-      }
-      answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
-      setCurrentFilter(newFilter);
-      answersActions.setOffset(0);
+  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
+    handleFilterDropdown(itemData, true);
+  }, [handleFilterDropdown]);
+
+  const handleToggleDropdown = useCallback((_prevValue, _value, _index, itemData, isActive) => {
+    if (!isActive) {
+      handleFilterDropdown(itemData, false);
     }
-  }, [answersActions, currentFilter]);
+  }, [handleFilterDropdown]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
@@ -165,7 +162,7 @@ export function FilterSearch({
       <Dropdown
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
-        onBlur={handleBlurDropdown}
+        onToggle={handleToggleDropdown}
       >
         <DropdownInput
           className={cssClasses.inputElement}
