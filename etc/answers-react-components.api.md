@@ -138,27 +138,19 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
 // @public
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
+    answer?: string;
+    // (undocumented)
     answerContainer?: string;
     // (undocumented)
     content?: string;
+    // (undocumented)
+    description?: string;
     // (undocumented)
     directAnswerContainer?: string;
     // (undocumented)
     directAnswerLoading?: string;
     // (undocumented)
-    featuredSnippetDescription?: string;
-    // (undocumented)
-    featuredSnippetTitle?: string;
-    // (undocumented)
-    fieldValueDescription?: string;
-    // (undocumented)
-    fieldValueTitle?: string;
-    // (undocumented)
     highlighted?: string;
-    // (undocumented)
-    viewDetailsLink?: string;
-    // (undocumented)
-    viewDetailsLinkContainer?: string;
 }
 
 // @public
