@@ -364,7 +364,7 @@ export function SearchBar({
     || (!isVertical && filteredRecentSearches?.length) || entityPreviews);
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
-    filteredRecentSearches?.length,
+    isVertical ? 0 : filteredRecentSearches?.length,
     entityPreviewsCount
   );
   const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {

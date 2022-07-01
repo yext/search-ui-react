@@ -44,6 +44,7 @@ export function ApplyFiltersButton({
   const cssClasses = { ...builtInCssClasses, ...customCssClasses };
   const answersActions = useAnswersActions();
   const handleClick = useCallback(() => {
+    answersActions.setOffset(0);
     executeSearch(answersActions);
   }, [answersActions]);
 
