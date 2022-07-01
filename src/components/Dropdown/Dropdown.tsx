@@ -21,7 +21,13 @@ export interface DropdownProps {
   initialValue?: string,
   parentQuery?: string,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
-  onToggle?: (isActive: boolean, value: string) => void,
+  onToggle?: (
+    isActive: boolean,
+    prevValue: string,
+    value: string,
+    index: number,
+    focusedItemData: Record<string, unknown> | undefined
+  ) => void,
   className?: string,
   activeClassName?: string
 }
@@ -61,9 +67,17 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     screenReaderKey,
     setScreenReaderKey
   );
-  const { focusedIndex, updateFocusedItem } = focusContext;
+  const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
 
-  const dropdownContext = useDropdownContextInstance(value, screenReaderUUID, onToggle, onSelect);
+  const dropdownContext = useDropdownContextInstance(
+    lastTypedOrSubmittedValue,
+    value,
+    focusedIndex,
+    focusedItemData,
+    screenReaderUUID,
+    onToggle,
+    onSelect
+  );
   const { toggleDropdown, isActive } = dropdownContext;
 
   useLayoutEffect(() => {
@@ -183,15 +197,24 @@ function useFocusContextInstance(
 }
 
 function useDropdownContextInstance(
+  prevValue: string,
   value: string,
+  index: number,
+  focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
-  onToggle?: (isActive: boolean, value: string) => void,
+  onToggle?: (
+    isActive: boolean,
+    prevValue: string,
+    value: string,
+    index: number,
+    focusedItemData: Record<string, unknown> | undefined
+  ) => void,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
     _toggleDropdown(willBeOpen);
-    onToggle?.(willBeOpen, value);
+    onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
   };
   return {
     isActive,

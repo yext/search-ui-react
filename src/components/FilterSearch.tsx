@@ -93,7 +93,7 @@ export function FilterSearch({
   const hasResults = sections.flatMap(s => s.results).length > 0;
   const [currentFilter, setCurrentFilter] = useState<Filter>();
 
-  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
+  const handleDropdownEvent = useCallback((itemData, select) => {
     const newFilter = itemData?.filter as Filter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
@@ -103,11 +103,21 @@ export function FilterSearch({
       answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
       setCurrentFilter(newFilter);
       answersActions.setOffset(0);
-      if (searchOnSelect) {
+      if (select && searchOnSelect) {
         executeSearch(answersActions);
       }
     }
   }, [answersActions, currentFilter, searchOnSelect]);
+
+  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
+    handleDropdownEvent(itemData, true);
+  }, [handleDropdownEvent]);
+
+  const handleToggleDropdown = useCallback((isActive, _prevValue, _value, _index, itemData) => {
+    if (!isActive) {
+      handleDropdownEvent(itemData, false);
+    }
+  }, [handleDropdownEvent]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
@@ -152,6 +162,7 @@ export function FilterSearch({
       <Dropdown
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
+        onToggle={handleToggleDropdown}
       >
         <DropdownInput
           className={cssClasses.inputElement}
