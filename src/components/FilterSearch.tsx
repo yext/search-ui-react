@@ -93,7 +93,7 @@ export function FilterSearch({
   const hasResults = sections.flatMap(s => s.results).length > 0;
   const [currentFilter, setCurrentFilter] = useState<Filter>();
 
-  const handleFilterDropdown = useCallback((itemData, select) => {
+  const handleDropdownEvent = useCallback((itemData, select) => {
     const newFilter = itemData?.filter as Filter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
@@ -110,14 +110,14 @@ export function FilterSearch({
   }, [answersActions, currentFilter, searchOnSelect]);
 
   const handleSelectDropdown = useCallback((_value, _index, itemData) => {
-    handleFilterDropdown(itemData, true);
-  }, [handleFilterDropdown]);
+    handleDropdownEvent(itemData, true);
+  }, [handleDropdownEvent]);
 
-  const handleToggleDropdown = useCallback((_prevValue, _value, _index, itemData, isActive) => {
+  const handleToggleDropdown = useCallback((isActive, _prevValue, _value, _index, itemData) => {
     if (!isActive) {
-      handleFilterDropdown(itemData, false);
+      handleDropdownEvent(itemData, false);
     }
-  }, [handleFilterDropdown]);
+  }, [handleDropdownEvent]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 

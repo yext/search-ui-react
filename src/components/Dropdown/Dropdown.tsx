@@ -22,11 +22,11 @@ export interface DropdownProps {
   parentQuery?: string,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
   onToggle?: (
+    isActive: boolean,
     prevValue: string,
     value: string,
     index: number,
-    focusedItemData: Record<string, unknown> | undefined,
-    isActive: boolean
+    focusedItemData: Record<string, unknown> | undefined
   ) => void,
   className?: string,
   activeClassName?: string
@@ -203,18 +203,18 @@ function useDropdownContextInstance(
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
   onToggle?: (
+    isActive: boolean,
     prevValue: string,
     value: string,
     index: number,
-    focusedItemData: Record<string, unknown> | undefined,
-    isActive: boolean
+    focusedItemData: Record<string, unknown> | undefined
   ) => void,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
     _toggleDropdown(willBeOpen);
-    onToggle?.(prevValue, value, index, focusedItemData, willBeOpen);
+    onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
   };
   return {
     isActive,
