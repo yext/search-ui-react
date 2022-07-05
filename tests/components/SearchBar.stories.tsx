@@ -38,19 +38,6 @@ const meta: ComponentMeta<typeof SearchBar> = {
 export default meta;
 
 export const Primary = (args: SearchBarProps) => {
-  localStorage.clear();
-  const recentSearches = [
-    {
-      query: 'recent search 2',
-      timestamp: 1656512443860
-    },
-    {
-      query: 'recent search 1',
-      timestamp: 1656512440493
-    }
-  ];
-  localStorage.setItem('__yxt_recent_searches__', JSON.stringify(recentSearches));
-
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless()}>
       <SearchBar {...args} />
@@ -61,12 +48,24 @@ export const Primary = (args: SearchBarProps) => {
 export const DropdownExpanded = Primary.bind({});
 DropdownExpanded.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByRole('textbox'));
+  const textboxEl = canvas.getByRole('textbox');
+  conductRecentSearches(textboxEl);
+  userEvent.click(textboxEl);
 };
 
 export const DropdownHighlight = Primary.bind({});
 DropdownHighlight.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByRole('textbox'));
+  const textboxEl = canvas.getByRole('textbox');
+  conductRecentSearches(textboxEl);
+  userEvent.click(textboxEl);
   userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
+
+function conductRecentSearches(textboxEl: HTMLElement) {
+  userEvent.type(textboxEl, 'recent search 1');
+  userEvent.keyboard('{enter}');
+  userEvent.clear(textboxEl);
+  userEvent.type(textboxEl, 'recent search 2');
+  userEvent.keyboard('{enter}');
+}
