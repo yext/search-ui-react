@@ -79,8 +79,11 @@ export function LocationBias({
     executeSearch(answersActions);
   }
 
+  const screenIsLarge = window.innerWidth >= 1024;
+
   return (
     <div className={cssClasses.locationBiasContainer}>
+      {screenIsLarge && isFetchingLocation && <div className={cssClasses.loadingIndicatorContainer}/>}
       <span className={cssClasses.location}>
         {locationBias.displayName}
       </span>
@@ -88,6 +91,7 @@ export function LocationBias({
         {attributionMessage}
       </span>
       <div className='flex flex-row items-center'>
+        {!screenIsLarge && isFetchingLocation && <div className={cssClasses.loadingIndicatorContainer}/>}
         <button
           className={cssClasses.button}
           onClick={handleGeolocationClick}
