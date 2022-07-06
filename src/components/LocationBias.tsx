@@ -88,7 +88,7 @@ export function LocationBias({
       <span className={cssClasses.source}>
         {attributionMessage}
       </span>
-      <div className='flex flex-row'>
+      <div className='flex flex-row items-center'>
         <button
           className={cssClasses.button}
           onClick={handleGeolocationClick}
