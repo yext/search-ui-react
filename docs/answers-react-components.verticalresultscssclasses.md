@@ -9,9 +9,8 @@ The CSS class interface used for [VerticalResults()](./answers-react-components.
 <b>Signature:</b>
 
 ```typescript
-export interface VerticalResultsCssClasses extends PaginationCssClasses 
+export interface VerticalResultsCssClasses 
 ```
-<b>Extends:</b> [PaginationCssClasses](./answers-react-components.paginationcssclasses.md)
 
 ## Properties
 
