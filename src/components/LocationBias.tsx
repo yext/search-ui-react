@@ -11,7 +11,7 @@ import LoadingIndicator from '../icons/LoadingIndicator';
  * @public
  */
 export interface LocationBiasCssClasses {
-  container?: string,
+  locationBiasContainer?: string,
   location?: string,
   source?: string,
   button?: string,
@@ -19,7 +19,7 @@ export interface LocationBiasCssClasses {
 }
 
 const builtInCssClasses: Readonly<LocationBiasCssClasses> = {
-  container: 'text-sm text-neutral text-center flex justify-center items-center',
+  locationBiasContainer: 'text-sm text-neutral text-center justify-center items-center flex flex-col lg:flex-row',
   location: 'font-semibold mr-1',
   button: 'text-primary hover:underline focus:underline ml-1',
   loadingIndicatorContainer: 'w-4 h-4 ml-3 shrink-0'
@@ -80,7 +80,7 @@ export function LocationBias({
   }
 
   return (
-    <div className={cssClasses.container}>
+    <div className={cssClasses.locationBiasContainer}>
       {isFetchingLocation && <div className={cssClasses.loadingIndicatorContainer}/>}
       <span className={cssClasses.location}>
         {locationBias.displayName}
@@ -88,17 +88,19 @@ export function LocationBias({
       <span className={cssClasses.source}>
         {attributionMessage}
       </span>
-      <button
-        className={cssClasses.button}
-        onClick={handleGeolocationClick}
-      >
-        Update your location
-      </button>
-      {isFetchingLocation &&
-        <div className={cssClasses.loadingIndicatorContainer}>
-          <LoadingIndicator />
-        </div>
-      }
+      <div className='flex flex-row'>
+        <button
+          className={cssClasses.button}
+          onClick={handleGeolocationClick}
+        >
+          Update your location
+        </button>
+        {isFetchingLocation &&
+          <div className={cssClasses.loadingIndicatorContainer}>
+            <LoadingIndicator />
+          </div>
+        }
+      </div>
     </div>
   );
 }
