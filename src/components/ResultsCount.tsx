@@ -29,7 +29,7 @@ export interface ResultsCountProps {
 }
 
 const builtInCssClasses: Readonly<ResultsCountCssClasses> = {
-  resultsCountContainer: 'font-semibold text-neutral mb-4 py-2 mr-2.5',
+  resultsCountContainer: 'font-semibold text-neutral mb-4 py-2 mr-2.5 whitespace-nowrap',
   resultsCountLoading: 'opacity-50'
 };
 
