@@ -6,7 +6,8 @@ import {
   StandardCard,
   VerticalResults,
   LocationBias,
-  NumericalFacets
+  NumericalFacets,
+  Pagination
 } from '@yext/answers-react-components';
 import { useLayoutEffect } from 'react';
 
@@ -31,6 +32,7 @@ export function ProductsPage() {
           <VerticalResults
             CardComponent={StandardCard}
           />
+          <Pagination />
           <LocationBias />
         </div>
       </div>

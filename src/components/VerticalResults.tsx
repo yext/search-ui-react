@@ -27,7 +27,7 @@ export interface VerticalResultsProps {
    */
   displayAllOnNoResults?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: VerticalResultsCssClasses,
+  customCssClasses?: VerticalResultsCssClasses
 }
 
 /**

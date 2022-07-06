@@ -67,8 +67,7 @@ it('displays all results when there are no search results', () => {
 
 it('doesn\'t display pagination component when allowPagination is false', () => {
   const verticalResultsProps: VerticalResultsProps = {
-    CardComponent: StandardCard,
-    allowPagination: false
+    CardComponent: StandardCard
   };
   render(<VerticalResults {...verticalResultsProps} />);
   const paginationNavEl = screen.queryByRole('navigation', { name: 'Pagination' });
