@@ -1,14 +1,13 @@
 import { CardComponent } from '../models/cardComponent';
 import { useAnswersState } from '@yext/answers-headless-react';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
-import { PaginationCssClasses } from './Pagination';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.
  *
  * @public
  */
-export interface VerticalResultsCssClasses extends PaginationCssClasses {
+export interface VerticalResultsCssClasses {
   verticalResultsContainer?: string,
   verticalResultsLoading?: string
 }
