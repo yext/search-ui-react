@@ -3,6 +3,7 @@ import { ComponentMeta } from '@storybook/react';
 import { AnswersHeadlessContext, Source } from '@yext/answers-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { Pagination } from '../../src/components/Pagination';
 import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
 import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 
@@ -55,7 +56,7 @@ export const NoResults = (args: VerticalResultsProps) => {
   );
 };
 
-export const HasResultsWithoutPagination = (args: VerticalResultsProps) => {
+export const HasResults = (args: VerticalResultsProps) => {
   const verticalResultsProps: VerticalResultsProps = {
     CardComponent: StandardCard
   };
