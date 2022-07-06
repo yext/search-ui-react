@@ -732,7 +732,6 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
 
 // @public
 export interface VerticalResultsProps {
-    allowPagination?: boolean;
     CardComponent: CardComponent;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
