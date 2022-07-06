@@ -81,7 +81,6 @@ export function LocationBias({
 
   return (
     <div className={cssClasses.locationBiasContainer}>
-      {isFetchingLocation && <div className={cssClasses.loadingIndicatorContainer}/>}
       <span className={cssClasses.location}>
         {locationBias.displayName}
       </span>
