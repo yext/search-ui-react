@@ -723,7 +723,7 @@ export interface VerticalLink {
 export function VerticalResults(props: VerticalResultsProps): JSX.Element | null;
 
 // @public
-export interface VerticalResultsCssClasses extends PaginationCssClasses {
+export interface VerticalResultsCssClasses {
     // (undocumented)
     verticalResultsContainer?: string;
     // (undocumented)
