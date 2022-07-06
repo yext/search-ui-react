@@ -11,7 +11,8 @@ import {
   StaticFilters,
   StandardFacets,
   HierarchicalFacets,
-  ApplyFiltersButton
+  ApplyFiltersButton,
+  Pagination
 } from '@yext/answers-react-components';
 
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
@@ -58,6 +59,7 @@ export function PeoplePage() {
           <VerticalResults
             CardComponent={StandardCard}
           />
+          <Pagination />
           <LocationBias />
         </div>
       </div>
