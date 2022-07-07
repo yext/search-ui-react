@@ -1,9 +1,9 @@
 import { FacetsProvider, RangeInput, RangeInputCssClasses } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { Fragment } from 'react';
-import { DisplayableFacet, NumberRangeValue } from '@yext/answers-headless-react';
+import { NumberRangeValue } from '@yext/answers-headless-react';
 import { StandardFacetsProps } from './StandardFacets';
-import { isNumberRangeFilter } from '../models/NumberRangeFilter';
+import { isNumericalFacet } from '../utils/filterutils';
 
 /**
  * The CSS class interface for {@link NumericalFacets}.
@@ -86,10 +86,6 @@ export function NumericalFacets({
       }
     </FacetsProvider>
   );
-}
-
-export function isNumericalFacet(facet: DisplayableFacet): boolean {
-  return facet.options.length > 0 && isNumberRangeFilter(facet.options[0]);
 }
 
 function Divider({ className ='w-full h-px bg-gray-200 my-4' }: { className?: string }) {

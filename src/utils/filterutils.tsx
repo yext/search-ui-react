@@ -1,6 +1,5 @@
-import { NearFilterValue, Filter, SelectableFilter, NumberRangeValue, Matcher, AnswersActions } from '@yext/answers-headless-react';
+import { NearFilterValue, Filter, SelectableFilter, NumberRangeValue, Matcher, AnswersActions, DisplayableFacet } from '@yext/answers-headless-react';
 import isEqual from 'lodash/isEqual';
-import { isNumericalFacet } from '../components/NumericalFacets';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 
 /**
@@ -15,6 +14,10 @@ export function isNearFilterValue(obj: unknown): obj is NearFilterValue {
  */
 export function isNumberRangeValue(obj: unknown): obj is NumberRangeValue {
   return typeof obj === 'object' && !!obj && ('start' in obj || 'end' in obj);
+}
+
+export function isNumericalFacet(facet: DisplayableFacet): boolean {
+  return facet.options.length > 0 && isNumberRangeFilter(facet.options[0]);
 }
 
 /**
@@ -89,27 +92,27 @@ function parseNumber(num: string) {
  * provided, only filters corresponding to one of those fieldIds are deselected.
  * Otherwise, all selected filters are deselected.
  */
-export function clearStaticRangeFilters(answersActions: AnswersActions, fieldIds?: string[]) {
+export function clearStaticRangeFilters(answersActions: AnswersActions, fieldIds?: Set<string>) {
   const selectedStaticRangeFilters = answersActions.state?.filters?.static?.filter(filter =>
-    isNumberRangeFilter(filter) && filter.selected === true
+    isNumberRangeFilter(filter)
+    && filter.selected === true
+    && (!fieldIds || fieldIds.has(filter.fieldId))
   );
   selectedStaticRangeFilters?.forEach(filter => {
-    if (!fieldIds || fieldIds.some(fieldId => fieldId === filter.fieldId)) {
-      answersActions.setFilterOption({
-        ...filter,
-        selected: false
-      });
-    }
+    answersActions.setFilterOption({
+      ...filter,
+      selected: false
+    });
   });
 }
 
 /**
- * Returns an array of fieldIds of the numerical facets in state that have at
+ * Returns a set of fieldIds of the numerical facets in state that have at
  * least one option selected.
  */
-export function getSelectedNumericalFacetFields(answersActions: AnswersActions): string[] {
+export function getSelectedNumericalFacetFields(answersActions: AnswersActions): Set<string> {
   const selectedNumericalFacets = answersActions.state.filters.facets?.filter(
     f => isNumericalFacet(f) && f.options.some(o => o.selected)
   ) ?? [];
-  return selectedNumericalFacets.map(f => f.fieldId);
+  return new Set(selectedNumericalFacets.map(f => f.fieldId));
 }

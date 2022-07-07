@@ -142,7 +142,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       return;
     }
     const displayName = getFilterDisplayName(rangeFilter.value);
-    clearStaticRangeFilters(answersActions, [fieldId]);
+    clearStaticRangeFilters(answersActions, new Set([fieldId]));
     answersActions.setFilterOption({
       ...rangeFilter,
       selected: true,
