@@ -88,7 +88,7 @@ export function NumericalFacets({
   );
 }
 
-function isNumericalFacet(facet: DisplayableFacet): boolean {
+export function isNumericalFacet(facet: DisplayableFacet): boolean {
   return facet.options.length > 0 && isNumberRangeFilter(facet.options[0]);
 }
 

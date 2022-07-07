@@ -1,5 +1,6 @@
 import { NearFilterValue, Filter, SelectableFilter, NumberRangeValue, Matcher, AnswersActions } from '@yext/answers-headless-react';
 import isEqual from 'lodash/isEqual';
+import { isNumericalFacet } from '../components/NumericalFacets';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 
 /**
@@ -84,16 +85,31 @@ function parseNumber(num: string) {
 }
 
 /**
- * Deselects the selected static number range filters in state.
+ * Deselects the selected static number range filters in state. If fieldIds are
+ * provided, only filters corresponding to one of those fieldIds are deselected.
+ * Otherwise, all selected filters are deselected.
  */
-export function clearStaticRangeFilters(answersActions: AnswersActions){
+export function clearStaticRangeFilters(answersActions: AnswersActions, fieldIds?: string[]) {
   const selectedStaticRangeFilters = answersActions.state?.filters?.static?.filter(filter =>
     isNumberRangeFilter(filter) && filter.selected === true
   );
   selectedStaticRangeFilters?.forEach(filter => {
-    answersActions.setFilterOption({
-      ...filter,
-      selected: false
-    });
+    if (!fieldIds || fieldIds.some(fieldId => fieldId === filter.fieldId)) {
+      answersActions.setFilterOption({
+        ...filter,
+        selected: false
+      });
+    }
   });
+}
+
+/**
+ * Returns an array of fieldIds of the numerical facets in state that have at
+ * least one option selected.
+ */
+export function getSelectedNumericalFacetFields(answersActions: AnswersActions): string[] {
+  const selectedNumericalFacets = answersActions.state.filters.facets?.filter(
+    f => isNumericalFacet(f) && f.options.some(o => o.selected)
+  ) ?? [];
+  return selectedNumericalFacets.map(f => f.fieldId);
 }

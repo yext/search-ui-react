@@ -2,7 +2,7 @@ import { Matcher, NumberRangeValue, useAnswersActions, useAnswersState } from '@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { findSelectableFilter, isNumberRangeValue, parseNumberRangeInput } from '../../utils/filterutils';
+import { clearStaticRangeFilters, findSelectableFilter, parseNumberRangeInput } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
 import { NumberRangeFilter } from '../../models/NumberRangeFilter';
@@ -142,16 +142,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       return;
     }
     const displayName = getFilterDisplayName(rangeFilter.value);
-    // Find selected static range filters with the same fieldId
-    const selectedRangeFilters = staticFilters?.filter(filter =>
-      filter.fieldId === fieldId && filter.selected === true && isNumberRangeValue(filter.value)
-    );
-    selectedRangeFilters?.forEach(filter => {
-      answersActions.setFilterOption({
-        ...filter,
-        selected: false
-      });
-    });
+    clearStaticRangeFilters(answersActions, [fieldId]);
     answersActions.setFilterOption({
       ...rangeFilter,
       selected: true,
@@ -159,7 +150,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     });
     answersActions.setOffset(0);
     executeSearch(answersActions);
-  }, [answersActions, fieldId, getFilterDisplayName, isValid, rangeFilter, staticFilters]);
+  }, [answersActions, fieldId, getFilterDisplayName, isValid, rangeFilter]);
 
   const handleClickClear = useCallback(() => {
     setMinRangeInput('');
