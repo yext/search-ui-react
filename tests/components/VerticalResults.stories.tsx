@@ -55,22 +55,9 @@ export const NoResults = (args: VerticalResultsProps) => {
   );
 };
 
-export const HasResultsWithoutPagination = (args: VerticalResultsProps) => {
+export const HasResults = (args: VerticalResultsProps) => {
   const verticalResultsProps: VerticalResultsProps = {
-    CardComponent: StandardCard,
-    allowPagination: false
-  };
-  return (
-    <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <VerticalResults {...verticalResultsProps} {...args} />
-    </AnswersHeadlessContext.Provider>
-  );
-};
-
-export const HasResultsWithPagination = (args: VerticalResultsProps) => {
-  const verticalResultsProps: VerticalResultsProps = {
-    CardComponent: StandardCard,
-    allowPagination: true
+    CardComponent: StandardCard
   };
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>

@@ -1,14 +1,13 @@
 import { CardComponent } from '../models/cardComponent';
 import { useAnswersState } from '@yext/answers-headless-react';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
-import { Pagination, PaginationCssClasses } from './Pagination';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.
  *
  * @public
  */
-export interface VerticalResultsCssClasses extends PaginationCssClasses {
+export interface VerticalResultsCssClasses {
   verticalResultsContainer?: string,
   verticalResultsLoading?: string
 }
@@ -27,9 +26,7 @@ export interface VerticalResultsProps {
    */
   displayAllOnNoResults?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: VerticalResultsCssClasses,
-  /** Whether to include pagination of the results. Defaults to true. */
-  allowPagination?: boolean
+  customCssClasses?: VerticalResultsCssClasses
 }
 
 /**
@@ -41,7 +38,7 @@ export interface VerticalResultsProps {
  * @returns A React element for the results, or null if no results should be displayed
  */
 export function VerticalResults(props: VerticalResultsProps): JSX.Element | null {
-  const { displayAllOnNoResults = true, allowPagination = true, ...otherProps } = props;
+  const { displayAllOnNoResults = true, ...otherProps } = props;
   const verticalResults = useAnswersState(state => state.vertical.results) || [];
   const allResultsForVertical =
     useAnswersState(state => state.vertical?.noResults?.allResultsForVertical.results) || [];
@@ -53,14 +50,6 @@ export function VerticalResults(props: VerticalResultsProps): JSX.Element | null
   }
 
   return (
-    <>
-      <VerticalResultsDisplay results={results} isLoading={isLoading} {...otherProps} />
-      {allowPagination
-        && <Pagination
-          paginateAllOnNoResults={displayAllOnNoResults}
-          customCssClasses={otherProps.customCssClasses}
-        />
-      }
-    </>
+    <VerticalResultsDisplay results={results} isLoading={isLoading} {...otherProps} />
   );
 }

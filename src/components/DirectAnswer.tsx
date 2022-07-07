@@ -30,13 +30,9 @@ export interface DirectAnswerProps {
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
   directAnswerContainer?: string,
   directAnswerLoading?: string,
-  fieldValueTitle?: string,
-  featuredSnippetTitle?: string,
+  answer?: string,
+  description?: string,
   content?: string,
-  fieldValueDescription?: string,
-  featuredSnippetDescription?: string,
-  viewDetailsLink?: string,
-  viewDetailsLinkContainer?: string,
   highlighted?: string,
   answerContainer?: string
 }
@@ -44,13 +40,9 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
 const builtInCssClasses: Readonly<DirectAnswerCssClasses> = {
   directAnswerContainer: '',
   directAnswerLoading: 'opacity-50',
-  fieldValueTitle: 'mb-4 text-neutral',
-  featuredSnippetTitle: 'mb-4 font-bold text-xl text-neutral-dark',
-  content: '',
-  fieldValueDescription: 'font-bold text-xl text-neutral-dark',
-  featuredSnippetDescription: '',
-  viewDetailsLink: 'text-primary',
-  viewDetailsLinkContainer: 'pt-4 text-neutral',
+  answer: 'font-bold text-xl text-neutral-dark',
+  description: 'text-neutral',
+  content: 'mt-4',
   highlighted: 'bg-primary-light',
   answerContainer: 'p-4 border rounded-lg shadow-sm',
   thumbsFeedbackContainer: thumbsFeedbackCssClasses.thumbsFeedbackContainer,
@@ -90,22 +82,23 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   function getLinkText(directAnswerResult: DirectAnswerData) {
     const isSnippet = directAnswerResult.type === DirectAnswerType.FeaturedSnippet;
     const name = directAnswerResult.relatedResult.name;
+    const snippetLinkMessage = 'Read more about ';
 
     return (<>
-      {isSnippet && name && <div className={cssClasses.viewDetailsLinkContainer}>
-        Read more about
+      {isSnippet && name && <div className='pt-4 text-neutral'>
+        {snippetLinkMessage}
         <a
-          className={cssClasses.viewDetailsLink}
+          className='text-primary'
           href={link}
           onClick={handleClickViewDetails}
         >
           {name}
         </a>
       </div>}
-      {!isSnippet && link && <div className={cssClasses.viewDetailsLinkContainer}>
+      {!isSnippet && link && <div className='pt-4 text-neutral'>
         <a
           href={link}
-          className={cssClasses.viewDetailsLink}
+          className='text-primary'
           onClick={handleClickViewDetails}
         >
           View Details
@@ -122,9 +115,9 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
     <div className={containerCssClasses}>
       <div className={cssClasses.answerContainer}>
         {title &&
-          <div className={cssClasses.title}>{title}</div>}
+          <div className={cssClasses.header}>{title}</div>}
         <div className={cssClasses.content}>
-          <div className={cssClasses.description}>{description}</div>
+          <div className={cssClasses.body}>{description}</div>
           {link && getLinkText(directAnswerResult)}
         </div>
       </div>
@@ -140,7 +133,7 @@ function getCssClassesForAnswerType(cssClasses: DirectAnswerCssClasses, type: Di
   const isSnippet = type === DirectAnswerType.FeaturedSnippet;
   return {
     ...cssClasses,
-    title: isSnippet ? cssClasses.featuredSnippetTitle : cssClasses.fieldValueTitle,
-    description: isSnippet ? cssClasses.featuredSnippetDescription : cssClasses.fieldValueDescription
+    header: isSnippet ? cssClasses.answer : cssClasses.description,
+    body: isSnippet ? cssClasses.description : cssClasses.answer
   };
 }

@@ -138,27 +138,19 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
 // @public
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
+    answer?: string;
+    // (undocumented)
     answerContainer?: string;
     // (undocumented)
     content?: string;
+    // (undocumented)
+    description?: string;
     // (undocumented)
     directAnswerContainer?: string;
     // (undocumented)
     directAnswerLoading?: string;
     // (undocumented)
-    featuredSnippetDescription?: string;
-    // (undocumented)
-    featuredSnippetTitle?: string;
-    // (undocumented)
-    fieldValueDescription?: string;
-    // (undocumented)
-    fieldValueTitle?: string;
-    // (undocumented)
     highlighted?: string;
-    // (undocumented)
-    viewDetailsLink?: string;
-    // (undocumented)
-    viewDetailsLinkContainer?: string;
 }
 
 // @public
@@ -731,7 +723,7 @@ export interface VerticalLink {
 export function VerticalResults(props: VerticalResultsProps): JSX.Element | null;
 
 // @public
-export interface VerticalResultsCssClasses extends PaginationCssClasses {
+export interface VerticalResultsCssClasses {
     // (undocumented)
     verticalResultsContainer?: string;
     // (undocumented)
@@ -740,7 +732,6 @@ export interface VerticalResultsCssClasses extends PaginationCssClasses {
 
 // @public
 export interface VerticalResultsProps {
-    allowPagination?: boolean;
     CardComponent: CardComponent;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
