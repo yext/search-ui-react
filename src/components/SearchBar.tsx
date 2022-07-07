@@ -85,10 +85,8 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
  * @remarks
  * The autocomplete loading state is passed in as an optional param.
  *
- * @remarks
  * An onSubmit function is provided to allow an entity preview to be submitted.
  *
- * @remarks
  * For the entity previews to be navigable in the search bar's dropdown section,
  * wrap each entity preview in a {@link DropdownItem} component.
  *
