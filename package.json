@@ -13,7 +13,8 @@
     "answers",
     "yext",
     "react",
-    "components"
+    "components",
+    "tailwindcss"
   ],
   "exports": {
     ".": {
