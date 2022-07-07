@@ -4,6 +4,7 @@ import { getUserLocation } from '../utils/location-operations';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useState } from 'react';
 import LoadingIndicator from '../icons/LoadingIndicator';
+import classNames from 'classnames';
 
 /**
  * The CSS class interface for the {@link LocationBias} component.
@@ -56,7 +57,9 @@ export function LocationBias({
   const locationBias = useAnswersState(s => s.location.locationBias);
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const loadingIndicatorCss = (cssClasses.loadingIndicatorContainer ?? '') + (!isFetchingLocation && ' invisible');
+  const loadingIndicatorCss = classNames(cssClasses.loadingIndicatorContainer, {
+    invisible: !isFetchingLocation
+  });
 
   if (!locationBias?.displayName) return null;
 
