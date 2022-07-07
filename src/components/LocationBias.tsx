@@ -20,9 +20,10 @@ export interface LocationBiasCssClasses {
 
 const builtInCssClasses: Readonly<LocationBiasCssClasses> = {
   locationBiasContainer: 'text-sm text-neutral text-center justify-center items-center flex flex-col lg:flex-row',
-  location: 'font-semibold mr-1',
-  button: 'text-primary hover:underline focus:underline ml-1',
-  loadingIndicatorContainer: 'w-4 h-4 ml-3 shrink-0'
+  location: 'font-semibold mr-1 lg:ml-7',
+  button: 'text-primary hover:underline focus:underline ml-7 lg:ml-1',
+  loadingIndicatorContainer: 'w-4 h-4 ml-3 shrink-0',
+  source: 'ml-3 lg:ml-0 '
 };
 
 /**
@@ -55,13 +56,16 @@ export function LocationBias({
   const locationBias = useAnswersState(s => s.location.locationBias);
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+  const loadingIndicatorCss = (cssClasses.loadingIndicatorContainer ?? '') + (!isFetchingLocation && ' invisible');
 
   if (!locationBias?.displayName) return null;
 
   const attributionMessage =
-      locationBias?.method === LocationBiasMethod.Ip ? ' (based on your internet address) - '
-        : locationBias?.method === LocationBiasMethod.Device ? ' (based on your device) - '
-          : ' - ';
+      locationBias?.method === LocationBiasMethod.Ip ? ' (based on your internet address)'
+        : locationBias?.method === LocationBiasMethod.Device ? ' (based on your device)'
+          : '';
+
+  const dash = ' - ';
 
   async function handleGeolocationClick() {
     setIsFetchingLocation(true);
@@ -79,30 +83,25 @@ export function LocationBias({
     executeSearch(answersActions);
   }
 
-  const screenIsLarge = window.innerWidth >= 1024;
-
   return (
     <div className={cssClasses.locationBiasContainer}>
-      {screenIsLarge && isFetchingLocation && <div className={cssClasses.loadingIndicatorContainer}/>}
       <span className={cssClasses.location}>
         {locationBias.displayName}
       </span>
       <span className={cssClasses.source}>
         {attributionMessage}
+        <span className='invisible lg:visible'> {dash} </span>
       </span>
       <div className='flex flex-row items-center'>
-        {!screenIsLarge && isFetchingLocation && <div className={cssClasses.loadingIndicatorContainer}/>}
         <button
           className={cssClasses.button}
           onClick={handleGeolocationClick}
         >
           Update your location
         </button>
-        {isFetchingLocation &&
-          <div className={cssClasses.loadingIndicatorContainer}>
-            <LoadingIndicator />
-          </div>
-        }
+        <div className={loadingIndicatorCss}>
+          <LoadingIndicator />
+        </div>
       </div>
     </div>
   );
