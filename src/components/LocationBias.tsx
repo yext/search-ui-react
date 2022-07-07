@@ -1,10 +1,9 @@
 import { useAnswersActions, useAnswersState, LocationBiasMethod } from '@yext/answers-headless-react';
 import { executeSearch } from '../utils/search-operations';
 import { getUserLocation } from '../utils/location-operations';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { twMerge, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useState } from 'react';
 import LoadingIndicator from '../icons/LoadingIndicator';
-import classNames from 'classnames';
 
 /**
  * The CSS class interface for the {@link LocationBias} component.
@@ -57,9 +56,7 @@ export function LocationBias({
   const locationBias = useAnswersState(s => s.location.locationBias);
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const loadingIndicatorCss = classNames(cssClasses.loadingIndicatorContainer, {
-    invisible: !isFetchingLocation
-  });
+  const loadingIndicatorCss = twMerge(cssClasses.loadingIndicatorContainer, (!isFetchingLocation && 'invisible'));
 
   if (!locationBias?.displayName) return null;
 
