@@ -16,6 +16,9 @@ export function isNumberRangeValue(obj: unknown): obj is NumberRangeValue {
   return typeof obj === 'object' && !!obj && ('start' in obj || 'end' in obj);
 }
 
+/**
+ * Checks if the facet is a numerical facet with number range filter options.
+ */
 export function isNumericalFacet(facet: DisplayableFacet): boolean {
   return facet.options.length > 0 && isNumberRangeFilter(facet.options[0]);
 }
