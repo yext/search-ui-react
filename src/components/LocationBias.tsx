@@ -21,9 +21,9 @@ export interface LocationBiasCssClasses {
 const builtInCssClasses: Readonly<LocationBiasCssClasses> = {
   locationBiasContainer: 'text-sm text-neutral text-center justify-center items-center flex flex-col lg:flex-row',
   location: 'font-semibold mr-1 lg:ml-7',
-  button: 'text-primary hover:underline focus:underline ml-7 lg:ml-1',
-  loadingIndicatorContainer: 'w-4 h-4 ml-3 shrink-0',
-  source: 'ml-3 lg:ml-0 '
+  source: 'ml-3 lg:ml-0 ',
+  button: 'text-primary hover:underline focus:underline ml-7 lg:ml-0',
+  loadingIndicatorContainer: 'w-4 h-4 ml-3 shrink-0'
 };
 
 /**
