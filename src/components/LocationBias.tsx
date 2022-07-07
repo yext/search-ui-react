@@ -68,8 +68,6 @@ export function LocationBias({
         : locationBias?.method === LocationBiasMethod.Device ? ' (based on your device)'
           : '';
 
-  const dash = ' - ';
-
   async function handleGeolocationClick() {
     setIsFetchingLocation(true);
     try {
@@ -93,7 +91,7 @@ export function LocationBias({
       </span>
       <span className={cssClasses.source}>
         {attributionMessage}
-        <span className='invisible lg:visible'> {dash} </span>
+        <span className='invisible lg:visible whitespace-pre'> - </span>
       </span>
       <div className='flex flex-row items-center'>
         <button
