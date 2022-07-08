@@ -20,7 +20,7 @@ export interface LocationBiasCssClasses {
 
 const builtInCssClasses: Readonly<LocationBiasCssClasses> = {
   locationBiasContainer: 'text-sm text-neutral text-center justify-center items-center flex flex-col lg:flex-row',
-  location: 'font-semibold mr-1 lg:ml-7',
+  location: 'font-semibold lg:ml-7',
   source: 'ml-3 lg:ml-0 ',
   button: 'text-primary hover:underline focus:underline ml-7 lg:ml-0',
   loadingIndicatorContainer: 'w-4 h-4 ml-3 shrink-0'
@@ -57,12 +57,13 @@ export function LocationBias({
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const loadingIndicatorCss = twMerge(cssClasses.loadingIndicatorContainer, (!isFetchingLocation && 'invisible'));
+  const sourceCss = twMerge(cssClasses.source, 'whitespace-pre');
 
   if (!locationBias?.displayName) return null;
 
   const attributionMessage =
-      locationBias?.method === LocationBiasMethod.Ip ? '(based on your internet address)'
-        : locationBias?.method === LocationBiasMethod.Device ? '(based on your device)'
+      locationBias?.method === LocationBiasMethod.Ip ? ' (based on your internet address)'
+        : locationBias?.method === LocationBiasMethod.Device ? ' (based on your device)'
           : '';
 
   async function handleGeolocationClick() {
@@ -86,7 +87,7 @@ export function LocationBias({
       <span className={cssClasses.location}>
         {locationBias.displayName}
       </span>
-      <span className={cssClasses.source}>
+      <span className={sourceCss}>
         {attributionMessage}
         <span className='invisible lg:visible whitespace-pre'> - </span>
       </span>
