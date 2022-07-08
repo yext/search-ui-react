@@ -9,7 +9,7 @@ import {
   VerticalResults as VerticalResultsData
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
-import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
+import { Fragment, isValidElement, cloneElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
@@ -233,7 +233,9 @@ export function SearchBar({
     executeEntityPreviewsQuery
   ] = useEntityPreviews(entityPreviewSearcher, entityPreviewsDebouncingTime);
   const { verticalKeyToResults, isLoading: entityPreviewsLoading } = entityPreviewsState;
-  const entityPreviews = renderEntityPreviews?.(entityPreviewsLoading, verticalKeyToResults, handleSubmit);
+  const entityPreviews = setPreviewScreenreader(
+    renderEntityPreviews?.(entityPreviewsLoading, verticalKeyToResults, handleSubmit)
+  );
   const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews || !restrictVerticals) {
       return;
@@ -322,7 +324,7 @@ export function SearchBar({
             result,
             cssClasses,
             MagnifyingGlassIcon,
-            `autocomplete option: ${result.value}`
+            `autocomplete suggestion: ${result.value}`
           )}
         </DropdownItem>
         {!hideVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
@@ -499,4 +501,17 @@ export function calculateEntityPreviewsCount(children: ReactNode): number {
     return c;
   });
   return count;
+}
+
+/**
+ * Sets screenreader text for navigable entity previews from a ReactNode containing DropdownItems.
+ */
+export function setPreviewScreenreader(children: ReactNode): ReactNode {
+  children = recursivelyMapChildren(children, c => {
+    if (isValidElement(c) && c.type === DropdownItem) {
+      c = cloneElement(c, { ariaLabel: 'result preview: ' + c.props.value });
+    }
+    return c;
+  });
+  return children;
 }
