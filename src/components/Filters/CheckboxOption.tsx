@@ -20,7 +20,9 @@ export interface FilterOptionConfig {
   /** If this particular filter should be selected by default. */
   selectedByDefault?: boolean,
   /** The display name. Defaults to the value prop. */
-  displayName?: string
+  displayName?: string,
+  /** The number of results associated with this filter. */
+  resultsCount?: number
 }
 
 /**
@@ -74,6 +76,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     matcher = Matcher.Equals,
     selectedByDefault = false,
     displayName = props.value,
+    resultsCount
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const optionId = useMemo(() => uuid(), []);
@@ -135,6 +138,8 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
+  const labelText = resultsCount ? `${displayName} (${resultsCount})` : displayName;
+
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___disabled ?? '']: isOptionsDisabled
   });
@@ -153,7 +158,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
           onChange={handleChange}
           disabled={isOptionsDisabled}
         />
-        <label className={labelClasses} htmlFor={optionId}>{displayName}</label>
+        <label className={labelClasses} htmlFor={optionId}>{labelText}</label>
       </div>
       {isOptionsDisabled &&
         <div className={cssClasses.tooltipContainer}>
