@@ -88,7 +88,7 @@ export function LocationBias({
       </span>
       <span className={cssClasses.source}>
         {attributionMessage}
-        <span className='invisible lg:visible whitespace-pre'> - </span>
+        <span className='invisible lg:visible'> - </span>
       </span>
       <div className='flex flex-row items-center'>
         <button
