@@ -12,7 +12,8 @@ import {
   StandardFacets,
   HierarchicalFacets,
   ApplyFiltersButton,
-  Pagination
+  Pagination,
+  NumericalFacets
 } from '@yext/answers-react-components';
 
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
@@ -28,6 +29,7 @@ export function PeoplePage() {
       <SearchBar />
       <div className='flex'>
         <div className='min-w-fit pr-4'>
+          <NumericalFacets searchOnChange={false} />
           <StandardFacets
             searchable={true}
             searchOnChange={false}
@@ -47,14 +49,14 @@ export function PeoplePage() {
             ]}
             searchOnChange={false}
           />
-          <br/>
-          <FilterSearch searchFields={[{fieldApiName: 'name', entityType: 'ce_person' }]}/>
+          <br />
+          <FilterSearch searchFields={[{ fieldApiName: 'name', entityType: 'ce_person' }]} />
           <ApplyFiltersButton />
         </div>
         <div className='flex-grow'>
           <div className='flex items-baseline'>
             <ResultsCount />
-            <AppliedFilters hierarchicalFacetsFieldIds={hierarchicalFacetFieldIds}/>
+            <AppliedFilters hierarchicalFacetsFieldIds={hierarchicalFacetFieldIds} />
           </div>
           <VerticalResults
             CardComponent={StandardCard}

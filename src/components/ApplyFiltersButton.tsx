@@ -1,5 +1,6 @@
 import { useAnswersActions } from '@yext/answers-headless-react';
 import { useCallback } from 'react';
+import { clearStaticRangeFilters, getSelectedNumericalFacetFields } from '../utils/filterutils';
 import { executeSearch } from '../utils/search-operations';
 
 /**
@@ -45,6 +46,7 @@ export function ApplyFiltersButton({
   const answersActions = useAnswersActions();
   const handleClick = useCallback(() => {
     answersActions.setOffset(0);
+    clearStaticRangeFilters(answersActions, getSelectedNumericalFacetFields(answersActions));
     executeSearch(answersActions);
   }, [answersActions]);
 

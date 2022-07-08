@@ -72,7 +72,7 @@ it('renders the proper text (location DisplayName, method, and update btn)', () 
   const locationNameElement = screen.getByText(expectedLocationName);
   expect(locationNameElement).toBeDefined();
 
-  const expectedMethodMessage = '(based on your device) -';
+  const expectedMethodMessage = '(based on your device)';
   const basedOnMethodElement = screen.getByText(expectedMethodMessage);
   expect(basedOnMethodElement).toBeDefined();
 
@@ -117,7 +117,7 @@ it('updates rendered DisplayName if location changes and update button is clicke
 it('renders correct attribution message, device', () => {
   mockAnswersState(mockedStateVaDevice);
   render(<LocationBias />);
-  const expectedMethodMessage = '(based on your device) -';
+  const expectedMethodMessage = '(based on your device)';
   const basedOnMethodElement = screen.getByText(expectedMethodMessage);
   expect(basedOnMethodElement).toBeDefined();
 });
@@ -125,7 +125,7 @@ it('renders correct attribution message, device', () => {
 it('renders correct attribution message, IP', () => {
   mockAnswersState(mockedStateNyIP);
   render(<LocationBias />);
-  const expectedMethodMessage = '(based on your internet address) -';
+  const expectedMethodMessage = '(based on your internet address)';
   const basedOnMethodElement = screen.getByText(expectedMethodMessage);
   expect(basedOnMethodElement).toBeDefined();
 });
