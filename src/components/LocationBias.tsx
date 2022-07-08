@@ -21,7 +21,7 @@ export interface LocationBiasCssClasses {
 const builtInCssClasses: Readonly<LocationBiasCssClasses> = {
   locationBiasContainer: 'text-sm text-neutral text-center justify-center items-center flex flex-col lg:flex-row',
   location: 'font-semibold lg:ml-7',
-  source: 'ml-3 lg:ml-0',
+  source: 'ml-3 lg:ml-0 whitespace-pre',
   button: 'text-primary hover:underline focus:underline ml-7 lg:ml-0',
   loadingIndicatorContainer: 'w-4 h-4 ml-3 shrink-0'
 };
@@ -57,7 +57,6 @@ export function LocationBias({
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const loadingIndicatorCss = twMerge(cssClasses.loadingIndicatorContainer, (!isFetchingLocation && 'invisible'));
-  const sourceCss = twMerge(cssClasses.source, 'whitespace-pre');
 
   if (!locationBias?.displayName) return null;
 
@@ -87,7 +86,7 @@ export function LocationBias({
       <span className={cssClasses.location}>
         {locationBias.displayName}
       </span>
-      <span className={sourceCss}>
+      <span className={cssClasses.source}>
         {attributionMessage}
         <span className='invisible lg:visible whitespace-pre'> - </span>
       </span>
