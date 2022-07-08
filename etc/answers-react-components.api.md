@@ -208,6 +208,7 @@ export interface FilterGroupProps {
 export interface FilterOptionConfig {
     displayName?: string;
     matcher?: Matcher;
+    resultsCount?: number;
     selectedByDefault?: boolean;
     value: string | number | boolean | NumberRangeValue;
 }

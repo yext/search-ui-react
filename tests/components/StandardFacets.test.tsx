@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { AnswersHeadless, FacetOption, Source, State } from '@yext/answers-headless-react';
+import { AnswersHeadless, DisplayableFacetOption, FacetOption, Source, State } from '@yext/answers-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
@@ -52,7 +52,7 @@ describe('StandardFacets', () => {
 
     expect(screen.getByText(regularFilter.displayName)).toBeDefined();
     regularFilter.options.forEach(o => {
-      expect(screen.getByText(o.displayName)).toBeDefined();
+      expect(screen.getByText(getOptionLabelText(o))).toBeDefined();
     });
 
     expect(screen.queryByText(numericalFilter.displayName)).toBeNull();
@@ -66,7 +66,9 @@ describe('StandardFacets', () => {
     render(<StandardFacets />);
 
     const productFacet = DisplayableFacets[0];
-    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(productFacet.options[0].displayName);
+    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(
+      getOptionLabelText(productFacet.options[0])
+    );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     userEvent.click(coffeeCheckbox);
@@ -79,10 +81,11 @@ describe('StandardFacets', () => {
 
     const productFacet = DisplayableFacets[0];
     const coffeeFacetOption = productFacet.options[0];
-    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(coffeeFacetOption.displayName);
+    const labelText = getOptionLabelText(coffeeFacetOption);
+    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(labelText);
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    const coffeeLabel = screen.getByText(coffeeFacetOption.displayName);
+    const coffeeLabel = screen.getByText(labelText);
     userEvent.click(coffeeLabel);
     expectFacetOptionSet(actions, productFacet.fieldId, coffeeFacetOption, true);
   });
@@ -92,7 +95,7 @@ describe('StandardFacets', () => {
     render(<StandardFacets />);
 
     const productFacet = DisplayableFacets[0];
-    const teaCheckbox: HTMLInputElement = screen.getByLabelText(productFacet.options[1].displayName);
+    const teaCheckbox: HTMLInputElement = screen.getByLabelText(getOptionLabelText(productFacet.options[1]));
     expect(teaCheckbox.checked).toBeTruthy();
 
     userEvent.click(teaCheckbox);
@@ -104,7 +107,9 @@ describe('StandardFacets', () => {
     render(<StandardFacets />);
 
     const productFacet = DisplayableFacets[0];
-    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(productFacet.options[0].displayName);
+    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(
+      getOptionLabelText(productFacet.options[0])
+    );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     userEvent.click(coffeeCheckbox);
@@ -117,7 +122,9 @@ describe('StandardFacets', () => {
     render(<StandardFacets searchOnChange={false} />);
 
     const productFacet = DisplayableFacets[0];
-    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(productFacet.options[0].displayName);
+    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(
+      getOptionLabelText(productFacet.options[0])
+    );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     userEvent.click(coffeeCheckbox);
@@ -137,4 +144,8 @@ function expectFacetOptionSet(
     { matcher: option.matcher, value: option.value },
     selected
   );
+}
+
+function getOptionLabelText(option: DisplayableFacetOption) {
+  return `${option.displayName} (${option.count})`;
 }
