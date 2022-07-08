@@ -15,6 +15,7 @@ export declare type DropdownItemProps = PropsWithChildren<{
     focusedClassName?: string;
     itemData?: Record<string, unknown> | undefined;
     onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
+    ariaLabel?: string;
 }>;
 ```
 <b>References:</b> [FocusedItemData](./answers-react-components.focuseditemdata.md)
