@@ -153,9 +153,20 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   }, [answersActions, fieldId, getFilterDisplayName, isValid, rangeFilter]);
 
   const handleClickClear = useCallback(() => {
+    console.log('a');
+    const displayName = getFilterDisplayName(rangeFilter.value);
+    clearStaticRangeFilters(answersActions, new Set([fieldId]));
+    answersActions.setFilterOption({
+      ...rangeFilter,
+      selected: false,
+      displayName
+    });
     setMinRangeInput('');
     setMaxRangeInput('');
-  }, []);
+    answersActions.setOffset(0);
+    executeSearch(answersActions);
+  }, [answersActions, fieldId, getFilterDisplayName, isValid, rangeFilter]);
+
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,
