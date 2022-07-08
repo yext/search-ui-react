@@ -19,7 +19,7 @@ export type DropdownItemProps = PropsWithChildren<{
   /** Data associated with the dropdown item which is passed to the onClick and the onSelect handlers. */
   itemData?: Record<string, unknown> | undefined,
   /** A function which is fired when the item is clicked. */
-  onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void,
+  onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void,
   /** Screenreader text. */
   ariaLabel?: string
 }>;
