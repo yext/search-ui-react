@@ -74,7 +74,18 @@ describe('Renders correctly for min input', () => {
     });
     userEvent.click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
-    expect(actions.setFilterOption).toHaveBeenCalledTimes(0);
+    expect(actions.setFilterOption).toHaveBeenCalledWith({
+      displayName: 'Over 10',
+      fieldId: '123',
+      matcher: '$between',
+      selected: false,
+      value: {
+        start: {
+          matcher: '$ge',
+          value: 10
+        },
+      }
+    });
   });
 });
 
@@ -118,7 +129,18 @@ describe('Renders correctly for max input', () => {
     });
     userEvent.click(screen.getByText('Clear min and max'));
     expect(maxTextbox).toHaveValue('');
-    expect(actions.setFilterOption).toHaveBeenCalledTimes(0);
+    expect(actions.setFilterOption).toHaveBeenCalledWith({
+      displayName: 'Up to 20',
+      fieldId: '123',
+      matcher: '$between',
+      selected: false,
+      value: {
+        end: {
+          matcher: '$le',
+          value: 20
+        },
+      }
+    });
   });
 });
 
