@@ -165,8 +165,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     setMaxRangeInput('');
     answersActions.setOffset(0);
     executeSearch(answersActions);
-  }, [answersActions, fieldId, getFilterDisplayName, isValid, rangeFilter]);
-
+  }, [answersActions, fieldId, getFilterDisplayName, rangeFilter]);
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,

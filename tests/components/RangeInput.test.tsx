@@ -171,7 +171,22 @@ describe('Renders correctly for min and max inputs', () => {
     userEvent.click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
     expect(maxTextbox).toHaveValue('');
-    expect(actions.setFilterOption).toHaveBeenCalledTimes(0);
+    expect(actions.setFilterOption).toHaveBeenCalledWith({
+      displayName: '10 - 20',
+      fieldId: '123',
+      matcher: '$between',
+      selected: false,
+      value: {
+        start: {
+          matcher: '$ge',
+          value: 10
+        },
+        end: {
+          matcher: '$le',
+          value: 20
+        },
+      }
+    });
   });
 
   it('renders correctly when input range is invalid and no filter is set in state', async () => {
