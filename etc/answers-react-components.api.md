@@ -168,7 +168,7 @@ export type DropdownItemProps = PropsWithChildren<{
     focusedClassName?: string;
     itemData?: Record<string, unknown> | undefined;
     onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
-    ariaLabel?: string;
+    ariaLabel?: (value: string) => string | string;
 }>;
 
 // @public
@@ -422,7 +422,7 @@ export interface RangeInputCssClasses {
 }
 
 // @public
-export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element | null;
+export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, handleSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void, returnEntityAria: (value: string) => string) => JSX.Element | null;
 
 // @public
 export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
