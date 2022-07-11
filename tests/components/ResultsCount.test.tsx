@@ -137,7 +137,6 @@ describe('Results count and pagination range for vertical search', () => {
   it('Does not render pagination range if there is no pagination', () => {
     mockAnswersState(mockedStateVerticalMultiple);
     render(<ResultsCount />);
-    expect(screen.queryByText('1 - 2 of 2 Results')).toBeNull();
-    expect(screen.getByText('2 Results')).toBeDefined();
+    expect(screen.getByText('2 Results').textContent).toBe('2 Results');
   });
 });
