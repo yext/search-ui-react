@@ -9,7 +9,7 @@ import {
   VerticalResults as VerticalResultsData
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
-import { Fragment, isValidElement, cloneElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
+import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
@@ -95,7 +95,8 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalKeyToResults: Record<string, VerticalResultsData>,
-  onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
+  handleSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void,
+  returnEntityAria: (value: string) => string
 ) => JSX.Element | null;
 
 /**
@@ -228,13 +229,20 @@ export function SearchBar({
     }
   }, [answersActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 
+  const returnEntityAria = (value: string) => {
+    return 'result preview: ' + value;
+  };
+
   const [
     entityPreviewsState,
     executeEntityPreviewsQuery
   ] = useEntityPreviews(entityPreviewSearcher, entityPreviewsDebouncingTime);
   const { verticalKeyToResults, isLoading: entityPreviewsLoading } = entityPreviewsState;
-  const entityPreviews = setPreviewScreenreader(
-    renderEntityPreviews?.(entityPreviewsLoading, verticalKeyToResults, handleSubmit)
+  const entityPreviews = renderEntityPreviews?.(
+    entityPreviewsLoading,
+    verticalKeyToResults,
+    handleSubmit,
+    returnEntityAria
   );
   const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews || !restrictVerticals) {
@@ -501,17 +509,4 @@ export function calculateEntityPreviewsCount(children: ReactNode): number {
     return c;
   });
   return count;
-}
-
-/**
- * Sets screenreader text for navigable entity previews from a ReactNode containing DropdownItems.
- */
-export function setPreviewScreenreader(children: ReactNode): ReactNode {
-  children = recursivelyMapChildren(children, c => {
-    if (isValidElement(c) && c.type === DropdownItem) {
-      c = cloneElement(c, { ariaLabel: 'result preview: ' + c.props.value });
-    }
-    return c;
-  });
-  return children;
 }
