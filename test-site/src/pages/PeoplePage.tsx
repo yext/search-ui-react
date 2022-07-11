@@ -28,7 +28,7 @@ export function PeoplePage() {
     <div>
       <SearchBar />
       <div className='flex'>
-      <div className='w-56 shrink-0 mr-5'>
+        <div className='w-56 shrink-0 mr-5'>
           <NumericalFacets searchOnChange={false} />
           <StandardFacets
             searchable={true}
