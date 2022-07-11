@@ -96,7 +96,7 @@ export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalKeyToResults: Record<string, VerticalResultsData>,
   handleSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void,
-  returnEntityAria: (value: string) => string
+  getAriaLabel: (value: string) => string
 ) => JSX.Element | null;
 
 /**
@@ -229,10 +229,6 @@ export function SearchBar({
     }
   }, [answersActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 
-  const returnEntityAria = (value: string) => {
-    return 'result preview: ' + value;
-  };
-
   const [
     entityPreviewsState,
     executeEntityPreviewsQuery
@@ -242,7 +238,7 @@ export function SearchBar({
     entityPreviewsLoading,
     verticalKeyToResults,
     handleSubmit,
-    returnEntityAria
+    getAriaLabel
   );
   const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews || !restrictVerticals) {
@@ -495,6 +491,10 @@ function DropdownSearchButton({ handleSubmit, cssClasses }: {
       />
     </div>
   );
+}
+
+function getAriaLabel(value: string): string {
+  return 'result preview: ' + value;
 }
 
 /**

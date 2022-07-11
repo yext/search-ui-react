@@ -128,8 +128,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     }
   });
 
-  console.log(items.length);
-
   return (
     <div ref={containerRef} className={isActive ? activeClassName : className}>
       <DropdownContext.Provider value={dropdownContext}>
@@ -208,7 +206,7 @@ function useDropdownContextInstance(
   index: number,
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
-  setReadAutocomplete: (boolean) => void,
+  setHasTyped: (boolean) => void,
   onToggle?: (
     isActive: boolean,
     prevValue: string,
@@ -221,7 +219,7 @@ function useDropdownContextInstance(
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
     if (!willBeOpen) {
-      setReadAutocomplete(false);
+      setHasTyped(false);
     }
     _toggleDropdown(willBeOpen);
     onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
