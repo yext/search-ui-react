@@ -366,9 +366,11 @@ export function SearchBar({
     && !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
   const hasItems = !!(autocompleteResponse?.results.length
     || (!isVertical && filteredRecentSearches?.length) || entityPreviews);
+  const autocompleteOptions = autocompleteResponse?.results.length
+  const recentSearchesOptions = isVertical ? 0 : filteredRecentSearches?.length
   const screenReaderText = getScreenReaderText(
-    autocompleteResponse?.results.length,
-    isVertical ? 0 : filteredRecentSearches?.length,
+    autocompleteOptions,
+    recentSearchesOptions,
     entityPreviewsCount
   );
   const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {
@@ -390,8 +392,8 @@ export function SearchBar({
         parentQuery={query}
         onToggle={handleToggleDropdown}
         numItems={
-          (autocompleteResponse?.results.length || 0) +
-          (isVertical ? 0 : (filteredRecentSearches?.length || 0)) +
+          (autocompleteOptions || 0) +
+          (recentSearchesOptions || 0) +
           entityPreviewsCount
         }
       >
