@@ -154,7 +154,6 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
 
   const handleClickClear = useCallback(() => {
     const displayName = getFilterDisplayName(rangeFilter.value);
-    clearStaticRangeFilters(answersActions, new Set([fieldId]));
     answersActions.setFilterOption({
       ...rangeFilter,
       selected: false,
