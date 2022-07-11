@@ -74,6 +74,13 @@ const mockedStateVerticalNoResult: Partial<State> = {
   }
 };
 
+const mockedStateVerticalPaginationResult: Partial<State> = {
+  ...mockedVerticalState,
+  vertical: {
+    resultsCount: 30
+  }
+};
+
 jest.mock('@yext/answers-headless-react');
 
 describe('Results count for vertical search', () => {
@@ -92,8 +99,8 @@ describe('Results count for vertical search', () => {
 
   it('Renders nothing if there is no result', () => {
     mockAnswersState(mockedStateVerticalNoResult);
-    render(<ResultsCount />);
-    expect(screen.queryByText('0 Results')).toBeNull();
+    const { container } = render(<ResultsCount />);
+    expect(container.childNodes[0]).toBeEmptyDOMElement();
   });
 });
 
@@ -115,7 +122,22 @@ describe('Results count for universal search', () => {
 
   it('Renders nothing if there is no result', () => {
     mockAnswersState(mockedStateUniversalNoResult);
+    const { container } = render(<ResultsCount />);
+    expect(container.childNodes[0]).toBeEmptyDOMElement();
+  });
+});
+
+describe('Results count and pagination range for vertical search', () => {
+  it('Renders pagination range if pagination is required', () => {
+    mockAnswersState(mockedStateVerticalPaginationResult);
     render(<ResultsCount />);
-    expect(screen.queryByText('0 Results')).toBeNull();
+    expect(screen.getByText('1-20 of 30 Results')).toBeDefined();
+  });
+
+  it('Does not render pagination range if there is no pagination', () => {
+    mockAnswersState(mockedStateVerticalMultiple);
+    render(<ResultsCount />);
+    expect(screen.queryByText('1-2 of 2 Results')).toBeNull();
+    expect(screen.getByText('2 Results')).toBeDefined();
   });
 });
