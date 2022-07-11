@@ -89,7 +89,6 @@ export function AlternativeVerticals({
   const allResultsForVertical =
     useAnswersState(state => state.vertical.noResults?.allResultsForVertical.results) || [];
   const query = useAnswersState(state => state.query.mostRecentSearch);
-  console.log('alternativeVerticals', alternativeVerticals);
 
   const verticalSuggestions = buildVerticalSuggestions(verticalConfigMap, alternativeVerticals);
   const isShowingAllResults = displayAllOnNoResults && allResultsForVertical.length > 0;

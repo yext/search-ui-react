@@ -39,13 +39,13 @@ describe('AlternativeVerticals', () => {
     mockAnswersHooks({ mockedState });
   });
 
-  it('displays vertical suggestions correspond to verticalConfigMap', () => {
+  it('displays vertical suggestions correspond to what is specified in verticalConfigMap', () => {
     render(<AlternativeVerticals {...alternativeVerticalsProps}/>);
     expect(screen.getByText('FAQs - 1 result')).toBeDefined();
     expect(screen.getByText('Events - 2 results')).toBeDefined();
   });
 
-  it('an empty dom is rendered when there\'s no vertical suggestions', () => {
+  it('renders an empty dom when there\'s no vertical suggestions', () => {
     mockAnswersHooks({
       mockedState: {
         ...mockedState,
