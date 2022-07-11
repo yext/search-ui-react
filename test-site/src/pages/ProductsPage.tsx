@@ -21,7 +21,7 @@ export function ProductsPage() {
     <div>
       <SearchBar />
       <div className='flex'>
-        <div className='min-w-fit pr-4'>
+        <div className='w-56 shrink-0 mr-5'>
           <NumericalFacets />
         </div>
         <div className='flex-grow'>
