@@ -10,7 +10,8 @@ const mockedUniversalState: Partial<State> = {
   },
   meta: {
     searchType: 'universal'
-  }
+  },
+  vertical: {}
 };
 
 const mockedStateUniversalMultiple: RecursivePartial<State> = {
