@@ -208,6 +208,7 @@ export interface FilterGroupProps {
 export interface FilterOptionConfig {
     displayName?: string;
     matcher?: Matcher;
+    resultsCount?: number;
     selectedByDefault?: boolean;
     value: string | number | boolean | NumberRangeValue;
 }
@@ -308,11 +309,11 @@ export interface LocationBiasCssClasses {
     // (undocumented)
     button?: string;
     // (undocumented)
-    container?: string;
-    // (undocumented)
     loadingIndicatorContainer?: string;
     // (undocumented)
     location?: string;
+    // (undocumented)
+    locationBiasContainer?: string;
     // (undocumented)
     source?: string;
 }

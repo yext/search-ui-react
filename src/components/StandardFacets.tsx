@@ -60,7 +60,9 @@ export function StandardFacets(props: StandardFacetsProps) {
             <Fragment key={f.fieldId}>
               <FilterGroup
                 fieldId={f.fieldId}
-                filterOptions={f.options}
+                filterOptions={f.options.map(o => {
+                  return { ...o, resultsCount: o.count };
+                })}
                 title={f.displayName}
                 customCssClasses={customCssClasses}
                 {...filterGroupProps}
