@@ -18,6 +18,7 @@ interface DropdownItemData {
 export interface DropdownProps {
   screenReaderText: string,
   screenReaderInstructions?: string,
+  numItems?: number,
   initialValue?: string,
   parentQuery?: string,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
@@ -44,6 +45,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     children,
     screenReaderText,
     screenReaderInstructions = 'When autocomplete results are available, use up and down arrows to review and enter to select.',
+    numItems = 0,
     initialValue,
     onSelect,
     onToggle,
@@ -55,6 +57,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const screenReaderUUID: string = useMemo(() => uuid(), []);
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
+  const [readAutocomplete, setReadAutocomplete] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = getTransformedChildrenAndItemData(children);
 
   const inputContext = useInputContextInstance(initialValue);
@@ -75,6 +78,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     focusedIndex,
     focusedItemData,
     screenReaderUUID,
+    setReadAutocomplete,
     onToggle,
     onSelect
   );
@@ -121,6 +125,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       } else {
         toggleDropdown(false);
       }
+    } else if (!readAutocomplete) {
+      setReadAutocomplete(true);
     }
   });
 
@@ -136,7 +142,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
 
       <ScreenReader
         announcementKey={screenReaderKey}
-        announcementText={isActive ? screenReaderText : ''}
+        announcementText={isActive && (readAutocomplete || numItems > 0) ? screenReaderText : ''}
         instructionsId={screenReaderUUID}
         instructions={screenReaderInstructions}
       />
@@ -202,6 +208,7 @@ function useDropdownContextInstance(
   index: number,
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
+  setReadAutocomplete: (boolean) => void,
   onToggle?: (
     isActive: boolean,
     prevValue: string,
@@ -213,6 +220,9 @@ function useDropdownContextInstance(
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
+    if (!willBeOpen) {
+      setReadAutocomplete(false);
+    }
     _toggleDropdown(willBeOpen);
     onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
   };

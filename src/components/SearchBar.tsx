@@ -9,7 +9,7 @@ import {
   VerticalResults as VerticalResultsData
 } from '@yext/answers-headless-react';
 import classNames from 'classnames';
-import { Fragment, isValidElement, cloneElement, PropsWithChildren, ReactNode, useCallback, useEffect, useState } from 'react';
+import { Fragment, isValidElement, cloneElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
@@ -194,8 +194,6 @@ export function SearchBar({
     answersUtilities.isCloseMatch(search.query, query)
   );
 
-  const [readAutocomplete, setReadAutocomplete] = useState(false);
-
   useEffect(() => {
     if (hideRecentSearches) {
       clearRecentSearches();
@@ -246,20 +244,16 @@ export function SearchBar({
   }, [executeEntityPreviewsQuery, renderEntityPreviews, restrictVerticals, universalLimit]);
 
   const handleInputFocus = useCallback((value = '') => {
-    setReadAutocomplete(false);
     answersActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
   }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
   const handleInputChange = useCallback((value = '') => {
-    if (!readAutocomplete) {
-      setReadAutocomplete(true);
-    }
     answersActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
-  }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews, readAutocomplete]);
+  }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
   const handleClickClearButton = useCallback(() => {
     updateEntityPreviews('');
@@ -375,8 +369,7 @@ export function SearchBar({
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
     isVertical ? 0 : filteredRecentSearches?.length,
-    entityPreviewsCount,
-    readAutocomplete
+    entityPreviewsCount
   );
   const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {
     ['shadow-lg' ?? '']: hasItems
@@ -396,6 +389,11 @@ export function SearchBar({
         screenReaderText={screenReaderText}
         parentQuery={query}
         onToggle={handleToggleDropdown}
+        numItems={
+          (autocompleteResponse?.results.length || 0) +
+          (isVertical ? 0 : (filteredRecentSearches?.length || 0)) +
+          entityPreviewsCount
+        }
       >
         <div className='inline-flex items-center justify-between w-full'>
           <div className='w-7 mx-2.5 my-2'>
@@ -439,8 +437,7 @@ function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
 function getScreenReaderText(
   autocompleteOptions = 0,
   recentSearchesOptions = 0,
-  entityPreviewsCount = 0,
-  readAutocomplete
+  entityPreviewsCount = 0
 ): string {
   const recentSearchesText = recentSearchesOptions > 0
     ? processTranslation({
@@ -465,7 +462,7 @@ function getScreenReaderText(
     : '';
 
   const text = recentSearchesText + autocompleteText + entityPreviewsText;
-  if (text === '' && readAutocomplete) {
+  if (text === '') {
     return processTranslation({
       phrase: '0 autocomplete suggestion found.',
       pluralForm: '0 autocomplete suggestions found.',
