@@ -58,7 +58,7 @@ describe('NumericalFacets', () => {
 
     expect(screen.queryByText(regularFilter.displayName)).toBeNull();
     regularFilter.options.forEach(o => {
-      expect(screen.queryByText(o.displayName)).toBeNull();
+      expect(screen.queryByText(`${o.displayName} (${o.count})}`)).toBeNull();
     });
   });
 
