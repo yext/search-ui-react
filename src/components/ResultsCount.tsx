@@ -7,7 +7,6 @@ import {
 import classNames from 'classnames';
 import { processTranslation } from './utils/processTranslation';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { min } from 'lodash';
 
 /**
  *  The CSS class interface for {@link ResultsCount}.
@@ -77,11 +76,11 @@ function useResultsCount() {
     count: resultsCount
   });
 
-  if (resultsCount > (limit)){
+  if (resultsCount > limit){
     const paginateStart = offset + 1;
-    const paginateEnd = min([(offset + limit), resultsCount]);
-    const paginateRange = paginateStart + '-'+ paginateEnd;
-    const resultCountWithPaginationText = paginateRange + ' of ' + resultsCountText;
+    const paginateEnd = Math.min((offset + limit), resultsCount);
+    const paginateRange = `${paginateStart}-${paginateEnd}`;
+    const resultCountWithPaginationText = `${paginateRange} of ${resultsCountText}`;
     return resultCountWithPaginationText;
   } else {
     return resultsCountText;
