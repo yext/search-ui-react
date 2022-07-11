@@ -18,7 +18,6 @@ interface DropdownItemData {
 export interface DropdownProps {
   screenReaderText: string,
   screenReaderInstructions?: string,
-  numItems?: number,
   initialValue?: string,
   parentQuery?: string,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
@@ -45,7 +44,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     children,
     screenReaderText,
     screenReaderInstructions = 'When autocomplete results are available, use up and down arrows to review and enter to select.',
-    numItems = 0,
     initialValue,
     onSelect,
     onToggle,
@@ -130,6 +128,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     }
   });
 
+  console.log(items.length);
+
   return (
     <div ref={containerRef} className={isActive ? activeClassName : className}>
       <DropdownContext.Provider value={dropdownContext}>
@@ -142,7 +142,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
 
       <ScreenReader
         announcementKey={screenReaderKey}
-        announcementText={isActive && (readAutocomplete || numItems > 0) ? screenReaderText : ''}
+        announcementText={isActive && (readAutocomplete || items.length) ? screenReaderText : ''}
         instructionsId={screenReaderUUID}
         instructions={screenReaderInstructions}
       />

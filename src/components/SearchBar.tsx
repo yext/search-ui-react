@@ -366,11 +366,9 @@ export function SearchBar({
     && !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
   const hasItems = !!(autocompleteResponse?.results.length
     || (!isVertical && filteredRecentSearches?.length) || entityPreviews);
-  const autocompleteOptions = autocompleteResponse?.results.length
-  const recentSearchesOptions = isVertical ? 0 : filteredRecentSearches?.length
   const screenReaderText = getScreenReaderText(
-    autocompleteOptions,
-    recentSearchesOptions,
+    autocompleteResponse?.results.length,
+    isVertical ? 0 : filteredRecentSearches?.length,
     entityPreviewsCount
   );
   const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {
@@ -391,11 +389,6 @@ export function SearchBar({
         screenReaderText={screenReaderText}
         parentQuery={query}
         onToggle={handleToggleDropdown}
-        numItems={
-          (autocompleteOptions || 0) +
-          (recentSearchesOptions || 0) +
-          entityPreviewsCount
-        }
       >
         <div className='inline-flex items-center justify-between w-full'>
           <div className='w-7 mx-2.5 my-2'>
