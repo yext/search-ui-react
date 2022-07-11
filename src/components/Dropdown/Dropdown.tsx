@@ -140,7 +140,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
 
       <ScreenReader
         announcementKey={screenReaderKey}
-        announcementText={isActive && (hasTyped || items.length) ? screenReaderText : ''}
+        announcementText={isActive && (hasTyped || items.length || value) ? screenReaderText : ''}
         instructionsId={screenReaderUUID}
         instructions={screenReaderInstructions}
       />
