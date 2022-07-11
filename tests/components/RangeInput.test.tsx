@@ -64,7 +64,7 @@ describe('Renders correctly for min input', () => {
     });
   });
 
-  it('renders correctly when clearing input and no state is set', async () => {
+  it('renders correctly when clearing input and removes range filter set in state', async () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const minTextbox = screen.getAllByRole('textbox')[0];
@@ -119,7 +119,7 @@ describe('Renders correctly for max input', () => {
     });
   });
 
-  it('renders correctly when clearing input and no state is set', async () => {
+  it('renders correctly when clearing input and removes range filter set in state', async () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const maxTextbox = screen.getAllByRole('textbox')[1];
@@ -180,7 +180,7 @@ describe('Renders correctly for min and max inputs', () => {
     });
   });
 
-  it('renders correctly when clearing inputs and no state is set', async () => {
+  it('renders correctly when clearing inputs and removes range filter set in state', async () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
