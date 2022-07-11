@@ -99,8 +99,9 @@ describe('Results count for vertical search', () => {
 
   it('Renders nothing if there is no result', () => {
     mockAnswersState(mockedStateVerticalNoResult);
-    const { container } = render(<ResultsCount />);
-    expect(container.childNodes[0]).toBeEmptyDOMElement();
+    render(<ResultsCount />);
+    const text = screen.queryAllByText(/.+/i);
+    expect(text.length).toBe(0);
   });
 });
 
@@ -122,8 +123,9 @@ describe('Results count for universal search', () => {
 
   it('Renders nothing if there is no result', () => {
     mockAnswersState(mockedStateUniversalNoResult);
-    const { container } = render(<ResultsCount />);
-    expect(container.childNodes[0]).toBeEmptyDOMElement();
+    render(<ResultsCount />);
+    const text = screen.queryAllByText(/.+/i);
+    expect(text.length).toBe(0);
   });
 });
 
