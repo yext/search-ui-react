@@ -135,8 +135,6 @@ describe('Results count and pagination range for vertical search', () => {
     expect(screen.getByText('-')).toBeDefined();
     expect(screen.getByText('20')).toBeDefined();
     expect(screen.getByText('of 30 Results')).toBeDefined();
-
-
   });
 
   it('Does not render pagination range if there is no pagination', () => {
