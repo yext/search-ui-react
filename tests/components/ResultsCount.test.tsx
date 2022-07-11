@@ -131,10 +131,7 @@ describe('Results count and pagination range for vertical search', () => {
   it('Renders pagination range if pagination is required', () => {
     mockAnswersState(mockedStateVerticalPaginationResult);
     render(<ResultsCount />);
-    expect(screen.getByText('1')).toBeDefined();
-    expect(screen.getByText('-')).toBeDefined();
-    expect(screen.getByText('20')).toBeDefined();
-    expect(screen.getByText('of 30 Results')).toBeDefined();
+    expect(screen.getByText('1 - 20 of 30 Results')).toBeDefined();
   });
 
   it('Does not render pagination range if there is no pagination', () => {
