@@ -79,8 +79,17 @@ function useResultsCount() {
   if (resultsCount > limit && isVertical){
     const paginateStart = offset + 1;
     const paginateEnd = Math.min((offset + limit), resultsCount);
-    const paginateRange = `${paginateStart}-${paginateEnd}`;
-    const resultCountWithPaginationText = `${paginateRange} of ${resultsCountText}`;
+
+    const paginateRange =
+    <span>
+      <span>{paginateStart}</span><span className='ml-1 mr-1'>-</span><span>{paginateEnd}</span>
+    </span>;
+
+    const resultCountWithPaginationText =
+    <span>
+      {paginateRange}<span> of {resultsCountText}</span>
+    </span>;
+
     return resultCountWithPaginationText;
   } else {
     return resultsCountText;
