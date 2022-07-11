@@ -13,7 +13,8 @@ import {
   HierarchicalFacets,
   ApplyFiltersButton,
   Pagination,
-  NumericalFacets
+  NumericalFacets,
+  AlternativeVerticals
 } from '@yext/answers-react-components';
 
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
@@ -54,6 +55,12 @@ export function PeoplePage() {
           <ApplyFiltersButton />
         </div>
         <div className='flex-grow'>
+          <AlternativeVerticals
+            currentVerticalLabel='People'
+            verticalConfigMap={{
+              products: { label: 'Products' }
+            }}
+          />
           <div className='flex items-baseline'>
             <ResultsCount />
             <AppliedFilters hierarchicalFacetsFieldIds={hierarchicalFacetFieldIds} />
