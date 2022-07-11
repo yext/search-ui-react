@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { State } from '@yext/answers-headless-react';
 
 import { AlternativeVerticals } from '../../src/components/AlternativeVerticals';
