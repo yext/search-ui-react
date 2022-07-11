@@ -100,8 +100,8 @@ describe('Results count for vertical search', () => {
   it('Renders nothing if there is no result', () => {
     mockAnswersState(mockedStateVerticalNoResult);
     render(<ResultsCount />);
-    const text = screen.queryAllByText(/.+/i);
-    expect(text.length).toBe(0);
+    const textElements = screen.queryAllByText(/.+/i);
+    expect(textElements.length).toBe(0);
   });
 });
 
@@ -124,8 +124,8 @@ describe('Results count for universal search', () => {
   it('Renders nothing if there is no result', () => {
     mockAnswersState(mockedStateUniversalNoResult);
     render(<ResultsCount />);
-    const text = screen.queryAllByText(/.+/i);
-    expect(text.length).toBe(0);
+    const textElements = screen.queryAllByText(/.+/i);
+    expect(textElements.length).toBe(0);
   });
 });
 
