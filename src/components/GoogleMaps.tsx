@@ -1,5 +1,5 @@
 import { Wrapper } from '@googlemaps/react-wrapper';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
 /**
@@ -33,21 +33,31 @@ export function GoogleMaps({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   function UnwrappedGoogleMaps() {
-    const center: google.maps.LatLngLiteral = {
+    const ref = useRef<HTMLDivElement>(null);
+    const [map, setMap] = useState<google.maps.Map>();
+
+    const [center] = useState<google.maps.LatLngLiteral>({
       lat: centerLatitude,
       lng: centerLongitude
-    };
-    const ref = useRef<HTMLDivElement>(null);
+    });
+
     useEffect(() => {
-      if (ref.current) {
-        new window.google.maps.Map(ref.current, {
+      if (ref.current && !map) {
+        setMap(new window.google.maps.Map(ref.current, {
           center,
           zoom,
-        });
-      } else {
-        console.error('An error has occurred using the Google Maps API');
+        }));
       }
+    }, [center, map]);
+
+    new google.maps.Marker({
+      position: {
+        lat: centerLatitude,
+        lng: centerLongitude
+      },
+      map
     });
+
     return <div className={cssClasses.mapElement} ref={ref} id="map" />;
   }
 
