@@ -95,7 +95,10 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalKeyToResults: Record<string, VerticalResultsData>,
-  onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
+  dropdownItemProps: {
+    onClick: (value: string, _index: number, itemData?: FocusedItemData) => void,
+    ariaLabel: (value: string) => string
+  }
 ) => JSX.Element | null;
 
 /**
@@ -233,7 +236,11 @@ export function SearchBar({
     executeEntityPreviewsQuery
   ] = useEntityPreviews(entityPreviewSearcher, entityPreviewsDebouncingTime);
   const { verticalKeyToResults, isLoading: entityPreviewsLoading } = entityPreviewsState;
-  const entityPreviews = renderEntityPreviews?.(entityPreviewsLoading, verticalKeyToResults, handleSubmit);
+  const entityPreviews = renderEntityPreviews?.(
+    entityPreviewsLoading,
+    verticalKeyToResults,
+    { onClick: handleSubmit, ariaLabel: getAriaLabel }
+  );
   const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews || !restrictVerticals) {
       return;
@@ -322,7 +329,7 @@ export function SearchBar({
             result,
             cssClasses,
             MagnifyingGlassIcon,
-            `autocomplete option: ${result.value}`
+            `autocomplete suggestion: ${result.value}`
           )}
         </DropdownItem>
         {!hideVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
@@ -485,6 +492,10 @@ function DropdownSearchButton({ handleSubmit, cssClasses }: {
       />
     </div>
   );
+}
+
+function getAriaLabel(value: string): string {
+  return 'result preview: ' + value;
 }
 
 /**
