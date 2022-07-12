@@ -62,7 +62,7 @@ export interface RangeInputCssClasses {
 
 const builtInCssClasses: Readonly<RangeInputCssClasses> = {
   rangeInputContainer: 'flex flex-col',
-  input: 'w-24 h-9 form-input cursor-pointer border rounded-md focus:ring-0 text-neutral-dark text-sm appearance-none leading-9',
+  input: 'w-full h-9 form-input cursor-pointer border rounded-md focus:ring-0 text-neutral-dark text-sm appearance-none leading-9',
   input___withPrefix: 'pl-[1.375rem]',
   input___withoutPrefix: 'px-2',
   input___disabled: 'bg-gray-50 placeholder:text-neutral-light cursor-not-allowed',
@@ -153,9 +153,17 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   }, [answersActions, fieldId, getFilterDisplayName, isValid, rangeFilter]);
 
   const handleClickClear = useCallback(() => {
+    const displayName = getFilterDisplayName(rangeFilter.value);
+    answersActions.setFilterOption({
+      ...rangeFilter,
+      selected: false,
+      displayName
+    });
     setMinRangeInput('');
     setMaxRangeInput('');
-  }, []);
+    answersActions.setOffset(0);
+    executeSearch(answersActions);
+  }, [answersActions, getFilterDisplayName, rangeFilter]);
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,

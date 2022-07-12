@@ -19,7 +19,9 @@ export type DropdownItemProps = PropsWithChildren<{
   /** Data associated with the dropdown item which is passed to the onClick and the onSelect handlers. */
   itemData?: Record<string, unknown> | undefined,
   /** A function which is fired when the item is clicked. */
-  onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void
+  onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void,
+  /** Screenreader text. */
+  ariaLabel?: (value: string) => string | string
 }>;
 
 /**
@@ -38,7 +40,8 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
     className,
     focusedClassName,
     itemData,
-    onClick
+    onClick,
+    ariaLabel
   } = props;
 
   const { toggleDropdown, onSelect, screenReaderUUID } = useDropdownContext();
@@ -72,6 +75,7 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
       tabIndex={0}
       className={isFocused ? focusedClassName : className}
       onClick={handleClick}
+      aria-label={typeof ariaLabel === 'function' ? ariaLabel(value) : ariaLabel}
     >
       {children}
     </div>

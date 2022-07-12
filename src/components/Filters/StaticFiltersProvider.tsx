@@ -28,7 +28,7 @@ export type StaticFiltersProviderProps = PropsWithChildren<{
  */
 export function StaticFiltersProvider({
   children,
-  className = 'md:w-56',
+  className = 'w-full',
   searchOnChange = true
 }: StaticFiltersProviderProps): JSX.Element {
   const answersActions = useAnswersActions();
