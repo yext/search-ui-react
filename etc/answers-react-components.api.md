@@ -422,7 +422,10 @@ export interface RangeInputCssClasses {
 }
 
 // @public
-export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, handleSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void, getAriaLabel: (value: string) => string) => JSX.Element | null;
+export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, props: {
+    onClick: (value: string, _index: number, itemData?: FocusedItemData) => void;
+    ariaLabel: (value: string) => string;
+}) => JSX.Element | null;
 
 // @public
 export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
