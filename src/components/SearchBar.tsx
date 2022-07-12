@@ -95,7 +95,7 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalKeyToResults: Record<string, VerticalResultsData>,
-  props: {
+  dropdownItemProps: {
     onClick: (value: string, _index: number, itemData?: FocusedItemData) => void,
     ariaLabel: (value: string) => string
   }
