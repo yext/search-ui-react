@@ -95,8 +95,10 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalKeyToResults: Record<string, VerticalResultsData>,
-  handleSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void,
-  getAriaLabel: (value: string) => string
+  props: {
+    onClick: (value: string, _index: number, itemData?: FocusedItemData) => void,
+    ariaLabel: (value: string) => string
+  }
 ) => JSX.Element | null;
 
 /**
@@ -237,8 +239,7 @@ export function SearchBar({
   const entityPreviews = renderEntityPreviews?.(
     entityPreviewsLoading,
     verticalKeyToResults,
-    handleSubmit,
-    getAriaLabel
+    { onClick: handleSubmit, ariaLabel: getAriaLabel }
   );
   const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews || !restrictVerticals) {

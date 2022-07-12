@@ -19,7 +19,7 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
     headlessId: 'visual-autocomplete'
   }),
   restrictVerticals: ['people'],
-  renderEntityPreviews: (isLoading, verticalKeyToResults, onSubmit, getEntityAria) => {
+  renderEntityPreviews: (isLoading, verticalKeyToResults, props) => {
     if (!verticalKeyToResults.people) {
       return null;
     }
@@ -38,8 +38,7 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
             key={index + '-' + r.name}
             className='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg hover:bg-gray-100'
             focusedClassName='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg bg-gray-100'
-            onClick={onSubmit}
-            ariaLabel={getEntityAria}
+            {...props}
           >
             {r.name}
           </DropdownItem>
