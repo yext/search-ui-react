@@ -64,7 +64,7 @@ describe('Renders correctly for min input', () => {
     });
   });
 
-  it('renders correctly when clearing input and no state is set', async () => {
+  it('renders correctly when clearing input and removes range filter set in state', async () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const minTextbox = screen.getAllByRole('textbox')[0];
@@ -74,7 +74,18 @@ describe('Renders correctly for min input', () => {
     });
     userEvent.click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
-    expect(actions.setFilterOption).toHaveBeenCalledTimes(0);
+    expect(actions.setFilterOption).toHaveBeenCalledWith({
+      displayName: 'Over 10',
+      fieldId: '123',
+      matcher: '$between',
+      selected: false,
+      value: {
+        start: {
+          matcher: '$ge',
+          value: 10
+        },
+      }
+    });
   });
 });
 
@@ -108,7 +119,7 @@ describe('Renders correctly for max input', () => {
     });
   });
 
-  it('renders correctly when clearing input and no state is set', async () => {
+  it('renders correctly when clearing input and removes range filter set in state', async () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const maxTextbox = screen.getAllByRole('textbox')[1];
@@ -118,7 +129,18 @@ describe('Renders correctly for max input', () => {
     });
     userEvent.click(screen.getByText('Clear min and max'));
     expect(maxTextbox).toHaveValue('');
-    expect(actions.setFilterOption).toHaveBeenCalledTimes(0);
+    expect(actions.setFilterOption).toHaveBeenCalledWith({
+      displayName: 'Up to 20',
+      fieldId: '123',
+      matcher: '$between',
+      selected: false,
+      value: {
+        end: {
+          matcher: '$le',
+          value: 20
+        },
+      }
+    });
   });
 });
 
@@ -158,7 +180,7 @@ describe('Renders correctly for min and max inputs', () => {
     });
   });
 
-  it('renders correctly when clearing inputs and no state is set', async () => {
+  it('renders correctly when clearing inputs and removes range filter set in state', async () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
@@ -171,7 +193,22 @@ describe('Renders correctly for min and max inputs', () => {
     userEvent.click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
     expect(maxTextbox).toHaveValue('');
-    expect(actions.setFilterOption).toHaveBeenCalledTimes(0);
+    expect(actions.setFilterOption).toHaveBeenCalledWith({
+      displayName: '10 - 20',
+      fieldId: '123',
+      matcher: '$between',
+      selected: false,
+      value: {
+        start: {
+          matcher: '$ge',
+          value: 10
+        },
+        end: {
+          matcher: '$le',
+          value: 20
+        },
+      }
+    });
   });
 
   it('renders correctly when input range is invalid and no filter is set in state', async () => {

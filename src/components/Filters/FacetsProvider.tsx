@@ -44,7 +44,7 @@ export interface FacetsProviderProps {
  */
 export function FacetsProvider({
   children,
-  className = 'md:w-56',
+  className = 'w-full',
   searchOnChange = true
 }: FacetsProviderProps): JSX.Element {
   const answersActions = useAnswersActions();
