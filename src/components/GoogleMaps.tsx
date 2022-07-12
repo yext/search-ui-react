@@ -30,7 +30,6 @@ export function GoogleMaps({
   zoom,
   customCssClasses
 }: GoogleMapsProps) {
-
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   function UnwrappedGoogleMaps() {
@@ -38,7 +37,6 @@ export function GoogleMaps({
       lat: centerLatitude,
       lng: centerLongitude
     };
-
     const ref = useRef<HTMLDivElement>(null);
     useEffect(() => {
       if (ref.current) {
