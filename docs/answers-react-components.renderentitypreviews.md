@@ -9,7 +9,7 @@ The type of a functional React component which renders entity previews using a m
 <b>Signature:</b>
 
 ```typescript
-export declare type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResultsData>, props: {
+export declare type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResultsData>, dropdownItemProps: {
     onClick: (value: string, _index: number, itemData?: FocusedItemData) => void;
     ariaLabel: (value: string) => string;
 }) => JSX.Element | null;

@@ -422,7 +422,7 @@ export interface RangeInputCssClasses {
 }
 
 // @public
-export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, props: {
+export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, dropdownItemProps: {
     onClick: (value: string, _index: number, itemData?: FocusedItemData) => void;
     ariaLabel: (value: string) => string;
 }) => JSX.Element | null;
