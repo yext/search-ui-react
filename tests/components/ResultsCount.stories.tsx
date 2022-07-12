@@ -26,6 +26,19 @@ export const Primary = (args: ResultsCountProps) => {
   );
 };
 
+export const PaginationRange = (args: ResultsCountProps) => {
+  return (
+    <AnswersHeadlessContext.Provider value={generateMockedHeadless({
+      ...VerticalSearcherState,
+      vertical: {
+        resultsCount: 30
+      }
+    })}>
+      <ResultsCount {...args} />
+    </AnswersHeadlessContext.Provider>
+  );
+};
+
 export const Loading = (args: ResultsCountProps) => {
   return (
     <AnswersHeadlessContext.Provider value={generateMockedHeadless({
