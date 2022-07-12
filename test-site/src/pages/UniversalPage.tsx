@@ -6,7 +6,8 @@ import {
   SearchBar,
   SpellCheck,
   UniversalResults,
-  VisualAutocompleteConfig
+  VisualAutocompleteConfig,
+  GoogleMaps
 } from '@yext/answers-react-components';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
@@ -72,6 +73,7 @@ export default function UniversalPage(): JSX.Element {
           people: {}
         }}
       />
+      <GoogleMaps centerLatitude={-34.397} centerLongitude={150.644} zoom={4}/>
     </div>
   );
 }
