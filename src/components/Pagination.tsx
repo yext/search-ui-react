@@ -68,7 +68,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   }
 
   const offset = useAnswersState(state => state.vertical.offset) || 0;
-  const limit = useAnswersState(state => state.vertical.limit) || 10;
+  const limit = useAnswersState(state => state.vertical.limit) || 20;
   const currentPageNumber = (offset / limit) + 1;
   const maxPageCount = Math.ceil(resultsCount / limit);
 

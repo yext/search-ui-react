@@ -57,6 +57,8 @@ export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Eleme
 function useResultsCount() {
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
   const results = useAnswersState(state => isVertical ? state.vertical : state.universal.verticals);
+  const offset = useAnswersState(state => state.vertical.offset) || 0;
+  const limit = useAnswersState(state => state.vertical.limit) || 20;
   let resultsCount = 0;
   if (results) {
     if (isUniversalSearchResults(results)) {
@@ -73,7 +75,16 @@ function useResultsCount() {
     pluralForm: `${resultsCount} Results`,
     count: resultsCount
   });
-  return resultsCountText;
+
+  if (resultsCount > limit && isVertical){
+    const paginateStart = offset + 1;
+    const paginateEnd = Math.min((offset + limit), resultsCount);
+    const paginateRange =`${paginateStart} - ${paginateEnd}`;
+    const resultCountWithPaginationText = `${paginateRange} of ${resultsCount} Results`;
+    return resultCountWithPaginationText;
+  } else {
+    return resultsCountText;
+  }
 }
 
 function isUniversalSearchResults(data: VerticalResults[] | VerticalSearchState): data is VerticalResults[] {
