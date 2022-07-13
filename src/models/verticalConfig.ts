@@ -7,11 +7,11 @@ import { VerticalLink } from './verticalLink';
  *
  * @public
  */
-export interface VerticalConfig {
+export interface VerticalConfig<T = Record<string, unknown>> {
   /** {@inheritDoc SectionComponent} */
   SectionComponent?: SectionComponent,
   /** The card to use for this vertical. */
-  CardComponent?: CardComponent,
+  CardComponent?: CardComponent<T>,
   /** The label for the vertical. */
   label?: string,
   /** Whether or not this vertical should show a button to view all results on the vertical page. */
