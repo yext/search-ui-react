@@ -66,16 +66,15 @@ function UnwrappedGoogleMaps({
   }, [center, map, zoom]);
 
   const locationResults = useAnswersState(state => state.vertical.results) || [];
+  const noResults = !locationResults.length;
 
-  const results = locationResults;
-  console.log(results);
+  console.log(locationResults);
 
   const bounds = useRef(new google.maps.LatLngBounds()); // maybe not need ref
   const markers = useRef<google.maps.Marker[]>([]); // use ref because need to clear after new search
   deleteMarkers();
 
-  markers.current = [];
-  for (const result of results) {
+  for (const result of locationResults) {
     const position = getPosition(result);
     const marker = new google.maps.Marker({
       position,
@@ -98,9 +97,17 @@ function UnwrappedGoogleMaps({
     bounds.current = new google.maps.LatLngBounds();
   }
 
+  let googleMapsContainerCssClass = cssClasses.googleMapsContainer;
+  let mapElementCssClasses = cssClasses.mapElement;
+
+  if (noResults) {
+    googleMapsContainerCssClass = 'h-0';
+    mapElementCssClasses = 'h-0';
+  }
+
   return (
-    <div className={cssClasses.googleMapsContainer}>
-      <div className={cssClasses.mapElement} ref={ref} />
+    <div className={googleMapsContainerCssClass}>
+      <div className={mapElementCssClasses} ref={ref} />
     </div>
   );
 }
