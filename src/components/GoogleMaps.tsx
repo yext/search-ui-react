@@ -48,9 +48,9 @@ function UnwrappedGoogleMaps({
   customCssClasses
 }: GoogleMapsProps) {
 
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
-
   const [center] = useState<google.maps.LatLngLiteral>({
     lat: centerLatitude,
     lng: centerLongitude
@@ -66,12 +66,12 @@ function UnwrappedGoogleMaps({
   }, [center, map, zoom]);
 
   const locationResults = useAnswersState(state => state.vertical.results) || [];
-  const isLoading = useAnswersState(state => state.searchStatus.isLoading);
 
   const results = locationResults;
   console.log(results);
 
-  const markers = useRef<google.maps.Marker[]>([]); // use hook here?
+  const bounds = useRef(new google.maps.LatLngBounds()); // maybe not need ref
+  const markers = useRef<google.maps.Marker[]>([]); // use ref because need to clear after new search
   deleteMarkers();
 
   markers.current = [];
@@ -82,27 +82,31 @@ function UnwrappedGoogleMaps({
       map
     });
 
+    const location = new google.maps.LatLng(position.lat, position.lng);
+    bounds.current.extend(location);
     markers.current.push(marker);
   }
+
+  map?.fitBounds(bounds.current);
+  map?.panToBounds(bounds.current);
 
   function deleteMarkers(): void {
     for (let i = 0; i < markers.current.length; i++) {
       markers.current[i].setMap(null);
     }
     markers.current = [];
+    bounds.current = new google.maps.LatLngBounds();
   }
-
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   return (
     <div className={cssClasses.googleMapsContainer}>
-      <div className={cssClasses.mapElement} ref={ref} id="map" />
+      <div className={cssClasses.mapElement} ref={ref} />
     </div>
   );
 }
 
 function getPosition(result: Result){
-  const lat = (result.rawData as any).displayCoordinate.latitude;
-  const lng = (result.rawData as any).displayCoordinate.longitude;
+  const lat = (result.rawData as any).yextDisplayCoordinate.latitude;
+  const lng = (result.rawData as any).yextDisplayCoordinate.longitude;
   return { lat, lng };
 }
