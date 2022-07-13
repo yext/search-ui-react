@@ -2,6 +2,7 @@ import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
 import { Navbar } from './components/Navbar';
 import { PeoplePage } from './pages/PeoplePage';
 import { ProductsPage } from './pages/ProductsPage';
+import { LocationsPage } from './pages/LocationsPage';
 import UniversalPage from './pages/UniversalPage';
 import {
   BrowserRouter,
@@ -22,6 +23,7 @@ function App() {
               <Route index element={<UniversalPage />} />
               <Route path='people' element={<PeoplePage />} />
               <Route path='products' element={<ProductsPage />} />
+              <Route path='locations' element={<LocationsPage />} />
             </Routes>
           </BrowserRouter>
         </AnalyticsProvider>

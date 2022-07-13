@@ -24,48 +24,52 @@ const builtInCssClasses: Readonly<GoogleMapsCssClasses> = {
   mapElement: 'h-96'
 };
 
-export function GoogleMaps({
-  centerLatitude,
-  centerLongitude,
-  zoom,
-  customCssClasses
-}: GoogleMapsProps) {
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-
-  function UnwrappedGoogleMaps() {
-    const ref = useRef<HTMLDivElement>(null);
-    const [map, setMap] = useState<google.maps.Map>();
-
-    const [center] = useState<google.maps.LatLngLiteral>({
-      lat: centerLatitude,
-      lng: centerLongitude
-    });
-
-    useEffect(() => {
-      if (ref.current && !map) {
-        setMap(new window.google.maps.Map(ref.current, {
-          center,
-          zoom,
-        }));
-      }
-    }, [center, map]);
-
-    new google.maps.Marker({
-      position: {
-        lat: centerLatitude,
-        lng: centerLongitude
-      },
-      map
-    });
-
-    return <div className={cssClasses.mapElement} ref={ref} id="map" />;
-  }
+export function GoogleMaps(props: GoogleMapsProps) {
+  const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
 
   return (
     <div className={cssClasses.googleMapsContainer}>
       <Wrapper apiKey='AIzaSyB5D45ghF1YMfqTLSzWubmlCN1euBVPhFw'>
-        <UnwrappedGoogleMaps />
+        <UnwrappedGoogleMaps cssClasses={cssClasses} {...props}/>
       </Wrapper>
     </div>
   );
+}
+
+interface UnwrappedGoogleMapsProps extends Omit<GoogleMapsProps, 'customCssClasses'>{
+  cssClasses: GoogleMapsCssClasses
+}
+
+function UnwrappedGoogleMaps({
+  centerLatitude,
+  centerLongitude,
+  zoom,
+  cssClasses
+}: UnwrappedGoogleMapsProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [map, setMap] = useState<google.maps.Map>();
+
+  const [center] = useState<google.maps.LatLngLiteral>({
+    lat: centerLatitude,
+    lng: centerLongitude
+  });
+
+  useEffect(() => {
+    if (ref.current && !map) {
+      setMap(new window.google.maps.Map(ref.current, {
+        center,
+        zoom,
+      }));
+    }
+  }, [center, map, zoom]);
+
+  new google.maps.Marker({
+    position: {
+      lat: centerLatitude,
+      lng: centerLongitude
+    },
+    map
+  });
+
+  return <div className={cssClasses.mapElement} ref={ref} id="map" />;
 }
