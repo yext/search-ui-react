@@ -5,7 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
 /**
- * CSS class interface for the {@link GoogleMaps}
+ * CSS class interface for the {@link GoogleMaps} component
+ *
+ * @public
  */
 export interface GoogleMapsCssClasses {
   googleMapsContainer?: string,
@@ -13,7 +15,9 @@ export interface GoogleMapsCssClasses {
 }
 
 /**
- * Props for the {@link GoogleMaps}
+ * Props for the {@link GoogleMaps} component
+ *
+ * @public
  */
 export interface GoogleMapsProps {
   apiKey: string,
@@ -31,6 +35,14 @@ const builtInCssClasses: Readonly<GoogleMapsCssClasses> = {
   mapElement: 'h-96'
 };
 
+/**
+ * A component that renders a map with markers to show result locations.
+ *
+ * @param props - {@link GoogleMapsProps}
+ * @returns A React element conatining a Google Map
+ *
+ * @public
+ */
 export function GoogleMaps(props: GoogleMapsProps) {
   return (
     <div>
