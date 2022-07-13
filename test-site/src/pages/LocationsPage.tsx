@@ -33,7 +33,7 @@ export function LocationsPage() {
             centerLatitude={37.540778} 
             centerLongitude={-77.433928} 
             defaultZoom={10} 
-            showEmptyMap={true}
+            showEmptyMap={false}
             locale='en'
             />
           <VerticalResults
