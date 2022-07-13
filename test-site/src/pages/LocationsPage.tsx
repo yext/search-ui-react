@@ -28,7 +28,14 @@ export function LocationsPage() {
             <ResultsCount />
             <AppliedFilters />
           </div>
-          <GoogleMaps centerLatitude={-34.397} centerLongitude={150.644} zoom={4}/>
+          <GoogleMaps 
+            apiKey='AIzaSyB5D45ghF1YMfqTLSzWubmlCN1euBVPhFw'
+            centerLatitude={37.540778} 
+            centerLongitude={-77.433928} 
+            defaultZoom={10} 
+            showEmptyMap={true}
+            locale='en'
+            />
           <VerticalResults
             CardComponent={StandardCard}
           />

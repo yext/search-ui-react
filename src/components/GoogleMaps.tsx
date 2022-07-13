@@ -1,4 +1,6 @@
 import { Wrapper } from '@googlemaps/react-wrapper';
+import { Result, useAnswersState } from '@yext/answers-headless-react';
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
@@ -14,38 +16,38 @@ export interface GoogleMapsCssClasses {
  * Props for the {@link GoogleMaps}
  */
 export interface GoogleMapsProps {
+  apiKey: string,
   centerLatitude: number,
   centerLongitude: number,
-  zoom: number,
+  defaultZoom: number,
+  showEmptyMap: boolean,
+  locale: string,
+  providerOptions?: google.maps.MapOptions,
   customCssClasses?: GoogleMapsCssClasses
 }
 
 const builtInCssClasses: Readonly<GoogleMapsCssClasses> = {
+  googleMapsContainer: 'mb-6',
   mapElement: 'h-96'
 };
 
 export function GoogleMaps(props: GoogleMapsProps) {
-  const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
-
   return (
-    <div className={cssClasses.googleMapsContainer}>
-      <Wrapper apiKey='AIzaSyB5D45ghF1YMfqTLSzWubmlCN1euBVPhFw'>
-        <UnwrappedGoogleMaps cssClasses={cssClasses} {...props}/>
+    <div>
+      <Wrapper apiKey={props.apiKey}>
+        <UnwrappedGoogleMaps {...props}/>
       </Wrapper>
     </div>
   );
 }
 
-interface UnwrappedGoogleMapsProps extends Omit<GoogleMapsProps, 'customCssClasses'>{
-  cssClasses: GoogleMapsCssClasses
-}
-
 function UnwrappedGoogleMaps({
   centerLatitude,
   centerLongitude,
-  zoom,
-  cssClasses
-}: UnwrappedGoogleMapsProps) {
+  defaultZoom: zoom,
+  customCssClasses
+}: GoogleMapsProps) {
+
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
 
@@ -63,13 +65,44 @@ function UnwrappedGoogleMaps({
     }
   }, [center, map, zoom]);
 
-  new google.maps.Marker({
-    position: {
-      lat: centerLatitude,
-      lng: centerLongitude
-    },
-    map
-  });
+  const locationResults = useAnswersState(state => state.vertical.results) || [];
+  const isLoading = useAnswersState(state => state.searchStatus.isLoading);
 
-  return <div className={cssClasses.mapElement} ref={ref} id="map" />;
+  const results = locationResults;
+  console.log(results);
+
+  const markers = useRef<google.maps.Marker[]>([]); // use hook here?
+  deleteMarkers();
+
+  markers.current = [];
+  for (const result of results) {
+    const position = getPosition(result);
+    const marker = new google.maps.Marker({
+      position,
+      map
+    });
+
+    markers.current.push(marker);
+  }
+
+  function deleteMarkers(): void {
+    for (let i = 0; i < markers.current.length; i++) {
+      markers.current[i].setMap(null);
+    }
+    markers.current = [];
+  }
+
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+
+  return (
+    <div className={cssClasses.googleMapsContainer}>
+      <div className={cssClasses.mapElement} ref={ref} id="map" />
+    </div>
+  );
+}
+
+function getPosition(result: Result){
+  const lat = (result.rawData as any).displayCoordinate.latitude;
+  const lng = (result.rawData as any).displayCoordinate.longitude;
+  return { lat, lng };
 }
