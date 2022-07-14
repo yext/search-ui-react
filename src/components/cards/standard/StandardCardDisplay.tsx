@@ -130,7 +130,7 @@ function StandardCardDisplay(props: StandardCardDisplayProps) {
         <ThumbsFeedback
           feedbackText=''
           onClick={clickHandlers.handleFeedbackClick}
-          cssClasses={cssClasses}
+          customCssClasses={cssClasses}
         />
       );
     }
