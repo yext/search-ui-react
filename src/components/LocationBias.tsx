@@ -4,6 +4,7 @@ import { getUserLocation } from '../utils/location-operations';
 import { twMerge, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useState } from 'react';
 import LoadingIndicator from '../icons/LoadingIndicator';
+import React from 'react';
 
 /**
  * The CSS class interface for the {@link LocationBias} component.
