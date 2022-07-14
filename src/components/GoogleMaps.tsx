@@ -11,7 +11,7 @@ import { getGoogleMapsLanguage } from './utils/processLocale';
  * @public
  */
 export interface GoogleMapsCssClasses {
-  mapElement?: string
+  googleMapsContainer?: string
 }
 
 /**
@@ -33,7 +33,7 @@ export interface GoogleMapsProps {
 type UnwrappedGoogleMapsProps = Omit<GoogleMapsProps, 'apiKey' | 'locale'>;
 
 const builtInCssClasses: Readonly<GoogleMapsCssClasses> = {
-  mapElement: 'h-96 mb-6'
+  googleMapsContainer: 'h-96 mb-6'
 };
 
 /**
@@ -73,9 +73,9 @@ function UnwrappedGoogleMaps({
   const locationResults = useAnswersState(state => state.vertical.results) || [];
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const noResults = !locationResults.length;
-  let mapElementCssClasses = cssClasses.mapElement;
+  let containerCssClass = cssClasses.googleMapsContainer;
   if (noResults && !showEmptyMap) {
-    mapElementCssClasses = twMerge(cssClasses.mapElement, 'hidden');
+    containerCssClass = twMerge(cssClasses.googleMapsContainer, 'hidden');
   }
 
   const bounds = new google.maps.LatLngBounds();
@@ -122,7 +122,7 @@ function UnwrappedGoogleMaps({
   }
 
   return (
-    <div className={mapElementCssClasses} ref={ref} />
+    <div className={containerCssClass} ref={ref} />
   );
 }
 
