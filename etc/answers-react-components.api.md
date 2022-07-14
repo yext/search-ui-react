@@ -4,6 +4,7 @@
 
 ```ts
 
+/// <reference types="google.maps" />
 /// <reference types="react" />
 
 import { AnalyticsConfig } from '@yext/analytics';
@@ -251,6 +252,33 @@ export function getSearchIntents(answersActions: AnswersActions): Promise<Search
 
 // @public
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
+
+// @public
+export function GoogleMaps(props: GoogleMapsProps): JSX.Element;
+
+// @public
+export interface GoogleMapsCssClasses {
+    // (undocumented)
+    googleMapsContainer?: string;
+}
+
+// @public
+export interface GoogleMapsProps {
+    // (undocumented)
+    apiKey: string;
+    // (undocumented)
+    centerLatitude: number;
+    // (undocumented)
+    centerLongitude: number;
+    // (undocumented)
+    customCssClasses?: GoogleMapsCssClasses;
+    // (undocumented)
+    defaultZoom: number;
+    // (undocumented)
+    providerOptions?: google.maps.MapOptions;
+    // (undocumented)
+    showEmptyMap: boolean;
+}
 
 // @public
 export interface HierarchicalFacetDisplayCssClasses {

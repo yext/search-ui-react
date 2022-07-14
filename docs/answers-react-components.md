@@ -19,6 +19,7 @@
 |  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, sectioned, customCssClasses })](./answers-react-components.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [getSearchIntents(answersActions)](./answers-react-components.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./answers-react-components.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |
+|  [GoogleMaps(props)](./answers-react-components.googlemaps.md) | A component that renders a map with markers to show result locations. |
 |  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./answers-react-components.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
 |  [isCtaData(data)](./answers-react-components.isctadata.md) | Type guard for CtaData. |
 |  [LocationBias({ geolocationOptions, customCssClasses })](./answers-react-components.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
@@ -61,6 +62,8 @@
 |  [FilterOptionConfig](./answers-react-components.filteroptionconfig.md) | The configuration data for a filter option. |
 |  [FilterSearchCssClasses](./answers-react-components.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./answers-react-components.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./answers-react-components.filtersearchprops.md) | The props for the [FilterSearch()](./answers-react-components.filtersearch.md) component. |
+|  [GoogleMapsCssClasses](./answers-react-components.googlemapscssclasses.md) | CSS class interface for the [GoogleMaps()](./answers-react-components.googlemaps.md) component |
+|  [GoogleMapsProps](./answers-react-components.googlemapsprops.md) | Props for the [GoogleMaps()](./answers-react-components.googlemaps.md) component |
 |  [HierarchicalFacetDisplayCssClasses](./answers-react-components.hierarchicalfacetdisplaycssclasses.md) | The CSS class interface for HierarchicalFacetDisplay. |
 |  [HierarchicalFacetsCssClasses](./answers-react-components.hierarchicalfacetscssclasses.md) | The CSS class interface for [HierarchicalFacets()](./answers-react-components.hierarchicalfacets.md)<!-- -->. |
 |  [HierarchicalFacetsProps](./answers-react-components.hierarchicalfacetsprops.md) | Props for the [HierarchicalFacets()](./answers-react-components.hierarchicalfacets.md) component. |
