@@ -78,7 +78,7 @@ function UnwrappedGoogleMaps({
     mapElementCssClasses = twMerge(cssClasses.mapElement, 'hidden');
   }
 
-  const bounds = new google.maps.LatLngBounds(); // maybe need to put back ref?
+  const bounds = new google.maps.LatLngBounds();
   const markers = useRef<google.maps.Marker[]>([]);
   deleteMarkers();
 
@@ -104,11 +104,13 @@ function UnwrappedGoogleMaps({
   }, [center, map, providerOptions, zoom]);
 
   useEffect(() => {
-    map?.fitBounds(bounds);
-    map?.panToBounds(bounds);
-    const zoom = map?.getZoom() ?? 0;
-    if (zoom > 15) {
-      map?.setZoom(15);
+    if (markers.current.length > 0 && map){
+      map.fitBounds(bounds);
+      map.panToBounds(bounds);
+      const zoom = map.getZoom() ?? 0;
+      if (zoom > 15) {
+        map.setZoom(15);
+      }
     }
   });
 
