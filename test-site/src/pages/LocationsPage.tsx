@@ -11,6 +11,10 @@ import {
 } from '@yext/answers-react-components';
 import { useLayoutEffect } from 'react';
 
+const providerOptions: google.maps.MapOptions = {
+  disableDefaultUI: true
+}
+
 export function LocationsPage() {
   const answersActions = useAnswersActions();
   useLayoutEffect(() => {
@@ -35,6 +39,7 @@ export function LocationsPage() {
             defaultZoom={10} 
             showEmptyMap={false}
             locale='en'
+            providerOptions={providerOptions}
             />
           <VerticalResults
             CardComponent={StandardCard}

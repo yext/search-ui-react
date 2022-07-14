@@ -76,9 +76,10 @@ function UnwrappedGoogleMaps({
       setMap(new window.google.maps.Map(ref.current, {
         center,
         zoom,
+        ...providerOptions
       }));
     }
-  }, [center, map, zoom]);
+  }, [center, map, providerOptions, zoom]);
 
   useEffect(() => {
     map?.fitBounds(bounds);
