@@ -2,6 +2,7 @@ import { useAnswersState } from '@yext/answers-headless-react';
 import { useCallback, useState } from 'react';
 import { ThumbIcon } from '../icons/ThumbIcon';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
 /**
  * Analytics event types for quality feedback.
@@ -34,7 +35,7 @@ export interface ThumbsFeedbackProps {
   /** Text to display after a quality feedback button is clicked. */
   feedbackTextOnSubmission?: string,
   /** CSS classes for customizing the component styling. */
-  cssClasses: ThumbsFeedbackCssClasses
+  customCssClasses?: ThumbsFeedbackCssClasses
 }
 
 export const builtInCssClasses: Readonly<ThumbsFeedbackCssClasses> = {
@@ -56,8 +57,8 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
     onClick,
     feedbackText = 'Feedback',
     feedbackTextOnSubmission = 'Thank you for your feedback!',
-    cssClasses
   } = props;
+  const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const query = useAnswersState(state => state.query.mostRecentSearch);
   const [isFeedbackProvided, setIsFeedbackProvided] = useState(false);
 

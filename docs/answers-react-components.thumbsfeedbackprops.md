@@ -16,7 +16,7 @@ export interface ThumbsFeedbackProps
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [cssClasses](./answers-react-components.thumbsfeedbackprops.cssclasses.md) | [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md) | CSS classes for customizing the component styling. |
+|  [customCssClasses?](./answers-react-components.thumbsfeedbackprops.customcssclasses.md) | [ThumbsFeedbackCssClasses](./answers-react-components.thumbsfeedbackcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [feedbackText?](./answers-react-components.thumbsfeedbackprops.feedbacktext.md) | string | <i>(Optional)</i> Text to display alongside the quality feedback buttons. |
 |  [feedbackTextOnSubmission?](./answers-react-components.thumbsfeedbackprops.feedbacktextonsubmission.md) | string | <i>(Optional)</i> Text to display after a quality feedback button is clicked. |
 |  [onClick](./answers-react-components.thumbsfeedbackprops.onclick.md) | (feedbackType: [FeedbackType](./answers-react-components.feedbacktype.md)<!-- -->) =&gt; void | A function which is called when a quality feedback button is clicked. |
