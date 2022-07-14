@@ -123,6 +123,8 @@ function UnwrappedGoogleMaps({
   );
 }
 
+// TEMPORARY FIX
+/* eslint-disable @typescript-eslint/no-explicit-any */
 function getPosition(result: Result){
   const lat = (result.rawData as any).yextDisplayCoordinate.latitude;
   const lng = (result.rawData as any).yextDisplayCoordinate.longitude;
