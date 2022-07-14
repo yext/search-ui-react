@@ -28,7 +28,7 @@ export interface GoogleMapsProps {
   customCssClasses?: GoogleMapsCssClasses
 }
 
-type UnwrappedGoogleMapsProps = Omit<GoogleMapsProps, 'apiKey' | 'locale'>;
+type UnwrappedGoogleMapsProps = Omit<GoogleMapsProps, 'apiKey'|'locale'>;
 
 const builtInCssClasses: Readonly<GoogleMapsCssClasses> = {
   googleMapsContainer: 'h-96 mb-6'
