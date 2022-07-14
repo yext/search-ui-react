@@ -123,7 +123,7 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
       </div>
       <ThumbsFeedback
         onClick={handleClickFeedbackButton}
-        cssClasses={composedCssClasses}
+        customCssClasses={composedCssClasses}
       />
     </div>
   );

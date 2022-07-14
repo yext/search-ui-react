@@ -168,6 +168,7 @@ export type DropdownItemProps = PropsWithChildren<{
     focusedClassName?: string;
     itemData?: Record<string, unknown> | undefined;
     onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
+    ariaLabel?: (value: string) => string | string;
 }>;
 
 // @public
@@ -421,7 +422,10 @@ export interface RangeInputCssClasses {
 }
 
 // @public
-export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void) => JSX.Element | null;
+export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, dropdownItemProps: {
+    onClick: (value: string, _index: number, itemData?: FocusedItemData) => void;
+    ariaLabel: (value: string) => string;
+}) => JSX.Element | null;
 
 // @public
 export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
@@ -651,7 +655,7 @@ export interface ThumbsFeedbackCssClasses {
 
 // @public
 export interface ThumbsFeedbackProps {
-    cssClasses: ThumbsFeedbackCssClasses;
+    customCssClasses?: ThumbsFeedbackCssClasses;
     feedbackText?: string;
     feedbackTextOnSubmission?: string;
     onClick: (feedbackType: FeedbackType) => void;
