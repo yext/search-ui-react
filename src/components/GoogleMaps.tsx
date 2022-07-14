@@ -3,7 +3,6 @@ import { Result, useAnswersState } from '@yext/answers-headless-react';
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { twMerge, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { getGoogleMapsLanguage } from './utils/processLocale';
 
 /**
  * CSS class interface for the {@link GoogleMaps} component
@@ -25,7 +24,6 @@ export interface GoogleMapsProps {
   centerLongitude: number,
   defaultZoom: number,
   showEmptyMap: boolean,
-  locale: string,
   providerOptions?: google.maps.MapOptions,
   customCssClasses?: GoogleMapsCssClasses
 }
@@ -45,10 +43,9 @@ const builtInCssClasses: Readonly<GoogleMapsCssClasses> = {
  * @public
  */
 export function GoogleMaps(props: GoogleMapsProps) {
-  const language = getGoogleMapsLanguage(props.locale);
   return (
     <div>
-      <Wrapper apiKey={props.apiKey} language={language}>
+      <Wrapper apiKey={props.apiKey} >
         <UnwrappedGoogleMaps {...props} />
       </Wrapper>
     </div>
