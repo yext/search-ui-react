@@ -30,6 +30,8 @@ export interface GoogleMapsProps {
   customCssClasses?: GoogleMapsCssClasses
 }
 
+type UnwrappedGoogleMapsProps = Omit<GoogleMapsProps, 'apiKey' | 'locale'>;
+
 const builtInCssClasses: Readonly<GoogleMapsCssClasses> = {
   mapElement: 'h-96 mb-6'
 };
@@ -60,16 +62,36 @@ function UnwrappedGoogleMaps({
   showEmptyMap,
   providerOptions,
   customCssClasses
-}: GoogleMapsProps) {
-
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-
+}: UnwrappedGoogleMapsProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map>();
   const [center] = useState<google.maps.LatLngLiteral>({
     lat: centerLatitude,
     lng: centerLongitude
   });
+
+  const locationResults = useAnswersState(state => state.vertical.results) || [];
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+  const noResults = !locationResults.length;
+  let mapElementCssClasses = cssClasses.mapElement;
+  if (noResults && !showEmptyMap) {
+    mapElementCssClasses = twMerge(cssClasses.mapElement, 'hidden');
+  }
+
+  const bounds = new google.maps.LatLngBounds(); // maybe need to put back ref?
+  const markers = useRef<google.maps.Marker[]>([]);
+  deleteMarkers();
+
+  for (const result of locationResults) {
+    const position = getPosition(result);
+    const marker = new google.maps.Marker({
+      position,
+      map
+    });
+    const location = new google.maps.LatLng(position.lat, position.lng);
+    bounds.extend(location);
+    markers.current.push(marker);
+  }
 
   useEffect(() => {
     if (ref.current && !map) {
@@ -90,35 +112,11 @@ function UnwrappedGoogleMaps({
     }
   });
 
-  const locationResults = useAnswersState(state => state.vertical.results) || [];
-  const noResults = !locationResults.length;
-
-  const bounds = new google.maps.LatLngBounds(); // maybe need to put back ref?
-  const markers = useRef<google.maps.Marker[]>([]);
-  deleteMarkers();
-
-  for (const result of locationResults) {
-    const position = getPosition(result);
-    const marker = new google.maps.Marker({
-      position,
-      map
-    });
-
-    const location = new google.maps.LatLng(position.lat, position.lng);
-    bounds.extend(location);
-    markers.current.push(marker);
-  }
-
   function deleteMarkers(): void {
     for (let i = 0; i < markers.current.length; i++) {
       markers.current[i].setMap(null);
     }
     markers.current = [];
-  }
-
-  let mapElementCssClasses = cssClasses.mapElement;
-  if (noResults && !showEmptyMap) {
-    mapElementCssClasses = twMerge(cssClasses.mapElement, 'hidden');
   }
 
   return (
