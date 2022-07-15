@@ -85,7 +85,9 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
  * @remarks
  * The autocomplete loading state is passed in as an optional param.
  *
- * Default props for rendering corresponding DropdownItems are passed in.
+ * Default props for rendering corresponding DropdownItems are passed in:
+ * an onClick function to allow an entity preview to be submitted, and
+ * an ariaLabel function that returns text for the screenreader
  *
  * For the entity previews to be navigable in the search bar's dropdown section,
  * wrap each entity preview in a {@link DropdownItem} component.
