@@ -9,7 +9,7 @@ Content path to the source files in component library that utilizes Tailwind cla
 <b>Signature:</b>
 
 ```typescript
-ComponentsContentPath = "node_modules/@yext/answers-react-components/lib/**/*.{js,jsx}"
+ComponentsContentPath = "node_modules/@yext/search-ui-react/lib/**/*.{js,jsx}"
 ```
 
 ## Remarks
@@ -21,7 +21,7 @@ This assumes that the node\_modules folder containing the component library is i
 In user's tailwind.config.js file:
 
 ```js
-const { ComponentsContentPath } = require('@yext/answers-react-components');
+const { ComponentsContentPath } = require('@yext/search-ui-react');
 
 module.exports = {
  content: [ ComponentsContentPath ],

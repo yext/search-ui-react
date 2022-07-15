@@ -8,7 +8,7 @@ import {
   LocationBias,
   NumericalFacets,
   Pagination
-} from '@yext/answers-react-components';
+} from '@yext/search-ui-react';
 import { useLayoutEffect } from 'react';
 
 export function ProductsPage() {

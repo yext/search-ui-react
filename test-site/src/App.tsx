@@ -8,7 +8,7 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
-import { AnalyticsProvider } from '@yext/answers-react-components';
+import { AnalyticsProvider } from '@yext/search-ui-react';
 import { config } from './config';
 
 function App() {

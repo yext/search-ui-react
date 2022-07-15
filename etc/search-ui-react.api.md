@@ -123,7 +123,7 @@ export interface CardProps {
 }
 
 // @public
-export const ComponentsContentPath = "node_modules/@yext/answers-react-components/lib/**/*.{js,jsx}";
+export const ComponentsContentPath = "node_modules/@yext/search-ui-react/lib/**/*.{js,jsx}";
 
 // @public
 export interface CtaData {
