@@ -20,7 +20,7 @@ export declare type RenderEntityPreviews = (autocompleteLoading: boolean, vertic
 
 The autocomplete loading state is passed in as an optional param.
 
-An onSubmit function is provided to allow an entity preview to be submitted.
+Default props for rendering corresponding DropdownItems are passed in.
 
 For the entity previews to be navigable in the search bar's dropdown section, wrap each entity preview in a [DropdownItem()](./answers-react-components.dropdownitem.md) component.
 
