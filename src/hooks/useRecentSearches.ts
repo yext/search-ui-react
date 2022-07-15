@@ -1,27 +1,31 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import RecentSearches, { ISearch } from 'recent-searches';
 
-export const RECENT_SEARCHES_KEY = '__yxt_recent_searches__';
+// export const RECENT_SEARCHES_KEY = '__yxt_recent_searches__';
 
 export function useRecentSearches(
-  recentSearchesLimit: number
+  recentSearchesLimit: number,
+  verticalKey: string|null,
+  isVertical: boolean
 ): [ISearch[]|undefined, (input: string) => void, () => void] {
+  const recentSearchesKey = getRecentSearchesKey();
   const recentSearchesLimitRef = useRef(recentSearchesLimit);
   const [ recentSearches, setRecentSeaches ] = useState<RecentSearches>(
     new RecentSearches({
       limit: recentSearchesLimit,
-      namespace: RECENT_SEARCHES_KEY
+      namespace: recentSearchesKey
     })
   );
+  console.log(recentSearches.getRecentSearches());
 
   const clearRecentSearches = useCallback(() => {
-    localStorage.removeItem(RECENT_SEARCHES_KEY);
+    localStorage.removeItem(recentSearchesKey);
     setRecentSeaches(new RecentSearches({
       limit: recentSearchesLimit,
-      namespace: RECENT_SEARCHES_KEY
+      namespace: recentSearchesKey
     }));
-    localStorage.removeItem(RECENT_SEARCHES_KEY);
-  }, [recentSearchesLimit]);
+    localStorage.removeItem(recentSearchesKey);
+  }, [recentSearchesKey, recentSearchesLimit]);
 
   const setRecentSearch = useCallback((input: string) => {
     recentSearches?.setRecentSearch(input);
@@ -31,11 +35,23 @@ export function useRecentSearches(
     if (recentSearchesLimit !== recentSearchesLimitRef.current) {
       setRecentSeaches(new RecentSearches({
         limit: recentSearchesLimit,
-        namespace: RECENT_SEARCHES_KEY
+        namespace: recentSearchesKey
       }));
       recentSearchesLimitRef.current = recentSearchesLimit;
     }
-  }, [recentSearchesLimit]);
+  }, [recentSearchesKey, recentSearchesLimit]);
 
+  function getRecentSearchesKey(): string {
+    if (isVertical) {
+      if (verticalKey) {
+        return `__yxt_recent_searches_${verticalKey}__`;
+      } else {
+        console.error('No vertical key found on this vertical');
+        return '';
+      }
+    } else {
+      return '__yxt_recent_searches_universal__';
+    }
+  }
   return [recentSearches?.getRecentSearches(), setRecentSearch, clearRecentSearches];
 }
