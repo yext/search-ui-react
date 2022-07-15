@@ -6,7 +6,7 @@ import {
   SearchBar,
   SpellCheck,
   UniversalResults,
-  VisualAutocompleteConfig,
+  VisualAutocompleteConfig
 } from '@yext/answers-react-components';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
