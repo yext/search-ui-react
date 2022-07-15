@@ -1,8 +1,9 @@
-import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions } from '@yext/answers-headless-react';
+import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
 import { useCallback, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
+import { isDuplicateFilter } from '../utils/filterutils';
 import { Dropdown } from './Dropdown/Dropdown';
 import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
@@ -93,6 +94,15 @@ export function FilterSearch({
   const hasResults = sections.flatMap(s => s.results).length > 0;
   const [currentFilter, setCurrentFilter] = useState<Filter>();
 
+  const [ initialState, setInitialState ] = useState<{ inputValue: string }>();
+  const filters = useAnswersState(state => state.filters.static);
+  filters?.forEach(f => {
+    if (currentFilter && isDuplicateFilter(f, currentFilter) && !f.selected) {
+      setCurrentFilter(undefined);
+      setInitialState({ inputValue: '' });
+    }
+  });
+
   const handleDropdownEvent = useCallback((itemData, select) => {
     const newFilter = itemData?.filter as Filter;
     const newDisplayName = itemData?.displayName as string;
@@ -163,6 +173,7 @@ export function FilterSearch({
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
         onToggle={handleToggleDropdown}
+        initialState={initialState}
       >
         <DropdownInput
           className={cssClasses.inputElement}
