@@ -1,57 +1,64 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import RecentSearches, { ISearch } from 'recent-searches';
 
 export function useRecentSearches(
   recentSearchesLimit: number,
-  verticalKey: string|null,
-  isVertical: boolean
-): [ISearch[]|undefined, (input: string, verticalKey: string|null, isVertical: boolean) => void, () => void] {
-  const [recentSearches, setRecentSeaches] = useState<{ [key: string]: RecentSearches }>({});
-  const [recentVerticalKeys, setRecentVerticalsKeys] = useState<string[]>([]);
+  isVertical: boolean,
+  verticalKey: string | null
+): [
+    ISearch[]|undefined,
+    (input: string) => void,
+    () => void,
+    (isVertical: boolean, verticalKey: string | null) => void
+  ] {
+  const recentSearchesLimitRef = useRef(recentSearchesLimit);
+  const [ recentSearchesKey, setRecentSearchesKey ] = useState(getRecentSearchesKey(isVertical, verticalKey));
+  const [ recentSearches, setRecentSeaches ] = useState<RecentSearches>(
+    new RecentSearches({
+      limit: recentSearchesLimit,
+      namespace: recentSearchesKey
+    })
+  );
+
+  const updateRecentSearchesKey = useCallback((isVertical: boolean, verticalKey: string | null) => {
+    const newRecentSearchesKey = getRecentSearchesKey(isVertical, verticalKey);
+    if (recentSearchesKey !== newRecentSearchesKey) {
+      setRecentSearchesKey(newRecentSearchesKey);
+      const newRecentSearchObj = new RecentSearches({
+        limit: recentSearchesLimit,
+        namespace: newRecentSearchesKey
+      });
+      setRecentSeaches(newRecentSearchObj);
+    }
+  }, [recentSearchesKey, recentSearchesLimit]);
+
   const clearRecentSearches = useCallback(() => {
-    setRecentSeaches({});
-    for (const verticalKey in recentVerticalKeys){
-      localStorage.removeItem(verticalKey);
+    localStorage.removeItem(recentSearchesKey);
+    setRecentSeaches(new RecentSearches({
+      limit: recentSearchesLimit,
+      namespace: recentSearchesKey
+    }));
+    localStorage.removeItem(recentSearchesKey);
+  }, [recentSearchesKey, recentSearchesLimit]);
+
+  const setRecentSearch = useCallback((input: string) => {
+    recentSearches.setRecentSearch(input);
+  }, [recentSearches]);
+
+  useEffect(() => {
+    if (recentSearchesLimit !== recentSearchesLimitRef.current) {
+      setRecentSeaches(new RecentSearches({
+        limit: recentSearchesLimit,
+        namespace: recentSearchesKey
+      }));
+      recentSearchesLimitRef.current = recentSearchesLimit;
     }
-  }, [recentVerticalKeys]);
+  }, [recentSearchesKey, recentSearchesLimit]);
 
-  const setRecentSearch = useCallback((input: string, verticalKey: string|null, isVertical: boolean) => {
-    const recentSearchesKey = getRecentSearchesKey(verticalKey, isVertical);
-    if (recentVerticalKeys && recentSearches) {
-      if (recentSearchesKey in recentVerticalKeys) {
-        recentSearches[recentSearchesKey].setRecentSearch(input);
-      } else {
-        const recentSearchesKey = getRecentSearchesKey(verticalKey, isVertical);
-        const newRecentVerticalKeys = recentVerticalKeys.concat(recentSearchesKey);
-        setRecentVerticalsKeys(newRecentVerticalKeys);
-        setRecentSeaches({
-          [recentSearchesKey]: new RecentSearches({
-            limit: recentSearchesLimit,
-            namespace: recentSearchesKey
-          }),
-          ...recentSearches
-        });
-        console.log(recentSearches[recentSearchesKey]);
-        recentSearches[recentSearchesKey].setRecentSearch(input);
-      }
-    }
-  }, [recentSearches, recentSearchesLimit, recentVerticalKeys]);
-
-  // useEffect(() => {
-  //   if (recentSearchesLimit !== recentSearchesLimitRef.current) {
-  //     setRecentSeaches(new RecentSearches({
-  //       limit: recentSearchesLimit,
-  //       namespace: recentSearchesKey
-  //     }));
-  //     recentSearchesLimitRef.current = recentSearchesLimit;
-  //   }
-  // }, [recentSearchesKey, recentSearchesLimit]);
-
-  const recentSearchesKey = getRecentSearchesKey(verticalKey, isVertical);
-  return [recentSearches[recentSearchesKey]?.getRecentSearches(), setRecentSearch, clearRecentSearches];
+  return [recentSearches?.getRecentSearches(), setRecentSearch, clearRecentSearches, updateRecentSearchesKey];
 }
 
-function getRecentSearchesKey(verticalKey: string|null, isVertical: boolean): string {
+function getRecentSearchesKey(isVertical: boolean, verticalKey: string|null): string {
   if (isVertical) {
     if (verticalKey) {
       return `__yxt_recent_searches_${verticalKey}__`;

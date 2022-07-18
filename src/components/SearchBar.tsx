@@ -199,11 +199,13 @@ export function SearchBar({
   const [
     recentSearches,
     setRecentSearch,
-    clearRecentSearches
-  ] = useRecentSearches(recentSearchesLimit, verticalKey, isVertical);
+    clearRecentSearches,
+    updateRecentSearchesKey
+  ] = useRecentSearches(recentSearchesLimit, isVertical, verticalKey);
   const filteredRecentSearches = recentSearches?.filter(search =>
     answersUtilities.isCloseMatch(search.query, query)
   );
+  updateRecentSearchesKey(isVertical, verticalKey);
 
   useEffect(() => {
     if (hideRecentSearches) {
@@ -219,10 +221,15 @@ export function SearchBar({
   const executeQuery = useCallback(() => {
     if (!hideRecentSearches) {
       const input = answersActions.state.query.input;
-      input && setRecentSearch(input, verticalKey, isVertical);
+      input && setRecentSearch(input);
     }
     executeQueryWithNearMeHandling();
-  }, [answersActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, isVertical, setRecentSearch, verticalKey]);
+  }, [
+    answersActions.state.query.input,
+    executeQueryWithNearMeHandling,
+    hideRecentSearches,
+    setRecentSearch
+  ]);
 
   const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
     value !== undefined && answersActions.setQuery(value);
