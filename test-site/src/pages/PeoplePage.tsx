@@ -22,6 +22,7 @@ export function PeoplePage() {
   const answersActions = useAnswersActions();
   useLayoutEffect(() => {
     answersActions.setVertical('people');
+    answersActions.executeVerticalQuery();
   });
 
   return (
