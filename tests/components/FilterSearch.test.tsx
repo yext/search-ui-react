@@ -11,6 +11,7 @@ const actions = spyOnActions();
 
 const setFilterOption = jest.fn();
 const setOffset = jest.fn();
+const resetFacets = jest.fn();
 const searchFieldsProp = [{
   fieldApiName: 'name',
   entityType: 'ce_person'
@@ -21,6 +22,7 @@ describe('search with section labels', () => {
     mockAnswersActions({
       setFilterOption,
       setOffset,
+      resetFacets,
       executeFilterSearch: jest.fn().mockResolvedValue(labeledFilterSearchResponse)
     });
   });
@@ -174,12 +176,15 @@ describe('search with section labels', () => {
         expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
       });
       expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
+      expect(resetFacets).toBeCalled();
 
       const setFilterOptionCallOrder = setFilterOption.mock.invocationCallOrder[0];
       const setOffsetCallOrder = setOffset.mock.invocationCallOrder[0];
+      const resetFacetsCallOrder = resetFacets.mock.invocationCallOrder[0];
       const mockExecuteSearchCallOrder = mockExecuteSearch.mock.invocationCallOrder[0];
       expect(setFilterOptionCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
       expect(setOffsetCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
+      expect(resetFacetsCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
     });
 
     it('does not trigger a search on pressing "enter" if no autocomplete result is selected', async () => {
@@ -193,6 +198,7 @@ describe('search with section labels', () => {
         expect(setFilterOption).not.toBeCalled();
       });
       expect(setOffset).not.toBeCalled();
+      expect(resetFacets).not.toBeCalled();
       expect(mockExecuteSearch).not.toBeCalled();
     });
 
@@ -216,12 +222,15 @@ describe('search with section labels', () => {
       userEvent.click(autocompleteSuggestion);
       expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
       expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
+      expect(resetFacets).toBeCalled();
 
       const setFilterOptionCallOrder = setFilterOption.mock.invocationCallOrder[0];
       const setOffsetCallOrder = setOffset.mock.invocationCallOrder[0];
+      const resetFacetsCallOrder = setOffset.mock.invocationCallOrder[0];
       const mockExecuteSearchCallOrder = mockExecuteSearch.mock.invocationCallOrder[0];
       expect(setFilterOptionCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
       expect(setOffsetCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
+      expect(resetFacetsCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
     });
   });
 
@@ -244,7 +253,8 @@ describe('search with section labels', () => {
           selected: true
         });
       });
-      expect(setOffset).toBeCalledWith(0);
+      expect(setOffset).not.toHaveBeenCalled();
+      expect(resetFacets).not.toHaveBeenCalled();
       expect(mockExecuteSearch).not.toHaveBeenCalled();
     });
   });
