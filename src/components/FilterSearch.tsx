@@ -102,8 +102,9 @@ export function FilterSearch({
       }
       answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
       setCurrentFilter(newFilter);
-      answersActions.setOffset(0);
       if (select && searchOnSelect) {
+        answersActions.setOffset(0);
+        answersActions.resetFacets();
         executeSearch(answersActions);
       }
     }
