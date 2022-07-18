@@ -9,20 +9,16 @@ import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
-import { useEffect } from 'react';
 
 interface DropdownItemData {
   value: string,
   itemData?: Record<string, unknown>
 }
 
-interface DropdownInputState {
-  inputValue: string
-}
 export interface DropdownProps {
   screenReaderText: string,
   screenReaderInstructions?: string,
-  initialState?: DropdownInputState,
+  initialValue?: string,
   parentQuery?: string,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
   onToggle?: (
@@ -48,7 +44,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     children,
     screenReaderText,
     screenReaderInstructions = 'When autocomplete results are available, use up and down arrows to review and enter to select.',
-    initialState,
+    initialValue,
     onSelect,
     onToggle,
     className,
@@ -62,7 +58,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   const [hasTyped, setHasTyped] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = getTransformedChildrenAndItemData(children);
 
-  const inputContext = useInputContextInstance(initialState);
+  const inputContext = useInputContextInstance(initialValue);
   const { value, setValue, lastTypedOrSubmittedValue, setLastTypedOrSubmittedValue } = inputContext;
 
   const focusContext = useFocusContextInstance(
@@ -152,13 +148,9 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   );
 }
 
-function useInputContextInstance(initialState?: DropdownInputState): InputContextType {
-  const [value, setValue] = useState(initialState?.inputValue || '');
-  useEffect(() => {
-    setValue(initialState?.inputValue || '');
-  }, [initialState]);
-
-  const [lastTypedOrSubmittedValue, setLastTypedOrSubmittedValue] = useState(initialState?.inputValue || '');
+function useInputContextInstance(initialValue = ''): InputContextType {
+  const [value, setValue] = useState(initialValue);
+  const [lastTypedOrSubmittedValue, setLastTypedOrSubmittedValue] = useState(initialValue);
   return {
     value,
     setValue,

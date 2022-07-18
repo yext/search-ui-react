@@ -78,12 +78,24 @@ export function FilterSearch({
     return { ...searchField, fetchEntities: false };
   });
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+  const [currentFilter, setCurrentFilter] = useState<Filter>();
+  const [ query, setQuery ] = useState<string>();
+  const filters = useAnswersState(state => state.filters.static);
+  filters?.forEach(f => {
+    if (currentFilter && isDuplicateFilter(f, currentFilter) && !f.selected) {
+      setCurrentFilter(undefined);
+      setQuery('');
+    }
+  });
 
   const [
     filterSearchResponse,
     executeFilterSearch
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
-    inputValue => answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
+    inputValue => {
+      setQuery(inputValue);
+      return answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields)
+    },
     (e) => console.error('Error occured executing a filter search request.\n', e)
   );
 
@@ -92,16 +104,6 @@ export function FilterSearch({
   }, [filterSearchResponse?.sections]);
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
-  const [currentFilter, setCurrentFilter] = useState<Filter>();
-
-  const [ initialState, setInitialState ] = useState<{ inputValue: string }>();
-  const filters = useAnswersState(state => state.filters.static);
-  filters?.forEach(f => {
-    if (currentFilter && isDuplicateFilter(f, currentFilter) && !f.selected) {
-      setCurrentFilter(undefined);
-      setInitialState({ inputValue: '' });
-    }
-  });
 
   const handleDropdownEvent = useCallback((itemData, select) => {
     const newFilter = itemData?.filter as Filter;
@@ -173,7 +175,7 @@ export function FilterSearch({
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
         onToggle={handleToggleDropdown}
-        initialState={initialState}
+        parentQuery={query}
       >
         <DropdownInput
           className={cssClasses.inputElement}
