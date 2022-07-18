@@ -3,34 +3,16 @@ import RecentSearches, { ISearch } from 'recent-searches';
 
 export function useRecentSearches(
   recentSearchesLimit: number,
-  isVertical: boolean,
   verticalKey: string | null
-): [
-    ISearch[]|undefined,
-    (input: string) => void,
-    () => void,
-    (isVertical: boolean, verticalKey: string | null) => void
-  ] {
+): [ISearch[] | undefined, (input: string) => void, () => void] {
   const recentSearchesLimitRef = useRef(recentSearchesLimit);
-  const [ recentSearchesKey, setRecentSearchesKey ] = useState(getRecentSearchesKey(isVertical, verticalKey));
-  const [ recentSearches, setRecentSeaches ] = useState<RecentSearches>(
+  const [recentSearchesKey, setRecentSearchesKey] = useState(getRecentSearchesKey(verticalKey));
+  const [recentSearches, setRecentSeaches] = useState<RecentSearches>(
     new RecentSearches({
       limit: recentSearchesLimit,
       namespace: recentSearchesKey
     })
   );
-
-  const updateRecentSearchesKey = useCallback((isVertical: boolean, verticalKey: string | null) => {
-    const newRecentSearchesKey = getRecentSearchesKey(isVertical, verticalKey);
-    if (recentSearchesKey !== newRecentSearchesKey) {
-      setRecentSearchesKey(newRecentSearchesKey);
-      const newRecentSearchObj = new RecentSearches({
-        limit: recentSearchesLimit,
-        namespace: newRecentSearchesKey
-      });
-      setRecentSeaches(newRecentSearchObj);
-    }
-  }, [recentSearchesKey, recentSearchesLimit]);
 
   const clearRecentSearches = useCallback(() => {
     localStorage.removeItem(recentSearchesKey);
@@ -53,19 +35,22 @@ export function useRecentSearches(
       }));
       recentSearchesLimitRef.current = recentSearchesLimit;
     }
-  }, [recentSearchesKey, recentSearchesLimit]);
+    const newRecentSearchesKey = getRecentSearchesKey(verticalKey);
+    if (recentSearchesKey !== newRecentSearchesKey) {
+      setRecentSearchesKey(newRecentSearchesKey);
+      setRecentSeaches(new RecentSearches({
+        limit: recentSearchesLimit,
+        namespace: newRecentSearchesKey
+      }));
+    }
+  }, [recentSearchesKey, recentSearchesLimit, verticalKey]);
 
-  return [recentSearches?.getRecentSearches(), setRecentSearch, clearRecentSearches, updateRecentSearchesKey];
+  return [recentSearches?.getRecentSearches(), setRecentSearch, clearRecentSearches];
 }
 
-function getRecentSearchesKey(isVertical: boolean, verticalKey: string|null): string {
-  if (isVertical) {
-    if (verticalKey) {
-      return `__yxt_recent_searches_${verticalKey}__`;
-    } else {
-      console.error('No vertical key found on this vertical');
-      return '';
-    }
+function getRecentSearchesKey(verticalKey: string | null): string {
+  if (verticalKey) {
+    return `__yxt_recent_searches_${verticalKey}__`;
   } else {
     return '__yxt_recent_searches_universal__';
   }

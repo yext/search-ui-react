@@ -200,12 +200,10 @@ export function SearchBar({
     recentSearches,
     setRecentSearch,
     clearRecentSearches,
-    updateRecentSearchesKey
-  ] = useRecentSearches(recentSearchesLimit, isVertical, verticalKey);
+  ] = useRecentSearches(recentSearchesLimit, verticalKey);
   const filteredRecentSearches = recentSearches?.filter(search =>
     answersUtilities.isCloseMatch(search.query, query)
   );
-  updateRecentSearchesKey(isVertical, verticalKey);
 
   useEffect(() => {
     if (hideRecentSearches) {
