@@ -219,10 +219,10 @@ export function SearchBar({
   const executeQuery = useCallback(() => {
     if (!hideRecentSearches) {
       const input = answersActions.state.query.input;
-      input && setRecentSearch(input);
+      input && setRecentSearch(input, verticalKey, isVertical);
     }
     executeQueryWithNearMeHandling();
-  }, [answersActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
+  }, [answersActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, isVertical, setRecentSearch, verticalKey]);
 
   const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
     value !== undefined && answersActions.setQuery(value);
