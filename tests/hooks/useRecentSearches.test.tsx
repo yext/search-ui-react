@@ -34,10 +34,6 @@ it('does not carry over old recent searches to a new vertical', () => {
   recentSearches = result.current[0];
   expect(recentSearches?.length).toBe(0);
 
-  verticalKey = 'people';
-  rerender();
-  recentSearches = result.current[0];
-  expect(recentSearches?.length).toBe(2);
   clearPeopleSearches();
 });
 
