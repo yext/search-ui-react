@@ -82,20 +82,9 @@ it('clears searches properly', () => {
   setRecentPeopleSearch('bob');
   setRecentPeopleSearch('carrie');
 
-  verticalKey = 'places';
-  const [, setRecentPlacesSearch, clearPlacesSearches] = result.current;
-  setRecentPlacesSearch('yext');
-
   clearPeopleSearches();
-  clearPlacesSearches();
-
   verticalKey = 'people';
   rerender();
-  let recentSearches = result.current[0];
-  expect(recentSearches?.length).toBe(0);
-
-  verticalKey = 'places';
-  rerender();
-  recentSearches = result.current[0];
+  const recentSearches = result.current[0];
   expect(recentSearches?.length).toBe(0);
 });
