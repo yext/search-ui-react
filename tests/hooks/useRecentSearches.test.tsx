@@ -1,40 +1,24 @@
 import { useRecentSearches } from '../../src/hooks/useRecentSearches';
 import { renderHook } from '@testing-library/react-hooks';
 
+beforeEach(() => {
+  localStorage.clear();
+});
 it('returns recent searches', () => {
   const verticalKey = 'people';
   const { result, rerender } = renderHook(() =>
     useRecentSearches(10, verticalKey)
   );
-  const [, setRecentSearch, clearRecentSearches] = result.current;
+  const setRecentSearch = result.current[1];
   setRecentSearch('bob');
   setRecentSearch('carrie');
   setRecentSearch('williard');
 
   rerender();
   const [recentSearches] = result.current;
-  expect(recentSearches?.length).toBe(3);
-  clearRecentSearches();
-});
-
-it('does not carry over old recent searches to a new vertical', () => {
-  let verticalKey = 'people';
-  const { result, rerender } = renderHook(() =>
-    useRecentSearches(10, verticalKey)
-  );
-  const [, setRecentPeopleSearch, clearPeopleSearches] = result.current;
-  setRecentPeopleSearch('bob');
-  setRecentPeopleSearch('carrie');
-  rerender();
-  let recentSearches = result.current[0];
-  expect(recentSearches?.length).toBe(2);
-
-  verticalKey = 'places';
-  rerender();
-  recentSearches = result.current[0];
-  expect(recentSearches?.length).toBe(0);
-
-  clearPeopleSearches();
+  expect(recentSearches?.[0].query).toBe('williard');
+  expect(recentSearches?.[1].query).toBe('carrie');
+  expect(recentSearches?.[2].query).toBe('bob');
 });
 
 it('preserves recent searches when returning to a vertical', () => {
@@ -42,7 +26,7 @@ it('preserves recent searches when returning to a vertical', () => {
   const { result, rerender } = renderHook(() =>
     useRecentSearches(10, verticalKey)
   );
-  const [, setRecentPeopleSearch, clearPeopleSearches] = result.current;
+  const setRecentPeopleSearch = result.current[1];
   setRecentPeopleSearch('bob');
   setRecentPeopleSearch('carrie');
   rerender();
@@ -52,7 +36,7 @@ it('preserves recent searches when returning to a vertical', () => {
   verticalKey = 'places';
   rerender();
   recentSearches = result.current[0];
-  const [, setRecentPlacesSearch, clearPlacesSearches] = result.current;
+  const setRecentPlacesSearch = result.current[1];
   expect(recentSearches?.length).toBe(0);
 
   setRecentPlacesSearch('yext');
@@ -64,9 +48,6 @@ it('preserves recent searches when returning to a vertical', () => {
   rerender();
   recentSearches = result.current[0];
   expect(recentSearches?.length).toBe(2);
-
-  clearPeopleSearches();
-  clearPlacesSearches();
 });
 
 it('clears searches properly', () => {
