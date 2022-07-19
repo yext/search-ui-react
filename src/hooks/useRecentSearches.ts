@@ -1,12 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import RecentSearches, { ISearch } from 'recent-searches';
 
 export function useRecentSearches(
   recentSearchesLimit: number,
   verticalKey: string | null
 ): [ISearch[] | undefined, (input: string) => void, () => void] {
-  const recentSearchesLimitRef = useRef(recentSearchesLimit);
-  const [recentSearchesKey, setRecentSearchesKey] = useState(getRecentSearchesKey(verticalKey));
+  const recentSearchesKey = getRecentSearchesKey(verticalKey);
   const [recentSearches, setRecentSeaches] = useState<RecentSearches>(
     new RecentSearches({
       limit: recentSearchesLimit,
@@ -33,8 +32,6 @@ export function useRecentSearches(
       limit: recentSearchesLimit,
       namespace: newRecentSearchesKey
     }));
-    setRecentSearchesKey(newRecentSearchesKey);
-    recentSearchesLimitRef.current = recentSearchesLimit;
   }, [recentSearchesKey, recentSearchesLimit, verticalKey]);
 
   return [recentSearches?.getRecentSearches(), setRecentSearch, clearRecentSearches];
