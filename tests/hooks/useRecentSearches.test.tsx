@@ -98,6 +98,4 @@ it('clears searches properly', () => {
   rerender();
   recentSearches = result.current[0];
   expect(recentSearches?.length).toBe(0);
-
-
 });
