@@ -406,7 +406,7 @@ Apache License
 
 The following NPM package may be included in this product:
 
- - @reduxjs/toolkit@1.8.2
+ - @reduxjs/toolkit@1.8.3
 
 This package contains the following license and notice below:
 
@@ -4007,7 +4007,7 @@ The following NPM packages may be included in this product:
  - react-is@16.13.1
  - react@17.0.2
  - scheduler@0.20.2
- - use-sync-external-store@1.1.0
+ - use-sync-external-store@1.2.0
 
 These packages each contain the following license and notice below:
 
