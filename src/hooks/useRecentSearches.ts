@@ -31,7 +31,7 @@ export function useRecentSearches(
       limit: recentSearchesLimit,
       namespace: recentSearchesKey
     }));
-  }, [recentSearchesKey, recentSearchesLimit, verticalKey]);
+  }, [recentSearchesKey, recentSearchesLimit]);
 
   return [recentSearches?.getRecentSearches(), setRecentSearch, clearRecentSearches];
 }
