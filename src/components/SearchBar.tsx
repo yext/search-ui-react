@@ -39,7 +39,6 @@ import { executeAutocomplete as executeAutocompleteSearch } from '../utils/searc
 import { clearStaticRangeFilters } from '../utils/filterutils';
 import { useMemo } from 'react';
 import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
-import React from 'react';
 
 const builtInCssClasses: Readonly<SearchBarCssClasses> = {
   searchBarContainer: 'h-12 mb-6',
