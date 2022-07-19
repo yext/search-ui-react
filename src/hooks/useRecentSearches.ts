@@ -3,7 +3,7 @@ import RecentSearches, { ISearch } from 'recent-searches';
 
 export function useRecentSearches(
   recentSearchesLimit: number,
-  verticalKey: string | null
+  verticalKey: string | undefined
 ): [ISearch[] | undefined, (input: string) => void, () => void] {
   const recentSearchesKey = getRecentSearchesKey(verticalKey);
   const [recentSearches, setRecentSeaches] = useState<RecentSearches>(
@@ -36,7 +36,7 @@ export function useRecentSearches(
   return [recentSearches?.getRecentSearches(), setRecentSearch, clearRecentSearches];
 }
 
-function getRecentSearchesKey(verticalKey: string | null): string {
+function getRecentSearchesKey(verticalKey: string | undefined): string {
   if (verticalKey) {
     return `__yxt_recent_searches_${verticalKey}__`;
   } else {

@@ -187,7 +187,7 @@ export function SearchBar({
   const query = useAnswersState(state => state.query.input) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
-  const verticalKey = useAnswersState(state => state.vertical.verticalKey) || null;
+  const verticalKey = useAnswersState(state => state.vertical.verticalKey);
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
     () => executeAutocompleteSearch(answersActions)
   );
