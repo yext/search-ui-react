@@ -142,28 +142,28 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       return;
     }
     const displayName = getFilterDisplayName(rangeFilter.value);
-    clearStaticRangeFilters(SearchActions, new Set([fieldId]));
-    SearchActions.setFilterOption({
+    clearStaticRangeFilters(searchActions, new Set([fieldId]));
+    searchActions.setFilterOption({
       ...rangeFilter,
       selected: true,
       displayName
     });
-    SearchActions.setOffset(0);
-    executeSearch(SearchActions);
-  }, [SearchActions, fieldId, getFilterDisplayName, isValid, rangeFilter]);
+    searchActions.setOffset(0);
+    executeSearch(searchActions);
+  }, [searchActions, fieldId, getFilterDisplayName, isValid, rangeFilter]);
 
   const handleClickClear = useCallback(() => {
     const displayName = getFilterDisplayName(rangeFilter.value);
-    SearchActions.setFilterOption({
+    searchActions.setFilterOption({
       ...rangeFilter,
       selected: false,
       displayName
     });
     setMinRangeInput('');
     setMaxRangeInput('');
-    SearchActions.setOffset(0);
-    executeSearch(SearchActions);
-  }, [SearchActions, getFilterDisplayName, rangeFilter]);
+    searchActions.setOffset(0);
+    executeSearch(searchActions);
+  }, [searchActions, getFilterDisplayName, rangeFilter]);
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,

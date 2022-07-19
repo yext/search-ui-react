@@ -45,10 +45,10 @@ export function ApplyFiltersButton({
   const cssClasses = { ...builtInCssClasses, ...customCssClasses };
   const searchActions = useSearchActions();
   const handleClick = useCallback(() => {
-    SearchActions.setOffset(0);
-    clearStaticRangeFilters(SearchActions, getSelectedNumericalFacetFields(SearchActions));
-    executeSearch(SearchActions);
-  }, [SearchActions]);
+    searchActions.setOffset(0);
+    clearStaticRangeFilters(searchActions, getSelectedNumericalFacetFields(searchActions));
+    executeSearch(searchActions);
+  }, [searchActions]);
 
   return (
     <button

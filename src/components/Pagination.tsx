@@ -75,10 +75,10 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   const reportAnalyticsEvent = usePaginationAnalytics();
   const navigateToPage = useCallback((newPageNumber: number) => {
     const newOffset = limit * (newPageNumber - 1);
-    SearchActions.setOffset(newOffset);
-    executeSearch(SearchActions);
+    searchActions.setOffset(newOffset);
+    executeSearch(searchActions);
     reportAnalyticsEvent(newPageNumber, currentPageNumber, maxPageCount);
-  }, [SearchActions, limit, maxPageCount, currentPageNumber, reportAnalyticsEvent]);
+  }, [searchActions, limit, maxPageCount, currentPageNumber, reportAnalyticsEvent]);
 
   if (maxPageCount <= 1) {
     return null;

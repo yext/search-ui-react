@@ -37,18 +37,18 @@ export function StaticFiltersProvider({
   const filtersContextInstance: FiltersContextType = useMemo(() => {
     return {
       selectFilter(filter: DisplayableFilter) {
-        SearchActions.setFilterOption({ ...filter });
+        searchActions.setFilterOption({ ...filter });
       },
       applyFilters() {
         if (searchOnChange) {
-          SearchActions.setOffset(0);
-          SearchActions.resetFacets();
-          executeSearch(SearchActions);
+          searchActions.setOffset(0);
+          searchActions.resetFacets();
+          executeSearch(searchActions);
         }
       },
       filters: displayableFilters ?? []
     };
-  }, [SearchActions, displayableFilters, searchOnChange]);
+  }, [searchActions, displayableFilters, searchOnChange]);
 
   return (
     <div className={className}>

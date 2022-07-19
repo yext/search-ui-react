@@ -50,16 +50,16 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
   const handleClickClearAllButton = useCallback(() => {
-    SearchActions.setOffset(0);
-    SearchActions.resetFacets();
-    SearchActions.setStaticFilters(staticFilters.map(f => {
+    searchActions.setOffset(0);
+    searchActions.resetFacets();
+    searchActions.setStaticFilters(staticFilters.map(f => {
       return {
         ...f,
         selected: false
       };
     }));
-    executeSearch(SearchActions);
-  }, [SearchActions, staticFilters]);
+    executeSearch(searchActions);
+  }, [searchActions, staticFilters]);
 
   const hasAppliedFilters = (
     nlpFilters.length + staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
@@ -73,9 +73,9 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
       console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
       return;
     }
-    SearchActions.setOffset(0);
-    SearchActions.setFacetOption(fieldId, { matcher, value }, false);
-    executeSearch(SearchActions);
+    searchActions.setOffset(0);
+    searchActions.setFacetOption(fieldId, { matcher, value }, false);
+    executeSearch(searchActions);
   };
 
   const handleRemoveHierarchicalFacetOption = (facet: DisplayableHierarchicalFacet) => {
@@ -86,7 +86,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
       .filter(hierarchicalFacet => hierarchicalFacet.fieldId === fieldId)
       .forEach(hierarchicalFacet => {
         if (isDescendantHierarchicalFacet(facet, hierarchicalFacet, hierarchicalFacetsDelimiter)) {
-          SearchActions.setFacetOption(fieldId, {
+          searchActions.setFacetOption(fieldId, {
             matcher: hierarchicalFacet.matcher,
             value: hierarchicalFacet.value
           }, false);
@@ -97,20 +97,20 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     const parentFacet = hierarchicalFacets
       .find(hierarchicalFacet => hierarchicalFacet.displayName === parentDisplayName);
 
-    parentFacet && SearchActions.setFacetOption(fieldId, {
+    parentFacet && searchActions.setFacetOption(fieldId, {
       matcher: parentFacet?.matcher,
       value: parentFacet?.value
     }, true);
 
-    SearchActions.setOffset(0);
-    SearchActions.setFacetOption(fieldId, { matcher: facet.matcher, value: facet.value }, false);
-    executeSearch(SearchActions);
+    searchActions.setOffset(0);
+    searchActions.setFacetOption(fieldId, { matcher: facet.matcher, value: facet.value }, false);
+    executeSearch(searchActions);
   };
 
   const handleRemoveStaticFilterOption = (filter: DisplayableFilter) => {
-    SearchActions.setOffset(0);
-    SearchActions.setFilterOption({ ...filter, selected: false });
-    executeSearch(SearchActions);
+    searchActions.setOffset(0);
+    searchActions.setFilterOption({ ...filter, selected: false });
+    executeSearch(searchActions);
   };
 
   const renderRemovableFilter =

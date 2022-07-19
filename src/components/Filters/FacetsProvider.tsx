@@ -73,18 +73,18 @@ export function FacetsProvider({
           matcher: filter.matcher,
           value: filter.value
         };
-        SearchActions.setFacetOption(filter.fieldId, facetOption, filter.selected);
+        searchActions.setFacetOption(filter.fieldId, facetOption, filter.selected);
       },
       applyFilters() {
         if (searchOnChange) {
-          SearchActions.setOffset(0);
-          clearStaticRangeFilters(SearchActions, getSelectedNumericalFacetFields(SearchActions));
-          executeSearch(SearchActions);
+          searchActions.setOffset(0);
+          clearStaticRangeFilters(searchActions, getSelectedNumericalFacetFields(searchActions));
+          executeSearch(searchActions);
         }
       },
       filters
     };
-  }, [SearchActions, filters, searchOnChange]);
+  }, [searchActions, filters, searchOnChange]);
 
   return (
     <div className={className}>

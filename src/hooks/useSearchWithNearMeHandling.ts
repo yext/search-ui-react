@@ -33,19 +33,19 @@ export function useSearchWithNearMeHandling(
 
   async function executeQuery() {
     let intents: SearchIntent[] = [];
-    if (!SearchActions.state.location.userLocation) {
+    if (!searchActions.state.location.userLocation) {
       if (!autocompletePromiseRef.current) {
-        autocompletePromiseRef.current = executeAutocomplete(SearchActions);
+        autocompletePromiseRef.current = executeAutocomplete(searchActions);
       }
       const autocompleteResponseBeforeSearch = await autocompletePromiseRef.current;
       intents = autocompleteResponseBeforeSearch?.inputIntents || [];
-      await updateLocationIfNeeded(SearchActions, intents, geolocationOptions);
+      await updateLocationIfNeeded(searchActions, intents, geolocationOptions);
     }
-    const verticalKey = SearchActions.state.vertical.verticalKey ?? '';
-    const query = SearchActions.state.query.input ?? '';
+    const verticalKey = searchActions.state.vertical.verticalKey ?? '';
+    const query = searchActions.state.query.input ?? '';
     onSearch
       ? onSearch({ verticalKey, query })
-      : executeSearch(SearchActions);
+      : executeSearch(searchActions);
   }
   return [executeQuery, autocompletePromiseRef];
 }

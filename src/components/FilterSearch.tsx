@@ -82,7 +82,7 @@ export function FilterSearch({
     filterSearchResponse,
     executeFilterSearch
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
-    inputValue => SearchActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
+    inputValue => searchActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
     (e) => console.error('Error occured executing a filter search request.\n', e)
   );
 
@@ -98,17 +98,17 @@ export function FilterSearch({
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
       if (currentFilter) {
-        SearchActions.setFilterOption({ ...currentFilter, selected: false });
+        searchActions.setFilterOption({ ...currentFilter, selected: false });
       }
-      SearchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+      searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
       setCurrentFilter(newFilter);
       if (select && searchOnSelect) {
-        SearchActions.setOffset(0);
-        SearchActions.resetFacets();
-        executeSearch(SearchActions);
+        searchActions.setOffset(0);
+        searchActions.resetFacets();
+        executeSearch(searchActions);
       }
     }
-  }, [SearchActions, currentFilter, searchOnSelect]);
+  }, [searchActions, currentFilter, searchOnSelect]);
 
   const handleSelectDropdown = useCallback((_value, _index, itemData) => {
     handleDropdownEvent(itemData, true);

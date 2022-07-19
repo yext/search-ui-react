@@ -69,7 +69,7 @@ export function LocationBias({
     setIsFetchingLocation(true);
     try {
       const position = await getUserLocation(geolocationOptions);
-      SearchActions.setUserLocation({
+      searchActions.setUserLocation({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       });
@@ -78,7 +78,7 @@ export function LocationBias({
     } finally {
       setIsFetchingLocation(false);
     }
-    executeSearch(SearchActions);
+    executeSearch(searchActions);
   }
 
   return (

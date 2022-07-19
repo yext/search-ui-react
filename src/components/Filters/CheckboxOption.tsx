@@ -113,12 +113,12 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
       return false;
     }
 
-    if (!SearchUtilities.isCloseMatch(displayName, searchValue)) {
+    if (!searchUtilities.isCloseMatch(displayName, searchValue)) {
       return false;
     }
 
     return true;
-  }, [value, SearchUtilities, displayName, searchValue]);
+  }, [value, searchUtilities, displayName, searchValue]);
 
   useEffect(() => {
     if (shouldRenderOption) {

@@ -56,11 +56,11 @@ export function SpellCheck({
   });
   const searchActions = useSearchActions();
   const handleClickSuggestion = useCallback(() => {
-    SearchActions.setQuery(correctedQuery);
+    searchActions.setQuery(correctedQuery);
     onClick
       ? onClick({ correctedQuery, verticalKey })
-      : executeSearch(SearchActions);
-  }, [SearchActions, correctedQuery, onClick, verticalKey]);
+      : executeSearch(searchActions);
+  }, [searchActions, correctedQuery, onClick, verticalKey]);
 
   if (!correctedQuery) {
     return null;

@@ -188,7 +188,7 @@ export function SearchBar({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
-    () => executeAutocompleteSearch(SearchActions)
+    () => executeAutocompleteSearch(searchActions)
   );
   const [
     executeQueryWithNearMeHandling,
@@ -196,7 +196,7 @@ export function SearchBar({
   ] = useSearchWithNearMeHandling(geolocationOptions, onSearch);
   const [recentSearches, setRecentSearch, clearRecentSearches] = useRecentSearches(recentSearchesLimit);
   const filteredRecentSearches = recentSearches?.filter(search =>
-    SearchUtilities.isCloseMatch(search.query, query)
+    searchUtilities.isCloseMatch(search.query, query)
   );
 
   useEffect(() => {
@@ -212,17 +212,17 @@ export function SearchBar({
 
   const executeQuery = useCallback(() => {
     if (!hideRecentSearches) {
-      const input = SearchActions.state.query.input;
+      const input = searchActions.state.query.input;
       input && setRecentSearch(input);
     }
     executeQueryWithNearMeHandling();
-  }, [SearchActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
+  }, [searchActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
 
   const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
-    value !== undefined && SearchActions.setQuery(value);
-    SearchActions.setOffset(0);
-    SearchActions.resetFacets();
-    clearStaticRangeFilters(SearchActions);
+    value !== undefined && searchActions.setQuery(value);
+    searchActions.setOffset(0);
+    searchActions.resetFacets();
+    clearStaticRangeFilters(searchActions);
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
       onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
@@ -231,7 +231,7 @@ export function SearchBar({
     if (typeof index === 'number' && index >= 0 && !itemData?.isEntityPreview) {
       reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
     }
-  }, [SearchActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
+  }, [searchActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 
   const [
     entityPreviewsState,
@@ -251,16 +251,16 @@ export function SearchBar({
   }, [executeEntityPreviewsQuery, renderEntityPreviews, restrictVerticals, universalLimit]);
 
   const handleInputFocus = useCallback((value = '') => {
-    SearchActions.setQuery(value);
+    searchActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
-  }, [SearchActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
+  }, [searchActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
   const handleInputChange = useCallback((value = '') => {
-    SearchActions.setQuery(value);
+    searchActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
-  }, [SearchActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
+  }, [searchActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
   const handleClickClearButton = useCallback(() => {
     updateEntityPreviews('');
