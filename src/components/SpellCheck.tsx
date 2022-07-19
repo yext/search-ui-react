@@ -54,7 +54,7 @@ export function SpellCheck({
   const containerClassNames = classNames(cssClasses.spellCheckContainer, {
     [cssClasses.spellCheckLoading ?? '']: isLoading
   });
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
   const handleClickSuggestion = useCallback(() => {
     SearchActions.setQuery(correctedQuery);
     onClick

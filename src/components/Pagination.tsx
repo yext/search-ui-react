@@ -56,7 +56,7 @@ const builtInPaginationCssClasses: Readonly<PaginationCssClasses> = {
 export function Pagination(props: PaginationProps): JSX.Element | null {
   const { customCssClasses = {}, paginateAllOnNoResults = false } = props;
   const cssClasses = useComposedCssClasses(builtInPaginationCssClasses, customCssClasses);
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
   const verticalResultsCount = useSearchState(state => state.vertical.resultsCount) || 0;
   const allResultsCountForVertical =
     useSearchState(state => state.vertical?.noResults?.allResultsForVertical.resultsCount) || 0;

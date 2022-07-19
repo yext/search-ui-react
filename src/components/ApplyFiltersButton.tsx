@@ -43,7 +43,7 @@ export function ApplyFiltersButton({
   label = 'Apply Filters'
 }: ApplyFiltersButtonProps): JSX.Element {
   const cssClasses = { ...builtInCssClasses, ...customCssClasses };
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
   const handleClick = useCallback(() => {
     SearchActions.setOffset(0);
     clearStaticRangeFilters(SearchActions, getSelectedNumericalFacetFields(SearchActions));

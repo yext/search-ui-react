@@ -80,7 +80,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const optionId = useMemo(() => uuid(), []);
-  const SearchUtilities = useSearchUtilities();
+  const searchUtilities = useSearchUtilities();
   const { selectFilter, filters, applyFilters } = useFiltersContext();
 
   const handleClick = useCallback((checked: boolean) => {

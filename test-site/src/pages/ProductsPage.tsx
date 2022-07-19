@@ -12,7 +12,7 @@ import {
 import { useLayoutEffect } from 'react';
 
 export function ProductsPage() {
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
   useLayoutEffect(() => {
     SearchActions.setVertical('products');
     SearchActions.executeVerticalQuery();

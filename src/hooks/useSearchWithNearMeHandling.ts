@@ -29,7 +29,7 @@ export function useSearchWithNearMeHandling(
    * before the search execution in order to retrieve the search intents.
    */
   const autocompletePromiseRef = useRef<Promise<AutocompleteResponse | undefined>>();
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
 
   async function executeQuery() {
     let intents: SearchIntent[] = [];

@@ -98,7 +98,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     inputPrefix
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
   const [minRangeInput, setMinRangeInput] = useState<string>('');
   const [maxRangeInput, setMaxRangeInput] = useState<string>('');
   const staticFilters = useSearchState(state => state.filters.static);

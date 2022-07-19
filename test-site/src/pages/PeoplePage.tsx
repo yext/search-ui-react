@@ -19,7 +19,7 @@ import {
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 
 export function PeoplePage() {
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
   useLayoutEffect(() => {
     SearchActions.setVertical('people');
     SearchActions.executeVerticalQuery();

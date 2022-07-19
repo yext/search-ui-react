@@ -52,7 +52,7 @@ export function LocationBias({
   geolocationOptions,
   customCssClasses
 }: LocationBiasProps): JSX.Element | null {
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
   const locationBias = useSearchState(s => s.location.locationBias);
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);

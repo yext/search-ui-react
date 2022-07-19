@@ -180,8 +180,8 @@ export function SearchBar({
     universalLimit,
     entityPreviewsDebouncingTime = 500
   } = visualAutocompleteConfig ?? {};
-  const SearchActions = useSearchActions();
-  const SearchUtilities = useSearchUtilities();
+  const searchActions = useSearchActions();
+  const searchUtilities = useSearchUtilities();
   const reportAnalyticsEvent = useSearchBarAnalytics();
 
   const query = useSearchState(state => state.query.input) ?? '';

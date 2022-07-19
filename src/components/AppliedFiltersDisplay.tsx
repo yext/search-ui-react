@@ -46,7 +46,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
     cssClasses = {}
   } = props;
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
   const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
   const handleClickClearAllButton = useCallback(() => {

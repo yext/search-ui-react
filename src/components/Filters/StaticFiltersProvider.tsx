@@ -31,7 +31,7 @@ export function StaticFiltersProvider({
   className = 'w-full',
   searchOnChange = true
 }: StaticFiltersProviderProps): JSX.Element {
-  const SearchActions = useSearchActions();
+  const searchActions = useSearchActions();
   const displayableFilters = useSearchState(state => state.filters.static);
 
   const filtersContextInstance: FiltersContextType = useMemo(() => {
