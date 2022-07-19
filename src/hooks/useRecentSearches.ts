@@ -28,21 +28,13 @@ export function useRecentSearches(
   }, [recentSearches]);
 
   useEffect(() => {
-    if (recentSearchesLimit !== recentSearchesLimitRef.current) {
-      setRecentSeaches(new RecentSearches({
-        limit: recentSearchesLimit,
-        namespace: recentSearchesKey
-      }));
-      recentSearchesLimitRef.current = recentSearchesLimit;
-    }
     const newRecentSearchesKey = getRecentSearchesKey(verticalKey);
-    if (recentSearchesKey !== newRecentSearchesKey) {
-      setRecentSearchesKey(newRecentSearchesKey);
-      setRecentSeaches(new RecentSearches({
-        limit: recentSearchesLimit,
-        namespace: newRecentSearchesKey
-      }));
-    }
+    setRecentSeaches(new RecentSearches({
+      limit: recentSearchesLimit,
+      namespace: newRecentSearchesKey
+    }));
+    setRecentSearchesKey(newRecentSearchesKey);
+    recentSearchesLimitRef.current = recentSearchesLimit;
   }, [recentSearchesKey, recentSearchesLimit, verticalKey]);
 
   return [recentSearches?.getRecentSearches(), setRecentSearch, clearRecentSearches];
