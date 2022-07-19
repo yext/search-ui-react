@@ -1,6 +1,6 @@
 import { FacetsProvider } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
 
 /**
@@ -65,18 +65,17 @@ export function StandardFacets(props: StandardFacetsProps) {
       {facets => facets
         .filter(f => !excludedFieldIds.includes(f.fieldId) && isStringFacet(f))
         .map((f, i) => {
-          const limited = f.options.length > showMoreLimit;
-          //const [showAll, setShowAll] = useState<boolean>(!limited);
           return (
             <Fragment key={f.fieldId}>
               <FilterGroup
                 fieldId={f.fieldId}
                 filterOptions={f.options.map(o => {
                   return { ...o, resultsCount: o.count };
-                }).slice(0, showMoreLimit)}
+                })}
                 title={f.displayName}
                 customCssClasses={customCssClasses}
-                searchable={limited}
+                showMoreLimit={showMoreLimit}
+                searchable={f.options.length > showMoreLimit}
                 {...filterGroupProps}
               />
               {(i < facets.length - 1) && <Divider className={customCssClasses.divider}/>}

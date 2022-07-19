@@ -1,4 +1,4 @@
-import { PropsWithChildren, useMemo } from 'react';
+import { PropsWithChildren, useMemo, useState } from 'react';
 import {
   CheckboxOption,
   CollapsibleLabel,
@@ -43,7 +43,9 @@ export interface FilterGroupProps {
   /** Whether or not to display a text input to search for filter options. */
   searchable?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: FilterGroupCssClasses
+  customCssClasses?: FilterGroupCssClasses,
+  /** Limit on the number of options to be displayed. */
+  showMoreLimit?: number
 }
 
 /**
@@ -57,6 +59,7 @@ export function FilterGroup({
   defaultExpanded = true,
   searchable,
   customCssClasses = {},
+  showMoreLimit = filterOptions.length,
   children
 }: PropsWithChildren<FilterGroupProps>) {
   const cssClasses = useMemo(() => {
@@ -68,6 +71,9 @@ export function FilterGroup({
       ...optionInput && { input: optionInput }
     };
   }, [customCssClasses]);
+
+  const limited = filterOptions.length > showMoreLimit;
+  const [showAll, setShowAll] = useState<boolean>(!limited);
 
   function renderTitle() {
     return collapsible
@@ -85,15 +91,26 @@ export function FilterGroup({
       {renderTitle()}
       <CollapsibleSection className={cssClasses.optionsContainer}>
         {searchable && <SearchInput className={cssClasses.searchInput} />}
-        {filterOptions.map(o => {
-          return (
-            <CheckboxOption
-              {...o}
-              key={o.displayName || o.value.toString()}
-              customCssClasses={cssClasses}
-            />
-          );
-        })}
+        {showAll
+          ? filterOptions.map(o => {
+            return (
+              <CheckboxOption
+                {...o}
+                key={o.displayName || o.value.toString()}
+                customCssClasses={cssClasses}
+              />
+            );
+          })
+          : filterOptions.slice(0, showMoreLimit).map(o => {
+            return (
+              <CheckboxOption
+                {...o}
+                key={o.displayName || o.value.toString()}
+                customCssClasses={cssClasses}
+              />
+            );
+          })
+        }
         {children}
       </CollapsibleSection>
     </FilterGroupProvider>

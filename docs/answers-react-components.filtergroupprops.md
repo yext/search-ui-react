@@ -22,5 +22,6 @@ export interface FilterGroupProps
 |  [fieldId](./answers-react-components.filtergroupprops.fieldid.md) | string | The fieldId corresponding to the filter group. |
 |  [filterOptions](./answers-react-components.filtergroupprops.filteroptions.md) | [FilterOptionConfig](./answers-react-components.filteroptionconfig.md)<!-- -->\[\] | The configuration data for a filter option. |
 |  [searchable?](./answers-react-components.filtergroupprops.searchable.md) | boolean | <i>(Optional)</i> Whether or not to display a text input to search for filter options. |
+|  [showMoreLimit?](./answers-react-components.filtergroupprops.showmorelimit.md) | number | <i>(Optional)</i> Limit on the number of options to be displayed. |
 |  [title](./answers-react-components.filtergroupprops.title.md) | string | The displayed label for the filter group. |
 

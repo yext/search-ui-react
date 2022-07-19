@@ -202,6 +202,7 @@ export interface FilterGroupProps {
     fieldId: string;
     filterOptions: FilterOptionConfig[];
     searchable?: boolean;
+    showMoreLimit?: number;
     title: string;
 }
 
