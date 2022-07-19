@@ -27,10 +27,9 @@ export function useRecentSearches(
   }, [recentSearches]);
 
   useEffect(() => {
-    const newRecentSearchesKey = getRecentSearchesKey(verticalKey);
     setRecentSeaches(new RecentSearches({
       limit: recentSearchesLimit,
-      namespace: newRecentSearchesKey
+      namespace: recentSearchesKey
     }));
   }, [recentSearchesKey, recentSearchesLimit, verticalKey]);
 
