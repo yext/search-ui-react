@@ -14,7 +14,7 @@ import {
   ApplyFiltersButton,
   Pagination,
   NumericalFacets
-} from '@yext/answers-react-components';
+} from '@yext/search-ui-react';
 
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 

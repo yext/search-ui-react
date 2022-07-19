@@ -7,7 +7,7 @@ import {
   SpellCheck,
   UniversalResults,
   VisualAutocompleteConfig
-} from '@yext/answers-react-components';
+} from '@yext/search-ui-react';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
 import { config } from '../config';
