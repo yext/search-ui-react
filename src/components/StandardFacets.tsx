@@ -1,6 +1,6 @@
 import { FacetsProvider } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { DisplayableFacet } from '@yext/answers-headless-react';
 
 /**
@@ -23,8 +23,6 @@ export interface StandardFacetsProps {
   collapsible?: boolean,
   /** {@inheritDoc FilterGroupProps.defaultExpanded} */
   defaultExpanded?: boolean,
-  /** {@inheritDoc FilterGroupProps.searchable} */
-  searchable?: boolean,
   /**
    * Whether or not a search is automatically run when a filter is selected.
    * Defaults to true.
@@ -33,7 +31,12 @@ export interface StandardFacetsProps {
   /** List of filter ids that should not be displayed. */
   excludedFieldIds?: string[],
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: StandardFacetsCssClasses
+  customCssClasses?: StandardFacetsCssClasses,
+  /**
+   * Limit on the number of options to be displayed.
+   * Defaults to 10.
+   */
+  showMoreLimit?: number
 }
 
 /**
@@ -50,21 +53,30 @@ export interface StandardFacetsProps {
  * @public
  */
 export function StandardFacets(props: StandardFacetsProps) {
-  const { searchOnChange, excludedFieldIds = [], customCssClasses = {}, ...filterGroupProps } = props;
+  const {
+    searchOnChange,
+    excludedFieldIds = [],
+    customCssClasses = {},
+    showMoreLimit = 10,
+    ...filterGroupProps
+  } = props;
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.standardFacetsContainer}>
       {facets => facets
         .filter(f => !excludedFieldIds.includes(f.fieldId) && isStringFacet(f))
         .map((f, i) => {
+          const limited = f.options.length > showMoreLimit;
+          //const [showAll, setShowAll] = useState<boolean>(!limited);
           return (
             <Fragment key={f.fieldId}>
               <FilterGroup
                 fieldId={f.fieldId}
                 filterOptions={f.options.map(o => {
                   return { ...o, resultsCount: o.count };
-                })}
+                }).slice(0, showMoreLimit)}
                 title={f.displayName}
                 customCssClasses={customCssClasses}
+                searchable={limited}
                 {...filterGroupProps}
               />
               {(i < facets.length - 1) && <Divider className={customCssClasses.divider}/>}
