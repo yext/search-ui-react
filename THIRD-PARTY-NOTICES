@@ -4,7 +4,7 @@ The following NPM packages may be included in this product:
  - @babel/helper-validator-identifier@7.16.7
  - @babel/highlight@7.16.10
  - @babel/runtime-corejs3@7.17.2
- - @babel/runtime@7.18.9
+ - @babel/runtime@7.16.7
 
 These packages each contain the following license and notice below:
 
