@@ -4,6 +4,7 @@ import { renderHook } from '@testing-library/react-hooks';
 beforeEach(() => {
   localStorage.clear();
 });
+
 it('returns recent searches', () => {
   const verticalKey = 'people';
   const { result, rerender } = renderHook(() =>
