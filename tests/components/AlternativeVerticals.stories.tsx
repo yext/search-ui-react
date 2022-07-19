@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { AnswersHeadlessContext } from '@yext/answers-headless-react';
+import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { AlternativeVerticals, AlternativeVerticalsProps } from '../../src/components/AlternativeVerticals';
 
@@ -27,33 +27,33 @@ const verticalConfigMap = {
 
 export const Primary = (args: AlternativeVerticalsProps) => {
   return (
-    <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <AlternativeVerticals
         currentVerticalLabel='Jobs'
         verticalConfigMap={verticalConfigMap}
         displayAllOnNoResults={false}
         {...args}
       />
-    </AnswersHeadlessContext.Provider>
+    </SearchHeadlessContext.Provider>
   );
 };
 
 export const DisplayAllOnNoResults = (args: AlternativeVerticalsProps) => {
   return (
-    <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <AlternativeVerticals
         currentVerticalLabel='Jobs'
         verticalConfigMap={verticalConfigMap}
         displayAllOnNoResults={true}
         {...args}
       />
-    </AnswersHeadlessContext.Provider>
+    </SearchHeadlessContext.Provider>
   );
 };
 
 export const Loading = (args: AlternativeVerticalsProps) => {
   return (
-    <AnswersHeadlessContext.Provider value={generateMockedHeadless({
+    <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...mockedHeadlessState,
       searchStatus: {
         isLoading: true
@@ -65,6 +65,6 @@ export const Loading = (args: AlternativeVerticalsProps) => {
         displayAllOnNoResults={true}
         {...args}
       />
-    </AnswersHeadlessContext.Provider>
+    </SearchHeadlessContext.Provider>
   );
 };

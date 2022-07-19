@@ -1,21 +1,21 @@
 import {
-  AnswersActions,
+  SearchActions,
   AutocompleteResponse,
   SearchIntent,
   SearchTypeEnum
-} from '@yext/answers-headless-react';
+} from '@yext/search-headless-react';
 
 /**
  * Executes a universal/vertical search.
  *
  * @public
  */
-export async function executeSearch(answersActions: AnswersActions): Promise<void> {
-  const isVertical = answersActions.state.meta.searchType === SearchTypeEnum.Vertical;
+export async function executeSearch(SearchActions: SearchActions): Promise<void> {
+  const isVertical = SearchActions.state.meta.searchType === SearchTypeEnum.Vertical;
   try {
     isVertical
-      ? answersActions.executeVerticalQuery()
-      : answersActions.executeUniversalQuery();
+      ? SearchActions.executeVerticalQuery()
+      : SearchActions.executeUniversalQuery();
   } catch (e) {
     console.error(`Error occured executing a ${isVertical ? 'vertical': 'universal'} search.\n`, e);
   }
@@ -27,13 +27,13 @@ export async function executeSearch(answersActions: AnswersActions): Promise<voi
  * @public
  */
 export async function executeAutocomplete(
-  answersActions: AnswersActions
+  SearchActions: SearchActions
 ): Promise<AutocompleteResponse | undefined> {
-  const isVertical = answersActions.state.meta.searchType === SearchTypeEnum.Vertical;
+  const isVertical = SearchActions.state.meta.searchType === SearchTypeEnum.Vertical;
   try {
     return isVertical
-      ? answersActions.executeVerticalAutocomplete()
-      : answersActions.executeUniversalAutocomplete();
+      ? SearchActions.executeVerticalAutocomplete()
+      : SearchActions.executeUniversalAutocomplete();
   } catch (e) {
     console.error(`Error occured executing a ${isVertical ? 'vertical': 'universal'} autocomplete search.\n`, e);
   }
@@ -45,8 +45,8 @@ export async function executeAutocomplete(
  * @public
  */
 export async function getSearchIntents(
-  answersActions: AnswersActions
+  SearchActions: SearchActions
 ): Promise<SearchIntent[] | undefined> {
-  const results = await executeAutocomplete(answersActions);
+  const results = await executeAutocomplete(SearchActions);
   return results?.inputIntents;
 }

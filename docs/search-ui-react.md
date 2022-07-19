@@ -14,10 +14,10 @@
 |  [ApplyFiltersButton({ customCssClasses, label })](./search-ui-react.applyfiltersbutton.md) | Runs a vertical search. By default has <code>position: sticky</code> styling that anchors it to the bottom of the page. |
 |  [DirectAnswer(props)](./search-ui-react.directanswer.md) | Renders Direct Answers provided by the Answers API. |
 |  [DropdownItem(\_props)](./search-ui-react.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
-|  [executeAutocomplete(answersActions)](./search-ui-react.executeautocomplete.md) | Executes a universal/vertical autocomplete search and return the corresponding response. |
-|  [executeSearch(answersActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
+|  [executeAutocomplete(SearchActions)](./search-ui-react.executeautocomplete.md) | Executes a universal/vertical autocomplete search and return the corresponding response. |
+|  [executeSearch(SearchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
 |  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
-|  [getSearchIntents(answersActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
+|  [getSearchIntents(SearchActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./search-ui-react.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |
 |  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./search-ui-react.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
 |  [isCtaData(data)](./search-ui-react.isctadata.md) | Type guard for CtaData. |
@@ -34,7 +34,7 @@
 |  [StaticFilters(props)](./search-ui-react.staticfilters.md) | A component that displays a group of user-configured filters that will be applied to the current vertical search. |
 |  [ThumbsFeedback(props)](./search-ui-react.thumbsfeedback.md) | Renders a quality feedback widget composed of thumbs up and thumbs down buttons. |
 |  [UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses })](./search-ui-react.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
-|  [updateLocationIfNeeded(answersActions, intents, geolocationOptions)](./search-ui-react.updatelocationifneeded.md) | If the provided search intents include a 'NEAR\_ME' intent and there's no existing user's location in state, retrieve and store user's location in headless state. |
+|  [updateLocationIfNeeded(SearchActions, intents, geolocationOptions)](./search-ui-react.updatelocationifneeded.md) | If the provided search intents include a 'NEAR\_ME' intent and there's no existing user's location in state, retrieve and store user's location in headless state. |
 |  [useAnalytics()](./search-ui-react.useanalytics.md) | Returns a service that can be used to report analytics events. |
 |  [useCardAnalyticsCallback(result, analyticsType)](./search-ui-react.usecardanalyticscallback.md) | Creates a memoized function for reporting card analytics. |
 |  [useCardFeedbackCallback(result)](./search-ui-react.usecardfeedbackcallback.md) | Creates a memoized function for reporting card feedback analytics. |

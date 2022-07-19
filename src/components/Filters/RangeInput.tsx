@@ -1,4 +1,4 @@
-import { Matcher, NumberRangeValue, useAnswersActions, useAnswersState } from '@yext/answers-headless-react';
+import { Matcher, NumberRangeValue, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
@@ -98,10 +98,10 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     inputPrefix
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
-  const answersActions = useAnswersActions();
+  const SearchActions = useSearchActions();
   const [minRangeInput, setMinRangeInput] = useState<string>('');
   const [maxRangeInput, setMaxRangeInput] = useState<string>('');
-  const staticFilters = useAnswersState(state => state.filters.static);
+  const staticFilters = useSearchState(state => state.filters.static);
   const isDisabled = filters.some(filter => filter.selected && filter.fieldId === fieldId);
 
   const rangeFilter: NumberRangeFilter = useMemo(() => {
@@ -142,28 +142,28 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
       return;
     }
     const displayName = getFilterDisplayName(rangeFilter.value);
-    clearStaticRangeFilters(answersActions, new Set([fieldId]));
-    answersActions.setFilterOption({
+    clearStaticRangeFilters(SearchActions, new Set([fieldId]));
+    SearchActions.setFilterOption({
       ...rangeFilter,
       selected: true,
       displayName
     });
-    answersActions.setOffset(0);
-    executeSearch(answersActions);
-  }, [answersActions, fieldId, getFilterDisplayName, isValid, rangeFilter]);
+    SearchActions.setOffset(0);
+    executeSearch(SearchActions);
+  }, [SearchActions, fieldId, getFilterDisplayName, isValid, rangeFilter]);
 
   const handleClickClear = useCallback(() => {
     const displayName = getFilterDisplayName(rangeFilter.value);
-    answersActions.setFilterOption({
+    SearchActions.setFilterOption({
       ...rangeFilter,
       selected: false,
       displayName
     });
     setMinRangeInput('');
     setMaxRangeInput('');
-    answersActions.setOffset(0);
-    executeSearch(answersActions);
-  }, [answersActions, getFilterDisplayName, rangeFilter]);
+    SearchActions.setOffset(0);
+    executeSearch(SearchActions);
+  }, [SearchActions, getFilterDisplayName, rangeFilter]);
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,

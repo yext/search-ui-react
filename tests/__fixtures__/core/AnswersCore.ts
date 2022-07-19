@@ -16,16 +16,16 @@ import {
   VerticalAutocompleteRequest,
   FilterSearchRequest,
   FilterSearchResponse
-} from '@yext/answers-headless-react';
+} from '@yext/search-headless-react';
 
 let mockedSearchService = generateMockedSearchService();
 let mockedQuestionSubmissionService = generateMockedQuestionSubmissionService();
 let mockedAutoCompleteService = generateMockedAutocompleteService();
 
 /**
- * Mock AnswersCore class
+ * Mock SearchCore class
  */
-export class AnswersCore {
+export class SearchCore {
   searchService: SearchService;
   questionSubmissionService: QuestionSubmissionService;
   autoCompleteService: AutocompleteService;
@@ -63,11 +63,11 @@ export class AnswersCore {
 
 /**
  * The decorator to be used in .storybook/preview to read story-specific data off
- * the story's parameters to mock AnswersCore's services on a per-story basis.
+ * the story's parameters to mock SearchCore's services on a per-story basis.
  */
-export function AnswersCoreDecorator(story, { parameters }) {
-  if (parameters?.answersCoreServices) {
-    const services = parameters.answersCoreServices;
+export function SearchCoreDecorator(story, { parameters }) {
+  if (parameters?.SearchCoreServices) {
+    const services = parameters.SearchCoreServices;
     if (services.searchService) {
       mockedSearchService = services.searchService;
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { AnswersHeadlessContext, SearchTypeEnum } from '@yext/answers-headless-react';
+import { SearchHeadlessContext, SearchTypeEnum } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/answers-headless';
 import { AppliedFiltersDisplay } from '../../src/components/AppliedFiltersDisplay';
@@ -20,7 +20,7 @@ export default meta;
 
 export const Primary = (args: AppliedFiltersProps) => {
   return (
-    <AnswersHeadlessContext.Provider value={generateMockedHeadless({
+    <SearchHeadlessContext.Provider value={generateMockedHeadless({
       meta: { searchType: SearchTypeEnum.Vertical }
     })}>
       <AppliedFiltersDisplay
@@ -32,7 +32,7 @@ export const Primary = (args: AppliedFiltersProps) => {
         hierarchicalFacetsDelimiter='>'
         {...args}
       />
-    </AnswersHeadlessContext.Provider>
+    </SearchHeadlessContext.Provider>
   );
 };
 

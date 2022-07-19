@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { useAnswersActions } from '@yext/answers-headless-react';
+import { useSearchActions } from '@yext/search-headless-react';
 import {
   AppliedFilters,
   FilterSearch,
@@ -19,10 +19,10 @@ import {
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 
 export function PeoplePage() {
-  const answersActions = useAnswersActions();
+  const SearchActions = useSearchActions();
   useLayoutEffect(() => {
-    answersActions.setVertical('people');
-    answersActions.executeVerticalQuery();
+    SearchActions.setVertical('people');
+    SearchActions.executeVerticalQuery();
   });
 
   return (

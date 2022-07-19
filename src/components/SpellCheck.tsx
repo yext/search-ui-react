@@ -1,4 +1,4 @@
-import { useAnswersState, useAnswersActions } from '@yext/answers-headless-react';
+import { useSearchState, useSearchActions } from '@yext/search-headless-react';
 import classNames from 'classnames';
 import { useCallback } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
@@ -47,20 +47,20 @@ export function SpellCheck({
   customCssClasses,
   onClick
 }: SpellCheckProps): JSX.Element | null {
-  const verticalKey = useAnswersState(state => state.vertical.verticalKey) ?? '';
+  const verticalKey = useSearchState(state => state.vertical.verticalKey) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const correctedQuery = useAnswersState(state => state.spellCheck.correctedQuery) ?? '';
-  const isLoading = useAnswersState(state => state.searchStatus.isLoading);
+  const correctedQuery = useSearchState(state => state.spellCheck.correctedQuery) ?? '';
+  const isLoading = useSearchState(state => state.searchStatus.isLoading);
   const containerClassNames = classNames(cssClasses.spellCheckContainer, {
     [cssClasses.spellCheckLoading ?? '']: isLoading
   });
-  const answersActions = useAnswersActions();
+  const SearchActions = useSearchActions();
   const handleClickSuggestion = useCallback(() => {
-    answersActions.setQuery(correctedQuery);
+    SearchActions.setQuery(correctedQuery);
     onClick
       ? onClick({ correctedQuery, verticalKey })
-      : executeSearch(answersActions);
-  }, [answersActions, correctedQuery, onClick, verticalKey]);
+      : executeSearch(SearchActions);
+  }, [SearchActions, correctedQuery, onClick, verticalKey]);
 
   if (!correctedQuery) {
     return null;

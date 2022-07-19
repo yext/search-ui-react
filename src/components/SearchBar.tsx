@@ -1,13 +1,13 @@
 import {
-  AnswersHeadless,
+  SearchHeadless,
   QuerySource,
   SearchTypeEnum,
   UniversalLimit,
-  useAnswersActions,
-  useAnswersState,
-  useAnswersUtilities,
+  useSearchActions,
+  useSearchState,
+  useSearchUtilities,
   VerticalResults as VerticalResultsData
-} from '@yext/answers-headless-react';
+} from '@yext/search-headless-react';
 import classNames from 'classnames';
 import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
@@ -110,7 +110,7 @@ export type RenderEntityPreviews = (
  */
 export interface VisualAutocompleteConfig {
   /** The Answers Headless instance used to perform visual autocomplete searches. */
-  entityPreviewSearcher: AnswersHeadless,
+  entityPreviewSearcher: SearchHeadless,
   /** Renders entity previews based on the autocomplete loading state and results. */
   renderEntityPreviews: RenderEntityPreviews,
   /** Specify which verticals to return for VisualAutocomplete. */
@@ -180,15 +180,15 @@ export function SearchBar({
     universalLimit,
     entityPreviewsDebouncingTime = 500
   } = visualAutocompleteConfig ?? {};
-  const answersActions = useAnswersActions();
-  const answersUtilities = useAnswersUtilities();
+  const SearchActions = useSearchActions();
+  const SearchUtilities = useSearchUtilities();
   const reportAnalyticsEvent = useSearchBarAnalytics();
 
-  const query = useAnswersState(state => state.query.input) ?? '';
+  const query = useSearchState(state => state.query.input) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
+  const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
-    () => executeAutocompleteSearch(answersActions)
+    () => executeAutocompleteSearch(SearchActions)
   );
   const [
     executeQueryWithNearMeHandling,
@@ -196,7 +196,7 @@ export function SearchBar({
   ] = useSearchWithNearMeHandling(geolocationOptions, onSearch);
   const [recentSearches, setRecentSearch, clearRecentSearches] = useRecentSearches(recentSearchesLimit);
   const filteredRecentSearches = recentSearches?.filter(search =>
-    answersUtilities.isCloseMatch(search.query, query)
+    SearchUtilities.isCloseMatch(search.query, query)
   );
 
   useEffect(() => {
@@ -212,17 +212,17 @@ export function SearchBar({
 
   const executeQuery = useCallback(() => {
     if (!hideRecentSearches) {
-      const input = answersActions.state.query.input;
+      const input = SearchActions.state.query.input;
       input && setRecentSearch(input);
     }
     executeQueryWithNearMeHandling();
-  }, [answersActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
+  }, [SearchActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
 
   const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
-    value !== undefined && answersActions.setQuery(value);
-    answersActions.setOffset(0);
-    answersActions.resetFacets();
-    clearStaticRangeFilters(answersActions);
+    value !== undefined && SearchActions.setQuery(value);
+    SearchActions.setOffset(0);
+    SearchActions.resetFacets();
+    clearStaticRangeFilters(SearchActions);
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
       onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
@@ -231,7 +231,7 @@ export function SearchBar({
     if (typeof index === 'number' && index >= 0 && !itemData?.isEntityPreview) {
       reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
     }
-  }, [answersActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
+  }, [SearchActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 
   const [
     entityPreviewsState,
@@ -251,16 +251,16 @@ export function SearchBar({
   }, [executeEntityPreviewsQuery, renderEntityPreviews, restrictVerticals, universalLimit]);
 
   const handleInputFocus = useCallback((value = '') => {
-    answersActions.setQuery(value);
+    SearchActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
-  }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
+  }, [SearchActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
   const handleInputChange = useCallback((value = '') => {
-    answersActions.setQuery(value);
+    SearchActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
-  }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
+  }, [SearchActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
   const handleClickClearButton = useCallback(() => {
     updateEntityPreviews('');

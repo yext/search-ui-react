@@ -1,4 +1,4 @@
-import { useAnswersActions, AutocompleteResponse, SearchIntent } from '@yext/answers-headless-react';
+import { useSearchActions, AutocompleteResponse, SearchIntent } from '@yext/search-headless-react';
 import { executeSearch, executeAutocomplete } from '../utils/search-operations';
 import { updateLocationIfNeeded } from '../utils/location-operations';
 import { MutableRefObject, useRef } from 'react';
@@ -29,23 +29,23 @@ export function useSearchWithNearMeHandling(
    * before the search execution in order to retrieve the search intents.
    */
   const autocompletePromiseRef = useRef<Promise<AutocompleteResponse | undefined>>();
-  const answersActions = useAnswersActions();
+  const SearchActions = useSearchActions();
 
   async function executeQuery() {
     let intents: SearchIntent[] = [];
-    if (!answersActions.state.location.userLocation) {
+    if (!SearchActions.state.location.userLocation) {
       if (!autocompletePromiseRef.current) {
-        autocompletePromiseRef.current = executeAutocomplete(answersActions);
+        autocompletePromiseRef.current = executeAutocomplete(SearchActions);
       }
       const autocompleteResponseBeforeSearch = await autocompletePromiseRef.current;
       intents = autocompleteResponseBeforeSearch?.inputIntents || [];
-      await updateLocationIfNeeded(answersActions, intents, geolocationOptions);
+      await updateLocationIfNeeded(SearchActions, intents, geolocationOptions);
     }
-    const verticalKey = answersActions.state.vertical.verticalKey ?? '';
-    const query = answersActions.state.query.input ?? '';
+    const verticalKey = SearchActions.state.vertical.verticalKey ?? '';
+    const query = SearchActions.state.query.input ?? '';
     onSearch
       ? onSearch({ verticalKey, query })
-      : executeSearch(answersActions);
+      : executeSearch(SearchActions);
   }
   return [executeQuery, autocompletePromiseRef];
 }

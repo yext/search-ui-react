@@ -17,7 +17,7 @@ export interface VisualAutocompleteConfig
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [entityPreviewsDebouncingTime?](./search-ui-react.visualautocompleteconfig.entitypreviewsdebouncingtime.md) | number | <i>(Optional)</i> The debouncing time, in milliseconds, for making API requests for entity previews. |
-|  [entityPreviewSearcher](./search-ui-react.visualautocompleteconfig.entitypreviewsearcher.md) | AnswersHeadless | The Answers Headless instance used to perform visual autocomplete searches. |
+|  [entityPreviewSearcher](./search-ui-react.visualautocompleteconfig.entitypreviewsearcher.md) | SearchHeadless | The Answers Headless instance used to perform visual autocomplete searches. |
 |  [renderEntityPreviews](./search-ui-react.visualautocompleteconfig.renderentitypreviews.md) | [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | Renders entity previews based on the autocomplete loading state and results. |
 |  [restrictVerticals](./search-ui-react.visualautocompleteconfig.restrictverticals.md) | string\[\] | Specify which verticals to return for VisualAutocomplete. |
 |  [universalLimit?](./search-ui-react.visualautocompleteconfig.universallimit.md) | UniversalLimit | <i>(Optional)</i> Specify the number of entities to return per vertical. \* |
