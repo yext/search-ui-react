@@ -56,6 +56,7 @@ export default function UniversalPage(): JSX.Element {
   const answersActions = useAnswersActions();
   useLayoutEffect(() => {
     answersActions.setUniversal();
+    answersActions.executeUniversalQuery();
   });
 
   return (

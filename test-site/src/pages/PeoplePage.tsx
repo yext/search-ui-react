@@ -22,6 +22,7 @@ export function PeoplePage() {
   const answersActions = useAnswersActions();
   useLayoutEffect(() => {
     answersActions.setVertical('people');
+    answersActions.executeVerticalQuery();
   });
 
   return (
@@ -29,6 +30,12 @@ export function PeoplePage() {
       <SearchBar />
       <div className='flex'>
         <div className='w-56 shrink-0 mr-5'>
+          <FilterSearch
+            searchFields={[{ fieldApiName: 'name', entityType: 'ce_person' }]}
+            searchOnSelect={true}
+            label='Filters'
+          />
+          <div className='w-full h-px bg-gray-200 my-4' />
           <NumericalFacets searchOnChange={false} />
           <StandardFacets
             searchable={true}
@@ -50,7 +57,6 @@ export function PeoplePage() {
             searchOnChange={false}
           />
           <br />
-          <FilterSearch searchFields={[{ fieldApiName: 'name', entityType: 'ce_person' }]} />
           <ApplyFiltersButton />
         </div>
         <div className='flex-grow'>

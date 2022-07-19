@@ -15,6 +15,7 @@ export function ProductsPage() {
   const answersActions = useAnswersActions();
   useLayoutEffect(() => {
     answersActions.setVertical('products');
+    answersActions.executeVerticalQuery();
   });
 
   return (
