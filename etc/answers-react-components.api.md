@@ -596,8 +596,8 @@ export interface StandardFacetsProps {
     customCssClasses?: StandardFacetsCssClasses;
     defaultExpanded?: boolean;
     excludedFieldIds?: string[];
-    searchable?: boolean;
     searchOnChange?: boolean;
+    showMoreLimit?: number;
 }
 
 // @public
