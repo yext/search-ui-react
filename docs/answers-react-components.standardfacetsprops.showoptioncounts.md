@@ -4,7 +4,7 @@
 
 ## StandardFacetsProps.showOptionCounts property
 
-Whether or not to show the option counts for each filter
+Whether or not to show the option counts for each filter. Defaults to true.
 
 <b>Signature:</b>
 
