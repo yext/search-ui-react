@@ -22,4 +22,5 @@ export interface StandardFacetsProps
 |  [excludedFieldIds?](./answers-react-components.standardfacetsprops.excludedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids that should not be displayed. |
 |  [searchable?](./answers-react-components.standardfacetsprops.searchable.md) | boolean | <i>(Optional)</i> Whether or not to display a text input to search for filter options. |
 |  [searchOnChange?](./answers-react-components.standardfacetsprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |
+|  [showOptionCounts?](./answers-react-components.standardfacetsprops.showoptioncounts.md) | boolean | <i>(Optional)</i> Whether or not to show the option counts for each filter |
 

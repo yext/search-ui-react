@@ -598,6 +598,7 @@ export interface StandardFacetsProps {
     excludedFieldIds?: string[];
     searchable?: boolean;
     searchOnChange?: boolean;
+    showOptionCounts?: boolean;
 }
 
 // @public
