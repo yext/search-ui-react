@@ -60,7 +60,8 @@ export function StandardFacets(props: StandardFacetsProps) {
     excludedFieldIds = [],
     customCssClasses = {},
     showOptionCounts = true,
-    ...filterGroupProps } = props;
+    ...filterGroupProps
+  } = props;
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.standardFacetsContainer}>
       {facets => facets
@@ -71,7 +72,7 @@ export function StandardFacets(props: StandardFacetsProps) {
               <FilterGroup
                 fieldId={f.fieldId}
                 filterOptions={f.options.map(o => {
-                  return showOptionCounts ? { ...o, resultsCount: o.count } : { ...o };
+                  return showOptionCounts ? { ...o, resultsCount: o.count } : o;
                 })}
                 title={f.displayName}
                 customCssClasses={customCssClasses}
