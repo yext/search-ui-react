@@ -55,6 +55,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const screenReaderUUID: string = useMemo(() => uuid(), []);
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
+  const [hasTyped, setHasTyped] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = getTransformedChildrenAndItemData(children);
 
   const inputContext = useInputContextInstance(initialValue);
@@ -75,6 +76,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     focusedIndex,
     focusedItemData,
     screenReaderUUID,
+    setHasTyped,
     onToggle,
     onSelect
   );
@@ -121,6 +123,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       } else {
         toggleDropdown(false);
       }
+    } else if (!hasTyped) {
+      setHasTyped(true);
     }
   });
 
@@ -136,7 +140,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
 
       <ScreenReader
         announcementKey={screenReaderKey}
-        announcementText={isActive ? screenReaderText : ''}
+        announcementText={isActive && (hasTyped || items.length || value) ? screenReaderText : ''}
         instructionsId={screenReaderUUID}
         instructions={screenReaderInstructions}
       />
@@ -202,6 +206,7 @@ function useDropdownContextInstance(
   index: number,
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
+  setHasTyped: (boolean) => void,
   onToggle?: (
     isActive: boolean,
     prevValue: string,
@@ -213,6 +218,9 @@ function useDropdownContextInstance(
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
+    if (!willBeOpen) {
+      setHasTyped(false);
+    }
     _toggleDropdown(willBeOpen);
     onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
   };

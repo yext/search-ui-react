@@ -1,13 +1,13 @@
 import {
-  AnswersHeadless,
+  SearchHeadless,
   QuerySource,
   SearchTypeEnum,
   UniversalLimit,
-  useAnswersActions,
-  useAnswersState,
-  useAnswersUtilities,
+  useSearchActions,
+  useSearchState,
+  useSearchUtilities,
   VerticalResults as VerticalResultsData
-} from '@yext/answers-headless-react';
+} from '@yext/search-headless-react';
 import classNames from 'classnames';
 import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
@@ -85,7 +85,9 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
  * @remarks
  * The autocomplete loading state is passed in as an optional param.
  *
- * An onSubmit function is provided to allow an entity preview to be submitted.
+ * Default props for rendering corresponding DropdownItems are passed in:
+ * an onClick function to allow an entity preview to be submitted, and
+ * an ariaLabel function that returns text for the screenreader
  *
  * For the entity previews to be navigable in the search bar's dropdown section,
  * wrap each entity preview in a {@link DropdownItem} component.
@@ -95,7 +97,10 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 export type RenderEntityPreviews = (
   autocompleteLoading: boolean,
   verticalKeyToResults: Record<string, VerticalResultsData>,
-  onSubmit: (value: string, _index: number, itemData?: FocusedItemData) => void
+  dropdownItemProps: {
+    onClick: (value: string, _index: number, itemData?: FocusedItemData) => void,
+    ariaLabel: (value: string) => string
+  }
 ) => JSX.Element | null;
 
 /**
@@ -104,8 +109,8 @@ export type RenderEntityPreviews = (
  * @public
  */
 export interface VisualAutocompleteConfig {
-  /** The Answers Headless instance used to perform visual autocomplete searches. */
-  entityPreviewSearcher: AnswersHeadless,
+  /** The Search Headless instance used to perform visual autocomplete searches. */
+  entityPreviewSearcher: SearchHeadless,
   /** Renders entity previews based on the autocomplete loading state and results. */
   renderEntityPreviews: RenderEntityPreviews,
   /** Specify which verticals to return for VisualAutocomplete. */
@@ -175,23 +180,28 @@ export function SearchBar({
     universalLimit,
     entityPreviewsDebouncingTime = 500
   } = visualAutocompleteConfig ?? {};
-  const answersActions = useAnswersActions();
-  const answersUtilities = useAnswersUtilities();
+  const searchActions = useSearchActions();
+  const searchUtilities = useSearchUtilities();
   const reportAnalyticsEvent = useSearchBarAnalytics();
 
-  const query = useAnswersState(state => state.query.input) ?? '';
+  const query = useSearchState(state => state.query.input) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const isVertical = useAnswersState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
+  const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
+  const verticalKey = useSearchState(state => state.vertical.verticalKey);
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
-    () => executeAutocompleteSearch(answersActions)
+    () => executeAutocompleteSearch(searchActions)
   );
   const [
     executeQueryWithNearMeHandling,
     autocompletePromiseRef,
   ] = useSearchWithNearMeHandling(geolocationOptions, onSearch);
-  const [recentSearches, setRecentSearch, clearRecentSearches] = useRecentSearches(recentSearchesLimit);
+  const [
+    recentSearches,
+    setRecentSearch,
+    clearRecentSearches,
+  ] = useRecentSearches(recentSearchesLimit, verticalKey);
   const filteredRecentSearches = recentSearches?.filter(search =>
-    answersUtilities.isCloseMatch(search.query, query)
+    searchUtilities.isCloseMatch(search.query, query)
   );
 
   useEffect(() => {
@@ -207,17 +217,22 @@ export function SearchBar({
 
   const executeQuery = useCallback(() => {
     if (!hideRecentSearches) {
-      const input = answersActions.state.query.input;
+      const input = searchActions.state.query.input;
       input && setRecentSearch(input);
     }
     executeQueryWithNearMeHandling();
-  }, [answersActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
+  }, [
+    searchActions.state.query.input,
+    executeQueryWithNearMeHandling,
+    hideRecentSearches,
+    setRecentSearch
+  ]);
 
   const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
-    value !== undefined && answersActions.setQuery(value);
-    answersActions.setOffset(0);
-    answersActions.resetFacets();
-    clearStaticRangeFilters(answersActions);
+    value !== undefined && searchActions.setQuery(value);
+    searchActions.setOffset(0);
+    searchActions.resetFacets();
+    clearStaticRangeFilters(searchActions);
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
       onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
     } else {
@@ -226,14 +241,18 @@ export function SearchBar({
     if (typeof index === 'number' && index >= 0 && !itemData?.isEntityPreview) {
       reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
     }
-  }, [answersActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
+  }, [searchActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 
   const [
     entityPreviewsState,
     executeEntityPreviewsQuery
   ] = useEntityPreviews(entityPreviewSearcher, entityPreviewsDebouncingTime);
   const { verticalKeyToResults, isLoading: entityPreviewsLoading } = entityPreviewsState;
-  const entityPreviews = renderEntityPreviews?.(entityPreviewsLoading, verticalKeyToResults, handleSubmit);
+  const entityPreviews = renderEntityPreviews?.(
+    entityPreviewsLoading,
+    verticalKeyToResults,
+    { onClick: handleSubmit, ariaLabel: getAriaLabel }
+  );
   const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews || !restrictVerticals) {
       return;
@@ -242,16 +261,16 @@ export function SearchBar({
   }, [executeEntityPreviewsQuery, renderEntityPreviews, restrictVerticals, universalLimit]);
 
   const handleInputFocus = useCallback((value = '') => {
-    answersActions.setQuery(value);
+    searchActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
-  }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
+  }, [searchActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
   const handleInputChange = useCallback((value = '') => {
-    answersActions.setQuery(value);
+    searchActions.setQuery(value);
     updateEntityPreviews(value);
     autocompletePromiseRef.current = executeAutocomplete();
-  }, [answersActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
+  }, [searchActions, autocompletePromiseRef, executeAutocomplete, updateEntityPreviews]);
 
   const handleClickClearButton = useCallback(() => {
     updateEntityPreviews('');
@@ -273,10 +292,6 @@ export function SearchBar({
   }
 
   function renderRecentSearches() {
-    if (isVertical) {
-      return null;
-    }
-
     const recentSearchesCssClasses = {
       icon: cssClasses.recentSearchesIcon,
       option: cssClasses.recentSearchesOption,
@@ -322,7 +337,7 @@ export function SearchBar({
             result,
             cssClasses,
             MagnifyingGlassIcon,
-            `autocomplete option: ${result.value}`
+            `autocomplete suggestion: ${result.value}`
           )}
         </DropdownItem>
         {!hideVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
@@ -361,12 +376,12 @@ export function SearchBar({
 
   const entityPreviewsCount = calculateEntityPreviewsCount(entityPreviews);
   const showEntityPreviewsDivider = entityPreviews
-    && !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
+    && !!(autocompleteResponse?.results.length || filteredRecentSearches?.length);
   const hasItems = !!(autocompleteResponse?.results.length
-    || (!isVertical && filteredRecentSearches?.length) || entityPreviews);
+    || filteredRecentSearches?.length || entityPreviews);
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
-    isVertical ? 0 : filteredRecentSearches?.length,
+    filteredRecentSearches?.length,
     entityPreviewsCount
   );
   const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {
@@ -485,6 +500,10 @@ function DropdownSearchButton({ handleSubmit, cssClasses }: {
       />
     </div>
   );
+}
+
+function getAriaLabel(value: string): string {
+  return 'result preview: ' + value;
 }
 
 /**

@@ -1,4 +1,4 @@
-import { provideAnswersHeadless, useAnswersActions } from '@yext/answers-headless-react';
+import { provideHeadless, useSearchActions } from '@yext/search-headless-react';
 import {
   DirectAnswer,
   DropdownItem,
@@ -7,19 +7,19 @@ import {
   SpellCheck,
   UniversalResults,
   VisualAutocompleteConfig
-} from '@yext/answers-react-components';
+} from '@yext/search-ui-react';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
 import { config } from '../config';
 
 
 const visualAutocompleteConfig: VisualAutocompleteConfig = {
-  entityPreviewSearcher: provideAnswersHeadless({
+  entityPreviewSearcher: provideHeadless({
     ...config,
     headlessId: 'visual-autocomplete'
   }),
   restrictVerticals: ['people'],
-  renderEntityPreviews: (isLoading, verticalKeyToResults, onSubmit) => {
+  renderEntityPreviews: (isLoading, verticalKeyToResults, dropdownItemProps) => {
     if (!verticalKeyToResults.people) {
       return null;
     }
@@ -38,7 +38,7 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
             key={index + '-' + r.name}
             className='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg hover:bg-gray-100'
             focusedClassName='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg bg-gray-100'
-            onClick={onSubmit}
+            {...dropdownItemProps}
           >
             {r.name}
           </DropdownItem>
@@ -53,9 +53,10 @@ const customSearchBarCss = {
 };
 
 export default function UniversalPage(): JSX.Element {
-  const answersActions = useAnswersActions();
+  const searchActions = useSearchActions();
   useLayoutEffect(() => {
-    answersActions.setUniversal();
+    searchActions.setUniversal();
+    searchActions.executeUniversalQuery();
   });
 
   return (

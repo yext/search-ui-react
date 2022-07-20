@@ -1,4 +1,4 @@
-import { State } from '@yext/answers-headless-react';
+import { State } from '@yext/search-headless-react';
 import { render, screen } from '@testing-library/react';
 import { ResultsCount } from '../../src/components/ResultsCount';
 import { mockAnswersState } from '../__utils__/mocks';
@@ -10,7 +10,8 @@ const mockedUniversalState: Partial<State> = {
   },
   meta: {
     searchType: 'universal'
-  }
+  },
+  vertical: {}
 };
 
 const mockedStateUniversalMultiple: RecursivePartial<State> = {
@@ -73,7 +74,14 @@ const mockedStateVerticalNoResult: Partial<State> = {
   }
 };
 
-jest.mock('@yext/answers-headless-react');
+const mockedStateVerticalPaginationResult: Partial<State> = {
+  ...mockedVerticalState,
+  vertical: {
+    resultsCount: 30
+  }
+};
+
+jest.mock('@yext/search-headless-react');
 
 describe('Results count for vertical search', () => {
   it('Displayed correctly for multiple results', () => {
@@ -91,8 +99,8 @@ describe('Results count for vertical search', () => {
 
   it('Renders nothing if there is no result', () => {
     mockAnswersState(mockedStateVerticalNoResult);
-    render(<ResultsCount />);
-    expect(screen.queryByText('0 Results')).toBeNull();
+    const { container } = render(<ResultsCount />);
+    expect(container.childNodes[0]).toBeEmptyDOMElement();
   });
 });
 
@@ -114,7 +122,21 @@ describe('Results count for universal search', () => {
 
   it('Renders nothing if there is no result', () => {
     mockAnswersState(mockedStateUniversalNoResult);
+    const { container } = render(<ResultsCount />);
+    expect(container.childNodes[0]).toBeEmptyDOMElement();
+  });
+});
+
+describe('Results count and pagination range for vertical search', () => {
+  it('Renders pagination range if pagination is required', () => {
+    mockAnswersState(mockedStateVerticalPaginationResult);
     render(<ResultsCount />);
-    expect(screen.queryByText('0 Results')).toBeNull();
+    expect(screen.getByText('1 - 20 of 30 Results')).toBeDefined();
+  });
+
+  it('Does not render pagination range if there is no pagination', () => {
+    mockAnswersState(mockedStateVerticalMultiple);
+    render(<ResultsCount />);
+    expect(screen.getByText('2 Results').textContent).toBe('2 Results');
   });
 });
