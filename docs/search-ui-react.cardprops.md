@@ -9,12 +9,12 @@ The props provided to every [CardComponent](./search-ui-react.cardcomponent.md)<
 <b>Signature:</b>
 
 ```typescript
-export interface CardProps 
+export interface CardProps<T = Record<string, unknown>> 
 ```
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [result](./search-ui-react.cardprops.result.md) | Result | The result data provided to the card for rendering. |
+|  [result](./search-ui-react.cardprops.result.md) | Result&lt;T&gt; | The result data provided to the card for rendering. |
 
