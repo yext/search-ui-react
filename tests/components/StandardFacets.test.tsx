@@ -80,10 +80,12 @@ describe('StandardFacets', () => {
 
     const facets = DisplayableFacets[0];
     const coffeeLabel = screen.queryByLabelText(facets.options[0].displayName);
-    const coffeeCount = screen.queryByLabelText(facets.options[0].count);
+    const coffeeLabelAndCount = screen.queryByLabelText(
+      getOptionLabelText(facets.options[0])
+    );
 
     expect(coffeeLabel).toBeDefined();
-    expect(coffeeCount).toBeNull();
+    expect(coffeeLabelAndCount).toBeNull();
   });
 
   it('Clicking an unselected facet option label selects it', () => {
