@@ -32,7 +32,10 @@ export interface StandardFacetsProps {
   searchOnChange?: boolean,
   /** List of filter ids that should not be displayed. */
   excludedFieldIds?: string[],
-  /** Whether or not to show the option counts for each filter */
+  /**
+   * Whether or not to show the option counts for each filter.
+   * Defaults to true.
+   */
   showOptionCounts?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardFacetsCssClasses
