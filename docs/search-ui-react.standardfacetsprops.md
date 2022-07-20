@@ -22,4 +22,5 @@ export interface StandardFacetsProps
 |  [excludedFieldIds?](./search-ui-react.standardfacetsprops.excludedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids that should not be displayed. |
 |  [searchable?](./search-ui-react.standardfacetsprops.searchable.md) | boolean | <i>(Optional)</i> Whether or not to display a text input to search for filter options. |
 |  [searchOnChange?](./search-ui-react.standardfacetsprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |
+|  [showOptionCounts?](./search-ui-react.standardfacetsprops.showoptioncounts.md) | boolean | <i>(Optional)</i> Whether or not to show the option counts for each filter. Defaults to true. |
 

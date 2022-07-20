@@ -26,3 +26,11 @@ export const Primary = (args: StandardFacetsProps) => {
     </SearchHeadlessContext.Provider>
   );
 };
+
+export const NoOptionCounts = (args: StandardFacetsProps) => {
+  return (
+    <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+      <StandardFacets {...args} showOptionCounts={false} />
+    </AnswersHeadlessContext.Provider>
+  );
+};

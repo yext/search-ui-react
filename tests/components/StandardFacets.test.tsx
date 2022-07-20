@@ -75,6 +75,19 @@ describe('StandardFacets', () => {
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
   });
 
+  it('Does not display option counts if showOptionCounts is set to false', () => {
+    render(<StandardFacets showOptionCounts={false}/>);
+
+    const facets = DisplayableFacets[0];
+    const coffeeLabel = screen.queryByLabelText(facets.options[0].displayName);
+    const coffeeLabelAndCount = screen.queryByLabelText(
+      getOptionLabelText(facets.options[0])
+    );
+
+    expect(coffeeLabel).toBeDefined();
+    expect(coffeeLabelAndCount).toBeNull();
+  });
+
   it('Clicking an unselected facet option label selects it', () => {
     const actions = spyOnActions();
     render(<StandardFacets />);
