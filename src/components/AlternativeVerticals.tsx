@@ -125,7 +125,7 @@ export function AlternativeVerticals({
     <div className={containerClassNames}>
       {renderNoResultsInfo()}
       {verticalSuggestions &&
-        <div className='pt-4 text-primary'>
+        <div className='pt-4 text-neutral-dark'>
           <div className={cssClasses.categoriesText}>
             <span>
               {processTranslation({
