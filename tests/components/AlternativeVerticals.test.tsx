@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { State } from '@yext/answers-headless-react';
+import { State } from '@yext/search-headless-react';
 
 import { AlternativeVerticals } from '../../src/components/AlternativeVerticals';
 import { mockAnswersHooks } from '../__utils__/mocks';
@@ -21,7 +21,7 @@ const mockedState: Partial<State> = {
   }
 };
 
-jest.mock('@yext/answers-headless-react');
+jest.mock('@yext/search-headless-react');
 
 describe('AlternativeVerticals', () => {
   const verticalConfigMap = {

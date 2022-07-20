@@ -1,6 +1,6 @@
 import { processTranslation } from './utils/processTranslation';
 import { StarIcon } from '../icons/StarIcon';
-import { useAnswersState, VerticalResults as VerticalResultsData } from '@yext/answers-headless-react';
+import { useSearchState, VerticalResults as VerticalResultsData } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 import { VerticalConfig } from '../models/verticalConfig';
@@ -85,15 +85,15 @@ export function AlternativeVerticals({
 }: AlternativeVerticalsProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
-  const alternativeVerticals = useAnswersState(state => state.vertical.noResults?.alternativeVerticals) || [];
+  const alternativeVerticals = useSearchState(state => state.vertical.noResults?.alternativeVerticals) || [];
   const allResultsForVertical =
-    useAnswersState(state => state.vertical.noResults?.allResultsForVertical.results) || [];
-  const query = useAnswersState(state => state.query.mostRecentSearch);
+    useSearchState(state => state.vertical.noResults?.allResultsForVertical.results) || [];
+  const query = useSearchState(state => state.query.mostRecentSearch);
 
   const verticalSuggestions = buildVerticalSuggestions(verticalConfigMap, alternativeVerticals);
   const isShowingAllResults = displayAllOnNoResults && allResultsForVertical.length > 0;
 
-  const isLoading = useAnswersState(state => state.searchStatus.isLoading);
+  const isLoading = useSearchState(state => state.searchStatus.isLoading);
   const containerClassNames = classNames(cssClasses.alternativeVerticalsContainer, {
     [cssClasses.alternativeVerticalsLoading ?? '']: isLoading
   });
