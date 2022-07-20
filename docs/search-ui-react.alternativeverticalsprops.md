@@ -19,6 +19,5 @@ export interface AlternativeVerticalsProps
 |  [currentVerticalLabel](./search-ui-react.alternativeverticalsprops.currentverticallabel.md) | string | The label for the current vertical. |
 |  [customCssClasses?](./search-ui-react.alternativeverticalsprops.customcssclasses.md) | [AlternativeVerticalsCssClasses](./search-ui-react.alternativeverticalscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [displayAllOnNoResults?](./search-ui-react.alternativeverticalsprops.displayallonnoresults.md) | boolean | <i>(Optional)</i> Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |
-|  [getSuggestionUrl?](./search-ui-react.alternativeverticalsprops.getsuggestionurl.md) | (data: [VerticalLink](./search-ui-react.verticallink.md) \| [UniversalLink](./search-ui-react.universallink.md)<!-- -->) =&gt; string | <i>(Optional)</i> A function to provide user defined url path for vertical and universal sugestion links.<!-- -->Defaults to "/\[verticalKey\]?query=\[query\]" for vertical links and "/?query=\[query\]" for universal links. |
 |  [verticalConfigMap](./search-ui-react.alternativeverticalsprops.verticalconfigmap.md) | [VerticalLabelMap](./search-ui-react.verticallabelmap.md) | A map of verticalKeys to the display label for that vertical. |
 

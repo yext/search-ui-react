@@ -187,6 +187,7 @@ export function SearchBar({
   const query = useSearchState(state => state.query.input) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
+  const verticalKey = useSearchState(state => state.vertical.verticalKey);
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
     () => executeAutocompleteSearch(searchActions)
   );
@@ -194,7 +195,11 @@ export function SearchBar({
     executeQueryWithNearMeHandling,
     autocompletePromiseRef,
   ] = useSearchWithNearMeHandling(geolocationOptions, onSearch);
-  const [recentSearches, setRecentSearch, clearRecentSearches] = useRecentSearches(recentSearchesLimit);
+  const [
+    recentSearches,
+    setRecentSearch,
+    clearRecentSearches,
+  ] = useRecentSearches(recentSearchesLimit, verticalKey);
   const filteredRecentSearches = recentSearches?.filter(search =>
     searchUtilities.isCloseMatch(search.query, query)
   );
@@ -216,7 +221,12 @@ export function SearchBar({
       input && setRecentSearch(input);
     }
     executeQueryWithNearMeHandling();
-  }, [searchActions.state.query.input, executeQueryWithNearMeHandling, hideRecentSearches, setRecentSearch]);
+  }, [
+    searchActions.state.query.input,
+    executeQueryWithNearMeHandling,
+    hideRecentSearches,
+    setRecentSearch
+  ]);
 
   const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
     value !== undefined && searchActions.setQuery(value);
@@ -282,10 +292,6 @@ export function SearchBar({
   }
 
   function renderRecentSearches() {
-    if (isVertical) {
-      return null;
-    }
-
     const recentSearchesCssClasses = {
       icon: cssClasses.recentSearchesIcon,
       option: cssClasses.recentSearchesOption,
@@ -370,12 +376,12 @@ export function SearchBar({
 
   const entityPreviewsCount = calculateEntityPreviewsCount(entityPreviews);
   const showEntityPreviewsDivider = entityPreviews
-    && !!(autocompleteResponse?.results.length || (!isVertical && filteredRecentSearches?.length));
+    && !!(autocompleteResponse?.results.length || filteredRecentSearches?.length);
   const hasItems = !!(autocompleteResponse?.results.length
-    || (!isVertical && filteredRecentSearches?.length) || entityPreviews);
+    || filteredRecentSearches?.length || entityPreviews);
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
-    isVertical ? 0 : filteredRecentSearches?.length,
+    filteredRecentSearches?.length,
     entityPreviewsCount
   );
   const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {

@@ -9,14 +9,14 @@ A component that displays the alternative verticals that have results if a searc
 <b>Signature:</b>
 
 ```typescript
-export declare function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl }: AlternativeVerticalsProps): JSX.Element | null;
+export declare function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }: AlternativeVerticalsProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl } | [AlternativeVerticalsProps](./search-ui-react.alternativeverticalsprops.md) |  |
+|  { currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses } | [AlternativeVerticalsProps](./search-ui-react.alternativeverticalsprops.md) |  |
 
 <b>Returns:</b>
 

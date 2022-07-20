@@ -24,7 +24,7 @@ import { UniversalLimit } from '@yext/search-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/search-headless-react';
 
 // @public
-export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl }: AlternativeVerticalsProps): JSX.Element | null;
+export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }: AlternativeVerticalsProps): JSX.Element | null;
 
 // @public
 export interface AlternativeVerticalsCssClasses {
@@ -47,7 +47,6 @@ export interface AlternativeVerticalsProps {
     currentVerticalLabel: string;
     customCssClasses?: AlternativeVerticalsCssClasses;
     displayAllOnNoResults?: boolean;
-    getSuggestionUrl?: (data: VerticalLink | UniversalLink) => string;
     verticalConfigMap: VerticalLabelMap;
 }
 
@@ -659,11 +658,6 @@ export interface ThumbsFeedbackProps {
     feedbackText?: string;
     feedbackTextOnSubmission?: string;
     onClick: (feedbackType: FeedbackType) => void;
-}
-
-// @public
-export interface UniversalLink {
-    query?: string;
 }
 
 // @public

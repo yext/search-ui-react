@@ -8,7 +8,7 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl })](./search-ui-react.alternativeverticals.md) | A component that displays the alternative verticals that have results if a search returns none on the current vertical. |
+|  [AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses })](./search-ui-react.alternativeverticals.md) | A component that displays the alternative verticals that have results if a search returns none on the current vertical. |
 |  [AnalyticsProvider(props)](./search-ui-react.analyticsprovider.md) | A higher-order component which provides analytics for its children. |
 |  [AppliedFilters(props)](./search-ui-react.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters. |
 |  [ApplyFiltersButton({ customCssClasses, label })](./search-ui-react.applyfiltersbutton.md) | Runs a vertical search. By default has <code>position: sticky</code> styling that anchors it to the bottom of the page. |
@@ -91,7 +91,6 @@
 |  [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) | Props for the [StaticFilters()](./search-ui-react.staticfilters.md) component. |
 |  [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md) | The CSS class interface used for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->. |
 |  [ThumbsFeedbackProps](./search-ui-react.thumbsfeedbackprops.md) | Props for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->. |
-|  [UniversalLink](./search-ui-react.universallink.md) | Data needed to create a URL to a universal search page. |
 |  [UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./search-ui-react.universalresultsprops.md) | Props for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
 |  [VerticalConfig](./search-ui-react.verticalconfig.md) | The configuration for a vertical. |
