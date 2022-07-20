@@ -172,10 +172,10 @@ export type DropdownItemProps = PropsWithChildren<{
 }>;
 
 // @public
-export function executeAutocomplete(SearchActions: SearchActions): Promise<AutocompleteResponse | undefined>;
+export function executeAutocomplete(searchActions: SearchActions): Promise<AutocompleteResponse | undefined>;
 
 // @public
-export function executeSearch(SearchActions: SearchActions): Promise<void>;
+export function executeSearch(searchActions: SearchActions): Promise<void>;
 
 // @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
@@ -247,7 +247,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function getSearchIntents(SearchActions: SearchActions): Promise<SearchIntent[] | undefined>;
+export function getSearchIntents(searchActions: SearchActions): Promise<SearchIntent[] | undefined>;
 
 // @public
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
@@ -685,7 +685,7 @@ export interface UniversalResultsProps {
 }
 
 // @public
-export function updateLocationIfNeeded(SearchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
+export function updateLocationIfNeeded(searchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
 
 // @public
 export function useAnalytics(): AnalyticsService | null;
