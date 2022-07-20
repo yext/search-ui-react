@@ -65,9 +65,9 @@ export class SearchCore {
  * The decorator to be used in .storybook/preview to read story-specific data off
  * the story's parameters to mock SearchCore's services on a per-story basis.
  */
-export function SearchCoreDecorator(story, { parameters }) {
-  if (parameters?.SearchCoreServices) {
-    const services = parameters.SearchCoreServices;
+export function searchCoreDecorator(story, { parameters }) {
+  if (parameters?.searchCoreServices) {
+    const services = parameters.searchCoreServices;
     if (services.searchService) {
       mockedSearchService = services.searchService;
     }

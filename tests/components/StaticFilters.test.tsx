@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { SearchHeadless, State } from '@yext/search-headless-react';
+import { SearchActions, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FilterOptionConfig } from '../../src/components/Filters';
 import userEvent from '@testing-library/user-event';
@@ -173,7 +173,7 @@ describe('Static Filters', () => {
 });
 
 function expectFilterOptionSet(
-  actions: SearchHeadless,
+  actions: SearchActions,
   fieldId: string,
   filterOption: FilterOptionConfig,
   selected: boolean

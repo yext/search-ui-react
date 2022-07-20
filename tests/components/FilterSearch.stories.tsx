@@ -52,7 +52,7 @@ export const Primary = (args: FilterSearchProps) => {
 
 export const DropdownUnsectioned = Primary.bind({});
 DropdownUnsectioned.parameters = {
-  SearchCoreServices: {
+  searchCoreServices: {
     autoCompleteService: generateMockedAutocompleteService(undefined, unlabeledFilterSearchResponse)
   }
 };
@@ -69,7 +69,7 @@ export const DropdownSectioned = (args: FilterSearchProps) => {
   );
 };
 DropdownSectioned.parameters = {
-  SearchCoreServices: {
+  searchCoreServices: {
     autoCompleteService: generateMockedAutocompleteService(undefined, labeledFilterSearchResponse)
   }
 };
@@ -86,7 +86,7 @@ export const DropdownHighlight = (args: FilterSearchProps) => {
   );
 };
 DropdownHighlight.parameters = {
-  SearchCoreServices: {
+  searchCoreServices: {
     autoCompleteService: generateMockedAutocompleteService(undefined, labeledFilterSearchResponse)
   }
 };

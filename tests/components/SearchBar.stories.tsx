@@ -22,7 +22,7 @@ const meta: ComponentMeta<typeof SearchBar> = {
   title: 'SearchBar',
   component: SearchBar,
   parameters: {
-    SearchCoreServices: {
+    searchCoreServices: {
       autoCompleteService: generateMockedAutocompleteService(mockedAutocompleteResult)
     }
   },

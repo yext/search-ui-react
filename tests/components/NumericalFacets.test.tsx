@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { SearchHeadless, FacetOption, Matcher, NumberRangeValue, SelectableFilter, Source, State } from '@yext/search-headless-react';
+import { SearchActions, FacetOption, Matcher, NumberRangeValue, SelectableFilter, Source, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
@@ -145,7 +145,7 @@ describe('NumericalFacets', () => {
 });
 
 function expectFacetOptionSet(
-  actions: SearchHeadless,
+  actions: SearchActions,
   fieldId: string,
   option: FacetOption,
   selected: boolean

@@ -1,14 +1,14 @@
 import {
-  SearchHeadless,
   State,
   StateSelector,
   useSearchState,
   useSearchActions,
   SearchUtilities,
-  useSearchUtilities
+  useSearchUtilities,
+  SearchActions
 } from '@yext/search-headless-react';
 
-export function spyOnActions(): jest.Mocked<SearchHeadless> {
+export function spyOnActions(): jest.Mocked<SearchActions> {
   const spy = jest.spyOn(require('@yext/search-headless-react'), 'useSearchActions');
   const proxyHandler = {
     get: (_, prop) => spy.mock.results[0].value[prop]
@@ -38,11 +38,11 @@ export function mockAnswersState(
 }
 
 export function mockSearchActions(
-  customActions: RecursivePartial<SearchHeadless>
+  customActions: RecursivePartial<SearchActions>
 ): jest.SpyInstance<typeof useSearchActions, unknown[]> {
   return jest
     .spyOn(require('@yext/search-headless-react'), 'useSearchActions')
-    .mockImplementation(() => customActions as SearchHeadless);
+    .mockImplementation(() => customActions as SearchActions);
 }
 
 export function mockAnswersUtils(
@@ -57,7 +57,7 @@ export function mockAnswersHooks({
   mockedState, mockedActions, mockedUtils
 }: {
   mockedState?: RecursivePartial<State>,
-  mockedActions?: RecursivePartial<SearchHeadless>,
+  mockedActions?: RecursivePartial<SearchActions>,
   mockedUtils?: RecursivePartial<SearchUtilities>
 }) {
   mockedUtils && mockAnswersUtils(mockedUtils);
