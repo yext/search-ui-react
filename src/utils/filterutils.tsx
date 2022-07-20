@@ -95,14 +95,14 @@ function parseNumber(num: string) {
  * provided, only filters corresponding to one of those fieldIds are deselected.
  * Otherwise, all selected filters are deselected.
  */
-export function clearStaticRangeFilters(SearchActions: SearchActions, fieldIds?: Set<string>) {
-  const selectedStaticRangeFilters = SearchActions.state?.filters?.static?.filter(filter =>
+export function clearStaticRangeFilters(searchActions: SearchActions, fieldIds?: Set<string>) {
+  const selectedStaticRangeFilters = searchActions.state?.filters?.static?.filter(filter =>
     isNumberRangeFilter(filter)
     && filter.selected === true
     && (!fieldIds || fieldIds.has(filter.fieldId))
   );
   selectedStaticRangeFilters?.forEach(filter => {
-    SearchActions.setFilterOption({
+    searchActions.setFilterOption({
       ...filter,
       selected: false
     });
@@ -113,8 +113,8 @@ export function clearStaticRangeFilters(SearchActions: SearchActions, fieldIds?:
  * Returns a set of fieldIds of the numerical facets in state that have at
  * least one option selected.
  */
-export function getSelectedNumericalFacetFields(SearchActions: SearchActions): Set<string> {
-  const selectedNumericalFacets = SearchActions.state.filters.facets?.filter(
+export function getSelectedNumericalFacetFields(searchActions: SearchActions): Set<string> {
+  const selectedNumericalFacets = searchActions.state.filters.facets?.filter(
     f => isNumericalFacet(f) && f.options.some(o => o.selected)
   ) ?? [];
   return new Set(selectedNumericalFacets.map(f => f.fieldId));

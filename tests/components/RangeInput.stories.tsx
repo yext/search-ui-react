@@ -1,7 +1,7 @@
 import { ComponentMeta } from '@storybook/react';
 import { RangeInput, RangeInputProps } from '../../src/components/Filters/RangeInput';
 import { SearchHeadlessContext, Matcher, SelectableFilter } from '@yext/search-headless-react';
-import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { FiltersContext, FiltersContextType } from '../../src/components/Filters/FiltersContext';
 import { FilterGroupContext, FilterGroupContextType } from '../../src/components/Filters/FilterGroupContext';
 import { userEvent, within } from '@storybook/testing-library';

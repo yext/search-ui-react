@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { SearchHeadlessContext, SearchTypeEnum } from '@yext/search-headless-react';
 
-import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { AppliedFiltersDisplay } from '../../src/components/AppliedFiltersDisplay';
 import { DisplayableFilters, DisplayableHierarchicalFacets } from '../__fixtures__/data/filters';
 import { AppliedFiltersProps, builtInCssClasses } from '../../src/components/AppliedFilters';

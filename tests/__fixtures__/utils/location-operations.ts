@@ -11,12 +11,12 @@ let userLocation: LatLong = {
 };
 
 export async function updateLocationIfNeeded(
-  SearchActions: SearchActions,
+  searchActions: SearchActions,
   intents: SearchIntent[],
   _geolocationOptions?: PositionOptions
 ): Promise<void> {
-  if (intents.includes(SearchIntent.NearMe) && !SearchActions.state.location.userLocation && !isFetching) {
-    SearchActions.setUserLocation(userLocation);
+  if (intents.includes(SearchIntent.NearMe) && !searchActions.state.location.userLocation && !isFetching) {
+    searchActions.setUserLocation(userLocation);
   }
 }
 

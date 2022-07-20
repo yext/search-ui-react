@@ -36,7 +36,7 @@ export interface SpellCheckProps {
 }
 
 /**
- * Renders a suggested query if the Answers API provides one.
+ * Renders a suggested query if the Search API provides one.
  *
  * @public
  *

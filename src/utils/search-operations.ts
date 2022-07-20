@@ -10,12 +10,12 @@ import {
  *
  * @public
  */
-export async function executeSearch(SearchActions: SearchActions): Promise<void> {
-  const isVertical = SearchActions.state.meta.searchType === SearchTypeEnum.Vertical;
+export async function executeSearch(searchActions: SearchActions): Promise<void> {
+  const isVertical = searchActions.state.meta.searchType === SearchTypeEnum.Vertical;
   try {
     isVertical
-      ? SearchActions.executeVerticalQuery()
-      : SearchActions.executeUniversalQuery();
+      ? searchActions.executeVerticalQuery()
+      : searchActions.executeUniversalQuery();
   } catch (e) {
     console.error(`Error occured executing a ${isVertical ? 'vertical': 'universal'} search.\n`, e);
   }
@@ -27,13 +27,13 @@ export async function executeSearch(SearchActions: SearchActions): Promise<void>
  * @public
  */
 export async function executeAutocomplete(
-  SearchActions: SearchActions
+  searchActions: SearchActions
 ): Promise<AutocompleteResponse | undefined> {
-  const isVertical = SearchActions.state.meta.searchType === SearchTypeEnum.Vertical;
+  const isVertical = searchActions.state.meta.searchType === SearchTypeEnum.Vertical;
   try {
     return isVertical
-      ? SearchActions.executeVerticalAutocomplete()
-      : SearchActions.executeUniversalAutocomplete();
+      ? searchActions.executeVerticalAutocomplete()
+      : searchActions.executeUniversalAutocomplete();
   } catch (e) {
     console.error(`Error occured executing a ${isVertical ? 'vertical': 'universal'} autocomplete search.\n`, e);
   }
@@ -45,8 +45,8 @@ export async function executeAutocomplete(
  * @public
  */
 export async function getSearchIntents(
-  SearchActions: SearchActions
+  searchActions: SearchActions
 ): Promise<SearchIntent[] | undefined> {
-  const results = await executeAutocomplete(SearchActions);
+  const results = await executeAutocomplete(searchActions);
   return results?.inputIntents;
 }

@@ -2,7 +2,7 @@ import { SearchIntent, QuerySource, SearchCore, SearchHeadlessContext, State } f
 import { render, screen, waitFor } from '@testing-library/react';
 import { SearchBar } from '../../src/components/SearchBar';
 import userEvent from '@testing-library/user-event';
-import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import * as Analytics from '../../src/hooks/useAnalytics';
 
 const mockedState: Partial<State> = {

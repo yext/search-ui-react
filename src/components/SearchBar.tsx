@@ -109,7 +109,7 @@ export type RenderEntityPreviews = (
  * @public
  */
 export interface VisualAutocompleteConfig {
-  /** The Answers Headless instance used to perform visual autocomplete searches. */
+  /** The Search Headless instance used to perform visual autocomplete searches. */
   entityPreviewSearcher: SearchHeadless,
   /** Renders entity previews based on the autocomplete loading state and results. */
   renderEntityPreviews: RenderEntityPreviews,

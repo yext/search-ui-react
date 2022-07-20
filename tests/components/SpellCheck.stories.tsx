@@ -4,7 +4,7 @@ import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { SpellCheck, SpellCheckProps } from '../../src/components/SpellCheck';
 
-import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 
 const meta: ComponentMeta<typeof SpellCheck> = {

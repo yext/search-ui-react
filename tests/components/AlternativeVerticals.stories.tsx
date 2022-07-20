@@ -4,7 +4,7 @@ import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { AlternativeVerticals, AlternativeVerticalsProps } from '../../src/components/AlternativeVerticals';
 
-import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import { verticalNoResults } from '../__fixtures__/data/vertical/noresults';
 

@@ -51,7 +51,7 @@ const builtInCssClasses: Readonly<DirectAnswerCssClasses> = {
 };
 
 /**
- * Renders Direct Answers provided by the Answers API.
+ * Renders Direct Answers provided by the Search API.
  *
  * @public
  *

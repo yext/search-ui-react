@@ -4,7 +4,7 @@ import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { Pagination, PaginationProps } from '../../src/components/Pagination';
 
-import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 
 const meta: ComponentMeta<typeof Pagination> = {

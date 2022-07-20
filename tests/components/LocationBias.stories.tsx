@@ -5,7 +5,7 @@ import { SearchHeadlessContext, LocationBiasMethod } from '@yext/search-headless
 import { LocationBias, LocationBiasProps } from '../../src/components/LocationBias';
 
 import { decorator as LocationOperationDecorator } from '../__fixtures__/utils/location-operations';
-import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import { userEvent, within } from '@storybook/testing-library';
 

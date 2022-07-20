@@ -4,7 +4,7 @@ import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { DirectAnswer, DirectAnswerProps } from '../../src/components/DirectAnswer';
 
-import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { featuredSnippetDAState, fieldValueDAState } from '../__fixtures__/data/directanswers';
 
 const meta: ComponentMeta<typeof DirectAnswer> = {
