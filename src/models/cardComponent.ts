@@ -5,9 +5,9 @@ import { Result } from '@yext/search-headless-react';
  *
  * @public
  */
-export interface CardProps {
+export interface CardProps<T = Record<string, unknown>> {
   /** The result data provided to the card for rendering. */
-  result: Result
+  result: Result<T>
 }
 
 /**
@@ -15,4 +15,4 @@ export interface CardProps {
  *
  * @public
  */
-export type CardComponent = (props: CardProps) => JSX.Element;
+export type CardComponent<T = Record<string, unknown>> = (props: CardProps<T>) => JSX.Element;
