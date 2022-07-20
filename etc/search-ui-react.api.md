@@ -111,14 +111,14 @@ export interface AutocompleteResultCssClasses {
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
 // @public
-export type CardComponent = (props: CardProps) => JSX.Element;
+export type CardComponent<T = Record<string, unknown>> = (props: CardProps<T>) => JSX.Element;
 
 // @public
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
 
 // @public
-export interface CardProps {
-    result: Result;
+export interface CardProps<T = Record<string, unknown>> {
+    result: Result<T>;
 }
 
 // @public
