@@ -8,20 +8,20 @@
 
 import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
-import { AnswersActions } from '@yext/answers-headless-react';
-import { AnswersHeadless } from '@yext/answers-headless-react';
-import { AutocompleteResponse } from '@yext/answers-headless-react';
-import { DirectAnswer as DirectAnswer_2 } from '@yext/answers-headless-react';
-import { HighlightedValue } from '@yext/answers-headless-react';
-import { Matcher } from '@yext/answers-headless-react';
-import { NumberRangeValue } from '@yext/answers-headless-react';
+import { AutocompleteResponse } from '@yext/search-headless-react';
+import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
+import { HighlightedValue } from '@yext/search-headless-react';
+import { Matcher } from '@yext/search-headless-react';
+import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
-import { QuerySource } from '@yext/answers-headless-react';
-import { Result } from '@yext/answers-headless-react';
-import { SearchIntent } from '@yext/answers-headless-react';
-import { SearchParameterField } from '@yext/answers-headless-react';
-import { UniversalLimit } from '@yext/answers-headless-react';
-import { VerticalResults as VerticalResults_2 } from '@yext/answers-headless-react';
+import { QuerySource } from '@yext/search-headless-react';
+import { Result } from '@yext/search-headless-react';
+import { SearchActions } from '@yext/search-headless-react';
+import { SearchHeadless } from '@yext/search-headless-react';
+import { SearchIntent } from '@yext/search-headless-react';
+import { SearchParameterField } from '@yext/search-headless-react';
+import { UniversalLimit } from '@yext/search-headless-react';
+import { VerticalResults as VerticalResults_2 } from '@yext/search-headless-react';
 
 // @public
 export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses, getSuggestionUrl: customGetSuggestionUrl }: AlternativeVerticalsProps): JSX.Element | null;
@@ -172,10 +172,10 @@ export type DropdownItemProps = PropsWithChildren<{
 }>;
 
 // @public
-export function executeAutocomplete(answersActions: AnswersActions): Promise<AutocompleteResponse | undefined>;
+export function executeAutocomplete(searchActions: SearchActions): Promise<AutocompleteResponse | undefined>;
 
 // @public
-export function executeSearch(answersActions: AnswersActions): Promise<void>;
+export function executeSearch(searchActions: SearchActions): Promise<void>;
 
 // @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
@@ -247,7 +247,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function getSearchIntents(answersActions: AnswersActions): Promise<SearchIntent[] | undefined>;
+export function getSearchIntents(searchActions: SearchActions): Promise<SearchIntent[] | undefined>;
 
 // @public
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
@@ -685,7 +685,7 @@ export interface UniversalResultsProps {
 }
 
 // @public
-export function updateLocationIfNeeded(answersActions: AnswersActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
+export function updateLocationIfNeeded(searchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
 
 // @public
 export function useAnalytics(): AnalyticsService | null;
@@ -745,7 +745,7 @@ export interface VerticalResultsProps {
 // @public
 export interface VisualAutocompleteConfig {
     entityPreviewsDebouncingTime?: number;
-    entityPreviewSearcher: AnswersHeadless;
+    entityPreviewSearcher: SearchHeadless;
     renderEntityPreviews: RenderEntityPreviews;
     restrictVerticals: string[];
     universalLimit?: UniversalLimit;

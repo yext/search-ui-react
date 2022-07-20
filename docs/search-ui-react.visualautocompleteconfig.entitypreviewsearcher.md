@@ -4,10 +4,10 @@
 
 ## VisualAutocompleteConfig.entityPreviewSearcher property
 
-The Answers Headless instance used to perform visual autocomplete searches.
+The Search Headless instance used to perform visual autocomplete searches.
 
 <b>Signature:</b>
 
 ```typescript
-entityPreviewSearcher: AnswersHeadless;
+entityPreviewSearcher: SearchHeadless;
 ```

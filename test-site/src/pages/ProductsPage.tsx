@@ -1,4 +1,4 @@
-import { useAnswersActions } from '@yext/answers-headless-react';
+import { useSearchActions } from '@yext/search-headless-react';
 import {
   AppliedFilters,
   ResultsCount,
@@ -12,10 +12,10 @@ import {
 import { useLayoutEffect } from 'react';
 
 export function ProductsPage() {
-  const answersActions = useAnswersActions();
+  const searchActions = useSearchActions();
   useLayoutEffect(() => {
-    answersActions.setVertical('products');
-    answersActions.executeVerticalQuery();
+    searchActions.setVertical('products');
+    searchActions.executeVerticalQuery();
   });
 
   return (

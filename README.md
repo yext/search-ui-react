@@ -24,7 +24,7 @@ If you are using NPM 7+, you can install the components with the following comma
 ```bash
 npm install @yext/search-ui-react
 ```
-The @yext/answers-headless-react peer dependency will be automatically installed.
+The @yext/search-headless-react peer dependency will be automatically installed.
 
 If you are using NPM 6 or Yarn, you can install the library and its peer dependencies with this command:
 ```bash
@@ -32,10 +32,10 @@ npx install-peerdeps @yext/search-ui-react
 ```
 The command will work with Yarn so long as NPM 6+ is installed on the machine.
 
-Once the library and its peer dependencies are installed, the components can be rendered using React by placing them inside the `AnswersHeadlessProvider` with the appropriate credentials:
+Once the library and its peer dependencies are installed, the components can be rendered using React by placing them inside the `SearchHeadlessProvider` with the appropriate credentials:
 
 ```tsx
-import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
+import { SearchHeadlessProvider } from '@yext/search-headless-react';
 import { SearchBar, UniversalResults } from '@yext/search-ui-react';
 
 const config = {
@@ -47,10 +47,10 @@ const config = {
 
 function App() {
   return (
-    <AnswersHeadlessProvider {...config}>
+    <SearchHeadlessProvider {...config}>
       <SearchBar />
       <UniversalResults />
-    </AnswersHeadlessProvider>
+    </SearchHeadlessProvider>
   );
 }
 

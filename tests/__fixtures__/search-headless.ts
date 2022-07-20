@@ -1,13 +1,13 @@
 import {
-  AnswersHeadless,
-  provideAnswersHeadless,
+  SearchHeadless,
+  provideHeadless,
   SearchTypeEnum,
   State
-} from '@yext/answers-headless-react';
+} from '@yext/search-headless-react';
 import { RecursivePartial } from '../__utils__/mocks';
 import merge from 'lodash/merge';
 
-export function generateMockedHeadless(state?: RecursivePartial<State>): AnswersHeadless {
+export function generateMockedHeadless(state?: RecursivePartial<State>): SearchHeadless {
   const emptyState: State = {
     query: {},
     universal: {},
@@ -30,11 +30,11 @@ export function generateMockedHeadless(state?: RecursivePartial<State>): Answers
   const mergedState = merge(emptyState, state);
 
   /**
-   * a mocked AnswersCore class will be use in provideAnswersHeadless:
+   * a mocked SearchCore class will be use in provideHeadless:
    * - Storybook: through resolve.alias in storybook's webpack config
    * - Jest: through moduleNameMapper configuration
    */
-  const headless = provideAnswersHeadless({
+  const headless = provideHeadless({
     apiKey: '',
     experienceKey: '',
     locale: ''

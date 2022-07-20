@@ -9,14 +9,14 @@ Executes a universal/vertical search.
 <b>Signature:</b>
 
 ```typescript
-export declare function executeSearch(answersActions: AnswersActions): Promise<void>;
+export declare function executeSearch(searchActions: SearchActions): Promise<void>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  answersActions | AnswersActions |  |
+|  searchActions | SearchActions |  |
 
 <b>Returns:</b>
 

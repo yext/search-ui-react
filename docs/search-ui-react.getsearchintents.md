@@ -9,14 +9,14 @@ Get search intents of the current query stored in headless using autocomplete re
 <b>Signature:</b>
 
 ```typescript
-export declare function getSearchIntents(answersActions: AnswersActions): Promise<SearchIntent[] | undefined>;
+export declare function getSearchIntents(searchActions: SearchActions): Promise<SearchIntent[] | undefined>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  answersActions | AnswersActions |  |
+|  searchActions | SearchActions |  |
 
 <b>Returns:</b>
 
