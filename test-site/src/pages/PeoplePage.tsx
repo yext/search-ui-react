@@ -21,8 +21,8 @@ const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 export function PeoplePage() {
   const searchActions = useSearchActions();
   useLayoutEffect(() => {
-    SearchActions.setVertical('people');
-    SearchActions.executeVerticalQuery();
+    searchActions.setVertical('people');
+    searchActions.executeVerticalQuery();
   });
 
   return (

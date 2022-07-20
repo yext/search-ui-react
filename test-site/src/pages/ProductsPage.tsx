@@ -14,8 +14,8 @@ import { useLayoutEffect } from 'react';
 export function ProductsPage() {
   const searchActions = useSearchActions();
   useLayoutEffect(() => {
-    SearchActions.setVertical('products');
-    SearchActions.executeVerticalQuery();
+    searchActions.setVertical('products');
+    searchActions.executeVerticalQuery();
   });
 
   return (

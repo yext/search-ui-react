@@ -55,8 +55,8 @@ const customSearchBarCss = {
 export default function UniversalPage(): JSX.Element {
   const searchActions = useSearchActions();
   useLayoutEffect(() => {
-    SearchActions.setUniversal();
-    SearchActions.executeUniversalQuery();
+    searchActions.setUniversal();
+    searchActions.executeUniversalQuery();
   });
 
   return (
