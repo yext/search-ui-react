@@ -73,11 +73,7 @@ export function FilterSearch({
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
-<<<<<<< HEAD
-  const answersActions = useSearchActions();
-=======
   const searchActions = useSearchActions();
->>>>>>> afc6f3b82d1bf3ce216f636cac2298111beb8886
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
   });
@@ -98,7 +94,7 @@ export function FilterSearch({
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
     inputValue => {
       setQuery(inputValue);
-      return answersActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields)
+      return searchActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields)
     },
     (e) => console.error('Error occured executing a filter search request.\n', e)
   );
