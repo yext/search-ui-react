@@ -284,7 +284,7 @@ export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCs
 }
 
 // @public
-export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'searchable' | 'excludedFieldIds'> {
+export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
     customCssClasses?: HierarchicalFacetsCssClasses;
     delimiter?: string;
     includedFieldIds: string[];
