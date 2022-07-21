@@ -94,7 +94,7 @@ export function FilterSearch({
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
     inputValue => {
       setQuery(inputValue);
-      return searchActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields)
+      return searchActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields);
     },
     (e) => console.error('Error occured executing a filter search request.\n', e)
   );
