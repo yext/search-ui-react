@@ -1,4 +1,4 @@
-import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useSearchActions } from '@yext/search-headless-react';
+import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { useCallback, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
@@ -80,7 +80,7 @@ export function FilterSearch({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const [currentFilter, setCurrentFilter] = useState<Filter>();
   const [ query, setQuery ] = useState<string>();
-  const filters = useSearchActions(state => state.filters.static);
+  const filters = useSearchState(state => state.filters.static);
   filters?.forEach(f => {
     if (currentFilter && isDuplicateFilter(f, currentFilter) && !f.selected) {
       setCurrentFilter(undefined);
