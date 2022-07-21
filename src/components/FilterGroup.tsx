@@ -75,10 +75,6 @@ export function FilterGroup({
   const limited = filterOptions.length > showMoreLimit;
   const [showAll, setShowAll] = useState<boolean>(!limited);
 
-  function toggleShowAll() {
-    setShowAll(!showAll);
-  }
-
   function renderTitle() {
     return collapsible
       ? <CollapsibleLabel label={title} />
@@ -104,7 +100,8 @@ export function FilterGroup({
             />
           );
         })}
-        {limited && <button className='text-blue-500 py-1 text-sm' onClick={toggleShowAll}>{showAll ? 'Show Less' : 'Show More'}</button>}
+        {/* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */}
+        {limited && <button className='text-primary py-1 text-sm' onClick={_e => setShowAll(!showAll)}>{showAll ? 'Show Less' : 'Show More'}</button>}
         {children}
       </CollapsibleSection>
     </FilterGroupProvider>
