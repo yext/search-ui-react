@@ -43,13 +43,7 @@ export const ShowMoreLimit = (args: StandardFacetsProps) => {
   );
 };
 
-export const ShowMoreLimitClicked = (args: StandardFacetsProps) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <StandardFacets {...args} showMoreLimit={1} />
-    </SearchHeadlessContext.Provider>
-  );
-};
+export const ShowMoreLimitClicked = ShowMoreLimit.bind({});
 ShowMoreLimitClicked.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   userEvent.click(canvas.getByText('Show More'));

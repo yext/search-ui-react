@@ -95,26 +95,15 @@ export function FilterGroup({
       {renderTitle()}
       <CollapsibleSection className={cssClasses.optionsContainer}>
         {searchable && <SearchInput className={cssClasses.searchInput} />}
-        {showAll
-          ? filterOptions.map(o => {
-            return (
-              <CheckboxOption
-                {...o}
-                key={o.displayName || o.value.toString()}
-                customCssClasses={cssClasses}
-              />
-            );
-          })
-          : filterOptions.slice(0, showMoreLimit).map(o => {
-            return (
-              <CheckboxOption
-                {...o}
-                key={o.displayName || o.value.toString()}
-                customCssClasses={cssClasses}
-              />
-            );
-          })
-        }
+        {filterOptions.slice(0, showAll ? filterOptions.length : showMoreLimit).map(o => {
+          return (
+            <CheckboxOption
+              {...o}
+              key={o.displayName || o.value.toString()}
+              customCssClasses={cssClasses}
+            />
+          );
+        })}
         {limited && <button className='text-blue-500 py-1 text-sm' onClick={toggleShowAll}>{showAll ? 'Show Less' : 'Show More'}</button>}
         {children}
       </CollapsibleSection>
