@@ -73,7 +73,11 @@ export function FilterSearch({
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
+<<<<<<< HEAD
   const answersActions = useSearchActions();
+=======
+  const searchActions = useSearchActions();
+>>>>>>> afc6f3b82d1bf3ce216f636cac2298111beb8886
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
   });
@@ -110,16 +114,17 @@ export function FilterSearch({
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
       if (currentFilter) {
-        answersActions.setFilterOption({ ...currentFilter, selected: false });
+        searchActions.setFilterOption({ ...currentFilter, selected: false });
       }
-      answersActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+      searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
       setCurrentFilter(newFilter);
-      answersActions.setOffset(0);
       if (select && searchOnSelect) {
-        executeSearch(answersActions);
+        searchActions.setOffset(0);
+        searchActions.resetFacets();
+        executeSearch(searchActions);
       }
     }
-  }, [answersActions, currentFilter, searchOnSelect]);
+  }, [searchActions, currentFilter, searchOnSelect]);
 
   const handleSelectDropdown = useCallback((_value, _index, itemData) => {
     handleDropdownEvent(itemData, true);

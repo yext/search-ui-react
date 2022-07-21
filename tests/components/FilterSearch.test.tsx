@@ -205,12 +205,15 @@ describe('search with section labels', () => {
         expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
       });
       expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
+      expect(resetFacets).toBeCalled();
 
       const setFilterOptionCallOrder = setFilterOption.mock.invocationCallOrder[0];
       const setOffsetCallOrder = setOffset.mock.invocationCallOrder[0];
+      const resetFacetsCallOrder = resetFacets.mock.invocationCallOrder[0];
       const mockExecuteSearchCallOrder = mockExecuteSearch.mock.invocationCallOrder[0];
       expect(setFilterOptionCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
       expect(setOffsetCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
+      expect(resetFacetsCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
     });
 
     it('does not trigger a search on pressing "enter" if no autocomplete result is selected', async () => {
@@ -228,6 +231,7 @@ describe('search with section labels', () => {
         expect(setFilterOption).not.toBeCalled();
       });
       expect(setOffset).not.toBeCalled();
+      expect(resetFacets).not.toBeCalled();
       expect(mockExecuteSearch).not.toBeCalled();
     });
 
@@ -257,12 +261,15 @@ describe('search with section labels', () => {
       userEvent.click(autocompleteSuggestion);
       expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
       expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
+      expect(resetFacets).toBeCalled();
 
       const setFilterOptionCallOrder = setFilterOption.mock.invocationCallOrder[0];
       const setOffsetCallOrder = setOffset.mock.invocationCallOrder[0];
+      const resetFacetsCallOrder = setOffset.mock.invocationCallOrder[0];
       const mockExecuteSearchCallOrder = mockExecuteSearch.mock.invocationCallOrder[0];
       expect(setFilterOptionCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
       expect(setOffsetCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
+      expect(resetFacetsCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
     });
   });
 
@@ -291,7 +298,8 @@ describe('search with section labels', () => {
         displayName: 'first name 1',
         selected: true
       });
-      expect(setOffset).toBeCalledWith(0);
+      expect(setOffset).not.toHaveBeenCalled();
+      expect(resetFacets).not.toHaveBeenCalled();
       expect(mockExecuteSearch).not.toHaveBeenCalled();
     });
   });
@@ -303,6 +311,7 @@ describe('search without section labels', () => {
     render(<AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
       <FilterSearch searchFields={searchFieldsProp} />
     </AnswersHeadlessContext.Provider>);
+
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
@@ -320,6 +329,7 @@ describe('screen reader', () => {
     render(<AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
       <FilterSearch searchFields={searchFieldsProp} />
     </AnswersHeadlessContext.Provider>);
+
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
@@ -338,6 +348,7 @@ describe('screen reader', () => {
     render(<AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
       <FilterSearch searchFields={searchFieldsProp} />
     </AnswersHeadlessContext.Provider>);
+
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
