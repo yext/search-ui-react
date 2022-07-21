@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { AnswersHeadlessContext, State } from '@yext/answers-headless-react';
-
-import { generateMockedHeadless } from '../__fixtures__/answers-headless';
+import { SearchHeadlessContext, State } from '@yext/search-headless-react';
+import { userEvent, within } from '@storybook/testing-library';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { RecursivePartial } from '../__utils__/mocks';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { StandardFacets, StandardFacetsProps } from '../../src';
@@ -21,8 +21,36 @@ const mockedHeadlessState: RecursivePartial<State> = {
 
 export const Primary = (args: StandardFacetsProps) => {
   return (
-    <AnswersHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <StandardFacets {...args} />
-    </AnswersHeadlessContext.Provider>
+    </SearchHeadlessContext.Provider>
   );
+};
+
+export const NoOptionCounts = (args: StandardFacetsProps) => {
+  return (
+    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+      <StandardFacets {...args} showOptionCounts={false} />
+    </SearchHeadlessContext.Provider>
+  );
+};
+
+export const ShowMoreLimit = (args: StandardFacetsProps) => {
+  return (
+    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+      <StandardFacets {...args} showMoreLimit={1} />
+    </SearchHeadlessContext.Provider>
+  );
+};
+
+export const ShowMoreLimitClicked = (args: StandardFacetsProps) => {
+  return (
+    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+      <StandardFacets {...args} showMoreLimit={1} />
+    </SearchHeadlessContext.Provider>
+  );
+};
+ShowMoreLimitClicked.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  userEvent.click(canvas.getByText('Show More'));
 };
