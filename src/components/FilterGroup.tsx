@@ -100,8 +100,11 @@ export function FilterGroup({
             />
           );
         })}
-        {/* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */}
-        {limited && <button className='text-primary py-1 text-sm' onClick={_e => setShowAll(!showAll)}>{showAll ? 'Show Less' : 'Show More'}</button>}
+        {limited &&
+        /* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */
+        <button className='text-primary py-1 text-sm' onClick={() => setShowAll(!showAll)}>
+          {showAll ? 'Show Less' : 'Show More'}
+        </button>}
         {children}
       </CollapsibleSection>
     </FilterGroupProvider>
