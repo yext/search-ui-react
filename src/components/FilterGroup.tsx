@@ -1,5 +1,5 @@
 import { useSearchUtilities } from '@yext/search-headless-react';
-import { PropsWithChildren, useMemo, useState } from 'react';
+import { PropsWithChildren, useCallback, useMemo, useState } from 'react';
 import {
   CheckboxOption,
   CollapsibleLabel,
@@ -119,11 +119,23 @@ function CheckboxOptions({
 }) {
   const searchUtilities = useSearchUtilities();
   const { searchValue } = useFilterGroupContext();
+  const shouldRenderOption = useCallback((option: { displayName: string, value: unknown }) => {
+    if (typeof option.displayName !== 'string') {
+      console.error('A displayName is needed for filter with value', option.value);
+      return false;
+    }
+
+    if (!searchUtilities.isCloseMatch(option.displayName, searchValue)) {
+      return false;
+    }
+
+    return true;
+  }, [searchUtilities, searchValue]);
 
   return (
     <>
       {filterOptions.filter(o => {
-        return searchUtilities.isCloseMatch((o.displayName || o.value.toString()), searchValue);
+        return shouldRenderOption(o);
       }).map(o => {
         return (
           <CheckboxOption
