@@ -9,5 +9,5 @@ A map of verticalKey to a VerticalConfig.
 <b>Signature:</b>
 
 ```typescript
-export interface VerticalConfigMap 
+export interface VerticalConfigMap<T = Record<string, any>> 
 ```

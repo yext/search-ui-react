@@ -43,11 +43,11 @@ export interface AlternativeVerticalsCssClasses {
 }
 
 // @public
-export interface AlternativeVerticalsProps {
+export interface AlternativeVerticalsProps<T = Record<string, unknown>> {
     currentVerticalLabel: string;
     customCssClasses?: AlternativeVerticalsCssClasses;
     displayAllOnNoResults?: boolean;
-    verticalConfigMap: VerticalLabelMap;
+    verticalConfigMap: VerticalLabelMap<T>;
 }
 
 // @public
@@ -110,14 +110,16 @@ export interface AutocompleteResultCssClasses {
 // @public
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
+// Warning: (ae-forgotten-export) The symbol "DefaultResultType" needs to be exported by the entry point index.d.ts
+//
 // @public
-export type CardComponent<T = Record<string, unknown>> = (props: CardProps<T>) => JSX.Element;
+export type CardComponent<T = DefaultResultType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
 
 // @public
-export interface CardProps<T = Record<string, unknown>> {
+export interface CardProps<T = DefaultResultType> {
     result: Result<T>;
 }
 
@@ -673,7 +675,7 @@ export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
 }
 
 // @public
-export interface UniversalResultsProps {
+export interface UniversalResultsProps<T = Record<string, unknown>> {
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
     verticalConfigMap: VerticalConfigMap;
@@ -704,13 +706,13 @@ export interface VerticalConfig<T = Record<string, unknown>> {
 }
 
 // @public
-export interface VerticalConfigMap {
+export interface VerticalConfigMap<T = Record<string, any>> {
     [verticalKey: string]: VerticalConfig;
 }
 
 // @public
-export interface VerticalLabelMap {
-    [verticalKey: string]: Pick<VerticalConfig, 'label'>;
+export interface VerticalLabelMap<T = Record<string, unknown>> {
+    [verticalKey: string]: Pick<VerticalConfig<T>, 'label'>;
 }
 
 // @public
@@ -720,7 +722,7 @@ export interface VerticalLink {
 }
 
 // @public
-export function VerticalResults(props: VerticalResultsProps): JSX.Element | null;
+export function VerticalResults<T>(props: VerticalResultsProps<T>): JSX.Element | null;
 
 // @public
 export interface VerticalResultsCssClasses {
@@ -731,8 +733,8 @@ export interface VerticalResultsCssClasses {
 }
 
 // @public
-export interface VerticalResultsProps {
-    CardComponent: CardComponent;
+export interface VerticalResultsProps<T = DefaultResultType> {
+    CardComponent: CardComponent<T>;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
 }

@@ -9,7 +9,7 @@ Props for [AlternativeVerticals()](./search-ui-react.alternativeverticals.md)<!-
 <b>Signature:</b>
 
 ```typescript
-export interface AlternativeVerticalsProps 
+export interface AlternativeVerticalsProps<T = Record<string, unknown>> 
 ```
 
 ## Properties
@@ -19,5 +19,5 @@ export interface AlternativeVerticalsProps
 |  [currentVerticalLabel](./search-ui-react.alternativeverticalsprops.currentverticallabel.md) | string | The label for the current vertical. |
 |  [customCssClasses?](./search-ui-react.alternativeverticalsprops.customcssclasses.md) | [AlternativeVerticalsCssClasses](./search-ui-react.alternativeverticalscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [displayAllOnNoResults?](./search-ui-react.alternativeverticalsprops.displayallonnoresults.md) | boolean | <i>(Optional)</i> Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |
-|  [verticalConfigMap](./search-ui-react.alternativeverticalsprops.verticalconfigmap.md) | [VerticalLabelMap](./search-ui-react.verticallabelmap.md) | A map of verticalKeys to the display label for that vertical. |
+|  [verticalConfigMap](./search-ui-react.alternativeverticalsprops.verticalconfigmap.md) | [VerticalLabelMap](./search-ui-react.verticallabelmap.md)<!-- -->&lt;T&gt; | A map of verticalKeys to the display label for that vertical. |
 

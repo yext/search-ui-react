@@ -9,5 +9,5 @@ A map of verticalKeys to the display label for that vertical.
 <b>Signature:</b>
 
 ```typescript
-verticalConfigMap: VerticalLabelMap;
+verticalConfigMap: VerticalLabelMap<T>;
 ```

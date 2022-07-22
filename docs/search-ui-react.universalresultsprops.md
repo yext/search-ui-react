@@ -9,7 +9,7 @@ Props for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->.
 <b>Signature:</b>
 
 ```typescript
-export interface UniversalResultsProps 
+export interface UniversalResultsProps<T = Record<string, unknown>> 
 ```
 
 ## Properties
