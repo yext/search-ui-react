@@ -9,7 +9,7 @@ Props for the VerticalResults component.
 <b>Signature:</b>
 
 ```typescript
-export interface VerticalResultsProps<T = DefaultResultType> 
+export interface VerticalResultsProps<T> 
 ```
 
 ## Properties

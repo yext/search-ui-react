@@ -10,7 +10,7 @@ import { VerticalLink } from './verticalLink';
  */
 export interface VerticalConfig<T = DefaultResultType> {
   /** {@inheritDoc SectionComponent} */
-  SectionComponent?: SectionComponent,
+  SectionComponent?: SectionComponent<T>,
   /** The card to use for this vertical. */
   CardComponent?: CardComponent<T>,
   /** The label for the vertical. */
@@ -31,7 +31,11 @@ export interface VerticalConfig<T = DefaultResultType> {
  *
  * @public
  */
-export interface VerticalConfigMap<T> {
-  /** Config mapped to a vertical. */
-  [verticalKey: string]: VerticalConfig<T>
-}
+export type VerticalConfigMap<T> = {
+  [K in keyof T]: VerticalConfig<T[K]>
+};
+// export interface VerticalConfigMap<T> {
+//   /** Config mapped to a vertical. */
+//   // [verticalKey: string]: VerticalConfig<keyof T>
+//   [K in keyof T]: VerticalConfig<T[K]>
+// }

@@ -10,6 +10,8 @@ import {
 } from '@yext/search-ui-react';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
+import { CustomCard, CustomResultsType } from '../components/CustomCard';
+import { Custom2ResultsType, CustomCard2 } from '../components/CustomCard2';
 import { config } from '../config';
 
 
@@ -68,9 +70,19 @@ export default function UniversalPage(): JSX.Element {
       <SpellCheck />
       <DirectAnswer />
       <ResultsCount />
-      <UniversalResults
+      {/* <UniversalResults
         verticalConfigMap={{
           people: {}
+        }}
+      /> */}
+      <UniversalResults
+        verticalConfigMap={{
+          people: {
+            CardComponent: CustomCard
+          },
+          products: {
+            CardComponent: CustomCard2
+          }
         }}
       />
     </div>

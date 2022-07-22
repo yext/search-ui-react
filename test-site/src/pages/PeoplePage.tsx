@@ -16,7 +16,7 @@ import {
   NumericalFacets,
   AlternativeVerticals
 } from '@yext/search-ui-react';
-import { CustomCard, CustomResultsType } from '../components/CustomCard';
+import { CustomCard } from '../components/CustomCard';
 
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 

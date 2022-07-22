@@ -94,7 +94,6 @@
 |  [UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./search-ui-react.universalresultsprops.md) | Props for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
 |  [VerticalConfig](./search-ui-react.verticalconfig.md) | The configuration for a vertical. |
-|  [VerticalConfigMap](./search-ui-react.verticalconfigmap.md) | A map of verticalKey to a VerticalConfig. |
 |  [VerticalLabelMap](./search-ui-react.verticallabelmap.md) | A map of vertical keys to labels. |
 |  [VerticalLink](./search-ui-react.verticallink.md) | Data needed to create a URL to a vertical search page. |
 |  [VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md) | The CSS class interface used for [VerticalResults()](./search-ui-react.verticalresults.md)<!-- -->. |
@@ -121,4 +120,5 @@
 |  [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data. |
 |  [SectionComponent](./search-ui-react.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 |  [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md) | The configuration data for a static filter option. |
+|  [VerticalConfigMap](./search-ui-react.verticalconfigmap.md) | A map of verticalKey to a VerticalConfig. |
 

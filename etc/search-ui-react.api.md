@@ -43,11 +43,11 @@ export interface AlternativeVerticalsCssClasses {
 }
 
 // @public
-export interface AlternativeVerticalsProps<T = Record<string, unknown>> {
+export interface AlternativeVerticalsProps {
     currentVerticalLabel: string;
     customCssClasses?: AlternativeVerticalsCssClasses;
     displayAllOnNoResults?: boolean;
-    verticalConfigMap: VerticalLabelMap<T>;
+    verticalConfigMap: VerticalLabelMap;
 }
 
 // @public
@@ -498,7 +498,7 @@ export interface SearchBarProps {
 }
 
 // @public
-export type SectionComponent = (props: SectionProps) => JSX.Element | null;
+export type SectionComponent<T> = (props: SectionProps<T>) => JSX.Element | null;
 
 // @public
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
@@ -515,10 +515,10 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
 }
 
 // @public
-export interface SectionProps {
-    CardComponent?: CardComponent;
+export interface SectionProps<T> {
+    CardComponent?: CardComponent<T>;
     header?: JSX.Element;
-    results: Result[];
+    results: Result<T>[];
     verticalKey: string;
     viewMore?: boolean;
 }
@@ -603,7 +603,7 @@ export interface StandardFacetsProps {
 }
 
 // @public
-export function StandardSection(props: StandardSectionProps): JSX.Element | null;
+export function StandardSection<T>(props: StandardSectionProps<T>): JSX.Element | null;
 
 // @public
 export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
@@ -612,7 +612,7 @@ export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
 }
 
 // @public
-export interface StandardSectionProps extends SectionProps {
+export interface StandardSectionProps<T> extends SectionProps<T> {
     customCssClasses?: StandardSectionCssClasses;
 }
 
@@ -664,7 +664,7 @@ export interface ThumbsFeedbackProps {
 }
 
 // @public
-export function UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps): JSX.Element | null;
+export function UniversalResults<T>({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps<T>): JSX.Element | null;
 
 // @public
 export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
@@ -675,10 +675,10 @@ export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
 }
 
 // @public
-export interface UniversalResultsProps<T = Record<string, unknown>> {
+export interface UniversalResultsProps<T = Record<string, DefaultResultType>> {
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
-    verticalConfigMap: VerticalConfigMap;
+    verticalConfigMap: VerticalConfigMap<T>;
 }
 
 // @public
@@ -697,22 +697,22 @@ export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analy
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
 
 // @public
-export interface VerticalConfig<T = Record<string, unknown>> {
+export interface VerticalConfig<T = DefaultResultType> {
     CardComponent?: CardComponent<T>;
     getViewAllUrl?: (data: VerticalLink) => string;
     label?: string;
-    SectionComponent?: SectionComponent;
+    SectionComponent?: SectionComponent<T>;
     viewAllButton?: boolean;
 }
 
 // @public
-export interface VerticalConfigMap<T = Record<string, any>> {
-    [verticalKey: string]: VerticalConfig;
-}
+export type VerticalConfigMap<T> = {
+    [K in keyof T]: VerticalConfig<T[K]>;
+};
 
 // @public
-export interface VerticalLabelMap<T = Record<string, unknown>> {
-    [verticalKey: string]: Pick<VerticalConfig<T>, 'label'>;
+export interface VerticalLabelMap {
+    [verticalKey: string]: Pick<VerticalConfig, 'label'>;
 }
 
 // @public
@@ -733,7 +733,7 @@ export interface VerticalResultsCssClasses {
 }
 
 // @public
-export interface VerticalResultsProps<T = DefaultResultType> {
+export interface VerticalResultsProps<T> {
     CardComponent: CardComponent<T>;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;

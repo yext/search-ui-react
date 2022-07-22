@@ -3,12 +3,13 @@ import { CardComponent } from '../models/cardComponent';
 import { Result } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
+import { DefaultResultType } from '../models/defaultResultType';
 
 const builtInCssClasses: Readonly<VerticalResultsCssClasses> = {
   verticalResultsLoading: 'opacity-50'
 };
 
-interface VerticalResultsDisplayProps<T> {
+interface VerticalResultsDisplayProps<T = DefaultResultType> {
   CardComponent: CardComponent<T>,
   isLoading?: boolean,
   results: Result<T>[],
