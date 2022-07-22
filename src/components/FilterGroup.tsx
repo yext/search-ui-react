@@ -1,3 +1,4 @@
+import { useSearchUtilities } from '@yext/search-headless-react';
 import { PropsWithChildren, useMemo, useState } from 'react';
 import {
   CheckboxOption,
@@ -5,7 +6,8 @@ import {
   CollapsibleSection,
   FilterOptionConfig,
   SearchInput,
-  FilterGroupProvider
+  FilterGroupProvider,
+  useFilterGroupContext
 } from './Filters';
 
 /**
@@ -72,8 +74,8 @@ export function FilterGroup({
     };
   }, [customCssClasses]);
 
-  const limited = filterOptions.length > showMoreLimit;
-  const [showAll, setShowAll] = useState<boolean>(!limited);
+  const isLimited = filterOptions.length > showMoreLimit;
+  const [showAll, setShowAll] = useState<boolean>(!isLimited);
 
   function renderTitle() {
     return collapsible
@@ -83,6 +85,7 @@ export function FilterGroup({
           {title}
         </div>);
   }
+
   return (
     <FilterGroupProvider
       fieldId={fieldId}
@@ -91,22 +94,45 @@ export function FilterGroup({
       {renderTitle()}
       <CollapsibleSection className={cssClasses.optionsContainer}>
         {searchable && <SearchInput className={cssClasses.searchInput} />}
-        {filterOptions.slice(0, showAll ? filterOptions.length : showMoreLimit).map(o => {
-          return (
-            <CheckboxOption
-              {...o}
-              key={o.displayName || o.value.toString()}
-              customCssClasses={cssClasses}
-            />
-          );
-        })}
-        {limited &&
-        /* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */
-        <button className='text-primary py-1 text-sm' onClick={() => setShowAll(!showAll)}>
-          {showAll ? 'Show Less' : 'Show More'}
-        </button>}
+        <CheckboxOptions
+          filterOptions={filterOptions}
+          showMoreLimit={showMoreLimit}
+          cssClasses={cssClasses}
+          showAll={showAll} />
+        {isLimited &&
+          /* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */
+          <button className='text-primary py-1 text-sm' onClick={() => setShowAll(!showAll)}>
+            {showAll ? 'Show Less' : 'Show More'}
+          </button>
+        }
         {children}
       </CollapsibleSection>
     </FilterGroupProvider>
+  );
+}
+
+function CheckboxOptions({
+  filterOptions,
+  showMoreLimit,
+  cssClasses,
+  showAll
+}) {
+  const searchUtilities = useSearchUtilities();
+  const { searchValue } = useFilterGroupContext();
+
+  return (
+    <>
+      {filterOptions.filter(o => {
+        return searchUtilities.isCloseMatch((o.displayName || o.value.toString()), searchValue);
+      }).map(o => {
+        return (
+          <CheckboxOption
+            {...o}
+            key={o.displayName || o.value.toString()}
+            customCssClasses={cssClasses}
+          />
+        );
+      }).slice(0, showAll ? filterOptions.length : showMoreLimit)}
+    </>
   );
 }
