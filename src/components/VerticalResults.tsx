@@ -1,7 +1,6 @@
 import { CardComponent } from '../models/cardComponent';
-import { Result, useSearchState } from '@yext/search-headless-react';
+import { useSearchState } from '@yext/search-headless-react';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
-import { DefaultResultType } from '../models/defaultResultType';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.
@@ -18,7 +17,7 @@ export interface VerticalResultsCssClasses {
  *
  * @public
  */
-export interface VerticalResultsProps<T=DefaultResultType> {
+export interface VerticalResultsProps<T> {
   /** {@inheritDoc CardComponent} */
   CardComponent: CardComponent<T>,
   /**
@@ -45,11 +44,11 @@ export function VerticalResults<T>(props: VerticalResultsProps<T>): JSX.Element 
     useSearchState(state => state.vertical?.noResults?.allResultsForVertical.results) || [];
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let results = verticalResults as any;
   if (verticalResults.length === 0 && displayAllOnNoResults) {
     results = allResultsForVertical;
   }
-
 
   return (
     <VerticalResultsDisplay results={results} isLoading={isLoading} {...otherProps} />
