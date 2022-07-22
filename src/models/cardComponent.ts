@@ -1,11 +1,11 @@
 import { Result } from '@yext/search-headless-react';
-
+import { DefaultResultType } from './defaultResultType';
 /**
  * The props provided to every {@link CardComponent}.
  *
  * @public
  */
-export interface CardProps<T = Record<string, unknown>> {
+export interface CardProps<T = DefaultResultType> {
   /** The result data provided to the card for rendering. */
   result: Result<T>
 }
@@ -15,4 +15,4 @@ export interface CardProps<T = Record<string, unknown>> {
  *
  * @public
  */
-export type CardComponent<T = Record<string, unknown>> = (props: CardProps<T>) => JSX.Element;
+export type CardComponent<T = DefaultResultType> = (props: CardProps<T>) => JSX.Element;

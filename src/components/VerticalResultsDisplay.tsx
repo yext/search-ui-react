@@ -3,15 +3,16 @@ import { CardComponent } from '../models/cardComponent';
 import { Result } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
+import { DefaultResultType } from '../models/defaultResultType';
 
 const builtInCssClasses: Readonly<VerticalResultsCssClasses> = {
   verticalResultsLoading: 'opacity-50'
 };
 
-interface VerticalResultsDisplayProps {
-  CardComponent: CardComponent,
+interface VerticalResultsDisplayProps<T=DefaultResultType> {
+  CardComponent: CardComponent<T>,
   isLoading?: boolean,
-  results: Result[],
+  results: Result<T>[],
   customCssClasses?: VerticalResultsCssClasses
 }
 
@@ -21,7 +22,7 @@ interface VerticalResultsDisplayProps {
  * @param props - The props for the Component, including the results and the card type
  *                to be used.
  */
-export function VerticalResultsDisplay(props: VerticalResultsDisplayProps): JSX.Element | null {
+export function VerticalResultsDisplay<T>(props: VerticalResultsDisplayProps<T>): JSX.Element | null {
   const {
     CardComponent,
     results,
@@ -51,9 +52,9 @@ export function VerticalResultsDisplay(props: VerticalResultsDisplayProps): JSX.
  * @param CardComponent - The card for the vertical.
  * @param result - The result to render.
  */
-function renderResult(
-  CardComponent: CardComponent,
-  result: Result
+function renderResult<T>(
+  CardComponent: CardComponent<T>,
+  result: Result<T>
 ): JSX.Element {
   return <CardComponent result={result} key={result.id || result.index}/>;
 }

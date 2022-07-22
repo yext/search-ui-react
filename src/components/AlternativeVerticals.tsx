@@ -44,9 +44,9 @@ function isVerticalSuggestion(suggestion: unknown): suggestion is VerticalSugges
  *
  * @public
  */
-export interface VerticalLabelMap {
+export interface VerticalLabelMap<T = Record<string, unknown>> {
   /** Config mapped to a vertical. */
-  [verticalKey: string]: Pick<VerticalConfig, 'label'>
+  [verticalKey: string]: Pick<VerticalConfig<T>, 'label'>
 }
 
 /**
@@ -54,11 +54,11 @@ export interface VerticalLabelMap {
  *
  * @public
  */
-export interface AlternativeVerticalsProps {
+export interface AlternativeVerticalsProps<T = Record<string, unknown>> {
   /** The label for the current vertical. */
   currentVerticalLabel: string,
   /** A map of verticalKeys to the display label for that vertical. */
-  verticalConfigMap: VerticalLabelMap,
+  verticalConfigMap: VerticalLabelMap<T>,
   /**
    * Whether or not all results should be displayed when there are none returned from the search.
    * Defaults to true.

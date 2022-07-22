@@ -30,7 +30,7 @@ export interface VerticalConfig<T = Record<string, unknown>> {
  *
  * @public
  */
-export interface VerticalConfigMap {
+export interface VerticalConfigMap<T=Record<string,any>> {
   /** Config mapped to a vertical. */
   [verticalKey: string]: VerticalConfig
 }

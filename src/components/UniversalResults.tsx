@@ -30,7 +30,7 @@ const builtInCssClasses: Readonly<UniversalResultsCssClasses> = {
  *
  * @public
  */
-export interface UniversalResultsProps {
+export interface UniversalResultsProps<T=Record<string, unknown>> {
   /** Whether or not to show the applied filters. */
   showAppliedFilters?: boolean,
   /** A mapping of verticalKey to the configuration for each vertical. */
