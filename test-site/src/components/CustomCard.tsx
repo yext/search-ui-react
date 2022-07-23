@@ -1,12 +1,12 @@
 
 import { CardProps } from '@yext/search-ui-react';
 
-export interface CustomResultsType {
+interface CustomRawDataType {
   name: string,
   description: string,
 }
 
-export function CustomCard(props: CardProps<CustomResultsType>): JSX.Element {
+export function CustomCard(props: CardProps<CustomRawDataType>): JSX.Element {
   const { result } = props;
 
   return (

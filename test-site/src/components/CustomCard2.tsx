@@ -1,12 +1,12 @@
 
 import { CardProps } from '@yext/search-ui-react';
 
-export interface Custom2ResultsType {
+interface CustomRawDataType2 {
   name: string,
   c_vimeo: string
 }
 
-export function CustomCard2(props: CardProps<Custom2ResultsType>): JSX.Element {
+export function CustomCard2(props: CardProps<CustomRawDataType2>): JSX.Element {
   const { result } = props;
 
   return (
