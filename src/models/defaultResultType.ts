@@ -1,1 +1,0 @@
-export type DefaultResultType = Record<string, unknown>;

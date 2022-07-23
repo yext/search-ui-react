@@ -3,7 +3,6 @@ import { SectionProps } from '../../models/sectionComponent';
 import { StandardCard } from '../cards/standard/StandardCard';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { VerticalResultsCssClasses } from '../VerticalResults';
-import { DefaultResultType } from '../../models/defaultResultType';
 
 /**
  * The CSS class interface used for {@link StandardSection}.
@@ -38,11 +37,9 @@ export interface StandardSectionProps<T> extends SectionProps<T> {
  */
 export function StandardSection<T>(props: StandardSectionProps<T>): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
-  // const { results, CardComponent = StandardCard, header } = props;
-  //TODO: investigate
-  const { results, CardComponent, header } = props;
+  const { results, CardComponent = StandardCard, header } = props;
 
-  if (!CardComponent || results.length === 0) {
+  if (results.length === 0) {
     return null;
   }
 

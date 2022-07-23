@@ -9,7 +9,7 @@ The configuration for a vertical.
 <b>Signature:</b>
 
 ```typescript
-export interface VerticalConfig<T = DefaultResultType> 
+export interface VerticalConfig<T = DefaultRawDataType> 
 ```
 
 ## Properties

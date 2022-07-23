@@ -110,16 +110,14 @@ export interface AutocompleteResultCssClasses {
 // @public
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
-// Warning: (ae-forgotten-export) The symbol "DefaultResultType" needs to be exported by the entry point index.d.ts
-//
 // @public
-export type CardComponent<T = DefaultResultType> = (props: CardProps<T>) => JSX.Element;
+export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
 
 // @public
-export interface CardProps<T = DefaultResultType> {
+export interface CardProps<T = DefaultRawDataType> {
     result: Result<T>;
 }
 
@@ -132,6 +130,9 @@ export interface CtaData {
     link: string;
     linkType: string;
 }
+
+// @public
+export type DefaultRawDataType = Record<string, unknown>;
 
 // @public
 export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
@@ -575,7 +576,7 @@ export interface StandardCardData {
 }
 
 // @public
-export interface StandardCardProps extends CardProps {
+export interface StandardCardProps extends CardProps<any> {
     customCssClasses?: StandardCardCssClasses;
     showFeedbackButtons?: boolean;
 }
@@ -675,7 +676,7 @@ export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
 }
 
 // @public
-export interface UniversalResultsProps<T = Record<string, DefaultResultType>> {
+export interface UniversalResultsProps<T> {
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
     verticalConfigMap: VerticalConfigMap<T>;
@@ -697,7 +698,7 @@ export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analy
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
 
 // @public
-export interface VerticalConfig<T = DefaultResultType> {
+export interface VerticalConfig<T = DefaultRawDataType> {
     CardComponent?: CardComponent<T>;
     getViewAllUrl?: (data: VerticalLink) => string;
     label?: string;
@@ -706,7 +707,7 @@ export interface VerticalConfig<T = DefaultResultType> {
 }
 
 // @public
-export type VerticalConfigMap<T> = {
+export type VerticalConfigMap<T = Record<string, DefaultRawDataType>> = {
     [K in keyof T]: VerticalConfig<T[K]>;
 };
 

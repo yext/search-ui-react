@@ -16,7 +16,7 @@ import {
   NumericalFacets,
   AlternativeVerticals
 } from '@yext/search-ui-react';
-import { CustomCard } from '../components/CustomCard';
+// import { CustomCard } from '../components/CustomCard';
 
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 
@@ -72,12 +72,13 @@ export function PeoplePage() {
             <ResultsCount />
             <AppliedFilters hierarchicalFacetsFieldIds={hierarchicalFacetFieldIds} />
           </div>
-          {/* <VerticalResults
-            CardComponent={StandardCard}
-          /> */}
           <VerticalResults
-            CardComponent={CustomCard}
+            CardComponent={StandardCard}
           />
+          {/* Test generic result type  */}
+          {/* <VerticalResults
+            CardComponent={CustomCard}
+          /> */}
           <Pagination />
           <LocationBias />
         </div>

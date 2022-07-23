@@ -8,7 +8,6 @@ import {
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
 import { VerticalConfigMap } from '../models/verticalConfig';
-import { DefaultResultType } from '../models/defaultResultType';
 
 /**
  * The CSS class interface used for {@link UniversalResults}.
@@ -31,7 +30,7 @@ const builtInCssClasses: Readonly<UniversalResultsCssClasses> = {
  *
  * @public
  */
-export interface UniversalResultsProps<T = Record<string, DefaultResultType>> {
+export interface UniversalResultsProps<T> {
   /** Whether or not to show the applied filters. */
   showAppliedFilters?: boolean,
   /** A mapping of verticalKey to the configuration for each vertical. */
