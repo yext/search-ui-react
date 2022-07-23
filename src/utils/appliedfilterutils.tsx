@@ -30,7 +30,8 @@ export function getDuplicateFacets(
   hiddenFields: string[],
   hierarchicalFieldIds: string[],
 ): DisplayableFilter[] {
-  const appliedStaticFilters = filterHiddenFields(appliedFiltersState?.static?.filter(filter => filter.selected) ?? [], hiddenFields);
+  const appliedStaticFilters = filterHiddenFields(
+    appliedFiltersState?.static?.filter(filter => filter.selected) ?? [], hiddenFields);
   const appliedFacets =
   filterHiddenFields(getDisplayableFacets(appliedFiltersState.facets ?? [], hierarchicalFieldIds)
     .filter(facet => facet.selected), hiddenFields);
@@ -42,7 +43,6 @@ export function getDuplicateFacets(
   });
   return duplicatesFacets;
 }
-
 
 function removeDuplicateFacets(
   appliedStaticFilters: DisplayableFilter[],
