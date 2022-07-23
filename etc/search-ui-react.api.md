@@ -695,8 +695,8 @@ export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analy
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
 
 // @public
-export interface VerticalConfig {
-    CardComponent?: CardComponent;
+export interface VerticalConfig<T = Record<string, unknown>> {
+    CardComponent?: CardComponent<T>;
     getViewAllUrl?: (data: VerticalLink) => string;
     label?: string;
     SectionComponent?: SectionComponent;
