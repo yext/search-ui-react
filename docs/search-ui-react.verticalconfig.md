@@ -9,14 +9,14 @@ The configuration for a vertical.
 <b>Signature:</b>
 
 ```typescript
-export interface VerticalConfig 
+export interface VerticalConfig<T = Record<string, unknown>> 
 ```
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [CardComponent?](./search-ui-react.verticalconfig.cardcomponent.md) | [CardComponent](./search-ui-react.cardcomponent.md) | <i>(Optional)</i> The card to use for this vertical. |
+|  [CardComponent?](./search-ui-react.verticalconfig.cardcomponent.md) | [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->&lt;T&gt; | <i>(Optional)</i> The card to use for this vertical. |
 |  [getViewAllUrl?](./search-ui-react.verticalconfig.getviewallurl.md) | (data: [VerticalLink](./search-ui-react.verticallink.md)<!-- -->) =&gt; string | <i>(Optional)</i> A function to provide user defined url path for each vertical's view all link. |
 |  [label?](./search-ui-react.verticalconfig.label.md) | string | <i>(Optional)</i> The label for the vertical. |
 |  [SectionComponent?](./search-ui-react.verticalconfig.sectioncomponent.md) | [SectionComponent](./search-ui-react.sectioncomponent.md) | <i>(Optional)</i> A component that can be used to render a section template for vertical results. |
