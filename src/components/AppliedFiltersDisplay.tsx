@@ -122,8 +122,8 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
           }
           searchActions.setFacetOption(fieldId, { matcher, value }, false);
         }
-      })
-    };
+      });
+    }
     searchActions.setFilterOption({ ...filter, selected: false });
     executeSearch(searchActions);
   };
