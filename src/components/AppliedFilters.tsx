@@ -70,7 +70,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     hierarchicalFacetsFieldIds
   } = props;
 
-  const duplicatesFacets: DisplayableFilter[] = useMemo(() => {
+  const duplicateFacets: DisplayableFilter[] = useMemo(() => {
     return getDuplicateFacets(
       hasResults ? (filters ?? {}) : {},
       hiddenFields ?? ['builtin.entityType'],
@@ -104,9 +104,11 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersLoading ?? '']: isLoading
   });
+  console.log(duplicateFacets);
   return <AppliedFiltersDisplay
     {...appliedFilters}
     cssClasses={cssClasses}
     hierarchicalFacetsDelimiter={hierarchicalFacetsDelimiter}
+    duplicateFacets={duplicateFacets}
   />;
 }
