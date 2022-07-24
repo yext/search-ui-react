@@ -4,14 +4,13 @@ import {
   SelectableFilter as DisplayableFilter,
   useSearchState,
   SearchTypeEnum,
-  Filter,
 } from '@yext/search-headless-react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacetDisplay';
 import { executeSearch } from '../utils/search-operations';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { isDescendantHierarchicalFacet } from '../utils/appliedfilterutils';
 import { isDuplicateFilter } from '../utils/filterutils';
 
@@ -72,7 +71,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   }
 
   const handleRemoveFacetOption = (filter: DisplayableFilter) => {
-    const { fieldId, matcher, value } = filter;    
+    const { fieldId, matcher, value } = filter;
     if (isNearFilterValue(value)) {
       console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
       return;
@@ -124,7 +123,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
           searchActions.setFacetOption(fieldId, { matcher, value }, false);
         }
       })
-    }
+    };
     searchActions.setFilterOption({ ...filter, selected: false });
     executeSearch(searchActions);
   };
