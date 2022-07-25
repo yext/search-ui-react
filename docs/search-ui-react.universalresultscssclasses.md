@@ -4,7 +4,7 @@
 
 ## UniversalResultsCssClasses interface
 
-The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. TEST
+The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->.
 
 <b>Signature:</b>
 

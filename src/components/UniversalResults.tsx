@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import { VerticalConfigMap } from '../models/verticalConfig';
 
 /**
- * The CSS class interface used for {@link UniversalResults}. TEST
+ * The CSS class interface used for {@link UniversalResults}.
  *
  * @public
  */
