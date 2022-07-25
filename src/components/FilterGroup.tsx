@@ -1,4 +1,4 @@
-import { NumberRangeValue, useSearchUtilities } from '@yext/search-headless-react';
+import { useSearchUtilities } from '@yext/search-headless-react';
 import { isUndefined } from 'lodash';
 import { PropsWithChildren, useMemo, useState } from 'react';
 import {
@@ -128,7 +128,7 @@ function CheckboxOptions({
   const { searchValue } = useFilterGroupContext();
 
   const shouldRenderOption = (
-    option: { displayName?: string, value: string | number | boolean | NumberRangeValue }
+    option: { displayName?: string, value: FilterOptionConfig['value'] }
   ) => {
     if (isUndefined(option.displayName)) {
       option.displayName = option.value.toString();
