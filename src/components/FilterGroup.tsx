@@ -1,5 +1,4 @@
 import { useSearchUtilities } from '@yext/search-headless-react';
-import { isUndefined } from 'lodash';
 import { PropsWithChildren, useMemo, useState } from 'react';
 import {
   CheckboxOption,
