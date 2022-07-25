@@ -166,7 +166,7 @@ export function SearchBar({
   geolocationOptions,
   hideRecentSearches,
   visualAutocompleteConfig,
-  showVerticalLinks = false,
+  showVerticalLinks = false, //test auto-update doc
   onSelectVerticalLink,
   verticalKeyToLabel,
   recentSearchesLimit = 5,
