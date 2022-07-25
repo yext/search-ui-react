@@ -158,7 +158,7 @@ describe('SearchBar', () => {
       expect(screen.queryByText('in verticalKey1')).not.toBeInTheDocument();
       expect(screen.queryByText('in verticalKey2')).not.toBeInTheDocument();
     });
- 
+
     it('displays vertical links as part of the query suggestions when showVerticalLinks is set to true', async () => {
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
