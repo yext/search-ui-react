@@ -76,9 +76,6 @@ export function FilterGroup({
     };
   }, [customCssClasses]);
 
-  const [isLimited, setIsLimited] = useState<boolean>(filterOptions.length > showMoreLimit);
-  const [showAll, setShowAll] = useState<boolean>(!isLimited);
-
   function renderTitle() {
     return collapsible
       ? <CollapsibleLabel label={title} />
@@ -99,15 +96,7 @@ export function FilterGroup({
         <CheckboxOptions
           filterOptions={filterOptions}
           showMoreLimit={showMoreLimit}
-          cssClasses={cssClasses}
-          showAll={showAll}
-          setIsLimited={setIsLimited} />
-        {isLimited &&
-          /* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */
-          <button className='text-primary py-1 text-sm' onClick={() => setShowAll(!showAll)}>
-            {showAll ? 'Show Less' : 'Show More'}
-          </button>
-        }
+          cssClasses={cssClasses} />
         {children}
       </CollapsibleSection>
     </FilterGroupProvider>
@@ -117,15 +106,11 @@ export function FilterGroup({
 function CheckboxOptions({
   filterOptions,
   showMoreLimit,
-  cssClasses,
-  showAll,
-  setIsLimited
+  cssClasses
 }: {
   filterOptions: FilterOptionConfig[],
   showMoreLimit: number,
-  cssClasses: CheckboxCssClasses,
-  showAll: boolean,
-  setIsLimited: (limited: boolean) => void
+  cssClasses: CheckboxCssClasses
 }) {
   const searchUtilities = useSearchUtilities();
   const { searchValue } = useFilterGroupContext();
@@ -149,16 +134,20 @@ function CheckboxOptions({
     );
   });
 
-  if (displayedOptions.length > showMoreLimit) {
-    displayedOptions = displayedOptions.slice(0, showAll ? filterOptions.length : showMoreLimit);
-    setIsLimited(true);
-  } else {
-    setIsLimited(false);
-  }
+  const isLimited = displayedOptions.length > showMoreLimit;
+
+  const [showAll, setShowAll] = useState<boolean>(!isLimited);
+  displayedOptions = displayedOptions.slice(0, showAll ? displayedOptions.length : showMoreLimit);
 
   return (
     <>
       {displayedOptions}
+      {isLimited &&
+        /* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */
+        <button className='text-primary py-1 text-sm' onClick={() => setShowAll(!showAll)}>
+          {showAll ? 'Show Less' : 'Show More'}
+        </button>
+      }
     </>
   );
 }
