@@ -175,6 +175,12 @@ export function FilterSearch({
     });
   }
 
+  const handleInputFocus = useCallback((value = '') => {
+    if (value) {
+      executeFilterSearch(value);
+    }
+  }, [executeFilterSearch]);
+
   return (
     <div className={cssClasses.filterSearchContainer}>
       {label && <h1 className={cssClasses.label}>{label}</h1>}
@@ -188,7 +194,7 @@ export function FilterSearch({
           className={cssClasses.inputElement}
           placeholder={placeholder}
           onChange={executeFilterSearch}
-          onFocus={executeFilterSearch}
+          onFocus={handleInputFocus}
           submitCriteria={meetsSubmitCritera}
         />
         <DropdownMenu>
