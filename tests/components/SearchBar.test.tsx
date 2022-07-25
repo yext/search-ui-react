@@ -147,18 +147,6 @@ describe('SearchBar', () => {
         .mockResolvedValue(mockedUniversalAutocompleteResult);
     });
 
-    it('does not display vertical links on default', async () => {
-      render(
-        <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
-          <SearchBar />
-        </SearchHeadlessContext.Provider>
-      );
-      userEvent.click(screen.getByRole('textbox'));
-      expect(await screen.findByText('query suggestion')).toBeInTheDocument();
-      expect(screen.queryByText('in verticalKey1')).not.toBeInTheDocument();
-      expect(screen.queryByText('in verticalKey2')).not.toBeInTheDocument();
-    });
-
     it('displays vertical links as part of the query suggestions when showVerticalLinks is set to true', async () => {
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
@@ -171,10 +159,10 @@ describe('SearchBar', () => {
       expect(await screen.findByText('in verticalKey2')).toBeInTheDocument();
     });
 
-    it('does not display vertical links when showVerticalLinks is set to false', async () => {
+    it('does not display vertical links on default', async () => {
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
-          <SearchBar showVerticalLinks={false}/>
+          <SearchBar />
         </SearchHeadlessContext.Provider>
       );
       userEvent.click(screen.getByRole('textbox'));
