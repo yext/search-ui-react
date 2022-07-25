@@ -1,6 +1,6 @@
 import { NumberRangeValue, useSearchUtilities } from '@yext/search-headless-react';
 import { isUndefined } from 'lodash';
-import { PropsWithChildren, useCallback, useMemo, useState } from 'react';
+import { PropsWithChildren, useMemo, useState } from 'react';
 import {
   CheckboxOption,
   CollapsibleLabel,
