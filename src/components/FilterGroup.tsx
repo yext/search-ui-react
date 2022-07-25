@@ -117,15 +117,15 @@ function CheckboxOptions({
   const shouldRenderOption = (
     option: FilterOptionConfig
   ) => {
-    option.displayName = option.displayName || option.value.toString();
-    return searchUtilities.isCloseMatch(option.displayName, searchValue);
+    const displayName = option.displayName || option.value.toString();
+    return searchUtilities.isCloseMatch(displayName, searchValue);
   };
 
   let displayedOptions = filterOptions.filter(shouldRenderOption).map(o => {
     return (
       <CheckboxOption
         {...o}
-        key={o.displayName}
+        key={o.displayName || o.value.toString()}
         customCssClasses={cssClasses}
       />
     );
