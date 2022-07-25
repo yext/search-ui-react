@@ -95,13 +95,11 @@ export function FilterSearch({
   );
 
   useEffect(() => {
-    filters?.forEach(f => {
-      if (currentFilter && isDuplicateFilter(f, currentFilter) && !f.selected) {
-        clearFilterSearchResponse();
-        setCurrentFilter(undefined);
-        setQuery('');
-      }
-    });
+    if (currentFilter && filters?.find(f => isDuplicateFilter(f, currentFilter) && !f.selected)) {
+      clearFilterSearchResponse();
+      setCurrentFilter(undefined);
+      setQuery('');
+    }
   }, [clearFilterSearchResponse, currentFilter, filters]);
 
   const sections = useMemo(() => {
@@ -132,9 +130,9 @@ export function FilterSearch({
     handleDropdownEvent(value, itemData, true);
   }, [handleDropdownEvent]);
 
-  const handleToggleDropdown = useCallback((isActive, _prevValue, _value, _index, itemData) => {
+  const handleToggleDropdown = useCallback((isActive, _prevValue, value, _index, itemData) => {
     if (!isActive) {
-      handleDropdownEvent(_value, itemData, false);
+      handleDropdownEvent(value, itemData, false);
     }
   }, [handleDropdownEvent]);
 
