@@ -2,13 +2,14 @@ import { useCardAnalyticsCallback } from '../../../hooks/useCardAnalyticsCallbac
 import { CardProps } from '../../../models/cardComponent';
 import { useCardFeedbackCallback } from '../../../hooks/useCardFeedbackCallback';
 import { StandardCardDisplay, StandardCardCssClasses } from './StandardCardDisplay';
+import { DefaultRawDataType } from '../../../models';
 
 /**
  * Props for a StandardCard.
  *
  * @public
  */
-export interface StandardCardProps<T> extends CardProps<T> {
+export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> {
   /** Whether or not to show thumbs up/down buttons to provide feedback on the result card */
   showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
