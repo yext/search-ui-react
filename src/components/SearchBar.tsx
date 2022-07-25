@@ -142,8 +142,8 @@ export interface SearchBarProps {
   customCssClasses?: SearchBarCssClasses,
   /** {@inheritDoc VisualAutocompleteConfig} */
   visualAutocompleteConfig?: VisualAutocompleteConfig,
-  /** Hides vertical links if true. */
-  hideVerticalLinks?: boolean,
+  /** Shows vertical links if true. */
+  showVerticalLinks?: boolean,
   /** A function which is called when a vertical link is selected. */
   onSelectVerticalLink?: (data: { verticalLink: VerticalLink, querySource: QuerySource }) => void,
   /** A function which returns a display label for the given verticalKey. */
@@ -166,7 +166,7 @@ export function SearchBar({
   geolocationOptions,
   hideRecentSearches,
   visualAutocompleteConfig,
-  hideVerticalLinks,
+  showVerticalLinks = true,
   onSelectVerticalLink,
   verticalKeyToLabel,
   recentSearchesLimit = 5,
@@ -340,7 +340,7 @@ export function SearchBar({
             `autocomplete suggestion: ${result.value}`
           )}
         </DropdownItem>
-        {!hideVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
+        {showVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
           <DropdownItem
             key={j}
             className='flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100'
