@@ -18,6 +18,13 @@ import { useAnalytics } from './useAnalytics';
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
 
 /**
+ * The data types use to construct the payload in the analytics event.
+ *
+ * @public
+ */
+export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | Result<T>;
+
+/**
  * Analytics event types for interactions on a card.
  *
  * @public
@@ -29,15 +36,15 @@ function isDirectAnswer(data: unknown): data is DirectAnswerData {
     (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
 }
 
-export function useCardAnalytics<T = DefaultRawDataType>(): (
-  cardResult: Result<T> | DirectAnswerData, analyticsEventType: CardAnalyticsType
+export function useCardAnalytics<T>(): (
+  cardResult: CardAnalyticsDataType<T>, analyticsEventType: CardAnalyticsType
 ) => void {
   const analytics = useAnalytics();
   const verticalKey = useSearchState(state => state.vertical.verticalKey);
   const queryId = useSearchState(state => state.query.queryId);
 
   const reportCtaEvent = useCallback((
-    result: DirectAnswerData | Result<T>,
+    result: CardAnalyticsDataType<T>,
     eventType: CardCtaEventType
   ) => {
     let url: string | undefined, entityId: string | undefined, fieldName: string | undefined;
@@ -75,7 +82,7 @@ export function useCardAnalytics<T = DefaultRawDataType>(): (
   }, [analytics, queryId, verticalKey]);
 
   const reportFeedbackEvent = useCallback((
-    result: DirectAnswerData | Result<T>,
+    result: CardAnalyticsDataType<T>,
     feedbackType: FeedbackType
   ) => {
     if (!queryId) {
@@ -101,7 +108,7 @@ export function useCardAnalytics<T = DefaultRawDataType>(): (
   }, [analytics, queryId, verticalKey]);
 
   const reportAnalyticsEvent = useCallback((
-    cardResult: DirectAnswerData | Result<T>,
+    cardResult: CardAnalyticsDataType<T>,
     analyticsEventType: CardAnalyticsType
   ) => {
     if (!analytics) {

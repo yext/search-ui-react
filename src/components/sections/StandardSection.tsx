@@ -3,6 +3,7 @@ import { SectionProps } from '../../models/sectionComponent';
 import { StandardCard } from '../cards/standard/StandardCard';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { VerticalResultsCssClasses } from '../VerticalResults';
+import { DefaultRawDataType } from '../../models';
 
 /**
  * The CSS class interface used for {@link StandardSection}.
@@ -22,7 +23,7 @@ const builtInCssClasses: Readonly<StandardSectionCssClasses> = {
  *
  * @public
  */
-export interface StandardSectionProps<T> extends SectionProps<T> {
+export interface StandardSectionProps<T = DefaultRawDataType> extends SectionProps<T> {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardSectionCssClasses
 }

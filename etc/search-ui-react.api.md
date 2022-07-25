@@ -108,6 +108,9 @@ export interface AutocompleteResultCssClasses {
 }
 
 // @public
+export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T>;
+
+// @public
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
 // @public
@@ -613,7 +616,7 @@ export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
 }
 
 // @public
-export interface StandardSectionProps<T> extends SectionProps<T> {
+export interface StandardSectionProps<T = DefaultRawDataType> extends SectionProps<T> {
     customCssClasses?: StandardSectionCssClasses;
 }
 
@@ -689,10 +692,10 @@ export function updateLocationIfNeeded(searchActions: SearchActions, intents: Se
 export function useAnalytics(): AnalyticsService | null;
 
 // @public
-export function useCardAnalyticsCallback<T = DefaultRawDataType>(result: Result<T> | DirectAnswer_2, analyticsType: CardAnalyticsType): () => void;
+export function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>, analyticsType: CardAnalyticsType): () => void;
 
 // @public
-export function useCardFeedbackCallback<T = DefaultRawDataType>(result: Result<T> | DirectAnswer_2): (analyticsType: FeedbackType) => void;
+export function useCardFeedbackCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>): (analyticsType: FeedbackType) => void;
 
 // @public
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;

@@ -9,7 +9,7 @@ The configuration for a StandardSection.
 <b>Signature:</b>
 
 ```typescript
-export interface StandardSectionProps<T> extends SectionProps<T> 
+export interface StandardSectionProps<T = DefaultRawDataType> extends SectionProps<T> 
 ```
 <b>Extends:</b> [SectionProps](./search-ui-react.sectionprops.md)<!-- -->&lt;T&gt;
 

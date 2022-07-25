@@ -1,7 +1,10 @@
-import { Result, DirectAnswer as DirectAnswerData } from '@yext/search-headless-react';
 import { useCallback } from 'react';
 import { DefaultRawDataType } from '../models';
-import { CardAnalyticsType, useCardAnalytics } from './useCardAnalytics';
+import {
+  CardAnalyticsDataType,
+  CardAnalyticsType,
+  useCardAnalytics
+} from './useCardAnalytics';
 
 /**
  * Creates a memoized function for reporting card analytics.
@@ -12,7 +15,7 @@ import { CardAnalyticsType, useCardAnalytics } from './useCardAnalytics';
  * @param analyticsType - the card analytics event type to report.
  */
 export function useCardAnalyticsCallback<T = DefaultRawDataType>(
-  result: Result<T> | DirectAnswerData,
+  result: CardAnalyticsDataType<T>,
   analyticsType: CardAnalyticsType
 ): () => void {
   const reportAnalyticsEvent = useCardAnalytics<T>();

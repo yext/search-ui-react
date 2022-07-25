@@ -110,6 +110,7 @@
 
 |  Type Alias | Description |
 |  --- | --- |
+|  [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md) | The data types use to construct the payload in the analytics event. |
 |  [CardAnalyticsType](./search-ui-react.cardanalyticstype.md) | Analytics event types for interactions on a card. |
 |  [CardComponent](./search-ui-react.cardcomponent.md) | A functional component that can be used to render a result card. |
 |  [CardCtaEventType](./search-ui-react.cardctaeventtype.md) | Analytics event types for cta click and title click. |
