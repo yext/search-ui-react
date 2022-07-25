@@ -91,7 +91,7 @@
 |  [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) | Props for the [StaticFilters()](./search-ui-react.staticfilters.md) component. |
 |  [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md) | The CSS class interface used for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->. |
 |  [ThumbsFeedbackProps](./search-ui-react.thumbsfeedbackprops.md) | Props for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->. |
-|  [UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
+|  [UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. TEST |
 |  [UniversalResultsProps](./search-ui-react.universalresultsprops.md) | Props for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
 |  [VerticalConfig](./search-ui-react.verticalconfig.md) | The configuration for a vertical. |
 |  [VerticalConfigMap](./search-ui-react.verticalconfigmap.md) | A map of verticalKey to a VerticalConfig. |
