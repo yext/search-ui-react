@@ -171,6 +171,19 @@ describe('SearchBar', () => {
       expect(await screen.findByText('in verticalKey2')).toBeInTheDocument();
     });
 
+    it('does not display vertical links when showVerticalLinks is set to false', async () => {
+      render(
+        <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+          <SearchBar showVerticalLinks={false}/>
+        </SearchHeadlessContext.Provider>
+      );
+      userEvent.click(screen.getByRole('textbox'));
+      expect(await screen.findByText('query suggestion')).toBeInTheDocument();
+      expect(screen.queryByText('in verticalKey1')).not.toBeInTheDocument();
+      expect(screen.queryByText('in verticalKey2')).not.toBeInTheDocument();
+    });
+
+
     it('vertical links use display labels from verticalKeyToLabel when it is specified', async () => {
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
