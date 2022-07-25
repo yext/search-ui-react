@@ -118,9 +118,7 @@ function CheckboxOptions({
   const shouldRenderOption = (
     option: FilterOptionConfig
   ) => {
-    if (isUndefined(option.displayName)) {
-      option.displayName = option.value.toString();
-    }
+    option.displayName = option.displayName || option.value.toString();
     return searchUtilities.isCloseMatch(option.displayName, searchValue);
   };
 
