@@ -26,7 +26,7 @@
 |  [Pagination(props)](./search-ui-react.pagination.md) | Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages. |
 |  [renderHighlightedValue(highlightedValueOrString, customCssClasses)](./search-ui-react.renderhighlightedvalue.md) | Renders a HighlightedValue with highlighting based on its matchedSubstrings. |
 |  [ResultsCount({ customCssClasses })](./search-ui-react.resultscount.md) | Renders results count of a universal/vertical search. |
-|  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch })](./search-ui-react.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
+|  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch })](./search-ui-react.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
 |  [SpellCheck({ customCssClasses, onClick })](./search-ui-react.spellcheck.md) | Renders a suggested query if the Search API provides one. |
 |  [StandardCard(props)](./search-ui-react.standardcard.md) | This Component renders the base result card. |
 |  [StandardFacets(props)](./search-ui-react.standardfacets.md) | A component that displays simple facets applicable to the current vertical search. |

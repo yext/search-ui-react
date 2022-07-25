@@ -446,7 +446,7 @@ export interface ResultsCountProps {
 }
 
 // @public
-export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
+export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
 
 // @public
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
@@ -483,7 +483,6 @@ export interface SearchBarProps {
     customCssClasses?: SearchBarCssClasses;
     geolocationOptions?: PositionOptions;
     hideRecentSearches?: boolean;
-    hideVerticalLinks?: boolean;
     onSearch?: onSearchFunc;
     onSelectVerticalLink?: (data: {
         verticalLink: VerticalLink;
@@ -491,6 +490,7 @@ export interface SearchBarProps {
     }) => void;
     placeholder?: string;
     recentSearchesLimit?: number;
+    showVerticalLinks?: boolean;
     verticalKeyToLabel?: (verticalKey: string) => string;
     visualAutocompleteConfig?: VisualAutocompleteConfig;
 }
