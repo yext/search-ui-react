@@ -183,7 +183,6 @@ describe('SearchBar', () => {
       expect(screen.queryByText('in verticalKey2')).not.toBeInTheDocument();
     });
 
-
     it('vertical links use display labels from verticalKeyToLabel when it is specified', async () => {
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
