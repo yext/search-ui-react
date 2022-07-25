@@ -1,4 +1,3 @@
-
 import { CardProps, useCardAnalyticsCallback, useCardFeedbackCallback } from '@yext/search-ui-react';
 
 interface CustomRawDataType {

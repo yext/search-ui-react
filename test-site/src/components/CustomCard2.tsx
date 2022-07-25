@@ -1,4 +1,3 @@
-
 import { CardProps } from '@yext/search-ui-react';
 
 interface CustomRawDataType2 {
