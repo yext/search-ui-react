@@ -9,14 +9,14 @@ Creates a memoized function for reporting card feedback analytics.
 <b>Signature:</b>
 
 ```typescript
-export declare function useCardFeedbackCallback(result: Result | DirectAnswerData): (analyticsType: FeedbackType) => void;
+export declare function useCardFeedbackCallback<T = DefaultRawDataType>(result: Result<T> | DirectAnswerData): (analyticsType: FeedbackType) => void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  result | Result \| DirectAnswerData | card result that contains data use in the feedback analytics event. |
+|  result | Result&lt;T&gt; \| DirectAnswerData | card result that contains data use in the feedback analytics event. |
 
 <b>Returns:</b>
 

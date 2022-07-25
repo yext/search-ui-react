@@ -499,7 +499,7 @@ export interface SearchBarProps {
 }
 
 // @public
-export type SectionComponent<T> = (props: SectionProps<T>) => JSX.Element | null;
+export type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => JSX.Element | null;
 
 // @public
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
@@ -516,7 +516,7 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
 }
 
 // @public
-export interface SectionProps<T> {
+export interface SectionProps<T = DefaultRawDataType> {
     CardComponent?: CardComponent<T>;
     header?: JSX.Element;
     results: Result<T>[];
@@ -549,7 +549,7 @@ export interface SpellCheckProps {
 }
 
 // @public
-export function StandardCard(props: StandardCardProps): JSX.Element;
+export function StandardCard(props: StandardCardProps<any>): JSX.Element;
 
 // @public
 export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
@@ -576,7 +576,7 @@ export interface StandardCardData {
 }
 
 // @public
-export interface StandardCardProps extends CardProps<any> {
+export interface StandardCardProps<T> extends CardProps<T> {
     customCssClasses?: StandardCardCssClasses;
     showFeedbackButtons?: boolean;
 }
@@ -689,10 +689,10 @@ export function updateLocationIfNeeded(searchActions: SearchActions, intents: Se
 export function useAnalytics(): AnalyticsService | null;
 
 // @public
-export function useCardAnalyticsCallback(result: Result | DirectAnswer_2, analyticsType: CardAnalyticsType): () => void;
+export function useCardAnalyticsCallback<T = DefaultRawDataType>(result: Result<T> | DirectAnswer_2, analyticsType: CardAnalyticsType): () => void;
 
 // @public
-export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analyticsType: FeedbackType) => void;
+export function useCardFeedbackCallback<T = DefaultRawDataType>(result: Result<T> | DirectAnswer_2): (analyticsType: FeedbackType) => void;
 
 // @public
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;

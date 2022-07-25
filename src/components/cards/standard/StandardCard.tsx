@@ -8,8 +8,7 @@ import { StandardCardDisplay, StandardCardCssClasses } from './StandardCardDispl
  *
  * @public
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export interface StandardCardProps extends CardProps<any> {
+export interface StandardCardProps<T> extends CardProps<T> {
   /** Whether or not to show thumbs up/down buttons to provide feedback on the result card */
   showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -25,7 +24,8 @@ export interface StandardCardProps extends CardProps<any> {
  *                to render the card
  * @returns A React element for the result card
  */
-export function StandardCard(props: StandardCardProps): JSX.Element {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function StandardCard(props: StandardCardProps<any>): JSX.Element {
   const {
     result,
     customCssClasses,

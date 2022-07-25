@@ -9,7 +9,7 @@ The configuration of a section template for a vertical's results on a universal 
 <b>Signature:</b>
 
 ```typescript
-export interface SectionProps<T> 
+export interface SectionProps<T = DefaultRawDataType> 
 ```
 
 ## Properties

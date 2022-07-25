@@ -9,14 +9,14 @@ Creates a memoized function for reporting card analytics.
 <b>Signature:</b>
 
 ```typescript
-export declare function useCardAnalyticsCallback(result: Result | DirectAnswerData, analyticsType: CardAnalyticsType): () => void;
+export declare function useCardAnalyticsCallback<T = DefaultRawDataType>(result: Result<T> | DirectAnswerData, analyticsType: CardAnalyticsType): () => void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  result | Result \| DirectAnswerData | result that contains data use in the card analytics event. |
+|  result | Result&lt;T&gt; \| DirectAnswerData | result that contains data use in the card analytics event. |
 |  analyticsType | [CardAnalyticsType](./search-ui-react.cardanalyticstype.md) | the card analytics event type to report. |
 
 <b>Returns:</b>

@@ -7,6 +7,7 @@ import {
 } from '@yext/search-headless-react';
 import { useCallback } from 'react';
 import { FeedbackType } from '../components/ThumbsFeedback';
+import { DefaultRawDataType } from '../models';
 import { useAnalytics } from './useAnalytics';
 
 /**
@@ -28,14 +29,17 @@ function isDirectAnswer(data: unknown): data is DirectAnswerData {
     (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
 }
 
-export function useCardAnalytics(): (
-  cardResult: Result | DirectAnswerData, analyticsEventType: CardAnalyticsType
+export function useCardAnalytics<T = DefaultRawDataType>(): (
+  cardResult: Result<T> | DirectAnswerData, analyticsEventType: CardAnalyticsType
 ) => void {
   const analytics = useAnalytics();
   const verticalKey = useSearchState(state => state.vertical.verticalKey);
   const queryId = useSearchState(state => state.query.queryId);
 
-  const reportCtaEvent = useCallback((result: DirectAnswerData | Result, eventType: CardCtaEventType) => {
+  const reportCtaEvent = useCallback((
+    result: DirectAnswerData | Result<T>,
+    eventType: CardCtaEventType
+  ) => {
     let url: string | undefined, entityId: string | undefined, fieldName: string | undefined;
     let directAnswer = false;
     if (isDirectAnswer(result)) {
@@ -70,7 +74,10 @@ export function useCardAnalytics(): (
     });
   }, [analytics, queryId, verticalKey]);
 
-  const reportFeedbackEvent = useCallback((result: DirectAnswerData | Result, feedbackType: FeedbackType) => {
+  const reportFeedbackEvent = useCallback((
+    result: DirectAnswerData | Result<T>,
+    feedbackType: FeedbackType
+  ) => {
     if (!queryId) {
       console.error('Unable to report a result feedback event. Missing field: queryId.');
       return;
@@ -94,7 +101,7 @@ export function useCardAnalytics(): (
   }, [analytics, queryId, verticalKey]);
 
   const reportAnalyticsEvent = useCallback((
-    cardResult: DirectAnswerData | Result,
+    cardResult: DirectAnswerData | Result<T>,
     analyticsEventType: CardAnalyticsType
   ) => {
     if (!analytics) {
