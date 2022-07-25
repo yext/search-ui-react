@@ -128,7 +128,7 @@ function CheckboxOptions({
   const { searchValue } = useFilterGroupContext();
 
   const shouldRenderOption = (
-    option: { displayName?: string, value: FilterOptionConfig['value'] }
+    option: FilterOptionConfig
   ) => {
     if (isUndefined(option.displayName)) {
       option.displayName = option.value.toString();
@@ -142,7 +142,7 @@ function CheckboxOptions({
         return (
           <CheckboxOption
             {...o}
-            key={o.displayName || o.value.toString()}
+            key={o.displayName}
             customCssClasses={cssClasses}
           />
         );
