@@ -79,7 +79,7 @@ export function FilterSearch({
   });
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const [currentFilter, setCurrentFilter] = useState<Filter>();
-  const [ query, setQuery ] = useState<string>();
+  const [query, setQuery] = useState<string>();
   const filters = useSearchState(state => state.filters.static);
   filters?.forEach(f => {
     if (currentFilter && isDuplicateFilter(f, currentFilter) && !f.selected) {

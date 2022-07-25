@@ -10,7 +10,6 @@ import { useInputContext } from './InputContext';
 export function DropdownInput(props: {
   className?: string,
   placeholder?: string,
-  initialValue?: string,
   ariaLabel?: string,
   onSubmit?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void,
   onFocus?: (value: string) => void,

@@ -2,10 +2,12 @@ import { FilterSearch } from '../../src/components/FilterSearch';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
-import { labeledFilterSearchResponse, unlabeledFilterSearchResponse, noResultsFilterSearchResponse } from '../../tests/__fixtures__/data/filtersearch';
-import { Matcher, State, SearchHeadless, SearchHeadlessContext } from '@yext/search-headless-react';
-import React from 'react';
-import { useSearchActions } from '@yext/search-headless-react';
+import {
+  labeledFilterSearchResponse,
+  unlabeledFilterSearchResponse,
+  noResultsFilterSearchResponse
+} from '../../tests/__fixtures__/data/filtersearch';
+import { Matcher, State, SearchHeadless, SearchHeadlessContext, useSearchActions } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 
 const searchFieldsProp = [{
