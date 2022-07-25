@@ -128,15 +128,10 @@ function CheckboxOptions({
   const { searchValue } = useFilterGroupContext();
 
   const shouldRenderOption = (
-    option: { displayName?: unknown, value: string | number | boolean | NumberRangeValue }
+    option: { displayName?: string, value: string | number | boolean | NumberRangeValue }
   ) => {
     if (isUndefined(option.displayName)) {
-      option.displayName = option.value;
-    }
-
-    if (typeof option.displayName !== 'string') {
-      console.error('A displayName is needed for filter with value', option.value);
-      return false;
+      option.displayName = option.value.toString();
     }
 
     if (!searchUtilities.isCloseMatch(option.displayName, searchValue)) {
