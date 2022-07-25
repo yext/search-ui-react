@@ -133,12 +133,7 @@ function CheckboxOptions({
     if (isUndefined(option.displayName)) {
       option.displayName = option.value.toString();
     }
-
-    if (!searchUtilities.isCloseMatch(option.displayName, searchValue)) {
-      return false;
-    }
-
-    return true;
+    return searchUtilities.isCloseMatch(option.displayName, searchValue);
   };
 
   return (
