@@ -142,7 +142,7 @@ export interface SearchBarProps {
   customCssClasses?: SearchBarCssClasses,
   /** {@inheritDoc VisualAutocompleteConfig} */
   visualAutocompleteConfig?: VisualAutocompleteConfig,
-  /** Shows vertical links if true. */
+  /** Shows vertical links if true, set to false on default. */
   showVerticalLinks?: boolean,
   /** A function which is called when a vertical link is selected. */
   onSelectVerticalLink?: (data: { verticalLink: VerticalLink, querySource: QuerySource }) => void,
