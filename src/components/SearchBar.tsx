@@ -166,7 +166,7 @@ export function SearchBar({
   geolocationOptions,
   hideRecentSearches,
   visualAutocompleteConfig,
-  showVerticalLinks = true,
+  showVerticalLinks = false,
   onSelectVerticalLink,
   verticalKeyToLabel,
   recentSearchesLimit = 5,
