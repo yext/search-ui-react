@@ -44,7 +44,7 @@ describe('search with section labels', () => {
   });
 
   it('displays characters typed in search bar correctly', async () => {
-    renderFilterSearch()
+    renderFilterSearch();
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'na');
