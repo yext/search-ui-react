@@ -1,4 +1,5 @@
-import { useSearchUtilities } from '@yext/search-headless-react';
+import { NumberRangeValue, useSearchUtilities } from '@yext/search-headless-react';
+import { isUndefined } from 'lodash';
 import { PropsWithChildren, useCallback, useMemo, useState } from 'react';
 import {
   CheckboxOption,
@@ -119,7 +120,12 @@ function CheckboxOptions({
 }) {
   const searchUtilities = useSearchUtilities();
   const { searchValue } = useFilterGroupContext();
-  const shouldRenderOption = useCallback((option: { displayName: string, value: unknown }) => {
+  const shouldRenderOption = (option:
+  { displayName?: unknown, value: string | number | boolean | NumberRangeValue }) => {
+    if (isUndefined(option.displayName)) {
+      option.displayName = option.value;
+    }
+
     if (typeof option.displayName !== 'string') {
       console.error('A displayName is needed for filter with value', option.value);
       return false;
@@ -130,13 +136,11 @@ function CheckboxOptions({
     }
 
     return true;
-  }, [searchUtilities, searchValue]);
+  };
 
   return (
     <>
-      {filterOptions.filter(o => {
-        return shouldRenderOption(o);
-      }).map(o => {
+      {filterOptions.filter(shouldRenderOption).map(o => {
         return (
           <CheckboxOption
             {...o}
