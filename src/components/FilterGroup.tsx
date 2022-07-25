@@ -117,8 +117,7 @@ function CheckboxOptions({
   const shouldRenderOption = (
     option: FilterOptionConfig
   ) => {
-    const displayName = option.displayName || option.value.toString();
-    return searchUtilities.isCloseMatch(displayName, searchValue);
+    return searchUtilities.isCloseMatch(option.displayName || option.value.toString(), searchValue);
   };
 
   let displayedOptions = filterOptions.filter(shouldRenderOption).map(o => {
