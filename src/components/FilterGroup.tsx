@@ -76,7 +76,7 @@ export function FilterGroup({
     };
   }, [customCssClasses]);
 
-  const isLimited = filterOptions.length > showMoreLimit;
+  const [isLimited, setIsLimited] = useState<boolean>(filterOptions.length > showMoreLimit);
   const [showAll, setShowAll] = useState<boolean>(!isLimited);
 
   function renderTitle() {
@@ -100,7 +100,8 @@ export function FilterGroup({
           filterOptions={filterOptions}
           showMoreLimit={showMoreLimit}
           cssClasses={cssClasses}
-          showAll={showAll} />
+          showAll={showAll}
+          setIsLimited={setIsLimited} />
         {isLimited &&
           /* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */
           <button className='text-primary py-1 text-sm' onClick={() => setShowAll(!showAll)}>
@@ -117,12 +118,14 @@ function CheckboxOptions({
   filterOptions,
   showMoreLimit,
   cssClasses,
-  showAll
+  showAll,
+  setIsLimited
 }: {
   filterOptions: FilterOptionConfig[],
   showMoreLimit: number,
   cssClasses: CheckboxCssClasses,
-  showAll: boolean
+  showAll: boolean,
+  setIsLimited: (limited: boolean) => void
 }) {
   const searchUtilities = useSearchUtilities();
   const { searchValue } = useFilterGroupContext();
@@ -136,17 +139,26 @@ function CheckboxOptions({
     return searchUtilities.isCloseMatch(option.displayName, searchValue);
   };
 
+  let displayedOptions = filterOptions.filter(shouldRenderOption).map(o => {
+    return (
+      <CheckboxOption
+        {...o}
+        key={o.displayName}
+        customCssClasses={cssClasses}
+      />
+    );
+  });
+
+  if (displayedOptions.length > showMoreLimit) {
+    displayedOptions = displayedOptions.slice(0, showAll ? filterOptions.length : showMoreLimit);
+    setIsLimited(true);
+  } else {
+    setIsLimited(false);
+  }
+
   return (
     <>
-      {filterOptions.filter(shouldRenderOption).map(o => {
-        return (
-          <CheckboxOption
-            {...o}
-            key={o.displayName}
-            customCssClasses={cssClasses}
-          />
-        );
-      }).slice(0, showAll ? filterOptions.length : showMoreLimit)}
+      {displayedOptions}
     </>
   );
 }
