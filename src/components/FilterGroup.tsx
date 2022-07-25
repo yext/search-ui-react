@@ -8,7 +8,8 @@ import {
   FilterOptionConfig,
   SearchInput,
   FilterGroupProvider,
-  useFilterGroupContext
+  useFilterGroupContext,
+  CheckboxCssClasses
 } from './Filters';
 
 /**
@@ -117,11 +118,18 @@ function CheckboxOptions({
   showMoreLimit,
   cssClasses,
   showAll
+}: {
+  filterOptions: FilterOptionConfig[],
+  showMoreLimit: number,
+  cssClasses: CheckboxCssClasses,
+  showAll: boolean
 }) {
   const searchUtilities = useSearchUtilities();
   const { searchValue } = useFilterGroupContext();
-  const shouldRenderOption = (option:
-  { displayName?: unknown, value: string | number | boolean | NumberRangeValue }) => {
+
+  const shouldRenderOption = (
+    option: { displayName?: unknown, value: string | number | boolean | NumberRangeValue }
+  ) => {
     if (isUndefined(option.displayName)) {
       option.displayName = option.value;
     }
