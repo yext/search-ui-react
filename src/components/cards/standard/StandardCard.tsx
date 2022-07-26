@@ -2,13 +2,14 @@ import { useCardAnalyticsCallback } from '../../../hooks/useCardAnalyticsCallbac
 import { CardProps } from '../../../models/cardComponent';
 import { useCardFeedbackCallback } from '../../../hooks/useCardFeedbackCallback';
 import { StandardCardDisplay, StandardCardCssClasses } from './StandardCardDisplay';
+import { DefaultRawDataType } from '../../../models';
 
 /**
  * Props for a StandardCard.
  *
  * @public
  */
-export interface StandardCardProps extends CardProps {
+export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> {
   /** Whether or not to show thumbs up/down buttons to provide feedback on the result card */
   showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -24,7 +25,8 @@ export interface StandardCardProps extends CardProps {
  *                to render the card
  * @returns A React element for the result card
  */
-export function StandardCard(props: StandardCardProps): JSX.Element {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function StandardCard(props: StandardCardProps<any>): JSX.Element {
   const {
     result,
     customCssClasses,
