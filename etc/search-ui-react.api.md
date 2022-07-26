@@ -108,16 +108,19 @@ export interface AutocompleteResultCssClasses {
 }
 
 // @public
+export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T>;
+
+// @public
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
 // @public
-export type CardComponent<T = Record<string, unknown>> = (props: CardProps<T>) => JSX.Element;
+export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
 
 // @public
-export interface CardProps<T = Record<string, unknown>> {
+export interface CardProps<T = DefaultRawDataType> {
     result: Result<T>;
 }
 
@@ -130,6 +133,9 @@ export interface CtaData {
     link: string;
     linkType: string;
 }
+
+// @public
+export type DefaultRawDataType = Record<string, unknown>;
 
 // @public
 export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
@@ -497,7 +503,7 @@ export interface SearchBarProps {
 }
 
 // @public
-export type SectionComponent = (props: SectionProps) => JSX.Element | null;
+export type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => JSX.Element | null;
 
 // @public
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
@@ -514,10 +520,10 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
 }
 
 // @public
-export interface SectionProps {
-    CardComponent?: CardComponent;
+export interface SectionProps<T = DefaultRawDataType> {
+    CardComponent?: CardComponent<T>;
     header?: JSX.Element;
-    results: Result[];
+    results: Result<T>[];
     verticalKey: string;
     viewMore?: boolean;
 }
@@ -547,7 +553,7 @@ export interface SpellCheckProps {
 }
 
 // @public
-export function StandardCard(props: StandardCardProps): JSX.Element;
+export function StandardCard(props: StandardCardProps<any>): JSX.Element;
 
 // @public
 export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
@@ -574,7 +580,7 @@ export interface StandardCardData {
 }
 
 // @public
-export interface StandardCardProps extends CardProps {
+export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> {
     customCssClasses?: StandardCardCssClasses;
     showFeedbackButtons?: boolean;
 }
@@ -602,7 +608,7 @@ export interface StandardFacetsProps {
 }
 
 // @public
-export function StandardSection(props: StandardSectionProps): JSX.Element | null;
+export function StandardSection<T>(props: StandardSectionProps<T>): JSX.Element | null;
 
 // @public
 export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
@@ -611,7 +617,7 @@ export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
 }
 
 // @public
-export interface StandardSectionProps extends SectionProps {
+export interface StandardSectionProps<T = DefaultRawDataType> extends SectionProps<T> {
     customCssClasses?: StandardSectionCssClasses;
 }
 
@@ -663,7 +669,7 @@ export interface ThumbsFeedbackProps {
 }
 
 // @public
-export function UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps): JSX.Element | null;
+export function UniversalResults<T>({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps<T>): JSX.Element | null;
 
 // @public
 export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
@@ -674,10 +680,10 @@ export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
 }
 
 // @public
-export interface UniversalResultsProps {
+export interface UniversalResultsProps<T> {
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
-    verticalConfigMap: VerticalConfigMap;
+    verticalConfigMap: VerticalConfigMap<T>;
 }
 
 // @public
@@ -687,27 +693,27 @@ export function updateLocationIfNeeded(searchActions: SearchActions, intents: Se
 export function useAnalytics(): AnalyticsService | null;
 
 // @public
-export function useCardAnalyticsCallback(result: Result | DirectAnswer_2, analyticsType: CardAnalyticsType): () => void;
+export function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>, analyticsType: CardAnalyticsType): () => void;
 
 // @public
-export function useCardFeedbackCallback(result: Result | DirectAnswer_2): (analyticsType: FeedbackType) => void;
+export function useCardFeedbackCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>): (analyticsType: FeedbackType) => void;
 
 // @public
 export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
 
 // @public
-export interface VerticalConfig {
-    CardComponent?: CardComponent;
+export interface VerticalConfig<T = DefaultRawDataType> {
+    CardComponent?: CardComponent<T>;
     getViewAllUrl?: (data: VerticalLink) => string;
     label?: string;
-    SectionComponent?: SectionComponent;
+    SectionComponent?: SectionComponent<T>;
     viewAllButton?: boolean;
 }
 
 // @public
-export interface VerticalConfigMap {
-    [verticalKey: string]: VerticalConfig;
-}
+export type VerticalConfigMap<T = Record<string, DefaultRawDataType>> = {
+    [K in keyof T]: VerticalConfig<T[K]>;
+};
 
 // @public
 export interface VerticalLabelMap {
@@ -721,7 +727,7 @@ export interface VerticalLink {
 }
 
 // @public
-export function VerticalResults(props: VerticalResultsProps): JSX.Element | null;
+export function VerticalResults<T>(props: VerticalResultsProps<T>): JSX.Element | null;
 
 // @public
 export interface VerticalResultsCssClasses {
@@ -732,8 +738,8 @@ export interface VerticalResultsCssClasses {
 }
 
 // @public
-export interface VerticalResultsProps {
-    CardComponent: CardComponent;
+export interface VerticalResultsProps<T> {
+    CardComponent: CardComponent<T>;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
 }
