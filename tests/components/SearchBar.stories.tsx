@@ -45,14 +45,6 @@ export const Primary = (args: SearchBarProps) => {
   );
 };
 
-export const ShowVerticalLinks = (args: SearchBarProps) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
-      <SearchBar {...args} showVerticalLinks={true} />
-    </SearchHeadlessContext.Provider>
-  );
-};
-
 export const DropdownExpanded = Primary.bind({});
 DropdownExpanded.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
@@ -70,7 +62,13 @@ DropdownHighlight.play = ({ canvasElement }) => {
   userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
 
-export const DropdownExpandedVerticalLinks = ShowVerticalLinks.bind({});
+export const DropdownExpandedVerticalLinks = (args: SearchBarProps) => {
+  return (
+    <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
+      <SearchBar {...args} showVerticalLinks={true} />
+    </SearchHeadlessContext.Provider>
+  );
+};
 DropdownExpandedVerticalLinks.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
