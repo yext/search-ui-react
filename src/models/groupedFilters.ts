@@ -1,20 +1,6 @@
 import { SelectableFilter as DisplayableFilter } from '@yext/search-headless-react';
 
 /**
- * Types of filters (static, facet, and nlp) displayable by AppliedFilters.
- */
-export interface GroupedFilters {
-  /** Filters that are applied to the search results from static filters and filter search. */
-  staticFilters?: DisplayableFilter[],
-  /** Filters that are applied to the search results from facets. */
-  facets?: DisplayableFilter[],
-  /** Filters that are applied to the search results from hierarchical facets. */
-  hierarchicalFacets?: DisplayableHierarchicalFacet[],
-  /** Filters that are applied to the search results from the backend's natural language processing. */
-  nlpFilters?: DisplayableFilter[]
-}
-
-/**
  * DisplayableHierarchicalFacet is a DisplayableFilter with additional metadata, including a reference
  * to its original parent DisplayableFacet.
  */

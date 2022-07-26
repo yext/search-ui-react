@@ -68,13 +68,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
     getViewAllUrl
   } = props;
   const latestQuery = useSearchState(state => state.query.mostRecentSearch);
-  const nlpFilters = appliedQueryFilters?.map(
-    (appliedQueryFilter): DisplayableFilter => ({
-      ...appliedQueryFilter.filter,
-      displayName: appliedQueryFilter.displayValue,
-      selected: true
-    })
-  ) ?? [];
+  const nlpFilters = appliedQueryFilters?.map(f => f.displayValue);
 
   const analytics = useAnalytics();
   const queryId = useSearchState(state => state.query.queryId);
