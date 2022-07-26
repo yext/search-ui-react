@@ -28,7 +28,8 @@ export interface DropdownProps {
     focusedItemData: Record<string, unknown> | undefined
   ) => void,
   className?: string,
-  activeClassName?: string
+  activeClassName?: string,
+  alwaysSelectOption?: boolean
 }
 
 /**
@@ -48,6 +49,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     className,
     activeClassName,
     parentQuery,
+    alwaysSelectOption = false
   } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -64,7 +66,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     lastTypedOrSubmittedValue,
     setValue,
     screenReaderKey,
-    setScreenReaderKey
+    setScreenReaderKey,
+    alwaysSelectOption
   );
   const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
 
@@ -83,9 +86,15 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   useLayoutEffect(() => {
     if (parentQuery !== undefined && parentQuery !== lastTypedOrSubmittedValue) {
       setLastTypedOrSubmittedValue(parentQuery);
-      updateFocusedItem(-1, parentQuery);
+      updateFocusedItem(alwaysSelectOption ? 0 : -1, parentQuery);
     }
-  }, [parentQuery, lastTypedOrSubmittedValue, updateFocusedItem, setLastTypedOrSubmittedValue]);
+  }, [
+    parentQuery,
+    lastTypedOrSubmittedValue,
+    updateFocusedItem,
+    setLastTypedOrSubmittedValue,
+    alwaysSelectOption
+  ]);
 
   useRootClose(containerRef, () => {
     toggleDropdown(false);
@@ -162,7 +171,8 @@ function useFocusContextInstance(
   lastTypedOrSubmittedValue: string,
   setValue: (newValue: string) => void,
   screenReaderKey: number,
-  setScreenReaderKey: (newKey: number) => void
+  setScreenReaderKey: (newKey: number) => void,
+  alwaysSelectOption: boolean
 ): FocusContextType {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
@@ -173,9 +183,14 @@ function useFocusContextInstance(
     let updatedValue;
     if (updatedFocusedIndex === -1 || updatedFocusedIndex >= numItems || numItems === 0) {
       updatedValue = value ?? lastTypedOrSubmittedValue;
-      setFocusedIndex(-1);
-      setFocusedItemData(undefined);
-      setScreenReaderKey(screenReaderKey + 1);
+      if (alwaysSelectOption && numItems !== 0) {
+        setFocusedIndex(0);
+        setFocusedItemData(items[0].itemData);
+      } else {
+        setFocusedIndex(-1);
+        setFocusedItemData(undefined);
+        setScreenReaderKey(screenReaderKey + 1);
+      }
     } else if (updatedFocusedIndex < -1) {
       const loopedAroundIndex = (numItems + updatedFocusedIndex + 1) % numItems;
       updatedValue = value ?? items[loopedAroundIndex].value;

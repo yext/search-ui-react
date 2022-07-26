@@ -164,12 +164,14 @@ export function FilterSearch({
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
         onToggle={handleToggleDropdown}
+        alwaysSelectOption={true}
       >
         <DropdownInput
           className={cssClasses.inputElement}
           placeholder={placeholder}
           onChange={executeFilterSearch}
           submitCriteria={meetsSubmitCritera}
+          alwaysSelectOption={true}
         />
         <DropdownMenu>
           {hasResults &&
