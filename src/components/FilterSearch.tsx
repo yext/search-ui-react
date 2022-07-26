@@ -79,7 +79,7 @@ export function FilterSearch({
   });
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const [currentFilter, setCurrentFilter] = useState<Filter>();
-  const [query, setQuery] = useState<string>();
+  const [filterQuery, setFilterQuery] = useState<string>();
   const filters = useSearchState(state => state.filters.static);
 
   const [
@@ -88,7 +88,7 @@ export function FilterSearch({
     clearFilterSearchResponse
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
     inputValue => {
-      setQuery(inputValue);
+      setFilterQuery(inputValue);
       return searchActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields);
     },
     (e) => console.error('Error occured executing a filter search request.\n', e)
@@ -98,7 +98,7 @@ export function FilterSearch({
     if (currentFilter && filters?.find(f => isDuplicateFilter(f, currentFilter) && !f.selected)) {
       clearFilterSearchResponse();
       setCurrentFilter(undefined);
-      setQuery('');
+      setFilterQuery('');
     }
   }, [clearFilterSearchResponse, currentFilter, filters]);
 
@@ -117,7 +117,7 @@ export function FilterSearch({
       }
       searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
       setCurrentFilter(newFilter);
-      setQuery(value);
+      setFilterQuery(value);
       if (select && searchOnSelect) {
         searchActions.setOffset(0);
         searchActions.resetFacets();
@@ -186,7 +186,7 @@ export function FilterSearch({
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
         onToggle={handleToggleDropdown}
-        parentQuery={query}
+        parentQuery={filterQuery}
       >
         <DropdownInput
           className={cssClasses.inputElement}
