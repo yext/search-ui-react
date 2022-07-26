@@ -4,7 +4,7 @@
 
 ## SearchBarProps.showVerticalLinks property
 
-Shows vertical links if true.
+Shows vertical links if true, set to false on default.
 
 <b>Signature:</b>
 
