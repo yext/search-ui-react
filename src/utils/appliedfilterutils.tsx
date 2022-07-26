@@ -35,13 +35,13 @@ export function getDuplicateFacets(
   const appliedFacets =
   filterHiddenFields(getDisplayableFacets(appliedFiltersState.facets ?? [], hierarchicalFieldIds)
     .filter(facet => facet.selected), hiddenFields);
-  const duplicatesFacets = appliedFacets.filter(appliedFacet => {
+  const duplicatedFacets = appliedFacets.filter(appliedFacet => {
     const isDuplicate = appliedStaticFilters.find(appliedStaticFilter => {
       return isDuplicateFilter(appliedFacet, appliedStaticFilter);
     });
     return isDuplicate;
   });
-  return duplicatesFacets;
+  return duplicatedFacets;
 }
 
 function removeDuplicateFacets(
