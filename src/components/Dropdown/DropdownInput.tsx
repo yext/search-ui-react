@@ -27,7 +27,6 @@ export function DropdownInput(props: {
   } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
-
   const { toggleDropdown, onSelect, screenReaderUUID } = useDropdownContext();
   const { value = '', setLastTypedOrSubmittedValue } = useInputContext();
   const {
