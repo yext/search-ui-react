@@ -25,23 +25,23 @@ function pruneNlpFilters(
   return filterHiddenFields(duplicatesRemoved, hiddenFields);
 }
 
-export function getDuplicateFacets(
+export function getDuplicateFilters(
   appliedFiltersState: FiltersState,
   hiddenFields: string[],
   hierarchicalFieldIds: string[],
 ): DisplayableFilter[] {
   const appliedStaticFilters = filterHiddenFields(
     appliedFiltersState?.static?.filter(filter => filter.selected) ?? [], hiddenFields);
-  const appliedFacets =
-  filterHiddenFields(getDisplayableFacets(appliedFiltersState.facets ?? [], hierarchicalFieldIds)
-    .filter(facet => facet.selected), hiddenFields);
-  const duplicatedFacets = appliedFacets.filter(appliedFacet => {
+  const appliedFacets = filterHiddenFields(
+    getDisplayableFacets(appliedFiltersState.facets ?? [], hierarchicalFieldIds)
+      .filter(facet => facet.selected), hiddenFields);
+  const duplicatedFilters = appliedFacets.filter(appliedFacet => {
     const isDuplicate = appliedStaticFilters.find(appliedStaticFilter => {
       return isDuplicateFilter(appliedFacet, appliedStaticFilter);
     });
     return isDuplicate;
   });
-  return duplicatedFacets;
+  return duplicatedFilters;
 }
 
 function removeDuplicateFacets(
@@ -137,9 +137,5 @@ export function isDescendantHierarchicalFacet(
   // Ensure that we don't return true for parent = `a > b > c` and child = `a > book > c`
   // by checking that the second element of the child is exactly "b"
   const tokenAtIndexOfLastParentToken = otherTokens[parentTokens.length - 1];
-  if (parentLastDisplayNameToken !== tokenAtIndexOfLastParentToken) {
-    return false;
-  }
-
-  return true;
+  return parentLastDisplayNameToken === tokenAtIndexOfLastParentToken;
 }

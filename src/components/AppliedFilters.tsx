@@ -1,6 +1,6 @@
-import { useSearchState, SelectableFilter as DisplayableFilter } from '@yext/search-headless-react';
+import { useSearchState, SelectableFilter as DisplayableFilter, FiltersState, AppliedQueryFilter } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { pruneAppliedFilters, getDuplicateFacets } from '../utils/appliedfilterutils';
+import { pruneAppliedFilters, getDuplicateFilters } from '../utils/appliedfilterutils';
 import { useMemo } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
@@ -38,7 +38,7 @@ export const builtInCssClasses: Readonly<AppliedFiltersCssClasses> = {
  */
 export interface AppliedFiltersProps {
   /** List of filters that should not be displayed. By default, builtin.entityType will be hidden. */
-  hiddenFields?: Array<string>,
+  hiddenFields?: string[],
   /** A set of facet fieldIds that should be interpreted as "hierarchical". */
   hierarchicalFacetsFieldIds?: string[],
   /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
@@ -70,8 +70,33 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     hierarchicalFacetsFieldIds
   } = props;
 
-  const duplicateFacets: DisplayableFilter[] = useMemo(() => {
-    return getDuplicateFacets(
+  const duplicateFilters = useDuplicatedFilters(
+    hasResults, filters, hiddenFields, hierarchicalFacetsFieldIds);
+
+  const appliedFilters = useAppliedFilters(
+    hasResults, filters, hiddenFields, hierarchicalFacetsFieldIds, hierarchicalFacetsDelimiter, nlpFilters);
+
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+  cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
+    [cssClasses.appliedFiltersLoading ?? '']: isLoading
+  });
+
+  return <AppliedFiltersDisplay
+    {...appliedFilters}
+    cssClasses={cssClasses}
+    hierarchicalFacetsDelimiter={hierarchicalFacetsDelimiter}
+    duplicateFilters={duplicateFilters}
+  />;
+}
+
+function useDuplicatedFilters(
+  hasResults: boolean,
+  filters: FiltersState | undefined,
+  hiddenFields: string[] | undefined,
+  hierarchicalFacetsFieldIds: string[] | undefined,
+): DisplayableFilter[] {
+  return useMemo(() => {
+    return getDuplicateFilters(
       hasResults ? (filters ?? {}) : {},
       hiddenFields ?? ['builtin.entityType'],
       hierarchicalFacetsFieldIds ?? [],
@@ -82,8 +107,17 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     hiddenFields,
     hierarchicalFacetsFieldIds,
   ]);
+}
 
-  const appliedFilters: GroupedFilters = useMemo(() => {
+function useAppliedFilters(
+  hasResults: boolean,
+  filters: FiltersState | undefined,
+  hiddenFields: string[] | undefined,
+  hierarchicalFacetsFieldIds: string[] | undefined,
+  hierarchicalFacetsDelimiter: string,
+  nlpFilters: AppliedQueryFilter[] | undefined
+): GroupedFilters {
+  return useMemo(() => {
     return pruneAppliedFilters(
       hasResults ? (filters ?? {}) : {},
       nlpFilters ?? [],
@@ -99,16 +133,4 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     hierarchicalFacetsFieldIds,
     nlpFilters
   ]);
-
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
-    [cssClasses.appliedFiltersLoading ?? '']: isLoading
-  });
-  console.log(duplicateFacets);
-  return <AppliedFiltersDisplay
-    {...appliedFilters}
-    cssClasses={cssClasses}
-    hierarchicalFacetsDelimiter={hierarchicalFacetsDelimiter}
-    duplicateFacets={duplicateFacets}
-  />;
 }

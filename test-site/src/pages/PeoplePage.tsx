@@ -37,25 +37,19 @@ export function PeoplePage() {
             searchOnSelect={true}
             label='Filters'
           />
+          <StaticFilters
+            fieldId='c_employeeDepartment'
+            title='Employee department'
+            filterOptions={[
+              { value: 'Consulting' },
+              { value: 'Technology' }
+            ]}
+            searchOnChange={false}
+          />
           <div className='w-full h-px bg-gray-200 my-4' />
           <NumericalFacets searchOnChange={false} />
           <StandardFacets
-            searchOnChange={false}
             excludedFieldIds={hierarchicalFacetFieldIds}
-          />
-          <HierarchicalFacets
-            collapsible={true}
-            searchOnChange={false}
-            includedFieldIds={hierarchicalFacetFieldIds}
-          />
-          <StaticFilters
-            fieldId='c_employeeCountry'
-            title='Employee Country'
-            filterOptions={[
-              { value: 'United States' },
-              { value: 'UK' }
-            ]}
-            searchOnChange={false}
           />
           <br />
           <ApplyFiltersButton />

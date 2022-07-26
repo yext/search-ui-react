@@ -26,7 +26,7 @@ export interface AppliedFiltersDisplayProps {
   hierarchicalFacets?: DisplayableHierarchicalFacet[],
   /** Filters that are applied to the search results from the backend's natural language processing. */
   nlpFilters?: DisplayableFilter[],
-  duplicateFacets?: DisplayableFilter[],
+  duplicateFilters?: DisplayableFilter[],
   /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
   hierarchicalFacetsDelimiter?: string,
   /** CSS classes for customizing the component styling. */
@@ -44,7 +44,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     nlpFilters = [],
     staticFilters = [],
     facets = [],
-    duplicateFacets,
+    duplicateFilters,
     hierarchicalFacets = [],
     hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
     cssClasses = {}
@@ -113,8 +113,8 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   const handleRemoveStaticFilterOption = (filter: DisplayableFilter) => {
     searchActions.setOffset(0);
     const { fieldId, matcher, value } = filter;
-    if (duplicateFacets) {
-      duplicateFacets.forEach(facet => {
+    if (duplicateFilters) {
+      duplicateFilters.forEach(facet => {
         if (isDuplicateFilter(filter, facet)){
           if (isNearFilterValue(value)) {
             console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
@@ -130,14 +130,16 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
 
   const renderRemovableFilter =
     (handleRemoveFilter: (filter: DisplayableFilter) => void) =>
-      (filter: DisplayableFilter) =>
-        <RemovableFilter
-          displayName={filter.displayName ?? ''}
-          handleRemoveFilter={handleRemoveFilter}
-          filter={filter}
-          key={filter.displayName}
-          cssClasses={cssClasses}
-        />;
+      (filter: DisplayableFilter, id: string) =>
+        <div className={id}>
+          <RemovableFilter
+            displayName={filter.displayName ?? ''}
+            handleRemoveFilter={handleRemoveFilter}
+            filter={filter}
+            key={filter.displayName}
+            cssClasses={cssClasses}
+          />
+        </div>;
 
   const hasRemovableFilters = (staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
   return (
@@ -154,8 +156,8 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
           cssClasses={cssClasses}
         />
       )}
-      {facets.map(renderRemovableFilter(handleRemoveFacetOption))}
-      {staticFilters.map(renderRemovableFilter(handleRemoveStaticFilterOption))}
+      {facets.map(f => renderRemovableFilter(handleRemoveFacetOption)(f, 'facet'))}
+      {staticFilters.map(f => renderRemovableFilter(handleRemoveStaticFilterOption)(f, 'static'))}
       {isVertical && hasRemovableFilters &&
         <button onClick={handleClickClearAllButton} className={cssClasses.clearAllButton}>
           Clear All
