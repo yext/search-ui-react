@@ -26,7 +26,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 }
 
 const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
-  filterSearchContainer: 'mb-2',
+  filterSearchContainer: 'relative mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
   inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
   sectionLabel: 'text-sm text-neutral-dark font-semibold py-2 px-4',
@@ -197,7 +197,7 @@ export function FilterSearch({
         />
         <DropdownMenu>
           {hasResults &&
-            <div className='relative z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 mt-1'>
+            <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 mt-1'>
               {renderDropdownItems()}
             </div>
           }
