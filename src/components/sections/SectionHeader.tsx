@@ -1,7 +1,7 @@
 import { AppliedFiltersCssClasses } from '../AppliedFilters';
 import { AppliedFiltersDisplay } from '../AppliedFiltersDisplay';
 import { CollectionIcon } from '../../icons/CollectionIcon';
-import { AppliedQueryFilter, SelectableFilter as DisplayableFilter, useSearchState } from '@yext/search-headless-react';
+import { AppliedQueryFilter, useSearchState } from '@yext/search-headless-react';
 import classNames from 'classnames';
 import { useAnalytics } from '../../hooks/useAnalytics';
 import { VerticalLink } from '../../models/verticalLink';
@@ -68,13 +68,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
     getViewAllUrl
   } = props;
   const latestQuery = useSearchState(state => state.query.mostRecentSearch);
-  const nlpFilters = appliedQueryFilters?.map(
-    (appliedQueryFilter): DisplayableFilter => ({
-      ...appliedQueryFilter.filter,
-      displayName: appliedQueryFilter.displayValue,
-      selected: true
-    })
-  ) ?? [];
+  const nlpFilterDisplayNames = appliedQueryFilters?.map(f => f.displayValue);
 
   const analytics = useAnalytics();
   const queryId = useSearchState(state => state.query.queryId);
@@ -110,7 +104,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
       </div>
       <h2 className={cssClasses.sectionHeaderLabel}>{label}</h2>
       {appliedQueryFilters &&
-        <AppliedFiltersDisplay nlpFilters={nlpFilters} cssClasses={cssClasses} />
+        <AppliedFiltersDisplay nlpFilterDisplayNames={nlpFilterDisplayNames} cssClasses={cssClasses} />
       }
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>
