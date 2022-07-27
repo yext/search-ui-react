@@ -6,6 +6,7 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { UniversalResults, UniversalResultsProps } from '../../src/components/UniversalResults';
 import { RecursivePartial } from '../__utils__/mocks';
 import { verticalResults } from '../__fixtures__/data/universalresults';
+import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
 
 const meta: ComponentMeta<typeof UniversalResults> = {
   title: 'UniversalResults',
@@ -26,7 +27,7 @@ const verticalConfigMap = {
   }
 };
 
-export const Primary = (args: UniversalResultsProps) => {
+export const Primary = (args: UniversalResultsProps<DefaultRawDataType>) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <UniversalResults verticalConfigMap={verticalConfigMap} showAppliedFilters={true} {...args} />
@@ -34,7 +35,7 @@ export const Primary = (args: UniversalResultsProps) => {
   );
 };
 
-export const Loading = (args: UniversalResultsProps) => {
+export const Loading = (args: UniversalResultsProps<DefaultRawDataType>) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...mockedHeadlessState,
