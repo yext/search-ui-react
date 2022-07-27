@@ -54,13 +54,12 @@ DropdownExpanded.play = ({ canvasElement }) => {
 };
 
 export const DropdownHighlight = Primary.bind({});
-DropdownHighlight.play = async ({ canvasElement }) => {
+DropdownHighlight.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
   conductRecentSearches(textboxEl);
   userEvent.click(textboxEl);
-  await canvas.findByText('query suggestion 1');
-  userEvent.keyboard('{Tab}{Tab}{Tab}');
+  userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
 
 export const DropdownExpandedVerticalLinks = (args: SearchBarProps) => {
@@ -83,5 +82,4 @@ function conductRecentSearches(textboxEl: HTMLElement) {
   userEvent.clear(textboxEl);
   userEvent.type(textboxEl, 'recent search 2');
   userEvent.keyboard('{enter}');
-  userEvent.clear(textboxEl);
 }
