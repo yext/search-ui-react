@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta.262",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "slapshot@yext.com",
   "license": "BSD-3-Clause",
