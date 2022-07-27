@@ -90,11 +90,12 @@ DropdownHighlight.parameters = {
     autoCompleteService: generateMockedAutocompleteService(undefined, labeledFilterSearchResponse)
   }
 };
-DropdownHighlight.play = ({ canvasElement }) => {
+DropdownHighlight.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   userEvent.click(canvas.getByRole('textbox'));
   userEvent.keyboard('name');
-  userEvent.keyboard('{Tab}{Tab}', { delay: 1 });
+  await canvas.findByText('first name 2');
+  userEvent.keyboard('{Tab}');
 };
 
 export const NoLabel = (args: FilterSearchProps) => {
