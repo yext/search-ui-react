@@ -4,6 +4,8 @@ import { RemovableFilter } from '../components/AppliedFiltersDisplay';
 import { useStateUpdatedOnSearch } from './useStateUpdatedOnSearch';
 
 /**
+ * Returns a RemovableFilter[] sourced from the static filters state.
+ *
  * @internal
  */
 export function useRemovableStaticFilters(hiddenFields: string[]): RemovableFilter[] {
