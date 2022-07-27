@@ -1,5 +1,6 @@
 import { useSearchActions } from '@yext/search-headless-react';
 import { useCallback } from 'react';
+import { useComposedCssClasses } from '../hooks';
 import { clearStaticRangeFilters, getSelectedNumericalFacetFields } from '../utils/filterutils';
 import { executeSearch } from '../utils/search-operations';
 
@@ -42,7 +43,7 @@ export function ApplyFiltersButton({
   customCssClasses,
   label = 'Apply Filters'
 }: ApplyFiltersButtonProps): JSX.Element {
-  const cssClasses = { ...builtInCssClasses, ...customCssClasses };
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const searchActions = useSearchActions();
   const handleClick = useCallback(() => {
     searchActions.setOffset(0);

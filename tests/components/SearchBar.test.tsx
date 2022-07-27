@@ -147,10 +147,10 @@ describe('SearchBar', () => {
         .mockResolvedValue(mockedUniversalAutocompleteResult);
     });
 
-    it('displays vertical links as part of the query suggestions', async () => {
+    it('displays vertical links as part of the query suggestions when showVerticalLinks is set to true', async () => {
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
-          <SearchBar />
+          <SearchBar showVerticalLinks={true}/>
         </SearchHeadlessContext.Provider>
       );
       userEvent.click(screen.getByRole('textbox'));
@@ -159,10 +159,10 @@ describe('SearchBar', () => {
       expect(await screen.findByText('in verticalKey2')).toBeInTheDocument();
     });
 
-    it('hides vertical links when hideVerticalLinks is true', async () => {
+    it('does not display vertical links on default', async () => {
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
-          <SearchBar hideVerticalLinks={true}/>
+          <SearchBar />
         </SearchHeadlessContext.Provider>
       );
       userEvent.click(screen.getByRole('textbox'));
@@ -174,7 +174,7 @@ describe('SearchBar', () => {
     it('vertical links use display labels from verticalKeyToLabel when it is specified', async () => {
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
-          <SearchBar verticalKeyToLabel={verticalKey => {
+          <SearchBar showVerticalLinks={true} verticalKeyToLabel={verticalKey => {
             const verticalLabels = { verticalKey1: 'Vertical One', verticalKey2: 'Vertical Two' };
             return verticalLabels[verticalKey];
           }}/>
@@ -190,7 +190,7 @@ describe('SearchBar', () => {
       const mockedOnSelectVerticalLink = jest.fn();
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
-          <SearchBar onSelectVerticalLink={mockedOnSelectVerticalLink}/>
+          <SearchBar showVerticalLinks={true} onSelectVerticalLink={mockedOnSelectVerticalLink}/>
         </SearchHeadlessContext.Provider>
       );
       userEvent.click(screen.getByRole('textbox'));

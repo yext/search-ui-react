@@ -1,34 +1,33 @@
-import { FilterSearch } from '../../src/components/FilterSearch';
-import { render, screen, waitFor } from '@testing-library/react';
+import { FilterSearch, FilterSearchProps } from '../../src/components/FilterSearch';
+import { render, RenderResult, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
-import { mockSearchActions, spyOnActions } from '../__utils__/mocks';
-import { labeledFilterSearchResponse, unlabeledFilterSearchResponse, noResultsFilterSearchResponse } from '../../tests/__fixtures__/data/filtersearch';
-import { Matcher } from '@yext/search-headless-react';
+import {
+  labeledFilterSearchResponse,
+  unlabeledFilterSearchResponse,
+  noResultsFilterSearchResponse
+} from '../../tests/__fixtures__/data/filtersearch';
+import { Matcher, State, SearchHeadless, SearchHeadlessContext, useSearchActions, SelectableFilter } from '@yext/search-headless-react';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
+import React from 'react';
 
-jest.mock('@yext/search-headless-react');
-const actions = spyOnActions();
-
-const setFilterOption = jest.fn();
-const setOffset = jest.fn();
-const resetFacets = jest.fn();
 const searchFieldsProp = [{
   fieldApiName: 'name',
   entityType: 'ce_person'
 }];
 
-describe('search with section labels', () => {
-  beforeEach(() => {
-    mockSearchActions({
-      setFilterOption,
-      setOffset,
-      resetFacets,
-      executeFilterSearch: jest.fn().mockResolvedValue(labeledFilterSearchResponse)
-    });
-  });
+const mockedState: Partial<State> = {
+  vertical: {
+    verticalKey: 'vertical',
+  },
+  meta: {
+    searchType: 'vertical'
+  }
+};
 
+describe('search with section labels', () => {
   it('renders the filter search bar, "Filter" label, and default placeholder text', () => {
-    render(<FilterSearch searchFields={searchFieldsProp} label='Filter' />);
+    renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
     const label = 'Filter';
     const labelElement = screen.getByText(label);
     const searchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
@@ -39,13 +38,13 @@ describe('search with section labels', () => {
   });
 
   it('sets the placeholder text to the specified value', () => {
-    render(<FilterSearch searchFields={searchFieldsProp} placeholder='Search...' />);
+    renderFilterSearch({ searchFields: searchFieldsProp, placeholder: 'Search...' });
     const searchBarElement = screen.getByRole<HTMLInputElement>('textbox');
     expect(searchBarElement.placeholder).toBe('Search...');
   });
 
   it('displays characters typed in search bar correctly', async () => {
-    render(<FilterSearch searchFields={searchFieldsProp} />);
+    renderFilterSearch();
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'na');
@@ -60,7 +59,10 @@ describe('search with section labels', () => {
   });
 
   it('triggers a filter search every time a character is typed or backspaced', async () => {
-    render(<FilterSearch searchFields={searchFieldsProp} />);
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    renderFilterSearch();
     const searchBarElement = screen.getByRole('textbox');
     const expectedFilterSearchFields = [{
       entityType: 'ce_person',
@@ -70,32 +72,41 @@ describe('search with section labels', () => {
 
     userEvent.type(searchBarElement, 'na');
     await waitFor(() => {
-      expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('na', false, expectedFilterSearchFields);
+      expect(executeFilterSearch).toHaveBeenLastCalledWith('na', false, expectedFilterSearchFields);
     });
 
     userEvent.type(searchBarElement, '{backspace}');
     await waitFor(() => {
-      expect(actions.executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
+      expect(executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
     });
-    expect(actions.executeFilterSearch).toHaveBeenCalledTimes(3);
+    expect(executeFilterSearch).toHaveBeenCalledTimes(3);
   });
 
   it('does not trigger a filter search when backspacing in an empty text box', async () => {
-    render(<FilterSearch searchFields={searchFieldsProp} />);
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    renderFilterSearch();
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, '{backspace}');
     await waitFor(() => {
       expect(searchBarElement).toHaveValue('');
     });
-    expect(actions.executeFilterSearch).toHaveBeenCalledTimes(0);
+    expect(executeFilterSearch).toHaveBeenCalledTimes(0);
   });
 
   it('shows autocomplete results, if they exist, when a character is typed', async () => {
-    render(<FilterSearch searchFields={searchFieldsProp} />);
+    renderFilterSearch();
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
+    await waitFor(() => {
+      expect(executeFilterSearch).toHaveBeenCalled();
+    });
     await waitFor(() => {
       const autocompleteSection = screen.getByText('First name');
       expect(autocompleteSection).toBeDefined();
@@ -103,21 +114,30 @@ describe('search with section labels', () => {
   });
 
   it('fills the search bar with an autocomplete result when a user selects it', async () => {
-    render(<FilterSearch searchFields={searchFieldsProp} />);
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    renderFilterSearch();
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
     await waitFor(() => screen.findByText('first name 1'));
 
     userEvent.type(searchBarElement, '{arrowdown}');
+    await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
     expect(searchBarElement).toHaveValue('first name 2');
   });
 
   it('remove old filter value when a new one is entered', async () => {
-    render(<FilterSearch searchFields={searchFieldsProp} />);
+    renderFilterSearch();
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
+    await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
     await waitFor(() => screen.findByText('first name 1'));
     userEvent.type(searchBarElement, '{enter}');
     await waitFor(() => {
@@ -153,11 +173,18 @@ describe('search with section labels', () => {
 
   describe('searchOnSelect = true', () => {
     it('triggers a search on pressing "enter" when an autocomplete result is selected', async () => {
-      const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
-      render(<FilterSearch searchFields={searchFieldsProp} searchOnSelect={true} />);
+      const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch');
+      const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+      const setOffset = jest.spyOn(SearchHeadless.prototype, 'setOffset');
+      const resetFacets = jest.spyOn(SearchHeadless.prototype, 'resetFacets');
+      const executeFilterSearch = jest
+        .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+        .mockResolvedValue(labeledFilterSearchResponse);
+      renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true });
       const searchBarElement = screen.getByRole('textbox');
 
       userEvent.type(searchBarElement, 'n');
+      await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
       await waitFor(() => screen.findByText('first name 1'));
 
       const expectedSetFilterOptionParam = {
@@ -186,8 +213,11 @@ describe('search with section labels', () => {
     });
 
     it('does not trigger a search on pressing "enter" if no autocomplete result is selected', async () => {
-      const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
-      render(<FilterSearch searchFields={searchFieldsProp} searchOnSelect={true} />);
+      const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch');
+      const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+      const setOffset = jest.spyOn(SearchHeadless.prototype, 'setOffset');
+      const resetFacets = jest.spyOn(SearchHeadless.prototype, 'resetFacets');
+      renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true });
       const searchBarElement = screen.getByRole('textbox');
 
       userEvent.type(searchBarElement, 'n{enter}');
@@ -201,11 +231,18 @@ describe('search with section labels', () => {
     });
 
     it('triggers a search when an autocomplete result is clicked', async () => {
-      const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
-      render(<FilterSearch searchFields={searchFieldsProp} searchOnSelect={true} />);
+      const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch');
+      const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+      const setOffset = jest.spyOn(SearchHeadless.prototype, 'setOffset');
+      const resetFacets = jest.spyOn(SearchHeadless.prototype, 'resetFacets');
+      const executeFilterSearch = jest
+        .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+        .mockResolvedValue(labeledFilterSearchResponse);
+      renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true });
       const searchBarElement = screen.getByRole('textbox');
 
       userEvent.type(searchBarElement, 'n');
+      await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
       const autocompleteSuggestion = await waitFor(() => screen.findByText('first name 1'));
 
       const expectedSetFilterOptionParam = {
@@ -234,8 +271,14 @@ describe('search with section labels', () => {
 
   describe('searchOnSelect = false', () => {
     it('does not trigger a search when an autocomplete result is selected', async () => {
-      const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
-      render(<FilterSearch searchFields={searchFieldsProp} searchOnSelect={false} />);
+      const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch');
+      const setOffset = jest.spyOn(SearchHeadless.prototype, 'setOffset');
+      const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+      const resetFacets = jest.spyOn(SearchHeadless.prototype, 'resetFacets');
+      const executeFilterSearch = jest
+        .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+        .mockResolvedValue(labeledFilterSearchResponse);
+      renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: false });
       const searchBarElement = screen.getByRole('textbox');
 
       userEvent.type(searchBarElement, 'n');
@@ -243,13 +286,14 @@ describe('search with section labels', () => {
 
       userEvent.type(searchBarElement, '{enter}');
       await waitFor(() => {
-        expect(setFilterOption).toBeCalledWith({
-          fieldId: 'name',
-          matcher: Matcher.Equals,
-          value: 'first name 1',
-          displayName: 'first name 1',
-          selected: true
-        });
+        expect(executeFilterSearch).toHaveBeenCalled();
+      });
+      expect(setFilterOption).toBeCalledWith({
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'first name 1',
+        displayName: 'first name 1',
+        selected: true
       });
       expect(setOffset).not.toHaveBeenCalled();
       expect(resetFacets).not.toHaveBeenCalled();
@@ -260,32 +304,35 @@ describe('search with section labels', () => {
 
 describe('search without section labels', () => {
   it('shows autocomplete results, if they exist, when a character is typed', async () => {
-    mockSearchActions({
-      executeFilterSearch: jest.fn().mockResolvedValue(unlabeledFilterSearchResponse)
-    });
-    jest.spyOn(searchOperations, 'executeSearch').mockImplementation();
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(unlabeledFilterSearchResponse);
+    renderFilterSearch();
 
-    render(<FilterSearch searchFields={searchFieldsProp} />);
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
     await waitFor(() => {
-      const autocompleteSuggestion = screen.getByText('first name 1');
-      expect(autocompleteSuggestion).toBeDefined();
+      expect(executeFilterSearch).toHaveBeenCalled();
     });
+    const autocompleteSuggestion = screen.getByText('first name 1');
+    expect(autocompleteSuggestion).toBeDefined();
   });
 });
 
 describe('screen reader', () => {
   it('renders ScreenReader messages with section labels', async () => {
-    mockSearchActions({
-      executeFilterSearch: jest.fn().mockResolvedValue(labeledFilterSearchResponse)
-    });
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    renderFilterSearch();
 
-    render(<FilterSearch searchFields={searchFieldsProp} />);
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
+    await waitFor(() => {
+      expect(executeFilterSearch).toHaveBeenCalled();
+    });
     const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found.';
     await waitFor(() => {
       const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
@@ -294,14 +341,17 @@ describe('screen reader', () => {
   });
 
   it('renders ScreenReader messages without section labels', async () => {
-    mockSearchActions({
-      executeFilterSearch: jest.fn().mockResolvedValue(unlabeledFilterSearchResponse)
-    });
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(unlabeledFilterSearchResponse);
+    renderFilterSearch();
 
-    render(<FilterSearch searchFields={searchFieldsProp} />);
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.type(searchBarElement, 'n');
+    await waitFor(() => {
+      expect(executeFilterSearch).toHaveBeenCalled();
+    });
     const expectedScreenReaderMessage = '3 autocomplete options found.';
     await waitFor(() => {
       const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
@@ -310,18 +360,82 @@ describe('screen reader', () => {
   });
 
   it('renders 0 results ScreenReader message when there are no results', async () => {
-    mockSearchActions({
-      executeFilterSearch: jest.fn().mockResolvedValue(noResultsFilterSearchResponse)
-    });
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(noResultsFilterSearchResponse);
+    renderFilterSearch();
 
-    render(<FilterSearch searchFields={searchFieldsProp} />);
     const searchBarElement = screen.getByRole('textbox');
-
     userEvent.type(searchBarElement, 'n');
+    await waitFor(() => {
+      expect(executeFilterSearch).toHaveBeenCalled();
+    });
     const expectedScreenReaderMessage = '0 autocomplete options found.';
     await waitFor(() => {
       const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
       expect(screenReaderMessage).toBeDefined();
     });
+  });
+});
+
+function renderFilterSearch(props: FilterSearchProps = { searchFields: searchFieldsProp }): RenderResult {
+  return render(<SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+    <FilterSearch {...props} />
+  </SearchHeadlessContext.Provider>);
+}
+
+it('clears input when old filters are removed', async () => {
+  const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+  const executeFilterSearch = jest
+    .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+    .mockResolvedValue(labeledFilterSearchResponse);
+
+  const deselectedFilter: SelectableFilter = {
+    fieldId: 'name',
+    matcher: Matcher.Equals,
+    value: 'first name 1',
+    displayName: 'first name 1',
+    selected: false
+  };
+  function DeselectFiltersButton(): JSX.Element {
+    const answerAction = useSearchActions();
+
+    const handleClickDeselectFilter = () => {
+      answerAction.setFilterOption(deselectedFilter);
+    };
+    return (
+      <button onClick={handleClickDeselectFilter}>
+          Deselect Filter
+      </button>
+    );
+
+  }
+
+  render(<SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+    <FilterSearch searchFields={searchFieldsProp} />
+    <DeselectFiltersButton/>
+  </SearchHeadlessContext.Provider>);
+
+  const searchBarElement = screen.getByRole('textbox');
+  userEvent.type(searchBarElement, 'first name 1');
+  expect(await screen.findByRole('textbox')).toHaveDisplayValue('first name 1');
+  userEvent.type(searchBarElement, '{arrowdown}{enter}');
+
+  await waitFor(() => {
+    expect(executeFilterSearch).toHaveBeenCalled();
+  });
+
+  await waitFor(() => {
+    expect(setFilterOption).toHaveBeenCalledWith({ ...deselectedFilter, selected: true });
+  });
+
+  const mockDeselectButton = screen.getByRole('button');
+  userEvent.click(mockDeselectButton);
+
+  await waitFor(() => {
+    expect(setFilterOption).toBeCalledWith(deselectedFilter);
+  });
+  await waitFor(() => {
+    expect(searchBarElement).toHaveValue('');
   });
 });
