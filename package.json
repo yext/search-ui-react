@@ -52,6 +52,7 @@
     "@storybook/addon-a11y": "^6.4.20",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-google-analytics": "^6.2.9",
     "@storybook/addon-interactions": "^6.4.19",
     "@storybook/addon-links": "^6.4.19",
     "@storybook/addon-postcss": "^2.0.0",
