@@ -25,7 +25,7 @@ export function useRemovableFilters(
       return [];
     }
 
-    const selectedFacets = facets
+    const removableFacets = facets
       ?.filter(f => !hiddenFields.includes(f.fieldId))
       .flatMap((f: DisplayableFacet) => {
         if (hierarchicalFieldIds?.includes(f.fieldId)) {
@@ -34,7 +34,7 @@ export function useRemovableFilters(
         return processRegularFacet(f, searchActions);
       }) ?? [];
 
-    return [...removableStaticFilters, ...selectedFacets];
+    return [...removableStaticFilters, ...removableFacets];
   }, [
     facets,
     hasResults,
