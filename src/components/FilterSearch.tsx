@@ -171,7 +171,6 @@ export function FilterSearch({
           placeholder={placeholder}
           onChange={executeFilterSearch}
           submitCriteria={meetsSubmitCritera}
-          alwaysSelectOption={true}
         />
         <DropdownMenu>
           {hasResults &&

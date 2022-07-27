@@ -14,8 +14,7 @@ export function DropdownInput(props: {
   onSubmit?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void,
   onFocus?: (value: string) => void,
   onChange?: (value: string) => void,
-  submitCriteria?: (index: number) => boolean,
-  alwaysSelectOption?: boolean
+  submitCriteria?: (index: number) => boolean
 }): JSX.Element {
   const {
     className,
@@ -24,8 +23,7 @@ export function DropdownInput(props: {
     onSubmit,
     onFocus,
     onChange,
-    submitCriteria,
-    alwaysSelectOption = false
+    submitCriteria
   } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -40,15 +38,16 @@ export function DropdownInput(props: {
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     toggleDropdown(true);
-    updateFocusedItem(alwaysSelectOption ? 0 : -1, e.target.value);
-    setLastTypedOrSubmittedValue(e.target.value);
+    console.log('change');
     onChange?.(e.target.value);
-  }, [alwaysSelectOption, onChange, setLastTypedOrSubmittedValue, toggleDropdown, updateFocusedItem]);
+    updateFocusedItem(-1, e.target.value);
+    setLastTypedOrSubmittedValue(e.target.value);
+  }, [onChange, setLastTypedOrSubmittedValue, toggleDropdown, updateFocusedItem]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && (!submitCriteria || submitCriteria(focusedIndex))) {
       toggleDropdown(false);
-      alwaysSelectOption ? updateFocusedItem(0) : updateFocusedItem(-1, value);
+      updateFocusedItem(-1, value);
       inputRef.current?.blur();
       onSubmit?.(value, focusedIndex, focusedItemData);
       if (focusedIndex >= 0) {
@@ -56,7 +55,6 @@ export function DropdownInput(props: {
       }
     }
   }, [
-    alwaysSelectOption,
     focusedIndex,
     focusedItemData,
     onSelect,
