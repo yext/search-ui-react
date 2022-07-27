@@ -1,4 +1,4 @@
-import { Filter, useSearchState, useSearchActions, DisplayableFacet, DisplayableFacetOption, SearchActions } from '@yext/search-headless-react';
+import { Filter, useSearchState, useSearchActions, DisplayableFacet, DisplayableFacetOption, SearchActions, Matcher } from '@yext/search-headless-react';
 import { isEqual } from 'lodash';
 import { useMemo } from 'react';
 import { isNearFilterValue } from '../utils/filterutils';
@@ -120,20 +120,16 @@ function processHierarchicalFacet(
 }
 
 function handleRemoveHierarchicalFacetOption(
-  filter: Filter,
+  filter: {
+    value: DisplayableFacetOption['value'],
+    fieldId: string,
+    matcher: Matcher
+  },
   displayNameTokens: string[],
   delimiter: string,
   searchActions: SearchActions,
   facets: DisplayableFacet[] | undefined
 ) {
-  if (typeof filter.value !== 'string') {
-    console.error(
-      `Hierarchical facet with fieldId ${filter.fieldId} must have string value,`,
-      `instead found a(n) ${typeof filter.value}`
-    );
-    return;
-  }
-
   searchActions.setFacetOption(filter.fieldId, {
     matcher: filter.matcher,
     value: filter.value
