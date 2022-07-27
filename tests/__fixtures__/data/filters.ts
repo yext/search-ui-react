@@ -4,7 +4,7 @@ import { RemovableFilter } from '../../../src/components/AppliedFiltersDisplay';
 function createRemovableFilter(value: string) {
   return {
     displayName: value,
-    handleRemove: () => console.log('Remove Mixer'),
+    handleRemove: () => console.log('Remove', value),
     filter: {
       value: value,
       matcher: Matcher.Equals,
