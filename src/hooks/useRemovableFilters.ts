@@ -8,6 +8,11 @@ import { useRemovableStaticFilters } from './useRemovableStaticFilters';
 import { RemovableFilter } from '../components/AppliedFiltersDisplay';
 
 /**
+ * Returns a memoized RemovableFilter[], with handling for static filters,
+ * hierarchical facets, and non-hierarchical facets.
+ *
+ * Duplicates are kept.
+ *
  * @internal
  */
 export function useRemovableFilters(
