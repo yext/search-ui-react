@@ -26,6 +26,7 @@ export const parameters = {
         'VerticalResults',
         'DirectAnswer',
         'FilterSearch',
+        'StaticFilters',
         'AppliedFilters',
         'StandardFacets',
         'NumericalFacets',
