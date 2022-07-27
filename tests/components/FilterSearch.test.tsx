@@ -110,8 +110,6 @@ describe('search with section labels', () => {
     await waitFor(() => screen.findByText('first name 1'));
 
     userEvent.type(searchBarElement, '{arrowdown}');
-    expect(searchBarElement).toHaveValue('first name 1');
-    userEvent.type(searchBarElement, '{arrowdown}');
     expect(searchBarElement).toHaveValue('first name 2');
   });
 
@@ -121,7 +119,7 @@ describe('search with section labels', () => {
 
     userEvent.type(searchBarElement, 'n');
     await waitFor(() => screen.findByText('first name 1'));
-    userEvent.type(searchBarElement, '{arrowdown}{enter}');
+    userEvent.type(searchBarElement, '{enter}');
     await waitFor(() => {
       expect(setFilterOption).toBeCalledWith({
         fieldId: 'name',
@@ -135,7 +133,7 @@ describe('search with section labels', () => {
     userEvent.clear(searchBarElement);
     userEvent.type(searchBarElement, 'n');
     await waitFor(() => screen.findByText('first name 2'));
-    userEvent.type(searchBarElement, '{arrowdown}{arrowdown}{enter}');
+    userEvent.type(searchBarElement, '{arrowdown}{enter}');
     await waitFor(() => {
       expect(setFilterOption).toBeCalledWith({
         fieldId: 'name',
@@ -171,7 +169,7 @@ describe('search with section labels', () => {
       };
       const expectedSetOffsetParam = 0;
 
-      userEvent.type(searchBarElement, '{arrowdown}{enter}');
+      userEvent.type(searchBarElement, '{enter}');
       await waitFor(() => {
         expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
       });
@@ -243,7 +241,7 @@ describe('search with section labels', () => {
       userEvent.type(searchBarElement, 'n');
       await waitFor(() => screen.findByText('first name 1'));
 
-      userEvent.type(searchBarElement, '{arrowdown}{enter}');
+      userEvent.type(searchBarElement, '{enter}');
       await waitFor(() => {
         expect(setFilterOption).toBeCalledWith({
           fieldId: 'name',

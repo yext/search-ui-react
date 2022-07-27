@@ -1,4 +1,4 @@
-import { createElement, isValidElement, PropsWithChildren, ReactNode, useMemo, useRef, useState } from 'react';
+import { createElement, isValidElement, PropsWithChildren, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
 import useGlobalListener from '@restart/hooks/useGlobalListener';
@@ -175,10 +175,16 @@ function useFocusContextInstance(
   setScreenReaderKey: (newKey: number) => void,
   alwaysSelectOption: boolean
 ): FocusContextType {
-  console.log('here');
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
   const [focusedItemData, setFocusedItemData] = useState<Record<string, unknown> | undefined>(undefined);
+
+  useEffect(() => {
+    if (alwaysSelectOption && items.length > 0) {
+      setFocusedIndex(0);
+      setFocusedItemData(items[0].itemData);
+    }
+  }, [alwaysSelectOption, items]);
 
   function updateFocusedItem(updatedFocusedIndex: number, value?: string) {
     const numItems = items.length;
@@ -261,6 +267,5 @@ function getTransformedChildrenAndItemData(children: ReactNode): [ReactNode, Dro
     const transformedItem = createElement(DropdownItemWithIndex, { ...props, index: items.length - 1 });
     return transformedItem;
   }));
-  console.log(items);
   return [childrenWithDropdownItemsTransformed, items];
 }
