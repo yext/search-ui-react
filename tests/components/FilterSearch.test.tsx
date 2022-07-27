@@ -419,7 +419,7 @@ it('clears input when old filters are removed', async () => {
   const searchBarElement = screen.getByRole('textbox');
   userEvent.type(searchBarElement, 'first name 1');
   expect(await screen.findByRole('textbox')).toHaveDisplayValue('first name 1');
-  userEvent.type(searchBarElement, '{arrowdown}{enter}');
+  userEvent.type(searchBarElement, '{enter}');
 
   await waitFor(() => {
     expect(executeFilterSearch).toHaveBeenCalled();
