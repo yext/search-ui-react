@@ -75,7 +75,7 @@ export interface AppliedFiltersCssClasses {
 // @public
 export interface AppliedFiltersProps {
     customCssClasses?: AppliedFiltersCssClasses;
-    hiddenFields?: Array<string>;
+    hiddenFields?: string[];
     hierarchicalFacetsDelimiter?: string;
     hierarchicalFacetsFieldIds?: string[];
 }

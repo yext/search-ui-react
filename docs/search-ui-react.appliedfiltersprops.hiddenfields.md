@@ -9,5 +9,5 @@ List of filters that should not be displayed. By default, builtin.entityType wil
 <b>Signature:</b>
 
 ```typescript
-hiddenFields?: Array<string>;
+hiddenFields?: string[];
 ```

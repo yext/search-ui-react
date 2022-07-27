@@ -1,57 +1,21 @@
 import { DisplayableFacet, Matcher, SelectableFilter as DisplayableFilter } from '@yext/search-headless-react';
-import { DisplayableHierarchicalFacet } from '../../../src/models/groupedFilters';
+import { RemovableFilter } from '../../../src/components/AppliedFiltersDisplay';
 
-export const DisplayableFilters: DisplayableFilter[] = [
-  {
-    selected: true,
-    fieldId: 'field1',
-    value: 'value1',
-    matcher: Matcher.Equals,
-    displayName: 'Value 1'
-  },
-  {
-    selected: true,
-    fieldId: 'field2',
-    value: 'value2',
-    matcher: Matcher.Equals,
-    displayName: 'Value 2'
-  },
-  {
-    selected: true,
-    fieldId: 'field3',
-    value: 'value3',
-    matcher: Matcher.Equals,
-    displayName: 'Value 3'
-  },
-  {
-    selected: true,
-    fieldId: 'field4',
-    value: 'value4',
-    matcher: Matcher.Equals,
-    displayName: 'Value 4'
-  },
-];
+function createRemovableFilter(value: string) {
+  return {
+    displayName: value,
+    handleRemove: () => console.log('Remove', value),
+    filter: {
+      value: value,
+      matcher: Matcher.Equals,
+      fieldId: 'c_custom'
+    }
+  };
+}
 
-export const DisplayableHierarchicalFacets: DisplayableHierarchicalFacet[] = [
-  {
-    selected: true,
-    fieldId: 'hierarchicalField',
-    value: 'Appliances > Small Appliances > Toaster',
-    matcher: Matcher.Equals,
-    displayName: 'hierarchical1',
-    displayNameTokens: ['Appliances', 'Small Appliances', 'Toaster'],
-    lastDisplayNameToken: 'Toaster'
-  },
-  {
-    selected: true,
-    fieldId: 'hierarchicalField',
-    value: 'Appliances > Small Appliances > Mixer',
-    matcher: Matcher.Equals,
-    displayName: 'hierarchical2',
-    displayNameTokens: ['Appliances', 'Small Appliances', 'Mixer'],
-    lastDisplayNameToken: 'Mixer'
-  }
-];
+export const RemovableFilters: RemovableFilter[] = [
+  'Toaster', 'Mixer', 'Value 4', 'Value 1', 'Value 2'
+].map(createRemovableFilter);
 
 export const DisplayableFacets: DisplayableFacet[] = [
   {

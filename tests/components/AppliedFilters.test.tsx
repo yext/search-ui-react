@@ -249,15 +249,10 @@ describe('AppliedFilters with hierarchical facets', () => {
     const fruitButton = screen.queryByLabelText('Remove "food" filter');
     userEvent.click(fruitButton);
 
-    expect(actions.setFacetOption).toHaveBeenCalledTimes(3);
+    expect(actions.setFacetOption).toHaveBeenCalledTimes(2);
     expect(actions.setFacetOption).toHaveBeenCalledWith(
       'hier',
       { matcher: Matcher.Equals, value: 'food' },
-      false
-    );
-    expect(actions.setFacetOption).toHaveBeenCalledWith(
-      'hier',
-      { matcher: Matcher.Equals, value: 'food > fruit' },
       false
     );
     expect(actions.setFacetOption).toHaveBeenCalledWith(
