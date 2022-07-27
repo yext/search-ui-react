@@ -42,7 +42,7 @@
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "coverage:visual-regression": "react-scripts test --watchAll=false --coverage --coverageDirectory=coverage/visual-regression --roots=\"<rootDir>\" --testMatch=\"<rootDir>/.storybook/storyshots/index.js\""
+    "coverage:visual-regression": "react-scripts test --watchAll=false --coverage --coverageDirectory=coverage /visual-regression --roots=\"<rootDir>\" --testMatch=\"<rootDir>/storyshots/index.js\""
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
