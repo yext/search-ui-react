@@ -38,29 +38,29 @@ export function PeoplePage() {
             label='Filters'
           />
           <div className='w-full h-px bg-gray-200 my-4' />
-          {/* <NumericalFacets />
-          <StandardFacets
-            excludedFieldIds={hierarchicalFacetFieldIds}
-          /> */}
+          <StaticFilters
+            fieldId='c_employeeDepartment'
+            title='Static Employee Department'
+            filterOptions={[
+              { value: 'Consulting' },
+              { value: 'Technology' }
+            ]}
+          />
           <StaticFilters
             fieldId='c_hierarchicalFacet'
-            title='static hierarchical facets'
+            title='Static Hierarchical Facets'
             filterOptions={[
               { value: 'Computer & Tablets' },
             ]}
+          />
+          <NumericalFacets />
+          <StandardFacets
+            excludedFieldIds={hierarchicalFacetFieldIds}
           />
           <HierarchicalFacets
             collapsible={true}
             includedFieldIds={hierarchicalFacetFieldIds}
           />
-          {/* <StaticFilters
-            fieldId='c_employeeCountry'
-            title='Employee Country'
-            filterOptions={[
-              { value: 'United States' },
-              { value: 'UK' }
-            ]}
-          /> */}
           <br />
           <ApplyFiltersButton />
         </div>

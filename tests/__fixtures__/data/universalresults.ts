@@ -1,9 +1,10 @@
-import { Matcher, Source, VerticalResults } from '@yext/search-headless-react';
+import { AppliedQueryFilterType, Matcher, Source, VerticalResults } from '@yext/search-headless-react';
 
 const vertical1: VerticalResults = {
   appliedQueryFilters: [{
     displayKey: 'Job Category',
     displayValue: 'Sales',
+    type: AppliedQueryFilterType.FieldValue,
     filter: {
       fieldId: 'c_jobCategory',
       matcher: Matcher.Equals,

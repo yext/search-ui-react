@@ -1,7 +1,6 @@
 import { useSearchState, useSearchActions, SelectableFilter } from '@yext/search-headless-react';
 import { useMemo } from 'react';
 import { RemovableFilter } from '../components/AppliedFiltersDisplay';
-import { executeSearch } from '../utils/search-operations';
 import { useStateUpdatedOnSearch } from './useStateUpdatedOnSearch';
 
 /**
@@ -18,9 +17,7 @@ export function useRemovableStaticFilters(hiddenFields: string[]): RemovableFilt
     }
 
     function handleRemoveStaticFilterOption(filter: SelectableFilter) {
-      searchActions.setOffset(0);
       searchActions.setFilterOption({ ...filter, selected: false });
-      executeSearch(searchActions);
     }
 
     return staticFilters

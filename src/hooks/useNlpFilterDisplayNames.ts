@@ -15,7 +15,7 @@ export function useNlpFilterDisplayNames(
 
   return useMemo(() => {
     return nlpFilters?.filter(({ filter }) => {
-      if (!hiddenFields.includes(filter.fieldId)) {
+      if (hiddenFields.includes(filter.fieldId)) {
         return false;
       }
       const duplicateFilter = removableFilters.find(f => isDuplicateFilter(f, filter));

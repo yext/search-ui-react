@@ -3,7 +3,6 @@ import { isEqual } from 'lodash';
 import { useMemo } from 'react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { isDescendantHierarchicalFacet } from '../utils/isDescendantHierarchicalFacet';
-import { executeSearch } from '../utils/search-operations';
 import { useStateUpdatedOnSearch } from './useStateUpdatedOnSearch';
 import { useRemovableStaticFilters } from './useRemovableStaticFilters';
 import { RemovableFilter } from '../components/AppliedFiltersDisplay';
@@ -140,6 +139,9 @@ function handleRemoveHierarchicalFacetOption(
     ?.filter(f => f.fieldId === filter.fieldId)
     .flatMap(f => f.options)
     .forEach(o => {
+      if (!o.selected) {
+        return;
+      }
       const tokensToCheck = splitDisplayName(o.displayName, delimiter);
       if (isDescendantHierarchicalFacet(tokensToCheck, displayNameTokens)) {
         searchActions.setFacetOption(filter.fieldId, {
@@ -161,10 +163,6 @@ function handleRemoveHierarchicalFacetOption(
     matcher: parentOption.matcher,
     value: parentOption.value
   }, true);
-
-  searchActions.setOffset(0);
-  searchActions.setFacetOption(filter.fieldId, { matcher: filter.matcher, value: filter.value }, false);
-  executeSearch(searchActions);
 }
 
 function handleRemoveFacetOption({ fieldId, matcher, value }: Filter, searchActions: SearchActions) {
@@ -172,9 +170,7 @@ function handleRemoveFacetOption({ fieldId, matcher, value }: Filter, searchActi
     console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
     return;
   }
-  searchActions.setOffset(0);
   searchActions.setFacetOption(fieldId, { matcher, value }, false);
-  executeSearch(searchActions);
 }
 
 function splitDisplayName(displayName: string, delimiter: string): string[] {

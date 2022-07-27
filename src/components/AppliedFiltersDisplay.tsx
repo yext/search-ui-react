@@ -1,8 +1,9 @@
 import { CloseIcon } from '../icons/CloseIcon';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { useClearFiltersCallback } from '../hooks/useClearFiltersCallback';
-import { Filter } from '@yext/search-headless-react';
+import { Filter, useSearchActions } from '@yext/search-headless-react';
 import { isDuplicateFilter } from '../utils/filterutils';
+import { executeSearch } from '../utils/search-operations';
 
 /**
  * A representation of a filter that can be removed from the AppliedFilters component.
@@ -44,29 +45,33 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     cssClasses = {}
   } = props;
   const handleClickClearAllButton = useClearFiltersCallback();
+  const searchActions = useSearchActions();
 
   if (removableFilters.length + nlpFilterDisplayNames.length === 0) {
     return null;
   }
 
-  const dedupedRemovableFilters = getDedupedRemovableFilters(removableFilters);
   const dedupedNlpFilterDisplaynames = nlpFilterDisplayNames.filter(displayName => {
-    return removableFilters.some(f => f.displayName === displayName);
+    return !removableFilters.some(f => f.displayName === displayName);
   });
+
+  const dedupedRemovableFilters = getDedupedRemovableFilters(removableFilters);
+
+  function handleRemoveDedupedFilter(dedupedFilter: DedupedRemovableFilter) {
+    dedupedFilter.handleRemove();
+    for (const f of dedupedFilter.duplicates ?? []) {
+      f.handleRemove();
+    }
+    searchActions.setOffset(0);
+    executeSearch(searchActions);
+  }
 
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
-      {dedupedNlpFilterDisplaynames.map(displayName =>
-        <NlpFilter displayName={displayName} key={displayName} cssClasses={cssClasses} />
-      )}
-      {dedupedRemovableFilters.map((filter, i) =>
-        <RemovableFilter
-          displayName={filter.displayName}
-          handleRemove={filter.handleRemove}
-          key={`${filter.displayName}-${i}`}
-          cssClasses={cssClasses}
-        />
-      )}
+      {dedupedNlpFilterDisplaynames.map(displayName => renderNlpFilter(displayName, cssClasses))}
+      {dedupedRemovableFilters.map(f => {
+        return renderRemovableFilter(f.displayName, () => handleRemoveDedupedFilter(f), cssClasses);
+      })}
       {removableFilters.length > 0 &&
         <button onClick={handleClickClearAllButton} className={cssClasses.clearAllButton}>
           Clear All
@@ -76,23 +81,34 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   );
 }
 
+interface DedupedRemovableFilter extends RemovableFilter {
+  duplicates?: RemovableFilter[]
+}
+
 function getDedupedRemovableFilters(filters: RemovableFilter[]) {
-  const dedupedFilters: RemovableFilter[] = [];
+  const dedupedFilters: DedupedRemovableFilter[] = [];
   for (const f of filters) {
-    if (!dedupedFilters.some(d => isDuplicateFilter(d.filter, f.filter))) {
+    const preexistingDupe = dedupedFilters.find(d => isDuplicateFilter(d.filter, f.filter));
+    if (!preexistingDupe) {
       dedupedFilters.push(f);
+    } else {
+      if (!preexistingDupe.duplicates) {
+        preexistingDupe.duplicates = [f];
+      } else {
+        preexistingDupe.duplicates.push(f);
+      }
     }
   }
   return dedupedFilters;
 }
 
-function RemovableFilter({ displayName, handleRemove, cssClasses }: {
+function renderRemovableFilter(
   displayName: string | undefined,
   handleRemove: () => void,
   cssClasses: AppliedFiltersCssClasses
-}): JSX.Element {
+): JSX.Element {
   return (
-    <div className={cssClasses.removableFilter}>
+    <div className={cssClasses.removableFilter} key={displayName}>
       <div className={cssClasses.filterLabel}>{displayName}</div>
       <button
         className='w-2 h-2 text-neutral m-1.5'
@@ -105,12 +121,12 @@ function RemovableFilter({ displayName, handleRemove, cssClasses }: {
   );
 }
 
-function NlpFilter({ displayName, cssClasses }: {
+function renderNlpFilter(
   displayName: string | undefined,
   cssClasses: AppliedFiltersCssClasses
-}): JSX.Element {
+): JSX.Element {
   return (
-    <div className={cssClasses.nlpFilter}>
+    <div className={cssClasses.nlpFilter} key={displayName}>
       <span className={cssClasses.filterLabel}>{displayName}</span>
     </div>
   );
