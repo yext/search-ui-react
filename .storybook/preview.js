@@ -17,7 +17,28 @@ export const parameters = {
         values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'],
       }
     }
-  }
+  },
+  options: {
+    storySort: {
+      order: [
+        'SearchBar',
+        'UniversalResults',
+        'VerticalResults',
+        'DirectAnswer',
+        'FilterSearch',
+        'AppliedFilters',
+        'StandardFacets',
+        'NumericalFacets',
+        'HierarchicalFacets',
+        'RangeInput',
+        'AlternativeVerticals',
+        'SpellCheck',
+        'ResultsCount',
+        'Pagination',
+        'LocationBias',
+      ],
+    },
+  },
 };
 
 // Add the decorator to all stories
