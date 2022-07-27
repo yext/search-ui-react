@@ -1,26 +1,21 @@
 import { DisplayableFacet, Matcher, SelectableFilter as DisplayableFilter } from '@yext/search-headless-react';
 import { RemovableFilter } from '../../../src/components/AppliedFiltersDisplay';
 
-export const RemovableFilters: RemovableFilter[] = [
-  {
-    displayName: 'Toaster',
-    handleRemove: () => console.log('Remove Toaster'),
-    filter: {
-      value: 'Toaster',
-      matcher: Matcher.Equals,
-      fieldId: 'c_custom'
-    }
-  },
-  {
-    displayName: 'Mixer',
+function createRemovableFilter(value: string) {
+  return {
+    displayName: value,
     handleRemove: () => console.log('Remove Mixer'),
     filter: {
-      value: 'Mixer',
+      value: value,
       matcher: Matcher.Equals,
       fieldId: 'c_custom'
     }
-  }
-];
+  };
+}
+
+export const RemovableFilters: RemovableFilter[] = [
+  'Toaster', 'Mixer', 'Value 4', 'Value 1', 'Value 2'
+].map(createRemovableFilter);
 
 export const DisplayableFacets: DisplayableFacet[] = [
   {
