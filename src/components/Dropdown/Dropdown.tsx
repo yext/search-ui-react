@@ -74,12 +74,13 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     alwaysSelectOption,
     selectedBeforeClose
   );
-  const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
+  const { focusedIndex, focusedValue, focusedItemData, updateFocusedItem } = focusContext;
 
   const dropdownContext = useDropdownContextInstance(
     lastTypedOrSubmittedValue,
     value,
     focusedIndex,
+    focusedValue,
     focusedItemData,
     screenReaderUUID,
     setHasTyped,
@@ -243,6 +244,7 @@ function useDropdownContextInstance(
   prevValue: string,
   value: string,
   index: number,
+  focusedValue: string | null,
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
   setHasTyped: (hasTyped: boolean) => void,
@@ -262,7 +264,7 @@ function useDropdownContextInstance(
     let shouldSelect = true;
     if (!willBeOpen) {
       setHasTyped(false);
-      if (focusedItemData !== undefined && value !== focusedItemData.filter.value) {
+      if (value !== focusedValue) {
         setSelectedBeforeClose(false);
         shouldSelect = false;
       }

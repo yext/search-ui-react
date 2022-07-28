@@ -36,7 +36,7 @@ describe('Dropdown', () => {
     // hidden when click elsewhere outside of dropdown component
     userEvent.click(screen.getByText('external div'));
     expect(screen.queryByText('item1')).toBeNull();
-    expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined, true);
+    expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined, false);
 
     // display when tab into dropdown input
     userEvent.tab();
