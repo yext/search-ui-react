@@ -42,7 +42,7 @@
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "coverage:visual-regression": "react-scripts test --watchAll=false --coverage --coverageDirectory=coverage /visual-regression --roots=\"<rootDir>\" --testMatch=\"<rootDir>/storyshots/index.js\""
+    "coverage:visual-regression": "jest --coverage --coverageDirectory=coverage/visual-regression"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -53,13 +53,14 @@
     "@percy/storybook": "^4.2.0",
     "@storybook/addon-a11y": "^6.4.20",
     "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-coverage": "^0.0.2",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",
     "@storybook/addon-links": "^6.4.19",
     "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addon-storyshots": "^6.5.9",
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
-    "@storybook/addon-storyshots":"6.5.9",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.3",
     "@testing-library/react-hooks": "^8.0.0",
@@ -74,6 +75,7 @@
     "@yext/search-headless-react": "^1.4.0-alpha.147",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.3",
+    "babel-plugin-transform-require-context": "^0.1.1",
     "eslint": "^8.11.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-react-hooks": "^4.3.0",
@@ -103,6 +105,7 @@
     ],
     "moduleFileExtensions": [
       "js",
+      "json",
       "ts",
       "tsx"
     ],
@@ -125,8 +128,12 @@
     "moduleNameMapper": {
       "./SearchCore": "<rootDir>/tests/__fixtures__/core/SearchCore.ts"
     },
+    "modulePaths": ["<rootDir>/.storybook/main.cjs"],
     "resetMocks": true,
-    "restoreMocks": true
+    "restoreMocks": true,    
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/__setup__/setup-env.ts"
+      ]
   },
   "dependencies": {
     "@microsoft/api-documenter": "^7.15.3",
