@@ -1,5 +1,5 @@
 import { useSynchronizedRequest } from '../../src/hooks/useSynchronizedRequest';
-import { renderHook, act } from '@testing-library/react-hooks/dom';
+import { renderHook } from '@testing-library/react-hooks/dom';
 import { waitFor } from '@testing-library/react';
 
 it('returns an updated execute request function with the same reference', async () => {

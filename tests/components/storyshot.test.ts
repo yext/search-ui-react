@@ -1,6 +1,6 @@
-import initStoryshots from "@storybook/addon-storyshots";
-import { render } from "@testing-library/react";
-import { resolve } from "path";
+import initStoryshots from '@storybook/addon-storyshots';
+import { render } from '@testing-library/react';
+import { resolve } from 'path';
 
 jest.mock('uuid', () => {
   return {
@@ -9,7 +9,7 @@ jest.mock('uuid', () => {
 });
 
 initStoryshots({
-  configPath: resolve(__dirname, "../../.storybook"),
+  configPath: resolve(__dirname, '../../.storybook'),
   framework: 'react',
   renderer: render
 });
