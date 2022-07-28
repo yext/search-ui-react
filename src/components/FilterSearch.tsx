@@ -130,8 +130,8 @@ export function FilterSearch({
     handleDropdownEvent(value, itemData, true);
   }, [handleDropdownEvent]);
 
-  const handleToggleDropdown = useCallback((isActive, _prevValue, value, _index, itemData) => {
-    if (!isActive) {
+  const handleToggleDropdown = useCallback((isActive, _prevValue, value, _index, itemData, shouldSelect) => {
+    if (!isActive && shouldSelect) {
       handleDropdownEvent(value, itemData, false);
     }
   }, [handleDropdownEvent]);

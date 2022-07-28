@@ -35,17 +35,17 @@ export function DropdownInput(props: {
     updateFocusedItem
   } = useFocusContext();
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
     toggleDropdown(true);
-    onChange?.(e.target.value);
+    await onChange?.(e.target.value);
     updateFocusedItem(-1, e.target.value);
     setLastTypedOrSubmittedValue(e.target.value);
   }, [onChange, setLastTypedOrSubmittedValue, toggleDropdown, updateFocusedItem]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && (!submitCriteria || submitCriteria(focusedIndex))) {
-      toggleDropdown(false);
       updateFocusedItem(focusedIndex);
+      toggleDropdown(false);
       inputRef.current?.blur();
       onSubmit?.(value, focusedIndex, focusedItemData);
       if (focusedIndex >= 0) {

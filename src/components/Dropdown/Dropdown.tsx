@@ -9,6 +9,7 @@ import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
+import { useSearchActions } from '@yext/search-headless-react';
 
 interface DropdownItemData {
   value: string,
@@ -25,7 +26,8 @@ export interface DropdownProps {
     prevValue: string,
     value: string,
     index: number,
-    focusedItemData: Record<string, unknown> | undefined
+    focusedItemData: Record<string, unknown> | undefined,
+    shouldSelect: boolean
   ) => void,
   className?: string,
   activeClassName?: string,
@@ -56,6 +58,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   const screenReaderUUID: string = useMemo(() => uuid(), []);
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
+  const [selectedBeforeClose, setSelectedBeforeClose] = useState<boolean>(true);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
     return getTransformedChildrenAndItemData(children);
   }, [children]);
@@ -69,7 +72,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     setValue,
     screenReaderKey,
     setScreenReaderKey,
-    alwaysSelectOption
+    alwaysSelectOption,
+    selectedBeforeClose
   );
   const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
 
@@ -80,6 +84,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     focusedItemData,
     screenReaderUUID,
     setHasTyped,
+    setSelectedBeforeClose,
     onToggle,
     onSelect
   );
@@ -173,27 +178,41 @@ function useFocusContextInstance(
   setValue: (newValue: string) => void,
   screenReaderKey: number,
   setScreenReaderKey: (newKey: number) => void,
-  alwaysSelectOption: boolean
+  alwaysSelectOption: boolean,
+  selectedBeforeClose: boolean
 ): FocusContextType {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
   const [focusedItemData, setFocusedItemData] = useState<Record<string, unknown> | undefined>(undefined);
-
   useEffect(() => {
-    if (alwaysSelectOption && items.length > 0) {
-      setFocusedIndex(0);
-      setFocusedItemData(items[0].itemData);
+    if (alwaysSelectOption) {
+      if (items.length > 0) {
+        const index = focusedIndex === -1 || focusedIndex > items.length ? 0 : focusedIndex;
+        setFocusedIndex(index);
+        setFocusedValue(items[index].value);
+        setFocusedItemData(items[index].itemData);
+      } else {
+        setFocusedIndex(-1);
+        setFocusedValue(null);
+        setFocusedItemData(undefined);
+      }
+      if (!selectedBeforeClose) {
+        setFocusedIndex(-1);
+        setFocusedValue(null);
+        setFocusedItemData(undefined);
+      }
     }
-  }, [alwaysSelectOption, items]);
+  }, [alwaysSelectOption, focusedIndex, items, selectedBeforeClose]);
 
   function updateFocusedItem(updatedFocusedIndex: number, value?: string) {
     const numItems = items.length;
     let updatedValue;
     if (updatedFocusedIndex === -1 || updatedFocusedIndex >= numItems || numItems === 0) {
       updatedValue = value ?? lastTypedOrSubmittedValue;
-      if (alwaysSelectOption && numItems !== 0) {
+      if (alwaysSelectOption && numItems !== 0 && selectedBeforeClose) {
         setFocusedIndex(0);
         setFocusedItemData(items[0].itemData);
+        setScreenReaderKey(screenReaderKey + 1);
       } else {
         setFocusedIndex(-1);
         setFocusedItemData(undefined);
@@ -227,23 +246,32 @@ function useDropdownContextInstance(
   index: number,
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
-  setHasTyped: (boolean) => void,
+  setHasTyped: (hasTyped: boolean) => void,
+  setSelectedBeforeClose: (selectedBeforeClose: boolean) => void,
   onToggle?: (
     isActive: boolean,
     prevValue: string,
     value: string,
     index: number,
-    focusedItemData: Record<string, unknown> | undefined
+    focusedItemData: Record<string, unknown> | undefined,
+    shouldSelect
   ) => void,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
+    let shouldSelect = true;
     if (!willBeOpen) {
       setHasTyped(false);
+      if (focusedItemData !== undefined && value !== focusedItemData.filter.value) {
+        setSelectedBeforeClose(false);
+        shouldSelect = false;
+      }
+    } else {
+      setSelectedBeforeClose(true);
     }
     _toggleDropdown(willBeOpen);
-    onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
+    onToggle?.(willBeOpen, prevValue, value, index, focusedItemData, shouldSelect);
   };
   return {
     isActive,
