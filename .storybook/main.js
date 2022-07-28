@@ -21,9 +21,6 @@ module.exports = {
       },
     },
   ],
-  features: {
-    storyStoreV7: !global.navigator?.userAgent?.match?.('jsdom'),
-  },
   framework: '@storybook/react',
   staticDirs: ['./public'],
   webpackFinal: async (config) => {

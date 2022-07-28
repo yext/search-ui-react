@@ -86,8 +86,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "tailwindcss": "^3.0.23",
-    "typescript": "~4.4.3",
-    "wait-on": "^6.0.1"
+    "typescript": "~4.4.3"
   },
   "peerDependencies": {
     "@yext/search-headless-react": "^1.4.0-alpha.147",
@@ -129,7 +128,6 @@
       "./SearchCore": "<rootDir>/tests/__fixtures__/core/SearchCore.ts",
       "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     },
-    "modulePaths": ["<rootDir>/.storybook/main.cjs"],
     "resetMocks": true,
     "restoreMocks": true
   },
