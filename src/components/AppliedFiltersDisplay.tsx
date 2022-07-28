@@ -51,7 +51,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     return null;
   }
 
-  const dedupedNlpFilterDisplaynames = nlpFilterDisplayNames.filter(displayName => {
+  const dedupedNlpFilterDisplayNames = nlpFilterDisplayNames.filter(displayName => {
     return !removableFilters.some(f => f.displayName === displayName);
   });
 
@@ -68,9 +68,9 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
 
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
-      {dedupedNlpFilterDisplaynames.map(displayName => renderNlpFilter(displayName, cssClasses))}
-      {dedupedRemovableFilters.map(f => {
-        return renderRemovableFilter(f.displayName, () => handleRemoveDedupedFilter(f), cssClasses);
+      {dedupedNlpFilterDisplayNames.map((displayName, i) => renderNlpFilter(displayName, i, cssClasses))}
+      {dedupedRemovableFilters.map((f, i) => {
+        return renderRemovableFilter(f.displayName, () => handleRemoveDedupedFilter(f), i, cssClasses);
       })}
       {removableFilters.length > 0 &&
         <button onClick={handleClickClearAllButton} className={cssClasses.clearAllButton}>
@@ -105,10 +105,11 @@ function getDedupedRemovableFilters(filters: RemovableFilter[]) {
 function renderRemovableFilter(
   displayName: string | undefined,
   handleRemove: () => void,
-  cssClasses: AppliedFiltersCssClasses
+  index: number,
+  cssClasses: AppliedFiltersCssClasses,
 ): JSX.Element {
   return (
-    <div className={cssClasses.removableFilter} key={displayName}>
+    <div className={cssClasses.removableFilter} key={`${displayName}-${index}`}>
       <div className={cssClasses.filterLabel}>{displayName}</div>
       <button
         className='w-2 h-2 text-neutral m-1.5'
@@ -123,10 +124,11 @@ function renderRemovableFilter(
 
 function renderNlpFilter(
   displayName: string | undefined,
+  index: number,
   cssClasses: AppliedFiltersCssClasses
 ): JSX.Element {
   return (
-    <div className={cssClasses.nlpFilter} key={displayName}>
+    <div className={cssClasses.nlpFilter} key={`${displayName}-${index}`}>
       <span className={cssClasses.filterLabel}>{displayName}</span>
     </div>
   );
