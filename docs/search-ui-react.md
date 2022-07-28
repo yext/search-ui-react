@@ -26,7 +26,7 @@
 |  [Pagination(props)](./search-ui-react.pagination.md) | Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages. |
 |  [renderHighlightedValue(highlightedValueOrString, customCssClasses)](./search-ui-react.renderhighlightedvalue.md) | Renders a HighlightedValue with highlighting based on its matchedSubstrings. |
 |  [ResultsCount({ customCssClasses })](./search-ui-react.resultscount.md) | Renders results count of a universal/vertical search. |
-|  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, hideVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch })](./search-ui-react.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
+|  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch })](./search-ui-react.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
 |  [SpellCheck({ customCssClasses, onClick })](./search-ui-react.spellcheck.md) | Renders a suggested query if the Search API provides one. |
 |  [StandardCard(props)](./search-ui-react.standardcard.md) | This Component renders the base result card. |
 |  [StandardFacets(props)](./search-ui-react.standardfacets.md) | A component that displays simple facets applicable to the current vertical search. |
@@ -94,7 +94,6 @@
 |  [UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./search-ui-react.universalresultsprops.md) | Props for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
 |  [VerticalConfig](./search-ui-react.verticalconfig.md) | The configuration for a vertical. |
-|  [VerticalConfigMap](./search-ui-react.verticalconfigmap.md) | A map of verticalKey to a VerticalConfig. |
 |  [VerticalLabelMap](./search-ui-react.verticallabelmap.md) | A map of vertical keys to labels. |
 |  [VerticalLink](./search-ui-react.verticallink.md) | Data needed to create a URL to a vertical search page. |
 |  [VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md) | The CSS class interface used for [VerticalResults()](./search-ui-react.verticalresults.md)<!-- -->. |
@@ -111,9 +110,11 @@
 
 |  Type Alias | Description |
 |  --- | --- |
+|  [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md) | The data types use to construct the payload in the analytics event. |
 |  [CardAnalyticsType](./search-ui-react.cardanalyticstype.md) | Analytics event types for interactions on a card. |
 |  [CardComponent](./search-ui-react.cardcomponent.md) | A functional component that can be used to render a result card. |
 |  [CardCtaEventType](./search-ui-react.cardctaeventtype.md) | Analytics event types for cta click and title click. |
+|  [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md) | The default type for "rawData" field of type Result. |
 |  [DropdownItemProps](./search-ui-react.dropdownitemprops.md) | Props for the [DropdownItem()](./search-ui-react.dropdownitem.md)<!-- -->. |
 |  [FeedbackType](./search-ui-react.feedbacktype.md) | Analytics event types for quality feedback. |
 |  [FocusedItemData](./search-ui-react.focuseditemdata.md) | The data associated with the currently focused item. |
@@ -121,4 +122,5 @@
 |  [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data. |
 |  [SectionComponent](./search-ui-react.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 |  [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md) | The configuration data for a static filter option. |
+|  [VerticalConfigMap](./search-ui-react.verticalconfigmap.md) | A map of verticalKey to a VerticalConfig. |
 

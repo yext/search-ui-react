@@ -16,6 +16,7 @@ import {
   NumericalFacets,
   AlternativeVerticals
 } from '@yext/search-ui-react';
+// import { CustomCard } from '../components/CustomCard';
 
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 
@@ -37,24 +38,28 @@ export function PeoplePage() {
             label='Filters'
           />
           <div className='w-full h-px bg-gray-200 my-4' />
-          <NumericalFacets searchOnChange={false} />
+          <StaticFilters
+            fieldId='c_employeeDepartment'
+            title='Static Employee Department'
+            filterOptions={[
+              { value: 'Consulting' },
+              { value: 'Technology' }
+            ]}
+          />
+          <StaticFilters
+            fieldId='c_hierarchicalFacet'
+            title='Static Hierarchical Facets'
+            filterOptions={[
+              { value: 'Computer & Tablets' },
+            ]}
+          />
+          <NumericalFacets />
           <StandardFacets
-            searchOnChange={false}
             excludedFieldIds={hierarchicalFacetFieldIds}
           />
           <HierarchicalFacets
             collapsible={true}
-            searchOnChange={false}
             includedFieldIds={hierarchicalFacetFieldIds}
-          />
-          <StaticFilters
-            fieldId='c_employeeCountry'
-            title='Employee Country'
-            filterOptions={[
-              { value: 'United States' },
-              { value: 'UK' }
-            ]}
-            searchOnChange={false}
           />
           <br />
           <ApplyFiltersButton />
@@ -73,6 +78,10 @@ export function PeoplePage() {
           <VerticalResults
             CardComponent={StandardCard}
           />
+          {/* Test generic result type  */}
+          {/* <VerticalResults
+            CardComponent={CustomCard}
+          /> */}
           <Pagination />
           <LocationBias />
         </div>

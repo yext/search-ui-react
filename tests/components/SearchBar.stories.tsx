@@ -62,6 +62,20 @@ DropdownHighlight.play = ({ canvasElement }) => {
   userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
 
+export const DropdownExpandedVerticalLinks = (args: SearchBarProps) => {
+  return (
+    <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
+      <SearchBar {...args} showVerticalLinks={true} />
+    </SearchHeadlessContext.Provider>
+  );
+};
+DropdownExpandedVerticalLinks.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const textboxEl = canvas.getByRole('textbox');
+  conductRecentSearches(textboxEl);
+  userEvent.click(textboxEl);
+};
+
 function conductRecentSearches(textboxEl: HTMLElement) {
   userEvent.type(textboxEl, 'recent search 1');
   userEvent.keyboard('{enter}');

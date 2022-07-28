@@ -5,6 +5,7 @@ import { SearchHeadlessContext, Source } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
 import { StandardCard } from '../../src/components/cards/standard/StandardCard';
+import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
 
 const meta: ComponentMeta<typeof VerticalResults> = {
   title: 'VerticalResults',
@@ -44,8 +45,8 @@ const mockedHeadlessState = {
   }
 };
 
-export const NoResults = (args: VerticalResultsProps) => {
-  const verticalResultsProps: VerticalResultsProps = {
+export const NoResults = (args: VerticalResultsProps<DefaultRawDataType>) => {
+  const verticalResultsProps: VerticalResultsProps<DefaultRawDataType> = {
     CardComponent: StandardCard
   };
   return (
@@ -55,8 +56,8 @@ export const NoResults = (args: VerticalResultsProps) => {
   );
 };
 
-export const HasResults = (args: VerticalResultsProps) => {
-  const verticalResultsProps: VerticalResultsProps = {
+export const HasResults = (args: VerticalResultsProps<DefaultRawDataType>) => {
+  const verticalResultsProps: VerticalResultsProps<DefaultRawDataType> = {
     CardComponent: StandardCard
   };
   return (
@@ -66,8 +67,8 @@ export const HasResults = (args: VerticalResultsProps) => {
   );
 };
 
-export const Loading = (args: VerticalResultsProps) => {
-  const verticalResultsProps: VerticalResultsProps = {
+export const Loading = (args: VerticalResultsProps<DefaultRawDataType>) => {
+  const verticalResultsProps: VerticalResultsProps<DefaultRawDataType> = {
     CardComponent: StandardCard
   };
   return (

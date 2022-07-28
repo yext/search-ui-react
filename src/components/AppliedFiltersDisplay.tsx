@@ -1,32 +1,33 @@
 import { CloseIcon } from '../icons/CloseIcon';
-import {
-  useSearchActions,
-  SelectableFilter as DisplayableFilter,
-  useSearchState,
-  SearchTypeEnum,
-} from '@yext/search-headless-react';
-import { isNearFilterValue } from '../utils/filterutils';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
-import { DisplayableHierarchicalFacet } from '../models/groupedFilters';
-import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacetDisplay';
+import { useClearFiltersCallback } from '../hooks/useClearFiltersCallback';
+import { Filter, useSearchActions } from '@yext/search-headless-react';
+import { isDuplicateFilter } from '../utils/filterutils';
 import { executeSearch } from '../utils/search-operations';
-import { useCallback } from 'react';
-import { isDescendantHierarchicalFacet } from '../utils/appliedfilterutils';
+
+/**
+ * A representation of a filter that can be removed from the AppliedFilters component.
+ *
+ * @internal
+ */
+export interface RemovableFilter {
+  displayName: string,
+  handleRemove: () => void,
+  filter: Filter
+}
 
 /**
  * Properties for {@link AppliedFilters}.
+ *
+ * @internal
  */
 export interface AppliedFiltersDisplayProps {
-  /** Filters that are applied to the search results from static filters and filter search. */
-  staticFilters?: DisplayableFilter[],
-  /** Filters that are applied to the search results from facets. */
-  facets?: DisplayableFilter[],
-  /** Filters that are applied to the search results from hierarchical facets. */
-  hierarchicalFacets?: DisplayableHierarchicalFacet[],
-  /** Filters that are applied to the search results from the backend's natural language processing. */
-  nlpFilters?: DisplayableFilter[],
-  /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
-  hierarchicalFacetsDelimiter?: string,
+  removableFilters?: RemovableFilter[],
+  /**
+   * The display values of filters that are applied to the search results
+   * from the backend's natural language processing.
+   */
+  nlpFilterDisplayNames?: string[],
   /** CSS classes for customizing the component styling. */
   cssClasses?: AppliedFiltersCssClasses
 }
@@ -39,109 +40,39 @@ export interface AppliedFiltersDisplayProps {
  */
 export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
   const {
-    nlpFilters = [],
-    staticFilters = [],
-    facets = [],
-    hierarchicalFacets = [],
-    hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
+    nlpFilterDisplayNames = [],
+    removableFilters = [],
     cssClasses = {}
   } = props;
+  const handleClickClearAllButton = useClearFiltersCallback();
   const searchActions = useSearchActions();
-  const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
 
-  const handleClickClearAllButton = useCallback(() => {
-    searchActions.setOffset(0);
-    searchActions.resetFacets();
-    searchActions.setStaticFilters(staticFilters.map(f => {
-      return {
-        ...f,
-        selected: false
-      };
-    }));
-    executeSearch(searchActions);
-  }, [searchActions, staticFilters]);
-
-  const hasAppliedFilters = (
-    nlpFilters.length + staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
-  if (!hasAppliedFilters) {
+  if (removableFilters.length + nlpFilterDisplayNames.length === 0) {
     return null;
   }
 
-  const handleRemoveFacetOption = (filter: DisplayableFilter) => {
-    const { fieldId, matcher, value } = filter;
-    if (isNearFilterValue(value)) {
-      console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
-      return;
+  const dedupedNlpFilterDisplaynames = nlpFilterDisplayNames.filter(displayName => {
+    return !removableFilters.some(f => f.displayName === displayName);
+  });
+
+  const dedupedRemovableFilters = getDedupedRemovableFilters(removableFilters);
+
+  function handleRemoveDedupedFilter(dedupedFilter: DedupedRemovableFilter) {
+    dedupedFilter.handleRemove();
+    for (const f of dedupedFilter.duplicates ?? []) {
+      f.handleRemove();
     }
     searchActions.setOffset(0);
-    searchActions.setFacetOption(fieldId, { matcher, value }, false);
     executeSearch(searchActions);
-  };
+  }
 
-  const handleRemoveHierarchicalFacetOption = (facet: DisplayableHierarchicalFacet) => {
-    const { fieldId } = facet;
-
-    // Uncheck all descendant options in the hierarchy
-    hierarchicalFacets
-      .filter(hierarchicalFacet => hierarchicalFacet.fieldId === fieldId)
-      .forEach(hierarchicalFacet => {
-        if (isDescendantHierarchicalFacet(facet, hierarchicalFacet, hierarchicalFacetsDelimiter)) {
-          searchActions.setFacetOption(fieldId, {
-            matcher: hierarchicalFacet.matcher,
-            value: hierarchicalFacet.value
-          }, false);
-        }
-      });
-
-    const parentDisplayName = facet.displayNameTokens.slice(0, -1).join(` ${hierarchicalFacetsDelimiter} `);
-    const parentFacet = hierarchicalFacets
-      .find(hierarchicalFacet => hierarchicalFacet.displayName === parentDisplayName);
-
-    parentFacet && searchActions.setFacetOption(fieldId, {
-      matcher: parentFacet?.matcher,
-      value: parentFacet?.value
-    }, true);
-
-    searchActions.setOffset(0);
-    searchActions.setFacetOption(fieldId, { matcher: facet.matcher, value: facet.value }, false);
-    executeSearch(searchActions);
-  };
-
-  const handleRemoveStaticFilterOption = (filter: DisplayableFilter) => {
-    searchActions.setOffset(0);
-    searchActions.setFilterOption({ ...filter, selected: false });
-    executeSearch(searchActions);
-  };
-
-  const renderRemovableFilter =
-    (handleRemoveFilter: (filter: DisplayableFilter) => void) =>
-      (filter: DisplayableFilter) =>
-        <RemovableFilter
-          displayName={filter.displayName ?? ''}
-          handleRemoveFilter={handleRemoveFilter}
-          filter={filter}
-          key={filter.displayName}
-          cssClasses={cssClasses}
-        />;
-
-  const hasRemovableFilters = (staticFilters.length + facets.length + hierarchicalFacets.length) > 0;
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
-      {nlpFilters.map(filter =>
-        <NlpFilter filter={filter} key={filter.displayName} cssClasses={cssClasses} />
-      )}
-      {hierarchicalFacets.map(filter =>
-        <RemovableFilter
-          key={filter.displayName}
-          handleRemoveFilter={handleRemoveHierarchicalFacetOption}
-          filter={filter}
-          displayName={filter.lastDisplayNameToken}
-          cssClasses={cssClasses}
-        />
-      )}
-      {facets.map(renderRemovableFilter(handleRemoveFacetOption))}
-      {staticFilters.map(renderRemovableFilter(handleRemoveStaticFilterOption))}
-      {isVertical && hasRemovableFilters &&
+      {dedupedNlpFilterDisplaynames.map(displayName => renderNlpFilter(displayName, cssClasses))}
+      {dedupedRemovableFilters.map(f => {
+        return renderRemovableFilter(f.displayName, () => handleRemoveDedupedFilter(f), cssClasses);
+      })}
+      {removableFilters.length > 0 &&
         <button onClick={handleClickClearAllButton} className={cssClasses.clearAllButton}>
           Clear All
         </button>
@@ -150,33 +81,53 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   );
 }
 
-function RemovableFilter<FilterType>({ handleRemoveFilter, filter, displayName, cssClasses }: {
-  handleRemoveFilter: (filter: FilterType) => void,
-  filter: FilterType,
-  displayName: string,
+interface DedupedRemovableFilter extends RemovableFilter {
+  duplicates?: RemovableFilter[]
+}
+
+function getDedupedRemovableFilters(filters: RemovableFilter[]) {
+  const dedupedFilters: DedupedRemovableFilter[] = [];
+  for (const f of filters) {
+    const preexistingDupe = dedupedFilters.find(d => isDuplicateFilter(d.filter, f.filter));
+    if (!preexistingDupe) {
+      dedupedFilters.push(f);
+    } else {
+      if (!preexistingDupe.duplicates) {
+        preexistingDupe.duplicates = [f];
+      } else {
+        preexistingDupe.duplicates.push(f);
+      }
+    }
+  }
+  return dedupedFilters;
+}
+
+function renderRemovableFilter(
+  displayName: string | undefined,
+  handleRemove: () => void,
   cssClasses: AppliedFiltersCssClasses
-}): JSX.Element {
-  const handleClick = useCallback(() => handleRemoveFilter(filter), [filter, handleRemoveFilter]);
+): JSX.Element {
   return (
-    <div className={cssClasses.removableFilter}>
+    <div className={cssClasses.removableFilter} key={displayName}>
       <div className={cssClasses.filterLabel}>{displayName}</div>
       <button
         className='w-2 h-2 text-neutral m-1.5'
-        onClick={handleClick}
-        aria-label={`Remove "${displayName}" filter`}>
+        onClick={handleRemove}
+        aria-label={`Remove "${displayName}" filter`}
+      >
         <CloseIcon />
       </button>
     </div>
   );
 }
 
-function NlpFilter({ filter, cssClasses }: {
-  filter: DisplayableFilter,
+function renderNlpFilter(
+  displayName: string | undefined,
   cssClasses: AppliedFiltersCssClasses
-}): JSX.Element {
+): JSX.Element {
   return (
-    <div className={cssClasses.nlpFilter}>
-      <span className={cssClasses.filterLabel}>{filter.displayName}</span>
+    <div className={cssClasses.nlpFilter} key={displayName}>
+      <span className={cssClasses.filterLabel}>{displayName}</span>
     </div>
   );
 }

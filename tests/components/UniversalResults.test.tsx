@@ -18,6 +18,7 @@ const mockedState: Partial<State> = {
   searchStatus: {
     isLoading: false
   },
+  filters: {},
   meta: {
     searchType: 'universal'
   }

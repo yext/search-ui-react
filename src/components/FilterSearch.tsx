@@ -1,8 +1,9 @@
-import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useSearchActions } from '@yext/search-headless-react';
-import { useCallback, useMemo, useState } from 'react';
+import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useSearchActions, useSearchState } from '@yext/search-headless-react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
+import { isDuplicateFilter } from '../utils/filterutils';
 import { Dropdown } from './Dropdown/Dropdown';
 import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
@@ -25,7 +26,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 }
 
 const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
-  filterSearchContainer: 'mb-2',
+  filterSearchContainer: 'relative mb-2',
   label: 'mb-4 text-sm font-medium text-neutral-dark',
   inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
   sectionLabel: 'text-sm text-neutral-dark font-semibold py-2 px-4',
@@ -77,23 +78,37 @@ export function FilterSearch({
     return { ...searchField, fetchEntities: false };
   });
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+  const [currentFilter, setCurrentFilter] = useState<Filter>();
+  const [filterQuery, setFilterQuery] = useState<string>();
+  const filters = useSearchState(state => state.filters.static);
 
   const [
     filterSearchResponse,
-    executeFilterSearch
+    executeFilterSearch,
+    clearFilterSearchResponse
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
-    inputValue => searchActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields),
+    inputValue => {
+      setFilterQuery(inputValue);
+      return searchActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields);
+    },
     (e) => console.error('Error occured executing a filter search request.\n', e)
   );
+
+  useEffect(() => {
+    if (currentFilter && filters?.find(f => isDuplicateFilter(f, currentFilter) && !f.selected)) {
+      clearFilterSearchResponse();
+      setCurrentFilter(undefined);
+      setFilterQuery('');
+    }
+  }, [clearFilterSearchResponse, currentFilter, filters]);
 
   const sections = useMemo(() => {
     return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
   }, [filterSearchResponse?.sections]);
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
-  const [currentFilter, setCurrentFilter] = useState<Filter>();
 
-  const handleDropdownEvent = useCallback((itemData, select) => {
+  const handleDropdownEvent = useCallback((value, itemData, select) => {
     const newFilter = itemData?.filter as Filter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
@@ -102,6 +117,7 @@ export function FilterSearch({
       }
       searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
       setCurrentFilter(newFilter);
+      setFilterQuery(value);
       if (select && searchOnSelect) {
         searchActions.setOffset(0);
         searchActions.resetFacets();
@@ -110,13 +126,13 @@ export function FilterSearch({
     }
   }, [searchActions, currentFilter, searchOnSelect]);
 
-  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
-    handleDropdownEvent(itemData, true);
+  const handleSelectDropdown = useCallback((value, _index, itemData) => {
+    handleDropdownEvent(value, itemData, true);
   }, [handleDropdownEvent]);
 
-  const handleToggleDropdown = useCallback((isActive, _prevValue, _value, _index, itemData) => {
+  const handleToggleDropdown = useCallback((isActive, _prevValue, value, _index, itemData) => {
     if (!isActive) {
-      handleDropdownEvent(itemData, false);
+      handleDropdownEvent(value, itemData, false);
     }
   }, [handleDropdownEvent]);
 
@@ -157,6 +173,12 @@ export function FilterSearch({
     });
   }
 
+  const handleInputFocus = useCallback((value = '') => {
+    if (value) {
+      executeFilterSearch(value);
+    }
+  }, [executeFilterSearch]);
+
   return (
     <div className={cssClasses.filterSearchContainer}>
       {label && <h1 className={cssClasses.label}>{label}</h1>}
@@ -164,16 +186,18 @@ export function FilterSearch({
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
         onToggle={handleToggleDropdown}
+        parentQuery={filterQuery}
       >
         <DropdownInput
           className={cssClasses.inputElement}
           placeholder={placeholder}
           onChange={executeFilterSearch}
+          onFocus={handleInputFocus}
           submitCriteria={meetsSubmitCritera}
         />
         <DropdownMenu>
           {hasResults &&
-            <div className='relative z-10 shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 mt-1'>
+            <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 mt-1'>
               {renderDropdownItems()}
             </div>
           }
