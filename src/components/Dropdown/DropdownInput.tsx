@@ -35,9 +35,9 @@ export function DropdownInput(props: {
     updateFocusedItem
   } = useFocusContext();
 
-  const handleChange = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     toggleDropdown(true);
-    await onChange?.(e.target.value);
+    onChange?.(e.target.value);
     updateFocusedItem(-1, e.target.value);
     setLastTypedOrSubmittedValue(e.target.value);
   }, [onChange, setLastTypedOrSubmittedValue, toggleDropdown, updateFocusedItem]);
