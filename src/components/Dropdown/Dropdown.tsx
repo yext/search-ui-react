@@ -9,7 +9,6 @@ import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
-import { useSearchActions } from '@yext/search-headless-react';
 
 interface DropdownItemData {
   value: string,
