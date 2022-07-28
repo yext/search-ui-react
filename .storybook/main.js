@@ -1,6 +1,6 @@
 module.exports = {
   stories: [
-    '../tests/**/*.stories.tsx'
+    '../tests/**/*.stories.ts?(x)'
   ],
   addons: [
     '@storybook/addon-links',
@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
     '@storybook/addon-coverage',
+    '@storybook/addon-storyshots',
     {
       name: '@storybook/addon-postcss',
       options: {
@@ -20,6 +21,9 @@ module.exports = {
       },
     },
   ],
+  features: {
+    storyStoreV7: !global.navigator?.userAgent?.match?.('jsdom'),
+  },
   framework: '@storybook/react',
   staticDirs: ['./public'],
   webpackFinal: async (config) => {

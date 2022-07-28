@@ -2,7 +2,7 @@
 module.exports = {
   env: {
     test: {
-      plugins: ["transform-require-context"]
+      plugins: ["macros"]
     }
   },
   presets: [

@@ -42,7 +42,7 @@
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "coverage:visual-regression": "jest --coverage --coverageDirectory=coverage/visual-regression"
+    "storyshot": "jest --coverage --coverageDirectory=coverage/visual-regression"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -75,7 +75,7 @@
     "@yext/search-headless-react": "^1.4.0-alpha.147",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.3",
-    "babel-plugin-transform-require-context": "^0.1.1",
+    "identity-obj-proxy": "^3.0.0",
     "eslint": "^8.11.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-react-hooks": "^4.3.0",
@@ -126,7 +126,8 @@
       "/node_modules/(?!(@yext/search-headless-react)/)"
     ],
     "moduleNameMapper": {
-      "./SearchCore": "<rootDir>/tests/__fixtures__/core/SearchCore.ts"
+      "./SearchCore": "<rootDir>/tests/__fixtures__/core/SearchCore.ts",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
     },
     "modulePaths": ["<rootDir>/.storybook/main.cjs"],
     "resetMocks": true,
