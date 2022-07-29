@@ -231,7 +231,7 @@ export function SearchBar({
   const handleSubmit = useCallback((value?: string, index?: number, itemData?: FocusedItemData) => {
     value !== undefined && searchActions.setQuery(value);
     searchActions.setOffset(0);
-    searchActions.resetFacets();
+    searchActions.setFacets([]);
     clearStaticRangeFilters(searchActions);
     if (itemData && isVerticalLink(itemData.verticalLink) && onSelectVerticalLink) {
       onSelectVerticalLink({ verticalLink: itemData.verticalLink, querySource: QuerySource.Autocomplete });
