@@ -130,7 +130,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
         }
       }
     } else if (e.key === 'Tab' && e.shiftKey) {
-      if (focusedIndex >= 0) {
+      if (focusedIndex >= 0 && value === focusedValue) {
         updateFocusedItem(focusedIndex - 1);
         e.preventDefault();
       } else {
