@@ -9,7 +9,7 @@ jest.mock('uuid', () => {
 });
 
 initStoryshots({
-  configPath: resolve(__dirname, '../../.storybook'),
+  configPath: resolve(__dirname, '../.storybook'),
   framework: 'react',
   renderer: render
 });
