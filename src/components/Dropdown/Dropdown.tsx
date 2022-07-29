@@ -118,7 +118,11 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     if (e.key === 'ArrowDown') {
       updateFocusedItem(focusedIndex + 1);
     } else if (e.key === 'ArrowUp') {
-      updateFocusedItem(focusedIndex - 1);
+      if (alwaysSelectOption && value !== focusedValue) {
+        updateFocusedItem(focusedIndex - 2);
+      } else {
+        updateFocusedItem(focusedIndex - 1);
+      }
     } else if (e.key === 'Tab' && !e.shiftKey) {
       if (items.length !== 0) {
         if (focusedIndex >= items.length - 1) {
@@ -130,7 +134,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
         }
       }
     } else if (e.key === 'Tab' && e.shiftKey) {
-      if (focusedIndex >= 0 && value === focusedValue) {
+      if (focusedIndex >= 0 && (!alwaysSelectOption || value === focusedValue)) {
         updateFocusedItem(focusedIndex - 1);
         e.preventDefault();
       } else {
@@ -207,12 +211,14 @@ function useFocusContextInstance(
   function updateFocusedItem(updatedFocusedIndex: number, value?: string) {
     const numItems = items.length;
     let updatedValue;
+    let updateFocusedValue = true;
     if (updatedFocusedIndex === -1 || updatedFocusedIndex >= numItems || numItems === 0) {
       updatedValue = value ?? lastTypedOrSubmittedValue;
       if (alwaysSelectOption && numItems !== 0 && selectedBeforeClose) {
         setFocusedIndex(0);
         setFocusedItemData(items[0].itemData);
         setScreenReaderKey(screenReaderKey + 1);
+        updateFocusedValue = false;
       } else {
         setFocusedIndex(-1);
         setFocusedItemData(undefined);
@@ -228,7 +234,7 @@ function useFocusContextInstance(
       setFocusedIndex(updatedFocusedIndex);
       setFocusedItemData(items[updatedFocusedIndex].itemData);
     }
-    setFocusedValue(updatedValue);
+    if (updateFocusedValue) setFocusedValue(updatedValue);
     setValue(updatedValue);
   }
 
