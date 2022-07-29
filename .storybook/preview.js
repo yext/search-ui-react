@@ -6,7 +6,7 @@ export const parameters = {
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/,
+      date: /Date$/
     },
     expanded: true
   },
@@ -14,8 +14,30 @@ export const parameters = {
     options: {
       runOnly: {
         type: 'tag',
-        values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'],
+        values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
       }
+    }
+  },
+  options: {
+    storySort: {
+      order: [
+        'SearchBar',
+        'UniversalResults',
+        'VerticalResults',
+        'DirectAnswer',
+        'FilterSearch',
+        'StaticFilters',
+        'StandardFacets',
+        'NumericalFacets',
+        'HierarchicalFacets',
+        'RangeInput',
+        'AppliedFilters',
+        'Pagination',
+        'AlternativeVerticals',
+        'SpellCheck',
+        'ResultsCount',
+        'LocationBias'
+      ]
     }
   }
 };
