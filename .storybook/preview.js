@@ -6,7 +6,7 @@ export const parameters = {
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/,
+      date: /Date$/
     },
     expanded: true
   },
@@ -14,7 +14,7 @@ export const parameters = {
     options: {
       runOnly: {
         type: 'tag',
-        values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'],
+        values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
       }
     }
   },
@@ -36,10 +36,10 @@ export const parameters = {
         'AlternativeVerticals',
         'SpellCheck',
         'ResultsCount',
-        'LocationBias',
-      ],
-    },
-  },
+        'LocationBias'
+      ]
+    }
+  }
 };
 
 // Add the decorator to all stories
