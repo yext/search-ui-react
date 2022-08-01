@@ -4,17 +4,12 @@ import { SearchHeadlessContext, SearchTypeEnum } from '@yext/search-headless-rea
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { AppliedFiltersDisplay } from '../../src/components/AppliedFiltersDisplay';
-import { DisplayableFilters, DisplayableHierarchicalFacets } from '../__fixtures__/data/filters';
 import { AppliedFiltersProps, builtInCssClasses } from '../../src/components/AppliedFilters';
+import { RemovableFilters } from '../__fixtures__/data/filters';
 
 const meta: ComponentMeta<typeof AppliedFiltersDisplay> = {
   title: 'AppliedFilters',
-  component: AppliedFiltersDisplay,
-  argTypes: {
-    hierarchicalFacetsDelimiter: {
-      control: false
-    }
-  }
+  component: AppliedFiltersDisplay
 };
 export default meta;
 
@@ -25,11 +20,8 @@ export const Primary = (args: AppliedFiltersProps) => {
     })}>
       <AppliedFiltersDisplay
         cssClasses={builtInCssClasses}
-        staticFilters={DisplayableFilters.slice(0, 2)}
-        nlpFilters={[DisplayableFilters[2]]}
-        facets={[DisplayableFilters[3]]}
-        hierarchicalFacets={DisplayableHierarchicalFacets}
-        hierarchicalFacetsDelimiter='>'
+        nlpFilterDisplayNames={['Near Me']}
+        removableFilters={RemovableFilters}
         {...args}
       />
     </SearchHeadlessContext.Provider>

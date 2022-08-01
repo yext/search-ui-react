@@ -1,12 +1,10 @@
 import { useSearchState } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { pruneAppliedFilters } from '../utils/appliedfilterutils';
-import { useMemo } from 'react';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
-import { GroupedFilters } from '../models/groupedFilters';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacetDisplay';
-import { useStateUpdatedOnSearch } from '../hooks/useStateUpdatedOnSearch';
+import { useNlpFilterDisplayNames } from '../hooks/useNlpFilterDisplayNames';
+import { useRemovableFilters } from '../hooks/useRemovableFilters';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.
@@ -38,7 +36,7 @@ export const builtInCssClasses: Readonly<AppliedFiltersCssClasses> = {
  */
 export interface AppliedFiltersProps {
   /** List of filters that should not be displayed. By default, builtin.entityType will be hidden. */
-  hiddenFields?: Array<string>,
+  hiddenFields?: string[],
   /** A set of facet fieldIds that should be interpreted as "hierarchical". */
   hierarchicalFacetsFieldIds?: string[],
   /** {@inheritDoc HierarchicalFacetsProps.delimiter} */
@@ -46,6 +44,8 @@ export interface AppliedFiltersProps {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: AppliedFiltersCssClasses
 }
+
+const DEFUALT_HIDDEN_FIELDS = ['builtin.entityType'];
 
 /**
  * A component that displays a list of filters applied to the current vertical
@@ -58,42 +58,29 @@ export interface AppliedFiltersProps {
  * @returns A React element for the applied filters
  */
 export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
-  const nlpFilters = useSearchState(state => state.vertical.appliedQueryFilters);
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
-  const hasResults = !!useSearchState(state => state.vertical.results);
-  const filters = useStateUpdatedOnSearch(state => state.filters);
 
   const {
-    hiddenFields,
+    hiddenFields = DEFUALT_HIDDEN_FIELDS,
     customCssClasses = {},
     hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
     hierarchicalFacetsFieldIds
   } = props;
 
-  const appliedFilters: GroupedFilters = useMemo(() => {
-    return pruneAppliedFilters(
-      hasResults ? (filters ?? {}) : {},
-      nlpFilters ?? [],
-      hiddenFields ?? ['builtin.entityType'],
-      hierarchicalFacetsFieldIds ?? [],
-      hierarchicalFacetsDelimiter
-    );
-  }, [
-    hasResults,
-    filters,
-    hiddenFields,
-    hierarchicalFacetsDelimiter,
-    hierarchicalFacetsFieldIds,
-    nlpFilters
-  ]);
+  const removableFilters = useRemovableFilters(
+    hierarchicalFacetsFieldIds, hierarchicalFacetsDelimiter, hiddenFields);
+  const nlpFilterDisplayNames = useNlpFilterDisplayNames(removableFilters.map(f => f.filter), hiddenFields);
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersLoading ?? '']: isLoading
   });
-  return <AppliedFiltersDisplay
-    {...appliedFilters}
-    cssClasses={cssClasses}
-    hierarchicalFacetsDelimiter={hierarchicalFacetsDelimiter}
-  />;
+
+  return (
+    <AppliedFiltersDisplay
+      removableFilters={removableFilters}
+      nlpFilterDisplayNames={nlpFilterDisplayNames}
+      cssClasses={cssClasses}
+    />
+  );
 }
