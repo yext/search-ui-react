@@ -1,9 +1,3 @@
-window.STORYBOOK_GA_ID = 'UA-236173376-1';
-window.STORYBOOK_REACT_GA_OPTIONS = {};
-
-window.slapshottestmain = 'hello main.js';
-console.log('main!!!!');
-
 module.exports = {
   stories: [
     '../tests/**/*.stories.tsx'
