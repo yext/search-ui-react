@@ -118,7 +118,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     if (e.key === 'ArrowDown') {
       updateFocusedItem(focusedIndex + 1);
     } else if (e.key === 'ArrowUp') {
-      if (alwaysSelectOption && value !== focusedValue) {
+      if (alwaysSelectOption && focusedIndex === 0) {
         updateFocusedItem(focusedIndex - 2);
       } else {
         updateFocusedItem(focusedIndex - 1);
