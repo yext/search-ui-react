@@ -279,4 +279,34 @@ describe('Dropdown', () => {
     expect(mockedOnSubmitFn).toHaveBeenCalledWith('someText', -1, undefined);
     expect(screen.queryByText('item1')).toBeNull();
   });
+
+  it('prevents submission if submission criteria failed', () => {
+    const mockedSubmitCriteriaFn = jest.fn().mockImplementation(() => false);
+    const mockedOnSubmitFn = jest.fn();
+    const dropdownProps: DropdownProps = {
+      screenReaderText: 'screen reader text here'
+    };
+    render(
+      <Dropdown {...dropdownProps}>
+        <DropdownInput
+          onSubmit={mockedOnSubmitFn}
+          submitCriteria={mockedSubmitCriteriaFn}
+        />
+        <DropdownMenu>
+          <DropdownItem value='item1' focusedClassName='FocusedItem1'>
+            item1
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+    const inputNode = screen.getByRole('textbox');
+    userEvent.type(inputNode, 'someText');
+    userEvent.keyboard('{enter}');
+
+    expect(inputNode).toHaveValue('someText');
+    expect(mockedSubmitCriteriaFn).toBeCalledTimes(1);
+    expect(mockedOnSubmitFn).toBeCalledTimes(0);
+    // dropdown remains open for failed submission
+    expect(screen.getByText('item1')).toBeDefined();
+  });
 });

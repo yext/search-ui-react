@@ -13,7 +13,8 @@ export function DropdownInput(props: {
   ariaLabel?: string,
   onSubmit?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void,
   onFocus?: (value: string) => void,
-  onChange?: (value: string) => void
+  onChange?: (value: string) => void,
+  submitCriteria?: (index: number) => boolean
 }): JSX.Element {
   const {
     className,
@@ -22,6 +23,7 @@ export function DropdownInput(props: {
     onSubmit,
     onFocus,
     onChange,
+    submitCriteria
   } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,7 +43,7 @@ export function DropdownInput(props: {
   }, [onChange, setLastTypedOrSubmittedValue, toggleDropdown, updateFocusedItem]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && (!submitCriteria || submitCriteria(focusedIndex))) {
       updateFocusedItem(focusedIndex);
       toggleDropdown(false);
       inputRef.current?.blur();
@@ -55,6 +57,7 @@ export function DropdownInput(props: {
     focusedItemData,
     onSelect,
     onSubmit,
+    submitCriteria,
     toggleDropdown,
     updateFocusedItem,
     value
