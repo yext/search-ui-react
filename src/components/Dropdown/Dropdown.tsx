@@ -26,7 +26,6 @@ export interface DropdownProps {
     value: string,
     index: number,
     focusedItemData: Record<string, unknown> | undefined,
-    shouldSelect: boolean
   ) => void,
   className?: string,
   activeClassName?: string,
@@ -265,24 +264,21 @@ function useDropdownContextInstance(
     value: string,
     index: number,
     focusedItemData: Record<string, unknown> | undefined,
-    shouldSelect
   ) => void,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
-    let shouldSelect = true;
     if (!willBeOpen) {
       setHasTyped(false);
       if (value !== focusedValue) {
         setSelectedBeforeClose(false);
-        shouldSelect = false;
       }
     } else {
       setSelectedBeforeClose(true);
     }
     _toggleDropdown(willBeOpen);
-    onToggle?.(willBeOpen, prevValue, value, index, focusedItemData, shouldSelect);
+    onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
   };
   return {
     isActive,
