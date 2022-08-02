@@ -132,8 +132,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     } else if (e.key === 'Tab' && !e.shiftKey) {
       if (items.length !== 0) {
         if (focusedIndex >= items.length - 1) {
-          setHasNavigated(false);
           toggleDropdown(false);
+          setHasNavigated(false);
           updateFocusedItem(-1);
         } else {
           setHasNavigated(true);
@@ -147,8 +147,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
         updateFocusedItem(focusedIndex - 1);
         e.preventDefault();
       } else {
-        setHasNavigated(false);
         toggleDropdown(false);
+        setHasNavigated(false);
       }
     } else {
       setHasNavigated(false);
