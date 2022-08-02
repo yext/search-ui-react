@@ -50,7 +50,7 @@
     "@babel/preset-typescript": "^7.14.5",
     "@percy/cli": "^1.0.7",
     "@percy/storybook": "^4.2.0",
-    "@storybook/addon-a11y": "^6.4.20",
+    "@storybook/addon-a11y": "^6.5.9",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",
