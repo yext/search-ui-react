@@ -31,17 +31,17 @@ describe('Dropdown', () => {
     // display when click into dropdown input
     userEvent.click(screen.getByRole('textbox'));
     expect(screen.getByText('item1')).toBeDefined();
-    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
+    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined, false);
 
     // hidden when click elsewhere outside of dropdown component
     userEvent.click(screen.getByText('external div'));
     expect(screen.queryByText('item1')).toBeNull();
-    expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined);
+    expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined, false);
 
     // display when tab into dropdown input
     userEvent.tab();
     expect(screen.getByText('item1')).toBeDefined();
-    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
+    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined, false);
   });
 
   it('handles arrowkey navigation properly and focuses on the option and input text', () => {
@@ -118,7 +118,7 @@ describe('Dropdown', () => {
     userEvent.click(inputNode);
     userEvent.keyboard('{Tab}{Tab}');
 
-    expect(mockedOnToggleFn).toHaveBeenLastCalledWith(false, '', 'item1', 0, undefined);
+    expect(mockedOnToggleFn).toHaveBeenLastCalledWith(false, '', 'item1', 0, undefined, true);
   });
 
   it('selects when an option is focused and enter is pressed', () => {
@@ -215,7 +215,7 @@ describe('Dropdown', () => {
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
     expect(mockedOnToggleFn).toBeCalledTimes(3);
-    expect(mockedOnToggleFn).toHaveBeenCalledWith(false, 'i', 'item1', 0, undefined);
+    expect(mockedOnToggleFn).toHaveBeenCalledWith(false, 'i', 'item1', 0, undefined, true);
   });
 
   it('updates options when user provide new input', () => {
