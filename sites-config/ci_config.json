@@ -16,6 +16,6 @@
       "buildCmd": "npm run build && cd test-site && npm i && npm run build"
   },
   "livePreview": {
-      "serveCmd": "npx serve -l 8080 build"
+      "serveCmd": "npx serve -l 8080 test-site/build"
   }
 }
