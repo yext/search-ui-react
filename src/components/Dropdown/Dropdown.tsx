@@ -26,7 +26,6 @@ export interface DropdownProps {
     value: string,
     index: number,
     focusedItemData: Record<string, unknown> | undefined,
-    hasNavigated: boolean
   ) => void,
   className?: string,
   activeClassName?: string,
@@ -57,7 +56,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   const screenReaderUUID: string = useMemo(() => uuid(), []);
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
-  const [hasNavigated, setHasNavigated] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
     return getTransformedChildrenAndItemData(children);
   }, [children]);
@@ -79,9 +77,10 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     lastTypedOrSubmittedValue,
     value,
     focusedIndex,
-    hasNavigated,
     focusedItemData,
     screenReaderUUID,
+    alwaysSelectOption,
+    updateFocusedItem,
     setHasTyped,
     onToggle,
     onSelect
@@ -114,14 +113,12 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     }
 
     if (e.key === 'ArrowDown') {
-      setHasNavigated(true);
       if (alwaysSelectOption && focusedIndex === items.length-1) {
         updateFocusedItem(0);
       } else {
         updateFocusedItem(focusedIndex + 1);
       }
     } else if (e.key === 'ArrowUp') {
-      setHasNavigated(true);
       if (alwaysSelectOption && focusedIndex === 0) {
         updateFocusedItem(items.length-1);
       } else {
@@ -130,26 +127,21 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     } else if (e.key === 'Tab' && !e.shiftKey) {
       if (items.length !== 0) {
         if (focusedIndex >= items.length - 1) {
-          setHasNavigated(false);
           toggleDropdown(false);
           updateFocusedItem(-1);
         } else {
-          setHasNavigated(true);
           updateFocusedItem(focusedIndex + 1);
           e.preventDefault();
         }
       }
     } else if (e.key === 'Tab' && e.shiftKey) {
       if (focusedIndex >= 0 && (!alwaysSelectOption || value === focusedValue)) {
-        setHasNavigated(true);
         updateFocusedItem(focusedIndex - 1);
         e.preventDefault();
       } else {
-        setHasNavigated(false);
         toggleDropdown(false);
       }
     } else {
-      setHasNavigated(false);
       if (!hasTyped) {
         setHasTyped(true);
       }
@@ -253,9 +245,10 @@ function useDropdownContextInstance(
   prevValue: string,
   value: string,
   index: number,
-  hasNavigated: boolean,
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
+  alwaysSelectOption: boolean,
+  updateFocusedItem: (index: number, value?: string) => void,
   setHasTyped: (hasTyped: boolean) => void,
   onToggle?: (
     isActive: boolean,
@@ -263,7 +256,6 @@ function useDropdownContextInstance(
     value: string,
     index: number,
     focusedItemData: Record<string, unknown> | undefined,
-    hasNavigated: boolean
   ) => void,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
 ): DropdownContextType {
@@ -271,9 +263,12 @@ function useDropdownContextInstance(
   const toggleDropdown = (willBeOpen: boolean) => {
     if (!willBeOpen) {
       setHasTyped(false);
+      if (alwaysSelectOption) {
+        updateFocusedItem(index, typeof focusedItemData?.displayName === 'string' ? focusedItemData.displayName : undefined);
+      }
     }
     _toggleDropdown(willBeOpen);
-    onToggle?.(willBeOpen, prevValue, value, index, focusedItemData, hasNavigated);
+    onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
   };
   return {
     isActive,
