@@ -1,10 +1,7 @@
-module.exports = {
+export const base_config = {
   bail: 0,
   verbose: true,
   collectCoverage: false,
-  collectCoverageFrom: [
-    'src/**'
-  ],
   moduleFileExtensions: [
     'js',
     'json',
@@ -20,9 +17,6 @@ module.exports = {
     '<rootDir>/tests/__setup__/setup-env.ts'
   ],
   testEnvironment: 'jsdom',
-  testMatch: [
-    '<rootDir>/tests/**/*.test.ts?(x)'
-  ],
   testPathIgnorePatterns: [
     '<rootDir>/tests/__setup__/*',
     '<rootDir>/tests/__fixtures__/*'

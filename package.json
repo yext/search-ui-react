@@ -40,9 +40,13 @@
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest --projects jest.unit.config.js --coverage",
-    "coverage:visual": "jest --projects jest.visual.config.js --coverage"
-  },
+    "test": "jest --coverage --coverageDirectory=coverage/unit",
+    "coverage:visual": "jest --coverage --coverageDirectory=coverage/visual-regression --collectCoverageFrom='[\"src/components/**\"]' --testMatch=\"<rootDir>/tests/storyshot.test.ts\"",
+    "coverage:clean": "rm -rf .nyc_output && rm -rf coverage",
+    "coverage:merge": "istanbul-merge --out coverage/merged/coverage-final.json ./coverage/unit/coverage-final.json  ./coverage/visual-regression/coverage-final.json",
+    "coverage:merge-report": "nyc report --reporter=lcov --reporter=text --temp-dir=./coverage/merged --report-dir=./coverage/merged",
+    "coverage": "npm run coverage:clean && npm run test && npm run coverage:visual && npm run coverage:merge && npm run coverage:merge-report"
+    },
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.14.7",
@@ -74,6 +78,7 @@
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.3",
     "identity-obj-proxy": "^3.0.0",
+    "istanbul-merge": "^1.1.1",
     "eslint": "^8.11.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-react-hooks": "^4.3.0",
@@ -83,6 +88,7 @@
     "jest-environment-jsdom": "^28.1.0",
     "lodash": "^4.17.21",
     "msw": "^0.36.8",
+    "nyc": "^15.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "tailwindcss": "^3.0.23",
@@ -93,10 +99,43 @@
     "react": "^16.14 || ^17 || ^18"
   },
   "jest": {
-    "projects": [
-      "<rootDir>/jest.unit.config.js",
-      "<rootDir>/jest.visual.config.js"
-    ]
+    "bail": 0,
+    "verbose": true,
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "src/**"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>"
+    ],
+    "resolver": "<rootDir>/tests/__setup__/resolver.ts",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/__setup__/setup-env.ts"
+    ],
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.ts?(x)"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/tests/__setup__/*",
+      "<rootDir>/tests/__fixtures__/*"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(@yext/search-headless-react)/)"
+    ],
+    "moduleNameMapper": {
+      "./SearchCore": "<rootDir>/tests/__fixtures__/core/SearchCore.ts",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    },
+    "resetMocks": true,
+    "restoreMocks": true
   },
   "dependencies": {
     "@microsoft/api-documenter": "^7.15.3",
