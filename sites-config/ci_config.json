@@ -1,0 +1,21 @@
+{
+  "artifactStructure": {
+      "assets": [
+          {
+              "root": "test-site/build"
+          }
+      ],
+      "hbsTemplates": []
+  },
+  "dependencies": {
+      "installDepsCmd": "npm install && cd test-site && npm install",
+      "requiredFiles": [".nvmrc"]
+  },
+  "buildArtifacts": {
+      "buildSetupCmd": "npm ci",
+      "buildCmd": "npm run build && cd test-site && npm run build"
+  },
+  "livePreview": {
+      "serveCmd": "npx serve -l 8080 build"
+  }
+}
