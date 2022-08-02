@@ -238,7 +238,7 @@ function useFocusContextInstance(
       setFocusedItemData(items[updatedFocusedIndex].itemData);
     }
     setFocusedValue(updatedValue);
-    setValue(updatedValue);
+    setValue(alwaysSelectOption ? (value ?? lastTypedOrSubmittedValue) : updatedValue);
   }
 
   return {

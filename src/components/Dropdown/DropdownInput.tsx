@@ -44,7 +44,7 @@ export function DropdownInput(props: {
 
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && (!submitCriteria || submitCriteria(focusedIndex))) {
-      updateFocusedItem(focusedIndex);
+      updateFocusedItem(focusedIndex, focusedItemData.displayName);
       toggleDropdown(false);
       inputRef.current?.blur();
       onSubmit?.(value, focusedIndex, focusedItemData);
