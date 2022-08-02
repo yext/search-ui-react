@@ -195,7 +195,7 @@ function useFocusContextInstance(
   useEffect(() => {
     if (alwaysSelectOption) {
       if (items.length > 0) {
-        const index = focusedIndex === -1 || focusedIndex > items.length ? 0 : focusedIndex;
+        const index = focusedIndex === -1 || focusedIndex >= items.length ? 0 : focusedIndex;
         setFocusedIndex(index);
         setFocusedValue(items[index].value);
         setFocusedItemData(items[index].itemData);

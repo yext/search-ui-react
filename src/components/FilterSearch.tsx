@@ -108,7 +108,7 @@ export function FilterSearch({
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
-  const handleDropdownEvent = useCallback((value, itemData, select) => {
+  const handleDropdownEvent = useCallback((value, itemData) => {
     const newFilter = itemData?.filter as Filter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
@@ -118,7 +118,7 @@ export function FilterSearch({
       searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
       setCurrentFilter(newFilter);
       setFilterQuery(value);
-      if (select && searchOnSelect) {
+      if (searchOnSelect) {
         searchActions.setOffset(0);
         searchActions.resetFacets();
         executeSearch(searchActions);
@@ -127,12 +127,12 @@ export function FilterSearch({
   }, [searchActions, currentFilter, searchOnSelect]);
 
   const handleSelectDropdown = useCallback((value, _index, itemData) => {
-    handleDropdownEvent(value, itemData, true);
+    handleDropdownEvent(value, itemData);
   }, [handleDropdownEvent]);
 
   const handleToggleDropdown = useCallback((isActive, _prevValue, value, _index, itemData, shouldSelect) => {
     if (!isActive && shouldSelect) {
-      handleDropdownEvent(value, itemData, false);
+      handleDropdownEvent(value, itemData);
     }
   }, [handleDropdownEvent]);
 
