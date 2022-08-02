@@ -56,7 +56,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   const screenReaderUUID: string = useMemo(() => uuid(), []);
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
-  const [selectedBeforeClose, setSelectedBeforeClose] = useState<boolean>(true);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
     return getTransformedChildrenAndItemData(children);
   }, [children]);
@@ -71,7 +70,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     screenReaderKey,
     setScreenReaderKey,
     alwaysSelectOption,
-    selectedBeforeClose
   );
   const { focusedIndex, focusedValue, focusedItemData, updateFocusedItem } = focusContext;
 
@@ -83,7 +81,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     focusedItemData,
     screenReaderUUID,
     setHasTyped,
-    setSelectedBeforeClose,
     onToggle,
     onSelect
   );
@@ -186,7 +183,6 @@ function useFocusContextInstance(
   screenReaderKey: number,
   setScreenReaderKey: (newKey: number) => void,
   alwaysSelectOption: boolean,
-  selectedBeforeClose: boolean
 ): FocusContextType {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
@@ -203,13 +199,8 @@ function useFocusContextInstance(
         setFocusedValue(null);
         setFocusedItemData(undefined);
       }
-      if (!selectedBeforeClose) {
-        setFocusedIndex(-1);
-        setFocusedValue(null);
-        setFocusedItemData(undefined);
-      }
     }
-  }, [alwaysSelectOption, focusedIndex, items, selectedBeforeClose]);
+  }, [alwaysSelectOption, focusedIndex, items]);
 
   function updateFocusedItem(updatedFocusedIndex: number, value?: string) {
     const numItems = items.length;
@@ -217,7 +208,7 @@ function useFocusContextInstance(
     let updateFocusedValue = true;
     if (updatedFocusedIndex === -1 || updatedFocusedIndex >= numItems || numItems === 0) {
       updatedValue = value ?? lastTypedOrSubmittedValue;
-      if (alwaysSelectOption && numItems !== 0 && selectedBeforeClose) {
+      if (alwaysSelectOption && numItems !== 0) {
         setFocusedIndex(0);
         setFocusedItemData(items[0].itemData);
         setScreenReaderKey(screenReaderKey + 1);
@@ -257,7 +248,6 @@ function useDropdownContextInstance(
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
   setHasTyped: (hasTyped: boolean) => void,
-  setSelectedBeforeClose: (selectedBeforeClose: boolean) => void,
   onToggle?: (
     isActive: boolean,
     prevValue: string,
@@ -271,11 +261,6 @@ function useDropdownContextInstance(
   const toggleDropdown = (willBeOpen: boolean) => {
     if (!willBeOpen) {
       setHasTyped(false);
-      if (value !== focusedValue) {
-        setSelectedBeforeClose(false);
-      }
-    } else {
-      setSelectedBeforeClose(true);
     }
     _toggleDropdown(willBeOpen);
     onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
