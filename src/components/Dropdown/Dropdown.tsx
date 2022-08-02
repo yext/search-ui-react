@@ -93,9 +93,10 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   useLayoutEffect(() => {
     if (parentQuery !== undefined && parentQuery !== lastTypedOrSubmittedValue) {
       setLastTypedOrSubmittedValue(parentQuery);
-      updateFocusedItem(-1, parentQuery);
+      if (!alwaysSelectOption) updateFocusedItem(-1, parentQuery);
     }
   }, [
+    alwaysSelectOption,
     parentQuery,
     lastTypedOrSubmittedValue,
     updateFocusedItem,
@@ -133,6 +134,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       if (items.length !== 0) {
         if (focusedIndex >= items.length - 1) {
           setHasNavigated(false);
+          updateFocusedItem(-1);
           toggleDropdown(false);
         } else {
           setHasNavigated(true);
@@ -141,12 +143,13 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
         }
       }
     } else if (e.key === 'Tab' && e.shiftKey) {
-      if (focusedIndex > 0) {
+      if (focusedIndex > 0 || (focusedIndex === 0 && !alwaysSelectOption)) {
         setHasNavigated(true);
         updateFocusedItem(focusedIndex - 1);
         e.preventDefault();
       } else {
         setHasNavigated(false);
+        updateFocusedItem(-1);
         toggleDropdown(false);
       }
     } else {
@@ -276,6 +279,7 @@ function useDropdownContextInstance(
       setHasTyped(false);
       if (alwaysSelectOption && hasNavigated) {
         updateFocusedItem(index, typeof focusedItemData?.displayName === 'string' ? focusedItemData.displayName : undefined);
+        console.log(value);
       }
     }
     _toggleDropdown(willBeOpen);
