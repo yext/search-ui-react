@@ -73,7 +73,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     setScreenReaderKey,
     alwaysSelectOption,
   );
-  const { focusedIndex, focusedValue, focusedItemData, updateFocusedItem } = focusContext;
+  const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
 
   const dropdownContext = useDropdownContextInstance(
     lastTypedOrSubmittedValue,
@@ -131,10 +131,9 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       }
     } else if (e.key === 'Tab' && !e.shiftKey) {
       if (items.length !== 0) {
-        if (focusedIndex >= items.length - 1) {
-          toggleDropdown(false);
+        if (focusedIndex >= items.length - 2) {
           setHasNavigated(false);
-          updateFocusedItem(-1);
+          toggleDropdown(false);
         } else {
           setHasNavigated(true);
           updateFocusedItem(focusedIndex + 1);
@@ -142,13 +141,13 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
         }
       }
     } else if (e.key === 'Tab' && e.shiftKey) {
-      if (focusedIndex >= 0 && (!alwaysSelectOption || value === focusedValue)) {
+      if (focusedIndex > 0) {
         setHasNavigated(true);
         updateFocusedItem(focusedIndex - 1);
         e.preventDefault();
       } else {
-        toggleDropdown(false);
         setHasNavigated(false);
+        toggleDropdown(false);
       }
     } else {
       setHasNavigated(false);
