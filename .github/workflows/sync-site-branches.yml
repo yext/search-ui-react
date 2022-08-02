@@ -1,4 +1,4 @@
-name: Sync Main to Storybook Site Branch
+name: Sync Main to Storybook Site Branch & Test Site Branch
 
 on:
   push:
