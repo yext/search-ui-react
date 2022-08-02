@@ -38,14 +38,14 @@
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "prepublishOnly": "npm run build",
-    "test": "jest --coverage --coverageDirectory=coverage/unit",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "storyshot": "jest --coverage --coverageDirectory=coverage/visual-regression --collectCoverageFrom='[\"src/components/**\"]' --testMatch=\"<rootDir>/tests/storyshot.test.ts\"",
+    "test": "jest --coverage --coverageDirectory=coverage/unit",
+    "coverage:visual": "jest --coverage --coverageDirectory=coverage/visual-regression --collectCoverageFrom='[\"src/components/**\"]' --testMatch=\"<rootDir>/tests/storyshot.test.ts\"",
     "coverage:clean": "rm -rf .nyc_output && rm -rf coverage",
     "coverage:merge": "istanbul-merge --out coverage/merged/coverage-final.json ./coverage/unit/coverage-final.json  ./coverage/visual-regression/coverage-final.json",
     "coverage:merge-report": "nyc report --reporter=lcov --reporter=text --temp-dir=./coverage/merged --report-dir=./coverage/merged",
-    "coverage": "npm run coverage:clean && npm run test && npm run storyshot && npm run coverage:merge && npm run coverage:merge-report"
+    "coverage": "npm run coverage:clean && npm run test && npm run coverage:visual && npm run coverage:merge && npm run coverage:merge-report"
     },
   "devDependencies": {
     "@babel/core": "^7.17.5",

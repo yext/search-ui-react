@@ -12,4 +12,6 @@ jobs:
   call_code_coverage:
     uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@dev/report-combined
     secrets:
-      caller_github_token: ${{ secrets.GITHUB_TOKEN }} 
+      caller_github_token: ${{ secrets.GITHUB_TOKEN }}
+  with:
+      test_script: npm run coverage
