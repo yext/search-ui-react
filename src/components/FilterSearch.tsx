@@ -136,8 +136,6 @@ export function FilterSearch({
     }
   }, [handleDropdownEvent]);
 
-  const meetsSubmitCritera = useCallback(index => index >= 0, []);
-
   const itemDataMatrix = useMemo(() => {
     return sections.map(section => {
       return section.results.map(result => ({
@@ -194,7 +192,6 @@ export function FilterSearch({
           placeholder={placeholder}
           onChange={executeFilterSearch}
           onFocus={handleInputFocus}
-          submitCriteria={meetsSubmitCritera}
         />
         <DropdownMenu>
           {hasResults &&
