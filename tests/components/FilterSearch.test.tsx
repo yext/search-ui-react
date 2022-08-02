@@ -113,7 +113,7 @@ describe('search with section labels', () => {
     });
   });
 
-  it('fills the search bar with an autocomplete result when a user selects it', async () => {
+  it('input value stays the same when a user selects a filter', async () => {
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
@@ -125,7 +125,7 @@ describe('search with section labels', () => {
 
     userEvent.type(searchBarElement, '{arrowdown}');
     await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
-    expect(searchBarElement).toHaveValue('first name 2');
+    expect(searchBarElement).toHaveValue('n');
   });
 
   it('remove old filter value when a new one is entered', async () => {
