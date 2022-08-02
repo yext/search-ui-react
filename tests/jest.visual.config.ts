@@ -1,12 +1,12 @@
-import { base_config } from "./jest.base.config";
+import config from "./jest.base.config";
 
 module.exports = {
-  ...base_config,
+  ...config,
   collectCoverageFrom: [
     'src/components/**'
   ],
   coverageDirectory: 'coverage/visual-regression',
   testMatch: [
-    '<rootDir>/tests/storyshot.test.ts'
+    '<rootDir>/storyshot.test.ts'
   ]
 };
