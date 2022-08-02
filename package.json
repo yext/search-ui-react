@@ -41,7 +41,7 @@
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "wcag": "test-storybook"
+    "wcag": "test-storybook & sleep 10 && curl http://localhost:6066 -I"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
