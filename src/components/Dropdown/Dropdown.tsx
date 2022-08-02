@@ -205,14 +205,12 @@ function useFocusContextInstance(
   function updateFocusedItem(updatedFocusedIndex: number, value?: string) {
     const numItems = items.length;
     let updatedValue;
-    let updateFocusedValue = true;
     if (updatedFocusedIndex === -1 || updatedFocusedIndex >= numItems || numItems === 0) {
       updatedValue = value ?? lastTypedOrSubmittedValue;
       if (alwaysSelectOption && numItems !== 0) {
         setFocusedIndex(0);
         setFocusedItemData(items[0].itemData);
         setScreenReaderKey(screenReaderKey + 1);
-        updateFocusedValue = false;
       } else {
         setFocusedIndex(-1);
         setFocusedItemData(undefined);
@@ -228,7 +226,7 @@ function useFocusContextInstance(
       setFocusedIndex(updatedFocusedIndex);
       setFocusedItemData(items[updatedFocusedIndex].itemData);
     }
-    if (updateFocusedValue) setFocusedValue(updatedValue);
+    setFocusedValue(updatedValue);
     setValue(updatedValue);
   }
 

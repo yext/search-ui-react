@@ -131,6 +131,7 @@ export function FilterSearch({
   }, [handleDropdownEvent]);
 
   const handleToggleDropdown = useCallback((isActive, _prevValue, value, _index, itemData) => {
+    console.log(value, itemData?.filter.value);
     if (!isActive && value === itemData?.filter.value) {
       handleDropdownEvent(value, itemData);
     }
