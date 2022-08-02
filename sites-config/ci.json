@@ -9,7 +9,11 @@
   },
   "dependencies": {
       "installDepsCmd": "npm install",
-      "requiredFiles": [".nvmrc"]
+      "requiredFiles": [
+        "package.json",
+        "package-lock.json",
+        ".nvmrc"
+      ]
   },
   "buildArtifacts": {
       "buildSetupCmd": "npm ci",

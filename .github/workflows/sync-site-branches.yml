@@ -16,3 +16,8 @@ jobs:
           source: "${{ github.event.repository.default_branch }}"
           target: "storybook-site"
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: mtanzi/action-automerge@v1
+        with:
+          source: "${{ github.event.repository.default_branch }}"
+          target: "test-site"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
