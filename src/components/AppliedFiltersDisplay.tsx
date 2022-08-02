@@ -106,7 +106,7 @@ function renderRemovableFilter(
   displayName: string | undefined,
   handleRemove: () => void,
   index: number,
-  cssClasses: AppliedFiltersCssClasses,
+  cssClasses: AppliedFiltersCssClasses
 ): JSX.Element {
   return (
     <div className={cssClasses.removableFilter} key={`${displayName}-${index}`}>
