@@ -1,0 +1,14 @@
+name: WCAG tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  call_wcag_test:
+    uses: yext/slapshot-reusable-workflows/.github/workflows/wcag_test.yml@v1
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    with:
+      build_script: 'npm run build && npm run storybook'
