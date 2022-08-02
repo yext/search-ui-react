@@ -279,7 +279,6 @@ function useDropdownContextInstance(
       setHasTyped(false);
       if (alwaysSelectOption && hasNavigated) {
         updateFocusedItem(index, typeof focusedItemData?.displayName === 'string' ? focusedItemData.displayName : undefined);
-        console.log(value);
       }
     }
     _toggleDropdown(willBeOpen);
