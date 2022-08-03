@@ -108,34 +108,36 @@ export function FilterSearch({
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
-  const handleDropdownEvent = useCallback((itemData, select) => {
+  const handleDropdownEvent = useCallback((value, itemData, select) => {
     const newFilter = itemData?.filter as Filter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
       if (currentFilter) {
         searchActions.setFilterOption({ ...currentFilter, selected: false });
       }
+      searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+      setCurrentFilter(newFilter);
       if (select) {
-        searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
-        setCurrentFilter(newFilter);
         setFilterQuery(newDisplayName);
         if (searchOnSelect) {
           searchActions.setOffset(0);
           searchActions.resetFacets();
           executeSearch(searchActions);
         }
+      } else {
+        setFilterQuery(value);
       }
     }
   }, [searchActions, currentFilter, searchOnSelect]);
 
-  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
-    handleDropdownEvent(itemData, true);
+  const handleSelectDropdown = useCallback((value, _index, itemData) => {
+    handleDropdownEvent(value, itemData, true);
   }, [handleDropdownEvent]);
 
   const handleToggleDropdown =
-  useCallback((isActive, _prevValue, _value, _index, itemData) => {
+  useCallback((isActive, _prevValue, value, _index, itemData) => {
     if (!isActive) {
-      handleDropdownEvent(itemData, false);
+      handleDropdownEvent(value, itemData, false);
     }
   }, [handleDropdownEvent]);
 
