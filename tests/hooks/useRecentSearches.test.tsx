@@ -1,5 +1,5 @@
 import { useRecentSearches } from '../../src/hooks/useRecentSearches';
-import { renderHook, act } from '@testing-library/react-hooks/dom';
+import { renderHook, act } from '@testing-library/react-hooks';
 
 beforeEach(() => {
   localStorage.clear();
