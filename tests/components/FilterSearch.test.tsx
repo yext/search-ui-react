@@ -318,6 +318,20 @@ describe('search without section labels', () => {
     const autocompleteSuggestion = screen.getByText('first name 1');
     expect(autocompleteSuggestion).toBeDefined();
   });
+
+  it('pressing enter without navigating selects first filter in input', async () => {
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(unlabeledFilterSearchResponse);
+    renderFilterSearch();
+    const inputNode = screen.getByRole('textbox');
+    userEvent.type(inputNode, 'n');
+    await waitFor(() => {
+      expect(executeFilterSearch).toHaveBeenCalled();
+    });
+    userEvent.keyboard('{enter}');
+    expect(inputNode).toHaveValue('first name 1');
+  });
 });
 
 describe('screen reader', () => {

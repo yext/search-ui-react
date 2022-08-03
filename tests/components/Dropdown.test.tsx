@@ -4,7 +4,6 @@ import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown'
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import { DropdownItem } from '../../src/components/Dropdown/DropdownItem';
-import { FocusedItemData } from '../../src/components/Dropdown/FocusContext';
 
 describe('Dropdown', () => {
   it('can toggle hide/display', () => {
@@ -343,41 +342,5 @@ describe('Always Select Option', () => {
     expect(inputNode).toHaveValue('i');
     expect(screen.queryByTestId('item1')).toBeNull();
     expect(mockedOnSelectFn).toBeCalledTimes(0);
-  });
-
-  it('pressing enter without navigating selects first filter', () => {
-    const mockedOnSubmitFn = jest.fn();
-    const mockedOnSelectFn = jest.fn();
-    const dropdownProps: DropdownProps = {
-      screenReaderText: 'screen reader text here',
-      onSelect: mockedOnSelectFn,
-      alwaysSelectOption: true
-    };
-    const itemData: FocusedItemData = {
-      displayName: 'item1',
-      filter: {
-        value: 'item1'
-      }
-    };
-
-    render(
-      <Dropdown {...dropdownProps}>
-        <DropdownInput
-          onSubmit={mockedOnSubmitFn}
-        />
-        <DropdownMenu>
-          <DropdownItem value='item1' itemData={itemData} focusedClassName='FocusedItem1'>
-            item1
-          </DropdownItem>
-        </DropdownMenu>
-      </Dropdown>
-    );
-    const inputNode = screen.getByRole('textbox');
-    userEvent.type(inputNode, 'someText{enter}');
-
-    expect(inputNode).toHaveValue('item1');
-    expect(mockedOnSelectFn).toBeCalledTimes(1);
-    expect(mockedOnSelectFn).toBeCalledWith('someText', 0, itemData);
-    expect(mockedOnSubmitFn).toBeCalledTimes(1);
   });
 });
