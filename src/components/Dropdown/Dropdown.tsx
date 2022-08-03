@@ -55,6 +55,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
   const screenReaderUUID: string = useMemo(() => uuid(), []);
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
+  const [alwaysSelectScreenReaderText, setAlwaysSelectScreenReaderText] = useState<string>(screenReaderText);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
     return getTransformedChildrenAndItemData(children);
@@ -69,6 +70,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     setValue,
     screenReaderKey,
     setScreenReaderKey,
+    screenReaderText,
+    setAlwaysSelectScreenReaderText,
     alwaysSelectOption,
   );
   const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
@@ -102,8 +105,11 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   }, { disabled: !isActive });
 
   useGlobalListener('keydown', e => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
+    if (e.key === 'Tab' || e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      setAlwaysSelectScreenReaderText(screenReaderText);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+      }
     }
 
     if (!isActive) {
@@ -157,7 +163,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
 
       <ScreenReader
         announcementKey={screenReaderKey}
-        announcementText={isActive && (hasTyped || items.length || value) ? screenReaderText : ''}
+        announcementText={isActive && (hasTyped || items.length || value) ? (alwaysSelectOption ? alwaysSelectScreenReaderText : screenReaderText) : ''}
         instructionsId={screenReaderUUID}
         instructions={screenReaderInstructions}
       />
@@ -182,6 +188,8 @@ function useFocusContextInstance(
   setValue: (newValue: string) => void,
   screenReaderKey: number,
   setScreenReaderKey: (newKey: number) => void,
+  screenReaderText: string,
+  setAlwaysSelectScreenReaderText: (newText: string) => void,
   alwaysSelectOption: boolean,
 ): FocusContextType {
   const [focusedIndex, setFocusedIndex] = useState(-1);
@@ -194,12 +202,17 @@ function useFocusContextInstance(
         setFocusedIndex(index);
         setFocusedValue(items[index].value);
         setFocusedItemData(items[index].itemData);
+        if (focusedIndex === -1) {
+          setAlwaysSelectScreenReaderText(screenReaderText + ' ' + items[index].value);
+        }
       } else {
         setFocusedIndex(-1);
         setFocusedValue(null);
         setFocusedItemData(undefined);
+        setAlwaysSelectScreenReaderText(screenReaderText);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [alwaysSelectOption, focusedIndex, items]);
 
   function updateFocusedItem(updatedFocusedIndex: number, value?: string) {
