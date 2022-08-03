@@ -2,6 +2,7 @@ export const base_config = {
   bail: 0,
   verbose: true,
   collectCoverage: false,
+  rootDir: "../",
   moduleFileExtensions: [
     'js',
     'json',
