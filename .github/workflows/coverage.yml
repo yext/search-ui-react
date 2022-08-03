@@ -15,4 +15,3 @@ jobs:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
     with: 
       test_script: npm run test
-      coverage-file: "../coverage/unit/lcov.info"
