@@ -38,10 +38,10 @@
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "prepublishOnly": "npm run build",
-    "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test-storybook": "start-storybook -p 6006 --ci & sleep 10 && test-storybook --coverage"
+    "test:unit": "jest --coverage --coverageDirectory=coverage/unit",
+    "test:visual": "./tests/scripts/visual-coverage.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
