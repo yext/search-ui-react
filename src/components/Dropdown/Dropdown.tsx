@@ -83,6 +83,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     focusedItemData,
     screenReaderUUID,
     setHasTyped,
+    updateFocusedItem,
     onToggle,
     onSelect
   );
@@ -258,6 +259,7 @@ function useDropdownContextInstance(
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
   setHasTyped: (hasTyped: boolean) => void,
+  updateFocusedItem: (index: number, value?: string) => void,
   onToggle?: (
     isActive: boolean,
     prevValue: string,
@@ -268,9 +270,16 @@ function useDropdownContextInstance(
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
-  const toggleDropdown = (willBeOpen: boolean) => {
+  const toggleDropdown = (willBeOpen: boolean, fromSubmit?: boolean) => {
     if (!willBeOpen) {
       setHasTyped(false);
+    }
+    if (fromSubmit) {
+      let newValue;
+      if (focusedItemData?.filter && typeof focusedItemData?.filter === 'object' && typeof focusedItemData?.filter['value'] === 'string') {
+        newValue = focusedItemData?.filter['value'];
+      }
+      updateFocusedItem(index, newValue);
     }
     _toggleDropdown(willBeOpen);
     onToggle?.(willBeOpen, prevValue, value, index, focusedItemData);
