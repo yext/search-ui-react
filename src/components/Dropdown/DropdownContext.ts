@@ -6,7 +6,7 @@ import { createContext, useContext } from 'react';
 export type DropdownContextType = {
   isActive: boolean,
   screenReaderUUID?: string,
-  toggleDropdown: (visible: boolean, fromSubmit?: boolean) => void,
+  toggleDropdown: (visible: boolean) => void,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void
 };
 
