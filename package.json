@@ -40,12 +40,9 @@
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest --projects tests/jest.unit.config.js --coverage",
-    "coverage:visual": "jest --projects tests/jest.visual.config.js --coverage",
-    "coverage:clean": "rm -rf .nyc_output && rm -rf coverage",
-    "coverage:merge": "istanbul-merge --out coverage/merged/coverage-final.json ./coverage/unit/coverage-final.json  ./coverage/visual-regression/coverage-final.json",
-    "coverage:merge-report": "nyc report --reporter=lcov --reporter=text --temp-dir=./coverage/merged --report-dir=./coverage/merged",
-    "coverage": "npm run coverage:clean && npm run test && npm run coverage:visual && npm run coverage:merge && npm run coverage:merge-report"
+    "test": "./tests/scripts/test:unit.sh",
+    "test:visual": "./tests/scripts/test:visual.sh",
+    "test:all": "./tests/scripts/test:all.sh"
     },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -85,6 +82,7 @@
     "eslint-plugin-react-perf": "^3.3.1",
     "generate-license-file": "^1.3.0",
     "jest": "^28.1.0",
+    "jest-cli": "^28.1.3",
     "jest-environment-jsdom": "^28.1.0",
     "lodash": "^4.17.21",
     "msw": "^0.36.8",
