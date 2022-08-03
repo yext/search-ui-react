@@ -11,4 +11,11 @@ jobs:
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     with:
-      build_script: 'npm run storybook & sleep 10 && curl http://localhost:6006 -I'
+      build_script:
+      '|
+        npm run storybook &
+        sleep 1
+        while ! curl http://localhost:6006 -I; do
+          sleep 1
+        done
+      '
