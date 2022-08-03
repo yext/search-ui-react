@@ -25,6 +25,7 @@ jobs:
       - run: npm ci --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: playwright install
       - run: npm run test:visual
       - uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
         with:
