@@ -69,8 +69,9 @@ export function DropdownInput(props: {
 
   const handleFocus = useCallback(() => {
     toggleDropdown(true);
+    updateFocusedItem(-1);
     onFocus?.(value);
-  }, [onFocus, toggleDropdown, value]);
+  }, [onFocus, toggleDropdown, updateFocusedItem, value]);
 
   return (
     <input

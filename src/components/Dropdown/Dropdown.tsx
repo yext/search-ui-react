@@ -140,10 +140,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       } else {
         toggleDropdown(false);
       }
-    } else {
-      if (!hasTyped) {
-        setHasTyped(true);
-      }
+    } else if (!hasTyped) {
+      setHasTyped(true);
     }
   });
 
