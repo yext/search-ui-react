@@ -1,7 +1,10 @@
+import { SandboxEndpoints } from '@yext/search-headless-react'
+console.log(SandboxEndpoints)
 export const config = {
-  apiKey: '2d8c550071a64ea23e263118a2b0680b',
-  experienceKey: 'slanswers-hier-facets',
+  apiKey: '9641a03ad3de221fb9c566b0c9148351',
+  experienceKey: 'test-experience',
   locale: 'en',
   experienceVersion: 'STAGING',
-  businessId: 123123
+  businessId: 123123,
+  endpoints: SandboxEndpoints
 }
