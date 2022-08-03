@@ -2,7 +2,7 @@ module.exports = {
   bail: 0,
   verbose: true,
   collectCoverage: false,
-  rootDir: "../",
+  rootDir: '../',
   moduleFileExtensions: [
     'js',
     'json',
