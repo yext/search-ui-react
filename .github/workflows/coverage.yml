@@ -19,7 +19,7 @@ jobs:
       - uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
         with:
           coverage-file: coverage/visual/lcov.info
-          id: parse-coverage
+        id: parse-coverage
       - run: echo current coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
