@@ -3,7 +3,7 @@
 # generate coverage from storybook test-runner
 start-storybook -p 6006 --ci &
 JOB_ID=$(echo $!) #get the background job ID
-sleep 10
+while ! curl http://localhost:6006 -I; do sleep 1; done
 test-storybook --coverage
 
 # kill the start-storybook command
