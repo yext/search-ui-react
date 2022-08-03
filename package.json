@@ -122,6 +122,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/yext/search-ui-react.git"
-  },
-  "type": "module"
+  }
 }

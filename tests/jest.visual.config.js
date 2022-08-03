@@ -1,7 +1,5 @@
-import { base_config } from './jest.base.config.js'
-
-const config = {
-  ...base_config,
+module.exports = {
+  ...require('./jest.base.config'),
   collectCoverageFrom: [
     'src/components/**'
   ],
@@ -10,5 +8,3 @@ const config = {
     '<rootDir>/tests/storyshot.test.ts'
   ]
 };
-
-export default config

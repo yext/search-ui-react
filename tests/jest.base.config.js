@@ -1,4 +1,4 @@
-export const base_config = {
+module.exports = {
   bail: 0,
   verbose: true,
   collectCoverage: false,
