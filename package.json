@@ -41,7 +41,6 @@
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "storybook-smoke-test": "start-storybook -p 6006 --smoke-test",
     "wcag": "test-storybook"
   },
   "devDependencies": {
