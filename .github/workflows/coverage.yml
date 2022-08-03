@@ -14,6 +14,7 @@ jobs:
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
   visual_coverage:
+    runs-on: ubuntu-latest
     steps:
       - uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
         with:
