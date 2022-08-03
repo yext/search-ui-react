@@ -5,7 +5,7 @@ const config = {
   collectCoverageFrom: [
     'src/**'
   ],
-  coverageDirectory: 'coverage/unit',
+  coverageDirectory: '<rootDir>/coverage/unit',
   testMatch: [
     '<rootDir>/tests/**/*.test.ts?(x)'
   ]

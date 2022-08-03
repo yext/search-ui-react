@@ -5,7 +5,7 @@ const config = {
   collectCoverageFrom: [
     'src/components/**'
   ],
-  coverageDirectory: 'coverage/visual-regression',
+  coverageDirectory: '<rootDir>/coverage/visual-regression',
   testMatch: [
     '<rootDir>/tests/storyshot.test.ts'
   ]
