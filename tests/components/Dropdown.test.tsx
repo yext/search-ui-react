@@ -354,7 +354,10 @@ describe('Always Select Option', () => {
       alwaysSelectOption: true
     };
     const itemData: FocusedItemData = {
-      displayName: 'item1'
+      displayName: 'item1',
+      filter: {
+        value: 'item1'
+      }
     };
 
     render(
