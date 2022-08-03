@@ -5,5 +5,5 @@ node_modules/
 lib/
 
 # testing
-/coverage*
+/coverage
 /storybook-static
