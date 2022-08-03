@@ -115,13 +115,15 @@ export function FilterSearch({
       if (currentFilter) {
         searchActions.setFilterOption({ ...currentFilter, selected: false });
       }
-      searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
-      setCurrentFilter(newFilter);
-      setFilterQuery(value);
-      if (select && searchOnSelect) {
-        searchActions.setOffset(0);
-        searchActions.resetFacets();
-        executeSearch(searchActions);
+      if (select) {
+        searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+        setCurrentFilter(newFilter);
+        setFilterQuery(value);
+        if (searchOnSelect) {
+          searchActions.setOffset(0);
+          searchActions.resetFacets();
+          executeSearch(searchActions);
+        }
       }
     }
   }, [searchActions, currentFilter, searchOnSelect]);
