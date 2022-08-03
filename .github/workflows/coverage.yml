@@ -12,7 +12,7 @@ jobs:
   unit_coverage:
     uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@dev/coverage-file-param
     with:
-      test_script: npm run test:unit
+      test_script: npm run test
       coverage_file: coverage/unit/lcov.info
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
