@@ -203,9 +203,7 @@ function useFocusContextInstance(
         setFocusedIndex(index);
         setFocusedValue(items[index].value);
         setFocusedItemData(items[index].itemData);
-        if (focusedIndex === -1) {
-          setAlwaysSelectScreenReaderText(screenReaderText + ' ' + items[index].value);
-        }
+        setAlwaysSelectScreenReaderText(screenReaderText + ' ' + items[index].value);
       } else {
         setFocusedIndex(-1);
         setFocusedValue(null);
