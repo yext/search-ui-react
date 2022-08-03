@@ -16,14 +16,15 @@ jobs:
   visual_coverage:
     runs-on: ubuntu-latest
     steps:
+      - run: npm run test:visual
       - uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
         with:
           coverage-file: coverage/visual/lcov.info
         id: parse-coverage
-      - run: echo current coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
+      - run: echo current visual coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            current coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
+            current visual coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
