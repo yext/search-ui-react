@@ -88,10 +88,9 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   useLayoutEffect(() => {
     if (parentQuery !== undefined && parentQuery !== lastTypedOrSubmittedValue) {
       setLastTypedOrSubmittedValue(parentQuery);
-      if (!alwaysSelectOption) updateFocusedItem(-1, parentQuery);
+      updateFocusedItem(-1, parentQuery);
     }
   }, [
-    alwaysSelectOption,
     parentQuery,
     lastTypedOrSubmittedValue,
     updateFocusedItem,
