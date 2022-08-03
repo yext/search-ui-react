@@ -14,14 +14,15 @@ jobs:
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
   visual_coverage:
-    - uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
-      with:
-        coverage-file: coverage/visual/lcov.info
-        id: parse-coverage
-    - run: echo current coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
-    - name: Create comment
-      uses: peter-evans/create-or-update-comment@v2
-      with:
-        issue-number: ${{ github.event.pull_request.number }}
-        body: |
-          current coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
+    steps:
+      - uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
+        with:
+          coverage-file: coverage/visual/lcov.info
+          id: parse-coverage
+      - run: echo current coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            current coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
