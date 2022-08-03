@@ -4,6 +4,7 @@ import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown'
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import { DropdownItem } from '../../src/components/Dropdown/DropdownItem';
+import { FocusedItemData } from '../../src/components/Dropdown/FocusContext';
 
 describe('Dropdown', () => {
   it('can toggle hide/display', () => {
@@ -31,17 +32,17 @@ describe('Dropdown', () => {
     // display when click into dropdown input
     userEvent.click(screen.getByRole('textbox'));
     expect(screen.getByText('item1')).toBeDefined();
-    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined, false);
+    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
 
     // hidden when click elsewhere outside of dropdown component
     userEvent.click(screen.getByText('external div'));
     expect(screen.queryByText('item1')).toBeNull();
-    expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined, false);
+    expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined);
 
     // display when tab into dropdown input
     userEvent.tab();
     expect(screen.getByText('item1')).toBeDefined();
-    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined, false);
+    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
   });
 
   it('handles arrowkey navigation properly and focuses on the option and input text', () => {
@@ -118,7 +119,7 @@ describe('Dropdown', () => {
     userEvent.click(inputNode);
     userEvent.keyboard('{Tab}{Tab}');
 
-    expect(mockedOnToggleFn).toHaveBeenLastCalledWith(false, '', 'item1', 0, undefined, true);
+    expect(mockedOnToggleFn).toHaveBeenLastCalledWith(false, '', 'item1', 0, undefined);
   });
 
   it('selects when an option is focused and enter is pressed', () => {
@@ -215,7 +216,7 @@ describe('Dropdown', () => {
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
     expect(mockedOnToggleFn).toBeCalledTimes(3);
-    expect(mockedOnToggleFn).toHaveBeenCalledWith(false, 'i', 'item1', 0, undefined, true);
+    expect(mockedOnToggleFn).toHaveBeenCalledWith(false, 'i', 'item1', 0, undefined);
   });
 
   it('updates options when user provide new input', () => {
@@ -308,5 +309,72 @@ describe('Dropdown', () => {
     expect(mockedOnSubmitFn).toBeCalledTimes(0);
     // dropdown remains open for failed submission
     expect(screen.getByText('item1')).toBeDefined();
+  });
+});
+describe('Always Select Option', () => {
+  it('clicking out without interacting with dropdown does not select a filter', () => {
+    const mockedOnSelectFn = jest.fn();
+    const dropdownProps: DropdownProps = {
+      screenReaderText: 'screen reader text here',
+      onSelect: mockedOnSelectFn,
+      alwaysSelectOption: true
+    };
+    render(
+      <div>
+        <Dropdown {...dropdownProps}>
+          <DropdownInput />
+          <DropdownMenu>
+            <DropdownItem value='item1'>
+              <p data-testid='item1'>item1</p>
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+        <div>external div</div>
+      </div>
+    );
+    const inputNode = screen.getByRole('textbox');
+    userEvent.click(inputNode);
+    expect(screen.getByTestId('item1')).toBeDefined();
+    expect(inputNode).toHaveValue('');
+
+    userEvent.keyboard('i');
+    userEvent.click(screen.getByText('external div'));
+
+    expect(inputNode).toHaveValue('i');
+    expect(screen.queryByTestId('item1')).toBeNull();
+    expect(mockedOnSelectFn).toBeCalledTimes(0);
+  });
+
+  it('pressing enter without navigating selects first filter', () => {
+    const mockedOnSubmitFn = jest.fn();
+    const mockedOnSelectFn = jest.fn();
+    const dropdownProps: DropdownProps = {
+      screenReaderText: 'screen reader text here',
+      onSelect: mockedOnSelectFn,
+      alwaysSelectOption: true
+    };
+    const itemData: FocusedItemData = {
+      displayName: 'item1'
+    };
+
+    render(
+      <Dropdown {...dropdownProps}>
+        <DropdownInput
+          onSubmit={mockedOnSubmitFn}
+        />
+        <DropdownMenu>
+          <DropdownItem value='item1' itemData={itemData} focusedClassName='FocusedItem1'>
+            item1
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+    const inputNode = screen.getByRole('textbox');
+    userEvent.type(inputNode, 'someText{enter}');
+
+    expect(inputNode).toHaveValue('item1');
+    expect(mockedOnSelectFn).toBeCalledTimes(1);
+    expect(mockedOnSelectFn).toBeCalledWith('someText', 0, itemData);
+    expect(mockedOnSubmitFn).toBeCalledTimes(1);
   });
 });
