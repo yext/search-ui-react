@@ -9,7 +9,15 @@ on:
   pull_request:
 
 jobs:
-  call_code_coverage:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@v1
+  unit_coverage:
+    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@dev/coverage-file-param
+    with:
+      coverage_file: coverage/unit/lcov.info
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
+  # visual_coverage:
+  #   uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@dev/coverage-file-param
+  #   with:
+  #     coverage_file: coverage/visual/lcov.info
+  #   secrets:
+  #     caller_github_token: ${{ secrets.GITHUB_TOKEN }}
