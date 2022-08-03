@@ -88,9 +88,10 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   useLayoutEffect(() => {
     if (parentQuery !== undefined && parentQuery !== lastTypedOrSubmittedValue) {
       setLastTypedOrSubmittedValue(parentQuery);
-      updateFocusedItem(-1, parentQuery);
+      if (!alwaysSelectOption) updateFocusedItem(-1, parentQuery);
     }
   }, [
+    alwaysSelectOption,
     parentQuery,
     lastTypedOrSubmittedValue,
     updateFocusedItem,
@@ -127,6 +128,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
         if (focusedIndex >= items.length - 1) {
           toggleDropdown(false);
           updateFocusedItem(-1);
+          toggleDropdown(false);
         } else {
           updateFocusedItem(focusedIndex + 1);
           e.preventDefault();
