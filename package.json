@@ -40,8 +40,9 @@
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test:unit": "jest --coverage --coverageDirectory=coverage/unit",
-    "test:visual": "./tests/scripts/visual-coverage.sh"
+    "test:unit": "./tests/scripts/unit-coverage.sh",
+    "test:visual": "./tests/scripts/visual-coverage.sh",
+    "test:all": "./tests/scripts/all-coverage.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
