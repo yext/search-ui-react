@@ -1,6 +1,5 @@
 import { injectAxe, checkA11y } from 'axe-playwright';
 import { Page } from 'playwright-core';
-import { parameters } from './preview';
 
 /*
 * See https://storybook.js.org/docs/react/writing-tests/test-runner#test-hook-api-experimental
@@ -13,7 +12,10 @@ const renderFunctions = {
   async postRender(page: Page, context) {
     await checkA11y(page, '#root', {
       axeOptions: {
-        runOnly: parameters.a11y.options.runOnly,
+        runOnly: {
+          type: 'tag',
+          values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
+        },
         rules: {
           'color-contrast': { enabled: context.name !== 'Loading' }
         },
