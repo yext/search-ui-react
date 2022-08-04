@@ -3,10 +3,26 @@
 # generate coverage from storybook test-runner
 start-storybook -p 6006 --ci &
 JOB_ID=$(echo $!) #get the background job ID
-while ! curl http://localhost:6006 -I; do sleep 1; done
+
+# wait for a locally served Storybook
+attempt_counter=0
+max_attempts=100
+until $(curl --output /dev/null --silent --head http://localhost:6006)
+do
+  if [ ${attempt_counter} -eq ${max_attempts} ];then
+    echo "Max attempts reached"
+    exit 1
+  fi
+
+  echo 'waiting for a locally served Storybook in port 6006..'
+  attempt_counter=$(($attempt_counter+1))
+  sleep 2
+done
+
+# Get visual test coverage
 test-storybook --coverage
 
-# kill the start-storybook command
+# kill the locally served Storybook
 kill -9 $JOB_ID
 
 # generate lcov coverage for visual tests from story book
