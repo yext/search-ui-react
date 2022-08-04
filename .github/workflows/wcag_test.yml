@@ -20,6 +20,6 @@ jobs:
             echo "Max attempts reached. Failed to start Storybook."
             exit 1
           fi
-          echo ${{attempt_counter}}
+          echo ${attempt_counter}
           sleep 1
         done
