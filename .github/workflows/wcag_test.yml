@@ -11,7 +11,4 @@ jobs:
     with:
       build_script: |
         npm run storybook -- --quiet &
-        until curl http://localhost:6006 --silent
-        do
-          sleep 1
-        done
+        until curl http://localhost:6006 -I --silent --connect-timeout 30
