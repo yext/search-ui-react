@@ -1,4 +1,4 @@
-import { createElement, isValidElement, PropsWithChildren, ReactNode, useMemo, useRef, useState } from 'react';
+import { createElement, isValidElement, PropsWithChildren, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
 import useGlobalListener from '@restart/hooks/useGlobalListener';
@@ -28,7 +28,8 @@ export interface DropdownProps {
     focusedItemData: Record<string, unknown> | undefined
   ) => void,
   className?: string,
-  activeClassName?: string
+  activeClassName?: string,
+  alwaysSelectOption?: boolean
 }
 
 /**
@@ -48,13 +49,16 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     className,
     activeClassName,
     parentQuery,
+    alwaysSelectOption = false
   } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const screenReaderUUID: string = useMemo(() => uuid(), []);
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
-  const [childrenWithDropdownItemsTransformed, items] = getTransformedChildrenAndItemData(children);
+  const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
+    return getTransformedChildrenAndItemData(children);
+  }, [children]);
 
   const inputContext = useInputContextInstance();
   const { value, setValue, lastTypedOrSubmittedValue, setLastTypedOrSubmittedValue } = inputContext;
@@ -64,7 +68,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     lastTypedOrSubmittedValue,
     setValue,
     screenReaderKey,
-    setScreenReaderKey
+    setScreenReaderKey,
+    alwaysSelectOption
   );
   const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
 
@@ -85,7 +90,12 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       setLastTypedOrSubmittedValue(parentQuery);
       updateFocusedItem(-1, parentQuery);
     }
-  }, [parentQuery, lastTypedOrSubmittedValue, updateFocusedItem, setLastTypedOrSubmittedValue]);
+  }, [
+    parentQuery,
+    lastTypedOrSubmittedValue,
+    updateFocusedItem,
+    setLastTypedOrSubmittedValue
+  ]);
 
   useRootClose(containerRef, () => {
     toggleDropdown(false);
@@ -101,24 +111,33 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     }
 
     if (e.key === 'ArrowDown') {
-      updateFocusedItem(focusedIndex + 1);
+      if (alwaysSelectOption && focusedIndex === items.length-1) {
+        updateFocusedItem(0);
+      } else {
+        updateFocusedItem(focusedIndex + 1);
+      }
     } else if (e.key === 'ArrowUp') {
-      updateFocusedItem(focusedIndex - 1);
+      if (alwaysSelectOption && focusedIndex === 0) {
+        updateFocusedItem(items.length-1);
+      } else {
+        updateFocusedItem(focusedIndex-1);
+      }
     } else if (e.key === 'Tab' && !e.shiftKey) {
       if (items.length !== 0) {
-        if (focusedIndex >= items.length - 1) {
-          toggleDropdown(false);
+        if (focusedIndex >= items.length-1) {
           updateFocusedItem(-1);
+          toggleDropdown(false);
         } else {
           updateFocusedItem(focusedIndex + 1);
           e.preventDefault();
         }
       }
     } else if (e.key === 'Tab' && e.shiftKey) {
-      if (focusedIndex >= 0) {
-        updateFocusedItem(focusedIndex - 1);
+      if (focusedIndex > 0 || (!alwaysSelectOption && focusedIndex === 0)) {
+        updateFocusedItem(focusedIndex-1);
         e.preventDefault();
       } else {
+        updateFocusedItem(-1);
         toggleDropdown(false);
       }
     } else if (!hasTyped) {
@@ -162,20 +181,41 @@ function useFocusContextInstance(
   lastTypedOrSubmittedValue: string,
   setValue: (newValue: string) => void,
   screenReaderKey: number,
-  setScreenReaderKey: (newKey: number) => void
+  setScreenReaderKey: (newKey: number) => void,
+  alwaysSelectOption: boolean
 ): FocusContextType {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
   const [focusedItemData, setFocusedItemData] = useState<Record<string, unknown> | undefined>(undefined);
+  useEffect(() => {
+    if (alwaysSelectOption) {
+      if (items.length > 0) {
+        const index = focusedIndex === -1 || focusedIndex >= items.length ? 0 : focusedIndex;
+        setFocusedIndex(index);
+        setFocusedValue(items[index].value);
+        setFocusedItemData(items[index].itemData);
+      } else {
+        setFocusedIndex(-1);
+        setFocusedValue(null);
+        setFocusedItemData(undefined);
+      }
+    }
+  }, [alwaysSelectOption, focusedIndex, items]);
 
   function updateFocusedItem(updatedFocusedIndex: number, value?: string) {
     const numItems = items.length;
     let updatedValue;
     if (updatedFocusedIndex === -1 || updatedFocusedIndex >= numItems || numItems === 0) {
       updatedValue = value ?? lastTypedOrSubmittedValue;
-      setFocusedIndex(-1);
-      setFocusedItemData(undefined);
-      setScreenReaderKey(screenReaderKey + 1);
+      if (alwaysSelectOption && numItems !== 0) {
+        setFocusedIndex(0);
+        setFocusedItemData(items[0].itemData);
+        setScreenReaderKey(screenReaderKey + 1);
+      } else {
+        setFocusedIndex(-1);
+        setFocusedItemData(undefined);
+        setScreenReaderKey(screenReaderKey + 1);
+      }
     } else if (updatedFocusedIndex < -1) {
       const loopedAroundIndex = (numItems + updatedFocusedIndex + 1) % numItems;
       updatedValue = value ?? items[loopedAroundIndex].value;
@@ -187,7 +227,7 @@ function useFocusContextInstance(
       setFocusedItemData(items[updatedFocusedIndex].itemData);
     }
     setFocusedValue(updatedValue);
-    setValue(updatedValue);
+    setValue(alwaysSelectOption ? (value ?? lastTypedOrSubmittedValue) : updatedValue);
   }
 
   return {
@@ -204,7 +244,7 @@ function useDropdownContextInstance(
   index: number,
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string,
-  setHasTyped: (boolean) => void,
+  setHasTyped: (hasTyped: boolean) => void,
   onToggle?: (
     isActive: boolean,
     prevValue: string,
@@ -212,7 +252,7 @@ function useDropdownContextInstance(
     index: number,
     focusedItemData: Record<string, unknown> | undefined
   ) => void,
-  onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
+  onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
@@ -244,6 +284,5 @@ function getTransformedChildrenAndItemData(children: ReactNode): [ReactNode, Dro
     const transformedItem = createElement(DropdownItemWithIndex, { ...props, index: items.length - 1 });
     return transformedItem;
   }));
-
   return [childrenWithDropdownItemsTransformed, items];
 }
