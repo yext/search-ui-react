@@ -5,11 +5,9 @@ npm run test:unit
 npm run test:visual
 
 # merge
-rm -rf coverage/merge
 mkdir -p coverage/merge
-cp coverage/unit/lcov.info coverage/merge/lcov-unit.info
-cp coverage/visual/lcov.info coverage/merge/lcov-visual.info
+cp coverage/unit/coverage-final.json coverage/merge/coverage-unit.json
+cp coverage/visual/coverage-storybook.json coverage/merge/coverage-storybook.json
 
-lcov-result-merger 'coverage/merge/lcov-*.info' 'coverage/merge/lcov-all.info'
-
-cp coverage/merge/lcov-all.info coverage/lcov.info
+nyc report --reporter=lcov --reporter=text -t coverage/merge --report-dir coverage/merge
+cp coverage/merge/lcov.info coverage/lcov.info 
