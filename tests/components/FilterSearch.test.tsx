@@ -347,7 +347,7 @@ describe('screen reader', () => {
     await waitFor(() => {
       expect(executeFilterSearch).toHaveBeenCalled();
     });
-    const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found. first name 1';
+    const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found.';
     await waitFor(() => {
       const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
       expect(screenReaderMessage).toBeDefined();
@@ -366,7 +366,7 @@ describe('screen reader', () => {
     await waitFor(() => {
       expect(executeFilterSearch).toHaveBeenCalled();
     });
-    const expectedScreenReaderMessage = '3 autocomplete options found. first name 1';
+    const expectedScreenReaderMessage = '3 autocomplete options found.';
     await waitFor(() => {
       const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
       expect(screenReaderMessage).toBeDefined();

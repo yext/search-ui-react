@@ -119,6 +119,7 @@ export function FilterSearch({
       setCurrentFilter(newFilter);
       if (select) {
         setFilterQuery(newDisplayName);
+        executeFilterSearch(newDisplayName);
         if (searchOnSelect) {
           searchActions.setOffset(0);
           searchActions.resetFacets();
@@ -126,9 +127,10 @@ export function FilterSearch({
         }
       } else {
         setFilterQuery(value);
+        executeFilterSearch(value);
       }
     }
-  }, [searchActions, currentFilter, searchOnSelect]);
+  }, [currentFilter, searchActions, executeFilterSearch, searchOnSelect]);
 
   const handleSelectDropdown = useCallback((value, _index, itemData) => {
     handleDropdownEvent(value, itemData, true);
