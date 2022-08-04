@@ -42,7 +42,7 @@
     "build-storybook": "build-storybook",
     "test:unit": "jest --coverage --coverageDirectory=coverage/unit",
     "test:visual": "./tests/scripts/visual-coverage.sh",
-    "test": "./tests/scripts/all-coverage.sh"
+    "test": "./tests/scripts/combined-coverage.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
