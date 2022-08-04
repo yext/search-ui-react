@@ -1,6 +1,6 @@
 #!/bin/bash
 
-start-storybook -p 6006 --quiet --ci &
+npm run start-storybook -- --quiet --ci &
 JOB_ID=$(echo $!) #get the background job ID
 
 # wait for a locally served Storybook
