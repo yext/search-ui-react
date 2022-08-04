@@ -202,7 +202,6 @@ function useFocusContextInstance(
         setFocusedItemData(undefined);
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [alwaysSelectOption, focusedIndex, items]);
 
   function updateFocusedItem(updatedFocusedIndex: number, value?: string) {
