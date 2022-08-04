@@ -1,9 +1,7 @@
 name: WCAG tests
 
 on:
-  pull_request:
-    branches:
-      - main
+  pull_request
 
 jobs:
   call_wcag_test:
