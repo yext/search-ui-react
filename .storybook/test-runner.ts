@@ -1,7 +1,7 @@
 import { injectAxe, checkA11y } from 'axe-playwright';
 import { Page } from 'playwright-core';
 
-/*
+/**
  * See https://storybook.js.org/docs/react/writing-tests/test-runner#test-hook-api-experimental
  * to learn more about the test-runner hooks API.
  */
