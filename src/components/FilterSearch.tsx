@@ -69,7 +69,7 @@ export function FilterSearch({
   searchFields,
   label,
   placeholder = 'Search here...',
-  searchOnSelect = false,
+  searchOnSelect,
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
@@ -115,9 +115,9 @@ export function FilterSearch({
       if (currentFilter) {
         searchActions.setFilterOption({ ...currentFilter, selected: false });
       }
-      searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
-      setCurrentFilter(newFilter);
       if (select) {
+        searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+        setCurrentFilter(newFilter);
         setFilterQuery(newDisplayName);
         executeFilterSearch(newDisplayName);
         if (searchOnSelect) {

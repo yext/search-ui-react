@@ -125,7 +125,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     } else if (e.key === 'Tab' && !e.shiftKey) {
       if (items.length !== 0) {
         if (focusedIndex >= items.length-1) {
-          toggleDropdown(false);
           updateFocusedItem(-1);
           toggleDropdown(false);
         } else {
@@ -138,6 +137,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
         updateFocusedItem(focusedIndex-1);
         e.preventDefault();
       } else {
+        updateFocusedItem(-1);
         toggleDropdown(false);
       }
     } else if (!hasTyped) {
@@ -182,7 +182,7 @@ function useFocusContextInstance(
   setValue: (newValue: string) => void,
   screenReaderKey: number,
   setScreenReaderKey: (newKey: number) => void,
-  alwaysSelectOption: boolean,
+  alwaysSelectOption: boolean
 ): FocusContextType {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [focusedValue, setFocusedValue] = useState<string | null>(null);
@@ -250,9 +250,9 @@ function useDropdownContextInstance(
     prevValue: string,
     value: string,
     index: number,
-    focusedItemData: Record<string, unknown> | undefined,
+    focusedItemData: Record<string, unknown> | undefined
   ) => void,
-  onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void,
+  onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
