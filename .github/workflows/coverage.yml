@@ -9,29 +9,29 @@ on:
   pull_request:
 
 jobs:
-  unit_coverage:
+  all_coverage:
     uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@v1
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
-  visual_coverage:
+  individual_coverage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v3
+      - name: Download the current coverage
+        uses: actions/download-artifact@v3
         with:
-          node-version: 16.x
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci --ignore-scripts
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npx playwright install
-      - run: npm run test:visual
-      - uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
+          name: coverage
+          path: coverage/
+      - name: Get Visual Coverage Percentage
+        uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
         with:
           coverage-file: coverage/visual/lcov.info
-        id: parse-coverage
-      - run: echo Current visual coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
+        id: parse-visual-coverage
+      - name: Get Unit Coverage Percentage
+        uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
+        with:
+          coverage-file: coverage/unit/lcov.info
+        id: parse-unit-coverage
       - name: Find Comment
         uses: peter-evans/find-comment@v2
         id: fc
@@ -45,4 +45,5 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            Current visual coverage is ${{ steps.parse-coverage.outputs.coverage-percent }}%
+            Current unit coverage is ${{ steps.parse-unit-coverage.outputs.coverage-percent }}%
+            Current visual coverage is ${{ steps.parse-visual-coverage.outputs.coverage-percent }}%
