@@ -1,14 +1,16 @@
 #!/bin/bash
 
-start-storybook -p 6006 --ci &
+start-storybook -p 6006 --quiet --ci &
 JOB_ID=$(echo $!) #get the background job ID
 
 # wait for a locally served Storybook
 attempt_counter=0
-max_attempts=30
-until $(curl --output /dev/null --silent --head http://localhost:6006)
+max_attempts=2
+until $(curl --output /dev/null --silent --head http://localhost:6007)
 do
-  if [ ${attempt_counter} -eq ${max_attempts} ];then
+  if [ ${attempt_counter} -eq ${max_attempts} ]
+  then
+    kill -9 $JOB_ID
     echo "Max attempts reached"
     exit 1
   fi
