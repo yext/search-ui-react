@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# generate coverage from storybook test-runner
 start-storybook -p 6006 --ci &
 JOB_ID=$(echo $!) #get the background job ID
 
@@ -19,7 +18,7 @@ do
   sleep 2
 done
 
-# Get visual test coverage
+# generate coverage from storybook test-runner
 test-storybook --coverage
 
 # kill the locally served Storybook
@@ -28,6 +27,5 @@ kill -9 $JOB_ID
 # generate lcov coverage for visual tests from story book
 nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/visual
 
-# clean up
 cp coverage/storybook/coverage-storybook.json coverage/visual/coverage-storybook.json
 rm -r coverage/storybook
