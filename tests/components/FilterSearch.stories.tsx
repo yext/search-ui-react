@@ -77,25 +77,6 @@ DropdownSectioned.play = ({ canvasElement }) => {
   userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
-export const DropdownHighlight = (args: FilterSearchProps) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch label='Filter' sectioned={true} {...args} searchFields={searchFields} />
-    </SearchHeadlessContext.Provider>
-  );
-};
-DropdownHighlight.parameters = {
-  searchCoreServices: {
-    autoCompleteService: generateMockedAutocompleteService(undefined, labeledFilterSearchResponse)
-  }
-};
-DropdownHighlight.play = ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  userEvent.click(canvas.getByRole('textbox'));
-  userEvent.keyboard('name');
-  userEvent.keyboard('{Tab}{Tab}', { delay: 1 });
-};
-
 export const NoLabel = (args: FilterSearchProps) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>

@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useCallback, useRef } from 'react';
+import { ChangeEvent, KeyboardEvent, useCallback, useRef, useState } from 'react';
 import { useDropdownContext } from './DropdownContext';
 import { useFocusContext, FocusedItemData } from './FocusContext';
 import { generateDropdownId } from './generateDropdownId';
@@ -34,18 +34,23 @@ export function DropdownInput(props: {
     focusedItemData,
     updateFocusedItem
   } = useFocusContext();
+  const [isTyping, setIsTyping] = useState<boolean>(true);
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setIsTyping(true);
     toggleDropdown(true);
+    onChange?.(e.target.value);
     updateFocusedItem(-1, e.target.value);
     setLastTypedOrSubmittedValue(e.target.value);
-    onChange?.(e.target.value);
   }, [onChange, setLastTypedOrSubmittedValue, toggleDropdown, updateFocusedItem]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Tab') {
+      setIsTyping(false);
+    }
     if (e.key === 'Enter' && (!submitCriteria || submitCriteria(focusedIndex))) {
+      updateFocusedItem(focusedIndex);
       toggleDropdown(false);
-      updateFocusedItem(-1, value);
       inputRef.current?.blur();
       onSubmit?.(value, focusedIndex, focusedItemData);
       if (focusedIndex >= 0) {
@@ -65,8 +70,9 @@ export function DropdownInput(props: {
 
   const handleFocus = useCallback(() => {
     toggleDropdown(true);
+    updateFocusedItem(-1);
     onFocus?.(value);
-  }, [onFocus, toggleDropdown, value]);
+  }, [onFocus, toggleDropdown, updateFocusedItem, value]);
 
   return (
     <input
@@ -77,10 +83,10 @@ export function DropdownInput(props: {
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
-      id={screenReaderUUID && generateDropdownId(screenReaderUUID, -1)}
+      id={generateDropdownId(screenReaderUUID, -1)}
       autoComplete='off'
       aria-describedby={screenReaderUUID}
-      aria-activedescendant={screenReaderUUID && generateDropdownId(screenReaderUUID, focusedIndex)}
+      aria-activedescendant={isTyping ? '' : generateDropdownId(screenReaderUUID, focusedIndex)}
       aria-label={ariaLabel}
     />
   );

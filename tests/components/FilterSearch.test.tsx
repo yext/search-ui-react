@@ -112,7 +112,7 @@ describe('search with section labels', () => {
     });
   });
 
-  it('fills the search bar with an autocomplete result when a user selects it', async () => {
+  it('input value stays the same when a user selects a filter', async () => {
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
@@ -124,9 +124,7 @@ describe('search with section labels', () => {
 
     userEvent.type(searchBarElement, '{arrowdown}');
     await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
-    expect(searchBarElement).toHaveValue('first name 1');
-    userEvent.type(searchBarElement, '{arrowdown}');
-    expect(searchBarElement).toHaveValue('first name 2');
+    expect(searchBarElement).toHaveValue('n');
   });
 
   it('remove old filter value when a new one is entered', async () => {
@@ -140,7 +138,7 @@ describe('search with section labels', () => {
     userEvent.type(searchBarElement, 'n');
     await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
     await waitFor(() => screen.findByText('first name 1'));
-    userEvent.type(searchBarElement, '{arrowdown}{enter}');
+    userEvent.type(searchBarElement, '{enter}');
     await waitFor(() => {
       expect(setFilterOption).toBeCalledWith({
         fieldId: 'name',
@@ -154,7 +152,7 @@ describe('search with section labels', () => {
     userEvent.clear(searchBarElement);
     userEvent.type(searchBarElement, 'n');
     await waitFor(() => screen.findByText('first name 2'));
-    userEvent.type(searchBarElement, '{arrowdown}{arrowdown}{enter}');
+    userEvent.type(searchBarElement, '{arrowdown}{enter}');
     await waitFor(() => {
       expect(setFilterOption).toBeCalledWith({
         fieldId: 'name',
@@ -197,7 +195,7 @@ describe('search with section labels', () => {
       };
       const expectedSetOffsetParam = 0;
 
-      userEvent.type(searchBarElement, '{arrowdown}{enter}');
+      userEvent.type(searchBarElement, '{enter}');
       await waitFor(() => {
         expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
       });
@@ -285,7 +283,7 @@ describe('search with section labels', () => {
       userEvent.type(searchBarElement, 'n');
       await waitFor(() => screen.findByText('first name 1'));
 
-      userEvent.type(searchBarElement, '{arrowdown}{enter}');
+      userEvent.type(searchBarElement, '{enter}');
       await waitFor(() => {
         expect(executeFilterSearch).toHaveBeenCalled();
       });
@@ -318,6 +316,20 @@ describe('search without section labels', () => {
     });
     const autocompleteSuggestion = screen.getByText('first name 1');
     expect(autocompleteSuggestion).toBeDefined();
+  });
+
+  it('pressing enter without navigating selects first filter in input', async () => {
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(unlabeledFilterSearchResponse);
+    renderFilterSearch();
+    const inputNode = screen.getByRole('textbox');
+    userEvent.type(inputNode, 'n');
+    await waitFor(() => {
+      expect(executeFilterSearch).toHaveBeenCalled();
+    });
+    userEvent.keyboard('{enter}');
+    expect(inputNode).toHaveValue('first name 1');
   });
 });
 
@@ -420,7 +432,7 @@ it('clears input when old filters are removed', async () => {
   const searchBarElement = screen.getByRole('textbox');
   userEvent.type(searchBarElement, 'first name 1');
   expect(await screen.findByRole('textbox')).toHaveDisplayValue('first name 1');
-  userEvent.type(searchBarElement, '{arrowdown}{enter}');
+  userEvent.type(searchBarElement, '{enter}');
 
   await waitFor(() => {
     expect(executeFilterSearch).toHaveBeenCalled();

@@ -310,3 +310,37 @@ describe('Dropdown', () => {
     expect(screen.getByText('item1')).toBeDefined();
   });
 });
+describe('Always Select Option', () => {
+  it('clicking out without interacting with dropdown does not select a filter', () => {
+    const mockedOnSelectFn = jest.fn();
+    const dropdownProps: DropdownProps = {
+      screenReaderText: 'screen reader text here',
+      onSelect: mockedOnSelectFn,
+      alwaysSelectOption: true
+    };
+    render(
+      <div>
+        <Dropdown {...dropdownProps}>
+          <DropdownInput />
+          <DropdownMenu>
+            <DropdownItem value='item1'>
+              <p data-testid='item1'>item1</p>
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+        <div>external div</div>
+      </div>
+    );
+    const inputNode = screen.getByRole('textbox');
+    userEvent.click(inputNode);
+    expect(screen.getByTestId('item1')).toBeDefined();
+    expect(inputNode).toHaveValue('');
+
+    userEvent.keyboard('i');
+    userEvent.click(screen.getByText('external div'));
+
+    expect(inputNode).toHaveValue('i');
+    expect(screen.queryByTestId('item1')).toBeNull();
+    expect(mockedOnSelectFn).toBeCalledTimes(0);
+  });
+});
