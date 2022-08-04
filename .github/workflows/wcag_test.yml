@@ -11,6 +11,14 @@ jobs:
     with:
       build_script: |
         npm run storybook &
-        while ! curl http://localhost:6006 -I
-          do sleep 1
+        attempt_counter=0
+        max_attempts=30
+        until curl http://localhost:6006 -I
+        do
+          if [ ${attempt_counter} -eq ${max_attempts} ]
+          then
+            echo "Max attempts reached"
+            exit 1
+          fi
+          sleep 1
         done
