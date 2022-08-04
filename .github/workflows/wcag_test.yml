@@ -11,6 +11,6 @@ jobs:
     with:
       build_script: |
         npm run storybook &
-        while ! curl http://localhost:6006 -I;
-          do sleep 1;
+        while ! curl http://localhost:6006 -I
+          do sleep 1
         done
