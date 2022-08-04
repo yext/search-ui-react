@@ -83,10 +83,10 @@ export function DropdownInput(props: {
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
-      id={screenReaderUUID && generateDropdownId(screenReaderUUID, -1)}
+      id={generateDropdownId(screenReaderUUID, -1)}
       autoComplete='off'
       aria-describedby={screenReaderUUID}
-      aria-activedescendant={!isTyping ? (generateDropdownId(screenReaderUUID, focusedIndex)) : ''}
+      aria-activedescendant={isTyping ? '' : generateDropdownId(screenReaderUUID, focusedIndex)}
       aria-label={ariaLabel}
     />
   );

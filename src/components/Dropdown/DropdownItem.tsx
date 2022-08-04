@@ -71,7 +71,7 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
 
   return (
     <div
-      id={screenReaderUUID && generateDropdownId(screenReaderUUID, index)}
+      id={generateDropdownId(screenReaderUUID, index)}
       tabIndex={0}
       className={isFocused ? focusedClassName : className}
       onClick={handleClick}
