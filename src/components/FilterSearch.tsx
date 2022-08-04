@@ -69,7 +69,7 @@ export function FilterSearch({
   searchFields,
   label,
   placeholder = 'Search here...',
-  searchOnSelect = false,
+  searchOnSelect,
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
@@ -115,22 +115,29 @@ export function FilterSearch({
       if (currentFilter) {
         searchActions.setFilterOption({ ...currentFilter, selected: false });
       }
-      searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
-      setCurrentFilter(newFilter);
-      setFilterQuery(value);
-      if (select && searchOnSelect) {
-        searchActions.setOffset(0);
-        searchActions.resetFacets();
-        executeSearch(searchActions);
+      if (select) {
+        searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+        setCurrentFilter(newFilter);
+        setFilterQuery(newDisplayName);
+        executeFilterSearch(newDisplayName);
+        if (searchOnSelect) {
+          searchActions.setOffset(0);
+          searchActions.resetFacets();
+          executeSearch(searchActions);
+        }
+      } else {
+        setFilterQuery(value);
+        executeFilterSearch(value);
       }
     }
-  }, [searchActions, currentFilter, searchOnSelect]);
+  }, [currentFilter, searchActions, executeFilterSearch, searchOnSelect]);
 
   const handleSelectDropdown = useCallback((value, _index, itemData) => {
     handleDropdownEvent(value, itemData, true);
   }, [handleDropdownEvent]);
 
-  const handleToggleDropdown = useCallback((isActive, _prevValue, value, _index, itemData) => {
+  const handleToggleDropdown =
+  useCallback((isActive, _prevValue, value, _index, itemData) => {
     if (!isActive) {
       handleDropdownEvent(value, itemData, false);
     }
@@ -186,6 +193,7 @@ export function FilterSearch({
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
         onToggle={handleToggleDropdown}
+        alwaysSelectOption={true}
         parentQuery={filterQuery}
       >
         <DropdownInput
