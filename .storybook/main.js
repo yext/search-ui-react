@@ -7,7 +7,14 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
-    '@storybook/addon-coverage',
+    {
+      name: '@storybook/addon-coverage',
+      options: {
+        istanbul: {
+          include: ['src/components/**']
+        }
+      }
+    },
     {
       name: '@storybook/addon-postcss',
       options: {
