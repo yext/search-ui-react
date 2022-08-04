@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # start Storybook in the same shell
-. ./start-storybook.sh
+. ./tests/scripts/start-storybook.sh
 
 # generate coverage from storybook test-runner
 test-storybook --coverage
