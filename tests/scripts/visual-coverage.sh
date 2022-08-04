@@ -5,7 +5,7 @@ JOB_ID=$(echo $!) #get the background job ID
 
 # wait for a locally served Storybook
 attempt_counter=0
-max_attempts=100
+max_attempts=30
 until $(curl --output /dev/null --silent --head http://localhost:6006)
 do
   if [ ${attempt_counter} -eq ${max_attempts} ];then
