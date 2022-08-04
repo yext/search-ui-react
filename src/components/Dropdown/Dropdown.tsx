@@ -69,7 +69,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     setValue,
     screenReaderKey,
     setScreenReaderKey,
-    alwaysSelectOption,
+    alwaysSelectOption
   );
   const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
 
@@ -102,10 +102,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   }, { disabled: !isActive });
 
   useGlobalListener('keydown', e => {
-    if (e.key === 'Tab' || e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-      }
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
     }
 
     if (!isActive) {
@@ -116,28 +114,28 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       if (alwaysSelectOption && focusedIndex === items.length-1) {
         updateFocusedItem(0);
       } else {
-        updateFocusedItem(focusedIndex + 1);
+        updateFocusedItem(focusedIndex+1);
       }
     } else if (e.key === 'ArrowUp') {
       if (alwaysSelectOption && focusedIndex === 0) {
         updateFocusedItem(items.length-1);
       } else {
-        updateFocusedItem(focusedIndex - 1);
+        updateFocusedItem(focusedIndex-1);
       }
     } else if (e.key === 'Tab' && !e.shiftKey) {
       if (items.length !== 0) {
-        if (focusedIndex >= items.length - 1) {
+        if (focusedIndex >= items.length-1) {
           toggleDropdown(false);
           updateFocusedItem(-1);
           toggleDropdown(false);
         } else {
-          updateFocusedItem(focusedIndex + 1);
+          updateFocusedItem(focusedIndex+1);
           e.preventDefault();
         }
       }
     } else if (e.key === 'Tab' && e.shiftKey) {
       if (focusedIndex > 0 || (!alwaysSelectOption && focusedIndex === 0)) {
-        updateFocusedItem(focusedIndex - 1);
+        updateFocusedItem(focusedIndex-1);
         e.preventDefault();
       } else {
         toggleDropdown(false);
