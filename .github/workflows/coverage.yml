@@ -11,6 +11,8 @@ on:
 jobs:
   all_coverage:
     uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@v1
+    with:
+      test_script: npm run test
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
   individual_coverage_percentages:
