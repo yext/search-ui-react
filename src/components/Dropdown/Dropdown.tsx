@@ -25,7 +25,7 @@ export interface DropdownProps {
     prevValue: string,
     value: string,
     index: number,
-    focusedItemData: Record<string, unknown> | undefined,
+    focusedItemData: Record<string, unknown> | undefined
   ) => void,
   className?: string,
   activeClassName?: string,
