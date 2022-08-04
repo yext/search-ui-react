@@ -1,7 +1,8 @@
 import './index.css';
 import { SearchCoreDecorator } from '../tests/__fixtures__/core/SearchCore';
+import { Parameters } from '@storybook/csf';
 
-export const parameters = {
+export const parameters: Parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {

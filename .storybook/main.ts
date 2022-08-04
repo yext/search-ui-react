@@ -1,4 +1,6 @@
-module.exports = {
+import type { StorybookConfig } from '@storybook/core-common';
+
+const config: StorybookConfig = {
   stories: [
     '../tests/**/*.stories.tsx'
   ],
@@ -35,3 +37,5 @@ module.exports = {
     return config;
   }
 };
+
+export default config;
