@@ -9,6 +9,14 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-google-analytics',
     {
+      name: '@storybook/addon-coverage',
+      options: {
+        istanbul: {
+          include: ['src/components/**']
+        }
+      }
+    },
+    {
       name: '@storybook/addon-postcss',
       options: {
         cssLoaderOptions: {
