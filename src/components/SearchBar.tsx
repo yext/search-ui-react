@@ -9,7 +9,7 @@ import {
   VerticalResults as VerticalResultsData
 } from '@yext/search-headless-react';
 import classNames from 'classnames';
-import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect } from 'react';
+import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
@@ -37,7 +37,6 @@ import { useSearchBarAnalytics } from '../hooks/useSearchBarAnalytics';
 import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 import { clearStaticRangeFilters } from '../utils/filterutils';
-import { useMemo } from 'react';
 import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 
 const builtInCssClasses: Readonly<SearchBarCssClasses> = {
