@@ -9,7 +9,6 @@ import {
 } from '../../tests/__fixtures__/data/filtersearch';
 import { Matcher, State, SearchHeadless, SearchHeadlessContext, useSearchActions, SelectableFilter } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
-import React from 'react';
 
 const searchFieldsProp = [{
   fieldApiName: 'name',
