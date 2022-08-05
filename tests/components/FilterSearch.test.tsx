@@ -452,3 +452,38 @@ it('clears input when old filters are removed', async () => {
     expect(searchBarElement).toHaveValue('');
   });
 });
+
+it('toggling the dropdown does not change selected filters', async () => {
+  const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+  const executeFilterSearch = jest
+    .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+    .mockResolvedValue(labeledFilterSearchResponse);
+
+  render(
+    <div>
+      <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+        <FilterSearch searchFields={searchFieldsProp} />
+      </SearchHeadlessContext.Provider>
+      <div>external div</div>
+    </div>
+  );
+
+  const searchBarElement = screen.getByRole('textbox');
+  const externalDiv = screen.getByText('external div');
+  userEvent.type(searchBarElement, 'first name 1');
+  expect(await screen.findByRole('textbox')).toHaveDisplayValue('first name 1');
+  userEvent.type(searchBarElement, '{enter}');
+
+  await waitFor(() => {
+    expect(executeFilterSearch).toHaveBeenCalled();
+  });
+
+  await waitFor(() => {
+    expect(setFilterOption).toBeCalledTimes(1);
+  });
+
+  userEvent.click(searchBarElement);
+  userEvent.click(externalDiv);
+
+  expect(setFilterOption).toBeCalledTimes(1);
+});
