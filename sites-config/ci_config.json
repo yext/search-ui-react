@@ -17,6 +17,6 @@
     "buildCmd": "npm run build-storybook"
   },
   "livePreview": {
-      "serveCmd": "npm run storybook -p 8080"
+      "serveCmd": "npm run storybook"
   }
 }
