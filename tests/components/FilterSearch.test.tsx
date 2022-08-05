@@ -442,6 +442,8 @@ it('clears input when old filters are removed', async () => {
     expect(setFilterOption).toHaveBeenCalledWith({ ...deselectedFilter, selected: true });
   });
 
+  userEvent.click(searchBarElement);
+
   const mockDeselectButton = screen.getByRole('button');
   userEvent.click(mockDeselectButton);
 
