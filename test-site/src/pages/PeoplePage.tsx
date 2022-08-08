@@ -11,6 +11,7 @@ import {
   StaticFilters,
   StandardFacets,
   HierarchicalFacets,
+  FilterDivider,
   ApplyFiltersButton,
   Pagination,
   NumericalFacets,
@@ -37,7 +38,7 @@ export function PeoplePage() {
             searchOnSelect={true}
             label='Filters'
           />
-          <div className='w-full h-px bg-gray-200 my-4' />
+          <FilterDivider />
           <StaticFilters
             fieldId='c_employeeDepartment'
             title='Static Employee Department'

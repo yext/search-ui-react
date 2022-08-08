@@ -186,6 +186,11 @@ export function executeSearch(searchActions: SearchActions): Promise<void>;
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
 // @public
+export function FilterDivider({ className }: {
+    className?: string;
+}): JSX.Element;
+
+// @public
 export interface FilterGroupCssClasses {
     // (undocumented)
     option?: string;
