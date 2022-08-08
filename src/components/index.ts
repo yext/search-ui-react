@@ -122,6 +122,10 @@ export {
 } from './FilterGroup';
 
 export {
+  FilterDivider
+} from './FilterDivider';
+
+export {
   ApplyFiltersButton,
   ApplyFiltersButtonCssClasses,
   ApplyFiltersButtonProps
