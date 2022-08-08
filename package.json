@@ -40,6 +40,7 @@
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "wcag": "test-storybook",
     "test:unit": "jest --coverage --coverageDirectory=coverage/unit",
     "test:visual": "./tests/scripts/visual-coverage.sh",
     "test": "./tests/scripts/combined-coverage.sh"
@@ -71,8 +72,9 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
-    "@yext/eslint-config-slapshot": "^0.4.0",
+    "@yext/eslint-config-slapshot": "^0.5.0",
     "@yext/search-headless-react": "^1.4.0",
+    "axe-playwright": "^1.1.11",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.3",
     "eslint": "^8.11.0",

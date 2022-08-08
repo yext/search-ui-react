@@ -17,7 +17,7 @@ export async function executeSearch(searchActions: SearchActions): Promise<void>
       ? searchActions.executeVerticalQuery()
       : searchActions.executeUniversalQuery();
   } catch (e) {
-    console.error(`Error occured executing a ${isVertical ? 'vertical': 'universal'} search.\n`, e);
+    console.error(`Error occured executing a ${isVertical ? 'vertical' : 'universal'} search.\n`, e);
   }
 }
 
@@ -35,7 +35,7 @@ export async function executeAutocomplete(
       ? searchActions.executeVerticalAutocomplete()
       : searchActions.executeUniversalAutocomplete();
   } catch (e) {
-    console.error(`Error occured executing a ${isVertical ? 'vertical': 'universal'} autocomplete search.\n`, e);
+    console.error(`Error occured executing a ${isVertical ? 'vertical' : 'universal'} autocomplete search.\n`, e);
   }
 }
 
