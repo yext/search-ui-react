@@ -8,7 +8,6 @@ import {
 } from './Filters';
 import { StandardFacetsProps } from './StandardFacets';
 import { Fragment } from 'react';
-import { FilterDivider } from './Filters/FilterDivider';
 
 /**
  * The CSS class interface for {@link HierarchicalFacets}.
@@ -78,11 +77,15 @@ export function HierarchicalFacets({
                   />
                 </CollapsibleSection>
               </FilterGroupProvider>
-              {(i < facets.length - 1) && <FilterDivider className={customCssClasses.divider}/>}
+              {(i < facets.length - 1) && <Divider className={customCssClasses.divider}/>}
             </Fragment>
           );
         })
       }
     </FacetsProvider>
   );
+}
+
+function Divider({ className = 'w-full h-px bg-gray-200 my-4' }: { className?: string }) {
+  return <div className={className} />;
 }

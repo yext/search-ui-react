@@ -2,7 +2,6 @@ import { FacetsProvider } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { Fragment } from 'react';
 import { DisplayableFacet } from '@yext/search-headless-react';
-import { FilterDivider } from './Filters/FilterDivider';
 
 /**
  * The CSS class interface for {@link StandardFacets}.
@@ -85,7 +84,7 @@ export function StandardFacets(props: StandardFacetsProps) {
                 searchable={f.options.length > showMoreLimit}
                 {...filterGroupProps}
               />
-              {(i < facets.length - 1) && <FilterDivider className={customCssClasses.divider}/>}
+              {(i < facets.length - 1) && <Divider className={customCssClasses.divider}/>}
             </Fragment>
           );
         })
@@ -96,4 +95,8 @@ export function StandardFacets(props: StandardFacetsProps) {
 
 function isStringFacet(facet: DisplayableFacet): boolean {
   return facet.options.length > 0 && typeof facet.options[0].value === 'string';
+}
+
+function Divider({ className ='w-full h-px bg-gray-200 my-4' }: { className?: string }) {
+  return <div className={className} />;
 }
