@@ -123,7 +123,7 @@ export {
 
 export {
   FilterDivider
-} from './FilterDivider'
+} from './FilterDivider';
 
 export {
   ApplyFiltersButton,

@@ -1,12 +1,12 @@
-import { twMerge } from "../hooks/useComposedCssClasses";
+import { twMerge } from '../hooks/useComposedCssClasses';
 /**
- * A divider component for NumericalFacets, HierarchicalFacets, and StaticFacets.
+ * A divider component for NumericalFacets, HierarchicalFacets, and StandardFacets.
  *
- * @param props - A customizable className for facet divider
- * @returns A React component for facets
+ * @param props - A customizable className for filter divider
+ * @returns A React component for filter divider
  *
  * @public
  */
 export function FilterDivider({ className }: { className?: string }): JSX.Element {
-  return <div className={twMerge(className, 'w-full h-px bg-gray-200 my-4')} />;
+  return <div className={twMerge('w-full h-px bg-gray-200 my-4', className)} />;
 }
