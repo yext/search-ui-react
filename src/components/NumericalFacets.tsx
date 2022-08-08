@@ -88,6 +88,6 @@ export function NumericalFacets({
   );
 }
 
-function Divider({ className ='w-full h-px bg-gray-200 my-4' }: { className?: string }) {
+function Divider({ className = 'w-full h-px bg-gray-200 my-4' }: { className?: string }) {
   return <div className={className} />;
 }
