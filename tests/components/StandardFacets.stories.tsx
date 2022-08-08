@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { SearchHeadlessContext, State } from '@yext/search-headless-react';
 import { userEvent, within } from '@storybook/testing-library';

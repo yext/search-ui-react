@@ -1,5 +1,6 @@
 import './index.css';
 import { SearchCoreDecorator } from '../tests/__fixtures__/core/SearchCore';
+import { runOnly } from './wcagConfig';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -12,10 +13,7 @@ export const parameters = {
   },
   a11y: {
     options: {
-      runOnly: {
-        type: 'tag',
-        values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
-      }
+      runOnly
     }
   },
   options: {
