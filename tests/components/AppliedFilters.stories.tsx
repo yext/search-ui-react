@@ -5,6 +5,7 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { AppliedFiltersDisplay } from '../../src/components/AppliedFiltersDisplay';
 import { AppliedFiltersProps, builtInCssClasses } from '../../src/components/AppliedFilters';
 import { RemovableFilters } from '../__fixtures__/data/filters';
+import { ApplyFiltersButton } from '../../src/components/ApplyFiltersButton';
 
 const meta: ComponentMeta<typeof AppliedFiltersDisplay> = {
   title: 'AppliedFilters',
@@ -23,6 +24,7 @@ export const Primary = (args: AppliedFiltersProps) => {
         removableFilters={RemovableFilters}
         {...args}
       />
+      <ApplyFiltersButton />
     </SearchHeadlessContext.Provider>
   );
 };
