@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { StandardFacetsProps } from './StandardFacets';
 import { isNumericalFacet } from '../utils/filterutils';
-import { FilterDivider } from './Filters/FilterDivider';
+import { FilterDivider } from './FilterDivider';
 
 /**
  * The CSS class interface for {@link NumericalFacets}.

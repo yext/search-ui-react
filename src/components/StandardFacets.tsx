@@ -2,7 +2,7 @@ import { FacetsProvider } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { Fragment } from 'react';
 import { DisplayableFacet } from '@yext/search-headless-react';
-import { FilterDivider } from './Filters/FilterDivider';
+import { FilterDivider } from './FilterDivider';
 
 /**
  * The CSS class interface for {@link StandardFacets}.

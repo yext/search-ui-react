@@ -8,7 +8,7 @@ import {
 } from './Filters';
 import { StandardFacetsProps } from './StandardFacets';
 import { Fragment } from 'react';
-import { FilterDivider } from './Filters/FilterDivider';
+import { FilterDivider } from './FilterDivider';
 
 /**
  * The CSS class interface for {@link HierarchicalFacets}.
