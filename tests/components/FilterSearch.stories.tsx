@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { SearchHeadlessContext, SearchTypeEnum } from '@yext/search-headless-react';
-
+import { expect } from '@storybook/jest';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { FilterSearch, FilterSearchProps } from '../../src/components';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within, waitFor } from '@storybook/testing-library';
 import { generateMockedAutocompleteService } from '../__fixtures__/core/autocomplete-service';
 import { labeledFilterSearchResponse, unlabeledFilterSearchResponse } from '../__fixtures__/data/filtersearch';
 
@@ -73,9 +73,11 @@ DropdownSectioned.parameters = {
     autoCompleteService: generateMockedAutocompleteService(undefined, labeledFilterSearchResponse)
   }
 };
-DropdownSectioned.play = ({ canvasElement }) => {
+DropdownSectioned.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   userEvent.type(canvas.getByRole('textbox'), 'name');
+  await waitFor(() => {expect(canvas.getByText('first name 2')).toBeDefined});
+  userEvent.keyboard('{arrowdown}{enter}');
 };
 
 export const NoLabel = (args: FilterSearchProps) => {
