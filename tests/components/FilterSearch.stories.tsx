@@ -77,10 +77,10 @@ DropdownSectioned.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   userEvent.type(canvas.getByRole('textbox'), 'name');
   await waitFor(() => {
-    expect(canvas.getByText('first name 2')).toBeDefined();
+    expect(canvas.getByRole('textbox')).toBeDefined();
   });
   await userEvent.keyboard('{arrowdown}{enter}');
-  await userEvent.clear(canvas.getByRole('textbox'));
+  await userEvent.type(canvas.getByRole('textbox'), '{selectall}{backspace}');
   await userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
