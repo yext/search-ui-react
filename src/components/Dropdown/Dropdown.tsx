@@ -111,20 +111,20 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     }
 
     if (e.key === 'ArrowDown') {
-      if (alwaysSelectOption && focusedIndex === items.length-1) {
+      if (alwaysSelectOption && focusedIndex === items.length - 1) {
         updateFocusedItem(0);
       } else {
         updateFocusedItem(focusedIndex + 1);
       }
     } else if (e.key === 'ArrowUp') {
       if (alwaysSelectOption && focusedIndex === 0) {
-        updateFocusedItem(items.length-1);
+        updateFocusedItem(items.length - 1);
       } else {
-        updateFocusedItem(focusedIndex-1);
+        updateFocusedItem(focusedIndex - 1);
       }
     } else if (e.key === 'Tab' && !e.shiftKey) {
       if (items.length !== 0) {
-        if (focusedIndex >= items.length-1) {
+        if (focusedIndex >= items.length - 1) {
           updateFocusedItem(-1);
           toggleDropdown(false);
         } else {
@@ -134,7 +134,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
       }
     } else if (e.key === 'Tab' && e.shiftKey) {
       if (focusedIndex > 0 || (!alwaysSelectOption && focusedIndex === 0)) {
-        updateFocusedItem(focusedIndex-1);
+        updateFocusedItem(focusedIndex - 1);
         e.preventDefault();
       } else {
         updateFocusedItem(-1);
