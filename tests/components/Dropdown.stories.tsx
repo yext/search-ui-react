@@ -18,17 +18,22 @@ const cssClasses = {
   option: 'text-sm text-neutral-dark py-1 cursor-pointer hover:bg-gray-100 px-4'
 };
 
+const dropdownItemProps = {
+  focusedClassName: cssClasses.focusedOption,
+  className: cssClasses.option
+};
+
 export const Primary = (args: DropdownProps) => {
   return (
     <div className={cssClasses.filterSearchContainer}>
-      <Dropdown {...args}>
+      <Dropdown {...args} screenReaderText='screen reader text here'>
         <DropdownInput className={cssClasses.inputElement} />
         <DropdownMenu>
           <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-2 pb-2 mt-1'>
-            <DropdownItem focusedClassName={cssClasses.focusedOption} className={cssClasses.option} value='item1'>
+            <DropdownItem {...dropdownItemProps} value='item1'>
               item1
             </DropdownItem>
-            <DropdownItem focusedClassName={cssClasses.focusedOption} className={cssClasses.option} value='item2'>
+            <DropdownItem {...dropdownItemProps} value='item2'>
               item2
             </DropdownItem>
           </div>
@@ -48,14 +53,14 @@ DropdownExpanded.play = ({ canvasElement }) => {
 export const AlwaysSelectExpanded = (args: DropdownProps) => {
   return (
     <div className={cssClasses.filterSearchContainer}>
-      <Dropdown {...args} alwaysSelectOption={true}>
+      <Dropdown {...args} alwaysSelectOption={true} screenReaderText='screen reader text here'>
         <DropdownInput className={cssClasses.inputElement} />
         <DropdownMenu>
           <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-2 pb-2 mt-1'>
-            <DropdownItem focusedClassName={cssClasses.focusedOption} className={cssClasses.option} value='item1'>
+            <DropdownItem {...dropdownItemProps} value='item1'>
               item1
             </DropdownItem>
-            <DropdownItem focusedClassName={cssClasses.focusedOption} className={cssClasses.option} value='item2'>
+            <DropdownItem {...dropdownItemProps} value='item2'>
               item2
             </DropdownItem>
           </div>
