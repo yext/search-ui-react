@@ -45,12 +45,37 @@ DropdownExpanded.play = ({ canvasElement }) => {
   userEvent.click(textboxEl);
 };
 
+export const AlwaysSelectExpanded = (args: DropdownProps) => {
+  return (
+    <div className={cssClasses.filterSearchContainer}>
+      <Dropdown {...args} alwaysSelectOption={true}>
+        <DropdownInput className={cssClasses.inputElement} />
+        <DropdownMenu>
+          <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-2 pb-2 mt-1'>
+            <DropdownItem focusedClassName={cssClasses.focusedOption} className={cssClasses.option} value='item1'>
+              item1
+            </DropdownItem>
+            <DropdownItem focusedClassName={cssClasses.focusedOption} className={cssClasses.option} value='item2'>
+              item2
+            </DropdownItem>
+          </div>
+        </DropdownMenu>
+      </Dropdown>
+    </div>
+  );
+};
+AlwaysSelectExpanded.play = ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const textboxEl = canvas.getByRole('textbox');
+  userEvent.click(textboxEl);
+};
+
 export const DropdownHighlighted = Primary.bind({});
 DropdownHighlighted.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
   userEvent.click(textboxEl);
-  userEvent.keyboard('{arrowdown}');
+  userEvent.keyboard('{arrowdown}{arrowdown}');
 };
 
 export const DropdownSelected = Primary.bind({});
@@ -58,6 +83,6 @@ DropdownSelected.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
   userEvent.click(textboxEl);
-  userEvent.keyboard('{arrowdown}');
+  userEvent.keyboard('{arrowdown}{arrowdown}');
   userEvent.keyboard('{enter}');
 };
