@@ -75,7 +75,9 @@ DropdownSectioned.parameters = {
 DropdownSectioned.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   userEvent.type(canvas.getByRole('textbox'), 'name');
-  await waitFor(() => { expect(canvas.getByText('first name 2')).toBeDefined; });
+  await waitFor(() => {
+    expect(canvas.getByText('first name 2')).toBeDefined();
+  });
   userEvent.keyboard('{arrowdown}{enter}');
 };
 
