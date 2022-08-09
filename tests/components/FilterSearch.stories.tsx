@@ -6,6 +6,7 @@ import { FilterSearch, FilterSearchProps } from '../../src/components';
 import { userEvent, within, waitFor } from '@storybook/testing-library';
 import { generateMockedAutocompleteService } from '../__fixtures__/core/autocomplete-service';
 import { labeledFilterSearchResponse, unlabeledFilterSearchResponse } from '../__fixtures__/data/filtersearch';
+import { getByRole } from '@testing-library/react';
 
 const mockedHeadlessState = {
   vertical: {
@@ -78,7 +79,9 @@ DropdownSectioned.play = async ({ canvasElement }) => {
   await waitFor(() => {
     expect(canvas.getByText('first name 2')).toBeDefined();
   });
-  userEvent.keyboard('{arrowdown}{enter}');
+  await userEvent.keyboard('{arrowdown}{enter}');
+  await userEvent.clear(canvas.getByRole('textbox'));
+  await userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
 export const NoLabel = (args: FilterSearchProps) => {
