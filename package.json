@@ -99,7 +99,8 @@
     "verbose": true,
     "collectCoverage": false,
     "collectCoverageFrom": [
-      "src/**"
+      "src/**",
+      "!src/models/**"
     ],
     "moduleFileExtensions": [
       "js",
