@@ -6,7 +6,6 @@ import { FilterSearch, FilterSearchProps } from '../../src/components';
 import { userEvent, within, waitFor } from '@storybook/testing-library';
 import { generateMockedAutocompleteService } from '../__fixtures__/core/autocomplete-service';
 import { labeledFilterSearchResponse, unlabeledFilterSearchResponse } from '../__fixtures__/data/filtersearch';
-import { getByRole } from '@testing-library/react';
 
 const mockedHeadlessState = {
   vertical: {
