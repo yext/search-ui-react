@@ -81,4 +81,5 @@ function conductRecentSearches(textboxEl: HTMLElement) {
   userEvent.clear(textboxEl);
   userEvent.type(textboxEl, 'recent search 2');
   userEvent.keyboard('{enter}');
+  userEvent.clear(textboxEl);
 }
