@@ -112,10 +112,10 @@ export function FilterSearch({
     const newFilter = itemData?.filter as Filter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
-      if (currentFilter) {
-        searchActions.setFilterOption({ ...currentFilter, selected: false });
-      }
       if (select) {
+        if (currentFilter) {
+          searchActions.setFilterOption({ ...currentFilter, selected: false });
+        }
         searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
         setCurrentFilter(newFilter);
         setFilterQuery(newDisplayName);

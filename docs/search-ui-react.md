@@ -16,6 +16,7 @@
 |  [DropdownItem(\_props)](./search-ui-react.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
 |  [executeAutocomplete(searchActions)](./search-ui-react.executeautocomplete.md) | Executes a universal/vertical autocomplete search and return the corresponding response. |
 |  [executeSearch(searchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
+|  [FilterDivider({ className })](./search-ui-react.filterdivider.md) | A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters. |
 |  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [getSearchIntents(searchActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./search-ui-react.getuserlocation.md) | Retrieves user's location using nagivator.geolocation API. |

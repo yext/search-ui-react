@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { SearchHeadlessContext, SearchTypeEnum } from '@yext/search-headless-react';
 import { expect } from '@storybook/jest';

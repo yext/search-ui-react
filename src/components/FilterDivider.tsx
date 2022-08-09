@@ -1,6 +1,7 @@
 import { twMerge } from '../hooks/useComposedCssClasses';
 /**
- * A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters.
+ * A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets,
+ * and StaticFilters.
  *
  * @param props - A customizable className for filter divider
  * @returns A React component for filter divider
