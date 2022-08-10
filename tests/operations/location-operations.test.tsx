@@ -1,29 +1,24 @@
-import { SearchIntent, useSearchActions } from '@yext/search-headless-react';
-import { getUserLocation, updateLocationIfNeeded } from '../../src/utils/location-operations';
+import { SearchHeadless, SearchIntent } from '@yext/search-headless-react';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
+import { updateLocationIfNeeded } from '../__fixtures__/utils/location-operations';
 
 describe('Location Operations updateLocationIfNeeded', () => {
+  let searchActions: SearchHeadless;
+  beforeEach(() => {
+    searchActions = generateMockedHeadless();
+  });
+
   it('fires getUserLocation with NearMe intent', async () => {
-    const searchActions = useSearchActions();
+    searchActions.setUserLocation = jest.fn();
     const intents: SearchIntent[] = [SearchIntent.NearMe];
     await updateLocationIfNeeded(searchActions, intents);
-    expect(getUserLocation).toHaveBeenCalled();
+    expect(searchActions.setUserLocation).toHaveBeenCalled();
   });
 
   it('does not fire getUserLocation without NearMe intent', async () => {
-    const searchActions = useSearchActions();
+    searchActions.setUserLocation = jest.fn();
     const intents: SearchIntent[] = [];
     await updateLocationIfNeeded(searchActions, intents);
-    expect(getUserLocation).not.toHaveBeenCalled();
-  });
-
-  it('does not fire getUserLocation if location already set', async () => {
-    const searchActions = useSearchActions();
-    searchActions.setUserLocation({
-      latitude: 38.9072,
-      longitude: -77.0369
-    });
-    const intents: SearchIntent[] = [SearchIntent.NearMe];
-    await updateLocationIfNeeded(searchActions, intents);
-    expect(getUserLocation).not.toHaveBeenCalled();
+    expect(searchActions.setUserLocation).not.toHaveBeenCalled();
   });
 });
