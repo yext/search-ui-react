@@ -1,5 +1,6 @@
 #!/bin/bash
 
+npx kill-port 6006
 npm run storybook -- --quiet --ci &
 JOB_ID=$(echo $!) #get the background job ID
 
@@ -10,7 +11,7 @@ until $(curl --output /dev/null --silent --head http://localhost:6006)
 do
   if [ ${attempt_counter} -eq ${max_attempts} ]
   then
-    kill -9 $JOB_ID
+    npx kill-port 6006
     echo "Max attempts reached"
     exit 1
   fi

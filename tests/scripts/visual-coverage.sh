@@ -7,7 +7,7 @@
 test-storybook --coverage
 
 # kill the locally served Storybook
-kill -9 $JOB_ID
+npx kill-port 6006
 
 # generate lcov coverage for visual tests from story book
 nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/visual
