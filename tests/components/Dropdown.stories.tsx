@@ -7,7 +7,7 @@ import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 
 const meta: ComponentMeta<typeof Dropdown> = {
   title: 'Dropdown',
-  component: Dropdown,
+  component: Dropdown
 };
 export default meta;
 
