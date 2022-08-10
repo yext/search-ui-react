@@ -27,7 +27,7 @@ export const Primary = (args: DropdownProps) => {
   return (
     <div className={cssClasses.filterSearchContainer}>
       <Dropdown {...args} screenReaderText='screen reader text here'>
-        <DropdownInput className={cssClasses.inputElement} />
+        <DropdownInput className={cssClasses.inputElement} ariaLabel='screen reader text' />
         <DropdownMenu>
           <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-2 pb-2 mt-1'>
             <DropdownItem {...dropdownItemProps} value='item1'>
@@ -54,7 +54,7 @@ export const AlwaysSelectExpanded = (args: DropdownProps) => {
   return (
     <div className={cssClasses.filterSearchContainer}>
       <Dropdown {...args} alwaysSelectOption={true} screenReaderText='screen reader text here'>
-        <DropdownInput className={cssClasses.inputElement} />
+        <DropdownInput className={cssClasses.inputElement} ariaLabel='screen reader text' />
         <DropdownMenu>
           <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-2 pb-2 mt-1'>
             <DropdownItem {...dropdownItemProps} value='item1'>
