@@ -2,7 +2,6 @@
 
 npx kill-port 6006
 npm run storybook -- --quiet --ci &
-JOB_ID=$(echo $!) #get the background job ID
 
 # wait for a locally served Storybook
 attempt_counter=0
