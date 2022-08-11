@@ -34,7 +34,8 @@ export const parameters = {
         'AlternativeVerticals',
         'SpellCheck',
         'ResultsCount',
-        'LocationBias'
+        'LocationBias',
+        'Dropdown'
       ]
     }
   }
