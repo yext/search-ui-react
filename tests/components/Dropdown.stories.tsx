@@ -48,12 +48,6 @@ DropdownExpanded.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
 };
 
-export const DropdownHighlighted = Primary.bind({});
-DropdownHighlighted.play = ({ canvasElement }) => {
-  clickTextbox(canvasElement);
-  userEvent.keyboard('{arrowdown}{arrowdown}');
-};
-
 export const DropdownSelected = Primary.bind({});
 DropdownSelected.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
