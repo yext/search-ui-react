@@ -43,11 +43,15 @@ export const Primary = (args: DropdownProps) => {
   );
 };
 
-export const DropdownExpanded = Primary.bind({});
-DropdownExpanded.play = ({ canvasElement }) => {
+function clickTextbox(canvasElement) {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
   userEvent.click(textboxEl);
+}
+
+export const DropdownExpanded = Primary.bind({});
+DropdownExpanded.play = ({ canvasElement }) => {
+  clickTextbox(canvasElement);
 };
 
 export const AlwaysSelectExpanded = (args: DropdownProps) => {
@@ -70,24 +74,18 @@ export const AlwaysSelectExpanded = (args: DropdownProps) => {
   );
 };
 AlwaysSelectExpanded.play = ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const textboxEl = canvas.getByRole('textbox');
-  userEvent.click(textboxEl);
+  clickTextbox(canvasElement);
 };
 
 export const DropdownHighlighted = Primary.bind({});
 DropdownHighlighted.play = ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const textboxEl = canvas.getByRole('textbox');
-  userEvent.click(textboxEl);
+  clickTextbox(canvasElement);
   userEvent.keyboard('{arrowdown}{arrowdown}');
 };
 
 export const DropdownSelected = Primary.bind({});
 DropdownSelected.play = ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  const textboxEl = canvas.getByRole('textbox');
-  userEvent.click(textboxEl);
+  clickTextbox(canvasElement);
   userEvent.keyboard('{arrowdown}{arrowdown}');
   userEvent.keyboard('{enter}');
 };
