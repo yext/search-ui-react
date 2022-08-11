@@ -32,6 +32,7 @@ export function DropdownInput(props: {
   const {
     focusedIndex = -1,
     focusedItemData,
+    focusedValue,
     updateFocusedItem
   } = useFocusContext();
   const [isTyping, setIsTyping] = useState<boolean>(true);
@@ -56,9 +57,11 @@ export function DropdownInput(props: {
       if (focusedIndex >= 0) {
         onSelect?.(value, focusedIndex, focusedItemData);
       }
+      updateFocusedItem(-1, focusedValue ?? undefined);
     }
   }, [
     focusedIndex,
+    focusedValue,
     focusedItemData,
     onSelect,
     onSubmit,
