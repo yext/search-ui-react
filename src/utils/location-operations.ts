@@ -34,7 +34,7 @@ export async function updateLocationIfNeeded(
 }
 
 /**
- * Retrieves user's location using nagivator.geolocation API.
+ * Retrieves user's location using navigator.geolocation API.
  *
  * @public
  */
