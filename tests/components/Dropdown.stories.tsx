@@ -48,25 +48,10 @@ DropdownExpanded.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
 };
 
-export const AlwaysSelectExpanded = (args: DropdownProps) => {
-  return (
-    <div className={cssClasses.filterSearchContainer}>
-      <Dropdown {...args} alwaysSelectOption={true} screenReaderText='screen reader text here'>
-        <DropdownInput className={cssClasses.inputElement} ariaLabel='screen reader text' />
-        <DropdownMenu>
-          <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-2 pb-2 mt-1'>
-            <DropdownItem {...dropdownItemProps} value='item1'>
-              item1
-            </DropdownItem>
-            <DropdownItem {...dropdownItemProps} value='item2'>
-              item2
-            </DropdownItem>
-          </div>
-        </DropdownMenu>
-      </Dropdown>
-    </div>
-  );
-};
+export const AlwaysSelectExpanded = Primary.bind({});
+AlwaysSelectExpanded.args = {
+  alwaysSelectOption: true
+}
 AlwaysSelectExpanded.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
 };
