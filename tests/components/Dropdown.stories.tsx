@@ -43,12 +43,6 @@ export const Primary = (args: DropdownProps) => {
   );
 };
 
-function clickTextbox(canvasElement) {
-  const canvas = within(canvasElement);
-  const textboxEl = canvas.getByRole('textbox');
-  userEvent.click(textboxEl);
-}
-
 export const DropdownExpanded = Primary.bind({});
 DropdownExpanded.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
@@ -89,3 +83,9 @@ DropdownSelected.play = ({ canvasElement }) => {
   userEvent.keyboard('{arrowdown}{arrowdown}');
   userEvent.keyboard('{enter}');
 };
+
+function clickTextbox(canvasElement) {
+  const canvas = within(canvasElement);
+  const textboxEl = canvas.getByRole('textbox');
+  userEvent.click(textboxEl);
+}
