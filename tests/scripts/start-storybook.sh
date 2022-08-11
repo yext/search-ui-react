@@ -1,6 +1,5 @@
 #!/bin/bash
 
-npx kill-port 6006
 npm run storybook -- --quiet --ci &
 
 # wait for a locally served Storybook
@@ -15,7 +14,7 @@ do
     exit 1
   fi
 
-  echo 'waiting for a locally served Storybook in port 6006..'
+  echo "waiting for a locally served Storybook in port 6006.."
   attempt_counter=$(($attempt_counter+1))
   sleep 1
 done
