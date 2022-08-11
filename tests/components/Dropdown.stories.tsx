@@ -48,14 +48,6 @@ DropdownExpanded.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
 };
 
-export const AlwaysSelectExpanded = Primary.bind({});
-AlwaysSelectExpanded.args = {
-  alwaysSelectOption: true
-}
-AlwaysSelectExpanded.play = ({ canvasElement }) => {
-  clickTextbox(canvasElement);
-};
-
 export const DropdownHighlighted = Primary.bind({});
 DropdownHighlighted.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
@@ -67,6 +59,14 @@ DropdownSelected.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
   userEvent.keyboard('{arrowdown}{arrowdown}');
   userEvent.keyboard('{enter}');
+};
+
+export const AlwaysSelectExpanded = Primary.bind({});
+AlwaysSelectExpanded.args = {
+  alwaysSelectOption: true
+};
+AlwaysSelectExpanded.play = ({ canvasElement }) => {
+  clickTextbox(canvasElement);
 };
 
 function clickTextbox(canvasElement) {
