@@ -1,9 +1,10 @@
-import { SearchHeadless } from '@yext/search-headless-react';
+import { SearchHeadless, useSearchActions } from '@yext/search-headless-react';
 import { executeAutocomplete, executeSearch } from '../../src/utils/search-operations';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 
 describe('Search Operations with Vertical Searcher', () => {
   let verticalSearcher: SearchHeadless;
+  const searchActions = useSearchActions();
   beforeEach(() => {
     verticalSearcher = generateMockedHeadless({ meta: { searchType: 'vertical' } });
   });
