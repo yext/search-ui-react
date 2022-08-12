@@ -43,7 +43,7 @@
     "wcag": "test-storybook",
     "test:unit": "jest --coverage --coverageDirectory=coverage/unit",
     "test:visual": "./tests/scripts/visual-coverage.sh",
-    "test": "unset NODE_OPTIONS && export NODE_OPTIONS=--openssl-legacy-provider && ./tests/scripts/combined-coverage.sh"
+    "test": "./tests/scripts/combined-coverage.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
