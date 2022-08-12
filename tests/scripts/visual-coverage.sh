@@ -7,9 +7,9 @@
 test-storybook --coverage
 
 # kill the locally served Storybook started by the test
-if [[ -z $process ]]
+if [[ -z $PREEXISTING_PORT_PROCESS ]]
 then
-  pkill -P $JOB_ID
+  pkill -P $NEW_STORYBOOK_JOB_ID
 fi
 # generate lcov coverage for visual tests from story book
 nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/visual

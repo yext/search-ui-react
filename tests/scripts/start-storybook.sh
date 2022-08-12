@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #check for existing process on port:6006
-process=`lsof -i :6006`
-if [[ -z $process ]]
+PREEXISTING_PORT_PROCESS=`lsof -i :6006`
+if [[ -z $PREEXISTING_PORT_PROCESS ]]
 then
   echo "port:6006 available - starting storybook"
   npm run storybook -- --quiet --ci &
-  JOB_ID=$(echo $!)
+  NEW_STORYBOOK_JOB_ID=$(echo $!) #get the background job ID
 
   # wait for a locally served Storybook
   attempt_counter=0
@@ -15,7 +15,7 @@ then
   do
     if [ ${attempt_counter} -eq ${max_attempts} ]
     then
-      pkill -P $JOB_ID
+      pkill -P $NEW_STORYBOOK_JOB_ID
       echo "Max attempts reached"
       exit 1
     fi
@@ -24,5 +24,5 @@ then
     sleep 1
   done
 else
-  echo -e "port:6006 in use - storybook already started: \n $process"
+  echo -e "port:6006 in use - storybook already started: \n $PREEXISTING_PORT_PROCESS"
 fi
