@@ -1,12 +1,6 @@
 #!/bin/bash
 
 npm run test:unit
-CURRENT_NODE_VERSION=`node -v`
-if [[ $CURRENT_NODE_VERSION =~ 17(.*)|18(.*) ]]
-then
-  echo -e "currently using node version 17+ - setting NODE_OPTIONS \n"
-  export NODE_OPTIONS=--openssl-legacy-provider
-fi
 npm run test:visual
 
 # merge
