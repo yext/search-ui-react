@@ -13,10 +13,9 @@ jobs:
   
   call_run_tests-react-17-node-18:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
-      with:
-        build_script: |
-          export NODE_OPTIONS=--openssl-legacy-provider
-        node_matrix: '["18.x"]'
+    with:
+      build_script: export NODE_OPTIONS=--openssl-legacy-provider
+      node_matrix: '["18.x"]'
 
   call_run_tests-react-16:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
