@@ -9,7 +9,7 @@ jobs:
   call_run_tests-react-17:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
-      node_matrix: '["14.x", "16.x"", "18.x"]'
+      node_matrix: '["14.x", "16.x", "18.x"]'
   
   call_run_tests-react-16:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
