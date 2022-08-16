@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# set NODE_OPTIONS for node 17/18
+CURRENT_NODE_VERSION=`node -v`
+if [[ $CURRENT_NODE_VERSION =~ 17(.*)|18(.*) ]]
+then
+  echo -e "currently using node version 17+ - setting NODE_OPTIONS \n"
+  export NODE_OPTIONS=--openssl-legacy-provider
+fi
+
 #check for existing process on port:6006
 PREEXISTING_PORT_PROCESS=`lsof -i :6006`
 if [[ -z $PREEXISTING_PORT_PROCESS ]]
@@ -23,6 +31,8 @@ then
     attempt_counter=$(($attempt_counter+1))
     sleep 1
   done
+  # unset NODE_OPTIONS
+  unset NODE_OPTIONS
 else
   echo -e "port:6006 in use - storybook already started: \n $PREEXISTING_PORT_PROCESS"
 fi
