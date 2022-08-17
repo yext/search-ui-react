@@ -1,4 +1,4 @@
-import { Filter, useSearchState, useSearchActions, DisplayableFacet, DisplayableFacetOption, SearchActions, Matcher } from '@yext/search-headless-react';
+import { FieldValueFilter, useSearchState, useSearchActions, DisplayableFacet, DisplayableFacetOption, SearchActions, Matcher } from '@yext/search-headless-react';
 import { isEqual } from 'lodash';
 import { useMemo } from 'react';
 import { isNearFilterValue } from '../utils/filterutils';
@@ -54,7 +54,7 @@ export function useRemovableFilters(
 function processRegularFacet(f: DisplayableFacet, searchActions: SearchActions) {
   return f.options.filter(o => o.selected).map(option => {
 
-    const filter: Filter = {
+    const filter: FieldValueFilter = {
       value: option.value,
       matcher: option.matcher,
       fieldId: f.fieldId
@@ -97,7 +97,7 @@ function processHierarchicalFacet(
     const appliedFacets: {
       displayName: string,
       handleRemove: () => void,
-      filter: Filter,
+      filter: FieldValueFilter,
       tokens: string[]
     }[] = [createAppliedFilter(selectedOption, displayNameTokens)];
 
@@ -166,9 +166,12 @@ function handleRemoveHierarchicalFacetOption(
   }, true);
 }
 
-function handleRemoveFacetOption({ fieldId, matcher, value }: Filter, searchActions: SearchActions) {
+function handleRemoveFacetOption(
+  { fieldId, matcher, value }: FieldValueFilter,
+  searchActions: SearchActions
+) {
   if (isNearFilterValue(value)) {
-    console.error('A Filter with a NearFilterValue is not a supported RemovableFilter.');
+    console.error('A FieldValueFilter with a NearFilterValue is not a supported RemovableFilter.');
     return;
   }
   searchActions.setFacetOption(fieldId, { matcher, value }, false);

@@ -4,7 +4,7 @@
 
 ## AppliedFilters() function
 
-A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters.
+A component that displays a list of filters applied to the current vertical search, which may include any selected options from facets, NLP filters, and field value static filters.
 
 <b>Signature:</b>
 

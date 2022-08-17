@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { SearchActions, FacetOption, Matcher, NumberRangeValue, SelectableFilter, Source, State } from '@yext/search-headless-react';
+import { SearchActions, FacetOption, Matcher, NumberRangeValue, SelectableStaticFilter, Source, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
@@ -106,21 +106,24 @@ describe('NumericalFacets', () => {
     userEvent.type(screen.getByPlaceholderText('Max'), '5');
     userEvent.click(screen.getByText('Apply'));
 
-    const expectedSelectableFilter: SelectableFilter = {
+    const expectedSelectableFilter: SelectableStaticFilter = {
       displayName: 'start-1 end-5',
-      fieldId: 'price',
-      value: {
-        start: {
-          matcher: Matcher.GreaterThanOrEqualTo,
-          value: 1
+      selected: true,
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'price',
+        value: {
+          start: {
+            matcher: Matcher.GreaterThanOrEqualTo,
+            value: 1
+          },
+          end: {
+            matcher: Matcher.LessThanOrEqualTo,
+            value: 5
+          }
         },
-        end: {
-          matcher: Matcher.LessThanOrEqualTo,
-          value: 5
-        }
-      },
-      matcher: Matcher.Between,
-      selected: true
+        matcher: Matcher.Between
+      }
     };
     expect(actions.setFilterOption).toHaveBeenCalledWith(expectedSelectableFilter);
   });

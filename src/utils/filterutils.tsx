@@ -1,6 +1,7 @@
-import { NearFilterValue, Filter, SelectableFilter, NumberRangeValue, Matcher, SearchActions, DisplayableFacet } from '@yext/search-headless-react';
+import { NearFilterValue, FieldValueFilter, NumberRangeValue, Matcher, SearchActions, DisplayableFacet, SelectableStaticFilter } from '@yext/search-headless-react';
 import isEqual from 'lodash/isEqual';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
+import { SelectableFieldValueFilter } from '../models/SelectableFieldValueFilter';
 
 /**
  * Check if the object follows NearFilterValue interface.
@@ -24,9 +25,12 @@ export function isNumericalFacet(facet: DisplayableFacet): boolean {
 }
 
 /**
- * Returns true if the two given filters are the same.
+ * Returns true if the two given field value filters are the same.
  */
-export function isDuplicateFilter(thisFilter: Filter, otherFilter: Filter): boolean {
+export function isDuplicateFieldValueFilter(
+  thisFilter: FieldValueFilter,
+  otherFilter: FieldValueFilter
+): boolean {
   if (thisFilter.fieldId !== otherFilter.fieldId) {
     return false;
   }
@@ -40,19 +44,20 @@ export function isDuplicateFilter(thisFilter: Filter, otherFilter: Filter): bool
 }
 
 /**
- * Finds the {@link SelectableFilter} from the list provided that matches the given {@link Filter}.
- * If no matching {@link SelectableFilter} can be found, undefined is returned.
+ * Finds the {@link SelectableFieldValueFilter} from the list provided that matches
+ * the given {@link FieldValueFilter}. If no matching {@link SelectableFieldValueFilter}
+ * can be found, undefined is returned.
  *
- * @param filter - The filter to match against.
- * @param selectableFilters - The list of {@link SelectableFilters} to search against.
+ * @param filter - The filter to match against
+ * @param selectableFilters - The list of {@link SelectableFieldValueFilter}s to search against
  */
-export function findSelectableFilter(
-  filter: Filter,
-  selectableFilters: SelectableFilter[]
-): SelectableFilter | undefined {
+export function findSelectableFieldValueFilter(
+  filter: FieldValueFilter,
+  selectableFilters: SelectableFieldValueFilter[]
+): SelectableFieldValueFilter | undefined {
   return selectableFilters.find(selectableFilter => {
     const { displayName: _, ...storedFilter } = selectableFilter;
-    return isDuplicateFilter(storedFilter, filter);
+    return isDuplicateFieldValueFilter(storedFilter, filter);
   });
 }
 
@@ -118,4 +123,26 @@ export function getSelectedNumericalFacetFields(searchActions: SearchActions): S
     f => isNumericalFacet(f) && f.options.some(o => o.selected)
   ) ?? [];
   return new Set(selectedNumericalFacets.map(f => f.fieldId));
+}
+
+/**
+ * Goes through the provided static filters and returns all that are field value
+ * filters.
+ *
+ * @param staticFilters - The list of {@link SelectableStaticFilter}s to search through
+ * @returns All filters that are {@link SelectableFieldValueFilter}s
+ */
+export function getSelectableFieldValueFilters(
+  staticFilters: SelectableStaticFilter[]
+): SelectableFieldValueFilter[] {
+  return staticFilters.reduce((fieldValueFilters: SelectableFieldValueFilter[], s) => {
+    if (s.filter.kind === 'fieldValue') {
+      const { filter: { kind: _, ...filterFields }, ...displayFields } = s;
+      fieldValueFilters.push({
+        ...displayFields,
+        ...filterFields
+      });
+    }
+    return fieldValueFilters;
+  }, []);
 }

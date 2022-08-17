@@ -2,7 +2,7 @@ import { Matcher, NumberRangeValue, useSearchActions, useSearchState } from '@ye
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { clearStaticRangeFilters, findSelectableFilter, parseNumberRangeInput } from '../../utils/filterutils';
+import { clearStaticRangeFilters, findSelectableFieldValueFilter, getSelectableFieldValueFilters, parseNumberRangeInput } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
 import { NumberRangeFilter } from '../../models/NumberRangeFilter';
@@ -102,6 +102,10 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const [minRangeInput, setMinRangeInput] = useState<string>('');
   const [maxRangeInput, setMaxRangeInput] = useState<string>('');
   const staticFilters = useSearchState(state => state.filters.static);
+  const fieldValueFilters = useMemo(
+    () => getSelectableFieldValueFilters(staticFilters ?? []),
+    [staticFilters]
+  );
   const isDisabled = filters.some(filter => filter.selected && filter.fieldId === fieldId);
 
   const rangeFilter: NumberRangeFilter = useMemo(() => {
@@ -115,7 +119,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const isValid = isValidRange(rangeFilter.value);
 
    // Find a static filter which matches the current range input
-  const matchingFilter = findSelectableFilter(rangeFilter, staticFilters ?? []);
+  const matchingFilter = findSelectableFieldValueFilter(rangeFilter, fieldValueFilters);
   const isSelectedInAnswersState = matchingFilter?.selected === true;
   const hasUserInput = !!(minRangeInput || maxRangeInput);
   const shouldRenderApplyButton = hasUserInput && !isSelectedInAnswersState;
@@ -144,7 +148,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     const displayName = getFilterDisplayName(rangeFilter.value);
     clearStaticRangeFilters(searchActions, new Set([fieldId]));
     searchActions.setFilterOption({
-      ...rangeFilter,
+      filter: { ...rangeFilter, kind: 'fieldValue' },
       selected: true,
       displayName
     });
@@ -155,7 +159,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const handleClickClear = useCallback(() => {
     const displayName = getFilterDisplayName(rangeFilter.value);
     searchActions.setFilterOption({
-      ...rangeFilter,
+      filter: { ...rangeFilter, kind: 'fieldValue' },
       selected: false,
       displayName
     });

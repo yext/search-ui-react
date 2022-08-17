@@ -4,7 +4,7 @@
 
 ## FilterOptionConfig interface
 
-The configuration data for a filter option.
+The configuration data for a field value filter option.
 
 <b>Signature:</b>
 

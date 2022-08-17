@@ -1,9 +1,9 @@
-import { AutocompleteResult, Filter, FilterSearchResponse, SearchParameterField, useSearchActions, useSearchState } from '@yext/search-headless-react';
+import { AutocompleteResult, FieldValueFilter, FilterSearchResponse, SearchParameterField, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
-import { isDuplicateFilter } from '../utils/filterutils';
+import { getSelectableFieldValueFilters, isDuplicateFieldValueFilter } from '../utils/filterutils';
 import { Dropdown } from './Dropdown/Dropdown';
 import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
@@ -42,7 +42,7 @@ const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
 export interface FilterSearchProps {
   /** An array of fieldApiName and entityType which indicates what to perform the filter search against. */
   searchFields: Omit<SearchParameterField, 'fetchEntities'>[],
-  /** The display label for the component. Defaults to "Filter". */
+  /** The display label for the component. */
   label?: string,
   /**
    * The search input's placeholder text when no text has been entered by the user.
@@ -78,9 +78,13 @@ export function FilterSearch({
     return { ...searchField, fetchEntities: false };
   });
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const [currentFilter, setCurrentFilter] = useState<Filter>();
+  const [currentFilter, setCurrentFilter] = useState<FieldValueFilter>();
   const [filterQuery, setFilterQuery] = useState<string>();
-  const filters = useSearchState(state => state.filters.static);
+  const staticFilters = useSearchState(state => state.filters.static);
+  const fieldValueFilters = useMemo(
+    () => getSelectableFieldValueFilters(staticFilters ?? []),
+    [staticFilters]
+  );
 
   const [
     filterSearchResponse,
@@ -95,12 +99,14 @@ export function FilterSearch({
   );
 
   useEffect(() => {
-    if (currentFilter && filters?.find(f => isDuplicateFilter(f, currentFilter) && !f.selected)) {
+    if (currentFilter && fieldValueFilters?.find(f =>
+      isDuplicateFieldValueFilter(f, currentFilter) && !f.selected
+    )) {
       clearFilterSearchResponse();
       setCurrentFilter(undefined);
       setFilterQuery('');
     }
-  }, [clearFilterSearchResponse, currentFilter, filters]);
+  }, [clearFilterSearchResponse, currentFilter, fieldValueFilters]);
 
   const sections = useMemo(() => {
     return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
@@ -109,14 +115,21 @@ export function FilterSearch({
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
   const handleDropdownEvent = useCallback((value, itemData, select) => {
-    const newFilter = itemData?.filter as Filter;
+    const newFilter = itemData?.filter as FieldValueFilter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
       if (select) {
         if (currentFilter) {
-          searchActions.setFilterOption({ ...currentFilter, selected: false });
+          searchActions.setFilterOption({
+            filter: { ...currentFilter, kind: 'fieldValue' },
+            selected: false
+          });
         }
-        searchActions.setFilterOption({ ...newFilter, displayName: newDisplayName, selected: true });
+        searchActions.setFilterOption({
+          filter: { ...newFilter, kind: 'fieldValue' },
+          displayName: newDisplayName,
+          selected: true
+        });
         setCurrentFilter(newFilter);
         setFilterQuery(newDisplayName);
         executeFilterSearch(newDisplayName);
