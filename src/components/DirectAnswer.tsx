@@ -1,16 +1,18 @@
-import { useSearchState, DirectAnswerType, DirectAnswer as DirectAnswerData } from '@yext/search-headless-react';
-import { renderHighlightedValue } from './utils/renderHighlightedValue';
-import classNames from 'classnames';
-import { ReactNode } from 'react';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import {
+  useSearchState,
+  DirectAnswerType,
+  DirectAnswer as DirectAnswerData,
+} from '@yext/search-headless-react';
 import {
   ThumbsFeedbackCssClasses,
   ThumbsFeedback,
   builtInCssClasses as thumbsFeedbackCssClasses
 } from './ThumbsFeedback';
-
+import classNames from 'classnames';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useCardAnalyticsCallback } from '../hooks/useCardAnalyticsCallback';
 import { useCardFeedbackCallback } from '../hooks/useCardFeedbackCallback';
+import { FieldValueDirectAnswer } from './FieldValueDirectAnswer';
 
 /**
  * Props for {@link DirectAnswer}.
@@ -71,56 +73,20 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   }
 
   const cssClasses = getCssClassesForAnswerType(composedCssClasses, directAnswerResult.type);
-  const title = directAnswerResult.type === DirectAnswerType.FeaturedSnippet
-    ? directAnswerResult.value as string // TODO: update with other direct answer changes
-    : `${directAnswerResult.entityName} / ${directAnswerResult.fieldName}`;
-  const description: ReactNode = directAnswerResult.type === DirectAnswerType.FeaturedSnippet
-    ? renderHighlightedValue(directAnswerResult.snippet, { highlighted: cssClasses.highlighted })
-    : directAnswerResult.value as string; // TODO: update with other direct answer changes
-  const link = directAnswerResult.relatedResult.link;
-
-  function getLinkText(directAnswerResult: DirectAnswerData) {
-    const isSnippet = directAnswerResult.type === DirectAnswerType.FeaturedSnippet;
-    const name = directAnswerResult.relatedResult.name;
-    const snippetLinkMessage = 'Read more about ';
-
-    return (<>
-      {isSnippet && name && <div className='pt-4 text-neutral'>
-        {snippetLinkMessage}
-        <a
-          className='text-primary'
-          href={link}
-          onClick={handleClickViewDetails}
-        >
-          {name}
-        </a>
-      </div>}
-      {!isSnippet && link && <div className='pt-4 text-neutral'>
-        <a
-          href={link}
-          className='text-primary'
-          onClick={handleClickViewDetails}
-        >
-          View Details
-        </a>
-      </div>}
-    </>);
-  }
-
-  const containerCssClasses = classNames(cssClasses.directAnswerContainer, {
-    [cssClasses.directAnswerLoading ?? '']: isLoading
+  const containerCssClasses = classNames(composedCssClasses.directAnswerContainer, {
+    [composedCssClasses.directAnswerLoading ?? '']: isLoading
   });
 
   return (
     <div className={containerCssClasses}>
-      <div className={cssClasses.answerContainer}>
-        {title &&
-          <div className={cssClasses.header}>{title}</div>}
-        <div className={cssClasses.content}>
-          <div className={cssClasses.body}>{description}</div>
-          {link && getLinkText(directAnswerResult)}
-        </div>
-      </div>
+      {directAnswerResult.type === DirectAnswerType.FieldValue
+        ? <FieldValueDirectAnswer
+          result={directAnswerResult}
+          cssClasses={cssClasses}
+          handleClickViewDetails={handleClickViewDetails}
+        />
+        : <div>Snippet!</div> //TODO: create FeaturedSnippetDirectAnswer component
+      }
       <ThumbsFeedback
         onClick={handleClickFeedbackButton}
         customCssClasses={composedCssClasses}
