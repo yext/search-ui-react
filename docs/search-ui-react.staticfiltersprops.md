@@ -20,7 +20,7 @@ export interface StaticFiltersProps
 |  [customCssClasses?](./search-ui-react.staticfiltersprops.customcssclasses.md) | [StaticFiltersCssClasses](./search-ui-react.staticfilterscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./search-ui-react.staticfiltersprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
 |  [fieldId](./search-ui-react.staticfiltersprops.fieldid.md) | string | The fieldId corresponding to the static filter group. |
-|  [filterOptions](./search-ui-react.staticfiltersprops.filteroptions.md) | [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md)<!-- -->\[\] | The configuration data for a static filter option. |
+|  [filterOptions](./search-ui-react.staticfiltersprops.filteroptions.md) | [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md)<!-- -->\[\] | The configuration data for a field value static filter option. |
 |  [searchable?](./search-ui-react.staticfiltersprops.searchable.md) | boolean | <i>(Optional)</i> Whether or not to display a text input to search for filter options. |
 |  [searchOnChange?](./search-ui-react.staticfiltersprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |
 |  [title](./search-ui-react.staticfiltersprops.title.md) | string | The displayed label for the static filter group. |

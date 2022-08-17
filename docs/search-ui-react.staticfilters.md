@@ -4,7 +4,7 @@
 
 ## StaticFilters() function
 
-A component that displays a group of user-configured filters that will be applied to the current vertical search.
+A component that displays a group of user-configured field value filters that will be applied to the current vertical search.
 
 <b>Signature:</b>
 
@@ -22,5 +22,5 @@ export declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
 JSX.Element
 
-A React component for static filters
+A React component for field value static filters
 

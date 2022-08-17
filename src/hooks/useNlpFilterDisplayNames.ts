@@ -1,6 +1,6 @@
-import { Filter, useSearchState } from '@yext/search-headless-react';
+import { FieldValueFilter, useSearchState } from '@yext/search-headless-react';
 import { useMemo } from 'react';
-import { isDuplicateFilter } from '../utils/filterutils';
+import { isDuplicateFieldValueFilter } from '../utils/filterutils';
 
 /**
  * Returns a memoized array of nlp filter display values, with hiddenFields and duplicate filters removed.
@@ -8,7 +8,7 @@ import { isDuplicateFilter } from '../utils/filterutils';
  * @internal
  */
 export function useNlpFilterDisplayNames(
-  removableFilters: Filter[],
+  removableFilters: FieldValueFilter[],
   hiddenFields: string[]
 ) {
   const nlpFilters = useSearchState(state => state.vertical.appliedQueryFilters);
@@ -18,7 +18,7 @@ export function useNlpFilterDisplayNames(
       if (hiddenFields.includes(filter.fieldId)) {
         return false;
       }
-      const duplicateFilter = removableFilters.find(f => isDuplicateFilter(f, filter));
+      const duplicateFilter = removableFilters.find(f => isDuplicateFieldValueFilter(f, filter));
       return !duplicateFilter;
     }).map(f => f.displayValue) ?? [];
   }, [hiddenFields, nlpFilters, removableFilters]);

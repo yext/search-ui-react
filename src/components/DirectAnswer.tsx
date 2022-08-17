@@ -72,11 +72,11 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
 
   const cssClasses = getCssClassesForAnswerType(composedCssClasses, directAnswerResult.type);
   const title = directAnswerResult.type === DirectAnswerType.FeaturedSnippet
-    ? directAnswerResult.value
+    ? directAnswerResult.value as string // TODO: update with other direct answer changes
     : `${directAnswerResult.entityName} / ${directAnswerResult.fieldName}`;
   const description: ReactNode = directAnswerResult.type === DirectAnswerType.FeaturedSnippet
     ? renderHighlightedValue(directAnswerResult.snippet, { highlighted: cssClasses.highlighted })
-    : directAnswerResult.value;
+    : directAnswerResult.value as string; // TODO: update with other direct answer changes
   const link = directAnswerResult.relatedResult.link;
 
   function getLinkText(directAnswerResult: DirectAnswerData) {

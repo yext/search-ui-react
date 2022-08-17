@@ -49,8 +49,8 @@ const DEFUALT_HIDDEN_FIELDS = ['builtin.entityType'];
 
 /**
  * A component that displays a list of filters applied to the current vertical
- * search, which may include any selected options from static filters, facets, and
- * NLP filters.
+ * search, which may include any selected options from facets, NLP filters, and
+ * field value static filters.
  *
  * @public
  *

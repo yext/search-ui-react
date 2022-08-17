@@ -1,14 +1,14 @@
-import { Filter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
+import { FieldValueFilter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
 import { useCallback, useEffect, useMemo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
-import { findSelectableFilter } from '../../utils/filterutils';
+import { findSelectableFieldValueFilter } from '../../utils/filterutils';
 import classNames from 'classnames';
 
 /**
- * The configuration data for a filter option.
+ * The configuration data for a field value filter option.
  *
  * @public
  */
@@ -26,12 +26,12 @@ export interface FilterOptionConfig {
 }
 
 /**
- * Props for the {@link Filters.CheckboxOption}
+ * Props for the {@link Filters.CheckboxOption}.
  *
  * @public
  */
 export interface CheckboxOptionProps extends FilterOptionConfig {
-  /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses} */
+  /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses}. */
   customCssClasses?: CheckboxCssClasses
 }
 
@@ -63,7 +63,7 @@ const builtInCssClasses: Readonly<CheckboxCssClasses> = {
 };
 
 /**
- * A checkbox component that represents a single Filter.
+ * A checkbox component that represents a single FieldValueFilter.
  *
  * @public
  *
@@ -97,14 +97,14 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     handleClick(evt.target.checked);
   }, [handleClick]);
 
-  const optionFilter: Filter = useMemo(() => {
+  const optionFilter: FieldValueFilter = useMemo(() => {
     return {
       fieldId,
       matcher,
       value
     };
   }, [fieldId, value, matcher]);
-  const existingStoredFilter = findSelectableFilter(optionFilter, filters);
+  const existingStoredFilter = findSelectableFieldValueFilter(optionFilter, filters);
 
   useEffect(() => {
     if (!existingStoredFilter && selectedByDefault) {

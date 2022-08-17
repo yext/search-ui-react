@@ -1,10 +1,11 @@
 import userEvent from '@testing-library/user-event';
-import { State, Matcher, SelectableFilter } from '@yext/search-headless-react';
+import { State, Matcher } from '@yext/search-headless-react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { RangeInput } from '../../src/components/Filters';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FiltersContext, FiltersContextType } from '../../src/components/Filters/FiltersContext';
 import { FilterGroupContext, FilterGroupContextType } from '../../src/components/Filters/FilterGroupContext';
+import { SelectableFieldValueFilter } from '../../src/models/SelectableFieldValueFilter';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -51,14 +52,17 @@ describe('Renders correctly for min input', () => {
     userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Over 10',
-      fieldId: '123',
-      matcher: '$between',
       selected: true,
-      value: {
-        start: {
-          matcher: '$ge',
-          value: 10
-        },
+      filter: {
+        kind: 'fieldValue',
+        fieldId: '123',
+        matcher: '$between',
+        value: {
+          start: {
+            matcher: '$ge',
+            value: 10
+          }
+        }
       }
     });
   });
@@ -75,14 +79,17 @@ describe('Renders correctly for min input', () => {
     expect(minTextbox).toHaveValue('');
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Over 10',
-      fieldId: '123',
-      matcher: '$between',
       selected: false,
-      value: {
-        start: {
-          matcher: '$ge',
-          value: 10
-        },
+      filter: {
+        kind: 'fieldValue',
+        fieldId: '123',
+        matcher: '$between',
+        value: {
+          start: {
+            matcher: '$ge',
+            value: 10
+          }
+        }
       }
     });
   });
@@ -106,14 +113,17 @@ describe('Renders correctly for max input', () => {
     userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Up to 20',
-      fieldId: '123',
-      matcher: '$between',
       selected: true,
-      value: {
-        end: {
-          matcher: '$le',
-          value: 20
-        },
+      filter: {
+        kind: 'fieldValue',
+        fieldId: '123',
+        matcher: '$between',
+        value: {
+          end: {
+            matcher: '$le',
+            value: 20
+          }
+        }
       }
     });
   });
@@ -130,14 +140,17 @@ describe('Renders correctly for max input', () => {
     expect(maxTextbox).toHaveValue('');
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Up to 20',
-      fieldId: '123',
-      matcher: '$between',
       selected: false,
-      value: {
-        end: {
-          matcher: '$le',
-          value: 20
-        },
+      filter: {
+        kind: 'fieldValue',
+        fieldId: '123',
+        matcher: '$between',
+        value: {
+          end: {
+            matcher: '$le',
+            value: 20
+          }
+        }
       }
     });
   });
@@ -163,18 +176,21 @@ describe('Renders correctly for min and max inputs', () => {
     userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: '10 - 20',
-      fieldId: '123',
-      matcher: '$between',
       selected: true,
-      value: {
-        start: {
-          matcher: '$ge',
-          value: 10
-        },
-        end: {
-          matcher: '$le',
-          value: 20
-        },
+      filter: {
+        kind: 'fieldValue',
+        fieldId: '123',
+        matcher: '$between',
+        value: {
+          start: {
+            matcher: '$ge',
+            value: 10
+          },
+          end: {
+            matcher: '$le',
+            value: 20
+          }
+        }
       }
     });
   });
@@ -194,18 +210,21 @@ describe('Renders correctly for min and max inputs', () => {
     expect(maxTextbox).toHaveValue('');
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: '10 - 20',
-      fieldId: '123',
-      matcher: '$between',
       selected: false,
-      value: {
-        start: {
-          matcher: '$ge',
-          value: 10
-        },
-        end: {
-          matcher: '$le',
-          value: 20
-        },
+      filter: {
+        kind: 'fieldValue',
+        fieldId: '123',
+        matcher: '$between',
+        value: {
+          start: {
+            matcher: '$ge',
+            value: 10
+          },
+          end: {
+            matcher: '$le',
+            value: 20
+          }
+        }
       }
     });
   });
@@ -226,7 +245,7 @@ describe('Renders correctly for min and max inputs', () => {
 });
 
 it('renders correctly when disabled', () => {
-  const selectableFilter: SelectableFilter = {
+  const selectableFilter: SelectableFieldValueFilter = {
     selected: true,
     fieldId: '123',
     matcher: Matcher.Between,

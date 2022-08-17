@@ -12,7 +12,7 @@ export interface StaticFiltersCssClasses extends FilterGroupCssClasses {
 }
 
 /**
- * The configuration data for a static filter option.
+ * The configuration data for a field value static filter option.
  *
  * @public
  */
@@ -49,11 +49,11 @@ export interface StaticFiltersProps {
 }
 
 /**
- * A component that displays a group of user-configured filters that will be
- * applied to the current vertical search.
+ * A component that displays a group of user-configured field value filters
+ * that will be applied to the current vertical search.
  *
  * @param props - {@link StaticFiltersProps}
- * @returns A React component for static filters
+ * @returns A React component for field value static filters
  *
  * @public
  */

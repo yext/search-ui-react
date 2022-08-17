@@ -7,7 +7,7 @@ import {
   unlabeledFilterSearchResponse,
   noResultsFilterSearchResponse
 } from '../../tests/__fixtures__/data/filtersearch';
-import { Matcher, State, SearchHeadless, SearchHeadlessContext, useSearchActions, SelectableFilter } from '@yext/search-headless-react';
+import { Matcher, State, SearchHeadless, SearchHeadlessContext, useSearchActions, SelectableStaticFilter } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 
 const searchFieldsProp = [{
@@ -141,9 +141,12 @@ describe('search with section labels', () => {
     userEvent.type(searchBarElement, '{enter}');
     await waitFor(() => {
       expect(setFilterOption).toBeCalledWith({
-        fieldId: 'name',
-        matcher: Matcher.Equals,
-        value: 'first name 1',
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'name',
+          matcher: Matcher.Equals,
+          value: 'first name 1'
+        },
         displayName: 'first name 1',
         selected: true
       });
@@ -155,16 +158,22 @@ describe('search with section labels', () => {
     userEvent.type(searchBarElement, '{arrowdown}{enter}');
     await waitFor(() => {
       expect(setFilterOption).toBeCalledWith({
-        fieldId: 'name',
-        matcher: Matcher.Equals,
-        value: 'first name 1',
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'name',
+          matcher: Matcher.Equals,
+          value: 'first name 1'
+        },
         selected: false
       });
     });
     expect(setFilterOption).toBeCalledWith({
-      fieldId: 'name',
-      matcher: Matcher.Equals,
-      value: 'first name 2',
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'first name 2'
+      },
       displayName: 'first name 2',
       selected: true
     });
@@ -187,9 +196,12 @@ describe('search with section labels', () => {
       await waitFor(() => screen.findByText('first name 1'));
 
       const expectedSetFilterOptionParam = {
-        fieldId: 'name',
-        matcher: Matcher.Equals,
-        value: 'first name 1',
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'name',
+          matcher: Matcher.Equals,
+          value: 'first name 1'
+        },
         displayName: 'first name 1',
         selected: true
       };
@@ -245,9 +257,12 @@ describe('search with section labels', () => {
       const autocompleteSuggestion = await waitFor(() => screen.findByText('first name 1'));
 
       const expectedSetFilterOptionParam = {
-        fieldId: 'name',
-        matcher: Matcher.Equals,
-        value: 'first name 1',
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'name',
+          matcher: Matcher.Equals,
+          value: 'first name 1'
+        },
         displayName: 'first name 1',
         selected: true
       };
@@ -288,9 +303,12 @@ describe('search with section labels', () => {
         expect(executeFilterSearch).toHaveBeenCalled();
       });
       expect(setFilterOption).toBeCalledWith({
-        fieldId: 'name',
-        matcher: Matcher.Equals,
-        value: 'first name 1',
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'name',
+          matcher: Matcher.Equals,
+          value: 'first name 1'
+        },
         displayName: 'first name 1',
         selected: true
       });
@@ -403,10 +421,13 @@ it('clears input when old filters are removed', async () => {
     .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
     .mockResolvedValue(labeledFilterSearchResponse);
 
-  const deselectedFilter: SelectableFilter = {
-    fieldId: 'name',
-    matcher: Matcher.Equals,
-    value: 'first name 1',
+  const deselectedFilter: SelectableStaticFilter = {
+    filter: {
+      kind: 'fieldValue',
+      fieldId: 'name',
+      matcher: Matcher.Equals,
+      value: 'first name 1'
+    },
     displayName: 'first name 1',
     selected: false
   };

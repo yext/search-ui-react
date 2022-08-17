@@ -4,7 +4,7 @@
 
 ## StaticFilterOptionConfig type
 
-The configuration data for a static filter option.
+The configuration data for a field value static filter option.
 
 <b>Signature:</b>
 
