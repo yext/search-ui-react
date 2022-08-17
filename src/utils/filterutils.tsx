@@ -135,14 +135,14 @@ export function getSelectedNumericalFacetFields(searchActions: SearchActions): S
 export function getSelectableFieldValueFilters(
   staticFilters: SelectableStaticFilter[]
 ): SelectableFieldValueFilter[] {
-  return staticFilters.reduce((fieldValueFilters: SelectableFieldValueFilter[], s) => {
-    if (s.filter.kind === 'fieldValue') {
-      const { filter: { kind: _, ...filterFields }, ...displayFields } = s;
-      fieldValueFilters.push({
+  return staticFilters.map(s => {
+    const { filter: { kind, ...filterFields }, ...displayFields } = s;
+    if (kind === 'fieldValue') {
+      return {
         ...displayFields,
         ...filterFields
-      });
+      };
     }
-    return fieldValueFilters;
-  }, []);
+    return undefined;
+  }).filter((s): s is SelectableFieldValueFilter => !!s);
 }
