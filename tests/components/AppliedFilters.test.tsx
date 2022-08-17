@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Matcher, Source, State, FiltersState, SelectableStaticFilter, FieldValueStaticFilter } from '@yext/search-headless-react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
+import { getSelectableFieldValueFilters } from '../../src/utils/filterutils';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 
@@ -91,10 +92,11 @@ describe('AppliedFilters', () => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
 
+  const fieldValueFilters = getSelectableFieldValueFilters(mockedState.filters?.static ?? []);
+
   it('Static filters are rendered', () => {
     render(<AppliedFilters />);
-    const staticFilter = mockedState.filters.static[0].filter as FieldValueStaticFilter;
-    const staticFilterDisplayName = staticFilter.value as string;
+    const staticFilterDisplayName = fieldValueFilters[0].value as string;
     expect(screen.getByText(staticFilterDisplayName)).toBeDefined();
   });
 
@@ -112,15 +114,13 @@ describe('AppliedFilters', () => {
 
   it('Filters with the fieldId of "builtin.entityType" are hidden by default', () => {
     render(<AppliedFilters />);
-    const staticFilter = mockedState.filters.static[2].filter as FieldValueStaticFilter;
-    const staticFilterDisplayName = staticFilter.value as string;
+    const staticFilterDisplayName = fieldValueFilters[2].value as string;
     expect(screen.queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
   it('The hiddenFields prop prevents filters with a corresponding fieldId from rendering', () => {
     render(<AppliedFilters hiddenFields={['name']} />);
-    const staticFilter = mockedState.filters.static[0].filter as FieldValueStaticFilter;
-    const staticFilterDisplayName = staticFilter.value as string;
+    const staticFilterDisplayName = fieldValueFilters[0].value as string;
     expect(screen.queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
