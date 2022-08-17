@@ -1,4 +1,4 @@
-import { AutocompleteResult, FieldValueFilter, FilterSearchResponse, SearchParameterField, useSearchActions, useSearchState } from '@yext/search-headless-react';
+import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, SearchParameterField, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
@@ -78,7 +78,7 @@ export function FilterSearch({
     return { ...searchField, fetchEntities: false };
   });
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const [currentFilter, setCurrentFilter] = useState<FieldValueFilter>();
+  const [currentFilter, setCurrentFilter] = useState<FieldValueStaticFilter>();
   const [filterQuery, setFilterQuery] = useState<string>();
   const staticFilters = useSearchState(state => state.filters.static);
   const fieldValueFilters = useMemo(
@@ -115,20 +115,14 @@ export function FilterSearch({
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
   const handleDropdownEvent = useCallback((value, itemData, select) => {
-    const newFilter = itemData?.filter as FieldValueFilter;
+    const newFilter = itemData?.filter as FieldValueStaticFilter;
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
       if (select) {
         if (currentFilter) {
-          searchActions.setFilterOption({
-            filter: { ...currentFilter, kind: 'fieldValue' },
-            selected: false
-          });
+          searchActions.setFilterOption({ filter: currentFilter, selected: false });
         }
-        searchActions.setFilterOption({
-          filter: { ...newFilter, kind: 'fieldValue' },
-          displayName: newDisplayName,
-          selected: true
+        searchActions.setFilterOption({ filter: newFilter, displayName: newDisplayName, selected: true
         });
         setCurrentFilter(newFilter);
         setFilterQuery(newDisplayName);
@@ -161,7 +155,7 @@ export function FilterSearch({
   const itemDataMatrix = useMemo(() => {
     return sections.map(section => {
       return section.results.map(result => ({
-        filter: result.filter,
+        filter: { ...result.filter, kind: 'fieldValue' },
         displayName: result.value
       }));
     });
