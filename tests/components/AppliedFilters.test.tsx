@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Matcher, Source, State, FiltersState, SelectableStaticFilter, FieldValueStaticFilter } from '@yext/search-headless-react';
+import { Matcher, Source, State, FiltersState, SelectableStaticFilter } from '@yext/search-headless-react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
 import { getSelectableFieldValueFilters } from '../../src/utils/filterutils';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
