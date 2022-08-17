@@ -5,7 +5,6 @@ import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { clearStaticRangeFilters, findSelectableFieldValueFilter, getSelectableFieldValueFilters, parseNumberRangeInput } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import classNames from 'classnames';
-import { NumberRangeFilter } from '../../models/NumberRangeFilter';
 import { useFiltersContext } from './FiltersContext';
 import { InvalidIcon } from '../../icons/InvalidIcon';
 
@@ -108,8 +107,9 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   );
   const isDisabled = filters.some(filter => filter.selected && filter.fieldId === fieldId);
 
-  const rangeFilter: NumberRangeFilter = useMemo(() => {
+  const rangeFilter = useMemo(() => {
     return {
+      kind: 'fieldValue' as const,
       fieldId,
       matcher: Matcher.Between,
       value: parseNumberRangeInput(minRangeInput, maxRangeInput),
@@ -148,7 +148,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     const displayName = getFilterDisplayName(rangeFilter.value);
     clearStaticRangeFilters(searchActions, new Set([fieldId]));
     searchActions.setFilterOption({
-      filter: { ...rangeFilter, kind: 'fieldValue' },
+      filter: rangeFilter,
       selected: true,
       displayName
     });
@@ -159,7 +159,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   const handleClickClear = useCallback(() => {
     const displayName = getFilterDisplayName(rangeFilter.value);
     searchActions.setFilterOption({
-      filter: { ...rangeFilter, kind: 'fieldValue' },
+      filter: rangeFilter,
       selected: false,
       displayName
     });
