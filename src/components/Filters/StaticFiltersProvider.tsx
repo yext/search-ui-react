@@ -1,5 +1,7 @@
-import { useSearchActions, useSearchState, SelectableFilter as DisplayableFilter } from '@yext/search-headless-react';
+import { useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { PropsWithChildren, useMemo } from 'react';
+import { SelectableFieldValueFilter } from '../../models/SelectableFieldValueFilter';
+import { getSelectableFieldValueFilters } from '../../utils/filterutils';
 import { executeSearch } from '../../utils/search-operations';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
@@ -36,8 +38,16 @@ export function StaticFiltersProvider({
 
   const filtersContextInstance: FiltersContextType = useMemo(() => {
     return {
-      selectFilter(filter: DisplayableFilter) {
-        searchActions.setFilterOption({ ...filter });
+      selectFilter(filter: SelectableFieldValueFilter) {
+        const { selected, displayName, ...fieldValueFilter } = filter;
+        searchActions.setFilterOption({
+          filter: {
+            kind: 'fieldValue',
+            ...fieldValueFilter
+          },
+          selected,
+          displayName
+        });
       },
       applyFilters() {
         if (searchOnChange) {
@@ -46,7 +56,7 @@ export function StaticFiltersProvider({
           executeSearch(searchActions);
         }
       },
-      filters: displayableFilters ?? []
+      filters: getSelectableFieldValueFilters(displayableFilters ?? [])
     };
   }, [searchActions, displayableFilters, searchOnChange]);
 

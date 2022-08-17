@@ -1,4 +1,4 @@
-import { DisplayableFacet, Matcher, SelectableFilter as DisplayableFilter } from '@yext/search-headless-react';
+import { DisplayableFacet, Matcher, SelectableStaticFilter } from '@yext/search-headless-react';
 import { RemovableFilter } from '../../../src/components/AppliedFiltersDisplay';
 
 function createRemovableFilter(value: string) {
@@ -74,19 +74,25 @@ export const DisplayableFacets: DisplayableFacet[] = [
   }
 ];
 
-export const staticFilters: DisplayableFilter[] = [
+export const staticFilters: SelectableStaticFilter[] = [
   {
-    fieldId: 'c_puppyPreference',
-    value: 'Bleecker',
+    filter: {
+      kind: 'fieldValue',
+      fieldId: 'c_puppyPreference',
+      value: 'Bleecker',
+      matcher: Matcher.Equals,
+    },
     displayName: 'Bleecker',
-    matcher: Matcher.Equals,
     selected: true
   },
   {
-    fieldId: 'c_puppyPreference',
-    value: 'Clifford',
+    filter: {
+      kind: 'fieldValue',
+      fieldId: 'c_puppyPreference',
+      value: 'Clifford',
+      matcher: Matcher.Equals
+    },
     displayName: 'Clifford',
-    matcher: Matcher.Equals,
     selected: false
   }
 ];

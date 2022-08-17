@@ -1,6 +1,8 @@
-import { useSearchState, useSearchActions, SelectableFilter } from '@yext/search-headless-react';
+import { useSearchState, useSearchActions } from '@yext/search-headless-react';
 import { useMemo } from 'react';
 import { RemovableFilter } from '../components/AppliedFiltersDisplay';
+import { SelectableFieldValueFilter } from '../models/SelectableFieldValueFilter';
+import { getSelectableFieldValueFilters } from '../utils/filterutils';
 import { useStateUpdatedOnSearch } from './useStateUpdatedOnSearch';
 
 /**
@@ -18,11 +20,14 @@ export function useRemovableStaticFilters(hiddenFields: string[]): RemovableFilt
       return [];
     }
 
-    function handleRemoveStaticFilterOption(filter: SelectableFilter) {
-      searchActions.setFilterOption({ ...filter, selected: false });
+    function handleRemoveStaticFilterOption(filter: SelectableFieldValueFilter) {
+      searchActions.setFilterOption({
+        filter: { ...filter, kind: 'fieldValue' },
+        selected: false
+      });
     }
 
-    return staticFilters
+    return getSelectableFieldValueFilters(staticFilters)
       .filter(f => f.selected && !hiddenFields.includes(f.fieldId))
       .map(f => ({
         displayName: f.displayName ?? '',

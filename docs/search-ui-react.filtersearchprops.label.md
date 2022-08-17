@@ -4,7 +4,7 @@
 
 ## FilterSearchProps.label property
 
-The display label for the component. Defaults to "Filter".
+The display label for the component.
 
 <b>Signature:</b>
 

@@ -178,10 +178,13 @@ function expectFilterOptionSet(
   filterOption: FilterOptionConfig,
   selected: boolean
 ) {
-  expect(actions.setFilterOption).toHaveBeenCalledWith({
-    fieldId,
-    matcher: '$eq',
-    value: filterOption.value,
+  expect(actions.setFilterOption).toHaveBeenLastCalledWith({
+    filter: {
+      kind: 'fieldValue',
+      fieldId,
+      matcher: '$eq',
+      value: filterOption.value
+    },
     displayName: filterOption.displayName ?? filterOption.value,
     selected
   });

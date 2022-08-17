@@ -1,10 +1,10 @@
 import {
   DisplayableFacet,
-  SelectableFilter as DisplayableFilter,
   useSearchActions,
   useSearchState
 } from '@yext/search-headless-react';
 import { ReactNode, useMemo } from 'react';
+import { SelectableFieldValueFilter } from '../../models/SelectableFieldValueFilter';
 
 import { getSelectedNumericalFacetFields, isNumberRangeValue } from '../../utils/filterutils';
 import { clearStaticRangeFilters } from '../../utils/filterutils';
@@ -50,7 +50,7 @@ export function FacetsProvider({
   const searchActions = useSearchActions();
   const facetsInState = useSearchState(state => state.filters.facets);
   const facets = useMemo(() => facetsInState ?? [], [facetsInState]);
-  const filters: DisplayableFilter[] = useMemo(() => {
+  const filters: SelectableFieldValueFilter[] = useMemo(() => {
     return facets.flatMap(f => f.options.map(o => {
       return {
         fieldId: f.fieldId,
@@ -64,7 +64,7 @@ export function FacetsProvider({
 
   const filtersContextInstance: FiltersContextType = useMemo(() => {
     return {
-      selectFilter(filter: DisplayableFilter) {
+      selectFilter(filter: SelectableFieldValueFilter) {
         if (typeof filter.value === 'object' && !isNumberRangeValue(filter.value)) {
           console.error('Facets only support string, number, boolean, and NumberRangeValue. Found the following object value instead:', filter.value);
           return;

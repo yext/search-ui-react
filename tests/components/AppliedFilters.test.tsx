@@ -1,27 +1,37 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Matcher, Source, State, FiltersState } from '@yext/search-headless-react';
+import { Matcher, Source, State, FiltersState, SelectableStaticFilter } from '@yext/search-headless-react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
+import { getSelectableFieldValueFilters } from '../../src/utils/filterutils';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 
-const mockedStaticFilters = [{
+const mockedStaticFilters: SelectableStaticFilter[] = [{
+  filter: {
+    kind: 'fieldValue',
+    fieldId: 'name',
+    matcher: Matcher.Equals,
+    value: 'Yext Answers'
+  },
   selected: true,
-  fieldId: 'name',
-  matcher: Matcher.Equals,
-  value: 'Yext Answers',
   displayName: 'Yext Answers'
 }, {
+  filter: {
+    kind: 'fieldValue',
+    fieldId: 'name',
+    matcher: Matcher.Equals,
+    value: 'Yext Sites'
+  },
   selected: true,
-  fieldId: 'name',
-  matcher: Matcher.Equals,
-  value: 'Yext Sites',
   displayName: 'Yext Sites'
 }, {
+  filter: {
+    kind: 'fieldValue',
+    fieldId: 'builtin.entityType',
+    matcher: Matcher.Equals,
+    value: 'Yext Pagebuilder'
+  },
   selected: true,
-  fieldId: 'builtin.entityType',
-  matcher: Matcher.Equals,
-  value: 'Yext Pagebuilder',
   displayName: 'Yext Pagebuilder'
 }];
 
@@ -82,9 +92,11 @@ describe('AppliedFilters', () => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
 
+  const fieldValueFilters = getSelectableFieldValueFilters(mockedState.filters?.static ?? []);
+
   it('Static filters are rendered', () => {
     render(<AppliedFilters />);
-    const staticFilterDisplayName = mockedState.filters.static[0].value as string;
+    const staticFilterDisplayName = fieldValueFilters[0].value as string;
     expect(screen.getByText(staticFilterDisplayName)).toBeDefined();
   });
 
@@ -102,13 +114,13 @@ describe('AppliedFilters', () => {
 
   it('Filters with the fieldId of "builtin.entityType" are hidden by default', () => {
     render(<AppliedFilters />);
-    const staticFilterDisplayName = mockedState.filters.static[2].value as string;
+    const staticFilterDisplayName = fieldValueFilters[2].value as string;
     expect(screen.queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
   it('The hiddenFields prop prevents filters with a corresponding fieldId from rendering', () => {
     render(<AppliedFilters hiddenFields={['name']} />);
-    const staticFilterDisplayName = mockedState.filters.static[0].value as string;
+    const staticFilterDisplayName = fieldValueFilters[0].value as string;
     expect(screen.queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
