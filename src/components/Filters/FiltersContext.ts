@@ -1,5 +1,5 @@
-import { SelectableFilter as DisplayableFilter } from '@yext/search-headless-react';
 import { createContext, useContext } from 'react';
+import { SelectableFieldValueFilter } from '../../models/SelectableFieldValueFilter';
 
 /**
  * FiltersContext is responsible for handling filter selection.
@@ -8,11 +8,11 @@ import { createContext, useContext } from 'react';
  */
 export interface FiltersContextType {
   /** A function called when a filter is selected. */
-  selectFilter: (filter: DisplayableFilter) => void,
+  selectFilter: (filter: SelectableFieldValueFilter) => void,
   /** A function called when filters should be applied. */
   applyFilters: () => void,
-  /** The list of DisplayableFilter provided by the context. */
-  filters: DisplayableFilter[]
+  /** The list of SelectableFieldValueFilters provided by the context. */
+  filters: SelectableFieldValueFilter[]
 }
 
 /**

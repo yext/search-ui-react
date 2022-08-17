@@ -1,10 +1,11 @@
 import { ComponentMeta } from '@storybook/react';
 import { RangeInput, RangeInputProps } from '../../src/components/Filters/RangeInput';
-import { SearchHeadlessContext, Matcher, SelectableFilter } from '@yext/search-headless-react';
+import { SearchHeadlessContext, Matcher } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { FiltersContext, FiltersContextType } from '../../src/components/Filters/FiltersContext';
 import { FilterGroupContext, FilterGroupContextType } from '../../src/components/Filters/FilterGroupContext';
 import { userEvent, within } from '@storybook/testing-library';
+import { SelectableFieldValueFilter } from '../../src/models/SelectableFieldValueFilter';
 
 const meta: ComponentMeta<typeof RangeInput> = {
   title: 'RangeInput',
@@ -13,7 +14,7 @@ const meta: ComponentMeta<typeof RangeInput> = {
 
 export default meta;
 
-const selectableFilter: SelectableFilter = {
+const selectableFilter: SelectableFieldValueFilter = {
   selected: true,
   fieldId: '123',
   matcher: Matcher.Equals,

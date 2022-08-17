@@ -10,7 +10,7 @@
 |  --- | --- |
 |  [AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses })](./search-ui-react.alternativeverticals.md) | A component that displays the alternative verticals that have results if a search returns none on the current vertical. |
 |  [AnalyticsProvider(props)](./search-ui-react.analyticsprovider.md) | A higher-order component which provides analytics for its children. |
-|  [AppliedFilters(props)](./search-ui-react.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from static filters, facets, and NLP filters. |
+|  [AppliedFilters(props)](./search-ui-react.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from facets, NLP filters, and field value static filters. |
 |  [ApplyFiltersButton({ customCssClasses, label })](./search-ui-react.applyfiltersbutton.md) | Runs a vertical search. By default has <code>position: sticky</code> styling that anchors it to the bottom of the page. |
 |  [DirectAnswer(props)](./search-ui-react.directanswer.md) | Renders Direct Answers provided by the Search API. |
 |  [DropdownItem(\_props)](./search-ui-react.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
@@ -32,7 +32,7 @@
 |  [StandardCard(props)](./search-ui-react.standardcard.md) | This Component renders the base result card. |
 |  [StandardFacets(props)](./search-ui-react.standardfacets.md) | A component that displays simple facets applicable to the current vertical search. |
 |  [StandardSection(props)](./search-ui-react.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
-|  [StaticFilters(props)](./search-ui-react.staticfilters.md) | A component that displays a group of user-configured filters that will be applied to the current vertical search. |
+|  [StaticFilters(props)](./search-ui-react.staticfilters.md) | A component that displays a group of user-configured field value filters that will be applied to the current vertical search. |
 |  [ThumbsFeedback(props)](./search-ui-react.thumbsfeedback.md) | Renders a quality feedback widget composed of thumbs up and thumbs down buttons. |
 |  [UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses })](./search-ui-react.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
 |  [updateLocationIfNeeded(searchActions, intents, geolocationOptions)](./search-ui-react.updatelocationifneeded.md) | If the provided search intents include a 'NEAR\_ME' intent and there's no existing user's location in state, retrieve and store user's location in headless state. |
@@ -59,7 +59,7 @@
 |  [DirectAnswerProps](./search-ui-react.directanswerprops.md) | Props for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->. |
 |  [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) | The CSS class interface for FilterGroup. |
 |  [FilterGroupProps](./search-ui-react.filtergroupprops.md) | Props for the FilterGroup component. |
-|  [FilterOptionConfig](./search-ui-react.filteroptionconfig.md) | The configuration data for a filter option. |
+|  [FilterOptionConfig](./search-ui-react.filteroptionconfig.md) | The configuration data for a field value filter option. |
 |  [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./search-ui-react.filtersearchprops.md) | The props for the [FilterSearch()](./search-ui-react.filtersearch.md) component. |
 |  [HierarchicalFacetDisplayCssClasses](./search-ui-react.hierarchicalfacetdisplaycssclasses.md) | The CSS class interface for HierarchicalFacetDisplay. |
@@ -122,6 +122,6 @@
 |  [onSearchFunc](./search-ui-react.onsearchfunc.md) | The interface of a function which is called on a search. |
 |  [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data. |
 |  [SectionComponent](./search-ui-react.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
-|  [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md) | The configuration data for a static filter option. |
+|  [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md) | The configuration data for a field value static filter option. |
 |  [VerticalConfigMap](./search-ui-react.verticalconfigmap.md) | A map of verticalKey to a VerticalConfig. |
 

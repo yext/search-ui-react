@@ -1,7 +1,7 @@
-import { Filter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
+import { FieldValueFilter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
 import { isNumberRangeValue } from '../utils/filterutils';
 
-export interface NumberRangeFilter extends Filter {
+export interface NumberRangeFilter extends FieldValueFilter {
   value: NumberRangeValue,
   matcher: Matcher.Between
 }

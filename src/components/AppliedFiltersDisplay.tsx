@@ -1,8 +1,8 @@
 import { CloseIcon } from '../icons/CloseIcon';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { useClearFiltersCallback } from '../hooks/useClearFiltersCallback';
-import { Filter, useSearchActions } from '@yext/search-headless-react';
-import { isDuplicateFilter } from '../utils/filterutils';
+import { FieldValueFilter, useSearchActions } from '@yext/search-headless-react';
+import { isDuplicateFieldValueFilter } from '../utils/filterutils';
 import { executeSearch } from '../utils/search-operations';
 
 /**
@@ -13,7 +13,7 @@ import { executeSearch } from '../utils/search-operations';
 export interface RemovableFilter {
   displayName: string,
   handleRemove: () => void,
-  filter: Filter
+  filter: FieldValueFilter
 }
 
 /**
@@ -88,7 +88,7 @@ interface DedupedRemovableFilter extends RemovableFilter {
 function getDedupedRemovableFilters(filters: RemovableFilter[]) {
   const dedupedFilters: DedupedRemovableFilter[] = [];
   for (const f of filters) {
-    const preexistingDupe = dedupedFilters.find(d => isDuplicateFilter(d.filter, f.filter));
+    const preexistingDupe = dedupedFilters.find(d => isDuplicateFieldValueFilter(d.filter, f.filter));
     if (!preexistingDupe) {
       dedupedFilters.push(f);
     } else {
