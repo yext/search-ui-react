@@ -37,14 +37,14 @@ export function FieldValueDirectAnswer({
 }: FieldValueDirectAnswerProps): JSX.Element {
   const title = `${result.entityName} / ${result.fieldName}`;
   const link = result.relatedResult.link;
-  const description = useMemo(() => getResultContent(result), [result]);
+  const resultContent = useMemo(() => getResultContent(result), [result]);
 
   return (
     <div className={cssClasses.answerContainer}>
       {title &&
       <div className={cssClasses.header}>{title}</div>}
       <div className={cssClasses.content}>
-        <div className={cssClasses.body}>{description}</div>
+        <div className={cssClasses.body}>{resultContent}</div>
         {link && <div className='mt-4'>
           <a href={link} className='text-primary' onClick={viewDetailsClickHandler}>
             View Details
