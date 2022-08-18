@@ -12,7 +12,7 @@ interface FieldValueDirectAnswerProps {
   /** A field value direct answer result. */
   result: FieldValueDirectAnswerType,
   /** Handle onClick event for "View Details" link. */
-  viewDetailsClickHandler: () => void,
+  viewDetailsClickHandler?: () => void,
   /** CSS classes for customizing the component styling. */
   cssClasses?: FieldValueDirectAnswerCssClasses
 }

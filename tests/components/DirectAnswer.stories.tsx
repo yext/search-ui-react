@@ -6,7 +6,8 @@ import {
   FieldValueDirectAnswer as FieldValueDirectAnswerType,
   Source,
   ComplexURL,
-  Address} from '@yext/search-headless-react';
+  Address
+} from '@yext/search-headless-react';
 
 import { DirectAnswer, DirectAnswerProps } from '../../src/components/DirectAnswer';
 
