@@ -91,7 +91,7 @@ export const AddressFieldValue = (args: DirectAnswerProps) => {
 };
 
 export const StringFieldValue = (args: DirectAnswerProps) => {
-  return generateFieldValueDirectAnswer(args, BuiltInFieldType.MultiLineText, '[value]');
+  return generateFieldValueDirectAnswer(args, BuiltInFieldType.MultiLineText, 'multi\nline\ntext');
 };
 
 export const NumberFieldValue = (args: DirectAnswerProps) => {

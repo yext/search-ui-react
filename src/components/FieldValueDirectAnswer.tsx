@@ -86,8 +86,8 @@ function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
       return <div>unknown</div>; //TODO: SLAP-2337
     default:
       return Array.isArray(result.value)
-        ? getListJsxElement(result.value, val => <p>{val}</p>)
-        : <p>{result.value}</p>;
+        ? getListJsxElement(result.value, val => <p className='whitespace-pre-wrap'>{val}</p>)
+        : <p className='whitespace-pre-wrap'>{result.value}</p>;
   }
 }
 

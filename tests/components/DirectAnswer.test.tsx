@@ -28,10 +28,7 @@ describe('Field value direct answer analytics', () => {
 
 describe('Featured snippet direct answer analytics', () => {
   beforeEach(() => mockState(featuredSnippetDAState));
-  it('TODO: SLAP-2335', () => {
-    console.log('TODO: SLAP-2335');
-  });
-  // runAnalyticsTestSuite(); TODO: SLAP-2335
+  runAnalyticsTestSuite();
 });
 
 function runAnalyticsTestSuite() {
