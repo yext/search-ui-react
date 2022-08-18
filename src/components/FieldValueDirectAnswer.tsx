@@ -45,13 +45,12 @@ export function FieldValueDirectAnswer({
       <div className={cssClasses.header}>{title}</div>}
       <div className={cssClasses.content}>
         <div className={cssClasses.body}>{description}</div>
-        {link && <a
-          href={link}
-          className='text-primary pt-4 text-neutral'
-          onClick={viewDetailsClickHandler}
-        >
-          View Details
-        </a>}
+        {link && <div className='mt-4'>
+          <a href={link} className='text-primary' onClick={viewDetailsClickHandler}>
+            View Details
+          </a>
+        </div>
+        }
       </div>
     </div>
   );
@@ -73,12 +72,12 @@ function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
       return getUrlJsxElement(url, displayUrl);
     case BuiltInFieldType.URL:
       return Array.isArray(result.value)
-        ? <div>{result.value.map((url, i) => getUrlJsxElement(url, url, i))}</div>
+        ? getListJsxElement(result.value, url => getUrlJsxElement(url))
         : getUrlJsxElement(result.value);
     case BuiltInFieldType.Phone:
       return getUrlJsxElement(`tel:${result.value}`, result.value);
     case BuiltInFieldType.Email:
-      return <div>{result.value.map((e, i) => getUrlJsxElement(`mailto:${e}`, e, i))}</div>;
+      return getListJsxElement(result.value, e => getUrlJsxElement(`mailto:${e}`, e));
     case BuiltInFieldType.Address:
       return getAddressJsxElement(result.value);
     case BuiltInFieldType.RichText:
@@ -87,13 +86,25 @@ function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
       return <div>unknown</div>; //TODO: SLAP-2337
     default:
       return Array.isArray(result.value)
-        ? <div>{result.value.map((val, i) => <p key={i} className='block'>{val}</p>)}</div>
+        ? getListJsxElement(result.value, val => <p>{val}</p>)
         : <p>{result.value}</p>;
   }
 }
 
-function getUrlJsxElement(href: string, displayText?: string, key?: number): JSX.Element {
-  return <a {...{ href, key }} className='text-primary block'>{displayText ?? href}</a>;
+function getListJsxElement<T>(
+  value: T[],
+  getItemJsxElement: (el: T) => JSX.Element
+): JSX.Element {
+  return (<ul className='list-disc list-inside'>
+    {value.map((el, i) =>
+      <li key={i}>
+        {getItemJsxElement(el)}
+      </li>)}
+  </ul>);
+}
+
+function getUrlJsxElement(href: string, displayText?: string): JSX.Element {
+  return <a href={href} className='text-primary'>{displayText ?? href}</a>;
 }
 
 function getAddressJsxElement(address: Address): JSX.Element {
