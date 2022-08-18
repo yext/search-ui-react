@@ -74,8 +74,8 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   }
 
   const cssClasses = getCssClassesForAnswerType(composedCssClasses, directAnswerResult.type);
-  const containerCssClasses = classNames(composedCssClasses.directAnswerContainer, {
-    [composedCssClasses.directAnswerLoading ?? '']: isLoading
+  const containerCssClasses = classNames(cssClasses.directAnswerContainer, {
+    [cssClasses.directAnswerLoading ?? '']: isLoading
   });
 
   const link = directAnswerResult.relatedResult.link;
