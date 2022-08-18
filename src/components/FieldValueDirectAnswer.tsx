@@ -1,6 +1,7 @@
 import {
   FieldValueDirectAnswer as FieldValueDirectAnswerType,
-  BuiltInFieldType
+  BuiltInFieldType,
+  Address
 } from '@yext/search-headless-react';
 import { useMemo } from 'react';
 
@@ -47,39 +48,51 @@ export function FieldValueDirectAnswer({
 function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
   switch (result.fieldType) {
     case BuiltInFieldType.InstagramHandle:
-      return <a href={`https://www.instagram.com/${result.value}`}>{result.value}</a>;
+      return getUrlJsxElement(`https://www.instagram.com/${result.value}`, result.value);
     case BuiltInFieldType.TwitterHandle:
-      return <a href={`https://twitter.com/${result.value}`}>@{result.value}</a>;
+      return getUrlJsxElement(`https://twitter.com/${result.value}`, `@${result.value}`);
     case BuiltInFieldType.FacebookURL:
     case BuiltInFieldType.AndroidAppURL:
     case BuiltInFieldType.IOSAppURL:
-      return <a href={result.value}>{result.value}</a>;
+      return getUrlJsxElement(result.value);
     case BuiltInFieldType.ComplexURL:
       const url = result.value.url;
-      return <a href={url}>{result.value.preferDisplayUrl ? result.value.displayUrl : url}</a>;
+      const displayUrl = result.value.preferDisplayUrl ? result.value.displayUrl : url;
+      return getUrlJsxElement(url, displayUrl);
     case BuiltInFieldType.URL:
       return Array.isArray(result.value)
-        ? <div>{result.value.map((url, i) => <a href={url} key={i}>{url}</a>)}</div>
-        : <a href={result.value}>{result.value}</a>;
+        ? <div>{result.value.map((url, i) => getUrlJsxElement(url, url, i))}</div>
+        : getUrlJsxElement(result.value);
     case BuiltInFieldType.Phone:
-      return <a href={`tel:${result.value}`}>{result.value}</a>;
+      return getUrlJsxElement(`tel:${result.value}`, result.value);
     case BuiltInFieldType.Email:
-      return <div>{result.value.map((email, i) => <a href={`mailto:${email}`} key={i}>{email}</a>)}</div>;
+      return <div>{result.value.map((email, i) => getUrlJsxElement(`mailto:${email}`, email, i))}</div>;
     case BuiltInFieldType.Address:
-      return <p>{result.value}</p>; //TODO: components__address__i18n__addressForCountry in theme (2500 lines)
+      return getAddressJsxElement(result.value);
     case BuiltInFieldType.RichText:
-      return <p>{result.value}</p>; //TODO: require formatter? RtfConverter for rich text.
+      return <div>rich text</div>; //TODO: use react-markdown
     case 'unknown':
-      console.warn('unknown type');
-      return <div>unknown</div>; //TODO: future item
+      return <div>unknown</div>; //TODO: SLAP-2337
     default:
-      /**
-       * DecimalDirectAnswer (string | string[])
-       * IntegerDirectAnswer (number)
-       * TextDirectAnswer (string | string[])
-       */
       return Array.isArray(result.value)
-        ? <div>{result.value.map((val, i) => <p key={i}>{val}</p>)}</div>
+        ? <div>{result.value.map((val, i) => <p key={i} className='block'>{val}</p>)}</div>
         : <p>{result.value}</p>;
   }
+}
+
+function getUrlJsxElement(href: string, displayText?: string, key?: number) {
+  return <a {...{ href, key }} className='text-primary block'>{displayText ?? href}</a>;
+}
+
+function getAddressJsxElement(address: Address): JSX.Element {
+  if (address.extraDescription) {
+    return <div>{address.extraDescription}</div>;
+  }
+  return <div>
+    {address.line1 && <p>{address.line1}</p>}
+    {address.line2 && <p>{address.line2}</p>}
+    {address.line3 && <p>{address.line3}</p>}
+    <p>{address.city}, {address.region} {address.postalCode}</p>
+    <p>{address.countryCode}</p>
+  </div>;
 }
