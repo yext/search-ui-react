@@ -5,12 +5,21 @@ import {
 } from '@yext/search-headless-react';
 import { useMemo } from 'react';
 
+/**
+ * Props for FieldValueDirectAnswer.
+ */
 interface FieldValueDirectAnswerProps {
+  /** A field value direct answer result. */
   result: FieldValueDirectAnswerType,
-  handleClickViewDetails: () => void,
+  /** Handle onClick event for "View Details" link. */
+  viewDetailsClickHandler: () => void,
+  /** CSS classes for customizing the component styling. */
   cssClasses?: FieldValueDirectAnswerCssClasses
 }
 
+/**
+ *  The CSS class interface for FieldValueDirectAnswer.
+ */
 interface FieldValueDirectAnswerCssClasses {
   header?: string,
   body?: string,
@@ -18,9 +27,12 @@ interface FieldValueDirectAnswerCssClasses {
   answerContainer?: string
 }
 
+/**
+ * Renders a field value direct answer provided by the Search API.
+ */
 export function FieldValueDirectAnswer({
   result,
-  handleClickViewDetails,
+  viewDetailsClickHandler,
   cssClasses = {}
 }: FieldValueDirectAnswerProps): JSX.Element {
   const title = `${result.entityName} / ${result.fieldName}`;
@@ -36,7 +48,7 @@ export function FieldValueDirectAnswer({
         {link && <a
           href={link}
           className='text-primary pt-4 text-neutral'
-          onClick={handleClickViewDetails}
+          onClick={viewDetailsClickHandler}
         >
           View Details
         </a>}
@@ -66,7 +78,7 @@ function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
     case BuiltInFieldType.Phone:
       return getUrlJsxElement(`tel:${result.value}`, result.value);
     case BuiltInFieldType.Email:
-      return <div>{result.value.map((email, i) => getUrlJsxElement(`mailto:${email}`, email, i))}</div>;
+      return <div>{result.value.map((e, i) => getUrlJsxElement(`mailto:${e}`, e, i))}</div>;
     case BuiltInFieldType.Address:
       return getAddressJsxElement(result.value);
     case BuiltInFieldType.RichText:
@@ -80,11 +92,12 @@ function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
   }
 }
 
-function getUrlJsxElement(href: string, displayText?: string, key?: number) {
+function getUrlJsxElement(href: string, displayText?: string, key?: number): JSX.Element {
   return <a {...{ href, key }} className='text-primary block'>{displayText ?? href}</a>;
 }
 
 function getAddressJsxElement(address: Address): JSX.Element {
+  // user specified display Address in KM
   if (address.extraDescription) {
     return <div>{address.extraDescription}</div>;
   }

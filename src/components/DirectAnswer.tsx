@@ -83,7 +83,7 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
         ? <FieldValueDirectAnswer
           result={directAnswerResult}
           cssClasses={cssClasses}
-          handleClickViewDetails={handleClickViewDetails}
+          viewDetailsClickHandler={handleClickViewDetails}
         />
         : <div>Snippet!</div> //TODO: create FeaturedSnippetDirectAnswer component
       }
