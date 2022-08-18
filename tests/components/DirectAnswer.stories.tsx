@@ -1,10 +1,18 @@
 import { ComponentMeta } from '@storybook/react';
-import { SearchHeadlessContext } from '@yext/search-headless-react';
+import {
+  BuiltInFieldType,
+  DirectAnswerType,
+  SearchHeadlessContext,
+  FieldValueDirectAnswer as FieldValueDirectAnswerType,
+  Source,
+  ComplexURL,
+  Address} from '@yext/search-headless-react';
 
 import { DirectAnswer, DirectAnswerProps } from '../../src/components/DirectAnswer';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
-import { featuredSnippetDAState, fieldValueDAState } from '../__fixtures__/data/directanswers';
+import { featuredSnippetDAState } from '../__fixtures__/data/directanswers';
+import { RecursivePartial } from '../__utils__/mocks';
 
 const meta: ComponentMeta<typeof DirectAnswer> = {
   title: 'DirectAnswer',
@@ -12,14 +20,81 @@ const meta: ComponentMeta<typeof DirectAnswer> = {
 };
 export default meta;
 
-export const FieldValue = (args: DirectAnswerProps) => {
+const baseDirectAnswerResult: RecursivePartial<FieldValueDirectAnswerType> = {
+  type: DirectAnswerType.FieldValue,
+  entityName: '[entityName]',
+  fieldName: '[fieldName]',
+  fieldType: 'unknown',
+  value: '[value]',
+  relatedResult: {
+    link: '[relatedResult.link]',
+    id: '[relatedResult.id]',
+    rawData: {},
+    source: Source.KnowledgeManager
+  }
+};
+
+function generateFieldValueDirectAnswer(
+  args: DirectAnswerProps,
+  fieldType?: FieldValueDirectAnswerType['fieldType'],
+  value?: unknown,
+): JSX.Element {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
-      directAnswer: fieldValueDAState
+      directAnswer: {
+        result: {
+          ...baseDirectAnswerResult,
+          ...(fieldType !== undefined && { fieldType }),
+          ...(value !== undefined && { value }),
+        } as FieldValueDirectAnswerType
+      }
     })}>
       <DirectAnswer {...args} />
     </SearchHeadlessContext.Provider>
   );
+}
+
+export const URLFieldValue = (args: DirectAnswerProps) => {
+  return generateFieldValueDirectAnswer(args, BuiltInFieldType.URL, '[url]');
+};
+
+export const ComplexURLFieldValue = (args: DirectAnswerProps) => {
+  const complexUrl: ComplexURL = {
+    url: '[url]',
+    displayUrl: '[displayUrl]',
+    preferDisplayUrl: true
+  };
+  return generateFieldValueDirectAnswer(args, BuiltInFieldType.ComplexURL, complexUrl);
+};
+
+export const ListFieldValue = (args: DirectAnswerProps) => {
+  const emails = [
+    'email1@yext.com',
+    'email2@yext.com',
+    'email3@yext.com'
+  ];
+  return generateFieldValueDirectAnswer(args, BuiltInFieldType.Email, emails);
+};
+
+export const AddressFieldValue = (args: DirectAnswerProps) => {
+  const address: Address = {
+    line1: '[line1]',
+    line2: '[line2]',
+    line3: '[line3]',
+    city: '[city]',
+    region: '[region]',
+    postalCode: '[postalCode]',
+    countryCode: '[countryCode]'
+  };
+  return generateFieldValueDirectAnswer(args, BuiltInFieldType.Address, address);
+};
+
+export const StringFieldValue = (args: DirectAnswerProps) => {
+  return generateFieldValueDirectAnswer(args, BuiltInFieldType.MultiLineText, '[value]');
+};
+
+export const NumberFieldValue = (args: DirectAnswerProps) => {
+  return generateFieldValueDirectAnswer(args, BuiltInFieldType.Integer, 123456789);
 };
 
 export const FeaturedSnippet = (args: DirectAnswerProps) => {
