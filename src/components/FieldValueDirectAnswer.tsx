@@ -92,11 +92,11 @@ function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
 }
 
 function getListJsxElement<T>(
-  value: T[],
+  list: T[],
   getItemJsxElement: (el: T) => JSX.Element
 ): JSX.Element {
   return (<ul className='list-disc list-inside'>
-    {value.map((el, i) =>
+    {list.map((el, i) =>
       <li key={i}>
         {getItemJsxElement(el)}
       </li>)}

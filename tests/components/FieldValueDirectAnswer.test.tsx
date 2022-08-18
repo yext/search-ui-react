@@ -132,7 +132,7 @@ describe('FieldValue direct answer', () => {
       city: 'New York',
       region: 'NY',
       postalCode: '10011',
-      countryCode: 'NY',
+      countryCode: 'US',
       extraDescription
     };
     const result = {
