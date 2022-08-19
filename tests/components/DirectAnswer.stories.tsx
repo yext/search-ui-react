@@ -83,36 +83,6 @@ export const NumberFieldValue = (args: DirectAnswerProps) => {
   return generateFieldValueDirectAnswer(args, BuiltInFieldType.Integer, 123456789);
 };
 
-export const ListFieldValue = (args: DirectAnswerProps) => {
-  const emails = [
-    'email1@yext.com',
-    'email2@yext.com',
-    'email3@yext.com'
-  ];
-  return generateFieldValueDirectAnswer(args, BuiltInFieldType.Email, emails);
-};
-
-export const AddressFieldValue = (args: DirectAnswerProps) => {
-  const address: Address = {
-    line1: '[line1]',
-    line2: '[line2]',
-    line3: '[line3]',
-    city: '[city]',
-    region: '[region]',
-    postalCode: '[postalCode]',
-    countryCode: '[countryCode]'
-  };
-  return generateFieldValueDirectAnswer(args, BuiltInFieldType.Address, address);
-};
-
-export const StringFieldValue = (args: DirectAnswerProps) => {
-  return generateFieldValueDirectAnswer(args, BuiltInFieldType.MultiLineText, 'multi\nline\ntext');
-};
-
-export const NumberFieldValue = (args: DirectAnswerProps) => {
-  return generateFieldValueDirectAnswer(args, BuiltInFieldType.Integer, 123456789);
-};
-
 export const PlainTextFeaturedSnippet = (args: DirectAnswerProps) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
