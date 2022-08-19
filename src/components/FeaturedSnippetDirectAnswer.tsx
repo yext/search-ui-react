@@ -26,6 +26,8 @@ interface FeaturedSnippetDirectAnswerCssClasses {
 
 /**
  * Renders a featured snippet direct answer provided by the Search API.
+ *
+ * @internal
  */
 export function FeaturedSnippetDirectAnswer({
   result,
