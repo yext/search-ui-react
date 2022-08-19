@@ -61,25 +61,25 @@ export function FieldValueDirectAnswer({
 function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
   switch (result.fieldType) {
     case BuiltInFieldType.InstagramHandle:
-      return getUrlJsxElement(`https://www.instagram.com/${result.value}`, result.value);
+      return getAnchorTagJsxElement(`https://www.instagram.com/${result.value}`, result.value);
     case BuiltInFieldType.TwitterHandle:
-      return getUrlJsxElement(`https://twitter.com/${result.value}`, `@${result.value}`);
+      return getAnchorTagJsxElement(`https://twitter.com/${result.value}`, `@${result.value}`);
     case BuiltInFieldType.FacebookURL:
     case BuiltInFieldType.AndroidAppURL:
     case BuiltInFieldType.IOSAppURL:
-      return getUrlJsxElement(result.value);
+      return getAnchorTagJsxElement(result.value);
     case BuiltInFieldType.ComplexURL:
       const url = result.value.url;
       const displayUrl = result.value.preferDisplayUrl ? result.value.displayUrl : url;
-      return getUrlJsxElement(url, displayUrl);
+      return getAnchorTagJsxElement(url, displayUrl);
     case BuiltInFieldType.URL:
       return Array.isArray(result.value)
-        ? getListJsxElement(result.value, url => getUrlJsxElement(url))
-        : getUrlJsxElement(result.value);
+        ? getListJsxElement(result.value, url => getAnchorTagJsxElement(url))
+        : getAnchorTagJsxElement(result.value);
     case BuiltInFieldType.Phone:
-      return getUrlJsxElement(`tel:${result.value}`, result.value);
+      return getAnchorTagJsxElement(`tel:${result.value}`, result.value);
     case BuiltInFieldType.Email:
-      return getListJsxElement(result.value, e => getUrlJsxElement(`mailto:${e}`, e));
+      return getListJsxElement(result.value, e => getAnchorTagJsxElement(`mailto:${e}`, e));
     case BuiltInFieldType.Address:
       return getAddressJsxElement(result.value);
     case BuiltInFieldType.RichText:
@@ -105,7 +105,7 @@ function getListJsxElement<T>(
   </ul>);
 }
 
-function getUrlJsxElement(href: string, displayText?: string): JSX.Element {
+function getAnchorTagJsxElement(href: string, displayText?: string): JSX.Element {
   return <a href={href} className='text-primary'>{displayText ?? href}</a>;
 }
 

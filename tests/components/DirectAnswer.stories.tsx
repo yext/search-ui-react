@@ -18,7 +18,7 @@ const meta: ComponentMeta<typeof DirectAnswer> = {
 };
 export default meta;
 
-const baseDirectAnswerResult = fieldValueDAState.result as FieldValueDirectAnswerType;
+const baseDirectAnswerResult = fieldValueDAState.result;
 
 function generateFieldValueDirectAnswer(
   args: DirectAnswerProps,

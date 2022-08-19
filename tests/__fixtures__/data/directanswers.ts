@@ -17,7 +17,7 @@ export const featuredSnippetDAState: RecursivePartial<DirectAnswerState> = {
   }
 };
 
-export const fieldValueDAState: RecursivePartial<DirectAnswerState> = {
+export const fieldValueDAState: DirectAnswerState = {
   result: {
     type: DirectAnswerType.FieldValue,
     entityName: '[entityName]',
