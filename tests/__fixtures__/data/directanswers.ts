@@ -8,12 +8,16 @@ export const featuredSnippetDAState: RecursivePartial<DirectAnswerState> = {
       value: '[snippet.value]',
       matchedSubstrings: [{ length: 4, offset: 1 }]
     },
+    verticalKey: '[verticalKey]',
     value: '[value]',
     relatedResult: {
       link: '[relatedResult.link]',
       name: '[relatedResult.name]',
-      id: '[relatedResult.id]'
-    }
+      id: '[relatedResult.id]',
+      rawData: {},
+      source: Source.KnowledgeManager
+    },
+    fieldType: 'multi_line_text'
   }
 };
 

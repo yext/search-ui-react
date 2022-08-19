@@ -83,7 +83,7 @@ export const NumberFieldValue = (args: DirectAnswerProps) => {
   return generateFieldValueDirectAnswer(args, BuiltInFieldType.Integer, 123456789);
 };
 
-export const FeaturedSnippet = (args: DirectAnswerProps) => {
+export const PlainTextFeaturedSnippet = (args: DirectAnswerProps) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       directAnswer: featuredSnippetDAState
@@ -92,6 +92,8 @@ export const FeaturedSnippet = (args: DirectAnswerProps) => {
     </SearchHeadlessContext.Provider>
   );
 };
+
+// TODO: SLAP-2340, add story for RichTextFeaturedSnippet
 
 export const Loading = (args: DirectAnswerProps) => {
   return (
