@@ -758,7 +758,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-core@2.0.0-alpha.204
+ - @yext/search-core@2.0.0-alpha.218
 
 This package contains the following license and notice below:
 
@@ -802,7 +802,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-headless-react@2.0.0-alpha.151
+ - @yext/search-headless-react@2.0.0-alpha.152
 
 This package contains the following license and notice below:
 
@@ -846,7 +846,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-headless@2.0.0-alpha.130
+ - @yext/search-headless@2.0.0-alpha.134
 
 This package contains the following license and notice below:
 
