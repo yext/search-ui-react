@@ -8,8 +8,7 @@ import {
   ThumbsFeedback,
   builtInCssClasses as thumbsFeedbackCssClasses
 } from './ThumbsFeedback';
-import classNames from 'classnames';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { twMerge, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useCardAnalyticsCallback } from '../hooks/useCardAnalyticsCallback';
 import { useCardFeedbackCallback } from '../hooks/useCardFeedbackCallback';
 import { FieldValueDirectAnswer } from './FieldValueDirectAnswer';
@@ -74,9 +73,10 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
   }
 
   const cssClasses = getCssClassesForAnswerType(composedCssClasses, directAnswerResult.type);
-  const containerCssClasses = classNames(cssClasses.directAnswerContainer, {
-    [cssClasses.directAnswerLoading ?? '']: isLoading
-  });
+  const containerCssClasses = twMerge(
+    cssClasses.directAnswerContainer,
+    isLoading && cssClasses.directAnswerLoading
+  );
 
   const link = directAnswerResult.relatedResult.link;
   function getLinkText(directAnswerResult: DirectAnswerData) {
