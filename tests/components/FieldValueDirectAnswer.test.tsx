@@ -1,23 +1,10 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { FieldValueDirectAnswer } from '../../src/components/FieldValueDirectAnswer';
-import { Address, BuiltInFieldType, DirectAnswerType, FieldValueDirectAnswer as FieldValueDirectAnswerType, Source } from '@yext/search-headless-react';
+import { Address, BuiltInFieldType, FieldValueDirectAnswer as FieldValueDirectAnswerType, Source } from '@yext/search-headless-react';
 import { userEvent } from '@storybook/testing-library';
+import { fieldValueDAState } from '../__fixtures__/data/directanswers';
 
-const fieldValueDAResult: FieldValueDirectAnswerType = {
-  type: DirectAnswerType.FieldValue,
-  entityName: '[entityName]',
-  fieldName: '[fieldName]',
-  fieldType: BuiltInFieldType.SingleLineText,
-  fieldApiName: '[fieldApiName]',
-  verticalKey: '[verticalKey]',
-  value: '[value]',
-  relatedResult: {
-    link: '[relatedResult.link]',
-    id: '[relatedResult.id]',
-    rawData: {},
-    source: Source.KnowledgeManager
-  }
-};
+const fieldValueDAResult = fieldValueDAState.result as FieldValueDirectAnswerType;
 
 describe('FieldValue direct answer', () => {
 

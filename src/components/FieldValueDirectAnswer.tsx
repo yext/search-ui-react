@@ -83,7 +83,7 @@ function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
     case BuiltInFieldType.Address:
       return getAddressJsxElement(result.value);
     case BuiltInFieldType.RichText:
-      return <div>rich text</div>; //TODO: use react-markdown
+      return <div>{result.value}</div>; //TODO: SLAP-2340
     case 'unknown':
       return <div>unknown</div>; //TODO: SLAP-2337
     default:

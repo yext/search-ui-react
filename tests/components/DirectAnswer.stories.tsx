@@ -1,10 +1,8 @@
 import { ComponentMeta } from '@storybook/react';
 import {
   BuiltInFieldType,
-  DirectAnswerType,
   SearchHeadlessContext,
   FieldValueDirectAnswer as FieldValueDirectAnswerType,
-  Source,
   ComplexURL,
   Address
 } from '@yext/search-headless-react';
@@ -12,8 +10,7 @@ import {
 import { DirectAnswer, DirectAnswerProps } from '../../src/components/DirectAnswer';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
-import { featuredSnippetDAState } from '../__fixtures__/data/directanswers';
-import { RecursivePartial } from '../__utils__/mocks';
+import { featuredSnippetDAState, fieldValueDAState } from '../__fixtures__/data/directanswers';
 
 const meta: ComponentMeta<typeof DirectAnswer> = {
   title: 'DirectAnswer',
@@ -21,19 +18,7 @@ const meta: ComponentMeta<typeof DirectAnswer> = {
 };
 export default meta;
 
-const baseDirectAnswerResult: RecursivePartial<FieldValueDirectAnswerType> = {
-  type: DirectAnswerType.FieldValue,
-  entityName: '[entityName]',
-  fieldName: '[fieldName]',
-  fieldType: 'unknown',
-  value: '[value]',
-  relatedResult: {
-    link: '[relatedResult.link]',
-    id: '[relatedResult.id]',
-    rawData: {},
-    source: Source.KnowledgeManager
-  }
-};
+const baseDirectAnswerResult = fieldValueDAState.result as FieldValueDirectAnswerType;
 
 function generateFieldValueDirectAnswer(
   args: DirectAnswerProps,

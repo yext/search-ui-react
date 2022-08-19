@@ -1,4 +1,4 @@
-import { DirectAnswerState, DirectAnswerType } from '@yext/search-headless-react';
+import { BuiltInFieldType, DirectAnswerState, DirectAnswerType, Source } from '@yext/search-headless-react';
 import { RecursivePartial } from '../../__utils__/mocks';
 
 export const featuredSnippetDAState: RecursivePartial<DirectAnswerState> = {
@@ -22,10 +22,15 @@ export const fieldValueDAState: RecursivePartial<DirectAnswerState> = {
     type: DirectAnswerType.FieldValue,
     entityName: '[entityName]',
     fieldName: '[fieldName]',
+    fieldType: BuiltInFieldType.SingleLineText,
+    fieldApiName: '[fieldApiName]',
+    verticalKey: '[verticalKey]',
     value: '[value]',
     relatedResult: {
       link: '[relatedResult.link]',
-      id: '[relatedResult.id]'
+      id: '[relatedResult.id]',
+      rawData: {},
+      source: Source.KnowledgeManager
     }
   }
 };
