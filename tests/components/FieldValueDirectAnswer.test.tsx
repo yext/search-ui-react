@@ -31,6 +31,26 @@ describe('FieldValue direct answer', () => {
     expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
   });
 
+  it('use relatedResult.link url for "View Details" link', () => {
+    render(<FieldValueDirectAnswer result={fieldValueDAResult} />);
+    expect(screen.getByRole('link', { name: 'View Details' })).toHaveAttribute('href', '[relatedResult.link]');
+  });
+
+  it('uses landingPageUrl as fallback url for "View Details" link', () => {
+    render(<FieldValueDirectAnswer
+      result={{
+        ...fieldValueDAResult,
+        relatedResult: {
+          rawData: {
+            landingPageUrl: '[landingPageUrl]'
+          },
+          source: Source.KnowledgeManager
+        }
+      }}
+    />);
+    expect(screen.getByRole('link', { name: 'View Details' })).toHaveAttribute('href', '[landingPageUrl]');
+  });
+
   it('contains proper url href for simple URL field types', () => {
     const urlTypes = [
       BuiltInFieldType.IOSAppURL,

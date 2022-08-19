@@ -36,7 +36,7 @@ export function FieldValueDirectAnswer({
   cssClasses = {}
 }: FieldValueDirectAnswerProps): JSX.Element {
   const title = `${result.entityName} / ${result.fieldName}`;
-  const link = result.relatedResult.link;
+  const link = result.relatedResult.link ?? result.relatedResult.rawData.landingPageUrl;
   const resultContent = useMemo(() => getResultContent(result), [result]);
 
   return (
