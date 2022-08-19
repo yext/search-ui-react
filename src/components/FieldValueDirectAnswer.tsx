@@ -29,6 +29,8 @@ interface FieldValueDirectAnswerCssClasses {
 
 /**
  * Renders a field value direct answer provided by the Search API.
+ *
+ * @internal
  */
 export function FieldValueDirectAnswer({
   result,
