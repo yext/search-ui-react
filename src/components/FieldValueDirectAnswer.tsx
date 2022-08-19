@@ -114,11 +114,14 @@ function getAddressJsxElement(address: Address): JSX.Element {
   if (address.extraDescription) {
     return <div>{address.extraDescription}</div>;
   }
+  const cityFormat = address.city ? address.city + ',' : '';
+  const cityRegionPostalCodeFormat = [cityFormat, address.region, address.postalCode].join(' ').trim();
+
   return <div>
     {address.line1 && <p>{address.line1}</p>}
     {address.line2 && <p>{address.line2}</p>}
     {address.line3 && <p>{address.line3}</p>}
-    <p>{address.city}, {address.region} {address.postalCode}</p>
+    {cityRegionPostalCodeFormat && <p>{cityRegionPostalCodeFormat}</p>}
     <p>{address.countryCode}</p>
   </div>;
 }
