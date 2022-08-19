@@ -39,7 +39,7 @@
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -o storybook-static/assets-storybook",
     "wcag": "test-storybook",
     "test:unit": "jest --coverage --coverageDirectory=coverage/unit",
     "test:visual": "./tests/scripts/visual-coverage.sh",
