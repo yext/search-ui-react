@@ -150,6 +150,4 @@ describe('FieldValue direct answer', () => {
     render(<FieldValueDirectAnswer result={result}/>);
     expect(screen.getByText(extraDescription)).toBeDefined();
   });
-
-  //TODO: test for rich text
 });

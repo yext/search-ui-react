@@ -1,5 +1,4 @@
 import { BuiltInFieldType, DirectAnswerState, DirectAnswerType, Source } from '@yext/search-headless-react';
-import { RecursivePartial } from '../../__utils__/mocks';
 
 export const featuredSnippetDAState: DirectAnswerState = {
   result: {
@@ -21,7 +20,7 @@ export const featuredSnippetDAState: DirectAnswerState = {
   }
 };
 
-export const fieldValueDAState: RecursivePartial<DirectAnswerState> = {
+export const fieldValueDAState: DirectAnswerState = {
   result: {
     type: DirectAnswerType.FieldValue,
     entityName: '[entityName]',
