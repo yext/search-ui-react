@@ -7,19 +7,6 @@ import userEvent from '@testing-library/user-event';
 const featuredSnippetDAResult = featuredSnippetDAState.result as FeaturedSnippetDirectAnswerType;
 
 describe('FeaturedSnippet direct answer', () => {
-  it('highlights multi-line snippet text', () => {
-    render(<FeaturedSnippetDirectAnswer result={featuredSnippetDAResult} />);
-
-    const unhighlightedAtStart = screen.getByText('[');
-    expect(unhighlightedAtStart).toBeDefined();
-
-    const highlighted = screen.getByText('snip');
-    expect(highlighted).toBeDefined();
-
-    const unhighlightedAtEnd = screen.getByText('pet.value]');
-    expect(unhighlightedAtEnd).toBeDefined();
-  });
-
   it('uses relatedResult.link url for "Read more about" link', () => {
     render(<FeaturedSnippetDirectAnswer result={featuredSnippetDAResult} />);
     const directAnswerLink = screen.getByRole('link');
