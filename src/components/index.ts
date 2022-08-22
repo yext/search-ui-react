@@ -20,7 +20,9 @@ export {
 export {
   DirectAnswer,
   DirectAnswerCssClasses,
-  DirectAnswerProps
+  DirectAnswerProps,
+  UnknownFieldTypeDisplayComponent,
+  UnknownFieldTypeDisplayProps
 } from './DirectAnswer';
 
 export {
