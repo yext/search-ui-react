@@ -26,35 +26,8 @@ describe('Field value direct answer analytics', () => {
   runAnalyticsTestSuite();
 });
 
-describe('FeaturedSnippet direct answer', () => {
+describe('Featured snippet direct answer analytics', () => {
   beforeEach(() => mockState(featuredSnippetDAState));
-
-  it('title text', () => {
-    render(<DirectAnswer />);
-    const expectedTitle = '[value]';
-    expect(screen.getByText(expectedTitle)).toBeInTheDocument();
-  });
-
-  it('description text is highlighted', () => {
-    render(<DirectAnswer />);
-
-    const unhighlightedAtStart = screen.getByText('[');
-    expect(unhighlightedAtStart).toBeDefined();
-
-    const highlighted = screen.getByText('snip');
-    expect(highlighted).toBeDefined();
-
-    const unhighlightedAtEnd = screen.getByText('pet.value]');
-    expect(unhighlightedAtEnd).toBeDefined();
-  });
-
-  it('link', () => {
-    render(<DirectAnswer />);
-    const directAnswerLink = screen.getByRole('link');
-    expect(directAnswerLink).toHaveTextContent('[relatedResult.name]');
-    expect(directAnswerLink).toHaveAttribute('href', '[relatedResult.link]');
-  });
-
   runAnalyticsTestSuite();
 });
 

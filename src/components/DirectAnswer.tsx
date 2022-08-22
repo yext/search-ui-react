@@ -12,7 +12,7 @@ import { twMerge, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useCardAnalyticsCallback } from '../hooks/useCardAnalyticsCallback';
 import { useCardFeedbackCallback } from '../hooks/useCardFeedbackCallback';
 import { FieldValueDirectAnswer } from './FieldValueDirectAnswer';
-import { renderHighlightedValue } from './utils/renderHighlightedValue';
+import { FeaturedSnippetDirectAnswer } from './FeaturedSnippetDirectAnswer';
 
 /**
  * Props for {@link DirectAnswer}.
@@ -78,26 +78,6 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
     isLoading && cssClasses.directAnswerLoading
   );
 
-  const link = directAnswerResult.relatedResult.link;
-  function getLinkText(directAnswerResult: DirectAnswerData) {
-    const isSnippet = directAnswerResult.type === DirectAnswerType.FeaturedSnippet;
-    const name = directAnswerResult.relatedResult.name;
-    const snippetLinkMessage = 'Read more about ';
-
-    return (<>
-      {isSnippet && name && <div className='pt-4 text-neutral'>
-        {snippetLinkMessage}
-        <a
-          className='text-primary'
-          href={link}
-          onClick={handleClickViewDetails}
-        >
-          {name}
-        </a>
-      </div>}
-    </>);
-  }
-
   return (
     <div className={containerCssClasses}>
       {directAnswerResult.type === DirectAnswerType.FieldValue
@@ -106,17 +86,11 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
           cssClasses={cssClasses}
           viewDetailsClickHandler={handleClickViewDetails}
         />
-        //TODO: SLAP-2335 create FeaturedSnippetDirectAnswer component
-        : <div className={cssClasses.answerContainer}>
-          {directAnswerResult['value'] &&
-          <div className={cssClasses.header}>{directAnswerResult['value']}</div>}
-          <div className={cssClasses.content}>
-            <div className={cssClasses.body}>
-              {renderHighlightedValue(directAnswerResult.snippet, { highlighted: cssClasses.highlighted })}
-            </div>
-            {link && getLinkText(directAnswerResult)}
-          </div>
-        </div>
+        : <FeaturedSnippetDirectAnswer
+          result={directAnswerResult}
+          readMoreClickHandler={handleClickViewDetails}
+          cssClasses={cssClasses}
+        />
       }
       <ThumbsFeedback
         onClick={handleClickFeedbackButton}
