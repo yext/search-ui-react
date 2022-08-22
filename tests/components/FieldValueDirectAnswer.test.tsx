@@ -181,7 +181,7 @@ describe('FieldValue direct answer', () => {
       }
     } as FieldValueDirectAnswerType;
     render(<FieldValueDirectAnswer result={result}/>);
-    expect(screen.getByText('[object Object]')).toBeDefined();
+    expect(screen.getByText('{"color":"black","os":"Android"}')).toBeDefined();
     expect(consoleWarnSpy).toBeCalledWith(
       expect.stringContaining('Unknown field type for direct answer with "customFieldApiName" fieldApiName.')
     );

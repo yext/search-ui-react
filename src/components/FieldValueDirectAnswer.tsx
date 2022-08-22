@@ -66,12 +66,15 @@ export function FieldValueDirectAnswer({
 }
 
 function DefaultUnknownFieldTypeDisplay({ result }: { result: UnknownFieldValueDirectAnswer }): JSX.Element {
+  let val: string | number;
   if (typeof result.value !== 'string' && typeof result.value !== 'number') {
     console.warn(`Unknown field type for direct answer with "${result.fieldApiName}" fieldApiName. Rendering result's value as a string.`
       + '\nConsider using prop "UnknownFieldTypeDisplay" in DirectAnswer component to properly render result of unknown field type.');
+    val = JSON.stringify(result.value);
+  } else {
+    val = result.value;
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return getTextJsxElement((result.value as any).toString());
+  return getTextJsxElement(val);
 }
 
 function getResultContent(
