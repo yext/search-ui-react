@@ -1,19 +1,22 @@
 import { BuiltInFieldType, DirectAnswerState, DirectAnswerType, Source } from '@yext/search-headless-react';
-import { RecursivePartial } from '../../__utils__/mocks';
 
-export const featuredSnippetDAState: RecursivePartial<DirectAnswerState> = {
+export const featuredSnippetDAState: DirectAnswerState = {
   result: {
     type: DirectAnswerType.FeaturedSnippet,
     snippet: {
       value: '[snippet.value]',
       matchedSubstrings: [{ length: 4, offset: 1 }]
     },
+    verticalKey: '[verticalKey]',
     value: '[value]',
     relatedResult: {
       link: '[relatedResult.link]',
       name: '[relatedResult.name]',
-      id: '[relatedResult.id]'
-    }
+      id: '[relatedResult.id]',
+      rawData: {},
+      source: Source.KnowledgeManager
+    },
+    fieldType: 'multi_line_text'
   }
 };
 
