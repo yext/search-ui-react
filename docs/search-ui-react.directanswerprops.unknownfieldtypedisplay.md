@@ -4,7 +4,7 @@
 
 ## DirectAnswerProps.UnknownFieldTypeDisplay property
 
-A component to handle rendering of results with "unknown" field type in field value direct answer.
+A component to handle rendering results with "unknown" field type in field value direct answer.
 
 <b>Signature:</b>
 

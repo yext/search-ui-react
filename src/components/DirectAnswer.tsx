@@ -39,7 +39,7 @@ export type UnknownFieldTypeDisplayComponent = (
  * @public
  */
 export interface DirectAnswerProps {
-  /** A component to handle rendering of results with "unknown" field type in field value direct answer. */
+  /** A component to handle rendering results with "unknown" field type in field value direct answer. */
   UnknownFieldTypeDisplay?: UnknownFieldTypeDisplayComponent,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: DirectAnswerCssClasses
