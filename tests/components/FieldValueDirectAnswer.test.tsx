@@ -1,8 +1,14 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { FieldValueDirectAnswer } from '../../src/components/FieldValueDirectAnswer';
-import { Address, BuiltInFieldType, FieldValueDirectAnswer as FieldValueDirectAnswerType, Source } from '@yext/search-headless-react';
+import {
+  Source,
+  Address,
+  BuiltInFieldType,
+  FieldValueDirectAnswer as FieldValueDirectAnswerType,
+} from '@yext/search-headless-react';
 import { userEvent } from '@storybook/testing-library';
 import { fieldValueDAState } from '../__fixtures__/data/directanswers';
+import { UnknownFieldTypeDisplayComponent } from '../../src/components/DirectAnswer';
 
 const fieldValueDAResult = fieldValueDAState.result as FieldValueDirectAnswerType;
 
@@ -149,5 +155,54 @@ describe('FieldValue direct answer', () => {
     } as FieldValueDirectAnswerType;
     render(<FieldValueDirectAnswer result={result}/>);
     expect(screen.getByText(extraDescription)).toBeDefined();
+  });
+
+  it('uses default function to display result with field type "unknown" and value of type string', () => {
+    const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+    const result = {
+      ...fieldValueDAResult,
+      fieldType: 'unknown',
+      value: '[value]'
+    } as FieldValueDirectAnswerType;
+    render(<FieldValueDirectAnswer result={result}/>);
+    expect(screen.getByText('[value]')).toBeDefined();
+    expect(consoleWarnSpy).not.toBeCalled();
+  });
+
+  it('uses default function to display result with field type "unknown" and value of type object', () => {
+    const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+    const result = {
+      ...fieldValueDAResult,
+      fieldApiName: 'customFieldApiName',
+      fieldType: 'unknown',
+      value: {
+        color: 'black',
+        os: 'Android'
+      }
+    } as FieldValueDirectAnswerType;
+    render(<FieldValueDirectAnswer result={result}/>);
+    expect(screen.getByText('{"color":"black","os":"Android"}')).toBeDefined();
+    expect(consoleWarnSpy).toBeCalledWith(
+      expect.stringContaining('Unknown field type for direct answer with "customFieldApiName" fieldApiName.')
+    );
+  });
+
+  it('uses "unknownFieldTypeDisplayHandler" to display result with field type "unknown"', () => {
+    const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+    const result = {
+      ...fieldValueDAResult,
+      fieldType: 'unknown',
+      value: {
+        color: 'black',
+        os: 'Android'
+      }
+    } as FieldValueDirectAnswerType;
+    const UnknownFieldTypeDisplay: UnknownFieldTypeDisplayComponent = ({ result }) => {
+      const val = result.value as { color: string, os: string };
+      return <div>This is a {val.color} {val.os} phone</div>;
+    };
+    render(<FieldValueDirectAnswer result={result} UnknownFieldTypeDisplay={UnknownFieldTypeDisplay}/>);
+    expect(screen.getByText('This is a black Android phone')).toBeDefined();
+    expect(consoleWarnSpy).not.toBeCalled();
   });
 });

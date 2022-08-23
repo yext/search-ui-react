@@ -21,6 +21,7 @@ import { SearchHeadless } from '@yext/search-headless-react';
 import { SearchIntent } from '@yext/search-headless-react';
 import { SearchParameterField } from '@yext/search-headless-react';
 import { UniversalLimit } from '@yext/search-headless-react';
+import { UnknownFieldValueDirectAnswer } from '@yext/search-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/search-headless-react';
 
 // @public
@@ -138,7 +139,7 @@ export interface CtaData {
 export type DefaultRawDataType = Record<string, unknown>;
 
 // @public
-export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
+export function DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay }: DirectAnswerProps): JSX.Element | null;
 
 // @public
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
@@ -161,6 +162,7 @@ export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
 // @public
 export interface DirectAnswerProps {
     customCssClasses?: DirectAnswerCssClasses;
+    UnknownFieldTypeDisplay?: UnknownFieldTypeDisplayComponent;
 }
 
 // @public
@@ -689,6 +691,15 @@ export interface UniversalResultsProps<T> {
     customCssClasses?: UniversalResultsCssClasses;
     showAppliedFilters?: boolean;
     verticalConfigMap: VerticalConfigMap<T>;
+}
+
+// @public
+export type UnknownFieldTypeDisplayComponent = (props: UnknownFieldTypeDisplayProps) => JSX.Element;
+
+// @public
+export interface UnknownFieldTypeDisplayProps {
+    // (undocumented)
+    result: UnknownFieldValueDirectAnswer;
 }
 
 // @public
