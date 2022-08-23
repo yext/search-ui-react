@@ -9,14 +9,14 @@ Renders Direct Answers provided by the Search API.
 <b>Signature:</b>
 
 ```typescript
-export declare function DirectAnswer(props: DirectAnswerProps): JSX.Element | null;
+export declare function DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay }: DirectAnswerProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [DirectAnswerProps](./search-ui-react.directanswerprops.md) | [DirectAnswerProps](./search-ui-react.directanswerprops.md) |
+|  { customCssClasses, UnknownFieldTypeDisplay } | [DirectAnswerProps](./search-ui-react.directanswerprops.md) |  |
 
 <b>Returns:</b>
 

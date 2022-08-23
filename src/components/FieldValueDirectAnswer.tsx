@@ -1,9 +1,11 @@
 import {
   FieldValueDirectAnswer as FieldValueDirectAnswerType,
   BuiltInFieldType,
-  Address
+  Address,
+  UnknownFieldValueDirectAnswer
 } from '@yext/search-headless-react';
 import { useMemo } from 'react';
+import { UnknownFieldTypeDisplayComponent } from './DirectAnswer';
 
 /**
  * Props for FieldValueDirectAnswer.
@@ -13,12 +15,14 @@ interface FieldValueDirectAnswerProps {
   result: FieldValueDirectAnswerType,
   /** Handle onClick event for "View Details" link. */
   viewDetailsClickHandler?: () => void,
+  /** {@inheritDoc DirectAnswerProps.UnknownFieldTypeDisplay} */
+  UnknownFieldTypeDisplay?: UnknownFieldTypeDisplayComponent,
   /** CSS classes for customizing the component styling. */
   cssClasses?: FieldValueDirectAnswerCssClasses
 }
 
 /**
- *  The CSS class interface for FieldValueDirectAnswer.
+ * The CSS class interface for FieldValueDirectAnswer.
  */
 interface FieldValueDirectAnswerCssClasses {
   header?: string,
@@ -35,11 +39,14 @@ interface FieldValueDirectAnswerCssClasses {
 export function FieldValueDirectAnswer({
   result,
   viewDetailsClickHandler,
+  UnknownFieldTypeDisplay,
   cssClasses = {}
 }: FieldValueDirectAnswerProps): JSX.Element {
   const title = `${result.entityName} / ${result.fieldName}`;
   const link = result.relatedResult.link ?? result.relatedResult.rawData.landingPageUrl as string;
-  const resultContent = useMemo(() => getResultContent(result), [result]);
+  const resultContent = useMemo(() => {
+    return getResultContent(result, UnknownFieldTypeDisplay);
+  }, [result, UnknownFieldTypeDisplay]);
 
   return (
     <div className={cssClasses.answerContainer}>
@@ -58,7 +65,22 @@ export function FieldValueDirectAnswer({
   );
 }
 
-function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
+function DefaultUnknownFieldTypeDisplay({ result }: { result: UnknownFieldValueDirectAnswer }): JSX.Element {
+  let val: string | number;
+  if (typeof result.value !== 'string' && typeof result.value !== 'number') {
+    console.warn(`Unknown field type for direct answer with "${result.fieldApiName}" fieldApiName. Rendering result's value as a string.`
+      + '\nConsider using prop "UnknownFieldTypeDisplay" in DirectAnswer component to properly render result of unknown field type.');
+    val = JSON.stringify(result.value);
+  } else {
+    val = result.value;
+  }
+  return getTextJsxElement(val);
+}
+
+function getResultContent(
+  result: FieldValueDirectAnswerType,
+  UnknownFieldTypeDisplay: UnknownFieldTypeDisplayComponent = DefaultUnknownFieldTypeDisplay
+): JSX.Element {
   switch (result.fieldType) {
     case BuiltInFieldType.InstagramHandle:
       return getAnchorTagJsxElement(`https://www.instagram.com/${result.value}`, result.value);
@@ -85,11 +107,11 @@ function getResultContent(result: FieldValueDirectAnswerType): JSX.Element {
     case BuiltInFieldType.RichText:
       return <div>{result.value}</div>; //TODO: SLAP-2340
     case 'unknown':
-      return <div>unknown</div>; //TODO: SLAP-2337
+      return <UnknownFieldTypeDisplay result={result}/>;
     default:
       return Array.isArray(result.value)
-        ? getListJsxElement(result.value, val => <p className='whitespace-pre-wrap'>{val}</p>)
-        : <p className='whitespace-pre-wrap'>{result.value}</p>;
+        ? getListJsxElement(result.value, val => getTextJsxElement(val))
+        : getTextJsxElement(result.value as string | number);
   }
 }
 
@@ -103,6 +125,10 @@ function getListJsxElement<T>(
         {getItemJsxElement(el)}
       </li>)}
   </ul>);
+}
+
+function getTextJsxElement(text: string | number): JSX.Element {
+  return <p className='whitespace-pre-wrap'>{text}</p>;
 }
 
 function getAnchorTagJsxElement(href: string, displayText?: string): JSX.Element {

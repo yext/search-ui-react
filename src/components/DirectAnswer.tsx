@@ -2,6 +2,7 @@ import {
   useSearchState,
   DirectAnswerType,
   DirectAnswer as DirectAnswerData,
+  UnknownFieldValueDirectAnswer,
 } from '@yext/search-headless-react';
 import {
   ThumbsFeedbackCssClasses,
@@ -15,11 +16,31 @@ import { FieldValueDirectAnswer } from './FieldValueDirectAnswer';
 import { FeaturedSnippetDirectAnswer } from './FeaturedSnippetDirectAnswer';
 
 /**
+ * Props for {@link UnknownFieldTypeDisplayComponent}.
+ *
+ * @public
+ */
+export interface UnknownFieldTypeDisplayProps {
+  result: UnknownFieldValueDirectAnswer
+}
+
+/**
+ * A React component interface to render results with "unknown" field type in field value direct answer.
+ *
+ * @public
+ */
+export type UnknownFieldTypeDisplayComponent = (
+  props: UnknownFieldTypeDisplayProps
+) => JSX.Element;
+
+/**
  * Props for {@link DirectAnswer}.
  *
  * @public
  */
 export interface DirectAnswerProps {
+  /** A component to handle rendering results with "unknown" field type in field value direct answer. */
+  UnknownFieldTypeDisplay?: UnknownFieldTypeDisplayComponent,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: DirectAnswerCssClasses
 }
@@ -60,10 +81,13 @@ const builtInCssClasses: Readonly<DirectAnswerCssClasses> = {
  * @param props - {@link DirectAnswerProps}
  * @returns A react element for DirectAnswer
  */
-export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
+export function DirectAnswer({
+  customCssClasses,
+  UnknownFieldTypeDisplay
+}: DirectAnswerProps): JSX.Element | null {
   const directAnswerResult = useSearchState(state => state.directAnswer.result);
   const isLoading = useSearchState(state => state.searchStatus.isLoading || false);
-  const composedCssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
+  const composedCssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const handleClickViewDetails = useCardAnalyticsCallback(directAnswerResult as DirectAnswerData, 'CTA_CLICK');
   const handleClickFeedbackButton = useCardFeedbackCallback(directAnswerResult as DirectAnswerData);
@@ -85,6 +109,7 @@ export function DirectAnswer(props: DirectAnswerProps): JSX.Element | null {
           result={directAnswerResult}
           cssClasses={cssClasses}
           viewDetailsClickHandler={handleClickViewDetails}
+          UnknownFieldTypeDisplay={UnknownFieldTypeDisplay}
         />
         : <FeaturedSnippetDirectAnswer
           result={directAnswerResult}

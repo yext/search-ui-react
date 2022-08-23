@@ -12,7 +12,7 @@
 |  [AnalyticsProvider(props)](./search-ui-react.analyticsprovider.md) | A higher-order component which provides analytics for its children. |
 |  [AppliedFilters(props)](./search-ui-react.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from facets, NLP filters, and field value static filters. |
 |  [ApplyFiltersButton({ customCssClasses, label })](./search-ui-react.applyfiltersbutton.md) | Runs a vertical search. By default has <code>position: sticky</code> styling that anchors it to the bottom of the page. |
-|  [DirectAnswer(props)](./search-ui-react.directanswer.md) | Renders Direct Answers provided by the Search API. |
+|  [DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay })](./search-ui-react.directanswer.md) | Renders Direct Answers provided by the Search API. |
 |  [DropdownItem(\_props)](./search-ui-react.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
 |  [executeAutocomplete(searchActions)](./search-ui-react.executeautocomplete.md) | Executes a universal/vertical autocomplete search and return the corresponding response. |
 |  [executeSearch(searchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
@@ -94,6 +94,7 @@
 |  [ThumbsFeedbackProps](./search-ui-react.thumbsfeedbackprops.md) | Props for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->. |
 |  [UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
 |  [UniversalResultsProps](./search-ui-react.universalresultsprops.md) | Props for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
+|  [UnknownFieldTypeDisplayProps](./search-ui-react.unknownfieldtypedisplayprops.md) | Props for [UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md)<!-- -->. |
 |  [VerticalConfig](./search-ui-react.verticalconfig.md) | The configuration for a vertical. |
 |  [VerticalLabelMap](./search-ui-react.verticallabelmap.md) | A map of vertical keys to labels. |
 |  [VerticalLink](./search-ui-react.verticallink.md) | Data needed to create a URL to a vertical search page. |
@@ -123,5 +124,6 @@
 |  [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data. |
 |  [SectionComponent](./search-ui-react.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 |  [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md) | The configuration data for a field value static filter option. |
+|  [UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md) | A React component interface to render results with "unknown" field type in field value direct answer. |
 |  [VerticalConfigMap](./search-ui-react.verticalconfigmap.md) | A map of verticalKey to a VerticalConfig. |
 
