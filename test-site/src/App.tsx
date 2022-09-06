@@ -1,4 +1,4 @@
-import { SearchHeadlessProvider } from '@yext/search-headless-react';
+import { provideHeadless, SearchHeadlessProvider } from '@yext/search-headless-react';
 import { Navbar } from './components/Navbar';
 import { PeoplePage } from './pages/PeoplePage';
 import { ProductsPage } from './pages/ProductsPage';
@@ -11,10 +11,14 @@ import {
 import { AnalyticsProvider } from '@yext/search-ui-react';
 import { config } from './config';
 
+const searcher = provideHeadless(config);
+searcher.setSessionTrackingEnabled(false);
+
+
 function App() {
   return (
     <div className='p-4'>
-      <SearchHeadlessProvider {...config}>
+      <SearchHeadlessProvider searcher={searcher}>
         <AnalyticsProvider {...config}>
           <BrowserRouter>
             <Navbar/>
