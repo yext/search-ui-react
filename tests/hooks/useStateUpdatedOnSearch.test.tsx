@@ -1,5 +1,5 @@
 import { render, screen, act } from '@testing-library/react';
-import { SearchHeadlessProvider, useSearchActions } from '@yext/search-headless-react';
+import { provideHeadless, SearchHeadless, SearchHeadlessProvider, useSearchActions } from '@yext/search-headless-react';
 import { useStateUpdatedOnSearch } from '../../src/hooks/useStateUpdatedOnSearch';
 
 it('uses the correct initial value', () => {
@@ -64,9 +64,9 @@ function renderWithProvider(testJsx) {
     headlessId: headlessIdCounter.toString()
   };
   headlessIdCounter++;
-
+  const searcher: SearchHeadless = provideHeadless(config);
   render(
-    <SearchHeadlessProvider {...config}>
+    <SearchHeadlessProvider searcher={searcher}>
       {testJsx}
     </SearchHeadlessProvider>
   );
