@@ -106,11 +106,13 @@ function getResultContent(
       return getAddressJsxElement(result.value);
     case BuiltInFieldType.RichText:
       return <div>{result.value}</div>; //TODO: SLAP-2340
+    case BuiltInFieldType.Hours:
+      return <div>{result.value}</div>;
     case 'unknown':
       return <UnknownFieldTypeDisplay result={result}/>;
     default:
       return Array.isArray(result.value)
-        ? getListJsxElement(result.value, val => getTextJsxElement(val))
+        ? getListJsxElement(result.value as (string | number)[], val => getTextJsxElement(val))
         : getTextJsxElement(result.value as string | number);
   }
 }
