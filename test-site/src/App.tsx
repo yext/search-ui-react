@@ -9,11 +9,14 @@ import {
   Routes,
 } from 'react-router-dom';
 import { AnalyticsProvider } from '@yext/search-ui-react';
+import acquireSessionId from './utils/acquireSessionId';
 import { config } from './config';
 
 const searcher = provideHeadless(config);
-searcher.setSessionTrackingEnabled(false);
 
+searcher.setSessionTrackingEnabled(true);
+const sessionId = acquireSessionId();
+sessionId && searcher.setSessionId(sessionId);
 
 function App() {
   return (
