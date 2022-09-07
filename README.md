@@ -37,6 +37,7 @@ Once the library and its peer dependencies are installed, the components can be 
 ```tsx
 import { SearchHeadlessProvider } from '@yext/search-headless-react';
 import { SearchBar, UniversalResults } from '@yext/search-ui-react';
+import { v4 as uuidv4 } from 'uuid';
 
 const config = {
   apiKey: '<apiKey>',
@@ -50,7 +51,7 @@ const searcher = provideHeadless(config);
 searcher.setSessionTrackingEnabled(true);
 let sessionId = window.sessionStorage.getItem('sessionId');
 if (!sessionId) {
-  sessionId = 'newUUID';
+  sessionId = uuidv4();
   window.sessionStorage.setItem('sessionId', sessionId);
 }
 searcher.setSessionId(sessionId);
