@@ -32,10 +32,11 @@ npx install-peerdeps @yext/search-ui-react
 ```
 The command will work with Yarn so long as NPM 6+ is installed on the machine.
 
-Once the library and its peer dependencies are installed, the components can be rendered using React by placing them inside the `SearchHeadlessProvider` with the appropriate credentials:
+Once the library and its peer dependencies are installed, the components can be rendered using React by placing them inside the `SearchHeadlessProvider`. `SearchHeadlessProvider` requires a `SearchHeadless` instance, which is created
+using `provideHeadless(...)` with the appropriate credentials:
 
 ```tsx
-import { SearchHeadlessProvider } from '@yext/search-headless-react';
+import { provideHeadless, SearchHeadlessProvider } from '@yext/search-headless-react';
 import { SearchBar, UniversalResults } from '@yext/search-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -60,7 +61,11 @@ function App() {
   return (
     <SearchHeadlessProvider searcher={searcher}>
       <SearchBar />
-      <UniversalResults />
+      <UniversalResults verticalConfigMap={{
+        help_articles: {
+          label: "Help Articles"
+          }
+      }}/>
     </SearchHeadlessProvider>
   );
 }
