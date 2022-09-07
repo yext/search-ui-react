@@ -36,7 +36,7 @@ Once the library and its peer dependencies are installed, our React Components s
 
 ```tsx
 import { provideHeadless, SearchHeadlessProvider } from '@yext/search-headless-react';
-import { SearchBar, UniversalResults } from '@yext/search-ui-react';
+import { SearchBar, UniversalResults, VerticalConfigMap } from '@yext/search-ui-react';
 import { v4 as uuidv4 } from 'uuid';
 
 const config = {
@@ -56,15 +56,17 @@ if (!sessionId) {
 }
 searcher.setSessionId(sessionId);
 
+const verticalConfigMap: VerticalConfigMap = {
+  help_articles: {
+    label: "Help Articles"
+  }
+}
+
 function App() {
   return (
     <SearchHeadlessProvider searcher={searcher}>
       <SearchBar />
-      <UniversalResults verticalConfigMap={{
-        help_articles: {
-          label: "Help Articles"
-          }
-      }}/>
+      <UniversalResults verticalConfigMap={verticalConfigMap}/>
     </SearchHeadlessProvider>
   );
 }
