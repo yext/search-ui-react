@@ -45,9 +45,19 @@ const config = {
   experienceVersion: 'PRODUCTION',
 }
 
+const searcher = provideHeadless(config);
+
+searcher.setSessionTrackingEnabled(true);
+let sessionId = window.sessionStorage.getItem('sessionId');
+if (!sessionId) {
+  sessionId = 'newUUID';
+  window.sessionStorage.setItem('sessionId', sessionId);
+}
+searcher.setSessionId(sessionId);
+
 function App() {
   return (
-    <SearchHeadlessProvider {...config}>
+    <SearchHeadlessProvider searcher={searcher}>
       <SearchBar />
       <UniversalResults />
     </SearchHeadlessProvider>
