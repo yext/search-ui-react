@@ -106,7 +106,7 @@ function getResultContent(
       return getAddressJsxElement(result.value);
     case BuiltInFieldType.RichText:
       //TODO: SLAP-2340
-      console.warn('Rendering markdown for rich text direct answer is currently not supported. Displaying the unrendered markdown string as is.');
+      console.warn('Rendering markdown for rich text direct answer is currently not supported. Displaying the unrendered markdown string(s) as is.');
       return Array.isArray(result.value)
         ? getListJsxElement(result.value, val => getTextJsxElement(val))
         : getTextJsxElement(result.value);
