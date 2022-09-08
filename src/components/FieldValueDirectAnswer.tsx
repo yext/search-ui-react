@@ -105,9 +105,13 @@ function getResultContent(
     case BuiltInFieldType.Address:
       return getAddressJsxElement(result.value);
     case BuiltInFieldType.RichText:
-      return <div>{result.value}</div>; //TODO: SLAP-2340
+      //TODO: SLAP-2340
+      console.warn('Rendering markdown for rich text direct answer is currently not supported. Displaying the unrendered markdown string(s) as is.');
+      return Array.isArray(result.value)
+        ? getListJsxElement(result.value, val => getTextJsxElement(val))
+        : getTextJsxElement(result.value);
     case BuiltInFieldType.Hours:
-      return <div>{result.value}</div>;
+      return <div>{JSON.stringify(result.value)}</div>;
     case 'unknown':
       return <UnknownFieldTypeDisplay result={result}/>;
     default:

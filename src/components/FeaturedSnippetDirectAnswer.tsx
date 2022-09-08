@@ -36,6 +36,9 @@ export function FeaturedSnippetDirectAnswer({
 }: FeaturedSnippetDirectAnswerProps): JSX.Element {
   const answer = result.fieldType === 'multi_line_text' && result.value;
   // TODO: SLAP-2340, update rich text snippets to convert the markdown
+  if (result.fieldType === 'rich_text') {
+    console.warn('Rendering markdown for rich text direct answer is currently not supported. Displaying the unrendered markdown string as is.');
+  }
   const snippet = renderHighlightedValue(result.snippet, { highlighted: cssClasses.highlighted });
   const link = result.relatedResult.link || result.relatedResult.rawData.landingPageUrl as string;
   const name = result.relatedResult.name;
