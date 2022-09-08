@@ -105,7 +105,7 @@ function getResultContent(
     case BuiltInFieldType.Address:
       return getAddressJsxElement(result.value);
     case BuiltInFieldType.RichText:
-      console.warn('Rendering markdown for rich text direct answer is currently not supported.');
+      console.warn('Rendering markdown for rich text direct answer is currently not supported. Displaying the unrendered markdown string as is.');
       return <div>{JSON.stringify(result.value)}</div>; //TODO: SLAP-2340
     case BuiltInFieldType.Hours:
       return <div>{JSON.stringify(result.value)}</div>;
