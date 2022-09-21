@@ -1,4 +1,4 @@
-import { createElement, isValidElement, PropsWithChildren, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { createElement, isValidElement, KeyboardEvent, PropsWithChildren, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
 import useRootClose from '@restart/ui/useRootClose';
@@ -100,60 +100,52 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     toggleDropdown(false);
   }, { disabled: !isActive });
 
-  useEffect(() => {
-    const dropdownContainer = containerRef.current;
-    dropdownContainer?.addEventListener('keydown', handleKeyDown);
-    return () => {
-      dropdownContainer?.removeEventListener('keydown', handleKeyDown);
-    };
+  function handleKeyDown(e: KeyboardEvent<HTMLDivElement>) {
+    if (!isActive) {
+      return;
+    }
 
-    function handleKeyDown(e: globalThis.KeyboardEvent) {
-      if (!isActive) {
-        return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+    }
+
+    if (e.key === 'ArrowDown') {
+      if (alwaysSelectOption && focusedIndex === items.length - 1) {
+        updateFocusedItem(0);
+      } else {
+        updateFocusedItem(focusedIndex + 1);
       }
-
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
+    } else if (e.key === 'ArrowUp') {
+      if (alwaysSelectOption && focusedIndex === 0) {
+        updateFocusedItem(items.length - 1);
+      } else {
+        updateFocusedItem(focusedIndex - 1);
       }
-
-      if (e.key === 'ArrowDown') {
-        if (alwaysSelectOption && focusedIndex === items.length - 1) {
-          updateFocusedItem(0);
-        } else {
-          updateFocusedItem(focusedIndex + 1);
-        }
-      } else if (e.key === 'ArrowUp') {
-        if (alwaysSelectOption && focusedIndex === 0) {
-          updateFocusedItem(items.length - 1);
-        } else {
-          updateFocusedItem(focusedIndex - 1);
-        }
-      } else if (e.key === 'Tab' && !e.shiftKey) {
-        if (items.length !== 0) {
-          if (focusedIndex >= items.length - 1) {
-            updateFocusedItem(-1);
-            toggleDropdown(false);
-          } else {
-            updateFocusedItem(focusedIndex + 1);
-            e.preventDefault();
-          }
-        }
-      } else if (e.key === 'Tab' && e.shiftKey) {
-        if (focusedIndex > 0 || (!alwaysSelectOption && focusedIndex === 0)) {
-          updateFocusedItem(focusedIndex - 1);
-          e.preventDefault();
-        } else {
+    } else if (e.key === 'Tab' && !e.shiftKey) {
+      if (items.length !== 0) {
+        if (focusedIndex >= items.length - 1) {
           updateFocusedItem(-1);
           toggleDropdown(false);
+        } else {
+          updateFocusedItem(focusedIndex + 1);
+          e.preventDefault();
         }
-      } else if (!hasTyped) {
-        setHasTyped(true);
       }
+    } else if (e.key === 'Tab' && e.shiftKey) {
+      if (focusedIndex > 0 || (!alwaysSelectOption && focusedIndex === 0)) {
+        updateFocusedItem(focusedIndex - 1);
+        e.preventDefault();
+      } else {
+        updateFocusedItem(-1);
+        toggleDropdown(false);
+      }
+    } else if (!hasTyped) {
+      setHasTyped(true);
     }
-  }, [updateFocusedItem, alwaysSelectOption, isActive, focusedIndex, hasTyped, toggleDropdown, items.length]);
+  }
 
   return (
-    <div ref={containerRef} className={isActive ? activeClassName : className}>
+    <div ref={containerRef} className={isActive ? activeClassName : className} onKeyDown={handleKeyDown}>
       <DropdownContext.Provider value={dropdownContext}>
         <InputContext.Provider value={inputContext}>
           <FocusContext.Provider value={focusContext}>
