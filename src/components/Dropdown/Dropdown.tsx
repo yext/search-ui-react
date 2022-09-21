@@ -1,7 +1,6 @@
 import { createElement, isValidElement, PropsWithChildren, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
-import useGlobalListener from '@restart/hooks/useGlobalListener';
 import useRootClose from '@restart/ui/useRootClose';
 import { FocusContext, FocusContextType } from './FocusContext';
 import { v4 as uuid } from 'uuid';
@@ -101,49 +100,57 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     toggleDropdown(false);
   }, { disabled: !isActive });
 
-  useGlobalListener('keydown', e => {
-    if (!isActive) {
-      return;
-    }
+  useEffect(() => {
+    const dropdownContainer = containerRef.current;
+    dropdownContainer?.addEventListener('keydown', handleKeyDown);
+    return () => {
+      dropdownContainer?.removeEventListener('keydown', handleKeyDown);
+    };
 
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
-    }
+    function handleKeyDown(e: globalThis.KeyboardEvent) {
+      if (!isActive) {
+        return;
+      }
 
-    if (e.key === 'ArrowDown') {
-      if (alwaysSelectOption && focusedIndex === items.length - 1) {
-        updateFocusedItem(0);
-      } else {
-        updateFocusedItem(focusedIndex + 1);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
       }
-    } else if (e.key === 'ArrowUp') {
-      if (alwaysSelectOption && focusedIndex === 0) {
-        updateFocusedItem(items.length - 1);
-      } else {
-        updateFocusedItem(focusedIndex - 1);
-      }
-    } else if (e.key === 'Tab' && !e.shiftKey) {
-      if (items.length !== 0) {
-        if (focusedIndex >= items.length - 1) {
-          updateFocusedItem(-1);
-          toggleDropdown(false);
+
+      if (e.key === 'ArrowDown') {
+        if (alwaysSelectOption && focusedIndex === items.length - 1) {
+          updateFocusedItem(0);
         } else {
           updateFocusedItem(focusedIndex + 1);
-          e.preventDefault();
         }
+      } else if (e.key === 'ArrowUp') {
+        if (alwaysSelectOption && focusedIndex === 0) {
+          updateFocusedItem(items.length - 1);
+        } else {
+          updateFocusedItem(focusedIndex - 1);
+        }
+      } else if (e.key === 'Tab' && !e.shiftKey) {
+        if (items.length !== 0) {
+          if (focusedIndex >= items.length - 1) {
+            updateFocusedItem(-1);
+            toggleDropdown(false);
+          } else {
+            updateFocusedItem(focusedIndex + 1);
+            e.preventDefault();
+          }
+        }
+      } else if (e.key === 'Tab' && e.shiftKey) {
+        if (focusedIndex > 0 || (!alwaysSelectOption && focusedIndex === 0)) {
+          updateFocusedItem(focusedIndex - 1);
+          e.preventDefault();
+        } else {
+          updateFocusedItem(-1);
+          toggleDropdown(false);
+        }
+      } else if (!hasTyped) {
+        setHasTyped(true);
       }
-    } else if (e.key === 'Tab' && e.shiftKey) {
-      if (focusedIndex > 0 || (!alwaysSelectOption && focusedIndex === 0)) {
-        updateFocusedItem(focusedIndex - 1);
-        e.preventDefault();
-      } else {
-        updateFocusedItem(-1);
-        toggleDropdown(false);
-      }
-    } else if (!hasTyped) {
-      setHasTyped(true);
     }
-  });
+  }, [updateFocusedItem, alwaysSelectOption, isActive, focusedIndex, hasTyped, toggleDropdown, items.length]);
 
   return (
     <div ref={containerRef} className={isActive ? activeClassName : className}>
