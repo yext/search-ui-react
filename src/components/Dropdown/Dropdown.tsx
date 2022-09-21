@@ -102,12 +102,12 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   }, { disabled: !isActive });
 
   useGlobalListener('keydown', e => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
-    }
-
     if (!isActive) {
       return;
+    }
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
     }
 
     if (e.key === 'ArrowDown') {
