@@ -1,7 +1,6 @@
-import { createElement, isValidElement, PropsWithChildren, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { createElement, isValidElement, KeyboardEvent, PropsWithChildren, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
-import useGlobalListener from '@restart/hooks/useGlobalListener';
 import useRootClose from '@restart/ui/useRootClose';
 import { FocusContext, FocusContextType } from './FocusContext';
 import { v4 as uuid } from 'uuid';
@@ -101,13 +100,13 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     toggleDropdown(false);
   }, { disabled: !isActive });
 
-  useGlobalListener('keydown', e => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault();
-    }
-
+  function handleKeyDown(e: KeyboardEvent<HTMLDivElement>) {
     if (!isActive) {
       return;
+    }
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
     }
 
     if (e.key === 'ArrowDown') {
@@ -143,10 +142,10 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     } else if (!hasTyped) {
       setHasTyped(true);
     }
-  });
+  }
 
   return (
-    <div ref={containerRef} className={isActive ? activeClassName : className}>
+    <div ref={containerRef} className={isActive ? activeClassName : className} onKeyDown={handleKeyDown}>
       <DropdownContext.Provider value={dropdownContext}>
         <InputContext.Provider value={inputContext}>
           <FocusContext.Provider value={focusContext}>

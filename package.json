@@ -135,7 +135,6 @@
   "dependencies": {
     "@microsoft/api-documenter": "^7.15.3",
     "@microsoft/api-extractor": "^7.19.4",
-    "@restart/hooks": "^0.4.5",
     "@restart/ui": "^1.0.1",
     "@tailwindcss/forms": "^0.5.0",
     "@yext/analytics": "^0.2.0-beta.3",
