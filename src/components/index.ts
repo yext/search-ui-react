@@ -134,6 +134,15 @@ export {
 } from './ApplyFiltersButton';
 
 export {
+  MapboxMap,
+  PinComponent,
+  MapboxMapProps,
+  OnDragHandler,
+  CoordinateGetter,
+  Coordinate
+} from './MapboxMap';
+
+export {
   renderHighlightedValue,
   HighlightedValueCssClasses
 } from './utils/renderHighlightedValue';

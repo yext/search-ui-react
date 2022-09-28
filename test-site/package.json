@@ -11,6 +11,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "eslint-config-react-app": "file:../node_modules/eslint-config-react-app",
     "@types/node": "^16.11.26",
     "@types/react": "^17.0.42",
     "@types/react-dom": "^17.0.14",
@@ -25,12 +26,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

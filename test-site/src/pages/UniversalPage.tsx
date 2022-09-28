@@ -15,7 +15,6 @@ import { useLayoutEffect } from 'react';
 // import { CustomSection } from '../components/CustomSection';
 import { config } from '../config';
 
-
 const visualAutocompleteConfig: VisualAutocompleteConfig = {
   entityPreviewSearcher: provideHeadless({
     ...config,
@@ -47,9 +46,13 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
           </DropdownItem>
         )}
       </div>
-    )
+    );
   }
-}
+};
+
+const universalVerticalConfigMap = {
+  people: {}
+};
 
 const customSearchBarCss = {
   searchBarContainer: 'mb-3 text-emerald-800'
@@ -72,9 +75,7 @@ export default function UniversalPage(): JSX.Element {
       <DirectAnswer />
       <ResultsCount />
       <UniversalResults
-        verticalConfigMap={{
-          people: {}
-        }}
+        verticalConfigMap={universalVerticalConfigMap}
       />
       {/* Test generic result type  */}
       {/* <UniversalResults

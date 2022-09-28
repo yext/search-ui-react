@@ -1,4 +1,4 @@
-import { SectionProps, StandardCard } from '@yext/search-ui-react'
+import { SectionProps, StandardCard } from '@yext/search-ui-react';
 
 export function CustomSection<T>(props: SectionProps<T>): JSX.Element | null {
   const { results, CardComponent = StandardCard, header } = props;

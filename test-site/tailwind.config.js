@@ -7,4 +7,4 @@ module.exports = {
     './src/**/*.{ts,tsx}',
     ComponentsContentPath
   ]
-}
+};
