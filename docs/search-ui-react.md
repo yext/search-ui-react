@@ -23,6 +23,7 @@
 |  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./search-ui-react.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
 |  [isCtaData(data)](./search-ui-react.isctadata.md) | Type guard for CtaData. |
 |  [LocationBias({ geolocationOptions, customCssClasses })](./search-ui-react.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
+|  [MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag })](./search-ui-react.mapboxmap.md) | A component that renders a map with markers to show result locations using Mapbox GL. |
 |  [NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps })](./search-ui-react.numericalfacets.md) | A component that displays numerical facets applicable to the current vertical search. |
 |  [Pagination(props)](./search-ui-react.pagination.md) | Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages. |
 |  [renderHighlightedValue(highlightedValueOrString, customCssClasses)](./search-ui-react.renderhighlightedvalue.md) | Renders a HighlightedValue with highlighting based on its matchedSubstrings. |
@@ -54,6 +55,7 @@
 |  [ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md) | Props for [ApplyFiltersButton()](./search-ui-react.applyfiltersbutton.md) |
 |  [AutocompleteResultCssClasses](./search-ui-react.autocompleteresultcssclasses.md) | The CSS class interface for the Autocomplete Result. |
 |  [CardProps](./search-ui-react.cardprops.md) | The props provided to every [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->. |
+|  [Coordinate](./search-ui-react.coordinate.md) | Coordinate use to represent the result's location on a map. |
 |  [CtaData](./search-ui-react.ctadata.md) | The shape of a StandardCard CTA field's data. |
 |  [DirectAnswerCssClasses](./search-ui-react.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->. |
 |  [DirectAnswerProps](./search-ui-react.directanswerprops.md) | Props for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->. |
@@ -68,6 +70,7 @@
 |  [HighlightedValueCssClasses](./search-ui-react.highlightedvaluecssclasses.md) | The CSS class interface for [renderHighlightedValue()](./search-ui-react.renderhighlightedvalue.md)<!-- -->. |
 |  [LocationBiasCssClasses](./search-ui-react.locationbiascssclasses.md) | The CSS class interface for the [LocationBias()](./search-ui-react.locationbias.md) component. |
 |  [LocationBiasProps](./search-ui-react.locationbiasprops.md) | The props for the [LocationBias()](./search-ui-react.locationbias.md) component. |
+|  [MapboxMapProps](./search-ui-react.mapboxmapprops.md) | Props for the [MapboxMap()](./search-ui-react.mapboxmap.md) component. The type param "T" represents the type of "rawData" field of the results use in the map. |
 |  [NumericalFacetsCssClasses](./search-ui-react.numericalfacetscssclasses.md) | The CSS class interface for [NumericalFacets()](./search-ui-react.numericalfacets.md)<!-- -->. |
 |  [NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md) | Props for the [NumericalFacets()](./search-ui-react.numericalfacets.md) component. |
 |  [PaginationCssClasses](./search-ui-react.paginationcssclasses.md) | The CSS classes used for pagination. |
@@ -116,11 +119,14 @@
 |  [CardAnalyticsType](./search-ui-react.cardanalyticstype.md) | Analytics event types for interactions on a card. |
 |  [CardComponent](./search-ui-react.cardcomponent.md) | A functional component that can be used to render a result card. |
 |  [CardCtaEventType](./search-ui-react.cardctaeventtype.md) | Analytics event types for cta click and title click. |
+|  [CoordinateGetter](./search-ui-react.coordinategetter.md) | A function use to derive a result's coordinate. |
 |  [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md) | The default type for "rawData" field of type Result. |
 |  [DropdownItemProps](./search-ui-react.dropdownitemprops.md) | Props for the [DropdownItem()](./search-ui-react.dropdownitem.md)<!-- -->. |
 |  [FeedbackType](./search-ui-react.feedbacktype.md) | Analytics event types for quality feedback. |
 |  [FocusedItemData](./search-ui-react.focuseditemdata.md) | The data associated with the currently focused item. |
+|  [OnDragHandler](./search-ui-react.ondraghandler.md) | A function which is called when user drag the map. |
 |  [onSearchFunc](./search-ui-react.onsearchfunc.md) | The interface of a function which is called on a search. |
+|  [PinComponent](./search-ui-react.pincomponent.md) | A functional component that can be used to render a custom marker on the map. |
 |  [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data. |
 |  [SectionComponent](./search-ui-react.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 |  [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md) | The configuration data for a field value static filter option. |

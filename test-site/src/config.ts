@@ -4,4 +4,4 @@ export const config = {
   locale: 'en',
   experienceVersion: 'STAGING',
   businessId: 123123
-}
+};
