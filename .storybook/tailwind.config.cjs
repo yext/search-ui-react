@@ -4,5 +4,10 @@ module.exports = {
   ...tailwindConfig,
   content: [
     './src/**/*.{ts,tsx}'
-  ]
+  ],
+  safelist: [
+    {
+      pattern: /^(.*?)/,
+    },
+  ],
 };
