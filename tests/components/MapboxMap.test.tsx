@@ -106,6 +106,7 @@ it('registers "onDrag" callback to Mapbox\'s event listener for "drag to pan" in
   const onDragFn = jest.fn();
   render(<MapboxMap mapboxAccessToken='TEST_KEY' onDrag={onDragFn} />);
   expect(mapOnEventListener).toBeCalledWith('drag', expect.anything());
+  expect(onDragFn).toBeCalledTimes(0);
   jest.advanceTimersByTime(100); //debounce time
   expect(onDragFn).toBeCalledTimes(1);
 });
