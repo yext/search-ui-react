@@ -90,7 +90,9 @@ it('executes custom "getCoordinate" and use the derived coordinate for marker lo
   const customGetCoordinate: CoordinateGetter<Location> = jest.fn().mockImplementation(
     result => result.rawData.customCoordinate);
 
+  const errorSpy = jest.spyOn(console, 'error').mockImplementation();
   render(<MapboxMap mapboxAccessToken='TEST_KEY' getCoordinate={customGetCoordinate} />);
+  expect(errorSpy).toBeCalledTimes(0);
   expect(customGetCoordinate).toBeCalledTimes(1);
   expect(setLngLat).toBeCalledWith({ lat: 2, lng: 2 });
 });
