@@ -4,6 +4,7 @@ import { SearchHeadlessContext, Source } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { MapboxMap, MapboxMapProps } from '../../src/components/MapboxMap';
+import { MapPin } from '../../test-site/src/components/MapPin';
 
 const meta: ComponentMeta<typeof MapboxMap<Location>> = {
   title: 'MapboxMap',
@@ -25,6 +26,7 @@ const mockedHeadlessState = {
   vertical: {
     results: [
       {
+        name: 'title1',
         rawData: {
           name: 'title1',
           description: 'text1',
@@ -46,9 +48,10 @@ const mockedHeadlessState = {
 let mockedHeadlessStateMultiple = JSON.parse(JSON.stringify(mockedHeadlessState));
 mockedHeadlessStateMultiple.vertical.results.push(
   {
+    name: 'title2',
     rawData: {
-      name: 'title1',
-      description: 'text1',
+      name: 'title2',
+      description: 'text2',
       yextDisplayCoordinate: {
         latitude: 40.641611,
         longitude: -74.005371,
@@ -71,6 +74,14 @@ export const MultiplePins = (args: MapboxMapProps<Location>) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessStateMultiple)}>
       <MapboxMap {...args} />
+    </SearchHeadlessContext.Provider>
+  );
+};
+
+export const CustomPin = (args: MapboxMapProps<Location>) => {
+  return (
+    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
+      <MapboxMap PinComponent={MapPin} {...args} />
     </SearchHeadlessContext.Provider>
   );
 };

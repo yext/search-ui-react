@@ -10,16 +10,14 @@ import {
   Pagination,
   MapboxMapProps,
   OnDragHandler,
+  Coordinate
 } from '@yext/search-ui-react';
 import { LngLat, LngLatBounds } from 'mapbox-gl';
 import { useCallback, useLayoutEffect } from 'react';
 import { MapPin } from '../components/MapPin';
 
 export interface Location {
-  yextDisplayCoordinate: {
-    latitude: number,
-    longitude: number
-  } | undefined
+  yextDisplayCoordinate: Coordinate | undefined
 }
 
 const mapboxOptions: MapboxMapProps<Location>['mapboxOptions'] = {

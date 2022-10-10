@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
  *
  * @public
  */
-export type PinComponent<T> = (props: { result?: Result<T>, index?: number }) => JSX.Element;
+export type PinComponent<T> = (props: { result: Result<T>, index: number, mapbox: Map }) => JSX.Element;
 
 /**
  * A function use to derive a result's coordinate.
@@ -132,7 +132,7 @@ export function MapboxMap<T>({
           const el = document.createElement('div');
           const markerOptions: MarkerOptions = {};
           if (PinComponent) {
-            ReactDOM.render(<PinComponent result={result} index={i} />, el);
+            ReactDOM.render(<PinComponent result={result} index={i} mapbox={mapbox} />, el);
             markerOptions.element = el;
           }
           const marker = new Marker(markerOptions)
