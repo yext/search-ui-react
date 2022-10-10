@@ -74,7 +74,7 @@ export interface MapboxMapProps<T> {
  * `import 'mapbox-gl/dist/mapbox-gl.css';`
  *
  * Or, user may add a stylesheet link in their html page:
- * `<link href="https://api.mapbox.com/mapbox-gl-js/VERSION/mapbox-gl.css" rel="stylesheet">`
+ * `<link href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet" />`
  *
  * @param props - {@link MapboxMapProps}
  * @returns A React element containing a Mapbox Map
