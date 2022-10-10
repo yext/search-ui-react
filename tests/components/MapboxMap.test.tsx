@@ -103,8 +103,7 @@ it('registers "onDrag" callback to Mapbox\'s event listener for "drag to pan" in
       e === 'drag' && cb({});
       return Map.prototype;
     });
-  const onDragFn = jest.fn().mockImplementation(() => console.log('HERE'));
-
+  const onDragFn = jest.fn();
   render(<MapboxMap mapboxAccessToken='TEST_KEY' onDrag={onDragFn} />);
   expect(mapOnEventListener).toBeCalledWith('drag', expect.anything());
   jest.advanceTimersByTime(100); //debounce time
