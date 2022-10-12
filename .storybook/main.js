@@ -1,5 +1,3 @@
-const { config } = require('@storybook/addon-actions');
-
 module.exports = {
   stories: [
     '../tests/**/*.stories.tsx'
