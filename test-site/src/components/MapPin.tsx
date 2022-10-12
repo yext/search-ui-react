@@ -25,11 +25,9 @@ export const MapPin: PinComponent<Location> = (props: MapPinProps<Location>) => 
 
   useEffect(() => {
     if (active) {
-      const popup = document.createElement('div');
-      popup.innerHTML = `<div>${result.name}</div>`;
       popupRef.current
         .setLngLat(transformToMapboxCoord(coordinate))
-        .setDOMContent(popup)
+        .setText(result.name || 'unknown location')
         .addTo(mapbox);
     }
   }, [active, coordinate, mapbox, result]);

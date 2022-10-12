@@ -1,11 +1,11 @@
 import { ComponentMeta, Story } from '@storybook/react';
-import _ from 'lodash';
-import { SearchHeadlessContext, Source } from '@yext/search-headless-react';
+import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { MapboxMap, MapboxMapProps } from '../../src/components/MapboxMap';
 import { MapPin } from '../../test-site/src/components/MapPin';
 import { Location } from '../../test-site/src/pages/LocationsPage';
+import { locationVerticalSingle, locationVerticalMultiple } from '../__fixtures__/data/mapbox';
 
 const meta: ComponentMeta<typeof MapboxMap> = {
   title: 'MapboxMap',
@@ -24,67 +24,24 @@ const meta: ComponentMeta<typeof MapboxMap> = {
 };
 export default meta;
 
-const mockedHeadlessState = {
-  vertical: {
-    results: [
-      {
-        name: 'title1',
-        rawData: {
-          name: 'title1',
-          description: 'text1',
-          yextDisplayCoordinate: {
-            latitude: 40.741611,
-            longitude: -74.005371,
-          }
-        },
-        source: Source.KnowledgeManager,
-        id: 'id1'
-      }
-    ],
-    resultsCount: 1,
-    limit: 1
-  }
-};
-
-// Deep copy state to make an alternative with multiple locations
-const mockedHeadlessStateMultiple = _.cloneDeep(mockedHeadlessState);
-mockedHeadlessStateMultiple.vertical.results.push(
-  {
-    name: 'title2',
-    rawData: {
-      name: 'title2',
-      description: 'text2',
-      yextDisplayCoordinate: {
-        latitude: 40.641611,
-        longitude: -74.005371,
-      }
-    },
-    source: Source.KnowledgeManager,
-    id: 'id2'
-  }
+const Template: Story<MapboxMapProps<Location>> = (args) => (
+  <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalSingle)}>
+    <MapboxMap {...args} />
+  </SearchHeadlessContext.Provider>
 );
 
-export const Primary: Story<MapboxMapProps<Location>> = (args) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <MapboxMap {...args} />
-    </SearchHeadlessContext.Provider>
-  );
-};
+export const Primary = Template.bind({});
 
 export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
   return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessStateMultiple)}>
+    <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalMultiple)}>
       <MapboxMap {...args} />
     </SearchHeadlessContext.Provider>
   );
 };
 
-export const CustomPin = (args: MapboxMapProps<Location>) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <MapboxMap PinComponent={MapPin} {...args} />
-    </SearchHeadlessContext.Provider>
-  );
-};
+export const CustomPin = Template.bind({});
 
+CustomPin.args = {
+  PinComponent: MapPin,
+}
