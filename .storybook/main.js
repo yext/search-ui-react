@@ -1,3 +1,5 @@
+const { config } = require('@storybook/addon-actions');
+
 module.exports = {
   stories: [
     '../tests/**/*.stories.tsx'
@@ -32,6 +34,11 @@ module.exports = {
   webpackFinal: async (config) => {
     config.resolve.alias['./SearchCore'] = require.resolve('../tests/__fixtures__/core/SearchCore.ts');
     config.resolve.alias['../utils/location-operations'] = require.resolve('../tests/__fixtures__/utils/location-operations.ts');
+
     return config;
-  }
+  },
+  env: (config) => ({
+    ...config,
+    REACT_APP_MAPBOX_API_KEY: process.env.REACT_APP_MAPBOX_API_KEY,
+  }),
 };
