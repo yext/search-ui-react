@@ -73,4 +73,4 @@ const locationVerticalMultiple = {
 export {
   locationVerticalSingle,
   locationVerticalMultiple,
-}
+};

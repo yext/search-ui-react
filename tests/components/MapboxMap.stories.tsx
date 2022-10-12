@@ -44,4 +44,4 @@ export const CustomPin = Template.bind({});
 
 CustomPin.args = {
   PinComponent: MapPin,
-}
+};
