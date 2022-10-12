@@ -1,24 +1,26 @@
-import { useCallback } from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
+import _ from 'lodash';
 import { SearchHeadlessContext, Source } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { MapboxMap, MapboxMapProps } from '../../src/components/MapboxMap';
 import { MapPin } from '../../test-site/src/components/MapPin';
+import { Location } from '../../test-site/src/pages/LocationsPage';
 
-const meta: ComponentMeta<typeof MapboxMap<Location>> = {
+const meta: ComponentMeta<typeof MapboxMap> = {
   title: 'MapboxMap',
   component: MapboxMap,
   argTypes: {
     mapboxAccessToken: {
       defaultValue: process.env.REACT_APP_MAPBOX_API_KEY,
-      control: {
-        type: null,
-      }
-    }
+      control: false,
+    },
+    PinComponent: {
+      control: false,
+    },
   },
   parameters: { layout: 'fullscreen' },
-  decorators: [(Story) => (<div className="h-screen"><Story /></div>)]
+  decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
 
@@ -45,7 +47,7 @@ const mockedHeadlessState = {
 };
 
 // Deep copy state to make an alternative with multiple locations
-let mockedHeadlessStateMultiple = JSON.parse(JSON.stringify(mockedHeadlessState));
+const mockedHeadlessStateMultiple = _.cloneDeep(mockedHeadlessState);
 mockedHeadlessStateMultiple.vertical.results.push(
   {
     name: 'title2',
@@ -62,7 +64,7 @@ mockedHeadlessStateMultiple.vertical.results.push(
   }
 );
 
-export const Primary = (args: MapboxMapProps<Location>) => {
+export const Primary: Story<MapboxMapProps<Location>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <MapboxMap {...args} />
@@ -70,7 +72,7 @@ export const Primary = (args: MapboxMapProps<Location>) => {
   );
 };
 
-export const MultiplePins = (args: MapboxMapProps<Location>) => {
+export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessStateMultiple)}>
       <MapboxMap {...args} />

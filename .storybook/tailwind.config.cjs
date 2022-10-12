@@ -5,9 +5,4 @@ module.exports = {
   content: [
     './src/**/*.{ts,tsx}'
   ],
-  safelist: [
-    {
-      pattern: /^(.*?)/,
-    },
-  ],
 };

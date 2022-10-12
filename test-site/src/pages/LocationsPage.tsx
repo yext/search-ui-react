@@ -17,7 +17,7 @@ import { useCallback, useLayoutEffect } from 'react';
 import { MapPin } from '../components/MapPin';
 
 export interface Location {
-  yextDisplayCoordinate: Coordinate | undefined
+  yextDisplayCoordinate?: Coordinate
 }
 
 const mapboxOptions: MapboxMapProps<Location>['mapboxOptions'] = {

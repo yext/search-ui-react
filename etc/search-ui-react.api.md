@@ -420,9 +420,10 @@ export interface PaginationProps {
 
 // @public
 export type PinComponent<T> = (props: {
-    result: Result<T>;
+    coordinate: Coordinate;
     index: number;
     mapbox: Map_2;
+    result: Result<T>;
 }) => JSX.Element;
 
 // @public

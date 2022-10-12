@@ -33,11 +33,11 @@ export const parameters = {
         'AppliedFilters',
         'Pagination',
         'AlternativeVerticals',
+        'MapboxMap',
         'SpellCheck',
         'ResultsCount',
         'LocationBias',
         'Dropdown',
-        'MapboxMap',
       ]
     }
   }
