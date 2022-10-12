@@ -44,10 +44,8 @@ export const Disabled: Story<RangeInputProps> = (args) => {
 export const DisabledForceDisplayTooltip = Disabled.bind({});
 DisabledForceDisplayTooltip.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const tooltip = canvas.getByText('Unselect an option to enter in a range.').parentElement;
-  if (tooltip) {
-    tooltip.style.visibility = 'visible';
-  }
+  const tooltip = canvas.getByText('Unselect an option to enter in a range.');
+  tooltip.style.visibility = 'visible';
 };
 
 export const ValidValues = Primary.bind({});

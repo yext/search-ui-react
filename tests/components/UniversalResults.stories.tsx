@@ -6,8 +6,9 @@ import { UniversalResults, UniversalResultsProps } from '../../src/components/Un
 import { RecursivePartial } from '../__utils__/mocks';
 import { verticalResults } from '../__fixtures__/data/universalresults';
 import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
+import { VerticalConfigMap } from '../../src/models/verticalConfig';
 
-const verticalConfigMap = {
+const verticalConfigMap: VerticalConfigMap = {
   vertical1: {
     label: 'Vertical 1',
     viewAllButton: true

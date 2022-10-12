@@ -41,8 +41,8 @@ describe('UniversalResults', () => {
     expect(screen.queryByText(verticals[0].appliedQueryFilters[0].displayValue)).toBeNull();
 
     function checkResultData(resultData: Record<string, unknown>) {
-      expect(typeof resultData.name === 'string' && screen.getByText(resultData.name)).toBeDefined();
-      expect(typeof resultData.description === 'string' && screen.getByText(resultData.description)).toBeDefined();
+      expect(typeof resultData.name === 'string' && screen.getByText(resultData.name)).toBeTruthy();
+      expect(typeof resultData.description === 'string' && screen.getByText(resultData.description)).toBeTruthy();
     }
 
     function checkCTAs(resultData: Record<string, unknown>) {

@@ -104,13 +104,13 @@ describe('AppliedFilters', () => {
   it('Facets are rendered', () => {
     render(<AppliedFilters />);
     const facetOptionDisplayName = mockedState.filters?.facets?.[0].options[0].displayName;
-    expect(facetOptionDisplayName && screen.getByText(facetOptionDisplayName)).toBeDefined();
+    expect(facetOptionDisplayName && screen.getByText(facetOptionDisplayName)).toBeTruthy();
   });
 
   it('Applied query filters are rendered', () => {
     render(<AppliedFilters />);
     const appliedFilterDisplayName = mockedState.vertical?.appliedQueryFilters?.[0].displayValue;
-    expect(appliedFilterDisplayName && screen.getByText(appliedFilterDisplayName)).toBeDefined();
+    expect(appliedFilterDisplayName && screen.getByText(appliedFilterDisplayName)).toBeTruthy();
   });
 
   it('Filters with the fieldId of "builtin.entityType" are hidden by default', () => {
@@ -259,8 +259,8 @@ describe('AppliedFilters with hierarchical facets', () => {
     const filterPills = screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/);
     expect(filterPills).toHaveLength(3);
 
-    const fruitButton = screen.queryByLabelText('Remove "food" filter');
-    fruitButton && userEvent.click(fruitButton);
+    const fruitButton = screen.getByLabelText('Remove "food" filter');
+    userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledTimes(2);
     expect(actions.setFacetOption).toHaveBeenCalledWith(
@@ -292,8 +292,8 @@ describe('AppliedFilters with hierarchical facets', () => {
     const filterPills = screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/);
     expect(filterPills).toHaveLength(3);
 
-    const fruitButton = screen.queryByLabelText('Remove "banana" filter');
-    fruitButton && userEvent.click(fruitButton);
+    const fruitButton = screen.getByLabelText('Remove "banana" filter');
+    userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledWith(
       'hier',

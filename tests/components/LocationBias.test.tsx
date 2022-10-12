@@ -1,14 +1,20 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LocationBias } from '../../src/components/LocationBias';
-import { State, LocationBiasMethod } from '@yext/search-headless-react';
+import { State, LocationBiasMethod, LocationBias as LocationBiasType } from '@yext/search-headless-react';
 import * as locationOperations from '../../src/utils/location-operations';
 import { mockAnswersHooks, mockAnswersState, RecursivePartial, spyOnActions } from '../__utils__/mocks';
 import * as searchOperations from '../../src/utils/search-operations';
 
 jest.mock('@yext/search-headless-react');
 
-const mockedStateVaDevice: Partial<State> = {
+type LocationBiasState = {
+  location: {
+    locationBias: LocationBiasType
+  }
+};
+
+const mockedStateVaDevice: Partial<State> & LocationBiasState = {
   location: {
     locationBias: {
       latitude: 38.89552025579547,
@@ -19,7 +25,7 @@ const mockedStateVaDevice: Partial<State> = {
   }
 };
 
-const mockedStateNyIP: Partial<State> = {
+const mockedStateNyIP: Partial<State> & LocationBiasState = {
   location: {
     locationBias: {
       latitude: 40.741591687843005,
@@ -63,8 +69,8 @@ beforeEach(() => {
 
 it('renders the proper text (location DisplayName, method, and update btn)', () => {
   render(<LocationBias />);
-  const expectedLocationName = mockedStateVaDevice.location?.locationBias?.displayName;
-  const locationNameElement = expectedLocationName && screen.getByText(expectedLocationName);
+  const expectedLocationName = mockedStateVaDevice.location.locationBias.displayName;
+  const locationNameElement = screen.getByText(expectedLocationName);
   expect(locationNameElement).toBeDefined();
 
   const expectedMethodMessage = '(based on your device)';
@@ -93,8 +99,8 @@ it('calls setUserLocation with coordinates returned by getUserLocation as params
 
 it('updates rendered DisplayName if location changes and update button is clicked', async () => {
   render(<LocationBias />);
-  const expectedLocationName = mockedStateVaDevice.location?.locationBias?.displayName;
-  const locationNameElement = expectedLocationName && screen.getByText(expectedLocationName);
+  const expectedLocationName = mockedStateVaDevice.location.locationBias.displayName;
+  const locationNameElement = screen.getByText(expectedLocationName);
   expect(locationNameElement).toBeDefined();
 
   mockAnswersState(mockedStateNyIP);
@@ -104,8 +110,8 @@ it('updates rendered DisplayName if location changes and update button is clicke
     expect(searchOperations.executeSearch).toBeCalled();
   });
 
-  const newExpectedLocationName = mockedStateNyIP.location?.locationBias?.displayName;
-  const newLocationNameElement = newExpectedLocationName && screen.getByText(newExpectedLocationName);
+  const newExpectedLocationName = mockedStateNyIP.location.locationBias.displayName;
+  const newLocationNameElement = screen.getByText(newExpectedLocationName);
   expect(newLocationNameElement).toBeDefined();
 });
 
