@@ -22,10 +22,9 @@ export const MapPin: PinComponent<Location> = (props: MapPinProps<Location>) => 
   const popupRef = useRef(new Popup({ offset: 15 })
     .on('close', () => setActive(false))
   );
-  const initialRender = useRef(true);
 
   useEffect(() => {
-    if (!initialRender.current && active) {
+    if (active) {
       const popup = document.createElement('div');
       popup.innerHTML = `<div>${result.name}</div>`;
       popupRef.current
@@ -33,7 +32,6 @@ export const MapPin: PinComponent<Location> = (props: MapPinProps<Location>) => 
         .setDOMContent(popup)
         .addTo(mapbox);
     }
-    initialRender.current = false;
   }, [active, coordinate, mapbox, result]);
 
   function handleClick() {
