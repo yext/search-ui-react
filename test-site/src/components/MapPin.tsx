@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { Map, Popup, LngLatLike } from 'mapbox-gl';
 import { PinComponent, Coordinate } from '@yext/search-ui-react';
 import { Result } from '@yext/search-headless-react';
@@ -23,7 +23,7 @@ export const MapPin: PinComponent<Location> = (props: MapPinProps<Location>) => 
     .on('close', () => setActive(false))
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (active) {
       popupRef.current
         .setLngLat(transformToMapboxCoord(coordinate))

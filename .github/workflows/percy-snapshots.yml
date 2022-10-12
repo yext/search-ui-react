@@ -11,6 +11,6 @@ jobs:
     with:
       build_script: npm run build-storybook
       percy_script: npx percy storybook ./storybook-static
-      REACT_APP_MAPBOX_API_KEY: ${{ secrets.REACT_APP_MAPBOX_API_KEY }}
     secrets:
       PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+      REACT_APP_MAPBOX_API_KEY: ${{ secrets.REACT_APP_MAPBOX_API_KEY }}
