@@ -10,7 +10,7 @@ jobs:
     uses: yext/slapshot-reusable-workflows/.github/workflows/percy_snapshots.yml@dev/percy-workflow-mapbox
     with:
       build_script: ""
-      percy_script: percy storybook:start --port=9009 --static-dir=./public
+      percy_script: npx percy storybook:start --port=9009 --static-dir=./public
     secrets:
       PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       REACT_APP_MAPBOX_API_KEY: ${{ secrets.REACT_APP_MAPBOX_API_KEY }}
