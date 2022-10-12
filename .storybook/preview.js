@@ -37,7 +37,7 @@ export const parameters = {
         'SpellCheck',
         'ResultsCount',
         'LocationBias',
-        'Dropdown',
+        'Dropdown'
       ]
     }
   }
