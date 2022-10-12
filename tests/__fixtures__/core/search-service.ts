@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { SearchService, UniversalSearchRequest, UniversalSearchResponse, VerticalSearchRequest, VerticalSearchResponse } from '@yext/search-core';
+import { SearchService, Source, UniversalSearchRequest, UniversalSearchResponse, VerticalSearchRequest, VerticalSearchResponse } from '@yext/search-core';
 
 /* A sample Universal Search response. */
 const mockedUniversalResponse: UniversalSearchResponse = {
@@ -11,7 +11,14 @@ const mockedUniversalResponse: UniversalSearchResponse = {
 const mockedVerticalResponse: VerticalSearchResponse = {
   uuid: '123',
   queryId: 'query-id',
-  verticalResults: null
+  verticalResults: {
+    appliedQueryFilters: [],
+    queryDurationMillis: 500,
+    verticalKey: 'vertical',
+    results: [],
+    resultsCount: 0,
+    source: 'KNOWLEDGE_MANAGER' as Source
+  }
 };
 
 /**

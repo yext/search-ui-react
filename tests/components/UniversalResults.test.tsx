@@ -33,7 +33,7 @@ describe('UniversalResults', () => {
 
   it('Results are displayed', () => {
     render(<UniversalResults verticalConfigMap={{}} />);
-    const verticals = mockedState.universal.verticals;
+    const verticals = mockedState.universal?.verticals ?? [];
     expect(screen.getByText(verticals[0].verticalKey)).toBeDefined();
     expect(screen.getByText(verticals[1].verticalKey)).toBeDefined();
     expect(screen.queryByText(verticals[2].verticalKey)).toBeNull();
@@ -41,8 +41,8 @@ describe('UniversalResults', () => {
     expect(screen.queryByText(verticals[0].appliedQueryFilters[0].displayValue)).toBeNull();
 
     function checkResultData(resultData: Record<string, unknown>) {
-      expect(screen.getByText(resultData.name.toString())).toBeDefined();
-      expect(screen.getByText(resultData.description.toString())).toBeDefined();
+      expect(typeof resultData.name === 'string' && screen.getByText(resultData.name)).toBeDefined();
+      expect(typeof resultData.description === 'string' && screen.getByText(resultData.description)).toBeDefined();
     }
 
     function checkCTAs(resultData: Record<string, unknown>) {
@@ -61,7 +61,8 @@ describe('UniversalResults', () => {
   it('Vertical label is used when specified', () => {
     render(<UniversalResults verticalConfigMap={{ vertical1: { label: 'Jobs' } }} />);
     expect(screen.getByText('Jobs')).toBeDefined();
-    expect(screen.queryByText(mockedState.universal.verticals[0].verticalKey)).toBeNull();
+    const verticals = mockedState.universal?.verticals ?? [];
+    expect(screen.queryByText(verticals[0].verticalKey)).toBeNull();
   });
 
   it('View all button is displayed only when specified', () => {
@@ -87,7 +88,8 @@ describe('UniversalResults', () => {
 
   it('Applied filters are displayed when specified', () => {
     render(<UniversalResults verticalConfigMap={{}} showAppliedFilters={true} />);
-    const filters = mockedState.universal.verticals[0].appliedQueryFilters;
+    const verticals = mockedState.universal?.verticals ?? [];
+    const filters = verticals[0].appliedQueryFilters;
     expect(screen.getByText(filters[0].displayValue)).toBeDefined();
   });
 });

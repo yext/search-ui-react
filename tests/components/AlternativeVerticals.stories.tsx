@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { AlternativeVerticals, AlternativeVerticalsProps } from '../../src/components/AlternativeVerticals';
@@ -24,33 +24,28 @@ const verticalConfigMap = {
   locations: { label: 'Locations' }
 };
 
-export const Primary = (args: AlternativeVerticalsProps) => {
+export const Primary: Story<AlternativeVerticalsProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <AlternativeVerticals
-        currentVerticalLabel='Jobs'
-        verticalConfigMap={verticalConfigMap}
-        displayAllOnNoResults={false}
         {...args}
       />
     </SearchHeadlessContext.Provider>
   );
 };
-
-export const DisplayAllOnNoResults = (args: AlternativeVerticalsProps) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <AlternativeVerticals
-        currentVerticalLabel='Jobs'
-        verticalConfigMap={verticalConfigMap}
-        displayAllOnNoResults={true}
-        {...args}
-      />
-    </SearchHeadlessContext.Provider>
-  );
+Primary.args = {
+  currentVerticalLabel: 'Jobs',
+  verticalConfigMap,
+  displayAllOnNoResults: false
 };
 
-export const Loading = (args: AlternativeVerticalsProps) => {
+export const DisplayAllOnNoResults = Primary.bind({});
+DisplayAllOnNoResults.args = {
+  ...Primary.args,
+  displayAllOnNoResults: true
+};
+
+export const Loading: Story<AlternativeVerticalsProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...mockedHeadlessState,
@@ -59,11 +54,11 @@ export const Loading = (args: AlternativeVerticalsProps) => {
       }
     })}>
       <AlternativeVerticals
-        currentVerticalLabel='Jobs'
-        verticalConfigMap={verticalConfigMap}
-        displayAllOnNoResults={true}
         {...args}
       />
     </SearchHeadlessContext.Provider>
   );
+};
+Loading.args = {
+  ...DisplayAllOnNoResults.args
 };

@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { SpellCheck, SpellCheckProps } from '../../src/components/SpellCheck';
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof SpellCheck> = {
 };
 export default meta;
 
-export const Primary = (args: SpellCheckProps) => {
+export const Primary: Story<SpellCheckProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(VerticalSearcherState)}>
       <SpellCheck {...args} />

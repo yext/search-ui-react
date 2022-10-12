@@ -7,9 +7,20 @@ import { RecursivePartial } from '../__utils__/mocks';
 import { verticalResults } from '../__fixtures__/data/universalresults';
 import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
 
+const verticalConfigMap = {
+  vertical1: {
+    label: 'Vertical 1',
+    viewAllButton: true
+  }
+};
+
 const meta: ComponentMeta<typeof UniversalResults> = {
   title: 'UniversalResults',
   component: UniversalResults,
+  args: {
+    showAppliedFilters: true,
+    verticalConfigMap: verticalConfigMap
+  }
 };
 export default meta;
 
@@ -19,17 +30,10 @@ const mockedHeadlessState: RecursivePartial<State> = {
   }
 };
 
-const verticalConfigMap = {
-  vertical1: {
-    label: 'Vertical 1',
-    viewAllButton: true
-  }
-};
-
 export const Primary = (args: UniversalResultsProps<DefaultRawDataType>) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <UniversalResults verticalConfigMap={verticalConfigMap} showAppliedFilters={true} {...args} />
+      <UniversalResults {...args} />
     </SearchHeadlessContext.Provider>
   );
 };
@@ -40,7 +44,7 @@ export const Loading = (args: UniversalResultsProps<DefaultRawDataType>) => {
       ...mockedHeadlessState,
       searchStatus: { isLoading: true }
     })}>
-      <UniversalResults verticalConfigMap={verticalConfigMap} showAppliedFilters={true} {...args} />
+      <UniversalResults {...args} />
     </SearchHeadlessContext.Provider>
   );
 };
