@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -36,7 +36,7 @@ const meta: ComponentMeta<typeof SearchBar> = {
 };
 export default meta;
 
-export const Primary = (args: SearchBarProps) => {
+export const Primary: Story<SearchBarProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
       <SearchBar {...args} />
@@ -61,12 +61,9 @@ DropdownHighlight.play = ({ canvasElement }) => {
   userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
 
-export const DropdownExpandedVerticalLinks = (args: SearchBarProps) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
-      <SearchBar {...args} showVerticalLinks={true} />
-    </SearchHeadlessContext.Provider>
-  );
+export const DropdownExpandedVerticalLinks = Primary.bind({});
+DropdownExpandedVerticalLinks.args = {
+  showVerticalLinks: true
 };
 DropdownExpandedVerticalLinks.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);

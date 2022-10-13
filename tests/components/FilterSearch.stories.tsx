@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext, SearchTypeEnum } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -36,15 +36,18 @@ const meta: ComponentMeta<typeof FilterSearch> = {
     },
     searchFields: {
       control: false
+    },
+    label: {
+      defaultValue: 'Filter'
     }
   }
 };
 export default meta;
 
-export const Primary = (args: FilterSearchProps) => {
+export const Primary: Story<FilterSearchProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch label='Filter' {...args} searchFields={searchFields} />
+      <FilterSearch {...args} searchFields={searchFields} />
     </SearchHeadlessContext.Provider>
   );
 };
@@ -60,12 +63,9 @@ DropdownUnsectioned.play = ({ canvasElement }) => {
   userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
-export const DropdownSectioned = (args: FilterSearchProps) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch label='Filter' sectioned={true} {...args} searchFields={searchFields} />
-    </SearchHeadlessContext.Provider>
-  );
+export const DropdownSectioned = Primary.bind({});
+DropdownSectioned.args = {
+  sectioned: true
 };
 DropdownSectioned.parameters = {
   searchCoreServices: {
@@ -77,10 +77,7 @@ DropdownSectioned.play = ({ canvasElement }) => {
   userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
-export const NoLabel = (args: FilterSearchProps) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch {...args} searchFields={searchFields} />
-    </SearchHeadlessContext.Provider>
-  );
+export const NoLabel = Primary.bind({});
+NoLabel.args = {
+  label: undefined
 };

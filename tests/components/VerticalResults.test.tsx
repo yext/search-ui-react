@@ -4,6 +4,7 @@ import { State, VerticalSearchState } from '@yext/search-headless-react';
 import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 import { mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 import { mockedVerticalResults } from '../__fixtures__/data/vertical/results';
+import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
 
 const mockedState: Partial<State> = {
   vertical: {
@@ -34,7 +35,7 @@ beforeEach(() => {
 });
 
 it('displays results', () => {
-  const verticalResultsProps: VerticalResultsProps = {
+  const verticalResultsProps: VerticalResultsProps<DefaultRawDataType> = {
     CardComponent: StandardCard
   };
   render(<VerticalResults {...verticalResultsProps} />);
@@ -44,7 +45,7 @@ it('displays results', () => {
 });
 
 it('displays all results when there are no search results', () => {
-  const verticalResultsProps: VerticalResultsProps = {
+  const verticalResultsProps: VerticalResultsProps<DefaultRawDataType> = {
     CardComponent: StandardCard,
     displayAllOnNoResults: true
   };
@@ -66,7 +67,7 @@ it('displays all results when there are no search results', () => {
 });
 
 it('doesn\'t display pagination component when allowPagination is false', () => {
-  const verticalResultsProps: VerticalResultsProps = {
+  const verticalResultsProps: VerticalResultsProps<DefaultRawDataType> = {
     CardComponent: StandardCard
   };
   render(<VerticalResults {...verticalResultsProps} />);
