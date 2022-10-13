@@ -1,5 +1,5 @@
 import { ComponentMeta, Story } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within, waitFor } from '@storybook/testing-library';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -50,5 +50,6 @@ CustomPin.args = {
 CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await canvas.findByRole('button')
-  userEvent.click(canvas.getByRole('button'));
+  await userEvent.click(canvas.getByRole('button'));
+  await canvas.findByText('title1');
 };
