@@ -10,7 +10,6 @@ import ReactDOM from 'react-dom';
  * @public
  */
 export type PinComponent<T> = (props: {
-  coordinate: Coordinate,
   index: number,
   mapbox: Map,
   result: Result<T>
@@ -138,7 +137,6 @@ export function MapboxMap<T>({
           const markerOptions: MarkerOptions = {};
           if (PinComponent) {
             ReactDOM.render(<PinComponent
-              coordinate={markerLocation}
               index={i}
               mapbox={mapbox}
               result={result}

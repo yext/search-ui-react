@@ -5,7 +5,6 @@ import { Result } from '@yext/search-headless-react';
 import { Location } from '../pages/LocationsPage';
 
 export interface MapPinProps<T> {
-  coordinate: Coordinate,
   index: number,
   mapbox: Map,
   result: Result<T>
@@ -17,20 +16,21 @@ const transformToMapboxCoord = (coordinate: Coordinate): LngLatLike => ({
 });
 
 export const MapPin: PinComponent<Location> = (props: MapPinProps<Location>) => {
-  const { coordinate, mapbox, result } = props;
+  const { mapbox, result } = props;
+  const yextCoordinate = result.rawData.yextDisplayCoordinate;
   const [active, setActive] = useState(false);
   const popupRef = useRef(new Popup({ offset: 15 })
     .on('close', () => setActive(false))
   );
 
   useEffect(() => {
-    if (active) {
+    if (active && yextCoordinate) {
       popupRef.current
-        .setLngLat(transformToMapboxCoord(coordinate))
+        .setLngLat(transformToMapboxCoord(yextCoordinate))
         .setText(result.name || 'unknown location')
         .addTo(mapbox);
     }
-  }, [active, coordinate, mapbox, result]);
+  }, [active, mapbox, result, yextCoordinate]);
 
   const handleClick = useCallback(() => {
     setActive(true);
