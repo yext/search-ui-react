@@ -1,4 +1,5 @@
 import { ComponentMeta, Story } from '@storybook/react';
+import { userEvent, within } from '@storybook/testing-library';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -44,4 +45,10 @@ export const CustomPin = Template.bind({});
 
 CustomPin.args = {
   PinComponent: MapPin,
+};
+
+CustomPin.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await canvas.findByRole('button')
+  userEvent.click(canvas.getByRole('button'));
 };
