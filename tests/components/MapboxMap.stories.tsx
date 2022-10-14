@@ -1,5 +1,5 @@
 import { ComponentMeta, Story } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within, waitFor } from '@storybook/testing-library';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -49,6 +49,7 @@ CustomPin.args = {
 
 CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
+  await (waitFor(() => canvas.getByText('Mapbox'),{timeout:5000}));
   await canvas.findByTestId('loaded', undefined, {
     timeout: 10000,
     container: canvasElement,
