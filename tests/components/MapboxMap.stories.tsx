@@ -49,7 +49,6 @@ CustomPin.args = {
 
 CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await (waitFor(() => canvas.getByText('Improve this map'), { timeout: 5000 }));
   await canvas.findByTestId('loaded', undefined, {
     timeout: 30000,
     container: canvasElement,
