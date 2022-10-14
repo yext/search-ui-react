@@ -49,11 +49,10 @@ CustomPin.args = {
 
 CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await canvas.findByRole('button');
-  await userEvent.click(canvas.getByRole('button'));
-  await canvas.findByText('title1');
   await canvas.findByTestId('loaded', undefined, {
     timeout: 10000,
     container: canvasElement,
   });
+  await userEvent.click(canvas.getByRole('button'));
+  await canvas.findByText('title1');
 };
