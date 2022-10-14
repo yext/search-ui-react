@@ -53,7 +53,7 @@ CustomPin.play = async ({ canvasElement }) => {
   await userEvent.click(canvas.getByRole('button'));
   await canvas.findByText('title1');
   await canvas.findByTestId('loaded', undefined, {
-    timeout: 5000,
+    timeout: 10000,
     container: canvasElement,
   });
 };
