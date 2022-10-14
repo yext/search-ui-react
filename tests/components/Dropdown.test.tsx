@@ -45,7 +45,7 @@ describe('Dropdown', () => {
     // hidden by default
     expect(screen.queryByText('item1')).toBeNull();
 
-    //display when click into dropdown input
+    // display when click into dropdown input
     userEvent.click(screen.getByRole('textbox'));
     expect(screen.getByText('item1')).toBeDefined();
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
@@ -361,8 +361,3 @@ describe('Always Select Option', () => {
     expect(mockedOnSelectFn).toBeCalledTimes(0);
   });
 });
-
-// expect(consoleErrorSpy).toBeCalledWith(
-//   expect.stringMatching(/^Warning: Prop `.+` did not match. Server: ".+" Client: ".+".+/s)
-// );
-
