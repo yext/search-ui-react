@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid';
-
 export const verticalQueryResponseWithNlpFilters = {
   meta: {
     uuid: '017cb8d9-2f76-1f19-5bb9-a2f931650de2',
@@ -576,12 +574,12 @@ export const verticalQueryResponseWithNlpFilters = {
 
 export const verticalQueryResponse = {
   meta: {
-    uuid: uuid(),
+    uuid: '123',
     errors: []
   },
   response: {
     businessId: 3575590,
-    queryId: uuid(),
+    queryId: '123',
     resultsCount: 1,
     results: [
       {

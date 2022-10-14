@@ -5,6 +5,7 @@ import { FilterOptionConfig } from '../../src/components/Filters';
 import userEvent from '@testing-library/user-event';
 import { StaticFilters } from '../../src/components';
 import { staticFilters, staticFiltersProps } from '../__fixtures__/data/filters';
+import { testSSR } from '../ssr/utils';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -37,6 +38,10 @@ jest.mock('@yext/search-headless-react');
 describe('Static Filters', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
+  });
+
+  it('renders identical content between the server and the client.', () => {
+    testSSR(() => <StaticFilters {...staticFiltersProps} />);
   });
 
   it('Properly renders default, basic static filters', () => {

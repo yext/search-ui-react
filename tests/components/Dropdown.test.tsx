@@ -4,8 +4,25 @@ import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown'
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import { DropdownItem } from '../../src/components/Dropdown/DropdownItem';
+import { testSSR } from '../ssr/utils';
 
 describe('Dropdown', () => {
+  it('renders identical content between the server and the client.', () => {
+    function App(): JSX.Element {
+      return (
+        <Dropdown screenReaderText='screen reader text here'>
+          <DropdownInput />
+          <DropdownMenu>
+            <DropdownItem value='item1'>
+              item1
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      );
+    }
+    testSSR(App);
+  });
+
   it('can toggle hide/display', () => {
     const mockedOnToggleFn = jest.fn();
     const dropdownProps: DropdownProps = {
@@ -28,7 +45,7 @@ describe('Dropdown', () => {
     // hidden by default
     expect(screen.queryByText('item1')).toBeNull();
 
-    // display when click into dropdown input
+    //display when click into dropdown input
     userEvent.click(screen.getByRole('textbox'));
     expect(screen.getByText('item1')).toBeDefined();
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
@@ -344,3 +361,8 @@ describe('Always Select Option', () => {
     expect(mockedOnSelectFn).toBeCalledTimes(0);
   });
 });
+
+// expect(consoleErrorSpy).toBeCalledWith(
+//   expect.stringMatching(/^Warning: Prop `.+` did not match. Server: ".+" Client: ".+".+/s)
+// );
+

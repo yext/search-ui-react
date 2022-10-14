@@ -3,11 +3,11 @@ import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
 import useRootClose from '@restart/ui/useRootClose';
 import { FocusContext, FocusContextType } from './FocusContext';
-import { v4 as uuid } from 'uuid';
 import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
+import { useId } from '@reach/auto-id';
 
 interface DropdownItemData {
   value: string,
@@ -52,7 +52,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const screenReaderUUID: string = useMemo(() => uuid(), []);
+  const screenReaderUUID = useId();
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
@@ -242,7 +242,7 @@ function useDropdownContextInstance(
   value: string,
   index: number,
   focusedItemData: Record<string, unknown> | undefined,
-  screenReaderUUID: string,
+  screenReaderUUID: string | undefined,
   setHasTyped: (hasTyped: boolean) => void,
   onToggle?: (
     isActive: boolean,
