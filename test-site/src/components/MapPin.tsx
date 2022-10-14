@@ -24,6 +24,12 @@ export const MapPin: PinComponent<Location> = (props: MapPinProps<Location>) => 
   );
 
   useEffect(() => {
+    mapbox.on('load', () => {
+      mapbox.getContainer().setAttribute('data-testid', 'loaded');
+    });
+  }, [mapbox]);
+
+  useEffect(() => {
     if (active && yextCoordinate) {
       popupRef.current
         .setLngLat(transformToMapboxCoord(yextCoordinate))
