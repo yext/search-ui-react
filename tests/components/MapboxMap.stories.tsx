@@ -51,7 +51,7 @@ CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await (waitFor(() => canvas.getByText('Improve this map'), { timeout: 5000 }));
   await canvas.findByTestId('loaded', undefined, {
-    timeout: 10000,
+    timeout: 30000,
     container: canvasElement,
   });
   await userEvent.click(canvas.getByRole('button'));
