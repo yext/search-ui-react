@@ -120,6 +120,9 @@ export function MapboxMap<T>({
           onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
         });
       }
+      mapbox.on('load', () => {
+        mapContainer.current?.setAttribute('data-testid', 'loaded');
+      });
     }
   }, [mapboxOptions, onDragDebounced]);
 

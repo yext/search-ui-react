@@ -52,5 +52,5 @@ CustomPin.play = async ({ canvasElement }) => {
   await canvas.findByRole('button');
   await userEvent.click(canvas.getByRole('button'));
   await canvas.findByText('title1');
-  await canvas.findByTitle('Mapbox');
+  await canvas.findByTestId('loaded');
 };
