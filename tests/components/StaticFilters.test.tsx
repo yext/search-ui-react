@@ -41,7 +41,7 @@ describe('Static Filters', () => {
   });
 
   it('renders identical content between the server and the client.', () => {
-    testSSR(() => <StaticFilters {...staticFiltersProps} />);
+    testSSR(<StaticFilters {...staticFiltersProps} />);
   });
 
   it('Properly renders default, basic static filters', () => {

@@ -8,19 +8,16 @@ import { testSSR } from '../ssr/utils';
 
 describe('Dropdown', () => {
   it('renders identical content between the server and the client.', () => {
-    function App(): JSX.Element {
-      return (
-        <Dropdown screenReaderText='screen reader text here'>
-          <DropdownInput />
-          <DropdownMenu>
-            <DropdownItem value='item1'>
-              item1
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      );
-    }
-    testSSR(App);
+    testSSR(
+      <Dropdown screenReaderText='screen reader text here'>
+        <DropdownInput />
+        <DropdownMenu>
+          <DropdownItem value='item1'>
+            item1
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
   });
 
   it('can toggle hide/display', () => {

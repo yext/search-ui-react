@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
-import { FunctionComponent } from 'react';
+import { ReactElement } from 'react';
 
 const USE_LAYOUT_EFFECT_ERROR = /useLayoutEffect does nothing on the server/;
 const originalConsoleError = console.error.bind(console.error);
 
-export function testSSR(App: FunctionComponent) {
-  const renderOnServer = () => renderToString(<App />);
+export function testSSR(App: ReactElement) {
+  const renderOnServer = () => renderToString(App);
   const container = document.body.appendChild(document.createElement('div'));
   let unexpectedErrorCount = 0;
   jest.spyOn(global.console, 'error')
@@ -28,6 +28,6 @@ export function testSSR(App: FunctionComponent) {
   container.innerHTML = renderOnServer();
 
   // hydrate a container whose HTML contents were rendered by ReactDOMServer
-  render(<App />, { container, hydrate: true });
+  render(App, { container, hydrate: true });
   expect(unexpectedErrorCount).toEqual(0);
 }
