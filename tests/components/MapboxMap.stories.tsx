@@ -1,5 +1,5 @@
 import { ComponentMeta, Story } from '@storybook/react';
-import { userEvent, within, waitFor } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/testing-library';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
