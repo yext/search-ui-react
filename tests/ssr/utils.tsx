@@ -28,7 +28,7 @@ export function testSSR(App: FunctionComponent) {
   // hydrate a container whose HTML contents were rendered by ReactDOMServer
   render(<App />, { container, hydrate: true });
   expect(consoleErrorSpy).not.toBeCalledWith(
-    expect.stringContaining('Warning: Prop `%s` did not match. Server: %s Client: %s%s'),
+    'Warning: Prop `%s` did not match. Server: %s Client: %s%s',
     'id',
     expect.anything(),
     expect.anything(),
