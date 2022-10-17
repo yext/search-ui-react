@@ -8,8 +8,9 @@ const originalConsoleError = console.error.bind(console.error);
 export function testSSR(App: FunctionComponent) {
   const renderOnServer = () => renderToString(<App />);
   const container = document.body.appendChild(document.createElement('div'));
-  const consoleErrorSpy = jest.spyOn(global.console, 'error')
-    .mockImplementation((msg) => {
+  let unexpectedErrorCount = 0;
+  jest.spyOn(global.console, 'error')
+    .mockImplementation((msg, ...params) => {
       /**
        * Caveat of SSR: useEffect and useLayoutEffect hooks do not run when
        * rendering on server.
@@ -17,8 +18,9 @@ export function testSSR(App: FunctionComponent) {
        * Suppress useLayoutEffect warnings here since the mock window in jest test
        * environment made the workaround with isomorphic-layout-effect ineffective.
        */
-      if (!msg.toString().match(USE_LAYOUT_EFFECT_ERROR)) {
-        originalConsoleError(msg);
+      if (!msg.match(USE_LAYOUT_EFFECT_ERROR)) {
+        unexpectedErrorCount++;
+        originalConsoleError(msg, ...params);
       }
     });
 
@@ -27,11 +29,5 @@ export function testSSR(App: FunctionComponent) {
 
   // hydrate a container whose HTML contents were rendered by ReactDOMServer
   render(<App />, { container, hydrate: true });
-  expect(consoleErrorSpy).not.toBeCalledWith(
-    'Warning: Prop `%s` did not match. Server: %s Client: %s%s',
-    'id',
-    expect.anything(),
-    expect.anything(),
-    expect.anything()
-  );
+  expect(unexpectedErrorCount).toEqual(0);
 }
