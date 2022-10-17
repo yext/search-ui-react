@@ -20,7 +20,7 @@ const meta: ComponentMeta<typeof MapboxMap> = {
       control: false,
     },
   },
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen', percy: { waitForTimeout: 5000 } },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
@@ -50,9 +50,9 @@ CustomPin.args = {
 CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await canvas.findByTestId('loaded', undefined, {
-    timeout: 30000,
+    timeout: 3000,
     container: canvasElement,
   });
-  await userEvent.click(canvas.getByRole('button'));
+  userEvent.click(canvas.getAllByRole('button')[0]);
   await canvas.findByText('title1');
 };
