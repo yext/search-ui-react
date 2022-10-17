@@ -1,5 +1,5 @@
 interface Props {
-  instructionsId: string,
+  instructionsId?: string,
   instructions: string,
   announcementKey: number,
   announcementText: string
