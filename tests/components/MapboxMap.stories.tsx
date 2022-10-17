@@ -20,7 +20,7 @@ const meta: ComponentMeta<typeof MapboxMap> = {
       control: false,
     },
   },
-  parameters: { layout: 'fullscreen', percy: { waitForSelector: 'mapboxgl-map' } },
+  parameters: { layout: 'fullscreen', percy: { waitForSelector: '[data-testid="loaded"]' } },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
@@ -50,7 +50,7 @@ CustomPin.args = {
 CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await canvas.findByTestId('loaded', undefined, {
-    timeout: 2000,
+    timeout: 3000,
     container: canvasElement,
   });
   userEvent.click(canvas.getAllByRole('button')[0]);
