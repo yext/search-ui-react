@@ -20,7 +20,7 @@ const meta: ComponentMeta<typeof MapboxMap> = {
       control: false,
     },
   },
-  parameters: { layout: 'fullscreen', percy: { waitForSelector: '[data-testid="loaded"]' } },
+  parameters: { layout: 'fullscreen', percy: { waitForSelector: '.mapboxgl-map' } },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
