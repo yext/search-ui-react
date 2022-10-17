@@ -20,7 +20,7 @@ const meta: ComponentMeta<typeof MapboxMap> = {
       control: false,
     },
   },
-  parameters: { layout: 'fullscreen', percy: { waitForTimeout: 10000 } },
+  parameters: { layout: 'fullscreen', percy: { waitForTimeout: 30000 } },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
