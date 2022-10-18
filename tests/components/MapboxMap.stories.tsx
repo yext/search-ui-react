@@ -53,6 +53,6 @@ CustomPin.play = async ({ canvasElement }) => {
     timeout: 30000,
     container: canvasElement,
   });
-  userEvent.click(canvas.getAllByRole('button')[0]);
+  userEvent.click(canvas.getByLabelText('Show pin details'));
   await canvas.findByText('title1');
 };
