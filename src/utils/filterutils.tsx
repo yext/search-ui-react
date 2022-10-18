@@ -1,5 +1,5 @@
 import { NearFilterValue, FieldValueFilter, NumberRangeValue, Matcher, SearchActions, DisplayableFacet, SelectableStaticFilter } from '@yext/search-headless-react';
-import isEqual from 'lodash/isEqual';
+import { isEqual } from 'lodash';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 import { SelectableFieldValueFilter } from '../models/SelectableFieldValueFilter';
 
