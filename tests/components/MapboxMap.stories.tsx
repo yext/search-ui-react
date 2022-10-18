@@ -20,7 +20,7 @@ const meta: ComponentMeta<typeof MapboxMap> = {
       control: false,
     },
   },
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen', percy: { enableJavascript: true } },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
@@ -53,6 +53,6 @@ CustomPin.play = async ({ canvasElement }) => {
     timeout: 30000,
     container: canvasElement,
   });
-  await userEvent.click(canvas.getByRole('button'));
+  userEvent.click(canvas.getByLabelText('Show pin details'));
   await canvas.findByText('title1');
 };

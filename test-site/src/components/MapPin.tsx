@@ -43,7 +43,7 @@ export const MapPin: PinComponent<Location> = (props: MapPinProps<Location>) => 
   }, []);
 
   return (
-    <button onClick={handleClick}>
+    <button onClick={handleClick} aria-label='Show pin details'>
       <svg
         width="33" height="42"
         viewBox="0 0 30 38"
