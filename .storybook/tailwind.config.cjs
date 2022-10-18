@@ -4,5 +4,5 @@ module.exports = {
   ...tailwindConfig,
   content: [
     './src/**/*.{ts,tsx}'
-  ],
+  ]
 };

@@ -1,33 +1,20 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { Map, Popup, LngLatLike } from 'mapbox-gl';
+import { Popup, LngLatLike } from 'mapbox-gl';
 import { PinComponent, Coordinate } from '@yext/search-ui-react';
-import { Result } from '@yext/search-headless-react';
 import { Location } from '../pages/LocationsPage';
-
-export interface MapPinProps<T> {
-  index: number,
-  mapbox: Map,
-  result: Result<T>
-}
 
 const transformToMapboxCoord = (coordinate: Coordinate): LngLatLike => ({
   lng: coordinate.longitude,
   lat: coordinate.latitude,
 });
 
-export const MapPin: PinComponent<Location> = (props: MapPinProps<Location>) => {
+export const MapPin: PinComponent<Location> = props => {
   const { mapbox, result } = props;
   const yextCoordinate = result.rawData.yextDisplayCoordinate;
   const [active, setActive] = useState(false);
   const popupRef = useRef(new Popup({ offset: 15 })
     .on('close', () => setActive(false))
   );
-
-  useEffect(() => {
-    mapbox.on('load', () => {
-      mapbox.getContainer().setAttribute('data-testid', 'loaded');
-    });
-  }, [mapbox]);
 
   useEffect(() => {
     if (active && yextCoordinate) {

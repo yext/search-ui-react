@@ -32,7 +32,6 @@ module.exports = {
   webpackFinal: async (config) => {
     config.resolve.alias['./SearchCore'] = require.resolve('../tests/__fixtures__/core/SearchCore.ts');
     config.resolve.alias['../utils/location-operations'] = require.resolve('../tests/__fixtures__/utils/location-operations.ts');
-
     return config;
   },
   env: (config) => ({

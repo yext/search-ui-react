@@ -49,10 +49,9 @@ CustomPin.args = {
 
 CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  await canvas.findByTestId('loaded', undefined, {
-    timeout: 30000,
-    container: canvasElement,
+  const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
+    timeout: 30000
   });
-  userEvent.click(canvas.getByLabelText('Show pin details'));
+  userEvent.click(mapPin);
   await canvas.findByText('title1');
 };
