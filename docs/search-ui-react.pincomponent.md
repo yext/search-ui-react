@@ -10,7 +10,8 @@ A functional component that can be used to render a custom marker on the map.
 
 ```typescript
 export declare type PinComponent<T> = (props: {
-    result?: Result<T>;
-    index?: number;
+    index: number;
+    mapbox: Map;
+    result: Result<T>;
 }) => JSX.Element;
 ```

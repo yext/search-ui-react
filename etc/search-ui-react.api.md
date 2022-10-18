@@ -13,6 +13,7 @@ import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import { LngLat } from 'mapbox-gl';
 import { LngLatBounds } from 'mapbox-gl';
+import { Map as Map_2 } from 'mapbox-gl';
 import { MapboxOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
@@ -419,8 +420,9 @@ export interface PaginationProps {
 
 // @public
 export type PinComponent<T> = (props: {
-    result?: Result<T>;
-    index?: number;
+    index: number;
+    mapbox: Map_2;
+    result: Result<T>;
 }) => JSX.Element;
 
 // @public

@@ -1,4 +1,5 @@
 import './index.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { SearchCoreDecorator } from '../tests/__fixtures__/core/SearchCore';
 import { runOnly } from './wcagConfig';
 
@@ -22,6 +23,7 @@ export const parameters = {
         'SearchBar',
         'UniversalResults',
         'VerticalResults',
+        'MapboxMap',
         'DirectAnswer',
         'FilterSearch',
         'StaticFilters',
