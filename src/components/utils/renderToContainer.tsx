@@ -2,13 +2,14 @@ import { ReactElement } from 'react';
 
 type Renderer = (reactElement: ReactElement, container: Element) => void;
 
-const importString = 'react-dom/client';
-
+// The import must be put into a separate variable, otherwise webpack will
+// try to statically resolve the dynamic import and fail to do so
+const reactDomClientImportString = 'react-dom/client';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore we support both react-dom 17 and 18, but need this
 // ts-ignore since react-dom/client does not exist in react-dom 17
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const reactDomClientPromise: Promise<any> = import(importString);
+const reactDomClientPromise: Promise<any> = import(reactDomClientImportString);
 
 const rendererPromiseWithFallback: Promise<Renderer> = reactDomClientPromise
   .then(reactDomClient => {
