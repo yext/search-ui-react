@@ -11,6 +11,7 @@ const reactDomClientImportString = 'react-dom/client';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const reactDomClientPromise: Promise<any> = import(reactDomClientImportString);
 
+// This can be replaced by a regular import for react-dom/client once we stop supporting react-dom 17
 const rendererPromiseWithFallback: Promise<Renderer> = reactDomClientPromise
   .then(reactDomClient => {
     const { createRoot } = reactDomClient;
