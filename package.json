@@ -21,7 +21,8 @@
       "import": "./lib/esm/index.js",
       "require": "./lib/commonjs/index.js"
     },
-    "./bundle.css": "./lib/bundle.css"
+    "./bundle.css": "./lib/bundle.css",
+    "./bundle-no-preflight.css": "./lib/bundle-no-preflight.css"
   },
   "files": [
     "lib",
@@ -31,7 +32,7 @@
   "scripts": {
     "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run api-extractor && npm run generate-docs && npm run generate-notices",
     "build:js": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
-    "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs",
+    "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs && tailwindcss -o ./lib/bundle-no-preflight.css --minify -c tailwind-no-preflight.config.cjs",
     "dev": "tsc --watch -p tsconfig.esm.json",
     "lint": "eslint . --max-warnings=0",
     "api-extractor": "api-extractor run --local --verbose",
