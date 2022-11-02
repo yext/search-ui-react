@@ -1,4 +1,4 @@
-import { NearFilterValue, FieldValueFilter, NumberRangeValue, Matcher, SearchActions, DisplayableFacet, SelectableStaticFilter } from '@yext/search-headless-react';
+import { NearFilterValue, FieldValueFilter, NumberRangeValue, Matcher, SearchActions, DisplayableFacet, SelectableStaticFilter, StaticFilter } from '@yext/search-headless-react';
 import isEqual from 'lodash/isEqual';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 import { SelectableFieldValueFilter } from '../models/SelectableFieldValueFilter';
@@ -41,6 +41,26 @@ export function isDuplicateFieldValueFilter(
     return false;
   }
   return true;
+}
+
+/**
+ * Returns true if the two given static filters are the same.
+ */
+export function isDuplicateStaticFilter(thisFilter: StaticFilter, otherFilter: StaticFilter): boolean {
+  if (thisFilter.kind === 'fieldValue') {
+    return otherFilter.kind === 'fieldValue'
+      ? isDuplicateFieldValueFilter(thisFilter, otherFilter)
+      : false;
+  }
+
+  if (otherFilter.kind === 'fieldValue') {
+    return false;
+  }
+
+  return thisFilter.combinator === otherFilter.combinator
+    && thisFilter.filters.length === otherFilter.filters.length
+    && thisFilter.filters.every(t => otherFilter.filters.some(o => isDuplicateStaticFilter(t, o)))
+    && otherFilter.filters.every(o => thisFilter.filters.some(t => isDuplicateStaticFilter(o, t)));
 }
 
 /**

@@ -1,9 +1,9 @@
-import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, SearchParameterField, useSearchActions, useSearchState } from '@yext/search-headless-react';
+import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, SearchParameterField, StaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
-import { getSelectableFieldValueFilters, isDuplicateFieldValueFilter } from '../utils/filterutils';
+import { isDuplicateStaticFilter } from '../utils/filterutils';
 import { Dropdown } from './Dropdown/Dropdown';
 import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
@@ -51,6 +51,15 @@ export interface FilterSearchProps {
   placeholder?: string,
   /** Whether to trigger a search when an option is selected. Defaults to false. */
   searchOnSelect?: boolean,
+  /** A function which is called when a filter is selected. To use this, searchOnSelect must be false. */
+  onSelect?: (
+    currentFilter: StaticFilter | undefined,
+    setCurrentFilter: (filter: StaticFilter) => void,
+    newFilter: FieldValueStaticFilter,
+    newDisplayName: string,
+    setFilterQuery: (query: string) => void,
+    executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>
+  ) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -70,6 +79,7 @@ export function FilterSearch({
   label,
   placeholder = 'Search here...',
   searchOnSelect,
+  onSelect,
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
@@ -78,13 +88,9 @@ export function FilterSearch({
     return { ...searchField, fetchEntities: false };
   });
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const [currentFilter, setCurrentFilter] = useState<FieldValueStaticFilter>();
+  const [currentFilter, setCurrentFilter] = useState<StaticFilter>();
   const [filterQuery, setFilterQuery] = useState<string>();
   const staticFilters = useSearchState(state => state.filters.static);
-  const fieldValueFilters = useMemo(
-    () => getSelectableFieldValueFilters(staticFilters ?? []),
-    [staticFilters]
-  );
 
   const [
     filterSearchResponse,
@@ -99,14 +105,14 @@ export function FilterSearch({
   );
 
   useEffect(() => {
-    if (currentFilter && fieldValueFilters?.find(f =>
-      isDuplicateFieldValueFilter(f, currentFilter) && !f.selected
+    if (currentFilter && staticFilters?.find(f =>
+      isDuplicateStaticFilter(f.filter, currentFilter) && !f.selected
     )) {
       clearFilterSearchResponse();
       setCurrentFilter(undefined);
       setFilterQuery('');
     }
-  }, [clearFilterSearchResponse, currentFilter, fieldValueFilters]);
+  }, [clearFilterSearchResponse, currentFilter, staticFilters]);
 
   const sections = useMemo(() => {
     return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
@@ -119,25 +125,35 @@ export function FilterSearch({
     const newDisplayName = itemData?.displayName as string;
     if (newFilter && newDisplayName) {
       if (select) {
-        if (currentFilter) {
-          searchActions.setFilterOption({ filter: currentFilter, selected: false });
-        }
-        searchActions.setFilterOption({ filter: newFilter, displayName: newDisplayName, selected: true
-        });
-        setCurrentFilter(newFilter);
-        setFilterQuery(newDisplayName);
-        executeFilterSearch(newDisplayName);
-        if (searchOnSelect) {
-          searchActions.setOffset(0);
-          searchActions.resetFacets();
-          executeSearch(searchActions);
+        if (onSelect && !searchOnSelect) {
+          onSelect(
+            currentFilter,
+            setCurrentFilter,
+            newFilter,
+            newDisplayName,
+            setFilterQuery,
+            executeFilterSearch
+          );
+        } else {
+          if (currentFilter) {
+            searchActions.setFilterOption({ filter: currentFilter, selected: false });
+          }
+          searchActions.setFilterOption({ filter: newFilter, displayName: newDisplayName, selected: true });
+          setCurrentFilter(newFilter);
+          setFilterQuery(newDisplayName);
+          executeFilterSearch(newDisplayName);
+          if (searchOnSelect) {
+            searchActions.setOffset(0);
+            searchActions.resetFacets();
+            executeSearch(searchActions);
+          }
         }
       } else {
         setFilterQuery(value);
         executeFilterSearch(value);
       }
     }
-  }, [currentFilter, searchActions, executeFilterSearch, searchOnSelect]);
+  }, [currentFilter, searchActions, executeFilterSearch, searchOnSelect, onSelect]);
 
   const handleSelectDropdown = useCallback((value, _index, itemData) => {
     handleDropdownEvent(value, itemData, true);

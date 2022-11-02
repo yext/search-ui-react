@@ -10,6 +10,8 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AutocompleteResponse } from '@yext/search-headless-react';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
+import { FieldValueStaticFilter } from '@yext/search-headless-react';
+import { FilterSearchResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
@@ -20,6 +22,7 @@ import { SearchActions } from '@yext/search-headless-react';
 import { SearchHeadless } from '@yext/search-headless-react';
 import { SearchIntent } from '@yext/search-headless-react';
 import { SearchParameterField } from '@yext/search-headless-react';
+import { StaticFilter } from '@yext/search-headless-react';
 import { UniversalLimit } from '@yext/search-headless-react';
 import { UnknownFieldValueDirectAnswer } from '@yext/search-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/search-headless-react';
@@ -228,7 +231,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -250,6 +253,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
+    onSelect?: (currentFilter: StaticFilter | undefined, setCurrentFilter: (filter: StaticFilter) => void, newFilter: FieldValueStaticFilter, newDisplayName: string, setFilterQuery: (query: string) => void, executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>) => void;
     placeholder?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
     searchOnSelect?: boolean;
