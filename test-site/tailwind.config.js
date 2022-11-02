@@ -6,5 +6,14 @@ module.exports = {
   content: [
     './src/**/*.{ts,tsx}',
     ComponentsContentPath
-  ]
+  ],
+  theme: {
+    ...tailwindConfig.theme,
+    extend: {
+      ...tailwindConfig.theme.extend,
+      borderColor: {
+        DEFAULT: 'black'
+      }
+    }
+  }
 }
