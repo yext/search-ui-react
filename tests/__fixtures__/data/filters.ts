@@ -1,5 +1,6 @@
 import { DisplayableFacet, Matcher, SelectableStaticFilter } from '@yext/search-headless-react';
 import { RemovableFilter } from '../../../src/components/AppliedFiltersDisplay';
+import { StaticFiltersProps } from '../../../src/components/StaticFilters';
 
 function createRemovableFilter(value: string) {
   return {
@@ -96,3 +97,25 @@ export const staticFilters: SelectableStaticFilter[] = [
     selected: false
   }
 ];
+
+export const staticFiltersProps: StaticFiltersProps = {
+  fieldId: 'c_puppyPreference',
+  title: 'Puppy Preference',
+  filterOptions: [
+    {
+      value: 'Marty',
+      displayName: 'MARTY!'
+    },
+    {
+      value: 'Frodo',
+      selectedByDefault: true
+    },
+    {
+      value: 'Bleecker'
+    },
+    {
+      value: 'Clifford',
+      selectedByDefault: false
+    }
+  ]
+};

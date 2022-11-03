@@ -1,12 +1,11 @@
 import { FieldValueFilter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
 import { useCallback, useEffect, useMemo } from 'react';
-import { v4 as uuid } from 'uuid';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { findSelectableFieldValueFilter } from '../../utils/filterutils';
 import classNames from 'classnames';
-
+import { useId } from '@reach/auto-id';
 /**
  * The configuration data for a field value filter option.
  *
@@ -79,7 +78,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     resultsCount
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
-  const optionId = useMemo(() => uuid(), []);
+  const optionId = useId();
   const { selectFilter, filters, applyFilters } = useFiltersContext();
 
   const handleClick = useCallback((checked: boolean) => {

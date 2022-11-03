@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext, Source } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -13,6 +13,9 @@ const meta: ComponentMeta<typeof VerticalResults> = {
     CardComponent: {
       control: false
     }
+  },
+  args: {
+    CardComponent: StandardCard
   }
 };
 export default meta;
@@ -44,38 +47,29 @@ const mockedHeadlessState = {
   }
 };
 
-export const NoResults = (args: VerticalResultsProps<DefaultRawDataType>) => {
-  const verticalResultsProps: VerticalResultsProps<DefaultRawDataType> = {
-    CardComponent: StandardCard
-  };
+export const NoResults: Story<VerticalResultsProps<DefaultRawDataType>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({})}>
-      <VerticalResults {...verticalResultsProps} {...args} />
+      <VerticalResults {...args} />
     </SearchHeadlessContext.Provider>
   );
 };
 
-export const HasResults = (args: VerticalResultsProps<DefaultRawDataType>) => {
-  const verticalResultsProps: VerticalResultsProps<DefaultRawDataType> = {
-    CardComponent: StandardCard
-  };
+export const HasResults: Story<VerticalResultsProps<DefaultRawDataType>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <VerticalResults {...verticalResultsProps} {...args} />
+      <VerticalResults {...args} />
     </SearchHeadlessContext.Provider>
   );
 };
 
-export const Loading = (args: VerticalResultsProps<DefaultRawDataType>) => {
-  const verticalResultsProps: VerticalResultsProps<DefaultRawDataType> = {
-    CardComponent: StandardCard
-  };
+export const Loading: Story<VerticalResultsProps<DefaultRawDataType>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...mockedHeadlessState,
       searchStatus: { isLoading: true }
     })}>
-      <VerticalResults {...verticalResultsProps} {...args} />
+      <VerticalResults {...args} />
     </SearchHeadlessContext.Provider>
   );
 };

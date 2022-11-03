@@ -4,8 +4,22 @@ import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown'
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import { DropdownItem } from '../../src/components/Dropdown/DropdownItem';
+import { testSSR } from '../ssr/utils';
 
 describe('Dropdown', () => {
+  it('renders identical content between the server and the client.', () => {
+    testSSR(
+      <Dropdown screenReaderText='screen reader text here'>
+        <DropdownInput />
+        <DropdownMenu>
+          <DropdownItem value='item1'>
+            item1
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+  });
+
   it('can toggle hide/display', () => {
     const mockedOnToggleFn = jest.fn();
     const dropdownProps: DropdownProps = {

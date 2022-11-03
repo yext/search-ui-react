@@ -11,7 +11,7 @@ export function CustomCard(props: CardProps<CustomRawDataType>): JSX.Element {
   const onClickFeedback = useCardFeedbackCallback(result)
 
   return (
-    <div className='flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm'>
+    <div className='flex flex-col justify-between border border-gray-200 rounded-lg mb-4 p-4 shadow-sm'>
         <p className='text-red-600'>Custom Card</p>
         <button onClick={onClickTitle}>Name: {result.rawData.name}</button>
         <p>Description: {result.rawData.description}</p>

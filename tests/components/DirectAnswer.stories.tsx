@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import {
   BuiltInFieldType,
   SearchHeadlessContext,
@@ -15,6 +15,11 @@ import { featuredSnippetDAState, fieldValueDAState } from '../__fixtures__/data/
 const meta: ComponentMeta<typeof DirectAnswer> = {
   title: 'DirectAnswer',
   component: DirectAnswer,
+  argTypes: {
+    UnknownFieldTypeDisplay: {
+      control: false
+    }
+  }
 };
 export default meta;
 
@@ -40,11 +45,11 @@ function generateFieldValueDirectAnswer(
   );
 }
 
-export const URLFieldValue = (args: DirectAnswerProps) => {
+export const URLFieldValue: Story<DirectAnswerProps> = (args) => {
   return generateFieldValueDirectAnswer(args, BuiltInFieldType.URL, '[url]');
 };
 
-export const ComplexURLFieldValue = (args: DirectAnswerProps) => {
+export const ComplexURLFieldValue: Story<DirectAnswerProps> = (args) => {
   const complexUrl: ComplexURL = {
     url: '[url]',
     displayUrl: '[displayUrl]',
@@ -53,7 +58,7 @@ export const ComplexURLFieldValue = (args: DirectAnswerProps) => {
   return generateFieldValueDirectAnswer(args, BuiltInFieldType.ComplexURL, complexUrl);
 };
 
-export const ListFieldValue = (args: DirectAnswerProps) => {
+export const ListFieldValue: Story<DirectAnswerProps> = (args) => {
   const emails = [
     'email1@yext.com',
     'email2@yext.com',
@@ -62,7 +67,7 @@ export const ListFieldValue = (args: DirectAnswerProps) => {
   return generateFieldValueDirectAnswer(args, BuiltInFieldType.Email, emails);
 };
 
-export const AddressFieldValue = (args: DirectAnswerProps) => {
+export const AddressFieldValue: Story<DirectAnswerProps> = (args) => {
   const address: Address = {
     line1: '[line1]',
     line2: '[line2]',
@@ -75,15 +80,15 @@ export const AddressFieldValue = (args: DirectAnswerProps) => {
   return generateFieldValueDirectAnswer(args, BuiltInFieldType.Address, address);
 };
 
-export const StringFieldValue = (args: DirectAnswerProps) => {
+export const StringFieldValue: Story<DirectAnswerProps> = (args) => {
   return generateFieldValueDirectAnswer(args, BuiltInFieldType.MultiLineText, 'multi\nline\ntext');
 };
 
-export const NumberFieldValue = (args: DirectAnswerProps) => {
+export const NumberFieldValue: Story<DirectAnswerProps> = (args) => {
   return generateFieldValueDirectAnswer(args, BuiltInFieldType.Integer, 123456789);
 };
 
-export const PlainTextFeaturedSnippet = (args: DirectAnswerProps) => {
+export const PlainTextFeaturedSnippet: Story<DirectAnswerProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       directAnswer: featuredSnippetDAState
@@ -95,7 +100,7 @@ export const PlainTextFeaturedSnippet = (args: DirectAnswerProps) => {
 
 // TODO: SLAP-2340, add story for RichTextFeaturedSnippet
 
-export const Loading = (args: DirectAnswerProps) => {
+export const Loading: Story<DirectAnswerProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       directAnswer: featuredSnippetDAState,
@@ -105,4 +110,3 @@ export const Loading = (args: DirectAnswerProps) => {
     </SearchHeadlessContext.Provider>
   );
 };
-
