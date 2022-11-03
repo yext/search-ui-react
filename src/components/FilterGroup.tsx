@@ -1,8 +1,11 @@
 import { useSearchUtilities } from '@yext/search-headless-react';
 import { PropsWithChildren, useMemo, useState } from 'react';
+import { twMerge } from '../hooks/useComposedCssClasses';
 import {
   CheckboxOption,
   CollapsibleLabel,
+  CollapsibleLabelCssClasses,
+  builtInCollapsibleLabelCssClasses,
   CollapsibleSection,
   FilterOptionConfig,
   SearchInput,
@@ -17,6 +20,7 @@ import {
  * @public
  */
 export interface FilterGroupCssClasses {
+  titleLabel?: string,
   searchInput?: string,
   optionsContainer?: string,
   option?: string,
@@ -75,11 +79,17 @@ export function FilterGroup({
     };
   }, [customCssClasses]);
 
+  const collapsibleLabelCssClasses: CollapsibleLabelCssClasses = useMemo(() => {
+    return {
+      label: cssClasses.titleLabel
+    };
+  }, [cssClasses]);
+
   function renderTitle() {
     return collapsible
-      ? <CollapsibleLabel label={title} />
+      ? <CollapsibleLabel label={title} customCssClasses={collapsibleLabelCssClasses} />
       : (title &&
-        <div className='text-neutral-dark text-sm font-medium text-left mb-4'>
+        <div className={twMerge('mb-4', builtInCollapsibleLabelCssClasses.label, cssClasses.titleLabel)}>
           {title}
         </div>);
   }
