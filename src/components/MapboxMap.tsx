@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import mapboxgl, { Map, Marker, MapboxOptions, LngLatBounds, MarkerOptions, LngLat } from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
-import renderToContainer from './utils/renderToContainer';
+import ReactDOM from 'react-dom';
 
 /**
  * A functional component that can be used to render a custom marker on the map.
@@ -133,15 +133,15 @@ export function MapboxMap<T>({
         const markerLocation = getCoordinate(result);
         if (markerLocation) {
           const { latitude, longitude } = markerLocation;
+          const el = document.createElement('div');
           const markerOptions: MarkerOptions = {};
           if (PinComponent) {
-            const pinReactEl = <PinComponent
+            ReactDOM.render(<PinComponent
               index={i}
               mapbox={mapbox}
               result={result}
-            />;
-            markerOptions.element = document.createElement('div');
-            renderToContainer(pinReactEl, markerOptions.element);
+            />, el);
+            markerOptions.element = el;
           }
           const marker = new Marker(markerOptions)
             .setLngLat({ lat: latitude, lng: longitude })
