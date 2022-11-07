@@ -21,4 +21,5 @@ export interface FilterGroupCssClasses
 |  [optionLabel?](./search-ui-react.filtergroupcssclasses.optionlabel.md) | string | <i>(Optional)</i> |
 |  [optionsContainer?](./search-ui-react.filtergroupcssclasses.optionscontainer.md) | string | <i>(Optional)</i> |
 |  [searchInput?](./search-ui-react.filtergroupcssclasses.searchinput.md) | string | <i>(Optional)</i> |
+|  [titleLabel?](./search-ui-react.filtergroupcssclasses.titlelabel.md) | string | <i>(Optional)</i> |
 
