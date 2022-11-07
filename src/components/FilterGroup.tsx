@@ -79,10 +79,6 @@ export function FilterGroup({
     };
   }, [customCssClasses]);
 
-  const replicateCollapsibleLabelCssClasses = useMemo(() => {
-    return twMerge('mb-4', builtInCollapsibleLabelCssClasses.label, cssClasses.titleLabel);
-  }, [cssClasses]);
-
   const collapsibleLabelCssClasses: CollapsibleLabelCssClasses = useMemo(() => {
     return {
       label: cssClasses.titleLabel
@@ -93,7 +89,7 @@ export function FilterGroup({
     return collapsible
       ? <CollapsibleLabel label={title} customCssClasses={collapsibleLabelCssClasses} />
       : (title &&
-        <div className={replicateCollapsibleLabelCssClasses}>
+        <div className={twMerge('mb-4', builtInCollapsibleLabelCssClasses.label, collapsibleLabelCssClasses.label)}>
           {title}
         </div>);
   }
