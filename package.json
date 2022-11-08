@@ -77,7 +77,6 @@
     "@yext/search-headless-react": "^2.0.0",
     "axe-playwright": "^1.1.11",
     "babel-jest": "^27.0.6",
-    "babel-loader": "^8.2.3",
     "eslint": "^8.11.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-react-hooks": "^4.3.0",
