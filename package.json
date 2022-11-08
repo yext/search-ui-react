@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "slapshot@yext.com",
   "license": "BSD-3-Clause",
@@ -73,7 +73,7 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "@yext/eslint-config-slapshot": "^0.5.0",
-    "@yext/search-headless-react": "^2.0.0",
+    "@yext/search-headless-react": "^2.0.1",
     "axe-playwright": "^1.1.11",
     "babel-jest": "^27.0.6",
     "eslint": "^8.11.0",
@@ -89,7 +89,7 @@
     "typescript": "~4.4.3"
   },
   "peerDependencies": {
-    "@yext/search-headless-react": "^2.0.0",
+    "@yext/search-headless-react": "^2.0.1",
     "react": "^16.14 || ^17 || ^18"
   },
   "jest": {
