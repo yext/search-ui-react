@@ -20,7 +20,7 @@ export interface AlternativeVerticalsCssClasses {
 }
 
 const builtInCssClasses: Readonly<AlternativeVerticalsCssClasses> = {
-  alternativeVerticalsContainer: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
+  alternativeVerticalsContainer: 'flex flex-col justify-between border border-gray-200 rounded-lg mb-4 p-4 shadow-sm',
   alternativeVerticalsLoading: 'opacity-50',
   noResultsText: 'text-lg text-neutral-dark pb-2',
   categoriesText: 'text-neutral',

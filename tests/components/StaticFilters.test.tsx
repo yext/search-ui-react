@@ -3,8 +3,9 @@ import { SearchActions, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FilterOptionConfig } from '../../src/components/Filters';
 import userEvent from '@testing-library/user-event';
-import { StaticFilters, StaticFiltersProps } from '../../src/components';
-import { staticFilters } from '../__fixtures__/data/filters';
+import { StaticFilters } from '../../src/components';
+import { staticFilters, staticFiltersProps } from '../__fixtures__/data/filters';
+import { testSSR } from '../ssr/utils';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -16,28 +17,6 @@ const mockedState: Partial<State> = {
   meta: {
     searchType: 'vertical'
   }
-};
-
-const staticFiltersProps: StaticFiltersProps = {
-  fieldId: 'c_puppyPreference',
-  title: 'Puppy Preference',
-  filterOptions: [
-    {
-      value: 'Marty',
-      displayName: 'MARTY!'
-    },
-    {
-      value: 'Frodo',
-      selectedByDefault: true
-    },
-    {
-      value: 'Bleecker'
-    },
-    {
-      value: 'Clifford',
-      selectedByDefault: true
-    }
-  ]
 };
 
 const mockedActions = {
@@ -61,6 +40,10 @@ describe('Static Filters', () => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
   });
 
+  it('renders identical content between the server and the client.', () => {
+    testSSR(<StaticFilters {...staticFiltersProps} />);
+  });
+
   it('Properly renders default, basic static filters', () => {
     render(<StaticFilters {...staticFiltersProps} />);
 
@@ -79,7 +62,9 @@ describe('Static Filters', () => {
     render(<StaticFilters {...staticFiltersProps} />);
 
     const martyFilter = staticFiltersProps.filterOptions[0];
-    const martyCheckbox: HTMLInputElement = screen.getByLabelText(martyFilter.displayName);
+    const martyCheckbox: HTMLInputElement = screen.getByLabelText(
+      martyFilter.displayName ?? martyFilter.value.toString()
+    );
     expect(martyCheckbox.checked).toBeFalsy();
 
     userEvent.click(martyCheckbox);

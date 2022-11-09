@@ -38,12 +38,14 @@ describe('SpellCheck', () => {
   it('Suggestion is formatted properly', () => {
     render(<SpellCheck />);
     expect(screen.getByText('Did you mean')).toBeDefined();
-    expect(screen.getByText(mockedState.spellCheck.correctedQuery)).toBeDefined();
+    const correctedQuery = mockedState.spellCheck?.correctedQuery;
+    expect(correctedQuery && screen.getByText(correctedQuery)).toBeTruthy();
   });
 
   it('Button\'s label is correct', () => {
     render(<SpellCheck />);
-    expect(screen.getByRole('button')).toHaveTextContent(mockedState.spellCheck.correctedQuery);
+    const label = screen.getByRole('button').textContent;
+    expect(label).toEqual(mockedState.spellCheck?.correctedQuery);
   });
 
   it('Fires onClick when provided', () => {
@@ -56,8 +58,8 @@ describe('SpellCheck', () => {
     render(<SpellCheck {...props} />);
     userEvent.click(screen.getByRole('button'));
 
-    const verticalKey = mockedState.vertical.verticalKey;
-    const correctedQuery = mockedState.spellCheck.correctedQuery;
+    const verticalKey = mockedState.vertical?.verticalKey;
+    const correctedQuery = mockedState.spellCheck?.correctedQuery;
     expect(actions.setQuery).toHaveBeenCalledWith(correctedQuery);
     expect(onClick).toHaveBeenCalledWith({ correctedQuery, verticalKey });
   });
@@ -67,7 +69,7 @@ describe('SpellCheck', () => {
     render(<SpellCheck />);
     userEvent.click(screen.getByRole('button'));
 
-    const correctedQuery = mockedState.spellCheck.correctedQuery;
+    const correctedQuery = mockedState.spellCheck?.correctedQuery;
     expect(actions.setQuery).toHaveBeenCalledWith(correctedQuery);
     expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
   });
