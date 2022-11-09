@@ -1,8 +1,9 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useMemo, useState } from 'react';
 import mapboxgl, { Map, Marker, MapboxOptions, LngLatBounds, MarkerOptions, LngLat } from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import ReactDOM from 'react-dom';
+import useLayoutEffect from 'use-isomorphic-layout-effect';
 
 /**
  * A functional component that can be used to render a custom marker on the map.
@@ -67,6 +68,11 @@ export interface MapboxMapProps<T> {
 }
 
 /**
+ * Defined mapbox options as defaults. These options are also needed for Mapbox Static Images API.
+ */
+type DefaultMapboxOptions = Required<Pick<MapboxOptions, 'center' | 'style' | 'zoom'>>;
+
+/**
  * A component that renders a map with markers to show result locations using Mapbox GL.
  *
  * @remarks
@@ -96,6 +102,7 @@ export function MapboxMap<T>({
     mapboxgl.accessToken = mapboxAccessToken;
   }, [mapboxAccessToken]);
 
+  const parentContainer = useRef<HTMLDivElement>(null);
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<Map | null>(null);
   const markers = useRef<Marker[]>([]);
@@ -103,16 +110,22 @@ export function MapboxMap<T>({
   const locationResults = useSearchState(state => state.vertical.results) as Result<T>[];
   const onDragDebounced = useDebouncedFunction(onDrag, 100);
 
+  const options: Omit<MapboxOptions & DefaultMapboxOptions, 'container'> = useMemo(() => {
+    return {
+      style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+      center: [-74.005371, 40.741611],
+      zoom: 9,
+      ...mapboxOptions
+    };
+  }, [mapboxOptions]);
+  const mapboxStaticImageDiv = useMapboxStaticImage(mapboxAccessToken, parentContainer, options);
+
   useEffect(() => {
     if (mapContainer.current && !map.current) {
-      const options: MapboxOptions = {
+      map.current = new Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-74.005371, 40.741611],
-        zoom: 9,
-        ...mapboxOptions
-      };
-      map.current = new Map(options);
+        ...options
+      });
       const mapbox = map.current;
       mapbox.resize();
       if (onDragDebounced) {
@@ -120,8 +133,11 @@ export function MapboxMap<T>({
           onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
         });
       }
+      mapbox.on('load', () => {
+        mapbox.getContainer().style.visibility = 'visible';
+      });
     }
-  }, [mapboxOptions, onDragDebounced]);
+  }, [options, onDragDebounced]);
 
   useEffect(() => {
     markers.current.forEach(marker => marker.remove());
@@ -161,8 +177,51 @@ export function MapboxMap<T>({
   }, [PinComponent, getCoordinate, locationResults]);
 
   return (
-    <div ref={mapContainer} className='h-full w-full' />
+    <div className='grid h-full w-full' ref={parentContainer}>
+      <div ref={mapContainer} className="col-span-full row-span-full invisible"/>
+      {mapboxStaticImageDiv}
+    </div>
   );
+}
+
+function useMapboxStaticImage(
+  mapboxAccessToken: string,
+  parentContainer: React.RefObject<HTMLDivElement>,
+  options: Omit<MapboxOptions & DefaultMapboxOptions, 'container'>,
+): JSX.Element | null {
+  const [divDimension, setDivDimension] = useState<{ width: number, height: number }>();
+  useLayoutEffect(() => {
+    if (parentContainer.current) {
+      setDivDimension({
+        width: parentContainer.current.clientWidth,
+        height: parentContainer.current.clientHeight
+      });
+    }
+  }, [parentContainer]);
+
+  const staticMapboxStyle: React.HTMLAttributes<HTMLDivElement>['style'] = useMemo(() => {
+    const { style, center, zoom } = options;
+    if (divDimension === undefined || typeof style !== 'string') {
+      return undefined;
+    }
+    const { width, height } = divDimension;
+    // Mapbox Static Image API only support width and height between 1-1280 pixels.
+    if (width > 1280 || height > 1280) {
+      return undefined;
+    }
+    const stylesheet = style.split('mapbox://styles/')[1].split('?')[0];
+    const centerAndZoom = `${center[0]},${center[1]},${zoom}`;
+    const dimension = `${width}x${height}`;
+    const staticMapboxUrl = `https://api.mapbox.com/styles/v1/${stylesheet}/static/${centerAndZoom}/${dimension}?access_token=${mapboxAccessToken}`;
+    return {
+      backgroundImage: `url(${staticMapboxUrl})`
+    };
+  }, [divDimension, mapboxAccessToken, options]);
+
+  if (!staticMapboxStyle) {
+    return null;
+  }
+  return <div id="static-map" className='col-span-full row-span-full' style={staticMapboxStyle}></div>;
 }
 
 function isCoordinate(data: unknown): data is Coordinate {
