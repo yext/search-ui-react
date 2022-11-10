@@ -18,9 +18,9 @@ export interface FilterSearchProps
 |  --- | --- | --- |
 |  [customCssClasses?](./search-ui-react.filtersearchprops.customcssclasses.md) | [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [label?](./search-ui-react.filtersearchprops.label.md) | string | <i>(Optional)</i> The display label for the component. |
-|  [onSelect?](./search-ui-react.filtersearchprops.onselect.md) | (currentFilter: StaticFilter \| undefined, setCurrentFilter: (filter: StaticFilter) =&gt; void, newFilter: FieldValueStaticFilter, newDisplayName: string, setFilterQuery: (query: string) =&gt; void, executeFilterSearch: (query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt;) =&gt; void | <i>(Optional)</i> A function which is called when a filter is selected. To use this, searchOnSelect must be false. |
+|  [onSelect?](./search-ui-react.filtersearchprops.onselect.md) | (currentFilter: StaticFilter \| undefined, setCurrentFilter: (filter: StaticFilter) =&gt; void, newFilter: FieldValueStaticFilter, newDisplayName: string, executeFilterSearch: (query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt;) =&gt; void | <i>(Optional)</i> A function which is called when a filter is selected. |
 |  [placeholder?](./search-ui-react.filtersearchprops.placeholder.md) | string | <i>(Optional)</i> The search input's placeholder text when no text has been entered by the user. Defaults to "Search here...". |
 |  [searchFields](./search-ui-react.filtersearchprops.searchfields.md) | Omit&lt;SearchParameterField, 'fetchEntities'&gt;\[\] | An array of fieldApiName and entityType which indicates what to perform the filter search against. |
-|  [searchOnSelect?](./search-ui-react.filtersearchprops.searchonselect.md) | boolean | <i>(Optional)</i> Whether to trigger a search when an option is selected. Defaults to false. |
+|  [searchOnSelect?](./search-ui-react.filtersearchprops.searchonselect.md) | boolean | <i>(Optional)</i> Whether to trigger a search when an option is selected. Defaults to true. |
 |  [sectioned?](./search-ui-react.filtersearchprops.sectioned.md) | boolean | <i>(Optional)</i> Determines whether or not the results of the filter search are separated by field. Defaults to false. |
 

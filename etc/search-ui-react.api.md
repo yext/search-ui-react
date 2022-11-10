@@ -253,9 +253,10 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
-    onSelect?: (currentFilter: StaticFilter | undefined, setCurrentFilter: (filter: StaticFilter) => void, newFilter: FieldValueStaticFilter, newDisplayName: string, setFilterQuery: (query: string) => void, executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>) => void;
+    onSelect?: (currentFilter: StaticFilter | undefined, setCurrentFilter: (filter: StaticFilter) => void, newFilter: FieldValueStaticFilter, newDisplayName: string, executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>) => void;
     placeholder?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
+    // @deprecated
     searchOnSelect?: boolean;
     sectioned?: boolean;
 }

@@ -179,6 +179,26 @@ describe('search with section labels', () => {
     });
   });
 
+  it('executes onSelect function when a filter is selected', async () => {
+    const mockedOnSelect = jest.fn();
+    const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    renderFilterSearch({ searchFields: searchFieldsProp, onSelect: mockedOnSelect });
+    const searchBarElement = screen.getByRole('textbox');
+
+    userEvent.type(searchBarElement, 'n');
+    await waitFor(() => screen.findByText('first name 1'));
+
+    userEvent.type(searchBarElement, '{enter}');
+    await waitFor(() => {
+      expect(executeFilterSearch).toHaveBeenCalled();
+    });
+    expect(mockedOnSelect).toBeCalled();
+    expect(setFilterOption).not.toBeCalled();
+  });
+
   describe('searchOnSelect = true', () => {
     it('triggers a search on pressing "enter" when an autocomplete result is selected', async () => {
       const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch');
@@ -281,35 +301,6 @@ describe('search with section labels', () => {
       expect(setOffsetCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
       expect(resetFacetsCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
     });
-
-    it('does not execute onSelect function when a filter is selected', async () => {
-      const mockedOnSelect = jest.fn();
-      const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
-      const executeFilterSearch = jest
-        .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
-        .mockResolvedValue(labeledFilterSearchResponse);
-      renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true, onSelect: mockedOnSelect });
-      const searchBarElement = screen.getByRole('textbox');
-
-      userEvent.type(searchBarElement, 'n');
-      await waitFor(() => screen.findByText('first name 1'));
-
-      userEvent.type(searchBarElement, '{enter}');
-      await waitFor(() => {
-        expect(executeFilterSearch).toHaveBeenCalled();
-      });
-      expect(mockedOnSelect).not.toBeCalled();
-      expect(setFilterOption).toBeCalledWith({
-        filter: {
-          kind: 'fieldValue',
-          fieldId: 'name',
-          matcher: Matcher.Equals,
-          value: 'first name 1'
-        },
-        displayName: 'first name 1',
-        selected: true
-      });
-    });
   });
 
   describe('searchOnSelect = false', () => {
@@ -344,26 +335,6 @@ describe('search with section labels', () => {
       expect(setOffset).not.toHaveBeenCalled();
       expect(resetFacets).not.toHaveBeenCalled();
       expect(mockExecuteSearch).not.toHaveBeenCalled();
-    });
-
-    it('executes onSelect function when a filter is selected', async () => {
-      const mockedOnSelect = jest.fn();
-      const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
-      const executeFilterSearch = jest
-        .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
-        .mockResolvedValue(labeledFilterSearchResponse);
-      renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: false, onSelect: mockedOnSelect });
-      const searchBarElement = screen.getByRole('textbox');
-
-      userEvent.type(searchBarElement, 'n');
-      await waitFor(() => screen.findByText('first name 1'));
-
-      userEvent.type(searchBarElement, '{enter}');
-      await waitFor(() => {
-        expect(executeFilterSearch).toHaveBeenCalled();
-      });
-      expect(mockedOnSelect).toBeCalled();
-      expect(setFilterOption).not.toBeCalled();
     });
   });
 });
@@ -556,32 +527,4 @@ it('toggling the dropdown does not change selected filters', async () => {
   userEvent.click(externalDiv);
 
   expect(setFilterOption).toBeCalledTimes(1);
-});
-
-it('toggling the dropdown does not call onSelect function', async () => {
-  const mockedOnSelect = jest.fn();
-  const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
-  const executeFilterSearch = jest
-    .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
-    .mockResolvedValue(labeledFilterSearchResponse);
-
-  render(
-    <div>
-      <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
-        <FilterSearch searchFields={searchFieldsProp} onSelect={mockedOnSelect} />
-      </SearchHeadlessContext.Provider>
-      <div>external div</div>
-    </div>
-  );
-
-  userEvent.type(screen.getByRole('textbox'), 'first name 1');
-
-  await waitFor(() => {
-    expect(executeFilterSearch).toHaveBeenCalled();
-  });
-
-  userEvent.click(screen.getByText('external div'));
-
-  expect(mockedOnSelect).not.toBeCalled();
-  expect(setFilterOption).not.toBeCalled();
 });

@@ -49,15 +49,18 @@ export interface FilterSearchProps {
    * Defaults to "Search here...".
    */
   placeholder?: string,
-  /** Whether to trigger a search when an option is selected. Defaults to false. */
+  /**
+   * Whether to trigger a search when an option is selected. Defaults to true.
+   *
+   * @deprecated Use the `onSelect` prop instead.
+   */
   searchOnSelect?: boolean,
-  /** A function which is called when a filter is selected. To use this, searchOnSelect must be false. */
+  /** A function which is called when a filter is selected. */
   onSelect?: (
     currentFilter: StaticFilter | undefined,
     setCurrentFilter: (filter: StaticFilter) => void,
     newFilter: FieldValueStaticFilter,
     newDisplayName: string,
-    setFilterQuery: (query: string) => void,
     executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>
   ) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
@@ -78,7 +81,7 @@ export function FilterSearch({
   searchFields,
   label,
   placeholder = 'Search here...',
-  searchOnSelect,
+  searchOnSelect = true,
   onSelect,
   sectioned = false,
   customCssClasses
@@ -120,51 +123,36 @@ export function FilterSearch({
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
-  const handleDropdownEvent = useCallback((value, itemData, select) => {
+  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
     const newFilter = itemData?.filter as FieldValueStaticFilter;
     const newDisplayName = itemData?.displayName as string;
-    if (newFilter && newDisplayName) {
-      if (select) {
-        if (onSelect && !searchOnSelect) {
-          onSelect(
-            currentFilter,
-            setCurrentFilter,
-            newFilter,
-            newDisplayName,
-            setFilterQuery,
-            executeFilterSearch
-          );
-        } else {
-          if (currentFilter) {
-            searchActions.setFilterOption({ filter: currentFilter, selected: false });
-          }
-          searchActions.setFilterOption({ filter: newFilter, displayName: newDisplayName, selected: true });
-          setCurrentFilter(newFilter);
-          setFilterQuery(newDisplayName);
-          executeFilterSearch(newDisplayName);
-          if (searchOnSelect) {
-            searchActions.setOffset(0);
-            searchActions.resetFacets();
-            executeSearch(searchActions);
-          }
-        }
-      } else {
-        setFilterQuery(value);
-        executeFilterSearch(value);
-      }
+    if (!newFilter || !newDisplayName) {
+      return;
     }
-  }, [currentFilter, searchActions, executeFilterSearch, searchOnSelect, onSelect]);
 
-  const handleSelectDropdown = useCallback((value, _index, itemData) => {
-    handleDropdownEvent(value, itemData, true);
-  }, [handleDropdownEvent]);
-
-  const handleToggleDropdown =
-  useCallback((isActive, _prevValue, value, _index, itemData) => {
-    if (!isActive) {
-      handleDropdownEvent(value, itemData, false);
+    if (onSelect) {
+      return onSelect(
+        currentFilter,
+        setCurrentFilter,
+        newFilter,
+        newDisplayName,
+        executeFilterSearch
+      );
     }
-  }, [handleDropdownEvent]);
+
+    if (currentFilter) {
+      searchActions.setFilterOption({ filter: currentFilter, selected: false });
+    }
+    searchActions.setFilterOption({ filter: newFilter, displayName: newDisplayName, selected: true });
+    setCurrentFilter(newFilter);
+    executeFilterSearch(newDisplayName);
+
+    if (searchOnSelect) {
+      searchActions.setOffset(0);
+      searchActions.resetFacets();
+      executeSearch(searchActions);
+    }
+  }, [currentFilter, searchActions, executeFilterSearch, onSelect, searchOnSelect]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
@@ -215,7 +203,6 @@ export function FilterSearch({
       <Dropdown
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
-        onToggle={handleToggleDropdown}
         alwaysSelectOption={true}
         parentQuery={filterQuery}
       >

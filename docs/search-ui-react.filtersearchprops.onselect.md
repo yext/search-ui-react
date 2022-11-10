@@ -4,10 +4,10 @@
 
 ## FilterSearchProps.onSelect property
 
-A function which is called when a filter is selected. To use this, searchOnSelect must be false.
+A function which is called when a filter is selected.
 
 <b>Signature:</b>
 
 ```typescript
-onSelect?: (currentFilter: StaticFilter | undefined, setCurrentFilter: (filter: StaticFilter) => void, newFilter: FieldValueStaticFilter, newDisplayName: string, setFilterQuery: (query: string) => void, executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>) => void;
+onSelect?: (currentFilter: StaticFilter | undefined, setCurrentFilter: (filter: StaticFilter) => void, newFilter: FieldValueStaticFilter, newDisplayName: string, executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>) => void;
 ```
