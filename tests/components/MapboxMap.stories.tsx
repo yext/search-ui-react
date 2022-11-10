@@ -1,3 +1,4 @@
+import { rest } from 'msw';
 import { ComponentMeta, Story } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
@@ -54,4 +55,20 @@ CustomPin.play = async ({ canvasElement }) => {
   });
   userEvent.click(mapPin);
   await canvas.findByText('title1');
+};
+
+export const StaticImageBeforeLoad = Template.bind({});
+StaticImageBeforeLoad.parameters = {
+  msw: {
+    handlers: [
+      rest.get(/https:\/\/api.mapbox.com\/styles\/v1/, (req, res, ctx) => {
+        if (req.url.href.includes('static')) {
+          // Return nothing to bypass this request for Mapbox static image
+          return;
+        }
+        // Delay response infinitely for other mapbox requests to prevent map load event
+        return res(ctx.delay('infinite'));
+      }),
+    ],
+  }
 };
