@@ -21,14 +21,16 @@ const meta: ComponentMeta<typeof MapboxMap> = {
       control: false,
     },
   },
-  parameters: { layout: 'fullscreen', percy: { enableJavascript: true } },
+  parameters: {
+    layout: 'fullscreen',
+    percy: {
+      enableJavascript: true,
+      waitForSelector: '.mapboxgl-map[style=\'visibility: visible;\']'
+    }
+  },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
-
-const percyConfigForNonStaticMapSnapshot = {
-  waitForSelector: '.mapboxgl-map[style=\'visibility: visible;\']'
-};
 
 const Template: Story<MapboxMapProps<Location>> = (args) => (
   <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalSingle)}>
@@ -37,9 +39,6 @@ const Template: Story<MapboxMapProps<Location>> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.parameters = {
-  percy: percyConfigForNonStaticMapSnapshot
-};
 
 export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
   return (
@@ -48,14 +47,8 @@ export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
     </SearchHeadlessContext.Provider>
   );
 };
-MultiplePins.parameters = {
-  percy: percyConfigForNonStaticMapSnapshot
-};
 
 export const CustomPin = Template.bind({});
-CustomPin.parameters = {
-  percy: percyConfigForNonStaticMapSnapshot
-};
 CustomPin.args = {
   PinComponent: MapPin,
 };
@@ -81,4 +74,7 @@ StaticImageBeforeLoad.args = {
     center: [-74.005371, 40.741611],
     zoom: 9
   }
+};
+StaticImageBeforeLoad.parameters = {
+  percy: {}
 };
