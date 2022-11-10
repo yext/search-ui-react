@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { CSSProperties, useMemo, useRef, useState } from 'react';
 import { MapboxOptions, LngLatLike } from 'mapbox-gl';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
 
@@ -32,7 +32,7 @@ export function MapboxStaticImage({
     }
   }, []);
 
-  const staticMapboxStyle: React.HTMLAttributes<HTMLDivElement>['style'] = useMemo(() => {
+  const staticMapboxStyle: CSSProperties | undefined = useMemo(() => {
     const { style, center, zoom } = mapboxOptions;
     if (!divDimension || !center || !zoom || typeof style !== 'string') {
       return undefined;
