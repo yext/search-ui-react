@@ -75,6 +75,3 @@ StaticImageBeforeLoad.args = {
     zoom: 9
   }
 };
-StaticImageBeforeLoad.parameters = {
-  percy: {}
-};
