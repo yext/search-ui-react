@@ -207,6 +207,8 @@ export interface FilterGroupCssClasses {
     optionsContainer?: string;
     // (undocumented)
     searchInput?: string;
+    // (undocumented)
+    titleLabel?: string;
 }
 
 // @public
