@@ -26,6 +26,10 @@ const meta: ComponentMeta<typeof MapboxMap> = {
 };
 export default meta;
 
+const percyConfigForNonStaticMapSnapshot = {
+  waitForSelector: '.mapboxgl-map[style=\'visibility: visible;\']'
+};
+
 const Template: Story<MapboxMapProps<Location>> = (args) => (
   <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalSingle)}>
     <MapboxMap {...args} />
@@ -33,6 +37,9 @@ const Template: Story<MapboxMapProps<Location>> = (args) => (
 );
 
 export const Primary = Template.bind({});
+Primary.parameters = {
+  percy: percyConfigForNonStaticMapSnapshot
+};
 
 export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
   return (
@@ -41,13 +48,17 @@ export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
     </SearchHeadlessContext.Provider>
   );
 };
+MultiplePins.parameters = {
+  percy: percyConfigForNonStaticMapSnapshot
+};
 
 export const CustomPin = Template.bind({});
-
+CustomPin.parameters = {
+  percy: percyConfigForNonStaticMapSnapshot
+};
 CustomPin.args = {
   PinComponent: MapPin,
 };
-
 CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
