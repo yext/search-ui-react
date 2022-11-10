@@ -66,8 +66,9 @@ StaticImageBeforeLoad.parameters = {
           // Return nothing to bypass this request for Mapbox static image
           return;
         }
-        // Delay response infinitely for other mapbox requests to prevent map load event
-        return res(ctx.delay('infinite'));
+        return res(ctx.status(400,
+          'Mocked response to prevent map load event for "StaticImageBeforeLoad" story'
+        ));
       }),
     ],
   }
