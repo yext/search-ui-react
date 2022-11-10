@@ -1,5 +1,5 @@
 import { useRef, useEffect, useMemo, useState } from 'react';
-import mapboxgl, { Map, Marker, MapboxOptions, LngLatBounds, MarkerOptions, LngLat } from 'mapbox-gl';
+import mapboxgl, { Map, Marker, MapboxOptions, LngLatBounds, MarkerOptions, LngLat, LngLatLike } from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import ReactDOM from 'react-dom';
@@ -68,11 +68,6 @@ export interface MapboxMapProps<T> {
 }
 
 /**
- * Defined mapbox options as defaults. These options are also needed for Mapbox Static Images API.
- */
-type DefaultMapboxOptions = Required<Pick<MapboxOptions, 'center' | 'style' | 'zoom'>>;
-
-/**
  * A component that renders a map with markers to show result locations using Mapbox GL.
  *
  * @remarks
@@ -110,7 +105,7 @@ export function MapboxMap<T>({
   const locationResults = useSearchState(state => state.vertical.results) as Result<T>[];
   const onDragDebounced = useDebouncedFunction(onDrag, 100);
 
-  const options: Omit<MapboxOptions & DefaultMapboxOptions, 'container'> = useMemo(() => {
+  const options: Omit<MapboxOptions, 'container'> = useMemo(() => {
     return {
       style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
       center: [-74.005371, 40.741611],
@@ -187,7 +182,7 @@ export function MapboxMap<T>({
 function useMapboxStaticImage(
   mapboxAccessToken: string,
   parentContainer: React.RefObject<HTMLDivElement>,
-  options: Omit<MapboxOptions & DefaultMapboxOptions, 'container'>,
+  options: Omit<MapboxOptions, 'container'>,
 ): JSX.Element | null {
   const [divDimension, setDivDimension] = useState<{ width: number, height: number }>();
   useLayoutEffect(() => {
@@ -201,20 +196,16 @@ function useMapboxStaticImage(
 
   const staticMapboxStyle: React.HTMLAttributes<HTMLDivElement>['style'] = useMemo(() => {
     const { style, center, zoom } = options;
-    if (divDimension === undefined || typeof style !== 'string') {
+    if (!divDimension || !center || !zoom || typeof style !== 'string') {
       return undefined;
     }
     const { width, height } = divDimension;
-    // Mapbox Static Image API only support width and height between 1-1280 pixels.
-    if (width > 1280 || height > 1280) {
+    const url = getMapboxStaticImageUrl({ mapboxAccessToken, style, center, zoom, width, height });
+    if (!url) {
       return undefined;
     }
-    const stylesheet = style.split('mapbox://styles/')[1].split('?')[0];
-    const centerAndZoom = `${center[0]},${center[1]},${zoom}`;
-    const dimension = `${width}x${height}`;
-    const staticMapboxUrl = `https://api.mapbox.com/styles/v1/${stylesheet}/static/${centerAndZoom}/${dimension}?access_token=${mapboxAccessToken}`;
     return {
-      backgroundImage: `url(${staticMapboxUrl})`
+      backgroundImage: `url(${url})`
     };
   }, [divDimension, mapboxAccessToken, options]);
 
@@ -222,6 +213,36 @@ function useMapboxStaticImage(
     return null;
   }
   return <div id="static-map" className='col-span-full row-span-full' style={staticMapboxStyle}></div>;
+}
+
+/**
+ * The configuration for Mapbox Static Image API url
+ */
+interface MapboxStaticImageUrlConfig {
+  /** Mapbox access token. */
+  mapboxAccessToken: string,
+  /** Mapbox stylesheet url to apply to the static map. */
+  style: string,
+  /** Center point of the static map. */
+  center: LngLatLike,
+  /** Zoom level of the static map. */
+  zoom: number,
+  /** Width (in pixels) of the image. */
+  width: number,
+  /** Height (in pixels) of the image. */
+  height: number
+}
+
+function getMapboxStaticImageUrl(urlConfig: MapboxStaticImageUrlConfig): string | undefined {
+  const { mapboxAccessToken, style, center, zoom, width, height } = urlConfig;
+  // Mapbox Static Image API only support width and height between 1-1280 pixels.
+  if (width > 1280 || height > 1280) {
+    return undefined;
+  }
+  const stylesheet = style.split('mapbox://styles/')[1].split('?')[0];
+  const centerAndZoom = `${center[0]},${center[1]},${zoom}`;
+  const dimension = `${width}x${height}`;
+  return `https://api.mapbox.com/styles/v1/${stylesheet}/static/${centerAndZoom}/${dimension}?access_token=${mapboxAccessToken}`;
 }
 
 function isCoordinate(data: unknown): data is Coordinate {
