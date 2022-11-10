@@ -5,7 +5,7 @@ import useLayoutEffect from 'use-isomorphic-layout-effect';
 /**
  * Props for {@link MapboxStaticImage}
  */
-interface MapboxStaticImageProps {
+export interface MapboxStaticImageProps {
   /** Mapbox access token. */
   mapboxAccessToken: string,
   /** Map customization for Mapbox static image. */

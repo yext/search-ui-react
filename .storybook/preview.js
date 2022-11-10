@@ -2,7 +2,6 @@ import './index.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { SearchCoreDecorator } from '../tests/__fixtures__/core/SearchCore';
 import { runOnly } from './wcagConfig';
-import { initialize as initializeMockServiceWorker, mswDecorator } from 'msw-storybook-addon';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -44,8 +43,5 @@ export const parameters = {
   }
 };
 
-initializeMockServiceWorker({
-  onUnhandledRequest: 'bypass'
-});
 // Add the decorator to all stories
-export const decorators = [SearchCoreDecorator, mswDecorator];
+export const decorators = [SearchCoreDecorator];

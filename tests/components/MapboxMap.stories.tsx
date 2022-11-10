@@ -1,4 +1,3 @@
-import { rest } from 'msw';
 import { ComponentMeta, Story } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
@@ -8,6 +7,7 @@ import { MapboxMap, MapboxMapProps } from '../../src/components/MapboxMap';
 import { MapPin } from '../../test-site/src/components/MapPin';
 import { Location } from '../../test-site/src/pages/LocationsPage';
 import { locationVerticalSingle, locationVerticalMultiple } from '../__fixtures__/data/mapbox';
+import { MapboxStaticImage, MapboxStaticImageProps } from '../../src/components/MapboxStaticImage';
 
 const meta: ComponentMeta<typeof MapboxMap> = {
   title: 'MapboxMap',
@@ -57,19 +57,17 @@ CustomPin.play = async ({ canvasElement }) => {
   await canvas.findByText('title1');
 };
 
-export const StaticImageBeforeLoad = Template.bind({});
-StaticImageBeforeLoad.parameters = {
-  msw: {
-    handlers: [
-      rest.get(/https:\/\/api.mapbox.com\/styles\/v1/, (req, res, ctx) => {
-        if (req.url.href.includes('static')) {
-          // Return nothing to bypass this request for Mapbox static image
-          return;
-        }
-        return res(ctx.status(400,
-          'Mocked response to prevent map load event for "StaticImageBeforeLoad" story'
-        ));
-      }),
-    ],
+export const StaticImageBeforeLoad: Story<MapboxStaticImageProps> = (args) => (
+  <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalSingle)}>
+    <div className='grid h-full w-full'>
+      <MapboxStaticImage {...args} />
+    </div>
+  </SearchHeadlessContext.Provider>
+);
+StaticImageBeforeLoad.args = {
+  mapboxOptions: {
+    style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+    center: [-74.005371, 40.741611],
+    zoom: 9
   }
 };

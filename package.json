@@ -87,7 +87,6 @@
     "jest-environment-jsdom": "^29.1.1",
     "lodash": "^4.17.21",
     "msw": "^0.36.8",
-    "msw-storybook-addon": "^1.6.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "tailwindcss": "^3.0.23",
