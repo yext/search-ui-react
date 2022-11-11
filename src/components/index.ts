@@ -35,7 +35,8 @@ export {
 export {
   FilterSearch,
   FilterSearchCssClasses,
-  FilterSearchProps
+  FilterSearchProps,
+  OnSelectParams
 } from './FilterSearch';
 
 export {

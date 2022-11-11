@@ -179,6 +179,26 @@ describe('search with section labels', () => {
     });
   });
 
+  it('executes onSelect function when a filter is selected', async () => {
+    const mockedOnSelect = jest.fn();
+    const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    renderFilterSearch({ searchFields: searchFieldsProp, onSelect: mockedOnSelect });
+    const searchBarElement = screen.getByRole('textbox');
+
+    userEvent.type(searchBarElement, 'n');
+    await waitFor(() => screen.findByText('first name 1'));
+
+    userEvent.type(searchBarElement, '{enter}');
+    await waitFor(() => {
+      expect(executeFilterSearch).toHaveBeenCalled();
+    });
+    expect(mockedOnSelect).toBeCalled();
+    expect(setFilterOption).not.toBeCalled();
+  });
+
   describe('searchOnSelect = true', () => {
     it('triggers a search on pressing "enter" when an autocomplete result is selected', async () => {
       const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch');
@@ -280,6 +300,37 @@ describe('search with section labels', () => {
       expect(setFilterOptionCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
       expect(setOffsetCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
       expect(resetFacetsCallOrder).toBeLessThan(mockExecuteSearchCallOrder);
+    });
+
+    describe('onSelect prop is passed', () => {
+      it('ignores searchOnSelect, gives a warning, and calls onSelect when a filter is selected', async () => {
+        const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+        const mockedOnSelect = jest.fn();
+        const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+        const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch');
+        const executeFilterSearch = jest
+          .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+          .mockResolvedValue(labeledFilterSearchResponse);
+        renderFilterSearch({
+          searchFields: searchFieldsProp,
+          searchOnSelect: true,
+          onSelect: mockedOnSelect
+        });
+        const searchBarElement = screen.getByRole('textbox');
+
+        userEvent.type(searchBarElement, 'n');
+        await waitFor(() => screen.findByText('first name 1'));
+
+        userEvent.type(searchBarElement, '{enter}');
+        await waitFor(() => {
+          expect(executeFilterSearch).toHaveBeenCalled();
+        });
+        expect(mockedOnSelect).toBeCalled();
+        expect(setFilterOption).not.toBeCalled();
+        expect(mockExecuteSearch).not.toBeCalled();
+        expect(consoleWarnSpy).toBeCalledWith('Both searchOnSelect and onSelect props were passed to the component.'
+        + ' Using onSelect instead of searchOnSelect as the latter is deprecated.');
+      });
     });
   });
 
