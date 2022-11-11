@@ -9,7 +9,7 @@
 > Use the `onSelect` prop instead.
 > 
 
-Whether to trigger a search when an option is selected. Defaults to true.
+Whether to trigger a search when an option is selected. Defaults to false.
 
 <b>Signature:</b>
 

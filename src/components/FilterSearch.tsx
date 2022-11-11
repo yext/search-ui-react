@@ -50,7 +50,7 @@ export interface FilterSearchProps {
    */
   placeholder?: string,
   /**
-   * Whether to trigger a search when an option is selected. Defaults to true.
+   * Whether to trigger a search when an option is selected. Defaults to false.
    *
    * @deprecated Use the `onSelect` prop instead.
    */
@@ -81,7 +81,7 @@ export function FilterSearch({
   searchFields,
   label,
   placeholder = 'Search here...',
-  searchOnSelect = true,
+  searchOnSelect,
   onSelect,
   sectioned = false,
   customCssClasses
@@ -131,6 +131,10 @@ export function FilterSearch({
     }
 
     if (onSelect) {
+      if (searchOnSelect) {
+        console.warn('Both searchOnSelect and onSelect props were passed to the component.'
+        + ' Using onSelect instead of searchOnSelect as the latter is deprecated.');
+      }
       return onSelect(
         currentFilter,
         setCurrentFilter,
