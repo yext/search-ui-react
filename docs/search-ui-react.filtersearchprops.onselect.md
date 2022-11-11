@@ -9,5 +9,5 @@ A function which is called when a filter is selected.
 <b>Signature:</b>
 
 ```typescript
-onSelect?: (currentFilter: StaticFilter | undefined, setCurrentFilter: (filter: StaticFilter) => void, newFilter: FieldValueStaticFilter, newDisplayName: string, executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>) => void;
+onSelect?: (params: OnSelectParams) => void;
 ```

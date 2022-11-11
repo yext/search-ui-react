@@ -255,7 +255,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
-    onSelect?: (currentFilter: StaticFilter | undefined, setCurrentFilter: (filter: StaticFilter) => void, newFilter: FieldValueStaticFilter, newDisplayName: string, executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>) => void;
+    onSelect?: (params: OnSelectParams) => void;
     placeholder?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
     // @deprecated
@@ -369,6 +369,15 @@ export type onSearchFunc = (searchEventData: {
     verticalKey?: string;
     query?: string;
 }) => void;
+
+// @public
+export interface OnSelectParams {
+    currentFilter: StaticFilter | undefined;
+    executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>;
+    newDisplayName: string;
+    newFilter: FieldValueStaticFilter;
+    setCurrentFilter: (filter: StaticFilter) => void;
+}
 
 // @public
 export function Pagination(props: PaginationProps): JSX.Element | null;

@@ -35,6 +35,27 @@ const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
 };
 
 /**
+ * The parameters that are passed into {@link FilterSearchProps.onSelect}.
+ *
+ * @public
+ */
+export interface OnSelectParams {
+  /** The newly selected filter. */
+  newFilter: FieldValueStaticFilter,
+  /** The display name of the newly selected filter. */
+  newDisplayName: string,
+  /** The previously selected filter. */
+  currentFilter: StaticFilter | undefined,
+  /** A function that sets which filter the component is currently associated with. */
+  setCurrentFilter: (filter: StaticFilter) => void,
+  /**
+   * A function that executes a filter search and updates the input and dropdown options
+   * with the response.
+   */
+  executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>
+}
+
+/**
  * The props for the {@link FilterSearch} component.
  *
  * @public
@@ -56,13 +77,7 @@ export interface FilterSearchProps {
    */
   searchOnSelect?: boolean,
   /** A function which is called when a filter is selected. */
-  onSelect?: (
-    currentFilter: StaticFilter | undefined,
-    setCurrentFilter: (filter: StaticFilter) => void,
-    newFilter: FieldValueStaticFilter,
-    newDisplayName: string,
-    executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>
-  ) => void,
+  onSelect?: (params: OnSelectParams) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -135,13 +150,13 @@ export function FilterSearch({
         console.warn('Both searchOnSelect and onSelect props were passed to the component.'
         + ' Using onSelect instead of searchOnSelect as the latter is deprecated.');
       }
-      return onSelect(
-        currentFilter,
-        setCurrentFilter,
+      return onSelect({
         newFilter,
         newDisplayName,
+        currentFilter,
+        setCurrentFilter,
         executeFilterSearch
-      );
+      });
     }
 
     if (currentFilter) {

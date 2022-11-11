@@ -70,6 +70,7 @@
 |  [LocationBiasProps](./search-ui-react.locationbiasprops.md) | The props for the [LocationBias()](./search-ui-react.locationbias.md) component. |
 |  [NumericalFacetsCssClasses](./search-ui-react.numericalfacetscssclasses.md) | The CSS class interface for [NumericalFacets()](./search-ui-react.numericalfacets.md)<!-- -->. |
 |  [NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md) | Props for the [NumericalFacets()](./search-ui-react.numericalfacets.md) component. |
+|  [OnSelectParams](./search-ui-react.onselectparams.md) | The parameters that are passed into [FilterSearchProps.onSelect](./search-ui-react.filtersearchprops.onselect.md)<!-- -->. |
 |  [PaginationCssClasses](./search-ui-react.paginationcssclasses.md) | The CSS classes used for pagination. |
 |  [PaginationProps](./search-ui-react.paginationprops.md) | Props for [Pagination()](./search-ui-react.pagination.md) component |
 |  [RangeInputCssClasses](./search-ui-react.rangeinputcssclasses.md) | The CSS class interface for RangeInput. |
