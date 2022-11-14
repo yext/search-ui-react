@@ -1,4 +1,4 @@
-import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, SearchParameterField, StaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
+import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, SearchParameterField, SelectableStaticFilter, StaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
@@ -109,6 +109,11 @@ export function FilterSearch({
   const [currentFilter, setCurrentFilter] = useState<StaticFilter>();
   const [filterQuery, setFilterQuery] = useState<string>();
   const staticFilters = useSearchState(state => state.filters.static);
+  const matchingFilters: SelectableStaticFilter[] = useMemo(() => {
+    return staticFilters?.filter(({ filter, selected }) =>
+      selected && filter.kind === 'fieldValue' && searchFields.some(s => s.fieldApiName === filter.fieldId)
+    ) ?? [];
+  }, [staticFilters, searchFields]);
 
   const [
     filterSearchResponse,
@@ -123,14 +128,33 @@ export function FilterSearch({
   );
 
   useEffect(() => {
+    if (matchingFilters.length > 1 && !onSelect) {
+      console.warn('More than one selected static filter found that matches the filter search fields.'
+        + ' Please update the state to remove the extra filters.');
+    }
+
     if (currentFilter && staticFilters?.find(f =>
-      isDuplicateStaticFilter(f.filter, currentFilter) && !f.selected
+      isDuplicateStaticFilter(f.filter, currentFilter) && f.selected
     )) {
+      return;
+    }
+
+    if (matchingFilters.length === 0) {
       clearFilterSearchResponse();
       setCurrentFilter(undefined);
       setFilterQuery('');
+    } else {
+      setCurrentFilter(matchingFilters[0].filter);
+      executeFilterSearch(matchingFilters[0].displayName);
     }
-  }, [clearFilterSearchResponse, currentFilter, staticFilters]);
+  }, [
+    clearFilterSearchResponse,
+    currentFilter,
+    staticFilters,
+    executeFilterSearch,
+    onSelect,
+    matchingFilters
+  ]);
 
   const sections = useMemo(() => {
     return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
@@ -159,6 +183,11 @@ export function FilterSearch({
       });
     }
 
+    if (matchingFilters.length > 1) {
+      console.warn('More than one selected static filter found that matches the filter search fields.'
+        + ' Unselecting all existing matching filters and selecting the new filter.');
+    }
+    matchingFilters.forEach(f => searchActions.setFilterOption({ filter: f.filter, selected: false }));
     if (currentFilter) {
       searchActions.setFilterOption({ filter: currentFilter, selected: false });
     }
@@ -171,7 +200,7 @@ export function FilterSearch({
       searchActions.resetFacets();
       executeSearch(searchActions);
     }
-  }, [currentFilter, searchActions, executeFilterSearch, onSelect, searchOnSelect]);
+  }, [currentFilter, searchActions, executeFilterSearch, onSelect, searchOnSelect, matchingFilters]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 

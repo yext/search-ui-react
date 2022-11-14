@@ -24,6 +24,38 @@ const mockedState: Partial<State> = {
   }
 };
 
+const mockedStateWithSingleFilter: Partial<State> = {
+  ...mockedState,
+  filters: {
+    static: [{
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'Real Person'
+      },
+      selected: true,
+      displayName: 'Real Person'
+    }]
+  }
+};
+
+const mockedStateWithMultipleFilters: Partial<State> = {
+  ...mockedState,
+  filters: {
+    static: [...(mockedStateWithSingleFilter.filters?.static ?? []), {
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'Fake Person'
+      },
+      selected: true,
+      displayName: 'Fake Person'
+    }]
+  }
+};
+
 describe('search with section labels', () => {
   it('renders the filter search bar, "Filter" label, and default placeholder text', () => {
     renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
@@ -177,6 +209,124 @@ describe('search with section labels', () => {
       displayName: 'first name 2',
       selected: true
     });
+  });
+
+  it('updates input to show display name of matching filter in state when no current filter', async () => {
+    renderFilterSearch(undefined, mockedStateWithSingleFilter);
+    const searchBarElement = screen.getByRole('textbox');
+    expect(searchBarElement).toHaveValue('Real Person');
+  });
+
+  it('logs a warning when multiple matching filters in state and no current filter selected', async () => {
+    const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+    renderFilterSearch(undefined, mockedStateWithMultipleFilters);
+    const searchBarElement = screen.getByRole('textbox');
+    expect(searchBarElement).toHaveValue('Real Person');
+    expect(consoleWarnSpy).toBeCalledWith(
+      'More than one selected static filter found that matches the filter search fields.'
+      + ' Please update the state to remove the extra filters.'
+    );
+  });
+
+  it('does not log a warning for multiple matching filters in state if onSelect is passed', async () => {
+    const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+    const mockedOnSelect = jest.fn();
+    renderFilterSearch(
+      { searchFields: searchFieldsProp, onSelect: mockedOnSelect },
+      mockedStateWithMultipleFilters
+    );
+    const searchBarElement = screen.getByRole('textbox');
+    expect(searchBarElement).toHaveValue('Real Person');
+    expect(consoleWarnSpy).not.toHaveBeenCalled();
+  });
+
+  it('unselects single matching filter in state when a new filter is selected and doesn\'t log warning', async () => {
+    const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+    renderFilterSearch(undefined, mockedStateWithSingleFilter);
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+    const searchBarElement = screen.getByRole('textbox');
+
+    userEvent.clear(searchBarElement);
+    userEvent.type(searchBarElement, 'n');
+    await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
+    await waitFor(() => screen.findByText('first name 1'));
+    userEvent.type(searchBarElement, '{enter}');
+    await waitFor(() => {
+      expect(setFilterOption).toBeCalledWith({
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'name',
+          matcher: Matcher.Equals,
+          value: 'Real Person'
+        },
+        selected: false
+      });
+    });
+    expect(setFilterOption).toBeCalledWith({
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'first name 1'
+      },
+      displayName: 'first name 1',
+      selected: true
+    });
+
+    expect(consoleWarnSpy).not.toHaveBeenCalled();
+  });
+
+  it('unselects multiple matching filters in state when a new filter is selected and logs warning', async () => {
+    const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+    renderFilterSearch(undefined, mockedStateWithMultipleFilters);
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+    const searchBarElement = screen.getByRole('textbox');
+
+    userEvent.clear(searchBarElement);
+    userEvent.type(searchBarElement, 'n');
+    await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
+    await waitFor(() => screen.findByText('first name 1'));
+    userEvent.type(searchBarElement, '{enter}');
+    await waitFor(() => {
+      expect(setFilterOption).toBeCalledWith({
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'name',
+          matcher: Matcher.Equals,
+          value: 'Real Person'
+        },
+        selected: false
+      });
+    });
+    expect(setFilterOption).toBeCalledWith({
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'Fake Person'
+      },
+      selected: false
+    });
+    expect(setFilterOption).toBeCalledWith({
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'first name 1'
+      },
+      displayName: 'first name 1',
+      selected: true
+    });
+    expect(consoleWarnSpy).toBeCalledWith(
+      'More than one selected static filter found that matches the filter search fields.'
+      + ' Unselecting all existing matching filters and selecting the new filter.'
+    );
   });
 
   it('executes onSelect function when a filter is selected', async () => {
@@ -460,8 +610,11 @@ describe('screen reader', () => {
   });
 });
 
-function renderFilterSearch(props: FilterSearchProps = { searchFields: searchFieldsProp }): RenderResult {
-  return render(<SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+function renderFilterSearch(
+  props: FilterSearchProps = { searchFields: searchFieldsProp },
+  state = mockedState
+): RenderResult {
+  return render(<SearchHeadlessContext.Provider value={generateMockedHeadless(state)}>
     <FilterSearch {...props} />
   </SearchHeadlessContext.Provider>);
 }
