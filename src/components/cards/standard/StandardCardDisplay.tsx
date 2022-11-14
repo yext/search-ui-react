@@ -30,7 +30,7 @@ interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
  * Default Tailwind styles for the StandardCardDisplay.
  */
 const builtInCssClasses: Readonly<StandardCardCssClasses> = {
-  container: 'flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm',
+  container: 'flex flex-col justify-between border border-gray-200 rounded-lg mb-4 p-4 shadow-sm',
   header: 'flex text-neutral-dark',
   body: 'flex justify-end pt-2.5 text-base',
   cta1: 'whitespace-nowrap bg-primary text-white font-medium rounded-lg py-2 px-5 shadow',

@@ -38,8 +38,8 @@ const visualAutocompleteConfig: VisualAutocompleteConfig = {
           <DropdownItem
             value={r.name ?? ''}
             key={index + '-' + r.name}
-            className='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg hover:bg-gray-100'
-            focusedClassName='flex flex-col mb-3 mr-4 border rounded-md p-3 text-lg bg-gray-100'
+            className='flex flex-col mb-3 mr-4 border border-gray-200 rounded-md p-3 text-lg hover:bg-gray-100'
+            focusedClassName='flex flex-col mb-3 mr-4 border border-gray-200 rounded-md p-3 text-lg bg-gray-100'
             {...dropdownItemProps}
           >
             {r.name}

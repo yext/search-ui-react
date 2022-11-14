@@ -1,11 +1,11 @@
 import userEvent from '@testing-library/user-event';
-import { State, Matcher } from '@yext/search-headless-react';
+import { State } from '@yext/search-headless-react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { RangeInput } from '../../src/components/Filters';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FiltersContext, FiltersContextType } from '../../src/components/Filters/FiltersContext';
-import { FilterGroupContext, FilterGroupContextType } from '../../src/components/Filters/FilterGroupContext';
-import { SelectableFieldValueFilter } from '../../src/models/SelectableFieldValueFilter';
+import { FilterGroupContext } from '../../src/components/Filters/FilterGroupContext';
+import { filterContextValue, filterContextValueDisabled, filterGroupContextValue } from '../__fixtures__/data/filtercontext';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -245,17 +245,6 @@ describe('Renders correctly for min and max inputs', () => {
 });
 
 it('renders correctly when disabled', () => {
-  const selectableFilter: SelectableFieldValueFilter = {
-    selected: true,
-    fieldId: '123',
-    matcher: Matcher.Between,
-    value: 'test'
-  };
-  const filterContextValueDisabled: FiltersContextType = {
-    selectFilter: () => null,
-    applyFilters: () => null,
-    filters: [selectableFilter]
-  };
   renderRangeInput(filterContextValueDisabled);
   const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
   expect(minTextbox).toHaveAttribute('disabled');
@@ -263,28 +252,11 @@ it('renders correctly when disabled', () => {
   expect(screen.getByText('Unselect an option to enter in a range.')).toBeDefined();
 });
 
-const filterGroupContextValue: FilterGroupContextType = {
-  searchValue: '',
-  fieldId: '123',
-  setSearchValue: () => null,
-  getCollapseProps: null,
-  getToggleProps: null,
-  isExpanded: null,
-  isOptionsDisabled: null,
-  setIsOptionsDisabled: () => null
-};
-
-const filterContextValue: FiltersContextType = {
-  selectFilter: () => null,
-  applyFilters: () => null,
-  filters: []
-};
-
-function renderRangeInput(filterContextValue) {
+function renderRangeInput(filtersContextValue: FiltersContextType) {
   return (
     render(
       <FilterGroupContext.Provider value={filterGroupContextValue}>
-        <FiltersContext.Provider value={filterContextValue}>
+        <FiltersContext.Provider value={filtersContextValue}>
           <RangeInput />
         </FiltersContext.Provider>
       </FilterGroupContext.Provider>)

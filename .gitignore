@@ -8,4 +8,5 @@ lib/
 /coverage
 /storybook-static
 
-**/.env
+.env
+test-site/.env

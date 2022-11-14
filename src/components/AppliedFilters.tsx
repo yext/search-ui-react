@@ -24,8 +24,8 @@ export const builtInCssClasses: Readonly<AppliedFiltersCssClasses> = {
   // Use negative margin to remove space above the filters on mobile
   appliedFiltersContainer: 'flex flex-wrap -mt-3 md:mt-0 mb-2',
   appliedFiltersLoading: 'opacity-50',
-  nlpFilter: 'border rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2 mb-2',
-  removableFilter: 'flex items-center border rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2 mb-2',
+  nlpFilter: 'border border-gray-200 rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2 mb-2',
+  removableFilter: 'flex items-center border border-gray-200 rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2 mb-2',
   clearAllButton: 'text-sm font-medium text-primary hover:underline focus:underline mb-2'
 };
 
