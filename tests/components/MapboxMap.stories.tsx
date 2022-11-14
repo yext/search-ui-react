@@ -20,6 +20,12 @@ const meta: ComponentMeta<typeof MapboxMap> = {
     PinComponent: {
       control: false,
     },
+    getCoordinate: {
+      control: false,
+    },
+    onDrag: {
+      control: false,
+    }
   },
   parameters: {
     layout: 'fullscreen',
