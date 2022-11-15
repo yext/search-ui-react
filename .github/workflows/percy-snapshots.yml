@@ -13,3 +13,4 @@ jobs:
       percy_script: npx percy storybook ./storybook-static
     secrets:
       PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}

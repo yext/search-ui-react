@@ -63,7 +63,7 @@ export function useEntityPreviews(
     entityPreviewSearcher.setQuery(query);
     entityPreviewSearcher.setRestrictVerticals(restrictVerticals);
     entityPreviewSearcher.setUniversalLimit(universalLimit);
-    debouncedUniversalSearch();
+    debouncedUniversalSearch?.();
   }
   return [{ verticalKeyToResults, isLoading }, executeEntityPreviewsQuery];
 }

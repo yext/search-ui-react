@@ -13,6 +13,10 @@ import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
+import { LngLat } from 'mapbox-gl';
+import { LngLatBounds } from 'mapbox-gl';
+import { Map as Map_2 } from 'mapbox-gl';
+import { MapboxOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
@@ -130,6 +134,15 @@ export interface CardProps<T = DefaultRawDataType> {
 
 // @public
 export const ComponentsContentPath = "node_modules/@yext/search-ui-react/lib/**/*.{js,jsx}";
+
+// @public
+export interface Coordinate {
+    latitude: number;
+    longitude: number;
+}
+
+// @public
+export type CoordinateGetter<T> = (result: Result<T>) => Coordinate | undefined;
 
 // @public
 export interface CtaData {
@@ -346,6 +359,18 @@ export interface LocationBiasProps {
 }
 
 // @public
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
+
+// @public
+export interface MapboxMapProps<T> {
+    getCoordinate?: CoordinateGetter<T>;
+    mapboxAccessToken: string;
+    mapboxOptions?: Omit<MapboxOptions, 'container'>;
+    onDrag?: OnDragHandler;
+    PinComponent?: PinComponent<T>;
+}
+
+// @public
 export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 
 // @public
@@ -363,6 +388,9 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
     includedFieldIds?: string[];
     inputPrefix?: JSX.Element;
 }
+
+// @public
+export type OnDragHandler = (center: LngLat, bounds: LngLatBounds) => void;
 
 // @public
 export type onSearchFunc = (searchEventData: {
@@ -405,6 +433,13 @@ export interface PaginationProps {
     customCssClasses?: PaginationCssClasses;
     paginateAllOnNoResults?: boolean;
 }
+
+// @public
+export type PinComponent<T> = (props: {
+    index: number;
+    mapbox: Map_2;
+    result: Result<T>;
+}) => JSX.Element;
 
 // @public
 export interface RangeInputCssClasses {
