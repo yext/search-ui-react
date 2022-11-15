@@ -206,7 +206,15 @@ export function FilterSearch({
       searchActions.resetFacets();
       executeSearch(searchActions);
     }
-  }, [currentFilter, searchActions, executeFilterSearch, onSelect, searchOnSelect, matchingFilters]);
+  }, [
+    currentFilter,
+    searchActions,
+    executeFilterSearch,
+    onSelect,
+    searchOnSelect,
+    matchingFilters,
+    searchFields
+  ]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
