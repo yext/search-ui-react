@@ -325,7 +325,7 @@ describe('search with section labels', () => {
       selected: true
     });
     expect(consoleWarnSpy).toBeCalledWith(
-      'More than one selected static filter found that matches the filter search fields.'
+      'More than one selected static filter found that matches the filter search fields: [name].'
       + ' Unselecting all existing matching filters and selecting the new filter.'
     );
   });

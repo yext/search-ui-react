@@ -189,8 +189,9 @@ export function FilterSearch({
     }
 
     if (matchingFilters.length > 1) {
-      console.warn('More than one selected static filter found that matches the filter search fields.'
-        + ' Unselecting all existing matching filters and selecting the new filter.');
+      console.warn('More than one selected static filter found that matches the filter search fields: ['
+        + searchFields.map(s => s.fieldApiName).join(', ')
+        + ']. Unselecting all existing matching filters and selecting the new filter.');
     }
     matchingFilters.forEach(f => searchActions.setFilterOption({ filter: f.filter, selected: false }));
     if (currentFilter) {
