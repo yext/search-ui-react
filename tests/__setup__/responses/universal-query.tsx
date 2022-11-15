@@ -1,8 +1,6 @@
-import { v4 as uuid } from 'uuid';
-
 export const universalQueryResponseWithFilters = {
   meta: {
-    uuid: uuid(),
+    uuid: '123',
     errors: []
   },
   response: {
@@ -276,7 +274,7 @@ export const universalQueryResponseWithFilters = {
 
 export const universalQueryResponse = {
   meta: {
-    uuid: uuid(),
+    uuid: '123',
     errors: []
   },
   response: {

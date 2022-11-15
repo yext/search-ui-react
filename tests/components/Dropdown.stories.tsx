@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { within, userEvent } from '@storybook/testing-library';
 import { DropdownItem } from '../../src/components';
 import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown';
@@ -23,7 +23,7 @@ const dropdownItemProps = {
   className: cssClasses.option
 };
 
-export const Primary = (args: DropdownProps) => {
+export const Primary: Story<DropdownProps> = (args) => {
   return (
     <div className={cssClasses.filterSearchContainer}>
       <Dropdown {...args} screenReaderText='screen reader text here'>
@@ -63,7 +63,7 @@ AlwaysSelectExpanded.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
 };
 
-function clickTextbox(canvasElement) {
+function clickTextbox(canvasElement: HTMLElement) {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
   userEvent.click(textboxEl);

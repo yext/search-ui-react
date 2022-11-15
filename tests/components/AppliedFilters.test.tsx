@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Matcher, Source, State, FiltersState, SelectableStaticFilter } from '@yext/search-headless-react';
+import { Matcher, Source, State, FiltersState, SelectableStaticFilter, AppliedQueryFilterType } from '@yext/search-headless-react';
 import { AppliedFilters } from '../../src/components/AppliedFilters';
 import { getSelectableFieldValueFilters } from '../../src/utils/filterutils';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
@@ -65,7 +65,8 @@ const mockedState: Partial<State> = {
         fieldId: 'produt',
         matcher: Matcher.Equals,
         value: 'Yext Listings'
-      }
+      },
+      type: AppliedQueryFilterType.FieldValue
     }]
   },
   searchStatus: {
@@ -102,14 +103,14 @@ describe('AppliedFilters', () => {
 
   it('Facets are rendered', () => {
     render(<AppliedFilters />);
-    const facetOptionDisplayName = mockedState.filters.facets[0].options[0].displayName;
-    expect(screen.getByText(facetOptionDisplayName)).toBeDefined();
+    const facetOptionDisplayName = mockedState.filters?.facets?.[0].options[0].displayName;
+    expect(facetOptionDisplayName && screen.getByText(facetOptionDisplayName)).toBeTruthy();
   });
 
   it('Applied query filters are rendered', () => {
     render(<AppliedFilters />);
-    const appliedFilterDisplayName = mockedState.vertical.appliedQueryFilters[0].displayValue;
-    expect(screen.getByText(appliedFilterDisplayName)).toBeDefined();
+    const appliedFilterDisplayName = mockedState.vertical?.appliedQueryFilters?.[0].displayValue;
+    expect(appliedFilterDisplayName && screen.getByText(appliedFilterDisplayName)).toBeTruthy();
   });
 
   it('Filters with the fieldId of "builtin.entityType" are hidden by default', () => {
@@ -258,7 +259,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     const filterPills = screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/);
     expect(filterPills).toHaveLength(3);
 
-    const fruitButton = screen.queryByLabelText('Remove "food" filter');
+    const fruitButton = screen.getByLabelText('Remove "food" filter');
     userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledTimes(2);
@@ -291,7 +292,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     const filterPills = screen.queryAllByLabelText(/Remove "[a-zA_Z]+" filter/);
     expect(filterPills).toHaveLength(3);
 
-    const fruitButton = screen.queryByLabelText('Remove "banana" filter');
+    const fruitButton = screen.getByLabelText('Remove "banana" filter');
     userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledWith(

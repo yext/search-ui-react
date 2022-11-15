@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext, State } from '@yext/search-headless-react';
 import { userEvent, within } from '@storybook/testing-library';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -18,7 +18,7 @@ const mockedHeadlessState: RecursivePartial<State> = {
   }
 };
 
-export const Primary = (args: StandardFacetsProps) => {
+export const Primary: Story<StandardFacetsProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <StandardFacets {...args} />
@@ -26,23 +26,20 @@ export const Primary = (args: StandardFacetsProps) => {
   );
 };
 
-export const NoOptionCounts = (args: StandardFacetsProps) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <StandardFacets {...args} showOptionCounts={false} />
-    </SearchHeadlessContext.Provider>
-  );
+export const NoOptionCounts = Primary.bind({});
+NoOptionCounts.args = {
+  showOptionCounts: false
 };
 
-export const ShowMoreLimit = (args: StandardFacetsProps) => {
-  return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <StandardFacets {...args} showMoreLimit={1} />
-    </SearchHeadlessContext.Provider>
-  );
+export const ShowMoreLimit = Primary.bind({});
+ShowMoreLimit.args = {
+  showMoreLimit: 1
 };
 
-export const ShowMoreLimitClicked = ShowMoreLimit.bind({});
+export const ShowMoreLimitClicked = Primary.bind({});
+ShowMoreLimitClicked.args = {
+  ...ShowMoreLimit.args
+};
 ShowMoreLimitClicked.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   userEvent.click(canvas.getByText('Show More'));
