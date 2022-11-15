@@ -111,7 +111,9 @@ export function FilterSearch({
   const staticFilters = useSearchState(state => state.filters.static);
   const matchingFilters: SelectableStaticFilter[] = useMemo(() => {
     return staticFilters?.filter(({ filter, selected }) =>
-      selected && filter.kind === 'fieldValue' && searchFields.some(s => s.fieldApiName === filter.fieldId)
+      selected
+      && filter.kind === 'fieldValue'
+      && searchFields.some(s => s.fieldApiName === filter.fieldId)
     ) ?? [];
   }, [staticFilters, searchFields]);
 
@@ -129,8 +131,10 @@ export function FilterSearch({
 
   useEffect(() => {
     if (matchingFilters.length > 1 && !onSelect) {
-      console.warn('More than one selected static filter found that matches the filter search fields.'
-        + ' Please update the state to remove the extra filters.');
+      console.warn('More than one selected static filter found that matches the filter search fields: ['
+        + searchFields.map(s => s.fieldApiName).join(', ')
+        + ']. Please update the state to remove the extra filters.'
+        + ' Picking one filter to display in the input.');
     }
 
     if (currentFilter && staticFilters?.find(f =>
@@ -153,7 +157,8 @@ export function FilterSearch({
     staticFilters,
     executeFilterSearch,
     onSelect,
-    matchingFilters
+    matchingFilters,
+    searchFields
   ]);
 
   const sections = useMemo(() => {
@@ -172,7 +177,7 @@ export function FilterSearch({
     if (onSelect) {
       if (searchOnSelect) {
         console.warn('Both searchOnSelect and onSelect props were passed to the component.'
-        + ' Using onSelect instead of searchOnSelect as the latter is deprecated.');
+          + ' Using onSelect instead of searchOnSelect as the latter is deprecated.');
       }
       return onSelect({
         newFilter,

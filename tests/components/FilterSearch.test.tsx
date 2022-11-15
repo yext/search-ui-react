@@ -211,7 +211,7 @@ describe('search with section labels', () => {
     });
   });
 
-  it('updates input to show display name of matching filter in state when no current filter', async () => {
+  it('displays name of matching filter in state when no filter is selected from component', async () => {
     renderFilterSearch(undefined, mockedStateWithSingleFilter);
     const searchBarElement = screen.getByRole('textbox');
     expect(searchBarElement).toHaveValue('Real Person');
@@ -223,8 +223,9 @@ describe('search with section labels', () => {
     const searchBarElement = screen.getByRole('textbox');
     expect(searchBarElement).toHaveValue('Real Person');
     expect(consoleWarnSpy).toBeCalledWith(
-      'More than one selected static filter found that matches the filter search fields.'
+      'More than one selected static filter found that matches the filter search fields: [name].'
       + ' Please update the state to remove the extra filters.'
+      + ' Picking one filter to display in the input.'
     );
   });
 
@@ -479,7 +480,7 @@ describe('search with section labels', () => {
         expect(setFilterOption).not.toBeCalled();
         expect(mockExecuteSearch).not.toBeCalled();
         expect(consoleWarnSpy).toBeCalledWith('Both searchOnSelect and onSelect props were passed to the component.'
-        + ' Using onSelect instead of searchOnSelect as the latter is deprecated.');
+          + ' Using onSelect instead of searchOnSelect as the latter is deprecated.');
       });
     });
   });
@@ -643,7 +644,7 @@ it('clears input when old filters are removed', async () => {
     };
     return (
       <button onClick={handleClickDeselectFilter}>
-          Deselect Filter
+        Deselect Filter
       </button>
     );
 
@@ -651,7 +652,7 @@ it('clears input when old filters are removed', async () => {
 
   render(<SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
     <FilterSearch searchFields={searchFieldsProp} />
-    <DeselectFiltersButton/>
+    <DeselectFiltersButton />
   </SearchHeadlessContext.Provider>);
 
   const searchBarElement = screen.getByRole('textbox');
