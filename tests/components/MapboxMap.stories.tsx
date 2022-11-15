@@ -44,12 +44,6 @@ const Template: Story<MapboxMapProps<Location>> = (args) => (
 );
 
 export const Primary = Template.bind({});
-Primary.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await canvas.findAllByLabelText('Map marker', undefined, {
-    timeout: 30000
-  });
-};
 
 export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
   return (
@@ -57,12 +51,6 @@ export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
       <MapboxMap {...args} />
     </SearchHeadlessContext.Provider>
   );
-};
-MultiplePins.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement);
-  await canvas.findAllByLabelText('Map marker', undefined, {
-    timeout: 30000
-  });
 };
 
 export const CustomPin = Template.bind({});
