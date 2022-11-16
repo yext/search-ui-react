@@ -9,5 +9,5 @@ Custom icon component to display along with the button.
 <b>Signature:</b>
 
 ```typescript
-GeolocationIcon?: React.FC;
+GeolocationIcon?: React.FunctionComponent;
 ```

@@ -280,7 +280,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, onClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
+function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
 export { Geolocation_2 as Geolocation }
 
 // @public
@@ -296,10 +296,10 @@ export interface GeolocationCssClasses {
 // @public
 export interface GeolocationProps {
     customCssClasses?: GeolocationCssClasses;
-    GeolocationIcon?: React.FC;
+    GeolocationIcon?: React.FunctionComponent;
     geolocationOptions?: PositionOptions;
+    handleClick?: (position: GeolocationPosition) => void;
     label?: string;
-    onClick?: () => void;
     radius?: number;
 }
 
