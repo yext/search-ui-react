@@ -119,7 +119,7 @@ it('executes handleClick when provided', async () => {
   render(<Geolocation handleClick={mockedHandleClickFn} />);
   clickUpdateLocation();
   await waitFor(() => {
-    expect(mockedHandleClickFn).toBeCalledTimes(1);
+    expect(mockedHandleClickFn).toHaveBeenCalledWith(newGeoPosition);
   });
   expect(actions.executeVerticalQuery).not.toBeCalled();
 });
