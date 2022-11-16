@@ -6,7 +6,7 @@
 
 > Warning: This API is now obsolete.
 > 
-> LocationBias component has been superceded by Geolocation component.
+> LocationBias component has been superseded by Geolocation component.
 > 
 
 A React Component which displays and collects location information in order to bias searches.

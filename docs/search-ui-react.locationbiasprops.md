@@ -6,7 +6,7 @@
 
 > Warning: This API is now obsolete.
 > 
-> LocationBias component has been superceded by Geolocation component.
+> LocationBias component has been superseded by Geolocation component.
 > 
 
 The props for the [LocationBias()](./search-ui-react.locationbias.md) component.

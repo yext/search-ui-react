@@ -33,7 +33,7 @@ const builtInCssClasses: Readonly<LocationBiasCssClasses> = {
  *
  * @public
  *
- * @deprecated LocationBias component has been superceded by Geolocation component.
+ * @deprecated LocationBias component has been superseded by Geolocation component.
  */
 export interface LocationBiasProps {
   /** Configuration used when collecting the user's location.
@@ -49,7 +49,7 @@ export interface LocationBiasProps {
  *
  * @public
  *
- * @deprecated LocationBias component has been superceded by Geolocation component.
+ * @deprecated LocationBias component has been superseded by Geolocation component.
  *
  * @param props - {@link LocationBiasProps}
  * @returns A react component for Location Bias
