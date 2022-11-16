@@ -51,6 +51,7 @@
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.14.5",
+    "@etchteam/storybook-addon-status": "^4.2.2",
     "@percy/cli": "^1.8.0",
     "@percy/storybook": "^4.3.3",
     "@reduxjs/toolkit": "^1.8.6",
@@ -134,7 +135,6 @@
     "restoreMocks": true
   },
   "dependencies": {
-    "lodash": "^4.17.21",
     "@microsoft/api-documenter": "^7.15.3",
     "@microsoft/api-extractor": "^7.19.4",
     "@reach/auto-id": "^0.18.0",
@@ -142,6 +142,7 @@
     "@tailwindcss/forms": "^0.5.0",
     "@yext/analytics": "^0.2.0-beta.3",
     "classnames": "^2.3.1",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^2.9.2",
     "prop-types": "^15.8.1",
     "react-collapsed": "^3.3.0",

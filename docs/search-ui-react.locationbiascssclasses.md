@@ -4,6 +4,11 @@
 
 ## LocationBiasCssClasses interface
 
+> Warning: This API is now obsolete.
+> 
+> LocationBias component has been superseded by Geolocation component.
+> 
+
 The CSS class interface for the [LocationBias()](./search-ui-react.locationbias.md) component.
 
 <b>Signature:</b>
