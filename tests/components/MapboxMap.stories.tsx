@@ -55,3 +55,5 @@ CustomPin.play = async ({ canvasElement }) => {
   userEvent.click(mapPin);
   await canvas.findByText('title1');
 };
+
+//test
