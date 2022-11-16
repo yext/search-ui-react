@@ -13,7 +13,13 @@ const meta: ComponentMeta<typeof Geolocation> = {
   argTypes: {
     geolocationOptions: {
       control: false
-    }
+    },
+    GeolocationIcon: {
+      control: false
+    },
+    handleClick: {
+      control: false
+    },
   }
 };
 export default meta;

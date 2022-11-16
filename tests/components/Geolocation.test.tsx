@@ -113,11 +113,15 @@ it('renders custom icon when provided', () => {
   expect(LocationIcon).toBeDefined();
 });
 
-it('executes onClick when provided', () => {
-  const mockedOnClickFn = jest.fn();
-  render(<Geolocation onClick={mockedOnClickFn} />);
+it('executes handleClick when provided', async () => {
+  const mockedHandleClickFn = jest.fn();
+  const actions = spyOnActions();
+  render(<Geolocation handleClick={mockedHandleClickFn} />);
   clickUpdateLocation();
-  expect(mockedOnClickFn).toBeCalledTimes(1);
+  await waitFor(() => {
+    expect(mockedHandleClickFn).toBeCalledTimes(1);
+  });
+  expect(actions.executeVerticalQuery).not.toBeCalled();
 });
 
 it('sets a location filter with user\'s coordinates in static filters state when clicked', async () => {

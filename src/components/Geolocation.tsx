@@ -43,11 +43,8 @@ export interface GeolocationProps {
   label?: string,
   /** Custom icon component to display along with the button. */
   GeolocationIcon?: React.FunctionComponent,
-  /**
-   * A function which is called when the geolocation button is clicked.
-   * This is called prior to executing the existing click behavior.
-   */
-  onClick?: () => void,
+  /** A function which is called when the geolocation button is clicked. */
+  handleClick?: (position: GeolocationPosition) => void,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: GeolocationCssClasses
 }
@@ -70,7 +67,7 @@ export function Geolocation({
   label = 'Use my location',
   //TODO: replace default icon with SVG create from design team
   GeolocationIcon = YextIcon,
-  onClick,
+  handleClick,
   customCssClasses,
 }: GeolocationProps): JSX.Element | null {
   const searchActions = useSearchActions();
@@ -79,10 +76,13 @@ export function Geolocation({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const handleGeolocationClick = useCallback(async () => {
-    onClick?.();
     setIsFetchingLocation(true);
     try {
       const position = await getUserLocation(geolocationOptions);
+      if (handleClick) {
+        handleClick(position);
+        return;
+      }
       const { latitude, longitude, accuracy } = position.coords;
       const locationFilter: SelectableStaticFilter = {
         displayName: 'Current Location',
@@ -109,7 +109,7 @@ export function Geolocation({
     } finally {
       setIsFetchingLocation(false);
     }
-  }, [geolocationOptions, onClick, radius, searchActions, staticFilters]);
+  }, [geolocationOptions, handleClick, radius, searchActions, staticFilters]);
 
   return (
     <div className={cssClasses.geolocationContainer}>
