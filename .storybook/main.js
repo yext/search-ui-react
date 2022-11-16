@@ -38,8 +38,11 @@ module.exports = {
     config.resolve.alias['../utils/location-operations'] = require.resolve('../tests/__fixtures__/utils/location-operations.ts');
     return config;
   },
-  env: (config) => ({
-    ...config,
-    REACT_APP_MAPBOX_API_KEY: process.env.MAPBOX_API_KEY || process.env.REACT_APP_MAPBOX_API_KEY,
-  }),
+  env: (config) => {
+    console.log('here', !!process.env.MAPBOX_API_KEY);
+    return {
+      ...config,
+      REACT_APP_MAPBOX_API_KEY: process.env.MAPBOX_API_KEY || process.env.REACT_APP_MAPBOX_API_KEY,
+    };
+}
 };
