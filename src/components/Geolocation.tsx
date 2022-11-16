@@ -101,7 +101,7 @@ export function Geolocation({
       const nonLocationFilters = staticFilters.filter(filter => {
         return !(filter.filter.kind === 'fieldValue'
           && filter.filter.fieldId === LOCATION_FIELD_ID);
-      }) ?? [];
+      });
       searchActions.setStaticFilters([...nonLocationFilters, locationFilter]);
       executeSearch(searchActions);
     } catch (e) {
