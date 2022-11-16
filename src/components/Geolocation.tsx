@@ -42,7 +42,7 @@ export interface GeolocationProps {
   /** The label for the button. Defaults to 'Use my location'. */
   label?: string,
   /** Custom icon component to display along with the button. */
-  GeolocationIcon?: React.FC,
+  GeolocationIcon?: React.FunctionComponent,
   /**
    * A function which is called when the geolocation button is clicked.
    * This is called prior to executing the existing click behavior.
