@@ -2,11 +2,11 @@ name: WCAG tests
 
 on:
   pull_request:
-    branches: [main, develop]
+    branches: [main, develop, feature/*]
 
 jobs:
   call_wcag_test:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/wcag_test.yml@dev/mapbox-key-wcag
+    uses: yext/slapshot-reusable-workflows/.github/workflows/wcag_test.yml@v1
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
