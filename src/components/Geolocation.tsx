@@ -98,7 +98,7 @@ export function Geolocation({
           },
         }
       };
-      const nonLocationFilters = staticFilters?.filter(filter => {
+      const nonLocationFilters = staticFilters.filter(filter => {
         return !(filter.filter.kind === 'fieldValue'
           && filter.filter.fieldId === LOCATION_FIELD_ID);
       }) ?? [];

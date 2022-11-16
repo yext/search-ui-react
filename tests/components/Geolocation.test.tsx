@@ -194,7 +194,7 @@ it('executes a new search when clicked', async () => {
   });
 });
 
-it('handles erorr when collecting user\'s location', async () => {
+it('handles error when collecting user\'s location', async () => {
   const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
   jest.spyOn(locationOperations, 'getUserLocation').mockRejectedValue('mocked error!');
   const actions = spyOnActions();
