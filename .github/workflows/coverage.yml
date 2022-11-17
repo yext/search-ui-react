@@ -10,7 +10,7 @@ on:
 
 jobs:
   combined_coverage:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@dev/test-output-env-file
     with:
       test_script: npm run test
     secrets:
@@ -27,17 +27,17 @@ jobs:
           name: coverage
           path: coverage/
       - name: Get Visual Coverage Percentage
-        uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
+        uses: yext/slapshot-reusable-workflows/get-coverage-percent@dev/test-output-env-file
         with:
           coverage-file: coverage/visual/lcov.info
         id: parse-visual-coverage
       - name: Get Unit Coverage Percentage
-        uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
+        uses: yext/slapshot-reusable-workflows/get-coverage-percent@dev/test-output-env-file
         with:
           coverage-file: coverage/unit/lcov.info
         id: parse-unit-coverage
       - name: Get Combined Coverage Percentage
-        uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
+        uses: yext/slapshot-reusable-workflows/get-coverage-percent@dev/test-output-env-file
         with:
           coverage-file: coverage/lcov.info
         id: parse-combined-coverage
