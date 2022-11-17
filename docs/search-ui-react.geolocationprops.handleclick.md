@@ -4,7 +4,7 @@
 
 ## GeolocationProps.handleClick property
 
-A function which is called when the geolocation button is clicked.
+A function which is called when the geolocation button is clicked, after user's position is successfully determined.
 
 <b>Signature:</b>
 
