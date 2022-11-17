@@ -12,7 +12,7 @@ const METERS_PER_MILE = 1609.344;
  *
  * @internal
  */
-interface GeolocationhandlerArgs {
+interface GeolocationHandlerArgs {
   /** Configuration used when collecting the user's location. */
   geolocationOptions?: PositionOptions,
   /**
@@ -30,7 +30,7 @@ interface GeolocationhandlerArgs {
  *
  * @internal
  *
- * @param props - {@link GeolocationhandlerArgs}
+ * @param props - {@link GeolocationHandlerArgs}
  * @returns - A function to collect and process user's geolocation
  *          - A boolean to indicate if user's geolocation is being fetch
  */
@@ -38,7 +38,7 @@ export function useGeolocationHandler({
   geolocationOptions,
   radius = 50,
   handleUserPosition
-}: GeolocationhandlerArgs): [() => Promise<void>, boolean] {
+}: GeolocationHandlerArgs): [() => Promise<void>, boolean] {
   const [isFetchingUserLocation, setIsFetchingUserLocation] = useState<boolean>(false);
   const searchActions = useSearchActions();
   const staticFilters = useSearchState(s => s.filters.static || []);
