@@ -1,10 +1,8 @@
-import { Matcher, SelectableStaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
-import { executeSearch } from '../utils/search-operations';
-import { getUserLocation } from '../utils/location-operations';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import LoadingIndicator from '../icons/LoadingIndicator';
 import { YextIcon } from '../icons/YextIcon';
+import { useGeolocationHandler } from '../hooks/useGeolocationHandler';
 
 /**
  * The CSS class interface for the Geolocation component.
@@ -52,9 +50,6 @@ export interface GeolocationProps {
   customCssClasses?: GeolocationCssClasses
 }
 
-const LOCATION_FIELD_ID = 'builtin.location';
-const METERS_PER_MILE = 1609.344;
-
 /**
  * A React Component which collects location information to create a
  * location filter and perform a new search.
@@ -73,46 +68,15 @@ export function Geolocation({
   handleClick,
   customCssClasses,
 }: GeolocationProps): JSX.Element | null {
-  const searchActions = useSearchActions();
-  const staticFilters = useSearchState(s => s.filters.static || []);
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
-  const defaultHandleClick = useCallback((position: GeolocationPosition) => {
-    const { latitude, longitude, accuracy } = position.coords;
-    const locationFilter: SelectableStaticFilter = {
-      displayName: 'Current Location',
-      selected: true,
-      filter: {
-        kind: 'fieldValue',
-        fieldId: LOCATION_FIELD_ID,
-        matcher: Matcher.Near,
-        value: {
-          lat: latitude,
-          lng: longitude,
-          radius: Math.max(accuracy, radius * METERS_PER_MILE)
-        },
-      }
-    };
-    const nonLocationFilters = staticFilters.filter(filter => {
-      return !(filter.filter.kind === 'fieldValue'
-        && filter.filter.fieldId === LOCATION_FIELD_ID);
-    });
-    searchActions.setStaticFilters([...nonLocationFilters, locationFilter]);
-    executeSearch(searchActions);
-  }, [radius, searchActions, staticFilters]);
-
-  const handleGeolocationClick = useCallback(async () => {
-    setIsFetchingLocation(true);
-    try {
-      const position = await getUserLocation(geolocationOptions);
-      (handleClick ?? defaultHandleClick)(position);
-    } catch (e) {
-      console.warn(e);
-    } finally {
-      setIsFetchingLocation(false);
-    }
-  }, [geolocationOptions, handleClick, defaultHandleClick]);
+  const handleGeolocationClick = useGeolocationHandler({
+    setIsFetchingLocation,
+    geolocationOptions,
+    radius,
+    handleUserPosition: handleClick
+  });
 
   return (
     <div className={cssClasses.geolocationContainer}>
