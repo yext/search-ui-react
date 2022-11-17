@@ -335,10 +335,10 @@ export interface HighlightedValueCssClasses {
 // @public
 export function isCtaData(data: unknown): data is CtaData;
 
-// @public
+// @public @deprecated
 export function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): JSX.Element | null;
 
-// @public
+// @public @deprecated
 export interface LocationBiasCssClasses {
     // (undocumented)
     button?: string;
@@ -352,7 +352,7 @@ export interface LocationBiasCssClasses {
     source?: string;
 }
 
-// @public
+// @public @deprecated
 export interface LocationBiasProps {
     customCssClasses?: LocationBiasCssClasses;
     geolocationOptions?: PositionOptions;
