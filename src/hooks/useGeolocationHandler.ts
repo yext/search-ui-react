@@ -2,7 +2,7 @@
 import { Matcher, SelectableStaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { executeSearch } from '../utils/search-operations';
 import { getUserLocation } from '../utils/location-operations';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 const LOCATION_FIELD_ID = 'builtin.location';
 const METERS_PER_MILE = 1609.344;
@@ -12,9 +12,7 @@ const METERS_PER_MILE = 1609.344;
  *
  * @internal
  */
-interface GeolocationhandlerProps {
-  /** A React dispatch function use to update the status of fetching user's location. */
-  setIsFetchingLocation: React.Dispatch<React.SetStateAction<boolean>>,
+interface GeolocationhandlerArgs {
   /** Configuration used when collecting the user's location. */
   geolocationOptions?: PositionOptions,
   /**
@@ -27,20 +25,21 @@ interface GeolocationhandlerProps {
 }
 
 /**
- * Returns a function that will collect user's geolocation and, by default, will set
+ * Creates a function to collect user's geolocation and, by default, will set
  * a built-in location filter and execute a search.
  *
  * @internal
  *
- * @param props - {@link GeolocationProps}
- * @returns A function to collect and process user's geolocation
+ * @param props - {@link GeolocationhandlerArgs}
+ * @returns - A function to collect and process user's geolocation
+ *          - A boolean to indicate if user's geolocation is being fetch
  */
 export function useGeolocationHandler({
-  setIsFetchingLocation,
   geolocationOptions,
   radius = 50,
   handleUserPosition
-}: GeolocationhandlerProps): () => Promise<void> {
+}: GeolocationhandlerArgs): [() => Promise<void>, boolean] {
+  const [isFetchingUserLocation, setIsFetchingUserLocation] = useState<boolean>(false);
   const searchActions = useSearchActions();
   const staticFilters = useSearchState(s => s.filters.static || []);
 
@@ -68,15 +67,16 @@ export function useGeolocationHandler({
     executeSearch(searchActions);
   }, [radius, searchActions, staticFilters]);
 
-  return useCallback(async () => {
-    setIsFetchingLocation(true);
+  const geolocationHandler = useCallback(async () => {
+    setIsFetchingUserLocation(true);
     try {
       const position = await getUserLocation(geolocationOptions);
       (handleUserPosition ?? defaultHandleUserPosition)(position);
     } catch (e) {
       console.warn(e);
     } finally {
-      setIsFetchingLocation(false);
+      setIsFetchingUserLocation(false);
     }
-  }, [setIsFetchingLocation, geolocationOptions, handleUserPosition, defaultHandleUserPosition]);
+  }, [setIsFetchingUserLocation, geolocationOptions, handleUserPosition, defaultHandleUserPosition]);
+  return [geolocationHandler, isFetchingUserLocation];
 }

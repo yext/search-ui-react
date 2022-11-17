@@ -1,5 +1,4 @@
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { useState } from 'react';
 import LoadingIndicator from '../icons/LoadingIndicator';
 import { YextIcon } from '../icons/YextIcon';
 import { useGeolocationHandler } from '../hooks/useGeolocationHandler';
@@ -68,11 +67,8 @@ export function Geolocation({
   handleClick,
   customCssClasses,
 }: GeolocationProps): JSX.Element | null {
-  const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-
-  const handleGeolocationClick = useGeolocationHandler({
-    setIsFetchingLocation,
+  const [handleGeolocationClick, isFetchingUserLocation] = useGeolocationHandler({
     geolocationOptions,
     radius,
     handleUserPosition: handleClick
@@ -84,7 +80,7 @@ export function Geolocation({
         {label}
       </button>
       <div className={cssClasses.iconContainer}>
-        {isFetchingLocation ? <LoadingIndicator /> : <GeolocationIcon />}
+        {isFetchingUserLocation ? <LoadingIndicator /> : <GeolocationIcon />}
       </div>
     </div>
   );
