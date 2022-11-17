@@ -26,11 +26,6 @@ jobs:
         with:
           name: coverage
           path: coverage/
-      - name: Get Visual Coverage Percentage
-        uses: yext/slapshot-reusable-workflows/get-coverage-percent@dev/test-output-env-file
-        with:
-          coverage-file: coverage/visual/lcov.info
-        id: parse-visual-coverage
       - name: Get Unit Coverage Percentage
         uses: yext/slapshot-reusable-workflows/get-coverage-percent@dev/test-output-env-file
         with:
@@ -41,6 +36,11 @@ jobs:
         with:
           coverage-file: coverage/lcov.info
         id: parse-combined-coverage
+      - name: Get Visual Coverage Percentage
+        uses: yext/slapshot-reusable-workflows/get-coverage-percent@dev/test-output-env-file
+        with:
+          coverage-file: coverage/visual/lcov.info
+        id: parse-visual-coverage
       - name: Find Comment
         uses: peter-evans/find-comment@v2
         id: fc
