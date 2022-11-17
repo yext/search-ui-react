@@ -1,4 +1,3 @@
-
 import { Matcher, SelectableStaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { executeSearch } from '../utils/search-operations';
 import { getUserLocation } from '../utils/location-operations';
