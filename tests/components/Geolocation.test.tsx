@@ -113,98 +113,114 @@ it('renders custom icon when provided', () => {
   expect(LocationIcon).toBeDefined();
 });
 
-it('executes handleClick when provided', async () => {
-  const mockedHandleClickFn = jest.fn();
-  const actions = spyOnActions();
-  render(<Geolocation handleClick={mockedHandleClickFn} />);
-  clickUpdateLocation();
-  await waitFor(() => {
-    expect(mockedHandleClickFn).toHaveBeenCalledWith(newGeoPosition);
+describe('custom click handler', () => {
+  it('executes handleClick when user\'s location is successfully determined', async () => {
+    const mockedHandleClickFn = jest.fn();
+    const actions = spyOnActions();
+    render(<Geolocation handleClick={mockedHandleClickFn} />);
+    clickUpdateLocation();
+    await waitFor(() => {
+      expect(mockedHandleClickFn).toHaveBeenCalledWith(newGeoPosition);
+    });
+    expect(actions.executeVerticalQuery).not.toBeCalled();
   });
-  expect(actions.executeVerticalQuery).not.toBeCalled();
-});
 
-it('sets a location filter with user\'s coordinates in static filters state when clicked', async () => {
-  const actions = spyOnActions();
-  render(<Geolocation />);
-  clickUpdateLocation();
-
-  const expectedLocationFilter: SelectableStaticFilter = createLocationFilter();
-  expect(locationOperations.getUserLocation).toBeCalled();
-  await waitFor(() => {
-    expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
-  });
-});
-
-it('sets a location filter using provided radius', async () => {
-  const actions = spyOnActions();
-  render(<Geolocation radius={10}/>);
-  clickUpdateLocation();
-
-  const expectedLocationFilter: SelectableStaticFilter = createLocationFilter(10 * 1609.344);
-  await waitFor(() => {
-    expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
+  it('does not execute handleClick when error occurs from collecting user\'s location', async () => {
+    const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+    jest.spyOn(locationOperations, 'getUserLocation').mockRejectedValue('mocked error!');
+    const mockedHandleClickFn = jest.fn();
+    render(<Geolocation handleClick={mockedHandleClickFn} />);
+    clickUpdateLocation();
+    await waitFor(() => {
+      expect(consoleWarnSpy).toBeCalledWith('mocked error!');
+    });
+    expect(mockedHandleClickFn).not.toBeCalled();
   });
 });
 
-it('sets a location filter using a larger radius than provided value due to low accuracy of user coordinate', async () => {
-  jest.spyOn(locationOperations, 'getUserLocation').mockResolvedValue(newGeoPositionWithLowAccuracy);
-  const actions = spyOnActions();
-  render(<Geolocation radius={10}/>);
-  clickUpdateLocation();
+describe('default click handler', () => {
+  it('sets a location filter using provided radius', async () => {
+    const actions = spyOnActions();
+    render(<Geolocation radius={10}/>);
+    clickUpdateLocation();
 
-  const accuracy = newGeoPositionWithLowAccuracy.coords.accuracy;
-  const expectedLocationFilter: SelectableStaticFilter = createLocationFilter(accuracy);
-  await waitFor(() => {
-    expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
+    const expectedLocationFilter: SelectableStaticFilter = createLocationFilter(10 * 1609.344);
+    await waitFor(() => {
+      expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
+    });
   });
-});
 
-it('replace existing location filters with a new location filter in static filters state', async () => {
-  mockAnswersState(mockedStateWithFilters);
-  const actions = spyOnActions();
-  render(<Geolocation />);
-  clickUpdateLocation();
+  it('sets a location filter with user\'s coordinates in static filters state when clicked', async () => {
+    const actions = spyOnActions();
+    render(<Geolocation />);
+    clickUpdateLocation();
 
-  const expectedStaticFilters = [
-    {
-      displayName: 'My name',
-      selected: true,
-      filter: {
-        kind: 'fieldValue',
-        fieldId: 'employeeName',
-        matcher: Matcher.Equals,
-        value: 'Bob',
-      }
-    },
-    createLocationFilter()
-  ];
-  await waitFor(() => {
-    expect(actions.setStaticFilters).toBeCalledWith(expectedStaticFilters);
+    const expectedLocationFilter: SelectableStaticFilter = createLocationFilter();
+    expect(locationOperations.getUserLocation).toBeCalled();
+    await waitFor(() => {
+      expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
+    });
   });
-});
 
-it('executes a new search when clicked', async () => {
-  const actions = spyOnActions();
-  render(<Geolocation />);
-  clickUpdateLocation();
+  it('replace existing location filters with a new location filter in static filters state', async () => {
+    mockAnswersState(mockedStateWithFilters);
+    const actions = spyOnActions();
+    render(<Geolocation />);
+    clickUpdateLocation();
 
-  await waitFor(() => {
-    expect(actions.executeVerticalQuery).toBeCalled();
+    const expectedStaticFilters = [
+      {
+        displayName: 'My name',
+        selected: true,
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'employeeName',
+          matcher: Matcher.Equals,
+          value: 'Bob',
+        }
+      },
+      createLocationFilter()
+    ];
+    await waitFor(() => {
+      expect(actions.setStaticFilters).toBeCalledWith(expectedStaticFilters);
+    });
   });
-});
 
-it('handles error when collecting user\'s location', async () => {
-  const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
-  jest.spyOn(locationOperations, 'getUserLocation').mockRejectedValue('mocked error!');
-  const actions = spyOnActions();
-  render(<Geolocation />);
-  clickUpdateLocation();
-  await waitFor(() => {
-    expect(consoleWarnSpy).toBeCalledWith('mocked error!');
+  it('sets a location filter using a larger radius than provided value due to low accuracy of user coordinate', async () => {
+    jest.spyOn(locationOperations, 'getUserLocation').mockResolvedValue(newGeoPositionWithLowAccuracy);
+    const actions = spyOnActions();
+    render(<Geolocation radius={10}/>);
+    clickUpdateLocation();
+
+    const accuracy = newGeoPositionWithLowAccuracy.coords.accuracy;
+    const expectedLocationFilter: SelectableStaticFilter = createLocationFilter(accuracy);
+    await waitFor(() => {
+      expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
+    });
   });
-  expect(actions.setStaticFilters).not.toBeCalled();
-  expect(actions.executeVerticalQuery).not.toBeCalled();
+
+  it('executes a new search when clicked', async () => {
+    const actions = spyOnActions();
+    render(<Geolocation />);
+    clickUpdateLocation();
+
+    await waitFor(() => {
+      expect(actions.executeVerticalQuery).toBeCalled();
+    });
+  });
+
+  it('does not execute default handleClick when error occurs from collecting user\'s location', async () => {
+    const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+    jest.spyOn(locationOperations, 'getUserLocation').mockRejectedValue('mocked error!');
+    const actions = spyOnActions();
+    render(<Geolocation />);
+    clickUpdateLocation();
+    await waitFor(() => {
+      expect(consoleWarnSpy).toBeCalledWith('mocked error!');
+    });
+    expect(actions.setStaticFilters).not.toBeCalled();
+    expect(actions.executeVerticalQuery).not.toBeCalled();
+  });
 });
 
 function clickUpdateLocation() {

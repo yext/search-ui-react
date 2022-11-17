@@ -43,7 +43,10 @@ export interface GeolocationProps {
   label?: string,
   /** Custom icon component to display along with the button. */
   GeolocationIcon?: React.FunctionComponent,
-  /** A function which is called when the geolocation button is clicked. */
+  /**
+   * A function which is called when the geolocation button is clicked,
+   * after user's position is successfully determined.
+   */
   handleClick?: (position: GeolocationPosition) => void,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: GeolocationCssClasses
@@ -75,41 +78,41 @@ export function Geolocation({
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
+  const defaultHandleClick = useCallback((position: GeolocationPosition) => {
+    const { latitude, longitude, accuracy } = position.coords;
+    const locationFilter: SelectableStaticFilter = {
+      displayName: 'Current Location',
+      selected: true,
+      filter: {
+        kind: 'fieldValue',
+        fieldId: LOCATION_FIELD_ID,
+        matcher: Matcher.Near,
+        value: {
+          lat: latitude,
+          lng: longitude,
+          radius: Math.max(accuracy, radius * METERS_PER_MILE)
+        },
+      }
+    };
+    const nonLocationFilters = staticFilters.filter(filter => {
+      return !(filter.filter.kind === 'fieldValue'
+        && filter.filter.fieldId === LOCATION_FIELD_ID);
+    });
+    searchActions.setStaticFilters([...nonLocationFilters, locationFilter]);
+    executeSearch(searchActions);
+  }, [radius, searchActions, staticFilters]);
+
   const handleGeolocationClick = useCallback(async () => {
     setIsFetchingLocation(true);
     try {
       const position = await getUserLocation(geolocationOptions);
-      if (handleClick) {
-        handleClick(position);
-        return;
-      }
-      const { latitude, longitude, accuracy } = position.coords;
-      const locationFilter: SelectableStaticFilter = {
-        displayName: 'Current Location',
-        selected: true,
-        filter: {
-          kind: 'fieldValue',
-          fieldId: LOCATION_FIELD_ID,
-          matcher: Matcher.Near,
-          value: {
-            lat: latitude,
-            lng: longitude,
-            radius: Math.max(accuracy, radius * METERS_PER_MILE)
-          },
-        }
-      };
-      const nonLocationFilters = staticFilters.filter(filter => {
-        return !(filter.filter.kind === 'fieldValue'
-          && filter.filter.fieldId === LOCATION_FIELD_ID);
-      });
-      searchActions.setStaticFilters([...nonLocationFilters, locationFilter]);
-      executeSearch(searchActions);
+      (handleClick ?? defaultHandleClick)(position);
     } catch (e) {
       console.warn(e);
     } finally {
       setIsFetchingLocation(false);
     }
-  }, [geolocationOptions, handleClick, radius, searchActions, staticFilters]);
+  }, [geolocationOptions, handleClick, defaultHandleClick]);
 
   return (
     <div className={cssClasses.geolocationContainer}>
