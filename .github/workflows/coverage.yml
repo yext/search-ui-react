@@ -10,11 +10,12 @@ on:
 
 jobs:
   combined_coverage:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@dev/test-mapbox-key
     with:
       test_script: npm run test
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
   individual_coverage_percentages:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
