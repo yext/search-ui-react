@@ -30,4 +30,5 @@ jobs:
         npm i -D react@16.14 react-dom@16.14
         npm run build
       node_matrix: '["14.x", "16.x", "18.x"]'
-      #try one without
+    secrets:
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
