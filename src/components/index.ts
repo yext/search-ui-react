@@ -46,6 +46,12 @@ export {
 } from './LocationBias';
 
 export {
+  Geolocation,
+  GeolocationCssClasses,
+  GeolocationProps
+} from './Geolocation';
+
+export {
   AppliedFilters,
   AppliedFiltersCssClasses,
   AppliedFiltersProps

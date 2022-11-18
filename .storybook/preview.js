@@ -36,6 +36,7 @@ export const parameters = {
         'AlternativeVerticals',
         'SpellCheck',
         'ResultsCount',
+        'Geolocation',
         'LocationBias',
         'Dropdown'
       ]

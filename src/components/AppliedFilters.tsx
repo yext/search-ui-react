@@ -45,7 +45,7 @@ export interface AppliedFiltersProps {
   customCssClasses?: AppliedFiltersCssClasses
 }
 
-const DEFUALT_HIDDEN_FIELDS = ['builtin.entityType'];
+const DEFAULT_HIDDEN_FIELDS = ['builtin.entityType'];
 
 /**
  * A component that displays a list of filters applied to the current vertical
@@ -61,7 +61,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
 
   const {
-    hiddenFields = DEFUALT_HIDDEN_FIELDS,
+    hiddenFields = DEFAULT_HIDDEN_FIELDS,
     customCssClasses = {},
     hierarchicalFacetsDelimiter = DEFAULT_HIERARCHICAL_DELIMITER,
     hierarchicalFacetsFieldIds

@@ -18,6 +18,7 @@
 |  [executeSearch(searchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
 |  [FilterDivider({ className })](./search-ui-react.filterdivider.md) | A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters. |
 |  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
+|  [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md) | A React Component which collects location information to create a location filter and perform a new search. |
 |  [getSearchIntents(searchActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./search-ui-react.getuserlocation.md) | Retrieves user's location using navigator.geolocation API. |
 |  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./search-ui-react.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
@@ -64,6 +65,8 @@
 |  [FilterOptionConfig](./search-ui-react.filteroptionconfig.md) | The configuration data for a field value filter option. |
 |  [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./search-ui-react.filtersearchprops.md) | The props for the [FilterSearch()](./search-ui-react.filtersearch.md) component. |
+|  [GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md) | The CSS class interface for the Geolocation component. |
+|  [GeolocationProps](./search-ui-react.geolocationprops.md) | The props for the Geolocation component. |
 |  [HierarchicalFacetDisplayCssClasses](./search-ui-react.hierarchicalfacetdisplaycssclasses.md) | The CSS class interface for HierarchicalFacetDisplay. |
 |  [HierarchicalFacetsCssClasses](./search-ui-react.hierarchicalfacetscssclasses.md) | The CSS class interface for [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md)<!-- -->. |
 |  [HierarchicalFacetsProps](./search-ui-react.hierarchicalfacetsprops.md) | Props for the [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md) component. |
