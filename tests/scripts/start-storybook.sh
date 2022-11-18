@@ -4,8 +4,6 @@
 CURRENT_NODE_VERSION=`node -v`
 echo "CURRENT_NODE_VERSION: $CURRENT_NODE_VERSION"
 
-echo "PID of start-storybook script: $$"
-
 if [[ $CURRENT_NODE_VERSION =~ v17(.*)|v18(.*) ]]
 then
   echo -e "currently using node version 17+ - setting NODE_OPTIONS \n"
@@ -15,15 +13,11 @@ fi
 
 #check for existing process on port:6006
 PREEXISTING_PORT_PROCESS=`lsof -i :6006`
-echo "start-storybook: PREEXISTING_PORT_PROCESS: $PREEXISTING_PORT_PROCESS"
 if [[ -z $PREEXISTING_PORT_PROCESS ]]
 then
   echo "port:6006 available - starting storybook"
   npm run storybook -- --quiet --ci &
   NEW_STORYBOOK_JOB_ID=$(echo $!) #get the background job ID
-  echo "start-storybook: NEW_STORYBOOK_JOB_ID: $NEW_STORYBOOK_JOB_ID"
-  pgrep -lP $NEW_STORYBOOK_JOB_ID
-  echo "start-storybook: end of: pgrep -lP $NEW_STORYBOOK_JOB_ID "
 
   # wait for a locally served Storybook
   attempt_counter=0

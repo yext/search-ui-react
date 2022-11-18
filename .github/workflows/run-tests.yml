@@ -7,7 +7,7 @@ on: [push, pull_request]
 
 jobs:
   call_run_tests-react-18:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@dev/test-mapbox-key
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       build_script: |
         npm i -D react@18 react-dom@18
@@ -17,14 +17,14 @@ jobs:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-17:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@dev/test-mapbox-key
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       node_matrix: '["14.x", "16.x", "18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-16:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@dev/test-mapbox-key
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       build_script: |
         npm i -D react@16.14 react-dom@16.14
