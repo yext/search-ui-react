@@ -3,7 +3,6 @@
 # set NODE_OPTIONS for node 17/18
 CURRENT_NODE_VERSION=`node -v`
 echo "CURRENT_NODE_VERSION: $CURRENT_NODE_VERSION"
-
 if [[ $CURRENT_NODE_VERSION =~ v17(.*)|v18(.*) ]]
 then
   echo -e "currently using node version 17+ - setting NODE_OPTIONS \n"
