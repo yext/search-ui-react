@@ -15,6 +15,7 @@ jobs:
       test_script: npm run test
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
   individual_coverage_percentages:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest

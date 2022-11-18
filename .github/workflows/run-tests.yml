@@ -13,11 +13,15 @@ jobs:
         npm i -D react@18 react-dom@18
         npm run build
       node_matrix: '["14.x", "16.x", "18.x"]'
+    secrets:
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-17:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       node_matrix: '["14.x", "16.x", "18.x"]'
+    secrets:
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-16:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
@@ -26,3 +30,5 @@ jobs:
         npm i -D react@16.14 react-dom@16.14
         npm run build
       node_matrix: '["14.x", "16.x", "18.x"]'
+    secrets:
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
