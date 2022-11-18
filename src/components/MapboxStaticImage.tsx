@@ -3,7 +3,7 @@ import { MapboxOptions, LngLatLike } from 'mapbox-gl';
 import useLayoutEffect from 'use-isomorphic-layout-effect';
 
 /**
- * Props for {@link MapboxStaticImage}
+ * Props for {@link MapboxStaticImage}.
  */
 export interface MapboxStaticImageProps {
   /** Mapbox access token. */
@@ -13,7 +13,7 @@ export interface MapboxStaticImageProps {
 }
 
 /**
- * Renders a static map image using Mapbox Static Image API
+ * Renders a static map image using Mapbox Static Image API.
  *
  * @internal
  */
@@ -51,7 +51,7 @@ export function MapboxStaticImage({
 }
 
 /**
- * The configuration for Mapbox Static Image API url
+ * The configuration for Mapbox Static Image API url.
  */
 interface MapboxStaticImageUrlConfig {
   /** Mapbox access token. */
