@@ -55,6 +55,26 @@ const mockedStateWithFilters: Partial<State> = {
         }
       },
       {
+        displayName: 'Virginia, US',
+        selected: true,
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'builtin.region',
+          matcher: Matcher.Equals,
+          value: 'US-VA',
+        }
+      },
+      {
+        displayName: 'United States',
+        selected: true,
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'address.countryCode',
+          matcher: Matcher.Equals,
+          value: 'US',
+        }
+      },
+      {
         displayName: 'My name',
         selected: true,
         filter: {
@@ -141,7 +161,7 @@ describe('custom click handler', () => {
 describe('default click handler', () => {
   it('sets a location filter using provided radius', async () => {
     const actions = spyOnActions();
-    render(<Geolocation radius={10}/>);
+    render(<Geolocation radius={10} />);
     clickUpdateLocation();
 
     const expectedLocationFilter: SelectableStaticFilter = createLocationFilter(10 * 1609.344);
@@ -162,7 +182,7 @@ describe('default click handler', () => {
     });
   });
 
-  it('replace existing location filters with a new location filter in static filters state', async () => {
+  it('replaces existing location filters with a new location filter in static filters state', async () => {
     mockAnswersState(mockedStateWithFilters);
     const actions = spyOnActions();
     render(<Geolocation />);
@@ -189,7 +209,7 @@ describe('default click handler', () => {
   it('sets a location filter using a larger radius than provided value due to low accuracy of user coordinate', async () => {
     jest.spyOn(locationOperations, 'getUserLocation').mockResolvedValue(newGeoPositionWithLowAccuracy);
     const actions = spyOnActions();
-    render(<Geolocation radius={10}/>);
+    render(<Geolocation radius={10} />);
     clickUpdateLocation();
 
     const accuracy = newGeoPositionWithLowAccuracy.coords.accuracy;
