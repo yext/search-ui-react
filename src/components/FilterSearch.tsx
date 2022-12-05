@@ -105,6 +105,14 @@ export function FilterSearch({
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
   });
+  const matchingFieldIds: Set<string> = useMemo(() => {
+    const fieldIds = new Set(searchFields.map(s => s.fieldApiName));
+    if (fieldIds.has('builtin.location')) {
+      ['builtin.region', 'address.countryCode'].forEach(s => fieldIds.add(s));
+    }
+    return fieldIds;
+  }, [searchFields]);
+
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const [currentFilter, setCurrentFilter] = useState<StaticFilter>();
   const [filterQuery, setFilterQuery] = useState<string>();
@@ -113,9 +121,9 @@ export function FilterSearch({
     return staticFilters?.filter(({ filter, selected }) =>
       selected
       && filter.kind === 'fieldValue'
-      && searchFields.some(s => s.fieldApiName === filter.fieldId)
+      && matchingFieldIds.has(filter.fieldId)
     ) ?? [];
-  }, [staticFilters, searchFields]);
+  }, [staticFilters, matchingFieldIds]);
 
   const [
     filterSearchResponse,
@@ -132,7 +140,7 @@ export function FilterSearch({
   useEffect(() => {
     if (matchingFilters.length > 1 && !onSelect) {
       console.warn('More than one selected static filter found that matches the filter search fields: ['
-        + searchFields.map(s => s.fieldApiName).join(', ')
+        + [...matchingFieldIds].join(', ')
         + ']. Please update the state to remove the extra filters.'
         + ' Picking one filter to display in the input.');
     }
@@ -158,7 +166,7 @@ export function FilterSearch({
     executeFilterSearch,
     onSelect,
     matchingFilters,
-    searchFields
+    matchingFieldIds
   ]);
 
   const sections = useMemo(() => {
@@ -190,7 +198,7 @@ export function FilterSearch({
 
     if (matchingFilters.length > 1) {
       console.warn('More than one selected static filter found that matches the filter search fields: ['
-        + searchFields.map(s => s.fieldApiName).join(', ')
+        + [...matchingFieldIds].join(', ')
         + ']. Unselecting all existing matching filters and selecting the new filter.');
     }
     matchingFilters.forEach(f => searchActions.setFilterOption({ filter: f.filter, selected: false }));
@@ -213,7 +221,7 @@ export function FilterSearch({
     onSelect,
     searchOnSelect,
     matchingFilters,
-    searchFields
+    matchingFieldIds
   ]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
