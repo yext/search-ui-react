@@ -3,7 +3,8 @@ import { executeSearch } from '../utils/search-operations';
 import { getUserLocation } from '../utils/location-operations';
 import { useCallback, useState } from 'react';
 
-const LOCATION_FIELD_ID = 'builtin.location';
+const GEOLOCATION_FIELD_ID = 'builtin.location';
+const LOCATION_FIELD_IDS = [GEOLOCATION_FIELD_ID, 'builtin.region', 'address.countryCode'];
 const METERS_PER_MILE = 1609.344;
 
 /**
@@ -49,7 +50,7 @@ export function useGeolocationHandler({
       selected: true,
       filter: {
         kind: 'fieldValue',
-        fieldId: LOCATION_FIELD_ID,
+        fieldId: GEOLOCATION_FIELD_ID,
         matcher: Matcher.Near,
         value: {
           lat: latitude,
@@ -60,7 +61,7 @@ export function useGeolocationHandler({
     };
     const nonLocationFilters = staticFilters.filter(filter => {
       return !(filter.filter.kind === 'fieldValue'
-        && filter.filter.fieldId === LOCATION_FIELD_ID);
+        && LOCATION_FIELD_IDS.includes(filter.filter.fieldId));
     });
     searchActions.setStaticFilters([...nonLocationFilters, locationFilter]);
     executeSearch(searchActions);
