@@ -4,20 +4,23 @@ on:
   push:
     branches:
       - main
+
 jobs:
   sync-branches:
     runs-on: ubuntu-latest
     name: Syncing branches
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - uses: mtanzi/action-automerge@v1
+        uses: actions/checkout@v3
+      - uses: devmasx/merge-branch@v1.4.0
         with:
-          source: "${{ github.event.repository.default_branch }}"
-          target: "storybook-site"
+          type: now
+          from_branch: ${{ github.event.repository.default_branch }}
+          target_branch: storybook-site
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: mtanzi/action-automerge@v1
+      - uses: devmasx/merge-branch@v1.4.0
         with:
-          source: "${{ github.event.repository.default_branch }}"
-          target: "test-site"
+          type: now
+          from_branch: ${{ github.event.repository.default_branch }}
+          target_branch: test-site
           github_token: ${{ secrets.GITHUB_TOKEN }}
