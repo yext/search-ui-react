@@ -51,7 +51,7 @@ function runAnalyticsTestSuite() {
     userEvent.click(thumbsUp);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
-      type: 'THUMBS_UPTRISTAN',
+      type: 'THUMBS_UP',
       queryId: '[queryId]',
       searcher: 'UNIVERSAL',
       directAnswer: true
