@@ -42,9 +42,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "wcag": "test-storybook",
-    "test:unit": "jest --coverage --coverageDirectory=coverage/unit",
+    "test:unit": "jest",
     "test:visual": "./tests/scripts/visual-coverage.sh",
-    "test": "jest"
+    "test": "./tests/scripts/combined-coverage.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -100,11 +100,12 @@
   "jest": {
     "bail": 0,
     "verbose": true,
-    "collectCoverage": false,
+    "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**",
       "!src/models/**"
     ],
+    "coverageDirectory": "coverage/unit",
     "moduleFileExtensions": [
       "js",
       "ts",
