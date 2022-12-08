@@ -10,7 +10,7 @@ on:
 
 jobs:
   combined_coverage:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@dev/fail-fast
+    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@1
     with:
       test_script: npm run test
     secrets:
