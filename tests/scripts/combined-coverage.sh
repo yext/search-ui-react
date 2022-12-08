@@ -1,9 +1,11 @@
 #!/bin/bash
 
 npm run test:unit
-echo $?
+if $? ; then
+  exit 1
 npm run test:visual
-echo $?
+if $? ; then
+  exit 1
 
 # merge
 mkdir -p coverage/merge
