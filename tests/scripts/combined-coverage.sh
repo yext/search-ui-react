@@ -1,13 +1,7 @@
 #!/bin/bash
 
-npm run test:unit
-if $? ; then
-  exit 1
-fi
-npm run test:visual
-if $? ; then
-  exit 1
-fi
+npm run test:unit || exit 1
+npm run test:visual || exit 1
 
 # merge
 mkdir -p coverage/merge
