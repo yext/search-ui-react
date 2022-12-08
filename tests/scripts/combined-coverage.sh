@@ -1,7 +1,9 @@
 #!/bin/bash
 
 npm run test:unit
+$?
 npm run test:visual
+$?
 
 # merge
 mkdir -p coverage/merge
