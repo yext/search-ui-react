@@ -44,7 +44,7 @@
     "wcag": "test-storybook",
     "test:unit": "jest --coverage --coverageDirectory=coverage/unit",
     "test:visual": "./tests/scripts/visual-coverage.sh",
-    "test": "./tests/scripts/combined-coverage.sh"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
