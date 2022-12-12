@@ -10,5 +10,3 @@ cp coverage/visual/coverage-storybook.json coverage/merge/coverage-storybook.jso
 
 nyc report --reporter=lcov --reporter=text -t coverage/merge --report-dir coverage/merge
 cp coverage/merge/lcov.info coverage/lcov.info
-
-exit 0
