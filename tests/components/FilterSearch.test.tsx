@@ -350,6 +350,122 @@ describe('search with section labels', () => {
     expect(setFilterOption).not.toBeCalled();
   });
 
+  describe('searching on builtin.location', () => {
+    const locationSearchFieldsProp = [
+      ...searchFieldsProp,
+      {
+        fieldApiName: 'builtin.location',
+        entityType: 'ce_person'
+      }
+    ];
+    const mockedStateWithLocationFilters: Partial<State> = {
+      ...mockedState,
+      filters: {
+        static: [{
+          filter: {
+            kind: 'fieldValue',
+            fieldId: 'builtin.region',
+            matcher: Matcher.Equals,
+            value: 'VA'
+          },
+          selected: true,
+          displayName: 'Virginia'
+        }, {
+          filter: {
+            kind: 'fieldValue',
+            fieldId: 'address.countryCode',
+            matcher: Matcher.Equals,
+            value: 'US'
+          },
+          selected: true,
+          displayName: 'United States'
+        }, {
+          filter: {
+            kind: 'fieldValue',
+            fieldId: 'builtin.location',
+            matcher: Matcher.Equals,
+            value: 'P-place.2618194975855570'
+          },
+          selected: true,
+          displayName: 'New York City, New York, United States'
+        }]
+      }
+    };
+
+    it('displays text of other location fields in state and lists all fields in the warning', async () => {
+      const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+      renderFilterSearch({ searchFields: locationSearchFieldsProp }, mockedStateWithLocationFilters);
+      const searchBarElement = screen.getByRole('textbox');
+      expect(searchBarElement).toHaveValue('Virginia');
+      expect(consoleWarnSpy).toBeCalledWith(
+        'More than one selected static filter found that matches the filter search fields:'
+        + ' [name, builtin.location, builtin.region, address.countryCode].'
+        + ' Please update the state to remove the extra filters.'
+        + ' Picking one filter to display in the input.'
+      );
+    });
+
+    it('unselects all location filters in state and lists all location fields in the warning', async () => {
+      const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
+      renderFilterSearch({ searchFields: locationSearchFieldsProp }, mockedStateWithLocationFilters);
+      const executeFilterSearch = jest
+        .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+        .mockResolvedValue(labeledFilterSearchResponse);
+      const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
+      const searchBarElement = screen.getByRole('textbox');
+
+      userEvent.clear(searchBarElement);
+      userEvent.type(searchBarElement, 'f');
+      await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
+      await waitFor(() => screen.findByText('first name 1'));
+      userEvent.type(searchBarElement, '{enter}');
+      await waitFor(() => {
+        expect(setFilterOption).toBeCalledWith({
+          filter: {
+            kind: 'fieldValue',
+            fieldId: 'builtin.region',
+            matcher: Matcher.Equals,
+            value: 'VA'
+          },
+          selected: false
+        });
+      });
+      expect(setFilterOption).toBeCalledWith({
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'address.countryCode',
+          matcher: Matcher.Equals,
+          value: 'US'
+        },
+        selected: false
+      });
+      expect(setFilterOption).toBeCalledWith({
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'address.countryCode',
+          matcher: Matcher.Equals,
+          value: 'US'
+        },
+        selected: false
+      });
+      expect(setFilterOption).toBeCalledWith({
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'name',
+          matcher: Matcher.Equals,
+          value: 'first name 1'
+        },
+        displayName: 'first name 1',
+        selected: true
+      });
+      expect(consoleWarnSpy).toBeCalledWith(
+        'More than one selected static filter found that matches the filter search fields:'
+        + ' [name, builtin.location, builtin.region, address.countryCode].'
+        + ' Unselecting all existing matching filters and selecting the new filter.'
+      );
+    });
+  });
+
   describe('searchOnSelect = true', () => {
     it('triggers a search on pressing "enter" when an autocomplete result is selected', async () => {
       const mockExecuteSearch = jest.spyOn(searchOperations, 'executeSearch');
