@@ -4,6 +4,11 @@
 
 ## FilterSearchProps.searchOnSelect property
 
+> Warning: This API is now obsolete.
+> 
+> Use the `onSelect` prop instead.
+> 
+
 Whether to trigger a search when an option is selected. Defaults to false.
 
 <b>Signature:</b>

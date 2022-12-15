@@ -1,9 +1,9 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext, SearchTypeEnum } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
-import { AppliedFiltersDisplay } from '../../src/components/AppliedFiltersDisplay';
-import { AppliedFiltersProps, builtInCssClasses } from '../../src/components/AppliedFilters';
+import { AppliedFiltersDisplay, AppliedFiltersDisplayProps } from '../../src/components/AppliedFiltersDisplay';
+import { builtInCssClasses } from '../../src/components/AppliedFilters';
 import { RemovableFilters } from '../__fixtures__/data/filters';
 
 const meta: ComponentMeta<typeof AppliedFiltersDisplay> = {
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof AppliedFiltersDisplay> = {
 };
 export default meta;
 
-export const Primary = (args: AppliedFiltersProps) => {
+export const Primary: Story<AppliedFiltersDisplayProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       meta: { searchType: SearchTypeEnum.Vertical }
@@ -26,4 +26,3 @@ export const Primary = (args: AppliedFiltersProps) => {
     </SearchHeadlessContext.Provider>
   );
 };
-

@@ -35,7 +35,8 @@ export {
 export {
   FilterSearch,
   FilterSearchCssClasses,
-  FilterSearchProps
+  FilterSearchProps,
+  OnSelectParams
 } from './FilterSearch';
 
 export {
@@ -132,6 +133,15 @@ export {
   ApplyFiltersButtonCssClasses,
   ApplyFiltersButtonProps
 } from './ApplyFiltersButton';
+
+export {
+  MapboxMap,
+  PinComponent,
+  MapboxMapProps,
+  OnDragHandler,
+  CoordinateGetter,
+  Coordinate
+} from './MapboxMap';
 
 export {
   renderHighlightedValue,

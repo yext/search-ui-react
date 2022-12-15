@@ -87,7 +87,7 @@ describe('Results count for vertical search', () => {
   it('Displayed correctly for multiple results', () => {
     mockAnswersState(mockedStateVerticalMultiple);
     render(<ResultsCount />);
-    const expectedResultsCountNumber = mockedStateVerticalMultiple.vertical.resultsCount;
+    const expectedResultsCountNumber = mockedStateVerticalMultiple.vertical?.resultsCount;
     expect(screen.getByText(expectedResultsCountNumber + ' Results')).toBeDefined();
   });
 
@@ -109,8 +109,10 @@ describe('Results count for universal search', () => {
     mockAnswersState(mockedStateUniversalMultiple);
     render(<ResultsCount />);
     let expectedResultsCountNumber = 0;
-    const results = mockedStateUniversalMultiple.universal.verticals;
-    results.forEach(resultsOfAVertical => expectedResultsCountNumber += resultsOfAVertical.resultsCount);
+    const results = mockedStateUniversalMultiple.universal?.verticals;
+    results?.forEach(
+      resultsOfAVertical => expectedResultsCountNumber += resultsOfAVertical.resultsCount ?? 0
+    );
     expect(screen.getByText(expectedResultsCountNumber + ' Results')).toBeDefined();
   });
 

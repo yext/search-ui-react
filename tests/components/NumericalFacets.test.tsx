@@ -98,7 +98,7 @@ describe('NumericalFacets', () => {
       }
     });
     const getFilterDisplayName = (value: NumberRangeValue) => {
-      return 'start-' + value.start.value + ' end-' + value.end.value;
+      return 'start-' + value.start?.value + ' end-' + value.end?.value;
     };
     const actions = spyOnActions();
     render(<NumericalFacets getFilterDisplayName={getFilterDisplayName}/>);
