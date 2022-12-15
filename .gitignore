@@ -7,3 +7,6 @@ lib/
 # testing
 /coverage
 /storybook-static
+
+.env
+test-site/.env

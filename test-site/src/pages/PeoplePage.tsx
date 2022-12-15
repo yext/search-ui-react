@@ -20,6 +20,17 @@ import {
 // import { CustomCard } from '../components/CustomCard';
 
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
+const filterSearchFields = [{ fieldApiName: 'name', entityType: 'ce_person' }];
+const employeeFilterConfigs = [
+  { value: 'Consulting' },
+  { value: 'Technology' }
+];
+const hierarchicalFilterConfigs = [
+  { value: 'Computer & Tablets' }
+];
+const alternativeVerticalsConfigMap = {
+  products: { label: 'Products' }
+};
 
 export function PeoplePage() {
   const searchActions = useSearchActions();
@@ -34,7 +45,7 @@ export function PeoplePage() {
       <div className='flex'>
         <div className='w-56 shrink-0 mr-5'>
           <FilterSearch
-            searchFields={[{ fieldApiName: 'name', entityType: 'ce_person' }]}
+            searchFields={filterSearchFields}
             searchOnSelect={true}
             label='Filters'
           />
@@ -42,17 +53,12 @@ export function PeoplePage() {
           <StaticFilters
             fieldId='c_employeeDepartment'
             title='Static Employee Department'
-            filterOptions={[
-              { value: 'Consulting' },
-              { value: 'Technology' }
-            ]}
+            filterOptions={employeeFilterConfigs}
           />
           <StaticFilters
             fieldId='c_hierarchicalFacet'
             title='Static Hierarchical Facets'
-            filterOptions={[
-              { value: 'Computer & Tablets' },
-            ]}
+            filterOptions={hierarchicalFilterConfigs}
           />
           <NumericalFacets />
           <StandardFacets
@@ -68,9 +74,7 @@ export function PeoplePage() {
         <div className='flex-grow'>
           <AlternativeVerticals
             currentVerticalLabel='People'
-            verticalConfigMap={{
-              products: { label: 'Products' }
-            }}
+            verticalConfigMap={alternativeVerticalsConfigMap}
           />
           <div className='flex items-baseline'>
             <ResultsCount />

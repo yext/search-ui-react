@@ -10,7 +10,13 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AutocompleteResponse } from '@yext/search-headless-react';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
+import { FieldValueStaticFilter } from '@yext/search-headless-react';
+import { FilterSearchResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
+import { LngLat } from 'mapbox-gl';
+import { LngLatBounds } from 'mapbox-gl';
+import { Map as Map_2 } from 'mapbox-gl';
+import { MapboxOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
@@ -20,6 +26,7 @@ import { SearchActions } from '@yext/search-headless-react';
 import { SearchHeadless } from '@yext/search-headless-react';
 import { SearchIntent } from '@yext/search-headless-react';
 import { SearchParameterField } from '@yext/search-headless-react';
+import { StaticFilter } from '@yext/search-headless-react';
 import { UniversalLimit } from '@yext/search-headless-react';
 import { UnknownFieldValueDirectAnswer } from '@yext/search-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/search-headless-react';
@@ -129,6 +136,15 @@ export interface CardProps<T = DefaultRawDataType> {
 export const ComponentsContentPath = "node_modules/@yext/search-ui-react/lib/**/*.{js,jsx}";
 
 // @public
+export interface Coordinate {
+    latitude: number;
+    longitude: number;
+}
+
+// @public
+export type CoordinateGetter<T> = (result: Result<T>) => Coordinate | undefined;
+
+// @public
 export interface CtaData {
     label: string;
     link: string;
@@ -204,6 +220,8 @@ export interface FilterGroupCssClasses {
     optionsContainer?: string;
     // (undocumented)
     searchInput?: string;
+    // (undocumented)
+    titleLabel?: string;
 }
 
 // @public
@@ -228,7 +246,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -250,8 +268,10 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
+    onSelect?: (params: OnSelectParams) => void;
     placeholder?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
+    // @deprecated
     searchOnSelect?: boolean;
     sectioned?: boolean;
 }
@@ -339,6 +359,18 @@ export interface LocationBiasProps {
 }
 
 // @public
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
+
+// @public
+export interface MapboxMapProps<T> {
+    getCoordinate?: CoordinateGetter<T>;
+    mapboxAccessToken: string;
+    mapboxOptions?: Omit<MapboxOptions, 'container'>;
+    onDrag?: OnDragHandler;
+    PinComponent?: PinComponent<T>;
+}
+
+// @public
 export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 
 // @public
@@ -358,10 +390,22 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
 }
 
 // @public
+export type OnDragHandler = (center: LngLat, bounds: LngLatBounds) => void;
+
+// @public
 export type onSearchFunc = (searchEventData: {
     verticalKey?: string;
     query?: string;
 }) => void;
+
+// @public
+export interface OnSelectParams {
+    currentFilter: StaticFilter | undefined;
+    executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>;
+    newDisplayName: string;
+    newFilter: FieldValueStaticFilter;
+    setCurrentFilter: (filter: StaticFilter) => void;
+}
 
 // @public
 export function Pagination(props: PaginationProps): JSX.Element | null;
@@ -389,6 +433,13 @@ export interface PaginationProps {
     customCssClasses?: PaginationCssClasses;
     paginateAllOnNoResults?: boolean;
 }
+
+// @public
+export type PinComponent<T> = (props: {
+    index: number;
+    mapbox: Map_2;
+    result: Result<T>;
+}) => JSX.Element;
 
 // @public
 export interface RangeInputCssClasses {

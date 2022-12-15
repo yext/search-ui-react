@@ -2,8 +2,7 @@ name: Run Linter
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main, develop, feature/*]
 
 jobs:
   linting:

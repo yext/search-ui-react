@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext, State } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
@@ -24,10 +24,13 @@ const mockedHeadlessState: RecursivePartial<State> = {
   }
 };
 
-export function Primary(args: HierarchicalFacetsProps): JSX.Element {
+export const Primary: Story<HierarchicalFacetsProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <HierarchicalFacets includedFieldIds={['hier']} {...args} />
+      <HierarchicalFacets {...args} />
     </SearchHeadlessContext.Provider>
   );
-}
+};
+Primary.args = {
+  includedFieldIds: ['hier']
+};

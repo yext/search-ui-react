@@ -67,7 +67,7 @@ const builtInCssClasses: Readonly<DirectAnswerCssClasses> = {
   description: 'text-neutral',
   content: 'mt-4',
   highlighted: 'bg-primary-light',
-  answerContainer: 'p-4 border rounded-lg shadow-sm',
+  answerContainer: 'p-4 border border-gray-200 rounded-lg shadow-sm',
   thumbsFeedbackContainer: thumbsFeedbackCssClasses.thumbsFeedbackContainer,
   thumbsUpIcon: thumbsFeedbackCssClasses.thumbsUpIcon,
   thumbsDownIcon: thumbsFeedbackCssClasses.thumbsDownIcon

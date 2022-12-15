@@ -15,7 +15,7 @@ export function generateMockedStateManager(state: State): StateManager {
     }
 
     dispatchEvent(type: string, payload?: unknown): void {
-      return null;
+      return;
     }
 
     addListener<T>(listener: StateListener<T>): Unsubscribe {

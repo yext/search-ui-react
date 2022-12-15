@@ -1,4 +1,4 @@
-const tailwindConfig = require('../tailwind.config.cjs');
+const tailwindConfig = require('../.storybook/tailwind.config.cjs');
 const { ComponentsContentPath } = require('@yext/search-ui-react');
 
 module.exports = {
@@ -7,4 +7,4 @@ module.exports = {
     './src/**/*.{ts,tsx}',
     ComponentsContentPath
   ]
-}
+};
