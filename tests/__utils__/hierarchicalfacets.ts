@@ -9,7 +9,7 @@ export function createHierarchicalFacet(
     .map(o => ({
       value: o.value,
       displayName: o.value,
-      selected: o.selected,
+      selected: o.selected ?? false,
       count: 82,
       matcher: Matcher.Equals
     }));

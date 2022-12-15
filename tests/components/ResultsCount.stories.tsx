@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { ResultsCount, ResultsCountProps } from '../../src/components/ResultsCount';
@@ -12,7 +12,7 @@ const meta: ComponentMeta<typeof ResultsCount> = {
 };
 export default meta;
 
-export const Primary = (args: ResultsCountProps) => {
+export const Primary: Story<ResultsCountProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -25,7 +25,7 @@ export const Primary = (args: ResultsCountProps) => {
   );
 };
 
-export const PaginationRange = (args: ResultsCountProps) => {
+export const PaginationRange: Story<ResultsCountProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -38,7 +38,7 @@ export const PaginationRange = (args: ResultsCountProps) => {
   );
 };
 
-export const Loading = (args: ResultsCountProps) => {
+export const Loading: Story<ResultsCountProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,

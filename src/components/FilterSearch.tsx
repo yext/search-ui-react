@@ -1,9 +1,9 @@
-import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, SearchParameterField, useSearchActions, useSearchState } from '@yext/search-headless-react';
+import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, SearchParameterField, SelectableStaticFilter, StaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
-import { getSelectableFieldValueFilters, isDuplicateFieldValueFilter } from '../utils/filterutils';
+import { isDuplicateStaticFilter } from '../utils/filterutils';
 import { Dropdown } from './Dropdown/Dropdown';
 import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
@@ -35,6 +35,27 @@ const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
 };
 
 /**
+ * The parameters that are passed into {@link FilterSearchProps.onSelect}.
+ *
+ * @public
+ */
+export interface OnSelectParams {
+  /** The newly selected filter. */
+  newFilter: FieldValueStaticFilter,
+  /** The display name of the newly selected filter. */
+  newDisplayName: string,
+  /** The previously selected filter. */
+  currentFilter: StaticFilter | undefined,
+  /** A function that sets which filter the component is currently associated with. */
+  setCurrentFilter: (filter: StaticFilter) => void,
+  /**
+   * A function that executes a filter search and updates the input and dropdown options
+   * with the response.
+   */
+  executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>
+}
+
+/**
  * The props for the {@link FilterSearch} component.
  *
  * @public
@@ -49,8 +70,14 @@ export interface FilterSearchProps {
    * Defaults to "Search here...".
    */
   placeholder?: string,
-  /** Whether to trigger a search when an option is selected. Defaults to false. */
+  /**
+   * Whether to trigger a search when an option is selected. Defaults to false.
+   *
+   * @deprecated Use the `onSelect` prop instead.
+   */
   searchOnSelect?: boolean,
+  /** A function which is called when a filter is selected. */
+  onSelect?: (params: OnSelectParams) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -70,6 +97,7 @@ export function FilterSearch({
   label,
   placeholder = 'Search here...',
   searchOnSelect,
+  onSelect,
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
@@ -77,14 +105,25 @@ export function FilterSearch({
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
   });
+  const matchingFieldIds: Set<string> = useMemo(() => {
+    const fieldIds = new Set(searchFields.map(s => s.fieldApiName));
+    if (fieldIds.has('builtin.location')) {
+      ['builtin.region', 'address.countryCode'].forEach(s => fieldIds.add(s));
+    }
+    return fieldIds;
+  }, [searchFields]);
+
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  const [currentFilter, setCurrentFilter] = useState<FieldValueStaticFilter>();
+  const [currentFilter, setCurrentFilter] = useState<StaticFilter>();
   const [filterQuery, setFilterQuery] = useState<string>();
   const staticFilters = useSearchState(state => state.filters.static);
-  const fieldValueFilters = useMemo(
-    () => getSelectableFieldValueFilters(staticFilters ?? []),
-    [staticFilters]
-  );
+  const matchingFilters: SelectableStaticFilter[] = useMemo(() => {
+    return staticFilters?.filter(({ filter, selected }) =>
+      selected
+      && filter.kind === 'fieldValue'
+      && matchingFieldIds.has(filter.fieldId)
+    ) ?? [];
+  }, [staticFilters, matchingFieldIds]);
 
   const [
     filterSearchResponse,
@@ -99,14 +138,36 @@ export function FilterSearch({
   );
 
   useEffect(() => {
-    if (currentFilter && fieldValueFilters?.find(f =>
-      isDuplicateFieldValueFilter(f, currentFilter) && !f.selected
+    if (matchingFilters.length > 1 && !onSelect) {
+      console.warn('More than one selected static filter found that matches the filter search fields: ['
+        + [...matchingFieldIds].join(', ')
+        + ']. Please update the state to remove the extra filters.'
+        + ' Picking one filter to display in the input.');
+    }
+
+    if (currentFilter && staticFilters?.find(f =>
+      isDuplicateStaticFilter(f.filter, currentFilter) && f.selected
     )) {
+      return;
+    }
+
+    if (matchingFilters.length === 0) {
       clearFilterSearchResponse();
       setCurrentFilter(undefined);
       setFilterQuery('');
+    } else {
+      setCurrentFilter(matchingFilters[0].filter);
+      executeFilterSearch(matchingFilters[0].displayName);
     }
-  }, [clearFilterSearchResponse, currentFilter, fieldValueFilters]);
+  }, [
+    clearFilterSearchResponse,
+    currentFilter,
+    staticFilters,
+    executeFilterSearch,
+    onSelect,
+    matchingFilters,
+    matchingFieldIds
+  ]);
 
   const sections = useMemo(() => {
     return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
@@ -114,41 +175,54 @@ export function FilterSearch({
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
-  const handleDropdownEvent = useCallback((value, itemData, select) => {
+  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
     const newFilter = itemData?.filter as FieldValueStaticFilter;
     const newDisplayName = itemData?.displayName as string;
-    if (newFilter && newDisplayName) {
-      if (select) {
-        if (currentFilter) {
-          searchActions.setFilterOption({ filter: currentFilter, selected: false });
-        }
-        searchActions.setFilterOption({ filter: newFilter, displayName: newDisplayName, selected: true
-        });
-        setCurrentFilter(newFilter);
-        setFilterQuery(newDisplayName);
-        executeFilterSearch(newDisplayName);
-        if (searchOnSelect) {
-          searchActions.setOffset(0);
-          searchActions.resetFacets();
-          executeSearch(searchActions);
-        }
-      } else {
-        setFilterQuery(value);
-        executeFilterSearch(value);
+    if (!newFilter || !newDisplayName) {
+      return;
+    }
+
+    if (onSelect) {
+      if (searchOnSelect) {
+        console.warn('Both searchOnSelect and onSelect props were passed to the component.'
+          + ' Using onSelect instead of searchOnSelect as the latter is deprecated.');
       }
+      return onSelect({
+        newFilter,
+        newDisplayName,
+        currentFilter,
+        setCurrentFilter,
+        executeFilterSearch
+      });
     }
-  }, [currentFilter, searchActions, executeFilterSearch, searchOnSelect]);
 
-  const handleSelectDropdown = useCallback((value, _index, itemData) => {
-    handleDropdownEvent(value, itemData, true);
-  }, [handleDropdownEvent]);
-
-  const handleToggleDropdown =
-  useCallback((isActive, _prevValue, value, _index, itemData) => {
-    if (!isActive) {
-      handleDropdownEvent(value, itemData, false);
+    if (matchingFilters.length > 1) {
+      console.warn('More than one selected static filter found that matches the filter search fields: ['
+        + [...matchingFieldIds].join(', ')
+        + ']. Unselecting all existing matching filters and selecting the new filter.');
     }
-  }, [handleDropdownEvent]);
+    matchingFilters.forEach(f => searchActions.setFilterOption({ filter: f.filter, selected: false }));
+    if (currentFilter) {
+      searchActions.setFilterOption({ filter: currentFilter, selected: false });
+    }
+    searchActions.setFilterOption({ filter: newFilter, displayName: newDisplayName, selected: true });
+    setCurrentFilter(newFilter);
+    executeFilterSearch(newDisplayName);
+
+    if (searchOnSelect) {
+      searchActions.setOffset(0);
+      searchActions.resetFacets();
+      executeSearch(searchActions);
+    }
+  }, [
+    currentFilter,
+    searchActions,
+    executeFilterSearch,
+    onSelect,
+    searchOnSelect,
+    matchingFilters,
+    matchingFieldIds
+  ]);
 
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
@@ -199,7 +273,6 @@ export function FilterSearch({
       <Dropdown
         screenReaderText={getScreenReaderText(sections)}
         onSelect={handleSelectDropdown}
-        onToggle={handleToggleDropdown}
         alwaysSelectOption={true}
         parentQuery={filterQuery}
       >

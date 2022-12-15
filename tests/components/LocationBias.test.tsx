@@ -1,14 +1,20 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LocationBias } from '../../src/components/LocationBias';
-import { State, LocationBiasMethod } from '@yext/search-headless-react';
+import { State, LocationBiasMethod, LocationBias as LocationBiasType } from '@yext/search-headless-react';
 import * as locationOperations from '../../src/utils/location-operations';
-import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
+import { mockAnswersHooks, mockAnswersState, RecursivePartial, spyOnActions } from '../__utils__/mocks';
 import * as searchOperations from '../../src/utils/search-operations';
 
 jest.mock('@yext/search-headless-react');
 
-const mockedStateVaDevice: Partial<State> = {
+type LocationBiasState = {
+  location: {
+    locationBias: LocationBiasType
+  }
+};
+
+const mockedStateVaDevice: Partial<State> & LocationBiasState = {
   location: {
     locationBias: {
       latitude: 38.89552025579547,
@@ -19,7 +25,7 @@ const mockedStateVaDevice: Partial<State> = {
   }
 };
 
-const mockedStateNyIP: Partial<State> = {
+const mockedStateNyIP: Partial<State> & LocationBiasState = {
   location: {
     locationBias: {
       latitude: 40.741591687843005,
@@ -30,20 +36,15 @@ const mockedStateNyIP: Partial<State> = {
   }
 };
 
-const mockedStateNoDisplayName: Partial<State> = {
+const mockedStateNoDisplayName: RecursivePartial<State> = {
   location: {
-    locationBias: {
-      latitude: null,
-      longitude: null,
-      displayName: null,
-      method: null
-    }
-  },
+    locationBias: {}
+  }
 };
 
-const newGeoPosition = {
+const newGeoPosition: GeolocationPosition = {
   coords: {
-    accuracy: null,
+    accuracy: 0,
     altitude: null,
     altitudeAccuracy: null,
     heading: null,
@@ -51,7 +52,7 @@ const newGeoPosition = {
     longitude: -74.00530254443494,
     speed: null,
   },
-  timestamp: null
+  timestamp: 0
 };
 
 beforeEach(() => {
