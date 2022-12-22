@@ -7,6 +7,7 @@ import { MapboxMap, MapboxMapProps } from '../../src/components/MapboxMap';
 import { MapPin } from '../../test-site/src/components/MapPin';
 import { Location } from '../../test-site/src/pages/LocationsPage';
 import { locationVerticalSingle, locationVerticalMultiple } from '../__fixtures__/data/mapbox';
+import { MapboxStaticImage, MapboxStaticImageProps } from '../../src/components/MapboxStaticImage';
 
 const meta: ComponentMeta<typeof MapboxMap> = {
   title: 'MapboxMap',
@@ -19,8 +20,19 @@ const meta: ComponentMeta<typeof MapboxMap> = {
     PinComponent: {
       control: false,
     },
+    getCoordinate: {
+      control: false,
+    },
+    onDrag: {
+      control: false,
+    }
   },
-  parameters: { layout: 'fullscreen', percy: { enableJavascript: true } },
+  parameters: {
+    layout: 'fullscreen',
+    percy: {
+      enableJavascript: true,
+    }
+  },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
@@ -42,11 +54,9 @@ export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
 };
 
 export const CustomPin = Template.bind({});
-
 CustomPin.args = {
   PinComponent: MapPin,
 };
-
 CustomPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
@@ -54,4 +64,19 @@ CustomPin.play = async ({ canvasElement }) => {
   });
   userEvent.click(mapPin);
   await canvas.findByText('title1');
+};
+
+export const StaticImageBeforeLoad: Story<MapboxStaticImageProps> = (args) => (
+  <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalSingle)}>
+    <div className='grid h-full w-full'>
+      <MapboxStaticImage {...args} />
+    </div>
+  </SearchHeadlessContext.Provider>
+);
+StaticImageBeforeLoad.args = {
+  mapboxOptions: {
+    style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+    center: [-74.005371, 40.741611],
+    zoom: 9
+  }
 };

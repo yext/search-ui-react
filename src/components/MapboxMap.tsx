@@ -1,8 +1,9 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 import mapboxgl, { Map, Marker, MapboxOptions, LngLatBounds, MarkerOptions, LngLat } from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import ReactDOM from 'react-dom';
+import { MapboxStaticImage } from './MapboxStaticImage';
 
 /**
  * A functional component that can be used to render a custom marker on the map.
@@ -103,25 +104,33 @@ export function MapboxMap<T>({
   const locationResults = useSearchState(state => state.vertical.results) as Result<T>[];
   const onDragDebounced = useDebouncedFunction(onDrag, 100);
 
+  const options: Omit<MapboxOptions, 'container'> = useMemo(() => {
+    return {
+      style: 'mapbox://styles/mapbox/streets-v11?optimize=true',
+      center: [-74.005371, 40.741611],
+      zoom: 9,
+      ...mapboxOptions
+    };
+  }, [mapboxOptions]);
+
   useEffect(() => {
     if (mapContainer.current && !map.current) {
-      const options: MapboxOptions = {
+      const mapbox = new Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-74.005371, 40.741611],
-        zoom: 9,
-        ...mapboxOptions
-      };
-      map.current = new Map(options);
-      const mapbox = map.current;
+        ...options
+      });
+      map.current = mapbox;
       mapbox.resize();
       if (onDragDebounced) {
         mapbox.on('drag', () => {
           onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
         });
       }
+      mapbox.on('load', () => {
+        mapbox.getContainer().style.visibility = 'visible';
+      });
     }
-  }, [mapboxOptions, onDragDebounced]);
+  }, [options, onDragDebounced]);
 
   useEffect(() => {
     markers.current.forEach(marker => marker.remove());
@@ -161,7 +170,13 @@ export function MapboxMap<T>({
   }, [PinComponent, getCoordinate, locationResults]);
 
   return (
-    <div ref={mapContainer} className='h-full w-full' />
+    <div className='grid h-full w-full'>
+      <div ref={mapContainer} className="col-span-full row-span-full invisible"/>
+      <MapboxStaticImage
+        mapboxAccessToken={mapboxAccessToken}
+        mapboxOptions={options}
+      />
+    </div>
   );
 }
 
