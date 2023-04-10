@@ -79,3 +79,7 @@ To use the Component Library's Styling without adding Tailwind to your project, 
 ```tsx
 import '@yext/search-ui-react/bundle.css'
 ```
+
+## Compatibility Notes
+
+This library and its dependencies use optional chaining and other modern TS syntax that is not inherently supported by Webpack <5 (e.g. via `create-react-app@4`). Additional Babel plugins are needed for transpiling if using legacy versions.
