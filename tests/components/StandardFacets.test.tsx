@@ -4,6 +4,7 @@ import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { StandardFacets } from '../../src/components';
+import { getOptionLabelText } from '../__utils__/facets';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -157,8 +158,4 @@ function expectFacetOptionSet(
     { matcher: option.matcher, value: option.value },
     selected
   );
-}
-
-function getOptionLabelText(option: DisplayableFacetOption) {
-  return `${option.displayName} (${option.count})`;
 }
