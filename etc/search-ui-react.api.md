@@ -201,6 +201,20 @@ export function executeAutocomplete(searchActions: SearchActions): Promise<Autoc
 export function executeSearch(searchActions: SearchActions): Promise<void>;
 
 // @public
+export function Facets(props: FacetsProps): JSX.Element;
+
+// @public
+export interface FacetsCssClasses {
+    // (undocumented)
+    facetsContainer?: string;
+}
+
+// @public
+export interface FacetsProps {
+    customCssClasses?: FacetsCssClasses;
+}
+
+// @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
 // @public

@@ -55,11 +55,13 @@ export function PeoplePage() {
             title='Static Employee Department'
             filterOptions={employeeFilterConfigs}
           />
+          <FilterDivider />
           <StaticFilters
             fieldId='c_hierarchicalFacet'
             title='Static Hierarchical Facets'
             filterOptions={hierarchicalFilterConfigs}
           />
+          <FilterDivider />
           <NumericalFacets />
           <StandardFacets
             excludedFieldIds={hierarchicalFacetFieldIds}

@@ -16,6 +16,7 @@
 |  [DropdownItem(\_props)](./search-ui-react.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
 |  [executeAutocomplete(searchActions)](./search-ui-react.executeautocomplete.md) | Executes a universal/vertical autocomplete search and return the corresponding response. |
 |  [executeSearch(searchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
+|  [Facets(props)](./search-ui-react.facets.md) | A component that displays all facets applicable to the current vertical search. |
 |  [FilterDivider({ className })](./search-ui-react.filterdivider.md) | A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters. |
 |  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md) | A React Component which collects location information to create a location filter and perform a new search. |
@@ -60,6 +61,8 @@
 |  [CtaData](./search-ui-react.ctadata.md) | The shape of a StandardCard CTA field's data. |
 |  [DirectAnswerCssClasses](./search-ui-react.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->. |
 |  [DirectAnswerProps](./search-ui-react.directanswerprops.md) | Props for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->. |
+|  [FacetsCssClasses](./search-ui-react.facetscssclasses.md) | The CSS class interface for [Facets()](./search-ui-react.facets.md)<!-- -->. |
+|  [FacetsProps](./search-ui-react.facetsprops.md) | Props for the [Facets()](./search-ui-react.facets.md) component. |
 |  [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) | The CSS class interface for FilterGroup. |
 |  [FilterGroupProps](./search-ui-react.filtergroupprops.md) | Props for the FilterGroup component. |
 |  [FilterOptionConfig](./search-ui-react.filteroptionconfig.md) | The configuration data for a field value filter option. |

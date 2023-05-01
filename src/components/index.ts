@@ -126,6 +126,12 @@ export {
 } from './NumericalFacets';
 
 export {
+  Facets,
+  FacetsCssClasses,
+  FacetsProps
+} from './Facets';
+
+export {
   FilterGroupProps,
   FilterGroupCssClasses
 } from './FilterGroup';
