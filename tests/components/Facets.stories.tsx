@@ -4,6 +4,7 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { RecursivePartial } from '../__utils__/mocks';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { Facets, FacetsProps } from '../../src';
+import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 
 const meta: ComponentMeta<typeof Facets> = {
   title: 'Facets',
@@ -13,7 +14,15 @@ export default meta;
 
 const mockedHeadlessState: RecursivePartial<State> = {
   filters: {
-    facets: DisplayableFacets
+    facets: [
+      ...DisplayableFacets,
+      createHierarchicalFacet([
+        'food',
+        'food > fruit',
+        { value: 'food > fruit > banana', selected: true },
+        'food > fruit > apple',
+      ])
+    ]
   }
 };
 
