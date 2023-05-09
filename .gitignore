@@ -11,4 +11,8 @@ lib/
 .env
 test-site/.env
 
+<<<<<<< Updated upstream
 .idea/
+=======
+./idea
+>>>>>>> Stashed changes
