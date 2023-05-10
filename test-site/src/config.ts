@@ -1,4 +1,4 @@
-import { CloudRegion , Environment} from '@yext/search-headless-react';
+import { CloudRegion, Environment } from '@yext/search-headless-react';
 
 export const config = {
   apiKey: '2d8c550071a64ea23e263118a2b0680b',
