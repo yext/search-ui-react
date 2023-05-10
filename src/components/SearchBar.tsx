@@ -349,7 +349,10 @@ export function SearchBar({
             onClick={handleSubmit}
           >
             {renderAutocompleteResult(
-              { value: `in ${verticalKeyToLabel ? verticalKeyToLabel(verticalKey) : verticalKey}` },
+              {
+                value: `in ${verticalKeyToLabel ? verticalKeyToLabel(verticalKey) : verticalKey}`,
+                inputIntents: []
+              },
               { ...cssClasses, option: cssClasses.verticalLink }
             )}
           </DropdownItem>
