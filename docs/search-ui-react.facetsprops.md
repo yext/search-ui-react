@@ -2,19 +2,18 @@
 
 [Home](./index.md) &gt; [@yext/search-ui-react](./search-ui-react.md) &gt; [FacetsProps](./search-ui-react.facetsprops.md)
 
-## FacetsProps interface
+## FacetsProps type
 
 Props for the [Facets()](./search-ui-react.facets.md) component.
 
 <b>Signature:</b>
 
 ```typescript
-export interface FacetsProps 
+export declare type FacetsProps = PropsWithChildren<{
+    overriddenFieldIds?: string[];
+    customCssClasses?: FacetsCssClasses;
+    children?: ReactNode;
+}>;
 ```
-
-## Properties
-
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.facetsprops.customcssclasses.md) | [FacetsCssClasses](./search-ui-react.facetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+<b>References:</b> [FacetsCssClasses](./search-ui-react.facetscssclasses.md)
 

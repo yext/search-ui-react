@@ -132,6 +132,18 @@ export {
 } from './Facets';
 
 export {
+  StandardFacet,
+  StandardFacetCssClasses,
+  StandardFacetProps
+} from './StandardFacet';
+
+export {
+  BaseFacetProps,
+  BaseFacetCssClasses,
+  BaseStandardFacetProps,
+} from './FacetProps';
+
+export {
   FilterGroupProps,
   FilterGroupCssClasses
 } from './FilterGroup';

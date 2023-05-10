@@ -1,17 +1,15 @@
 import { FacetsProvider } from './Filters';
-import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { Fragment } from 'react';
 import { DisplayableFacet } from '@yext/search-headless-react';
-import { FilterDivider } from './FilterDivider';
+import { BaseStandardFacetProps, BaseFacetCssClasses } from './FacetProps';
+import { StandardFacetContent } from './StandardFacet';
 
 /**
  * The CSS class interface for {@link StandardFacets}.
  *
  * @public
  */
-export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
-  standardFacetsContainer?: string,
-  divider?: string
+export interface StandardFacetsCssClasses extends BaseFacetCssClasses {
+  standardFacetsContainer?: string
 }
 
 /**
@@ -19,30 +17,11 @@ export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
  *
  * @public
  */
-export interface StandardFacetsProps {
-  /** {@inheritDoc FilterGroupProps.collapsible} */
-  collapsible?: boolean,
-  /** {@inheritDoc FilterGroupProps.defaultExpanded} */
-  defaultExpanded?: boolean,
-  /**
-   * Whether or not a search is automatically run when a filter is selected.
-   * Defaults to true.
-   */
-  searchOnChange?: boolean,
+export interface StandardFacetsProps extends BaseStandardFacetProps {
   /** List of filter ids that should not be displayed. */
   excludedFieldIds?: string[],
-  /**
-   * Whether or not to show the option counts for each filter.
-   * Defaults to true.
-   */
-  showOptionCounts?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: StandardFacetsCssClasses,
-  /**
-   * Limit on the number of options to be displayed.
-   * Defaults to 10.
-   */
-  showMoreLimit?: number
+  customCssClasses?: StandardFacetsCssClasses
 }
 
 /**
@@ -62,33 +41,20 @@ export function StandardFacets(props: StandardFacetsProps) {
   const {
     searchOnChange,
     excludedFieldIds = [],
-    customCssClasses = {},
-    showMoreLimit = 10,
-    showOptionCounts = true,
-    ...filterGroupProps
+    customCssClasses = {}
   } = props;
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.standardFacetsContainer}>
       {facets => facets
         .filter(f => !excludedFieldIds.includes(f.fieldId) && isStringFacet(f))
-        .map((f, i) => {
-          return (
-            <Fragment key={f.fieldId}>
-              <FilterGroup
-                fieldId={f.fieldId}
-                filterOptions={f.options.map(o => {
-                  return showOptionCounts ? { ...o, resultsCount: o.count } : o;
-                })}
-                title={f.displayName}
-                customCssClasses={customCssClasses}
-                showMoreLimit={showMoreLimit}
-                searchable={f.options.length > showMoreLimit}
-                {...filterGroupProps}
-              />
-              {(i < facets.length - 1) && <FilterDivider className={customCssClasses.divider}/>}
-            </Fragment>
-          );
-        })
+        .map((f, i) =>
+          <StandardFacetContent
+            fieldId={f.fieldId}
+            label={f.displayName}
+            facet={f}
+            props={props}
+            renderDivider={i < facets.length - 1}
+          />)
       }
     </FacetsProvider>
   );

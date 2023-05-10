@@ -9,14 +9,13 @@ The CSS class interface for [StandardFacets()](./search-ui-react.standardfacets.
 <b>Signature:</b>
 
 ```typescript
-export interface StandardFacetsCssClasses extends FilterGroupCssClasses 
+export interface StandardFacetsCssClasses extends BaseFacetCssClasses 
 ```
-<b>Extends:</b> [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
+<b>Extends:</b> [BaseFacetCssClasses](./search-ui-react.basefacetcssclasses.md)
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [divider?](./search-ui-react.standardfacetscssclasses.divider.md) | string | <i>(Optional)</i> |
 |  [standardFacetsContainer?](./search-ui-react.standardfacetscssclasses.standardfacetscontainer.md) | string | <i>(Optional)</i> |
 
