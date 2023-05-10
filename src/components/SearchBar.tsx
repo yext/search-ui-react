@@ -306,7 +306,7 @@ export function SearchBar({
         onClick={handleSubmit}
       >
         {renderAutocompleteResult(
-          { value: result.query },
+          { value: result.query, inputIntents: [] },
           recentSearchesCssClasses,
           RecentSearchIcon,
           `recent search: ${result.query}`
