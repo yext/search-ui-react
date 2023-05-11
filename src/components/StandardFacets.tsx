@@ -1,27 +1,50 @@
 import { FacetsProvider } from './Filters';
-import { DisplayableFacet } from '@yext/search-headless-react';
-import { BaseStandardFacetProps, BaseFacetCssClasses } from './FacetProps';
-import { StandardFacetContent } from './StandardFacet';
+import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
+import { Fragment } from 'react';
+import { FilterDivider } from './FilterDivider';
+import { isStringFacet } from '../utils/filterutils';
 
 /**
  * The CSS class interface for {@link StandardFacets}.
  *
+ * @deprecated Use {@link Facets} instead.
  * @public
  */
-export interface StandardFacetsCssClasses extends BaseFacetCssClasses {
-  standardFacetsContainer?: string
+export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
+  standardFacetsContainer?: string,
+  divider?: string
 }
 
 /**
  * Props for the {@link StandardFacets} component.
  *
+ * @deprecated Use {@link Facets} instead.
  * @public
  */
-export interface StandardFacetsProps extends BaseStandardFacetProps {
+export interface StandardFacetsProps {
+  /** {@inheritDoc FilterGroupProps.collapsible} */
+  collapsible?: boolean,
+  /** {@inheritDoc FilterGroupProps.defaultExpanded} */
+  defaultExpanded?: boolean,
+  /**
+   * Whether or not a search is automatically run when a filter is selected.
+   * Defaults to true.
+   */
+  searchOnChange?: boolean,
   /** List of filter ids that should not be displayed. */
   excludedFieldIds?: string[],
+  /**
+   * Whether or not to show the option counts for each filter.
+   * Defaults to true.
+   */
+  showOptionCounts?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: StandardFacetsCssClasses
+  customCssClasses?: StandardFacetsCssClasses,
+  /**
+   * Limit on the number of options to be displayed.
+   * Defaults to 10.
+   */
+  showMoreLimit?: number
 }
 
 /**
@@ -35,31 +58,41 @@ export interface StandardFacetsProps extends BaseStandardFacetProps {
  * @param props - {@link StandardFacetsProps}
  * @returns A React component for facets
  *
+ * @deprecated Use {@link Facets} instead.
  * @public
  */
 export function StandardFacets(props: StandardFacetsProps) {
   const {
     searchOnChange,
     excludedFieldIds = [],
-    customCssClasses = {}
+    customCssClasses = {},
+    showMoreLimit = 10,
+    showOptionCounts = true,
+    ...filterGroupProps
   } = props;
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.standardFacetsContainer}>
       {facets => facets
         .filter(f => !excludedFieldIds.includes(f.fieldId) && isStringFacet(f))
-        .map((f, i) =>
-          <StandardFacetContent
-            fieldId={f.fieldId}
-            label={f.displayName}
-            facet={f}
-            props={props}
-            renderDivider={i < facets.length - 1}
-          />)
+        .map((f, i) => {
+          return (
+            <Fragment key={f.fieldId}>
+              <FilterGroup
+                fieldId={f.fieldId}
+                filterOptions={f.options.map(o => {
+                  return showOptionCounts ? { ...o, resultsCount: o.count } : o;
+                })}
+                title={f.displayName}
+                customCssClasses={customCssClasses}
+                showMoreLimit={showMoreLimit}
+                searchable={f.options.length > showMoreLimit}
+                {...filterGroupProps}
+              />
+              {(i < facets.length - 1) && <FilterDivider className={customCssClasses.divider}/>}
+            </Fragment>
+          );
+        })
       }
     </FacetsProvider>
   );
-}
-
-function isStringFacet(facet: DisplayableFacet): boolean {
-  return facet.options.length > 0 && typeof facet.options[0].value === 'string';
 }

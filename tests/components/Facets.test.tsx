@@ -103,8 +103,8 @@ describe('Facets', () => {
     };
 
     render(
-      <Facets overriddenFieldIds={[overrideFieldId]}>
-        <StandardFacet props={props}/>
+      <Facets>
+        <StandardFacet {...props}/>
       </Facets>);
     const regularFilter = DisplayableFacets[0];
 

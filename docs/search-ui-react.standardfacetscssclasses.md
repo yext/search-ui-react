@@ -4,18 +4,24 @@
 
 ## StandardFacetsCssClasses interface
 
+> Warning: This API is now obsolete.
+> 
+> Use [Facets()](./search-ui-react.facets.md) instead.
+> 
+
 The CSS class interface for [StandardFacets()](./search-ui-react.standardfacets.md)<!-- -->.
 
 <b>Signature:</b>
 
 ```typescript
-export interface StandardFacetsCssClasses extends BaseFacetCssClasses 
+export interface StandardFacetsCssClasses extends FilterGroupCssClasses 
 ```
-<b>Extends:</b> [BaseFacetCssClasses](./search-ui-react.basefacetcssclasses.md)
+<b>Extends:</b> [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
+|  [divider?](./search-ui-react.standardfacetscssclasses.divider.md) | string | <i>(Optional)</i> |
 |  [standardFacetsContainer?](./search-ui-react.standardfacetscssclasses.standardfacetscontainer.md) | string | <i>(Optional)</i> |
 

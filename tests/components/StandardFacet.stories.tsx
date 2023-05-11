@@ -9,8 +9,8 @@ export default meta;
 
 export const Primary: Story<StandardFacetProps> = (args) => {
   return (
-    <Facets overriddenFieldIds={[args.fieldId]}>
-      <StandardFacet props={args} />
+    <Facets>
+      <StandardFacet {...args} />
     </Facets>
   );
 };

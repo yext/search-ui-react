@@ -2,18 +2,21 @@
 
 [Home](./index.md) &gt; [@yext/search-ui-react](./search-ui-react.md) &gt; [FacetsProps](./search-ui-react.facetsprops.md)
 
-## FacetsProps type
+## FacetsProps interface
 
 Props for the [Facets()](./search-ui-react.facets.md) component.
 
 <b>Signature:</b>
 
 ```typescript
-export declare type FacetsProps = PropsWithChildren<{
-    overriddenFieldIds?: string[];
-    customCssClasses?: FacetsCssClasses;
-    children?: ReactNode;
-}>;
+export interface FacetsProps 
 ```
-<b>References:</b> [FacetsCssClasses](./search-ui-react.facetscssclasses.md)
+
+## Properties
+
+|  Property | Type | Description |
+|  --- | --- | --- |
+|  [children?](./search-ui-react.facetsprops.children.md) | ReactElement\[\] \| ReactElement \| undefined \| null | <i>(Optional)</i> The custom facet components that will override the default rendering. |
+|  [customCssClasses?](./search-ui-react.facetsprops.customcssclasses.md) | [FacetsCssClasses](./search-ui-react.facetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [searchOnChange?](./search-ui-react.facetsprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |
 

@@ -22,7 +22,7 @@ import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/search-headless-react';
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
 import { Result } from '@yext/search-headless-react';
 import { SearchActions } from '@yext/search-headless-react';
 import { SearchHeadless } from '@yext/search-headless-react';
@@ -118,29 +118,6 @@ export interface AutocompleteResultCssClasses {
 }
 
 // @public
-export interface BaseFacetCssClasses extends FilterGroupCssClasses {
-    // (undocumented)
-    divider?: string;
-}
-
-// @public
-export interface BaseFacetProps {
-    fieldId: string;
-    label?: string;
-    transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];
-}
-
-// @public
-export interface BaseStandardFacetProps {
-    collapsible?: boolean;
-    customCssClasses?: BaseFacetCssClasses;
-    defaultExpanded?: boolean;
-    searchOnChange?: boolean;
-    showMoreLimit?: number;
-    showOptionCounts?: boolean;
-}
-
-// @public
 export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T>;
 
 // @public
@@ -226,20 +203,25 @@ export function executeAutocomplete(searchActions: SearchActions): Promise<Autoc
 export function executeSearch(searchActions: SearchActions): Promise<void>;
 
 // @public
+export type FacetProps = StandardFacetProps;
+
+// @public
 export function Facets(props: FacetsProps): JSX.Element;
 
 // @public
 export interface FacetsCssClasses {
     // (undocumented)
+    divider?: string;
+    // (undocumented)
     facetsContainer?: string;
 }
 
 // @public
-export type FacetsProps = PropsWithChildren<{
-    overriddenFieldIds?: string[];
+export interface FacetsProps {
+    children?: ReactElement[] | ReactElement | undefined | null;
     customCssClasses?: FacetsCssClasses;
-    children?: ReactNode;
-}>;
+    searchOnChange?: boolean;
+}
 
 // @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
@@ -709,35 +691,40 @@ export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> 
 }
 
 // @public
-export function StandardFacet({ props, renderDivider }: {
-    props: any;
-    renderDivider?: boolean | undefined;
-}): JSX.Element;
+export function StandardFacet(props: StandardFacetProps): null;
 
 // @public
-export interface StandardFacetCssClasses extends BaseFacetCssClasses {
-    // (undocumented)
-    standardFacetContainer?: string;
+export interface StandardFacetProps {
+    collapsible?: boolean;
+    customCssClasses?: FilterGroupCssClasses;
+    defaultExpanded?: boolean;
+    fieldId: string;
+    label?: string;
+    showMoreLimit?: number;
+    showOptionCounts?: boolean;
+    transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];
 }
 
-// @public
-export interface StandardFacetProps extends BaseFacetProps, BaseStandardFacetProps {
-    customCssClasses?: StandardFacetCssClasses;
-}
-
-// @public
+// @public @deprecated
 export function StandardFacets(props: StandardFacetsProps): JSX.Element;
 
-// @public
-export interface StandardFacetsCssClasses extends BaseFacetCssClasses {
+// @public @deprecated
+export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
+    // (undocumented)
+    divider?: string;
     // (undocumented)
     standardFacetsContainer?: string;
 }
 
-// @public
-export interface StandardFacetsProps extends BaseStandardFacetProps {
+// @public @deprecated
+export interface StandardFacetsProps {
+    collapsible?: boolean;
     customCssClasses?: StandardFacetsCssClasses;
+    defaultExpanded?: boolean;
     excludedFieldIds?: string[];
+    searchOnChange?: boolean;
+    showMoreLimit?: number;
+    showOptionCounts?: boolean;
 }
 
 // @public

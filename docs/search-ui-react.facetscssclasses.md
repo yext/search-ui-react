@@ -16,5 +16,6 @@ export interface FacetsCssClasses
 
 |  Property | Type | Description |
 |  --- | --- | --- |
+|  [divider?](./search-ui-react.facetscssclasses.divider.md) | string | <i>(Optional)</i> |
 |  [facetsContainer?](./search-ui-react.facetscssclasses.facetscontainer.md) | string | <i>(Optional)</i> |
 

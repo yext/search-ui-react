@@ -127,20 +127,14 @@ export {
 
 export {
   Facets,
-  FacetsCssClasses,
-  FacetsProps
+  StandardFacet
 } from './Facets';
 
 export {
-  StandardFacet,
-  StandardFacetCssClasses,
+  FacetsCssClasses,
+  FacetsProps,
+  FacetProps,
   StandardFacetProps
-} from './StandardFacet';
-
-export {
-  BaseFacetProps,
-  BaseFacetCssClasses,
-  BaseStandardFacetProps,
 } from './FacetProps';
 
 export {

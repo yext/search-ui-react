@@ -4,26 +4,23 @@
 
 ## StandardFacet() function
 
-A component that displays a single standard facet.
+A component that displays a single standard facet. Use this to override the default rendering.
 
 <b>Signature:</b>
 
 ```typescript
-export declare function StandardFacet({ props, renderDivider }: {
-    props: any;
-    renderDivider?: boolean | undefined;
-}): JSX.Element;
+export declare function StandardFacet(props: StandardFacetProps): null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { props, renderDivider } | { props: any; renderDivider?: boolean \| undefined; } |  |
+|  props | [StandardFacetProps](./search-ui-react.standardfacetprops.md) | [StandardFacetProps](./search-ui-react.standardfacetprops.md) |
 
 <b>Returns:</b>
 
-JSX.Element
+null
 
-A React component for the facet
+ReactElement
 
