@@ -127,9 +127,15 @@ export {
 
 export {
   Facets,
-  FacetsCssClasses,
-  FacetsProps
+  StandardFacet
 } from './Facets';
+
+export {
+  FacetsCssClasses,
+  FacetsProps,
+  FacetProps,
+  StandardFacetProps
+} from './FacetProps';
 
 export {
   FilterGroupProps,

@@ -5,8 +5,9 @@ import {
 } from '@yext/search-headless-react';
 import { mockAnswersHooks, mockAnswersState } from '../__utils__/mocks';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
-import { Facets } from '../../src';
+import { Facets, StandardFacet, StandardFacetProps } from '../../src';
 import { getOptionLabelText } from '../__utils__/facets';
+import { DisplayableFacetOption } from '@yext/search-core';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -87,5 +88,32 @@ describe('Facets', () => {
     regularFilter.options.forEach(o => {
       expect(screen.queryByText(`${o.displayName} (${o.count})}`)).toBeNull();
     });
+  });
+
+  it('Properly renders an override standard facet if present', () => {
+    const mockTransformOptions = (options: DisplayableFacetOption[]) =>
+      options.map(option => ({ ...option, displayName: `my ${option.displayName}` }));
+
+    const overrideFieldId = 'products';
+    const overrideLabel = 'My Products';
+    const props: StandardFacetProps = {
+      fieldId: overrideFieldId,
+      label: overrideLabel,
+      transformOptions: mockTransformOptions,
+    };
+
+    render(
+      <Facets>
+        <StandardFacet {...props}/>
+      </Facets>);
+    const regularFilter = DisplayableFacets[0];
+
+    expect(screen.getByText(overrideLabel)).toBeDefined();
+    expect(screen.queryByText(regularFilter.displayName)).toBeNull();
+    expect(
+      screen
+        .getByText(
+          `my ${regularFilter.options[0].displayName} (${regularFilter.options[0].count})`))
+      .toBeDefined();
   });
 });

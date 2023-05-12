@@ -1,12 +1,13 @@
 import { FacetsProvider } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { Fragment } from 'react';
-import { DisplayableFacet } from '@yext/search-headless-react';
 import { FilterDivider } from './FilterDivider';
+import { isStringFacet } from '../utils/filterutils';
 
 /**
  * The CSS class interface for {@link StandardFacets}.
  *
+ * @deprecated Use {@link Facets} instead.
  * @public
  */
 export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
@@ -17,6 +18,7 @@ export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
 /**
  * Props for the {@link StandardFacets} component.
  *
+ * @deprecated Use {@link Facets} instead.
  * @public
  */
 export interface StandardFacetsProps {
@@ -56,6 +58,7 @@ export interface StandardFacetsProps {
  * @param props - {@link StandardFacetsProps}
  * @returns A React component for facets
  *
+ * @deprecated Use {@link Facets} instead.
  * @public
  */
 export function StandardFacets(props: StandardFacetsProps) {
@@ -92,8 +95,4 @@ export function StandardFacets(props: StandardFacetsProps) {
       }
     </FacetsProvider>
   );
-}
-
-function isStringFacet(facet: DisplayableFacet): boolean {
-  return facet.options.length > 0 && typeof facet.options[0].value === 'string';
 }

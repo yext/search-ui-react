@@ -33,6 +33,7 @@
 |  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch })](./search-ui-react.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
 |  [SpellCheck({ customCssClasses, onClick })](./search-ui-react.spellcheck.md) | Renders a suggested query if the Search API provides one. |
 |  [StandardCard(props)](./search-ui-react.standardcard.md) | This Component renders the base result card. |
+|  [StandardFacet(props)](./search-ui-react.standardfacet.md) | A component that displays a single standard facet. Use this to override the default rendering. |
 |  [StandardFacets(props)](./search-ui-react.standardfacets.md) | A component that displays simple facets applicable to the current vertical search. |
 |  [StandardSection(props)](./search-ui-react.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
 |  [StaticFilters(props)](./search-ui-react.staticfilters.md) | A component that displays a group of user-configured field value filters that will be applied to the current vertical search. |
@@ -94,6 +95,7 @@
 |  [StandardCardCssClasses](./search-ui-react.standardcardcssclasses.md) | The CSS class interface used for the StandardCardDisplay. |
 |  [StandardCardData](./search-ui-react.standardcarddata.md) | The data used by the [StandardCard()](./search-ui-react.standardcard.md) and taken from the original Result. |
 |  [StandardCardProps](./search-ui-react.standardcardprops.md) | Props for a StandardCard. |
+|  [StandardFacetProps](./search-ui-react.standardfacetprops.md) | Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component. |
 |  [StandardFacetsCssClasses](./search-ui-react.standardfacetscssclasses.md) | The CSS class interface for [StandardFacets()](./search-ui-react.standardfacets.md)<!-- -->. |
 |  [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) | Props for the [StandardFacets()](./search-ui-react.standardfacets.md) component. |
 |  [StandardSectionCssClasses](./search-ui-react.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection()](./search-ui-react.standardsection.md)<!-- -->. |
@@ -129,6 +131,7 @@
 |  [CoordinateGetter](./search-ui-react.coordinategetter.md) | A function use to derive a result's coordinate. |
 |  [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md) | The default type for "rawData" field of type Result. |
 |  [DropdownItemProps](./search-ui-react.dropdownitemprops.md) | Props for the [DropdownItem()](./search-ui-react.dropdownitem.md)<!-- -->. |
+|  [FacetProps](./search-ui-react.facetprops.md) | Props for a single facet component. |
 |  [FeedbackType](./search-ui-react.feedbacktype.md) | Analytics event types for quality feedback. |
 |  [FocusedItemData](./search-ui-react.focuseditemdata.md) | The data associated with the currently focused item. |
 |  [OnDragHandler](./search-ui-react.ondraghandler.md) | A function which is called when user drag the map. |

@@ -4,6 +4,11 @@
 
 ## StandardFacetsCssClasses interface
 
+> Warning: This API is now obsolete.
+> 
+> Use [Facets()](./search-ui-react.facets.md) instead.
+> 
+
 The CSS class interface for [StandardFacets()](./search-ui-react.standardfacets.md)<!-- -->.
 
 <b>Signature:</b>

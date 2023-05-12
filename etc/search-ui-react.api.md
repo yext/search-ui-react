@@ -10,6 +10,7 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AutocompleteResponse } from '@yext/search-headless-react';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
+import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
@@ -21,6 +22,7 @@ import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/search-headless-react';
+import { ReactElement } from 'react';
 import { Result } from '@yext/search-headless-react';
 import { SearchActions } from '@yext/search-headless-react';
 import { SearchHeadless } from '@yext/search-headless-react';
@@ -201,17 +203,25 @@ export function executeAutocomplete(searchActions: SearchActions): Promise<Autoc
 export function executeSearch(searchActions: SearchActions): Promise<void>;
 
 // @public
+export type FacetProps = StandardFacetProps;
+
+// @public
 export function Facets(props: FacetsProps): JSX.Element;
 
 // @public
 export interface FacetsCssClasses {
+    // (undocumented)
+    divider?: string;
     // (undocumented)
     facetsContainer?: string;
 }
 
 // @public
 export interface FacetsProps {
+    children?: ReactElement[] | ReactElement | undefined | null;
     customCssClasses?: FacetsCssClasses;
+    excludedFieldIds?: string[];
+    searchOnChange?: boolean;
 }
 
 // @public
@@ -682,9 +692,24 @@ export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> 
 }
 
 // @public
-export function StandardFacets(props: StandardFacetsProps): JSX.Element;
+export function StandardFacet(props: StandardFacetProps): null;
 
 // @public
+export interface StandardFacetProps {
+    collapsible?: boolean;
+    customCssClasses?: FilterGroupCssClasses;
+    defaultExpanded?: boolean;
+    fieldId: string;
+    label?: string;
+    showMoreLimit?: number;
+    showOptionCounts?: boolean;
+    transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];
+}
+
+// @public @deprecated
+export function StandardFacets(props: StandardFacetsProps): JSX.Element;
+
+// @public @deprecated
 export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
     // (undocumented)
     divider?: string;
@@ -692,7 +717,7 @@ export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
     standardFacetsContainer?: string;
 }
 
-// @public
+// @public @deprecated
 export interface StandardFacetsProps {
     collapsible?: boolean;
     customCssClasses?: StandardFacetsCssClasses;
