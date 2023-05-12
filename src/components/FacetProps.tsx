@@ -1,4 +1,4 @@
-import { DisplayableFacetOption } from '@yext/search-core';
+import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FilterGroupCssClasses } from './FilterGroup';
 import { ReactElement } from 'react';
 
@@ -22,6 +22,8 @@ export interface FacetsProps {
   searchOnChange?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FacetsCssClasses,
+  /** List of filter ids that should not be displayed. */
+  excludedFieldIds?: string[],
   /** The custom facet components that will override the default rendering.
    *
    * @remarks

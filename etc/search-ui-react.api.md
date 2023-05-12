@@ -10,7 +10,7 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AutocompleteResponse } from '@yext/search-headless-react';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
-import { DisplayableFacetOption } from '@yext/search-core';
+import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
@@ -220,6 +220,7 @@ export interface FacetsCssClasses {
 export interface FacetsProps {
     children?: ReactElement[] | ReactElement | undefined | null;
     customCssClasses?: FacetsCssClasses;
+    excludedFieldIds?: string[];
     searchOnChange?: boolean;
 }
 
