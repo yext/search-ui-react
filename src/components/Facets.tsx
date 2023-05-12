@@ -2,13 +2,13 @@ import { FacetsProvider } from './Filters';
 import { StandardFacetContent } from './StandardFacetContent';
 import {
   FacetProps,
-  FacetsProps,
+  FacetsProps, NumericalFacetProps,
   StandardFacetProps
 } from './FacetProps';
 import { isNumericalFacet, isStringFacet } from '../utils/filterutils';
 import { FilterDivider } from './FilterDivider';
 import { Fragment, ReactElement } from 'react';
-import { NumericalFacets } from './NumericalFacets';
+import { NumericalFacetContent } from './NumericalFacetContent';
 
 /** @internal */
 enum FacetType {
@@ -26,7 +26,7 @@ enum FacetType {
  * and {@link HierarchicalFacets} components can be used instead for more control over facet
  * configuration.
  *
- * To override a single facet, use {@link StandardFacet}.
+ * To override a single facet, use {@link StandardFacet} or {@link NumericalFacet}.
  *
  * @param props - {@link FacetsProps}
  * @returns A React component for facets
@@ -68,16 +68,12 @@ export function Facets(props: FacetsProps) {
             let facetComponent: ReactElement;
             switch (facetType) {
               case FacetType.NUMERICAL:
-                facetComponent = <div/>;
+                facetComponent = (<NumericalFacetContent facet={facet} {...facetProps}/>);
                 break;
               case FacetType.STANDARD:
                 // fall through
               default:
-                facetComponent = (
-                  <StandardFacetContent
-                    facet={facet}
-                    {...facetProps}
-                  />);
+                facetComponent = (<StandardFacetContent facet={facet} {...facetProps}/>);
             }
 
             return (
@@ -89,7 +85,6 @@ export function Facets(props: FacetsProps) {
           })
         }
       </FacetsProvider>
-      <NumericalFacets/>
     </div>
   );
 }
@@ -104,6 +99,15 @@ export function Facets(props: FacetsProps) {
 export function StandardFacet(props: StandardFacetProps) { return null; }
 
 /**
+ * A component that displays a single numerical facet. Use this to override the default rendering.
+ *
+ * @param props - {@link NumericalFacetProps}
+ * @returns ReactElement
+ * @public
+ */
+export function NumericalFacet(props: NumericalFacetProps) { return null; }
+
+/**
  * Returns the type of the facet based on the props.
  * @param elementType - string
  * @returns {@link FacetType}
@@ -112,7 +116,9 @@ export function StandardFacet(props: StandardFacetProps) { return null; }
  */
 export function getFacetTypeFromReactElementType(elementType: string) {
   switch (elementType) {
-    case StandardFacet.toString():
+    case NumericalFacet.name.toString():
+      return FacetType.NUMERICAL;
+    case StandardFacet.name.toString():
       // fall through
     default:
       return FacetType.STANDARD;
