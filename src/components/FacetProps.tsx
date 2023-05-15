@@ -2,7 +2,7 @@ import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FilterGroupCssClasses } from './FilterGroup';
 import { ReactElement } from 'react';
 import { NumberRangeValue } from '@yext/search-headless-react';
-import {RangeInputCssClasses} from "./Filters";
+import { RangeInputCssClasses } from './Filters';
 
 /**
  * The CSS class interface for {@link Facets}.
