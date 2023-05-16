@@ -1,6 +1,8 @@
 import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FilterGroupCssClasses } from './FilterGroup';
 import { ReactElement } from 'react';
+import { NumberRangeValue } from '@yext/search-headless-react';
+import { RangeInputCssClasses } from './Filters';
 
 /**
  * The CSS class interface for {@link Facets}.
@@ -27,7 +29,7 @@ export interface FacetsProps {
   /** The custom facet components that will override the default rendering.
    *
    * @remarks
-   * Supported components include {@link StandardFacet}.
+   * Supported components include {@link StandardFacet}, {@link NumericalFacet}.
    */
   children?: ReactElement[] | ReactElement | undefined | null
 }
@@ -57,8 +59,33 @@ export interface StandardFacetProps {
 }
 
 /**
+ * Props for the {@link StandardFacet} component.
+ *
+ * @public
+ */
+export interface NumericalFacetProps extends StandardFacetProps {
+  /** Whether or not to show the option counts for each filter. Defaults to false. */
+  showOptionCounts?: boolean,
+  /** CSS classes for customizing the component styling. */
+  customCssClasses?: FilterGroupCssClasses & RangeInputCssClasses,
+  /**
+   * Returns the filter's display name based on the range values which is used when the filter
+   * is displayed by other components such as AppliedFilters.
+   *
+   * @remarks
+   * By default, the displayName separates the range with a dash such as '10 - 20'.
+   * If the range is unbounded, it will display as 'Up to 20' or 'Over 10'.
+   */
+  getFilterDisplayName?: (value: NumberRangeValue) => string,
+  /**
+   * An optional element which renders in front of the input text.
+   */
+  inputPrefix?: JSX.Element
+}
+
+/**
  * Props for a single facet component.
  *
  * @public
  */
-export type FacetProps = StandardFacetProps;
+export type FacetProps = StandardFacetProps | NumericalFacetProps;

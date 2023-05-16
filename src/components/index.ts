@@ -127,14 +127,16 @@ export {
 
 export {
   Facets,
-  StandardFacet
+  StandardFacet,
+  NumericalFacet
 } from './Facets';
 
 export {
   FacetsCssClasses,
   FacetsProps,
   FacetProps,
-  StandardFacetProps
+  StandardFacetProps,
+  NumericalFacetProps
 } from './FacetProps';
 
 export {

@@ -203,7 +203,7 @@ export function executeAutocomplete(searchActions: SearchActions): Promise<Autoc
 export function executeSearch(searchActions: SearchActions): Promise<void>;
 
 // @public
-export type FacetProps = StandardFacetProps;
+export type FacetProps = StandardFacetProps | NumericalFacetProps;
 
 // @public
 export function Facets(props: FacetsProps): JSX.Element;
@@ -416,6 +416,17 @@ export interface MapboxMapProps<T> {
     mapboxOptions?: Omit<MapboxOptions, 'container'>;
     onDrag?: OnDragHandler;
     PinComponent?: PinComponent<T>;
+}
+
+// @public
+export function NumericalFacet(props: NumericalFacetProps): null;
+
+// @public
+export interface NumericalFacetProps extends StandardFacetProps {
+    customCssClasses?: FilterGroupCssClasses & RangeInputCssClasses;
+    getFilterDisplayName?: (value: NumberRangeValue) => string;
+    inputPrefix?: JSX.Element;
+    showOptionCounts?: boolean;
 }
 
 // @public

@@ -5,7 +5,7 @@ import {
 } from '@yext/search-headless-react';
 import { mockAnswersHooks, mockAnswersState } from '../__utils__/mocks';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
-import { Facets, StandardFacet, StandardFacetProps } from '../../src';
+import { Facets, StandardFacet, StandardFacetProps, NumericalFacet, NumericalFacetProps } from '../../src';
 import { getOptionLabelText } from '../__utils__/facets';
 import { DisplayableFacetOption } from '@yext/search-core';
 
@@ -115,5 +115,28 @@ describe('Facets', () => {
         .getByText(
           `my ${regularFilter.options[0].displayName} (${regularFilter.options[0].count})`))
       .toBeDefined();
+  });
+
+  it('Properly renders an override numerical facet if present', () => {
+    const mockTransformOptions = (options: DisplayableFacetOption[]) =>
+      options.map(option => ({ ...option, displayName: `Price is ${option.displayName}` }));
+
+    const overrideFieldId = 'price';
+    const overrideLabel = 'My Price';
+    const props: NumericalFacetProps = {
+      fieldId: overrideFieldId,
+      label: overrideLabel,
+      transformOptions: mockTransformOptions,
+    };
+
+    render(
+      <Facets>
+        <NumericalFacet {...props}/>
+      </Facets>);
+    const regularFilter = DisplayableFacets[1];
+
+    expect(screen.getByText(overrideLabel)).toBeDefined();
+    expect(screen.queryByText(regularFilter.displayName)).toBeNull();
+    expect(screen.getByText(`Price is ${regularFilter.options[0].displayName}`)).toBeDefined();
   });
 });

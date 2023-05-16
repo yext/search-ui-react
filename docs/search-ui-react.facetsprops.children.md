@@ -14,5 +14,5 @@ children?: ReactElement[] | ReactElement | undefined | null;
 
 ## Remarks
 
-Supported components include [StandardFacet()](./search-ui-react.standardfacet.md)<!-- -->.
+Supported components include [StandardFacet()](./search-ui-react.standardfacet.md)<!-- -->, [NumericalFacet()](./search-ui-react.numericalfacet.md)<!-- -->.
 
