@@ -4,7 +4,7 @@
 
 ## StandardFacetProps.showMoreLimit property
 
-Limit on the number of options to be displayed. Defaults to 10.
+The maximum number of options to render before displaying the "Show more/less" button. Defaults to 10.
 
 <b>Signature:</b>
 

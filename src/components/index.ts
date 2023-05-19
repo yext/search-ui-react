@@ -128,15 +128,23 @@ export {
 export {
   Facets,
   StandardFacet,
-  NumericalFacet
+  NumericalFacet,
+  HierarchicalFacet
 } from './Facets';
+
+export { FacetsProvider } from './Filters/FacetsProvider';
+
+export { StandardFacetContent } from './StandardFacetContent';
+export { NumericalFacetContent } from './NumericalFacetContent';
+export { HierarchicalFacetContent } from './HierarchicalFacetContent';
 
 export {
   FacetsCssClasses,
   FacetsProps,
   FacetProps,
   StandardFacetProps,
-  NumericalFacetProps
+  NumericalFacetProps,
+  HierarchicalFacetProps
 } from './FacetProps';
 
 export {

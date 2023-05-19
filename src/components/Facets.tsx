@@ -2,13 +2,14 @@ import { FacetsProvider } from './Filters';
 import { StandardFacetContent } from './StandardFacetContent';
 import {
   FacetProps,
-  FacetsProps, NumericalFacetProps,
+  FacetsProps, HierarchicalFacetProps, NumericalFacetProps,
   StandardFacetProps
 } from './FacetProps';
-import { isNumericalFacet, isStringFacet } from '../utils/filterutils';
+import { isHierarchicalFacet, isNumericalFacet, isStringFacet } from '../utils/filterutils';
 import { FilterDivider } from './FilterDivider';
 import { Fragment, ReactElement } from 'react';
 import { NumericalFacetContent } from './NumericalFacetContent';
+import { HierarchicalFacetContent } from './HierarchicalFacetContent';
 
 /** @internal */
 enum FacetType {
@@ -22,11 +23,11 @@ enum FacetType {
  *
  * @remarks
  * This component is a quick way of getting facets on the page, and it will render standard facets,
- * numerical facets, and hierarchical facets. The {@link StandardFacets}, {@link NumericalFacets},
- * and {@link HierarchicalFacets} components can be used instead for more control over facet
- * configuration.
+ * numerical facets, and hierarchical facets. The {@link StandardFacet}, {@link NumericalFacet},
+ * and {@link HierarchicalFacet} components can be used to override the default facet configuration.
  *
- * To override a single facet, use {@link StandardFacet} or {@link NumericalFacet}.
+ * To override a single facet, use {@link StandardFacet}, {@link NumericalFacet} or
+ * {@link HierarchicalFacet}.
  *
  * @param props - {@link FacetsProps}
  * @returns A React component for facets
@@ -34,7 +35,13 @@ enum FacetType {
  * @public
  */
 export function Facets(props: FacetsProps) {
-  const { searchOnChange, children, customCssClasses = {} } = props;
+  const {
+    searchOnChange,
+    children,
+    delimiter,
+    excludedFieldIds = [],
+    customCssClasses = {},
+  } = props;
 
   const fieldIdToCustomFacetProps = new Map();
   if (children) {
@@ -46,6 +53,7 @@ export function Facets(props: FacetsProps) {
     <div>
       <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.facetsContainer}>
         {facets => facets
+          .filter(facet => !excludedFieldIds.includes(facet.fieldId) && facet.options.length > 0)
           .map((facet, i) => {
             let facetType: FacetType = FacetType.STANDARD;
             let facetProps: FacetProps = {
@@ -54,11 +62,13 @@ export function Facets(props: FacetsProps) {
             };
             if (fieldIdToCustomFacetProps.has(facet.fieldId)) {
               const customFacetElement: ReactElement = fieldIdToCustomFacetProps.get(facet.fieldId);
-              facetProps = customFacetElement.props;
+              facetProps = { ...facetProps, ...customFacetElement.props };
               facetType = getFacetTypeFromReactElementType(
                 (typeof customFacetElement.type === 'function') ? customFacetElement.type.name : '');
             } else {
-              if (isStringFacet(facet)) {
+              if (isHierarchicalFacet(facet, delimiter)) {
+                facetType = FacetType.HIERARCHICAL;
+              } else if (isStringFacet(facet)) {
                 facetType = FacetType.STANDARD;
               } else if (isNumericalFacet(facet)) {
                 facetType = FacetType.NUMERICAL;
@@ -69,6 +79,9 @@ export function Facets(props: FacetsProps) {
             switch (facetType) {
               case FacetType.NUMERICAL:
                 facetComponent = (<NumericalFacetContent facet={facet} {...facetProps}/>);
+                break;
+              case FacetType.HIERARCHICAL:
+                facetComponent = (<HierarchicalFacetContent facet={facet} {...facetProps}/>);
                 break;
               case FacetType.STANDARD:
                 // fall through
@@ -96,6 +109,7 @@ export function Facets(props: FacetsProps) {
  * @returns ReactElement
  * @public
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function StandardFacet(props: StandardFacetProps) { return null; }
 
 /**
@@ -105,7 +119,19 @@ export function StandardFacet(props: StandardFacetProps) { return null; }
  * @returns ReactElement
  * @public
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function NumericalFacet(props: NumericalFacetProps) { return null; }
+
+/**
+ * A component that displays a single hierarchical facet, in a tree level structure, applicable to
+ * the current vertical search. Use this to override the default rendering.
+ *
+ * @param props - {@link HierarchicalFacetProps}
+ * @returns ReactElement
+ * @public
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function HierarchicalFacet(props: HierarchicalFacetProps) { return null; }
 
 /**
  * Returns the type of the facet based on the props.
@@ -118,6 +144,8 @@ export function getFacetTypeFromReactElementType(elementType: string) {
   switch (elementType) {
     case NumericalFacet.name.toString():
       return FacetType.NUMERICAL;
+    case HierarchicalFacet.name.toString():
+      return FacetType.HIERARCHICAL;
     case StandardFacet.name.toString():
       // fall through
     default:

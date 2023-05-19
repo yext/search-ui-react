@@ -43,6 +43,7 @@ export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'excl
  * @param props - {@link HierarchicalFacetsProps}
  * @returns A React component for facets
  *
+ * @deprecated Use {@link Facets} instead.
  * @public
  */
 export function HierarchicalFacets({

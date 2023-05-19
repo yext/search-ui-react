@@ -15,11 +15,11 @@ const DEFAULT_RANGE_INPUT_PREFIX = <>$</>;
  */
 export function NumericalFacetContent({
   fieldId,
-  customCssClasses,
+  label,
   transformOptions,
+  customCssClasses,
   getFilterDisplayName,
   facet,
-  label = '',
   showMoreLimit = 10,
   showOptionCounts = false,
   inputPrefix = DEFAULT_RANGE_INPUT_PREFIX,
@@ -34,7 +34,7 @@ export function NumericalFacetContent({
       filterOptions={transformedOptions.map(o => {
         return showOptionCounts ? { ...o, resultsCount: o.count } : o;
       })}
-      title={label}
+      title={label || facet.displayName}
       customCssClasses={customCssClasses}
       showMoreLimit={showMoreLimit}
       searchable={facet?.options.length > showMoreLimit}

@@ -49,6 +49,7 @@ const DEFAULT_RANGE_INPUT_PREFIX = <>$</>;
  * @param props - {@link NumericalFacetsProps}
  * @returns A React component for facets
  *
+ * @deprecated Use {@link Facets} instead.
  * @public
  */
 export function NumericalFacets({

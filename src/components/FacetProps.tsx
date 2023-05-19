@@ -2,7 +2,7 @@ import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FilterGroupCssClasses } from './FilterGroup';
 import { ReactElement } from 'react';
 import { NumberRangeValue } from '@yext/search-headless-react';
-import { RangeInputCssClasses } from './Filters';
+import { HierarchicalFacetDisplayCssClasses, RangeInputCssClasses } from './Filters';
 
 /**
  * The CSS class interface for {@link Facets}.
@@ -26,6 +26,8 @@ export interface FacetsProps {
   customCssClasses?: FacetsCssClasses,
   /** List of filter ids that should not be displayed. */
   excludedFieldIds?: string[],
+  /** The delimiter for determining if a facet is hierarchical, defaults to "\>". */
+  delimiter?: string,
   /** The custom facet components that will override the default rendering.
    *
    * @remarks
@@ -52,7 +54,10 @@ export interface StandardFacetProps {
   defaultExpanded?: boolean,
   /** Whether or not to show the option counts for each filter. Defaults to true. */
   showOptionCounts?: boolean,
-  /** Limit on the number of options to be displayed. Defaults to 10. */
+  /**
+   * The maximum number of options to render before displaying the "Show more/less" button.
+   * Defaults to 10.
+   */
   showMoreLimit?: number,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FilterGroupCssClasses
@@ -84,8 +89,27 @@ export interface NumericalFacetProps extends StandardFacetProps {
 }
 
 /**
+ * Props for the {@link StandardFacet} component.
+ *
+ * @public
+ */
+export interface HierarchicalFacetProps extends
+  Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> {
+  /**
+   * The maximum number of options to render before displaying the "Show more/less" button.
+   * Defaults to 4.
+   */
+  showMoreLimit?: number,
+  /** CSS classes for customizing the component styling. */
+  customCssClasses?: Omit<FilterGroupCssClasses, 'searchInput' | 'optionsContainer' | 'option' |
+  'optionInput' | 'optionLabel'> & HierarchicalFacetDisplayCssClasses,
+  /** The delimiter for determining facet hierarchies, defaults to "\>". */
+  delimiter?: string
+}
+
+/**
  * Props for a single facet component.
  *
  * @public
  */
-export type FacetProps = StandardFacetProps | NumericalFacetProps;
+export type FacetProps = StandardFacetProps | NumericalFacetProps | HierarchicalFacetProps;
