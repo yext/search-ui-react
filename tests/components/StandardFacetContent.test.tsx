@@ -3,9 +3,10 @@ import { FacetOption, Source, State, SearchActions } from '@yext/search-headless
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
-import { StandardFacets } from '../../src/components';
 import { getOptionLabelTextWithCount } from '../__utils__/facets';
-import { FacetsProvider, StandardFacetContent, StandardFacetProps } from '../../src/components';
+import { StandardFacetContent } from '../../src/components/StandardFacetContent';
+import { StandardFacetProps } from '../../src/components';
+import { FacetsProvider } from '../../src/components/Filters';
 
 const standardFacet = DisplayableFacets[0];
 
@@ -51,7 +52,7 @@ const mockStandardFacet = (props?: StandardFacetProps) => {
     </FacetsProvider>);
 };
 
-describe('StandardFacets', () => {
+describe('StandardFacetContent', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
   });

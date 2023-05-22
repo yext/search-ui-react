@@ -3,7 +3,9 @@ import { SearchActions, FacetOption, Matcher, NumberRangeValue, SelectableStatic
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
-import { FacetsProvider, NumericalFacetContent, NumericalFacetProps } from '../../src/components';
+import { NumericalFacetProps } from '../../src';
+import { NumericalFacetContent } from '../../src/components/NumericalFacetContent';
+import { FacetsProvider } from '../../src/components/Filters';
 import { getOptionLabelTextWithCount } from '../__utils__/facets';
 
 const numericalFacet = DisplayableFacets[1];
@@ -51,7 +53,7 @@ const mockNumericalFacet = (props?: NumericalFacetProps) => {
     </FacetsProvider>);
 };
 
-describe('NumericalFacets', () => {
+describe('NumericalFacetContent', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
   });

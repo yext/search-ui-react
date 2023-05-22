@@ -20,6 +20,6 @@ export interface FacetsProps
 |  [customCssClasses?](./search-ui-react.facetsprops.customcssclasses.md) | [FacetsCssClasses](./search-ui-react.facetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [delimiter?](./search-ui-react.facetsprops.delimiter.md) | string | <i>(Optional)</i> The delimiter for determining if a facet is hierarchical, defaults to "<!-- -->&gt;<!-- -->". |
 |  [excludedFieldIds?](./search-ui-react.facetsprops.excludedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids that should not be displayed. |
-|  [onlyRenderChildren?](./search-ui-react.facetsprops.onlyrenderchildren.md) | boolean | <i>(Optional)</i> If set to true, only the facets specified in the children are rendered. If set to false, all facets are rendered with the ones specified in the children overrode. Default to false. |
+|  [onlyRenderChildren?](./search-ui-react.facetsprops.onlyrenderchildren.md) | boolean | <i>(Optional)</i> If set to true, only the facets specified in the children are rendered. If set to false, all facets are rendered with the ones specified in the children overridden. Default to false. |
 |  [searchOnChange?](./search-ui-react.facetsprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |
 

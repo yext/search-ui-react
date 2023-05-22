@@ -10,7 +10,6 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AutocompleteResponse } from '@yext/search-headless-react';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
-import { DisplayableFacet } from '@yext/search-headless-react';
 import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
@@ -24,7 +23,6 @@ import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/search-headless-react';
 import { ReactElement } from 'react';
-import { ReactNode } from 'react';
 import { Result } from '@yext/search-headless-react';
 import { SearchActions } from '@yext/search-headless-react';
 import { SearchHeadless } from '@yext/search-headless-react';
@@ -228,14 +226,6 @@ export interface FacetsProps {
     searchOnChange?: boolean;
 }
 
-// Warning: (ae-forgotten-export) The symbol "FacetsProviderProps" needs to be exported by the entry point index.d.ts
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/search-ui-react" does not have an export "Filters"
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/search-ui-react" does not have an export "Filters"
-// Warning: (ae-unresolved-link) The @link reference could not be resolved: The package "@yext/search-ui-react" does not have an export "Filters"
-//
-// @public
-export function FacetsProvider({ children, className, searchOnChange }: FacetsProviderProps): JSX.Element;
-
 // @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
@@ -348,13 +338,6 @@ export function getUserLocation(geolocationOptions?: PositionOptions): Promise<G
 // @public
 export function HierarchicalFacet(props: HierarchicalFacetProps): null;
 
-// Warning: (ae-internal-missing-underscore) The name "HierarchicalFacetContent" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
-export function HierarchicalFacetContent({ fieldId, label, transformOptions, customCssClasses, delimiter, facet, collapsible, defaultExpanded, showMoreLimit, }: HierarchicalFacetProps & {
-    facet: DisplayableFacet;
-}): JSX.Element;
-
 // @public
 export interface HierarchicalFacetDisplayCssClasses {
     // (undocumented)
@@ -450,13 +433,6 @@ export interface MapboxMapProps<T> {
 
 // @public
 export function NumericalFacet(props: NumericalFacetProps): null;
-
-// Warning: (ae-internal-missing-underscore) The name "NumericalFacetContent" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
-export function NumericalFacetContent({ fieldId, label, transformOptions, customCssClasses, getFilterDisplayName, facet, showMoreLimit, showOptionCounts, inputPrefix, ...filterGroupProps }: NumericalFacetProps & {
-    facet: DisplayableFacet;
-}): JSX.Element;
 
 // @public
 export interface NumericalFacetProps extends StandardFacetProps {
@@ -741,13 +717,6 @@ export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> 
 
 // @public
 export function StandardFacet(props: StandardFacetProps): null;
-
-// Warning: (ae-internal-missing-underscore) The name "StandardFacetContent" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
-export function StandardFacetContent({ fieldId, label, transformOptions, customCssClasses, facet, showMoreLimit, showOptionCounts, ...filterGroupProps }: StandardFacetProps & {
-    facet: DisplayableFacet;
-}): JSX.Element;
 
 // @public
 export interface StandardFacetProps {

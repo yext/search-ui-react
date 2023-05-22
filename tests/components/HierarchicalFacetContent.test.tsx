@@ -2,7 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { Matcher, Source, State } from '@yext/search-headless-react';
 import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
-import { FacetsProvider, HierarchicalFacetContent, HierarchicalFacetProps, HierarchicalFacets } from '../../src';
+import { HierarchicalFacetProps } from '../../src';
+import { HierarchicalFacetContent } from '../../src/components/HierarchicalFacetContent';
+import { FacetsProvider } from '../../src/components/Filters';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 
@@ -49,7 +51,7 @@ const mockHierarchicalFacet = (props?: HierarchicalFacetProps) => {
     </FacetsProvider>);
 };
 
-describe('Hierarchical facets', () => {
+describe('HierarchicalFacetsContent', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions });
   });

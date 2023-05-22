@@ -80,7 +80,6 @@ export function Facets(props: FacetsProps) {
               && fieldIdToFacet.get(fieldId).options.length > 0
               && (!onlyRenderChildren || fieldIdToCustomFacetProps.has(fieldId)))
             .map((fieldId, i) => {
-              console.log("fieldId", fieldId);
               const facet: DisplayableFacet = fieldIdToFacet.get(fieldId);
               let facetType: FacetType = FacetType.STANDARD;
               let facetProps: FacetProps = {
@@ -95,13 +94,7 @@ export function Facets(props: FacetsProps) {
                   (typeof customFacetElement.type === 'function')
                     ? customFacetElement.type.name : '');
               } else {
-                if (isHierarchicalFacet(facet, delimiter)) {
-                  facetType = FacetType.HIERARCHICAL;
-                } else if (isStringFacet(facet)) {
-                  facetType = FacetType.STANDARD;
-                } else if (isNumericalFacet(facet)) {
-                  facetType = FacetType.NUMERICAL;
-                }
+                facetType = getFacetTypeFromFacetAndDelimiter(facet, delimiter);
               }
 
               let facetComponent: ReactElement;
@@ -182,4 +175,24 @@ export function getFacetTypeFromReactElementType(elementType: string) {
     default:
       return FacetType.STANDARD;
   }
+}
+
+/**
+ * Returns the type of the facet based on facet.
+ * @param facet - {@link DisplayableFacet}
+ * @param delimiter - string
+ * @returns {@link FacetType}
+ *
+ * @internal
+ */
+export function getFacetTypeFromFacetAndDelimiter(facet: DisplayableFacet, delimiter?: string) {
+  if (isHierarchicalFacet(facet, delimiter)) {
+    return FacetType.HIERARCHICAL;
+  } else if (isStringFacet(facet)) {
+    return FacetType.STANDARD;
+  } else if (isNumericalFacet(facet)) {
+    return FacetType.NUMERICAL;
+  }
+
+  return FacetType.STANDARD;
 }
