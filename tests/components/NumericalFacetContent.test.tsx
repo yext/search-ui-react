@@ -4,7 +4,7 @@ import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/m
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { FacetsProvider, NumericalFacetContent, NumericalFacetProps } from '../../src/components';
-import {getOptionLabelTextWithCount} from "../__utils__/facets";
+import { getOptionLabelTextWithCount } from '../__utils__/facets';
 
 const numericalFacet = DisplayableFacets[1];
 

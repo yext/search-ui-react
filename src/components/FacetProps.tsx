@@ -96,6 +96,11 @@ export interface NumericalFacetProps extends StandardFacetProps {
 export interface HierarchicalFacetProps extends
   Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> {
   /**
+   * A function to transform facet's options. The returned options need to be delimited to keep
+   * the hierarchy.
+   */
+  transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[],
+  /**
    * The maximum number of options to render before displaying the "Show more/less" button.
    * Defaults to 4.
    */

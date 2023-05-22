@@ -21,6 +21,7 @@ import { twMerge } from '../hooks/useComposedCssClasses';
 export function HierarchicalFacetContent({
   fieldId,
   label,
+  transformOptions,
   customCssClasses,
   delimiter,
   facet,
@@ -28,6 +29,9 @@ export function HierarchicalFacetContent({
   defaultExpanded = true,
   showMoreLimit = 4,
 }: HierarchicalFacetProps & { facet: DisplayableFacet }) {
+  const options = facet.options || [];
+  const transformedOptions = transformOptions ? (transformOptions(options) || []) : options;
+
   const collapsibleLabelCssClasses: CollapsibleLabelCssClasses = useMemo(() => {
     return {
       label: customCssClasses?.titleLabel
@@ -50,7 +54,10 @@ export function HierarchicalFacetContent({
       <CollapsibleSection >
         <HierarchicalFacetDisplay
           // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
-          facet={facet}
+          facet={{
+            ...facet,
+            options: transformedOptions,
+          }}
           delimiter={delimiter}
           showMoreLimit={showMoreLimit}
           customCssClasses={customCssClasses}

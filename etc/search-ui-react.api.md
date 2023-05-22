@@ -350,7 +350,7 @@ export function HierarchicalFacet(props: HierarchicalFacetProps): null;
 // Warning: (ae-internal-missing-underscore) The name "HierarchicalFacetContent" should be prefixed with an underscore because the declaration is marked as @internal
 //
 // @internal
-export function HierarchicalFacetContent({ fieldId, label, customCssClasses, delimiter, facet, collapsible, defaultExpanded, showMoreLimit, }: HierarchicalFacetProps & {
+export function HierarchicalFacetContent({ fieldId, label, transformOptions, customCssClasses, delimiter, facet, collapsible, defaultExpanded, showMoreLimit, }: HierarchicalFacetProps & {
     facet: DisplayableFacet;
 }): JSX.Element;
 
@@ -379,6 +379,7 @@ export interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transf
     customCssClasses?: Omit<FilterGroupCssClasses, 'searchInput' | 'optionsContainer' | 'option' | 'optionInput' | 'optionLabel'> & HierarchicalFacetDisplayCssClasses;
     delimiter?: string;
     showMoreLimit?: number;
+    transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];
 }
 
 // @public @deprecated
