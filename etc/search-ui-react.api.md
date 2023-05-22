@@ -224,6 +224,7 @@ export interface FacetsProps {
     customCssClasses?: FacetsCssClasses;
     delimiter?: string;
     excludedFieldIds?: string[];
+    onlyRenderChildren?: boolean;
     searchOnChange?: boolean;
 }
 

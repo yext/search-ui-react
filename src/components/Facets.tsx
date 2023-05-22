@@ -10,6 +10,7 @@ import { FilterDivider } from './FilterDivider';
 import { Fragment, ReactElement } from 'react';
 import { NumericalFacetContent } from './NumericalFacetContent';
 import { HierarchicalFacetContent } from './HierarchicalFacetContent';
+import { DisplayableFacet } from '@yext/search-headless-react';
 
 /** @internal */
 enum FacetType {
@@ -37,6 +38,7 @@ enum FacetType {
 export function Facets(props: FacetsProps) {
   const {
     searchOnChange,
+    onlyRenderChildren = false,
     children,
     delimiter,
     excludedFieldIds = [],
@@ -44,58 +46,87 @@ export function Facets(props: FacetsProps) {
   } = props;
 
   const fieldIdToCustomFacetProps = new Map();
+  const fieldIds: string[] = [];
   if (children) {
     (Array.isArray(children) ? children : [children])
-      .forEach(child => fieldIdToCustomFacetProps.set(child.props.fieldId, child));
+      .forEach(child => {
+        fieldIdToCustomFacetProps.set(child.props.fieldId, child);
+        fieldIds.push(child.props.fieldId);
+      });
   }
 
   return (
     <div>
       <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.facetsContainer}>
-        {facets => facets
-          .filter(facet => !excludedFieldIds.includes(facet.fieldId) && facet.options.length > 0)
-          .map((facet, i) => {
-            let facetType: FacetType = FacetType.STANDARD;
-            let facetProps: FacetProps = {
-              fieldId: facet.fieldId,
-              label: facet.displayName,
-            };
-            if (fieldIdToCustomFacetProps.has(facet.fieldId)) {
-              const customFacetElement: ReactElement = fieldIdToCustomFacetProps.get(facet.fieldId);
-              facetProps = { ...facetProps, ...customFacetElement.props };
-              facetType = getFacetTypeFromReactElementType(
-                (typeof customFacetElement.type === 'function') ? customFacetElement.type.name : '');
-            } else {
-              if (isHierarchicalFacet(facet, delimiter)) {
-                facetType = FacetType.HIERARCHICAL;
-              } else if (isStringFacet(facet)) {
-                facetType = FacetType.STANDARD;
-              } else if (isNumericalFacet(facet)) {
-                facetType = FacetType.NUMERICAL;
+        {facets => {
+          if (!facets || !facets.length) {
+            return;
+          }
+
+          if (!onlyRenderChildren) {
+            facets.forEach(facet => {
+              if (!fieldIds.includes(facet.fieldId)) {
+                fieldIds.push(facet.fieldId);
               }
-            }
+            });
+          }
 
-            let facetComponent: ReactElement;
-            switch (facetType) {
-              case FacetType.NUMERICAL:
-                facetComponent = (<NumericalFacetContent facet={facet} {...facetProps}/>);
-                break;
-              case FacetType.HIERARCHICAL:
-                facetComponent = (<HierarchicalFacetContent facet={facet} {...facetProps}/>);
-                break;
-              case FacetType.STANDARD:
+          const fieldIdToFacet = new Map();
+          facets.forEach(facet => fieldIdToFacet.set(facet.fieldId, facet));
+
+          return fieldIds
+            .filter(fieldId =>
+              !excludedFieldIds.includes(fieldId)
+              && fieldIdToFacet.get(fieldId).options.length > 0
+              && (!onlyRenderChildren || fieldIdToCustomFacetProps.has(fieldId)))
+            .map((fieldId, i) => {
+              console.log("fieldId", fieldId);
+              const facet: DisplayableFacet = fieldIdToFacet.get(fieldId);
+              let facetType: FacetType = FacetType.STANDARD;
+              let facetProps: FacetProps = {
+                fieldId: facet.fieldId,
+                label: facet.displayName,
+              };
+              if (fieldIdToCustomFacetProps.has(facet.fieldId)) {
+                const customFacetElement: ReactElement =
+                  fieldIdToCustomFacetProps.get(facet.fieldId);
+                facetProps = { ...facetProps, ...customFacetElement.props };
+                facetType = getFacetTypeFromReactElementType(
+                  (typeof customFacetElement.type === 'function')
+                    ? customFacetElement.type.name : '');
+              } else {
+                if (isHierarchicalFacet(facet, delimiter)) {
+                  facetType = FacetType.HIERARCHICAL;
+                } else if (isStringFacet(facet)) {
+                  facetType = FacetType.STANDARD;
+                } else if (isNumericalFacet(facet)) {
+                  facetType = FacetType.NUMERICAL;
+                }
+              }
+
+              let facetComponent: ReactElement;
+              switch (facetType) {
+                case FacetType.NUMERICAL:
+                  facetComponent = (<NumericalFacetContent facet={facet} {...facetProps}/>);
+                  break;
+                case FacetType.HIERARCHICAL:
+                  facetComponent = (<HierarchicalFacetContent facet={facet} {...facetProps}/>);
+                  break;
+                case FacetType.STANDARD:
                 // fall through
-              default:
-                facetComponent = (<StandardFacetContent facet={facet} {...facetProps}/>);
-            }
+                default:
+                  facetComponent = (<StandardFacetContent facet={facet} {...facetProps}/>);
+              }
 
-            return (
-              <Fragment key={facet.fieldId}>
-                {facetComponent}
-                {(i < facets.length - 1) && <FilterDivider className={customCssClasses?.divider}/>}
-              </Fragment>
-            );
-          })
+              return (
+                <Fragment key={facet.fieldId}>
+                  {facetComponent}
+                  {(i < facets.length - 1)
+                    && <FilterDivider className={customCssClasses?.divider}/>}
+                </Fragment>
+              );
+            });
+        }
         }
       </FacetsProvider>
     </div>

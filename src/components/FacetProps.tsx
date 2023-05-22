@@ -22,6 +22,9 @@ export interface FacetsCssClasses {
 export interface FacetsProps {
   /** Whether or not a search is automatically run when a filter is selected. Defaults to true. */
   searchOnChange?: boolean,
+  /** If set to true, only the facets specified in the children are rendered. If set to false, all
+   * facets are rendered with the ones specified in the children overrode. Default to false. */
+  onlyRenderChildren?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FacetsCssClasses,
   /** List of filter ids that should not be displayed. */

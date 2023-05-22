@@ -200,4 +200,40 @@ describe('Facets', () => {
     expectFacetOptionSet(actions, facet.fieldId, facet.options[0], true);
     expect(actions.executeVerticalQuery).not.toBeCalled();
   });
+
+  it('Renders all facets by default', () => {
+    const overrideFieldId = 'products';
+    const overrideLabel = 'My Products';
+    const props: StandardFacetProps = {
+      fieldId: overrideFieldId,
+      label: overrideLabel,
+    };
+
+    render(
+      <Facets>
+        <StandardFacet {...props}/>
+      </Facets>);
+
+    expect(screen.getByText(overrideLabel)).toBeDefined();
+    expect(screen.getByText(DisplayableFacets[1].displayName)).toBeDefined();
+    expect(screen.getByText(DisplayableFacets[2].displayName)).toBeDefined();
+  });
+
+  it('Only render customize facets if onlyRenderChildren is set to true', () => {
+    const overrideFieldId = 'products';
+    const overrideLabel = 'My Products';
+    const props: StandardFacetProps = {
+      fieldId: overrideFieldId,
+      label: overrideLabel,
+    };
+
+    render(
+      <Facets onlyRenderChildren={true}>
+        <StandardFacet {...props}/>
+      </Facets>);
+
+    expect(screen.getByText(overrideLabel)).toBeDefined();
+    expect(screen.queryByText(DisplayableFacets[1].displayName)).toBeNull();
+    expect(screen.queryByText(DisplayableFacets[2].displayName)).toBeNull();
+  });
 });
