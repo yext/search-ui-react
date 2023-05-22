@@ -1,7 +1,7 @@
 import { DisplayableFacet, Matcher, SelectableStaticFilter } from '@yext/search-headless-react';
 import { RemovableFilter } from '../../../src/components/AppliedFiltersDisplay';
 import { StaticFiltersProps } from '../../../src/components/StaticFilters';
-import {createHierarchicalFacet} from "../../__utils__/hierarchicalfacets";
+import { createHierarchicalFacet } from '../../__utils__/hierarchicalfacets';
 
 function createRemovableFilter(value: string) {
   return {

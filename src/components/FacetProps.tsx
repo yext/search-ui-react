@@ -27,10 +27,10 @@ export interface FacetsProps {
   onlyRenderChildren?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FacetsCssClasses,
-  /** List of filter ids that should not be displayed. */
+  /** List of field ids that should not be displayed. */
   excludedFieldIds?: string[],
-  /** The delimiter for determining if a facet is hierarchical, defaults to "\>". */
-  delimiter?: string,
+  /** List of field ids that should be rendered as hierarchical facets. */
+  hierarchicalFieldIds?: string[],
   /** The custom facet components that will override the default rendering.
    *
    * @remarks
@@ -96,6 +96,16 @@ export interface NumericalFacetProps extends StandardFacetProps {
  *
  * @public
  */
+export interface HierarchicalFacetCustomCssClasses extends HierarchicalFacetDisplayCssClasses {
+  /** CSS classes for customizing the title label styling. */
+  titleLabel?: string
+}
+
+/**
+ * Props for the {@link StandardFacet} component.
+ *
+ * @public
+ */
 export interface HierarchicalFacetProps extends
   Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> {
   /**
@@ -109,8 +119,7 @@ export interface HierarchicalFacetProps extends
    */
   showMoreLimit?: number,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: Omit<FilterGroupCssClasses, 'searchInput' | 'optionsContainer' | 'option' |
-  'optionInput' | 'optionLabel'> & HierarchicalFacetDisplayCssClasses,
+  customCssClasses?: HierarchicalFacetCustomCssClasses,
   /** The delimiter for determining facet hierarchies, defaults to "\>". */
   delimiter?: string
 }

@@ -220,8 +220,8 @@ export interface FacetsCssClasses {
 export interface FacetsProps {
     children?: ReactElement[] | ReactElement | undefined | null;
     customCssClasses?: FacetsCssClasses;
-    delimiter?: string;
     excludedFieldIds?: string[];
+    hierarchicalFieldIds?: string[];
     onlyRenderChildren?: boolean;
     searchOnChange?: boolean;
 }
@@ -360,7 +360,8 @@ export interface HierarchicalFacetDisplayCssClasses {
 
 // @public
 export interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> {
-    customCssClasses?: Omit<FilterGroupCssClasses, 'searchInput' | 'optionsContainer' | 'option' | 'optionInput' | 'optionLabel'> & HierarchicalFacetDisplayCssClasses;
+    // Warning: (ae-forgotten-export) The symbol "HierarchicalFacetCustomCssClasses" needs to be exported by the entry point index.d.ts
+    customCssClasses?: HierarchicalFacetCustomCssClasses;
     delimiter?: string;
     showMoreLimit?: number;
     transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];

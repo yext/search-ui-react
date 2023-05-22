@@ -9,5 +9,5 @@ CSS classes for customizing the component styling.
 <b>Signature:</b>
 
 ```typescript
-customCssClasses?: Omit<FilterGroupCssClasses, 'searchInput' | 'optionsContainer' | 'option' | 'optionInput' | 'optionLabel'> & HierarchicalFacetDisplayCssClasses;
+customCssClasses?: HierarchicalFacetCustomCssClasses;
 ```

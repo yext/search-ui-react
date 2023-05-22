@@ -5,7 +5,7 @@ import {
   FacetsProps, HierarchicalFacetProps, NumericalFacetProps,
   StandardFacetProps
 } from './FacetProps';
-import { isHierarchicalFacet, isNumericalFacet, isStringFacet } from '../utils/filterutils';
+import { isNumericalFacet, isStringFacet } from '../utils/filterutils';
 import { FilterDivider } from './FilterDivider';
 import { Fragment, ReactElement } from 'react';
 import { NumericalFacetContent } from './NumericalFacetContent';
@@ -27,9 +27,6 @@ enum FacetType {
  * numerical facets, and hierarchical facets. The {@link StandardFacet}, {@link NumericalFacet},
  * and {@link HierarchicalFacet} components can be used to override the default facet configuration.
  *
- * To override a single facet, use {@link StandardFacet}, {@link NumericalFacet} or
- * {@link HierarchicalFacet}.
- *
  * @param props - {@link FacetsProps}
  * @returns A React component for facets
  *
@@ -40,7 +37,7 @@ export function Facets(props: FacetsProps) {
     searchOnChange,
     onlyRenderChildren = false,
     children,
-    delimiter,
+    hierarchicalFieldIds,
     excludedFieldIds = [],
     customCssClasses = {},
   } = props;
@@ -49,6 +46,7 @@ export function Facets(props: FacetsProps) {
   const fieldIds: string[] = [];
   if (children) {
     (Array.isArray(children) ? children : [children])
+      .filter(child => child?.props?.fieldId)
       .forEach(child => {
         fieldIdToCustomFacetProps.set(child.props.fieldId, child);
         fieldIds.push(child.props.fieldId);
@@ -94,7 +92,7 @@ export function Facets(props: FacetsProps) {
                   (typeof customFacetElement.type === 'function')
                     ? customFacetElement.type.name : '');
               } else {
-                facetType = getFacetTypeFromFacetAndDelimiter(facet, delimiter);
+                facetType = getFacetTypeFromFacet(facet, hierarchicalFieldIds);
               }
 
               let facetComponent: ReactElement;
@@ -180,13 +178,16 @@ export function getFacetTypeFromReactElementType(elementType: string) {
 /**
  * Returns the type of the facet based on facet.
  * @param facet - {@link DisplayableFacet}
- * @param delimiter - string
+ * @param hierarchicalFieldIds - string
  * @returns {@link FacetType}
  *
  * @internal
  */
-export function getFacetTypeFromFacetAndDelimiter(facet: DisplayableFacet, delimiter?: string) {
-  if (isHierarchicalFacet(facet, delimiter)) {
+export function getFacetTypeFromFacet(
+  facet: DisplayableFacet,
+  hierarchicalFieldIds: string[] = [],
+) {
+  if (hierarchicalFieldIds.includes(facet.fieldId)) {
     return FacetType.HIERARCHICAL;
   } else if (isStringFacet(facet)) {
     return FacetType.STANDARD;

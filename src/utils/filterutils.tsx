@@ -19,18 +19,6 @@ export function isNumberRangeValue(obj: unknown): obj is NumberRangeValue {
 }
 
 /**
- * Checks if the facet is a hierarchical facet with options containing the specified delimiter.
- */
-export function isHierarchicalFacet(
-  facet: DisplayableFacet,
-  delimiter: string = DEFAULT_HIERARCHICAL_DELIMITER,
-): boolean {
-  return facet.options.length > 0
-    && facet.options.some(option => typeof option.value === 'string')
-    && facet.options.some(option => option.displayName.includes(delimiter));
-}
-
-/**
  * Checks if the facet is a string facet with string options.
  */
 export function isStringFacet(facet: DisplayableFacet): boolean {
