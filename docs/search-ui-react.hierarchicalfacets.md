@@ -4,6 +4,11 @@
 
 ## HierarchicalFacets() function
 
+> Warning: This API is now obsolete.
+> 
+> Use [Facets()](./search-ui-react.facets.md) instead.
+> 
+
 A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search.
 
 <b>Signature:</b>

@@ -2,13 +2,15 @@ import { FacetsProvider } from './Filters';
 import { StandardFacetContent } from './StandardFacetContent';
 import {
   FacetProps,
-  FacetsProps, NumericalFacetProps,
+  FacetsProps, HierarchicalFacetProps, NumericalFacetProps,
   StandardFacetProps
 } from './FacetProps';
 import { isNumericalFacet, isStringFacet } from '../utils/filterutils';
 import { FilterDivider } from './FilterDivider';
 import { Fragment, ReactElement } from 'react';
 import { NumericalFacetContent } from './NumericalFacetContent';
+import { HierarchicalFacetContent } from './HierarchicalFacetContent';
+import { DisplayableFacet } from '@yext/search-headless-react';
 
 /** @internal */
 enum FacetType {
@@ -22,11 +24,8 @@ enum FacetType {
  *
  * @remarks
  * This component is a quick way of getting facets on the page, and it will render standard facets,
- * numerical facets, and hierarchical facets. The {@link StandardFacets}, {@link NumericalFacets},
- * and {@link HierarchicalFacets} components can be used instead for more control over facet
- * configuration.
- *
- * To override a single facet, use {@link StandardFacet} or {@link NumericalFacet}.
+ * numerical facets, and hierarchical facets. The {@link StandardFacet}, {@link NumericalFacet},
+ * and {@link HierarchicalFacet} components can be used to override the default facet configuration.
  *
  * @param props - {@link FacetsProps}
  * @returns A React component for facets
@@ -34,55 +33,91 @@ enum FacetType {
  * @public
  */
 export function Facets(props: FacetsProps) {
-  const { searchOnChange, children, customCssClasses = {} } = props;
+  const {
+    searchOnChange,
+    onlyRenderChildren = false,
+    children,
+    hierarchicalFieldIds,
+    excludedFieldIds = [],
+    customCssClasses = {},
+  } = props;
 
   const fieldIdToCustomFacetProps = new Map();
+  const fieldIds: string[] = [];
   if (children) {
     (Array.isArray(children) ? children : [children])
-      .forEach(child => fieldIdToCustomFacetProps.set(child.props.fieldId, child));
+      .filter(child => child?.props?.fieldId)
+      .forEach(child => {
+        fieldIdToCustomFacetProps.set(child.props.fieldId, child);
+        fieldIds.push(child.props.fieldId);
+      });
   }
 
   return (
     <div>
       <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.facetsContainer}>
-        {facets => facets
-          .map((facet, i) => {
-            let facetType: FacetType = FacetType.STANDARD;
-            let facetProps: FacetProps = {
-              fieldId: facet.fieldId,
-              label: facet.displayName,
-            };
-            if (fieldIdToCustomFacetProps.has(facet.fieldId)) {
-              const customFacetElement: ReactElement = fieldIdToCustomFacetProps.get(facet.fieldId);
-              facetProps = customFacetElement.props;
-              facetType = getFacetTypeFromReactElementType(
-                (typeof customFacetElement.type === 'function') ? customFacetElement.type.name : '');
-            } else {
-              if (isStringFacet(facet)) {
-                facetType = FacetType.STANDARD;
-              } else if (isNumericalFacet(facet)) {
-                facetType = FacetType.NUMERICAL;
+        {facets => {
+          if (!facets || !facets.length) {
+            return;
+          }
+
+          if (!onlyRenderChildren) {
+            facets.forEach(facet => {
+              if (!fieldIds.includes(facet.fieldId)) {
+                fieldIds.push(facet.fieldId);
               }
-            }
+            });
+          }
 
-            let facetComponent: ReactElement;
-            switch (facetType) {
-              case FacetType.NUMERICAL:
-                facetComponent = (<NumericalFacetContent facet={facet} {...facetProps}/>);
-                break;
-              case FacetType.STANDARD:
+          const fieldIdToFacet = new Map();
+          facets.forEach(facet => fieldIdToFacet.set(facet.fieldId, facet));
+
+          return fieldIds
+            .filter(fieldId =>
+              !excludedFieldIds.includes(fieldId)
+              && fieldIdToFacet.get(fieldId).options.length > 0
+              && (!onlyRenderChildren || fieldIdToCustomFacetProps.has(fieldId)))
+            .map((fieldId, i) => {
+              const facet: DisplayableFacet = fieldIdToFacet.get(fieldId);
+              let facetType: FacetType = FacetType.STANDARD;
+              let facetProps: FacetProps = {
+                fieldId: facet.fieldId,
+                label: facet.displayName,
+              };
+              if (fieldIdToCustomFacetProps.has(facet.fieldId)) {
+                const customFacetElement: ReactElement =
+                  fieldIdToCustomFacetProps.get(facet.fieldId);
+                facetProps = { ...facetProps, ...customFacetElement.props };
+                facetType = getFacetTypeFromReactElementType(
+                  (typeof customFacetElement.type === 'function')
+                    ? customFacetElement.type.name : '');
+              } else {
+                facetType = getFacetTypeFromFacet(facet, hierarchicalFieldIds);
+              }
+
+              let facetComponent: ReactElement;
+              switch (facetType) {
+                case FacetType.NUMERICAL:
+                  facetComponent = (<NumericalFacetContent facet={facet} {...facetProps}/>);
+                  break;
+                case FacetType.HIERARCHICAL:
+                  facetComponent = (<HierarchicalFacetContent facet={facet} {...facetProps}/>);
+                  break;
+                case FacetType.STANDARD:
                 // fall through
-              default:
-                facetComponent = (<StandardFacetContent facet={facet} {...facetProps}/>);
-            }
+                default:
+                  facetComponent = (<StandardFacetContent facet={facet} {...facetProps}/>);
+              }
 
-            return (
-              <Fragment key={facet.fieldId}>
-                {facetComponent}
-                {(i < facets.length - 1) && <FilterDivider className={customCssClasses?.divider}/>}
-              </Fragment>
-            );
-          })
+              return (
+                <Fragment key={facet.fieldId}>
+                  {facetComponent}
+                  {(i < facets.length - 1)
+                    && <FilterDivider className={customCssClasses?.divider}/>}
+                </Fragment>
+              );
+            });
+        }
         }
       </FacetsProvider>
     </div>
@@ -96,6 +131,7 @@ export function Facets(props: FacetsProps) {
  * @returns ReactElement
  * @public
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function StandardFacet(props: StandardFacetProps) { return null; }
 
 /**
@@ -105,7 +141,19 @@ export function StandardFacet(props: StandardFacetProps) { return null; }
  * @returns ReactElement
  * @public
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function NumericalFacet(props: NumericalFacetProps) { return null; }
+
+/**
+ * A component that displays a single hierarchical facet, in a tree level structure, applicable to
+ * the current vertical search. Use this to override the default rendering.
+ *
+ * @param props - {@link HierarchicalFacetProps}
+ * @returns ReactElement
+ * @public
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function HierarchicalFacet(props: HierarchicalFacetProps) { return null; }
 
 /**
  * Returns the type of the facet based on the props.
@@ -118,9 +166,34 @@ export function getFacetTypeFromReactElementType(elementType: string) {
   switch (elementType) {
     case NumericalFacet.name.toString():
       return FacetType.NUMERICAL;
+    case HierarchicalFacet.name.toString():
+      return FacetType.HIERARCHICAL;
     case StandardFacet.name.toString():
       // fall through
     default:
       return FacetType.STANDARD;
   }
+}
+
+/**
+ * Returns the type of the facet based on facet.
+ * @param facet - {@link DisplayableFacet}
+ * @param hierarchicalFieldIds - string
+ * @returns {@link FacetType}
+ *
+ * @internal
+ */
+export function getFacetTypeFromFacet(
+  facet: DisplayableFacet,
+  hierarchicalFieldIds: string[] = [],
+) {
+  if (hierarchicalFieldIds.includes(facet.fieldId)) {
+    return FacetType.HIERARCHICAL;
+  } else if (isStringFacet(facet)) {
+    return FacetType.STANDARD;
+  } else if (isNumericalFacet(facet)) {
+    return FacetType.NUMERICAL;
+  }
+
+  return FacetType.STANDARD;
 }

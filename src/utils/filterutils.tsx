@@ -2,6 +2,7 @@ import { NearFilterValue, FieldValueFilter, NumberRangeValue, Matcher, SearchAct
 import { isEqual } from 'lodash';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 import { SelectableFieldValueFilter } from '../models/SelectableFieldValueFilter';
+import { DEFAULT_HIERARCHICAL_DELIMITER } from '../components/Filters/HierarchicalFacetDisplay';
 
 /**
  * Check if the object follows NearFilterValue interface.
@@ -28,7 +29,8 @@ export function isStringFacet(facet: DisplayableFacet): boolean {
  * Checks if the facet is a numerical facet with number range filter options.
  */
 export function isNumericalFacet(facet: DisplayableFacet): boolean {
-  return facet.options.length > 0 && isNumberRangeFilter(facet.options[0]);
+  return facet.options.length > 0 &&
+    facet.options.some(option => isNumberRangeFilter(option));
 }
 
 /**

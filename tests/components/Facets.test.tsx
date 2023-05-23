@@ -1,13 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import {
-  Source,
-  State
-} from '@yext/search-headless-react';
-import { mockAnswersHooks, mockAnswersState } from '../__utils__/mocks';
+import { Source, State } from '@yext/search-headless-react';
+import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
-import { Facets, StandardFacet, StandardFacetProps, NumericalFacet, NumericalFacetProps } from '../../src';
-import { getOptionLabelText } from '../__utils__/facets';
+import {
+  Facets,
+  StandardFacet,
+  StandardFacetProps,
+  NumericalFacet,
+  NumericalFacetProps,
+  HierarchicalFacet, HierarchicalFacetProps
+} from '../../src';
+import { expectFacetOptionSet, getOptionLabelTextWithCount } from '../__utils__/facets';
 import { DisplayableFacetOption } from '@yext/search-core';
+import userEvent from '@testing-library/user-event';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -49,11 +54,11 @@ describe('Facets', () => {
   });
   it('Properly renders standard facets if present', () => {
     render(<Facets/>);
-    const regularFilter = DisplayableFacets[0];
+    const facet = DisplayableFacets[0];
 
-    expect(screen.getByText(regularFilter.displayName)).toBeDefined();
-    regularFilter.options.forEach(o => {
-      expect(screen.getByText(getOptionLabelText(o))).toBeDefined();
+    expect(screen.getByText(facet.displayName)).toBeDefined();
+    facet.options.forEach(o => {
+      expect(screen.getByText(getOptionLabelTextWithCount(o))).toBeDefined();
     });
   });
 
@@ -76,7 +81,7 @@ describe('Facets', () => {
       }
     });
     render(<Facets/>);
-    const regularFilter = DisplayableFacets[0];
+    const facet = DisplayableFacets[0];
     const numericalFilter = DisplayableFacets[1];
 
     expect(screen.queryByText(numericalFilter.displayName)).toBeNull();
@@ -84,8 +89,8 @@ describe('Facets', () => {
       expect(screen.queryByText(o.displayName)).toBeNull();
     });
 
-    expect(screen.queryByText(regularFilter.displayName)).toBeNull();
-    regularFilter.options.forEach(o => {
+    expect(screen.queryByText(facet.displayName)).toBeNull();
+    facet.options.forEach(o => {
       expect(screen.queryByText(`${o.displayName} (${o.count})}`)).toBeNull();
     });
   });
@@ -106,14 +111,14 @@ describe('Facets', () => {
       <Facets>
         <StandardFacet {...props}/>
       </Facets>);
-    const regularFilter = DisplayableFacets[0];
+    const facet = DisplayableFacets[0];
 
     expect(screen.getByText(overrideLabel)).toBeDefined();
-    expect(screen.queryByText(regularFilter.displayName)).toBeNull();
+    expect(screen.queryByText(facet.displayName)).toBeNull();
     expect(
       screen
         .getByText(
-          `my ${regularFilter.options[0].displayName} (${regularFilter.options[0].count})`))
+          `my ${facet.options[0].displayName} (${facet.options[0].count})`))
       .toBeDefined();
   });
 
@@ -133,10 +138,102 @@ describe('Facets', () => {
       <Facets>
         <NumericalFacet {...props}/>
       </Facets>);
-    const regularFilter = DisplayableFacets[1];
+    const facet = DisplayableFacets[1];
 
     expect(screen.getByText(overrideLabel)).toBeDefined();
-    expect(screen.queryByText(regularFilter.displayName)).toBeNull();
-    expect(screen.getByText(`Price is ${regularFilter.options[0].displayName}`)).toBeDefined();
+    expect(screen.queryByText(facet.displayName)).toBeNull();
+    expect(screen.getByText(`Price is ${facet.options[0].displayName}`)).toBeDefined();
+  });
+
+  it('Properly renders an override hierarchical facet if present', () => {
+    const overrideFieldId = 'hier';
+    const overrideLabel = 'My Fruit';
+    const props: HierarchicalFacetProps = {
+      fieldId: overrideFieldId,
+      label: overrideLabel,
+    };
+
+    render(
+      <Facets>
+        <HierarchicalFacet {...props}/>
+      </Facets>);
+    const facet = DisplayableFacets[2];
+
+    expect(screen.getByText(overrideLabel)).toBeDefined();
+    expect(screen.queryByText(facet.displayName)).toBeNull();
+  });
+
+  it('Clicking a facet option executes a search by default', () => {
+    mockAnswersState({
+      ...mockedState,
+      filters: { facets: [DisplayableFacets[0]] }
+    });
+    const actions = spyOnActions();
+    render(<Facets/>);
+
+    const facet = DisplayableFacets[0];
+    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(
+      getOptionLabelTextWithCount(facet.options[0])
+    );
+    expect(coffeeCheckbox.checked).toBeFalsy();
+
+    userEvent.click(coffeeCheckbox);
+    expectFacetOptionSet(actions, facet.fieldId, facet.options[0], true);
+    expect(actions.executeVerticalQuery).toBeCalled();
+  });
+
+  it('Clicking a facet option does not execute a search when searchOnChange is false', () => {
+    mockAnswersState({
+      ...mockedState,
+      filters: { facets: [DisplayableFacets[0]] }
+    });
+    const actions = spyOnActions();
+    render(<Facets searchOnChange={false}/>);
+
+    const facet = DisplayableFacets[0];
+    const coffeeCheckbox: HTMLInputElement = screen.getByLabelText(
+      getOptionLabelTextWithCount(facet.options[0])
+    );
+    expect(coffeeCheckbox.checked).toBeFalsy();
+
+    userEvent.click(coffeeCheckbox);
+    expectFacetOptionSet(actions, facet.fieldId, facet.options[0], true);
+    expect(actions.executeVerticalQuery).not.toBeCalled();
+  });
+
+  it('Renders all facets by default', () => {
+    const overrideFieldId = 'products';
+    const overrideLabel = 'My Products';
+    const props: StandardFacetProps = {
+      fieldId: overrideFieldId,
+      label: overrideLabel,
+    };
+
+    render(
+      <Facets>
+        <StandardFacet {...props}/>
+      </Facets>);
+
+    expect(screen.getByText(overrideLabel)).toBeDefined();
+    expect(screen.getByText(DisplayableFacets[1].displayName)).toBeDefined();
+    expect(screen.getByText(DisplayableFacets[2].displayName)).toBeDefined();
+  });
+
+  it('Only render customize facets if onlyRenderChildren is set to true', () => {
+    const overrideFieldId = 'products';
+    const overrideLabel = 'My Products';
+    const props: StandardFacetProps = {
+      fieldId: overrideFieldId,
+      label: overrideLabel,
+    };
+
+    render(
+      <Facets onlyRenderChildren={true}>
+        <StandardFacet {...props}/>
+      </Facets>);
+
+    expect(screen.getByText(overrideLabel)).toBeDefined();
+    expect(screen.queryByText(DisplayableFacets[1].displayName)).toBeNull();
+    expect(screen.queryByText(DisplayableFacets[2].displayName)).toBeNull();
   });
 });

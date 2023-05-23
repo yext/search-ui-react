@@ -2,7 +2,7 @@ import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FilterGroupCssClasses } from './FilterGroup';
 import { ReactElement } from 'react';
 import { NumberRangeValue } from '@yext/search-headless-react';
-import { RangeInputCssClasses } from './Filters';
+import { HierarchicalFacetDisplayCssClasses, RangeInputCssClasses } from './Filters';
 
 /**
  * The CSS class interface for {@link Facets}.
@@ -22,10 +22,15 @@ export interface FacetsCssClasses {
 export interface FacetsProps {
   /** Whether or not a search is automatically run when a filter is selected. Defaults to true. */
   searchOnChange?: boolean,
+  /** If set to true, only the facets specified in the children are rendered. If set to false, all
+   * facets are rendered with the ones specified in the children overridden. Default to false. */
+  onlyRenderChildren?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FacetsCssClasses,
-  /** List of filter ids that should not be displayed. */
+  /** List of field ids that should not be displayed. */
   excludedFieldIds?: string[],
+  /** List of field ids that should be rendered as hierarchical facets. */
+  hierarchicalFieldIds?: string[],
   /** The custom facet components that will override the default rendering.
    *
    * @remarks
@@ -52,7 +57,10 @@ export interface StandardFacetProps {
   defaultExpanded?: boolean,
   /** Whether or not to show the option counts for each filter. Defaults to true. */
   showOptionCounts?: boolean,
-  /** Limit on the number of options to be displayed. Defaults to 10. */
+  /**
+   * The maximum number of options to render before displaying the "Show more/less" button.
+   * Defaults to 10.
+   */
   showMoreLimit?: number,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FilterGroupCssClasses
@@ -84,8 +92,41 @@ export interface NumericalFacetProps extends StandardFacetProps {
 }
 
 /**
+ * Props for the {@link StandardFacet} component.
+ *
+ * @public
+ */
+export interface HierarchicalFacetCustomCssClasses extends HierarchicalFacetDisplayCssClasses {
+  /** CSS classes for customizing the title label styling. */
+  titleLabel?: string
+}
+
+/**
+ * Props for the {@link StandardFacet} component.
+ *
+ * @public
+ */
+export interface HierarchicalFacetProps extends
+  Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> {
+  /**
+   * A function to transform facet's options. The returned options need to be delimited to keep
+   * the hierarchy.
+   */
+  transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[],
+  /**
+   * The maximum number of options to render before displaying the "Show more/less" button.
+   * Defaults to 4.
+   */
+  showMoreLimit?: number,
+  /** CSS classes for customizing the component styling. */
+  customCssClasses?: HierarchicalFacetCustomCssClasses,
+  /** The delimiter for determining facet hierarchies, defaults to "\>". */
+  delimiter?: string
+}
+
+/**
  * Props for a single facet component.
  *
  * @public
  */
-export type FacetProps = StandardFacetProps | NumericalFacetProps;
+export type FacetProps = StandardFacetProps | NumericalFacetProps | HierarchicalFacetProps;

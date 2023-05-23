@@ -12,10 +12,10 @@ import { StandardFacetProps } from './FacetProps';
  */
 export function StandardFacetContent({
   fieldId,
-  customCssClasses,
+  label,
   transformOptions,
+  customCssClasses,
   facet,
-  label = '',
   showMoreLimit = 10,
   showOptionCounts = true,
   ...filterGroupProps
@@ -29,7 +29,7 @@ export function StandardFacetContent({
       filterOptions={transformedOptions.map(o => {
         return showOptionCounts ? { ...o, resultsCount: o.count } : o;
       })}
-      title={label}
+      title={label || facet.displayName}
       customCssClasses={customCssClasses}
       showMoreLimit={showMoreLimit}
       searchable={facet?.options.length > showMoreLimit}

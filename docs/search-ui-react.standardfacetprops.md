@@ -21,7 +21,7 @@ export interface StandardFacetProps
 |  [defaultExpanded?](./search-ui-react.standardfacetprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
 |  [fieldId](./search-ui-react.standardfacetprops.fieldid.md) | string | The fieldId corresponding to the facet |
 |  [label?](./search-ui-react.standardfacetprops.label.md) | string | <i>(Optional)</i> The label of the facet. Defaults to facet's displayName if not provided. |
-|  [showMoreLimit?](./search-ui-react.standardfacetprops.showmorelimit.md) | number | <i>(Optional)</i> Limit on the number of options to be displayed. Defaults to 10. |
+|  [showMoreLimit?](./search-ui-react.standardfacetprops.showmorelimit.md) | number | <i>(Optional)</i> The maximum number of options to render before displaying the "Show more/less" button. Defaults to 10. |
 |  [showOptionCounts?](./search-ui-react.standardfacetprops.showoptioncounts.md) | boolean | <i>(Optional)</i> Whether or not to show the option counts for each filter. Defaults to true. |
 |  [transformOptions?](./search-ui-react.standardfacetprops.transformoptions.md) | (options: DisplayableFacetOption\[\]) =&gt; DisplayableFacetOption\[\] | <i>(Optional)</i> A function to transform facet's options. |
 

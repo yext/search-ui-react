@@ -26,7 +26,5 @@ A React component for facets
 
 ## Remarks
 
-This component is a quick way of getting facets on the page, and it will render standard facets, numerical facets, and hierarchical facets. The [StandardFacets()](./search-ui-react.standardfacets.md)<!-- -->, [NumericalFacets()](./search-ui-react.numericalfacets.md)<!-- -->, and [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md) components can be used instead for more control over facet configuration.
-
-To override a single facet, use [StandardFacet()](./search-ui-react.standardfacet.md) or [NumericalFacet()](./search-ui-react.numericalfacet.md)<!-- -->.
+This component is a quick way of getting facets on the page, and it will render standard facets, numerical facets, and hierarchical facets. The [StandardFacet()](./search-ui-react.standardfacet.md)<!-- -->, [NumericalFacet()](./search-ui-react.numericalfacet.md)<!-- -->, and [HierarchicalFacet()](./search-ui-react.hierarchicalfacet.md) components can be used to override the default facet configuration.
 

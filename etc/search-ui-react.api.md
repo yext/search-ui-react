@@ -203,7 +203,7 @@ export function executeAutocomplete(searchActions: SearchActions): Promise<Autoc
 export function executeSearch(searchActions: SearchActions): Promise<void>;
 
 // @public
-export type FacetProps = StandardFacetProps | NumericalFacetProps;
+export type FacetProps = StandardFacetProps | NumericalFacetProps | HierarchicalFacetProps;
 
 // @public
 export function Facets(props: FacetsProps): JSX.Element;
@@ -221,6 +221,8 @@ export interface FacetsProps {
     children?: ReactElement[] | ReactElement | undefined | null;
     customCssClasses?: FacetsCssClasses;
     excludedFieldIds?: string[];
+    hierarchicalFieldIds?: string[];
+    onlyRenderChildren?: boolean;
     searchOnChange?: boolean;
 }
 
@@ -334,6 +336,9 @@ export function getSearchIntents(searchActions: SearchActions): Promise<SearchIn
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
 
 // @public
+export function HierarchicalFacet(props: HierarchicalFacetProps): null;
+
+// @public
 export interface HierarchicalFacetDisplayCssClasses {
     // (undocumented)
     allCategoriesOption___active?: string;
@@ -354,6 +359,15 @@ export interface HierarchicalFacetDisplayCssClasses {
 }
 
 // @public
+export interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> {
+    // Warning: (ae-forgotten-export) The symbol "HierarchicalFacetCustomCssClasses" needs to be exported by the entry point index.d.ts
+    customCssClasses?: HierarchicalFacetCustomCssClasses;
+    delimiter?: string;
+    showMoreLimit?: number;
+    transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];
+}
+
+// @public @deprecated
 export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
 
 // @public
@@ -429,7 +443,7 @@ export interface NumericalFacetProps extends StandardFacetProps {
     showOptionCounts?: boolean;
 }
 
-// @public
+// @public @deprecated
 export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 
 // @public

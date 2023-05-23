@@ -4,7 +4,7 @@
 
 ## FacetsProps.excludedFieldIds property
 
-List of filter ids that should not be displayed.
+List of field ids that should not be displayed.
 
 <b>Signature:</b>
 

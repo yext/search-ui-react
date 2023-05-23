@@ -128,7 +128,8 @@ export {
 export {
   Facets,
   StandardFacet,
-  NumericalFacet
+  NumericalFacet,
+  HierarchicalFacet
 } from './Facets';
 
 export {
@@ -136,7 +137,8 @@ export {
   FacetsProps,
   FacetProps,
   StandardFacetProps,
-  NumericalFacetProps
+  NumericalFacetProps,
+  HierarchicalFacetProps
 } from './FacetProps';
 
 export {
