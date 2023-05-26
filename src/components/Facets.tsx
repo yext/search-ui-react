@@ -79,39 +79,15 @@ export function Facets(props: FacetsProps) {
               && (!onlyRenderChildren || fieldIdToCustomFacetProps.has(fieldId)))
             .map((fieldId, i) => {
               const facet: DisplayableFacet = fieldIdToFacet.get(fieldId);
-              let facetType: FacetType = FacetType.STANDARD;
-              let facetProps: FacetProps = {
-                fieldId: facet.fieldId,
-                label: facet.displayName,
-              };
-              if (fieldIdToCustomFacetProps.has(facet.fieldId)) {
-                const customFacetElement: ReactElement =
-                  fieldIdToCustomFacetProps.get(facet.fieldId);
-                facetProps = { ...facetProps, ...customFacetElement.props };
-                facetType = getFacetTypeFromReactElementType(
-                  (typeof customFacetElement.type === 'function')
-                    ? customFacetElement.type.name : '');
-              } else {
-                facetType = getFacetTypeFromFacet(facet, hierarchicalFieldIds);
-              }
-
-              let facetComponent: ReactElement;
-              switch (facetType) {
-                case FacetType.NUMERICAL:
-                  facetComponent = (<NumericalFacetContent facet={facet} {...facetProps}/>);
-                  break;
-                case FacetType.HIERARCHICAL:
-                  facetComponent = (<HierarchicalFacetContent facet={facet} {...facetProps}/>);
-                  break;
-                case FacetType.STANDARD:
-                // fall through
-                default:
-                  facetComponent = (<StandardFacetContent facet={facet} {...facetProps}/>);
-              }
 
               return (
                 <Fragment key={facet.fieldId}>
-                  {facetComponent}
+                  <Facet
+                    facet={facet}
+                    facetsCustomCssClasses={customCssClasses}
+                    fieldIdToCustomFacetProps={fieldIdToCustomFacetProps}
+                    hierarchicalFieldIds={hierarchicalFieldIds}
+                  />
                   {(i < facets.length - 1)
                     && <FilterDivider className={customCssClasses?.divider}/>}
                 </Fragment>
@@ -154,6 +130,58 @@ export function NumericalFacet(props: NumericalFacetProps) { return null; }
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HierarchicalFacet(props: HierarchicalFacetProps) { return null; }
+
+/**
+ * A component that represents a single facet.
+ *
+ * @param facet - {@link DisplayableFacet}
+ * @param facetsCustomCssClasses - {@link FacetsCssClasses}
+ * @param fieldIdToCustomFacetProps - a map of fieldId to facet props
+ * @param hierarchicalFieldIds - a list of hierarchical field ids
+ * @returns {@link ReactElement}
+ *
+ * @internal
+ */
+export function Facet({
+  facet,
+  facetsCustomCssClasses,
+  fieldIdToCustomFacetProps,
+  hierarchicalFieldIds,
+}) {
+  let facetType: FacetType;
+  let facetProps: FacetProps = {
+    fieldId: facet.fieldId,
+    label: facet.displayName,
+  };
+  if (fieldIdToCustomFacetProps.has(facet.fieldId)) {
+    const customFacetElement: ReactElement = fieldIdToCustomFacetProps.get(facet.fieldId);
+    facetProps = { ...facetProps, ...customFacetElement.props };
+    facetType = getFacetTypeFromReactElementType(
+      (typeof customFacetElement.type === 'function')
+        ? customFacetElement.type.name : '');
+  } else {
+    facetType = getFacetTypeFromFacet(facet, hierarchicalFieldIds);
+  }
+
+  facetProps = {
+    ...facetProps,
+    customCssClasses: {
+      ...facetsCustomCssClasses,
+      ...facetProps.customCssClasses,
+    },
+  };
+
+  switch (facetType) {
+    case FacetType.NUMERICAL:
+      return (<NumericalFacetContent facet={facet} {...facetProps}/>);
+    case FacetType.HIERARCHICAL:
+      return (<HierarchicalFacetContent facet={facet} {...facetProps}/>);
+    case FacetType.STANDARD:
+    // fall through
+    default:
+      return (<StandardFacetContent facet={facet} {...facetProps}/>);
+  }
+}
 
 /**
  * Returns the type of the facet based on the props.

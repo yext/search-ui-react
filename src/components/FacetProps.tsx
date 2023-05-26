@@ -5,11 +5,13 @@ import { NumberRangeValue } from '@yext/search-headless-react';
 import { HierarchicalFacetDisplayCssClasses, RangeInputCssClasses } from './Filters';
 
 /**
- * The CSS class interface for {@link Facets}.
+ * The CSS class interface for {@link Facets}. Any {@link FilterGroupCssClasses} props will be
+ * overridden by the same props from customCssClasses on {@link StandardFacetProps},
+ * {@link NumericalFacetProps}, or {@link HierarchicalFacetProps}.
  *
  * @public
  */
-export interface FacetsCssClasses {
+export interface FacetsCssClasses extends FilterGroupCssClasses {
   facetsContainer?: string,
   divider?: string
 }

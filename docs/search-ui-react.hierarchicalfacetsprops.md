@@ -4,6 +4,11 @@
 
 ## HierarchicalFacetsProps interface
 
+> Warning: This API is now obsolete.
+> 
+> Use [HierarchicalFacet()](./search-ui-react.hierarchicalfacet.md) with [Facets()](./search-ui-react.facets.md) instead.
+> 
+
 Props for the [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md) component.
 
 <b>Signature:</b>

@@ -2,7 +2,6 @@ import { NearFilterValue, FieldValueFilter, NumberRangeValue, Matcher, SearchAct
 import { isEqual } from 'lodash';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 import { SelectableFieldValueFilter } from '../models/SelectableFieldValueFilter';
-import { DEFAULT_HIERARCHICAL_DELIMITER } from '../components/Filters/HierarchicalFacetDisplay';
 
 /**
  * Check if the object follows NearFilterValue interface.

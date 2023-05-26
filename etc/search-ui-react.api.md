@@ -209,7 +209,7 @@ export type FacetProps = StandardFacetProps | NumericalFacetProps | Hierarchical
 export function Facets(props: FacetsProps): JSX.Element;
 
 // @public
-export interface FacetsCssClasses {
+export interface FacetsCssClasses extends FilterGroupCssClasses {
     // (undocumented)
     divider?: string;
     // (undocumented)
@@ -378,7 +378,7 @@ export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCs
     hierarchicalFacetsContainer?: string;
 }
 
-// @public
+// @public @deprecated
 export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
     customCssClasses?: HierarchicalFacetsCssClasses;
     delimiter?: string;
@@ -454,7 +454,7 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
     numericalFacetsContainer?: string;
 }
 
-// @public
+// @public @deprecated
 export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
     customCssClasses?: NumericalFacetsCssClasses;
     getFilterDisplayName?: (value: NumberRangeValue) => string;
