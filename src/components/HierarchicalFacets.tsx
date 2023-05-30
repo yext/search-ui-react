@@ -23,6 +23,7 @@ export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCs
 /**
  * Props for the {@link HierarchicalFacets} component.
  *
+ * @deprecated Use {@link HierarchicalFacet} with {@link Facets} instead.
  * @public
  */
 export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
@@ -43,7 +44,7 @@ export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'excl
  * @param props - {@link HierarchicalFacetsProps}
  * @returns A React component for facets
  *
- * @deprecated Use {@link Facets} instead.
+ * @deprecated Use {@link HierarchicalFacet} with {@link Facets} instead.
  * @public
  */
 export function HierarchicalFacets({

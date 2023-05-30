@@ -7,7 +7,7 @@ import { isStringFacet } from '../utils/filterutils';
 /**
  * The CSS class interface for {@link StandardFacets}.
  *
- * @deprecated Use {@link Facets} instead.
+ * @deprecated Use {@link StandardFacet} with {@link Facets} instead.
  * @public
  */
 export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
@@ -18,7 +18,7 @@ export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
 /**
  * Props for the {@link StandardFacets} component.
  *
- * @deprecated Use {@link Facets} instead.
+ * @deprecated Use {@link StandardFacet} with {@link Facets} instead.
  * @public
  */
 export interface StandardFacetsProps {

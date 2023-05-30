@@ -236,4 +236,46 @@ describe('Facets', () => {
     expect(screen.queryByText(DisplayableFacets[1].displayName)).toBeNull();
     expect(screen.queryByText(DisplayableFacets[2].displayName)).toBeNull();
   });
+
+  it('Use FilterGroupCssClasses provided on the Facets level if not provided on the singular facet',
+    () => {
+      const overrideFieldId = 'products';
+      const overrideLabel = 'My Products';
+      const facetsTitleLabelClass = 'facets-title-label-class';
+      const props: StandardFacetProps = {
+        fieldId: overrideFieldId,
+        label: overrideLabel,
+      };
+
+      render(
+        <Facets customCssClasses={{ titleLabel: facetsTitleLabelClass }}>
+          <StandardFacet {...props}/>
+        </Facets>);
+
+      expect(screen.getByText(overrideLabel)).toBeDefined();
+      expect(screen.getByText(overrideLabel)).toHaveClass(facetsTitleLabelClass);
+      expect(screen.getByText(DisplayableFacets[1].displayName)).toBeDefined();
+      expect(screen.getByText(DisplayableFacets[1].displayName)).toHaveClass(facetsTitleLabelClass);
+    });
+
+  it('Use FilterGroupCssClasses provided on the singular facet level if provided',
+    () => {
+      const overrideFieldId = 'products';
+      const overrideLabel = 'My Products';
+      const facetsTitleLabelClass = 'facets-title-label-class';
+      const standardFacetTitleLabelClass = 'standard-facet-title-label-class';
+      const props: StandardFacetProps = {
+        fieldId: overrideFieldId,
+        label: overrideLabel,
+        customCssClasses: { titleLabel: standardFacetTitleLabelClass },
+      };
+
+      render(
+        <Facets onlyRenderChildren={true} customCssClasses={{ titleLabel: facetsTitleLabelClass }}>
+          <StandardFacet {...props}/>
+        </Facets>);
+
+      expect(screen.getByText(overrideLabel)).toBeDefined();
+      expect(screen.getByText(overrideLabel)).toHaveClass(standardFacetTitleLabelClass);
+    });
 });

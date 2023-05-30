@@ -6,7 +6,7 @@
 
 > Warning: This API is now obsolete.
 > 
-> Use [Facets()](./search-ui-react.facets.md) instead.
+> Use [StandardFacet()](./search-ui-react.standardfacet.md) with [Facets()](./search-ui-react.facets.md) instead.
 > 
 
 Props for the [StandardFacets()](./search-ui-react.standardfacets.md) component.

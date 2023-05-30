@@ -4,7 +4,6 @@ import { SearchHeadlessContext, State } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { RecursivePartial } from '../__utils__/mocks';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
-import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 
 const meta: ComponentMeta<typeof Facets> = {
   title: 'Facets',

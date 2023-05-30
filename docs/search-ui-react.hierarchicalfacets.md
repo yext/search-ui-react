@@ -6,7 +6,7 @@
 
 > Warning: This API is now obsolete.
 > 
-> Use [Facets()](./search-ui-react.facets.md) instead.
+> Use [HierarchicalFacet()](./search-ui-react.hierarchicalfacet.md) with [Facets()](./search-ui-react.facets.md) instead.
 > 
 
 A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search.

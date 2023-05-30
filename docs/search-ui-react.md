@@ -64,7 +64,7 @@
 |  [CtaData](./search-ui-react.ctadata.md) | The shape of a StandardCard CTA field's data. |
 |  [DirectAnswerCssClasses](./search-ui-react.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->. |
 |  [DirectAnswerProps](./search-ui-react.directanswerprops.md) | Props for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->. |
-|  [FacetsCssClasses](./search-ui-react.facetscssclasses.md) | The CSS class interface for [Facets()](./search-ui-react.facets.md)<!-- -->. |
+|  [FacetsCssClasses](./search-ui-react.facetscssclasses.md) | The CSS class interface for [Facets()](./search-ui-react.facets.md)<!-- -->. Any [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) props will be overridden by the same props from customCssClasses on [StandardFacetProps](./search-ui-react.standardfacetprops.md)<!-- -->, [NumericalFacetProps](./search-ui-react.numericalfacetprops.md)<!-- -->, or [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md)<!-- -->. |
 |  [FacetsProps](./search-ui-react.facetsprops.md) | Props for the [Facets()](./search-ui-react.facets.md) component. |
 |  [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) | The CSS class interface for FilterGroup. |
 |  [FilterGroupProps](./search-ui-react.filtergroupprops.md) | Props for the FilterGroup component. |

@@ -4,13 +4,14 @@
 
 ## FacetsCssClasses interface
 
-The CSS class interface for [Facets()](./search-ui-react.facets.md)<!-- -->.
+The CSS class interface for [Facets()](./search-ui-react.facets.md)<!-- -->. Any [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) props will be overridden by the same props from customCssClasses on [StandardFacetProps](./search-ui-react.standardfacetprops.md)<!-- -->, [NumericalFacetProps](./search-ui-react.numericalfacetprops.md)<!-- -->, or [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md)<!-- -->.
 
 <b>Signature:</b>
 
 ```typescript
-export interface FacetsCssClasses 
+export interface FacetsCssClasses extends FilterGroupCssClasses 
 ```
+<b>Extends:</b> [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
 
 ## Properties
 
