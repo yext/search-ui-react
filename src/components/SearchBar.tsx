@@ -42,7 +42,7 @@ import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 const builtInCssClasses: Readonly<SearchBarCssClasses> = {
   searchBarContainer: 'h-12 mb-6',
   inputDivider: 'border-t border-gray-200 mx-2.5',
-  inputElement: 'outline-none flex-grow border-none h-full pl-0.5 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
+  inputElement: 'outline-none flex-grow border-none pl-6 h-11 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
   searchButton: 'h-7 w-7',
   focusedOption: 'bg-gray-100',
@@ -76,6 +76,7 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   verticalDivider?: string,
   entityPreviewsDivider?: string
 }
+
 
 /**
  * The type of a functional React component which renders entity previews using
@@ -406,9 +407,6 @@ export function SearchBar({
         onToggle={handleToggleDropdown}
       >
         <div className='inline-flex items-center justify-between w-full'>
-          <div className='w-7 mx-2.5 my-2'>
-            <YextIcon />
-          </div>
           {renderInput()}
           {query && renderClearButton()}
           <DropdownSearchButton
