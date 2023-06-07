@@ -42,7 +42,7 @@ import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 const builtInCssClasses: Readonly<SearchBarCssClasses> = {
   searchBarContainer: 'h-12 mb-6',
   inputDivider: 'border-t border-gray-200 mx-2.5',
-  inputElement: 'outline-none flex-grow border-none pl-6 h-11 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
+  inputElement: 'outline-none flex-grow border-none h-11 pl-4 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
   searchButton: 'h-7 w-7',
   focusedOption: 'bg-gray-100',
