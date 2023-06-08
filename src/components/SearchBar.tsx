@@ -18,7 +18,6 @@ import { VerticalDividerIcon } from '../icons/VerticalDividerIcon';
 import { HistoryIcon as RecentSearchIcon } from '../icons/HistoryIcon';
 import { CloseIcon } from '../icons/CloseIcon';
 import { MagnifyingGlassIcon } from '../icons/MagnifyingGlassIcon';
-import { YextIcon } from '../icons/YextIcon';
 import { Dropdown } from './Dropdown/Dropdown';
 import { useDropdownContext } from './Dropdown/DropdownContext';
 import { DropdownInput } from './Dropdown/DropdownInput';
@@ -42,7 +41,7 @@ import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
 const builtInCssClasses: Readonly<SearchBarCssClasses> = {
   searchBarContainer: 'h-12 mb-6',
   inputDivider: 'border-t border-gray-200 mx-2.5',
-  inputElement: 'outline-none flex-grow border-none h-11 pl-4 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
+  inputElement: 'outline-none flex-grow border-none h-11 pl-5 pr-2 text-neutral-dark text-base placeholder:text-neutral-light',
   searchButtonContainer: ' w-8 h-full mx-2 flex flex-col justify-center items-center',
   searchButton: 'h-7 w-7',
   focusedOption: 'bg-gray-100',
@@ -76,7 +75,6 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
   verticalDivider?: string,
   entityPreviewsDivider?: string
 }
-
 
 /**
  * The type of a functional React component which renders entity previews using
