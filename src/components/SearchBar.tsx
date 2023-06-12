@@ -48,7 +48,7 @@ const builtInCssClasses: Readonly<SearchBarCssClasses> = {
   clearButton: 'h-3 w-3 mr-3.5',
   verticalDivider: 'mr-0.5',
   recentSearchesIcon: 'w-5 mr-1 flex-shrink-0 h-full text-gray-400',
-  recentSearchesOption: 'pl-3 text-neutral-dark w-full',
+  recentSearchesOption: 'whitespace-pre-wrap max-w-full pl-3 pr-5 text-neutral-dark break-words',
   recentSearchesNonHighlighted: 'font-normal', // Swap this to semibold once we apply highlighting to recent searches
   verticalLink: 'ml-12 pl-1 text-neutral italic',
   entityPreviewsDivider: 'h-px bg-gray-200 mt-1 mb-4 mx-3.5',

@@ -14,7 +14,7 @@ export interface AutocompleteResultCssClasses {
 }
 
 export const builtInCssClasses: Readonly<AutocompleteResultCssClasses> = {
-  option: 'whitespace-pre-wrap h-6.5 w-full pl-3 text-neutral-dark',
+  option: 'whitespace-pre-wrap max-w-full pl-3 pr-5 text-neutral-dark break-words',
   icon: 'w-6 h-full flex-shrink-0 text-gray-400'
 };
 
