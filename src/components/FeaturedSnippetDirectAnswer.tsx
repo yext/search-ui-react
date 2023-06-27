@@ -46,7 +46,9 @@ export function FeaturedSnippetDirectAnswer({
   let snippet: JSX.Element;
   if (result.fieldType === 'html') {
     const snippetValue = { __html: result.snippet.value };
-    snippet = <div dangerouslySetInnerHTML={snippetValue}></div>;
+    snippet = (
+        <div dangerouslySetInnerHTML={snippetValue}></div>
+    );
   }
   else {
     snippet = renderHighlightedValue(result.snippet, { highlighted: cssClasses.highlighted });
