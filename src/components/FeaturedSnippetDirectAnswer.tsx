@@ -1,5 +1,6 @@
 import { FeaturedSnippetDirectAnswer as FeaturedSnippetDirectAnswerType } from '@yext/search-headless-react';
 import { renderHighlightedValue } from './utils/renderHighlightedValue';
+import { useMemo } from 'react';
 
 /**
  * Props for {@link FeaturedSnippetDirectAnswer}.
@@ -44,10 +45,12 @@ export function FeaturedSnippetDirectAnswer({
         + 'on the page.');
   }
   let snippet: JSX.Element;
+  const snippetValue = useMemo(() =>
+  { return { __html: result.snippet.value }; }, [result.snippet.value]);
+
   if (result.fieldType === 'html') {
-    const snippetValue = { __html: result.snippet.value };
     snippet = (
-        <div dangerouslySetInnerHTML={snippetValue}></div>
+      <div dangerouslySetInnerHTML={snippetValue}></div>
     );
   }
   else {
