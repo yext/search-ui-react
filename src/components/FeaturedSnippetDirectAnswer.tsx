@@ -1,6 +1,5 @@
 import { FeaturedSnippetDirectAnswer as FeaturedSnippetDirectAnswerType } from '@yext/search-headless-react';
 import { renderHighlightedValue } from './utils/renderHighlightedValue';
-import {CSSProperties} from "react";
 
 /**
  * Props for {@link FeaturedSnippetDirectAnswer}.
@@ -37,7 +36,7 @@ export function FeaturedSnippetDirectAnswer({
   result,
   readMoreClickHandler,
   cssClasses = {}
-}: FeaturedSnippetDirectAnswerProps) : JSX.Element {
+}: FeaturedSnippetDirectAnswerProps): JSX.Element {
   const answer = result.fieldType === 'multi_line_text' && result.value;
   if (unsupportedTextFormats.includes(result.fieldType)) {
     console.warn('Rendering ${result.fieldType} direct answer is currently not supported. ' +
@@ -54,6 +53,7 @@ export function FeaturedSnippetDirectAnswer({
   const link = result.relatedResult.link || result.relatedResult.rawData.landingPageUrl as string;
   const name = result.relatedResult.name;
   const snippetLinkMessage = 'Read more about ';
+
   return (
     <div className={cssClasses.answerContainer}>
       {answer &&
