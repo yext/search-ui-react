@@ -30,7 +30,7 @@ interface FeaturedSnippetDirectAnswerCssClasses {
  * @internal
  */
 
-const unsupportedTextFormats: string[] = ['rich_text', 'rich_text_v2', 'markdown']
+const unsupportedTextFormats: string[] = ['rich_text', 'rich_text_v2', 'markdown'];
 
 export function FeaturedSnippetDirectAnswer({
   result,
@@ -39,15 +39,16 @@ export function FeaturedSnippetDirectAnswer({
 }: FeaturedSnippetDirectAnswerProps): JSX.Element {
   const answer = result.fieldType === 'multi_line_text' && result.value;
   if (unsupportedTextFormats.includes(result.fieldType)) {
-    console.warn('Rendering ${result.fieldType} direct answer is currently not supported. ' +
-        'You can modify your search configuration to convert ${result.fieldType} to HTML to be rendered ' +
-        'on the page.');
+    console.warn('Rendering ' + result.fieldType + ' direct answer is currently not supported. ' +
+        'You can modify your search configuration to convert ' + result.fieldType + ' to HTML to be rendered '
+        + 'on the page.');
   }
   let snippet: JSX.Element;
-  if(result.fieldType == 'html'){
-    snippet = <div dangerouslySetInnerHTML={{__html: result.snippet.value}}></div>
+  if (result.fieldType === 'html') {
+    const snippetValue = { __html: result.snippet.value };
+    snippet = <div dangerouslySetInnerHTML={snippetValue}></div>;
   }
-  else{
+  else {
     snippet = renderHighlightedValue(result.snippet, { highlighted: cssClasses.highlighted });
   }
   const link = result.relatedResult.link || result.relatedResult.rawData.landingPageUrl as string;
