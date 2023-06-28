@@ -46,7 +46,7 @@ export function FeaturedSnippetDirectAnswer({
   }
   let snippet: JSX.Element;
   const snippetValue = useMemo(() =>
-  { return { __html: result.snippet?.value }; }, [result.snippet.value]);
+  { return { __html: result.snippet?.value }; }, [result.snippet?.value]);
 
   if (result.fieldType === 'html') {
     snippet = (
