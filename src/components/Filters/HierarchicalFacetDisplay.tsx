@@ -4,6 +4,8 @@ import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
 import { HierarchicalFacetNode, HierarchicalFacetTree, useHierarchicalFacetTree } from '../../hooks/useHierarchicalFacetTree';
 import { useFiltersContext } from './FiltersContext';
 
+export const DEFAULT_HIERARCHICAL_DELIMITER = '>';
+
 /**
  * Props for HierarchicalFacetDisplay
  *
@@ -49,8 +51,6 @@ const builtInCssClasses: Readonly<HierarchicalFacetDisplayCssClasses> = {
   currentCategory: 'font-semibold mb-2 text-sm',
   showMoreButton: 'ml-4 text-sm font-medium text-primary'
 };
-
-export const DEFAULT_HIERARCHICAL_DELIMITER = '>';
 
 /**
  * A HierarchicalFacetDisplay takes a `DisplayableFacet` and renders the facet in a way

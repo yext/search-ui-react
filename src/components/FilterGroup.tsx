@@ -1,11 +1,7 @@
 import { useSearchUtilities } from '@yext/search-headless-react';
 import { PropsWithChildren, useMemo, useState } from 'react';
-import { twMerge } from '../hooks/useComposedCssClasses';
 import {
   CheckboxOption,
-  CollapsibleLabel,
-  CollapsibleLabelCssClasses,
-  builtInCollapsibleLabelCssClasses,
   CollapsibleSection,
   FilterOptionConfig,
   SearchInput,
@@ -13,6 +9,7 @@ import {
   useFilterGroupContext,
   CheckboxCssClasses
 } from './Filters';
+import { FacetTitle } from './FacetTiltle';
 
 /**
  * The CSS class interface for FilterGroup.
@@ -79,27 +76,16 @@ export function FilterGroup({
     };
   }, [customCssClasses]);
 
-  const collapsibleLabelCssClasses: CollapsibleLabelCssClasses = useMemo(() => {
-    return {
-      label: cssClasses.titleLabel
-    };
-  }, [cssClasses]);
-
-  function renderTitle() {
-    return collapsible
-      ? <CollapsibleLabel label={title} customCssClasses={collapsibleLabelCssClasses} />
-      : (title &&
-        <div className={twMerge('mb-4', builtInCollapsibleLabelCssClasses.label, collapsibleLabelCssClasses.label)}>
-          {title}
-        </div>);
-  }
-
   return (
     <FilterGroupProvider
       fieldId={fieldId}
       defaultExpanded={!collapsible || defaultExpanded}
     >
-      {renderTitle()}
+      <FacetTitle
+        label={title}
+        customCssClasses={customCssClasses}
+        collapsible={collapsible}
+      />
       <CollapsibleSection className={cssClasses.optionsContainer}>
         {searchable && <SearchInput className={cssClasses.searchInput} />}
         <CheckboxOptions

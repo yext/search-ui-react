@@ -15,7 +15,12 @@ const meta: ComponentMeta<typeof LocationBias> = {
     geolocationOptions: {
       control: false
     }
-  }
+  },
+  parameters: {
+    status: {
+      type: 'deprecated',
+    }
+  },
 };
 export default meta;
 
