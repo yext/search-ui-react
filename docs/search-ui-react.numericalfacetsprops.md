@@ -4,6 +4,11 @@
 
 ## NumericalFacetsProps interface
 
+> Warning: This API is now obsolete.
+> 
+> Use [NumericalFacet()](./search-ui-react.numericalfacet.md) with [Facets()](./search-ui-react.facets.md) instead.
+> 
+
 Props for the [NumericalFacets()](./search-ui-react.numericalfacets.md) component.
 
 <b>Signature:</b>

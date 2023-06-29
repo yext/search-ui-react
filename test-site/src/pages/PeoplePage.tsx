@@ -10,12 +10,16 @@ import {
   LocationBias,
   StaticFilters,
   StandardFacets,
+  Facets,
+  HierarchicalFacet,
   HierarchicalFacets,
   FilterDivider,
   ApplyFiltersButton,
   Pagination,
   NumericalFacets,
-  AlternativeVerticals
+  AlternativeVerticals,
+  StandardFacet,
+  NumericalFacet
 } from '@yext/search-ui-react';
 // import { CustomCard } from '../components/CustomCard';
 
@@ -55,11 +59,13 @@ export function PeoplePage() {
             title='Static Employee Department'
             filterOptions={employeeFilterConfigs}
           />
+          <FilterDivider />
           <StaticFilters
             fieldId='c_hierarchicalFacet'
             title='Static Hierarchical Facets'
             filterOptions={hierarchicalFilterConfigs}
           />
+          <FilterDivider />
           <NumericalFacets />
           <StandardFacets
             excludedFieldIds={hierarchicalFacetFieldIds}
@@ -68,6 +74,15 @@ export function PeoplePage() {
             collapsible={true}
             includedFieldIds={hierarchicalFacetFieldIds}
           />
+          <Facets/>
+          <Facets onlyRenderChildren={true}>
+            <StandardFacet fieldId="c_employeeDepartment" label='Yext Department 1' />
+          </Facets>
+          <Facets>
+            <StandardFacet fieldId="c_employeeDepartment" label='Yext Department 2' />
+            <NumericalFacet fieldId="c_popularity" label='Yext Popularity' />
+            <HierarchicalFacet fieldId={hierarchicalFacetFieldIds[0]} />
+          </Facets>
           <br />
           <ApplyFiltersButton />
         </div>

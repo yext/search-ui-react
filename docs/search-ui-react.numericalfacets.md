@@ -4,6 +4,11 @@
 
 ## NumericalFacets() function
 
+> Warning: This API is now obsolete.
+> 
+> Use [NumericalFacet()](./search-ui-react.numericalfacet.md) with [Facets()](./search-ui-react.facets.md) instead.
+> 
+
 A component that displays numerical facets applicable to the current vertical search.
 
 <b>Signature:</b>

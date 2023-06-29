@@ -6,21 +6,12 @@ on:
       - main
 
 jobs:
-  sync-branches:
-    runs-on: ubuntu-latest
-    name: Syncing branches
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - uses: devmasx/merge-branch@v1.4.0
-        with:
-          type: now
-          from_branch: ${{ github.event.repository.default_branch }}
-          target_branch: storybook-site
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: devmasx/merge-branch@v1.4.0
-        with:
-          type: now
-          from_branch: ${{ github.event.repository.default_branch }}
-          target_branch: test-site
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+  call_sync_branches:
+    strategy:
+      matrix:
+        target_branch: ["storybook-site", "test-site"]
+    uses: yext/slapshot-reusable-workflows/.github/workflows/sync_default_branch.yml@v1
+    with:
+      target_branch: ${{ matrix.target_branch }}
+    secrets:
+      caller_github_token: ${{ secrets.GITHUB_TOKEN }}

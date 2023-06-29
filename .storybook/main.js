@@ -3,6 +3,7 @@ module.exports = {
     '../tests/**/*.stories.tsx'
   ],
   addons: [
+    '@etchteam/storybook-addon-status',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',

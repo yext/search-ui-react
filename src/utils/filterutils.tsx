@@ -18,10 +18,18 @@ export function isNumberRangeValue(obj: unknown): obj is NumberRangeValue {
 }
 
 /**
+ * Checks if the facet is a string facet with string options.
+ */
+export function isStringFacet(facet: DisplayableFacet): boolean {
+  return facet.options.length > 0 && typeof facet.options[0].value === 'string';
+}
+
+/**
  * Checks if the facet is a numerical facet with number range filter options.
  */
 export function isNumericalFacet(facet: DisplayableFacet): boolean {
-  return facet.options.length > 0 && isNumberRangeFilter(facet.options[0]);
+  return facet.options.length > 0 &&
+    facet.options.some(option => isNumberRangeFilter(option));
 }
 
 /**
