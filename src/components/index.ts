@@ -46,6 +46,12 @@ export {
 } from './LocationBias';
 
 export {
+  Geolocation,
+  GeolocationCssClasses,
+  GeolocationProps
+} from './Geolocation';
+
+export {
   AppliedFilters,
   AppliedFiltersCssClasses,
   AppliedFiltersProps
@@ -118,6 +124,22 @@ export {
   NumericalFacetsCssClasses,
   NumericalFacetsProps
 } from './NumericalFacets';
+
+export {
+  Facets,
+  StandardFacet,
+  NumericalFacet,
+  HierarchicalFacet
+} from './Facets';
+
+export {
+  FacetsCssClasses,
+  FacetsProps,
+  FacetProps,
+  StandardFacetProps,
+  NumericalFacetProps,
+  HierarchicalFacetProps
+} from './FacetProps';
 
 export {
   FilterGroupProps,

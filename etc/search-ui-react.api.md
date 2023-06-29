@@ -10,6 +10,7 @@ import { AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsService } from '@yext/analytics';
 import { AutocompleteResponse } from '@yext/search-headless-react';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
+import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
@@ -21,6 +22,7 @@ import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
 import { QuerySource } from '@yext/search-headless-react';
+import { ReactElement } from 'react';
 import { Result } from '@yext/search-headless-react';
 import { SearchActions } from '@yext/search-headless-react';
 import { SearchHeadless } from '@yext/search-headless-react';
@@ -201,6 +203,30 @@ export function executeAutocomplete(searchActions: SearchActions): Promise<Autoc
 export function executeSearch(searchActions: SearchActions): Promise<void>;
 
 // @public
+export type FacetProps = StandardFacetProps | NumericalFacetProps | HierarchicalFacetProps;
+
+// @public
+export function Facets(props: FacetsProps): JSX.Element;
+
+// @public
+export interface FacetsCssClasses extends FilterGroupCssClasses {
+    // (undocumented)
+    divider?: string;
+    // (undocumented)
+    facetsContainer?: string;
+}
+
+// @public
+export interface FacetsProps {
+    children?: ReactElement[] | ReactElement | undefined | null;
+    customCssClasses?: FacetsCssClasses;
+    excludedFieldIds?: string[];
+    hierarchicalFieldIds?: string[];
+    onlyRenderChildren?: boolean;
+    searchOnChange?: boolean;
+}
+
+// @public
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
 // @public
@@ -280,10 +306,37 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
+function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
+export { Geolocation_2 as Geolocation }
+
+// @public
+export interface GeolocationCssClasses {
+    // (undocumented)
+    button?: string;
+    // (undocumented)
+    geolocationContainer?: string;
+    // (undocumented)
+    iconContainer?: string;
+}
+
+// @public
+export interface GeolocationProps {
+    customCssClasses?: GeolocationCssClasses;
+    GeolocationIcon?: React.FunctionComponent;
+    geolocationOptions?: PositionOptions;
+    handleClick?: (position: GeolocationPosition) => void;
+    label?: string;
+    radius?: number;
+}
+
+// @public
 export function getSearchIntents(searchActions: SearchActions): Promise<SearchIntent[] | undefined>;
 
 // @public
 export function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
+
+// @public
+export function HierarchicalFacet(props: HierarchicalFacetProps): null;
 
 // @public
 export interface HierarchicalFacetDisplayCssClasses {
@@ -306,6 +359,15 @@ export interface HierarchicalFacetDisplayCssClasses {
 }
 
 // @public
+export interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> {
+    // Warning: (ae-forgotten-export) The symbol "HierarchicalFacetCustomCssClasses" needs to be exported by the entry point index.d.ts
+    customCssClasses?: HierarchicalFacetCustomCssClasses;
+    delimiter?: string;
+    showMoreLimit?: number;
+    transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];
+}
+
+// @public @deprecated
 export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
 
 // @public
@@ -316,7 +378,7 @@ export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCs
     hierarchicalFacetsContainer?: string;
 }
 
-// @public
+// @public @deprecated
 export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
     customCssClasses?: HierarchicalFacetsCssClasses;
     delimiter?: string;
@@ -335,10 +397,10 @@ export interface HighlightedValueCssClasses {
 // @public
 export function isCtaData(data: unknown): data is CtaData;
 
-// @public
+// @public @deprecated
 export function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): JSX.Element | null;
 
-// @public
+// @public @deprecated
 export interface LocationBiasCssClasses {
     // (undocumented)
     button?: string;
@@ -352,7 +414,7 @@ export interface LocationBiasCssClasses {
     source?: string;
 }
 
-// @public
+// @public @deprecated
 export interface LocationBiasProps {
     customCssClasses?: LocationBiasCssClasses;
     geolocationOptions?: PositionOptions;
@@ -371,6 +433,17 @@ export interface MapboxMapProps<T> {
 }
 
 // @public
+export function NumericalFacet(props: NumericalFacetProps): null;
+
+// @public
+export interface NumericalFacetProps extends StandardFacetProps {
+    customCssClasses?: FilterGroupCssClasses & RangeInputCssClasses;
+    getFilterDisplayName?: (value: NumberRangeValue) => string;
+    inputPrefix?: JSX.Element;
+    showOptionCounts?: boolean;
+}
+
+// @public @deprecated
 export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 
 // @public
@@ -381,7 +454,7 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
     numericalFacetsContainer?: string;
 }
 
-// @public
+// @public @deprecated
 export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
     customCssClasses?: NumericalFacetsCssClasses;
     getFilterDisplayName?: (value: NumberRangeValue) => string;
@@ -644,9 +717,24 @@ export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> 
 }
 
 // @public
-export function StandardFacets(props: StandardFacetsProps): JSX.Element;
+export function StandardFacet(props: StandardFacetProps): null;
 
 // @public
+export interface StandardFacetProps {
+    collapsible?: boolean;
+    customCssClasses?: FilterGroupCssClasses;
+    defaultExpanded?: boolean;
+    fieldId: string;
+    label?: string;
+    showMoreLimit?: number;
+    showOptionCounts?: boolean;
+    transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];
+}
+
+// @public @deprecated
+export function StandardFacets(props: StandardFacetsProps): JSX.Element;
+
+// @public @deprecated
 export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
     // (undocumented)
     divider?: string;
@@ -654,7 +742,7 @@ export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
     standardFacetsContainer?: string;
 }
 
-// @public
+// @public @deprecated
 export interface StandardFacetsProps {
     collapsible?: boolean;
     customCssClasses?: StandardFacetsCssClasses;

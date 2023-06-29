@@ -9,6 +9,8 @@ import LoadingIndicator from '../icons/LoadingIndicator';
  * The CSS class interface for the {@link LocationBias} component.
  *
  * @public
+ *
+ * @deprecated LocationBias component has been superseded by Geolocation component.
  */
 export interface LocationBiasCssClasses {
   locationBiasContainer?: string,
@@ -30,6 +32,8 @@ const builtInCssClasses: Readonly<LocationBiasCssClasses> = {
  * The props for the {@link LocationBias} component.
  *
  * @public
+ *
+ * @deprecated LocationBias component has been superseded by Geolocation component.
  */
 export interface LocationBiasProps {
   /** Configuration used when collecting the user's location.
@@ -44,6 +48,8 @@ export interface LocationBiasProps {
  * A React Component which displays and collects location information in order to bias searches.
  *
  * @public
+ *
+ * @deprecated LocationBias component has been superseded by Geolocation component.
  *
  * @param props - {@link LocationBiasProps}
  * @returns A react component for Location Bias

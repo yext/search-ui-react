@@ -5,7 +5,7 @@ import {
   SearchBar,
   StandardCard,
   VerticalResults,
-  LocationBias,
+  Geolocation,
   NumericalFacets,
   Pagination
 } from '@yext/search-ui-react';
@@ -34,7 +34,7 @@ export function ProductsPage() {
             CardComponent={StandardCard}
           />
           <Pagination />
-          <LocationBias />
+          <Geolocation />
         </div>
       </div>
     </div>

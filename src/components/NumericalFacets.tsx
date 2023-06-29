@@ -19,6 +19,7 @@ export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeI
 /**
  * Props for the {@link NumericalFacets} component.
  *
+ * @deprecated Use {@link NumericalFacet} with {@link Facets} instead.
  * @public
  */
 export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> {
@@ -49,6 +50,7 @@ const DEFAULT_RANGE_INPUT_PREFIX = <>$</>;
  * @param props - {@link NumericalFacetsProps}
  * @returns A React component for facets
  *
+ * @deprecated Use {@link NumericalFacet} with {@link Facets} instead.
  * @public
  */
 export function NumericalFacets({

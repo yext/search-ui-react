@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "slapshot@yext.com",
   "license": "BSD-3-Clause",
@@ -42,7 +42,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "wcag": "test-storybook",
-    "test:unit": "jest --coverage --coverageDirectory=coverage/unit",
+    "test:unit": "jest",
     "test:visual": "./tests/scripts/visual-coverage.sh",
     "test": "./tests/scripts/combined-coverage.sh"
   },
@@ -51,6 +51,7 @@
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.14.5",
+    "@etchteam/storybook-addon-status": "^4.2.2",
     "@percy/cli": "^1.8.0",
     "@percy/storybook": "^4.3.3",
     "@reduxjs/toolkit": "^1.8.6",
@@ -75,7 +76,7 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "@yext/eslint-config-slapshot": "^0.5.0",
-    "@yext/search-headless-react": "^2.2.0",
+    "@yext/search-headless-react": "2.3.0",
     "axe-playwright": "^1.1.11",
     "babel-jest": "^27.0.6",
     "eslint": "^8.11.0",
@@ -92,18 +93,19 @@
     "typescript": "~4.5.5"
   },
   "peerDependencies": {
-    "@yext/search-headless-react": "^2.2.0",
+    "@yext/search-headless-react": "2.3.0",
     "react": "^16.14 || ^17",
     "react-dom": "^16.14 || ^17"
   },
   "jest": {
     "bail": 0,
     "verbose": true,
-    "collectCoverage": false,
+    "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**",
       "!src/models/**"
     ],
+    "coverageDirectory": "coverage/unit",
     "moduleFileExtensions": [
       "js",
       "ts",
@@ -134,14 +136,14 @@
     "restoreMocks": true
   },
   "dependencies": {
-    "lodash": "^4.17.21",
     "@microsoft/api-documenter": "^7.15.3",
     "@microsoft/api-extractor": "^7.19.4",
     "@reach/auto-id": "^0.18.0",
     "@restart/ui": "^1.0.1",
     "@tailwindcss/forms": "^0.5.0",
-    "@yext/analytics": "^0.2.0-beta.3",
+    "@yext/analytics": "^0.5.0",
     "classnames": "^2.3.1",
+    "lodash": "^4.17.21",
     "mapbox-gl": "^2.9.2",
     "prop-types": "^15.8.1",
     "react-collapsed": "3.6.0",
