@@ -10,5 +10,4 @@ lib/
 
 .env
 test-site/.env
-
 .idea/
