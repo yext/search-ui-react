@@ -27,6 +27,10 @@ export const parameters = {
         'DirectAnswer',
         'FilterSearch',
         'StaticFilters',
+        'Facets',
+        'StandardFacet',
+        'NumericalFacet',
+        'HierarchicalFacet',
         'StandardFacets',
         'NumericalFacets',
         'HierarchicalFacets',
@@ -36,6 +40,7 @@ export const parameters = {
         'AlternativeVerticals',
         'SpellCheck',
         'ResultsCount',
+        'Geolocation',
         'LocationBias',
         'Dropdown'
       ]

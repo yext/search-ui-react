@@ -1,7 +1,7 @@
 #!/bin/bash
 
-npm run test:unit
-npm run test:visual
+npm run test:unit || exit 1
+npm run test:visual || exit 1
 
 # merge
 mkdir -p coverage/merge

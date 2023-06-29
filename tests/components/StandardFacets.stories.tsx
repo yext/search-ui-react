@@ -42,5 +42,5 @@ ShowMoreLimitClicked.args = {
 };
 ShowMoreLimitClicked.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByText('Show More'));
+  userEvent.click(canvas.queryAllByText('Show More')[0]);
 };
