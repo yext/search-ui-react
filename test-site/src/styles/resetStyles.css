@@ -1,0 +1,4 @@
+/* Revert CSS style of target element and its children */
+.reset-style, .reset-style * {
+    all: revert;
+}
