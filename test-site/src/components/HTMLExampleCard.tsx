@@ -1,6 +1,7 @@
 import { CardProps, useCardAnalyticsCallback, useCardFeedbackCallback } from '@yext/search-ui-react';
 import { useCallback } from 'react';
 import '../styles/resetStyles.css';
+import { useMemo } from 'react';
 
 const builtInCssClasses = {
   container: 'flex flex-col justify-between border border-gray-200 rounded-lg mb-4 p-4 shadow-sm',
@@ -19,12 +20,10 @@ interface CustomRawDataType {
   [htmlFieldName]: { html: string }
 }
 
-function renderHTMLContent(HTMLContent: string | undefined) {
-  if ( HTMLContent )
+function renderHTMLContent(htmlContent: {__html: string} | undefined) {
+  if ( htmlContent )
   {
-    const createDangerousHTMLObject = (htmlContent: string) => ({ __html: htmlContent });
-    const dangerouslySetHTML = createDangerousHTMLObject(HTMLContent);
-    return <div className="reset-style" dangerouslySetInnerHTML={dangerouslySetHTML} />;
+    return <div className="reset-style" dangerouslySetInnerHTML={htmlContent} />;
   }
   return null;
 }
@@ -36,11 +35,17 @@ export function HTMLExampleCard(props: CardProps<CustomRawDataType>): JSX.Elemen
   const onClick = useCallback(() => {
     cardFeedbackCallback('THUMBS_UP');
   }, [cardFeedbackCallback]);
+
+  const htmlContent = useMemo(() =>
+  {return {__html: result.rawData?.[htmlFieldName]?.html}}, [result.rawData?.[htmlFieldName]?.html]);
+
   return (
     <div className={builtInCssClasses.container}>
       <p className={builtInCssClasses.header}>HTML Card</p>
       <button onClick={onClickTitle} className={builtInCssClasses.title}>{result.rawData.name}</button>
-      {renderHTMLContent(result.rawData?.[htmlFieldName]?.html)}
+
+
+      {renderHTMLContent(htmlContent)}
       <button onClick={onClick} className={builtInCssClasses.thumbsFeedbackContainer}>Feedback</button>
     </div>
   );
