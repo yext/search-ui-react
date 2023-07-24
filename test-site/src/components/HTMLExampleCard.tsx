@@ -20,7 +20,7 @@ interface CustomRawDataType {
   [htmlFieldName]: { html: string }
 }
 
-function renderHTMLContent(htmlContent: {__html: string} | undefined) {
+function renderHTMLContent(htmlContent: { __html: string } | undefined) {
   if ( htmlContent )
   {
     return <div className="reset-style" dangerouslySetInnerHTML={htmlContent} />;
@@ -36,15 +36,13 @@ export function HTMLExampleCard(props: CardProps<CustomRawDataType>): JSX.Elemen
     cardFeedbackCallback('THUMBS_UP');
   }, [cardFeedbackCallback]);
 
-  const htmlContent = useMemo(() =>
-  {return {__html: result.rawData?.[htmlFieldName]?.html}}, [result.rawData?.[htmlFieldName]?.html]);
+  const html: string = result.rawData?.[htmlFieldName]?.html;
+  const htmlContent = useMemo(() => { return { __html: html }; }, [html]);
 
   return (
     <div className={builtInCssClasses.container}>
       <p className={builtInCssClasses.header}>HTML Card</p>
       <button onClick={onClickTitle} className={builtInCssClasses.title}>{result.rawData.name}</button>
-
-
       {renderHTMLContent(htmlContent)}
       <button onClick={onClick} className={builtInCssClasses.thumbsFeedbackContainer}>Feedback</button>
     </div>
