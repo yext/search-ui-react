@@ -16,13 +16,15 @@ const htmlFieldName = 'c_richTextV2Data';
 interface CustomRawDataType {
   name: string,
   description: string,
-  [htmlFieldName]: any
+  [htmlFieldName]: { html: string }
 }
 
 function renderHTMLContent(HTMLContent: string | undefined) {
   if ( HTMLContent )
   {
-    return <div className="reset-style" dangerouslySetInnerHTML={{ __html: HTMLContent }} />;
+    const createDangerousHTMLObject = (htmlContent: string) => ({ __html: htmlContent });
+    const dangerouslySetHTML = createDangerousHTMLObject(HTMLContent);
+    return <div className="reset-style" dangerouslySetInnerHTML={dangerouslySetHTML} />;
   }
   return null;
 }

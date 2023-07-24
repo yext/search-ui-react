@@ -17,7 +17,7 @@ const markdownFieldName = 'c_markdownData';
 interface CustomRawDataType {
   name: string,
   description: string,
-  [markdownFieldName]: any
+  [markdownFieldName]: { markdown: string }
 }
 
 export function MarkdownExampleCard(props: CardProps<CustomRawDataType>): JSX.Element {
