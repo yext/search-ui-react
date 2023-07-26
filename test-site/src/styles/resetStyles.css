@@ -1,0 +1,3 @@
+.reset-style, .reset-style * {
+    all: revert;
+}
