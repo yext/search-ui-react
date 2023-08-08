@@ -5,7 +5,7 @@ import {
   State
 } from '@yext/search-headless-react';
 import { RecursivePartial } from '../__utils__/mocks';
-import merge from 'lodash/merge';
+import { merge } from 'lodash-es';
 
 export function generateMockedHeadless(state?: RecursivePartial<State>): SearchHeadless {
   const emptyState: State = {

@@ -1,5 +1,5 @@
 import { FieldValueFilter, useSearchState, useSearchActions, DisplayableFacet, DisplayableFacetOption, SearchActions, Matcher } from '@yext/search-headless-react';
-import { isEqual } from 'lodash';
+import { isEqual } from 'lodash-es';
 import { useMemo } from 'react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { isDescendantHierarchicalFacet } from '../utils/isDescendantHierarchicalFacet';

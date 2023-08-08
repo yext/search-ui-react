@@ -1,9 +1,10 @@
-import { SearchIntent, QuerySource, SearchCore, SearchHeadlessContext, State } from '@yext/search-headless-react';
+import { SearchIntent, QuerySource, SearchCore, SearchHeadlessContext, State, AutocompleteResponse } from '@yext/search-headless-react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { SearchBar } from '../../src/components/SearchBar';
 import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import * as Analytics from '../../src/hooks/useAnalytics';
+import { SearchAnalyticsService } from '@yext/analytics';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -31,7 +32,7 @@ describe('SearchBar', () => {
       ],
       inputIntents: [],
       uuid: ''
-    };
+    } as unknown as AutocompleteResponse;
 
     it('displays universal query suggestions when click on universal search bar', async () => {
       const mockedUniversalAutocomplete = jest
@@ -84,12 +85,12 @@ describe('SearchBar', () => {
         results: [{ value: 'query suggestion 1' }],
         inputIntents: [],
         uuid: ''
-      };
+      } as unknown as AutocompleteResponse;;
       const mockedUniversalAutocompleteResultTwo = {
         results: [{ value: 'query suggestion 2' }],
         inputIntents: [],
         uuid: ''
-      };
+      } as unknown as AutocompleteResponse;;
       const mockedUniversalAutocomplete = jest
         .spyOn(SearchCore.prototype, 'universalAutocomplete')
         .mockResolvedValueOnce(mockedUniversalAutocompleteResultOne)
@@ -140,7 +141,7 @@ describe('SearchBar', () => {
       }],
       inputIntents: [],
       uuid: ''
-    };
+    } as unknown as AutocompleteResponse;;
 
     beforeEach(() => {
       jest.spyOn(SearchCore.prototype, 'universalAutocomplete')
@@ -334,7 +335,7 @@ describe('SearchBar', () => {
         results: [{ value: 'query suggestion 1' }],
         inputIntents: [SearchIntent.NearMe],
         uuid: ''
-      };
+      } as unknown as AutocompleteResponse;;
       const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
       jest.spyOn(SearchCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedUniversalAutocompleteResult);
@@ -367,12 +368,12 @@ describe('SearchBar', () => {
       results: [{ value: 'query suggestion' }],
       inputIntents: [],
       uuid: ''
-    };
+    } as unknown as AutocompleteResponse;;
     const mockedReport = jest.fn();
 
     beforeEach(() => {
       jest.spyOn(Analytics, 'useAnalytics')
-        .mockImplementation(() => ({ report: mockedReport }));
+        .mockImplementation(() => ({ report: mockedReport }) as unknown as SearchAnalyticsService);
     });
 
     it('reports AUTO_COMPLETE_SELECTION feedback', async () => {
@@ -441,7 +442,7 @@ describe('SearchBar', () => {
         ],
         inputIntents: [],
         uuid: ''
-      };
+      } as unknown as AutocompleteResponse;;
       jest.spyOn(SearchCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
       render(

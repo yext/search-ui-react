@@ -6,6 +6,7 @@
   "license": "BSD-3-Clause",
   "main": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
+  "type": "module",
   "keywords": [
     "search",
     "nlp",
@@ -70,7 +71,7 @@
     "@testing-library/react-hooks": "^8.0.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.1.0",
-    "@types/lodash": "^4.14.180",
+    "@types/lodash-es": "^4.17.8",
     "@types/mapbox-gl": "^2.7.5",
     "@types/react": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
@@ -78,7 +79,6 @@
     "@yext/eslint-config-slapshot": "^0.5.0",
     "@yext/search-headless-react": "2.3.0",
     "axe-playwright": "^1.1.11",
-    "babel-jest": "^27.0.6",
     "eslint": "^8.11.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-react-hooks": "^4.3.0",
@@ -90,6 +90,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "tailwindcss": "^3.0.23",
+    "ts-jest": "^29.1.1",
     "typescript": "~4.5.5"
   },
   "peerDependencies": {
@@ -127,13 +128,33 @@
       "<rootDir>/tests/__fixtures__/*"
     ],
     "transformIgnorePatterns": [
-      "/node_modules/(?!(@yext/search-headless-react)/)"
+      "/node_modules/(?!(@yext/search-headless-react)/|lodash-es)"
     ],
     "moduleNameMapper": {
+      "^(.+)\\.js$": "$1",
       "./SearchCore": "<rootDir>/tests/__fixtures__/core/SearchCore.ts"
     },
     "resetMocks": true,
-    "restoreMocks": true
+    "restoreMocks": true,
+    "transform": {
+      "\\.[jt]sx?$": [
+        "ts-jest",
+        {
+          "tsconfig": {
+            "allowSyntheticDefaultImports": true,
+            "esModuleInterop": true,
+            "allowJs": true,
+            "target": "ESNext",
+            "jsx": "react-jsx"
+          },
+          "diagnostics": {
+            "ignoreCodes": [
+              1343
+            ]
+          }
+        }
+      ]
+    }
   },
   "dependencies": {
     "@microsoft/api-documenter": "^7.15.3",
@@ -143,7 +164,7 @@
     "@tailwindcss/forms": "^0.5.0",
     "@yext/analytics": "^0.5.0",
     "classnames": "^2.3.1",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "mapbox-gl": "^2.9.2",
     "prop-types": "^15.8.1",
     "react-collapsed": "3.6.0",

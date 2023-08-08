@@ -1,8 +1,10 @@
 import { useRef, useEffect } from 'react';
-import mapboxgl, { Map, Marker, MapboxOptions, LngLatBounds, MarkerOptions, LngLat } from 'mapbox-gl';
+import mapboxgl, { MapboxOptions, MarkerOptions} from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import ReactDOM from 'react-dom';
+
+const {Marker, LngLatBounds } = mapboxgl;
 
 /**
  * A functional component that can be used to render a custom marker on the map.
@@ -11,7 +13,7 @@ import ReactDOM from 'react-dom';
  */
 export type PinComponent<T> = (props: {
   index: number,
-  mapbox: Map,
+  mapbox: mapboxgl.Map,
   result: Result<T>
 }) => JSX.Element;
 
@@ -39,7 +41,7 @@ export interface Coordinate {
  *
  * @public
  */
-export type OnDragHandler = (center: LngLat, bounds: LngLatBounds) => void;
+export type OnDragHandler = (center: mapboxgl.LngLat, bounds: mapboxgl.LngLatBounds) => void;
 
 /**
  * Props for the {@link MapboxMap} component.
@@ -97,8 +99,8 @@ export function MapboxMap<T>({
   }, [mapboxAccessToken]);
 
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<Map | null>(null);
-  const markers = useRef<Marker[]>([]);
+  const map = useRef<mapboxgl.Map | null>(null);
+  const markers = useRef<mapboxgl.Marker[]>([]);
 
   const locationResults = useSearchState(state => state.vertical.results) as Result<T>[];
   const onDragDebounced = useDebouncedFunction(onDrag, 100);
@@ -112,7 +114,7 @@ export function MapboxMap<T>({
         zoom: 9,
         ...mapboxOptions
       };
-      map.current = new Map(options);
+      map.current = new mapboxgl.Map(options);
       const mapbox = map.current;
       mapbox.resize();
       if (onDragDebounced) {

@@ -14,9 +14,7 @@ import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
-import { LngLat } from 'mapbox-gl';
-import { LngLatBounds } from 'mapbox-gl';
-import { Map as Map_2 } from 'mapbox-gl';
+import { default as mapboxgl_2 } from 'mapbox-gl';
 import { MapboxOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
@@ -463,7 +461,7 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
 }
 
 // @public
-export type OnDragHandler = (center: LngLat, bounds: LngLatBounds) => void;
+export type OnDragHandler = (center: mapboxgl_2.LngLat, bounds: mapboxgl_2.LngLatBounds) => void;
 
 // @public
 export type onSearchFunc = (searchEventData: {
@@ -510,7 +508,7 @@ export interface PaginationProps {
 // @public
 export type PinComponent<T> = (props: {
     index: number;
-    mapbox: Map_2;
+    mapbox: mapboxgl_2.Map;
     result: Result<T>;
 }) => JSX.Element;
 
