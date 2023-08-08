@@ -11,7 +11,7 @@
 
 A component that displays simple facets applicable to the current vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function StandardFacets(props: StandardFacetsProps): JSX.Element;
@@ -23,7 +23,7 @@ export declare function StandardFacets(props: StandardFacetsProps): JSX.Element;
 |  --- | --- | --- |
 |  props | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

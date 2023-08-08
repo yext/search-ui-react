@@ -6,10 +6,10 @@
 
 Analytics event types for interactions on a card.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type CardAnalyticsType = CardCtaEventType | FeedbackType;
 ```
-<b>References:</b> [CardCtaEventType](./search-ui-react.cardctaeventtype.md)<!-- -->, [FeedbackType](./search-ui-react.feedbacktype.md)
+**References:** [CardCtaEventType](./search-ui-react.cardctaeventtype.md)<!-- -->, [FeedbackType](./search-ui-react.feedbacktype.md)
 

@@ -6,10 +6,10 @@
 
 A component that can be used to render a section template for vertical results.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => JSX.Element | null;
 ```
-<b>References:</b> [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)<!-- -->, [SectionProps](./search-ui-react.sectionprops.md)
+**References:** [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)<!-- -->, [SectionProps](./search-ui-react.sectionprops.md)
 

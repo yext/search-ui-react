@@ -6,7 +6,7 @@
 
 useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
@@ -17,9 +17,9 @@ export declare function useComposedCssClasses<ClassInterface extends Partial<Rec
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  builtInClasses | Readonly&lt;ClassInterface&gt; | The component's built-in tailwind classes |
-|  customClasses | Partial&lt;ClassInterface&gt; | The custom tailwind classes to merge with the built-in ones |
+|  customClasses | Partial&lt;ClassInterface&gt; | _(Optional)_ The custom tailwind classes to merge with the built-in ones |
 
-<b>Returns:</b>
+**Returns:**
 
 ClassInterface
 

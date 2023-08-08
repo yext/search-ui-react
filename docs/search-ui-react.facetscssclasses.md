@@ -6,17 +6,17 @@
 
 The CSS class interface for [Facets()](./search-ui-react.facets.md)<!-- -->. Any [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) props will be overridden by the same props from customCssClasses on [StandardFacetProps](./search-ui-react.standardfacetprops.md)<!-- -->, [NumericalFacetProps](./search-ui-react.numericalfacetprops.md)<!-- -->, or [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface FacetsCssClasses extends FilterGroupCssClasses 
 ```
-<b>Extends:</b> [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
+**Extends:** [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [divider?](./search-ui-react.facetscssclasses.divider.md) | string | <i>(Optional)</i> |
-|  [facetsContainer?](./search-ui-react.facetscssclasses.facetscontainer.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [divider?](./search-ui-react.facetscssclasses.divider.md) |  | string | _(Optional)_ |
+|  [facetsContainer?](./search-ui-react.facetscssclasses.facetscontainer.md) |  | string | _(Optional)_ |
 

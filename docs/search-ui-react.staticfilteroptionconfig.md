@@ -6,12 +6,12 @@
 
 The configuration data for a field value static filter option.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher' | 'value'> & {
     value: string | number | boolean;
 };
 ```
-<b>References:</b> [FilterOptionConfig](./search-ui-react.filteroptionconfig.md)
+**References:** [FilterOptionConfig](./search-ui-react.filteroptionconfig.md)
 

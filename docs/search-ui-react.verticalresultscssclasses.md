@@ -6,7 +6,7 @@
 
 The CSS class interface used for [VerticalResults()](./search-ui-react.verticalresults.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface VerticalResultsCssClasses 
@@ -14,8 +14,8 @@ export interface VerticalResultsCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [verticalResultsContainer?](./search-ui-react.verticalresultscssclasses.verticalresultscontainer.md) | string | <i>(Optional)</i> |
-|  [verticalResultsLoading?](./search-ui-react.verticalresultscssclasses.verticalresultsloading.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [verticalResultsContainer?](./search-ui-react.verticalresultscssclasses.verticalresultscontainer.md) |  | string | _(Optional)_ |
+|  [verticalResultsLoading?](./search-ui-react.verticalresultscssclasses.verticalresultsloading.md) |  | string | _(Optional)_ |
 

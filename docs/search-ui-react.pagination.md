@@ -6,7 +6,7 @@
 
 Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function Pagination(props: PaginationProps): JSX.Element | null;
@@ -18,7 +18,7 @@ export declare function Pagination(props: PaginationProps): JSX.Element | null;
 |  --- | --- | --- |
 |  props | [PaginationProps](./search-ui-react.paginationprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

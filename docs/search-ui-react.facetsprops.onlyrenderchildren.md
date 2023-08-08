@@ -6,7 +6,7 @@
 
 If set to true, only the facets specified in the children are rendered. If set to false, all facets are rendered with the ones specified in the children overridden. Default to false.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 onlyRenderChildren?: boolean;

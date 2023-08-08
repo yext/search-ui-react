@@ -6,7 +6,7 @@
 
 A function which is called when user drag the map.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type OnDragHandler = (center: mapboxgl.LngLat, bounds: mapboxgl.LngLatBounds) => void;

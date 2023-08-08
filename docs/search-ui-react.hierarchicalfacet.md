@@ -6,7 +6,7 @@
 
 A component that displays a single hierarchical facet, in a tree level structure, applicable to the current vertical search. Use this to override the default rendering.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function HierarchicalFacet(props: HierarchicalFacetProps): null;
@@ -18,7 +18,7 @@ export declare function HierarchicalFacet(props: HierarchicalFacetProps): null;
 |  --- | --- | --- |
 |  props | [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md) | [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
 null
 

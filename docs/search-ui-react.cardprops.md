@@ -6,7 +6,7 @@
 
 The props provided to every [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface CardProps<T = DefaultRawDataType> 
@@ -14,7 +14,7 @@ export interface CardProps<T = DefaultRawDataType>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [result](./search-ui-react.cardprops.result.md) | Result&lt;T&gt; | The result data provided to the card for rendering. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [result](./search-ui-react.cardprops.result.md) |  | Result&lt;T&gt; | The result data provided to the card for rendering. |
 

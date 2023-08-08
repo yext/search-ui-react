@@ -6,7 +6,7 @@
 
 Retrieves user's location using navigator.geolocation API.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
@@ -16,9 +16,9 @@ export declare function getUserLocation(geolocationOptions?: PositionOptions): P
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  geolocationOptions | PositionOptions |  |
+|  geolocationOptions | PositionOptions | _(Optional)_ |
 
-<b>Returns:</b>
+**Returns:**
 
 Promise&lt;GeolocationPosition&gt;
 

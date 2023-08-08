@@ -6,7 +6,7 @@
 
 The configuration options for Visual Autocomplete.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface VisualAutocompleteConfig 
@@ -14,11 +14,11 @@ export interface VisualAutocompleteConfig
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [entityPreviewsDebouncingTime?](./search-ui-react.visualautocompleteconfig.entitypreviewsdebouncingtime.md) | number | <i>(Optional)</i> The debouncing time, in milliseconds, for making API requests for entity previews. |
-|  [entityPreviewSearcher](./search-ui-react.visualautocompleteconfig.entitypreviewsearcher.md) | SearchHeadless | The Search Headless instance used to perform visual autocomplete searches. |
-|  [includedVerticals](./search-ui-react.visualautocompleteconfig.includedverticals.md) | string\[\] | Specify which verticals to include for VisualAutocomplete. |
-|  [renderEntityPreviews](./search-ui-react.visualautocompleteconfig.renderentitypreviews.md) | [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | Renders entity previews based on the autocomplete loading state and results. |
-|  [universalLimit?](./search-ui-react.visualautocompleteconfig.universallimit.md) | UniversalLimit | <i>(Optional)</i> Specify the number of entities to return per vertical. \* |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [entityPreviewsDebouncingTime?](./search-ui-react.visualautocompleteconfig.entitypreviewsdebouncingtime.md) |  | number | _(Optional)_ The debouncing time, in milliseconds, for making API requests for entity previews. |
+|  [entityPreviewSearcher](./search-ui-react.visualautocompleteconfig.entitypreviewsearcher.md) |  | SearchHeadless | The Search Headless instance used to perform visual autocomplete searches. |
+|  [includedVerticals](./search-ui-react.visualautocompleteconfig.includedverticals.md) |  | string\[\] | Specify which verticals to include for VisualAutocomplete. |
+|  [renderEntityPreviews](./search-ui-react.visualautocompleteconfig.renderentitypreviews.md) |  | [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | Renders entity previews based on the autocomplete loading state and results. |
+|  [universalLimit?](./search-ui-react.visualautocompleteconfig.universallimit.md) |  | UniversalLimit | _(Optional)_ Specify the number of entities to return per vertical. \* |
 

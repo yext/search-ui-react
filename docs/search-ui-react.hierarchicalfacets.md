@@ -11,7 +11,7 @@
 
 A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
@@ -23,7 +23,7 @@ export declare function HierarchicalFacets({ searchOnChange, collapsible, defaul
 |  --- | --- | --- |
 |  { searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit } | [HierarchicalFacetsProps](./search-ui-react.hierarchicalfacetsprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

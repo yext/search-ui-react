@@ -6,7 +6,7 @@
 
 List of filter ids to render as numerical facets.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 includedFieldIds?: string[];

@@ -6,7 +6,7 @@
 
 Props for the [MapboxMap()](./search-ui-react.mapboxmap.md) component. The type param "T" represents the type of "rawData" field of the results use in the map.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface MapboxMapProps<T> 
@@ -14,11 +14,11 @@ export interface MapboxMapProps<T>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [getCoordinate?](./search-ui-react.mapboxmapprops.getcoordinate.md) | [CoordinateGetter](./search-ui-react.coordinategetter.md)<!-- -->&lt;T&gt; | <i>(Optional)</i> A function to derive a result's coordinate for the corresponding marker's location on the map. By default, "yextDisplayCoordinate" field is used as the result's display coordinate. |
-|  [mapboxAccessToken](./search-ui-react.mapboxmapprops.mapboxaccesstoken.md) | string | Mapbox access token. |
-|  [mapboxOptions?](./search-ui-react.mapboxmapprops.mapboxoptions.md) | Omit&lt;MapboxOptions, 'container'&gt; | <i>(Optional)</i> Interface for map customization derived from Mapbox GL's Map options. |
-|  [onDrag?](./search-ui-react.mapboxmapprops.ondrag.md) | [OnDragHandler](./search-ui-react.ondraghandler.md) | <i>(Optional)</i> A function which is called when user drag the map. |
-|  [PinComponent?](./search-ui-react.mapboxmapprops.pincomponent.md) | [PinComponent](./search-ui-react.pincomponent.md)<!-- -->&lt;T&gt; | <i>(Optional)</i> Custom Pin component to render for markers on the map. By default, the built-in marker image from Mapbox GL is used. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [getCoordinate?](./search-ui-react.mapboxmapprops.getcoordinate.md) |  | [CoordinateGetter](./search-ui-react.coordinategetter.md)<!-- -->&lt;T&gt; | _(Optional)_ A function to derive a result's coordinate for the corresponding marker's location on the map. By default, "yextDisplayCoordinate" field is used as the result's display coordinate. |
+|  [mapboxAccessToken](./search-ui-react.mapboxmapprops.mapboxaccesstoken.md) |  | string | Mapbox access token. |
+|  [mapboxOptions?](./search-ui-react.mapboxmapprops.mapboxoptions.md) |  | Omit&lt;MapboxOptions, 'container'&gt; | _(Optional)_ Interface for map customization derived from Mapbox GL's Map options. |
+|  [onDrag?](./search-ui-react.mapboxmapprops.ondrag.md) |  | [OnDragHandler](./search-ui-react.ondraghandler.md) | _(Optional)_ A function which is called when user drag the map. |
+|  [PinComponent?](./search-ui-react.mapboxmapprops.pincomponent.md) |  | [PinComponent](./search-ui-react.pincomponent.md)<!-- -->&lt;T&gt; | _(Optional)_ Custom Pin component to render for markers on the map. By default, the built-in marker image from Mapbox GL is used. |
 

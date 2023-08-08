@@ -6,7 +6,7 @@
 
 Props for the VerticalResults component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface VerticalResultsProps<T> 
@@ -14,9 +14,9 @@ export interface VerticalResultsProps<T>
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [CardComponent](./search-ui-react.verticalresultsprops.cardcomponent.md) | [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->&lt;T&gt; | A functional component that can be used to render a result card. |
-|  [customCssClasses?](./search-ui-react.verticalresultsprops.customcssclasses.md) | [VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [displayAllOnNoResults?](./search-ui-react.verticalresultsprops.displayallonnoresults.md) | boolean | <i>(Optional)</i> Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [CardComponent](./search-ui-react.verticalresultsprops.cardcomponent.md) |  | [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->&lt;T&gt; | A functional component that can be used to render a result card. |
+|  [customCssClasses?](./search-ui-react.verticalresultsprops.customcssclasses.md) |  | [VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [displayAllOnNoResults?](./search-ui-react.verticalresultsprops.displayallonnoresults.md) |  | boolean | _(Optional)_ Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |
 

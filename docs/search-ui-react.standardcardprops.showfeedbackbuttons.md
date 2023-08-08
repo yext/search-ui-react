@@ -6,7 +6,7 @@
 
 Whether or not to show thumbs up/down buttons to provide feedback on the result card
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 showFeedbackButtons?: boolean;

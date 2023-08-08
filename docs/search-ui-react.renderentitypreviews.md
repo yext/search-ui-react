@@ -6,7 +6,7 @@
 
 The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResultsData>, dropdownItemProps: {
@@ -14,7 +14,7 @@ export declare type RenderEntityPreviews = (autocompleteLoading: boolean, vertic
     ariaLabel: (value: string) => string;
 }) => JSX.Element | null;
 ```
-<b>References:</b> [FocusedItemData](./search-ui-react.focuseditemdata.md)
+**References:** [FocusedItemData](./search-ui-react.focuseditemdata.md)
 
 ## Remarks
 

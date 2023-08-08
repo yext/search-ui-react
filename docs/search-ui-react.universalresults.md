@@ -6,7 +6,7 @@
 
 Displays the results of a universal search with the results for each vertical separated into sections.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function UniversalResults<T>({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps<T>): JSX.Element | null;
@@ -18,7 +18,7 @@ export declare function UniversalResults<T>({ verticalConfigMap, showAppliedFilt
 |  --- | --- | --- |
 |  { verticalConfigMap, showAppliedFilters, customCssClasses } | [UniversalResultsProps](./search-ui-react.universalresultsprops.md)<!-- -->&lt;T&gt; |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

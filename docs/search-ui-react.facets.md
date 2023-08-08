@@ -6,7 +6,7 @@
 
 A component that displays all facets applicable to the current vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function Facets(props: FacetsProps): JSX.Element;
@@ -18,7 +18,7 @@ export declare function Facets(props: FacetsProps): JSX.Element;
 |  --- | --- | --- |
 |  props | [FacetsProps](./search-ui-react.facetsprops.md) | [FacetsProps](./search-ui-react.facetsprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

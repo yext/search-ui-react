@@ -6,7 +6,7 @@
 
 Whether or not to show the option counts for each filter. Defaults to false.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 showOptionCounts?: boolean;

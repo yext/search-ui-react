@@ -6,21 +6,21 @@
 
 The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses 
 ```
-<b>Extends:</b> [AutocompleteResultCssClasses](./search-ui-react.autocompleteresultcssclasses.md)
+**Extends:** [AutocompleteResultCssClasses](./search-ui-react.autocompleteresultcssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [filterSearchContainer?](./search-ui-react.filtersearchcssclasses.filtersearchcontainer.md) | string | <i>(Optional)</i> |
-|  [focusedOption?](./search-ui-react.filtersearchcssclasses.focusedoption.md) | string | <i>(Optional)</i> |
-|  [inputElement?](./search-ui-react.filtersearchcssclasses.inputelement.md) | string | <i>(Optional)</i> |
-|  [label?](./search-ui-react.filtersearchcssclasses.label.md) | string | <i>(Optional)</i> |
-|  [optionsContainer?](./search-ui-react.filtersearchcssclasses.optionscontainer.md) | string | <i>(Optional)</i> |
-|  [sectionLabel?](./search-ui-react.filtersearchcssclasses.sectionlabel.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [filterSearchContainer?](./search-ui-react.filtersearchcssclasses.filtersearchcontainer.md) |  | string | _(Optional)_ |
+|  [focusedOption?](./search-ui-react.filtersearchcssclasses.focusedoption.md) |  | string | _(Optional)_ |
+|  [inputElement?](./search-ui-react.filtersearchcssclasses.inputelement.md) |  | string | _(Optional)_ |
+|  [label?](./search-ui-react.filtersearchcssclasses.label.md) |  | string | _(Optional)_ |
+|  [optionsContainer?](./search-ui-react.filtersearchcssclasses.optionscontainer.md) |  | string | _(Optional)_ |
+|  [sectionLabel?](./search-ui-react.filtersearchcssclasses.sectionlabel.md) |  | string | _(Optional)_ |
 

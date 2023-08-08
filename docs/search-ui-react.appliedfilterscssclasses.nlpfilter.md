@@ -4,7 +4,7 @@
 
 ## AppliedFiltersCssClasses.nlpFilter property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 nlpFilter?: string;

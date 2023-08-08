@@ -4,7 +4,7 @@
 
 ## AutocompleteResultCssClasses.highlighted property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 highlighted?: string;

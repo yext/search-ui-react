@@ -6,7 +6,7 @@
 
 The data associated with the currently focused item.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type FocusedItemData = Record<string, unknown>;

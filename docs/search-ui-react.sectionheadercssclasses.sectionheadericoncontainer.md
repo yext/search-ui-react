@@ -4,7 +4,7 @@
 
 ## SectionHeaderCssClasses.sectionHeaderIconContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 sectionHeaderIconContainer?: string;

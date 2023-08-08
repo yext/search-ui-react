@@ -6,7 +6,7 @@
 
 Executes a universal/vertical autocomplete search and return the corresponding response.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function executeAutocomplete(searchActions: SearchActions): Promise<AutocompleteResponse | undefined>;
@@ -18,7 +18,7 @@ export declare function executeAutocomplete(searchActions: SearchActions): Promi
 |  --- | --- | --- |
 |  searchActions | SearchActions |  |
 
-<b>Returns:</b>
+**Returns:**
 
 Promise&lt;AutocompleteResponse \| undefined&gt;
 

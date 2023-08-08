@@ -6,7 +6,7 @@
 
 The CSS class interface used for [AppliedFilters()](./search-ui-react.appliedfilters.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface AppliedFiltersCssClasses 
@@ -14,12 +14,12 @@ export interface AppliedFiltersCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [appliedFiltersContainer?](./search-ui-react.appliedfilterscssclasses.appliedfilterscontainer.md) | string | <i>(Optional)</i> |
-|  [appliedFiltersLoading?](./search-ui-react.appliedfilterscssclasses.appliedfiltersloading.md) | string | <i>(Optional)</i> |
-|  [clearAllButton?](./search-ui-react.appliedfilterscssclasses.clearallbutton.md) | string | <i>(Optional)</i> |
-|  [filterLabel?](./search-ui-react.appliedfilterscssclasses.filterlabel.md) | string | <i>(Optional)</i> |
-|  [nlpFilter?](./search-ui-react.appliedfilterscssclasses.nlpfilter.md) | string | <i>(Optional)</i> |
-|  [removableFilter?](./search-ui-react.appliedfilterscssclasses.removablefilter.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [appliedFiltersContainer?](./search-ui-react.appliedfilterscssclasses.appliedfilterscontainer.md) |  | string | _(Optional)_ |
+|  [appliedFiltersLoading?](./search-ui-react.appliedfilterscssclasses.appliedfiltersloading.md) |  | string | _(Optional)_ |
+|  [clearAllButton?](./search-ui-react.appliedfilterscssclasses.clearallbutton.md) |  | string | _(Optional)_ |
+|  [filterLabel?](./search-ui-react.appliedfilterscssclasses.filterlabel.md) |  | string | _(Optional)_ |
+|  [nlpFilter?](./search-ui-react.appliedfilterscssclasses.nlpfilter.md) |  | string | _(Optional)_ |
+|  [removableFilter?](./search-ui-react.appliedfilterscssclasses.removablefilter.md) |  | string | _(Optional)_ |
 

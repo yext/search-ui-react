@@ -6,17 +6,17 @@
 
 The CSS class interface for [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses 
 ```
-<b>Extends:</b> [HierarchicalFacetDisplayCssClasses](./search-ui-react.hierarchicalfacetdisplaycssclasses.md)
+**Extends:** [HierarchicalFacetDisplayCssClasses](./search-ui-react.hierarchicalfacetdisplaycssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [divider?](./search-ui-react.hierarchicalfacetscssclasses.divider.md) | string | <i>(Optional)</i> |
-|  [hierarchicalFacetsContainer?](./search-ui-react.hierarchicalfacetscssclasses.hierarchicalfacetscontainer.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [divider?](./search-ui-react.hierarchicalfacetscssclasses.divider.md) |  | string | _(Optional)_ |
+|  [hierarchicalFacetsContainer?](./search-ui-react.hierarchicalfacetscssclasses.hierarchicalfacetscontainer.md) |  | string | _(Optional)_ |
 

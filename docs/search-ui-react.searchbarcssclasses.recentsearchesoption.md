@@ -4,7 +4,7 @@
 
 ## SearchBarCssClasses.recentSearchesOption property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 recentSearchesOption?: string;

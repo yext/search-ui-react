@@ -6,17 +6,17 @@
 
 The CSS class interface for [NumericalFacets()](./search-ui-react.numericalfacets.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses 
 ```
-<b>Extends:</b> [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)<!-- -->, [RangeInputCssClasses](./search-ui-react.rangeinputcssclasses.md)
+**Extends:** [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)<!-- -->, [RangeInputCssClasses](./search-ui-react.rangeinputcssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [divider?](./search-ui-react.numericalfacetscssclasses.divider.md) | string | <i>(Optional)</i> |
-|  [numericalFacetsContainer?](./search-ui-react.numericalfacetscssclasses.numericalfacetscontainer.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [divider?](./search-ui-react.numericalfacetscssclasses.divider.md) |  | string | _(Optional)_ |
+|  [numericalFacetsContainer?](./search-ui-react.numericalfacetscssclasses.numericalfacetscontainer.md) |  | string | _(Optional)_ |
 

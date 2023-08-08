@@ -6,7 +6,7 @@
 
 Props for [AlternativeVerticals()](./search-ui-react.alternativeverticals.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface AlternativeVerticalsProps 
@@ -14,10 +14,10 @@ export interface AlternativeVerticalsProps
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [currentVerticalLabel](./search-ui-react.alternativeverticalsprops.currentverticallabel.md) | string | The label for the current vertical. |
-|  [customCssClasses?](./search-ui-react.alternativeverticalsprops.customcssclasses.md) | [AlternativeVerticalsCssClasses](./search-ui-react.alternativeverticalscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [displayAllOnNoResults?](./search-ui-react.alternativeverticalsprops.displayallonnoresults.md) | boolean | <i>(Optional)</i> Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |
-|  [verticalConfigMap](./search-ui-react.alternativeverticalsprops.verticalconfigmap.md) | [VerticalLabelMap](./search-ui-react.verticallabelmap.md) | A map of verticalKeys to the display label for that vertical. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [currentVerticalLabel](./search-ui-react.alternativeverticalsprops.currentverticallabel.md) |  | string | The label for the current vertical. |
+|  [customCssClasses?](./search-ui-react.alternativeverticalsprops.customcssclasses.md) |  | [AlternativeVerticalsCssClasses](./search-ui-react.alternativeverticalscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [displayAllOnNoResults?](./search-ui-react.alternativeverticalsprops.displayallonnoresults.md) |  | boolean | _(Optional)_ Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |
+|  [verticalConfigMap](./search-ui-react.alternativeverticalsprops.verticalconfigmap.md) |  | [VerticalLabelMap](./search-ui-react.verticallabelmap.md) | A map of verticalKeys to the display label for that vertical. |
 

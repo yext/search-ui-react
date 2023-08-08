@@ -6,7 +6,7 @@
 
 Limit on the number of options to be displayed.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 showMoreLimit?: number;

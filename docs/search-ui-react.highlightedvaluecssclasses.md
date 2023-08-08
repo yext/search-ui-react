@@ -6,7 +6,7 @@
 
 The CSS class interface for [renderHighlightedValue()](./search-ui-react.renderhighlightedvalue.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface HighlightedValueCssClasses 
@@ -14,8 +14,8 @@ export interface HighlightedValueCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [highlighted?](./search-ui-react.highlightedvaluecssclasses.highlighted.md) | string | <i>(Optional)</i> |
-|  [nonHighlighted?](./search-ui-react.highlightedvaluecssclasses.nonhighlighted.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [highlighted?](./search-ui-react.highlightedvaluecssclasses.highlighted.md) |  | string | _(Optional)_ |
+|  [nonHighlighted?](./search-ui-react.highlightedvaluecssclasses.nonhighlighted.md) |  | string | _(Optional)_ |
 

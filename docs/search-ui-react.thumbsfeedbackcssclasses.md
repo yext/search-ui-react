@@ -6,7 +6,7 @@
 
 The CSS class interface used for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ThumbsFeedbackCssClasses 
@@ -14,9 +14,9 @@ export interface ThumbsFeedbackCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [thumbsDownIcon?](./search-ui-react.thumbsfeedbackcssclasses.thumbsdownicon.md) | string | <i>(Optional)</i> |
-|  [thumbsFeedbackContainer?](./search-ui-react.thumbsfeedbackcssclasses.thumbsfeedbackcontainer.md) | string | <i>(Optional)</i> |
-|  [thumbsUpIcon?](./search-ui-react.thumbsfeedbackcssclasses.thumbsupicon.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [thumbsDownIcon?](./search-ui-react.thumbsfeedbackcssclasses.thumbsdownicon.md) |  | string | _(Optional)_ |
+|  [thumbsFeedbackContainer?](./search-ui-react.thumbsfeedbackcssclasses.thumbsfeedbackcontainer.md) |  | string | _(Optional)_ |
+|  [thumbsUpIcon?](./search-ui-react.thumbsfeedbackcssclasses.thumbsupicon.md) |  | string | _(Optional)_ |
 

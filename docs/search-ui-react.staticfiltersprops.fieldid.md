@@ -6,7 +6,7 @@
 
 The fieldId corresponding to the static filter group.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fieldId: string;

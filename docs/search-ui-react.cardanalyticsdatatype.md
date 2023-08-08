@@ -6,10 +6,10 @@
 
 The data types use to construct the payload in the analytics event.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | Result<T>;
 ```
-<b>References:</b> [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)
+**References:** [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)
 

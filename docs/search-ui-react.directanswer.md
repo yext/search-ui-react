@@ -6,7 +6,7 @@
 
 Renders Direct Answers provided by the Search API.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay }: DirectAnswerProps): JSX.Element | null;
@@ -18,7 +18,7 @@ export declare function DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay
 |  --- | --- | --- |
 |  { customCssClasses, UnknownFieldTypeDisplay } | [DirectAnswerProps](./search-ui-react.directanswerprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

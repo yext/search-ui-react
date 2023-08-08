@@ -6,7 +6,7 @@
 
 A React Component which collects location information to create a location filter and perform a new search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function Geolocation({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
@@ -18,7 +18,7 @@ export declare function Geolocation({ geolocationOptions, radius, label, Geoloca
 |  --- | --- | --- |
 |  { geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, } | [GeolocationProps](./search-ui-react.geolocationprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

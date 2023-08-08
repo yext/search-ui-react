@@ -6,22 +6,22 @@
 
 The CSS class interface for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses 
 ```
-<b>Extends:</b> [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md)
+**Extends:** [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [answer?](./search-ui-react.directanswercssclasses.answer.md) | string | <i>(Optional)</i> |
-|  [answerContainer?](./search-ui-react.directanswercssclasses.answercontainer.md) | string | <i>(Optional)</i> |
-|  [content?](./search-ui-react.directanswercssclasses.content.md) | string | <i>(Optional)</i> |
-|  [description?](./search-ui-react.directanswercssclasses.description.md) | string | <i>(Optional)</i> |
-|  [directAnswerContainer?](./search-ui-react.directanswercssclasses.directanswercontainer.md) | string | <i>(Optional)</i> |
-|  [directAnswerLoading?](./search-ui-react.directanswercssclasses.directanswerloading.md) | string | <i>(Optional)</i> |
-|  [highlighted?](./search-ui-react.directanswercssclasses.highlighted.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [answer?](./search-ui-react.directanswercssclasses.answer.md) |  | string | _(Optional)_ |
+|  [answerContainer?](./search-ui-react.directanswercssclasses.answercontainer.md) |  | string | _(Optional)_ |
+|  [content?](./search-ui-react.directanswercssclasses.content.md) |  | string | _(Optional)_ |
+|  [description?](./search-ui-react.directanswercssclasses.description.md) |  | string | _(Optional)_ |
+|  [directAnswerContainer?](./search-ui-react.directanswercssclasses.directanswercontainer.md) |  | string | _(Optional)_ |
+|  [directAnswerLoading?](./search-ui-react.directanswercssclasses.directanswerloading.md) |  | string | _(Optional)_ |
+|  [highlighted?](./search-ui-react.directanswercssclasses.highlighted.md) |  | string | _(Optional)_ |
 

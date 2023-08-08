@@ -6,7 +6,7 @@
 
 Whether or not to allow more results to be viewed.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 viewMore?: boolean;

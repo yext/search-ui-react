@@ -6,7 +6,7 @@
 
 A map of vertical keys to labels.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface VerticalLabelMap 

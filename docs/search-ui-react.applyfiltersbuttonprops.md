@@ -6,7 +6,7 @@
 
 Props for [ApplyFiltersButton()](./search-ui-react.applyfiltersbutton.md)
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface ApplyFiltersButtonProps 
@@ -14,8 +14,8 @@ export interface ApplyFiltersButtonProps
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.applyfiltersbuttonprops.customcssclasses.md) | [ApplyFiltersButtonCssClasses](./search-ui-react.applyfiltersbuttoncssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [label?](./search-ui-react.applyfiltersbuttonprops.label.md) | string | <i>(Optional)</i> The label for the button, defaults to 'Apply Filters' |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.applyfiltersbuttonprops.customcssclasses.md) |  | [ApplyFiltersButtonCssClasses](./search-ui-react.applyfiltersbuttoncssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [label?](./search-ui-react.applyfiltersbuttonprops.label.md) |  | string | _(Optional)_ The label for the button, defaults to 'Apply Filters' |
 

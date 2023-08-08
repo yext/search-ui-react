@@ -6,7 +6,7 @@
 
 A function that sets which filter the component is currently associated with.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 setCurrentFilter: (filter: StaticFilter) => void;

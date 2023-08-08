@@ -4,7 +4,7 @@
 
 ## HierarchicalFacetDisplayCssClasses.parentCategory property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 parentCategory?: string;

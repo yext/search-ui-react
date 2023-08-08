@@ -4,7 +4,7 @@
 
 ## StandardCardCssClasses.body property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 body?: string;

@@ -6,7 +6,7 @@
 
 Analytics event types for cta click and title click.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';

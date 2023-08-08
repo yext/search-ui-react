@@ -4,7 +4,7 @@
 
 ## UniversalResultsCssClasses.universalResultsContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 universalResultsContainer?: string;

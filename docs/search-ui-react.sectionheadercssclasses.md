@@ -6,20 +6,20 @@
 
 The CSS class interface used for the SectionHeader component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses 
 ```
-<b>Extends:</b> [AppliedFiltersCssClasses](./search-ui-react.appliedfilterscssclasses.md)
+**Extends:** [AppliedFiltersCssClasses](./search-ui-react.appliedfilterscssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [sectionHeaderContainer?](./search-ui-react.sectionheadercssclasses.sectionheadercontainer.md) | string | <i>(Optional)</i> |
-|  [sectionHeaderIconContainer?](./search-ui-react.sectionheadercssclasses.sectionheadericoncontainer.md) | string | <i>(Optional)</i> |
-|  [sectionHeaderLabel?](./search-ui-react.sectionheadercssclasses.sectionheaderlabel.md) | string | <i>(Optional)</i> |
-|  [viewMoreContainer?](./search-ui-react.sectionheadercssclasses.viewmorecontainer.md) | string | <i>(Optional)</i> |
-|  [viewMoreLink?](./search-ui-react.sectionheadercssclasses.viewmorelink.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [sectionHeaderContainer?](./search-ui-react.sectionheadercssclasses.sectionheadercontainer.md) |  | string | _(Optional)_ |
+|  [sectionHeaderIconContainer?](./search-ui-react.sectionheadercssclasses.sectionheadericoncontainer.md) |  | string | _(Optional)_ |
+|  [sectionHeaderLabel?](./search-ui-react.sectionheadercssclasses.sectionheaderlabel.md) |  | string | _(Optional)_ |
+|  [viewMoreContainer?](./search-ui-react.sectionheadercssclasses.viewmorecontainer.md) |  | string | _(Optional)_ |
+|  [viewMoreLink?](./search-ui-react.sectionheadercssclasses.viewmorelink.md) |  | string | _(Optional)_ |
 

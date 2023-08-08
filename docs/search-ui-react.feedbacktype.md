@@ -6,7 +6,7 @@
 
 Analytics event types for quality feedback.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';

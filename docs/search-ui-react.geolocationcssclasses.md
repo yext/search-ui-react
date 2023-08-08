@@ -6,7 +6,7 @@
 
 The CSS class interface for the Geolocation component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface GeolocationCssClasses 
@@ -14,9 +14,9 @@ export interface GeolocationCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [button?](./search-ui-react.geolocationcssclasses.button.md) | string | <i>(Optional)</i> |
-|  [geolocationContainer?](./search-ui-react.geolocationcssclasses.geolocationcontainer.md) | string | <i>(Optional)</i> |
-|  [iconContainer?](./search-ui-react.geolocationcssclasses.iconcontainer.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [button?](./search-ui-react.geolocationcssclasses.button.md) |  | string | _(Optional)_ |
+|  [geolocationContainer?](./search-ui-react.geolocationcssclasses.geolocationcontainer.md) |  | string | _(Optional)_ |
+|  [iconContainer?](./search-ui-react.geolocationcssclasses.iconcontainer.md) |  | string | _(Optional)_ |
 

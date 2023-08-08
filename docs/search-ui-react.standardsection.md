@@ -6,7 +6,7 @@
 
 A component that displays all the results for a vertical using a standard section template.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function StandardSection<T>(props: StandardSectionProps<T>): JSX.Element | null;
@@ -18,7 +18,7 @@ export declare function StandardSection<T>(props: StandardSectionProps<T>): JSX.
 |  --- | --- | --- |
 |  props | [StandardSectionProps](./search-ui-react.standardsectionprops.md)<!-- -->&lt;T&gt; | [StandardSectionProps](./search-ui-react.standardsectionprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

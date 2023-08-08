@@ -6,17 +6,17 @@
 
 Props for a StandardCard.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> 
 ```
-<b>Extends:</b> [CardProps](./search-ui-react.cardprops.md)<!-- -->&lt;T&gt;
+**Extends:** [CardProps](./search-ui-react.cardprops.md)<!-- -->&lt;T&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.standardcardprops.customcssclasses.md) | StandardCardCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [showFeedbackButtons?](./search-ui-react.standardcardprops.showfeedbackbuttons.md) | boolean | <i>(Optional)</i> Whether or not to show thumbs up/down buttons to provide feedback on the result card |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.standardcardprops.customcssclasses.md) |  | [StandardCardCssClasses](./search-ui-react.standardcardcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [showFeedbackButtons?](./search-ui-react.standardcardprops.showfeedbackbuttons.md) |  | boolean | _(Optional)_ Whether or not to show thumbs up/down buttons to provide feedback on the result card |
 

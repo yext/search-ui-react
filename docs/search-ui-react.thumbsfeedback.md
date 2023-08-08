@@ -6,7 +6,7 @@
 
 Renders a quality feedback widget composed of thumbs up and thumbs down buttons.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
@@ -18,7 +18,7 @@ export declare function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
 |  --- | --- | --- |
 |  props | [ThumbsFeedbackProps](./search-ui-react.thumbsfeedbackprops.md) | The configuration for the the feedback component. |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

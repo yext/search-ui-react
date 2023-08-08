@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.inputPrefix\_\_\_disabled property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 inputPrefix___disabled?: string;

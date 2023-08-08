@@ -6,7 +6,7 @@
 
 The CSS class interface for FilterGroup.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface FilterGroupCssClasses 
@@ -14,12 +14,12 @@ export interface FilterGroupCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [option?](./search-ui-react.filtergroupcssclasses.option.md) | string | <i>(Optional)</i> |
-|  [optionInput?](./search-ui-react.filtergroupcssclasses.optioninput.md) | string | <i>(Optional)</i> |
-|  [optionLabel?](./search-ui-react.filtergroupcssclasses.optionlabel.md) | string | <i>(Optional)</i> |
-|  [optionsContainer?](./search-ui-react.filtergroupcssclasses.optionscontainer.md) | string | <i>(Optional)</i> |
-|  [searchInput?](./search-ui-react.filtergroupcssclasses.searchinput.md) | string | <i>(Optional)</i> |
-|  [titleLabel?](./search-ui-react.filtergroupcssclasses.titlelabel.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [option?](./search-ui-react.filtergroupcssclasses.option.md) |  | string | _(Optional)_ |
+|  [optionInput?](./search-ui-react.filtergroupcssclasses.optioninput.md) |  | string | _(Optional)_ |
+|  [optionLabel?](./search-ui-react.filtergroupcssclasses.optionlabel.md) |  | string | _(Optional)_ |
+|  [optionsContainer?](./search-ui-react.filtergroupcssclasses.optionscontainer.md) |  | string | _(Optional)_ |
+|  [searchInput?](./search-ui-react.filtergroupcssclasses.searchinput.md) |  | string | _(Optional)_ |
+|  [titleLabel?](./search-ui-react.filtergroupcssclasses.titlelabel.md) |  | string | _(Optional)_ |
 

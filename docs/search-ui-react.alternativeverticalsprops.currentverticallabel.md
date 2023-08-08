@@ -6,7 +6,7 @@
 
 The label for the current vertical.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 currentVerticalLabel: string;

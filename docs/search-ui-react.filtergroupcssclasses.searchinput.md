@@ -4,7 +4,7 @@
 
 ## FilterGroupCssClasses.searchInput property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 searchInput?: string;

@@ -11,7 +11,7 @@
 
 A React Component which displays and collects location information in order to bias searches.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): JSX.Element | null;
@@ -23,7 +23,7 @@ export declare function LocationBias({ geolocationOptions, customCssClasses }: L
 |  --- | --- | --- |
 |  { geolocationOptions, customCssClasses } | [LocationBiasProps](./search-ui-react.locationbiasprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

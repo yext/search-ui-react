@@ -11,7 +11,7 @@
 
 A component that displays numerical facets applicable to the current vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
@@ -23,7 +23,7 @@ export declare function NumericalFacets({ searchOnChange, includedFieldIds, getF
 |  --- | --- | --- |
 |  { searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps } | [NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

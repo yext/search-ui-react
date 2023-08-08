@@ -6,7 +6,7 @@
 
 A higher-order component which provides analytics for its children.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element;
@@ -18,7 +18,7 @@ export declare function AnalyticsProvider(props: PropsWithChildren<AnalyticsConf
 |  --- | --- | --- |
 |  props | PropsWithChildren&lt;AnalyticsConfig&gt; | The configuration for the analytics service |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

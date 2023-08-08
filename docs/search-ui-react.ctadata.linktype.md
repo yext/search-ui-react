@@ -6,7 +6,7 @@
 
 The CTA link type (e.g. URL, Phone, Email, Other).
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 linkType: string;

@@ -4,7 +4,7 @@
 
 ## PaginationCssClasses.selectedLabel property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 selectedLabel?: string;

@@ -6,7 +6,7 @@
 
 Determines whether or not the results of the filter search are separated by field. Defaults to false.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 sectioned?: boolean;

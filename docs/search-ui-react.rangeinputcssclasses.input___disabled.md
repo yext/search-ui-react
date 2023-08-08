@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.input\_\_\_disabled property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 input___disabled?: string;

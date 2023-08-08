@@ -11,7 +11,7 @@
 
 The CSS class interface for the [LocationBias()](./search-ui-react.locationbias.md) component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface LocationBiasCssClasses 
@@ -19,11 +19,11 @@ export interface LocationBiasCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [button?](./search-ui-react.locationbiascssclasses.button.md) | string | <i>(Optional)</i> |
-|  [loadingIndicatorContainer?](./search-ui-react.locationbiascssclasses.loadingindicatorcontainer.md) | string | <i>(Optional)</i> |
-|  [location?](./search-ui-react.locationbiascssclasses.location.md) | string | <i>(Optional)</i> |
-|  [locationBiasContainer?](./search-ui-react.locationbiascssclasses.locationbiascontainer.md) | string | <i>(Optional)</i> |
-|  [source?](./search-ui-react.locationbiascssclasses.source.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [button?](./search-ui-react.locationbiascssclasses.button.md) |  | string | _(Optional)_ |
+|  [loadingIndicatorContainer?](./search-ui-react.locationbiascssclasses.loadingindicatorcontainer.md) |  | string | _(Optional)_ |
+|  [location?](./search-ui-react.locationbiascssclasses.location.md) |  | string | _(Optional)_ |
+|  [locationBiasContainer?](./search-ui-react.locationbiascssclasses.locationbiascontainer.md) |  | string | _(Optional)_ |
+|  [source?](./search-ui-react.locationbiascssclasses.source.md) |  | string | _(Optional)_ |
 

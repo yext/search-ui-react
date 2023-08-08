@@ -4,7 +4,7 @@
 
 ## UniversalResultsCssClasses.universalResultsLoading property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 universalResultsLoading?: string;

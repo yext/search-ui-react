@@ -6,7 +6,7 @@
 
 Props for [UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface UnknownFieldTypeDisplayProps 
@@ -14,7 +14,7 @@ export interface UnknownFieldTypeDisplayProps
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [result](./search-ui-react.unknownfieldtypedisplayprops.result.md) | UnknownFieldValueDirectAnswer |  |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [result](./search-ui-react.unknownfieldtypedisplayprops.result.md) |  | UnknownFieldValueDirectAnswer |  |
 

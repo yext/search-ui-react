@@ -6,7 +6,7 @@
 
 The CSS class interface for the Autocomplete Result.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface AutocompleteResultCssClasses 
@@ -14,10 +14,10 @@ export interface AutocompleteResultCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [highlighted?](./search-ui-react.autocompleteresultcssclasses.highlighted.md) | string | <i>(Optional)</i> |
-|  [icon?](./search-ui-react.autocompleteresultcssclasses.icon.md) | string | <i>(Optional)</i> |
-|  [nonHighlighted?](./search-ui-react.autocompleteresultcssclasses.nonhighlighted.md) | string | <i>(Optional)</i> |
-|  [option?](./search-ui-react.autocompleteresultcssclasses.option.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [highlighted?](./search-ui-react.autocompleteresultcssclasses.highlighted.md) |  | string | _(Optional)_ |
+|  [icon?](./search-ui-react.autocompleteresultcssclasses.icon.md) |  | string | _(Optional)_ |
+|  [nonHighlighted?](./search-ui-react.autocompleteresultcssclasses.nonhighlighted.md) |  | string | _(Optional)_ |
+|  [option?](./search-ui-react.autocompleteresultcssclasses.option.md) |  | string | _(Optional)_ |
 

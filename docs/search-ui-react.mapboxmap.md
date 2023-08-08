@@ -6,7 +6,7 @@
 
 A component that renders a map with markers to show result locations using Mapbox GL.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
@@ -18,7 +18,7 @@ export declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComp
 |  --- | --- | --- |
 |  { mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag } | [MapboxMapProps](./search-ui-react.mapboxmapprops.md)<!-- -->&lt;T&gt; |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

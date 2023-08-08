@@ -4,7 +4,7 @@
 
 ## AlternativeVerticalsCssClasses.noResultsText property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 noResultsText?: string;

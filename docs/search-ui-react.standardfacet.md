@@ -6,7 +6,7 @@
 
 A component that displays a single standard facet. Use this to override the default rendering.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function StandardFacet(props: StandardFacetProps): null;
@@ -18,7 +18,7 @@ export declare function StandardFacet(props: StandardFacetProps): null;
 |  --- | --- | --- |
 |  props | [StandardFacetProps](./search-ui-react.standardfacetprops.md) | [StandardFacetProps](./search-ui-react.standardfacetprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
 null
 

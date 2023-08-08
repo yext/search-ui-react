@@ -6,7 +6,7 @@
 
 A function to transform facet's options. The returned options need to be delimited to keep the hierarchy.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];

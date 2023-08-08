@@ -6,7 +6,7 @@
 
 Creates a memoized function for reporting card analytics.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>, analyticsType: CardAnalyticsType): () => void;
@@ -19,7 +19,7 @@ export declare function useCardAnalyticsCallback<T = DefaultRawDataType>(result:
 |  result | [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md)<!-- -->&lt;T&gt; | result that contains data use in the card analytics event. |
 |  analyticsType | [CardAnalyticsType](./search-ui-react.cardanalyticstype.md) | the card analytics event type to report. |
 
-<b>Returns:</b>
+**Returns:**
 
 () =&gt; void
 

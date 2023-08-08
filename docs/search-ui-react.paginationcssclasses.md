@@ -6,7 +6,7 @@
 
 The CSS classes used for pagination.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface PaginationCssClasses 
@@ -14,13 +14,13 @@ export interface PaginationCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [icon?](./search-ui-react.paginationcssclasses.icon.md) | string | <i>(Optional)</i> |
-|  [label?](./search-ui-react.paginationcssclasses.label.md) | string | <i>(Optional)</i> |
-|  [leftIconContainer?](./search-ui-react.paginationcssclasses.lefticoncontainer.md) | string | <i>(Optional)</i> |
-|  [paginationContainer?](./search-ui-react.paginationcssclasses.paginationcontainer.md) | string | <i>(Optional)</i> |
-|  [paginationLoading?](./search-ui-react.paginationcssclasses.paginationloading.md) | string | <i>(Optional)</i> |
-|  [rightIconContainer?](./search-ui-react.paginationcssclasses.righticoncontainer.md) | string | <i>(Optional)</i> |
-|  [selectedLabel?](./search-ui-react.paginationcssclasses.selectedlabel.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [icon?](./search-ui-react.paginationcssclasses.icon.md) |  | string | _(Optional)_ |
+|  [label?](./search-ui-react.paginationcssclasses.label.md) |  | string | _(Optional)_ |
+|  [leftIconContainer?](./search-ui-react.paginationcssclasses.lefticoncontainer.md) |  | string | _(Optional)_ |
+|  [paginationContainer?](./search-ui-react.paginationcssclasses.paginationcontainer.md) |  | string | _(Optional)_ |
+|  [paginationLoading?](./search-ui-react.paginationcssclasses.paginationloading.md) |  | string | _(Optional)_ |
+|  [rightIconContainer?](./search-ui-react.paginationcssclasses.righticoncontainer.md) |  | string | _(Optional)_ |
+|  [selectedLabel?](./search-ui-react.paginationcssclasses.selectedlabel.md) |  | string | _(Optional)_ |
 

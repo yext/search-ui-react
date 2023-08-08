@@ -6,7 +6,7 @@
 
 A component that displays a list of filters applied to the current vertical search, which may include any selected options from facets, NLP filters, and field value static filters.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
@@ -18,7 +18,7 @@ export declare function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 |  --- | --- | --- |
 |  props | [AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md) | [AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

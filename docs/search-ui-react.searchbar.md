@@ -6,7 +6,7 @@
 
 Renders a SearchBar that is hooked up with an InputDropdown component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
@@ -18,7 +18,7 @@ export declare function SearchBar({ placeholder, geolocationOptions, hideRecentS
 |  --- | --- | --- |
 |  { placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch } | [SearchBarProps](./search-ui-react.searchbarprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

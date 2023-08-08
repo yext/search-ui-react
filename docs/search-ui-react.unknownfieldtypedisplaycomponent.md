@@ -6,10 +6,10 @@
 
 A React component interface to render results with "unknown" field type in field value direct answer.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type UnknownFieldTypeDisplayComponent = (props: UnknownFieldTypeDisplayProps) => JSX.Element;
 ```
-<b>References:</b> [UnknownFieldTypeDisplayProps](./search-ui-react.unknownfieldtypedisplayprops.md)
+**References:** [UnknownFieldTypeDisplayProps](./search-ui-react.unknownfieldtypedisplayprops.md)
 

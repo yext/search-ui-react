@@ -6,7 +6,7 @@
 
 Runs a vertical search. By default has `position: sticky` styling that anchors it to the bottom of the page.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): JSX.Element;
@@ -18,7 +18,7 @@ export declare function ApplyFiltersButton({ customCssClasses, label }: ApplyFil
 |  --- | --- | --- |
 |  { customCssClasses, label } | [ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 
