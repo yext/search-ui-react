@@ -85,12 +85,12 @@ describe('SearchBar', () => {
         results: [{ value: 'query suggestion 1' }],
         inputIntents: [],
         uuid: ''
-      } as unknown as AutocompleteResponse;;
+      } as unknown as AutocompleteResponse;
       const mockedUniversalAutocompleteResultTwo = {
         results: [{ value: 'query suggestion 2' }],
         inputIntents: [],
         uuid: ''
-      } as unknown as AutocompleteResponse;;
+      } as unknown as AutocompleteResponse;
       const mockedUniversalAutocomplete = jest
         .spyOn(SearchCore.prototype, 'universalAutocomplete')
         .mockResolvedValueOnce(mockedUniversalAutocompleteResultOne)
@@ -141,7 +141,7 @@ describe('SearchBar', () => {
       }],
       inputIntents: [],
       uuid: ''
-    } as unknown as AutocompleteResponse;;
+    } as unknown as AutocompleteResponse;
 
     beforeEach(() => {
       jest.spyOn(SearchCore.prototype, 'universalAutocomplete')
@@ -335,7 +335,7 @@ describe('SearchBar', () => {
         results: [{ value: 'query suggestion 1' }],
         inputIntents: [SearchIntent.NearMe],
         uuid: ''
-      } as unknown as AutocompleteResponse;;
+      } as unknown as AutocompleteResponse;
       const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
       jest.spyOn(SearchCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedUniversalAutocompleteResult);
@@ -368,7 +368,7 @@ describe('SearchBar', () => {
       results: [{ value: 'query suggestion' }],
       inputIntents: [],
       uuid: ''
-    } as unknown as AutocompleteResponse;;
+    } as unknown as AutocompleteResponse;
     const mockedReport = jest.fn();
 
     beforeEach(() => {
@@ -442,7 +442,7 @@ describe('SearchBar', () => {
         ],
         inputIntents: [],
         uuid: ''
-      } as unknown as AutocompleteResponse;;
+      } as unknown as AutocompleteResponse;
       jest.spyOn(SearchCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
       render(

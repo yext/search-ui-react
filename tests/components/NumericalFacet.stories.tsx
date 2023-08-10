@@ -7,7 +7,7 @@ import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 
 const meta: ComponentMeta<typeof Facets> = {
-  title: 'Facets',
+  title: 'NumbericalFacets',
   component: Facets
 };
 export default meta;

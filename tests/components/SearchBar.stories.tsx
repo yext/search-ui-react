@@ -1,5 +1,5 @@
 import { ComponentMeta, Story } from '@storybook/react';
-import { SearchHeadlessContext } from '@yext/search-headless-react';
+import { AutocompleteResponse, SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { SearchBar, SearchBarProps } from '../../src/components';
@@ -15,7 +15,7 @@ const mockedAutocompleteResult = {
   }],
   inputIntents: [],
   uuid: ''
-};
+} as unknown as AutocompleteResponse;
 
 const meta: ComponentMeta<typeof SearchBar> = {
   title: 'SearchBar',

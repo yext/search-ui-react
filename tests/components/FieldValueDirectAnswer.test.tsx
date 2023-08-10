@@ -14,13 +14,13 @@ const fieldValueDAResult = fieldValueDAState.result as FieldValueDirectAnswerTyp
 
 describe('FieldValue direct answer', () => {
 
-  it('executes viewDetailsClickHandler when click on "View Details" link', () => {
+  it('executes viewDetailsClickHandler when click on "View Details" link', async () => {
     const viewDetailsClickHandler = jest.fn();
     render(<FieldValueDirectAnswer
       result={fieldValueDAResult}
       viewDetailsClickHandler={viewDetailsClickHandler}/>
     );
-    userEvent.click(screen.getByRole('link', { name: 'View Details' }));
+    await userEvent.click(screen.getByRole('link', { name: 'View Details' }));
     expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
   });
 

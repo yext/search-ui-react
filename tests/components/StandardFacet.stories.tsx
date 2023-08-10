@@ -6,7 +6,7 @@ import { RecursivePartial } from '../__utils__/mocks';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 
 const meta: ComponentMeta<typeof Facets> = {
-  title: 'Facets',
+  title: 'StandardFacet',
   component: Facets
 };
 export default meta;

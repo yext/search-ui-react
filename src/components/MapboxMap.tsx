@@ -1,10 +1,10 @@
 import { useRef, useEffect } from 'react';
-import mapboxgl, { MapboxOptions, MarkerOptions} from 'mapbox-gl';
+import mapboxgl, { MapboxOptions, MarkerOptions } from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import ReactDOM from 'react-dom';
 
-const {Marker, LngLatBounds } = mapboxgl;
+const { Marker, LngLatBounds } = mapboxgl;
 
 /**
  * A functional component that can be used to render a custom marker on the map.

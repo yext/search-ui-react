@@ -51,7 +51,7 @@ Loading.parameters = {
     isFetching: true
   }
 };
-Loading.play = ({ canvasElement }) => {
+Loading.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByText('Update your location'));
+  await userEvent.click(canvas.getByText('Update your location'));
 };
