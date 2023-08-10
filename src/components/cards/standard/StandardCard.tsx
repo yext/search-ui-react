@@ -65,5 +65,3 @@ export function StandardCard(props: StandardCardProps<any>): JSX.Element {
     />
   );
 }
-
-export { StandardCardCssClasses };
