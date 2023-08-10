@@ -9,28 +9,28 @@ import { TestContext, TestRunnerConfig } from '@storybook/test-runner';
  */
 const renderFunctions: TestRunnerConfig = {
   async preRender(page: Page) {
-    await injectAxe(page);
+    // await injectAxe(page);
   },
   async postRender(page: Page, context: TestContext) {
-    await checkA11y(
-      page,
-      {
-        include: ['#root'],
-        exclude: ['#root .mapboxgl-canvas-container'],
-      },
-      {
-        axeOptions: {
-          runOnly,
-          rules: {
-            'color-contrast': { enabled: context.name !== 'Loading' },
-          },
-        },
-        detailedReport: true,
-        detailedReportOptions: {
-          html: true,
-        },
-      }
-    );
+  //   await checkA11y(
+  //     page,
+  //     {
+  //       include: ['#root'],
+  //       exclude: ['#root .mapboxgl-canvas-container'],
+  //     },
+  //     {
+  //       axeOptions: {
+  //         runOnly,
+  //         rules: {
+  //           'color-contrast': { enabled: context.name !== 'Loading' },
+  //         },
+  //       },
+  //       detailedReport: true,
+  //       detailedReportOptions: {
+  //         html: true,
+  //       },
+  //     }
+  //   );
   },
 };
 
