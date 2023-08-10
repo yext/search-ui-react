@@ -6,6 +6,7 @@
   "license": "BSD-3-Clause",
   "main": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
+  "type": "module",
   "keywords": [
     "search",
     "nlp",
@@ -39,7 +40,7 @@
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "prepublishOnly": "npm run build",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "wcag": "test-storybook",
     "test:unit": "jest",
