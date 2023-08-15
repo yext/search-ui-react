@@ -6,6 +6,7 @@
   "license": "BSD-3-Clause",
   "main": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
+  "type": "module",
   "keywords": [
     "search",
     "nlp",
