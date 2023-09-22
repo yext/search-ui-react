@@ -1,12 +1,16 @@
 import { createElement, isValidElement, KeyboardEvent, PropsWithChildren, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
-import useRootClose from '@restart/ui/useRootClose';
+import useRootClosePkg from '@restart/ui/useRootClose';
+const useRootClose = typeof useRootClosePkg === 'function' ? useRootClosePkg : useRootClosePkg['default'];
 import { FocusContext, FocusContextType } from './FocusContext';
 import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
-import useLayoutEffect from 'use-isomorphic-layout-effect';
+import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
+const useLayoutEffect = typeof useIsomorphicLayoutEffect === 'function'
+  ? useIsomorphicLayoutEffect
+  : useIsomorphicLayoutEffect['default'];
 import { useId } from '@reach/auto-id';
 
 interface DropdownItemData {

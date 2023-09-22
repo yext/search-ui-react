@@ -1,5 +1,5 @@
 import { FieldValueFilter, useSearchState, useSearchActions, DisplayableFacet, DisplayableFacetOption, SearchActions, Matcher } from '@yext/search-headless-react';
-import { isEqual } from 'lodash';
+import lodash from 'lodash';
 import { useMemo } from 'react';
 import { isNearFilterValue } from '../utils/filterutils';
 import { isDescendantHierarchicalFacet } from '../utils/isDescendantHierarchicalFacet';
@@ -157,7 +157,7 @@ function handleRemoveHierarchicalFacetOption(
     .flatMap(f => f.options)
     .find(o => {
       const tokens = splitDisplayName(o.displayName, delimiter);
-      return isEqual(tokens, parentTokens);
+      return lodash.isEqual(tokens, parentTokens);
     });
 
   parentOption && searchActions.setFacetOption(filter.fieldId, {
