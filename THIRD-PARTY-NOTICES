@@ -54,6 +54,36 @@ PERFORMANCE OF THIS SOFTWARE.
 
 The following NPM package may be included in this product:
 
+ - @mapbox/geojson-types@1.0.2
+
+This package contains the following license and notice below:
+
+MIT License
+
+Copyright (c) 2018 Mapbox
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-----------
+
+The following NPM package may be included in this product:
+
  - @mapbox/jsonlint-lines-primitives@2.0.2
 
 This package contains the following license and notice below:
@@ -129,56 +159,49 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - @mapbox/tiny-sdf@2.0.6
+ - @mapbox/tiny-sdf@2.0.5
 
 This package contains the following license and notice below:
 
-BSD-2-Clause
-Copyright (c) 2016-2022 Mapbox, Inc.
+Copyright © 2016-2021 Mapbox, Inc.
+This code available under the terms of the BSD 2-Clause license.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -----------
 
 The following NPM package may be included in this product:
 
- - @mapbox/unitbezier@0.0.1
+ - @mapbox/unitbezier@0.0.0
 
 This package contains the following license and notice below:
 
-BSD-2-Clause
+[![Build Status](https://travis-ci.org/mapbox/unitbezier.svg)](https://travis-ci.org/mapbox/unitbezier)
 
-Copyright (C) 2008 Apple Inc. All Rights Reserved.
+# unitbezier
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
+Unit bezier interpolation function: a port to JavaScript from Webkit:
 
-1. Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY APPLE INC. ``AS IS'' AND ANY
-EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL APPLE INC. OR
-CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
-OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-Ported from Webkit
 http://svn.webkit.org/repository/webkit/trunk/Source/WebCore/platform/graphics/UnitBezier.h
+
+## api
+
+### new UnitBezier(p1x, p1y, p2x, p2y)
+
+Initialize a new bezier curve given the points
+
+### bezier.sampleCurveX(t)
+
+### bezier.sampleCurveY(t)
+
+### bezier.sampleCurveDerivativeX(t)
+
+### bezier.solveCurveX(t)
+
+### bezier.solve(x, epsilon)
 
 -----------
 
@@ -1427,7 +1450,7 @@ These definitions were written by Chi Vinh Le <https://github.com/cvle>.
 
 The following NPM package may be included in this product:
 
- - @yext/analytics@0.5.0
+ - @yext/analytics@0.6.5
 
 This package contains the following license and notice below:
 
@@ -3306,7 +3329,7 @@ OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHE
 
 The following NPM packages may be included in this product:
 
- - kdbush@4.0.2
+ - kdbush@3.0.0
  - quickselect@2.0.0
 
 These packages each contain the following license and notice below:
@@ -3326,6 +3349,36 @@ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
 OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
 TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
 THIS SOFTWARE.
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - layerr@2.0.1
+
+This package contains the following license and notice below:
+
+MIT License
+
+Copyright (c) 2020 Perry Mitchell
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 -----------
 
@@ -3587,7 +3640,7 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - mapbox-gl@2.15.0
+ - mapbox-gl@2.10.0
 
 This package contains the following license and notice below:
 
@@ -3595,22 +3648,22 @@ mapbox-gl-js v2.0
 
 Mapbox Web SDK
 
-Copyright © 2021 - 2023 Mapbox, Inc. All rights reserved.
+Copyright (c) 2020, Mapbox
 
-The software and files in this repository (collectively, "Software") are
-licensed under the Mapbox TOS for use only with the relevant Mapbox product(s)
-listed at www.mapbox.com/pricing. This license allows developers with a
-current active Mapbox account to use and modify the authorized portions of the
-Software as needed for use only with the relevant Mapbox product(s) through
-their Mapbox account in accordance with the Mapbox TOS.  This license
-terminates automatically if a developer no longer has a Mapbox account in good
-standing or breaches the Mapbox TOS. For the license terms, please see the
-Mapbox TOS at https://www.mapbox.com/legal/tos/ which incorporates the Mapbox
-Product Terms at www.mapbox.com/legal/service-terms.  If this Software is a
-SDK, modifications that change or interfere with marked portions of the code
-related to billing, accounting, or data collection are not authorized and the
-SDK sends limited de-identified location and usage data which is used in
-accordance with the Mapbox TOS. [Updated 2023-01]
+All rights reserved.
+
+Mapbox gl-js version 2.0 or higher (“Mapbox Web SDK”) must be used according to
+the Mapbox Terms of Service. This license allows developers with a current active
+Mapbox account to use and modify the Mapbox Web SDK. Developers may modify the
+Mapbox Web SDK code so long as the modifications do not change or interfere with
+marked portions of the code related to billing, accounting, and anonymized data
+collection. The Mapbox Web SDK only sends anonymized usage data, which Mapbox uses
+for fixing bugs and errors, accounting, and generating aggregated anonymized
+statistics. This license terminates automatically if a user no longer has an
+active Mapbox account.
+
+For the full license terms, please see the Mapbox Terms of Service at
+https://www.mapbox.com/legal/tos/.
 
 -------------------------------------------------------------------------------
 
@@ -4261,7 +4314,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - potpack@2.0.0
+ - potpack@1.0.2
 
 This package contains the following license and notice below:
 
@@ -5719,7 +5772,7 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - supercluster@8.0.1
+ - supercluster@7.1.5
 
 This package contains the following license and notice below:
 
@@ -6007,6 +6060,36 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 9. Accepting Warranty or Additional Liability. While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License. However, in accepting such obligations, You may act only on Your own behalf and on Your sole responsibility, not on behalf of any other Contributor, and only if You agree to indemnify, defend, and hold each Contributor harmless for any liability incurred by, or claims asserted against, such Contributor by reason of your accepting any such warranty or additional liability.
 
 END OF TERMS AND CONDITIONS
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - ulidx@2.1.0
+
+This package contains the following license and notice below:
+
+MIT License
+
+Copyright (c) 2021 Perry Mitchell
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 -----------
 
