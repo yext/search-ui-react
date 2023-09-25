@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.4.0-alpha.14",
+  "version": "1.4.0-alpha.16",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "slapshot@yext.com",
   "license": "BSD-3-Clause",
@@ -31,7 +31,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf lib/** && npm run build:js && npm run build:css && npm run api-extractor && npm run generate-docs && npm run generate-notices",
+    "build": "rm -rf lib/** && rm -rf dist/** && npm run build:js && npm run build:css && npm run api-extractor && npm run generate-docs && npm run generate-notices",
     "build:js": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && tsup src/index.ts --dts --sourcemap --format esm,cjs",
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs && tailwindcss -o ./lib/bundle-no-resets.css --minify -c tailwind-no-resets.config.cjs",
     "dev": "tsc --watch -p tsconfig.esm.json",
