@@ -6,6 +6,9 @@
   "author": "slapshot@yext.com",
   "license": "BSD-3-Clause",
   "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "type": "module",
+  "sideEffects": false,
   "types": "./dist/index.d.ts",
   "keywords": [
     "search",
@@ -20,7 +23,9 @@
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import.types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "require.types": "./dist/index.d.ts"
     },
     "./bundle.css": "./lib/bundle.css",
     "./bundle-no-resets.css": "./lib/bundle-no-resets.css"
@@ -78,7 +83,7 @@
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "@yext/eslint-config-slapshot": "^0.5.0",
-    "@yext/search-headless-react": "2.4.0-alpha.0",
+    "@yext/search-headless-react": "2.4.0-alpha.5",
     "axe-playwright": "^1.1.11",
     "babel-jest": "^27.0.6",
     "eslint": "^8.11.0",
@@ -96,7 +101,7 @@
     "typescript": "~4.5.5"
   },
   "peerDependencies": {
-    "@yext/search-headless-react": "2.4.0-alpha.0",
+    "@yext/search-headless-react": "2.4.0-alpha.5",
     "react": "^16.14 || ^17",
     "react-dom": "^16.14 || ^17"
   },
