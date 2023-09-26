@@ -1,4 +1,4 @@
-# search-ui-react
+ search-ui-react
 
 <div>
   <a href="https://npmjs.org/package/@yext/search-ui-react">
