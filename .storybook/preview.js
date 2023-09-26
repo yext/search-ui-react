@@ -1,7 +1,7 @@
-import './index.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { SearchCoreDecorator } from '../tests/__fixtures__/core/SearchCore';
 import { runOnly } from './wcagConfig';
+import '@yext/search-ui-react/bundle.css'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

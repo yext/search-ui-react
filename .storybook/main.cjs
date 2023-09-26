@@ -19,7 +19,6 @@ module.exports = {
         }
       }
     },
-    '@storybook/addon-styling-webpack'
   ],
 
   framework: {
