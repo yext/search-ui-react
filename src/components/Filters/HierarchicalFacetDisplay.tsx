@@ -1,6 +1,6 @@
 import { DisplayableFacet } from '@yext/search-headless-react';
-import { ReactNode, useCallback, useState } from 'react';
-import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import React, { ReactNode, useCallback, useState } from 'react';
+import { useComposedCssClasses } from '../../hooks';
 import { HierarchicalFacetNode, HierarchicalFacetTree, useHierarchicalFacetTree } from '../../hooks/useHierarchicalFacetTree';
 import { useFiltersContext } from './FiltersContext';
 

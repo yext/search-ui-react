@@ -14,15 +14,15 @@ Props for the [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md) co
 <b>Signature:</b>
 
 ```typescript
-export interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> 
+interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> 
 ```
-<b>Extends:</b> Omit&lt;[StandardFacetsProps](./search-ui-react.standardfacetsprops.md)<!-- -->, 'excludedFieldIds'&gt;
+<b>Extends:</b> Omit&lt;StandardFacetsProps, 'excludedFieldIds'&gt;
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.hierarchicalfacetsprops.customcssclasses.md) | [HierarchicalFacetsCssClasses](./search-ui-react.hierarchicalfacetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [customCssClasses?](./search-ui-react.hierarchicalfacetsprops.customcssclasses.md) | HierarchicalFacetsCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [delimiter?](./search-ui-react.hierarchicalfacetsprops.delimiter.md) | string | <i>(Optional)</i> The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->". |
 |  [includedFieldIds](./search-ui-react.hierarchicalfacetsprops.includedfieldids.md) | string\[\] | List of filter ids to render as hierarchical facets. |
 |  [showMoreLimit?](./search-ui-react.hierarchicalfacetsprops.showmorelimit.md) | number | <i>(Optional)</i> The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4. |

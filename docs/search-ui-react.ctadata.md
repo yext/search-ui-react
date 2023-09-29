@@ -9,7 +9,7 @@ The shape of a StandardCard CTA field's data.
 <b>Signature:</b>
 
 ```typescript
-export interface CtaData 
+interface CtaData 
 ```
 
 ## Properties

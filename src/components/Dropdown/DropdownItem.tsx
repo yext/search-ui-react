@@ -1,4 +1,4 @@
-import { PropsWithChildren, useCallback } from 'react';
+import React, { PropsWithChildren, useCallback } from 'react';
 import { useDropdownContext } from './DropdownContext';
 import { FocusedItemData, useFocusContext } from './FocusContext';
 import { generateDropdownId } from './generateDropdownId';
@@ -21,7 +21,7 @@ export type DropdownItemProps = PropsWithChildren<{
   /** A function which is fired when the item is clicked. */
   onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void,
   /** Screenreader text. */
-  ariaLabel?: (value: string) => string | string
+  ariaLabel?: (value: string) => string
 }>;
 
 /**

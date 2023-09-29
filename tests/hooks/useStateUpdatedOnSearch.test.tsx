@@ -1,6 +1,7 @@
 import { render, screen, act } from '@testing-library/react';
 import { provideHeadless, SearchHeadless, SearchHeadlessProvider, useSearchActions } from '@yext/search-headless-react';
 import { useStateUpdatedOnSearch } from '../../src/hooks/useStateUpdatedOnSearch';
+import React from 'react';
 
 it('uses the correct initial value', () => {
   function TestComponent() {

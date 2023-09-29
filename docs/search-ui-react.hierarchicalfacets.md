@@ -14,18 +14,18 @@ A component that displays hierarchical facets, in a tree level structure, applic
 <b>Signature:</b>
 
 ```typescript
-export declare function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
+declare function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): React.JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit } | [HierarchicalFacetsProps](./search-ui-react.hierarchicalfacetsprops.md) |  |
+|  { searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit } | HierarchicalFacetsProps |  |
 
 <b>Returns:</b>
 
-JSX.Element
+React.JSX.Element
 
 A React component for facets
 

@@ -9,14 +9,14 @@ Renders a SearchBar that is hooked up with an InputDropdown component.
 <b>Signature:</b>
 
 ```typescript
-export declare function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
+declare function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch } | [SearchBarProps](./search-ui-react.searchbarprops.md) |  |
+|  { placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch } | SearchBarProps |  |
 
 <b>Returns:</b>
 

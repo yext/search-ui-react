@@ -9,9 +9,9 @@ The CSS class interface used for [UniversalResults()](./search-ui-react.universa
 <b>Signature:</b>
 
 ```typescript
-export interface UniversalResultsCssClasses extends SectionHeaderCssClasses 
+interface UniversalResultsCssClasses extends SectionHeaderCssClasses 
 ```
-<b>Extends:</b> [SectionHeaderCssClasses](./search-ui-react.sectionheadercssclasses.md)
+<b>Extends:</b> SectionHeaderCssClasses
 
 ## Properties
 

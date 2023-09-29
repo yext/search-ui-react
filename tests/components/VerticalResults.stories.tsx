@@ -5,6 +5,7 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
 import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
+import React from 'react';
 
 const meta: ComponentMeta<typeof VerticalResults> = {
   title: 'VerticalResults',

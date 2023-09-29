@@ -1,8 +1,8 @@
 import { useSearchActions, useSearchState } from '@yext/search-headless-react';
-import { PropsWithChildren, useMemo } from 'react';
+import React, { PropsWithChildren, useMemo } from 'react';
 import { SelectableFieldValueFilter } from '../../models/SelectableFieldValueFilter';
 import { getSelectableFieldValueFilters } from '../../utils/filterutils';
-import { executeSearch } from '../../utils/search-operations';
+import { executeSearch } from '../../utils';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
 /**

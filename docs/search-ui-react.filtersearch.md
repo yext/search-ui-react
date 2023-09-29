@@ -9,14 +9,14 @@ A component which allows a user to search for filters associated with specific e
 <b>Signature:</b>
 
 ```typescript
-export declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
+declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses } | [FilterSearchProps](./search-ui-react.filtersearchprops.md) |  |
+|  { searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses } | FilterSearchProps |  |
 
 <b>Returns:</b>
 

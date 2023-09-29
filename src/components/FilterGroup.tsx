@@ -1,5 +1,5 @@
 import { useSearchUtilities } from '@yext/search-headless-react';
-import { PropsWithChildren, useMemo, useState } from 'react';
+import React, { PropsWithChildren, useMemo, useState } from 'react';
 import {
   CheckboxOption,
   CollapsibleSection,

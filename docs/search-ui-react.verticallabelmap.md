@@ -9,5 +9,5 @@ A map of vertical keys to labels.
 <b>Signature:</b>
 
 ```typescript
-export interface VerticalLabelMap 
+interface VerticalLabelMap 
 ```

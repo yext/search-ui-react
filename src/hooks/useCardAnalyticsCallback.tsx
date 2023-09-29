@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { DefaultRawDataType } from '../models';
+import { DefaultRawDataType } from '../models/index';
 import {
   CardAnalyticsDataType,
   CardAnalyticsType,

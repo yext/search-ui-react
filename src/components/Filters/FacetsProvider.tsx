@@ -3,12 +3,12 @@ import {
   useSearchActions,
   useSearchState
 } from '@yext/search-headless-react';
-import { ReactNode, useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import { SelectableFieldValueFilter } from '../../models/SelectableFieldValueFilter';
 
 import { getSelectedNumericalFacetFields, isNumberRangeValue } from '../../utils/filterutils';
 import { clearStaticRangeFilters } from '../../utils/filterutils';
-import { executeSearch } from '../../utils/search-operations';
+import { executeSearch } from '../../utils';
 import { FiltersContext, FiltersContextType } from './FiltersContext';
 
 /**

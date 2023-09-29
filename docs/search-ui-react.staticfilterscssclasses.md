@@ -9,9 +9,9 @@ The CSS class interface for [StaticFilters()](./search-ui-react.staticfilters.md
 <b>Signature:</b>
 
 ```typescript
-export interface StaticFiltersCssClasses extends FilterGroupCssClasses 
+interface StaticFiltersCssClasses extends FilterGroupCssClasses 
 ```
-<b>Extends:</b> [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
+<b>Extends:</b> FilterGroupCssClasses
 
 ## Properties
 

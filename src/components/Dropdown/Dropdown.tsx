@@ -1,13 +1,24 @@
-import { createElement, isValidElement, KeyboardEvent, PropsWithChildren, ReactNode, useEffect, useMemo, useRef, useState } from 'react';
-import { DropdownContext, DropdownContextType } from './DropdownContext';
-import { InputContext, InputContextType } from './InputContext';
+import React, {
+  createElement,
+  isValidElement,
+  KeyboardEvent,
+  PropsWithChildren,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
+import {DropdownContext, DropdownContextType} from './DropdownContext';
+import {InputContext, InputContextType} from './InputContext';
 import useRootClosePkg from '@restart/ui/useRootClose';
-import { FocusContext, FocusContextType } from './FocusContext';
-import { ScreenReader } from '../ScreenReader';
-import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
-import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
+import {FocusContext, FocusContextType} from './FocusContext';
+import {ScreenReader} from '../ScreenReader';
+import {recursivelyMapChildren} from '../utils/recursivelyMapChildren';
+import {DropdownItem, DropdownItemProps, DropdownItemWithIndex} from './DropdownItem';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
-import { useId } from '@reach/auto-id';
+import {useId} from '@reach/auto-id';
+
 const useRootClose = typeof useRootClosePkg === 'function' ? useRootClosePkg : useRootClosePkg['default'];
 const useLayoutEffect = typeof useIsomorphicLayoutEffect === 'function'
   ? useIsomorphicLayoutEffect
@@ -284,8 +295,7 @@ function getTransformedChildrenAndItemData(children: ReactNode): [ReactNode, Dro
       value: props.value,
       itemData: props.itemData
     });
-    const transformedItem = createElement(DropdownItemWithIndex, { ...props, index: items.length - 1 });
-    return transformedItem;
+    return createElement(DropdownItemWithIndex, {...props, index: items.length - 1});
   }));
   return [childrenWithDropdownItemsTransformed, items];
 }

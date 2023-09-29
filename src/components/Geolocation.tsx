@@ -1,7 +1,8 @@
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks';
 import LoadingIndicator from '../icons/LoadingIndicator';
 import { YextIcon } from '../icons/YextIcon';
 import { useGeolocationHandler } from '../hooks/useGeolocationHandler';
+import React from 'react';
 
 /**
  * The CSS class interface for the Geolocation component.

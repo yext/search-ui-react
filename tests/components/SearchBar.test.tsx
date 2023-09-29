@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import * as Analytics from '../../src/hooks/useAnalytics';
 import {SearchAnalyticsService} from "@yext/analytics";
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {

@@ -7,6 +7,7 @@ import { MapboxMap, MapboxMapProps } from '../../src/components/MapboxMap';
 import { MapPin } from '../../test-site/src/components/MapPin';
 import { Location } from '../../test-site/src/pages/LocationsPage';
 import { locationVerticalSingle, locationVerticalMultiple } from '../__fixtures__/data/mapbox';
+import React from 'react';
 
 const meta: ComponentMeta<typeof MapboxMap> = {
   title: 'MapboxMap',
@@ -31,7 +32,7 @@ const Template: Story<MapboxMapProps<Location>> = (args) => (
   </SearchHeadlessContext.Provider>
 );
 
-export const Primary = Template.bind({});
+export const Primary: any = Template.bind({});
 
 export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
   return (
@@ -41,7 +42,7 @@ export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
   );
 };
 
-export const CustomPin = Template.bind({});
+export const CustomPin: any = Template.bind({});
 
 CustomPin.args = {
   PinComponent: MapPin,

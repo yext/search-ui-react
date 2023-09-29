@@ -9,5 +9,5 @@ A function which is called when user drag the map.
 <b>Signature:</b>
 
 ```typescript
-export declare type OnDragHandler = (center: mapboxgl.LngLat, bounds: mapboxgl.LngLatBounds) => void;
+type OnDragHandler = (center: mapboxgl.LngLat, bounds: mapboxgl.LngLatBounds) => void;
 ```

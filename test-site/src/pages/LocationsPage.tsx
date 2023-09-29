@@ -10,7 +10,7 @@ import {
   Pagination,
   MapboxMapProps,
   OnDragHandler,
-  Coordinate
+  Coordinate,
 } from '@yext/search-ui-react';
 import { LngLat, LngLatBounds } from 'mapbox-gl';
 import { useCallback, useLayoutEffect } from 'react';
@@ -32,7 +32,7 @@ export function LocationsPage() {
     searchActions.executeVerticalQuery();
   }, [searchActions]);
 
-  const onDrag: OnDragHandler = useCallback(
+  const onDrag: any = useCallback(
     (center: LngLat, bounds: LngLatBounds) => {
       const radius = center.distanceTo(bounds.getNorthEast());
       const nonLocationFilters: SelectableStaticFilter[] = filters?.filter(f => f.filter.kind !== 'fieldValue' || f.filter.fieldId !== 'builtin.location') ?? [];

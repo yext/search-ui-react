@@ -4,7 +4,7 @@ import {
   Address,
   UnknownFieldValueDirectAnswer
 } from '@yext/search-headless-react';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { UnknownFieldTypeDisplayComponent } from './DirectAnswer';
 
 /**

@@ -5,6 +5,7 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { RecursivePartial } from '../__utils__/mocks';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
+import React from 'react';
 
 const meta: ComponentMeta<typeof Facets> = {
   title: 'Facets',

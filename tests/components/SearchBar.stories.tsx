@@ -5,13 +5,16 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { SearchBar, SearchBarProps } from '../../src/components';
 import { userEvent, within } from '@storybook/testing-library';
 import { generateMockedAutocompleteService } from '../__fixtures__/core/autocomplete-service';
+import React from 'react';
 
 const mockedAutocompleteResult = {
   results: [{
     value: 'query suggestion 1',
-    verticalKeys: ['verticalKey1', 'verticalKey2']
+    verticalKeys: ['verticalKey1', 'verticalKey2'],
+    inputIntents: [],
   }, {
-    value: 'query suggestion 2'
+    value: 'query suggestion 2',
+    inputIntents: [],
   }],
   inputIntents: [],
   uuid: ''
@@ -44,7 +47,7 @@ export const Primary: Story<SearchBarProps> = (args) => {
   );
 };
 
-export const DropdownExpanded = Primary.bind({});
+export const DropdownExpanded: any = Primary.bind({});
 DropdownExpanded.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
@@ -52,7 +55,7 @@ DropdownExpanded.play = ({ canvasElement }) => {
   userEvent.click(textboxEl);
 };
 
-export const DropdownHighlight = Primary.bind({});
+export const DropdownHighlight: any = Primary.bind({});
 DropdownHighlight.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
@@ -61,7 +64,7 @@ DropdownHighlight.play = ({ canvasElement }) => {
   userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
 
-export const DropdownExpandedVerticalLinks = Primary.bind({});
+export const DropdownExpandedVerticalLinks: any = Primary.bind({});
 DropdownExpandedVerticalLinks.args = {
   showVerticalLinks: true
 };

@@ -9,7 +9,7 @@ The CSS classes used for pagination.
 <b>Signature:</b>
 
 ```typescript
-export interface PaginationCssClasses 
+interface PaginationCssClasses 
 ```
 
 ## Properties

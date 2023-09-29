@@ -6,7 +6,8 @@ import {
 } from '@yext/search-headless-react';
 import classNames from 'classnames';
 import { processTranslation } from './utils/processTranslation';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks';
+import React from 'react';
 
 /**
  *  The CSS class interface for {@link ResultsCount}.
@@ -45,6 +46,7 @@ export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Eleme
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
   const resultsCountText = useResultsCount();
 
+  // @ts-ignore
   const resultsCountClassnames = classNames(cssClasses.resultsCountContainer, {
     [cssClasses.resultsCountLoading ?? '']: isLoading
   });

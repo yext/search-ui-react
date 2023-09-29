@@ -1,8 +1,8 @@
 import { FieldValueFilter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
-import { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
-import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks';
 import { findSelectableFieldValueFilter } from '../../utils/filterutils';
 import classNames from 'classnames';
 import { useId } from '@reach/auto-id';
@@ -119,9 +119,11 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const labelText = resultsCount ? `${displayName} (${resultsCount})` : displayName;
 
+  // @ts-ignore
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___disabled ?? '']: isOptionsDisabled
   });
+  // @ts-ignore
   const labelClasses = classNames(cssClasses.label, {
     [cssClasses.label___disabled ?? '']: isOptionsDisabled
   });

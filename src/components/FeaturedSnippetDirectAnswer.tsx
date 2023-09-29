@@ -1,6 +1,6 @@
 import { FeaturedSnippetDirectAnswer as FeaturedSnippetDirectAnswerType } from '@yext/search-headless-react';
 import { renderHighlightedValue } from './utils/renderHighlightedValue';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 /**
  * Props for {@link FeaturedSnippetDirectAnswer}.

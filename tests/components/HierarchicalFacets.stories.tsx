@@ -4,6 +4,7 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 import { RecursivePartial } from '../__utils__/mocks';
 import { HierarchicalFacets, HierarchicalFacetsProps } from '../../src';
+import React from 'react';
 
 const meta: ComponentMeta<typeof HierarchicalFacets> = {
   title: 'HierarchicalFacets',

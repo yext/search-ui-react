@@ -7,6 +7,7 @@ import { HierarchicalFacetContent } from '../../src/components/HierarchicalFacet
 import { FacetsProvider } from '../../src/components/Filters';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
+import React from 'react';
 
 const hierarchicalFacet = DisplayableFacets[2];
 

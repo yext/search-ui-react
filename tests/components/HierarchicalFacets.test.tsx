@@ -4,6 +4,7 @@ import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/m
 import userEvent from '@testing-library/user-event';
 import { HierarchicalFacets } from '../../src';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
+import React from 'react';
 
 const hierarchicalFacetFieldIds = ['hier'];
 

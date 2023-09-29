@@ -7,6 +7,7 @@ import { decorator as LocationOperationDecorator } from '../__fixtures__/utils/l
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import { userEvent, within } from '@storybook/testing-library';
+import React from 'react';
 
 const meta: ComponentMeta<typeof LocationBias> = {
   title: 'LocationBias',
@@ -44,7 +45,7 @@ export const Primary: Story<LocationBiasProps> = (args) => {
   );
 };
 
-export const Loading = Primary.bind({});
+export const Loading: any = Primary.bind({});
 Loading.decorators = [LocationOperationDecorator];
 Loading.parameters = {
   geoLocation: {

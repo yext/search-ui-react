@@ -9,9 +9,7 @@ A map of verticalKey to a VerticalConfig.
 <b>Signature:</b>
 
 ```typescript
-export declare type VerticalConfigMap<T = Record<string, DefaultRawDataType>> = {
+type VerticalConfigMap<T = Record<string, DefaultRawDataType>> = {
     [K in keyof T]: VerticalConfig<T[K]>;
 };
 ```
-<b>References:</b> [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)<!-- -->, [VerticalConfig](./search-ui-react.verticalconfig.md)
-

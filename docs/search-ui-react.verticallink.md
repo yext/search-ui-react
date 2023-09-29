@@ -9,7 +9,7 @@ Data needed to create a URL to a vertical search page.
 <b>Signature:</b>
 
 ```typescript
-export interface VerticalLink 
+interface VerticalLink 
 ```
 
 ## Properties

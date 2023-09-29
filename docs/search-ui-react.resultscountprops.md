@@ -9,12 +9,12 @@ Props for [ResultsCount()](./search-ui-react.resultscount.md)<!-- -->.
 <b>Signature:</b>
 
 ```typescript
-export interface ResultsCountProps 
+interface ResultsCountProps 
 ```
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.resultscountprops.customcssclasses.md) | [ResultsCountCssClasses](./search-ui-react.resultscountcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [customCssClasses?](./search-ui-react.resultscountprops.customcssclasses.md) | ResultsCountCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
 

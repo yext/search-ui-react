@@ -9,5 +9,5 @@ The data associated with the currently focused item.
 <b>Signature:</b>
 
 ```typescript
-export declare type FocusedItemData = Record<string, unknown>;
+type FocusedItemData = Record<string, unknown>;
 ```

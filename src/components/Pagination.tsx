@@ -1,9 +1,9 @@
 import { useSearchState, useSearchActions } from '@yext/search-headless-react';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks';
 import { ChevronIcon as PageNavigationIcon } from '../icons/ChevronIcon';
 import { usePaginationAnalytics } from '../hooks/usePaginationAnalytics';
 import { executeSearch } from '../utils';
-import { PropsWithChildren, useCallback } from 'react';
+import React, { PropsWithChildren, useCallback } from 'react';
 import classNames from 'classnames';
 
 /**
@@ -85,6 +85,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   }
 
   const paginationLabels: string[] = generatePaginationLabels(currentPageNumber, maxPageCount);
+  // @ts-ignore
   const paginationContainerClassNames = classNames(cssClasses.paginationContainer, {
     [cssClasses.paginationLoading ?? '']: isLoading
   });

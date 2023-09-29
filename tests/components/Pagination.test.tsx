@@ -4,6 +4,7 @@ import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/m
 import userEvent from '@testing-library/user-event';
 import { Pagination } from '../../src/components/Pagination';
 import { verticalNoResults } from '../__fixtures__/data/vertical/noresults';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   searchStatus: {

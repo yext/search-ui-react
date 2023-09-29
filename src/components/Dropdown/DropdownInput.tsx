@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useCallback, useRef, useState } from 'react';
+import React, { ChangeEvent, KeyboardEvent, useCallback, useRef, useState } from 'react';
 import { useDropdownContext } from './DropdownContext';
 import { useFocusContext, FocusedItemData } from './FocusContext';
 import { generateDropdownId } from './generateDropdownId';

@@ -1,12 +1,11 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.4.0-alpha.20",
+  "version": "1.4.0-alpha.27",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "slapshot@yext.com",
   "license": "BSD-3-Clause",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "type": "module",
   "sideEffects": false,
   "types": "./dist/index.d.ts",
   "keywords": [
@@ -21,10 +20,10 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "import.types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "require.types": "./dist/index.d.cts"
+      "import": "./dist/index.mjs",
+      "import.types": "./dist/index.d.mts",
+      "require": "./dist/index.js",
+      "require.types": "./dist/index.d.ts"
     },
     "./bundle.css": "./lib/bundle.css",
     "./bundle-no-resets.css": "./lib/bundle-no-resets.css"
@@ -37,9 +36,11 @@
   ],
   "scripts": {
     "build": "rm -rf lib/** && rm -rf dist/** && npm run build:js && npm run build:css && npm run api-extractor && npm run generate-docs && npm run generate-notices",
-    "build:js": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && tsup src/index.ts --dts --sourcemap --format esm,cjs",
+    "build:js": "tsup src/index.ts --dts --sourcemap --format esm,cjs && npm run create:lib-esm && npm run create:lib-commonjs",
+    "create:lib-esm": "mkdir -p lib/esm && cp dist/index.mjs dist/index.d.mts dist/index.mjs.map lib/esm",
+    "create:lib-commonjs": "mkdir -p lib/commonjs && cp dist/index.js dist/index.d.ts dist/index.js.map lib/commonjs",
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs && tailwindcss -o ./lib/bundle-no-resets.css --minify -c tailwind-no-resets.config.cjs",
-    "dev": "tsc --watch -p tsconfig.esm.json",
+    "dev": "tsc --watch -p tsconfig.json",
     "lint": "eslint . --max-warnings=0",
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
@@ -75,14 +76,14 @@
     "@testing-library/react": "^12.1.3",
     "@testing-library/react-hooks": "^8.0.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/classnames": "^2.3.1",
     "@types/jest": "^29.1.0",
-    "@types/lodash": "^4.14.180",
+    "@types/lodash": "^4.14.199",
     "@types/mapbox-gl": "^2.7.5",
-    "@types/react": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "@yext/eslint-config-slapshot": "^0.5.0",
-    "@yext/search-headless-react": "2.4.0-alpha.6",
+    "@yext/search-headless-react": "^2.4.0-alpha.11",
     "axe-playwright": "^1.2.3",
     "babel-jest": "^29.7.0",
     "eslint": "^8.11.0",
@@ -99,10 +100,10 @@
     "tailwindcss": "^3.0.23",
     "ts-jest": "^29.1.1",
     "tsup": "^7.2.0",
-    "typescript": "~4.5.5"
+    "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "@yext/search-headless-react": "2.4.0-alpha.6",
+    "@yext/search-headless-react": "^2.4.0-alpha.11",
     "react": "^16.14 || ^17",
     "react-dom": "^16.14 || ^17"
   },

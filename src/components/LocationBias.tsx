@@ -1,8 +1,8 @@
 import { useSearchActions, useSearchState, LocationBiasMethod } from '@yext/search-headless-react';
-import { executeSearch } from '../utils/search-operations';
-import { getUserLocation } from '../utils/location-operations';
+import { executeSearch } from '../utils';
+import { getUserLocation } from '../utils';
 import { twMerge, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import LoadingIndicator from '../icons/LoadingIndicator';
 
 /**

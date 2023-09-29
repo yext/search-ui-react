@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { ResultsCount } from '../../src/components/ResultsCount';
 import { mockAnswersState } from '../__utils__/mocks';
 import { RecursivePartial } from '../__utils__/mocks';
+import React from 'react';
 
 const mockedUniversalState: Partial<State> = {
   searchStatus: {

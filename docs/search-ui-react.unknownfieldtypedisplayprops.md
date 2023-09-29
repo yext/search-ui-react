@@ -9,7 +9,7 @@ Props for [UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtyped
 <b>Signature:</b>
 
 ```typescript
-export interface UnknownFieldTypeDisplayProps 
+interface UnknownFieldTypeDisplayProps 
 ```
 
 ## Properties

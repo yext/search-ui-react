@@ -5,6 +5,7 @@ import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 import { mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
 import { mockedVerticalResults } from '../__fixtures__/data/vertical/results';
 import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   vertical: {

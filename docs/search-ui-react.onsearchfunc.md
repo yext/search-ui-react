@@ -9,7 +9,7 @@ The interface of a function which is called on a search.
 <b>Signature:</b>
 
 ```typescript
-export declare type onSearchFunc = (searchEventData: {
+type onSearchFunc = (searchEventData: {
     verticalKey?: string;
     query?: string;
 }) => void;
