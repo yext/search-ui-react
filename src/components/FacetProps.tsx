@@ -1,6 +1,6 @@
 import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FilterGroupCssClasses } from './FilterGroup';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { HierarchicalFacetDisplayCssClasses, RangeInputCssClasses } from './Filters';
 

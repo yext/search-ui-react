@@ -6,9 +6,10 @@ import {
   BuiltInFieldType,
   FieldValueDirectAnswer as FieldValueDirectAnswerType,
 } from '@yext/search-headless-react';
-import { userEvent } from '@storybook/testing-library';
+import userEvent from '@testing-library/user-event'
 import { fieldValueDAState } from '../__fixtures__/data/directanswers';
 import { UnknownFieldTypeDisplayComponent } from '../../src/components/DirectAnswer';
+import React from 'react';
 
 const fieldValueDAResult = fieldValueDAState.result as FieldValueDirectAnswerType;
 

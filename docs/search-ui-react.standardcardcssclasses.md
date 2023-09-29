@@ -11,7 +11,7 @@ The CSS class interface used for the StandardCardDisplay.
 ```typescript
 interface StandardCardCssClasses extends ThumbsFeedbackCssClasses 
 ```
-<b>Extends:</b> [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md)
+<b>Extends:</b> ThumbsFeedbackCssClasses
 
 ## Properties
 

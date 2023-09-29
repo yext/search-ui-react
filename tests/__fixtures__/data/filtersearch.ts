@@ -6,15 +6,18 @@ export const unlabeledFilterSearchResponse: FilterSearchResponse = {
       results: [
         {
           value: 'first name 1',
-          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 1' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 1' },
+          inputIntents: []
         },
         {
           value: 'first name 2',
-          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 2' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 2' },
+          inputIntents: []
         },
         {
           value: 'last name 1',
-          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'last name 1' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'last name 1' },
+          inputIntents: []
         }
       ],
     }
@@ -28,11 +31,13 @@ export const labeledFilterSearchResponse: FilterSearchResponse = {
       results: [
         {
           value: 'first name 1',
-          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 1' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 1' },
+          inputIntents: []
         },
         {
           value: 'first name 2',
-          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 2' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'first name 2' },
+          inputIntents: []
         }
       ],
       label: 'First name'
@@ -41,7 +46,8 @@ export const labeledFilterSearchResponse: FilterSearchResponse = {
       results: [
         {
           value: 'last name 1',
-          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'last name 1' }
+          filter: { fieldId: 'name', matcher: Matcher.Equals, value: 'last name 1' },
+          inputIntents: []
         }
       ],
       label: 'Last name'

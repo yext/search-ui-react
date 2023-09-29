@@ -1,4 +1,5 @@
 import { twMerge } from '../hooks/useComposedCssClasses';
+import React from 'react';
 /**
  * A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets,
  * and StaticFilters.

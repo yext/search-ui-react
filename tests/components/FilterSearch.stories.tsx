@@ -6,6 +6,7 @@ import { FilterSearch, FilterSearchProps } from '../../src/components';
 import { userEvent, within } from '@storybook/testing-library';
 import { generateMockedAutocompleteService } from '../__fixtures__/core/autocomplete-service';
 import { labeledFilterSearchResponse, unlabeledFilterSearchResponse } from '../__fixtures__/data/filtersearch';
+import React from 'react';
 
 const mockedHeadlessState = {
   vertical: {
@@ -52,7 +53,7 @@ export const Primary: Story<FilterSearchProps> = (args) => {
   );
 };
 
-export const DropdownUnsectioned = Primary.bind({});
+export const DropdownUnsectioned: any = Primary.bind({});
 DropdownUnsectioned.parameters = {
   searchCoreServices: {
     autoCompleteService: generateMockedAutocompleteService(undefined, unlabeledFilterSearchResponse)
@@ -63,7 +64,7 @@ DropdownUnsectioned.play = ({ canvasElement }) => {
   userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
-export const DropdownSectioned = Primary.bind({});
+export const DropdownSectioned: any = Primary.bind({});
 DropdownSectioned.args = {
   sectioned: true
 };
@@ -77,7 +78,7 @@ DropdownSectioned.play = ({ canvasElement }) => {
   userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
-export const NoLabel = Primary.bind({});
+export const NoLabel: any = Primary.bind({});
 NoLabel.args = {
   label: undefined
 };

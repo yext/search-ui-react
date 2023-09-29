@@ -1,4 +1,4 @@
-import { PropsWithChildren, useMemo, useState } from 'react';
+import React, { PropsWithChildren, useMemo, useState } from 'react';
 import useCollapse from 'react-collapsed';
 import { FilterGroupContext } from './FilterGroupContext';
 
@@ -37,6 +37,7 @@ export function FilterGroupProvider(props: FilterGroupProviderProps): JSX.Elemen
 
   const [searchValue, setSearchValue] = useState('');
   const [isOptionsDisabled, setIsOptionsDisabled] = useState(false);
+  // @ts-ignore
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({ defaultExpanded });
   const FilterGroupContextInstance = useMemo(() => {
     return {

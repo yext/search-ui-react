@@ -9,14 +9,14 @@ A component that displays a single hierarchical facet, in a tree level structure
 <b>Signature:</b>
 
 ```typescript
-export declare function HierarchicalFacet(props: HierarchicalFacetProps): null;
+declare function HierarchicalFacet(props: HierarchicalFacetProps): null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md) | [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md) |
+|  props | HierarchicalFacetProps | [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md) |
 
 <b>Returns:</b>
 

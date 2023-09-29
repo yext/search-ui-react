@@ -1,9 +1,10 @@
 import { VerticalResultsDisplay } from '../VerticalResultsDisplay';
-import { SectionProps } from '../../models/sectionComponent';
+import { SectionProps } from '../../models';
 import { StandardCard } from '../cards/standard/StandardCard';
-import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks';
 import { VerticalResultsCssClasses } from '../VerticalResults';
 import { DefaultRawDataType } from '../../models';
+import React from 'react';
 
 /**
  * The CSS class interface used for {@link StandardSection}.

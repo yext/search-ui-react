@@ -6,6 +6,7 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import { userEvent, within } from '@storybook/testing-library';
 import { Geolocation, GeolocationProps } from '../../src/components/Geolocation';
+import React from 'react';
 
 const meta: ComponentMeta<typeof Geolocation> = {
   title: 'Geolocation',
@@ -32,7 +33,7 @@ export const Primary: Story<GeolocationProps> = (args) => {
   );
 };
 
-export const Loading = Primary.bind({});
+export const Loading: any = Primary.bind({});
 Loading.decorators = [LocationOperationDecorator];
 Loading.parameters = {
   geoLocation: {

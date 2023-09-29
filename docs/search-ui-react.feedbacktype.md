@@ -9,5 +9,5 @@ Analytics event types for quality feedback.
 <b>Signature:</b>
 
 ```typescript
-export declare type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
+type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 ```

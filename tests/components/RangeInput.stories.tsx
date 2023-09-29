@@ -6,6 +6,7 @@ import { FiltersContext } from '../../src/components/Filters/FiltersContext';
 import { FilterGroupContext } from '../../src/components/Filters/FilterGroupContext';
 import { userEvent, within } from '@storybook/testing-library';
 import { filterContextValue, filterContextValueDisabled, filterGroupContextValue } from '../__fixtures__/data/filtercontext';
+import React from 'react';
 
 const meta: ComponentMeta<typeof RangeInput> = {
   title: 'RangeInput',
@@ -41,14 +42,14 @@ export const Disabled: Story<RangeInputProps> = (args) => {
   );
 };
 
-export const DisabledForceDisplayTooltip = Disabled.bind({});
+export const DisabledForceDisplayTooltip: any = Disabled.bind({});
 DisabledForceDisplayTooltip.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const tooltip = canvas.getByText('Unselect an option to enter in a range.');
   tooltip.style.visibility = 'visible';
 };
 
-export const ValidValues = Primary.bind({});
+export const ValidValues: any = Primary.bind({});
 ValidValues.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const [minTextbox, maxTextbox] = canvas.getAllByRole('textbox');
@@ -56,7 +57,7 @@ ValidValues.play = ({ canvasElement }) => {
   userEvent.type(maxTextbox, '20');
 };
 
-export const InvalidValues = Primary.bind({});
+export const InvalidValues: any = Primary.bind({});
 InvalidValues.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const [minTextbox, maxTextbox] = canvas.getAllByRole('textbox');

@@ -9,7 +9,7 @@ A divider component used to separate NumericalFacets, HierarchicalFacets, Standa
 <b>Signature:</b>
 
 ```typescript
-export declare function FilterDivider({ className }: {
+declare function FilterDivider({ className }: {
     className?: string;
 }): JSX.Element;
 ```

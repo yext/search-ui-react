@@ -1,6 +1,6 @@
 import { FacetsProvider } from './Filters';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { FilterDivider } from './FilterDivider';
 import { isStringFacet } from '../utils/filterutils';
 

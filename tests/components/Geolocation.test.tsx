@@ -4,6 +4,7 @@ import { Geolocation } from '../../src/components/Geolocation';
 import { Matcher, SelectableStaticFilter, State } from '@yext/search-headless-react';
 import * as locationOperations from '../../src/utils/location-operations';
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
+import React from 'react';
 
 jest.mock('@yext/search-headless-react');
 

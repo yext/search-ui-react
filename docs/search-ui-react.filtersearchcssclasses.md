@@ -9,9 +9,9 @@ The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<
 <b>Signature:</b>
 
 ```typescript
-export interface FilterSearchCssClasses extends AutocompleteResultCssClasses 
+interface FilterSearchCssClasses extends AutocompleteResultCssClasses 
 ```
-<b>Extends:</b> [AutocompleteResultCssClasses](./search-ui-react.autocompleteresultcssclasses.md)
+<b>Extends:</b> AutocompleteResultCssClasses
 
 ## Properties
 

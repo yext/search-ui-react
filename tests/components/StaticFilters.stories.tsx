@@ -4,6 +4,7 @@ import { userEvent, within } from '@storybook/testing-library';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { staticFiltersProps } from '../__fixtures__/data/filters';
 import { StaticFilters, StaticFiltersProps } from '../../src';
+import React from 'react';
 
 const meta: ComponentMeta<typeof StaticFilters> = {
   title: 'StaticFilters',
@@ -35,7 +36,7 @@ Primary.play = ({ canvasElement }) => {
   userEvent.click(canvas.getByText('Clifford'));
 };
 
-export const Searchable = Primary.bind({});
+export const Searchable: any = Primary.bind({});
 Searchable.args = {
   ...Primary.args,
   searchable: true

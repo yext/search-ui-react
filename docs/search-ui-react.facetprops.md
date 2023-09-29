@@ -9,7 +9,5 @@ Props for a single facet component.
 <b>Signature:</b>
 
 ```typescript
-export declare type FacetProps = StandardFacetProps | NumericalFacetProps | HierarchicalFacetProps;
+type FacetProps = StandardFacetProps | NumericalFacetProps | HierarchicalFacetProps;
 ```
-<b>References:</b> [StandardFacetProps](./search-ui-react.standardfacetprops.md)<!-- -->, [NumericalFacetProps](./search-ui-react.numericalfacetprops.md)<!-- -->, [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md)
-

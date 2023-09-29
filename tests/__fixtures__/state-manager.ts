@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Unsubscribe } from '@reduxjs/toolkit';
-import { State, StateListener, StateManager } from '@yext/search-headless';
+import { State, StateListener, StateManager } from '@yext/search-headless-react';
 
 /**
  * Generates a mocked StateManager implementation.

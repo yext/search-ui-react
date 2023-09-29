@@ -1,11 +1,12 @@
 import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
-import { AlternativeVerticals, AlternativeVerticalsProps } from '../../src/components/AlternativeVerticals';
+import { AlternativeVerticals, AlternativeVerticalsProps } from '../../dist/index.js';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import { verticalNoResults } from '../__fixtures__/data/vertical/noresults';
+import React from 'react';
 
 const meta: ComponentMeta<typeof AlternativeVerticals> = {
   title: 'AlternativeVerticals',
@@ -39,7 +40,7 @@ Primary.args = {
   displayAllOnNoResults: false
 };
 
-export const DisplayAllOnNoResults = Primary.bind({});
+export const DisplayAllOnNoResults: any = Primary.bind({});
 DisplayAllOnNoResults.args = {
   ...Primary.args,
   displayAllOnNoResults: true

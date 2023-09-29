@@ -9,13 +9,13 @@ Props for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->.
 <b>Signature:</b>
 
 ```typescript
-export interface DirectAnswerProps 
+interface DirectAnswerProps 
 ```
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.directanswerprops.customcssclasses.md) | [DirectAnswerCssClasses](./search-ui-react.directanswercssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [UnknownFieldTypeDisplay?](./search-ui-react.directanswerprops.unknownfieldtypedisplay.md) | [UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md) | <i>(Optional)</i> A component to handle rendering results with "unknown" field type in field value direct answer. |
+|  [customCssClasses?](./search-ui-react.directanswerprops.customcssclasses.md) | DirectAnswerCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [UnknownFieldTypeDisplay?](./search-ui-react.directanswerprops.unknownfieldtypedisplay.md) | UnknownFieldTypeDisplayComponent | <i>(Optional)</i> A component to handle rendering results with "unknown" field type in field value direct answer. |
 

@@ -7,6 +7,7 @@ import { getOptionLabelTextWithCount } from '../__utils__/facets';
 import { StandardFacetContent } from '../../src/components/StandardFacetContent';
 import { StandardFacetProps } from '../../src/components';
 import { FacetsProvider } from '../../src/components/Filters';
+import React from 'react';
 
 const standardFacet = DisplayableFacets[0];
 

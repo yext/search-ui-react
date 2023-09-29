@@ -2,6 +2,9 @@ module.exports = {
   stories: [
     '../tests/**/*.stories.tsx'
   ],
+  features: {
+    storyStoreV7: false,
+  },
   addons: [
     '@etchteam/storybook-addon-status',
     '@storybook/addon-links',
@@ -16,20 +19,15 @@ module.exports = {
         }
       }
     },
-    {
-      name: '@storybook/addon-postcss',
-      options: {
-        cssLoaderOptions: {
-          importLoaders: 1,
-        },
-        postcssLoaderOptions: {
-          implementation: require('postcss'),
-        },
-      },
-    },
   ],
-  framework: '@storybook/react',
+
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {}
+  },
+
   staticDirs: ['./public'],
+
   webpackFinal: async (config) => {
     //use commonjs entry point for "@reach" packages
     config.resolve.alias['@reach/auto-id'] = require.resolve('@reach/auto-id');
@@ -39,8 +37,13 @@ module.exports = {
     config.resolve.alias['../utils/location-operations'] = require.resolve('../tests/__fixtures__/utils/location-operations.ts');
     return config;
   },
+
   env: (config) => ({
     ...config,
     REACT_APP_MAPBOX_API_KEY: process.env.MAPBOX_API_KEY || process.env.REACT_APP_MAPBOX_API_KEY,
   }),
+
+  docs: {
+    autodocs: true
+  }
 };

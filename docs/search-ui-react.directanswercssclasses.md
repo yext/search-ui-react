@@ -9,9 +9,9 @@ The CSS class interface for [DirectAnswer()](./search-ui-react.directanswer.md)<
 <b>Signature:</b>
 
 ```typescript
-export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses 
+interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses 
 ```
-<b>Extends:</b> [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md)
+<b>Extends:</b> ThumbsFeedbackCssClasses
 
 ## Properties
 

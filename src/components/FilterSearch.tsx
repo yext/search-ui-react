@@ -1,6 +1,6 @@
 import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, SearchParameterField, SelectableStaticFilter, StaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useComposedCssClasses } from '../hooks';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { executeSearch } from '../utils';
 import { isDuplicateStaticFilter } from '../utils/filterutils';

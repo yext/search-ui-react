@@ -6,6 +6,7 @@ import {
   HierarchicalFacetDisplay
 } from './Filters';
 import { FacetTitle } from './FacetTiltle';
+import React from 'react';
 
 /**
  * A component that displays the content of a hierarchical facet.

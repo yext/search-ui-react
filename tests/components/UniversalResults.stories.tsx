@@ -7,6 +7,7 @@ import { RecursivePartial } from '../__utils__/mocks';
 import { verticalResults } from '../__fixtures__/data/universalresults';
 import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
 import { VerticalConfigMap } from '../../src/models/verticalConfig';
+import React from 'react';
 
 const verticalConfigMap: VerticalConfigMap = {
   vertical1: {

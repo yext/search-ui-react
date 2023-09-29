@@ -2,6 +2,7 @@ import { FilterGroup } from './FilterGroup';
 import { DisplayableFacet } from '@yext/search-headless-react';
 import { NumericalFacetProps } from './FacetProps';
 import { RangeInput } from './Filters';
+import React from 'react';
 
 const DEFAULT_RANGE_INPUT_PREFIX = <>$</>;
 

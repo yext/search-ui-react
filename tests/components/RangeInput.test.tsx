@@ -6,6 +6,7 @@ import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FiltersContext, FiltersContextType } from '../../src/components/Filters/FiltersContext';
 import { FilterGroupContext } from '../../src/components/Filters/FilterGroupContext';
 import { filterContextValue, filterContextValueDisabled, filterGroupContextValue } from '../__fixtures__/data/filtercontext';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {

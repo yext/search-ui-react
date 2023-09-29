@@ -11,6 +11,7 @@ import { DirectAnswer, DirectAnswerProps } from '../../src/components/DirectAnsw
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { featuredSnippetDAState, fieldValueDAState } from '../__fixtures__/data/directanswers';
+import React from 'react';
 
 const meta: ComponentMeta<typeof DirectAnswer> = {
   title: 'DirectAnswer',

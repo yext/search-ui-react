@@ -14,9 +14,9 @@ The CSS class interface for [StandardFacets()](./search-ui-react.standardfacets.
 <b>Signature:</b>
 
 ```typescript
-export interface StandardFacetsCssClasses extends FilterGroupCssClasses 
+interface StandardFacetsCssClasses extends FilterGroupCssClasses 
 ```
-<b>Extends:</b> [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
+<b>Extends:</b> FilterGroupCssClasses
 
 ## Properties
 

@@ -5,6 +5,7 @@ import { ResultsCount, ResultsCountProps } from '../../src/components/ResultsCou
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
+import React from 'react';
 
 const meta: ComponentMeta<typeof ResultsCount> = {
   title: 'ResultsCount',

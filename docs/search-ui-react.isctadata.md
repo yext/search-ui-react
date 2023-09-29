@@ -9,7 +9,7 @@ Type guard for CtaData.
 <b>Signature:</b>
 
 ```typescript
-export declare function isCtaData(data: unknown): data is CtaData;
+declare function isCtaData(data: unknown): data is CtaData;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ export declare function isCtaData(data: unknown): data is CtaData;
 
 <b>Returns:</b>
 
-data is [CtaData](./search-ui-react.ctadata.md)
+data is CtaData
 
 whether the data is of type CtaData.
 

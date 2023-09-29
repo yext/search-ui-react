@@ -1,9 +1,10 @@
 import { processTranslation } from './utils/processTranslation';
 import { StarIcon } from '../icons/StarIcon';
 import { useSearchState, VerticalResults as VerticalResultsData } from '@yext/search-headless-react';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks';
 import classNames from 'classnames';
-import { VerticalConfig } from '../models/verticalConfig';
+import { VerticalConfig } from '../models';
+import React from 'react';
 
 /**
  * The CSS class interface used for {@link AlternativeVerticals}.
@@ -94,6 +95,7 @@ export function AlternativeVerticals({
   const isShowingAllResults = displayAllOnNoResults && allResultsForVertical.length > 0;
 
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
+  // @ts-ignore
   const containerClassNames = classNames(cssClasses.alternativeVerticalsContainer, {
     [cssClasses.alternativeVerticalsLoading ?? '']: isLoading
   });

@@ -1,9 +1,9 @@
 import { Matcher, NumberRangeValue, useSearchActions, useSearchState } from '@yext/search-headless-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
-import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks';
 import { clearStaticRangeFilters, findSelectableFieldValueFilter, getSelectableFieldValueFilters, parseNumberRangeInput } from '../../utils/filterutils';
-import { executeSearch } from '../../utils/search-operations';
+import { executeSearch } from '../../utils';
 import classNames from 'classnames';
 import { useFiltersContext } from './FiltersContext';
 import { InvalidIcon } from '../../icons/InvalidIcon';
@@ -169,6 +169,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     executeSearch(searchActions);
   }, [searchActions, getFilterDisplayName, rangeFilter]);
 
+  // @ts-ignore
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,
     [cssClasses.input___withoutPrefix ?? '']: !inputPrefix,
@@ -178,6 +179,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     [cssClasses.input___valid ?? '']: isValid
   });
 
+  // @ts-ignore
   const inputPrefixClasses = classNames(cssClasses.inputPrefix, {
     [cssClasses.inputPrefix___disabled ?? '']: isDisabled,
     [cssClasses.inputPrefix___enabled ?? '']: !isDisabled,

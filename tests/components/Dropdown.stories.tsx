@@ -4,6 +4,7 @@ import { DropdownItem } from '../../src/components';
 import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown';
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
+import React from 'react';
 
 const meta: ComponentMeta<typeof Dropdown> = {
   title: 'Dropdown',
@@ -43,19 +44,19 @@ export const Primary: Story<DropdownProps> = (args) => {
   );
 };
 
-export const DropdownExpanded = Primary.bind({});
+export const DropdownExpanded: any = Primary.bind({});
 DropdownExpanded.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
 };
 
-export const DropdownSelected = Primary.bind({});
+export const DropdownSelected: any = Primary.bind({});
 DropdownSelected.play = ({ canvasElement }) => {
   clickTextbox(canvasElement);
   userEvent.keyboard('{arrowdown}{arrowdown}');
   userEvent.keyboard('{enter}');
 };
 
-export const AlwaysSelectExpanded = Primary.bind({});
+export const AlwaysSelectExpanded: any = Primary.bind({});
 AlwaysSelectExpanded.args = {
   alwaysSelectOption: true
 };

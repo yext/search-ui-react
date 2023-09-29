@@ -5,6 +5,7 @@ import { Pagination, PaginationProps } from '../../src/components/Pagination';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
+import React from 'react';
 
 const meta: ComponentMeta<typeof Pagination> = {
   title: 'Pagination',

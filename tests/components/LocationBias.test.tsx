@@ -5,6 +5,7 @@ import { State, LocationBiasMethod, LocationBias as LocationBiasType } from '@ye
 import * as locationOperations from '../../src/utils/location-operations';
 import { mockAnswersHooks, mockAnswersState, RecursivePartial, spyOnActions } from '../__utils__/mocks';
 import * as searchOperations from '../../src/utils/search-operations';
+import React from 'react';
 
 jest.mock('@yext/search-headless-react');
 

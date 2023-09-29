@@ -3,7 +3,8 @@ import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { useClearFiltersCallback } from '../hooks/useClearFiltersCallback';
 import { FieldValueFilter, useSearchActions } from '@yext/search-headless-react';
 import { isDuplicateFieldValueFilter } from '../utils/filterutils';
-import { executeSearch } from '../utils/search-operations';
+import { executeSearch } from '../utils';
+import React from 'react';
 
 /**
  * A representation of a filter that can be removed from the AppliedFilters component.
