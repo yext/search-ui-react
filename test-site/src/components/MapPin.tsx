@@ -10,7 +10,6 @@ const transformToMapboxCoord = (coordinate: Coordinate): LngLatLike => ({
 
 export const MapPin: PinComponent<Location> = props => {
   const { mapbox, result } = props;
-  if (Array.isArray(result.rawData)) { return <></> }
   const yextCoordinate = result.rawData.yextDisplayCoordinate;
   const [active, setActive] = useState(false);
   const popupRef = useRef(new Popup({ offset: 15 })
