@@ -22,6 +22,7 @@ interface CustomRawDataType {
 
 export function MarkdownExampleCard(props: CardProps<CustomRawDataType>): JSX.Element {
   const { result } = props;
+  if (Array.isArray(result.rawData)) { return <></> }
   const onClickTitle = useCardAnalyticsCallback(result, 'TITLE_CLICK');
   const cardFeedbackCallback = useCardFeedbackCallback(result);
   const onClick = useCallback(() => {

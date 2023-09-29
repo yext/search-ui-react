@@ -7,6 +7,7 @@ interface CustomRawDataType2 {
 
 export function CustomCard2(props: CardProps<CustomRawDataType2>): JSX.Element {
   const { result } = props;
+  if (Array.isArray(result.rawData)) { return <></> }
 
   return (
     <div className='flex flex-col justify-between border border-gray-200 rounded-lg mb-4 p-4 shadow-sm'>

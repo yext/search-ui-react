@@ -13,6 +13,7 @@ export function CustomCard(props: CardProps<CustomRawDataType>): JSX.Element {
   const onClick = useCallback(() => {
     cardFeedbackCallback('THUMBS_UP');
   }, [cardFeedbackCallback]);
+  if (Array.isArray(result.rawData)) { return <></> }
 
   return (
     <div className='flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm'>

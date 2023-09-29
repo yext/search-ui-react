@@ -35,6 +35,7 @@ export function HTMLExampleCard(props: CardProps<CustomRawDataType>): JSX.Elemen
   const onClick = useCallback(() => {
     cardFeedbackCallback('THUMBS_UP');
   }, [cardFeedbackCallback]);
+  if (Array.isArray(result.rawData)) { return <></> }
 
   const html: string = result.rawData?.[htmlFieldName]?.html;
   const htmlContent = useMemo(() => { return { __html: html }; }, [html]);
