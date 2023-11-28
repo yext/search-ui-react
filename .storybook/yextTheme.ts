@@ -1,4 +1,4 @@
-const { create } = require('@storybook/theming');
+import { create } from '@storybook/theming';
 
 module.exports = create({
   base: 'light',
