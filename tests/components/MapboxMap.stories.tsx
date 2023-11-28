@@ -1,5 +1,6 @@
 import { ComponentMeta, Story } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { within } from '@storybook/testing-library';
+import { fireEvent } from '@testing-library/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -14,12 +15,14 @@ const meta: ComponentMeta<typeof MapboxMap> = {
   component: MapboxMap,
   argTypes: {
     mapboxAccessToken: {
-      defaultValue: process.env.REACT_APP_MAPBOX_API_KEY,
       control: false,
     },
     PinComponent: {
       control: false,
     },
+  },
+  args: {
+    mapboxAccessToken: process.env.REACT_APP_MAPBOX_API_KEY,
   },
   parameters: { layout: 'fullscreen', percy: { enableJavascript: true } },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
@@ -53,6 +56,6 @@ CustomPin.play = async ({ canvasElement }) => {
   const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
     timeout: 30000
   });
-  userEvent.click(mapPin);
+  fireEvent.click(mapPin);
   await canvas.findByText('title1');
 };

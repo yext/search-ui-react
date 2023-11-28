@@ -1,7 +1,7 @@
 import { ComponentMeta, Story } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
-import { AlternativeVerticals, AlternativeVerticalsProps } from '../../dist/index.js';
+import { AlternativeVerticals, AlternativeVerticalsProps } from '../../src/components/AlternativeVerticals';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';

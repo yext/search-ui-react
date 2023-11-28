@@ -37,10 +37,10 @@ const meta: ComponentMeta<typeof FilterSearch> = {
     },
     searchFields: {
       control: false
-    },
-    label: {
-      defaultValue: 'Filter'
     }
+  },
+  args: {
+    label: "Filter"
   }
 };
 export default meta;

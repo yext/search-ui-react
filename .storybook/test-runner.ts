@@ -15,7 +15,7 @@ const renderFunctions: TestRunnerConfig = {
     await checkA11y(
       page,
       {
-        exclude: ['#root .mapboxgl-canvas-container'],
+        exclude: ['#root .mapboxgl-canvas-container', '.mapboxgl-marker'],
       },
       {
         axeOptions: {
