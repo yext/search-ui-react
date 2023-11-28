@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext, State } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { RecursivePartial } from '../__utils__/mocks';
@@ -7,7 +7,7 @@ import { Facets, FacetsProps } from '../../src';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 import React from 'react';
 
-const meta: ComponentMeta<typeof Facets> = {
+const meta: Meta<typeof Facets> = {
   title: 'Facets',
   component: Facets
 };
@@ -27,7 +27,7 @@ const mockedHeadlessState: RecursivePartial<State> = {
   }
 };
 
-export const Primary: Story<FacetsProps> = (args) => {
+export const Primary: StoryFn<FacetsProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <Facets {...args} />

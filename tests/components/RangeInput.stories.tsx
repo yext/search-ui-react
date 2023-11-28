@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { RangeInput, RangeInputProps } from '../../src/components/Filters/RangeInput';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -8,7 +8,7 @@ import { userEvent, within } from '@storybook/testing-library';
 import { filterContextValue, filterContextValueDisabled, filterGroupContextValue } from '../__fixtures__/data/filtercontext';
 import React from 'react';
 
-const meta: ComponentMeta<typeof RangeInput> = {
+const meta: Meta<typeof RangeInput> = {
   title: 'RangeInput',
   component: RangeInput,
   argTypes: {
@@ -26,7 +26,7 @@ const meta: ComponentMeta<typeof RangeInput> = {
 };
 export default meta;
 
-export const Primary: Story<RangeInputProps> = (args) => {
+export const Primary: StoryFn<RangeInputProps> = (args) => {
   return (
     <FiltersContext.Provider value={filterContextValue}>
       <RangeInput {...args}/>
@@ -34,7 +34,7 @@ export const Primary: Story<RangeInputProps> = (args) => {
   );
 };
 
-export const Disabled: Story<RangeInputProps> = (args) => {
+export const Disabled: StoryFn<RangeInputProps> = (args) => {
   return (
     <FiltersContext.Provider value={filterContextValueDisabled}>
       <RangeInput {...args}/>

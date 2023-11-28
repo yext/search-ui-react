@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext, State } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -7,7 +7,7 @@ import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { NumericalFacets, NumericalFacetsProps } from '../../src';
 import React from 'react';
 
-const meta: ComponentMeta<typeof NumericalFacets> = {
+const meta: Meta<typeof NumericalFacets> = {
   title: 'NumericalFacets',
   component: NumericalFacets
 };
@@ -19,7 +19,7 @@ const mockedHeadlessState: RecursivePartial<State> = {
   }
 };
 
-export const Primary: Story<NumericalFacetsProps> = (args) => {
+export const Primary: StoryFn<NumericalFacetsProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <NumericalFacets {...args} />

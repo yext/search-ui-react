@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 import { fireEvent } from '@testing-library/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
@@ -10,7 +10,7 @@ import { Location } from '../../test-site/src/pages/LocationsPage';
 import { locationVerticalSingle, locationVerticalMultiple } from '../__fixtures__/data/mapbox';
 import React from 'react';
 
-const meta: ComponentMeta<typeof MapboxMap> = {
+const meta: Meta<typeof MapboxMap> = {
   title: 'MapboxMap',
   component: MapboxMap,
   argTypes: {
@@ -29,7 +29,7 @@ const meta: ComponentMeta<typeof MapboxMap> = {
 };
 export default meta;
 
-const Template: Story<MapboxMapProps<Location>> = (args) => (
+const Template: StoryFn<MapboxMapProps<Location>> = (args) => (
   <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalSingle)}>
     <MapboxMap {...args} />
   </SearchHeadlessContext.Provider>
@@ -37,7 +37,7 @@ const Template: Story<MapboxMapProps<Location>> = (args) => (
 
 export const Primary: any = Template.bind({});
 
-export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
+export const MultiplePins: StoryFn<MapboxMapProps<Location>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalMultiple)}>
       <MapboxMap {...args} />

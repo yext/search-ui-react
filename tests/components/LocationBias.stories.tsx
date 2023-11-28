@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext, LocationBiasMethod } from '@yext/search-headless-react';
 
 import { LocationBias, LocationBiasProps } from '../../src/components/LocationBias';
@@ -9,7 +9,7 @@ import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import { userEvent, within } from '@storybook/testing-library';
 import React from 'react';
 
-const meta: ComponentMeta<typeof LocationBias> = {
+const meta: Meta<typeof LocationBias> = {
   title: 'LocationBias',
   component: LocationBias,
   argTypes: {
@@ -34,7 +34,7 @@ const mockedLocationData = {
   }
 };
 
-export const Primary: Story<LocationBiasProps> = (args) => {
+export const Primary: StoryFn<LocationBiasProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,

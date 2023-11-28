@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { Pagination, PaginationProps } from '../../src/components/Pagination';
@@ -7,13 +7,13 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import React from 'react';
 
-const meta: ComponentMeta<typeof Pagination> = {
+const meta: Meta<typeof Pagination> = {
   title: 'Pagination',
   component: Pagination,
 };
 export default meta;
 
-export const Primary: Story<PaginationProps> = (args) => {
+export const Primary: StoryFn<PaginationProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -27,7 +27,7 @@ export const Primary: Story<PaginationProps> = (args) => {
   );
 };
 
-export const PaginateAllOnNoResults: Story<PaginationProps> = (args) => {
+export const PaginateAllOnNoResults: StoryFn<PaginationProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -48,7 +48,7 @@ PaginateAllOnNoResults.args = {
   paginateAllOnNoResults: true
 };
 
-export const OnMidPageWithEllipses: Story<PaginationProps> = (args) => {
+export const OnMidPageWithEllipses: StoryFn<PaginationProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -63,7 +63,7 @@ export const OnMidPageWithEllipses: Story<PaginationProps> = (args) => {
   );
 };
 
-export const OnMidPage: Story<PaginationProps> = (args) => {
+export const OnMidPage: StoryFn<PaginationProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -78,7 +78,7 @@ export const OnMidPage: Story<PaginationProps> = (args) => {
   );
 };
 
-export const OnLastPage: Story<PaginationProps> = (args) => {
+export const OnLastPage: StoryFn<PaginationProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -93,7 +93,7 @@ export const OnLastPage: Story<PaginationProps> = (args) => {
   );
 };
 
-export const Loading: Story<PaginationProps> = (args) => {
+export const Loading: StoryFn<PaginationProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,

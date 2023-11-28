@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -20,7 +20,7 @@ const mockedAutocompleteResult = {
   uuid: ''
 };
 
-const meta: ComponentMeta<typeof SearchBar> = {
+const meta: Meta<typeof SearchBar> = {
   title: 'SearchBar',
   component: SearchBar,
   parameters: {
@@ -39,7 +39,7 @@ const meta: ComponentMeta<typeof SearchBar> = {
 };
 export default meta;
 
-export const Primary: Story<SearchBarProps> = (args) => {
+export const Primary: StoryFn<SearchBarProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
       <SearchBar {...args} />
