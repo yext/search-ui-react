@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { within, userEvent } from '@storybook/testing-library';
 import { DropdownItem } from '../../src/components';
 import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown';
@@ -6,7 +6,7 @@ import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import React from 'react';
 
-const meta: ComponentMeta<typeof Dropdown> = {
+const meta: Meta<typeof Dropdown> = {
   title: 'Dropdown',
   component: Dropdown
 };
@@ -24,7 +24,7 @@ const dropdownItemProps = {
   className: cssClasses.option
 };
 
-export const Primary: Story<DropdownProps> = (args) => {
+export const Primary: StoryFn<DropdownProps> = (args) => {
   return (
     <div className={cssClasses.filterSearchContainer}>
       <Dropdown {...args} screenReaderText='screen reader text here'>

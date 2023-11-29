@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { decorator as LocationOperationDecorator } from '../__fixtures__/utils/location-operations';
@@ -8,7 +8,7 @@ import { userEvent, within } from '@storybook/testing-library';
 import { Geolocation, GeolocationProps } from '../../src/components/Geolocation';
 import React from 'react';
 
-const meta: ComponentMeta<typeof Geolocation> = {
+const meta: Meta<typeof Geolocation> = {
   title: 'Geolocation',
   component: Geolocation,
   argTypes: {
@@ -25,7 +25,7 @@ const meta: ComponentMeta<typeof Geolocation> = {
 };
 export default meta;
 
-export const Primary: Story<GeolocationProps> = (args) => {
+export const Primary: StoryFn<GeolocationProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(VerticalSearcherState)}>
       <Geolocation {...args} />

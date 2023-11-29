@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext, SearchTypeEnum } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -28,7 +28,7 @@ const searchFields = [
   }
 ];
 
-const meta: ComponentMeta<typeof FilterSearch> = {
+const meta: Meta<typeof FilterSearch> = {
   title: 'FilterSearch',
   component: FilterSearch,
   argTypes: {
@@ -37,15 +37,15 @@ const meta: ComponentMeta<typeof FilterSearch> = {
     },
     searchFields: {
       control: false
-    },
-    label: {
-      defaultValue: 'Filter'
     }
+  },
+  args: {
+    label: "Filter"
   }
 };
 export default meta;
 
-export const Primary: Story<FilterSearchProps> = (args) => {
+export const Primary: StoryFn<FilterSearchProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <FilterSearch {...args} searchFields={searchFields} />

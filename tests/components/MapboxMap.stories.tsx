@@ -1,5 +1,6 @@
-import { ComponentMeta, Story } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { Meta, StoryFn } from '@storybook/react';
+import { within } from '@storybook/testing-library';
+import { fireEvent } from '@testing-library/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -9,24 +10,26 @@ import { Location } from '../../test-site/src/pages/LocationsPage';
 import { locationVerticalSingle, locationVerticalMultiple } from '../__fixtures__/data/mapbox';
 import React from 'react';
 
-const meta: ComponentMeta<typeof MapboxMap> = {
+const meta: Meta<typeof MapboxMap> = {
   title: 'MapboxMap',
   component: MapboxMap,
   argTypes: {
     mapboxAccessToken: {
-      defaultValue: process.env.REACT_APP_MAPBOX_API_KEY,
       control: false,
     },
     PinComponent: {
       control: false,
     },
   },
+  args: {
+    mapboxAccessToken: process.env.REACT_APP_MAPBOX_API_KEY,
+  },
   parameters: { layout: 'fullscreen', percy: { enableJavascript: true } },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
 
-const Template: Story<MapboxMapProps<Location>> = (args) => (
+const Template: StoryFn<MapboxMapProps<Location>> = (args) => (
   <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalSingle)}>
     <MapboxMap {...args} />
   </SearchHeadlessContext.Provider>
@@ -34,7 +37,7 @@ const Template: Story<MapboxMapProps<Location>> = (args) => (
 
 export const Primary: any = Template.bind({});
 
-export const MultiplePins: Story<MapboxMapProps<Location>> = (args) => {
+export const MultiplePins: StoryFn<MapboxMapProps<Location>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(locationVerticalMultiple)}>
       <MapboxMap {...args} />
@@ -53,6 +56,6 @@ CustomPin.play = async ({ canvasElement }) => {
   const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
     timeout: 30000
   });
-  userEvent.click(mapPin);
+  fireEvent.click(mapPin);
   await canvas.findByText('title1');
 };

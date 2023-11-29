@@ -1,6 +1,6 @@
-import { axeOptionsConfig } from 'axe-playwright';
+import { RunOnly } from "axe-core";
 
-export const runOnly: axeOptionsConfig['axeOptions']['runOnly'] = {
+export const runOnly: RunOnly = {
   type: 'tag',
   values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
 };

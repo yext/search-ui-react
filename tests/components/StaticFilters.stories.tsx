@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 import { userEvent, within } from '@storybook/testing-library';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -6,7 +6,7 @@ import { staticFiltersProps } from '../__fixtures__/data/filters';
 import { StaticFilters, StaticFiltersProps } from '../../src';
 import React from 'react';
 
-const meta: ComponentMeta<typeof StaticFilters> = {
+const meta: Meta<typeof StaticFilters> = {
   title: 'StaticFilters',
   component: StaticFilters,
   argTypes: {
@@ -17,7 +17,7 @@ const meta: ComponentMeta<typeof StaticFilters> = {
 };
 export default meta;
 
-export const Primary: Story<StaticFiltersProps> = (args) => {
+export const Primary: StoryFn<StaticFiltersProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
       <StaticFilters

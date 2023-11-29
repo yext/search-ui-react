@@ -1,14 +1,14 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
-import { AlternativeVerticals, AlternativeVerticalsProps } from '../../dist/index.js';
+import { AlternativeVerticals, AlternativeVerticalsProps } from '../../src/components/AlternativeVerticals';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import { verticalNoResults } from '../__fixtures__/data/vertical/noresults';
 import React from 'react';
 
-const meta: ComponentMeta<typeof AlternativeVerticals> = {
+const meta: Meta<typeof AlternativeVerticals> = {
   title: 'AlternativeVerticals',
   component: AlternativeVerticals,
 };
@@ -25,7 +25,7 @@ const verticalConfigMap = {
   locations: { label: 'Locations' }
 };
 
-export const Primary: Story<AlternativeVerticalsProps> = (args) => {
+export const Primary: StoryFn<AlternativeVerticalsProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <AlternativeVerticals
@@ -46,7 +46,7 @@ DisplayAllOnNoResults.args = {
   displayAllOnNoResults: true
 };
 
-export const Loading: Story<AlternativeVerticalsProps> = (args) => {
+export const Loading: StoryFn<AlternativeVerticalsProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...mockedHeadlessState,
