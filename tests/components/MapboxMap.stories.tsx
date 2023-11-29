@@ -24,7 +24,7 @@ const meta: Meta<typeof MapboxMap> = {
   args: {
     mapboxAccessToken: process.env.REACT_APP_MAPBOX_API_KEY,
   },
-  parameters: { layout: 'fullscreen', percy: { enableJavascript: true } },
+  parameters: { layout: 'fullscreen' },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]
 };
 export default meta;
@@ -35,7 +35,7 @@ const Template: StoryFn<MapboxMapProps<Location>> = (args) => (
   </SearchHeadlessContext.Provider>
 );
 
-export const Primary: any = Template.bind({});
+export const Primary: StoryFn<MapboxMapProps<Location>> = Template.bind({});
 
 export const MultiplePins: StoryFn<MapboxMapProps<Location>> = (args) => {
   return (
@@ -45,7 +45,7 @@ export const MultiplePins: StoryFn<MapboxMapProps<Location>> = (args) => {
   );
 };
 
-export const CustomPin: any = Template.bind({});
+export const CustomPin: StoryFn<MapboxMapProps<Location>> = Template.bind({});
 
 CustomPin.args = {
   PinComponent: MapPin,

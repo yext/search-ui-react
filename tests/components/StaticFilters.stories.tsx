@@ -31,12 +31,12 @@ Primary.args = {
   filterOptions: staticFiltersProps.filterOptions.slice(2),
   fieldId: staticFiltersProps.fieldId
 };
-Primary.play = ({ canvasElement }) => {
+Primary.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByText('Clifford'));
+  await userEvent.click(canvas.getByText('Clifford'));
 };
 
-export const Searchable: any = Primary.bind({});
+export const Searchable: StoryFn<StaticFiltersProps> = Primary.bind({});
 Searchable.args = {
   ...Primary.args,
   searchable: true

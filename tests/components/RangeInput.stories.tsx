@@ -42,25 +42,25 @@ export const Disabled: StoryFn<RangeInputProps> = (args) => {
   );
 };
 
-export const DisabledForceDisplayTooltip: any = Disabled.bind({});
+export const DisabledForceDisplayTooltip: StoryFn<RangeInputProps> = Disabled.bind({});
 DisabledForceDisplayTooltip.play = ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const tooltip = canvas.getByText('Unselect an option to enter in a range.');
   tooltip.style.visibility = 'visible';
 };
 
-export const ValidValues: any = Primary.bind({});
-ValidValues.play = ({ canvasElement }) => {
+export const ValidValues: StoryFn<RangeInputProps> = Primary.bind({});
+ValidValues.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const [minTextbox, maxTextbox] = canvas.getAllByRole('textbox');
-  userEvent.type(minTextbox, '10');
-  userEvent.type(maxTextbox, '20');
+  await userEvent.type(minTextbox, '10');
+  await userEvent.type(maxTextbox, '20');
 };
 
-export const InvalidValues: any = Primary.bind({});
-InvalidValues.play = ({ canvasElement }) => {
+export const InvalidValues: StoryFn<RangeInputProps> = Primary.bind({});
+InvalidValues.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const [minTextbox, maxTextbox] = canvas.getAllByRole('textbox');
-  userEvent.type(minTextbox, '20');
-  userEvent.type(maxTextbox, '10');
+  await userEvent.type(minTextbox, '20');
+  await userEvent.type(maxTextbox, '10');
 };
