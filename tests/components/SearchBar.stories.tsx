@@ -47,38 +47,38 @@ export const Primary: StoryFn<SearchBarProps> = (args) => {
   );
 };
 
-export const DropdownExpanded: any = Primary.bind({});
-DropdownExpanded.play = ({ canvasElement }) => {
+export const DropdownExpanded: StoryFn<SearchBarProps> = Primary.bind({});
+DropdownExpanded.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
-  conductRecentSearches(textboxEl);
-  userEvent.click(textboxEl);
+  await conductRecentSearches(textboxEl);
+  await userEvent.click(textboxEl);
 };
 
-export const DropdownHighlight: any = Primary.bind({});
-DropdownHighlight.play = ({ canvasElement }) => {
+export const DropdownHighlight: StoryFn<SearchBarProps> = Primary.bind({});
+DropdownHighlight.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
-  conductRecentSearches(textboxEl);
-  userEvent.click(textboxEl);
-  userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
+  await conductRecentSearches(textboxEl);
+  await userEvent.click(textboxEl);
+  await userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
 
-export const DropdownExpandedVerticalLinks: any = Primary.bind({});
+export const DropdownExpandedVerticalLinks: StoryFn<SearchBarProps> = Primary.bind({});
 DropdownExpandedVerticalLinks.args = {
   showVerticalLinks: true
 };
-DropdownExpandedVerticalLinks.play = ({ canvasElement }) => {
+DropdownExpandedVerticalLinks.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
-  conductRecentSearches(textboxEl);
-  userEvent.click(textboxEl);
+  await conductRecentSearches(textboxEl);
+  await userEvent.click(textboxEl);
 };
 
-function conductRecentSearches(textboxEl: HTMLElement) {
-  userEvent.type(textboxEl, 'recent search 1');
-  userEvent.keyboard('{enter}');
-  userEvent.clear(textboxEl);
-  userEvent.type(textboxEl, 'recent search 2');
-  userEvent.keyboard('{enter}');
+async function conductRecentSearches(textboxEl: HTMLElement) {
+  await userEvent.type(textboxEl, 'recent search 1');
+  await userEvent.keyboard('{enter}');
+  await userEvent.clear(textboxEl);
+  await userEvent.type(textboxEl, 'recent search 2');
+  await userEvent.keyboard('{enter}');
 }

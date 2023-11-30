@@ -45,14 +45,14 @@ export const Primary: StoryFn<LocationBiasProps> = (args) => {
   );
 };
 
-export const Loading: any = Primary.bind({});
+export const Loading: StoryFn<LocationBiasProps> = Primary.bind({});
 Loading.decorators = [LocationOperationDecorator];
 Loading.parameters = {
   geoLocation: {
     isFetching: true
   }
 };
-Loading.play = ({ canvasElement }) => {
+Loading.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByText('Update your location'));
+  await userEvent.click(canvas.getByText('Update your location'));
 };

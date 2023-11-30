@@ -53,18 +53,18 @@ export const Primary: StoryFn<FilterSearchProps> = (args) => {
   );
 };
 
-export const DropdownUnsectioned: any = Primary.bind({});
+export const DropdownUnsectioned: StoryFn<FilterSearchProps> = Primary.bind({});
 DropdownUnsectioned.parameters = {
   searchCoreServices: {
     autoCompleteService: generateMockedAutocompleteService(undefined, unlabeledFilterSearchResponse)
   }
 };
-DropdownUnsectioned.play = ({ canvasElement }) => {
+DropdownUnsectioned.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.type(canvas.getByRole('textbox'), 'name');
+  await userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
-export const DropdownSectioned: any = Primary.bind({});
+export const DropdownSectioned: StoryFn<FilterSearchProps> = Primary.bind({});
 DropdownSectioned.args = {
   sectioned: true
 };
@@ -73,12 +73,12 @@ DropdownSectioned.parameters = {
     autoCompleteService: generateMockedAutocompleteService(undefined, labeledFilterSearchResponse)
   }
 };
-DropdownSectioned.play = ({ canvasElement }) => {
+DropdownSectioned.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.type(canvas.getByRole('textbox'), 'name');
+  await userEvent.type(canvas.getByRole('textbox'), 'name');
 };
 
-export const NoLabel: any = Primary.bind({});
+export const NoLabel: StoryFn<FilterSearchProps> = Primary.bind({});
 NoLabel.args = {
   label: undefined
 };

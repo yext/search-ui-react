@@ -33,14 +33,14 @@ export const Primary: StoryFn<GeolocationProps> = (args) => {
   );
 };
 
-export const Loading: any = Primary.bind({});
+export const Loading: StoryFn<GeolocationProps> = Primary.bind({});
 Loading.decorators = [LocationOperationDecorator];
 Loading.parameters = {
   geoLocation: {
     isFetching: true
   }
 };
-Loading.play = ({ canvasElement }) => {
+Loading.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByText('Use my location'));
+  await userEvent.click(canvas.getByText('Use my location'));
 };

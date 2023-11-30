@@ -40,7 +40,7 @@ Primary.args = {
   displayAllOnNoResults: false
 };
 
-export const DisplayAllOnNoResults: any = Primary.bind({});
+export const DisplayAllOnNoResults: StoryFn<AlternativeVerticalsProps> = Primary.bind({});
 DisplayAllOnNoResults.args = {
   ...Primary.args,
   displayAllOnNoResults: true

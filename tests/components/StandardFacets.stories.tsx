@@ -27,21 +27,21 @@ export const Primary: StoryFn<StandardFacetsProps> = (args) => {
   );
 };
 
-export const NoOptionCounts: any = Primary.bind({});
+export const NoOptionCounts: StoryFn<StandardFacetsProps> = Primary.bind({});
 NoOptionCounts.args = {
   showOptionCounts: false
 };
 
-export const ShowMoreLimit: any = Primary.bind({});
+export const ShowMoreLimit: StoryFn<StandardFacetsProps> = Primary.bind({});
 ShowMoreLimit.args = {
   showMoreLimit: 1
 };
 
-export const ShowMoreLimitClicked: any = Primary.bind({});
+export const ShowMoreLimitClicked: StoryFn<StandardFacetsProps> = Primary.bind({});
 ShowMoreLimitClicked.args = {
   ...ShowMoreLimit.args
 };
-ShowMoreLimitClicked.play = ({ canvasElement }) => {
+ShowMoreLimitClicked.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.queryAllByText('Show More')[0]);
+  await userEvent.click(canvas.queryAllByText('Show More')[0]);
 };

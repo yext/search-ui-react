@@ -1,4 +1,4 @@
-import { RunOnly } from "axe-core";
+import { RunOnly } from 'axe-core';
 
 export const runOnly: RunOnly = {
   type: 'tag',

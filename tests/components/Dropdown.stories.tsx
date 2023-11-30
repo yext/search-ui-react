@@ -44,28 +44,28 @@ export const Primary: StoryFn<DropdownProps> = (args) => {
   );
 };
 
-export const DropdownExpanded: any = Primary.bind({});
-DropdownExpanded.play = ({ canvasElement }) => {
-  clickTextbox(canvasElement);
+export const DropdownExpanded: StoryFn<DropdownProps> = Primary.bind({});
+DropdownExpanded.play = async ({ canvasElement }) => {
+  await clickTextbox(canvasElement);
 };
 
-export const DropdownSelected: any = Primary.bind({});
-DropdownSelected.play = ({ canvasElement }) => {
-  clickTextbox(canvasElement);
-  userEvent.keyboard('{arrowdown}{arrowdown}');
-  userEvent.keyboard('{enter}');
+export const DropdownSelected: StoryFn<DropdownProps> = Primary.bind({});
+DropdownSelected.play = async ({ canvasElement }) => {
+  await clickTextbox(canvasElement);
+  await userEvent.keyboard('{arrowdown}{arrowdown}');
+  await userEvent.keyboard('{enter}');
 };
 
-export const AlwaysSelectExpanded: any = Primary.bind({});
+export const AlwaysSelectExpanded: StoryFn<DropdownProps> = Primary.bind({});
 AlwaysSelectExpanded.args = {
   alwaysSelectOption: true
 };
-AlwaysSelectExpanded.play = ({ canvasElement }) => {
-  clickTextbox(canvasElement);
+AlwaysSelectExpanded.play = async ({ canvasElement }) => {
+  await clickTextbox(canvasElement);
 };
 
-function clickTextbox(canvasElement: HTMLElement) {
+async function clickTextbox(canvasElement: HTMLElement) {
   const canvas = within(canvasElement);
   const textboxEl = canvas.getByRole('textbox');
-  userEvent.click(textboxEl);
+  await userEvent.click(textboxEl);
 }
