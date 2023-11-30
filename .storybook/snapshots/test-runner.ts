@@ -13,16 +13,16 @@ const renderFunctions: TestRunnerConfig = {
     expect.extend({ toMatchImageSnapshot });
   },
   async postVisit(page: Page, context: TestContext) {
-    if (context.id.startsWith("mapboxmap--")) {
-      await page.waitForTimeout(5000);
+    if (context.id.startsWith('mapboxmap--')) {
+      await page.waitForTimeout(7500);
     }
 
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot({
       customSnapshotsDir,
       customSnapshotIdentifier: context.id,
-      failureThreshold: context.id === "geolocation--loading" ? 0.005 : 0,
-      failureThresholdType: "percent"
+      failureThreshold: context.id === 'geolocation--loading' ? 0.005 : 0,
+      failureThresholdType: 'percent'
     });
   },
 };

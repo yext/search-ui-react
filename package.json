@@ -52,7 +52,7 @@
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:visual": "./tests/scripts/visual-coverage.sh",
     "test": "./tests/scripts/combined-coverage.sh",
-    "test-snapshots": "test-storybook -c .storybook/snapshots"
+    "update-snapshots": "test-storybook -c .storybook/snapshots -u"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",

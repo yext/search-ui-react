@@ -1,0 +1,37 @@
+name: Update Visual Regression Snapshots
+
+on:
+  push:
+    branches-ignore: dev/*
+  pull_request:
+
+jobs:
+  update_snapshots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm run build
+      - run: ./tests/scripts/start-storybook.sh
+        env:
+          MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
+      - run: npm run update-snapshots
+      - name: Push changes
+        id: push-changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "Update snapshots"
+          add: ".storybook/snapshots/__snapshots__"
+          push: true
+          pull: --rebase --autostash
+          default_author: github_actions
+      - name: Fail job if push changes
+        if: steps.push-changes.outputs.pushed == 'true'
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Snapshot updates were made. A new commit with new snapshots was pushed.')
