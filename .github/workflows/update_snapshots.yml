@@ -1,4 +1,4 @@
-name: Update Visual Regression Snapshots
+name: Update Snapshots
 
 on: pull_request
 

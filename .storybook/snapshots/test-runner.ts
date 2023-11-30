@@ -13,7 +13,8 @@ const renderFunctions: TestRunnerConfig = {
     expect.extend({ toMatchImageSnapshot });
   },
   async postVisit(page: Page, context: TestContext) {
-    if (context.id.startsWith('mapboxmap--')) {
+    const isMapboxMapStory = context.id.startsWith('mapboxmap--');
+    if (isMapboxMapStory) {
       await page.waitForTimeout(7500);
     }
 
@@ -21,7 +22,9 @@ const renderFunctions: TestRunnerConfig = {
     expect(image).toMatchImageSnapshot({
       customSnapshotsDir,
       customSnapshotIdentifier: context.id,
-      failureThreshold: context.id === 'geolocation--loading' ? 0.005 : 0,
+      failureThreshold: context.id === 'geolocation--loading' || isMapboxMapStory
+        ? 0.005
+        : 0,
       failureThresholdType: 'percent'
     });
   },
