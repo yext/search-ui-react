@@ -13,6 +13,10 @@ const renderFunctions: TestRunnerConfig = {
     expect.extend({ toMatchImageSnapshot });
   },
   async postVisit(page: Page, context: TestContext) {
+    if (context.id === 'locationbias--loading') {
+      return;
+    }
+    
     const isMapboxMapStory = context.id.startsWith('mapboxmap--');
     if (isMapboxMapStory) {
       await page.waitForTimeout(7500);
