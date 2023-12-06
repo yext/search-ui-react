@@ -95,7 +95,6 @@ export function AlternativeVerticals({
   const isShowingAllResults = displayAllOnNoResults && allResultsForVertical.length > 0;
 
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
-  // @ts-ignore
   const containerClassNames = classNames(cssClasses.alternativeVerticalsContainer, {
     [cssClasses.alternativeVerticalsLoading ?? '']: isLoading
   });

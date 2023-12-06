@@ -119,11 +119,9 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const labelText = resultsCount ? `${displayName} (${resultsCount})` : displayName;
 
-  // @ts-ignore
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___disabled ?? '']: isOptionsDisabled
   });
-  // @ts-ignore
   const labelClasses = classNames(cssClasses.label, {
     [cssClasses.label___disabled ?? '']: isOptionsDisabled
   });

@@ -62,7 +62,6 @@ export function UniversalResults<T>({
     return null;
   }
 
-  // @ts-ignore
   const resultsClassNames = classNames(cssClasses.universalResultsContainer, {
     [cssClasses.universalResultsLoading ?? '']: isLoading
   });

@@ -35,7 +35,6 @@ export function VerticalResultsDisplay<T>(props: VerticalResultsDisplayProps<T>)
     return null;
   }
 
-  // @ts-ignore
   const resultsClassNames = classNames(cssClasses.verticalResultsContainer, {
     [cssClasses.verticalResultsLoading ?? '']: isLoading
   });

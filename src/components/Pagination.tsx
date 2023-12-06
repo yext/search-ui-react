@@ -85,7 +85,6 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   }
 
   const paginationLabels: string[] = generatePaginationLabels(currentPageNumber, maxPageCount);
-  // @ts-ignore
   const paginationContainerClassNames = classNames(cssClasses.paginationContainer, {
     [cssClasses.paginationLoading ?? '']: isLoading
   });

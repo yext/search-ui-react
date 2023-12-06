@@ -74,7 +74,6 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
   const queryId = useSearchState(state => state.query.queryId);
 
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
-  // @ts-ignore
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersLoading ?? '']: isLoading
   });
