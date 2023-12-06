@@ -32,7 +32,7 @@ export function LocationsPage() {
     searchActions.executeVerticalQuery();
   }, [searchActions]);
 
-  const onDrag: any = useCallback(
+  const onDrag: OnDragHandler = useCallback(
     (center: LngLat, bounds: LngLatBounds) => {
       const radius = center.distanceTo(bounds.getNorthEast());
       const nonLocationFilters: SelectableStaticFilter[] = filters?.filter(f => f.filter.kind !== 'fieldValue' || f.filter.fieldId !== 'builtin.location') ?? [];

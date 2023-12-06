@@ -11,7 +11,6 @@ export { DropdownItem, DropdownItemProps } from './Dropdown/DropdownItem';
 export { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 export { FocusedItemData } from './Dropdown/FocusContext';
 
-
 export {
   SpellCheck,
   SpellCheckCssClasses,

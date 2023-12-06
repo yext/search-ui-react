@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from 'react';
+import { useContext, createContext } from 'react';
 
 /**
  * A Context for a string state value.

@@ -40,7 +40,7 @@ const meta: Meta<typeof FilterSearch> = {
     }
   },
   args: {
-    label: "Filter"
+    label: 'Filter'
   }
 };
 export default meta;

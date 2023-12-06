@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { Popup, LngLatLike, Map} from 'mapbox-gl';
+import { Popup, LngLatLike, Map } from 'mapbox-gl';
 import { PinComponent, Coordinate } from '@yext/search-ui-react';
 import { Location } from '../pages/LocationsPage';
 
