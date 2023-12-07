@@ -72,8 +72,7 @@ export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
     hierarchicalFacetsFieldIds, hierarchicalFacetsDelimiter, hiddenFields);
   const nlpFilterDisplayNames = useNlpFilterDisplayNames(removableFilters.map(f => f.filter), hiddenFields);
 
-  let cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
-  // @ts-ignore
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
     [cssClasses.appliedFiltersLoading ?? '']: isLoading
   });

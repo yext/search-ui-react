@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, isValidElement, ReactElement, ReactNode, ReactPortal } from 'react';
+import { Children, cloneElement, isValidElement, ReactElement, ReactNode, ReactPortal } from 'react';
 
 /**
  * Recursively performs React.Children.map on a given ReactNode.
@@ -20,7 +20,6 @@ export function recursivelyMapChildren(
       return replacedElement;
     }
     const replacedGrandchildren = recursivelyMapChildren(grandchildren, elementReplacer);
-    // @ts-ignore
-    return cloneElement(replacedElement, { children: replacedGrandchildren });
+    return cloneElement(replacedElement, {}, [replacedGrandchildren]);
   });
 }

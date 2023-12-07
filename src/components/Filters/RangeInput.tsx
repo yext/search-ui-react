@@ -169,7 +169,6 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     executeSearch(searchActions);
   }, [searchActions, getFilterDisplayName, rangeFilter]);
 
-  // @ts-ignore
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___withPrefix ?? '']: !!inputPrefix,
     [cssClasses.input___withoutPrefix ?? '']: !inputPrefix,
@@ -179,7 +178,6 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
     [cssClasses.input___valid ?? '']: isValid
   });
 
-  // @ts-ignore
   const inputPrefixClasses = classNames(cssClasses.inputPrefix, {
     [cssClasses.inputPrefix___disabled ?? '']: isDisabled,
     [cssClasses.inputPrefix___enabled ?? '']: !isDisabled,

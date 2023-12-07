@@ -51,7 +51,6 @@ export function SpellCheck({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const correctedQuery = useSearchState(state => state.spellCheck.correctedQuery) ?? '';
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
-  // @ts-ignore
   const containerClassNames = classNames(cssClasses.spellCheckContainer, {
     [cssClasses.spellCheckLoading ?? '']: isLoading
   });

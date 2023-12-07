@@ -46,7 +46,6 @@ export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Eleme
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
   const resultsCountText = useResultsCount();
 
-  // @ts-ignore
   const resultsCountClassnames = classNames(cssClasses.resultsCountContainer, {
     [cssClasses.resultsCountLoading ?? '']: isLoading
   });
