@@ -9,7 +9,7 @@ The CSS class interface for HierarchicalFacetDisplay.
 <b>Signature:</b>
 
 ```typescript
-export interface HierarchicalFacetDisplayCssClasses 
+interface HierarchicalFacetDisplayCssClasses 
 ```
 
 ## Properties

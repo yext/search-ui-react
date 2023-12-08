@@ -9,14 +9,14 @@ The props for the Geolocation component.
 <b>Signature:</b>
 
 ```typescript
-export interface GeolocationProps 
+interface GeolocationProps 
 ```
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.geolocationprops.customcssclasses.md) | [GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [customCssClasses?](./search-ui-react.geolocationprops.customcssclasses.md) | GeolocationCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [GeolocationIcon?](./search-ui-react.geolocationprops.geolocationicon.md) | React.FunctionComponent | <i>(Optional)</i> Custom icon component to display along with the button. |
 |  [geolocationOptions?](./search-ui-react.geolocationprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->. |
 |  [handleClick?](./search-ui-react.geolocationprops.handleclick.md) | (position: GeolocationPosition) =&gt; void | <i>(Optional)</i> A function which is called when the geolocation button is clicked, after user's position is successfully determined. |

@@ -9,7 +9,7 @@ Coordinate use to represent the result's location on a map.
 <b>Signature:</b>
 
 ```typescript
-export interface Coordinate 
+interface Coordinate 
 ```
 
 ## Properties

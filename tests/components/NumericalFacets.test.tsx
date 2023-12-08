@@ -4,6 +4,7 @@ import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/m
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { NumericalFacets } from '../../src/components';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {

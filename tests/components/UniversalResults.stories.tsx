@@ -1,4 +1,4 @@
-import { ComponentMeta } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext, State } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -7,6 +7,7 @@ import { RecursivePartial } from '../__utils__/mocks';
 import { verticalResults } from '../__fixtures__/data/universalresults';
 import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
 import { VerticalConfigMap } from '../../src/models/verticalConfig';
+import React from 'react';
 
 const verticalConfigMap: VerticalConfigMap = {
   vertical1: {
@@ -15,7 +16,7 @@ const verticalConfigMap: VerticalConfigMap = {
   }
 };
 
-const meta: ComponentMeta<typeof UniversalResults> = {
+const meta: Meta<typeof UniversalResults> = {
   title: 'UniversalResults',
   component: UniversalResults,
   args: {
@@ -31,7 +32,7 @@ const mockedHeadlessState: RecursivePartial<State> = {
   }
 };
 
-export const Primary = (args: UniversalResultsProps<DefaultRawDataType>) => {
+export const Primary: StoryFn<UniversalResultsProps<DefaultRawDataType>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <UniversalResults {...args} />
@@ -39,7 +40,7 @@ export const Primary = (args: UniversalResultsProps<DefaultRawDataType>) => {
   );
 };
 
-export const Loading = (args: UniversalResultsProps<DefaultRawDataType>) => {
+export const Loading: StoryFn<UniversalResultsProps<DefaultRawDataType>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...mockedHeadlessState,

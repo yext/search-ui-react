@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { StandardFacets } from '../../src/components';
 import { expectFacetOptionSet, getOptionLabelTextWithCount } from '../__utils__/facets';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {

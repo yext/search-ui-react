@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function LoadingIndicator() {
   return (
     <div className="animate-[rotate_1.4s_linear_infinite]">

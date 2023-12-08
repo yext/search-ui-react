@@ -7,7 +7,7 @@ import {
 } from '@yext/search-headless-react';
 import { useCallback } from 'react';
 import { FeedbackType } from '../components/ThumbsFeedback';
-import { DefaultRawDataType } from '../models';
+import { DefaultRawDataType } from '../models/index';
 import { useAnalytics } from './useAnalytics';
 
 /**

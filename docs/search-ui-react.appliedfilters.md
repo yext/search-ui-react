@@ -9,14 +9,14 @@ A component that displays a list of filters applied to the current vertical sear
 <b>Signature:</b>
 
 ```typescript
-export declare function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
+declare function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md) | [AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md) |
+|  props | AppliedFiltersProps | [AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md) |
 
 <b>Returns:</b>
 

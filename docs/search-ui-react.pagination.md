@@ -9,14 +9,14 @@ Renders a component that divide a series of vertical results into chunks across 
 <b>Signature:</b>
 
 ```typescript
-export declare function Pagination(props: PaginationProps): JSX.Element | null;
+declare function Pagination(props: PaginationProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [PaginationProps](./search-ui-react.paginationprops.md) |  |
+|  props | PaginationProps |  |
 
 <b>Returns:</b>
 

@@ -1,7 +1,7 @@
-export * from './components';
-export * from './hooks';
-export * from './models';
-export * from './utils';
+export * from './components/index';
+export * from './hooks/index';
+export * from './models/index';
+export * from './utils/index';
 
 /**
  * Content path to the source files in component library that utilizes Tailwind class names.

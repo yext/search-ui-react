@@ -2,7 +2,8 @@ import { useSearchActions } from '@yext/search-headless-react';
 import { useCallback } from 'react';
 import { useComposedCssClasses } from '../hooks';
 import { clearStaticRangeFilters, getSelectedNumericalFacetFields } from '../utils/filterutils';
-import { executeSearch } from '../utils/search-operations';
+import { executeSearch } from '../utils';
+import React from 'react';
 
 /**
  * Props for {@link ApplyFiltersButton}

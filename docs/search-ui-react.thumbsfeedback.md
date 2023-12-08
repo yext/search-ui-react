@@ -9,14 +9,14 @@ Renders a quality feedback widget composed of thumbs up and thumbs down buttons.
 <b>Signature:</b>
 
 ```typescript
-export declare function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
+declare function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [ThumbsFeedbackProps](./search-ui-react.thumbsfeedbackprops.md) | The configuration for the the feedback component. |
+|  props | ThumbsFeedbackProps | The configuration for the the feedback component. |
 
 <b>Returns:</b>
 

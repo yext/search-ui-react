@@ -14,14 +14,14 @@ A React Component which displays and collects location information in order to b
 <b>Signature:</b>
 
 ```typescript
-export declare function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): JSX.Element | null;
+declare function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { geolocationOptions, customCssClasses } | [LocationBiasProps](./search-ui-react.locationbiasprops.md) |  |
+|  { geolocationOptions, customCssClasses } | LocationBiasProps |  |
 
 <b>Returns:</b>
 

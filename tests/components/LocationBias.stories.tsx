@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext, LocationBiasMethod } from '@yext/search-headless-react';
 
 import { LocationBias, LocationBiasProps } from '../../src/components/LocationBias';
@@ -7,8 +7,9 @@ import { decorator as LocationOperationDecorator } from '../__fixtures__/utils/l
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import { userEvent, within } from '@storybook/testing-library';
+import React from 'react';
 
-const meta: ComponentMeta<typeof LocationBias> = {
+const meta: Meta<typeof LocationBias> = {
   title: 'LocationBias',
   component: LocationBias,
   argTypes: {
@@ -33,7 +34,7 @@ const mockedLocationData = {
   }
 };
 
-export const Primary: Story<LocationBiasProps> = (args) => {
+export const Primary: StoryFn<LocationBiasProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...VerticalSearcherState,
@@ -44,14 +45,14 @@ export const Primary: Story<LocationBiasProps> = (args) => {
   );
 };
 
-export const Loading = Primary.bind({});
+export const Loading: StoryFn<LocationBiasProps> = Primary.bind({});
 Loading.decorators = [LocationOperationDecorator];
 Loading.parameters = {
   geoLocation: {
     isFetching: true
   }
 };
-Loading.play = ({ canvasElement }) => {
+Loading.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByText('Update your location'));
+  await userEvent.click(canvas.getByText('Update your location'));
 };

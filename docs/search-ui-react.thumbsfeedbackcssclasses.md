@@ -9,7 +9,7 @@ The CSS class interface used for [ThumbsFeedback()](./search-ui-react.thumbsfeed
 <b>Signature:</b>
 
 ```typescript
-export interface ThumbsFeedbackCssClasses 
+interface ThumbsFeedbackCssClasses 
 ```
 
 ## Properties

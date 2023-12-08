@@ -11,8 +11,9 @@ import {
   HierarchicalFacet, HierarchicalFacetProps
 } from '../../src';
 import { expectFacetOptionSet, getOptionLabelTextWithCount } from '../__utils__/facets';
-import { DisplayableFacetOption } from '@yext/search-core';
+import { DisplayableFacetOption } from '@yext/search-headless-react';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {

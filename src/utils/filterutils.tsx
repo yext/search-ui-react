@@ -1,5 +1,5 @@
 import { NearFilterValue, FieldValueFilter, NumberRangeValue, Matcher, SearchActions, DisplayableFacet, SelectableStaticFilter, StaticFilter } from '@yext/search-headless-react';
-import { isEqual } from 'lodash';
+import isEqual from 'lodash/isEqual.js';
 import { isNumberRangeFilter } from '../models/NumberRangeFilter';
 import { SelectableFieldValueFilter } from '../models/SelectableFieldValueFilter';
 
@@ -45,10 +45,7 @@ export function isDuplicateFieldValueFilter(
   if (thisFilter.matcher !== otherFilter.matcher) {
     return false;
   }
-  if (!isEqual(thisFilter.value, otherFilter.value)) {
-    return false;
-  }
-  return true;
+  return isEqual(thisFilter.value, otherFilter.value);
 }
 
 /**

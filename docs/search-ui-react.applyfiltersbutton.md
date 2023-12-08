@@ -9,14 +9,14 @@ Runs a vertical search. By default has `position: sticky` styling that anchors i
 <b>Signature:</b>
 
 ```typescript
-export declare function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): JSX.Element;
+declare function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { customCssClasses, label } | [ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md) |  |
+|  { customCssClasses, label } | ApplyFiltersButtonProps |  |
 
 <b>Returns:</b>
 

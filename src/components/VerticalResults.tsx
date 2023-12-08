@@ -1,6 +1,7 @@
-import { CardComponent } from '../models/cardComponent';
+import { CardComponent } from '../models';
 import { useSearchState } from '@yext/search-headless-react';
 import { VerticalResultsDisplay } from './VerticalResultsDisplay';
+import React from 'react';
 
 /**
  * The CSS class interface used for {@link VerticalResults}.

@@ -9,7 +9,7 @@ The CSS class interface used for [VerticalResults()](./search-ui-react.verticalr
 <b>Signature:</b>
 
 ```typescript
-export interface VerticalResultsCssClasses 
+interface VerticalResultsCssClasses 
 ```
 
 ## Properties

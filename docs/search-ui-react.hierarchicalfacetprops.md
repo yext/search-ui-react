@@ -9,9 +9,9 @@ Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component.
 <b>Signature:</b>
 
 ```typescript
-export interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> 
+interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> 
 ```
-<b>Extends:</b> Omit&lt;[StandardFacetProps](./search-ui-react.standardfacetprops.md)<!-- -->, 'transformOptions' \| 'showOptionCounts'&gt;
+<b>Extends:</b> Omit&lt;StandardFacetProps, 'transformOptions' \| 'showOptionCounts'&gt;
 
 ## Properties
 

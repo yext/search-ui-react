@@ -9,7 +9,7 @@ The configuration data for a field value filter option.
 <b>Signature:</b>
 
 ```typescript
-export interface FilterOptionConfig 
+interface FilterOptionConfig 
 ```
 
 ## Properties

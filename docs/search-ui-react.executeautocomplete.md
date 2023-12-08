@@ -9,7 +9,7 @@ Executes a universal/vertical autocomplete search and return the corresponding r
 <b>Signature:</b>
 
 ```typescript
-export declare function executeAutocomplete(searchActions: SearchActions): Promise<AutocompleteResponse | undefined>;
+declare function executeAutocomplete(searchActions: SearchActions): Promise<AutocompleteResponse | undefined>;
 ```
 
 ## Parameters

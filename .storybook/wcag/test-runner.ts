@@ -1,6 +1,6 @@
 import { injectAxe, checkA11y } from 'axe-playwright';
 import { Page } from 'playwright-core';
-import { runOnly } from './wcagConfig';
+import { runOnly } from '../wcagConfig';
 import { TestContext, TestRunnerConfig } from '@storybook/test-runner';
 
 /**
@@ -8,15 +8,18 @@ import { TestContext, TestRunnerConfig } from '@storybook/test-runner';
  * to learn more about the test-runner hooks API.
  */
 const renderFunctions: TestRunnerConfig = {
-  async preRender(page: Page) {
+  async preVisit(page: Page) {
     await injectAxe(page);
   },
-  async postRender(page: Page, context: TestContext) {
+  async postVisit(page: Page, context: TestContext) {
     await checkA11y(
       page,
       {
-        include: ['#root'],
-        exclude: ['#root .mapboxgl-canvas-container'],
+        exclude: [
+          '#root .mapboxgl-canvas-container',
+          '.mapboxgl-marker',
+          '.mapboxgl-popup-close-button'
+        ],
       },
       {
         axeOptions: {

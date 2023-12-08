@@ -9,7 +9,7 @@ The CSS class interface for the Autocomplete Result.
 <b>Signature:</b>
 
 ```typescript
-export interface AutocompleteResultCssClasses 
+interface AutocompleteResultCssClasses 
 ```
 
 ## Properties

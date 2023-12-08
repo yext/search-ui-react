@@ -1,6 +1,7 @@
 import { FilterGroup } from './FilterGroup';
 import { DisplayableFacet } from '@yext/search-headless-react';
 import { StandardFacetProps } from './FacetProps';
+import React from 'react';
 
 /**
  * A component that displays the content of a standard facet.

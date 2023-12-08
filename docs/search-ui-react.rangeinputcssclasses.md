@@ -9,7 +9,7 @@ The CSS class interface for RangeInput.
 <b>Signature:</b>
 
 ```typescript
-export interface RangeInputCssClasses 
+interface RangeInputCssClasses 
 ```
 
 ## Properties

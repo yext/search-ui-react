@@ -9,9 +9,9 @@ The CSS class interface for [HierarchicalFacets()](./search-ui-react.hierarchica
 <b>Signature:</b>
 
 ```typescript
-export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses 
+interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses 
 ```
-<b>Extends:</b> [HierarchicalFacetDisplayCssClasses](./search-ui-react.hierarchicalfacetdisplaycssclasses.md)
+<b>Extends:</b> HierarchicalFacetDisplayCssClasses
 
 ## Properties
 

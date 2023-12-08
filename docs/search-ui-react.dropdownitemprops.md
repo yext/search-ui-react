@@ -9,14 +9,12 @@ Props for the [DropdownItem()](./search-ui-react.dropdownitem.md)<!-- -->.
 <b>Signature:</b>
 
 ```typescript
-export declare type DropdownItemProps = PropsWithChildren<{
+type DropdownItemProps = PropsWithChildren<{
     value: string;
     className?: string;
     focusedClassName?: string;
     itemData?: Record<string, unknown> | undefined;
     onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
-    ariaLabel?: (value: string) => string | string;
+    ariaLabel?: (value: string) => string;
 }>;
 ```
-<b>References:</b> [FocusedItemData](./search-ui-react.focuseditemdata.md)
-

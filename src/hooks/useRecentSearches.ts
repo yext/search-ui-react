@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import RecentSearches, { ISearch } from 'recent-searches';
+import { RecentSearches, ISearch } from 'recent-searches';
 
 export function useRecentSearches(
   recentSearchesLimit: number,
