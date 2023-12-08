@@ -98,7 +98,7 @@ export {
   FilterOptionConfig,
   RangeInputCssClasses,
   HierarchicalFacetDisplayCssClasses
-} from './Filters';
+} from './Filters/index';
 
 export {
   StaticFilters,
@@ -170,5 +170,5 @@ export {
   HighlightedValueCssClasses
 } from './utils/renderHighlightedValue';
 
-export * from './sections';
+export * from './sections/index';
 export * from './AnalyticsProvider';

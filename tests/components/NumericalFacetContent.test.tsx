@@ -7,6 +7,7 @@ import { NumericalFacetProps } from '../../src';
 import { NumericalFacetContent } from '../../src/components/NumericalFacetContent';
 import { FacetsProvider } from '../../src/components/Filters';
 import { getOptionLabelTextWithCount } from '../__utils__/facets';
+import React from 'react';
 
 const numericalFacet = DisplayableFacets[1];
 

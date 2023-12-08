@@ -9,7 +9,7 @@ The CSS class interface for the Geolocation component.
 <b>Signature:</b>
 
 ```typescript
-export interface GeolocationCssClasses 
+interface GeolocationCssClasses 
 ```
 
 ## Properties

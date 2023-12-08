@@ -1,3 +1,5 @@
+import React from 'react';
+
 export function ThumbIcon({ className }: { className?: string }): JSX.Element {
   return (
     <svg className={className} viewBox="0 0 18 18" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">

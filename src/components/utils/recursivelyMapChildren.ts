@@ -20,6 +20,6 @@ export function recursivelyMapChildren(
       return replacedElement;
     }
     const replacedGrandchildren = recursivelyMapChildren(grandchildren, elementReplacer);
-    return cloneElement(replacedElement, { children: replacedGrandchildren });
+    return cloneElement(replacedElement, {}, [replacedGrandchildren]);
   });
 }

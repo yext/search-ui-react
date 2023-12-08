@@ -3,6 +3,7 @@ import { FeaturedSnippetDirectAnswer as FeaturedSnippetDirectAnswerType, Source 
 import { FeaturedSnippetDirectAnswer } from '../../src/components/FeaturedSnippetDirectAnswer';
 import { featuredSnippetDAState } from '../__fixtures__/data/directanswers';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
 
 const featuredSnippetDAResult = featuredSnippetDAState.result as FeaturedSnippetDirectAnswerType;
 

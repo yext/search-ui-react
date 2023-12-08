@@ -14,7 +14,7 @@ The CSS class interface for the [LocationBias()](./search-ui-react.locationbias.
 <b>Signature:</b>
 
 ```typescript
-export interface LocationBiasCssClasses 
+interface LocationBiasCssClasses 
 ```
 
 ## Properties

@@ -5,6 +5,7 @@ import { DirectAnswer } from '../../src/components/DirectAnswer';
 import { RecursivePartial, mockAnswersState } from '../__utils__/mocks';
 import { fieldValueDAState, featuredSnippetDAState } from '../__fixtures__/data/directanswers';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
 
 jest.mock('@yext/search-headless-react');
 

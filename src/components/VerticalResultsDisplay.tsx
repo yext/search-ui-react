@@ -1,8 +1,9 @@
 import { VerticalResultsCssClasses } from './VerticalResults';
-import { CardComponent } from '../models/cardComponent';
+import { CardComponent } from '../models';
 import { Result } from '@yext/search-headless-react';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks';
 import classNames from 'classnames';
+import React from 'react';
 
 const builtInCssClasses: Readonly<VerticalResultsCssClasses> = {
   verticalResultsLoading: 'opacity-50'

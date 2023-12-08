@@ -9,14 +9,14 @@ A component that displays a group of user-configured field value filters that wi
 <b>Signature:</b>
 
 ```typescript
-export declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
+declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) | [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) |
+|  props | StaticFiltersProps | [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) |
 
 <b>Returns:</b>
 

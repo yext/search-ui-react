@@ -9,9 +9,9 @@ The CSS class interface for the [SearchBar()](./search-ui-react.searchbar.md)<!-
 <b>Signature:</b>
 
 ```typescript
-export interface SearchBarCssClasses extends AutocompleteResultCssClasses 
+interface SearchBarCssClasses extends AutocompleteResultCssClasses 
 ```
-<b>Extends:</b> [AutocompleteResultCssClasses](./search-ui-react.autocompleteresultcssclasses.md)
+<b>Extends:</b> AutocompleteResultCssClasses
 
 ## Properties
 

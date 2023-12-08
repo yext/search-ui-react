@@ -9,7 +9,7 @@ The CSS class interface for [ResultsCount()](./search-ui-react.resultscount.md)<
 <b>Signature:</b>
 
 ```typescript
-export interface ResultsCountCssClasses 
+interface ResultsCountCssClasses 
 ```
 
 ## Properties

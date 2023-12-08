@@ -9,7 +9,7 @@ import {
   VerticalResults as VerticalResultsData
 } from '@yext/search-headless-react';
 import classNames from 'classnames';
-import { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect, useMemo } from 'react';
+import React, { Fragment, isValidElement, PropsWithChildren, ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';

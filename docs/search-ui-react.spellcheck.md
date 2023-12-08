@@ -9,14 +9,14 @@ Renders a suggested query if the Search API provides one.
 <b>Signature:</b>
 
 ```typescript
-export declare function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX.Element | null;
+declare function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { customCssClasses, onClick } | [SpellCheckProps](./search-ui-react.spellcheckprops.md) |  |
+|  { customCssClasses, onClick } | SpellCheckProps |  |
 
 <b>Returns:</b>
 

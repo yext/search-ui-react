@@ -14,13 +14,13 @@ The props for the [LocationBias()](./search-ui-react.locationbias.md) component.
 <b>Signature:</b>
 
 ```typescript
-export interface LocationBiasProps 
+interface LocationBiasProps 
 ```
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.locationbiasprops.customcssclasses.md) | [LocationBiasCssClasses](./search-ui-react.locationbiascssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [customCssClasses?](./search-ui-react.locationbiasprops.customcssclasses.md) | LocationBiasCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [geolocationOptions?](./search-ui-react.locationbiasprops.geolocationoptions.md) | PositionOptions | <i>(Optional)</i> Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->. |
 

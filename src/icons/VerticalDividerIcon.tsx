@@ -1,3 +1,5 @@
+import React from 'react';
+
 export function VerticalDividerIcon({ className }: { className?: string }): JSX.Element {
   return (
     <svg className={className}

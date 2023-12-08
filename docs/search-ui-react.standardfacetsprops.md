@@ -14,7 +14,7 @@ Props for the [StandardFacets()](./search-ui-react.standardfacets.md) component.
 <b>Signature:</b>
 
 ```typescript
-export interface StandardFacetsProps 
+interface StandardFacetsProps 
 ```
 
 ## Properties
@@ -22,7 +22,7 @@ export interface StandardFacetsProps
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [collapsible?](./search-ui-react.standardfacetsprops.collapsible.md) | boolean | <i>(Optional)</i> Whether or not the filter is collapsible. Defaults to true. |
-|  [customCssClasses?](./search-ui-react.standardfacetsprops.customcssclasses.md) | [StandardFacetsCssClasses](./search-ui-react.standardfacetscssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [customCssClasses?](./search-ui-react.standardfacetsprops.customcssclasses.md) | StandardFacetsCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./search-ui-react.standardfacetsprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
 |  [excludedFieldIds?](./search-ui-react.standardfacetsprops.excludedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids that should not be displayed. |
 |  [searchOnChange?](./search-ui-react.standardfacetsprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |

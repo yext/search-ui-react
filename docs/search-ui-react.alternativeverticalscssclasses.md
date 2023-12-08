@@ -9,7 +9,7 @@ The CSS class interface used for [AlternativeVerticals()](./search-ui-react.alte
 <b>Signature:</b>
 
 ```typescript
-export interface AlternativeVerticalsCssClasses 
+interface AlternativeVerticalsCssClasses 
 ```
 
 ## Properties

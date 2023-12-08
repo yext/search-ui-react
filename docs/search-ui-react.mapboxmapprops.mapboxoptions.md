@@ -9,5 +9,5 @@ Interface for map customization derived from Mapbox GL's Map options.
 <b>Signature:</b>
 
 ```typescript
-mapboxOptions?: Omit<MapboxOptions, 'container'>;
+mapboxOptions?: Omit<mapboxgl.MapboxOptions, 'container'>;
 ```

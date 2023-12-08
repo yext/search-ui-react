@@ -1,10 +1,11 @@
 import { useSearchState } from '@yext/search-headless-react';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks';
 import classNames from 'classnames';
 import { AppliedFiltersDisplay } from './AppliedFiltersDisplay';
 import { DEFAULT_HIERARCHICAL_DELIMITER } from './Filters/HierarchicalFacetDisplay';
 import { useNlpFilterDisplayNames } from '../hooks/useNlpFilterDisplayNames';
 import { useRemovableFilters } from '../hooks/useRemovableFilters';
+import React from 'react';
 
 /**
  * The CSS class interface used for {@link AppliedFilters}.

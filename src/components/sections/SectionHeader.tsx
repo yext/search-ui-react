@@ -3,9 +3,9 @@ import { AppliedFiltersDisplay } from '../AppliedFiltersDisplay';
 import { CollectionIcon } from '../../icons/CollectionIcon';
 import { AppliedQueryFilter, useSearchState } from '@yext/search-headless-react';
 import classNames from 'classnames';
-import { useAnalytics } from '../../hooks/useAnalytics';
-import { VerticalLink } from '../../models/verticalLink';
-import { useCallback } from 'react';
+import { useAnalytics } from '../../hooks';
+import { VerticalLink } from '../../models';
+import React, { useCallback } from 'react';
 
 const FALLBACK_CSS_CLASSES: SectionHeaderCssClasses = {};
 

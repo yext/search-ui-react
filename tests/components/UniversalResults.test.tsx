@@ -6,6 +6,7 @@ import { State } from '@yext/search-headless-react';
 import { CtaData } from '../../src/models/StandardCardData';
 import { mockAnswersState } from '../__utils__/mocks';
 import { verticalResults } from '../__fixtures__/data/universalresults';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   universal: {

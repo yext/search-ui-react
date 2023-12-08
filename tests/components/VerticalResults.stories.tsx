@@ -1,12 +1,13 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext, Source } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalResults, VerticalResultsProps } from '../../src/components/VerticalResults';
 import { StandardCard } from '../../src/components/cards/standard/StandardCard';
 import { DefaultRawDataType } from '../../src/models/DefaultRawDataType';
+import React from 'react';
 
-const meta: ComponentMeta<typeof VerticalResults> = {
+const meta: Meta<typeof VerticalResults> = {
   title: 'VerticalResults',
   component: VerticalResults,
   argTypes: {
@@ -47,7 +48,7 @@ const mockedHeadlessState = {
   }
 };
 
-export const NoResults: Story<VerticalResultsProps<DefaultRawDataType>> = (args) => {
+export const NoResults: StoryFn<VerticalResultsProps<DefaultRawDataType>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({})}>
       <VerticalResults {...args} />
@@ -55,7 +56,7 @@ export const NoResults: Story<VerticalResultsProps<DefaultRawDataType>> = (args)
   );
 };
 
-export const HasResults: Story<VerticalResultsProps<DefaultRawDataType>> = (args) => {
+export const HasResults: StoryFn<VerticalResultsProps<DefaultRawDataType>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
       <VerticalResults {...args} />
@@ -63,7 +64,7 @@ export const HasResults: Story<VerticalResultsProps<DefaultRawDataType>> = (args
   );
 };
 
-export const Loading: Story<VerticalResultsProps<DefaultRawDataType>> = (args) => {
+export const Loading: StoryFn<VerticalResultsProps<DefaultRawDataType>> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       ...mockedHeadlessState,

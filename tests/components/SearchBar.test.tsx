@@ -4,6 +4,8 @@ import { SearchBar } from '../../src/components/SearchBar';
 import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import * as Analytics from '../../src/hooks/useAnalytics';
+import { SearchAnalyticsService } from '@yext/analytics';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -26,8 +28,8 @@ describe('SearchBar', () => {
   describe('query suggestions', () => {
     const mockedAutocompleteResult = {
       results: [
-        { value: 'query suggestion 1' },
-        { value: 'query suggestion 2' }
+        { value: 'query suggestion 1', inputIntents: [] },
+        { value: 'query suggestion 2', inputIntents: [] }
       ],
       inputIntents: [],
       uuid: ''
@@ -81,12 +83,12 @@ describe('SearchBar', () => {
 
     it('updates query suggestions with new autocomplete results when type in search bar', async () => {
       const mockedUniversalAutocompleteResultOne = {
-        results: [{ value: 'query suggestion 1' }],
+        results: [{ value: 'query suggestion 1', inputIntents: [] }],
         inputIntents: [],
         uuid: ''
       };
       const mockedUniversalAutocompleteResultTwo = {
-        results: [{ value: 'query suggestion 2' }],
+        results: [{ value: 'query suggestion 2', inputIntents: [] }],
         inputIntents: [],
         uuid: ''
       };
@@ -136,7 +138,8 @@ describe('SearchBar', () => {
     const mockedUniversalAutocompleteResult = {
       results: [{
         value: 'query suggestion',
-        verticalKeys: ['verticalKey1', 'verticalKey2']
+        verticalKeys: ['verticalKey1', 'verticalKey2'],
+        inputIntents: []
       }],
       inputIntents: [],
       uuid: ''
@@ -331,7 +334,7 @@ describe('SearchBar', () => {
 
     it('search with near me location handling using nagivator.geolocation API', async () => {
       const mockedUniversalAutocompleteResult = {
-        results: [{ value: 'query suggestion 1' }],
+        results: [{ value: 'query suggestion 1', inputIntents: [] }],
         inputIntents: [SearchIntent.NearMe],
         uuid: ''
       };
@@ -364,7 +367,7 @@ describe('SearchBar', () => {
 
   describe('analytics events', () => {
     const mockedAutocompleteResult = {
-      results: [{ value: 'query suggestion' }],
+      results: [{ value: 'query suggestion', inputIntents: [] }],
       inputIntents: [],
       uuid: ''
     };
@@ -372,7 +375,7 @@ describe('SearchBar', () => {
 
     beforeEach(() => {
       jest.spyOn(Analytics, 'useAnalytics')
-        .mockImplementation(() => ({ report: mockedReport }));
+        .mockImplementation(() => ({ report: mockedReport }) as unknown as SearchAnalyticsService);
     });
 
     it('reports AUTO_COMPLETE_SELECTION feedback', async () => {
@@ -434,16 +437,16 @@ describe('SearchBar', () => {
     });
 
     it('description text of number of available autocomplete options is present in DOM', async () => {
-      const mockedAutocompleteResult = {
+      const mockedAutocompleteResponse = {
         results: [
-          { value: 'query suggestion 1' },
-          { value: 'query suggestion 2' }
+          { value: 'query suggestion 1', inputIntents: [] },
+          { value: 'query suggestion 2', inputIntents: [] }
         ],
         inputIntents: [],
         uuid: ''
       };
       jest.spyOn(SearchCore.prototype, 'universalAutocomplete')
-        .mockResolvedValue(mockedAutocompleteResult);
+        .mockResolvedValue(mockedAutocompleteResponse);
       render(
         <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
           <SearchBar />

@@ -10,10 +10,11 @@ import {
   builtInCssClasses as thumbsFeedbackCssClasses
 } from './ThumbsFeedback';
 import { twMerge, useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { useCardAnalyticsCallback } from '../hooks/useCardAnalyticsCallback';
-import { useCardFeedbackCallback } from '../hooks/useCardFeedbackCallback';
+import { useCardAnalyticsCallback } from '../hooks';
+import { useCardFeedbackCallback } from '../hooks';
 import { FieldValueDirectAnswer } from './FieldValueDirectAnswer';
 import { FeaturedSnippetDirectAnswer } from './FeaturedSnippetDirectAnswer';
+import React from 'react';
 
 /**
  * Props for {@link UnknownFieldTypeDisplayComponent}.

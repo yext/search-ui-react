@@ -1,3 +1,5 @@
+import React from 'react';
+
 export function StarIcon({ className }: { className?: string }): JSX.Element {
   return (
     <svg

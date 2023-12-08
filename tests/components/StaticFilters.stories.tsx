@@ -1,11 +1,12 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 import { userEvent, within } from '@storybook/testing-library';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { staticFiltersProps } from '../__fixtures__/data/filters';
 import { StaticFilters, StaticFiltersProps } from '../../src';
+import React from 'react';
 
-const meta: ComponentMeta<typeof StaticFilters> = {
+const meta: Meta<typeof StaticFilters> = {
   title: 'StaticFilters',
   component: StaticFilters,
   argTypes: {
@@ -16,7 +17,7 @@ const meta: ComponentMeta<typeof StaticFilters> = {
 };
 export default meta;
 
-export const Primary: Story<StaticFiltersProps> = (args) => {
+export const Primary: StoryFn<StaticFiltersProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
       <StaticFilters
@@ -30,12 +31,12 @@ Primary.args = {
   filterOptions: staticFiltersProps.filterOptions.slice(2),
   fieldId: staticFiltersProps.fieldId
 };
-Primary.play = ({ canvasElement }) => {
+Primary.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByText('Clifford'));
+  await userEvent.click(canvas.getByText('Clifford'));
 };
 
-export const Searchable = Primary.bind({});
+export const Searchable: StoryFn<StaticFiltersProps> = Primary.bind({});
 Searchable.args = {
   ...Primary.args,
   searchable: true

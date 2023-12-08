@@ -9,7 +9,7 @@ The CSS class interface for FilterGroup.
 <b>Signature:</b>
 
 ```typescript
-export interface FilterGroupCssClasses 
+interface FilterGroupCssClasses 
 ```
 
 ## Properties

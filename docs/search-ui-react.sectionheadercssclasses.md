@@ -9,9 +9,9 @@ The CSS class interface used for the SectionHeader component.
 <b>Signature:</b>
 
 ```typescript
-export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses 
+interface SectionHeaderCssClasses extends AppliedFiltersCssClasses 
 ```
-<b>Extends:</b> [AppliedFiltersCssClasses](./search-ui-react.appliedfilterscssclasses.md)
+<b>Extends:</b> AppliedFiltersCssClasses
 
 ## Properties
 

@@ -9,14 +9,14 @@ A wrapper component for specifying a DropdownItemWithIndex. The index will be au
 <b>Signature:</b>
 
 ```typescript
-export declare function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
+declare function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  \_props | [DropdownItemProps](./search-ui-react.dropdownitemprops.md) |  |
+|  \_props | DropdownItemProps |  |
 
 <b>Returns:</b>
 

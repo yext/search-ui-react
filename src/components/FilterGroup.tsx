@@ -1,5 +1,5 @@
 import { useSearchUtilities } from '@yext/search-headless-react';
-import { PropsWithChildren, useMemo, useState } from 'react';
+import React, { PropsWithChildren, useMemo, useState } from 'react';
 import {
   CheckboxOption,
   CollapsibleSection,
@@ -10,6 +10,8 @@ import {
   CheckboxCssClasses
 } from './Filters';
 import { FacetTitle } from './FacetTiltle';
+
+const DEFAULT_CUSTOM_CSS_CLASSES = {};
 
 /**
  * The CSS class interface for FilterGroup.
@@ -62,7 +64,7 @@ export function FilterGroup({
   collapsible = true,
   defaultExpanded = true,
   searchable,
-  customCssClasses = {},
+  customCssClasses = DEFAULT_CUSTOM_CSS_CLASSES,
   showMoreLimit = filterOptions.length,
   children
 }: PropsWithChildren<FilterGroupProps>) {

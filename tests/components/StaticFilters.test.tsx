@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { StaticFilters } from '../../src/components';
 import { staticFilters, staticFiltersProps } from '../__fixtures__/data/filters';
 import { testSSR } from '../ssr/utils';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {

@@ -1,4 +1,5 @@
 import { HighlightedValue } from '@yext/search-headless-react';
+import React from 'react';
 
 const defaultCssClasses: HighlightedValueCssClasses = {
   highlighted: 'font-normal',

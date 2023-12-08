@@ -9,7 +9,7 @@ The parameters that are passed into [FilterSearchProps.onSelect](./search-ui-rea
 <b>Signature:</b>
 
 ```typescript
-export interface OnSelectParams 
+interface OnSelectParams 
 ```
 
 ## Properties

@@ -9,7 +9,7 @@ Returns a service that can be used to report analytics events.
 <b>Signature:</b>
 
 ```typescript
-export declare function useAnalytics(): AnalyticsService | null;
+declare function useAnalytics(): AnalyticsService | null;
 ```
 <b>Returns:</b>
 

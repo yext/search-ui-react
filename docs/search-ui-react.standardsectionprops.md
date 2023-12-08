@@ -9,13 +9,13 @@ The configuration for a StandardSection.
 <b>Signature:</b>
 
 ```typescript
-export interface StandardSectionProps<T = DefaultRawDataType> extends SectionProps<T> 
+interface StandardSectionProps<T = DefaultRawDataType> extends SectionProps<T> 
 ```
-<b>Extends:</b> [SectionProps](./search-ui-react.sectionprops.md)<!-- -->&lt;T&gt;
+<b>Extends:</b> SectionProps&lt;T&gt;
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.standardsectionprops.customcssclasses.md) | [StandardSectionCssClasses](./search-ui-react.standardsectioncssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [customCssClasses?](./search-ui-react.standardsectionprops.customcssclasses.md) | StandardSectionCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
 

@@ -9,7 +9,7 @@ The CSS Class interface for SpellCheck.
 <b>Signature:</b>
 
 ```typescript
-export interface SpellCheckCssClasses 
+interface SpellCheckCssClasses 
 ```
 
 ## Properties

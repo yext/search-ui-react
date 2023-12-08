@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import { ChevronIcon } from '../../icons/ChevronIcon';
 import { useFilterGroupContext } from './FilterGroupContext';
-import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks';
+import React from 'react';
 
 /**
  * The CSS class interface for {@link CollapsibleLabelProps}.

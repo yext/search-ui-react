@@ -1,6 +1,6 @@
-import { FacetsProvider, RangeInput, RangeInputCssClasses } from './Filters';
+import { FacetsProvider, RangeInput, RangeInputCssClasses } from './Filters/index';
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { StandardFacetsProps } from './StandardFacets';
 import { isNumericalFacet } from '../utils/filterutils';

@@ -1,4 +1,5 @@
 import { MagnifyingGlassIcon } from '../icons/MagnifyingGlassIcon';
+import React from 'react';
 
 interface Props {
   handleClick: () => void,

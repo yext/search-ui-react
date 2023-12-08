@@ -1,9 +1,9 @@
 import { Matcher, NumberRangeValue, useSearchActions, useSearchState } from '@yext/search-headless-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
-import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks';
 import { clearStaticRangeFilters, findSelectableFieldValueFilter, getSelectableFieldValueFilters, parseNumberRangeInput } from '../../utils/filterutils';
-import { executeSearch } from '../../utils/search-operations';
+import { executeSearch } from '../../utils';
 import classNames from 'classnames';
 import { useFiltersContext } from './FiltersContext';
 import { InvalidIcon } from '../../icons/InvalidIcon';

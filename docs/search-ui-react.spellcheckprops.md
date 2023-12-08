@@ -9,13 +9,13 @@ The props for the [SpellCheck()](./search-ui-react.spellcheck.md) component.
 <b>Signature:</b>
 
 ```typescript
-export interface SpellCheckProps 
+interface SpellCheckProps 
 ```
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.spellcheckprops.customcssclasses.md) | [SpellCheckCssClasses](./search-ui-react.spellcheckcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [customCssClasses?](./search-ui-react.spellcheckprops.customcssclasses.md) | SpellCheckCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [onClick?](./search-ui-react.spellcheckprops.onclick.md) | (data: { correctedQuery: string; verticalKey: string; }) =&gt; void | <i>(Optional)</i> A function which is called when a spell check suggestion is clicked. |
 

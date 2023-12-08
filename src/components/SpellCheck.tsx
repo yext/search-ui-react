@@ -1,8 +1,8 @@
 import { useSearchState, useSearchActions } from '@yext/search-headless-react';
 import classNames from 'classnames';
-import { useCallback } from 'react';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
-import { executeSearch } from '../utils/search-operations';
+import React, { useCallback } from 'react';
+import { useComposedCssClasses } from '../hooks';
+import { executeSearch } from '../utils';
 
 /**
  * The CSS Class interface for SpellCheck.

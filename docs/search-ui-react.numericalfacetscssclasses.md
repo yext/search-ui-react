@@ -9,9 +9,9 @@ The CSS class interface for [NumericalFacets()](./search-ui-react.numericalfacet
 <b>Signature:</b>
 
 ```typescript
-export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses 
+interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses 
 ```
-<b>Extends:</b> [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)<!-- -->, [RangeInputCssClasses](./search-ui-react.rangeinputcssclasses.md)
+<b>Extends:</b> FilterGroupCssClasses, RangeInputCssClasses
 
 ## Properties
 

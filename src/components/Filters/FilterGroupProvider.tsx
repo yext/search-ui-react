@@ -1,4 +1,4 @@
-import { PropsWithChildren, useMemo, useState } from 'react';
+import React, { PropsWithChildren, useMemo, useState } from 'react';
 import useCollapse from 'react-collapsed';
 import { FilterGroupContext } from './FilterGroupContext';
 

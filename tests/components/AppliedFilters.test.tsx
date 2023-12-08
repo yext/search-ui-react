@@ -5,6 +5,7 @@ import { AppliedFilters } from '../../src/components/AppliedFilters';
 import { getSelectableFieldValueFilters } from '../../src/utils/filterutils';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 import { spyOnActions, mockAnswersState, mockAnswersHooks } from '../__utils__/mocks';
+import React from 'react';
 
 const mockedStaticFilters: SelectableStaticFilter[] = [{
   filter: {
