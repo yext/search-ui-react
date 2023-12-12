@@ -9,7 +9,7 @@
   },
   "baseImageTag": "node-16",
   "dependencies": {
-    "installDepsCmd": "echo $npm_config_auth && npm install && npm run build:js && npm run build:css",
+    "installDepsCmd": "echo $npm_config_auth && npm install && npm run build",
     "requiredFiles": [
       ".nvmrc",
       "package.json",
