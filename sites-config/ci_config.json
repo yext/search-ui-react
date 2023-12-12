@@ -9,10 +9,11 @@
   },
   "baseImageTag": "node-16",
   "dependencies": {
-    "installDepsCmd": "echo $npm_config_auth && npm install && npm run build:css",
+    "installDepsCmd": "echo $npm_config_auth && npm install && npm run build:js && npm run build:css",
     "requiredFiles": [
       ".nvmrc",
       "package.json",
+      "src/index.ts",
       "tailwind.config.cjs",
       "tailwind-no-resets.config.cjs"
     ]
