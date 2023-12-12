@@ -4,6 +4,7 @@ import { State } from '@yext/search-headless-react';
 import { AlternativeVerticals } from '../../src/components/AlternativeVerticals';
 import { mockAnswersHooks } from '../__utils__/mocks';
 import { verticalNoResults } from '../__fixtures__/data/vertical/noresults';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   query: {

@@ -9,9 +9,9 @@ The CSS class interface for [Facets()](./search-ui-react.facets.md)<!-- -->. Any
 <b>Signature:</b>
 
 ```typescript
-export interface FacetsCssClasses extends FilterGroupCssClasses 
+interface FacetsCssClasses extends FilterGroupCssClasses 
 ```
-<b>Extends:</b> [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
+<b>Extends:</b> FilterGroupCssClasses
 
 ## Properties
 

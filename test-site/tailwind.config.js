@@ -1,4 +1,4 @@
-const tailwindConfig = require('../.storybook/tailwind.config.cjs');
+const tailwindConfig = require('../tailwind.config.cjs');
 const { ComponentsContentPath } = require('@yext/search-ui-react');
 
 module.exports = {
@@ -6,5 +6,14 @@ module.exports = {
   content: [
     './src/**/*.{ts,tsx}',
     ComponentsContentPath
-  ]
+  ],
+  theme: {
+    ...tailwindConfig.theme,
+    extend: {
+      ...tailwindConfig.theme.extend,
+      borderColor: {
+        DEFAULT: 'black'
+      }
+    }
+  }
 };

@@ -4,6 +4,7 @@ import { SpellCheck } from '../../src/components/SpellCheck';
 import { State } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   spellCheck: {

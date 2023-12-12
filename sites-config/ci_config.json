@@ -7,16 +7,23 @@
     ],
     "hbsTemplates": []
   },
-  "baseImageTag": "node-14",
+  "baseImageTag": "node-16",
   "dependencies": {
     "installDepsCmd": "echo $npm_config_auth && npm install",
-    "requiredFiles": [".nvmrc"]
+    "requiredFiles": [
+      ".nvmrc",
+      "package.json",
+      "src/index.ts",
+      "tailwind.config.cjs",
+      "tailwind-no-resets.config.cjs"
+    ]
   },
   "buildArtifacts": {
-    "buildSetupCmd": "npm ci",
+    "buildSetupCmd": "npm ci && npm run build",
     "buildCmd": "npm run build-storybook"
   },
   "livePreview": {
+      "serveSetupCmd": "npm run build",
       "serveCmd": "npm run storybook -- -p 8080"
   }
 }

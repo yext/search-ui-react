@@ -1,5 +1,5 @@
 import { builtInCollapsibleLabelCssClasses, CollapsibleLabel, CollapsibleLabelCssClasses } from './Filters';
-import { Fragment, useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import { twMerge } from '../hooks/useComposedCssClasses';
 import { FilterGroupCssClasses } from './FilterGroup';
 

@@ -9,7 +9,7 @@ The CSS class interface for [ApplyFiltersButtonProps](./search-ui-react.applyfil
 <b>Signature:</b>
 
 ```typescript
-export interface ApplyFiltersButtonCssClasses 
+interface ApplyFiltersButtonCssClasses 
 ```
 
 ## Properties

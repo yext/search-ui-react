@@ -9,7 +9,7 @@ The CSS class interface for [renderHighlightedValue()](./search-ui-react.renderh
 <b>Signature:</b>
 
 ```typescript
-export interface HighlightedValueCssClasses 
+interface HighlightedValueCssClasses 
 ```
 
 ## Properties

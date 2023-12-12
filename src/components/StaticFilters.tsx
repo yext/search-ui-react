@@ -1,6 +1,7 @@
 import { FilterGroup, FilterGroupCssClasses } from './FilterGroup';
 import { FilterOptionConfig } from './Filters';
-import { StaticFiltersProvider } from './Filters/StaticFiltersProvider';
+import { StaticFiltersProvider } from './Filters';
+import React from 'react';
 
 /**
  * The CSS class interface for {@link StaticFilters}.

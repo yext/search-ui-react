@@ -9,7 +9,7 @@ A higher-order component which provides analytics for its children.
 <b>Signature:</b>
 
 ```typescript
-export declare function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element;
+declare function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element;
 ```
 
 ## Parameters

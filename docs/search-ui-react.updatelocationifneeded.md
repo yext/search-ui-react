@@ -9,7 +9,7 @@ If the provided search intents include a 'NEAR\_ME' intent and there's no existi
 <b>Signature:</b>
 
 ```typescript
-export declare function updateLocationIfNeeded(searchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
+declare function updateLocationIfNeeded(searchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
 ```
 
 ## Parameters

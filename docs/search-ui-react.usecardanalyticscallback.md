@@ -9,15 +9,15 @@ Creates a memoized function for reporting card analytics.
 <b>Signature:</b>
 
 ```typescript
-export declare function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>, analyticsType: CardAnalyticsType): () => void;
+declare function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>, analyticsType: CardAnalyticsType): () => void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  result | [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md)<!-- -->&lt;T&gt; | result that contains data use in the card analytics event. |
-|  analyticsType | [CardAnalyticsType](./search-ui-react.cardanalyticstype.md) | the card analytics event type to report. |
+|  result | CardAnalyticsDataType&lt;T&gt; | result that contains data use in the card analytics event. |
+|  analyticsType | CardAnalyticsType | the card analytics event type to report. |
 
 <b>Returns:</b>
 

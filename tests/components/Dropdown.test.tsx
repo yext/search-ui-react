@@ -5,6 +5,7 @@ import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import { DropdownItem } from '../../src/components/Dropdown/DropdownItem';
 import { testSSR } from '../ssr/utils';
+import React from 'react';
 
 describe('Dropdown', () => {
   it('renders identical content between the server and the client.', () => {

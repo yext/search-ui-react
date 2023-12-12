@@ -9,14 +9,14 @@ This Component renders the base result card.
 <b>Signature:</b>
 
 ```typescript
-export declare function StandardCard(props: StandardCardProps<any>): JSX.Element;
+declare function StandardCard(props: StandardCardProps<any>): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [StandardCardProps](./search-ui-react.standardcardprops.md)<!-- -->&lt;any&gt; | An object containing the result itself and any additional information needed to render the card |
+|  props | StandardCardProps&lt;any&gt; | An object containing the result itself and any additional information needed to render the card |
 
 <b>Returns:</b>
 

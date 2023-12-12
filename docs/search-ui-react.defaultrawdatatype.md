@@ -9,5 +9,5 @@ The default type for "rawData" field of type Result.
 <b>Signature:</b>
 
 ```typescript
-export declare type DefaultRawDataType = Record<string, unknown>;
+type DefaultRawDataType = Record<string, unknown>;
 ```

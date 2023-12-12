@@ -14,18 +14,18 @@ A component that displays simple facets applicable to the current vertical searc
 <b>Signature:</b>
 
 ```typescript
-export declare function StandardFacets(props: StandardFacetsProps): JSX.Element;
+declare function StandardFacets(props: StandardFacetsProps): React.JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) |
+|  props | StandardFacetsProps | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) |
 
 <b>Returns:</b>
 
-JSX.Element
+React.JSX.Element
 
 A React component for facets
 

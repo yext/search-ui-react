@@ -9,7 +9,7 @@ The CSS class interface used for [AppliedFilters()](./search-ui-react.appliedfil
 <b>Signature:</b>
 
 ```typescript
-export interface AppliedFiltersCssClasses 
+interface AppliedFiltersCssClasses 
 ```
 
 ## Properties

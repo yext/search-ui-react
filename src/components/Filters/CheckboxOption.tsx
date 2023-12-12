@@ -1,8 +1,8 @@
 import { FieldValueFilter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
-import { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
-import { useComposedCssClasses } from '../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../hooks';
 import { findSelectableFieldValueFilter } from '../../utils/filterutils';
 import classNames from 'classnames';
 import { useId } from '@reach/auto-id';

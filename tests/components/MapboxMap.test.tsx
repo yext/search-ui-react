@@ -3,6 +3,7 @@ import { mockAnswersState } from '../__utils__/mocks';
 import { CoordinateGetter, MapboxMap, Coordinate } from '../../src/components/MapboxMap';
 import { Source, State } from '@yext/search-headless-react';
 import { Map, Marker } from 'mapbox-gl';
+import React from 'react';
 
 jest.mock('@yext/search-headless-react');
 jest.mock('mapbox-gl');

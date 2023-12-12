@@ -1,4 +1,4 @@
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { decorator as LocationOperationDecorator } from '../__fixtures__/utils/location-operations';
@@ -6,8 +6,9 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
 import { userEvent, within } from '@storybook/testing-library';
 import { Geolocation, GeolocationProps } from '../../src/components/Geolocation';
+import React from 'react';
 
-const meta: ComponentMeta<typeof Geolocation> = {
+const meta: Meta<typeof Geolocation> = {
   title: 'Geolocation',
   component: Geolocation,
   argTypes: {
@@ -24,7 +25,7 @@ const meta: ComponentMeta<typeof Geolocation> = {
 };
 export default meta;
 
-export const Primary: Story<GeolocationProps> = (args) => {
+export const Primary: StoryFn<GeolocationProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(VerticalSearcherState)}>
       <Geolocation {...args} />
@@ -32,14 +33,14 @@ export const Primary: Story<GeolocationProps> = (args) => {
   );
 };
 
-export const Loading = Primary.bind({});
+export const Loading: StoryFn<GeolocationProps> = Primary.bind({});
 Loading.decorators = [LocationOperationDecorator];
 Loading.parameters = {
   geoLocation: {
     isFetching: true
   }
 };
-Loading.play = ({ canvasElement }) => {
+Loading.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  userEvent.click(canvas.getByText('Use my location'));
+  await userEvent.click(canvas.getByText('Use my location'));
 };

@@ -1,13 +1,14 @@
 import { useSearchState, VerticalResults as VerticalResultsData } from '@yext/search-headless-react';
-import { StandardSection } from './sections/StandardSection';
+import { StandardSection } from './sections';
 import {
   SectionHeader,
   SectionHeaderCssClasses,
   builtInCssClasses as sectionHeaderCssClasses
 } from './sections/SectionHeader';
-import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../hooks';
 import classNames from 'classnames';
-import { VerticalConfigMap } from '../models/verticalConfig';
+import { VerticalConfigMap } from '../models';
+import React from 'react';
 
 /**
  * The CSS class interface used for {@link UniversalResults}.

@@ -9,7 +9,7 @@ Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component.
 <b>Signature:</b>
 
 ```typescript
-export interface StandardFacetProps 
+interface StandardFacetProps 
 ```
 
 ## Properties
@@ -17,7 +17,7 @@ export interface StandardFacetProps
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [collapsible?](./search-ui-react.standardfacetprops.collapsible.md) | boolean | <i>(Optional)</i> Whether or not the filter is collapsible. Defaults to true. |
-|  [customCssClasses?](./search-ui-react.standardfacetprops.customcssclasses.md) | [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  [customCssClasses?](./search-ui-react.standardfacetprops.customcssclasses.md) | FilterGroupCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
 |  [defaultExpanded?](./search-ui-react.standardfacetprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
 |  [fieldId](./search-ui-react.standardfacetprops.fieldid.md) | string | The fieldId corresponding to the facet |
 |  [label?](./search-ui-react.standardfacetprops.label.md) | string | <i>(Optional)</i> The label of the facet. Defaults to facet's displayName if not provided. |

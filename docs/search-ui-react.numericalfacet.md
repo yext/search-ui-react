@@ -9,14 +9,14 @@ A component that displays a single numerical facet. Use this to override the def
 <b>Signature:</b>
 
 ```typescript
-export declare function NumericalFacet(props: NumericalFacetProps): null;
+declare function NumericalFacet(props: NumericalFacetProps): null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) | [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) |
+|  props | NumericalFacetProps | [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) |
 
 <b>Returns:</b>
 

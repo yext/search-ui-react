@@ -10,7 +10,7 @@ import {
   Pagination,
   MapboxMapProps,
   OnDragHandler,
-  Coordinate
+  Coordinate,
 } from '@yext/search-ui-react';
 import { LngLat, LngLatBounds } from 'mapbox-gl';
 import { useCallback, useLayoutEffect } from 'react';

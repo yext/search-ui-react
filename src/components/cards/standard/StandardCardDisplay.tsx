@@ -1,4 +1,4 @@
-import { useComposedCssClasses } from '../../../hooks/useComposedCssClasses';
+import { useComposedCssClasses } from '../../../hooks';
 import {
   ThumbsFeedback,
   builtInCssClasses as thumbsFeedbackCssClasses,
@@ -6,10 +6,10 @@ import {
   ThumbsFeedbackCssClasses
 } from '../../ThumbsFeedback';
 import { renderHighlightedValue } from '../../utils/renderHighlightedValue';
-import { CtaData } from '../../../models/StandardCardData';
+import { CtaData } from '../../../models';
 
 import { HighlightedValue } from '@yext/search-headless-react';
-import { MouseEventHandler } from 'react';
+import React, { MouseEventHandler } from 'react';
 import PropTypes from 'prop-types';
 
 /**

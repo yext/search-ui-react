@@ -9,16 +9,16 @@ Creates a memoized function for reporting card feedback analytics.
 <b>Signature:</b>
 
 ```typescript
-export declare function useCardFeedbackCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>): (analyticsType: FeedbackType) => void;
+declare function useCardFeedbackCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>): (analyticsType: FeedbackType) => void;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  result | [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md)<!-- -->&lt;T&gt; | card result that contains data use in the feedback analytics event. |
+|  result | CardAnalyticsDataType&lt;T&gt; | card result that contains data use in the feedback analytics event. |
 
 <b>Returns:</b>
 
-(analyticsType: [FeedbackType](./search-ui-react.feedbacktype.md)<!-- -->) =&gt; void
+(analyticsType: FeedbackType) =&gt; void
 

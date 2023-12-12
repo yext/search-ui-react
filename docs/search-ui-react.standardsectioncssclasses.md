@@ -9,9 +9,9 @@ The CSS class interface used for [StandardSection()](./search-ui-react.standards
 <b>Signature:</b>
 
 ```typescript
-export interface StandardSectionCssClasses extends VerticalResultsCssClasses 
+interface StandardSectionCssClasses extends VerticalResultsCssClasses 
 ```
-<b>Extends:</b> [VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md)
+<b>Extends:</b> VerticalResultsCssClasses
 
 ## Properties
 

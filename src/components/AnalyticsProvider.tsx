@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { provideAnalytics, AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsContext } from '../hooks/useAnalytics';
 

@@ -9,7 +9,7 @@ Retrieves user's location using navigator.geolocation API.
 <b>Signature:</b>
 
 ```typescript
-export declare function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
+declare function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition>;
 ```
 
 ## Parameters

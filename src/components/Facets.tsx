@@ -7,7 +7,7 @@ import {
 } from './FacetProps';
 import { isNumericalFacet, isStringFacet } from '../utils/filterutils';
 import { FilterDivider } from './FilterDivider';
-import { Fragment, ReactElement } from 'react';
+import React, { Fragment, ReactElement } from 'react';
 import { NumericalFacetContent } from './NumericalFacetContent';
 import { HierarchicalFacetContent } from './HierarchicalFacetContent';
 import { DisplayableFacet } from '@yext/search-headless-react';

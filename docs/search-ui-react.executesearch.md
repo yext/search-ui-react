@@ -9,7 +9,7 @@ Executes a universal/vertical search.
 <b>Signature:</b>
 
 ```typescript
-export declare function executeSearch(searchActions: SearchActions): Promise<void>;
+declare function executeSearch(searchActions: SearchActions): Promise<void>;
 ```
 
 ## Parameters

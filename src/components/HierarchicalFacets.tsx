@@ -7,7 +7,7 @@ import {
   HierarchicalFacetDisplayCssClasses
 } from './Filters';
 import { StandardFacetsProps } from './StandardFacets';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { FilterDivider } from './FilterDivider';
 
 /**

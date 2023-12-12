@@ -1,8 +1,9 @@
-import { useCardAnalyticsCallback } from '../../../hooks/useCardAnalyticsCallback';
-import { CardProps } from '../../../models/cardComponent';
-import { useCardFeedbackCallback } from '../../../hooks/useCardFeedbackCallback';
+import { useCardAnalyticsCallback } from '../../../hooks';
+import { CardProps } from '../../../models';
+import { useCardFeedbackCallback } from '../../../hooks';
 import { StandardCardDisplay, StandardCardCssClasses } from './StandardCardDisplay';
 import { DefaultRawDataType } from '../../../models';
+import React from 'react';
 
 /**
  * Props for a StandardCard.
@@ -10,7 +11,7 @@ import { DefaultRawDataType } from '../../../models';
  * @public
  */
 export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> {
-  /** Whether or not to show thumbs up/down buttons to provide feedback on the result card */
+  /** Whether to show thumbs up/down buttons to provide feedback on the result card */
   showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardCardCssClasses
@@ -32,7 +33,6 @@ export function StandardCard(props: StandardCardProps<any>): JSX.Element {
     customCssClasses,
     showFeedbackButtons
   } = props;
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const data: any = {
     title: result.highlightedFields?.name ?? result.name ?? result.rawData.name,
