@@ -10,7 +10,12 @@
   "baseImageTag": "node-16",
   "dependencies": {
     "installDepsCmd": "echo $npm_config_auth && npm install && npm run build:css",
-    "requiredFiles": [".nvmrc", "package.json"]
+    "requiredFiles": [
+      ".nvmrc",
+      "package.json",
+      "tailwind.config.cjs",
+      "tailwind-no-resets.config.cjs"
+    ]
   },
   "buildArtifacts": {
     "buildSetupCmd": "npm ci",
