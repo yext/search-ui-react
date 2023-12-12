@@ -19,10 +19,11 @@
     ]
   },
   "buildArtifacts": {
-    "buildSetupCmd": "npm ci && npm run build",
+    "buildSetupCmd": "npm ci && npm run build:css",
     "buildCmd": "npm run build-storybook"
   },
   "livePreview": {
+      "serveSetupCmd": "npm run build:css",
       "serveCmd": "npm run storybook -- -p 8080"
   }
 }
