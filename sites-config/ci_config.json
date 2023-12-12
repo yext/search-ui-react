@@ -10,7 +10,7 @@
   "baseImageTag": "node-16",
   "dependencies": {
     "installDepsCmd": "echo $npm_config_auth && npm install",
-    "requiredFiles": [".nvmrc"]
+    "requiredFiles": [".nvmrc", "package.json"]
   },
   "buildArtifacts": {
     "buildSetupCmd": "npm ci",
