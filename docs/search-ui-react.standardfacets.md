@@ -14,7 +14,7 @@ A component that displays simple facets applicable to the current vertical searc
 **Signature:**
 
 ```typescript
-declare function StandardFacets(props: StandardFacetsProps): React.JSX.Element;
+declare function StandardFacets(props: StandardFacetsProps): JSX.Element;
 ```
 
 ## Parameters
@@ -25,7 +25,7 @@ declare function StandardFacets(props: StandardFacetsProps): React.JSX.Element;
 
 **Returns:**
 
-React.JSX.Element
+JSX.Element
 
 A React component for facets
 

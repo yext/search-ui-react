@@ -9,7 +9,7 @@ A component that renders a map with markers to show result locations using Mapbo
 **Signature:**
 
 ```typescript
-declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): React.JSX.Element;
+declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
 ```
 
 ## Parameters
@@ -20,7 +20,7 @@ declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, 
 
 **Returns:**
 
-React.JSX.Element
+JSX.Element
 
 A React element containing a Mapbox Map
 

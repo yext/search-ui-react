@@ -14,7 +14,7 @@ A component that displays numerical facets applicable to the current vertical se
 **Signature:**
 
 ```typescript
-declare function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): React.JSX.Element;
+declare function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 ```
 
 ## Parameters
@@ -25,7 +25,7 @@ declare function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDi
 
 **Returns:**
 
-React.JSX.Element
+JSX.Element
 
 A React component for facets
 

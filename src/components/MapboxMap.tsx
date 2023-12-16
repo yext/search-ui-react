@@ -91,7 +91,7 @@ export function MapboxMap<T>({
   PinComponent,
   getCoordinate = getDefaultCoordinate,
   onDrag
-}: MapboxMapProps<T>) {
+}: MapboxMapProps<T>): JSX.Element {
   useEffect(() => {
     mapboxgl.accessToken = mapboxAccessToken;
   }, [mapboxAccessToken]);
