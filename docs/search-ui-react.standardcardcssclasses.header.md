@@ -4,7 +4,7 @@
 
 ## StandardCardCssClasses.header property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 header?: string;

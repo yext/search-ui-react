@@ -6,7 +6,7 @@
 
 Coordinate use to represent the result's location on a map.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface Coordinate 
@@ -14,8 +14,8 @@ interface Coordinate
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [latitude](./search-ui-react.coordinate.latitude.md) | number | The latitude of the location. |
-|  [longitude](./search-ui-react.coordinate.longitude.md) | number | The longitude of the location. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [latitude](./search-ui-react.coordinate.latitude.md) |  | number | The latitude of the location. |
+|  [longitude](./search-ui-react.coordinate.longitude.md) |  | number | The longitude of the location. |
 

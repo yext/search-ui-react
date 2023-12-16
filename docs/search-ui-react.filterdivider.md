@@ -6,7 +6,7 @@
 
 A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function FilterDivider({ className }: {
@@ -20,7 +20,7 @@ declare function FilterDivider({ className }: {
 |  --- | --- | --- |
 |  { className } | { className?: string; } |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

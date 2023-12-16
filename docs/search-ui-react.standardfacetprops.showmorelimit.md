@@ -6,7 +6,7 @@
 
 The maximum number of options to render before displaying the "Show more/less" button. Defaults to 10.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 showMoreLimit?: number;

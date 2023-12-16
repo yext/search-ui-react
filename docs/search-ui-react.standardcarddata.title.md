@@ -6,7 +6,7 @@
 
 The text to display in the card's header.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 title: HighlightedValue | string;

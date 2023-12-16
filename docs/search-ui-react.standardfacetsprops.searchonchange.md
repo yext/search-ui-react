@@ -6,7 +6,7 @@
 
 Whether or not a search is automatically run when a filter is selected. Defaults to true.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 searchOnChange?: boolean;

@@ -6,7 +6,7 @@
 
 Whether or not the filter is collapsible. Defaults to true.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 collapsible?: boolean;

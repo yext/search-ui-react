@@ -4,7 +4,7 @@
 
 ## AppliedFiltersCssClasses.clearAllButton property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 clearAllButton?: string;

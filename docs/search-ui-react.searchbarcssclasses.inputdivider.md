@@ -4,7 +4,7 @@
 
 ## SearchBarCssClasses.inputDivider property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 inputDivider?: string;

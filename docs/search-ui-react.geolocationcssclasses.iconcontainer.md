@@ -4,7 +4,7 @@
 
 ## GeolocationCssClasses.iconContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 iconContainer?: string;

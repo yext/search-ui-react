@@ -4,7 +4,7 @@
 
 ## HierarchicalFacetDisplayCssClasses.treeContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 treeContainer?: string;

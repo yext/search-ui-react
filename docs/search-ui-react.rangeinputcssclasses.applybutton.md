@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.applyButton property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 applyButton?: string;

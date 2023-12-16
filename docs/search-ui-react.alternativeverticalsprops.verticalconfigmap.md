@@ -6,7 +6,7 @@
 
 A map of verticalKeys to the display label for that vertical.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 verticalConfigMap: VerticalLabelMap;

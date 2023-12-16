@@ -6,7 +6,7 @@
 
 The search bar's placeholder text.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 placeholder?: string;

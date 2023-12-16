@@ -4,7 +4,7 @@
 
 ## ResultsCountCssClasses.resultsCountLoading property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 resultsCountLoading?: string;

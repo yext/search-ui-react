@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.clearButton property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 clearButton?: string;

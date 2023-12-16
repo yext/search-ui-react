@@ -4,7 +4,7 @@
 
 ## PaginationCssClasses.rightIconContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 rightIconContainer?: string;

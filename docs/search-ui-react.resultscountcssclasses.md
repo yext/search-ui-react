@@ -6,7 +6,7 @@
 
 The CSS class interface for [ResultsCount()](./search-ui-react.resultscount.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface ResultsCountCssClasses 
@@ -14,8 +14,8 @@ interface ResultsCountCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [resultsCountContainer?](./search-ui-react.resultscountcssclasses.resultscountcontainer.md) | string | <i>(Optional)</i> |
-|  [resultsCountLoading?](./search-ui-react.resultscountcssclasses.resultscountloading.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [resultsCountContainer?](./search-ui-react.resultscountcssclasses.resultscountcontainer.md) |  | string | _(Optional)_ |
+|  [resultsCountLoading?](./search-ui-react.resultscountcssclasses.resultscountloading.md) |  | string | _(Optional)_ |
 

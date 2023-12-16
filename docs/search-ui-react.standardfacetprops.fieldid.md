@@ -6,7 +6,7 @@
 
 The fieldId corresponding to the facet
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 fieldId: string;

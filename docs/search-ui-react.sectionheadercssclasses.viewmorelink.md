@@ -4,7 +4,7 @@
 
 ## SectionHeaderCssClasses.viewMoreLink property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 viewMoreLink?: string;

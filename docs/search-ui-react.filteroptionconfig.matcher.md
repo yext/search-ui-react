@@ -6,7 +6,7 @@
 
 The type of filtering operation used. Defaults to an equals comparison.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 matcher?: Matcher;

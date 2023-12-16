@@ -4,7 +4,7 @@
 
 ## NumericalFacetsCssClasses.numericalFacetsContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 numericalFacetsContainer?: string;

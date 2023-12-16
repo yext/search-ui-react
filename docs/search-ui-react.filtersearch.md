@@ -6,7 +6,7 @@
 
 A component which allows a user to search for filters associated with specific entities and fields.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
@@ -16,9 +16,9 @@ declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses } | FilterSearchProps |  |
+|  { searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses } | [FilterSearchProps](./search-ui-react.filtersearchprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

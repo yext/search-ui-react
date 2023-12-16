@@ -6,7 +6,7 @@
 
 Whether or not to display a text input to search for filter options.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 searchable?: boolean;

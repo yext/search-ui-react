@@ -6,7 +6,7 @@
 
 The number of results associated with this filter.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 resultsCount?: number;

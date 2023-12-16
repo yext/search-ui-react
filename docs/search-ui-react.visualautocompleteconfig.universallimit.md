@@ -6,7 +6,7 @@
 
 Specify the number of entities to return per vertical. \*
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 universalLimit?: UniversalLimit;
