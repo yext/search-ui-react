@@ -4,7 +4,7 @@
 
 ## FacetsCssClasses.facetsContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 facetsContainer?: string;

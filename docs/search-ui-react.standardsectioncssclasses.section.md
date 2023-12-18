@@ -4,7 +4,7 @@
 
 ## StandardSectionCssClasses.section property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 section?: string;

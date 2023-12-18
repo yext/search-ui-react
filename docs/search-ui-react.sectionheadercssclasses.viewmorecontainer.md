@@ -4,7 +4,7 @@
 
 ## SectionHeaderCssClasses.viewMoreContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 viewMoreContainer?: string;

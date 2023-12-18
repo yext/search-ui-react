@@ -6,7 +6,7 @@
 
 A function which is called when a spell check suggestion is clicked.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 onClick?: (data: {

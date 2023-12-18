@@ -6,7 +6,7 @@
 
 A component to handle rendering results with "unknown" field type in field value direct answer.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 UnknownFieldTypeDisplay?: UnknownFieldTypeDisplayComponent;

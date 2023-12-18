@@ -6,7 +6,7 @@
 
 A function which is called when a vertical link is selected.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 onSelectVerticalLink?: (data: {

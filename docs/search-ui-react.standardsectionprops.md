@@ -6,16 +6,16 @@
 
 The configuration for a StandardSection.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface StandardSectionProps<T = DefaultRawDataType> extends SectionProps<T> 
 ```
-<b>Extends:</b> SectionProps&lt;T&gt;
+**Extends:** [SectionProps](./search-ui-react.sectionprops.md)<!-- -->&lt;T&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.standardsectionprops.customcssclasses.md) | StandardSectionCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.standardsectionprops.customcssclasses.md) |  | [StandardSectionCssClasses](./search-ui-react.standardsectioncssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 

@@ -4,7 +4,7 @@
 
 ## HierarchicalFacetsCssClasses.hierarchicalFacetsContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 hierarchicalFacetsContainer?: string;

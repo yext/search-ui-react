@@ -6,7 +6,7 @@
 
 A component that can be used to render a section template for vertical results.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 SectionComponent?: SectionComponent<T>;

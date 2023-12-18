@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.buttonsContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 buttonsContainer?: string;

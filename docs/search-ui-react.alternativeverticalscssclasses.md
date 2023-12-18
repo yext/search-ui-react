@@ -6,7 +6,7 @@
 
 The CSS class interface used for [AlternativeVerticals()](./search-ui-react.alternativeverticals.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface AlternativeVerticalsCssClasses 
@@ -14,12 +14,12 @@ interface AlternativeVerticalsCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [alternativeVerticalsContainer?](./search-ui-react.alternativeverticalscssclasses.alternativeverticalscontainer.md) | string | <i>(Optional)</i> |
-|  [alternativeVerticalsLoading?](./search-ui-react.alternativeverticalscssclasses.alternativeverticalsloading.md) | string | <i>(Optional)</i> |
-|  [categoriesText?](./search-ui-react.alternativeverticalscssclasses.categoriestext.md) | string | <i>(Optional)</i> |
-|  [noResultsText?](./search-ui-react.alternativeverticalscssclasses.noresultstext.md) | string | <i>(Optional)</i> |
-|  [suggestion?](./search-ui-react.alternativeverticalscssclasses.suggestion.md) | string | <i>(Optional)</i> |
-|  [verticalIcon?](./search-ui-react.alternativeverticalscssclasses.verticalicon.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [alternativeVerticalsContainer?](./search-ui-react.alternativeverticalscssclasses.alternativeverticalscontainer.md) |  | string | _(Optional)_ |
+|  [alternativeVerticalsLoading?](./search-ui-react.alternativeverticalscssclasses.alternativeverticalsloading.md) |  | string | _(Optional)_ |
+|  [categoriesText?](./search-ui-react.alternativeverticalscssclasses.categoriestext.md) |  | string | _(Optional)_ |
+|  [noResultsText?](./search-ui-react.alternativeverticalscssclasses.noresultstext.md) |  | string | _(Optional)_ |
+|  [suggestion?](./search-ui-react.alternativeverticalscssclasses.suggestion.md) |  | string | _(Optional)_ |
+|  [verticalIcon?](./search-ui-react.alternativeverticalscssclasses.verticalicon.md) |  | string | _(Optional)_ |
 

@@ -11,7 +11,7 @@
 
 Whether to trigger a search when an option is selected. Defaults to false.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 searchOnSelect?: boolean;

@@ -6,7 +6,7 @@
 
 A component that displays a single numerical facet. Use this to override the default rendering.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function NumericalFacet(props: NumericalFacetProps): null;
@@ -16,9 +16,9 @@ declare function NumericalFacet(props: NumericalFacetProps): null;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | NumericalFacetProps | [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) |
+|  props | [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) | [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
 null
 

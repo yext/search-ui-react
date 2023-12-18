@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.input\_\_\_invalid property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 input___invalid?: string;

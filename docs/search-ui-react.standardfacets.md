@@ -11,21 +11,21 @@
 
 A component that displays simple facets applicable to the current vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-declare function StandardFacets(props: StandardFacetsProps): React.JSX.Element;
+declare function StandardFacets(props: StandardFacetsProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | StandardFacetsProps | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) |
+|  props | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
-React.JSX.Element
+JSX.Element
 
 A React component for facets
 

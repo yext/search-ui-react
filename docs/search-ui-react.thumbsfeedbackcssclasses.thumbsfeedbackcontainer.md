@@ -4,7 +4,7 @@
 
 ## ThumbsFeedbackCssClasses.thumbsFeedbackContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 thumbsFeedbackContainer?: string;

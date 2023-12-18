@@ -4,7 +4,7 @@
 
 ## FilterGroupCssClasses.titleLabel property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 titleLabel?: string;

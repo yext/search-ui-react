@@ -6,16 +6,16 @@
 
 The CSS class interface for [StaticFilters()](./search-ui-react.staticfilters.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface StaticFiltersCssClasses extends FilterGroupCssClasses 
 ```
-<b>Extends:</b> FilterGroupCssClasses
+**Extends:** [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [staticFiltersContainer?](./search-ui-react.staticfilterscssclasses.staticfilterscontainer.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [staticFiltersContainer?](./search-ui-react.staticfilterscssclasses.staticfilterscontainer.md) |  | string | _(Optional)_ |
 

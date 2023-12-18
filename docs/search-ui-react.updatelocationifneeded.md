@@ -6,7 +6,7 @@
 
 If the provided search intents include a 'NEAR\_ME' intent and there's no existing user's location in state, retrieve and store user's location in headless state.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function updateLocationIfNeeded(searchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
@@ -18,9 +18,9 @@ declare function updateLocationIfNeeded(searchActions: SearchActions, intents: S
 |  --- | --- | --- |
 |  searchActions | SearchActions |  |
 |  intents | SearchIntent\[\] |  |
-|  geolocationOptions | PositionOptions |  |
+|  geolocationOptions | PositionOptions | _(Optional)_ |
 
-<b>Returns:</b>
+**Returns:**
 
 Promise&lt;void&gt;
 

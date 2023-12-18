@@ -6,7 +6,7 @@
 
 The previously selected filter.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 currentFilter: StaticFilter | undefined;

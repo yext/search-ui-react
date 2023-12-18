@@ -6,7 +6,7 @@
 
 The display name. Defaults to the value prop.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 displayName?: string;

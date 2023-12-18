@@ -6,7 +6,7 @@
 
 Props for the FilterGroup component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface FilterGroupProps 
@@ -14,14 +14,14 @@ interface FilterGroupProps
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [collapsible?](./search-ui-react.filtergroupprops.collapsible.md) | boolean | <i>(Optional)</i> Whether or not the filter is collapsible. Defaults to true. |
-|  [customCssClasses?](./search-ui-react.filtergroupprops.customcssclasses.md) | FilterGroupCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [defaultExpanded?](./search-ui-react.filtergroupprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
-|  [fieldId](./search-ui-react.filtergroupprops.fieldid.md) | string | The fieldId corresponding to the filter group. |
-|  [filterOptions](./search-ui-react.filtergroupprops.filteroptions.md) | FilterOptionConfig\[\] | The configuration data for a field value filter option. |
-|  [searchable?](./search-ui-react.filtergroupprops.searchable.md) | boolean | <i>(Optional)</i> Whether or not to display a text input to search for filter options. |
-|  [showMoreLimit?](./search-ui-react.filtergroupprops.showmorelimit.md) | number | <i>(Optional)</i> Limit on the number of options to be displayed. |
-|  [title](./search-ui-react.filtergroupprops.title.md) | string | The displayed label for the filter group. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [collapsible?](./search-ui-react.filtergroupprops.collapsible.md) |  | boolean | _(Optional)_ Whether or not the filter is collapsible. Defaults to true. |
+|  [customCssClasses?](./search-ui-react.filtergroupprops.customcssclasses.md) |  | [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [defaultExpanded?](./search-ui-react.filtergroupprops.defaultexpanded.md) |  | boolean | _(Optional)_ If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
+|  [fieldId](./search-ui-react.filtergroupprops.fieldid.md) |  | string | The fieldId corresponding to the filter group. |
+|  [filterOptions](./search-ui-react.filtergroupprops.filteroptions.md) |  | [FilterOptionConfig](./search-ui-react.filteroptionconfig.md)<!-- -->\[\] | The configuration data for a field value filter option. |
+|  [searchable?](./search-ui-react.filtergroupprops.searchable.md) |  | boolean | _(Optional)_ Whether or not to display a text input to search for filter options. |
+|  [showMoreLimit?](./search-ui-react.filtergroupprops.showmorelimit.md) |  | number | _(Optional)_ Limit on the number of options to be displayed. |
+|  [title](./search-ui-react.filtergroupprops.title.md) |  | string | The displayed label for the filter group. |
 

@@ -4,7 +4,7 @@
 
 ## LocationBiasCssClasses.locationBiasContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 locationBiasContainer?: string;

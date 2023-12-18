@@ -6,7 +6,7 @@
 
 List of filter ids that should not be displayed.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 excludedFieldIds?: string[];

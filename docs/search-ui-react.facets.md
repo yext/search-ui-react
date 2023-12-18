@@ -6,21 +6,21 @@
 
 A component that displays all facets applicable to the current vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-declare function Facets(props: FacetsProps): React.JSX.Element;
+declare function Facets(props: FacetsProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | FacetsProps | [FacetsProps](./search-ui-react.facetsprops.md) |
+|  props | [FacetsProps](./search-ui-react.facetsprops.md) | [FacetsProps](./search-ui-react.facetsprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
-React.JSX.Element
+JSX.Element
 
 A React component for facets
 

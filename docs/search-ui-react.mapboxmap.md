@@ -6,21 +6,21 @@
 
 A component that renders a map with markers to show result locations using Mapbox GL.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): React.JSX.Element;
+declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag } | MapboxMapProps&lt;T&gt; |  |
+|  { mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag } | [MapboxMapProps](./search-ui-react.mapboxmapprops.md)<!-- -->&lt;T&gt; |  |
 
-<b>Returns:</b>
+**Returns:**
 
-React.JSX.Element
+JSX.Element
 
 A React element containing a Mapbox Map
 

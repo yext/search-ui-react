@@ -4,7 +4,7 @@
 
 ## GeolocationCssClasses.geolocationContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 geolocationContainer?: string;

@@ -6,7 +6,7 @@
 
 The label for the vertical.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 label?: string;

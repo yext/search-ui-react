@@ -4,7 +4,7 @@
 
 ## SearchBarCssClasses.verticalDivider property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 verticalDivider?: string;

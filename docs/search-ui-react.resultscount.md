@@ -6,7 +6,7 @@
 
 Renders results count of a universal/vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Element | null;
@@ -16,9 +16,9 @@ declare function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Elem
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { customCssClasses } | ResultsCountProps |  |
+|  { customCssClasses } | [ResultsCountProps](./search-ui-react.resultscountprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

@@ -4,7 +4,7 @@
 
 ## LocationBiasCssClasses.loadingIndicatorContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 loadingIndicatorContainer?: string;

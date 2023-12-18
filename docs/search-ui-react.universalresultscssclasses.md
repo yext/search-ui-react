@@ -6,17 +6,17 @@
 
 The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface UniversalResultsCssClasses extends SectionHeaderCssClasses 
 ```
-<b>Extends:</b> SectionHeaderCssClasses
+**Extends:** [SectionHeaderCssClasses](./search-ui-react.sectionheadercssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [universalResultsContainer?](./search-ui-react.universalresultscssclasses.universalresultscontainer.md) | string | <i>(Optional)</i> |
-|  [universalResultsLoading?](./search-ui-react.universalresultscssclasses.universalresultsloading.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [universalResultsContainer?](./search-ui-react.universalresultscssclasses.universalresultscontainer.md) |  | string | _(Optional)_ |
+|  [universalResultsLoading?](./search-ui-react.universalresultscssclasses.universalresultsloading.md) |  | string | _(Optional)_ |
 

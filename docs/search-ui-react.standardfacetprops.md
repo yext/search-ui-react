@@ -6,7 +6,7 @@
 
 Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface StandardFacetProps 
@@ -14,14 +14,14 @@ interface StandardFacetProps
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [collapsible?](./search-ui-react.standardfacetprops.collapsible.md) | boolean | <i>(Optional)</i> Whether or not the filter is collapsible. Defaults to true. |
-|  [customCssClasses?](./search-ui-react.standardfacetprops.customcssclasses.md) | FilterGroupCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [defaultExpanded?](./search-ui-react.standardfacetprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
-|  [fieldId](./search-ui-react.standardfacetprops.fieldid.md) | string | The fieldId corresponding to the facet |
-|  [label?](./search-ui-react.standardfacetprops.label.md) | string | <i>(Optional)</i> The label of the facet. Defaults to facet's displayName if not provided. |
-|  [showMoreLimit?](./search-ui-react.standardfacetprops.showmorelimit.md) | number | <i>(Optional)</i> The maximum number of options to render before displaying the "Show more/less" button. Defaults to 10. |
-|  [showOptionCounts?](./search-ui-react.standardfacetprops.showoptioncounts.md) | boolean | <i>(Optional)</i> Whether or not to show the option counts for each filter. Defaults to true. |
-|  [transformOptions?](./search-ui-react.standardfacetprops.transformoptions.md) | (options: DisplayableFacetOption\[\]) =&gt; DisplayableFacetOption\[\] | <i>(Optional)</i> A function to transform facet's options. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [collapsible?](./search-ui-react.standardfacetprops.collapsible.md) |  | boolean | _(Optional)_ Whether or not the filter is collapsible. Defaults to true. |
+|  [customCssClasses?](./search-ui-react.standardfacetprops.customcssclasses.md) |  | [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [defaultExpanded?](./search-ui-react.standardfacetprops.defaultexpanded.md) |  | boolean | _(Optional)_ If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
+|  [fieldId](./search-ui-react.standardfacetprops.fieldid.md) |  | string | The fieldId corresponding to the facet |
+|  [label?](./search-ui-react.standardfacetprops.label.md) |  | string | _(Optional)_ The label of the facet. Defaults to facet's displayName if not provided. |
+|  [showMoreLimit?](./search-ui-react.standardfacetprops.showmorelimit.md) |  | number | _(Optional)_ The maximum number of options to render before displaying the "Show more/less" button. Defaults to 10. |
+|  [showOptionCounts?](./search-ui-react.standardfacetprops.showoptioncounts.md) |  | boolean | _(Optional)_ Whether or not to show the option counts for each filter. Defaults to true. |
+|  [transformOptions?](./search-ui-react.standardfacetprops.transformoptions.md) |  | (options: DisplayableFacetOption\[\]) =&gt; DisplayableFacetOption\[\] | _(Optional)_ A function to transform facet's options. |
 

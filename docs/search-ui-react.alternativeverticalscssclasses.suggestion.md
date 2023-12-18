@@ -4,7 +4,7 @@
 
 ## AlternativeVerticalsCssClasses.suggestion property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 suggestion?: string;

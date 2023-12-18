@@ -6,7 +6,7 @@
 
 Props for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface ThumbsFeedbackProps 
@@ -14,10 +14,10 @@ interface ThumbsFeedbackProps
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.thumbsfeedbackprops.customcssclasses.md) | ThumbsFeedbackCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [feedbackText?](./search-ui-react.thumbsfeedbackprops.feedbacktext.md) | string | <i>(Optional)</i> Text to display alongside the quality feedback buttons. |
-|  [feedbackTextOnSubmission?](./search-ui-react.thumbsfeedbackprops.feedbacktextonsubmission.md) | string | <i>(Optional)</i> Text to display after a quality feedback button is clicked. |
-|  [onClick](./search-ui-react.thumbsfeedbackprops.onclick.md) | (feedbackType: FeedbackType) =&gt; void | A function which is called when a quality feedback button is clicked. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.thumbsfeedbackprops.customcssclasses.md) |  | [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [feedbackText?](./search-ui-react.thumbsfeedbackprops.feedbacktext.md) |  | string | _(Optional)_ Text to display alongside the quality feedback buttons. |
+|  [feedbackTextOnSubmission?](./search-ui-react.thumbsfeedbackprops.feedbacktextonsubmission.md) |  | string | _(Optional)_ Text to display after a quality feedback button is clicked. |
+|  [onClick](./search-ui-react.thumbsfeedbackprops.onclick.md) |  | (feedbackType: [FeedbackType](./search-ui-react.feedbacktype.md)<!-- -->) =&gt; void | A function which is called when a quality feedback button is clicked. |
 
