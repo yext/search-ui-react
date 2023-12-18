@@ -6,7 +6,7 @@
 
 Get search intents of the current query stored in headless using autocomplete request.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function getSearchIntents(searchActions: SearchActions): Promise<SearchIntent[] | undefined>;
@@ -18,7 +18,7 @@ declare function getSearchIntents(searchActions: SearchActions): Promise<SearchI
 |  --- | --- | --- |
 |  searchActions | SearchActions |  |
 
-<b>Returns:</b>
+**Returns:**
 
 Promise&lt;SearchIntent\[\] \| undefined&gt;
 

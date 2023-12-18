@@ -6,7 +6,7 @@
 
 The radius, in miles, around the user's location to find results. Defaults to 50. If location accuracy is low, a larger radius may be used automatically.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 radius?: number;

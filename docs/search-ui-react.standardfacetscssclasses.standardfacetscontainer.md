@@ -4,7 +4,7 @@
 
 ## StandardFacetsCssClasses.standardFacetsContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 standardFacetsContainer?: string;

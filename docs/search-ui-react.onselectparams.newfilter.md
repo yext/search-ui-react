@@ -6,7 +6,7 @@
 
 The newly selected filter.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 newFilter: FieldValueStaticFilter;

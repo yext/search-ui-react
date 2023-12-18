@@ -6,7 +6,7 @@
 
 The displayed label for the filter group.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 title: string;

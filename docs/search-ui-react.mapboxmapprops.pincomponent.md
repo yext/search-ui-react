@@ -6,7 +6,7 @@
 
 Custom Pin component to render for markers on the map. By default, the built-in marker image from Mapbox GL is used.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 PinComponent?: PinComponent<T>;

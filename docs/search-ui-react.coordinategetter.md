@@ -6,8 +6,10 @@
 
 A function use to derive a result's coordinate.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 type CoordinateGetter<T> = (result: Result<T>) => Coordinate | undefined;
 ```
+**References:** [Coordinate](./search-ui-react.coordinate.md)
+

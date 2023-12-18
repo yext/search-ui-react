@@ -6,7 +6,7 @@
 
 Executes a universal/vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function executeSearch(searchActions: SearchActions): Promise<void>;
@@ -18,7 +18,7 @@ declare function executeSearch(searchActions: SearchActions): Promise<void>;
 |  --- | --- | --- |
 |  searchActions | SearchActions |  |
 
-<b>Returns:</b>
+**Returns:**
 
 Promise&lt;void&gt;
 

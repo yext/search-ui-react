@@ -6,7 +6,7 @@
 
 Whether or not all results should be displayed when there are none returned from the search. Defaults to true.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 displayAllOnNoResults?: boolean;

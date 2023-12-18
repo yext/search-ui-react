@@ -6,7 +6,7 @@
 
 A function to provide user defined url path for each vertical's view all link.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getViewAllUrl?: (data: VerticalLink) => string;

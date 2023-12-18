@@ -6,7 +6,7 @@
 
 Creates a memoized function for reporting card feedback analytics.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function useCardFeedbackCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>): (analyticsType: FeedbackType) => void;
@@ -16,9 +16,9 @@ declare function useCardFeedbackCallback<T = DefaultRawDataType>(result: CardAna
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  result | CardAnalyticsDataType&lt;T&gt; | card result that contains data use in the feedback analytics event. |
+|  result | [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md)<!-- -->&lt;T&gt; | card result that contains data use in the feedback analytics event. |
 
-<b>Returns:</b>
+**Returns:**
 
-(analyticsType: FeedbackType) =&gt; void
+(analyticsType: [FeedbackType](./search-ui-react.feedbacktype.md)<!-- -->) =&gt; void
 

@@ -6,7 +6,7 @@
 
 A header to display above the results.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 header?: JSX.Element;

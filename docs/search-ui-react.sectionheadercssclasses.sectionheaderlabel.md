@@ -4,7 +4,7 @@
 
 ## SectionHeaderCssClasses.sectionHeaderLabel property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 sectionHeaderLabel?: string;

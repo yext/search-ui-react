@@ -4,7 +4,7 @@
 
 ## AppliedFiltersCssClasses.appliedFiltersLoading property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 appliedFiltersLoading?: string;

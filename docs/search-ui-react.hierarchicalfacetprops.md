@@ -6,19 +6,19 @@
 
 Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transformOptions' | 'showOptionCounts'> 
 ```
-<b>Extends:</b> Omit&lt;StandardFacetProps, 'transformOptions' \| 'showOptionCounts'&gt;
+**Extends:** Omit&lt;[StandardFacetProps](./search-ui-react.standardfacetprops.md)<!-- -->, 'transformOptions' \| 'showOptionCounts'&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.hierarchicalfacetprops.customcssclasses.md) | HierarchicalFacetCustomCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [delimiter?](./search-ui-react.hierarchicalfacetprops.delimiter.md) | string | <i>(Optional)</i> The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->". |
-|  [showMoreLimit?](./search-ui-react.hierarchicalfacetprops.showmorelimit.md) | number | <i>(Optional)</i> The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4. |
-|  [transformOptions?](./search-ui-react.hierarchicalfacetprops.transformoptions.md) | (options: DisplayableFacetOption\[\]) =&gt; DisplayableFacetOption\[\] | <i>(Optional)</i> A function to transform facet's options. The returned options need to be delimited to keep the hierarchy. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.hierarchicalfacetprops.customcssclasses.md) |  | HierarchicalFacetCustomCssClasses | _(Optional)_ CSS classes for customizing the component styling. |
+|  [delimiter?](./search-ui-react.hierarchicalfacetprops.delimiter.md) |  | string | _(Optional)_ The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->". |
+|  [showMoreLimit?](./search-ui-react.hierarchicalfacetprops.showmorelimit.md) |  | number | _(Optional)_ The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4. |
+|  [transformOptions?](./search-ui-react.hierarchicalfacetprops.transformoptions.md) |  | (options: DisplayableFacetOption\[\]) =&gt; DisplayableFacetOption\[\] | _(Optional)_ A function to transform facet's options. The returned options need to be delimited to keep the hierarchy. |
 

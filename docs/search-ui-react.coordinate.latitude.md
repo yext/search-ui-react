@@ -6,7 +6,7 @@
 
 The latitude of the location.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 latitude: number;

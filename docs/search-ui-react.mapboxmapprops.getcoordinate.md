@@ -6,7 +6,7 @@
 
 A function to derive a result's coordinate for the corresponding marker's location on the map. By default, "yextDisplayCoordinate" field is used as the result's display coordinate.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getCoordinate?: CoordinateGetter<T>;

@@ -6,7 +6,7 @@
 
 The CSS class interface for HierarchicalFacetDisplay.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface HierarchicalFacetDisplayCssClasses 
@@ -14,14 +14,14 @@ interface HierarchicalFacetDisplayCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [allCategoriesOption\_\_\_active?](./search-ui-react.hierarchicalfacetdisplaycssclasses.allcategoriesoption___active.md) | string | <i>(Optional)</i> |
-|  [allCategoriesOption\_\_\_inactive?](./search-ui-react.hierarchicalfacetdisplaycssclasses.allcategoriesoption___inactive.md) | string | <i>(Optional)</i> |
-|  [availableOption\_\_active?](./search-ui-react.hierarchicalfacetdisplaycssclasses.availableoption__active.md) | string | <i>(Optional)</i> |
-|  [availableOption\_\_inactive?](./search-ui-react.hierarchicalfacetdisplaycssclasses.availableoption__inactive.md) | string | <i>(Optional)</i> |
-|  [currentCategory?](./search-ui-react.hierarchicalfacetdisplaycssclasses.currentcategory.md) | string | <i>(Optional)</i> |
-|  [parentCategory?](./search-ui-react.hierarchicalfacetdisplaycssclasses.parentcategory.md) | string | <i>(Optional)</i> |
-|  [showMoreButton?](./search-ui-react.hierarchicalfacetdisplaycssclasses.showmorebutton.md) | string | <i>(Optional)</i> |
-|  [treeContainer?](./search-ui-react.hierarchicalfacetdisplaycssclasses.treecontainer.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [allCategoriesOption\_\_\_active?](./search-ui-react.hierarchicalfacetdisplaycssclasses.allcategoriesoption___active.md) |  | string | _(Optional)_ |
+|  [allCategoriesOption\_\_\_inactive?](./search-ui-react.hierarchicalfacetdisplaycssclasses.allcategoriesoption___inactive.md) |  | string | _(Optional)_ |
+|  [availableOption\_\_active?](./search-ui-react.hierarchicalfacetdisplaycssclasses.availableoption__active.md) |  | string | _(Optional)_ |
+|  [availableOption\_\_inactive?](./search-ui-react.hierarchicalfacetdisplaycssclasses.availableoption__inactive.md) |  | string | _(Optional)_ |
+|  [currentCategory?](./search-ui-react.hierarchicalfacetdisplaycssclasses.currentcategory.md) |  | string | _(Optional)_ |
+|  [parentCategory?](./search-ui-react.hierarchicalfacetdisplaycssclasses.parentcategory.md) |  | string | _(Optional)_ |
+|  [showMoreButton?](./search-ui-react.hierarchicalfacetdisplaycssclasses.showmorebutton.md) |  | string | _(Optional)_ |
+|  [treeContainer?](./search-ui-react.hierarchicalfacetdisplaycssclasses.treecontainer.md) |  | string | _(Optional)_ |
 

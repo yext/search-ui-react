@@ -6,7 +6,7 @@
 
 CTA data to render.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 cta2: CtaData;

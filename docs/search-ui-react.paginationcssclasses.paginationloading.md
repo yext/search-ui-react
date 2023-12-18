@@ -4,7 +4,7 @@
 
 ## PaginationCssClasses.paginationLoading property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 paginationLoading?: string;

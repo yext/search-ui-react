@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "slapshot@yext.com",
   "license": "BSD-3-Clause",
@@ -42,7 +42,8 @@
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs && tailwindcss -o ./lib/bundle-no-resets.css --minify -c tailwind-no-resets.config.cjs",
     "dev": "tsc --watch -p tsconfig.json",
     "lint": "eslint . --max-warnings=0",
-    "api-extractor": "api-extractor run --local --verbose",
+    "api-extractor": "api-extractor run --local --verbose && npm run copyTypes",
+    "copyTypes": "cp dist/index.d.ts dist/index.d.mts && cp dist/index.d.mts lib/esm && cp dist/index.d.ts lib/commonjs",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
     "prepublishOnly": "npm run build",
@@ -60,6 +61,8 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.14.5",
     "@etchteam/storybook-addon-status": "^4.2.4",
+    "@microsoft/api-documenter": "^7.23.14",
+    "@microsoft/api-extractor": "^7.38.5",
     "@reduxjs/toolkit": "^1.8.6",
     "@storybook/addon-a11y": "^7.4.5",
     "@storybook/addon-actions": "^7.4.5",
@@ -102,7 +105,7 @@
     "storybook": "^7.4.5",
     "tailwindcss": "^3.0.23",
     "ts-jest": "^29.1.1",
-    "tsup": "^7.2.0",
+    "tsup": "^8.0.1",
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
@@ -151,8 +154,6 @@
     "restoreMocks": true
   },
   "dependencies": {
-    "@microsoft/api-documenter": "^7.15.3",
-    "@microsoft/api-extractor": "^7.19.4",
     "@reach/auto-id": "^0.18.0",
     "@restart/ui": "^1.0.1",
     "@tailwindcss/forms": "^0.5.0",

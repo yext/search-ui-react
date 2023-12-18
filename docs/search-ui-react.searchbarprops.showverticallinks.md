@@ -6,7 +6,7 @@
 
 Shows vertical links if true, set to false on default.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 showVerticalLinks?: boolean;

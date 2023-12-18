@@ -6,7 +6,7 @@
 
 A function which is called when a quality feedback button is clicked.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 onClick: (feedbackType: FeedbackType) => void;

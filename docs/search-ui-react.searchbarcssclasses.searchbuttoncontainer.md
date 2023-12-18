@@ -4,7 +4,7 @@
 
 ## SearchBarCssClasses.searchButtonContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 searchButtonContainer?: string;

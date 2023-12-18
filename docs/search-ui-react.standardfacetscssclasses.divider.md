@@ -4,7 +4,7 @@
 
 ## StandardFacetsCssClasses.divider property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 divider?: string;

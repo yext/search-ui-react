@@ -6,7 +6,7 @@
 
 The display label for the CTA element.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 label: string;

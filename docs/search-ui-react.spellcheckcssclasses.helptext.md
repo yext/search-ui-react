@@ -4,7 +4,7 @@
 
 ## SpellCheckCssClasses.helpText property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 helpText?: string;

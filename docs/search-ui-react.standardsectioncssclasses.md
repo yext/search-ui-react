@@ -6,16 +6,16 @@
 
 The CSS class interface used for [StandardSection()](./search-ui-react.standardsection.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface StandardSectionCssClasses extends VerticalResultsCssClasses 
 ```
-<b>Extends:</b> VerticalResultsCssClasses
+**Extends:** [VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [section?](./search-ui-react.standardsectioncssclasses.section.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [section?](./search-ui-react.standardsectioncssclasses.section.md) |  | string | _(Optional)_ |
 

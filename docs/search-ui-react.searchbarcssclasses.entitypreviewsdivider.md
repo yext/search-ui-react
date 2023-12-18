@@ -4,7 +4,7 @@
 
 ## SearchBarCssClasses.entityPreviewsDivider property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 entityPreviewsDivider?: string;

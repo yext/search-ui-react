@@ -6,7 +6,7 @@
 
 Whether or not to show the applied filters.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 showAppliedFilters?: boolean;

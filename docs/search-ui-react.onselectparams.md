@@ -6,7 +6,7 @@
 
 The parameters that are passed into [FilterSearchProps.onSelect](./search-ui-react.filtersearchprops.onselect.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface OnSelectParams 
@@ -14,11 +14,11 @@ interface OnSelectParams
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [currentFilter](./search-ui-react.onselectparams.currentfilter.md) | StaticFilter \| undefined | The previously selected filter. |
-|  [executeFilterSearch](./search-ui-react.onselectparams.executefiltersearch.md) | (query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt; | A function that executes a filter search and updates the input and dropdown options with the response. |
-|  [newDisplayName](./search-ui-react.onselectparams.newdisplayname.md) | string | The display name of the newly selected filter. |
-|  [newFilter](./search-ui-react.onselectparams.newfilter.md) | FieldValueStaticFilter | The newly selected filter. |
-|  [setCurrentFilter](./search-ui-react.onselectparams.setcurrentfilter.md) | (filter: StaticFilter) =&gt; void | A function that sets which filter the component is currently associated with. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [currentFilter](./search-ui-react.onselectparams.currentfilter.md) |  | StaticFilter \| undefined | The previously selected filter. |
+|  [executeFilterSearch](./search-ui-react.onselectparams.executefiltersearch.md) |  | (query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt; | A function that executes a filter search and updates the input and dropdown options with the response. |
+|  [newDisplayName](./search-ui-react.onselectparams.newdisplayname.md) |  | string | The display name of the newly selected filter. |
+|  [newFilter](./search-ui-react.onselectparams.newfilter.md) |  | FieldValueStaticFilter | The newly selected filter. |
+|  [setCurrentFilter](./search-ui-react.onselectparams.setcurrentfilter.md) |  | (filter: StaticFilter) =&gt; void | A function that sets which filter the component is currently associated with. |
 

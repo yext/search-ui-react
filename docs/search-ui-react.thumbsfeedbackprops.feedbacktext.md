@@ -6,7 +6,7 @@
 
 Text to display alongside the quality feedback buttons.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 feedbackText?: string;

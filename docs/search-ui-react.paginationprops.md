@@ -6,7 +6,7 @@
 
 Props for [Pagination()](./search-ui-react.pagination.md) component
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface PaginationProps 
@@ -14,8 +14,8 @@ interface PaginationProps
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.paginationprops.customcssclasses.md) | PaginationCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [paginateAllOnNoResults?](./search-ui-react.paginationprops.paginateallonnoresults.md) | boolean | <i>(Optional)</i> Whether or not to paginate based on the total results count of the vertical when there are none returned from the search. Defaults to false. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.paginationprops.customcssclasses.md) |  | [PaginationCssClasses](./search-ui-react.paginationcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [paginateAllOnNoResults?](./search-ui-react.paginationprops.paginateallonnoresults.md) |  | boolean | _(Optional)_ Whether or not to paginate based on the total results count of the vertical when there are none returned from the search. Defaults to false. |
 

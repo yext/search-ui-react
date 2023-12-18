@@ -4,7 +4,7 @@
 
 ## AlternativeVerticalsCssClasses.alternativeVerticalsLoading property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 alternativeVerticalsLoading?: string;

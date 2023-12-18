@@ -6,7 +6,7 @@
 
 The data used by the [StandardCard()](./search-ui-react.standardcard.md) and taken from the original Result.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface StandardCardData 
@@ -14,10 +14,10 @@ interface StandardCardData
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [cta1](./search-ui-react.standardcarddata.cta1.md) | CtaData | CTA data to render. |
-|  [cta2](./search-ui-react.standardcarddata.cta2.md) | CtaData | CTA data to render. |
-|  [description](./search-ui-react.standardcarddata.description.md) | HighlightedValue \| string | The content to display in the card's body. |
-|  [title](./search-ui-react.standardcarddata.title.md) | HighlightedValue \| string | The text to display in the card's header. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [cta1](./search-ui-react.standardcarddata.cta1.md) |  | [CtaData](./search-ui-react.ctadata.md) | CTA data to render. |
+|  [cta2](./search-ui-react.standardcarddata.cta2.md) |  | [CtaData](./search-ui-react.ctadata.md) | CTA data to render. |
+|  [description](./search-ui-react.standardcarddata.description.md) |  | HighlightedValue \| string | The content to display in the card's body. |
+|  [title](./search-ui-react.standardcarddata.title.md) |  | HighlightedValue \| string | The text to display in the card's header. |
 

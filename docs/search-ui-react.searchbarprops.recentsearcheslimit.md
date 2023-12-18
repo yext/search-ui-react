@@ -6,7 +6,7 @@
 
 Limits the number of recent searches shown.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 recentSearchesLimit?: number;
