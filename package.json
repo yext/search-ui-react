@@ -68,6 +68,7 @@
     "@storybook/addon-actions": "^7.4.5",
     "@storybook/addon-coverage": "^0.0.9",
     "@storybook/addon-essentials": "^7.4.5",
+    "@storybook/addon-google-analytics": "^6.2.9",
     "@storybook/addon-interactions": "^7.4.5",
     "@storybook/addon-links": "^7.4.5",
     "@storybook/react": "^7.4.5",
