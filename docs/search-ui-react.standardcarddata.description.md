@@ -6,7 +6,7 @@
 
 The content to display in the card's body.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 description: HighlightedValue | string;

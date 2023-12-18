@@ -4,7 +4,7 @@
 
 ## StaticFiltersCssClasses.staticFiltersContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 staticFiltersContainer?: string;

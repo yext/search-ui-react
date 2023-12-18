@@ -6,7 +6,7 @@
 
 A component that renders search results for a vertical page.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function VerticalResults<T>(props: VerticalResultsProps<T>): JSX.Element | null;
@@ -16,9 +16,9 @@ declare function VerticalResults<T>(props: VerticalResultsProps<T>): JSX.Element
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | VerticalResultsProps&lt;T&gt; | [VerticalResultsProps](./search-ui-react.verticalresultsprops.md) |
+|  props | [VerticalResultsProps](./search-ui-react.verticalresultsprops.md)<!-- -->&lt;T&gt; | [VerticalResultsProps](./search-ui-react.verticalresultsprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

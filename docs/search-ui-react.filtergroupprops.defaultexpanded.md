@@ -6,7 +6,7 @@
 
 If the filter group is collapsible, whether or not it should start out expanded. Defaults to true.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 defaultExpanded?: boolean;

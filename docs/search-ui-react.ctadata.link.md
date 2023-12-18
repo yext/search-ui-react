@@ -6,7 +6,7 @@
 
 The CTA link source.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 link: string;

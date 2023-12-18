@@ -32,7 +32,7 @@ enum FacetType {
  *
  * @public
  */
-export function Facets(props: FacetsProps) {
+export function Facets(props: FacetsProps): JSX.Element {
   const {
     searchOnChange,
     onlyRenderChildren = false,

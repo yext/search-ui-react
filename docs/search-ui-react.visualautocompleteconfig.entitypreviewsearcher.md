@@ -6,7 +6,7 @@
 
 The Search Headless instance used to perform visual autocomplete searches.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 entityPreviewSearcher: SearchHeadless;

@@ -6,12 +6,12 @@
 
 Returns a service that can be used to report analytics events.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function useAnalytics(): AnalyticsService | null;
 ```
-<b>Returns:</b>
+**Returns:**
 
 AnalyticsService \| null
 

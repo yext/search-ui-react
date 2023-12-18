@@ -6,7 +6,7 @@
 
 List of filters that should not be displayed. By default, builtin.entityType will be hidden.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 hiddenFields?: string[];

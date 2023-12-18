@@ -6,7 +6,7 @@
 
 Text to display after a quality feedback button is clicked.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 feedbackTextOnSubmission?: string;

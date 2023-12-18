@@ -4,7 +4,7 @@
 
 ## SearchBarCssClasses.focusedOption property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 focusedOption?: string;

@@ -6,7 +6,7 @@
 
 The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->".
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 hierarchicalFacetsDelimiter?: string;

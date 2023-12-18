@@ -6,7 +6,7 @@
 
 Type guard for CtaData.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function isCtaData(data: unknown): data is CtaData;
@@ -18,9 +18,9 @@ declare function isCtaData(data: unknown): data is CtaData;
 |  --- | --- | --- |
 |  data | unknown | the data to validate. |
 
-<b>Returns:</b>
+**Returns:**
 
-data is CtaData
+data is [CtaData](./search-ui-react.ctadata.md)
 
 whether the data is of type CtaData.
 

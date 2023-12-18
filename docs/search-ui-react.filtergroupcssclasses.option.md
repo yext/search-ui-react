@@ -4,7 +4,7 @@
 
 ## FilterGroupCssClasses.option property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 option?: string;

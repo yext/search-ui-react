@@ -6,7 +6,7 @@
 
 Props for [ResultsCount()](./search-ui-react.resultscount.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface ResultsCountProps 
@@ -14,7 +14,7 @@ interface ResultsCountProps
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.resultscountprops.customcssclasses.md) | ResultsCountCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.resultscountprops.customcssclasses.md) |  | [ResultsCountCssClasses](./search-ui-react.resultscountcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 

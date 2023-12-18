@@ -6,7 +6,7 @@
 
 CSS classes for customizing the component styling.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 customCssClasses?: SearchBarCssClasses;

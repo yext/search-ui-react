@@ -6,7 +6,7 @@
 
 Specify which verticals to include for VisualAutocomplete.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 includedVerticals: string[];

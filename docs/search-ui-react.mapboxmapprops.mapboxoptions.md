@@ -6,7 +6,7 @@
 
 Interface for map customization derived from Mapbox GL's Map options.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 mapboxOptions?: Omit<mapboxgl.MapboxOptions, 'container'>;

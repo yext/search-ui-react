@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.input\_\_\_withPrefix property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 input___withPrefix?: string;

@@ -6,7 +6,7 @@
 
 Renders a suggested query if the Search API provides one.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX.Element | null;
@@ -16,9 +16,9 @@ declare function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { customCssClasses, onClick } | SpellCheckProps |  |
+|  { customCssClasses, onClick } | [SpellCheckProps](./search-ui-react.spellcheckprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

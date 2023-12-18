@@ -6,7 +6,7 @@
 
 A callback which is called when a search is ran.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 onSearch?: onSearchFunc;

@@ -6,7 +6,7 @@
 
 Returns the filter's display name based on the range values which is used when the filter is displayed by other components such as AppliedFilters.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 getFilterDisplayName?: (value: NumberRangeValue) => string;

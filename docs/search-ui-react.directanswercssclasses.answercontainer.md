@@ -4,7 +4,7 @@
 
 ## DirectAnswerCssClasses.answerContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 answerContainer?: string;

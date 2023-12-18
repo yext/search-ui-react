@@ -4,7 +4,7 @@
 
 ## DirectAnswerCssClasses.directAnswerLoading property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 directAnswerLoading?: string;

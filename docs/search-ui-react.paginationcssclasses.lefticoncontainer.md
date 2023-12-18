@@ -4,7 +4,7 @@
 
 ## PaginationCssClasses.leftIconContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 leftIconContainer?: string;

@@ -6,7 +6,7 @@
 
 A component that displays a group of user-configured field value filters that will be applied to the current vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
@@ -16,9 +16,9 @@ declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  props | StaticFiltersProps | [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) |
+|  props | [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) | [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element
 

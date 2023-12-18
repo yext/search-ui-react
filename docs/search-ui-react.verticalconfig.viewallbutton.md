@@ -6,7 +6,7 @@
 
 Whether or not this vertical should show a button to view all results on the vertical page.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 viewAllButton?: boolean;
