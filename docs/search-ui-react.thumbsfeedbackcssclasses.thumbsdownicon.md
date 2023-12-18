@@ -4,7 +4,7 @@
 
 ## ThumbsFeedbackCssClasses.thumbsDownIcon property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 thumbsDownIcon?: string;

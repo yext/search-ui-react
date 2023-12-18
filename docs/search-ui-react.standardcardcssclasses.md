@@ -6,21 +6,21 @@
 
 The CSS class interface used for the StandardCardDisplay.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface StandardCardCssClasses extends ThumbsFeedbackCssClasses 
 ```
-<b>Extends:</b> ThumbsFeedbackCssClasses
+**Extends:** [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [body?](./search-ui-react.standardcardcssclasses.body.md) | string | <i>(Optional)</i> |
-|  [container?](./search-ui-react.standardcardcssclasses.container.md) | string | <i>(Optional)</i> |
-|  [cta1?](./search-ui-react.standardcardcssclasses.cta1.md) | string | <i>(Optional)</i> |
-|  [cta2?](./search-ui-react.standardcardcssclasses.cta2.md) | string | <i>(Optional)</i> |
-|  [header?](./search-ui-react.standardcardcssclasses.header.md) | string | <i>(Optional)</i> |
-|  [title?](./search-ui-react.standardcardcssclasses.title.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [body?](./search-ui-react.standardcardcssclasses.body.md) |  | string | _(Optional)_ |
+|  [container?](./search-ui-react.standardcardcssclasses.container.md) |  | string | _(Optional)_ |
+|  [cta1?](./search-ui-react.standardcardcssclasses.cta1.md) |  | string | _(Optional)_ |
+|  [cta2?](./search-ui-react.standardcardcssclasses.cta2.md) |  | string | _(Optional)_ |
+|  [header?](./search-ui-react.standardcardcssclasses.header.md) |  | string | _(Optional)_ |
+|  [title?](./search-ui-react.standardcardcssclasses.title.md) |  | string | _(Optional)_ |
 

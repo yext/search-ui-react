@@ -6,7 +6,7 @@
 
 The label of the facet. Defaults to facet's displayName if not provided.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 label?: string;

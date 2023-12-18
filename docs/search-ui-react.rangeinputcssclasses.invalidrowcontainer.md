@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.invalidRowContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 invalidRowContainer?: string;

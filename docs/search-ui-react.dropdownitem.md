@@ -6,7 +6,7 @@
 
 A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
@@ -16,9 +16,9 @@ declare function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  \_props | DropdownItemProps |  |
+|  \_props | [DropdownItemProps](./search-ui-react.dropdownitemprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

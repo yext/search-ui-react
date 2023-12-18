@@ -4,7 +4,7 @@
 
 ## StandardCardCssClasses.cta1 property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 cta1?: string;

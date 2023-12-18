@@ -4,7 +4,7 @@
 
 ## StandardCardCssClasses.container property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 container?: string;

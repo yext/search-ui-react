@@ -6,7 +6,7 @@
 
 The card to use for this vertical.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 CardComponent?: CardComponent<T>;

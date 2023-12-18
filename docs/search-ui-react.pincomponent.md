@@ -6,7 +6,7 @@
 
 A functional component that can be used to render a custom marker on the map.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 type PinComponent<T> = (props: {

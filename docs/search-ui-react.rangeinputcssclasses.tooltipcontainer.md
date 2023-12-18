@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.tooltipContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 tooltipContainer?: string;

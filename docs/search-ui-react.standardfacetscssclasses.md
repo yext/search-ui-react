@@ -11,17 +11,17 @@
 
 The CSS class interface for [StandardFacets()](./search-ui-react.standardfacets.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface StandardFacetsCssClasses extends FilterGroupCssClasses 
 ```
-<b>Extends:</b> FilterGroupCssClasses
+**Extends:** [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [divider?](./search-ui-react.standardfacetscssclasses.divider.md) | string | <i>(Optional)</i> |
-|  [standardFacetsContainer?](./search-ui-react.standardfacetscssclasses.standardfacetscontainer.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [divider?](./search-ui-react.standardfacetscssclasses.divider.md) |  | string | _(Optional)_ |
+|  [standardFacetsContainer?](./search-ui-react.standardfacetscssclasses.standardfacetscontainer.md) |  | string | _(Optional)_ |
 

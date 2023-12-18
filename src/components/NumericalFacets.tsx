@@ -60,7 +60,7 @@ export function NumericalFacets({
   inputPrefix = DEFAULT_RANGE_INPUT_PREFIX,
   customCssClasses = {},
   ...filterGroupProps
-}: NumericalFacetsProps) {
+}: NumericalFacetsProps): JSX.Element {
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.numericalFacetsContainer}>
       {facets => facets

@@ -6,7 +6,7 @@
 
 The label for the button, defaults to 'Apply Filters'
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 label?: string;

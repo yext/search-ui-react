@@ -6,7 +6,7 @@
 
 The results from this vertical.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 results: Result<T>[];

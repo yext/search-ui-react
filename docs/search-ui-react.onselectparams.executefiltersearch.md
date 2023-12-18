@@ -6,7 +6,7 @@
 
 A function that executes a filter search and updates the input and dropdown options with the response.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>;

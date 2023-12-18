@@ -6,7 +6,7 @@
 
 The debouncing time, in milliseconds, for making API requests for entity previews.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 entityPreviewsDebouncingTime?: number;

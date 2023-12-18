@@ -4,7 +4,7 @@
 
 ## AppliedFiltersCssClasses.removableFilter property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 removableFilter?: string;

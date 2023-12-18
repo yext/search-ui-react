@@ -11,19 +11,19 @@
 
 Props for the [NumericalFacets()](./search-ui-react.numericalfacets.md) component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'excludedFieldIds'> 
 ```
-<b>Extends:</b> Omit&lt;StandardFacetsProps, 'excludedFieldIds'&gt;
+**Extends:** Omit&lt;[StandardFacetsProps](./search-ui-react.standardfacetsprops.md)<!-- -->, 'excludedFieldIds'&gt;
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.numericalfacetsprops.customcssclasses.md) | NumericalFacetsCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [getFilterDisplayName?](./search-ui-react.numericalfacetsprops.getfilterdisplayname.md) | (value: NumberRangeValue) =&gt; string | <i>(Optional)</i> Returns the filter's display name based on the range values which is used when the filter is displayed by other components such as AppliedFilters. |
-|  [includedFieldIds?](./search-ui-react.numericalfacetsprops.includedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids to render as numerical facets. |
-|  [inputPrefix?](./search-ui-react.numericalfacetsprops.inputprefix.md) | JSX.Element | <i>(Optional)</i> An optional element which renders in front of the input text. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.numericalfacetsprops.customcssclasses.md) |  | [NumericalFacetsCssClasses](./search-ui-react.numericalfacetscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [getFilterDisplayName?](./search-ui-react.numericalfacetsprops.getfilterdisplayname.md) |  | (value: NumberRangeValue) =&gt; string | _(Optional)_ Returns the filter's display name based on the range values which is used when the filter is displayed by other components such as AppliedFilters. |
+|  [includedFieldIds?](./search-ui-react.numericalfacetsprops.includedfieldids.md) |  | string\[\] | _(Optional)_ List of filter ids to render as numerical facets. |
+|  [inputPrefix?](./search-ui-react.numericalfacetsprops.inputprefix.md) |  | JSX.Element | _(Optional)_ An optional element which renders in front of the input text. |
 

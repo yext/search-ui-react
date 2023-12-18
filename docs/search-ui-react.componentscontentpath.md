@@ -6,7 +6,7 @@
 
 Content path to the source files in component library that utilizes Tailwind class names. This is intended to be used in user's custom tailwind config.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 ComponentsContentPath = "node_modules/@yext/search-ui-react/lib/**/*.{js,jsx}"

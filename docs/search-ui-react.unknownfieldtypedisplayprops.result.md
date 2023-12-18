@@ -4,7 +4,7 @@
 
 ## UnknownFieldTypeDisplayProps.result property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 result: UnknownFieldValueDirectAnswer;

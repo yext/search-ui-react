@@ -6,7 +6,7 @@
 
 Hides recent searches if true.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 hideRecentSearches?: boolean;

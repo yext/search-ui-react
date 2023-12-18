@@ -6,7 +6,7 @@
 
 The CSS class interface for RangeInput.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface RangeInputCssClasses 
@@ -14,26 +14,26 @@ interface RangeInputCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [applyButton?](./search-ui-react.rangeinputcssclasses.applybutton.md) | string | <i>(Optional)</i> |
-|  [buttonsContainer?](./search-ui-react.rangeinputcssclasses.buttonscontainer.md) | string | <i>(Optional)</i> |
-|  [clearButton?](./search-ui-react.rangeinputcssclasses.clearbutton.md) | string | <i>(Optional)</i> |
-|  [input\_\_\_disabled?](./search-ui-react.rangeinputcssclasses.input___disabled.md) | string | <i>(Optional)</i> |
-|  [input\_\_\_enabled?](./search-ui-react.rangeinputcssclasses.input___enabled.md) | string | <i>(Optional)</i> |
-|  [input\_\_\_invalid?](./search-ui-react.rangeinputcssclasses.input___invalid.md) | string | <i>(Optional)</i> |
-|  [input\_\_\_valid?](./search-ui-react.rangeinputcssclasses.input___valid.md) | string | <i>(Optional)</i> |
-|  [input\_\_\_withoutPrefix?](./search-ui-react.rangeinputcssclasses.input___withoutprefix.md) | string | <i>(Optional)</i> |
-|  [input\_\_\_withPrefix?](./search-ui-react.rangeinputcssclasses.input___withprefix.md) | string | <i>(Optional)</i> |
-|  [input?](./search-ui-react.rangeinputcssclasses.input.md) | string | <i>(Optional)</i> |
-|  [inputContainer?](./search-ui-react.rangeinputcssclasses.inputcontainer.md) | string | <i>(Optional)</i> |
-|  [inputPrefix\_\_\_disabled?](./search-ui-react.rangeinputcssclasses.inputprefix___disabled.md) | string | <i>(Optional)</i> |
-|  [inputPrefix\_\_\_enabled?](./search-ui-react.rangeinputcssclasses.inputprefix___enabled.md) | string | <i>(Optional)</i> |
-|  [inputPrefix?](./search-ui-react.rangeinputcssclasses.inputprefix.md) | string | <i>(Optional)</i> |
-|  [inputRowContainer?](./search-ui-react.rangeinputcssclasses.inputrowcontainer.md) | string | <i>(Optional)</i> |
-|  [invalidMessage?](./search-ui-react.rangeinputcssclasses.invalidmessage.md) | string | <i>(Optional)</i> |
-|  [invalidRowContainer?](./search-ui-react.rangeinputcssclasses.invalidrowcontainer.md) | string | <i>(Optional)</i> |
-|  [rangeInputContainer?](./search-ui-react.rangeinputcssclasses.rangeinputcontainer.md) | string | <i>(Optional)</i> |
-|  [tooltip?](./search-ui-react.rangeinputcssclasses.tooltip.md) | string | <i>(Optional)</i> |
-|  [tooltipContainer?](./search-ui-react.rangeinputcssclasses.tooltipcontainer.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [applyButton?](./search-ui-react.rangeinputcssclasses.applybutton.md) |  | string | _(Optional)_ |
+|  [buttonsContainer?](./search-ui-react.rangeinputcssclasses.buttonscontainer.md) |  | string | _(Optional)_ |
+|  [clearButton?](./search-ui-react.rangeinputcssclasses.clearbutton.md) |  | string | _(Optional)_ |
+|  [input\_\_\_disabled?](./search-ui-react.rangeinputcssclasses.input___disabled.md) |  | string | _(Optional)_ |
+|  [input\_\_\_enabled?](./search-ui-react.rangeinputcssclasses.input___enabled.md) |  | string | _(Optional)_ |
+|  [input\_\_\_invalid?](./search-ui-react.rangeinputcssclasses.input___invalid.md) |  | string | _(Optional)_ |
+|  [input\_\_\_valid?](./search-ui-react.rangeinputcssclasses.input___valid.md) |  | string | _(Optional)_ |
+|  [input\_\_\_withoutPrefix?](./search-ui-react.rangeinputcssclasses.input___withoutprefix.md) |  | string | _(Optional)_ |
+|  [input\_\_\_withPrefix?](./search-ui-react.rangeinputcssclasses.input___withprefix.md) |  | string | _(Optional)_ |
+|  [input?](./search-ui-react.rangeinputcssclasses.input.md) |  | string | _(Optional)_ |
+|  [inputContainer?](./search-ui-react.rangeinputcssclasses.inputcontainer.md) |  | string | _(Optional)_ |
+|  [inputPrefix\_\_\_disabled?](./search-ui-react.rangeinputcssclasses.inputprefix___disabled.md) |  | string | _(Optional)_ |
+|  [inputPrefix\_\_\_enabled?](./search-ui-react.rangeinputcssclasses.inputprefix___enabled.md) |  | string | _(Optional)_ |
+|  [inputPrefix?](./search-ui-react.rangeinputcssclasses.inputprefix.md) |  | string | _(Optional)_ |
+|  [inputRowContainer?](./search-ui-react.rangeinputcssclasses.inputrowcontainer.md) |  | string | _(Optional)_ |
+|  [invalidMessage?](./search-ui-react.rangeinputcssclasses.invalidmessage.md) |  | string | _(Optional)_ |
+|  [invalidRowContainer?](./search-ui-react.rangeinputcssclasses.invalidrowcontainer.md) |  | string | _(Optional)_ |
+|  [rangeInputContainer?](./search-ui-react.rangeinputcssclasses.rangeinputcontainer.md) |  | string | _(Optional)_ |
+|  [tooltip?](./search-ui-react.rangeinputcssclasses.tooltip.md) |  | string | _(Optional)_ |
+|  [tooltipContainer?](./search-ui-react.rangeinputcssclasses.tooltipcontainer.md) |  | string | _(Optional)_ |
 

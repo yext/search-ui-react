@@ -6,7 +6,7 @@
 
 Data needed to create a URL to a vertical search page.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface VerticalLink 
@@ -14,8 +14,8 @@ interface VerticalLink
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [query?](./search-ui-react.verticallink.query.md) | string | <i>(Optional)</i> The query used when the vertical link is selected. |
-|  [verticalKey](./search-ui-react.verticallink.verticalkey.md) | string | The vertical key associated with the vertical link. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [query?](./search-ui-react.verticallink.query.md) |  | string | _(Optional)_ The query used when the vertical link is selected. |
+|  [verticalKey](./search-ui-react.verticallink.verticalkey.md) |  | string | The vertical key associated with the vertical link. |
 

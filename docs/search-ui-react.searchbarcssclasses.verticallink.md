@@ -4,7 +4,7 @@
 
 ## SearchBarCssClasses.verticalLink property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 verticalLink?: string;

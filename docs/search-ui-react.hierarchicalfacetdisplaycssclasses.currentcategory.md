@@ -4,7 +4,7 @@
 
 ## HierarchicalFacetDisplayCssClasses.currentCategory property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 currentCategory?: string;

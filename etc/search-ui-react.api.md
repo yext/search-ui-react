@@ -202,7 +202,7 @@ export function executeSearch(searchActions: SearchActions): Promise<void>;
 export type FacetProps = StandardFacetProps | NumericalFacetProps | HierarchicalFacetProps;
 
 // @public
-export function Facets(props: FacetsProps): React_2.JSX.Element;
+export function Facets(props: FacetsProps): JSX.Element;
 
 // @public
 export interface FacetsCssClasses extends FilterGroupCssClasses {
@@ -364,7 +364,7 @@ export interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transf
 }
 
 // @public @deprecated
-export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): React_2.JSX.Element;
+export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
 
 // @public
 export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses {
@@ -417,7 +417,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): React_2.JSX.Element;
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
@@ -440,7 +440,7 @@ export interface NumericalFacetProps extends StandardFacetProps {
 }
 
 // @public @deprecated
-export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): React_2.JSX.Element;
+export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 
 // @public
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
@@ -728,7 +728,7 @@ export interface StandardFacetProps {
 }
 
 // @public @deprecated
-export function StandardFacets(props: StandardFacetsProps): React_2.JSX.Element;
+export function StandardFacets(props: StandardFacetsProps): JSX.Element;
 
 // @public @deprecated
 export interface StandardFacetsCssClasses extends FilterGroupCssClasses {

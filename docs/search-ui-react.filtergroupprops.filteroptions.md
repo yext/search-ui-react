@@ -6,7 +6,7 @@
 
 The configuration data for a field value filter option.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 filterOptions: FilterOptionConfig[];

@@ -4,7 +4,7 @@
 
 ## DirectAnswerCssClasses.answer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 answer?: string;

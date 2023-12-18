@@ -4,7 +4,7 @@
 
 ## FilterSearchCssClasses.optionsContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 optionsContainer?: string;

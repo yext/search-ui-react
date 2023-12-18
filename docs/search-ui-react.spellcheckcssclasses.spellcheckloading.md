@@ -4,7 +4,7 @@
 
 ## SpellCheckCssClasses.spellCheckLoading property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 spellCheckLoading?: string;

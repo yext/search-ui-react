@@ -4,7 +4,7 @@
 
 ## HierarchicalFacetDisplayCssClasses.showMoreButton property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 showMoreButton?: string;

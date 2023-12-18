@@ -4,7 +4,7 @@
 
 ## ResultsCountCssClasses.resultsCountContainer property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 resultsCountContainer?: string;
