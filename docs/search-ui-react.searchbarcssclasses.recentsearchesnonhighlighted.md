@@ -4,7 +4,7 @@
 
 ## SearchBarCssClasses.recentSearchesNonHighlighted property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 recentSearchesNonHighlighted?: string;

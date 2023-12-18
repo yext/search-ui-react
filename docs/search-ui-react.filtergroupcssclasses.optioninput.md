@@ -4,7 +4,7 @@
 
 ## FilterGroupCssClasses.optionInput property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 optionInput?: string;

@@ -6,7 +6,7 @@
 
 A component that displays the alternative verticals that have results if a search returns none on the current vertical.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 declare function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }: AlternativeVerticalsProps): JSX.Element | null;
@@ -16,9 +16,9 @@ declare function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap,
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses } | AlternativeVerticalsProps |  |
+|  { currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses } | [AlternativeVerticalsProps](./search-ui-react.alternativeverticalsprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 JSX.Element \| null
 

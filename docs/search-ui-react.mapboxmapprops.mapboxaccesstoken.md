@@ -6,7 +6,7 @@
 
 Mapbox access token.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 mapboxAccessToken: string;

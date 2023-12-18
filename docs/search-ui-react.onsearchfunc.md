@@ -6,7 +6,7 @@
 
 The interface of a function which is called on a search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 type onSearchFunc = (searchEventData: {

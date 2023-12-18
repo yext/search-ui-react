@@ -6,7 +6,7 @@
 
 Props for the [DropdownItem()](./search-ui-react.dropdownitem.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 type DropdownItemProps = PropsWithChildren<{
@@ -18,3 +18,5 @@ type DropdownItemProps = PropsWithChildren<{
     ariaLabel?: (value: string) => string;
 }>;
 ```
+**References:** [FocusedItemData](./search-ui-react.focuseditemdata.md)
+

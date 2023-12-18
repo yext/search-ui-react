@@ -6,7 +6,7 @@
 
 The shape of a StandardCard CTA field's data.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface CtaData 
@@ -14,9 +14,9 @@ interface CtaData
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [label](./search-ui-react.ctadata.label.md) | string | The display label for the CTA element. |
-|  [link](./search-ui-react.ctadata.link.md) | string | The CTA link source. |
-|  [linkType](./search-ui-react.ctadata.linktype.md) | string | The CTA link type (e.g. URL, Phone, Email, Other). |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [label](./search-ui-react.ctadata.label.md) |  | string | The display label for the CTA element. |
+|  [link](./search-ui-react.ctadata.link.md) |  | string | The CTA link source. |
+|  [linkType](./search-ui-react.ctadata.linktype.md) |  | string | The CTA link type (e.g. URL, Phone, Email, Other). |
 

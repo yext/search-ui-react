@@ -6,7 +6,7 @@
 
 The label for the button. Defaults to 'Use my location'.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 label?: string;

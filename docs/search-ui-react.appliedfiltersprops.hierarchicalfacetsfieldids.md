@@ -6,7 +6,7 @@
 
 A set of facet fieldIds that should be interpreted as "hierarchical".
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 hierarchicalFacetsFieldIds?: string[];

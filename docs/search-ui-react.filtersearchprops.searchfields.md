@@ -6,7 +6,7 @@
 
 An array of fieldApiName and entityType which indicates what to perform the filter search against.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 searchFields: Omit<SearchParameterField, 'fetchEntities'>[];

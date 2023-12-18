@@ -6,7 +6,7 @@
 
 A functional component that can be used to render a result card.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 CardComponent: CardComponent<T>;

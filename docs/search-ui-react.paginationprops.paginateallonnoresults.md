@@ -6,7 +6,7 @@
 
 Whether or not to paginate based on the total results count of the vertical when there are none returned from the search. Defaults to false.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 paginateAllOnNoResults?: boolean;

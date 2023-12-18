@@ -11,7 +11,7 @@
 
 Props for the [StandardFacets()](./search-ui-react.standardfacets.md) component.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface StandardFacetsProps 
@@ -19,13 +19,13 @@ interface StandardFacetsProps
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [collapsible?](./search-ui-react.standardfacetsprops.collapsible.md) | boolean | <i>(Optional)</i> Whether or not the filter is collapsible. Defaults to true. |
-|  [customCssClasses?](./search-ui-react.standardfacetsprops.customcssclasses.md) | StandardFacetsCssClasses | <i>(Optional)</i> CSS classes for customizing the component styling. |
-|  [defaultExpanded?](./search-ui-react.standardfacetsprops.defaultexpanded.md) | boolean | <i>(Optional)</i> If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
-|  [excludedFieldIds?](./search-ui-react.standardfacetsprops.excludedfieldids.md) | string\[\] | <i>(Optional)</i> List of filter ids that should not be displayed. |
-|  [searchOnChange?](./search-ui-react.standardfacetsprops.searchonchange.md) | boolean | <i>(Optional)</i> Whether or not a search is automatically run when a filter is selected. Defaults to true. |
-|  [showMoreLimit?](./search-ui-react.standardfacetsprops.showmorelimit.md) | number | <i>(Optional)</i> Limit on the number of options to be displayed. Defaults to 10. |
-|  [showOptionCounts?](./search-ui-react.standardfacetsprops.showoptioncounts.md) | boolean | <i>(Optional)</i> Whether or not to show the option counts for each filter. Defaults to true. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [collapsible?](./search-ui-react.standardfacetsprops.collapsible.md) |  | boolean | _(Optional)_ Whether or not the filter is collapsible. Defaults to true. |
+|  [customCssClasses?](./search-ui-react.standardfacetsprops.customcssclasses.md) |  | [StandardFacetsCssClasses](./search-ui-react.standardfacetscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [defaultExpanded?](./search-ui-react.standardfacetsprops.defaultexpanded.md) |  | boolean | _(Optional)_ If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
+|  [excludedFieldIds?](./search-ui-react.standardfacetsprops.excludedfieldids.md) |  | string\[\] | _(Optional)_ List of filter ids that should not be displayed. |
+|  [searchOnChange?](./search-ui-react.standardfacetsprops.searchonchange.md) |  | boolean | _(Optional)_ Whether or not a search is automatically run when a filter is selected. Defaults to true. |
+|  [showMoreLimit?](./search-ui-react.standardfacetsprops.showmorelimit.md) |  | number | _(Optional)_ Limit on the number of options to be displayed. Defaults to 10. |
+|  [showOptionCounts?](./search-ui-react.standardfacetsprops.showoptioncounts.md) |  | boolean | _(Optional)_ Whether or not to show the option counts for each filter. Defaults to true. |
 

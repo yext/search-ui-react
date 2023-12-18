@@ -6,7 +6,7 @@
 
 The CSS Class interface for SpellCheck.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface SpellCheckCssClasses 
@@ -14,10 +14,10 @@ interface SpellCheckCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [helpText?](./search-ui-react.spellcheckcssclasses.helptext.md) | string | <i>(Optional)</i> |
-|  [link?](./search-ui-react.spellcheckcssclasses.link.md) | string | <i>(Optional)</i> |
-|  [spellCheckContainer?](./search-ui-react.spellcheckcssclasses.spellcheckcontainer.md) | string | <i>(Optional)</i> |
-|  [spellCheckLoading?](./search-ui-react.spellcheckcssclasses.spellcheckloading.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [helpText?](./search-ui-react.spellcheckcssclasses.helptext.md) |  | string | _(Optional)_ |
+|  [link?](./search-ui-react.spellcheckcssclasses.link.md) |  | string | _(Optional)_ |
+|  [spellCheckContainer?](./search-ui-react.spellcheckcssclasses.spellcheckcontainer.md) |  | string | _(Optional)_ |
+|  [spellCheckLoading?](./search-ui-react.spellcheckcssclasses.spellcheckloading.md) |  | string | _(Optional)_ |
 

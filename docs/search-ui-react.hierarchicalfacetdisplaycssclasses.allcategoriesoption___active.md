@@ -4,7 +4,7 @@
 
 ## HierarchicalFacetDisplayCssClasses.allCategoriesOption\_\_\_active property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 allCategoriesOption___active?: string;

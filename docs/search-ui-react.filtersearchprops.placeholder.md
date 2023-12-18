@@ -6,7 +6,7 @@
 
 The search input's placeholder text when no text has been entered by the user. Defaults to "Search here...".
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 placeholder?: string;

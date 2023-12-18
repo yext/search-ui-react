@@ -4,7 +4,7 @@
 
 ## RangeInputCssClasses.input\_\_\_withoutPrefix property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 input___withoutPrefix?: string;

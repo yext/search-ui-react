@@ -4,7 +4,7 @@
 
 ## AppliedFiltersCssClasses.filterLabel property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 filterLabel?: string;

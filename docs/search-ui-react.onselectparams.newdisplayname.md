@@ -6,7 +6,7 @@
 
 The display name of the newly selected filter.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 newDisplayName: string;

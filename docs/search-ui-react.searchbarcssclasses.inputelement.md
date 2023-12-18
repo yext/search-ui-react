@@ -4,7 +4,7 @@
 
 ## SearchBarCssClasses.inputElement property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 inputElement?: string;

@@ -6,7 +6,7 @@
 
 The value used to perform filtering.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 value: string | number | boolean | NumberRangeValue;

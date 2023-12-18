@@ -4,7 +4,7 @@
 
 ## AlternativeVerticalsCssClasses.verticalIcon property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 verticalIcon?: string;

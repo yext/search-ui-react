@@ -4,7 +4,7 @@
 
 ## FilterSearchCssClasses.sectionLabel property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 sectionLabel?: string;

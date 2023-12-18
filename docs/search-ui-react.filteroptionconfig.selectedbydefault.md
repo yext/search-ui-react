@@ -6,7 +6,7 @@
 
 If this particular filter should be selected by default.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 selectedByDefault?: boolean;

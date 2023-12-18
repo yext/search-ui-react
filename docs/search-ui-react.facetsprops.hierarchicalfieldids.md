@@ -6,7 +6,7 @@
 
 List of field ids that should be rendered as hierarchical facets.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 hierarchicalFieldIds?: string[];

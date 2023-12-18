@@ -6,7 +6,7 @@
 
 A function which is called when a filter is selected.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 onSelect?: (params: OnSelectParams) => void;

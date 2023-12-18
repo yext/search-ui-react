@@ -4,7 +4,7 @@
 
 ## VerticalResultsCssClasses.verticalResultsLoading property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 verticalResultsLoading?: string;

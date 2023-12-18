@@ -6,7 +6,7 @@
 
 The CSS class interface for [ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md)<!-- -->.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 interface ApplyFiltersButtonCssClasses 
@@ -14,7 +14,7 @@ interface ApplyFiltersButtonCssClasses
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [button?](./search-ui-react.applyfiltersbuttoncssclasses.button.md) | string | <i>(Optional)</i> |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [button?](./search-ui-react.applyfiltersbuttoncssclasses.button.md) |  | string | _(Optional)_ |
 

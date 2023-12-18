@@ -4,7 +4,7 @@
 
 ## HierarchicalFacetDisplayCssClasses.availableOption\_\_active property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 availableOption__active?: string;

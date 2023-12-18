@@ -6,7 +6,7 @@
 
 A function which returns a display label for the given verticalKey.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 verticalKeyToLabel?: (verticalKey: string) => string;

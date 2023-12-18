@@ -6,7 +6,7 @@
 
 The custom facet components that will override the default rendering.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 children?: ReactElement[] | ReactElement | undefined | null;

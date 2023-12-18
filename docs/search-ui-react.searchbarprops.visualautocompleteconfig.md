@@ -6,7 +6,7 @@
 
 The configuration options for Visual Autocomplete.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 visualAutocompleteConfig?: VisualAutocompleteConfig;

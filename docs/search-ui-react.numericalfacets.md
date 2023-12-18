@@ -11,21 +11,21 @@
 
 A component that displays numerical facets applicable to the current vertical search.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-declare function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): React.JSX.Element;
+declare function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps } | NumericalFacetsProps |  |
+|  { searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps } | [NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
-React.JSX.Element
+JSX.Element
 
 A React component for facets
 
