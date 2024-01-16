@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { useSearchActions } from '@yext/search-headless-react';
+import { FieldValueStaticFilter, SelectableStaticFilter, useSearchActions } from '@yext/search-headless-react';
 import {
   AppliedFilters,
   FilterSearch,
@@ -52,6 +52,18 @@ export function PeoplePage() {
             searchFields={filterSearchFields}
             searchOnSelect={true}
             label='Filters'
+            onDropdownInputChange={(value: string) => {
+              if (value !== "") return;
+              const fieldIds = filterSearchFields.map(field => field.fieldApiName);
+              const filtersToKeep: SelectableStaticFilter[] = [];
+              searchActions.state.filters.static?.forEach((staticFilter) => {
+                const filter = staticFilter.filter as FieldValueStaticFilter;
+                if (!fieldIds.includes(filter.fieldId)) {
+                  filtersToKeep.push(staticFilter);
+                }
+              });
+              searchActions.setStaticFilters(filtersToKeep);
+            }}
           />
           <FilterDivider />
           <StaticFilters
