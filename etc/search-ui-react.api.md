@@ -290,7 +290,6 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
-    // (undocumented)
     onDropdownInputChange?: (value: string) => void;
     onSelect?: (params: OnSelectParams) => void;
     placeholder?: string;

@@ -18,7 +18,7 @@ interface FilterSearchProps
 |  --- | --- | --- | --- |
 |  [customCssClasses?](./search-ui-react.filtersearchprops.customcssclasses.md) |  | [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 |  [label?](./search-ui-react.filtersearchprops.label.md) |  | string | _(Optional)_ The display label for the component. |
-|  [onDropdownInputChange?](./search-ui-react.filtersearchprops.ondropdowninputchange.md) |  | (value: string) =&gt; void | _(Optional)_ |
+|  [onDropdownInputChange?](./search-ui-react.filtersearchprops.ondropdowninputchange.md) |  | (value: string) =&gt; void | _(Optional)_ A function which is called when the input's value changes. This does not replace executeFilterSearch, but gets called just before it |
 |  [onSelect?](./search-ui-react.filtersearchprops.onselect.md) |  | (params: [OnSelectParams](./search-ui-react.onselectparams.md)<!-- -->) =&gt; void | _(Optional)_ A function which is called when a filter is selected. |
 |  [placeholder?](./search-ui-react.filtersearchprops.placeholder.md) |  | string | _(Optional)_ The search input's placeholder text when no text has been entered by the user. Defaults to "Search here...". |
 |  [searchFields](./search-ui-react.filtersearchprops.searchfields.md) |  | Omit&lt;SearchParameterField, 'fetchEntities'&gt;\[\] | An array of fieldApiName and entityType which indicates what to perform the filter search against. |
