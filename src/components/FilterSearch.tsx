@@ -78,6 +78,8 @@ export interface FilterSearchProps {
   searchOnSelect?: boolean,
   /** A function which is called when a filter is selected. */
   onSelect?: (params: OnSelectParams) => void,
+  /** A function which is called when the input's value changes. This does not replace executeFilterSearch, but gets called just before it */
+  onDropdownInputChange?: (value: string) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -98,6 +100,7 @@ export function FilterSearch({
   placeholder = 'Search here...',
   searchOnSelect,
   onSelect,
+  onDropdownInputChange,
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
@@ -267,6 +270,11 @@ export function FilterSearch({
     }
   }, [executeFilterSearch]);
 
+  const handleInputChange = onDropdownInputChange ? (value: string) => {
+    onDropdownInputChange(value);
+    executeFilterSearch(value);
+   } : executeFilterSearch;
+
   return (
     <div className={cssClasses.filterSearchContainer}>
       {label && <h1 className={cssClasses.label}>{label}</h1>}
@@ -279,7 +287,7 @@ export function FilterSearch({
         <DropdownInput
           className={cssClasses.inputElement}
           placeholder={placeholder}
-          onChange={executeFilterSearch}
+          onChange={handleInputChange}
           onFocus={handleInputFocus}
           submitCriteria={meetsSubmitCritera}
         />
