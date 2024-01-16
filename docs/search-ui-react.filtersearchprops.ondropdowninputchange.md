@@ -4,6 +4,8 @@
 
 ## FilterSearchProps.onDropdownInputChange property
 
+A function which is called when the input's value changes. This does not replace executeFilterSearch, but gets called just before it
+
 **Signature:**
 
 ```typescript
