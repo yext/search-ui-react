@@ -290,7 +290,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
-    onDropdownInputChange?: (value: string) => void;
+    onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
     onSelect?: (params: OnSelectParams) => void;
     placeholder?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
@@ -461,6 +461,14 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
 
 // @public
 export type OnDragHandler = (center: mapboxgl_2.LngLat, bounds: mapboxgl_2.LngLatBounds) => void;
+
+// @public
+export interface OnDropdownInputChangeProps {
+    executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>;
+    // (undocumented)
+    searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
+    value: string;
+}
 
 // @public
 export type onSearchFunc = (searchEventData: {

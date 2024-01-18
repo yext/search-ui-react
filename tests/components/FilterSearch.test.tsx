@@ -672,10 +672,8 @@ describe('search without section labels', () => {
   it('when an onDropdownInputChange prop is specified, it gets called each time after the input changes', async () => {
     const mockedOnDropdownInputChange = jest.fn();
     renderFilterSearch({ searchFields: searchFieldsProp, onDropdownInputChange: mockedOnDropdownInputChange});
-    const mockedFilterSearch = jest.spyOn(SearchHeadless.prototype, 'executeFilterSearch');
     userEvent.type(screen.getByRole('textbox'), 'a');
     await waitFor(() => expect(mockedOnDropdownInputChange).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(mockedFilterSearch).toHaveBeenCalled());
   })
 });
 

@@ -19,12 +19,14 @@ import {
   NumericalFacets,
   AlternativeVerticals,
   StandardFacet,
-  NumericalFacet
+  NumericalFacet,
+  OnDropdownInputChangeProps
 } from '@yext/search-ui-react';
 // import { CustomCard } from '../components/CustomCard';
 
 const hierarchicalFacetFieldIds = ['c_hierarchicalFacet'];
 const filterSearchFields = [{ fieldApiName: 'name', entityType: 'ce_person' }];
+const employeeFilterSearchFields = [{fieldApiName: 'c_employeeDepartment', entityType: 'ce_person'}];
 const employeeFilterConfigs = [
   { value: 'Consulting' },
   { value: 'Technology' }
@@ -43,6 +45,31 @@ export function PeoplePage() {
     searchActions.executeVerticalQuery();
   });
 
+  /**
+   * This example function that's being used for onDropdownInputChange allows for clearing the filter in the search state when the input is empty.
+   * This is especially useful for implementations that have multiple FilterSearch components.
+   * Ex. a user can search using both inputs initially, but then wants to clear one of the FilterSearch inputs and re-run a search.
+   */  
+  const removeAssociatedFilterWhenInputIsEmpty = (params: OnDropdownInputChangeProps) => {
+    const { value, searchFields, executeFilterSearch } = params;
+    // If there is still an input value, execute the filter search as normal
+    if (value !== "") {
+      executeFilterSearch(value);
+    }
+    // When the input is empty, remove the associated filter from the search state while keeping any other filters that are applied.
+    else {
+      const fieldIds = searchFields.map((field: {fieldApiName: string, entityType: string}) => field.fieldApiName);
+      const filtersToKeep: SelectableStaticFilter[] = [];
+      searchActions.state.filters.static?.forEach((staticFilter) => {
+        const filter = staticFilter.filter as FieldValueStaticFilter;
+        if (!fieldIds.includes(filter.fieldId)) {
+          filtersToKeep.push(staticFilter);
+        }
+      });
+      searchActions.setStaticFilters(filtersToKeep);
+    }
+  }
+
   return (
     <div>
       <SearchBar />
@@ -51,19 +78,14 @@ export function PeoplePage() {
           <FilterSearch
             searchFields={filterSearchFields}
             searchOnSelect={true}
-            label='Filters'
-            onDropdownInputChange={(value: string) => {
-              if (value !== "") return;
-              const fieldIds = filterSearchFields.map(field => field.fieldApiName);
-              const filtersToKeep: SelectableStaticFilter[] = [];
-              searchActions.state.filters.static?.forEach((staticFilter) => {
-                const filter = staticFilter.filter as FieldValueStaticFilter;
-                if (!fieldIds.includes(filter.fieldId)) {
-                  filtersToKeep.push(staticFilter);
-                }
-              });
-              searchActions.setStaticFilters(filtersToKeep);
-            }}
+            label='FilterSearch Name Filter'
+            onDropdownInputChange={removeAssociatedFilterWhenInputIsEmpty}
+          />
+          <FilterSearch
+            searchFields={employeeFilterSearchFields}
+            searchOnSelect={true}
+            label='FilterSearch Department Filter'
+            onDropdownInputChange={removeAssociatedFilterWhenInputIsEmpty}
           />
           <FilterDivider />
           <StaticFilters
