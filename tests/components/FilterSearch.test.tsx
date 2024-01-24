@@ -676,7 +676,7 @@ describe('search without section labels', () => {
     renderFilterSearch({ searchFields: searchFieldsProp, onDropdownInputChange: mockedOnDropdownInputChange});
     userEvent.type(screen.getByRole('textbox'), 'a');
     await waitFor(() => expect(mockedOnDropdownInputChange).toHaveBeenCalledTimes(1));
-    () => expect(executeFilterSearch).toHaveBeenCalledTimes(0);
+    expect(executeFilterSearch).toHaveBeenCalledTimes(0);
   })
 });
 
