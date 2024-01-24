@@ -40,7 +40,8 @@ const meta: Meta<typeof FilterSearch> = {
     }
   },
   args: {
-    label: 'Filter'
+    label: 'Filter',
+    onDropdownInputChange: undefined,
   }
 };
 export default meta;
@@ -48,7 +49,7 @@ export default meta;
 export const Primary: StoryFn<FilterSearchProps> = (args) => {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedHeadlessState)}>
-      <FilterSearch {...args} searchFields={searchFields} onDropdownInputChange={undefined} />
+      <FilterSearch {...args} searchFields={searchFields} />
     </SearchHeadlessContext.Provider>
   );
 };
