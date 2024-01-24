@@ -4,7 +4,7 @@
 
 ## OnDropdownInputChangeProps.value property
 
-The new input element's new value after the change
+The input element's new value after the change
 
 **Signature:**
 
