@@ -63,7 +63,6 @@ export interface OnSelectParams {
 export interface OnDropdownInputChangeProps {
   /** The input element's new value after the change */
   value: string,
-  searchFields: Omit<SearchParameterField, 'fetchEntities'>[],
   /**
    * A function that executes a filter search and updates the input and dropdown options
    * with the response.
@@ -246,7 +245,6 @@ export function FilterSearch({
   const handleInputChange = useCallback((value) => {
     onDropdownInputChange ? onDropdownInputChange({
       value,
-      searchFields,
       executeFilterSearch
     }) : executeFilterSearch(value);
   }, [

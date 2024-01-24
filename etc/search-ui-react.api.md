@@ -465,8 +465,6 @@ export type OnDragHandler = (center: mapboxgl_2.LngLat, bounds: mapboxgl_2.LngLa
 // @public
 export interface OnDropdownInputChangeProps {
     executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>;
-    // (undocumented)
-    searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
     value: string;
 }
 
