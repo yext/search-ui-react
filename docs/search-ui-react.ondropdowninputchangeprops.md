@@ -17,6 +17,5 @@ interface OnDropdownInputChangeProps
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [executeFilterSearch](./search-ui-react.ondropdowninputchangeprops.executefiltersearch.md) |  | (query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt; | A function that executes a filter search and updates the input and dropdown options with the response. |
-|  [searchFields](./search-ui-react.ondropdowninputchangeprops.searchfields.md) |  | Omit&lt;SearchParameterField, 'fetchEntities'&gt;\[\] |  |
 |  [value](./search-ui-react.ondropdowninputchangeprops.value.md) |  | string | The input element's new value after the change |
 

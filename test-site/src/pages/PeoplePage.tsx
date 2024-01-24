@@ -50,8 +50,8 @@ export function PeoplePage() {
    * This is especially useful for implementations that have multiple FilterSearch components.
    * Ex. a user can search using both inputs initially, but then wants to clear one of the FilterSearch inputs and re-run a search.
    */  
-  const removeAssociatedFilterWhenInputIsEmpty = (params: OnDropdownInputChangeProps) => {
-    const { value, searchFields, executeFilterSearch } = params;
+  const removeAssociatedFilterWhenInputIsEmpty = (searchFields: { fieldApiName: string; entityType: string; }[]) => (params: OnDropdownInputChangeProps) => {
+    const { value, executeFilterSearch } = params;
     // If there is still an input value, execute the filter search as normal
     if (value !== "") {
       executeFilterSearch(value);
@@ -79,13 +79,13 @@ export function PeoplePage() {
             searchFields={filterSearchFields}
             searchOnSelect={true}
             label='FilterSearch Name Filter'
-            onDropdownInputChange={removeAssociatedFilterWhenInputIsEmpty}
+            onDropdownInputChange={removeAssociatedFilterWhenInputIsEmpty(filterSearchFields)}
           />
           <FilterSearch
             searchFields={employeeFilterSearchFields}
             searchOnSelect={true}
             label='FilterSearch Department Filter'
-            onDropdownInputChange={removeAssociatedFilterWhenInputIsEmpty}
+            onDropdownInputChange={removeAssociatedFilterWhenInputIsEmpty(employeeFilterSearchFields)}
           />
           <FilterDivider />
           <StaticFilters
