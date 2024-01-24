@@ -61,7 +61,7 @@ export interface OnSelectParams {
  * @public
  */
 export interface OnDropdownInputChangeProps {
-  /** The new input element's new value after the change */
+  /** The input element's new value after the change */
   value: string,
   searchFields: Omit<SearchParameterField, 'fetchEntities'>[],
   /**
@@ -94,10 +94,7 @@ export interface FilterSearchProps {
   searchOnSelect?: boolean,
   /** A function which is called when a filter is selected. */
   onSelect?: (params: OnSelectParams) => void,
-  /** A function which is called everytime the input element's value changes.
-   * Helpful for removing static filters from the static filter state if a user clears the search input completely.
-   * Replaces the default behavior of calling executeFilterSearch whenever the input changes.
-   */
+  /** A function which is called when the input element's value changes. Replaces the default behavior. */
   onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
@@ -247,15 +244,11 @@ export function FilterSearch({
   ]);
 
   const handleInputChange = useCallback((value) => {
-    if (onDropdownInputChange) {
-      onDropdownInputChange({
-        value,
-        searchFields,
-        executeFilterSearch
-      });
-    } else {
-      executeFilterSearch(value);
-    }
+    onDropdownInputChange ? onDropdownInputChange({
+      value,
+      searchFields,
+      executeFilterSearch
+    }) : executeFilterSearch(value);
   }, [
     onDropdownInputChange,
     executeFilterSearch
