@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { FieldValueDirectAnswer } from '../../src/components/FieldValueDirectAnswer';
 import {
   Source,
@@ -13,16 +13,22 @@ import React from 'react';
 
 const fieldValueDAResult = fieldValueDAState.result as FieldValueDirectAnswerType;
 
+const user = userEvent.setup();
+
 describe('FieldValue direct answer', () => {
 
-  it('executes viewDetailsClickHandler when click on "View Details" link', () => {
+  it('executes viewDetailsClickHandler when click on "View Details" link', async () => {
     const viewDetailsClickHandler = jest.fn();
     render(<FieldValueDirectAnswer
       result={fieldValueDAResult}
       viewDetailsClickHandler={viewDetailsClickHandler}/>
     );
-    userEvent.click(screen.getByRole('link', { name: 'View Details' }));
-    expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
+    const viewDetailsLink = screen.getByRole('link', { name: 'View Details' });
+    await user.click(viewDetailsLink);
+
+    waitFor(() => {
+      expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('use relatedResult.link url for "View Details" link', () => {

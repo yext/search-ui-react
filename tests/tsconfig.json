@@ -3,6 +3,7 @@
   "include": [
     "components",
     "hooks",
-    "ssr"
+    "ssr",
+    "./jest-setup.ts",
   ]
 }

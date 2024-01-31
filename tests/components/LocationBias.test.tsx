@@ -85,7 +85,7 @@ it('renders the proper text (location DisplayName, method, and update btn)', () 
 it('calls setUserLocation with coordinates returned by getUserLocation as params when update location is clicked', async () => {
   const actions = spyOnActions();
   render(<LocationBias />);
-  clickUpdateLocation();
+  await clickUpdateLocation();
 
   const expectedCoordinates = {
     latitude: newGeoPosition.coords.latitude,
@@ -138,7 +138,8 @@ it('renders nothing if there is no display name', () => {
   expect(container).toBeEmptyDOMElement();
 });
 
-function clickUpdateLocation() {
+async function clickUpdateLocation() {
+  const user = userEvent.setup();
   const updateLocationButton = screen.getByRole('button', { name: 'Update your location' });
-  userEvent.click(updateLocationButton);
+  await user.click(updateLocationButton);
 }

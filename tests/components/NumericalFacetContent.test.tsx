@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { SearchActions, FacetOption, Matcher, NumberRangeValue, SelectableStaticFilter, Source, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
-import userEvent from '@testing-library/user-event';
+import {userEvent} from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { NumericalFacetProps } from '../../src';
 import { NumericalFacetContent } from '../../src/components/NumericalFacetContent';
@@ -54,6 +54,8 @@ const mockNumericalFacet = (props?: NumericalFacetProps) => {
     </FacetsProvider>);
 };
 
+const user = userEvent.setup();
+
 describe('NumericalFacetContent', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
@@ -68,7 +70,7 @@ describe('NumericalFacetContent', () => {
     });
   });
 
-  it('Clicking a selected number range facet option checkbox unselects it', () => {
+  it('Clicking a selected number range facet option checkbox unselects it', async () => {
     const actions = spyOnActions();
     render(mockNumericalFacet());
 
@@ -76,11 +78,11 @@ describe('NumericalFacetContent', () => {
       screen.getByLabelText(numericalFacet.options[0].displayName);
     expect(expensiveCheckbox.checked).toBeTruthy();
 
-    userEvent.click(expensiveCheckbox);
+    await user.click(expensiveCheckbox);
     expectFacetOptionSet(actions, numericalFacet.fieldId, numericalFacet.options[0], false);
   });
 
-  it('Clicking an unselected number range facet option checkbox selects it', () => {
+  it('Clicking an unselected number range facet option checkbox selects it', async () => {
     const actions = spyOnActions();
     render(mockNumericalFacet());
 
@@ -88,11 +90,11 @@ describe('NumericalFacetContent', () => {
       screen.getByLabelText(numericalFacet.options[1].displayName);
     expect(cheapCheckbox.checked).toBeFalsy();
 
-    userEvent.click(cheapCheckbox);
+    await user.click(cheapCheckbox);
     expectFacetOptionSet(actions, numericalFacet.fieldId, numericalFacet.options[1], true);
   });
 
-  it('getFilterDisplayName field works as expected', () => {
+  it('getFilterDisplayName field works as expected', async () => {
     const facets = [{
       ...numericalFacet,
       options: numericalFacet.options.map(o => ({ ...o, selected: false }))
@@ -108,9 +110,9 @@ describe('NumericalFacetContent', () => {
     render(mockNumericalFacet(
       { fieldId: numericalFacet.fieldId, getFilterDisplayName: getFilterDisplayName }));
 
-    userEvent.type(screen.getByPlaceholderText('Min'), '1');
-    userEvent.type(screen.getByPlaceholderText('Max'), '5');
-    userEvent.click(screen.getByText('Apply'));
+    await user.type(screen.getByPlaceholderText('Min'), '1');
+    await user.type(screen.getByPlaceholderText('Max'), '5');
+    await user.click(screen.getByText('Apply'));
 
     const expectedSelectableFilter: SelectableStaticFilter = {
       displayName: 'start-1 end-5',

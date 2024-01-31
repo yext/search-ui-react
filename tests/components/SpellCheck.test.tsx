@@ -24,6 +24,8 @@ const mockedState: Partial<State> = {
 
 jest.mock('@yext/search-headless-react');
 
+const user = userEvent.setup();
+
 describe('SpellCheck', () => {
   beforeEach(() => {
     mockAnswersHooks({
@@ -49,7 +51,7 @@ describe('SpellCheck', () => {
     expect(label).toEqual(mockedState.spellCheck?.correctedQuery);
   });
 
-  it('Fires onClick when provided', () => {
+  it('Fires onClick when provided', async () => {
     const props = {
       onClick: jest.fn()
     };
@@ -57,7 +59,7 @@ describe('SpellCheck', () => {
     const actions = spyOnActions();
 
     render(<SpellCheck {...props} />);
-    userEvent.click(screen.getByRole('button'));
+    await user.click(screen.getByRole('button'));
 
     const verticalKey = mockedState.vertical?.verticalKey;
     const correctedQuery = mockedState.spellCheck?.correctedQuery;
@@ -65,10 +67,10 @@ describe('SpellCheck', () => {
     expect(onClick).toHaveBeenCalledWith({ correctedQuery, verticalKey });
   });
 
-  it('Fires executeSearch when no onClick is provided', () => {
+  it('Fires executeSearch when no onClick is provided', async () => {
     const actions = spyOnActions();
     render(<SpellCheck />);
-    userEvent.click(screen.getByRole('button'));
+    await user.click(screen.getByRole('button'));
 
     const correctedQuery = mockedState.spellCheck?.correctedQuery;
     expect(actions.setQuery).toHaveBeenCalledWith(correctedQuery);

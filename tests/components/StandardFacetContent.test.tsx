@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { FacetOption, Source, State, SearchActions } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { getOptionLabelTextWithCount } from '../__utils__/facets';
 import { StandardFacetContent } from '../../src/components/StandardFacetContent';
@@ -43,6 +43,8 @@ const mockedUtils = {
   isCloseMatch: () => true
 };
 
+const user = userEvent.setup();
+
 jest.mock('@yext/search-headless-react');
 
 const mockStandardFacet = (props?: StandardFacetProps) => {
@@ -80,7 +82,7 @@ describe('StandardFacetContent', () => {
     expect(coffeeLabelAndCount).toBeNull();
   });
 
-  it('Clicking an unselected facet option label selects it', () => {
+  it('Clicking an unselected facet option label selects it', async() => {
     const actions = spyOnActions();
     render(mockStandardFacet());
 
@@ -90,11 +92,11 @@ describe('StandardFacetContent', () => {
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     const coffeeLabel = screen.getByText(labelText);
-    userEvent.click(coffeeLabel);
+    await user.click(coffeeLabel);
     expectFacetOptionSet(actions, standardFacet.fieldId, coffeeFacetOption, true);
   });
 
-  it('Clicking a selected facet option checkbox unselects it', () => {
+  it('Clicking a selected facet option checkbox unselects it', async() => {
     const actions = spyOnActions();
     render(mockStandardFacet());
 
@@ -102,7 +104,7 @@ describe('StandardFacetContent', () => {
       getOptionLabelTextWithCount(standardFacet.options[1]));
     expect(teaCheckbox.checked).toBeTruthy();
 
-    userEvent.click(teaCheckbox);
+    await user.click(teaCheckbox);
     expectFacetOptionSet(actions, standardFacet.fieldId, standardFacet.options[1], false);
   });
 });

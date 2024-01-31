@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { SearchActions, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FilterOptionConfig } from '../../src/components/Filters';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { StaticFilters } from '../../src/components';
 import { staticFilters, staticFiltersProps } from '../__fixtures__/data/filters';
 import { testSSR } from '../ssr/utils';
@@ -36,6 +36,8 @@ const mockedUtils = {
 
 jest.mock('@yext/search-headless-react');
 
+const user = userEvent.setup();
+
 describe('Static Filters', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
@@ -58,7 +60,7 @@ describe('Static Filters', () => {
     expect(screen.getByText('Clifford')).toBeDefined();
   });
 
-  it('Clicking an unselected filter option checkbox selects it', () => {
+  it('Clicking an unselected filter option checkbox selects it', async () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} />);
 
@@ -68,11 +70,11 @@ describe('Static Filters', () => {
     );
     expect(martyCheckbox.checked).toBeFalsy();
 
-    userEvent.click(martyCheckbox);
+    await user.click(martyCheckbox);
     expectFilterOptionSet(actions, staticFiltersProps.fieldId, martyFilter, true);
   });
 
-  it('Clicking a selected filter option checkbox unselects it', () => {
+  it('Clicking a selected filter option checkbox unselects it', async () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} />);
 
@@ -80,7 +82,7 @@ describe('Static Filters', () => {
     const bleeckerCheckbox: HTMLInputElement = screen.getByLabelText(bleeckerFilter.value.toString());
     expect(bleeckerCheckbox.checked).toBeTruthy();
 
-    userEvent.click(bleeckerCheckbox);
+    await user.click(bleeckerCheckbox);
     expectFilterOptionSet(actions, staticFiltersProps.fieldId, bleeckerFilter, false);
   });
 
@@ -129,31 +131,31 @@ describe('Static Filters', () => {
     expect(screen.getByRole('checkbox', { name: 'Clifford' })).toBeDefined();
   });
 
-  it('Search input is added when searchable is true', () => {
+  it('Search input is added when searchable is true', async () => {
     render(<StaticFilters {...staticFiltersProps} searchable={true} />);
 
     const searchInput = screen.getByRole('textbox');
     expect(searchInput).toBeDefined();
     expect(screen.getAllByRole('checkbox')).toHaveLength(4);
-    userEvent.type(searchInput, 'dog');
+    await user.type(searchInput, 'dog');
     expect(screen.queryByRole('checkbox')).toBeNull();
   });
 
-  it('Clicking a filter option executes a search when searchOnChange is true', () => {
+  it('Clicking a filter option executes a search when searchOnChange is true', async () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} />);
 
     const martyCheckbox: HTMLInputElement = screen.getByLabelText('MARTY!');
-    userEvent.click(martyCheckbox);
+    await user.click(martyCheckbox);
     expect(actions.executeVerticalQuery).toBeCalled();
   });
 
-  it('Clicking a filter option does not execute a search when searchOnChange is false', () => {
+  it('Clicking a filter option does not execute a search when searchOnChange is false', async () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} searchOnChange={false} />);
 
     const martyCheckbox: HTMLInputElement = screen.getByLabelText('MARTY!');
-    userEvent.click(martyCheckbox);
+    await user.click(martyCheckbox);
     expect(actions.executeVerticalQuery).not.toBeCalled();
   });
 });

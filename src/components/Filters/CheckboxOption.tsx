@@ -5,7 +5,8 @@ import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks';
 import { findSelectableFieldValueFilter } from '../../utils/filterutils';
 import classNames from 'classnames';
-import { useId } from '@reach/auto-id';
+import { useId } from "react-id-generator";
+
 /**
  * The configuration data for a field value filter option.
  *
@@ -78,7 +79,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     resultsCount
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
-  const optionId = useId();
+  const [optionId] = useId();
   const { selectFilter, filters, applyFilters } = useFiltersContext();
 
   const handleClick = useCallback((checked: boolean) => {
@@ -137,7 +138,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
           onChange={handleChange}
           disabled={isOptionsDisabled}
         />
-        <label className={labelClasses} htmlFor={optionId}>{labelText}</label>
+        <label className={labelClasses} htmlFor={optionId}>{String(labelText)}</label>
       </div>
       {isOptionsDisabled &&
         <div className={cssClasses.tooltipContainer}>

@@ -1,6 +1,6 @@
 import { useSynchronizedRequest } from '../../src/hooks/useSynchronizedRequest';
-import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
+import { renderHook } from './getRenderHook';
 
 it('returns an updated execute request function with the same reference', async () => {
   let requestFunction = async () => 0;

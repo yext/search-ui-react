@@ -7,6 +7,8 @@ import React from 'react';
 
 const featuredSnippetDAResult = featuredSnippetDAState.result as FeaturedSnippetDirectAnswerType;
 
+const user = userEvent.setup();
+
 describe('FeaturedSnippet direct answer', () => {
   it('uses relatedResult.link url for "Read more about" link', () => {
     render(<FeaturedSnippetDirectAnswer result={featuredSnippetDAResult} />);
@@ -33,13 +35,13 @@ describe('FeaturedSnippet direct answer', () => {
     expect(directAnswerLink).toHaveAttribute('href', '[landingPageUrl]');
   });
 
-  it('executes readMoreClickHandler when click on "Read more about" link', () => {
+  it('executes readMoreClickHandler when click on "Read more about" link', async () => {
     const readMoreClickHandler = jest.fn();
     render(<FeaturedSnippetDirectAnswer
       result={featuredSnippetDAResult}
       readMoreClickHandler={readMoreClickHandler}
     />);
-    userEvent.click(screen.getByRole('link', { name: '[relatedResult.name]' }));
+    await user.click(screen.getByRole('link', { name: '[relatedResult.name]' }));
     expect(readMoreClickHandler).toHaveBeenCalledTimes(1);
   });
 

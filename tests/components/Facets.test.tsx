@@ -49,6 +49,8 @@ const mockedUtils = {
 
 jest.mock('@yext/search-headless-react');
 
+const user = userEvent.setup();
+
 describe('Facets', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
@@ -164,7 +166,7 @@ describe('Facets', () => {
     expect(screen.queryByText(facet.displayName)).toBeNull();
   });
 
-  it('Clicking a facet option executes a search by default', () => {
+  it('Clicking a facet option executes a search by default', async () => {
     mockAnswersState({
       ...mockedState,
       filters: { facets: [DisplayableFacets[0]] }
@@ -178,12 +180,12 @@ describe('Facets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    userEvent.click(coffeeCheckbox);
+    await user.click(coffeeCheckbox);
     expectFacetOptionSet(actions, facet.fieldId, facet.options[0], true);
     expect(actions.executeVerticalQuery).toBeCalled();
   });
 
-  it('Clicking a facet option does not execute a search when searchOnChange is false', () => {
+  it('Clicking a facet option does not execute a search when searchOnChange is false', async () => {
     mockAnswersState({
       ...mockedState,
       filters: { facets: [DisplayableFacets[0]] }
@@ -197,7 +199,7 @@ describe('Facets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    userEvent.click(coffeeCheckbox);
+    await user.click(coffeeCheckbox);
     expectFacetOptionSet(actions, facet.fieldId, facet.options[0], true);
     expect(actions.executeVerticalQuery).not.toBeCalled();
   });

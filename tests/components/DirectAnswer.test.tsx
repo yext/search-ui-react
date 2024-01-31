@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { DirectAnswerState } from '@yext/search-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
@@ -16,6 +16,8 @@ jest.mock('../../src/hooks/useAnalytics', () => {
   };
 });
 
+const user = userEvent.setup();
+
 it('renders null when there is no direct answer in state', () => {
   mockState({ result: undefined });
   const { container } = render(<DirectAnswer />);
@@ -32,24 +34,28 @@ describe('Featured snippet direct answer analytics', () => {
   runAnalyticsTestSuite();
 });
 
-function runAnalyticsTestSuite() {
-  it('reports link click analytics', () => {
+async function runAnalyticsTestSuite() {
+  it('reports link click analytics', async () => {
     render(<DirectAnswer />);
     const link = screen.getByRole('link');
-    userEvent.click(link);
-    expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
-    expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
-      type: 'CTA_CLICK',
-      queryId: '[queryId]',
-      searcher: 'UNIVERSAL',
-      directAnswer: true
-    }));
+    await user.click(link);
+
+    await waitFor(() => {
+      expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
+      expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
+        type: 'CTA_CLICK',
+        queryId: '[queryId]',
+        searcher: 'UNIVERSAL',
+        directAnswer: true
+      }));
+    });
+    
   });
 
-  it('reports THUMBS_UP feedback', () => {
+  it('reports THUMBS_UP feedback', async () => {
     render(<DirectAnswer />);
     const thumbsUp = screen.queryAllByRole('button')[0];
-    userEvent.click(thumbsUp);
+    await user.click(thumbsUp);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_UP',
@@ -59,10 +65,10 @@ function runAnalyticsTestSuite() {
     }));
   });
 
-  it('reports THUMBS_DOWN feedback', () => {
+  it('reports THUMBS_DOWN feedback', async () => {
     render(<DirectAnswer />);
     const thumbsDown = screen.queryAllByRole('button')[1];
-    userEvent.click(thumbsDown);
+    await user.click(thumbsDown);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_DOWN',

@@ -1,6 +1,8 @@
 import { useComposedCssClasses } from '../../src/hooks/useComposedCssClasses';
-import { renderHook } from '@testing-library/react-hooks';
+
 import * as tailwindMerge from 'tailwind-merge';
+
+import { renderHook } from './getRenderHook';
 
 describe('when there are no custom classes', () => {
   const builtInCssClasses = { container: 'block p-1' };

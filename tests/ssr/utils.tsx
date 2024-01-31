@@ -1,11 +1,11 @@
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import { ReactElement } from 'react';
 
 const USE_LAYOUT_EFFECT_ERROR = /useLayoutEffect does nothing on the server/;
 const originalConsoleError = console.error.bind(console.error);
 
-export function testSSR(App: ReactElement) {
+export async function testSSR(App: ReactElement) {
   const renderOnServer = () => renderToString(App);
   const container = document.body.appendChild(document.createElement('div'));
   let unexpectedErrorCount = 0;
@@ -29,5 +29,8 @@ export function testSSR(App: ReactElement) {
 
   // hydrate a container whose HTML contents were rendered by ReactDOMServer
   render(App, { container, hydrate: true });
-  expect(unexpectedErrorCount).toEqual(0);
+  
+  await waitFor(() => {
+    expect(unexpectedErrorCount).toEqual(0);
+  });
 }

@@ -139,7 +139,7 @@ describe('custom click handler', () => {
     const mockedHandleClickFn = jest.fn();
     const actions = spyOnActions();
     render(<Geolocation handleClick={mockedHandleClickFn} />);
-    clickUpdateLocation();
+    await clickUpdateLocation();
     await waitFor(() => {
       expect(mockedHandleClickFn).toHaveBeenCalledWith(newGeoPosition);
     });
@@ -174,10 +174,47 @@ describe('default click handler', () => {
   it('sets a location filter with user\'s coordinates in static filters state when clicked', async () => {
     const actions = spyOnActions();
     render(<Geolocation />);
-    clickUpdateLocation();
+    await clickUpdateLocation();
 
     const expectedLocationFilter: SelectableStaticFilter = createLocationFilter();
     expect(locationOperations.getUserLocation).toBeCalled();
+    await waitFor(() => {
+      expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
+    });
+  });
+
+  it('replaces existing location filters with a new location filter in static filters state', async () => {
+    mockAnswersState(mockedStateWithFilters);
+    const actions = spyOnActions();
+    render(<Geolocation />);
+    clickUpdateLocation();
+
+    const expectedStaticFilters = [
+      {
+        displayName: 'My name',
+        selected: true,
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'employeeName',
+          matcher: Matcher.Equals,
+          value: 'Bob',
+        }
+      },
+      createLocationFilter()
+    ];
+    await waitFor(() => {
+      expect(actions.setStaticFilters).toBeCalledWith(expectedStaticFilters);
+    });
+  });
+
+  it('sets a location filter using a larger radius than provided value due to low accuracy of user coordinate', async () => {
+    jest.spyOn(locationOperations, 'getUserLocation').mockResolvedValue(newGeoPositionWithLowAccuracy);
+    const actions = spyOnActions();
+    render(<Geolocation radius={10} />);
+    clickUpdateLocation();
+
+    const accuracy = newGeoPositionWithLowAccuracy.coords.accuracy;
+    const expectedLocationFilter: SelectableStaticFilter = createLocationFilter(accuracy);
     await waitFor(() => {
       expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
     });
@@ -244,9 +281,10 @@ describe('default click handler', () => {
   });
 });
 
-function clickUpdateLocation() {
+async function clickUpdateLocation() {
+  const user = userEvent.setup();
   const updateLocationButton = screen.getByRole('button');
-  userEvent.click(updateLocationButton);
+  await user.type(updateLocationButton, '{enter}');
 }
 
 function createLocationFilter(radius: number = 50 * 1609.344): SelectableStaticFilter {

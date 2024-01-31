@@ -44,6 +44,8 @@ const mockedActions = {
 
 jest.mock('@yext/search-headless-react');
 
+const user = userEvent.setup();
+
 const mockHierarchicalFacet = (props?: HierarchicalFacetProps) => {
   return (
     <FacetsProvider>
@@ -57,7 +59,7 @@ describe('HierarchicalFacetsContent', () => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
 
-  it('Properly renders hierarchical facets', () => {
+  it('Properly renders hierarchical facets', async () => {
     render(mockHierarchicalFacet());
 
     expect(screen.getByRole('button', { name: /food/i })).toBeTruthy();
@@ -65,38 +67,38 @@ describe('HierarchicalFacetsContent', () => {
     expect(screen.getByRole('button', { name: /banana/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /apple/i })).toBeTruthy();
   });
-  it('Clicking the currently selected option deselects it and selects its parent', () => {
+  it('Clicking the currently selected option deselects it and selects its parent', async () => {
     const actions = spyOnActions();
     render(mockHierarchicalFacet());
 
     const bananaButton = screen.getByRole('button', { name: /banana/i });
-    userEvent.click(bananaButton);
+    await user.click(bananaButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
   });
-  it('Clicking a non-selected option selects it and deselects its siblings', () => {
+  it('Clicking a non-selected option selects it and deselects its siblings', async () => {
     const actions = spyOnActions();
     render(mockHierarchicalFacet());
 
     const appleButton = screen.getByRole('button', { name: /apple/i });
-    userEvent.click(appleButton);
+    await user.click(appleButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit > apple', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
   });
   it('Clicking the current category with a selected child selects the category and deselects the ' +
-    'child', () => {
+    'child', async () => {
     const actions = spyOnActions();
     render(mockHierarchicalFacet());
 
     const currentCategoryButton = screen.getAllByRole('button', { name: /fruit/i })[1];
-    userEvent.click(currentCategoryButton);
+    await user.click(currentCategoryButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
   });
-  it('Clicking a selected current category deselects it and selects its parent', () => {
+  it('Clicking a selected current category deselects it and selects its parent', async () => {
     const facets = [
       createHierarchicalFacet([
         'food',
@@ -115,17 +117,17 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const currentCategoryButton = screen.getAllByRole('button', { name: /fruit/i })[1];
-    userEvent.click(currentCategoryButton);
+    await user.click(currentCategoryButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: false });
     expectFacetOptionSet(actions, { value: 'food', selected: true });
   });
-  it('Clicking a parent category selects it and deselects its children', () => {
+  it('Clicking a parent category selects it and deselects its children', async () => {
     const actions = spyOnActions();
     render(mockHierarchicalFacet());
 
     const parentCategoryButton = screen.getByRole('button', { name: /food/i });
-    userEvent.click(parentCategoryButton);
+    await user.click(parentCategoryButton);
 
     expectFacetOptionSet(actions, { value: 'food', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: false });

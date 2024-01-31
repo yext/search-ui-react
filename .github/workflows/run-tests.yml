@@ -6,18 +6,47 @@ name: Run Tests
 on: [push, pull_request]
 
 jobs:
-  call_run_tests-react-17:
+  call_run_tests-react-18:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
+      build_script: |
+        npx playwright install
+        npm run build
       node_matrix: '["16.x", "18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
-
+  call_run_tests-react-17:
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
+    with:
+      build_script: |
+        npx playwright install
+        npm i \
+          react@^17.0.2 \
+          react-dom@^17.0.2 \
+          storybook@^7.4.5 \
+          @types/react@17.0.75 \
+          @storybook/test-runner@^0.15.2 \
+          @testing-library/jest-dom@^5.16.1 \
+          @testing-library/react@^12.1.3 \
+          @testing-library/react-hooks@^8.0.0
+        npm run build
+      node_matrix: '["16.x", "18.x"]'
+    secrets:
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
   call_run_tests-react-16:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       build_script: |
-        npm i -D react@16.14 react-dom@16.14
+        npx playwright install
+        npm i \
+          react@^16.14 \
+          react-dom@^16.14 \
+          storybook@^7.4.5 \
+          @types/react@17.0.75 \
+          @storybook/test-runner@^0.15.2 \
+          @testing-library/jest-dom@^5.16.1 \
+          @testing-library/react@^12.1.3 \
+          @testing-library/react-hooks@^8.0.0
         npm run build
       node_matrix: '["16.x", "18.x"]'
     secrets:
