@@ -668,6 +668,16 @@ describe('search without section labels', () => {
     userEvent.keyboard('{enter}');
     expect(inputNode).toHaveValue('first name 1');
   });
+  
+  it('when an onDropdownInputChange prop is specified, it gets called each time after the input changes and executeFilterSearch does not', async () => {
+    const mockedOnDropdownInputChange = jest.fn();
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch');
+    renderFilterSearch({ searchFields: searchFieldsProp, onDropdownInputChange: mockedOnDropdownInputChange});
+    userEvent.type(screen.getByRole('textbox'), 'a');
+    await waitFor(() => expect(mockedOnDropdownInputChange).toHaveBeenCalledTimes(1));
+    expect(executeFilterSearch).toHaveBeenCalledTimes(0);
+  })
 });
 
 describe('screen reader', () => {

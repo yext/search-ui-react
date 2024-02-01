@@ -18,7 +18,7 @@
 |  [executeSearch(searchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
 |  [Facets(props)](./search-ui-react.facets.md) | A component that displays all facets applicable to the current vertical search. |
 |  [FilterDivider({ className })](./search-ui-react.filterdivider.md) | A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters. |
-|  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
+|  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md) | A React Component which collects location information to create a location filter and perform a new search. |
 |  [getSearchIntents(searchActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./search-ui-react.getuserlocation.md) | Retrieves user's location using navigator.geolocation API. |
@@ -84,6 +84,7 @@
 |  [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) | Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component. |
 |  [NumericalFacetsCssClasses](./search-ui-react.numericalfacetscssclasses.md) | The CSS class interface for [NumericalFacets()](./search-ui-react.numericalfacets.md)<!-- -->. |
 |  [NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md) | Props for the [NumericalFacets()](./search-ui-react.numericalfacets.md) component. |
+|  [OnDropdownInputChangeProps](./search-ui-react.ondropdowninputchangeprops.md) | The parameters that are passed into [FilterSearchProps.onDropdownInputChange](./search-ui-react.filtersearchprops.ondropdowninputchange.md)<!-- -->. |
 |  [OnSelectParams](./search-ui-react.onselectparams.md) | The parameters that are passed into [FilterSearchProps.onSelect](./search-ui-react.filtersearchprops.onselect.md)<!-- -->. |
 |  [PaginationCssClasses](./search-ui-react.paginationcssclasses.md) | The CSS classes used for pagination. |
 |  [PaginationProps](./search-ui-react.paginationprops.md) | Props for [Pagination()](./search-ui-react.pagination.md) component |

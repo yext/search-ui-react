@@ -268,7 +268,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -290,6 +290,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
+    onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
     onSelect?: (params: OnSelectParams) => void;
     placeholder?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
@@ -460,6 +461,12 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
 
 // @public
 export type OnDragHandler = (center: mapboxgl_2.LngLat, bounds: mapboxgl_2.LngLatBounds) => void;
+
+// @public
+export interface OnDropdownInputChangeProps {
+    executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>;
+    value: string;
+}
 
 // @public
 export type onSearchFunc = (searchEventData: {

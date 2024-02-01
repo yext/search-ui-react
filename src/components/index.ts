@@ -36,7 +36,8 @@ export {
   FilterSearch,
   FilterSearchCssClasses,
   FilterSearchProps,
-  OnSelectParams
+  OnSelectParams,
+  OnDropdownInputChangeProps
 } from './FilterSearch';
 
 export {
