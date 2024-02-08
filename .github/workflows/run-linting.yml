@@ -7,5 +7,3 @@ on:
 jobs:
   linting:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run-linting.yml@v1
-    with:
-      lint_script: npm init @eslint/config
