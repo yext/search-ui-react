@@ -17,10 +17,8 @@ import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
-import { TextEncoder} from 'util';
 import { useId } from "react-id-generator";
 
-global.TextEncoder = TextEncoder;
 
 const useRootClose = typeof useRootClosePkg === 'function' ? useRootClosePkg : useRootClosePkg['default'];
 const useLayoutEffect = typeof useIsomorphicLayoutEffect === 'function'

@@ -1,11 +1,18 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import  {userEvent} from '@testing-library/user-event';
 import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown';
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import { DropdownItem } from '../../src/components/Dropdown/DropdownItem';
+import { TextEncoder} from 'util';
+
+//due to react-dom not having TextEncoder, we need to mock it
+//before importing testSSR
+global.TextEncoder = TextEncoder;
+
 import { testSSR } from '../ssr/utils';
-import React from 'react';
+
 
 const user = userEvent.setup();
 

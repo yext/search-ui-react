@@ -282,9 +282,8 @@ describe('default click handler', () => {
 });
 
 async function clickUpdateLocation() {
-  const user = userEvent.setup();
   const updateLocationButton = screen.getByRole('button');
-  await user.type(updateLocationButton, '{enter}');
+  await userEvent.click(updateLocationButton)
 }
 
 function createLocationFilter(radius: number = 50 * 1609.344): SelectableStaticFilter {
