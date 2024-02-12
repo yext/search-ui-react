@@ -41,7 +41,7 @@ const mockedActions = {
 
 jest.mock('@yext/search-headless-react');
 
-const user = userEvent.setup();
+
 
 describe('Hierarchical facets', () => {
   beforeEach(() => {
@@ -84,7 +84,7 @@ describe('Hierarchical facets', () => {
     render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const bananaButton = screen.getByRole('button', { name: /banana/i });
-    await user.click(bananaButton);
+    await userEvent.click(bananaButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
@@ -105,7 +105,7 @@ describe('Hierarchical facets', () => {
     render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const appleButton = screen.getByRole('button', { name: /apple/i });
-    await user.click(appleButton);
+    await userEvent.click(appleButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit > apple', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
@@ -126,7 +126,7 @@ describe('Hierarchical facets', () => {
     render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const currentCategoryButton = screen.getByRole('button', { name: /fruit/i });
-    await user.click(currentCategoryButton);
+    await userEvent.click(currentCategoryButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
@@ -148,7 +148,7 @@ describe('Hierarchical facets', () => {
     render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const currentCategoryButton = screen.getByRole('button', { name: /fruit/i });
-    await user.click(currentCategoryButton);
+    await userEvent.click(currentCategoryButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: false });
     expectFacetOptionSet(actions, { value: 'food', selected: true });
@@ -169,7 +169,7 @@ describe('Hierarchical facets', () => {
     render(<HierarchicalFacets includedFieldIds={hierarchicalFacetFieldIds} />);
 
     const parentCategoryButton = screen.getByRole('button', { name: /food/i });
-    await user.click(parentCategoryButton);
+    await userEvent.click(parentCategoryButton);
 
     expectFacetOptionSet(actions, { value: 'food', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: false });

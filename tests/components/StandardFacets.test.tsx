@@ -41,7 +41,7 @@ const mockedUtils = {
 
 jest.mock('@yext/search-headless-react');
 
-const user = userEvent.setup();
+
 
 describe('StandardFacets', () => {
   beforeEach(() => {
@@ -75,7 +75,7 @@ describe('StandardFacets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await user.click(coffeeCheckbox);
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
   });
 
@@ -103,7 +103,7 @@ describe('StandardFacets', () => {
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     const coffeeLabel = screen.getByText(labelText);
-    await user.click(coffeeLabel);
+    await userEvent.click(coffeeLabel);
     expectFacetOptionSet(actions, productFacet.fieldId, coffeeFacetOption, true);
   });
 
@@ -116,7 +116,7 @@ describe('StandardFacets', () => {
       getOptionLabelTextWithCount(productFacet.options[1]));
     expect(teaCheckbox.checked).toBeTruthy();
 
-    await user.click(teaCheckbox);
+    await userEvent.click(teaCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[1], false);
   });
 
@@ -130,7 +130,7 @@ describe('StandardFacets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await user.click(coffeeCheckbox);
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
     expect(actions.executeVerticalQuery).toBeCalled();
   });
@@ -145,7 +145,7 @@ describe('StandardFacets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await user.click(coffeeCheckbox);
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
     expect(actions.executeVerticalQuery).not.toBeCalled();
   });

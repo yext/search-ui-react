@@ -5,16 +5,8 @@ import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown'
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import { DropdownItem } from '../../src/components/Dropdown/DropdownItem';
-import { TextEncoder} from 'util';
-
-//due to react-dom not having TextEncoder, we need to mock it
-//before importing testSSR
-global.TextEncoder = TextEncoder;
-
 import { testSSR } from '../ssr/utils';
 
-
-const user = userEvent.setup();
 
 describe('Dropdown', () => {
   it('renders identical content between the server and the client.', () => {
@@ -53,17 +45,17 @@ describe('Dropdown', () => {
     expect(screen.queryByText('item1')).toBeNull();
 
     // display when click into dropdown input
-    await user.click(screen.getByRole('textbox'));
+    await userEvent.click(screen.getByRole('textbox'));
     expect(screen.getByText('item1')).toBeDefined();
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
 
     // hidden when click elsewhere outside of dropdown component
-    await user.click(screen.getByText('external div'));
+    await userEvent.click(screen.getByText('external div'));
     expect(screen.queryByText('item1')).toBeNull();
     expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined);
 
     // display when tab into dropdown input
-    await user.tab();
+    await userEvent.tab();
     expect(screen.getByText('item1')).toBeDefined();
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
   });
@@ -83,14 +75,14 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.click(inputNode);
+    await userEvent.click(inputNode);
     const itemNode = screen.getByText('item1');
 
-    await user.keyboard('{arrowdown}');
+    await userEvent.keyboard('{arrowdown}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
 
-    await user.keyboard('{arrowup}');
+    await userEvent.keyboard('{arrowup}');
     expect(itemNode.className).not.toContain('FocusedItem1');
     expect(inputNode).not.toHaveValue('item1');
   });
@@ -110,14 +102,14 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.click(inputNode);
+    await userEvent.click(inputNode);
     const itemNode = screen.getByText('item1');
 
-    await user.keyboard('{Tab}');
+    await userEvent.keyboard('{Tab}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
 
-    await user.keyboard('{Shift>}{Tab}{/Shift}');
+    await userEvent.keyboard('{Shift>}{Tab}{/Shift}');
     expect(itemNode.className).not.toContain('FocusedItem1');
     expect(inputNode).not.toHaveValue('item1');
   });
@@ -139,8 +131,8 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.click(inputNode);
-    await user.keyboard('{Tab}{Tab}');
+    await userEvent.click(inputNode);
+    await userEvent.keyboard('{Tab}{Tab}');
 
     expect(mockedOnToggleFn).toHaveBeenLastCalledWith(false, '', 'item1', 0, undefined);
   });
@@ -162,12 +154,12 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.click(inputNode);
+    await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await user.keyboard('{arrowdown}');
-    await user.keyboard('{enter}');
+    await userEvent.keyboard('{arrowdown}');
+    await userEvent.keyboard('{enter}');
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
@@ -193,12 +185,12 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.click(inputNode);
+    await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await user.keyboard('{arrowdown}');
-    await user.click(screen.getByTestId('item1'));
+    await userEvent.keyboard('{arrowdown}');
+    await userEvent.click(screen.getByTestId('item1'));
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
@@ -228,13 +220,13 @@ describe('Dropdown', () => {
       </div>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.click(inputNode);
+    await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await user.keyboard('i');
-    await user.keyboard('{arrowdown}');
-    await user.click(screen.getByText('external div'));
+    await userEvent.keyboard('i');
+    await userEvent.keyboard('{arrowdown}');
+    await userEvent.click(screen.getByText('external div'));
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
@@ -258,17 +250,17 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.click(inputNode);
+    await userEvent.click(inputNode);
     const itemNode = screen.getByText('item1');
     expect(itemNode).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await user.keyboard('{arrowdown}');
+    await userEvent.keyboard('{arrowdown}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
 
     const userInput = ' someText';
-    await user.type(inputNode, userInput);
+    await userEvent.type(inputNode, userInput);
     expect(inputNode).toHaveValue('item1' + userInput);
     expect(mockedOnChangeFn).toBeCalledTimes(userInput.length);
     expect(mockedOnChangeFn).toHaveBeenCalledWith('item1' + userInput);
@@ -294,8 +286,8 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.type(inputNode, 'someText');
-    await user.keyboard('{enter}');
+    await userEvent.type(inputNode, 'someText');
+    await userEvent.keyboard('{enter}');
 
     expect(inputNode).toHaveValue('someText');
     expect(mockedOnSelectFn).toBeCalledTimes(0);
@@ -324,8 +316,8 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.type(inputNode, 'someText');
-    await user.keyboard('{enter}');
+    await userEvent.type(inputNode, 'someText');
+    await userEvent.keyboard('{enter}');
 
     expect(inputNode).toHaveValue('someText');
     expect(mockedSubmitCriteriaFn).toBeCalledTimes(1);
@@ -356,12 +348,12 @@ describe('Always Select Option', () => {
       </div>
     );
     const inputNode = screen.getByRole('textbox');
-    await user.click(inputNode);
+    await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await user.keyboard('i');
-    await user.click(screen.getByText('external div'));
+    await userEvent.keyboard('i');
+    await userEvent.click(screen.getByText('external div'));
 
     expect(inputNode).toHaveValue('i');
     expect(screen.queryByTestId('item1')).toBeNull();

@@ -118,7 +118,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
-  const labelText = resultsCount ? `${displayName} (${resultsCount})` : displayName;
+  const labelText = (resultsCount ? `${displayName} (${resultsCount})` : displayName).toString();
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___disabled ?? '']: isOptionsDisabled
@@ -138,7 +138,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
           onChange={handleChange}
           disabled={isOptionsDisabled}
         />
-        <label className={labelClasses} htmlFor={optionId}>{String(labelText)}</label>
+        <label className={labelClasses} htmlFor={optionId}>{labelText}</label>
       </div>
       {isOptionsDisabled &&
         <div className={cssClasses.tooltipContainer}>

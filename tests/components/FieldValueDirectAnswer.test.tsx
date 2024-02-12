@@ -13,7 +13,7 @@ import React from 'react';
 
 const fieldValueDAResult = fieldValueDAState.result as FieldValueDirectAnswerType;
 
-const user = userEvent.setup();
+
 
 describe('FieldValue direct answer', () => {
 
@@ -24,7 +24,7 @@ describe('FieldValue direct answer', () => {
       viewDetailsClickHandler={viewDetailsClickHandler}/>
     );
     const viewDetailsLink = screen.getByRole('link', { name: 'View Details' });
-    await user.click(viewDetailsLink);
+    await userEvent.click(viewDetailsLink);
 
     waitFor(() => {
       expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);

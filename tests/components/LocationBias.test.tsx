@@ -139,7 +139,7 @@ it('renders nothing if there is no display name', () => {
 });
 
 async function clickUpdateLocation() {
-  const user = userEvent.setup();
+  
   const updateLocationButton = screen.getByRole('button', { name: 'Update your location' });
-  await user.click(updateLocationButton);
+  await userEvent.click(updateLocationButton);
 }

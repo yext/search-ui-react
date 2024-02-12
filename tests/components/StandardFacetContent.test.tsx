@@ -43,7 +43,7 @@ const mockedUtils = {
   isCloseMatch: () => true
 };
 
-const user = userEvent.setup();
+
 
 jest.mock('@yext/search-headless-react');
 
@@ -92,7 +92,7 @@ describe('StandardFacetContent', () => {
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     const coffeeLabel = screen.getByText(labelText);
-    await user.click(coffeeLabel);
+    await userEvent.click(coffeeLabel);
     expectFacetOptionSet(actions, standardFacet.fieldId, coffeeFacetOption, true);
   });
 
@@ -104,7 +104,7 @@ describe('StandardFacetContent', () => {
       getOptionLabelTextWithCount(standardFacet.options[1]));
     expect(teaCheckbox.checked).toBeTruthy();
 
-    await user.click(teaCheckbox);
+    await userEvent.click(teaCheckbox);
     expectFacetOptionSet(actions, standardFacet.fieldId, standardFacet.options[1], false);
   });
 });

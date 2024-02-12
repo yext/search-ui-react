@@ -44,7 +44,7 @@ const mockedActions = {
 
 jest.mock('@yext/search-headless-react');
 
-const user = userEvent.setup();
+
 
 const mockHierarchicalFacet = (props?: HierarchicalFacetProps) => {
   return (
@@ -72,7 +72,7 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const bananaButton = screen.getByRole('button', { name: /banana/i });
-    await user.click(bananaButton);
+    await userEvent.click(bananaButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
@@ -82,7 +82,7 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const appleButton = screen.getByRole('button', { name: /apple/i });
-    await user.click(appleButton);
+    await userEvent.click(appleButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit > apple', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
@@ -93,7 +93,7 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const currentCategoryButton = screen.getAllByRole('button', { name: /fruit/i })[1];
-    await user.click(currentCategoryButton);
+    await userEvent.click(currentCategoryButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
@@ -117,7 +117,7 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const currentCategoryButton = screen.getAllByRole('button', { name: /fruit/i })[1];
-    await user.click(currentCategoryButton);
+    await userEvent.click(currentCategoryButton);
 
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: false });
     expectFacetOptionSet(actions, { value: 'food', selected: true });
@@ -127,7 +127,7 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const parentCategoryButton = screen.getByRole('button', { name: /food/i });
-    await user.click(parentCategoryButton);
+    await userEvent.click(parentCategoryButton);
 
     expectFacetOptionSet(actions, { value: 'food', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: false });

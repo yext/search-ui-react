@@ -49,7 +49,7 @@ const mockedUtils = {
 
 jest.mock('@yext/search-headless-react');
 
-const user = userEvent.setup();
+
 
 describe('Facets', () => {
   beforeEach(() => {
@@ -180,7 +180,7 @@ describe('Facets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await user.click(coffeeCheckbox);
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, facet.fieldId, facet.options[0], true);
     expect(actions.executeVerticalQuery).toBeCalled();
   });
@@ -199,7 +199,7 @@ describe('Facets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await user.click(coffeeCheckbox);
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, facet.fieldId, facet.options[0], true);
     expect(actions.executeVerticalQuery).not.toBeCalled();
   });

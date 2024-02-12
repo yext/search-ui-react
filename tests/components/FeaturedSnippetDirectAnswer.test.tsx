@@ -7,7 +7,7 @@ import React from 'react';
 
 const featuredSnippetDAResult = featuredSnippetDAState.result as FeaturedSnippetDirectAnswerType;
 
-const user = userEvent.setup();
+
 
 describe('FeaturedSnippet direct answer', () => {
   it('uses relatedResult.link url for "Read more about" link', () => {
@@ -41,7 +41,7 @@ describe('FeaturedSnippet direct answer', () => {
       result={featuredSnippetDAResult}
       readMoreClickHandler={readMoreClickHandler}
     />);
-    await user.click(screen.getByRole('link', { name: '[relatedResult.name]' }));
+    await userEvent.click(screen.getByRole('link', { name: '[relatedResult.name]' }));
     expect(readMoreClickHandler).toHaveBeenCalledTimes(1);
   });
 

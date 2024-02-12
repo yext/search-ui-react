@@ -24,7 +24,7 @@ const mockedState: Partial<State> = {
 
 jest.mock('@yext/search-headless-react');
 
-const user = userEvent.setup();
+
 
 describe('SpellCheck', () => {
   beforeEach(() => {
@@ -59,7 +59,7 @@ describe('SpellCheck', () => {
     const actions = spyOnActions();
 
     render(<SpellCheck {...props} />);
-    await user.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('button'));
 
     const verticalKey = mockedState.vertical?.verticalKey;
     const correctedQuery = mockedState.spellCheck?.correctedQuery;
@@ -70,7 +70,7 @@ describe('SpellCheck', () => {
   it('Fires executeSearch when no onClick is provided', async () => {
     const actions = spyOnActions();
     render(<SpellCheck />);
-    await user.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByRole('button'));
 
     const correctedQuery = mockedState.spellCheck?.correctedQuery;
     expect(actions.setQuery).toHaveBeenCalledWith(correctedQuery);

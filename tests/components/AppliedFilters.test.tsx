@@ -89,8 +89,6 @@ const mockedActions = {
 };
 jest.mock('@yext/search-headless-react');
 
-const user = userEvent.setup();
-
 describe('AppliedFilters', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions });
@@ -133,7 +131,7 @@ describe('AppliedFilters', () => {
 
     render(<AppliedFilters />);
     const removeFilterButton = screen.getByRole('button', { name: 'Remove "Yext Sites" filter' });
-    await user.click(removeFilterButton);
+    await userEvent.click(removeFilterButton);
 
     expect(actions.setFilterOption).toHaveBeenCalledWith(expect.objectContaining({
       selected: false
@@ -145,7 +143,7 @@ describe('AppliedFilters', () => {
 
     render(<AppliedFilters />);
     const removeFilterButton = screen.getByRole('button', { name: 'Remove "Yext Reviews" filter' });
-    await user.click(removeFilterButton);
+    await userEvent.click(removeFilterButton);
 
     const isSelected = actions.setFacetOption.mock.calls[0][2];
     expect(isSelected).toBe(false);
@@ -156,7 +154,7 @@ describe('AppliedFilters', () => {
 
     render(<AppliedFilters />);
     const clearAllButton = screen.getByRole('button', { name: 'Clear All' });
-    await user.click(clearAllButton);
+    await userEvent.click(clearAllButton);
 
     expect(actions.resetFacets).toHaveBeenCalled();
     expect(actions.setStaticFilters).toHaveBeenCalledWith(expect.not.objectContaining({ selected: true }));
@@ -263,7 +261,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     expect(filterPills).toHaveLength(3);
 
     const fruitButton = screen.getByLabelText('Remove "food" filter');
-    await user.click(fruitButton);
+    await userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledTimes(2);
     expect(actions.setFacetOption).toHaveBeenCalledWith(
@@ -296,7 +294,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     expect(filterPills).toHaveLength(3);
 
     const fruitButton = screen.getByLabelText('Remove "banana" filter');
-    await user.click(fruitButton);
+    await userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledWith(
       'hier',

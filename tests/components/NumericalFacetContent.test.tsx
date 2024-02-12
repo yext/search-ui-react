@@ -54,7 +54,7 @@ const mockNumericalFacet = (props?: NumericalFacetProps) => {
     </FacetsProvider>);
 };
 
-const user = userEvent.setup();
+
 
 describe('NumericalFacetContent', () => {
   beforeEach(() => {
@@ -78,7 +78,7 @@ describe('NumericalFacetContent', () => {
       screen.getByLabelText(numericalFacet.options[0].displayName);
     expect(expensiveCheckbox.checked).toBeTruthy();
 
-    await user.click(expensiveCheckbox);
+    await userEvent.click(expensiveCheckbox);
     expectFacetOptionSet(actions, numericalFacet.fieldId, numericalFacet.options[0], false);
   });
 
@@ -90,7 +90,7 @@ describe('NumericalFacetContent', () => {
       screen.getByLabelText(numericalFacet.options[1].displayName);
     expect(cheapCheckbox.checked).toBeFalsy();
 
-    await user.click(cheapCheckbox);
+    await userEvent.click(cheapCheckbox);
     expectFacetOptionSet(actions, numericalFacet.fieldId, numericalFacet.options[1], true);
   });
 
@@ -110,9 +110,9 @@ describe('NumericalFacetContent', () => {
     render(mockNumericalFacet(
       { fieldId: numericalFacet.fieldId, getFilterDisplayName: getFilterDisplayName }));
 
-    await user.type(screen.getByPlaceholderText('Min'), '1');
-    await user.type(screen.getByPlaceholderText('Max'), '5');
-    await user.click(screen.getByText('Apply'));
+    await userEvent.type(screen.getByPlaceholderText('Min'), '1');
+    await userEvent.type(screen.getByPlaceholderText('Max'), '5');
+    await userEvent.click(screen.getByText('Apply'));
 
     const expectedSelectableFilter: SelectableStaticFilter = {
       displayName: 'start-1 end-5',

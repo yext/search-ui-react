@@ -24,7 +24,7 @@ const mockedActions = {
 
 jest.mock('@yext/search-headless-react');
 
-const user = userEvent.setup();
+
 
 beforeEach(() => {
   mockAnswersHooks({ mockedState, mockedActions });
@@ -157,7 +157,7 @@ describe('results are returned from search', () => {
     render(<Pagination />);
 
     // navigate to the last results page
-    await user.click(screen.getByText(`${mockedResultsCount}`));
+    await userEvent.click(screen.getByText(`${mockedResultsCount}`));
     expect(actions.setOffset).toHaveBeenCalledWith(mockedResultsCount - 1);
     expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
   });

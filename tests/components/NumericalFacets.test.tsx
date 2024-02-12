@@ -42,7 +42,7 @@ const mockedUtils = {
 jest.mock('@yext/search-headless-react');
 
 
-const user = userEvent.setup();
+
 
 describe('NumericalFacets', () => {
   beforeEach(() => {
@@ -74,7 +74,7 @@ describe('NumericalFacets', () => {
     const expensiveCheckbox: HTMLInputElement = screen.getByLabelText(priceFacet.options[0].displayName);
     expect(expensiveCheckbox.checked).toBeTruthy();
 
-    await user.click(expensiveCheckbox);
+    await userEvent.click(expensiveCheckbox);
     expectFacetOptionSet(actions, priceFacet.fieldId, priceFacet.options[0], false);
   });
 
@@ -86,7 +86,7 @@ describe('NumericalFacets', () => {
     const cheapCheckbox: HTMLInputElement = screen.getByLabelText(priceFacet.options[1].displayName);
     expect(cheapCheckbox.checked).toBeFalsy();
 
-    await user.click(cheapCheckbox);
+    await userEvent.click(cheapCheckbox);
     expectFacetOptionSet(actions, priceFacet.fieldId, priceFacet.options[1], true);
   });
 
@@ -106,9 +106,9 @@ describe('NumericalFacets', () => {
     };
     const actions = spyOnActions();
     render(<NumericalFacets getFilterDisplayName={getFilterDisplayName}/>);
-    await user.type(screen.getByPlaceholderText('Min'), '1');
-    await user.type(screen.getByPlaceholderText('Max'), '5');
-    await user.click(screen.getByText('Apply'));
+    await userEvent.type(screen.getByPlaceholderText('Min'), '1');
+    await userEvent.type(screen.getByPlaceholderText('Max'), '5');
+    await userEvent.click(screen.getByText('Apply'));
 
     const expectedSelectableFilter: SelectableStaticFilter = {
       displayName: 'start-1 end-5',

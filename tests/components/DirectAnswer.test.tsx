@@ -16,7 +16,7 @@ jest.mock('../../src/hooks/useAnalytics', () => {
   };
 });
 
-const user = userEvent.setup();
+
 
 it('renders null when there is no direct answer in state', () => {
   mockState({ result: undefined });
@@ -38,7 +38,7 @@ async function runAnalyticsTestSuite() {
   it('reports link click analytics', async () => {
     render(<DirectAnswer />);
     const link = screen.getByRole('link');
-    await user.click(link);
+    await userEvent.click(link);
 
     await waitFor(() => {
       expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
@@ -49,13 +49,13 @@ async function runAnalyticsTestSuite() {
         directAnswer: true
       }));
     });
-    
+
   });
 
   it('reports THUMBS_UP feedback', async () => {
     render(<DirectAnswer />);
     const thumbsUp = screen.queryAllByRole('button')[0];
-    await user.click(thumbsUp);
+    await userEvent.click(thumbsUp);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_UP',
@@ -68,7 +68,7 @@ async function runAnalyticsTestSuite() {
   it('reports THUMBS_DOWN feedback', async () => {
     render(<DirectAnswer />);
     const thumbsDown = screen.queryAllByRole('button')[1];
-    await user.click(thumbsDown);
+    await userEvent.click(thumbsDown);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_DOWN',
