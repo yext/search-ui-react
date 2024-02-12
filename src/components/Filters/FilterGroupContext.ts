@@ -1,36 +1,7 @@
 import { createContext, useContext, CSSProperties, ReactNode, TransitionEvent, MouseEvent } from 'react';
+import { useCollapse } from 'react-collapsed';
 
-
-declare type AriaBoolean = boolean | 'true' | 'false';
-
-export interface GetTogglePropsOutput {
-  disabled?: boolean | undefined;
-  type?: 'button' | undefined;
-  role?: string | undefined;
-  id: string;
-  'aria-controls': string;
-  onClick: (e: MouseEvent) => void;
-}
-
-export interface GetTogglePropsInput {
-  [key: string]: unknown;
-  disabled?: boolean;
-  onClick?: (e: MouseEvent) => void;
-}
-
-export interface GetCollapsePropsOutput {
-  id: string;
-  style: CSSProperties;
-  'aria-hidden': AriaBoolean;
-}
-
-export interface GetCollapsePropsInput {
-  [key: string]: unknown;
-  style?: CSSProperties;
-  onTransitionEnd?: (e: TransitionEvent) => void;
-  refKey?: string;
-  ref?: (node: ReactNode) => void | null | undefined;
-}
+export type UseCollapseOutput = ReturnType<typeof useCollapse>;
 
 /**
  * FilterGroupContext is responsible for searchable filters and collapsible filter groups.
@@ -45,9 +16,9 @@ export interface FilterGroupContextType {
   /** Sets the searchValue which is used to filter the FilterGroup. */
   setSearchValue: (value: string) => void,
   /** Returns the attributes used to collapse the filter group. */
-  getCollapseProps: (config?: GetCollapsePropsInput) => GetCollapsePropsOutput,
+  getCollapseProps: UseCollapseOutput['getCollapseProps'],
   /** Returns the attributes used to toggle the filter group. */
-  getToggleProps: (config?: GetTogglePropsInput) => GetTogglePropsOutput;
+  getToggleProps: UseCollapseOutput['getToggleProps'],
   /** Indicates whether or not the filter group is expanded. */
   isExpanded: boolean,
   /** Whether or not the filter options should be disabled. */

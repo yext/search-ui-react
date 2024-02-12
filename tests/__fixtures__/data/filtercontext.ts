@@ -1,6 +1,7 @@
-import { FiltersContextType } from '../../../src/components/Filters/FiltersContext';
+import React from 'react';
+import { FiltersContextType} from '../../../src/components/Filters/FiltersContext';
 import { SelectableFieldValueFilter } from '../../../src/models/SelectableFieldValueFilter';
-import { FilterGroupContextType } from '../../../src/components/Filters/FilterGroupContext';
+import { FilterGroupContextType, UseCollapseOutput } from '../../../src/components/Filters/FilterGroupContext';
 import { Matcher } from '@yext/search-headless-react';
 
 const selectableFilter: SelectableFieldValueFilter = {
@@ -9,6 +10,24 @@ const selectableFilter: SelectableFieldValueFilter = {
   matcher: Matcher.Equals,
   value: 'test'
 };
+
+type GetCollapsePropsType = ReturnType<UseCollapseOutput['getCollapseProps']>;
+const getDefaultCollapseProps = (): GetCollapsePropsType => ({
+  id: "1",
+  style: "display: none",
+  'aria-hidden': false
+});
+
+type GetTogglePropsType = ReturnType<UseCollapseOutput['getToggleProps']>;
+const getDefaultToggleProps = (): GetTogglePropsType => ({
+  disabled : false,
+  type : 'button',
+  role : 'button',
+  id: '1',
+  'aria-controls': "1",
+  onClick: () => null,
+});
+
 
 export const filterContextValue: FiltersContextType = {
   selectFilter: () => null,
@@ -26,22 +45,8 @@ export const filterGroupContextValue: FilterGroupContextType = {
   searchValue: '',
   fieldId: '123',
   setSearchValue: () => null,
-  getCollapseProps: () => ({
-    id: 'id',
-    onTransitionEnd: () => null,
-    style: {},
-    'aria-hidden': 'false'
-  }),
-  getToggleProps: () => ({
-    disabled: false,
-    type: 'button',
-    role: 'role',
-    id: 'id',
-    'aria-controls': 'element',
-    'aria-expanded': 'true',
-    tabIndex: 0,
-    onClick: () => null
-  }),
+  getCollapseProps: getDefaultCollapseProps(),
+  getToggleProps: getDefaultToggleProps(),
   isExpanded: true,
   isOptionsDisabled: false,
   setIsOptionsDisabled: () => null
