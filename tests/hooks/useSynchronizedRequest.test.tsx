@@ -34,10 +34,8 @@ it('uses a new error function while returning same execute request reference', a
   );
 
   const oldReturnedRequestFunction = result.current[1];
-  oldReturnedRequestFunction();
-  await waitFor(() => {
-    expect(mockedErrorFunction).toBeCalledTimes(1);
-  });
+  await oldReturnedRequestFunction();
+  await expect(mockedErrorFunction).toBeCalledTimes(1);
 
   mockedErrorFunction = jest.fn().mockReturnValue(1);
   rerender();

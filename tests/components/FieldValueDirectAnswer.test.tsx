@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { FieldValueDirectAnswer } from '../../src/components/FieldValueDirectAnswer';
 import {
   Source,
@@ -26,9 +26,7 @@ describe('FieldValue direct answer', () => {
     const viewDetailsLink = screen.getByRole('link', { name: 'View Details' });
     await userEvent.click(viewDetailsLink);
 
-    waitFor(() => {
-      expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
-    });
+    await expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
   });
 
   it('use relatedResult.link url for "View Details" link', () => {

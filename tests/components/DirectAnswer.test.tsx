@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { DirectAnswerState } from '@yext/search-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
@@ -40,16 +40,13 @@ async function runAnalyticsTestSuite() {
     const link = screen.getByRole('link');
     await userEvent.click(link);
 
-    await waitFor(() => {
-      expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
-      expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
-        type: 'CTA_CLICK',
-        queryId: '[queryId]',
-        searcher: 'UNIVERSAL',
-        directAnswer: true
-      }));
-    });
-
+    await expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
+    await expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
+      type: 'CTA_CLICK',
+      queryId: '[queryId]',
+      searcher: 'UNIVERSAL',
+      directAnswer: true
+    }));
   });
 
   it('reports THUMBS_UP feedback', async () => {

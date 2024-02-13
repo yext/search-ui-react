@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LocationBias } from '../../src/components/LocationBias';
 import { State, LocationBiasMethod, LocationBias as LocationBiasType } from '@yext/search-headless-react';
@@ -93,9 +93,7 @@ it('calls setUserLocation with coordinates returned by getUserLocation as params
   };
 
   expect(locationOperations.getUserLocation).toBeCalled();
-  await waitFor(() => {
-    expect(actions.setUserLocation).toBeCalledWith(expectedCoordinates);
-  });
+  await expect(actions.setUserLocation).toBeCalledWith(expectedCoordinates);
 });
 
 it('updates rendered DisplayName if location changes and update button is clicked', async () => {
@@ -105,11 +103,9 @@ it('updates rendered DisplayName if location changes and update button is clicke
   expect(locationNameElement).toBeDefined();
 
   mockAnswersState(mockedStateNyIP);
-  clickUpdateLocation();
+  await clickUpdateLocation();
 
-  await waitFor(() => {
-    expect(searchOperations.executeSearch).toBeCalled();
-  });
+  expect(searchOperations.executeSearch).toBeCalled();
 
   const newExpectedLocationName = mockedStateNyIP.location.locationBias.displayName;
   const newLocationNameElement = screen.getByText(newExpectedLocationName);

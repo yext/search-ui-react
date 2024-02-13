@@ -10,7 +10,6 @@ jobs:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       build_script: |
-        npx playwright install
         npm run build
       node_matrix: '["16.x", "18.x"]'
     secrets:
@@ -19,11 +18,10 @@ jobs:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       build_script: |
-        npx playwright install
         npm i \
           react@^17.0.2 \
           react-dom@^17.0.2 \
-          storybook@^7.4.5 \
+          storybook@7.4.5 \
           @types/react@17.0.75 \
           @storybook/test-runner@^0.15.2 \
           @testing-library/jest-dom@^5.16.1 \
@@ -37,11 +35,10 @@ jobs:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       build_script: |
-        npx playwright install
         npm i \
           react@^16.14 \
           react-dom@^16.14 \
-          storybook@^7.4.5 \
+          storybook@7.4.5 \
           @types/react@17.0.75 \
           @storybook/test-runner@^0.15.2 \
           @testing-library/jest-dom@^5.16.1 \

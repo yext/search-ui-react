@@ -14,8 +14,7 @@ jobs:
         with:
           node-version: 18.x
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npx playwright install
+      - run: npm ci 
       - run: npm run build
       - run: ./tests/scripts/start-storybook.sh
         env:

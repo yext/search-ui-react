@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { FacetOption, Source, State, SearchActions } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
-import { userEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { getOptionLabelTextWithCount } from '../__utils__/facets';
 import { StandardFacetContent } from '../../src/components/StandardFacetContent';

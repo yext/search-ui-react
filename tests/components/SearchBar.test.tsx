@@ -1,7 +1,7 @@
 import { SearchIntent, QuerySource, SearchCore, SearchHeadlessContext, State } from '@yext/search-headless-react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { SearchBar } from '../../src/components/SearchBar';
-import { userEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import * as Analytics from '../../src/hooks/useAnalytics';
 import { SearchAnalyticsService } from '@yext/analytics';
@@ -129,10 +129,10 @@ describe('SearchBar', () => {
       await userEvent.keyboard('{arrowdown}');
       await userEvent.keyboard('{enter}');
       expect(await screen.findByRole('textbox')).toHaveDisplayValue('query suggestion 1');
-      await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledTimes(1));
-      await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledWith(expect.objectContaining({
+      expect(mockedUniversalSearch).toHaveBeenCalledTimes(1)
+      expect(mockedUniversalSearch).toHaveBeenCalledWith(expect.objectContaining({
         query: 'query suggestion 1'
-      })));
+      }));
     });
   });
 
@@ -271,7 +271,7 @@ describe('SearchBar', () => {
     const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
     const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
     await userEvent.click(submitSearchButton);
-    await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledTimes(1));
+    await expect(mockedUniversalSearch).toHaveBeenCalledTimes(1);
   });
 
   it('clear button deletes text in input element', async () => {
@@ -298,12 +298,12 @@ describe('SearchBar', () => {
     await userEvent.type(screen.getByRole('textbox'), 'yext');
     const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
     await userEvent.click(submitSearchButton);
-    await waitFor(() => expect(mockedOnSearch).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(mockedOnSearch).toHaveBeenCalledWith({
+    expect(mockedOnSearch).toHaveBeenCalledTimes(1);
+    expect(mockedOnSearch).toHaveBeenCalledWith({
       verticalKey: '',
       query: 'yext'
-    }));
-    await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledTimes(0));
+    });
+    expect(mockedUniversalSearch).toHaveBeenCalledTimes(0);
   });
 
   describe('executes search with near me location handling', () => {
@@ -327,11 +327,10 @@ describe('SearchBar', () => {
       );
       const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
       await userEvent.click(submitSearchButton);
-      await waitFor(() => expect(mockedUniversalSearch)
+      await expect(mockedUniversalSearch)
         .toHaveBeenCalledWith(expect.objectContaining({
           location: userLocation
-        }))
-      );
+        }));
     });
 
     it('search with near me location handling using nagivator.geolocation API', async () => {
@@ -359,11 +358,10 @@ describe('SearchBar', () => {
       );
       const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
       await userEvent.click(submitSearchButton);
-      await waitFor(() => expect(mockedUniversalSearch)
+      await expect(mockedUniversalSearch)
         .toHaveBeenCalledWith(expect.objectContaining({
           location: userLocation
-        }))
-      );
+        }));
     });
   });
 
