@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { DirectAnswerState } from '@yext/search-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
-import { RecursivePartial, mockAnswersState } from '../__utils__/mocks';
+import { RecursivePartial, ignoreLinkClickErrors, mockAnswersState } from '../__utils__/mocks';
 import { fieldValueDAState, featuredSnippetDAState } from '../__fixtures__/data/directanswers';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
@@ -35,6 +35,7 @@ describe('Featured snippet direct answer analytics', () => {
 async function runAnalyticsTestSuite() {
   it('reports link click analytics', async () => {
     render(<DirectAnswer />);
+    ignoreLinkClickErrors();
     const link = screen.getByRole('link');
     await userEvent.click(link);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);

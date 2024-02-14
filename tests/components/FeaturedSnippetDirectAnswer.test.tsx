@@ -4,6 +4,7 @@ import { FeaturedSnippetDirectAnswer } from '../../src/components/FeaturedSnippe
 import { featuredSnippetDAState } from '../__fixtures__/data/directanswers';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { ignoreLinkClickErrors } from '../__utils__/mocks';
 
 const featuredSnippetDAResult = featuredSnippetDAState.result as FeaturedSnippetDirectAnswerType;
 
@@ -39,6 +40,7 @@ describe('FeaturedSnippet direct answer', () => {
       result={featuredSnippetDAResult}
       readMoreClickHandler={readMoreClickHandler}
     />);
+    ignoreLinkClickErrors();
     await userEvent.click(screen.getByRole('link', { name: '[relatedResult.name]' }));
     expect(readMoreClickHandler).toHaveBeenCalledTimes(1);
   });
