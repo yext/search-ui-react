@@ -6,7 +6,7 @@ name: Run Tests
 on: [push, pull_request]
 
 jobs:
-  tests:
+  new-run-tests:
     runs-on: macos-latest
 
     defaults:
@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ["16.x"]
+        node-version: ["18.x"]
 
     steps:
       - uses: actions/checkout@v3
@@ -26,11 +26,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       # Skip post-install scripts here, as a malicious
       # script could steal the NPM_TOKEN.
-      - run: npm ci --ignore-scripts
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      # `npm rebuild` will run all those post-install scripts for us.
-      - run: npm rebuild
+      - run: npm install
       - run: | 
           npm i \
             react@^17.0.2 \
