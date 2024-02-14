@@ -134,15 +134,14 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
-  //handle the case where the displayName is a number range value
-  let displayNameFromFilterDisplay = '';
+  let labelText = '';
   if (isNumberRangeValue(displayName)) {
-    displayNameFromFilterDisplay = getDefaultFilterDisplayName(displayName)
-  }
+    //handle the case where the displayName is a number range value
+    const displayNameFromFilterDisplay = getDefaultFilterDisplayName(displayName)
 
-  let labelText = resultsCount ? `${displayName} (${resultsCount})` : displayName;
-  if (displayNameFromFilterDisplay) {
     labelText = resultsCount ? `${displayNameFromFilterDisplay} (${resultsCount})` : displayNameFromFilterDisplay;
+  }else{
+    labelText = resultsCount ? `${displayName} (${resultsCount})` : `${displayName}`;
   }
 
   const inputClasses = classNames(cssClasses.input, {
@@ -164,7 +163,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
           disabled={isOptionsDisabled}
         />
         <label className={labelClasses} htmlFor={optionId}>
-          {labelText as ReactNode}
+          {labelText}
         </label>
       </div>
       {isOptionsDisabled &&
