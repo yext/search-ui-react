@@ -1,4 +1,4 @@
-import { createContext, useContext, CSSProperties, ReactNode, TransitionEvent, MouseEvent } from 'react';
+import { createContext, useContext } from 'react';
 import { useCollapse } from 'react-collapsed';
 
 type UseCollapseOutput = ReturnType<typeof useCollapse>;

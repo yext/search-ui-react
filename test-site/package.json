@@ -8,6 +8,7 @@
     "@yext/search-ui-react": "file:..",
     "mapbox-gl": "^2.10.0",
     "react": "file:../node_modules/react",
+    "react-dom": "file:../node_modules/react-dom",
     "react-router-dom": "^6.2.2",
     "uuid": "^9.0.0"
   },

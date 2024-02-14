@@ -40,8 +40,8 @@ async function runAnalyticsTestSuite() {
     const link = screen.getByRole('link');
     await userEvent.click(link);
 
-    await expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
-    await expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
+    expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
+    expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'CTA_CLICK',
       queryId: '[queryId]',
       searcher: 'UNIVERSAL',

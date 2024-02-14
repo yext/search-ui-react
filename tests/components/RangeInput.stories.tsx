@@ -20,7 +20,6 @@ const meta: Meta<typeof RangeInput> = {
     <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
       <FilterGroupProvider
           fieldId={'123'}
-          defaultExpanded={true}
       >
         <Story />
       </FilterGroupProvider>

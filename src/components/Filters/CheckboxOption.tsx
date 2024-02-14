@@ -1,10 +1,11 @@
 import { FieldValueFilter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
-import React, { useCallback, useEffect, useMemo, ReactNode } from 'react';
+import React, { useCallback, useEffect, useMemo, ReactNode, useState } from 'react';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks';
-import { findSelectableFieldValueFilter } from '../../utils/filterutils';
+import { findSelectableFieldValueFilter, isNumberRangeValue, getDefaultFilterDisplayName } from '../../utils/filterutils';
 import classNames from 'classnames';
+import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 import { useId } from "react-id-generator";
 
 /**
@@ -62,6 +63,11 @@ const builtInCssClasses: Readonly<CheckboxCssClasses> = {
   tooltip: 'absolute z-10 left-0 -top-0.5 whitespace-nowrap rounded shadow-lg p-3 text-sm bg-neutral-dark text-white'
 };
 
+const useLayoutEffect = typeof useIsomorphicLayoutEffect === 'function'
+  ? useIsomorphicLayoutEffect
+  : useIsomorphicLayoutEffect['default'];
+
+
 /**
  * A checkbox component that represents a single FieldValueFilter.
  *
@@ -78,8 +84,18 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     displayName = props.value,
     resultsCount
   } = props;
+
+  //reset the id when the component is re-rendered
+  const [idFromHook] = useId();
+  const [optionId, setOptionId] = useState<string>('');
+
+  useLayoutEffect(() => {
+    if (!optionId) {
+      setOptionId(idFromHook);
+    }
+  }, [optionId, idFromHook]);
+
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
-  const [optionId] = useId();
   const { selectFilter, filters, applyFilters } = useFiltersContext();
 
   const handleClick = useCallback((checked: boolean) => {
@@ -118,7 +134,16 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
-  const labelText = resultsCount ? `${displayName} (${resultsCount})` : displayName
+  //handle the case where the displayName is a number range value
+  let displayNameFromFilterDisplay = '';
+  if (isNumberRangeValue(displayName)) {
+    displayNameFromFilterDisplay = getDefaultFilterDisplayName(displayName)
+  }
+
+  let labelText = resultsCount ? `${displayName} (${resultsCount})` : displayName;
+  if (displayNameFromFilterDisplay) {
+    labelText = resultsCount ? `${displayNameFromFilterDisplay} (${resultsCount})` : displayNameFromFilterDisplay;
+  }
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___disabled ?? '']: isOptionsDisabled

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import  {userEvent} from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown';
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';

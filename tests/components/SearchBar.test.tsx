@@ -1,5 +1,5 @@
 import { SearchIntent, QuerySource, SearchCore, SearchHeadlessContext, State } from '@yext/search-headless-react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { SearchBar } from '../../src/components/SearchBar';
 import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';

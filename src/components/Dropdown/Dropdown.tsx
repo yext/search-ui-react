@@ -67,8 +67,17 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     alwaysSelectOption = false
   } = props;
 
+  //reset the id when the component is re-rendered
+  const [idFromHook] = useId();
+  const [screenReaderUUID, setScreenReaderUUID] = useState<string>('');
+
+  useLayoutEffect(() => {
+    if (!screenReaderUUID) {
+      setScreenReaderUUID(idFromHook);
+    }
+  }, [screenReaderUUID, idFromHook]);
+
   const containerRef = useRef<HTMLDivElement>(null);
-  const [screenReaderUUID] = useId();
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {

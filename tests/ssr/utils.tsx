@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 import { ReactElement } from 'react';
 
@@ -29,8 +29,6 @@ export async function testSSR(App: ReactElement) {
 
   // hydrate a container whose HTML contents were rendered by ReactDOMServer
   render(App, { container, hydrate: true });
-  
-  await waitFor(() => {
-    expect(unexpectedErrorCount).toEqual(0);
-  });
+
+  expect(unexpectedErrorCount).toEqual(0);
 }
