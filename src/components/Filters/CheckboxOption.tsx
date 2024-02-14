@@ -6,7 +6,7 @@ import { useComposedCssClasses } from '../../hooks';
 import { findSelectableFieldValueFilter, isNumberRangeValue, getDefaultFilterDisplayName } from '../../utils/filterutils';
 import classNames from 'classnames';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
-import { useId } from "react-id-generator";
+import { useId } from '../../hooks/useId';
 
 /**
  * The configuration data for a field value filter option.
@@ -85,16 +85,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     resultsCount
   } = props;
 
-  //reset the id when the component is re-rendered
-  const [idFromHook] = useId();
-  const [optionId, setOptionId] = useState<string>('');
-
-  useLayoutEffect(() => {
-    if (!optionId) {
-      setOptionId(idFromHook);
-    }
-  }, [optionId, idFromHook]);
-
+  const optionId = useId();
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const { selectFilter, filters, applyFilters } = useFiltersContext();
 

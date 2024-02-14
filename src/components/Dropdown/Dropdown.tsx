@@ -17,7 +17,7 @@ import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
-import { useId } from "react-id-generator";
+import { useId } from '../../hooks/useId';
 
 const useRootClose = typeof useRootClosePkg === 'function' ? useRootClosePkg : useRootClosePkg['default'];
 const useLayoutEffect = typeof useIsomorphicLayoutEffect === 'function'
@@ -66,16 +66,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     alwaysSelectOption = false
   } = props;
 
-  //reset the id when the component is re-rendered
-  const [idFromHook] = useId();
-  const [screenReaderUUID, setScreenReaderUUID] = useState<string>('');
-
-  useLayoutEffect(() => {
-    if (!screenReaderUUID) {
-      setScreenReaderUUID(idFromHook);
-    }
-  }, [screenReaderUUID, idFromHook]);
-
+  const screenReaderUUID = useId();
   const containerRef = useRef<HTMLDivElement>(null);
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);

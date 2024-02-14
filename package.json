@@ -162,7 +162,6 @@
     "mapbox-gl": "^2.9.2",
     "prop-types": "^15.8.1",
     "react-collapsed": "^4.1.2",
-    "react-id-generator": "^3.0.2",
     "recent-searches": "^1.0.5",
     "tailwind-merge": "^1.3.0",
     "use-isomorphic-layout-effect": "^1.1.2"
