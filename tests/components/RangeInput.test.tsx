@@ -25,8 +25,6 @@ const mockedActions = {
   executeVerticalQuery: jest.fn()
 };
 
-
-
 jest.mock('@yext/search-headless-react');
 
 it('renders the correct inital state', () => {
@@ -248,10 +246,7 @@ it('renders correctly when disabled', () => {
 function renderRangeInput(filtersContextValue: FiltersContextType) {
   return (
     render(
-      <FilterGroupProvider
-        fieldId={'123'}
-        defaultExpanded={true}
-      >
+      <FilterGroupProvider fieldId={'123'}>
         <FiltersContext.Provider value={filtersContextValue}>
           <RangeInput />
         </FiltersContext.Provider>

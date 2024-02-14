@@ -24,8 +24,6 @@ const mockedState: Partial<State> = {
   location: {}
 };
 
-
-
 describe('SearchBar', () => {
   describe('query suggestions', () => {
     const mockedAutocompleteResult = {
@@ -271,7 +269,7 @@ describe('SearchBar', () => {
     const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
     const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
     await userEvent.click(submitSearchButton);
-    await expect(mockedUniversalSearch).toHaveBeenCalledTimes(1);
+    expect(mockedUniversalSearch).toHaveBeenCalledTimes(1);
   });
 
   it('clear button deletes text in input element', async () => {
@@ -327,7 +325,7 @@ describe('SearchBar', () => {
       );
       const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
       await userEvent.click(submitSearchButton);
-      await expect(mockedUniversalSearch)
+      expect(mockedUniversalSearch)
         .toHaveBeenCalledWith(expect.objectContaining({
           location: userLocation
         }));
@@ -358,7 +356,7 @@ describe('SearchBar', () => {
       );
       const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
       await userEvent.click(submitSearchButton);
-      await expect(mockedUniversalSearch)
+      expect(mockedUniversalSearch)
         .toHaveBeenCalledWith(expect.objectContaining({
           location: userLocation
         }));

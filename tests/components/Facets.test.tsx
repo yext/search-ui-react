@@ -49,8 +49,6 @@ const mockedUtils = {
 
 jest.mock('@yext/search-headless-react');
 
-
-
 describe('Facets', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });

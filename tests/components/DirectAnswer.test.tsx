@@ -16,8 +16,6 @@ jest.mock('../../src/hooks/useAnalytics', () => {
   };
 });
 
-
-
 it('renders null when there is no direct answer in state', () => {
   mockState({ result: undefined });
   const { container } = render(<DirectAnswer />);
@@ -39,7 +37,6 @@ async function runAnalyticsTestSuite() {
     render(<DirectAnswer />);
     const link = screen.getByRole('link');
     await userEvent.click(link);
-
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'CTA_CLICK',

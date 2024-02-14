@@ -153,7 +153,6 @@ describe('custom click handler', () => {
     await clickUpdateLocation();
     
     expect(consoleWarnSpy).toBeCalledWith('mocked error!');
-
     expect(mockedHandleClickFn).not.toBeCalled();
   });
 });
@@ -165,7 +164,6 @@ describe('default click handler', () => {
     await clickUpdateLocation();
 
     const expectedLocationFilter: SelectableStaticFilter = createLocationFilter(10 * 1609.344);
-    
     expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
   });
 
@@ -242,7 +240,7 @@ describe('default click handler', () => {
 
     const accuracy = newGeoPositionWithLowAccuracy.coords.accuracy;
     const expectedLocationFilter: SelectableStaticFilter = createLocationFilter(accuracy);
-    await expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
+    expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
   });
 
   it('executes a new search when clicked', async () => {
@@ -250,7 +248,7 @@ describe('default click handler', () => {
     render(<Geolocation />);
     await clickUpdateLocation();
 
-    await expect(actions.executeVerticalQuery).toBeCalled();
+    expect(actions.executeVerticalQuery).toBeCalled();
   });
 
   it('does not execute default handleClick when error occurs from collecting user\'s location', async () => {
@@ -260,7 +258,7 @@ describe('default click handler', () => {
     render(<Geolocation />);
     await clickUpdateLocation();
 
-    await expect(consoleWarnSpy).toBeCalledWith('mocked error!');
+    expect(consoleWarnSpy).toBeCalledWith('mocked error!');
 
     expect(actions.setStaticFilters).not.toBeCalled();
     expect(actions.executeVerticalQuery).not.toBeCalled();
@@ -269,7 +267,7 @@ describe('default click handler', () => {
 
 async function clickUpdateLocation() {
   const updateLocationButton = screen.getByRole('button');
-  await userEvent.click(updateLocationButton)
+  await userEvent.click(updateLocationButton);
 }
 
 function createLocationFilter(radius: number = 50 * 1609.344): SelectableStaticFilter {

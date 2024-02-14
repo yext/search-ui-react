@@ -1,5 +1,4 @@
 import { useSynchronizedRequest } from '../../src/hooks/useSynchronizedRequest';
-import { waitFor } from '@testing-library/react';
 import { renderHook } from './getRenderHook';
 
 it('returns an updated execute request function with the same reference', async () => {
@@ -9,17 +8,13 @@ it('returns an updated execute request function with the same reference', async 
   );
 
   const oldReturnedRequestFunction = result.current[1];
-  await waitFor(async () => {
-    expect(await oldReturnedRequestFunction()).toBe(0);
-  });
+  expect(await oldReturnedRequestFunction()).toBe(0);
 
   requestFunction = async () => 1;
   rerender();
 
   const newReturnedRequestFunction = result.current[1];
-  await waitFor(async () => {
-    expect(await newReturnedRequestFunction()).toBe(1);
-  });
+  expect(await newReturnedRequestFunction()).toBe(1);
 
   expect(oldReturnedRequestFunction).toBe(newReturnedRequestFunction);
 });
@@ -35,16 +30,14 @@ it('uses a new error function while returning same execute request reference', a
 
   const oldReturnedRequestFunction = result.current[1];
   await oldReturnedRequestFunction();
-  await expect(mockedErrorFunction).toBeCalledTimes(1);
+  expect(mockedErrorFunction).toBeCalledTimes(1);
 
   mockedErrorFunction = jest.fn().mockReturnValue(1);
   rerender();
 
   const newReturnedRequestFunction = result.current[1];
-  newReturnedRequestFunction();
-  await waitFor(() => {
-    expect(mockedErrorFunction).toBeCalledTimes(1);
-  });
+  await newReturnedRequestFunction();
+  expect(mockedErrorFunction).toBeCalledTimes(1);
 
   expect(oldReturnedRequestFunction).toBe(newReturnedRequestFunction);
 });

@@ -93,7 +93,7 @@ it('calls setUserLocation with coordinates returned by getUserLocation as params
   };
 
   expect(locationOperations.getUserLocation).toBeCalled();
-  await expect(actions.setUserLocation).toBeCalledWith(expectedCoordinates);
+  expect(actions.setUserLocation).toBeCalledWith(expectedCoordinates);
 });
 
 it('updates rendered DisplayName if location changes and update button is clicked', async () => {
@@ -135,7 +135,6 @@ it('renders nothing if there is no display name', () => {
 });
 
 async function clickUpdateLocation() {
-  
   const updateLocationButton = screen.getByRole('button', { name: 'Update your location' });
   await userEvent.click(updateLocationButton);
 }

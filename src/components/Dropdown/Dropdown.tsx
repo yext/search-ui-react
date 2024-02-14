@@ -7,8 +7,8 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState, 
-} from 'react'
+  useState
+} from 'react';
 import { DropdownContext, DropdownContextType } from './DropdownContext';
 import { InputContext, InputContextType } from './InputContext';
 import useRootClosePkg from '@restart/ui/useRootClose';
@@ -18,7 +18,6 @@ import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 import { useId } from "react-id-generator";
-
 
 const useRootClose = typeof useRootClosePkg === 'function' ? useRootClosePkg : useRootClosePkg['default'];
 const useLayoutEffect = typeof useIsomorphicLayoutEffect === 'function'

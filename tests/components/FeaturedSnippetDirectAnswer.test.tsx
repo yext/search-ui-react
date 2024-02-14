@@ -7,8 +7,6 @@ import React from 'react';
 
 const featuredSnippetDAResult = featuredSnippetDAState.result as FeaturedSnippetDirectAnswerType;
 
-
-
 describe('FeaturedSnippet direct answer', () => {
   it('uses relatedResult.link url for "Read more about" link', () => {
     render(<FeaturedSnippetDirectAnswer result={featuredSnippetDAResult} />);

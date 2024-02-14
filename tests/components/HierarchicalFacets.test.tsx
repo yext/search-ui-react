@@ -41,8 +41,6 @@ const mockedActions = {
 
 jest.mock('@yext/search-headless-react');
 
-
-
 describe('Hierarchical facets', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions });

@@ -43,8 +43,6 @@ const mockedUtils = {
   isCloseMatch: () => true
 };
 
-
-
 jest.mock('@yext/search-headless-react');
 
 const mockStandardFacet = (props?: StandardFacetProps) => {

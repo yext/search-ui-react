@@ -24,8 +24,6 @@ const mockedState: Partial<State> = {
 
 jest.mock('@yext/search-headless-react');
 
-
-
 describe('SpellCheck', () => {
   beforeEach(() => {
     mockAnswersHooks({

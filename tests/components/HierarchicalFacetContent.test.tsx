@@ -44,8 +44,6 @@ const mockedActions = {
 
 jest.mock('@yext/search-headless-react');
 
-
-
 const mockHierarchicalFacet = (props?: HierarchicalFacetProps) => {
   return (
     <FacetsProvider>
@@ -59,7 +57,7 @@ describe('HierarchicalFacetsContent', () => {
     mockAnswersHooks({ mockedState, mockedActions });
   });
 
-  it('Properly renders hierarchical facets', async () => {
+  it('Properly renders hierarchical facets', () => {
     render(mockHierarchicalFacet());
 
     expect(screen.getByRole('button', { name: /food/i })).toBeTruthy();

@@ -36,8 +36,6 @@ const mockedUtils = {
 
 jest.mock('@yext/search-headless-react');
 
-
-
 describe('Static Filters', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });

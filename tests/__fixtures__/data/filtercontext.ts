@@ -1,4 +1,4 @@
-import { FiltersContextType} from '../../../src/components/Filters/FiltersContext';
+import { FiltersContextType } from '../../../src/components/Filters/FiltersContext';
 import { SelectableFieldValueFilter } from '../../../src/models/SelectableFieldValueFilter';
 import { Matcher } from '@yext/search-headless-react';
 

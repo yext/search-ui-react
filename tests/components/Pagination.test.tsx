@@ -24,8 +24,6 @@ const mockedActions = {
 
 jest.mock('@yext/search-headless-react');
 
-
-
 beforeEach(() => {
   mockAnswersHooks({ mockedState, mockedActions });
 });

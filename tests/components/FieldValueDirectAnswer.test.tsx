@@ -13,8 +13,6 @@ import React from 'react';
 
 const fieldValueDAResult = fieldValueDAState.result as FieldValueDirectAnswerType;
 
-
-
 describe('FieldValue direct answer', () => {
 
   it('executes viewDetailsClickHandler when click on "View Details" link', async () => {
@@ -26,7 +24,7 @@ describe('FieldValue direct answer', () => {
     const viewDetailsLink = screen.getByRole('link', { name: 'View Details' });
     await userEvent.click(viewDetailsLink);
 
-    await expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
+    expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
   });
 
   it('use relatedResult.link url for "View Details" link', () => {

@@ -54,8 +54,6 @@ const mockNumericalFacet = (props?: NumericalFacetProps) => {
     </FacetsProvider>);
 };
 
-
-
 describe('NumericalFacetContent', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
