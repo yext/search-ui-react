@@ -16,13 +16,10 @@ import { FocusContext, FocusContextType } from './FocusContext';
 import { ScreenReader } from '../ScreenReader';
 import { recursivelyMapChildren } from '../utils/recursivelyMapChildren';
 import { DropdownItem, DropdownItemProps, DropdownItemWithIndex } from './DropdownItem';
-import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
+import { useLayoutEffect } from '../../hooks/useLayoutEffect';
 import { useId } from '../../hooks/useId';
 
 const useRootClose = typeof useRootClosePkg === 'function' ? useRootClosePkg : useRootClosePkg['default'];
-const useLayoutEffect = typeof useIsomorphicLayoutEffect === 'function'
-  ? useIsomorphicLayoutEffect
-  : useIsomorphicLayoutEffect['default'];
 
 interface DropdownItemData {
   value: string,
@@ -66,8 +63,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     alwaysSelectOption = false
   } = props;
 
-  const screenReaderUUID = useId();
   const containerRef = useRef<HTMLDivElement>(null);
+  const screenReaderUUID = useId();
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {

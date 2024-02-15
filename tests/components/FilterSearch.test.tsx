@@ -1,7 +1,7 @@
 import { FilterSearch, FilterSearchProps } from '../../src/components/FilterSearch';
 import { render, RenderResult, screen } from '@testing-library/react';
-import * as searchOperations from '../../src/utils/search-operations';
 import userEvent from '@testing-library/user-event';
+import * as searchOperations from '../../src/utils/search-operations';
 import {
   labeledFilterSearchResponse,
   unlabeledFilterSearchResponse,
