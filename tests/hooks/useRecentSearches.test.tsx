@@ -1,6 +1,6 @@
 import { useRecentSearches } from '../../src/hooks/useRecentSearches';
-import { act } from '@testing-library/react';
 import { renderHook } from './getRenderHook';
+import { act } from '@testing-library/react';
 
 beforeEach(() => {
   localStorage.clear();

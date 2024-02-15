@@ -1,17 +1,14 @@
-//Copied with minor modifications from https://github.com/reach/reach-ui/blob/dev/packages/auto-id/src/reach-auto-id.ts
+// Copied with minor modifications from
+// https://github.com/reach/reach-ui/blob/dev/packages/auto-id/src/reach-auto-id.ts
 
-
-import * as React from "react";
-import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
-
-const useLayoutEffect = typeof useIsomorphicLayoutEffect === 'function'
-  ? useIsomorphicLayoutEffect
-  : useIsomorphicLayoutEffect['default'];
+import React, { useEffect, useState } from "react";
+import { useLayoutEffect } from "./useLayoutEffect";
 
 let serverHandoffComplete = false;
 let id = 0;
-function genId() {
-	return ++id;
+function genId(): string {
+	++id;
+	return id.toString();
 }
 
 // Workaround for https://github.com/webpack/webpack/issues/14814
@@ -31,7 +28,7 @@ const maybeReactUseId: undefined | (() => string) = (React as any)[
  * @see Docs https://reach.tech/auto-id
  */
 
-export function useId():string {
+export function useId(): string {
 	if (maybeReactUseId !== undefined) {
 		return maybeReactUseId();
 	}
@@ -39,7 +36,7 @@ export function useId():string {
 	// If this instance isn't part of the initial render, we don't have to do the
 	// double render/patch-up dance. We can just generate the ID and return it.
 	const initialId = (serverHandoffComplete ? genId() : '');
-	const [id, setId] = React.useState(initialId);
+	const [id, setId] = useState(initialId);
 
 	useLayoutEffect(() => {
 		if (id === '') {
@@ -51,7 +48,7 @@ export function useId():string {
 		}
 	}, [id]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (serverHandoffComplete === false) {
 			// Flag all future uses of `useId` to skip the update dance. This is in
 			// `useEffect` because it goes after `useLayoutEffect`, ensuring we don't
@@ -60,5 +57,5 @@ export function useId():string {
 		}
 	}, []);
 
-	return id.toString();
+	return id;
 }

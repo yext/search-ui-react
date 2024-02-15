@@ -16,6 +16,10 @@ jobs:
   call_run_tests-react-17:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
+      # We have to install these swc libraries manually because 
+      # the post install script doesn't seem to run properly 
+      # after we install specific versions of packages.
+      # More info at https://github.com/swc-project/swc/issues/5616#issuecomment-1651214641
       build_script: |
         npm i \
           react@^17.0.2 \
@@ -39,11 +43,6 @@ jobs:
   call_run_tests-react-16:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
-      # We have to install the swc libraries manually because 
-      # the post install script doesn't seem to run properly 
-      # after we install specific versions of react and react-dom
-      # more info at - https://github.com/swc-project/swc/issues/5616#issuecomment-1651214641
-      
       build_script: |
         npm i \
           react@^16.14 \

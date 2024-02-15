@@ -32,7 +32,7 @@ describe('Featured snippet direct answer analytics', () => {
   runAnalyticsTestSuite();
 });
 
-async function runAnalyticsTestSuite() {
+function runAnalyticsTestSuite() {
   it('reports link click analytics', async () => {
     render(<DirectAnswer />);
     ignoreLinkClickErrors();

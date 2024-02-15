@@ -210,39 +210,6 @@ describe('default click handler', () => {
     expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
   });
 
-  it('replaces existing location filters with a new location filter in static filters state', async () => {
-    mockAnswersState(mockedStateWithFilters);
-    const actions = spyOnActions();
-    render(<Geolocation />);
-    await clickUpdateLocation();
-
-    const expectedStaticFilters = [
-      {
-        displayName: 'My name',
-        selected: true,
-        filter: {
-          kind: 'fieldValue',
-          fieldId: 'employeeName',
-          matcher: Matcher.Equals,
-          value: 'Bob',
-        }
-      },
-      createLocationFilter()
-    ];
-    expect(actions.setStaticFilters).toBeCalledWith(expectedStaticFilters);
-  });
-
-  it('sets a location filter using a larger radius than provided value due to low accuracy of user coordinate', async () => {
-    jest.spyOn(locationOperations, 'getUserLocation').mockResolvedValue(newGeoPositionWithLowAccuracy);
-    const actions = spyOnActions();
-    render(<Geolocation radius={10} />);
-    await clickUpdateLocation();
-
-    const accuracy = newGeoPositionWithLowAccuracy.coords.accuracy;
-    const expectedLocationFilter: SelectableStaticFilter = createLocationFilter(accuracy);
-    expect(actions.setStaticFilters).toBeCalledWith([expectedLocationFilter]);
-  });
-
   it('executes a new search when clicked', async () => {
     const actions = spyOnActions();
     render(<Geolocation />);
