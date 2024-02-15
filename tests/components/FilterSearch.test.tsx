@@ -656,8 +656,8 @@ describe('search without section labels', () => {
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch');
     renderFilterSearch({ searchFields: searchFieldsProp, onDropdownInputChange: mockedOnDropdownInputChange});
-    userEvent.type(screen.getByRole('textbox'), 'a');
-    await waitFor(() => expect(mockedOnDropdownInputChange).toHaveBeenCalledTimes(1));
+    await userEvent.type(screen.getByRole('textbox'), 'a');
+    expect(mockedOnDropdownInputChange).toHaveBeenCalledTimes(1);
     expect(executeFilterSearch).toHaveBeenCalledTimes(0);
   })
 });
