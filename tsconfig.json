@@ -10,8 +10,8 @@
     "declarationMap": true,
     "sourceMap": true,
     "jsx": "react",
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es2022",
+    "module": "es2022"
   },
   "include": [
     "src"

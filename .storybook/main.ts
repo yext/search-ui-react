@@ -39,7 +39,8 @@ const config: StorybookConfig = {
         './SearchCore': require.resolve('../tests/__fixtures__/core/SearchCore.ts'),
         '../utils/location-operations': require.resolve('../tests/__fixtures__/utils/location-operations.ts')
       },
-    }
+    },
+    externals: ["react-dom/client"]
   }),
 
   env: (config) => {
