@@ -26,7 +26,7 @@
 |  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./search-ui-react.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
 |  [isCtaData(data)](./search-ui-react.isctadata.md) | Type guard for CtaData. |
 |  [LocationBias({ geolocationOptions, customCssClasses })](./search-ui-react.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
-|  [MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag })](./search-ui-react.mapboxmap.md) | A component that renders a map with markers to show result locations using Mapbox GL. |
+|  [MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag })](./search-ui-react.mapboxmap.md) | A component that renders a map with markers to show result locations using Mapbox GL. |
 |  [NumericalFacet(props)](./search-ui-react.numericalfacet.md) | A component that displays a single numerical facet. Use this to override the default rendering. |
 |  [NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps })](./search-ui-react.numericalfacets.md) | A component that displays numerical facets applicable to the current vertical search. |
 |  [Pagination(props)](./search-ui-react.pagination.md) | Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages. |
@@ -142,6 +142,7 @@
 |  [OnDragHandler](./search-ui-react.ondraghandler.md) | A function which is called when user drag the map. |
 |  [onSearchFunc](./search-ui-react.onsearchfunc.md) | The interface of a function which is called on a search. |
 |  [PinComponent](./search-ui-react.pincomponent.md) | A functional component that can be used to render a custom marker on the map. |
+|  [PinComponentProps](./search-ui-react.pincomponentprops.md) | Props for rendering a custom marker on the map. |
 |  [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data. |
 |  [SectionComponent](./search-ui-react.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 |  [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md) | The configuration data for a field value static filter option. |

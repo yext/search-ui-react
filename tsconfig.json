@@ -10,8 +10,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "jsx": "react",
-    "target": "es2022",
-    "module": "es2022"
+    "target": "es2017"
   },
   "include": [
     "src"

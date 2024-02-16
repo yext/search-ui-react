@@ -2,18 +2,28 @@ import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
-import { renderReact } from './utils/renderReact';
+import ReactDOM from 'react-dom';
+
+/**
+ * Props for rendering a custom marker on the map.
+ *
+ * @public
+ */
+export type PinComponentProps<T> = {
+  /** The index of the pin. */
+  index: number,
+  /** The Mapbox map. */
+  mapbox: mapboxgl.Map,
+  /** The search result corresponding to the pin. */
+  result: Result<T>
+};
 
 /**
  * A functional component that can be used to render a custom marker on the map.
  *
  * @public
  */
-export type PinComponent<T> = (props: {
-  index: number,
-  mapbox: mapboxgl.Map,
-  result: Result<T>
-}) => JSX.Element;
+export type PinComponent<T> = (props: PinComponentProps<T>) => JSX.Element;
 
 /**
  * A function use to derive a result's coordinate.
@@ -55,8 +65,21 @@ export interface MapboxMapProps<T> {
   /**
    * Custom Pin component to render for markers on the map.
    * By default, the built-in marker image from Mapbox GL is used.
+   * This prop should not be used with
+   * {@link MapboxMapProps.renderPin | renderPin}. If both are provided,
+   * only PinComponent will be used.
    */
   PinComponent?: PinComponent<T>,
+  /**
+   * Render function for a custom marker on the map. This function takes in an
+   * HTML element and is responible for rendering the pin into that element,
+   * which will be used as the marker.
+   * By default, the built-in marker image from Mapbox GL is used.
+   * This prop should not be used with
+   * {@link MapboxMapProps.PinComponent | PinComponent}. If both are provided,
+   * only PinComponent will be used.
+   */
+  renderPin?: (props: PinComponentProps<T> & { container: HTMLElement }) => void,
   /**
    * A function to derive a result's coordinate for the corresponding marker's location on the map.
    * By default, "yextDisplayCoordinate" field is used as the result's display coordinate.
@@ -89,6 +112,7 @@ export function MapboxMap<T>({
   mapboxAccessToken,
   mapboxOptions,
   PinComponent,
+  renderPin,
   getCoordinate = getDefaultCoordinate,
   onDrag
 }: MapboxMapProps<T>): JSX.Element {
@@ -136,11 +160,19 @@ export function MapboxMap<T>({
           const el = document.createElement('div');
           const markerOptions: mapboxgl.MarkerOptions = {};
           if (PinComponent) {
-            renderReact(<PinComponent
+            if (renderPin) {
+              console.warn(
+                'Found both PinComponent and renderPin props. Using PinComponent.'
+              );
+            }
+            ReactDOM.render(<PinComponent
               index={i}
               mapbox={mapbox}
               result={result}
             />, el);
+            markerOptions.element = el;
+          } else if (renderPin) {
+            renderPin({ index: i, mapbox, result, container: el });
             markerOptions.element = el;
           }
           const marker = new mapboxgl.Marker(markerOptions)
