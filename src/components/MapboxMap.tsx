@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 /**
  * A functional component that can be used to render a custom marker on the map.
@@ -136,11 +136,14 @@ export function MapboxMap<T>({
           const el = document.createElement('div');
           const markerOptions: mapboxgl.MarkerOptions = {};
           if (PinComponent) {
-            ReactDOM.render(<PinComponent
-              index={i}
-              mapbox={mapbox}
-              result={result}
-            />, el);
+            const root = createRoot(el!);
+            root.render(
+              <PinComponent
+                index={i}
+                mapbox={mapbox}
+                result={result}
+              />
+            );
             markerOptions.element = el;
           }
           const marker = new mapboxgl.Marker(markerOptions)
