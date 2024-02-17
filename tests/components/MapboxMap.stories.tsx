@@ -7,7 +7,7 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { MapboxMap, MapboxMapProps } from '../../src/components/MapboxMap';
 import { MapPin } from '../../test-site/src/components/MapPin';
 import { Location } from '../../test-site/src/pages/LocationsPage';
-import { renderReact } from '../../test-site/src/utils/renderReact';
+import { renderReact } from '../__utils__/renderReact';
 import { locationVerticalSingle, locationVerticalMultiple } from '../__fixtures__/data/mapbox';
 import React from 'react';
 

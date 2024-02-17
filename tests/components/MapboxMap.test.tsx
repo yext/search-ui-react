@@ -117,7 +117,7 @@ it('registers "onDrag" callback to Mapbox\'s event listener for "drag to pan" in
 it('uses PinComponent and logs warning if both PinComponent and renderPin are provided', () => {
   mockAnswersState(mockedStateDefaultCoordinate);
   jest.spyOn(Marker.prototype, 'setLngLat').mockReturnValue(Marker.prototype);
-  const PinComponent = jest.fn();
+  const PinComponent = jest.fn().mockImplementation(() => null);
   const renderPin = jest.fn();
   const warnSpy = jest.spyOn(console, 'warn').mockImplementation();
 
