@@ -1,5 +1,7 @@
 import { createContext, useContext } from 'react';
-import { UseCollapseOutput } from 'react-collapsed/dist/types';
+import { useCollapse } from 'react-collapsed';
+
+type UseCollapseOutput = ReturnType<typeof useCollapse>;
 
 /**
  * FilterGroupContext is responsible for searchable filters and collapsible filter groups.

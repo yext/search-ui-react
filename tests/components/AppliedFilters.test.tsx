@@ -126,35 +126,35 @@ describe('AppliedFilters', () => {
     expect(screen.queryByText(staticFilterDisplayName)).toBeFalsy();
   });
 
-  it('The "X" button for an applied static filter deselects the filter option', () => {
+  it('The "X" button for an applied static filter deselects the filter option', async () => {
     const actions = spyOnActions();
 
     render(<AppliedFilters />);
     const removeFilterButton = screen.getByRole('button', { name: 'Remove "Yext Sites" filter' });
-    userEvent.click(removeFilterButton);
+    await userEvent.click(removeFilterButton);
 
     expect(actions.setFilterOption).toHaveBeenCalledWith(expect.objectContaining({
       selected: false
     }));
   });
 
-  it('The "X" button for an applied facet deselects the facet option', () => {
+  it('The "X" button for an applied facet deselects the facet option', async () => {
     const actions = spyOnActions();
 
     render(<AppliedFilters />);
     const removeFilterButton = screen.getByRole('button', { name: 'Remove "Yext Reviews" filter' });
-    userEvent.click(removeFilterButton);
+    await userEvent.click(removeFilterButton);
 
     const isSelected = actions.setFacetOption.mock.calls[0][2];
     expect(isSelected).toBe(false);
   });
 
-  it('The clear all button unselects all filters', () => {
+  it('The clear all button unselects all filters', async () => {
     const actions = spyOnActions();
 
     render(<AppliedFilters />);
     const clearAllButton = screen.getByRole('button', { name: 'Clear All' });
-    userEvent.click(clearAllButton);
+    await userEvent.click(clearAllButton);
 
     expect(actions.resetFacets).toHaveBeenCalled();
     expect(actions.setStaticFilters).toHaveBeenCalledWith(expect.not.objectContaining({ selected: true }));
@@ -235,7 +235,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     expect(filterPills[1]).toHaveAttribute('aria-label', 'Remove "steinsgate" filter');
   });
 
-  it('removing a hierarchical applied filter removes the facet and all descendants in the hierarchy', () => {
+  it('removing a hierarchical applied filter removes the facet and all descendants in the hierarchy', async () => {
     mockFiltersState({
       facets: [
         createHierarchicalFacet([
@@ -261,7 +261,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     expect(filterPills).toHaveLength(3);
 
     const fruitButton = screen.getByLabelText('Remove "food" filter');
-    userEvent.click(fruitButton);
+    await userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledTimes(2);
     expect(actions.setFacetOption).toHaveBeenCalledWith(
@@ -276,7 +276,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     );
   });
 
-  it('removing a hierarchical applied filter selects its parent', () => {
+  it('removing a hierarchical applied filter selects its parent', async () => {
     mockFiltersState({
       facets: [
         createHierarchicalFacet([
@@ -294,7 +294,7 @@ describe('AppliedFilters with hierarchical facets', () => {
     expect(filterPills).toHaveLength(3);
 
     const fruitButton = screen.getByLabelText('Remove "banana" filter');
-    userEvent.click(fruitButton);
+    await userEvent.click(fruitButton);
 
     expect(actions.setFacetOption).toHaveBeenCalledWith(
       'hier',

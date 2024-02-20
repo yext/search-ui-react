@@ -3,9 +3,9 @@ import { RangeInput, RangeInputProps } from '../../src/components/Filters/RangeI
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { FiltersContext } from '../../src/components/Filters/FiltersContext';
-import { FilterGroupContext } from '../../src/components/Filters/FilterGroupContext';
+import { FilterGroupProvider } from '../../src/components/Filters/FilterGroupProvider';
 import { userEvent, within } from '@storybook/testing-library';
-import { filterContextValue, filterContextValueDisabled, filterGroupContextValue } from '../__fixtures__/data/filtercontext';
+import { filterContextValue, filterContextValueDisabled } from '../__fixtures__/data/filtercontext';
 import React from 'react';
 
 const meta: Meta<typeof RangeInput> = {
@@ -18,9 +18,9 @@ const meta: Meta<typeof RangeInput> = {
   },
   decorators: [(Story) => (
     <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
-      <FilterGroupContext.Provider value={filterGroupContextValue}>
+      <FilterGroupProvider fieldId={'123'}>
         <Story />
-      </FilterGroupContext.Provider>
+      </FilterGroupProvider>
     </SearchHeadlessContext.Provider>
   )]
 };

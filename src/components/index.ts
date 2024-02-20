@@ -160,6 +160,7 @@ export {
 export {
   MapboxMap,
   PinComponent,
+  PinComponentProps,
   MapboxMapProps,
   OnDragHandler,
   CoordinateGetter,

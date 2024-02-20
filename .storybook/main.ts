@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
+import React from 'react';
 
 const config: StorybookConfig = {
   stories: [
@@ -39,7 +40,8 @@ const config: StorybookConfig = {
         './SearchCore': require.resolve('../tests/__fixtures__/core/SearchCore.ts'),
         '../utils/location-operations': require.resolve('../tests/__fixtures__/utils/location-operations.ts')
       },
-    }
+    },
+    ...(!React.version.startsWith('18') && { externals: ["react-dom/client"] })
   }),
 
   env: (config) => {

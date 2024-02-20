@@ -1,5 +1,5 @@
 import { SearchIntent, QuerySource, SearchCore, SearchHeadlessContext, State } from '@yext/search-headless-react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { SearchBar } from '../../src/components/SearchBar';
 import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -48,7 +48,7 @@ describe('SearchBar', () => {
 
       expect(screen.queryByText('query suggestion 1')).not.toBeInTheDocument();
       expect(screen.queryByText('query suggestion 2')).not.toBeInTheDocument();
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
       expect(await screen.findByText('query suggestion 2')).toBeInTheDocument();
       expect(mockedUniversalAutocomplete).toBeCalledTimes(1);
@@ -75,7 +75,7 @@ describe('SearchBar', () => {
 
       expect(screen.queryByText('query suggestion 1')).not.toBeInTheDocument();
       expect(screen.queryByText('query suggestion 2')).not.toBeInTheDocument();
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
       expect(await screen.findByText('query suggestion 2')).toBeInTheDocument();
       expect(mockedVerticalAutocomplete).toBeCalledTimes(1);
@@ -102,10 +102,10 @@ describe('SearchBar', () => {
           <SearchBar hideRecentSearches={true}/>
         </SearchHeadlessContext.Provider>
       );
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
       expect(screen.queryByText('query suggestion 2')).not.toBeInTheDocument();
-      userEvent.type(screen.getByRole('textbox'), 't');
+      await userEvent.type(screen.getByRole('textbox'), 't');
       expect(await screen.findByText('query suggestion 2')).toBeInTheDocument();
       expect(screen.queryByText('query suggestion 1')).not.toBeInTheDocument();
       expect(mockedUniversalAutocomplete).toBeCalledTimes(2);
@@ -122,15 +122,15 @@ describe('SearchBar', () => {
           <SearchBar hideRecentSearches={true}/>
         </SearchHeadlessContext.Provider>
       );
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
-      userEvent.keyboard('{arrowdown}');
-      userEvent.keyboard('{enter}');
+      await userEvent.keyboard('{arrowdown}');
+      await userEvent.keyboard('{enter}');
       expect(await screen.findByRole('textbox')).toHaveDisplayValue('query suggestion 1');
-      await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledTimes(1));
-      await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledWith(expect.objectContaining({
+      expect(mockedUniversalSearch).toHaveBeenCalledTimes(1)
+      expect(mockedUniversalSearch).toHaveBeenCalledWith(expect.objectContaining({
         query: 'query suggestion 1'
-      })));
+      }));
     });
   });
 
@@ -156,7 +156,7 @@ describe('SearchBar', () => {
           <SearchBar showVerticalLinks={true}/>
         </SearchHeadlessContext.Provider>
       );
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('query suggestion')).toBeInTheDocument();
       expect(await screen.findByText('in verticalKey1')).toBeInTheDocument();
       expect(await screen.findByText('in verticalKey2')).toBeInTheDocument();
@@ -168,7 +168,7 @@ describe('SearchBar', () => {
           <SearchBar />
         </SearchHeadlessContext.Provider>
       );
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('query suggestion')).toBeInTheDocument();
       expect(screen.queryByText('in verticalKey1')).not.toBeInTheDocument();
       expect(screen.queryByText('in verticalKey2')).not.toBeInTheDocument();
@@ -183,7 +183,7 @@ describe('SearchBar', () => {
           }}/>
         </SearchHeadlessContext.Provider>
       );
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('query suggestion')).toBeInTheDocument();
       expect(await screen.findByText('in Vertical One')).toBeInTheDocument();
       expect(await screen.findByText('in Vertical Two')).toBeInTheDocument();
@@ -196,9 +196,9 @@ describe('SearchBar', () => {
           <SearchBar showVerticalLinks={true} onSelectVerticalLink={mockedOnSelectVerticalLink}/>
         </SearchHeadlessContext.Provider>
       );
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('in verticalKey1')).toBeInTheDocument();
-      userEvent.click(screen.getByText('in verticalKey1'));
+      await userEvent.click(screen.getByText('in verticalKey1'));
       expect(mockedOnSelectVerticalLink).toBeCalledTimes(1);
       expect(mockedOnSelectVerticalLink).toHaveBeenCalledWith({
         verticalLink: {
@@ -217,12 +217,12 @@ describe('SearchBar', () => {
           <SearchBar />
         </SearchHeadlessContext.Provider>
       );
-      userEvent.type(screen.getByRole('textbox'), 'yext');
-      userEvent.keyboard('{enter}');
-      userEvent.clear(screen.getByRole('textbox'));
-      userEvent.type(screen.getByRole('textbox'), 'answers');
-      userEvent.keyboard('{enter}');
-      userEvent.clear(screen.getByRole('textbox'));
+      await userEvent.type(screen.getByRole('textbox'), 'yext');
+      await userEvent.keyboard('{enter}');
+      await userEvent.clear(screen.getByRole('textbox'));
+      await userEvent.type(screen.getByRole('textbox'), 'answers');
+      await userEvent.keyboard('{enter}');
+      await userEvent.clear(screen.getByRole('textbox'));
       expect(await screen.findByText('answers')).toBeInTheDocument();
       expect(await screen.findByText('yext')).toBeInTheDocument();
     });
@@ -233,13 +233,13 @@ describe('SearchBar', () => {
           <SearchBar recentSearchesLimit={1}/>
         </SearchHeadlessContext.Provider>
       );
-      userEvent.type(screen.getByRole('textbox'), 'yext');
-      userEvent.keyboard('{enter}');
-      userEvent.clear(screen.getByRole('textbox'));
+      await userEvent.type(screen.getByRole('textbox'), 'yext');
+      await userEvent.keyboard('{enter}');
+      await userEvent.clear(screen.getByRole('textbox'));
       expect(await screen.findByText('yext')).toBeInTheDocument();
-      userEvent.type(screen.getByRole('textbox'), 'answers');
-      userEvent.keyboard('{enter}');
-      userEvent.clear(screen.getByRole('textbox'));
+      await userEvent.type(screen.getByRole('textbox'), 'answers');
+      await userEvent.keyboard('{enter}');
+      await userEvent.clear(screen.getByRole('textbox'));
       expect(await screen.findByText('answers')).toBeInTheDocument();
       expect(screen.queryByText('yext')).not.toBeInTheDocument();
     });
@@ -251,10 +251,10 @@ describe('SearchBar', () => {
         </SearchHeadlessContext.Provider>
       );
 
-      userEvent.type(screen.getByRole('textbox'), 'yext');
-      userEvent.keyboard('{enter}');
+      await userEvent.type(screen.getByRole('textbox'), 'yext');
+      await userEvent.keyboard('{enter}');
       expect(await screen.findByRole('textbox')).toHaveDisplayValue('yext');
-      userEvent.clear(screen.getByRole('textbox'));
+      await userEvent.clear(screen.getByRole('textbox'));
       expect(await screen.findByRole('textbox')).toHaveDisplayValue('');
       expect(screen.queryByText('yext')).not.toBeInTheDocument();
     });
@@ -268,8 +268,8 @@ describe('SearchBar', () => {
     );
     const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
     const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
-    userEvent.click(submitSearchButton);
-    await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledTimes(1));
+    await userEvent.click(submitSearchButton);
+    expect(mockedUniversalSearch).toHaveBeenCalledTimes(1);
   });
 
   it('clear button deletes text in input element', async () => {
@@ -278,10 +278,10 @@ describe('SearchBar', () => {
         <SearchBar />
       </SearchHeadlessContext.Provider>
     );
-    userEvent.type(screen.getByRole('textbox'), 'yext');
+    await userEvent.type(screen.getByRole('textbox'), 'yext');
     expect(await screen.findByRole('textbox')).toHaveDisplayValue('yext');
     const clearSearchButton = screen.getByRole('button', { name: 'Clear the search bar' });
-    userEvent.click(clearSearchButton);
+    await userEvent.click(clearSearchButton);
     expect(await screen.findByRole('textbox')).toHaveDisplayValue('');
   });
 
@@ -293,15 +293,15 @@ describe('SearchBar', () => {
       </SearchHeadlessContext.Provider>
     );
     const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
-    userEvent.type(screen.getByRole('textbox'), 'yext');
+    await userEvent.type(screen.getByRole('textbox'), 'yext');
     const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
-    userEvent.click(submitSearchButton);
-    await waitFor(() => expect(mockedOnSearch).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(mockedOnSearch).toHaveBeenCalledWith({
+    await userEvent.click(submitSearchButton);
+    expect(mockedOnSearch).toHaveBeenCalledTimes(1);
+    expect(mockedOnSearch).toHaveBeenCalledWith({
       verticalKey: '',
       query: 'yext'
-    }));
-    await waitFor(() => expect(mockedUniversalSearch).toHaveBeenCalledTimes(0));
+    });
+    expect(mockedUniversalSearch).toHaveBeenCalledTimes(0);
   });
 
   describe('executes search with near me location handling', () => {
@@ -324,12 +324,11 @@ describe('SearchBar', () => {
         </SearchHeadlessContext.Provider>
       );
       const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
-      userEvent.click(submitSearchButton);
-      await waitFor(() => expect(mockedUniversalSearch)
+      await userEvent.click(submitSearchButton);
+      expect(mockedUniversalSearch)
         .toHaveBeenCalledWith(expect.objectContaining({
           location: userLocation
-        }))
-      );
+        }));
     });
 
     it('search with near me location handling using nagivator.geolocation API', async () => {
@@ -356,12 +355,11 @@ describe('SearchBar', () => {
         </SearchHeadlessContext.Provider>
       );
       const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
-      userEvent.click(submitSearchButton);
-      await waitFor(() => expect(mockedUniversalSearch)
+      await userEvent.click(submitSearchButton);
+      expect(mockedUniversalSearch)
         .toHaveBeenCalledWith(expect.objectContaining({
           location: userLocation
-        }))
-      );
+        }));
     });
   });
 
@@ -387,10 +385,10 @@ describe('SearchBar', () => {
           <SearchBar hideRecentSearches={true}/>
         </SearchHeadlessContext.Provider>
       );
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('query suggestion')).toBeInTheDocument();
-      userEvent.keyboard('{arrowdown}');
-      userEvent.keyboard('{enter}');
+      await userEvent.keyboard('{arrowdown}');
+      await userEvent.keyboard('{enter}');
       expect(await screen.findByRole('textbox')).toHaveDisplayValue('query suggestion');
       expect(mockedReport).toHaveBeenCalledTimes(1);
       expect(mockedReport).toHaveBeenCalledWith({
@@ -413,7 +411,7 @@ describe('SearchBar', () => {
         </SearchHeadlessContext.Provider>
       );
       const clearSearchButton = screen.getByRole('button', { name: 'Clear the search bar' });
-      userEvent.click(clearSearchButton);
+      await userEvent.click(clearSearchButton);
       expect(await screen.findByRole('textbox')).toHaveDisplayValue('');
       expect(mockedReport).toHaveBeenCalledTimes(1);
       expect(mockedReport).toHaveBeenCalledWith({
@@ -452,7 +450,7 @@ describe('SearchBar', () => {
           <SearchBar />
         </SearchHeadlessContext.Provider>
       );
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText(
         '2 autocomplete suggestions found.'
       )).toBeInTheDocument();
@@ -464,9 +462,9 @@ describe('SearchBar', () => {
           <SearchBar />
         </SearchHeadlessContext.Provider>
       );
-      userEvent.type(screen.getByRole('textbox'), 'yext');
-      userEvent.keyboard('{enter}');
-      userEvent.click(screen.getByRole('textbox'));
+      await userEvent.type(screen.getByRole('textbox'), 'yext');
+      await userEvent.keyboard('{enter}');
+      await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText(
         '1 recent search found.'
       )).toBeInTheDocument();

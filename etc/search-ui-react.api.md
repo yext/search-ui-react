@@ -418,7 +418,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
@@ -427,6 +427,9 @@ export interface MapboxMapProps<T> {
     mapboxOptions?: Omit<mapboxgl_2.MapboxOptions, 'container'>;
     onDrag?: OnDragHandler;
     PinComponent?: PinComponent<T>;
+    renderPin?: (props: PinComponentProps<T> & {
+        container: HTMLElement;
+    }) => void;
 }
 
 // @public
@@ -511,11 +514,14 @@ export interface PaginationProps {
 }
 
 // @public
-export type PinComponent<T> = (props: {
+export type PinComponent<T> = (props: PinComponentProps<T>) => JSX.Element;
+
+// @public
+export type PinComponentProps<T> = {
     index: number;
     mapbox: mapboxgl_2.Map;
     result: Result<T>;
-}) => JSX.Element;
+};
 
 // @public
 export interface RangeInputCssClasses {
