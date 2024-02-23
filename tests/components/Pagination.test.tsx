@@ -142,7 +142,7 @@ describe('results are returned from search', () => {
     expect(screen.getByText('...')).toBeDefined();
   });
 
-  it('checks that navigation buttons trigger a new search', () => {
+  it('checks that navigation buttons trigger a new search', async () => {
     const mockedResultsCount = 5;
     const mockedVerticalSearchState: VerticalSearchState = {
       resultsCount: mockedResultsCount,
@@ -155,7 +155,7 @@ describe('results are returned from search', () => {
     render(<Pagination />);
 
     // navigate to the last results page
-    userEvent.click(screen.getByText(`${mockedResultsCount}`));
+    await userEvent.click(screen.getByText(`${mockedResultsCount}`));
     expect(actions.setOffset).toHaveBeenCalledWith(mockedResultsCount - 1);
     expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
   });

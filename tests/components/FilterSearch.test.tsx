@@ -1,5 +1,5 @@
 import { FilterSearch, FilterSearchProps } from '../../src/components/FilterSearch';
-import { render, RenderResult, screen, waitFor } from '@testing-library/react';
+import { render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
 import {
@@ -57,6 +57,15 @@ const mockedStateWithMultipleFilters: Partial<State> = {
   }
 };
 
+function renderFilterSearch(
+  props: FilterSearchProps = { searchFields: searchFieldsProp },
+  state = mockedState
+): RenderResult {
+  return render(<SearchHeadlessContext.Provider value={generateMockedHeadless(state)}>
+    <FilterSearch {...props} />
+  </SearchHeadlessContext.Provider>);
+}
+
 describe('search with section labels', () => {
   it('renders the filter search bar, "Filter" label, and default placeholder text', () => {
     renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
@@ -79,15 +88,11 @@ describe('search with section labels', () => {
     renderFilterSearch();
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, 'na');
-    await waitFor(() => {
-      expect(searchBarElement).toHaveValue('na');
-    });
+    await userEvent.type(searchBarElement, 'na');
+    expect(searchBarElement).toHaveValue('na');
 
-    userEvent.type(searchBarElement, '{backspace}');
-    await waitFor(() => {
-      expect(searchBarElement).toHaveValue('n');
-    });
+    await userEvent.type(searchBarElement, '{backspace}');
+    expect(searchBarElement).toHaveValue('n');
   });
 
   it('triggers a filter search every time a character is typed or backspaced', async () => {
@@ -102,15 +107,11 @@ describe('search with section labels', () => {
       fieldApiName: 'name'
     }];
 
-    userEvent.type(searchBarElement, 'na');
-    await waitFor(() => {
-      expect(executeFilterSearch).toHaveBeenLastCalledWith('na', false, expectedFilterSearchFields);
-    });
+    await userEvent.type(searchBarElement, 'na');
+    expect(executeFilterSearch).toHaveBeenLastCalledWith('na', false, expectedFilterSearchFields);
 
-    userEvent.type(searchBarElement, '{backspace}');
-    await waitFor(() => {
-      expect(executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
-    });
+    await userEvent.type(searchBarElement, '{backspace}');
+    expect(executeFilterSearch).toHaveBeenLastCalledWith('n', false, expectedFilterSearchFields);
     expect(executeFilterSearch).toHaveBeenCalledTimes(3);
   });
 
@@ -121,10 +122,8 @@ describe('search with section labels', () => {
     renderFilterSearch();
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, '{backspace}');
-    await waitFor(() => {
-      expect(searchBarElement).toHaveValue('');
-    });
+    await userEvent.type(searchBarElement, '{backspace}');
+    expect(searchBarElement).toHaveValue('');
     expect(executeFilterSearch).toHaveBeenCalledTimes(0);
   });
 
@@ -135,14 +134,12 @@ describe('search with section labels', () => {
       .mockResolvedValue(labeledFilterSearchResponse);
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => {
-      expect(executeFilterSearch).toHaveBeenCalled();
-    });
-    await waitFor(() => {
-      const autocompleteSection = screen.getByText('First name');
-      expect(autocompleteSection).toBeDefined();
-    });
+    await userEvent.type(searchBarElement, 'n');
+    expect(executeFilterSearch).toHaveBeenCalled();
+    
+    const autocompleteSection = screen.getByText('First name');
+    expect(autocompleteSection).toBeDefined();
+    
   });
 
   it('input value stays the same when a user selects a filter', async () => {
@@ -152,11 +149,11 @@ describe('search with section labels', () => {
     renderFilterSearch();
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => screen.findByText('first name 1'));
+    await userEvent.type(searchBarElement, 'n');
+    await screen.findByText('first name 1');
 
-    userEvent.type(searchBarElement, '{arrowdown}');
-    await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
+    await userEvent.type(searchBarElement, '{arrowdown}');
+    expect(executeFilterSearch).toHaveBeenCalled();
     expect(searchBarElement).toHaveValue('n');
   });
 
@@ -168,38 +165,35 @@ describe('search with section labels', () => {
     const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
-    await waitFor(() => screen.findByText('first name 1'));
-    userEvent.type(searchBarElement, '{enter}');
-    await waitFor(() => {
-      expect(setFilterOption).toBeCalledWith({
-        filter: {
-          kind: 'fieldValue',
-          fieldId: 'name',
-          matcher: Matcher.Equals,
-          value: 'first name 1'
-        },
-        displayName: 'first name 1',
-        selected: true
-      });
+    await userEvent.type(searchBarElement, 'n');
+    expect(executeFilterSearch).toHaveBeenCalled();
+    await screen.findByText('first name 1');
+    await userEvent.type(searchBarElement, '{enter}');
+    expect(setFilterOption).toBeCalledWith({
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'first name 1'
+      },
+      displayName: 'first name 1',
+      selected: true
     });
 
-    userEvent.clear(searchBarElement);
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => screen.findByText('first name 2'));
-    userEvent.type(searchBarElement, '{arrowdown}{enter}');
-    await waitFor(() => {
-      expect(setFilterOption).toBeCalledWith({
-        filter: {
-          kind: 'fieldValue',
-          fieldId: 'name',
-          matcher: Matcher.Equals,
-          value: 'first name 1'
-        },
-        selected: false
-      });
+    await userEvent.clear(searchBarElement);
+    await userEvent.type(searchBarElement, 'n');
+    await screen.findByText('first name 2');
+    await userEvent.type(searchBarElement, '{arrowdown}{enter}');
+    expect(setFilterOption).toBeCalledWith({
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'first name 1'
+      },
+      selected: false
     });
+    
     expect(setFilterOption).toBeCalledWith({
       filter: {
         kind: 'fieldValue',
@@ -252,21 +246,20 @@ describe('search with section labels', () => {
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.clear(searchBarElement);
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
-    await waitFor(() => screen.findByText('first name 1'));
-    userEvent.type(searchBarElement, '{enter}');
-    await waitFor(() => {
-      expect(setFilterOption).toBeCalledWith({
-        filter: {
-          kind: 'fieldValue',
-          fieldId: 'name',
-          matcher: Matcher.Equals,
-          value: 'Real Person'
-        },
-        selected: false
-      });
+    await userEvent.type(searchBarElement, 'n');
+    expect(executeFilterSearch).toHaveBeenCalled();
+    await screen.findByText('first name 1');
+    await userEvent.type(searchBarElement, '{enter}');
+    expect(setFilterOption).toBeCalledWith({
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'Real Person'
+      },
+      selected: false
     });
+
     expect(setFilterOption).toBeCalledWith({
       filter: {
         kind: 'fieldValue',
@@ -291,20 +284,18 @@ describe('search with section labels', () => {
     const searchBarElement = screen.getByRole('textbox');
 
     userEvent.clear(searchBarElement);
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
-    await waitFor(() => screen.findByText('first name 1'));
-    userEvent.type(searchBarElement, '{enter}');
-    await waitFor(() => {
-      expect(setFilterOption).toBeCalledWith({
-        filter: {
-          kind: 'fieldValue',
-          fieldId: 'name',
-          matcher: Matcher.Equals,
-          value: 'Real Person'
-        },
-        selected: false
-      });
+    await userEvent.type(searchBarElement, 'n');
+    expect(executeFilterSearch).toHaveBeenCalled();
+    await screen.findByText('first name 1');
+    await userEvent.type(searchBarElement, '{enter}');
+    expect(setFilterOption).toBeCalledWith({
+      filter: {
+        kind: 'fieldValue',
+        fieldId: 'name',
+        matcher: Matcher.Equals,
+        value: 'Real Person'
+      },
+      selected: false
     });
     expect(setFilterOption).toBeCalledWith({
       filter: {
@@ -340,13 +331,12 @@ describe('search with section labels', () => {
     renderFilterSearch({ searchFields: searchFieldsProp, onSelect: mockedOnSelect });
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => screen.findByText('first name 1'));
+    await userEvent.type(searchBarElement, 'n');
+    await screen.findByText('first name 1');
 
-    userEvent.type(searchBarElement, '{enter}');
-    await waitFor(() => {
-      expect(executeFilterSearch).toHaveBeenCalled();
-    });
+    await userEvent.type(searchBarElement, '{enter}');
+    expect(executeFilterSearch).toHaveBeenCalled();
+
     expect(mockedOnSelect).toBeCalled();
     expect(setFilterOption).not.toBeCalled();
   });
@@ -416,20 +406,18 @@ describe('search with section labels', () => {
       const searchBarElement = screen.getByRole('textbox');
 
       userEvent.clear(searchBarElement);
-      userEvent.type(searchBarElement, 'f');
-      await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
-      await waitFor(() => screen.findByText('first name 1'));
-      userEvent.type(searchBarElement, '{enter}');
-      await waitFor(() => {
-        expect(setFilterOption).toBeCalledWith({
-          filter: {
-            kind: 'fieldValue',
-            fieldId: 'builtin.region',
-            matcher: Matcher.Equals,
-            value: 'VA'
-          },
-          selected: false
-        });
+      await userEvent.type(searchBarElement, 'f');
+      expect(executeFilterSearch).toHaveBeenCalled();
+      await screen.findByText('first name 1');
+      await userEvent.type(searchBarElement, '{enter}');
+      expect(setFilterOption).toBeCalledWith({
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'builtin.region',
+          matcher: Matcher.Equals,
+          value: 'VA'
+        },
+        selected: false
       });
       expect(setFilterOption).toBeCalledWith({
         filter: {
@@ -479,9 +467,9 @@ describe('search with section labels', () => {
       renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true });
       const searchBarElement = screen.getByRole('textbox');
 
-      userEvent.type(searchBarElement, 'n');
-      await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
-      await waitFor(() => screen.findByText('first name 1'));
+      await userEvent.type(searchBarElement, 'n');
+      expect(executeFilterSearch).toHaveBeenCalled();
+      await screen.findByText('first name 1');
 
       const expectedSetFilterOptionParam = {
         filter: {
@@ -495,10 +483,8 @@ describe('search with section labels', () => {
       };
       const expectedSetOffsetParam = 0;
 
-      userEvent.type(searchBarElement, '{enter}');
-      await waitFor(() => {
-        expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
-      });
+      await userEvent.type(searchBarElement, '{enter}');
+      expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
       expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
       expect(resetFacets).toBeCalled();
 
@@ -519,11 +505,10 @@ describe('search with section labels', () => {
       renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true });
       const searchBarElement = screen.getByRole('textbox');
 
-      userEvent.type(searchBarElement, 'n{enter}');
+      await userEvent.type(searchBarElement, 'n{enter}');
 
-      await waitFor(() => {
-        expect(setFilterOption).not.toBeCalled();
-      });
+      expect(setFilterOption).not.toBeCalled();
+
       expect(setOffset).not.toBeCalled();
       expect(resetFacets).not.toBeCalled();
       expect(mockExecuteSearch).not.toBeCalled();
@@ -540,9 +525,10 @@ describe('search with section labels', () => {
       renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true });
       const searchBarElement = screen.getByRole('textbox');
 
-      userEvent.type(searchBarElement, 'n');
-      await waitFor(() => expect(executeFilterSearch).toHaveBeenCalled());
-      const autocompleteSuggestion = await waitFor(() => screen.findByText('first name 1'));
+      await userEvent.type(searchBarElement, 'n');
+      expect(executeFilterSearch).toHaveBeenCalled();
+      const autocompleteSuggestion = await screen.findByText('first name 1');
+
 
       const expectedSetFilterOptionParam = {
         filter: {
@@ -556,7 +542,7 @@ describe('search with section labels', () => {
       };
       const expectedSetOffsetParam = 0;
 
-      userEvent.click(autocompleteSuggestion);
+      await userEvent.click(autocompleteSuggestion);
       expect(setFilterOption).toBeCalledWith(expectedSetFilterOptionParam);
       expect(setOffset).toBeCalledWith(expectedSetOffsetParam);
       expect(resetFacets).toBeCalled();
@@ -586,13 +572,12 @@ describe('search with section labels', () => {
         });
         const searchBarElement = screen.getByRole('textbox');
 
-        userEvent.type(searchBarElement, 'n');
-        await waitFor(() => screen.findByText('first name 1'));
+        await userEvent.type(searchBarElement, 'n');
+        await screen.findByText('first name 1');
 
-        userEvent.type(searchBarElement, '{enter}');
-        await waitFor(() => {
-          expect(executeFilterSearch).toHaveBeenCalled();
-        });
+        await userEvent.type(searchBarElement, '{enter}');
+        expect(executeFilterSearch).toHaveBeenCalled();
+
         expect(mockedOnSelect).toBeCalled();
         expect(setFilterOption).not.toBeCalled();
         expect(mockExecuteSearch).not.toBeCalled();
@@ -614,13 +599,12 @@ describe('search with section labels', () => {
       renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: false });
       const searchBarElement = screen.getByRole('textbox');
 
-      userEvent.type(searchBarElement, 'n');
-      await waitFor(() => screen.findByText('first name 1'));
+      await userEvent.type(searchBarElement, 'n');
+      await screen.findByText('first name 1');
 
-      userEvent.type(searchBarElement, '{enter}');
-      await waitFor(() => {
-        expect(executeFilterSearch).toHaveBeenCalled();
-      });
+      await userEvent.type(searchBarElement, '{enter}');
+      expect(executeFilterSearch).toHaveBeenCalled();
+
       expect(setFilterOption).toBeCalledWith({
         filter: {
           kind: 'fieldValue',
@@ -647,10 +631,9 @@ describe('search without section labels', () => {
 
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => {
-      expect(executeFilterSearch).toHaveBeenCalled();
-    });
+    await userEvent.type(searchBarElement, 'n');
+    expect(executeFilterSearch).toHaveBeenCalled();
+
     const autocompleteSuggestion = screen.getByText('first name 1');
     expect(autocompleteSuggestion).toBeDefined();
   });
@@ -661,13 +644,22 @@ describe('search without section labels', () => {
       .mockResolvedValue(unlabeledFilterSearchResponse);
     renderFilterSearch();
     const inputNode = screen.getByRole('textbox');
-    userEvent.type(inputNode, 'n');
-    await waitFor(() => {
-      expect(executeFilterSearch).toHaveBeenCalled();
-    });
-    userEvent.keyboard('{enter}');
+    await userEvent.type(inputNode, 'n');
+    expect(executeFilterSearch).toHaveBeenCalled();
+
+    await userEvent.keyboard('{enter}');
     expect(inputNode).toHaveValue('first name 1');
   });
+  
+  it('when an onDropdownInputChange prop is specified, it gets called each time after the input changes and executeFilterSearch does not', async () => {
+    const mockedOnDropdownInputChange = jest.fn();
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch');
+    renderFilterSearch({ searchFields: searchFieldsProp, onDropdownInputChange: mockedOnDropdownInputChange});
+    await userEvent.type(screen.getByRole('textbox'), 'a');
+    expect(mockedOnDropdownInputChange).toHaveBeenCalledTimes(1);
+    expect(executeFilterSearch).toHaveBeenCalledTimes(0);
+  })
 });
 
 describe('screen reader', () => {
@@ -679,15 +671,13 @@ describe('screen reader', () => {
 
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => {
-      expect(executeFilterSearch).toHaveBeenCalled();
-    });
+    await userEvent.type(searchBarElement, 'n');
+    expect(executeFilterSearch).toHaveBeenCalled();
+
     const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found.';
-    await waitFor(() => {
-      const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
-      expect(screenReaderMessage).toBeDefined();
-    });
+  
+    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+    expect(screenReaderMessage).toBeDefined();
   });
 
   it('renders ScreenReader messages without section labels', async () => {
@@ -698,15 +688,13 @@ describe('screen reader', () => {
 
     const searchBarElement = screen.getByRole('textbox');
 
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => {
-      expect(executeFilterSearch).toHaveBeenCalled();
-    });
+    await userEvent.type(searchBarElement, 'n');
+    expect(executeFilterSearch).toHaveBeenCalled();
+
     const expectedScreenReaderMessage = '3 autocomplete options found.';
-    await waitFor(() => {
-      const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
-      expect(screenReaderMessage).toBeDefined();
-    });
+    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+      
+    expect(screenReaderMessage).toBeDefined();
   });
 
   it('renders 0 results ScreenReader message when there are no results', async () => {
@@ -716,26 +704,16 @@ describe('screen reader', () => {
     renderFilterSearch();
 
     const searchBarElement = screen.getByRole('textbox');
-    userEvent.type(searchBarElement, 'n');
-    await waitFor(() => {
-      expect(executeFilterSearch).toHaveBeenCalled();
-    });
+    await userEvent.type(searchBarElement, 'n');
+    expect(executeFilterSearch).toHaveBeenCalled();
+
     const expectedScreenReaderMessage = '0 autocomplete options found.';
-    await waitFor(() => {
-      const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
-      expect(screenReaderMessage).toBeDefined();
-    });
+    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+      
+    expect(screenReaderMessage).toBeDefined();
   });
 });
 
-function renderFilterSearch(
-  props: FilterSearchProps = { searchFields: searchFieldsProp },
-  state = mockedState
-): RenderResult {
-  return render(<SearchHeadlessContext.Provider value={generateMockedHeadless(state)}>
-    <FilterSearch {...props} />
-  </SearchHeadlessContext.Provider>);
-}
 
 it('clears input when old filters are removed', async () => {
   const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
@@ -773,27 +751,22 @@ it('clears input when old filters are removed', async () => {
   </SearchHeadlessContext.Provider>);
 
   const searchBarElement = screen.getByRole('textbox');
-  userEvent.type(searchBarElement, 'first name 1');
+  expect(searchBarElement).toHaveValue('');
+  await userEvent.type(searchBarElement, 'first name 1');
+
   expect(await screen.findByRole('textbox')).toHaveDisplayValue('first name 1');
-  userEvent.type(searchBarElement, '{enter}');
+  await userEvent.type(searchBarElement, '{enter}');
 
-  await waitFor(() => {
-    expect(executeFilterSearch).toHaveBeenCalled();
-  });
+  expect(executeFilterSearch).toHaveBeenCalled();
 
-  await waitFor(() => {
-    expect(setFilterOption).toHaveBeenCalledWith({ ...deselectedFilter, selected: true });
-  });
+  expect(setFilterOption).toHaveBeenCalledWith({ ...deselectedFilter, selected: true });
 
   const mockDeselectButton = screen.getByRole('button');
-  userEvent.click(mockDeselectButton);
+  await userEvent.click(mockDeselectButton);
 
-  await waitFor(() => {
-    expect(setFilterOption).toBeCalledWith(deselectedFilter);
-  });
-  await waitFor(() => {
-    expect(searchBarElement).toHaveValue('');
-  });
+  expect(setFilterOption).toBeCalledWith(deselectedFilter);
+
+  expect(searchBarElement).toHaveValue('');
 });
 
 it('toggling the dropdown does not change selected filters', async () => {
@@ -813,17 +786,13 @@ it('toggling the dropdown does not change selected filters', async () => {
 
   const searchBarElement = screen.getByRole('textbox');
   const externalDiv = screen.getByText('external div');
-  userEvent.type(searchBarElement, 'first name 1');
+  await userEvent.type(searchBarElement, 'first name 1');
   expect(await screen.findByRole('textbox')).toHaveDisplayValue('first name 1');
-  userEvent.type(searchBarElement, '{enter}');
+  await userEvent.type(searchBarElement, '{enter}');
 
-  await waitFor(() => {
-    expect(executeFilterSearch).toHaveBeenCalled();
-  });
+  expect(executeFilterSearch).toHaveBeenCalled();
 
-  await waitFor(() => {
-    expect(setFilterOption).toBeCalledTimes(1);
-  });
+  expect(setFilterOption).toBeCalledTimes(1);
 
   userEvent.click(searchBarElement);
   userEvent.click(externalDiv);
