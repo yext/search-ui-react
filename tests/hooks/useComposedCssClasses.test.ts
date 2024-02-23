@@ -1,5 +1,5 @@
 import { useComposedCssClasses } from '../../src/hooks/useComposedCssClasses';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from './getRenderHook';
 import * as tailwindMerge from 'tailwind-merge';
 
 describe('when there are no custom classes', () => {

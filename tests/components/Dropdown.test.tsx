@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown';
@@ -5,7 +6,6 @@ import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import { DropdownItem } from '../../src/components/Dropdown/DropdownItem';
 import { testSSR } from '../ssr/utils';
-import React from 'react';
 
 describe('Dropdown', () => {
   it('renders identical content between the server and the client.', () => {
@@ -21,7 +21,7 @@ describe('Dropdown', () => {
     );
   });
 
-  it('can toggle hide/display', () => {
+  it('can toggle hide/display', async () => {
     const mockedOnToggleFn = jest.fn();
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here',
@@ -44,22 +44,22 @@ describe('Dropdown', () => {
     expect(screen.queryByText('item1')).toBeNull();
 
     // display when click into dropdown input
-    userEvent.click(screen.getByRole('textbox'));
+    await userEvent.click(screen.getByRole('textbox'));
     expect(screen.getByText('item1')).toBeDefined();
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
 
     // hidden when click elsewhere outside of dropdown component
-    userEvent.click(screen.getByText('external div'));
+    await userEvent.click(screen.getByText('external div'));
     expect(screen.queryByText('item1')).toBeNull();
     expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined);
 
     // display when tab into dropdown input
-    userEvent.tab();
+    await userEvent.tab();
     expect(screen.getByText('item1')).toBeDefined();
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
   });
 
-  it('handles arrowkey navigation properly and focuses on the option and input text', () => {
+  it('handles arrowkey navigation properly and focuses on the option and input text', async () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
@@ -74,19 +74,19 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.click(inputNode);
+    await userEvent.click(inputNode);
     const itemNode = screen.getByText('item1');
 
-    userEvent.keyboard('{arrowdown}');
+    await userEvent.keyboard('{arrowdown}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
 
-    userEvent.keyboard('{arrowup}');
+    await userEvent.keyboard('{arrowup}');
     expect(itemNode.className).not.toContain('FocusedItem1');
     expect(inputNode).not.toHaveValue('item1');
   });
 
-  it('handles tab navigation properly and focuses on the option and input text', () => {
+  it('handles tab navigation properly and focuses on the option and input text', async () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
@@ -101,19 +101,19 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.click(inputNode);
+    await userEvent.click(inputNode);
     const itemNode = screen.getByText('item1');
 
-    userEvent.keyboard('{Tab}');
+    await userEvent.keyboard('{Tab}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
 
-    userEvent.keyboard('{Shift}{Tab}');
+    await userEvent.keyboard('{Shift>}{Tab}{/Shift}');
     expect(itemNode.className).not.toContain('FocusedItem1');
     expect(inputNode).not.toHaveValue('item1');
   });
 
-  it('closes the dropdown menu when tabbing on last option', () => {
+  it('closes the dropdown menu when tabbing on last option', async () => {
     const mockedOnToggleFn = jest.fn();
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here',
@@ -130,13 +130,13 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.click(inputNode);
-    userEvent.keyboard('{Tab}{Tab}');
+    await userEvent.click(inputNode);
+    await userEvent.keyboard('{Tab}{Tab}');
 
     expect(mockedOnToggleFn).toHaveBeenLastCalledWith(false, '', 'item1', 0, undefined);
   });
 
-  it('selects when an option is focused and enter is pressed', () => {
+  it('selects when an option is focused and enter is pressed', async () => {
     const mockedOnSelectFn = jest.fn();
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here',
@@ -153,12 +153,12 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.click(inputNode);
+    await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    userEvent.keyboard('{arrowdown}');
-    userEvent.keyboard('{enter}');
+    await userEvent.keyboard('{arrowdown}');
+    await userEvent.keyboard('{enter}');
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
@@ -166,7 +166,7 @@ describe('Dropdown', () => {
     expect(mockedOnSelectFn).toHaveBeenCalledWith('item1', 0, undefined);
   });
 
-  it('selects an option on click', () => {
+  it('selects an option on click', async () => {
     const mockedOnSelectFn = jest.fn();
     const mockedOnClickFn = jest.fn();
     const dropdownProps: DropdownProps = {
@@ -184,12 +184,12 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.click(inputNode);
+    await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    userEvent.keyboard('{arrowdown}');
-    userEvent.click(screen.getByTestId('item1'));
+    await userEvent.keyboard('{arrowdown}');
+    await userEvent.click(screen.getByTestId('item1'));
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
@@ -199,7 +199,7 @@ describe('Dropdown', () => {
     expect(mockedOnSelectFn).toHaveBeenCalledWith('item1', 0, undefined);
   });
 
-  it('selects when an option is focused on toggle', () => {
+  it('selects when an option is focused on toggle', async () => {
     const mockedOnToggleFn = jest.fn();
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here',
@@ -219,13 +219,13 @@ describe('Dropdown', () => {
       </div>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.click(inputNode);
+    await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    userEvent.keyboard('i');
-    userEvent.keyboard('{arrowdown}');
-    userEvent.click(screen.getByText('external div'));
+    await userEvent.keyboard('i');
+    await userEvent.keyboard('{arrowdown}');
+    await userEvent.click(screen.getByText('external div'));
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
@@ -233,7 +233,7 @@ describe('Dropdown', () => {
     expect(mockedOnToggleFn).toHaveBeenCalledWith(false, 'i', 'item1', 0, undefined);
   });
 
-  it('updates options when user provide new input', () => {
+  it('updates options when user provide new input', async () => {
     const mockedOnChangeFn = jest.fn();
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
@@ -249,17 +249,17 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.click(inputNode);
+    await userEvent.click(inputNode);
     const itemNode = screen.getByText('item1');
     expect(itemNode).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    userEvent.keyboard('{arrowdown}');
+    await userEvent.keyboard('{arrowdown}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
 
     const userInput = ' someText';
-    userEvent.type(inputNode, userInput);
+    await userEvent.type(inputNode, userInput);
     expect(inputNode).toHaveValue('item1' + userInput);
     expect(mockedOnChangeFn).toBeCalledTimes(userInput.length);
     expect(mockedOnChangeFn).toHaveBeenCalledWith('item1' + userInput);
@@ -267,7 +267,7 @@ describe('Dropdown', () => {
     expect(itemNode.className).not.toContain('FocusedItem1');
   });
 
-  it('submits on "Enter" in the input box', () => {
+  it('submits on "Enter" in the input box', async () => {
     const mockedOnSubmitFn = jest.fn();
     const mockedOnSelectFn = jest.fn();
     const dropdownProps: DropdownProps = {
@@ -285,8 +285,8 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.type(inputNode, 'someText');
-    userEvent.keyboard('{enter}');
+    await userEvent.type(inputNode, 'someText');
+    await userEvent.keyboard('{enter}');
 
     expect(inputNode).toHaveValue('someText');
     expect(mockedOnSelectFn).toBeCalledTimes(0);
@@ -295,7 +295,7 @@ describe('Dropdown', () => {
     expect(screen.queryByText('item1')).toBeNull();
   });
 
-  it('prevents submission if submission criteria failed', () => {
+  it('prevents submission if submission criteria failed', async () => {
     const mockedSubmitCriteriaFn = jest.fn().mockImplementation(() => false);
     const mockedOnSubmitFn = jest.fn();
     const dropdownProps: DropdownProps = {
@@ -315,8 +315,8 @@ describe('Dropdown', () => {
       </Dropdown>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.type(inputNode, 'someText');
-    userEvent.keyboard('{enter}');
+    await userEvent.type(inputNode, 'someText');
+    await userEvent.keyboard('{enter}');
 
     expect(inputNode).toHaveValue('someText');
     expect(mockedSubmitCriteriaFn).toBeCalledTimes(1);
@@ -326,7 +326,7 @@ describe('Dropdown', () => {
   });
 });
 describe('Always Select Option', () => {
-  it('clicking out without interacting with dropdown does not select a filter', () => {
+  it('clicking out without interacting with dropdown does not select a filter', async () => {
     const mockedOnSelectFn = jest.fn();
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here',
@@ -347,12 +347,12 @@ describe('Always Select Option', () => {
       </div>
     );
     const inputNode = screen.getByRole('textbox');
-    userEvent.click(inputNode);
+    await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    userEvent.keyboard('i');
-    userEvent.click(screen.getByText('external div'));
+    await userEvent.keyboard('i');
+    await userEvent.click(screen.getByText('external div'));
 
     expect(inputNode).toHaveValue('i');
     expect(screen.queryByTestId('item1')).toBeNull();

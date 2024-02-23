@@ -7,6 +7,7 @@ import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { MapboxMap, MapboxMapProps } from '../../src/components/MapboxMap';
 import { MapPin } from '../../test-site/src/components/MapPin';
 import { Location } from '../../test-site/src/pages/LocationsPage';
+import { renderReact } from '../__utils__/renderReact';
 import { locationVerticalSingle, locationVerticalMultiple } from '../__fixtures__/data/mapbox';
 import React from 'react';
 
@@ -18,6 +19,9 @@ const meta: Meta<typeof MapboxMap> = {
       control: false,
     },
     PinComponent: {
+      control: false,
+    },
+    renderPin: {
       control: false,
     },
   },
@@ -52,6 +56,21 @@ CustomPin.args = {
 };
 
 CustomPin.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
+    timeout: 30000
+  });
+  fireEvent.click(mapPin);
+  await canvas.findByText('title1');
+};
+
+export const CustomRenderPin: StoryFn<MapboxMapProps<Location>> = Template.bind({});
+
+CustomRenderPin.args = {
+  renderPin: (props) => renderReact(<MapPin {...props} />, props.container),
+};
+
+CustomRenderPin.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
     timeout: 30000

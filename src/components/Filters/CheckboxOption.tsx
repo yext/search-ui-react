@@ -3,9 +3,10 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks';
-import { findSelectableFieldValueFilter } from '../../utils/filterutils';
+import { findSelectableFieldValueFilter, isNumberRangeValue, getDefaultFilterDisplayName } from '../../utils/filterutils';
 import classNames from 'classnames';
-import { useId } from '@reach/auto-id';
+import { useId } from '../../hooks/useId';
+
 /**
  * The configuration data for a field value filter option.
  *
@@ -117,7 +118,12 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
 
   const isSelected = existingStoredFilter ? existingStoredFilter.selected : false;
 
-  const labelText = resultsCount ? `${displayName} (${resultsCount})` : displayName;
+  const displayNameString = isNumberRangeValue(displayName)
+    ? getDefaultFilterDisplayName(displayName)
+    : displayName.toString();
+  const labelText = resultsCount
+    ? `${displayNameString} (${resultsCount})`
+    : displayNameString;
 
   const inputClasses = classNames(cssClasses.input, {
     [cssClasses.input___disabled ?? '']: isOptionsDisabled

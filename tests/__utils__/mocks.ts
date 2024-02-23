@@ -64,3 +64,18 @@ export function mockAnswersHooks({
   mockedState && mockAnswersState(mockedState);
   mockedActions && mockSearchActions(mockedActions);
 }
+
+const originalConsoleError = console.error.bind(console.error);
+
+export function ignoreLinkClickErrors() {
+  jest.spyOn(global.console, 'error')
+    .mockImplementation((msg, ...params) => {
+      /**
+       * Suppress errors about 'navigation' not being defined in jsdom when
+       * clicking on links.
+       */
+      if (!msg.toString().match(/Error: Not implemented: navigation/)) {
+        originalConsoleError(msg, ...params);
+      }
+    });
+};

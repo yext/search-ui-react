@@ -2,10 +2,7 @@ import { useSearchState } from '@yext/search-headless-react';
 import React, { useCallback, useState } from 'react';
 import { ThumbIcon } from '../icons/ThumbIcon';
 import { useComposedCssClasses } from '../hooks';
-import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
-const useLayoutEffect = typeof useIsomorphicLayoutEffect === 'function'
-  ? useIsomorphicLayoutEffect
-  : useIsomorphicLayoutEffect['default'];
+import { useLayoutEffect } from '../hooks/useLayoutEffect';
 
 /**
  * Analytics event types for quality feedback.

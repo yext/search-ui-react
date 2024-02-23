@@ -9,9 +9,7 @@ A functional component that can be used to render a custom marker on the map.
 **Signature:**
 
 ```typescript
-type PinComponent<T> = (props: {
-    index: number;
-    mapbox: mapboxgl.Map;
-    result: Result<T>;
-}) => JSX.Element;
+type PinComponent<T> = (props: PinComponentProps<T>) => JSX.Element;
 ```
+**References:** [PinComponentProps](./search-ui-react.pincomponentprops.md)
+

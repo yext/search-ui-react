@@ -2,7 +2,7 @@ import { Matcher, NumberRangeValue, useSearchActions, useSearchState } from '@ye
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks';
-import { clearStaticRangeFilters, findSelectableFieldValueFilter, getSelectableFieldValueFilters, parseNumberRangeInput } from '../../utils/filterutils';
+import { getDefaultFilterDisplayName, clearStaticRangeFilters, findSelectableFieldValueFilter, getSelectableFieldValueFilters, parseNumberRangeInput } from '../../utils/filterutils';
 import { executeSearch } from '../../utils';
 import classNames from 'classnames';
 import { useFiltersContext } from './FiltersContext';
@@ -242,22 +242,6 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   );
 }
 
-/**
- * Creates the filter's display name based on the number range.
- */
-function getDefaultFilterDisplayName(numberRange: NumberRangeValue) {
-  const start = numberRange.start;
-  const end = numberRange.end;
-
-  if (start && end) {
-    return `${start.value} - ${end.value}`;
-  } else if (start && !end) {
-    return `Over ${start.value}`;
-  } else if (end && !start) {
-    return `Up to ${end.value}`;
-  }
-  return '';
-}
 
 /**
  * Returns true only if the provided string passes the numeric validation.
