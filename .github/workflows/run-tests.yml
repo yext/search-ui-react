@@ -9,23 +9,18 @@ jobs:
   call_run_tests-react-18:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
-      node_matrix: '["16.x", "18.x"]'
-    secrets:
-      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
-
-  call_run_tests-react-17:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
-    with:
       # We have to install these swc libraries manually because 
       # the post install script doesn't seem to run properly 
       # after we install specific versions of packages.
       # More info at https://github.com/swc-project/swc/issues/5616#issuecomment-1651214641
       build_script: |
+        npm uninstall -D \
+          @testing-library/react-hooks \
+          @storybook/addon-google-analytics
         npm i \
-          react@^17.0.2 \
-          react-dom@^17.0.2 \
-          @testing-library/react@^12.1.3 \
-          @testing-library/react-hooks@^8.0.0
+          react@^18.2.0 \
+          react-dom@^18.2.0 \
+          @testing-library/react@^14.2.1
         npm install --save-optional \
           "@swc/core-linux-arm-gnueabihf" \
           "@swc/core-linux-arm64-gnu" \
@@ -40,6 +35,13 @@ jobs:
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
+  call_run_tests-react-17:
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
+    with:
+      node_matrix: '["16.x", "18.x"]'
+    secrets:
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
+
   call_run_tests-react-16:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
@@ -47,8 +49,6 @@ jobs:
         npm i \
           react@^16.14 \
           react-dom@^16.14 \
-          @testing-library/react@^12.1.3 \
-          @testing-library/react-hooks@^8.0.0
         npm install --save-optional \
           "@swc/core-linux-arm-gnueabihf" \
           "@swc/core-linux-arm64-gnu" \
