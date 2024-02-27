@@ -4,7 +4,7 @@
 
 ## MapboxMapProps.PinComponent property
 
-Custom Pin component to render for markers on the map. By default, the built-in marker image from Mapbox GL is used.
+Custom Pin component to render for markers on the map. By default, the built-in marker image from Mapbox GL is used. This prop should not be used with [renderPin](./search-ui-react.mapboxmapprops.renderpin.md)<!-- -->. If both are provided, only PinComponent will be used.
 
 **Signature:**
 

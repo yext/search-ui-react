@@ -10,18 +10,21 @@ import userEvent from '@testing-library/user-event';
 import { fieldValueDAState } from '../__fixtures__/data/directanswers';
 import { UnknownFieldTypeDisplayComponent } from '../../src/components/DirectAnswer';
 import React from 'react';
+import { ignoreLinkClickErrors } from '../__utils__/mocks';
 
 const fieldValueDAResult = fieldValueDAState.result as FieldValueDirectAnswerType;
 
 describe('FieldValue direct answer', () => {
-
-  it('executes viewDetailsClickHandler when click on "View Details" link', () => {
+  it('executes viewDetailsClickHandler when click on "View Details" link', async () => {
     const viewDetailsClickHandler = jest.fn();
     render(<FieldValueDirectAnswer
       result={fieldValueDAResult}
       viewDetailsClickHandler={viewDetailsClickHandler}/>
     );
-    userEvent.click(screen.getByRole('link', { name: 'View Details' }));
+    ignoreLinkClickErrors();
+    const viewDetailsLink = screen.getByRole('link', { name: 'View Details' });
+    await userEvent.click(viewDetailsLink);
+
     expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
   });
 

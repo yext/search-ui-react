@@ -113,3 +113,24 @@ it('registers "onDrag" callback to Mapbox\'s event listener for "drag to pan" in
   jest.advanceTimersByTime(100); //debounce time
   expect(onDragFn).toBeCalledTimes(1);
 });
+
+it('uses PinComponent and logs warning if both PinComponent and renderPin are provided', () => {
+  mockAnswersState(mockedStateDefaultCoordinate);
+  jest.spyOn(Marker.prototype, 'setLngLat').mockReturnValue(Marker.prototype);
+  const PinComponent = jest.fn().mockImplementation(() => null);
+  const renderPin = jest.fn();
+  const warnSpy = jest.spyOn(console, 'warn').mockImplementation();
+
+  render(<MapboxMap
+    mapboxAccessToken='TEST_KEY'
+    PinComponent={PinComponent}
+    renderPin={renderPin}
+  />);
+
+  expect(warnSpy).toBeCalledTimes(1);
+  expect(warnSpy).toBeCalledWith(
+    'Found both PinComponent and renderPin props. Using PinComponent.'
+  );
+  expect(PinComponent).toBeCalledTimes(1);
+  expect(renderPin).not.toBeCalled();
+});

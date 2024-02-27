@@ -56,6 +56,21 @@ export interface OnSelectParams {
 }
 
 /**
+ * The parameters that are passed into {@link FilterSearchProps.onDropdownInputChange}.
+ *
+ * @public
+ */
+export interface OnDropdownInputChangeProps {
+  /** The input element's new value after the change */
+  value: string,
+  /**
+   * A function that executes a filter search and updates the input and dropdown options
+   * with the response.
+   */
+  executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>
+}
+
+/**
  * The props for the {@link FilterSearch} component.
  *
  * @public
@@ -78,6 +93,8 @@ export interface FilterSearchProps {
   searchOnSelect?: boolean,
   /** A function which is called when a filter is selected. */
   onSelect?: (params: OnSelectParams) => void,
+  /** A function which is called when the input element's value changes. Replaces the default behavior. */
+  onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -98,6 +115,7 @@ export function FilterSearch({
   placeholder = 'Search here...',
   searchOnSelect,
   onSelect,
+  onDropdownInputChange,
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
@@ -224,6 +242,16 @@ export function FilterSearch({
     matchingFieldIds
   ]);
 
+  const handleInputChange = useCallback((value) => {
+    onDropdownInputChange ? onDropdownInputChange({
+      value,
+      executeFilterSearch
+    }) : executeFilterSearch(value);
+  }, [
+    onDropdownInputChange,
+    executeFilterSearch
+  ]);
+
   const meetsSubmitCritera = useCallback(index => index >= 0, []);
 
   const itemDataMatrix = useMemo(() => {
@@ -279,7 +307,7 @@ export function FilterSearch({
         <DropdownInput
           className={cssClasses.inputElement}
           placeholder={placeholder}
-          onChange={executeFilterSearch}
+          onChange={handleInputChange}
           onFocus={handleInputFocus}
           submitCriteria={meetsSubmitCritera}
         />

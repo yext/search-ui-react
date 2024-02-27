@@ -80,7 +80,7 @@ describe('StandardFacetContent', () => {
     expect(coffeeLabelAndCount).toBeNull();
   });
 
-  it('Clicking an unselected facet option label selects it', () => {
+  it('Clicking an unselected facet option label selects it', async() => {
     const actions = spyOnActions();
     render(mockStandardFacet());
 
@@ -90,11 +90,11 @@ describe('StandardFacetContent', () => {
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     const coffeeLabel = screen.getByText(labelText);
-    userEvent.click(coffeeLabel);
+    await userEvent.click(coffeeLabel);
     expectFacetOptionSet(actions, standardFacet.fieldId, coffeeFacetOption, true);
   });
 
-  it('Clicking a selected facet option checkbox unselects it', () => {
+  it('Clicking a selected facet option checkbox unselects it', async() => {
     const actions = spyOnActions();
     render(mockStandardFacet());
 
@@ -102,7 +102,7 @@ describe('StandardFacetContent', () => {
       getOptionLabelTextWithCount(standardFacet.options[1]));
     expect(teaCheckbox.checked).toBeTruthy();
 
-    userEvent.click(teaCheckbox);
+    await userEvent.click(teaCheckbox);
     expectFacetOptionSet(actions, standardFacet.fieldId, standardFacet.options[1], false);
   });
 });

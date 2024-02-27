@@ -18,7 +18,7 @@
 |  [executeSearch(searchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
 |  [Facets(props)](./search-ui-react.facets.md) | A component that displays all facets applicable to the current vertical search. |
 |  [FilterDivider({ className })](./search-ui-react.filterdivider.md) | A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters. |
-|  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
+|  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md) | A React Component which collects location information to create a location filter and perform a new search. |
 |  [getSearchIntents(searchActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./search-ui-react.getuserlocation.md) | Retrieves user's location using navigator.geolocation API. |
@@ -26,7 +26,7 @@
 |  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./search-ui-react.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
 |  [isCtaData(data)](./search-ui-react.isctadata.md) | Type guard for CtaData. |
 |  [LocationBias({ geolocationOptions, customCssClasses })](./search-ui-react.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
-|  [MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, getCoordinate, onDrag })](./search-ui-react.mapboxmap.md) | A component that renders a map with markers to show result locations using Mapbox GL. |
+|  [MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag })](./search-ui-react.mapboxmap.md) | A component that renders a map with markers to show result locations using Mapbox GL. |
 |  [NumericalFacet(props)](./search-ui-react.numericalfacet.md) | A component that displays a single numerical facet. Use this to override the default rendering. |
 |  [NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps })](./search-ui-react.numericalfacets.md) | A component that displays numerical facets applicable to the current vertical search. |
 |  [Pagination(props)](./search-ui-react.pagination.md) | Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages. |
@@ -84,6 +84,7 @@
 |  [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) | Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component. |
 |  [NumericalFacetsCssClasses](./search-ui-react.numericalfacetscssclasses.md) | The CSS class interface for [NumericalFacets()](./search-ui-react.numericalfacets.md)<!-- -->. |
 |  [NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md) | Props for the [NumericalFacets()](./search-ui-react.numericalfacets.md) component. |
+|  [OnDropdownInputChangeProps](./search-ui-react.ondropdowninputchangeprops.md) | The parameters that are passed into [FilterSearchProps.onDropdownInputChange](./search-ui-react.filtersearchprops.ondropdowninputchange.md)<!-- -->. |
 |  [OnSelectParams](./search-ui-react.onselectparams.md) | The parameters that are passed into [FilterSearchProps.onSelect](./search-ui-react.filtersearchprops.onselect.md)<!-- -->. |
 |  [PaginationCssClasses](./search-ui-react.paginationcssclasses.md) | The CSS classes used for pagination. |
 |  [PaginationProps](./search-ui-react.paginationprops.md) | Props for [Pagination()](./search-ui-react.pagination.md) component |
@@ -141,6 +142,7 @@
 |  [OnDragHandler](./search-ui-react.ondraghandler.md) | A function which is called when user drag the map. |
 |  [onSearchFunc](./search-ui-react.onsearchfunc.md) | The interface of a function which is called on a search. |
 |  [PinComponent](./search-ui-react.pincomponent.md) | A functional component that can be used to render a custom marker on the map. |
+|  [PinComponentProps](./search-ui-react.pincomponentprops.md) | Props for rendering a custom marker on the map. |
 |  [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data. |
 |  [SectionComponent](./search-ui-react.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
 |  [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md) | The configuration data for a field value static filter option. |

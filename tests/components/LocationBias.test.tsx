@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LocationBias } from '../../src/components/LocationBias';
 import { State, LocationBiasMethod, LocationBias as LocationBiasType } from '@yext/search-headless-react';
@@ -85,7 +85,7 @@ it('renders the proper text (location DisplayName, method, and update btn)', () 
 it('calls setUserLocation with coordinates returned by getUserLocation as params when update location is clicked', async () => {
   const actions = spyOnActions();
   render(<LocationBias />);
-  clickUpdateLocation();
+  await clickUpdateLocation();
 
   const expectedCoordinates = {
     latitude: newGeoPosition.coords.latitude,
@@ -93,9 +93,7 @@ it('calls setUserLocation with coordinates returned by getUserLocation as params
   };
 
   expect(locationOperations.getUserLocation).toBeCalled();
-  await waitFor(() => {
-    expect(actions.setUserLocation).toBeCalledWith(expectedCoordinates);
-  });
+  expect(actions.setUserLocation).toBeCalledWith(expectedCoordinates);
 });
 
 it('updates rendered DisplayName if location changes and update button is clicked', async () => {
@@ -105,11 +103,9 @@ it('updates rendered DisplayName if location changes and update button is clicke
   expect(locationNameElement).toBeDefined();
 
   mockAnswersState(mockedStateNyIP);
-  clickUpdateLocation();
+  await clickUpdateLocation();
 
-  await waitFor(() => {
-    expect(searchOperations.executeSearch).toBeCalled();
-  });
+  expect(searchOperations.executeSearch).toBeCalled();
 
   const newExpectedLocationName = mockedStateNyIP.location.locationBias.displayName;
   const newLocationNameElement = screen.getByText(newExpectedLocationName);
@@ -138,7 +134,7 @@ it('renders nothing if there is no display name', () => {
   expect(container).toBeEmptyDOMElement();
 });
 
-function clickUpdateLocation() {
+async function clickUpdateLocation() {
   const updateLocationButton = screen.getByRole('button', { name: 'Update your location' });
-  userEvent.click(updateLocationButton);
+  await userEvent.click(updateLocationButton);
 }

@@ -36,7 +36,8 @@ export {
   FilterSearch,
   FilterSearchCssClasses,
   FilterSearchProps,
-  OnSelectParams
+  OnSelectParams,
+  OnDropdownInputChangeProps
 } from './FilterSearch';
 
 export {
@@ -159,6 +160,7 @@ export {
 export {
   MapboxMap,
   PinComponent,
+  PinComponentProps,
   MapboxMapProps,
   OnDragHandler,
   CoordinateGetter,

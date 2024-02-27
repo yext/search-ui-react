@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { DirectAnswerState } from '@yext/search-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
-import { RecursivePartial, mockAnswersState } from '../__utils__/mocks';
+import { RecursivePartial, ignoreLinkClickErrors, mockAnswersState } from '../__utils__/mocks';
 import { fieldValueDAState, featuredSnippetDAState } from '../__fixtures__/data/directanswers';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
@@ -33,10 +33,11 @@ describe('Featured snippet direct answer analytics', () => {
 });
 
 function runAnalyticsTestSuite() {
-  it('reports link click analytics', () => {
+  it('reports link click analytics', async () => {
     render(<DirectAnswer />);
+    ignoreLinkClickErrors();
     const link = screen.getByRole('link');
-    userEvent.click(link);
+    await userEvent.click(link);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'CTA_CLICK',
@@ -46,10 +47,10 @@ function runAnalyticsTestSuite() {
     }));
   });
 
-  it('reports THUMBS_UP feedback', () => {
+  it('reports THUMBS_UP feedback', async () => {
     render(<DirectAnswer />);
     const thumbsUp = screen.queryAllByRole('button')[0];
-    userEvent.click(thumbsUp);
+    await userEvent.click(thumbsUp);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_UP',
@@ -59,10 +60,10 @@ function runAnalyticsTestSuite() {
     }));
   });
 
-  it('reports THUMBS_DOWN feedback', () => {
+  it('reports THUMBS_DOWN feedback', async () => {
     render(<DirectAnswer />);
     const thumbsDown = screen.queryAllByRole('button')[1];
-    userEvent.click(thumbsDown);
+    await userEvent.click(thumbsDown);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_DOWN',

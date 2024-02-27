@@ -63,7 +63,7 @@ describe('StandardFacets', () => {
     });
   });
 
-  it('Clicking an unselected facet option checkbox selects it', () => {
+  it('Clicking an unselected facet option checkbox selects it', async  () => {
     const actions = spyOnActions();
     render(<StandardFacets />);
 
@@ -73,7 +73,7 @@ describe('StandardFacets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    userEvent.click(coffeeCheckbox);
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
   });
 
@@ -90,7 +90,7 @@ describe('StandardFacets', () => {
     expect(coffeeLabelAndCount).toBeNull();
   });
 
-  it('Clicking an unselected facet option label selects it', () => {
+  it('Clicking an unselected facet option label selects it', async () => {
     const actions = spyOnActions();
     render(<StandardFacets />);
 
@@ -101,11 +101,11 @@ describe('StandardFacets', () => {
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     const coffeeLabel = screen.getByText(labelText);
-    userEvent.click(coffeeLabel);
+    await userEvent.click(coffeeLabel);
     expectFacetOptionSet(actions, productFacet.fieldId, coffeeFacetOption, true);
   });
 
-  it('Clicking a selected facet option checkbox unselects it', () => {
+  it('Clicking a selected facet option checkbox unselects it', async () => {
     const actions = spyOnActions();
     render(<StandardFacets />);
 
@@ -114,11 +114,11 @@ describe('StandardFacets', () => {
       getOptionLabelTextWithCount(productFacet.options[1]));
     expect(teaCheckbox.checked).toBeTruthy();
 
-    userEvent.click(teaCheckbox);
+    await userEvent.click(teaCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[1], false);
   });
 
-  it('Clicking a facet option executes a search when searchOnChange is true', () => {
+  it('Clicking a facet option executes a search when searchOnChange is true', async () => {
     const actions = spyOnActions();
     render(<StandardFacets />);
 
@@ -128,12 +128,12 @@ describe('StandardFacets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    userEvent.click(coffeeCheckbox);
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
     expect(actions.executeVerticalQuery).toBeCalled();
   });
 
-  it('Clicking a facet option does not execute a search when searchOnChange is false', () => {
+  it('Clicking a facet option does not execute a search when searchOnChange is false', async () => {
     const actions = spyOnActions();
     render(<StandardFacets searchOnChange={false} />);
 
@@ -143,7 +143,7 @@ describe('StandardFacets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    userEvent.click(coffeeCheckbox);
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
     expect(actions.executeVerticalQuery).not.toBeCalled();
   });
