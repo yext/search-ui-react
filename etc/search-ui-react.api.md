@@ -30,6 +30,11 @@ import { UnknownFieldValueDirectAnswer } from '@yext/search-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/search-headless-react';
 
 // @public
+export interface AfterDropdownInputFocusProps {
+    value: string;
+}
+
+// @public
 export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }: AlternativeVerticalsProps): JSX.Element | null;
 
 // @public
@@ -268,7 +273,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, onDropdownInputFocus, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -288,10 +293,10 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 
 // @public
 export interface FilterSearchProps {
+    afterDropdownInputFocus?: (params: AfterDropdownInputFocusProps) => void;
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
     onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
-    onDropdownInputFocus?: (params: OnDropdownInputFocusProps) => void;
     onSelect?: (params: OnSelectParams) => void;
     placeholder?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
@@ -469,12 +474,6 @@ export type OnDragHandler = (center: mapboxgl_2.LngLat, bounds: mapboxgl_2.LngLa
 // @public
 export interface OnDropdownInputChangeProps {
     executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>;
-    value: string;
-}
-
-// @public
-export interface OnDropdownInputFocusProps {
-    executeFilterSearch: () => Promise<FilterSearchResponse | undefined>;
     value: string;
 }
 

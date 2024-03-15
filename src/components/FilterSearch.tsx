@@ -71,18 +71,13 @@ export interface OnDropdownInputChangeProps {
 }
 
 /**
- * The parameters that are passed into {@link FilterSearchProps.onDropdownInputFocus}.
+ * The parameters that are passed into {@link FilterSearchProps.afterDropdownInputFocus}.
  *
  * @public
  */
-export interface OnDropdownInputFocusProps {
+export interface AfterDropdownInputFocusProps {
   /** The input element's value. */
   value: string,
-  /**
-   * A function that executes a filter search and updates the input and dropdown options
-   * with the response.
-   */
-  executeFilterSearch: () => Promise<FilterSearchResponse | undefined>
 }
 
 /**
@@ -110,8 +105,8 @@ export interface FilterSearchProps {
   onSelect?: (params: OnSelectParams) => void,
   /** A function which is called when the input element's value changes. Replaces the default behavior. */
   onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void,
-  /** A function which is called when the input gains focus. Replaces the default behavior. */
-  onDropdownInputFocus?: (params: OnDropdownInputFocusProps) => void,
+  /** A function which is called when the input gains focus. In addition to the default behavior. */
+  afterDropdownInputFocus?: (params: AfterDropdownInputFocusProps) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -133,7 +128,7 @@ export function FilterSearch({
   searchOnSelect,
   onSelect,
   onDropdownInputChange,
-  onDropdownInputFocus,
+  afterDropdownInputFocus,
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
@@ -308,12 +303,14 @@ export function FilterSearch({
   }
 
   const handleInputFocus = useCallback((value = '') => {
-    if (onDropdownInputFocus) {
-      onDropdownInputFocus({value, executeFilterSearch: () => executeFilterSearch(value)});
-    } else if (value) {
+    if (value) {
       executeFilterSearch(value);
     }
-  }, [onDropdownInputFocus, executeFilterSearch]);
+
+    if (afterDropdownInputFocus) {
+      afterDropdownInputFocus({value});
+    }
+  }, [afterDropdownInputFocus, executeFilterSearch]);
 
   return (
     <div className={cssClasses.filterSearchContainer}>

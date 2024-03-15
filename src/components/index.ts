@@ -38,7 +38,7 @@ export {
   FilterSearchProps,
   OnSelectParams,
   OnDropdownInputChangeProps,
-  OnDropdownInputFocusProps
+  AfterDropdownInputFocusProps,
 } from './FilterSearch';
 
 export {
