@@ -9,5 +9,5 @@ A function that executes a filter search and updates the input and dropdown opti
 **Signature:**
 
 ```typescript
-executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>;
+executeFilterSearch: () => Promise<FilterSearchResponse | undefined>;
 ```

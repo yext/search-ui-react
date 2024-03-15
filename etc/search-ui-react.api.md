@@ -474,7 +474,7 @@ export interface OnDropdownInputChangeProps {
 
 // @public
 export interface OnDropdownInputFocusProps {
-    executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>;
+    executeFilterSearch: () => Promise<FilterSearchResponse | undefined>;
     value: string;
 }
 

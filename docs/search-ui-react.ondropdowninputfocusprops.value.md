@@ -4,7 +4,7 @@
 
 ## OnDropdownInputFocusProps.value property
 
-The input element's value
+The input element's value.
 
 **Signature:**
 

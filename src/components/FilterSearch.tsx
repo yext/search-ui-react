@@ -76,13 +76,13 @@ export interface OnDropdownInputChangeProps {
  * @public
  */
 export interface OnDropdownInputFocusProps {
-  /** The input element's value */
+  /** The input element's value. */
   value: string,
   /**
    * A function that executes a filter search and updates the input and dropdown options
    * with the response.
    */
-  executeFilterSearch: (query?: string) => Promise<FilterSearchResponse | undefined>
+  executeFilterSearch: () => Promise<FilterSearchResponse | undefined>
 }
 
 /**
@@ -309,7 +309,7 @@ export function FilterSearch({
 
   const handleInputFocus = useCallback((value = '') => {
     if (onDropdownInputFocus) {
-      onDropdownInputFocus({value, executeFilterSearch});
+      onDropdownInputFocus({value, executeFilterSearch: () => executeFilterSearch(value)});
     } else if (value) {
       executeFilterSearch(value);
     }

@@ -136,10 +136,10 @@ describe('search with section labels', () => {
 
     await userEvent.type(searchBarElement, 'n');
     expect(executeFilterSearch).toHaveBeenCalled();
-    
+
     const autocompleteSection = screen.getByText('First name');
     expect(autocompleteSection).toBeDefined();
-    
+
   });
 
   it('input value stays the same when a user selects a filter', async () => {
@@ -193,7 +193,7 @@ describe('search with section labels', () => {
       },
       selected: false
     });
-    
+
     expect(setFilterOption).toBeCalledWith({
       filter: {
         kind: 'fieldValue',
@@ -650,7 +650,7 @@ describe('search without section labels', () => {
     await userEvent.keyboard('{enter}');
     expect(inputNode).toHaveValue('first name 1');
   });
-  
+
   it('when an onDropdownInputChange prop is specified, it gets called each time after the input changes and executeFilterSearch does not', async () => {
     const mockedOnDropdownInputChange = jest.fn();
     const executeFilterSearch = jest
@@ -659,7 +659,19 @@ describe('search without section labels', () => {
     await userEvent.type(screen.getByRole('textbox'), 'a');
     expect(mockedOnDropdownInputChange).toHaveBeenCalledTimes(1);
     expect(executeFilterSearch).toHaveBeenCalledTimes(0);
-  })
+  });
+
+  it('when an onDropdownInputFocus prop is provided, invokes it instead of the original ' +
+    'behavior when input gains focus', async () => {
+    const mockedOnDropdownInputFocus = jest.fn();
+    const executeFilterSearch = jest
+      .spyOn(SearchHeadless.prototype, 'executeFilterSearch');
+    renderFilterSearch(
+      {searchFields: searchFieldsProp, onDropdownInputFocus: mockedOnDropdownInputFocus});
+    await userEvent.click(screen.getByRole('textbox'));
+    expect(mockedOnDropdownInputFocus).toHaveBeenCalledTimes(1);
+    expect(executeFilterSearch).toHaveBeenCalledTimes(0);
+  });
 });
 
 describe('screen reader', () => {
@@ -675,7 +687,7 @@ describe('screen reader', () => {
     expect(executeFilterSearch).toHaveBeenCalled();
 
     const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found.';
-  
+
     const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
     expect(screenReaderMessage).toBeDefined();
   });
@@ -693,7 +705,7 @@ describe('screen reader', () => {
 
     const expectedScreenReaderMessage = '3 autocomplete options found.';
     const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
-      
+
     expect(screenReaderMessage).toBeDefined();
   });
 
@@ -709,7 +721,7 @@ describe('screen reader', () => {
 
     const expectedScreenReaderMessage = '0 autocomplete options found.';
     const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
-      
+
     expect(screenReaderMessage).toBeDefined();
   });
 });

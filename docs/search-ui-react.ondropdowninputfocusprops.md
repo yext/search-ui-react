@@ -16,6 +16,6 @@ interface OnDropdownInputFocusProps
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [executeFilterSearch](./search-ui-react.ondropdowninputfocusprops.executefiltersearch.md) |  | (query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt; | A function that executes a filter search and updates the input and dropdown options with the response. |
-|  [value](./search-ui-react.ondropdowninputfocusprops.value.md) |  | string | The input element's value |
+|  [executeFilterSearch](./search-ui-react.ondropdowninputfocusprops.executefiltersearch.md) |  | () =&gt; Promise&lt;FilterSearchResponse \| undefined&gt; | A function that executes a filter search and updates the input and dropdown options with the response. |
+|  [value](./search-ui-react.ondropdowninputfocusprops.value.md) |  | string | The input element's value. |
 
