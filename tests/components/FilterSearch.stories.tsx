@@ -42,7 +42,7 @@ const meta: Meta<typeof FilterSearch> = {
   args: {
     label: 'Filter',
     onDropdownInputChange: undefined,
-    onDropdownInputFocus: undefined,
+    afterDropdownInputFocus: undefined,
   }
 };
 export default meta;

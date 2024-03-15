@@ -105,7 +105,7 @@ export interface FilterSearchProps {
   onSelect?: (params: OnSelectParams) => void,
   /** A function which is called when the input element's value changes. Replaces the default behavior. */
   onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void,
-  /** A function which is called when the input gains focus. In addition to the default behavior. */
+  /** A function which is called immediately after the input gains focus. It does not replace the default focus behavior. */
   afterDropdownInputFocus?: (params: AfterDropdownInputFocusProps) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
@@ -307,9 +307,7 @@ export function FilterSearch({
       executeFilterSearch(value);
     }
 
-    if (afterDropdownInputFocus) {
-      afterDropdownInputFocus({value});
-    }
+    afterDropdownInputFocus?.({value});
   }, [afterDropdownInputFocus, executeFilterSearch]);
 
   return (

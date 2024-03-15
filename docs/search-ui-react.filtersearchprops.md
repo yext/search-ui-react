@@ -16,7 +16,7 @@ interface FilterSearchProps
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [afterDropdownInputFocus?](./search-ui-react.filtersearchprops.afterdropdowninputfocus.md) |  | (params: [AfterDropdownInputFocusProps](./search-ui-react.afterdropdowninputfocusprops.md)<!-- -->) =&gt; void | _(Optional)_ A function which is called when the input gains focus. In addition to the default behavior. |
+|  [afterDropdownInputFocus?](./search-ui-react.filtersearchprops.afterdropdowninputfocus.md) |  | (params: [AfterDropdownInputFocusProps](./search-ui-react.afterdropdowninputfocusprops.md)<!-- -->) =&gt; void | _(Optional)_ A function which is called immediately after the input gains focus. It does not replace the default focus behavior. |
 |  [customCssClasses?](./search-ui-react.filtersearchprops.customcssclasses.md) |  | [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 |  [label?](./search-ui-react.filtersearchprops.label.md) |  | string | _(Optional)_ The display label for the component. |
 |  [onDropdownInputChange?](./search-ui-react.filtersearchprops.ondropdowninputchange.md) |  | (params: [OnDropdownInputChangeProps](./search-ui-react.ondropdowninputchangeprops.md)<!-- -->) =&gt; void | _(Optional)_ A function which is called when the input element's value changes. Replaces the default behavior. |

@@ -663,13 +663,13 @@ describe('search without section labels', () => {
 
   it('when an afterDropdownInputFocus prop is provided, invokes it in addition to the original ' +
     'behavior when input gains focus', async () => {
-    const mockedaAfterDropdownInputFocus = jest.fn();
+    const mockedAfterDropdownInputFocus = jest.fn();
     const executeFilterSearch = jest.spyOn(SearchHeadless.prototype, 'executeFilterSearch');
     renderFilterSearch(
-      {searchFields: searchFieldsProp, afterDropdownInputFocus: mockedaAfterDropdownInputFocus});
-    await userEvent.type(screen.getByRole('textbox'), 'a');
+      {searchFields: searchFieldsProp, afterDropdownInputFocus: mockedAfterDropdownInputFocus});
     await userEvent.click(screen.getByRole('textbox'));
-    expect(mockedaAfterDropdownInputFocus).toHaveBeenCalledTimes(1);
+    expect(mockedAfterDropdownInputFocus).toHaveBeenCalledTimes(1);
+    await userEvent.type(screen.getByRole('textbox'), 'a');
     expect(executeFilterSearch).toHaveBeenCalledTimes(1);
   });
 });

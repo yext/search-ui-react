@@ -4,7 +4,7 @@
 
 ## FilterSearchProps.afterDropdownInputFocus property
 
-A function which is called when the input gains focus. In addition to the default behavior.
+A function which is called immediately after the input gains focus. It does not replace the default focus behavior.
 
 **Signature:**
 
