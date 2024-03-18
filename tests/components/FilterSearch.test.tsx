@@ -682,6 +682,7 @@ describe('search without section labels', () => {
     await userEvent.click(document.body);
     await userEvent.click(screen.getByRole('textbox'));
     expect(executeFilterSearch).toHaveBeenCalledTimes(2);
+    expect(executeFilterSearch).toHaveBeenCalledTimes(2);
   });
 });
 
