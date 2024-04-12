@@ -18,5 +18,5 @@ interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T>
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [customCssClasses?](./search-ui-react.standardcardprops.customcssclasses.md) |  | [StandardCardCssClasses](./search-ui-react.standardcardcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [showFeedbackButtons?](./search-ui-react.standardcardprops.showfeedbackbuttons.md) |  | boolean | _(Optional)_ Whether to show thumbs up/down buttons to provide feedback on the result card |
+|  [showFeedbackButtons?](./search-ui-react.standardcardprops.showfeedbackbuttons.md) |  | boolean | _(Optional)_ Whether to show thumbs up/down buttons to provide feedback on the result card. |
 

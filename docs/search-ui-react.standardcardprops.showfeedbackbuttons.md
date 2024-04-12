@@ -4,7 +4,7 @@
 
 ## StandardCardProps.showFeedbackButtons property
 
-Whether to show thumbs up/down buttons to provide feedback on the result card
+Whether to show thumbs up/down buttons to provide feedback on the result card.
 
 **Signature:**
 
