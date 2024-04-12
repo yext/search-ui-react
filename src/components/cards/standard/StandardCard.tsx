@@ -11,7 +11,7 @@ import React from 'react';
  * @public
  */
 export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> {
-  /** Whether to show thumbs up/down buttons to provide feedback on the result card */
+  /** Whether to show thumbs up/down buttons to provide feedback on the result card. */
   showFeedbackButtons?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: StandardCardCssClasses
