@@ -2434,6 +2434,7 @@ SOFTWARE.
 The following NPM packages may be included in this product:
 
  - lodash-es@4.17.21
+ - lodash@4.17.20
  - lodash@4.17.21
 
 These packages each contain the following license and notice below:
