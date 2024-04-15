@@ -22,7 +22,7 @@ export interface AppliedFiltersCssClasses {
 }
 
 export const builtInCssClasses: Readonly<AppliedFiltersCssClasses> = {
-  // Use negative margin to remove space above the filters on mobile
+  // Use negative margin to remove space above the filters on mobile.
   appliedFiltersContainer: 'flex flex-wrap -mt-3 md:mt-0 mb-2',
   appliedFiltersLoading: 'opacity-50',
   nlpFilter: 'border border-gray-200 rounded-3xl px-3 py-1.5 text-sm font-medium text-neutral-dark mr-2 mb-2',
