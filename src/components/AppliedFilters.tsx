@@ -56,7 +56,7 @@ const DEFAULT_HIDDEN_FIELDS = ['builtin.entityType'];
  * @public
  *
  * @param props - {@link AppliedFiltersProps}
- * @returns A React element for the applied filters
+ * @returns A React element for the applied filters.
  */
 export function AppliedFilters(props: AppliedFiltersProps): JSX.Element {
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
