@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: combined_coverage
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Download the current coverage
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: coverage
           path: coverage/
