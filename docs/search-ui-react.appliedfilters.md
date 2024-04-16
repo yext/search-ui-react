@@ -22,5 +22,5 @@ declare function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 
 JSX.Element
 
-A React element for the applied filters
+A React element for the applied filters.
 
