@@ -10,7 +10,7 @@ on:
 
 jobs:
   combined_coverage:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@main
     with:
       test_script: npm run build:css && npm run test
     secrets:
@@ -21,24 +21,24 @@ jobs:
     runs-on: ubuntu-latest
     needs: combined_coverage
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Download the current coverage
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: coverage
           path: coverage/
       - name: Get Visual Coverage Percentage
-        uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
+        uses: yext/slapshot-reusable-workflows/get-coverage-percent@main
         with:
           coverage-file: coverage/visual/lcov.info
         id: parse-visual-coverage
       - name: Get Unit Coverage Percentage
-        uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
+        uses: yext/slapshot-reusable-workflows/get-coverage-percent@main
         with:
           coverage-file: coverage/unit/lcov.info
         id: parse-unit-coverage
       - name: Get Combined Coverage Percentage
-        uses: yext/slapshot-reusable-workflows/get-coverage-percent@v1
+        uses: yext/slapshot-reusable-workflows/get-coverage-percent@main
         with:
           coverage-file: coverage/lcov.info
         id: parse-combined-coverage

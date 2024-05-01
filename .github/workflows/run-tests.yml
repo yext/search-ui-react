@@ -7,14 +7,14 @@ on: [push, pull_request]
 
 jobs:
   call_run_tests-react-18:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@main
     with:
       node_matrix: '["16.x", "18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-17:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@main
     with:
       # We have to install these swc libraries manually because 
       # the post install script doesn't seem to run properly 
@@ -41,7 +41,7 @@ jobs:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-16:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@main
     with:
       build_script: |
         npm i \

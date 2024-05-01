@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         target_branch: ["storybook-site", "test-site"]
-    uses: yext/slapshot-reusable-workflows/.github/workflows/sync_default_branch.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/sync_default_branch.yml@main
     with:
       target_branch: ${{ matrix.target_branch }}
     secrets:

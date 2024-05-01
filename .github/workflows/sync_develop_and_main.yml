@@ -6,6 +6,6 @@ on:
 
 jobs:
   call_sync_develop_and_main:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/sync_develop_and_main.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/sync_develop_and_main.yml@main
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}

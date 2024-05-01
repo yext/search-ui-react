@@ -6,6 +6,6 @@ on:
 
 jobs:
   call_version_update:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/version_update.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/version_update.yml@main
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
