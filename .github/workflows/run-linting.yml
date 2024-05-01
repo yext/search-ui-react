@@ -6,4 +6,4 @@ on:
 
 jobs:
   linting:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/run-linting.yml@main
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run-linting.yml@v1

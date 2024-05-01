@@ -6,7 +6,7 @@ on:
 
 jobs:
   call_wcag_test:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/wcag_test.yml@main
+    uses: yext/slapshot-reusable-workflows/.github/workflows/wcag_test.yml@v1
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
