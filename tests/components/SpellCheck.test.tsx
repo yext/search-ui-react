@@ -36,18 +36,18 @@ describe('SpellCheck', () => {
     });
   });
 
-  // it('Suggestion is formatted properly', () => {
-  //   render(<SpellCheck />);
-  //   expect(screen.getByText('Did you mean')).toBeDefined();
-  //   const correctedQuery = mockedState.spellCheck?.correctedQuery;
-  //   expect(correctedQuery && screen.getByText(correctedQuery)).toBeTruthy();
-  // });
+  it('Suggestion is formatted properly', () => {
+    render(<SpellCheck />);
+    expect(screen.getByText('Did you mean')).toBeDefined();
+    const correctedQuery = mockedState.spellCheck?.correctedQuery;
+    expect(correctedQuery && screen.getByText(correctedQuery)).toBeTruthy();
+  });
 
-  // it('Button\'s label is correct', () => {
-  //   render(<SpellCheck />);
-  //   const label = screen.getByRole('button').textContent;
-  //   expect(label).toEqual(mockedState.spellCheck?.correctedQuery);
-  // });
+  it('Button\'s label is correct', () => {
+    render(<SpellCheck />);
+    const label = screen.getByRole('button').textContent;
+    expect(label).toEqual(mockedState.spellCheck?.correctedQuery);
+  });
 
   // it('Fires onClick when provided', async () => {
   //   const props = {
