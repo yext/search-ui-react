@@ -18,7 +18,7 @@
 |  [executeSearch(searchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
 |  [Facets(props)](./search-ui-react.facets.md) | A component that displays all facets applicable to the current vertical search. |
 |  [FilterDivider({ className })](./search-ui-react.filterdivider.md) | A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters. |
-|  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
+|  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md) | A React Component which collects location information to create a location filter and perform a new search. |
 |  [getSearchIntents(searchActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./search-ui-react.getuserlocation.md) | Retrieves user's location using navigator.geolocation API. |
@@ -52,6 +52,7 @@
 
 |  Interface | Description |
 |  --- | --- |
+|  [AfterDropdownInputFocusProps](./search-ui-react.afterdropdowninputfocusprops.md) | The parameters that are passed into [FilterSearchProps.afterDropdownInputFocus](./search-ui-react.filtersearchprops.afterdropdowninputfocus.md)<!-- -->. |
 |  [AlternativeVerticalsCssClasses](./search-ui-react.alternativeverticalscssclasses.md) | The CSS class interface used for [AlternativeVerticals()](./search-ui-react.alternativeverticals.md)<!-- -->. |
 |  [AlternativeVerticalsProps](./search-ui-react.alternativeverticalsprops.md) | Props for [AlternativeVerticals()](./search-ui-react.alternativeverticals.md)<!-- -->. |
 |  [AppliedFiltersCssClasses](./search-ui-react.appliedfilterscssclasses.md) | The CSS class interface used for [AppliedFilters()](./search-ui-react.appliedfilters.md)<!-- -->. |

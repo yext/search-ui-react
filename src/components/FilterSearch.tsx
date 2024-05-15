@@ -71,6 +71,16 @@ export interface OnDropdownInputChangeProps {
 }
 
 /**
+ * The parameters that are passed into {@link FilterSearchProps.afterDropdownInputFocus}.
+ *
+ * @public
+ */
+export interface AfterDropdownInputFocusProps {
+  /** The input element's value. */
+  value: string,
+}
+
+/**
  * The props for the {@link FilterSearch} component.
  *
  * @public
@@ -95,6 +105,8 @@ export interface FilterSearchProps {
   onSelect?: (params: OnSelectParams) => void,
   /** A function which is called when the input element's value changes. Replaces the default behavior. */
   onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void,
+  /** A function which is called immediately after the input gains focus. It does not replace the default focus behavior. */
+  afterDropdownInputFocus?: (params: AfterDropdownInputFocusProps) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
   /** CSS classes for customizing the component styling. */
@@ -116,6 +128,7 @@ export function FilterSearch({
   searchOnSelect,
   onSelect,
   onDropdownInputChange,
+  afterDropdownInputFocus,
   sectioned = false,
   customCssClasses
 }: FilterSearchProps): JSX.Element {
@@ -293,7 +306,9 @@ export function FilterSearch({
     if (value) {
       executeFilterSearch(value);
     }
-  }, [executeFilterSearch]);
+
+    afterDropdownInputFocus?.({value});
+  }, [afterDropdownInputFocus, executeFilterSearch]);
 
   return (
     <div className={cssClasses.filterSearchContainer}>
