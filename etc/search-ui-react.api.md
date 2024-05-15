@@ -30,6 +30,11 @@ import { UnknownFieldValueDirectAnswer } from '@yext/search-headless-react';
 import { VerticalResults as VerticalResults_2 } from '@yext/search-headless-react';
 
 // @public
+export interface AfterDropdownInputFocusProps {
+    value: string;
+}
+
+// @public
 export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }: AlternativeVerticalsProps): JSX.Element | null;
 
 // @public
@@ -268,7 +273,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -288,6 +293,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 
 // @public
 export interface FilterSearchProps {
+    afterDropdownInputFocus?: (params: AfterDropdownInputFocusProps) => void;
     customCssClasses?: FilterSearchCssClasses;
     label?: string;
     onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
