@@ -11,6 +11,7 @@ import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
 import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
+import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import { default as mapboxgl_2 } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
@@ -201,6 +202,9 @@ export type DropdownItemProps = PropsWithChildren<{
 export function executeAutocomplete(searchActions: SearchActions): Promise<AutocompleteResponse | undefined>;
 
 // @public
+export function executeGenerativeDirectAnswer(searchActions: SearchActions): Promise<GenerativeDirectAnswerResponse | undefined>;
+
+// @public
 export function executeSearch(searchActions: SearchActions): Promise<void>;
 
 // @public
@@ -307,6 +311,34 @@ export interface FilterSearchProps {
 
 // @public
 export type FocusedItemData = Record<string, unknown>;
+
+// @public
+export function GenerativeDirectAnswerDisplay<T>({ customCssClasses }: GenerativeDirectAnswerDisplayProps<T>): JSX.Element | null;
+
+// @public
+export interface GenerativeDirectAnswerDisplayCssClasses {
+    // (undocumented)
+    generativeDirectAnswerCitation?: string;
+    // (undocumented)
+    generativeDirectAnswerCitations: string;
+    // (undocumented)
+    generativeDirectAnswerCitationSnippet?: string;
+    // (undocumented)
+    generativeDirectAnswerCitationTitle?: string;
+    // (undocumented)
+    generativeDirectAnswerContainer?: string;
+    // (undocumented)
+    generativeDirectAnswerDivider: string;
+    // (undocumented)
+    generativeDirectAnswerText: string;
+    // (undocumented)
+    generativeDirectAnswerTitle?: string;
+}
+
+// @public
+export interface GenerativeDirectAnswerDisplayProps<T> {
+    customCssClasses?: GenerativeDirectAnswerDisplayCssClasses;
+}
 
 // @public
 function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
