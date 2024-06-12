@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react';
 
+import { GenerativeDirectAnswerDisplay } from '../../src/components/GenerativeDirectAnswerDisplay';
+
 import { State } from '@yext/search-headless-react';
 import { mockAnswersState } from '../__utils__/mocks';
 import { verticalResults } from '../__fixtures__/data/universalresults';
 import { generativeDirectAnswerResponse } from '../__fixtures__/data/generativeDirectAnswer';
 import React from 'react';
-import { GenerativeDirectAnswerDisplay } from '../../dist';
 
 const mockedState: Partial<State> = {
   generativeDirectAnswer: {
