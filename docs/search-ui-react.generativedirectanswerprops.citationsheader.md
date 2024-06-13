@@ -4,7 +4,7 @@
 
 ## GenerativeDirectAnswerProps.citationsHeader property
 
-The header for the citations portion of the generative direct answer.
+The header for the citations section of the generative direct answer.
 
 **Signature:**
 

@@ -16,7 +16,7 @@ interface GenerativeDirectAnswerProps<T>
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [answerHeader?](./search-ui-react.generativedirectanswerprops.answerheader.md) |  | string \| JSX.Element | _(Optional)_ The header for the answer portion of the generative direct answer. |
-|  [citationsHeader?](./search-ui-react.generativedirectanswerprops.citationsheader.md) |  | string \| JSX.Element | _(Optional)_ The header for the citations portion of the generative direct answer. |
+|  [answerHeader?](./search-ui-react.generativedirectanswerprops.answerheader.md) |  | string \| JSX.Element | _(Optional)_ The header for the answer section of the generative direct answer. |
+|  [citationsHeader?](./search-ui-react.generativedirectanswerprops.citationsheader.md) |  | string \| JSX.Element | _(Optional)_ The header for the citations section of the generative direct answer. |
 |  [customCssClasses?](./search-ui-react.generativedirectanswerprops.customcssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 

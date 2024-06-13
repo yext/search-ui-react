@@ -45,9 +45,9 @@ const builtInCssClasses: Readonly<GenerativeDirectAnswerCssClasses> = {
 export interface GenerativeDirectAnswerProps<T> {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: GenerativeDirectAnswerCssClasses,
-  /** The header for the answer portion of the generative direct answer. */
+  /** The header for the answer section of the generative direct answer. */
   answerHeader?: string | JSX.Element
-  /** The header for the citations portion of the generative direct answer. */
+  /** The header for the citations section of the generative direct answer. */
   citationsHeader?: string | JSX.Element
 }
 
@@ -67,7 +67,6 @@ export function GenerativeDirectAnswer<T>({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const isVertical = useSearchState(state => state.meta.searchType === SearchTypeEnum.Vertical);
-  const isUniversal = useSearchState(state => state.meta.searchType === SearchTypeEnum.Universal);
   const universalResults = useSearchState(state => state.universal);
   const verticalResults = useSearchState(state => state.vertical);
   const searchId = useSearchState(state => state.meta.uuid);
@@ -86,10 +85,18 @@ export function GenerativeDirectAnswer<T>({
   const isLoading = useSearchState(state => state?.generativeDirectAnswer?.isLoading);
   
   React.useEffect(() => {
-    if (searchId && searchTerm && ((isUniversal && universalResults) || (isVertical && verticalResults))) {
-      executeGenerativeDirectAnswer(searchActions);
+    if (!searchId || !searchTerm) {
+      return;
+    } 
+    if (isVertical) {
+      if (!verticalResults) {
+        return;
+      }
+    } else if (!universalResults) {
+      return;
     }
-  }, [isVertical, isUniversal, universalResults, verticalResults, searchId]);
+    executeGenerativeDirectAnswer(searchActions);
+  }, [isVertical, universalResults, verticalResults, searchId]);
 
   if (isLoading || !gdaResponse || gdaResponse.resultStatus !== 'SUCCESS') {
     return null;
@@ -97,9 +104,9 @@ export function GenerativeDirectAnswer<T>({
 
   return (
     <div className={cssClasses.container}>
-      {renderAnswer({ gdaResponse, cssClasses, answerHeader })}
+      {Answer({ gdaResponse, cssClasses, answerHeader })}
       <div className={cssClasses.divider} />
-      {renderCitations({ gdaResponse, cssClasses, citationsHeader, searchResults })}
+      {Citations({ gdaResponse, cssClasses, citationsHeader, searchResults })}
     </div>
   );
 }
@@ -111,9 +118,9 @@ interface AnswerProps<T> extends GenerativeDirectAnswerProps<T> {
 }
 
 /**
- * Renders the answer section of the Generative Direct Answer.
+ * The answer section of the Generative Direct Answer.
  */
-function renderAnswer<T>(props: AnswerProps<T>): JSX.Element {
+function Answer<T>(props: AnswerProps<T>) {
   const { 
     gdaResponse, 
     cssClasses,
@@ -135,9 +142,9 @@ interface CitationsProps<T> extends GenerativeDirectAnswerProps<T> {
 }
 
 /**
- * Renders the generative direct answer text and citations.
+ * The citations section of the Generative Direct Answer.
  */
-function renderCitations<T>(props: CitationsProps<T>): JSX.Element {
+function Citations<T>(props: CitationsProps<T>) {
   const { 
     gdaResponse, 
     cssClasses,
@@ -151,12 +158,12 @@ function renderCitations<T>(props: CitationsProps<T>): JSX.Element {
       </div>
       <div className={cssClasses.citationsContainer}>
         {gdaResponse.citations.map(
-          citation => renderCitation(searchResults, citation, cssClasses))}
+          citation => Citation(searchResults, citation, cssClasses))}
     </div></>}
   </>;
 }
 
-function renderCitation(searchResults: Result[], citation: string, cssClasses: GenerativeDirectAnswerCssClasses): JSX.Element | null {
+function Citation(searchResults: Result[], citation: string, cssClasses: GenerativeDirectAnswerCssClasses) {
   const rawResult: Result | undefined = searchResults.find(r => r.rawData.uid === citation)
   if (!rawResult) {
     return null;

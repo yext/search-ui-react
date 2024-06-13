@@ -4,7 +4,7 @@
 
 ## GenerativeDirectAnswerProps.answerHeader property
 
-The header for the answer portion of the generative direct answer.
+The header for the answer section of the generative direct answer.
 
 **Signature:**
 
