@@ -177,7 +177,7 @@ export * from './sections/index';
 export * from './AnalyticsProvider';
 
 export {
-  GenerativeDirectAnswerDisplay,
-  GenerativeDirectAnswerDisplayCssClasses,
-  GenerativeDirectAnswerDisplayProps,
-} from './GenerativeDirectAnswerDisplay';
+  GenerativeDirectAnswer,
+  GenerativeDirectAnswerCssClasses,
+  GenerativeDirectAnswerProps,
+} from './GenerativeDirectAnswer';

@@ -313,31 +313,33 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function GenerativeDirectAnswerDisplay<T>({ customCssClasses }: GenerativeDirectAnswerDisplayProps<T>): JSX.Element | null;
+export function GenerativeDirectAnswer<T>({ customCssClasses, answerHeader, citationsHeader }: GenerativeDirectAnswerProps<T>): JSX.Element | null;
 
 // @public
-export interface GenerativeDirectAnswerDisplayCssClasses {
+export interface GenerativeDirectAnswerCssClasses {
     // (undocumented)
-    generativeDirectAnswerCitation?: string;
+    answerText?: string;
     // (undocumented)
-    generativeDirectAnswerCitations: string;
+    citation?: string;
     // (undocumented)
-    generativeDirectAnswerCitationSnippet?: string;
+    citationsContainer?: string;
     // (undocumented)
-    generativeDirectAnswerCitationTitle?: string;
+    citationSnippet?: string;
     // (undocumented)
-    generativeDirectAnswerContainer?: string;
+    citationTitle?: string;
     // (undocumented)
-    generativeDirectAnswerDivider: string;
+    container?: string;
     // (undocumented)
-    generativeDirectAnswerText: string;
+    divider?: string;
     // (undocumented)
-    generativeDirectAnswerTitle?: string;
+    header?: string;
 }
 
 // @public
-export interface GenerativeDirectAnswerDisplayProps<T> {
-    customCssClasses?: GenerativeDirectAnswerDisplayCssClasses;
+export interface GenerativeDirectAnswerProps<T> {
+    answerHeader?: string | JSX.Element;
+    citationsHeader?: string | JSX.Element;
+    customCssClasses?: GenerativeDirectAnswerCssClasses;
 }
 
 // @public

@@ -20,7 +20,7 @@
 |  [Facets(props)](./search-ui-react.facets.md) | A component that displays all facets applicable to the current vertical search. |
 |  [FilterDivider({ className })](./search-ui-react.filterdivider.md) | A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters. |
 |  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
-|  [GenerativeDirectAnswerDisplay({ customCssClasses })](./search-ui-react.generativedirectanswerdisplay.md) | Displays the AI generated answer of a generative direct answer. |
+|  [GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader })](./search-ui-react.generativedirectanswer.md) | Displays the AI generated answer of a generative direct answer. |
 |  [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md) | A React Component which collects location information to create a location filter and perform a new search. |
 |  [getSearchIntents(searchActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
 |  [getUserLocation(geolocationOptions)](./search-ui-react.getuserlocation.md) | Retrieves user's location using navigator.geolocation API. |
@@ -74,8 +74,8 @@
 |  [FilterOptionConfig](./search-ui-react.filteroptionconfig.md) | The configuration data for a field value filter option. |
 |  [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./search-ui-react.filtersearchprops.md) | The props for the [FilterSearch()](./search-ui-react.filtersearch.md) component. |
-|  [GenerativeDirectAnswerDisplayCssClasses](./search-ui-react.generativedirectanswerdisplaycssclasses.md) | The CSS class interface used for [GenerativeDirectAnswerDisplay()](./search-ui-react.generativedirectanswerdisplay.md)<!-- -->. |
-|  [GenerativeDirectAnswerDisplayProps](./search-ui-react.generativedirectanswerdisplayprops.md) | Props for [GenerativeDirectAnswerDisplay()](./search-ui-react.generativedirectanswerdisplay.md)<!-- -->. |
+|  [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) | The CSS class interface used for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
+|  [GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md) | Props for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
 |  [GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md) | The CSS class interface for the Geolocation component. |
 |  [GeolocationProps](./search-ui-react.geolocationprops.md) | The props for the Geolocation component. |
 |  [HierarchicalFacetDisplayCssClasses](./search-ui-react.hierarchicalfacetdisplaycssclasses.md) | The CSS class interface for HierarchicalFacetDisplay. |

@@ -7,7 +7,7 @@ import {
   SpellCheck,
   UniversalResults,
   VisualAutocompleteConfig,
-  GenerativeDirectAnswerDisplay
+  GenerativeDirectAnswer
 } from '@yext/search-ui-react';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
@@ -73,7 +73,7 @@ export default function UniversalPage(): JSX.Element {
         customCssClasses={customSearchBarCss}
       />
       <SpellCheck />
-      <GenerativeDirectAnswerDisplay />
+      <GenerativeDirectAnswer />
       <DirectAnswer />
       <ResultsCount />
       <UniversalResults

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { GenerativeDirectAnswerDisplay } from '../../src/components/GenerativeDirectAnswerDisplay';
+import { GenerativeDirectAnswer } from '../../src/components/GenerativeDirectAnswer';
 
 import { State } from '@yext/search-headless-react';
 import { mockAnswersState } from '../__utils__/mocks';
@@ -32,7 +32,7 @@ describe('GenerativeDirectAnswer', () => {
   });
 
   it('Answer text and citations are displayed', () => {
-    render(<GenerativeDirectAnswerDisplay />);
+    render(<GenerativeDirectAnswer />);
     const verticals = mockedState.universal?.verticals ?? [];
     expect(screen.getByText(generativeDirectAnswerResponse.directAnswer)).toBeDefined();
 
