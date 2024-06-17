@@ -41,7 +41,7 @@ const builtInCssClasses: Readonly<GenerativeDirectAnswerCssClasses> = {
  *
  * @public
  */
-export interface GenerativeDirectAnswerProps<T> {
+export interface GenerativeDirectAnswerProps {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: GenerativeDirectAnswerCssClasses,
   /** The header for the answer section of the generative direct answer. */
@@ -58,11 +58,11 @@ export interface GenerativeDirectAnswerProps<T> {
  * @param props - {@link GenerativeDirectAnswerProps}
  * @returns A React element for the generative direct answer, or null if there is no generated answer
  */
-export function GenerativeDirectAnswer<T>({
+export function GenerativeDirectAnswer({
   customCssClasses,
   answerHeader,
   citationsHeader
-}: GenerativeDirectAnswerProps<T>): JSX.Element | null {
+}: GenerativeDirectAnswerProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const universalResults = useSearchState(state => state.universal);
@@ -100,7 +100,7 @@ export function GenerativeDirectAnswer<T>({
   );
 }
 
-interface AnswerProps<T> extends GenerativeDirectAnswerProps<T> {
+interface AnswerProps extends GenerativeDirectAnswerProps {
   gdaResponse: GenerativeDirectAnswerResponse,
   cssClasses: GenerativeDirectAnswerCssClasses,
   answerHeader?: string | JSX.Element,
@@ -109,7 +109,7 @@ interface AnswerProps<T> extends GenerativeDirectAnswerProps<T> {
 /**
  * The answer section of the Generative Direct Answer.
  */
-function Answer<T>(props: AnswerProps<T>) {
+function Answer(props: AnswerProps) {
   const { 
     gdaResponse, 
     cssClasses,
@@ -123,7 +123,7 @@ function Answer<T>(props: AnswerProps<T>) {
   </>;
 }
 
-interface CitationsProps<T> extends GenerativeDirectAnswerProps<T> {
+interface CitationsProps extends GenerativeDirectAnswerProps {
   gdaResponse: GenerativeDirectAnswerResponse,
   cssClasses: GenerativeDirectAnswerCssClasses,
   citationsHeader?: string | JSX.Element,
@@ -133,7 +133,7 @@ interface CitationsProps<T> extends GenerativeDirectAnswerProps<T> {
 /**
  * The citations section of the Generative Direct Answer.
  */
-function Citations<T>(props: CitationsProps<T>) {
+function Citations(props: CitationsProps) {
   const { 
     gdaResponse, 
     cssClasses,
@@ -155,7 +155,7 @@ function Citations<T>(props: CitationsProps<T>) {
 }
 
 function Citation(searchResults: Result[], citation: string, cssClasses: GenerativeDirectAnswerCssClasses) {
-  const rawResult: Result | undefined = searchResults.find(r => r.rawData.uid === citation)
+  const rawResult: Result | undefined = searchResults.find(r => r.rawData.uid === citation);
   if (!rawResult) {
     return null;
   }
