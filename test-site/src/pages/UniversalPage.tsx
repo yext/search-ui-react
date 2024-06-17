@@ -73,7 +73,7 @@ export default function UniversalPage(): JSX.Element {
         customCssClasses={customSearchBarCss}
       />
       <SpellCheck />
-      <GenerativeDirectAnswer />
+      <GenerativeDirectAnswer answerHeader='AI Generated Answer' citationsHeader='Sources'/>
       <DirectAnswer />
       <ResultsCount />
       <UniversalResults
