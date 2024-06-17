@@ -313,7 +313,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function GenerativeDirectAnswer<T>({ customCssClasses, answerHeader, citationsHeader }: GenerativeDirectAnswerProps<T>): JSX.Element | null;
+export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader }: GenerativeDirectAnswerProps): JSX.Element | null;
 
 // @public
 export interface GenerativeDirectAnswerCssClasses {
@@ -336,7 +336,7 @@ export interface GenerativeDirectAnswerCssClasses {
 }
 
 // @public
-export interface GenerativeDirectAnswerProps<T> {
+export interface GenerativeDirectAnswerProps {
     answerHeader?: string | JSX.Element;
     citationsHeader?: string | JSX.Element;
     customCssClasses?: GenerativeDirectAnswerCssClasses;

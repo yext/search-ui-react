@@ -9,7 +9,7 @@ Props for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md
 **Signature:**
 
 ```typescript
-interface GenerativeDirectAnswerProps<T> 
+interface GenerativeDirectAnswerProps 
 ```
 
 ## Properties
