@@ -2,6 +2,7 @@ import {
   GenerativeDirectAnswerResponse, 
   useSearchActions, 
   useSearchState, 
+  SearchTypeEnum,
   Result
 } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks';
@@ -31,7 +32,7 @@ const builtInCssClasses: Readonly<GenerativeDirectAnswerCssClasses> = {
   answerText: 'mt-4',
   divider: 'border-b border-gray-200 w-full pb-6 mb-6',
   citationsContainer: 'mt-4 flex overflow-x-auto gap-4',
-  citation: 'p-4 border border-gray-200 rounded-lg shadow-sm bg-slate-100 flex flex-col grow-0 shrink-0 basis-64 text-sm text-neutral',
+  citation: 'p-4 border border-gray-200 rounded-lg shadow-sm bg-slate-100 flex flex-col grow-0 shrink-0 basis-64 text-sm text-neutral overflow-x-auto',
   citationTitle: 'font-bold',
   citationSnippet: 'line-clamp-2 text-ellipsis break-words'
 };
@@ -45,9 +46,11 @@ export interface GenerativeDirectAnswerProps {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: GenerativeDirectAnswerCssClasses,
   /** The header for the answer section of the generative direct answer. */
-  answerHeader?: string | JSX.Element
+  answerHeader?: string | JSX.Element,
   /** The header for the citations section of the generative direct answer. */
-  citationsHeader?: string | JSX.Element
+  citationsHeader?: string | JSX.Element,
+  /** The component for citation card */
+  CitationCard?: (props: CitationProps) => JSX.Element | null
 }
 
 /**
@@ -61,20 +64,22 @@ export interface GenerativeDirectAnswerProps {
 export function GenerativeDirectAnswer({
   customCssClasses,
   answerHeader,
-  citationsHeader
+  citationsHeader,
+  CitationCard
 }: GenerativeDirectAnswerProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
+  const isUniversal = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Universal;
   const universalResults = useSearchState(state => state.universal);
   const verticalResults = useSearchState(state => state.vertical);
 
   const searchResults: Result[] | undefined = React.useMemo(() => {
-    if (universalResults) {
+    if (isUniversal) {
       return universalResults.verticals?.flatMap(v => v.results);
-    } else if (verticalResults) {
+    } else {
       return verticalResults.results;
     }
-  }, [universalResults, verticalResults]);
+  }, [isUniversal, universalResults, verticalResults]);
 
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
@@ -89,21 +94,21 @@ export function GenerativeDirectAnswer({
 
   if (!searchResults?.length || isLoading || !gdaResponse || gdaResponse.resultStatus !== 'SUCCESS') {
     return null;
-  }  
+  }
 
   return (
     <div className={cssClasses.container}>
       <Answer gdaResponse={gdaResponse} cssClasses={cssClasses} answerHeader={answerHeader}/>
       <div className={cssClasses.divider} />
-      <Citations gdaResponse={gdaResponse} cssClasses={cssClasses} citationsHeader={citationsHeader} searchResults={searchResults}/>
+      <Citations gdaResponse={gdaResponse} cssClasses={cssClasses} citationsHeader={citationsHeader} searchResults={searchResults} CitationCard={CitationCard}/>
     </div>
   );
 }
 
-interface AnswerProps extends GenerativeDirectAnswerProps {
+interface AnswerProps {
   gdaResponse: GenerativeDirectAnswerResponse,
   cssClasses: GenerativeDirectAnswerCssClasses,
-  answerHeader?: string | JSX.Element,
+  answerHeader?: string | JSX.Element
 }
 
 /**
@@ -113,7 +118,7 @@ function Answer(props: AnswerProps) {
   const { 
     gdaResponse, 
     cssClasses,
-    answerHeader,
+    answerHeader = 'AI Generated Answer'
   } = props;
   return <>
     <div className={cssClasses.header}>
@@ -123,11 +128,12 @@ function Answer(props: AnswerProps) {
   </>;
 }
 
-interface CitationsProps extends GenerativeDirectAnswerProps {
+interface CitationsProps {
   gdaResponse: GenerativeDirectAnswerResponse,
   cssClasses: GenerativeDirectAnswerCssClasses,
   citationsHeader?: string | JSX.Element,
-  searchResults: Result[]
+  searchResults: Result[],
+  CitationCard?: (props: CitationProps) => JSX.Element | null
 }
 
 /**
@@ -137,8 +143,9 @@ function Citations(props: CitationsProps) {
   const { 
     gdaResponse, 
     cssClasses,
-    citationsHeader,
-    searchResults
+    citationsHeader = `Sources (${gdaResponse.citations.length})`,
+    searchResults,
+    CitationCard = Citation
   } = props;
   if (!gdaResponse.citations.length) {
     return null;
@@ -149,18 +156,34 @@ function Citations(props: CitationsProps) {
     </div>
     <div className={cssClasses.citationsContainer}>
       {gdaResponse.citations.map(
-        citation => Citation(searchResults, citation, cssClasses))}
+        citation => <CitationCard key={citation} searchResults={searchResults} citation={citation} cssClasses={cssClasses} />)}
     </div>
   </>;
 }
 
-function Citation(searchResults: Result[], citation: string, cssClasses: GenerativeDirectAnswerCssClasses) {
+/**
+ * Props for citation card.
+ *
+ * @public
+ */
+export interface CitationProps {
+  searchResults: Result[],
+  citation: string,
+  cssClasses: GenerativeDirectAnswerCssClasses
+}
+
+function Citation(props: CitationProps) {
+  const {
+    searchResults,
+    citation,
+    cssClasses
+  } = props;
   const rawResult: Result | undefined = searchResults.find(r => r.rawData.uid === citation);
   if (!rawResult) {
     return null;
   }
 
-  return <div key={citation} className={cssClasses.citation}>
+  return <div className={cssClasses.citation}>
     <div className={cssClasses.citationTitle}>{rawResult.rawData.name}</div>
     <div className={cssClasses.citationSnippet}>{rawResult.rawData.description}</div>
   </div>;

@@ -17,6 +17,7 @@ interface GenerativeDirectAnswerProps
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [answerHeader?](./search-ui-react.generativedirectanswerprops.answerheader.md) |  | string \| JSX.Element | _(Optional)_ The header for the answer section of the generative direct answer. |
+|  [CitationCard?](./search-ui-react.generativedirectanswerprops.citationcard.md) |  | (props: [CitationProps](./search-ui-react.citationprops.md)<!-- -->) =&gt; JSX.Element \| null | _(Optional)_ The component for citation card |
 |  [citationsHeader?](./search-ui-react.generativedirectanswerprops.citationsheader.md) |  | string \| JSX.Element | _(Optional)_ The header for the citations section of the generative direct answer. |
 |  [customCssClasses?](./search-ui-react.generativedirectanswerprops.customcssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 

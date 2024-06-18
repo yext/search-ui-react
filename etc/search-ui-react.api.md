@@ -137,6 +137,16 @@ export interface CardProps<T = DefaultRawDataType> {
 }
 
 // @public
+export interface CitationProps {
+    // (undocumented)
+    citation: string;
+    // (undocumented)
+    cssClasses: GenerativeDirectAnswerCssClasses;
+    // (undocumented)
+    searchResults: Result[];
+}
+
+// @public
 export const ComponentsContentPath = "node_modules/@yext/search-ui-react/lib/**/*.{js,jsx}";
 
 // @public
@@ -313,7 +323,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader }: GenerativeDirectAnswerProps): JSX.Element | null;
+export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard }: GenerativeDirectAnswerProps): JSX.Element | null;
 
 // @public
 export interface GenerativeDirectAnswerCssClasses {
@@ -338,6 +348,7 @@ export interface GenerativeDirectAnswerCssClasses {
 // @public
 export interface GenerativeDirectAnswerProps {
     answerHeader?: string | JSX.Element;
+    CitationCard?: (props: CitationProps) => JSX.Element | null;
     citationsHeader?: string | JSX.Element;
     customCssClasses?: GenerativeDirectAnswerCssClasses;
 }
