@@ -1,4 +1,4 @@
-import { provideHeadless, useSearchActions } from '@yext/search-headless-react';
+import { provideHeadless, useSearchActions, Result } from '@yext/search-headless-react';
 import {
   DirectAnswer,
   DropdownItem,
@@ -6,7 +6,9 @@ import {
   SearchBar,
   SpellCheck,
   UniversalResults,
-  VisualAutocompleteConfig
+  VisualAutocompleteConfig,
+  GenerativeDirectAnswer,
+  CitationProps
 } from '@yext/search-ui-react';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
@@ -58,6 +60,24 @@ const customSearchBarCss = {
   searchBarContainer: 'mb-3 text-emerald-800'
 };
 
+function CustomCitationCard(props: CitationProps): JSX.Element | null {
+  const {
+    searchResults,
+    citation,
+    cssClasses
+  } = props;
+  const rawResult: Result | undefined = searchResults.find((r: Result) => r.rawData.uid === citation);
+
+  if (!rawResult) {
+    return null;
+  }
+
+  return <div key={citation} className={cssClasses.citation}>
+    {typeof rawResult.rawData.id === 'string' && <div className={cssClasses.citationTitle}>{rawResult.rawData.id}</div>}
+    {typeof rawResult.rawData.type === 'string' && <div className={cssClasses.citationSnippet}>{rawResult.rawData.type}</div>}
+  </div>;
+}
+
 export default function UniversalPage(): JSX.Element {
   const searchActions = useSearchActions();
   useLayoutEffect(() => {
@@ -72,6 +92,7 @@ export default function UniversalPage(): JSX.Element {
         customCssClasses={customSearchBarCss}
       />
       <SpellCheck />
+      <GenerativeDirectAnswer answerHeader='A custom answer header' CitationCard={CustomCitationCard}/>
       <DirectAnswer />
       <ResultsCount />
       <UniversalResults

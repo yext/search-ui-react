@@ -175,3 +175,10 @@ export {
 
 export * from './sections/index';
 export * from './AnalyticsProvider';
+
+export {
+  GenerativeDirectAnswer,
+  GenerativeDirectAnswerCssClasses,
+  GenerativeDirectAnswerProps,
+  CitationProps
+} from './GenerativeDirectAnswer';

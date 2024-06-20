@@ -11,6 +11,7 @@ import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
 import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
+import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import { default as mapboxgl_2 } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
@@ -136,6 +137,16 @@ export interface CardProps<T = DefaultRawDataType> {
 }
 
 // @public
+export interface CitationProps {
+    // (undocumented)
+    citation: string;
+    // (undocumented)
+    cssClasses: GenerativeDirectAnswerCssClasses;
+    // (undocumented)
+    searchResults: Result[];
+}
+
+// @public
 export const ComponentsContentPath = "node_modules/@yext/search-ui-react/lib/**/*.{js,jsx}";
 
 // @public
@@ -199,6 +210,9 @@ export type DropdownItemProps = PropsWithChildren<{
 
 // @public
 export function executeAutocomplete(searchActions: SearchActions): Promise<AutocompleteResponse | undefined>;
+
+// @public
+export function executeGenerativeDirectAnswer(searchActions: SearchActions): Promise<GenerativeDirectAnswerResponse | undefined>;
 
 // @public
 export function executeSearch(searchActions: SearchActions): Promise<void>;
@@ -307,6 +321,37 @@ export interface FilterSearchProps {
 
 // @public
 export type FocusedItemData = Record<string, unknown>;
+
+// @public
+export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard }: GenerativeDirectAnswerProps): JSX.Element | null;
+
+// @public
+export interface GenerativeDirectAnswerCssClasses {
+    // (undocumented)
+    answerText?: string;
+    // (undocumented)
+    citation?: string;
+    // (undocumented)
+    citationsContainer?: string;
+    // (undocumented)
+    citationSnippet?: string;
+    // (undocumented)
+    citationTitle?: string;
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+    // (undocumented)
+    header?: string;
+}
+
+// @public
+export interface GenerativeDirectAnswerProps {
+    answerHeader?: string | JSX.Element;
+    CitationCard?: (props: CitationProps) => JSX.Element | null;
+    citationsHeader?: string | JSX.Element;
+    customCssClasses?: GenerativeDirectAnswerCssClasses;
+}
 
 // @public
 function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
