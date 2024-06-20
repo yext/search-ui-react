@@ -1,7 +1,7 @@
 import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 
 export const generativeDirectAnswerResponse: GenerativeDirectAnswerResponse = {
-  directAnswer: 'an AI generated answer',
+  directAnswer: 'answer text',
   resultStatus: 'SUCCESS',
   citations: ['uid2','uid3']
 }
