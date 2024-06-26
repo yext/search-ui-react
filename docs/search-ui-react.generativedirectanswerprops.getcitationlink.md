@@ -9,5 +9,5 @@ A function which is called to get the page URL that clicking on a citation card 
 **Signature:**
 
 ```typescript
-getCitationLink?: (result: Result) => string | undefined;
+getCitationLink?: (result: Result) => unknown;
 ```

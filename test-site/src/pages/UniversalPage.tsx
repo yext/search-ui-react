@@ -89,8 +89,10 @@ export default function UniversalPage(): JSX.Element {
       <SpellCheck />
       <GenerativeDirectAnswer 
         answerHeader='A custom answer header' 
-        CitationCard={CustomCitationCard}
-        getCitationLink={searchResult => (typeof searchResult.rawData.link === 'string' ? searchResult.rawData.link : undefined)}
+        getCitationLink={searchResult => searchResult.rawData.link}
+        getCitationTitle={searchResult => `${searchResult.rawData.id} - ${searchResult.rawData.name}`}
+        getCitationSnippet={searchResult => searchResult.rawData.s_snippet}
+        // CitationCard={CustomCitationCard}
       />
       <DirectAnswer />
       <ResultsCount />

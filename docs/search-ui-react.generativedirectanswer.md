@@ -9,14 +9,14 @@ Displays the AI generated answer of a generative direct answer.
 **Signature:**
 
 ```typescript
-declare function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, getCitationLink }: GenerativeDirectAnswerProps): JSX.Element | null;
+declare function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, getCitationLink, getCitationTitle, getCitationSnippet }: GenerativeDirectAnswerProps): JSX.Element | null;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  { customCssClasses, answerHeader, citationsHeader, CitationCard, getCitationLink } | [GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md) |  |
+|  { customCssClasses, answerHeader, citationsHeader, CitationCard, getCitationLink, getCitationTitle, getCitationSnippet } | [GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md) |  |
 
 **Returns:**
 

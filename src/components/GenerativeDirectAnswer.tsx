@@ -52,7 +52,11 @@ export interface GenerativeDirectAnswerProps {
   /** The component for citation card */
   CitationCard?: (props: CitationProps) => JSX.Element | null,
   /** A function which is called to get the page URL that clicking on a citation card routes to. */
-  getCitationLink?: (result: Result) => string | undefined
+  getCitationLink?: (result: Result) => unknown,
+  /** A function which is called to get the title of citation card. */
+  getCitationTitle?: (result: Result) => unknown,
+  /** A function which is called to get the snippet of citation card. */
+  getCitationSnippet?: (result: Result) => unknown
 }
 
 /**
@@ -68,7 +72,9 @@ export function GenerativeDirectAnswer({
   answerHeader,
   citationsHeader,
   CitationCard,
-  getCitationLink
+  getCitationLink,
+  getCitationTitle,
+  getCitationSnippet
 }: GenerativeDirectAnswerProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
@@ -110,6 +116,8 @@ export function GenerativeDirectAnswer({
         searchResults={searchResults} 
         CitationCard={CitationCard}
         getCitationLink={getCitationLink}
+        getCitationTitle={getCitationTitle}
+        getCitationSnippet={getCitationSnippet}
       />
     </div>
   );
@@ -144,7 +152,9 @@ interface CitationsProps {
   searchResults: Result[],
   citationsHeader?: string | JSX.Element,
   CitationCard?: (props: CitationProps) => JSX.Element | null,
-  getCitationLink?: (result: Result) => string | undefined
+  getCitationLink?: (result: Result) => unknown,
+  getCitationTitle?: (result: Result) => unknown,
+  getCitationSnippet?: (result: Result) => unknown
 }
 
 /**
@@ -157,7 +167,9 @@ function Citations(props: CitationsProps) {
     searchResults,
     citationsHeader = `Sources (${gdaResponse.citations.length})`,
     CitationCard = Citation,
-    getCitationLink
+    getCitationLink,
+    getCitationTitle,
+    getCitationSnippet
   } = props;
   if (!gdaResponse.citations.length) {
     return null;
@@ -173,6 +185,8 @@ function Citations(props: CitationsProps) {
             searchResult={result} 
             cssClasses={cssClasses}
             getCitationLink={getCitationLink}
+            getCitationTitle={getCitationTitle}
+            getCitationSnippet={getCitationSnippet}
           />
         )
       }
@@ -196,18 +210,24 @@ function Citations(props: CitationsProps) {
 export interface CitationProps {
   searchResult: Result,
   cssClasses: GenerativeDirectAnswerCssClasses,
-  getCitationLink?: (searchResult: Result) => string | undefined
+  getCitationLink?: (searchResult: Result) => unknown,
+  getCitationTitle?: (searchResult: Result) => unknown,
+  getCitationSnippet?: (searchResult: Result) => unknown
 }
 
 function Citation(props: CitationProps) {
   const {
     searchResult,
     cssClasses,
-    getCitationLink
+    getCitationLink,
+    getCitationTitle = (searchResult: Result) => searchResult.rawData.name,
+    getCitationSnippet = (searchResult: Result) => searchResult.rawData.description
   } = props;
-  const citationLink: string | undefined = getCitationLink?.(searchResult);
-  return <a className={cssClasses.citation} href={citationLink}>
-    <div className={cssClasses.citationTitle}>{searchResult.rawData.name}</div>
-    <div className={cssClasses.citationSnippet}>{searchResult.rawData.description}</div>
+  const citationLink: unknown = getCitationLink?.(searchResult);
+  const citationTitle: unknown = getCitationTitle?.(searchResult);
+  const citationSnippet: unknown = getCitationSnippet?.(searchResult);
+  return <a className={cssClasses.citation} href={typeof citationLink === 'string' ? citationLink : undefined}>
+    <div className={cssClasses.citationTitle}>{citationTitle}</div>
+    <div className={cssClasses.citationSnippet}>{citationSnippet}</div>
   </a>;
 }

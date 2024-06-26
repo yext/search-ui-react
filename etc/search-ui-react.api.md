@@ -141,7 +141,11 @@ export interface CitationProps {
     // (undocumented)
     cssClasses: GenerativeDirectAnswerCssClasses;
     // (undocumented)
-    getCitationLink?: (searchResult: Result) => string | undefined;
+    getCitationLink?: (searchResult: Result) => unknown;
+    // (undocumented)
+    getCitationSnippet?: (searchResult: Result) => unknown;
+    // (undocumented)
+    getCitationTitle?: (searchResult: Result) => unknown;
     // (undocumented)
     searchResult: Result;
 }
@@ -323,7 +327,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, getCitationLink }: GenerativeDirectAnswerProps): JSX.Element | null;
+export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, getCitationLink, getCitationTitle, getCitationSnippet }: GenerativeDirectAnswerProps): JSX.Element | null;
 
 // @public
 export interface GenerativeDirectAnswerCssClasses {
@@ -351,7 +355,9 @@ export interface GenerativeDirectAnswerProps {
     CitationCard?: (props: CitationProps) => JSX.Element | null;
     citationsHeader?: string | JSX.Element;
     customCssClasses?: GenerativeDirectAnswerCssClasses;
-    getCitationLink?: (result: Result) => string | undefined;
+    getCitationLink?: (result: Result) => unknown;
+    getCitationSnippet?: (result: Result) => unknown;
+    getCitationTitle?: (result: Result) => unknown;
 }
 
 // @public

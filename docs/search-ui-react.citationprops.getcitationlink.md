@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-getCitationLink?: (searchResult: Result) => string | undefined;
+getCitationLink?: (searchResult: Result) => unknown;
 ```
