@@ -16,7 +16,7 @@ interface CitationProps
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [citation](./search-ui-react.citationprops.citation.md) |  | string |  |
 |  [cssClasses](./search-ui-react.citationprops.cssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) |  |
-|  [searchResults](./search-ui-react.citationprops.searchresults.md) |  | Result\[\] |  |
+|  [getCitationLink?](./search-ui-react.citationprops.getcitationlink.md) |  | (searchResult: Result) =&gt; string \| undefined | _(Optional)_ |
+|  [searchResult](./search-ui-react.citationprops.searchresult.md) |  | Result |  |
 
