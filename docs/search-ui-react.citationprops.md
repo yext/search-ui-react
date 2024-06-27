@@ -17,8 +17,5 @@ interface CitationProps
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [cssClasses](./search-ui-react.citationprops.cssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) |  |
-|  [getCitationLink?](./search-ui-react.citationprops.getcitationlink.md) |  | (searchResult: Result) =&gt; unknown | _(Optional)_ |
-|  [getCitationSnippet?](./search-ui-react.citationprops.getcitationsnippet.md) |  | (searchResult: Result) =&gt; unknown | _(Optional)_ |
-|  [getCitationTitle?](./search-ui-react.citationprops.getcitationtitle.md) |  | (searchResult: Result) =&gt; unknown | _(Optional)_ |
 |  [searchResult](./search-ui-react.citationprops.searchresult.md) |  | Result |  |
 

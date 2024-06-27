@@ -64,12 +64,11 @@ function CustomCitationCard(props: CitationProps): JSX.Element | null {
   const {
     searchResult,
     cssClasses,
-    getCitationLink
   } = props;
-  const citationLink: string | undefined = getCitationLink?.(searchResult);
+  const citationLink = typeof searchResult.rawData.link  === 'string' ? searchResult.rawData.link : undefined;
   return <a className={cssClasses.citation} href={citationLink}>
     {typeof searchResult.rawData.id === 'string' && <div className={cssClasses.citationTitle}>{searchResult.rawData.id}</div>}
-    {typeof searchResult.rawData.type === 'string' && <div className={cssClasses.citationSnippet}>{searchResult.rawData.type}</div>}
+    {typeof searchResult.rawData.s_snippet === 'string' && <div className={cssClasses.citationSnippet}>{searchResult.rawData.s_snippet}</div>}
   </a>;
 }
 
@@ -89,10 +88,7 @@ export default function UniversalPage(): JSX.Element {
       <SpellCheck />
       <GenerativeDirectAnswer 
         answerHeader='A custom answer header' 
-        getCitationLink={searchResult => searchResult.rawData.link}
-        getCitationTitle={searchResult => `${searchResult.rawData.id} - ${searchResult.rawData.name}`}
-        getCitationSnippet={searchResult => searchResult.rawData.s_snippet}
-        // CitationCard={CustomCitationCard}
+        CitationCard={CustomCitationCard}
       />
       <DirectAnswer />
       <ResultsCount />
