@@ -50,7 +50,7 @@ export interface GenerativeDirectAnswerProps {
   /** The header for the citations section of the generative direct answer. */
   citationsHeader?: string | JSX.Element,
   /** The component for citation card */
-  CitationCard?: (props: CitationProps) => JSX.Element | null,
+  CitationCard?: (props: CitationProps) => JSX.Element | null
 }
 
 /**
@@ -103,8 +103,8 @@ export function GenerativeDirectAnswer({
       <Citations 
         gdaResponse={gdaResponse} 
         cssClasses={cssClasses} 
-        citationsHeader={citationsHeader} 
         searchResults={searchResults} 
+        citationsHeader={citationsHeader} 
         CitationCard={CitationCard}
       />
     </div>
@@ -194,7 +194,7 @@ export interface CitationProps {
 function Citation(props: CitationProps) {
   const {
     searchResult,
-    cssClasses,
+    cssClasses
   } = props;
   return (
     <a className={cssClasses.citation} href={typeof searchResult.rawData.link === 'string' ? searchResult.rawData.link : undefined}>
