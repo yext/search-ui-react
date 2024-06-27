@@ -139,11 +139,9 @@ export interface CardProps<T = DefaultRawDataType> {
 // @public
 export interface CitationProps {
     // (undocumented)
-    citation: string;
-    // (undocumented)
     cssClasses: GenerativeDirectAnswerCssClasses;
     // (undocumented)
-    searchResults: Result[];
+    searchResult: Result;
 }
 
 // @public
@@ -323,7 +321,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard }: GenerativeDirectAnswerProps): JSX.Element | null;
+export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, }: GenerativeDirectAnswerProps): JSX.Element | null;
 
 // @public
 export interface GenerativeDirectAnswerCssClasses {

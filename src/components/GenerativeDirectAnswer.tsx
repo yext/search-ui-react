@@ -32,7 +32,7 @@ const builtInCssClasses: Readonly<GenerativeDirectAnswerCssClasses> = {
   answerText: 'mt-4',
   divider: 'border-b border-gray-200 w-full pb-6 mb-6',
   citationsContainer: 'mt-4 flex overflow-x-auto gap-4',
-  citation: 'p-4 border border-gray-200 rounded-lg shadow-sm bg-slate-100 flex flex-col grow-0 shrink-0 basis-64 text-sm text-neutral overflow-x-auto',
+  citation: 'p-4 border border-gray-200 rounded-lg shadow-sm bg-slate-100 flex flex-col grow-0 shrink-0 basis-64 text-sm text-neutral overflow-x-auto cursor-pointer hover:border-indigo-500',
   citationTitle: 'font-bold',
   citationSnippet: 'line-clamp-2 text-ellipsis break-words'
 };
@@ -65,7 +65,7 @@ export function GenerativeDirectAnswer({
   customCssClasses,
   answerHeader,
   citationsHeader,
-  CitationCard
+  CitationCard,
 }: GenerativeDirectAnswerProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
@@ -100,7 +100,13 @@ export function GenerativeDirectAnswer({
     <div className={cssClasses.container}>
       <Answer gdaResponse={gdaResponse} cssClasses={cssClasses} answerHeader={answerHeader}/>
       <div className={cssClasses.divider} />
-      <Citations gdaResponse={gdaResponse} cssClasses={cssClasses} citationsHeader={citationsHeader} searchResults={searchResults} CitationCard={CitationCard}/>
+      <Citations 
+        gdaResponse={gdaResponse} 
+        cssClasses={cssClasses} 
+        searchResults={searchResults} 
+        citationsHeader={citationsHeader} 
+        CitationCard={CitationCard}
+      />
     </div>
   );
 }
@@ -131,8 +137,8 @@ function Answer(props: AnswerProps) {
 interface CitationsProps {
   gdaResponse: GenerativeDirectAnswerResponse,
   cssClasses: GenerativeDirectAnswerCssClasses,
-  citationsHeader?: string | JSX.Element,
   searchResults: Result[],
+  citationsHeader?: string | JSX.Element,
   CitationCard?: (props: CitationProps) => JSX.Element | null
 }
 
@@ -143,20 +149,34 @@ function Citations(props: CitationsProps) {
   const { 
     gdaResponse, 
     cssClasses,
-    citationsHeader = `Sources (${gdaResponse.citations.length})`,
     searchResults,
+    citationsHeader = `Sources (${gdaResponse.citations.length})`,
     CitationCard = Citation
   } = props;
   if (!gdaResponse.citations.length) {
     return null;
   }
+  const citationCards: JSX.Element[] = [];
+  gdaResponse.citations.forEach(
+    citation => {
+      const result: Result | undefined = searchResults.find(r => r.rawData.uid === citation);
+      if (result) {
+        citationCards.push(
+          <CitationCard 
+            key={citation} 
+            searchResult={result} 
+            cssClasses={cssClasses}
+          />
+        )
+      }
+    });
+
   return <>
     <div className={cssClasses.header}>
       {citationsHeader}
     </div>
     <div className={cssClasses.citationsContainer}>
-      {gdaResponse.citations.map(
-        citation => <CitationCard key={citation} searchResults={searchResults} citation={citation} cssClasses={cssClasses} />)}
+      {citationCards}
     </div>
   </>;
 }
@@ -167,24 +187,19 @@ function Citations(props: CitationsProps) {
  * @public
  */
 export interface CitationProps {
-  searchResults: Result[],
-  citation: string,
+  searchResult: Result,
   cssClasses: GenerativeDirectAnswerCssClasses
 }
 
 function Citation(props: CitationProps) {
   const {
-    searchResults,
-    citation,
+    searchResult,
     cssClasses
   } = props;
-  const rawResult: Result | undefined = searchResults.find(r => r.rawData.uid === citation);
-  if (!rawResult) {
-    return null;
-  }
-
-  return <div className={cssClasses.citation}>
-    <div className={cssClasses.citationTitle}>{rawResult.rawData.name}</div>
-    <div className={cssClasses.citationSnippet}>{rawResult.rawData.description}</div>
-  </div>;
+  return (
+    <a className={cssClasses.citation} href={typeof searchResult.rawData.link === 'string' ? searchResult.rawData.link : undefined}>
+      <div className={cssClasses.citationTitle}>{searchResult.rawData.name}</div>
+      <div className={cssClasses.citationSnippet}>{searchResult.rawData.description}</div>
+    </a>
+  );
 }

@@ -62,20 +62,14 @@ const customSearchBarCss = {
 
 function CustomCitationCard(props: CitationProps): JSX.Element | null {
   const {
-    searchResults,
-    citation,
-    cssClasses
+    searchResult,
+    cssClasses,
   } = props;
-  const rawResult: Result | undefined = searchResults.find((r: Result) => r.rawData.uid === citation);
-
-  if (!rawResult) {
-    return null;
-  }
-
-  return <div key={citation} className={cssClasses.citation}>
-    {typeof rawResult.rawData.id === 'string' && <div className={cssClasses.citationTitle}>{rawResult.rawData.id}</div>}
-    {typeof rawResult.rawData.type === 'string' && <div className={cssClasses.citationSnippet}>{rawResult.rawData.type}</div>}
-  </div>;
+  const citationLink = typeof searchResult.rawData.link  === 'string' ? searchResult.rawData.link : undefined;
+  return <a className={cssClasses.citation} href={citationLink}>
+    {typeof searchResult.rawData.id === 'string' && <div className={cssClasses.citationTitle}>{searchResult.rawData.id}</div>}
+    {typeof searchResult.rawData.s_snippet === 'string' && <div className={cssClasses.citationSnippet}>{searchResult.rawData.s_snippet}</div>}
+  </a>;
 }
 
 export default function UniversalPage(): JSX.Element {
@@ -92,7 +86,10 @@ export default function UniversalPage(): JSX.Element {
         customCssClasses={customSearchBarCss}
       />
       <SpellCheck />
-      <GenerativeDirectAnswer answerHeader='A custom answer header' CitationCard={CustomCitationCard}/>
+      <GenerativeDirectAnswer 
+        answerHeader='A custom answer header' 
+        CitationCard={CustomCitationCard}
+      />
       <DirectAnswer />
       <ResultsCount />
       <UniversalResults
