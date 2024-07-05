@@ -15,6 +15,8 @@ import { useLayoutEffect } from 'react';
 // import { CustomCard } from '../components/CustomCard';
 // import { CustomCard2 } from '../components/CustomCard2';
 // import { CustomSection } from '../components/CustomSection';
+// import { MarkdownExampleCard } from '../components/MarkdownExampleCard';
+// import { Source } from '@yext/search-headless-react';
 import { config } from '../config';
 
 const visualAutocompleteConfig: VisualAutocompleteConfig = {
@@ -86,8 +88,8 @@ export default function UniversalPage(): JSX.Element {
         customCssClasses={customSearchBarCss}
       />
       <SpellCheck />
-      <GenerativeDirectAnswer 
-        answerHeader='A custom answer header' 
+      <GenerativeDirectAnswer
+        answerHeader='A custom answer header'
         CitationCard={CustomCitationCard}
       />
       <DirectAnswer />
@@ -95,8 +97,9 @@ export default function UniversalPage(): JSX.Element {
       <UniversalResults
         verticalConfigMap={universalVerticalConfigMap}
       />
-      {/* Test generic result type  */}
-      {/* <UniversalResults
+
+      {/*Test generic result type  */}
+      {/*<UniversalResults
         verticalConfigMap={{
           people: {
             CardComponent: CustomCard,
@@ -109,7 +112,28 @@ export default function UniversalPage(): JSX.Element {
             SectionComponent: CustomSection
           }
         }}
-      /> */}
+      />*/}
+
+      {/*Test basic markdown example*/}
+      {/*<MarkdownExampleCard*/}
+      {/*  result={{*/}
+      {/*      rawData: {*/}
+      {/*          name: "",*/}
+      {/*          description: "",*/}
+      {/*          c_markdownData: {*/}
+      {/*              markdown:*/}
+      {/*                  "# Heading 1\n" +*/}
+      {/*                  "## Heading 2\n" +*/}
+      {/*                  "**THIS IS BOLD TEXT**\n" +*/}
+      {/*                  "1. Ordered list item one\n" +*/}
+      {/*                  "2. Ordered list item two\n\n" +*/}
+      {/*                  "[LINK TO GOOGLE](https://google.com)\n\n" +*/}
+      {/*                  "`<ThisIsAComponentDisplayedAsCode />`"*/}
+      {/*          },*/}
+      {/*      },*/}
+      {/*      source: Source.KnowledgeManager,*/}
+      {/*  }}*/}
+      {/*/>*/}
     </div>
   );
 }
