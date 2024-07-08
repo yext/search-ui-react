@@ -1,9 +1,8 @@
-The following NPM packages may be included in this product:
+The following NPM package may be included in this product:
 
  - @alloc/quick-lru@5.2.0
- - is-plain-obj@2.1.0
 
-These packages each contain the following license and notice below:
+This package contains the following license and notice below:
 
 MIT License
 
@@ -764,9 +763,23 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - @swc/helpers@0.5.2
+ - @swc/core-darwin-arm64@1.3.89
 
 This package contains the following license and notice below:
+
+# `@swc/core-darwin-arm64`
+
+This is the **aarch64-apple-darwin** binary for `@swc/core`
+
+-----------
+
+The following NPM packages may be included in this product:
+
+ - @swc/core@1.3.89
+ - @swc/helpers@0.5.2
+ - @swc/types@0.1.9
+
+These packages each contain the following license and notice below:
 
 Apache License
                         Version 2.0, January 2004
@@ -972,6 +985,22 @@ limitations under the License.
 
 -----------
 
+The following NPM package may be included in this product:
+
+ - @swc/counter@0.1.3
+
+This package contains the following license and notice below:
+
+# @swc/couter
+
+Download counter for swc packages.
+
+This package does not contain any code. It is used solely to track number of downloads of npm packages like `@swc/core` and `@next/swc`. If you are building a huge project using SWC, please consider depending on this package. It will not add any code to your bundle, but it will help us determine the number of users of SWC.
+
+Counting is done by npm, just like other packages.
+
+-----------
+
 The following NPM packages may be included in this product:
 
  - @tailwindcss/forms@0.5.7
@@ -1035,8 +1064,10 @@ SOFTWARE.
 
 The following NPM packages may be included in this product:
 
+ - @types/debug@4.1.12
  - @types/hast@2.3.10
  - @types/mdast@3.0.15
+ - @types/ms@0.7.34
  - @types/prop-types@15.7.4
  - @types/react@17.0.66
  - @types/scheduler@0.16.2
@@ -1352,13 +1383,11 @@ SOFTWARE.
 
 The following NPM packages may be included in this product:
 
- - bail@1.0.5
- - character-entities-legacy@1.1.4
- - character-entities@1.2.4
- - character-reference-invalid@1.1.4
- - mdast-util-to-string@2.0.0
- - unist-util-position@3.1.0
- - unist-util-visit@2.0.3
+ - bail@2.0.2
+ - character-entities@2.0.2
+ - mdast-util-to-string@3.2.0
+ - unist-util-position@4.0.4
+ - unist-util-visit@4.1.2
 
 These packages each contain the following license and notice below:
 
@@ -1591,17 +1620,14 @@ SOFTWARE.
 
 The following NPM packages may be included in this product:
 
- - comma-separated-tokens@1.0.8
- - is-alphabetical@1.0.4
- - is-alphanumerical@1.0.4
- - is-decimal@1.0.4
- - is-hexadecimal@1.0.4
- - mdast-util-to-hast@10.2.0
- - remark-rehype@8.1.0
- - space-separated-tokens@1.1.5
- - unist-util-generated@1.1.6
- - unist-util-stringify-position@2.0.3
- - unist-util-visit-parents@3.1.1
+ - comma-separated-tokens@2.0.3
+ - hast-util-whitespace@2.0.1
+ - mdast-util-to-hast@12.3.0
+ - remark-rehype@10.1.0
+ - space-separated-tokens@2.0.2
+ - unist-util-generated@2.0.1
+ - unist-util-stringify-position@3.0.3
+ - unist-util-visit-parents@5.1.3
 
 These packages each contain the following license and notice below:
 
@@ -1888,9 +1914,43 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - dequal@2.0.3
+ - decode-named-character-reference@1.0.2
 
 This package contains the following license and notice below:
+
+(The MIT License)
+
+Copyright (c) 2021 Titus Wormer <tituswormer@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-----------
+
+The following NPM packages may be included in this product:
+
+ - dequal@2.0.3
+ - kleur@4.1.5
+ - mri@1.2.0
+ - uvu@0.5.6
+
+These packages each contain the following license and notice below:
 
 The MIT License (MIT)
 
@@ -1936,6 +1996,44 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - diff@5.2.0
+
+This package contains the following license and notice below:
+
+BSD 3-Clause License
+
+Copyright (c) 2009-2015, Kevin Decker <kpdecker@gmail.com>
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -----------
 
@@ -2266,11 +2364,12 @@ THIS SOFTWARE.
 
 -----------
 
-The following NPM package may be included in this product:
+The following NPM packages may be included in this product:
 
  - get-stream@6.0.1
+ - is-plain-obj@4.1.0
 
-This package contains the following license and notice below:
+These packages each contain the following license and notice below:
 
 MIT License
 
@@ -3311,7 +3410,7 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - mdast-util-definitions@4.0.0
+ - mdast-util-definitions@5.1.2
 
 This package contains the following license and notice below:
 
@@ -3340,12 +3439,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -----------
 
-The following NPM packages may be included in this product:
+The following NPM package may be included in this product:
 
- - mdast-util-from-markdown@0.8.5
- - micromark@2.11.4
+ - mdast-util-from-markdown@1.3.1
 
-These packages each contain the following license and notice below:
+This package contains the following license and notice below:
 
 (The MIT License)
 
@@ -3369,60 +3467,6 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following NPM package may be included in this product:
-
- - mdurl@1.0.1
-
-This package contains the following license and notice below:
-
-Copyright (c) 2015 Vitaly Puzrin, Alex Kocharin.
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
---------------------------------------------------------------------------------
-
-.parse() is based on Joyent's node.js `url` code:
-
-Copyright Joyent, Inc. and other Node contributors. All rights reserved.
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to
-deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.
 
 -----------
 
@@ -3453,6 +3497,4874 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-core-commonmark@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-core-commonmark
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] constructs that make up the core of CommonMark.
+Some of these can be [turned off][disable], but they are often essential to
+markdown and weird things might happen.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes the default constructs.
+
+## When should I use this?
+
+This package is useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-core-commonmark
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import * as core from 'https://esm.sh/micromark-core-commonmark@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import * as core from 'https://esm.sh/micromark-core-commonmark@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {autolink} from 'micromark-core-commonmark'
+
+console.log(autolink) // Do things with `autolink`.
+```
+
+## API
+
+This module exports the following identifiers: `attention`, `autolink`,
+`blankLine`, `blockQuote`, `characterEscape`, `characterReference`,
+`codeFenced`, `codeIndented`, `codeText`, `content`, `definition`,
+`hardBreakEscape`, `headingAtx`, `htmlFlow`, `htmlText`, `labelEnd`,
+`labelStartImage`, `labelStartLink`, `lineEnding`, `list`, `setextUnderline`,
+`thematicBreak`.
+There is no default export.
+
+Each identifier refers to a [construct][].
+
+See the code for more on the exported constructs.
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-core-commonmark.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-core-commonmark
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-core-commonmark
+
+[bundle-size]: https://bundlejs.com/?q=micromark-core-commonmark
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[disable]: https://github.com/micromark/micromark#case-turn-off-constructs
+
+[construct]: https://github.com/micromark/micromark#constructs
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-factory-destination@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-factory-destination
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] factory to parse destinations (found in resources, definitions).
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`factoryDestination(…)`](#factorydestination)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes states to parse destinations.
+
+## When should I use this?
+
+This package is useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-factory-destination
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {factoryDestination} from 'https://esm.sh/micromark-factory-destination@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {factoryDestination} from 'https://esm.sh/micromark-factory-destination@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {factoryDestination} from 'micromark-factory-destination'
+import {codes} from 'micromark-util-symbol/codes'
+import {types} from 'micromark-util-symbol/types'
+
+// A micromark tokenizer that uses the factory:
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeResource(effects, ok, nok) {
+  return start
+
+  // …
+
+  /** @type {State} */
+  function open(code) {
+    if (code === codes.rightParenthesis) {
+      return end(code)
+    }
+
+    return factoryDestination(
+      effects,
+      destinationAfter,
+      nok,
+      types.resourceDestination,
+      types.resourceDestinationLiteral,
+      types.resourceDestinationLiteralMarker,
+      types.resourceDestinationRaw,
+      types.resourceDestinationString,
+      constants.linkResourceDestinationBalanceMax
+    )(code)
+  }
+
+  // …
+}
+```
+
+## API
+
+This module exports the identifier
+[`factoryDestination`][api-factory-destination].
+There is no default export.
+
+### `factoryDestination(…)`
+
+Parse destinations.
+
+###### Examples
+
+```markdown
+<a>
+<a\>b>
+<a b>
+<a)>
+a
+a\)b
+a(b)c
+a(b)
+```
+
+###### Parameters
+
+*   `effects` (`Effects`)
+    — context
+*   `ok` (`State`)
+    — state switched to when successful
+*   `nok` (`State`)
+    — state switched to when unsuccessful
+*   `type` (`string`)
+    — type for whole (`<a>` or `b`)
+*   `literalType` (`string`)
+    — type when enclosed (`<a>`)
+*   `literalMarkerType` (`string`)
+    — type for enclosing (`<` and `>`)
+*   `rawType` (`string`)
+    — type when not enclosed (`b`)
+*   `stringType` (`string`)
+    — type for the value (`a` or `b`)
+*   `max` (`number`, default: `Infinity`)
+    — depth of nested parens (inclusive)
+
+###### Returns
+
+Start state (`State`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-factory-destination.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-factory-destination
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-factory-destination
+
+[bundle-size]: https://bundlejs.com/?q=micromark-factory-destination
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-factory-destination]: #factorydestination
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-factory-label@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-factory-label
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] factory to parse labels (found in media, definitions).
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`factoryLabel(…)`](#factorylabel)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes states to parse labels.
+
+## When should I use this?
+
+This package is useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-factory-label
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {factoryLabel} from 'https://esm.sh/micromark-factory-label@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {factoryLabel} from 'https://esm.sh/micromark-factory-label@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {ok as assert} from 'uvu/assert'
+import {factoryLabel} from 'micromark-factory-label'
+import {codes} from 'micromark-util-symbol/codes'
+import {types} from 'micromark-util-symbol/types'
+
+// A micromark tokenizer that uses the factory:
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeDefinition(effects, ok, nok) {
+  return start
+
+  // …
+
+  /** @type {State} */
+  function start(code) {
+    assert(code === codes.leftSquareBracket, 'expected `[`')
+    effects.enter(types.definition)
+    return factoryLabel.call(
+      self,
+      effects,
+      labelAfter,
+      nok,
+      types.definitionLabel,
+      types.definitionLabelMarker,
+      types.definitionLabelString
+    )(code)
+  }
+
+  // …
+}
+```
+
+## API
+
+This module exports the identifier [`factoryLabel`][api-factory-label].
+There is no default export.
+
+### `factoryLabel(…)`
+
+Parse labels.
+
+> 👉 **Note**: labels in markdown are capped at 999 characters in the string.
+
+###### Examples
+
+```markdown
+[a]
+[a
+b]
+[a\]b]
+```
+
+###### Parameters
+
+*   `this` (`TokenizeContext`)
+    — tokenize context
+*   `effects` (`Effects`)
+    — context
+*   `ok` (`State`)
+    — state switched to when successful
+*   `nok` (`State`)
+    — state switched to when unsuccessful
+*   `type` (`string`)
+    — type of the whole label (`[a]`)
+*   `markerType` (`string`)
+    — type for the markers (`[` and `]`)
+*   `stringType` (`string`)
+    — type for the identifier (`a`)
+
+###### Returns
+
+Start state (`State`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-factory-label.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-factory-label
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-factory-label
+
+[bundle-size]: https://bundlejs.com/?q=micromark-factory-label
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-factory-label]: #factorylabel
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-factory-space@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-factory-space
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] factory to parse [markdown space][markdown-space] (found in lots
+of places).
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`factorySpace(…)`](#factoryspace)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes states to parse spaces and/or tabs.
+
+## When should I use this?
+
+This package is useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-factory-space
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {factorySpace} from 'https://esm.sh/micromark-factory-space@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {factorySpace} from 'https://esm.sh/micromark-factory-space@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {factorySpace} from 'micromark-factory-space'
+import {codes} from 'micromark-util-symbol/codes'
+import {types} from 'micromark-util-symbol/types'
+
+// A micromark tokenizer that uses the factory:
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeCodeFenced(effects, ok, nok) {
+  return start
+
+  // …
+
+  /** @type {State} */
+  function info(code) {
+    if (code === codes.eof || markdownLineEndingOrSpace(code)) {
+      effects.exit(types.chunkString)
+      effects.exit(types.codeFencedFenceInfo)
+      return factorySpace(effects, infoAfter, types.whitespace)(code)
+    }
+
+    if (code === codes.graveAccent && code === marker) return nok(code)
+    effects.consume(code)
+    return info
+  }
+
+  // …
+}
+```
+
+## API
+
+This module exports the identifier [`factorySpace`][api-factory-space].
+There is no default export.
+
+### `factorySpace(…)`
+
+Parse spaces and tabs.
+
+There is no `nok` parameter:
+
+*   spaces in markdown are often optional, in which case this factory can be
+    used and `ok` will be switched to whether spaces were found or not
+*   one line ending or space can be detected with `markdownSpace(code)` right
+    before using `factorySpace`
+
+###### Examples
+
+Where `␉` represents a tab (plus how much it expands) and `␠` represents a
+single space.
+
+```markdown
+␉
+␠␠␠␠
+␉␠
+```
+
+###### Parameters
+
+*   `effects` (`Effects`)
+    — context
+*   `ok` (`State`)
+    — state switched to when successful
+*   `type` (`string`)
+    — type (`' \t'`)
+*   `max` (`number`, default: `Infinity`)
+    — max (exclusive)
+
+###### Returns
+
+Start state (`State`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-factory-space.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-factory-space
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-factory-space
+
+[bundle-size]: https://bundlejs.com/?q=micromark-factory-space
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[markdown-space]: https://github.com/micromark/micromark/tree/main/packages/micromark-util-character#markdownspacecode
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-factory-space]: #factoryspace
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-factory-title@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-factory-title
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] factory to parse markdown titles (found in resources,
+definitions).
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`factoryTitle(…)`](#factorytitle)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes states to parse titles.
+
+## When should I use this?
+
+This package is useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-factory-title
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {factorySpace} from 'https://esm.sh/micromark-factory-title@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {factorySpace} from 'https://esm.sh/micromark-factory-title@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {factoryTitle} from 'micromark-factory-title'
+import {codes} from 'micromark-util-symbol/codes'
+import {types} from 'micromark-util-symbol/types'
+
+// A micromark tokenizer that uses the factory:
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeDefinition(effects, ok, nok) {
+  return start
+
+  // …
+
+  /** @type {State} */
+  function before(code) {
+    if (
+      code === codes.quotationMark ||
+      code === codes.apostrophe ||
+      code === codes.leftParenthesis
+    ) {
+      return factoryTitle(
+        effects,
+        factorySpace(effects, after, types.whitespace),
+        nok,
+        types.definitionTitle,
+        types.definitionTitleMarker,
+        types.definitionTitleString
+      )(code)
+    }
+
+    return nok(code)
+  }
+
+  // …
+}
+```
+
+## API
+
+This module exports the identifier [`factoryTitle`][api-factory-title].
+There is no default export.
+
+### `factoryTitle(…)`
+
+Parse titles.
+
+###### Examples
+
+```markdown
+"a"
+'b'
+(c)
+"a
+b"
+'a
+    b'
+(a\)b)
+```
+
+###### Parameters
+
+*   `effects` (`Effects`)
+    — context
+*   `ok` (`State`)
+    — state switched to when successful
+*   `nok` (`State`)
+    — state switched to when unsuccessful
+*   `type` (`string`)
+    — type of the whole title (`"a"`, `'b'`, `(c)`)
+*   `markerType` (`string`)
+    — type for the markers (`"`, `'`, `(`, and `)`)
+*   `stringType` (`string`)
+    — type for the value (`a`)
+
+###### Returns
+
+Start state (`State`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-factory-title.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-factory-title
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-factory-title
+
+[bundle-size]: https://bundlejs.com/?q=micromark-factory-title
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-factory-title]: #factorytitle
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-factory-whitespace@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-factory-whitespace
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] factory to parse [markdown line endings or spaces][ws] (found in
+lots of places).
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`factoryWhitespace(…)`](#factorywhitespace)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes states to parse whitespace.
+
+## When should I use this?
+
+This package is useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-factory-whitespace
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {factoryWhitespace} from 'https://esm.sh/micromark-factory-whitespace@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {factoryWhitespace} from 'https://esm.sh/micromark-factory-whitespace@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {factoryWhitespace} from 'micromark-factory-whitespace'
+import {codes} from 'micromark-util-symbol/codes'
+import {types} from 'micromark-util-symbol/types'
+
+// A micromark tokenizer that uses the factory:
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeTitle(effects, ok, nok) {
+  return start
+
+  /** @type {State} */
+  function start(code) {
+    return markdownLineEndingOrSpace(code)
+      ? factoryWhitespace(effects, before)(code)
+      : nok(code)
+  }
+
+  // …
+}
+```
+
+## API
+
+This module exports the identifier
+[`factoryWhitespace`][api-factory-whitespace].
+There is no default export.
+
+### `factoryWhitespace(…)`
+
+Parse spaces and tabs.
+
+There is no `nok` parameter:
+
+*   line endings or spaces in markdown are often optional, in which case this
+    factory can be used and `ok` will be switched to whether spaces were found
+    or not
+*   one line ending or space can be detected with
+    [`markdownLineEndingOrSpace(code)`][ws] right before using
+    `factoryWhitespace`
+
+###### Parameters
+
+*   `effects` (`Effects`)
+    — context
+*   `ok` (`State`)
+    — state switched to when successful
+
+###### Returns
+
+Start state (`State`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-factory-whitespace.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-factory-whitespace
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-factory-whitespace
+
+[bundle-size]: https://bundlejs.com/?q=micromark-factory-whitespace
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[ws]: https://github.com/micromark/micromark/tree/main/packages/micromark-util-character#markdownlineendingorspacecode
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-factory-whitespace]: #factorywhitespace
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-character@1.2.0
+
+This package contains the following license and notice below:
+
+# micromark-util-character
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to handle [character codes][code].
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`asciiAlpha(code)`](#asciialphacode)
+    *   [`asciiAlphanumeric(code)`](#asciialphanumericcode)
+    *   [`asciiAtext(code)`](#asciiatextcode)
+    *   [`asciiControl(code)`](#asciicontrolcode)
+    *   [`asciiDigit(code)`](#asciidigitcode)
+    *   [`asciiHexDigit(code)`](#asciihexdigitcode)
+    *   [`asciiPunctuation(code)`](#asciipunctuationcode)
+    *   [`markdownLineEnding(code)`](#markdownlineendingcode)
+    *   [`markdownLineEndingOrSpace(code)`](#markdownlineendingorspacecode)
+    *   [`markdownSpace(code)`](#markdownspacecode)
+    *   [`unicodePunctuation(code)`](#unicodepunctuationcode)
+    *   [`unicodeWhitespace(code)`](#unicodewhitespacecode)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes algorithms to check whether characters match groups.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-character
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import * as character from 'https://esm.sh/micromark-util-character@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import * as character from 'https://esm.sh/micromark-util-character@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {asciiAlpha} from 'micromark-util-character'
+
+console.log(asciiAlpha(64)) // false
+console.log(asciiAlpha(65)) // true
+```
+
+## API
+
+This module exports the identifiers
+[`asciiAlpha`][api-ascii-alpha],
+[`asciiAlphanumeric`][api-ascii-alphanumeric],
+[`asciiAtext`][api-ascii-atext],
+[`asciiControl`][api-ascii-control],
+[`asciiDigit`][api-ascii-digit],
+[`asciiHexDigit`][api-ascii-hex-digit],
+[`asciiPunctuation`][api-ascii-punctuation],
+[`markdownLineEnding`][api-markdown-line-ending],
+[`markdownLineEndingOrSpace`][api-markdown-line-ending-or-space],
+[`markdownSpace`][api-markdown-space],
+[`unicodePunctuation`][api-unicode-punctuation],
+[`unicodeWhitespace`][api-unicode-whitespace].
+There is no default export.
+
+### `asciiAlpha(code)`
+
+Check whether the [character code][code] represents an ASCII alpha (`a` through
+`z`, case insensitive).
+
+An **ASCII alpha** is an ASCII upper alpha or ASCII lower alpha.
+
+An **ASCII upper alpha** is a character in the inclusive range U+0041 (`A`)
+to U+005A (`Z`).
+
+An **ASCII lower alpha** is a character in the inclusive range U+0061 (`a`)
+to U+007A (`z`).
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `asciiAlphanumeric(code)`
+
+Check whether the [character code][code] represents an ASCII alphanumeric (`a`
+through `z`, case insensitive, or `0` through `9`).
+
+An **ASCII alphanumeric** is an ASCII digit (see `asciiDigit`) or ASCII alpha
+(see `asciiAlpha`).
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `asciiAtext(code)`
+
+Check whether the [character code][code] represents an ASCII atext.
+
+atext is an ASCII alphanumeric (see `asciiAlphanumeric`), or a character in
+the inclusive ranges U+0023 NUMBER SIGN (`#`) to U+0027 APOSTROPHE (`'`),
+U+002A ASTERISK (`*`), U+002B PLUS SIGN (`+`), U+002D DASH (`-`), U+002F
+SLASH (`/`), U+003D EQUALS TO (`=`), U+003F QUESTION MARK (`?`), U+005E
+CARET (`^`) to U+0060 GRAVE ACCENT (`` ` ``), or U+007B LEFT CURLY BRACE
+(`{`) to U+007E TILDE (`~`) (**\[RFC5322]**).
+
+See **\[RFC5322]**:\
+[Internet Message Format](https://tools.ietf.org/html/rfc5322).\
+P. Resnick.\
+IETF.
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `asciiControl(code)`
+
+Check whether a [character code][code] is an ASCII control character.
+
+An **ASCII control** is a character in the inclusive range U+0000 NULL (NUL)
+to U+001F (US), or U+007F (DEL).
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `asciiDigit(code)`
+
+Check whether the [character code][code] represents an ASCII digit (`0` through
+`9`).
+
+An **ASCII digit** is a character in the inclusive range U+0030 (`0`) to
+U+0039 (`9`).
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `asciiHexDigit(code)`
+
+Check whether the [character code][code] represents an ASCII hex digit (`a`
+through `f`, case insensitive, or `0` through `9`).
+
+An **ASCII hex digit** is an ASCII digit (see `asciiDigit`), ASCII upper hex
+digit, or an ASCII lower hex digit.
+
+An **ASCII upper hex digit** is a character in the inclusive range U+0041
+(`A`) to U+0046 (`F`).
+
+An **ASCII lower hex digit** is a character in the inclusive range U+0061
+(`a`) to U+0066 (`f`).
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `asciiPunctuation(code)`
+
+Check whether the [character code][code] represents ASCII punctuation.
+
+An **ASCII punctuation** is a character in the inclusive ranges U+0021
+EXCLAMATION MARK (`!`) to U+002F SLASH (`/`), U+003A COLON (`:`) to U+0040 AT
+SIGN (`@`), U+005B LEFT SQUARE BRACKET (`[`) to U+0060 GRAVE ACCENT
+(`` ` ``), or U+007B LEFT CURLY BRACE (`{`) to U+007E TILDE (`~`).
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `markdownLineEnding(code)`
+
+Check whether a [character code][code] is a markdown line ending.
+
+A **markdown line ending** is the virtual characters M-0003 CARRIAGE RETURN
+LINE FEED (CRLF), M-0004 LINE FEED (LF) and M-0005 CARRIAGE RETURN (CR).
+
+In micromark, the actual character U+000A LINE FEED (LF) and U+000D CARRIAGE
+RETURN (CR) are replaced by these virtual characters depending on whether
+they occurred together.
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `markdownLineEndingOrSpace(code)`
+
+Check whether a [character code][code] is a markdown line ending (see
+`markdownLineEnding`) or markdown space (see `markdownSpace`).
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `markdownSpace(code)`
+
+Check whether a [character code][code] is a markdown space.
+
+A **markdown space** is the concrete character U+0020 SPACE (SP) and the
+virtual characters M-0001 VIRTUAL SPACE (VS) and M-0002 HORIZONTAL TAB (HT).
+
+In micromark, the actual character U+0009 CHARACTER TABULATION (HT) is
+replaced by one M-0002 HORIZONTAL TAB (HT) and between 0 and 3 M-0001 VIRTUAL
+SPACE (VS) characters, depending on the column at which the tab occurred.
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `unicodePunctuation(code)`
+
+Check whether the [character code][code] represents Unicode punctuation.
+
+A **Unicode punctuation** is a character in the Unicode `Pc` (Punctuation,
+Connector), `Pd` (Punctuation, Dash), `Pe` (Punctuation, Close), `Pf`
+(Punctuation, Final quote), `Pi` (Punctuation, Initial quote), `Po`
+(Punctuation, Other), or `Ps` (Punctuation, Open) categories, or an ASCII
+punctuation (see `asciiPunctuation`) (**\[UNICODE]**).
+
+See **\[UNICODE]**:\
+[The Unicode Standard](https://www.unicode.org/versions/).\
+Unicode Consortium.
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+### `unicodeWhitespace(code)`
+
+Check whether the [character code][code] represents Unicode whitespace.
+
+Note that this does handle micromark specific markdown whitespace characters.
+See `markdownLineEndingOrSpace` to check that.
+
+A **Unicode whitespace** is a character in the Unicode `Zs` (Separator,
+Space) category, or U+0009 CHARACTER TABULATION (HT), U+000A LINE FEED (LF),
+U+000C (FF), or U+000D CARRIAGE RETURN (CR) (**\[UNICODE]**).
+
+See **\[UNICODE]**:\
+[The Unicode Standard](https://www.unicode.org/versions/).\
+Unicode Consortium.
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Whether it matches (`boolean`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-character.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-character
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-character
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-character
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[code]: https://github.com/micromark/micromark#preprocess
+
+[api-ascii-alpha]: #asciialphacode
+
+[api-ascii-alphanumeric]: #asciialphanumericcode
+
+[api-ascii-atext]: #asciiatextcode
+
+[api-ascii-control]: #asciicontrolcode
+
+[api-ascii-digit]: #asciidigitcode
+
+[api-ascii-hex-digit]: #asciihexdigitcode
+
+[api-ascii-punctuation]: #asciipunctuationcode
+
+[api-markdown-line-ending]: #markdownlineendingcode
+
+[api-markdown-line-ending-or-space]: #markdownlineendingorspacecode
+
+[api-markdown-space]: #markdownspacecode
+
+[api-unicode-punctuation]: #unicodepunctuationcode
+
+[api-unicode-whitespace]: #unicodewhitespacecode
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-chunked@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-chunked
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to splice and push with giant arrays.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`push(list, items)`](#pushlist-items)
+    *   [`splice(list, start, remove, items)`](#splicelist-start-remove-items)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes an algorithm to splice for giant arrays, which V8 bugs
+out on.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-chunked
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {push, splice} from 'https://esm.sh/micromark-util-chunked@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {push, splice} from 'https://esm.sh/micromark-util-chunked@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {push, splice} from 'micromark-util-chunked'
+
+// …
+
+nextEvents = push(nextEvents, [
+  ['enter', events[open][1], context],
+  ['exit', events[open][1], context]
+])
+
+// …
+
+splice(events, open - 1, index - open + 3, nextEvents)
+
+// …
+```
+
+## API
+
+This module exports the identifiers [`push`][api-push]
+and [`splice`][api-splice].
+There is no default export.
+
+### `push(list, items)`
+
+Append `items` (an array) at the end of `list` (another array).
+When `list` was empty, returns `items` instead.
+
+This prevents a potentially expensive operation when `list` is empty,
+and adds items in batches to prevent V8 from hanging.
+
+###### Parameters
+
+*   `list` (`Array<unknown>`)
+    — list to operate on
+*   `items` (`Array<unknown>`)
+    — items to add to `list`
+
+###### Returns
+
+Either `list` or `items` (`Array<unknown>`).
+
+### `splice(list, start, remove, items)`
+
+Like `Array#splice`, but smarter for giant arrays.
+
+`Array#splice` takes all items to be inserted as individual argument which
+causes a stack overflow in V8 when trying to insert 100k items for instance.
+
+Otherwise, this does not return the removed items, and takes `items` as an
+array instead of rest parameters.
+
+###### Parameters
+
+*   `list` (`Array<unknown>`)
+    — list to operate on
+*   `start` (`number`)
+    — index to remove/insert at (can be negative)
+*   `remove` (`number`)
+    — number of items to remove
+*   `items` (`Array<unknown>`)
+    — items to inject into `list`
+
+###### Returns
+
+Nothing (`void`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-chunked.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-chunked
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-chunked
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-chunked
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-push]: #pushlist-items
+
+[api-splice]: #splicelist-start-remove-items
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-classify-character@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-classify-character
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to classify whether a character is whitespace or
+punctuation.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`classifyCharacter(code)`](#classifycharactercode)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes an algorithm to classify characters into 3 categories.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-classify-character
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {classifyCharacter} from 'https://esm.sh/micromark-util-classify-character@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {classifyCharacter} from 'https://esm.sh/micromark-util-classify-character@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeAttention(effects, ok) {
+  return start
+
+  // …
+
+  /** @type {State} */
+  function sequence(code) {
+    if (code === marker) {
+      // …
+    }
+
+    const token = effects.exit('attentionSequence')
+    const after = classifyCharacter(code)
+    const open =
+      !after || (after === constants.characterGroupPunctuation && before)
+    const close =
+      !before || (before === constants.characterGroupPunctuation && after)
+    // …
+  }
+
+  // …
+}
+```
+
+## API
+
+This module exports the identifier
+[`classifyCharacter`][api-classify-character].
+There is no default export.
+
+### `classifyCharacter(code)`
+
+Classify whether a code represents whitespace, punctuation, or something
+else.
+
+Used for attention (emphasis, strong), whose sequences can open or close
+based on the class of surrounding characters.
+
+> 👉 **Note**: eof (`null`) is seen as whitespace.
+
+###### Parameters
+
+*   `code` (`Code`)
+    — code
+
+###### Returns
+
+Group (`constants.characterGroupWhitespace`,
+`constants.characterGroupPunctuation`, or `undefined`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-classify-character.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-classify-character
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-classify-character
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-classify-character
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-classify-character]: #classifycharactercode
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-combine-extensions@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-combine-extensions
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to combine [syntax][] or [html][] extensions.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`combineExtensions(extensions)`](#combineextensionsextensions)
+    *   [`combineHtmlExtensions(htmlExtensions)`](#combinehtmlextensionshtmlextensions)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package can merge multiple extensions into one.
+
+## When should I use this?
+
+This package might be useful when you are making “presets”, such as
+[`micromark-extension-gfm`][micromark-extension-gfm].
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-combine-extensions
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {combineExtensions} from 'https://esm.sh/micromark-util-combine-extensions@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {combineExtensions} from 'https://esm.sh/micromark-util-combine-extensions@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {gfmAutolinkLiteral} from 'micromark-extension-gfm-autolink-literal'
+import {gfmStrikethrough} from 'micromark-extension-gfm-strikethrough'
+import {gfmTable} from 'micromark-extension-gfm-table'
+import {gfmTaskListItem} from 'micromark-extension-gfm-task-list-item'
+import {combineExtensions} from 'micromark-util-combine-extensions'
+
+const gfm = combineExtensions([gfmAutolinkLiteral, gfmStrikethrough(), gfmTable, gfmTaskListItem])
+```
+
+## API
+
+This module exports the identifiers
+[`combineExtensions`][api-combine-extensions] and
+[`combineHtmlExtensions`][api-combine-html-extensions].
+There is no default export.
+
+### `combineExtensions(extensions)`
+
+Combine multiple syntax extensions into one.
+
+###### Parameters
+
+*   `extensions` (`Array<Extension>`)
+    — list of syntax extensions
+
+###### Returns
+
+A single combined extension (`Extension`).
+
+### `combineHtmlExtensions(htmlExtensions)`
+
+Combine multiple html extensions into one.
+
+###### Parameters
+
+*   `htmlExtensions` (`Array<HtmlExtension>`)
+    — list of HTML extensions
+
+###### Returns
+
+A single combined HTML extension (`HtmlExtension`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-combine-extensions.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-combine-extensions
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-combine-extensions
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-combine-extensions
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[syntax]: https://github.com/micromark/micromark#syntaxextension
+
+[html]: https://github.com/micromark/micromark#htmlextension
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[micromark-extension-gfm]: https://github.com/micromark/micromark-extension-gfm
+
+[api-combine-extensions]: #combineextensionsextensions
+
+[api-combine-html-extensions]: #combinehtmlextensionshtmlextensions
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-decode-numeric-character-reference@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-decode-numeric-character-reference
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to decode numeric character references.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`decodeNumericCharacterReference(value, base)`](#decodenumericcharacterreferencevalue-base)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes an algorithm to decode numeric character references.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-decode-numeric-character-reference
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {decodeNumericCharacterReference} from 'https://esm.sh/micromark-util-decode-numeric-character-reference@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {decodeNumericCharacterReference} from 'https://esm.sh/micromark-util-decode-numeric-character-reference@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {decodeNumericCharacterReference} from 'micromark-util-decode-numeric-character-reference'
+
+decodeNumericCharacterReference('41', 16) // 'A'
+decodeNumericCharacterReference('65', 10) // 'A'
+decodeNumericCharacterReference('A', 16) // '\n'
+decodeNumericCharacterReference('7F', 16) // '�' - Control
+decodeNumericCharacterReference('110000', 16) // '�' - Out of range
+```
+
+## API
+
+This module exports the identifier:
+[`decodeNumericCharacterReference`][api-decode-numeric-character-reference].
+There is no default export.
+
+### `decodeNumericCharacterReference(value, base)`
+
+Turn the number (in string form as either hexa- or plain decimal) coming from
+a numeric character reference into a character.
+
+Sort of like `String.fromCharCode(Number.parseInt(value, base))`, but makes
+non-characters and control characters safe.
+
+###### Parameters
+
+*   `value` (`string`)
+    — value to decode
+*   `base` (`number`, probably `10` or `16`)
+    — numeric base
+
+###### Returns
+
+Character (`string`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-normalize-identifier.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-normalize-identifier
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-normalize-identifier
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-normalize-identifier
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-decode-numeric-character-reference]: #decodenumericcharacterreferencevalue-base
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-decode-string@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-decode-string
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to decode markdown strings.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`decodeString(value)`](#decodestringvalue)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes an algorithm to parse character escapes and character
+references.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-decode-string
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {decodeString} from 'https://esm.sh/micromark-util-decode-string@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {decodeString} from 'https://esm.sh/micromark-util-decode-string@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {decodeString} from 'micromark-util-decode-string'
+
+decodeString('a &semi; b') // 'a ; b'
+decodeString('a \\; b') // 'a ; b'
+decodeString('a ; b') // 'a ; b'
+```
+
+## API
+
+This module exports the identifier [`decodeString`][api-decode-string].
+There is no default export.
+
+### `decodeString(value)`
+
+Decode markdown strings (which occur in places such as fenced code info strings,
+destinations, labels, and titles).
+
+The “string” content type allows character escapes and -references.
+This decodes those.
+
+###### Parameters
+
+*   `value` (`string`)
+    — value to decode
+
+###### Returns
+
+Decoded value (`string`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-normalize-identifier.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-normalize-identifier
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-normalize-identifier
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-normalize-identifier
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-decode-string]: #decodestringvalue
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-encode@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-encode
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to encode dangerous html characters.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`encode(value)`](#encodevalue)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes an algorithm to make text safe for embedding in HTML.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-encode
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {encode} from 'https://esm.sh/micromark-util-encode@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {encode} from 'https://esm.sh/micromark-util-encode@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {encode} from 'micromark-util-encode'
+
+encode('<3') // '&lt;3'
+```
+
+## API
+
+This module exports the identifier [`encode`][api-encode].
+There is no default export.
+
+### `encode(value)`
+
+Encode only the dangerous HTML characters.
+
+This ensures that certain characters which have special meaning in HTML are
+dealt with.
+Technically, we can skip `>` and `"` in many cases, but CM includes them.
+
+###### Parameters
+
+*   `value` (`string`)
+    — value to encode
+
+###### Returns
+
+Encoded value (`string`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-encode.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-encode
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-encode
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-encode
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-encode]: #encodevalue
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-html-tag-name@1.2.0
+
+This package contains the following license and notice below:
+
+# micromark-util-html-tag-name
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility with list of html tag names.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`htmlBlockNames`](#htmlblocknames)
+    *   [`htmlRawNames`](#htmlrawnames)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes a list of known tag names to markdown.
+
+## When should I use this?
+
+This package is only useful if you want to build an alternative to micromark.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-html-tag-name
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {htmlBlockNames, htmlRawNames} from 'https://esm.sh/micromark-util-html-tag-name@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {htmlBlockNames, htmlRawNames} from 'https://esm.sh/micromark-util-html-tag-name@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {htmlBlockNames, htmlRawNames} from 'micromark-util-html-tag-name'
+
+console.log(htmlBlockNames) // ['address', 'article', …]
+console.log(htmlRawNames) // ['pre', 'script', …]
+```
+
+## API
+
+This module exports the identifiers [`htmlBlockNames`][api-html-block-names]
+and [`htmlRawNames`][api-html-raw-names].
+There is no default export.
+
+### `htmlBlockNames`
+
+List of lowercase HTML “block” tag names (`Array<string>`).
+
+The list, when parsing HTML (flow), results in more relaxed rules (condition
+6\).
+Because they are known blocks, the HTML-like syntax doesn’t have to be strictly
+parsed.
+For tag names not in this list, a more strict algorithm (condition 7) is used
+to detect whether the HTML-like syntax is seen as HTML (flow) or not.
+
+This is copied from:
+<https://spec.commonmark.org/0.30/#html-blocks>.
+
+> 👉 **Note**: `search` was added in `CommonMark@0.31`.
+
+### `htmlRawNames`
+
+List of lowercase HTML “raw” tag names (`Array<string>`).
+
+The list, when parsing HTML (flow), results in HTML that can include lines
+without exiting, until a closing tag also in this list is found (condition
+1\).
+
+This module is copied from:
+<https://spec.commonmark.org/0.30/#html-blocks>.
+
+> 👉 **Note**: `textarea` was added in `CommonMark@0.30`.
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-html-tag-name.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-html-tag-name
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-html-tag-name
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-html-tag-name
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-html-block-names]: #htmlblocknames
+
+[api-html-raw-names]: #htmlrawnames
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-normalize-identifier@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-normalize-identifier
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility normalize identifiers.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`normalizeIdentifier(value)`](#normalizeidentifiervalue)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes an algorithm to normalize identifiers found in markdown.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-normalize-identifier
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {normalizeIdentifier} from 'https://esm.sh/micromark-util-normalize-identifier@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {normalizeIdentifier} from 'https://esm.sh/micromark-util-normalize-identifier@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {normalizeIdentifier} from 'micromark-util-normalize-identifier'
+
+normalizeIdentifier(' a ') // 'A'
+normalizeIdentifier('a\t\r\nb') // 'A B'
+normalizeIdentifier('ТОЛПОЙ') // 'ТОЛПОЙ'
+normalizeIdentifier('Толпой') // 'ТОЛПОЙ'
+```
+
+## API
+
+This module exports the identifier
+[`normalizeIdentifier`][api-normalize-identifier].
+There is no default export.
+
+### `normalizeIdentifier(value)`
+
+Normalize an identifier (as found in references, definitions).
+
+Collapses markdown whitespace, trim, and then lower- and uppercase.
+
+Some characters are considered “uppercase”, such as U+03F4 (`ϴ`), but if their
+lowercase counterpart (U+03B8 (`θ`)) is uppercased will result in a different
+uppercase character (U+0398 (`Θ`)).
+So, to get a canonical form, we perform both lower- and uppercase.
+
+Using uppercase last makes sure keys will never interact with default
+prototypal values (such as `constructor`): nothing in the prototype of `Object`
+is uppercase.
+
+###### Parameters
+
+*   `value` (`string`)
+    — identifier to normalize
+
+###### Returns
+
+Normalized identifier (`string`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-normalize-identifier.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-normalize-identifier
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-normalize-identifier
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-normalize-identifier
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-normalize-identifier]: #normalizeidentifiervalue
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-resolve-all@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-resolve-all
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to resolve subtokens.
+
+[Resolvers][resolver] are functions that take events and manipulate them.
+This is needed for example because media (links, images) and attention (strong,
+italic) aren’t parsed left-to-right.
+Instead, their openings and closings are parsed, and when done, their openings
+and closings are matched, and left overs are turned into plain text.
+Because media and attention can’t overlap, we need to perform that operation
+when one closing matches an opening, too.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`resolveAll(constructs, events, context)`](#resolveallconstructs-events-context)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes a micromark internal that you probably don’t need.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-resolve-all
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {resolveAll} from 'https://esm.sh/micromark-util-resolve-all@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {resolveAll} from 'https://esm.sh/micromark-util-resolve-all@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {push} from 'micromark-util-chunked'
+import {resolveAll} from 'micromark-util-resolve-all'
+
+/**
+ * @type {Resolver}
+ */
+function resolveAllAttention(events, context) {
+  // …
+
+  // Walk through all events.
+  while (++index < events.length) {
+    // Find a token that can close.
+    if (
+      events[index][0] === 'enter' &&
+      events[index][1].type === 'attentionSequence' &&
+      events[index][1]._close
+    ) {
+      open = index
+
+      // Now walk back to find an opener.
+      while (open--) {
+        // Find a token that can open the closer.
+        if (
+          // …
+        ) {
+          // …
+
+          // Opening.
+          nextEvents = push(nextEvents, [
+            // …
+          ])
+
+          // Between.
+          nextEvents = push(
+            nextEvents,
+            resolveAll(
+              context.parser.constructs.insideSpan.null,
+              events.slice(open + 1, index),
+              context
+            )
+          )
+
+          // Closing.
+          nextEvents = push(nextEvents, [
+            // …
+          ])
+
+          // …
+        }
+      }
+    }
+  }
+
+  // …
+}
+```
+
+## API
+
+This module exports the identifier [`resolveAll`][api-resolve-all].
+There is no default export.
+
+### `resolveAll(constructs, events, context)`
+
+Call all `resolveAll`s in `constructs`.
+
+###### Parameters
+
+*   `constructs` (`Array<Construct>`)
+    — list of constructs, optionally with `resolveAll`s
+*   `events` (`Array<Event>`)
+    — list of events
+*   `context` (`TokenizeContext`)
+    — context used by `tokenize`
+
+###### Returns
+
+Changed events (`Array<Events>`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-resolve-all.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-resolve-all
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-resolve-all
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-resolve-all
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[resolver]: https://github.com/micromark/micromark/blob/a571c09/packages/micromark-util-types/index.js#L219
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-resolve-all]: #resolveallconstructs-events-context
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-sanitize-uri@1.2.0
+
+This package contains the following license and notice below:
+
+# micromark-util-sanitize-uri
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to sanitize urls.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`normalizeUri(value)`](#normalizeurivalue)
+    *   [`sanitizeUri(url[, pattern])`](#sanitizeuriurl-pattern)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes an algorithm to make URLs safe.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-sanitize-uri
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {sanitizeUri} from 'https://esm.sh/micromark-util-sanitize-uri@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {sanitizeUri} from 'https://esm.sh/micromark-util-sanitize-uri@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {sanitizeUri} from 'micromark-util-sanitize-uri'
+
+sanitizeUri('https://example.com/a&amp;b') // 'https://example.com/a&amp;amp;b'
+sanitizeUri('https://example.com/a%b') // 'https://example.com/a%25b'
+sanitizeUri('https://example.com/a%20b') // 'https://example.com/a%20b'
+sanitizeUri('https://example.com/👍') // 'https://example.com/%F0%9F%91%8D'
+sanitizeUri('https://example.com/', /^https?$/i) // 'https://example.com/'
+sanitizeUri('javascript:alert(1)', /^https?$/i) // ''
+sanitizeUri('./example.jpg', /^https?$/i) // './example.jpg'
+sanitizeUri('#a', /^https?$/i) // '#a'
+```
+
+## API
+
+This module exports the identifiers [`normalizeUri`][api-normalize-uri] and
+[`sanitizeUri`][api-sanitize-uri].
+There is no default export.
+
+### `normalizeUri(value)`
+
+Normalize a URL.
+
+Encode unsafe characters with percent-encoding, skipping already encoded
+sequences.
+
+###### Parameters
+
+*   `value` (`string`)
+    — URI to normalize
+
+###### Returns
+
+Normalized URI (`string`).
+
+### `sanitizeUri(url[, pattern])`
+
+Make a value safe for injection as a URL.
+
+This encodes unsafe characters with percent-encoding and skips already
+encoded sequences (see [`normalizeUri`][api-normalize-uri]).
+Further unsafe characters are encoded as character references (see
+[`micromark-util-encode`][micromark-util-encode]).
+
+A regex of allowed protocols can be given, in which case the URL is sanitized.
+For example, `/^(https?|ircs?|mailto|xmpp)$/i` can be used for `a[href]`, or
+`/^https?$/i` for `img[src]` (this is what `github.com` allows).
+If the URL includes an unknown protocol (one not matched by `protocol`, such
+as a dangerous example, `javascript:`), the value is ignored.
+
+###### Parameters
+
+*   `url` (`string`)
+    — URI to sanitize
+*   `pattern` (`RegExp`, optional)
+    — allowed protocols
+
+###### Returns
+
+Sanitized URI (`string`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-sanitize-uri.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-sanitize-uri
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-sanitize-uri
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-sanitize-uri
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[micromark-util-encode]: https://github.com/micromark/micromark/tree/main/packages/micromark-util-encode
+
+[api-normalize-uri]: #normalizeurivalue
+
+[api-sanitize-uri]: #sanitizeuriurl-pattern
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-subtokenize@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-subtokenize
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility to tokenize subtokens.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`subtokenize(events)`](#subtokenizeevents)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes a micromark internal that you probably don’t need.
+
+## When should I use this?
+
+This package might be useful when you are making your own micromark extensions.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-subtokenize
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {subtokenize} from 'https://esm.sh/micromark-util-subtokenize@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {subtokenize} from 'https://esm.sh/micromark-util-subtokenize@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {subtokenize} from 'micromark-util-subtokenize'
+
+/**
+ * Content is transparent: it’s parsed right now. That way, definitions are also
+ * parsed right now: before text in paragraphs (specifically, media) are parsed.
+ *
+ * @type {Resolver}
+ */
+function resolveContent(events) {
+  subtokenize(events)
+  return events
+}
+```
+
+## API
+
+This module exports the identifiers [`subtokenize`][api-subtokenize].
+There is no default export.
+
+### `subtokenize(events)`
+
+Tokenize subcontent.
+
+###### Parameters
+
+*   `events` (`Array<Event>`)
+    — list of events
+
+###### Returns
+
+Whether subtokens were found (`boolean`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-subtokenize.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-subtokenize
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-subtokenize
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-subtokenize
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[api-subtokenize]: #subtokenizeevents
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-symbol@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-symbol
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility with symbols.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes constants used throughout the micromark ecosystem.
+
+## When should I use this?
+
+This package is useful when you are making your own micromark extensions.
+It’s useful to reference these constants by name instead of value while
+developing.
+[`micromark-build`][micromark-build] compiles them away for production code.
+
+## Install
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-symbol
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {codes} from 'https://esm.sh/micromark-util-symbol/codes@1'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {codes} from 'https://esm.sh/micromark-util-symbol/codes@1?bundle'
+</script>
+```
+
+## Use
+
+```js
+import {codes} from 'micromark-util-symbol/codes'
+import {constants} from 'micromark-util-symbol/constants'
+import {types} from 'micromark-util-symbol/types'
+import {values} from 'micromark-util-symbol/values'
+
+console.log(codes.atSign) // 64
+console.log(constants.characterReferenceNamedSizeMax) // 31
+console.log(types.definitionDestinationRaw) // 'definitionDestinationRaw'
+console.log(values.atSign) // '@'
+```
+
+## API
+
+This package has four entries in its export map: `micromark-util-symbol/codes`,
+`micromark-util-symbol/constants`, `micromark-util-symbol/types`,
+`micromark-util-symbol/values`.
+
+Each module exports an identifier with the same name (for example,
+`micromark-util-symbol/codes` has `codes`), which is an object mapping strings
+to other values.
+
+See the code for the exposed data.
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports no additional types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package works with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-symbol.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-symbol
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-symbol
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-symbol
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[micromark-build]: https://github.com/micromark/micromark/tree/main/packages/micromark-build
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark-util-types@1.1.0
+
+This package contains the following license and notice below:
+
+# micromark-util-types
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+[micromark][] utility package with TypeScript types.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package exposes TypeScript types shared throughout the micromark
+ecosystem.
+
+## When should I use this?
+
+This package is useful when you are making your own, typed, micromark
+extensions.
+
+## Install
+
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark-util-types
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import type {Point, /* … */} from 'https://esm.sh/micromark-util-types@1'
+```
+
+## Use
+
+```js
+/**
+ * @typedef {import('micromark-util-types').Point} Point
+ */
+```
+
+## API
+
+This module exports no identifiers.
+There is no default export.
+
+See [the code][code] for all about the exposed types.
+
+## Types
+
+This package is just [TypeScript][] types.
+It exports lots of different types.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This package work with `micromark` version 3+.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark-util-encode.svg
+
+[downloads]: https://www.npmjs.com/package/micromark-util-encode
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-util-encode
+
+[bundle-size]: https://bundlejs.com/?q=micromark-util-encode
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esmsh]: https://esm.sh
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[typescript]: https://www.typescriptlang.org
+
+[micromark]: https://github.com/micromark/micromark
+
+[code]: https://github.com/micromark/micromark/blob/main/packages/micromark-util-types/index.d.ts
+
+-----------
+
+The following NPM package may be included in this product:
+
+ - micromark@3.2.0
+
+This package contains the following license and notice below:
+
+# micromark
+
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][bundle-size-badge]][bundle-size]
+[![Sponsors][sponsors-badge]][opencollective]
+[![Backers][backers-badge]][opencollective]
+[![Chat][chat-badge]][chat]
+
+Markdown parser.
+
+> **Note**: this is the `micromark` package from the micromark monorepo.
+> See the [monorepo readme][micromark] for more on the project.
+> See this readme for how to use it.
+
+## Feature highlights
+
+<!-- Note: this section has to be in sync with the monorepo readme. -->
+
+*   [x] **[compliant][commonmark]** (100% to CommonMark)
+*   [x] **[extensions][]** (100% [GFM][], 100% [MDX.js][mdxjs], [directives][],
+    [frontmatter][], [math][])
+*   [x] **[safe][security]** (by default)
+*   [x] **[robust][test]** (±2k tests, 100% coverage, fuzz testing)
+*   [x] **[small][size-debug]** (smallest CM parser at ±15kb)
+
+## Contents
+
+*   [When should I use this?](#when-should-i-use-this)
+*   [What is this?](#what-is-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`micromark(value[, encoding][, options])`](#micromarkvalue-encoding-options)
+    *   [`stream(options?)`](#streamoptions)
+    *   [`Options`](#options)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Contribute](#contribute)
+*   [Sponsor](#sponsor)
+*   [License](#license)
+
+## When should I use this?
+
+<!-- Note: this section has to be in sync with the monorepo readme. -->
+
+*   If you *just* want to turn markdown into HTML (with maybe a few extensions)
+*   If you want to do *really complex things* with markdown
+
+See [§ Comparison][comparison] for more info
+
+## What is this?
+
+<!-- Note: this section has to be in sync with the monorepo readme. -->
+
+`micromark` is an open source markdown parser written in JavaScript.
+It’s implemented as a state machine that emits concrete tokens, so that every
+byte is accounted for, with positional info.
+It then compiles those tokens directly to HTML, but other tools can take the
+data and for example build an AST which is easier to work with
+([`mdast-util-to-markdown`][mdast-util-to-markdown]).
+
+While most markdown parsers work towards compliancy with CommonMark (or GFM),
+this project goes further by following how the reference parsers (`cmark`,
+`cmark-gfm`) work, which is confirmed with thousands of extra tests.
+
+Other than CommonMark and GFM, micromark also supports common extensions to
+markdown such as MDX, math, and frontmatter.
+
+These npm packages have a sibling project in Rust:
+[`markdown-rs`][markdown-rs].
+
+*   to learn markdown, see this [cheatsheet and tutorial][cheat]
+*   for more about us, see [`unifiedjs.com`][site]
+*   for updates, see [Twitter][]
+*   for questions, see [Discussions][chat]
+*   to help, see [contribute][] and [sponsor][] below
+
+## Install
+
+<!-- Note: this section has to be in sync with the monorepo readme. -->
+
+This package is [ESM only][esm].
+In Node.js (version 16+), install with [npm][]:
+
+```sh
+npm install micromark
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {micromark} from 'https://esm.sh/micromark@3'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {micromark} from 'https://esm.sh/micromark@3?bundle'
+</script>
+```
+
+## Use
+
+<!-- Note: this section has to be in sync with the monorepo readme. -->
+
+Typical use (buffering):
+
+```js
+import {micromark} from 'micromark'
+
+console.log(micromark('## Hello, *world*!'))
+```
+
+Yields:
+
+```html
+<h2>Hello, <em>world</em>!</h2>
+```
+
+You can pass extensions (in this case [`micromark-extension-gfm`][gfm]):
+
+```js
+import {micromark} from 'micromark'
+import {gfm, gfmHtml} from 'micromark-extension-gfm'
+
+const value = '* [x] contact@example.com ~~strikethrough~~'
+
+const result = micromark(value, {
+  extensions: [gfm()],
+  htmlExtensions: [gfmHtml()]
+})
+
+console.log(result)
+```
+
+Yields:
+
+```html
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <a href="mailto:contact@example.com">contact@example.com</a> <del>strikethrough</del></li>
+</ul>
+```
+
+Streaming interface:
+
+```js
+import {createReadStream} from 'node:fs'
+import {stream} from 'micromark/stream'
+
+createReadStream('example.md')
+  .on('error', handleError)
+  .pipe(stream())
+  .pipe(process.stdout)
+
+function handleError(error) {
+  // Handle your error here!
+  throw error
+}
+```
+
+## API
+
+`micromark` core has two entries in its export map: `micromark` and
+`micromark/stream`.
+
+`micromark` exports the identifier [`micromark`][api-micromark].
+`micromark/stream` exports the identifier [`stream`][api-stream].
+There are no default exports.
+
+The export map supports the [`development` condition][development].
+Run `node --conditions development module.js` to get instrumented dev code.
+Without this condition, production code is loaded.
+See [§ Size & debug][size-debug] for more info.
+
+### `micromark(value[, encoding][, options])`
+
+Compile markdown to HTML.
+
+###### Parameters
+
+*   `value` (`string` or [`Buffer`][buffer])
+    — markdown to parse
+*   `encoding` (`string`, default: `'utf8'`)
+    — [character encoding][encoding] to understand `value` as when it’s a
+    `Buffer`
+*   `options` ([`Options`][api-options], optional)
+    — configuration
+
+###### Returns
+
+Compiled HTML (`string`).
+
+### `stream(options?)`
+
+Create a duplex (readable and writable) stream.
+
+Some of the work to parse markdown can be done streaming, but in the
+end buffering is required.
+
+micromark does not handle errors for you, so you must handle errors on whatever
+streams you pipe into it.
+As markdown does not know errors, `micromark` itself does not emit errors.
+
+###### Parameters
+
+*   `options` ([`Options`][api-options], optional)
+    — configuration
+
+###### Returns
+
+Duplex stream.
+
+### `Options`
+
+Configuration (TypeScript type).
+
+##### Fields
+
+###### `allowDangerousHtml`
+
+Whether to allow (dangerous) HTML (`boolean`, default: `false`).
+
+The default is `false`, which still parses the HTML according to `CommonMark`
+but shows the HTML as text instead of as elements.
+
+Pass `true` for trusted content to get actual HTML elements.
+See [§ Security][security].
+
+###### `allowDangerousProtocol`
+
+Whether to allow dangerous protocols in links and images (`boolean`, default:
+`false`).
+
+The default is `false`, which drops URLs in links and images that use dangerous
+protocols.
+
+Pass `true` for trusted content to support all protocols.
+
+URLs that have no protocol (which means it’s relative to the current page, such
+as `./some/page.html`) and URLs that have a safe protocol (for images: `http`,
+`https`; for links: `http`, `https`, `irc`, `ircs`, `mailto`, `xmpp`), are
+safe.
+All other URLs are dangerous and dropped.
+See [§ Security][security].
+
+###### `defaultLineEnding`
+
+Default line ending to use when compiling to HTML, for line endings not in
+`value` (`'\r'`, `'\n'`, or `'\r\n'`; default: first line ending or `'\n'`).
+
+Generally, `micromark` copies line endings (`\r`, `\n`, `\r\n`) in the markdown
+document over to the compiled HTML.
+In some cases, such as `> a`, CommonMark requires that extra line endings are
+added: `<blockquote>\n<p>a</p>\n</blockquote>`.
+
+To create that line ending, the document is checked for the first line ending
+that is used.
+If there is no line ending, `defaultLineEnding` is used.
+If that isn’t configured, `\n` is used.
+
+###### `extensions`
+
+Array of syntax extensions (`Array<SyntaxExtension>`, default: `[]`).
+See [§ Extensions][extensions].
+
+###### `htmlExtensions`
+
+Array of syntax extensions (`Array<HtmlExtension>`, default: `[]`).
+See [§ Extensions][extensions].
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports the additional type [`Options`][api-options].
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 16+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+## Security
+
+This package is safe.
+See [`security.md`][securitymd] in [`micromark/.github`][health] for how to
+submit a security report.
+
+## Contribute
+
+See [`contributing.md`][contributing] in [`micromark/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
+
+This project has a [code of conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
+
+## Sponsor
+
+<!-- Note: this section has to be in sync with the monorepo readme. -->
+
+Support this effort and give back by sponsoring on [OpenCollective][]!
+
+<table>
+<tr valign="middle">
+<td width="100%" align="center" colspan="10">
+  <br>
+  <a href="https://www.salesforce.com">Salesforce</a> 🏅<br><br>
+  <a href="https://www.salesforce.com"><img src="https://images.opencollective.com/salesforce/ca8f997/logo/512.png" width="256"></a>
+</td>
+</tr>
+<tr valign="middle">
+<td width="20%" align="center" rowspan="2" colspan="2">
+  <a href="https://vercel.com">Vercel</a><br><br>
+  <a href="https://vercel.com"><img src="https://avatars1.githubusercontent.com/u/14985020?s=256&v=4" width="128"></a>
+</td>
+<td width="20%" align="center" rowspan="2" colspan="2">
+  <a href="https://motif.land">Motif</a><br><br>
+  <a href="https://motif.land"><img src="https://avatars1.githubusercontent.com/u/74457950?s=256&v=4" width="128"></a>
+</td>
+<td width="20%" align="center" rowspan="2" colspan="2">
+  <a href="https://www.hashicorp.com">HashiCorp</a><br><br>
+  <a href="https://www.hashicorp.com"><img src="https://avatars1.githubusercontent.com/u/761456?s=256&v=4" width="128"></a>
+</td>
+<td width="20%" align="center" rowspan="2" colspan="2">
+  <a href="https://www.gitbook.com">GitBook</a><br><br>
+  <a href="https://www.gitbook.com"><img src="https://avatars1.githubusercontent.com/u/7111340?s=256&v=4" width="128"></a>
+</td>
+<td width="20%" align="center" rowspan="2" colspan="2">
+  <a href="https://www.gatsbyjs.org">Gatsby</a><br><br>
+  <a href="https://www.gatsbyjs.org"><img src="https://avatars1.githubusercontent.com/u/12551863?s=256&v=4" width="128"></a>
+</td>
+</tr>
+<tr valign="middle">
+</tr>
+<tr valign="middle">
+<td width="20%" align="center" rowspan="2" colspan="2">
+  <a href="https://www.netlify.com">Netlify</a><br><br>
+  <!--OC has a sharper image-->
+  <a href="https://www.netlify.com"><img src="https://images.opencollective.com/netlify/4087de2/logo/256.png" width="128"></a>
+</td>
+<td width="10%" align="center">
+  <a href="https://www.coinbase.com">Coinbase</a><br><br>
+  <a href="https://www.coinbase.com"><img src="https://avatars1.githubusercontent.com/u/1885080?s=256&v=4" width="64"></a>
+</td>
+<td width="10%" align="center">
+  <a href="https://themeisle.com">ThemeIsle</a><br><br>
+  <a href="https://themeisle.com"><img src="https://avatars1.githubusercontent.com/u/58979018?s=128&v=4" width="64"></a>
+</td>
+<td width="10%" align="center">
+  <a href="https://expo.io">Expo</a><br><br>
+  <a href="https://expo.io"><img src="https://avatars1.githubusercontent.com/u/12504344?s=128&v=4" width="64"></a>
+</td>
+<td width="10%" align="center">
+  <a href="https://boostnote.io">Boost Note</a><br><br>
+  <a href="https://boostnote.io"><img src="https://images.opencollective.com/boosthub/6318083/logo/128.png" width="64"></a>
+</td>
+<td width="10%" align="center">
+  <a href="https://markdown.space">Markdown Space</a><br><br>
+  <a href="https://markdown.space"><img src="https://images.opencollective.com/markdown-space/e1038ed/logo/128.png" width="64"></a>
+</td>
+<td width="10%" align="center">
+  <a href="https://www.holloway.com">Holloway</a><br><br>
+  <a href="https://www.holloway.com"><img src="https://avatars1.githubusercontent.com/u/35904294?s=128&v=4" width="64"></a>
+</td>
+<td width="10%"></td>
+<td width="10%"></td>
+</tr>
+<tr valign="middle">
+<td width="100%" align="center" colspan="8">
+  <br>
+  <a href="https://opencollective.com/unified"><strong>You?</strong></a>
+  <br><br>
+</td>
+</tr>
+</table>
+
+## License
+
+[MIT][license] © [Titus Wormer][author]
+
+<!-- Definitions -->
+
+[build-badge]: https://github.com/micromark/micromark/workflows/main/badge.svg
+
+[build]: https://github.com/micromark/micromark/actions
+
+[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark.svg
+
+[coverage]: https://codecov.io/github/micromark/micromark
+
+[downloads-badge]: https://img.shields.io/npm/dm/micromark.svg
+
+[downloads]: https://www.npmjs.com/package/micromark
+
+[bundle-size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark
+
+[bundle-size]: https://bundlejs.com/?q=micromark
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[opencollective]: https://opencollective.com/unified
+
+[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
+
+[chat]: https://github.com/micromark/micromark/discussions
+
+[npm]: https://docs.npmjs.com/cli/install
+
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
+[development]: https://nodejs.org/api/packages.html#packages_resolving_user_conditions
+
+[license]: https://github.com/micromark/micromark/blob/main/license
+
+[author]: https://wooorm.com
+
+[health]: https://github.com/micromark/.github
+
+[securitymd]: https://github.com/micromark/.github/blob/main/security.md
+
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
+
+[support]: https://github.com/micromark/.github/blob/main/support.md
+
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
+
+[cheat]: https://commonmark.org/help/
+
+[twitter]: https://twitter.com/unifiedjs
+
+[site]: https://unifiedjs.com
+
+[contribute]: #contribute
+
+[encoding]: https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings
+
+[buffer]: https://nodejs.org/api/buffer.html
+
+[commonmark]: https://commonmark.org
+
+[directives]: https://github.com/micromark/micromark-extension-directive
+
+[frontmatter]: https://github.com/micromark/micromark-extension-frontmatter
+
+[gfm]: https://github.com/micromark/micromark-extension-gfm
+
+[math]: https://github.com/micromark/micromark-extension-math
+
+[mdxjs]: https://github.com/micromark/micromark-extension-mdxjs
+
+[security]: #security
+
+[sponsor]: #sponsor
+
+[micromark]: https://github.com/micromark/micromark
+
+[extensions]: https://github.com/micromark/micromark#extensions
+
+[test]: https://github.com/micromark/micromark#test
+
+[size-debug]: https://github.com/micromark/micromark#size--debug
+
+[comparison]: https://github.com/micromark/micromark#comparison
+
+[markdown-rs]: https://github.com/wooorm/markdown-rs
+
+[mdast-util-to-markdown]: https://github.com/syntax-tree/mdast-util-to-markdown
+
+[api-micromark]: #micromarkvalue-encoding-options
+
+[api-stream]: #streamoptions
+
+[api-options]: #options
 
 -----------
 
@@ -3769,38 +8681,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
------------
-
-The following NPM packages may be included in this product:
-
- - parse-entities@2.0.0
- - property-information@5.6.0
-
-These packages each contain the following license and notice below:
-
-(The MIT License)
-
-Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -----------
 
@@ -4216,6 +9096,38 @@ SOFTWARE.
 
 -----------
 
+The following NPM packages may be included in this product:
+
+ - property-information@6.5.0
+ - trim-lines@3.0.1
+
+These packages each contain the following license and notice below:
+
+(The MIT License)
+
+Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-----------
+
 The following NPM package may be included in this product:
 
  - protocol-buffers-schema@3.6.0
@@ -4309,7 +9221,7 @@ The following NPM packages may be included in this product:
 
  - react-dom@18.2.0
  - react-is@16.13.1
- - react-is@17.0.2
+ - react-is@18.3.1
  - react@18.2.0
  - scheduler@0.23.0
  - use-sync-external-store@1.2.0
@@ -4342,7 +9254,7 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - react-markdown@6.0.3
+ - react-markdown@8.0.7
 
 This package contains the following license and notice below:
 
@@ -4660,207 +9572,32 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - remark-parse@9.0.0
+ - remark-parse@10.0.2
 
 This package contains the following license and notice below:
 
-# remark-parse
+(The MIT License)
 
-[![Build][build-badge]][build]
-[![Coverage][coverage-badge]][coverage]
-[![Downloads][downloads-badge]][downloads]
-[![Size][size-badge]][size]
-[![Sponsors][sponsors-badge]][collective]
-[![Backers][backers-badge]][collective]
-[![Chat][chat-badge]][chat]
+Copyright (c) 2014-2020 Titus Wormer <tituswormer@gmail.com>
+Copyright (c) 2011-2014, Christopher Jeffrey (https://github.com/chjj/)
 
-[Parser][] for [**unified**][unified].
-Parses Markdown to [**mdast**][mdast] syntax trees.
-Built on [`micromark`][micromark] and
-[`mdast-util-from-markdown`][from-markdown].
-Used in the [**remark** processor][remark] but can be used on its own as well.
-Can be [extended][extend] to change how Markdown is parsed.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Install
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-[npm][]:
-
-```sh
-npm install remark-parse
-```
-
-## Use
-
-```js
-var unified = require('unified')
-var createStream = require('unified-stream')
-var markdown = require('remark-parse')
-var remark2rehype = require('remark-rehype')
-var html = require('rehype-stringify')
-
-var processor = unified().use(markdown).use(remark2rehype).use(html)
-
-process.stdin.pipe(createStream(processor)).pipe(process.stdout)
-```
-
-[See **unified** for more examples »][unified]
-
-## API
-
-[See **unified** for API docs »][unified]
-
-### `processor().use(parse)`
-
-Configure the `processor` to read Markdown as input and process
-[**mdast**][mdast] syntax trees.
-
-## Extending the parser
-
-See [`micromark`][micromark] and [`mdast-util-from-markdown`][from-markdown].
-Then create a wrapper plugin such as [`remark-gfm`][gfm].
-
-## Security
-
-As Markdown is sometimes used for HTML, and improper use of HTML can open you up
-to a [cross-site scripting (XSS)][xss] attack, use of remark can also be unsafe.
-When going to HTML, use remark in combination with the [**rehype**][rehype]
-ecosystem, and use [`rehype-sanitize`][sanitize] to make the tree safe.
-
-Use of remark plugins could also open you up to other attacks.
-Carefully assess each plugin and the risks involved in using them.
-
-## Contribute
-
-See [`contributing.md`][contributing] in [`remarkjs/.github`][health] for ways
-to get started.
-See [`support.md`][support] for ways to get help.
-Ideas for new plugins and tools can be posted in [`remarkjs/ideas`][ideas].
-
-A curated list of awesome remark resources can be found in [**awesome
-remark**][awesome].
-
-This project has a [code of conduct][coc].
-By interacting with this repository, organization, or community you agree to
-abide by its terms.
-
-## Sponsor
-
-Support this effort and give back by sponsoring on [OpenCollective][collective]!
-
-<!--lint ignore no-html-->
-
-<table>
-<tr valign="middle">
-<td width="20%" align="center" colspan="2">
-  <a href="https://www.gatsbyjs.org">Gatsby</a> 🥇<br><br>
-  <a href="https://www.gatsbyjs.org"><img src="https://avatars1.githubusercontent.com/u/12551863?s=256&v=4" width="128"></a>
-</td>
-<td width="20%" align="center" colspan="2">
-  <a href="https://vercel.com">Vercel</a> 🥇<br><br>
-  <a href="https://vercel.com"><img src="https://avatars1.githubusercontent.com/u/14985020?s=256&v=4" width="128"></a>
-</td>
-<td width="20%" align="center" colspan="2">
-  <a href="https://www.netlify.com">Netlify</a><br><br>
-  <!--OC has a sharper image-->
-  <a href="https://www.netlify.com"><img src="https://images.opencollective.com/netlify/4087de2/logo/256.png" width="128"></a>
-</td>
-<td width="10%" align="center">
-  <a href="https://www.holloway.com">Holloway</a><br><br>
-  <a href="https://www.holloway.com"><img src="https://avatars1.githubusercontent.com/u/35904294?s=128&v=4" width="64"></a>
-</td>
-<td width="10%" align="center">
-  <a href="https://themeisle.com">ThemeIsle</a><br><br>
-  <a href="https://themeisle.com"><img src="https://avatars1.githubusercontent.com/u/58979018?s=128&v=4" width="64"></a>
-</td>
-<td width="10%" align="center">
-  <a href="https://boosthub.io">Boost Hub</a><br><br>
-  <a href="https://boosthub.io"><img src="https://images.opencollective.com/boosthub/6318083/logo/128.png" width="64"></a>
-</td>
-<td width="10%" align="center">
-  <a href="https://expo.io">Expo</a><br><br>
-  <a href="https://expo.io"><img src="https://avatars1.githubusercontent.com/u/12504344?s=128&v=4" width="64"></a>
-</td>
-</tr>
-<tr valign="middle">
-<td width="100%" align="center" colspan="10">
-  <br>
-  <a href="https://opencollective.com/unified"><strong>You?</strong></a>
-  <br><br>
-</td>
-</tr>
-</table>
-
-## License
-
-[MIT][license] © [Titus Wormer][author]
-
-<!-- Definitions -->
-
-[build-badge]: https://img.shields.io/travis/remarkjs/remark.svg
-
-[build]: https://travis-ci.org/remarkjs/remark
-
-[coverage-badge]: https://img.shields.io/codecov/c/github/remarkjs/remark.svg
-
-[coverage]: https://codecov.io/github/remarkjs/remark
-
-[downloads-badge]: https://img.shields.io/npm/dm/remark-parse.svg
-
-[downloads]: https://www.npmjs.com/package/remark-parse
-
-[size-badge]: https://img.shields.io/bundlephobia/minzip/remark-parse.svg
-
-[size]: https://bundlephobia.com/result?p=remark-parse
-
-[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
-
-[backers-badge]: https://opencollective.com/unified/backers/badge.svg
-
-[collective]: https://opencollective.com/unified
-
-[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
-
-[chat]: https://github.com/remarkjs/remark/discussions
-
-[health]: https://github.com/remarkjs/.github
-
-[contributing]: https://github.com/remarkjs/.github/blob/HEAD/contributing.md
-
-[support]: https://github.com/remarkjs/.github/blob/HEAD/support.md
-
-[coc]: https://github.com/remarkjs/.github/blob/HEAD/code-of-conduct.md
-
-[ideas]: https://github.com/remarkjs/ideas
-
-[awesome]: https://github.com/remarkjs/awesome-remark
-
-[license]: https://github.com/remarkjs/remark/blob/main/license
-
-[author]: https://wooorm.com
-
-[npm]: https://docs.npmjs.com/cli/install
-
-[unified]: https://github.com/unifiedjs/unified
-
-[remark]: https://github.com/remarkjs/remark/tree/main/packages/remark
-
-[mdast]: https://github.com/syntax-tree/mdast
-
-[parser]: https://github.com/unifiedjs/unified#processorparser
-
-[extend]: #extending-the-parser
-
-[xss]: https://en.wikipedia.org/wiki/Cross-site_scripting
-
-[rehype]: https://github.com/rehypejs/rehype
-
-[sanitize]: https://github.com/rehypejs/rehype-sanitize
-
-[micromark]: https://github.com/micromark/micromark
-
-[from-markdown]: https://github.com/syntax-tree/mdast-util-from-markdown
-
-[gfm]: https://github.com/remarkjs/remark-gfm
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 -----------
 
@@ -5021,6 +9758,36 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
+ - sade@1.8.1
+
+This package contains the following license and notice below:
+
+The MIT License (MIT)
+
+Copyright (c) Luke Edwards <luke.edwards05@gmail.com> (https://lukeed.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+-----------
+
+The following NPM package may be included in this product:
+
  - source-map-js@1.0.2
 
 This package contains the following license and notice below:
@@ -5057,7 +9824,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - style-to-object@0.3.0
+ - style-to-object@0.4.4
 
 This package contains the following license and notice below:
 
@@ -5356,7 +10123,7 @@ This package contains the following license and notice below:
 
 The following NPM package may be included in this product:
 
- - trough@1.0.5
+ - trough@2.2.0
 
 This package contains the following license and notice below:
 
@@ -5677,8 +10444,8 @@ SOFTWARE.
 
 The following NPM packages may be included in this product:
 
- - unified@9.2.2
- - vfile@4.2.1
+ - unified@10.1.2
+ - vfile@5.3.7
 
 These packages each contain the following license and notice below:
 
@@ -5708,37 +10475,7 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - unist-builder@2.0.3
-
-This package contains the following license and notice below:
-
-The MIT License (MIT)
-
-Copyright (c) 2015 Eugene Sharygin
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following NPM package may be included in this product:
-
- - unist-util-is@4.1.0
+ - unist-util-is@5.2.1
 
 This package contains the following license and notice below:
 
@@ -5832,7 +10569,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - vfile-message@2.0.4
+ - vfile-message@3.1.4
 
 This package contains the following license and notice below:
 
@@ -5953,35 +10690,6 @@ This package contains the following license and notice below:
 The MIT License (MIT)
 
 Copyright (c) 2015–2016 Sebastian Mayr
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following NPM package may be included in this product:
-
- - xtend@4.0.2
-
-This package contains the following license and notice below:
-
-The MIT License (MIT)
-Copyright (c) 2012-2014 Raynos.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
