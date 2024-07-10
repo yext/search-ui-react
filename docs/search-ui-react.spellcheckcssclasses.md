@@ -14,101 +14,10 @@ interface SpellCheckCssClasses
 
 ## Properties
 
-<table><thead><tr><th>
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [helpText?](./search-ui-react.spellcheckcssclasses.helptext.md) |  | string | _(Optional)_ |
+|  [link?](./search-ui-react.spellcheckcssclasses.link.md) |  | string | _(Optional)_ |
+|  [spellCheckContainer?](./search-ui-react.spellcheckcssclasses.spellcheckcontainer.md) |  | string | _(Optional)_ |
+|  [spellCheckLoading?](./search-ui-react.spellcheckcssclasses.spellcheckloading.md) |  | string | _(Optional)_ |
 
-Property
-
-
-</th><th>
-
-Modifiers
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-[helpText?](./search-ui-react.spellcheckcssclasses.helptext.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-<tr><td>
-
-[link?](./search-ui-react.spellcheckcssclasses.link.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-<tr><td>
-
-[spellCheckContainer?](./search-ui-react.spellcheckcssclasses.spellcheckcontainer.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-<tr><td>
-
-[spellCheckLoading?](./search-ui-react.spellcheckcssclasses.spellcheckloading.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-</tbody></table>

@@ -14,39 +14,10 @@ declare function Facets(props: FacetsProps): JSX.Element;
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | [FacetsProps](./search-ui-react.facetsprops.md) | [FacetsProps](./search-ui-react.facetsprops.md) |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-props
-
-
-</td><td>
-
-[FacetsProps](./search-ui-react.facetsprops.md)
-
-
-</td><td>
-
-[FacetsProps](./search-ui-react.facetsprops.md)
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element

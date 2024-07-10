@@ -14,39 +14,10 @@ declare function VerticalResults<T>(props: VerticalResultsProps<T>): JSX.Element
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | [VerticalResultsProps](./search-ui-react.verticalresultsprops.md)<!-- -->&lt;T&gt; | [VerticalResultsProps](./search-ui-react.verticalresultsprops.md) |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-props
-
-
-</td><td>
-
-[VerticalResultsProps](./search-ui-react.verticalresultsprops.md)<!-- -->&lt;T&gt;
-
-
-</td><td>
-
-[VerticalResultsProps](./search-ui-react.verticalresultsprops.md)
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element \| null

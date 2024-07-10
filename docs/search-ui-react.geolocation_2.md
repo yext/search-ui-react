@@ -14,37 +14,10 @@ declare function Geolocation({ geolocationOptions, radius, label, GeolocationIco
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  { geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, } | [GeolocationProps](./search-ui-react.geolocationprops.md) |  |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-{ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }
-
-
-</td><td>
-
-[GeolocationProps](./search-ui-react.geolocationprops.md)
-
-
-</td><td>
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element \| null

@@ -14,37 +14,10 @@ declare function executeAutocomplete(searchActions: SearchActions): Promise<Auto
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  searchActions | SearchActions |  |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-searchActions
-
-
-</td><td>
-
-SearchActions
-
-
-</td><td>
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 Promise&lt;AutocompleteResponse \| undefined&gt;

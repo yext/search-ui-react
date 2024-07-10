@@ -14,44 +14,7 @@ interface ResultsCountProps
 
 ## Properties
 
-<table><thead><tr><th>
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.resultscountprops.customcssclasses.md) |  | [ResultsCountCssClasses](./search-ui-react.resultscountcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 
-Property
-
-
-</th><th>
-
-Modifiers
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-[customCssClasses?](./search-ui-react.resultscountprops.customcssclasses.md)
-
-
-</td><td>
-
-
-</td><td>
-
-[ResultsCountCssClasses](./search-ui-react.resultscountcssclasses.md)
-
-
-</td><td>
-
-_(Optional)_ CSS classes for customizing the component styling.
-
-
-</td></tr>
-</tbody></table>

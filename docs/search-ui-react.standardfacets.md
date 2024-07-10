@@ -19,39 +19,10 @@ declare function StandardFacets(props: StandardFacetsProps): JSX.Element;
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) | [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-props
-
-
-</td><td>
-
-[StandardFacetsProps](./search-ui-react.standardfacetsprops.md)
-
-
-</td><td>
-
-[StandardFacetsProps](./search-ui-react.standardfacetsprops.md)
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element

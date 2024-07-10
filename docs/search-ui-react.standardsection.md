@@ -14,39 +14,10 @@ declare function StandardSection<T>(props: StandardSectionProps<T>): JSX.Element
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | [StandardSectionProps](./search-ui-react.standardsectionprops.md)<!-- -->&lt;T&gt; | [StandardSectionProps](./search-ui-react.standardsectionprops.md) |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-props
-
-
-</td><td>
-
-[StandardSectionProps](./search-ui-react.standardsectionprops.md)<!-- -->&lt;T&gt;
-
-
-</td><td>
-
-[StandardSectionProps](./search-ui-react.standardsectionprops.md)
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element \| null
