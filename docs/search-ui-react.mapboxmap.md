@@ -14,10 +14,37 @@ declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, 
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag } | [MapboxMapProps](./search-ui-react.mapboxmapprops.md)<!-- -->&lt;T&gt; |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag }
+
+
+</td><td>
+
+[MapboxMapProps](./search-ui-react.mapboxmapprops.md)<!-- -->&lt;T&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element

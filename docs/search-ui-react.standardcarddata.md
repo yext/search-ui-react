@@ -14,10 +14,101 @@ interface StandardCardData
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [cta1](./search-ui-react.standardcarddata.cta1.md) |  | [CtaData](./search-ui-react.ctadata.md) | CTA data to render. |
-|  [cta2](./search-ui-react.standardcarddata.cta2.md) |  | [CtaData](./search-ui-react.ctadata.md) | CTA data to render. |
-|  [description](./search-ui-react.standardcarddata.description.md) |  | HighlightedValue \| string | The content to display in the card's body. |
-|  [title](./search-ui-react.standardcarddata.title.md) |  | HighlightedValue \| string | The text to display in the card's header. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[cta1](./search-ui-react.standardcarddata.cta1.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[CtaData](./search-ui-react.ctadata.md)
+
+
+</td><td>
+
+CTA data to render.
+
+
+</td></tr>
+<tr><td>
+
+[cta2](./search-ui-react.standardcarddata.cta2.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[CtaData](./search-ui-react.ctadata.md)
+
+
+</td><td>
+
+CTA data to render.
+
+
+</td></tr>
+<tr><td>
+
+[description](./search-ui-react.standardcarddata.description.md)
+
+
+</td><td>
+
+
+</td><td>
+
+HighlightedValue \| string
+
+
+</td><td>
+
+The content to display in the card's body.
+
+
+</td></tr>
+<tr><td>
+
+[title](./search-ui-react.standardcarddata.title.md)
+
+
+</td><td>
+
+
+</td><td>
+
+HighlightedValue \| string
+
+
+</td><td>
+
+The text to display in the card's header.
+
+
+</td></tr>
+</tbody></table>

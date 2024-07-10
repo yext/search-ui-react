@@ -14,10 +14,39 @@ declare function HierarchicalFacet(props: HierarchicalFacetProps): null;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  props | [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md) | [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md) |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+props
+
+
+</td><td>
+
+[HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md)
+
+
+</td><td>
+
+[HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md)
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 null

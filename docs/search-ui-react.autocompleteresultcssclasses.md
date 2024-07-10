@@ -14,10 +14,101 @@ interface AutocompleteResultCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [highlighted?](./search-ui-react.autocompleteresultcssclasses.highlighted.md) |  | string | _(Optional)_ |
-|  [icon?](./search-ui-react.autocompleteresultcssclasses.icon.md) |  | string | _(Optional)_ |
-|  [nonHighlighted?](./search-ui-react.autocompleteresultcssclasses.nonhighlighted.md) |  | string | _(Optional)_ |
-|  [option?](./search-ui-react.autocompleteresultcssclasses.option.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[highlighted?](./search-ui-react.autocompleteresultcssclasses.highlighted.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[icon?](./search-ui-react.autocompleteresultcssclasses.icon.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[nonHighlighted?](./search-ui-react.autocompleteresultcssclasses.nonhighlighted.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[option?](./search-ui-react.autocompleteresultcssclasses.option.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>
