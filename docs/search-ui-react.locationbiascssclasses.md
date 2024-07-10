@@ -19,11 +19,120 @@ interface LocationBiasCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [button?](./search-ui-react.locationbiascssclasses.button.md) |  | string | _(Optional)_ |
-|  [loadingIndicatorContainer?](./search-ui-react.locationbiascssclasses.loadingindicatorcontainer.md) |  | string | _(Optional)_ |
-|  [location?](./search-ui-react.locationbiascssclasses.location.md) |  | string | _(Optional)_ |
-|  [locationBiasContainer?](./search-ui-react.locationbiascssclasses.locationbiascontainer.md) |  | string | _(Optional)_ |
-|  [source?](./search-ui-react.locationbiascssclasses.source.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[button?](./search-ui-react.locationbiascssclasses.button.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[loadingIndicatorContainer?](./search-ui-react.locationbiascssclasses.loadingindicatorcontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[location?](./search-ui-react.locationbiascssclasses.location.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[locationBiasContainer?](./search-ui-react.locationbiascssclasses.locationbiascontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[source?](./search-ui-react.locationbiascssclasses.source.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>

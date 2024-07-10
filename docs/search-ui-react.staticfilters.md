@@ -14,10 +14,39 @@ declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  props | [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) | [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+props
+
+
+</td><td>
+
+[StaticFiltersProps](./search-ui-react.staticfiltersprops.md)
+
+
+</td><td>
+
+[StaticFiltersProps](./search-ui-react.staticfiltersprops.md)
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element

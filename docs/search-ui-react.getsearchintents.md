@@ -14,10 +14,37 @@ declare function getSearchIntents(searchActions: SearchActions): Promise<SearchI
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  searchActions | SearchActions |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+searchActions
+
+
+</td><td>
+
+SearchActions
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 Promise&lt;SearchIntent\[\] \| undefined&gt;

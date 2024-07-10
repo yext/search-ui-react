@@ -14,10 +14,101 @@ interface ThumbsFeedbackProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.thumbsfeedbackprops.customcssclasses.md) |  | [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [feedbackText?](./search-ui-react.thumbsfeedbackprops.feedbacktext.md) |  | string | _(Optional)_ Text to display alongside the quality feedback buttons. |
-|  [feedbackTextOnSubmission?](./search-ui-react.thumbsfeedbackprops.feedbacktextonsubmission.md) |  | string | _(Optional)_ Text to display after a quality feedback button is clicked. |
-|  [onClick](./search-ui-react.thumbsfeedbackprops.onclick.md) |  | (feedbackType: [FeedbackType](./search-ui-react.feedbacktype.md)<!-- -->) =&gt; void | A function which is called when a quality feedback button is clicked. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.thumbsfeedbackprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[feedbackText?](./search-ui-react.thumbsfeedbackprops.feedbacktext.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ Text to display alongside the quality feedback buttons.
+
+
+</td></tr>
+<tr><td>
+
+[feedbackTextOnSubmission?](./search-ui-react.thumbsfeedbackprops.feedbacktextonsubmission.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ Text to display after a quality feedback button is clicked.
+
+
+</td></tr>
+<tr><td>
+
+[onClick](./search-ui-react.thumbsfeedbackprops.onclick.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(feedbackType: [FeedbackType](./search-ui-react.feedbacktype.md)<!-- -->) =&gt; void
+
+
+</td><td>
+
+A function which is called when a quality feedback button is clicked.
+
+
+</td></tr>
+</tbody></table>

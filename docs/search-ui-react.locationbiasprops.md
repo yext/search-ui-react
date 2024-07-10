@@ -19,8 +19,63 @@ interface LocationBiasProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.locationbiasprops.customcssclasses.md) |  | [LocationBiasCssClasses](./search-ui-react.locationbiascssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [geolocationOptions?](./search-ui-react.locationbiasprops.geolocationoptions.md) |  | PositionOptions | _(Optional)_ Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.locationbiasprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[LocationBiasCssClasses](./search-ui-react.locationbiascssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[geolocationOptions?](./search-ui-react.locationbiasprops.geolocationoptions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+PositionOptions
+
+
+</td><td>
+
+_(Optional)_ Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->.
+
+
+</td></tr>
+</tbody></table>

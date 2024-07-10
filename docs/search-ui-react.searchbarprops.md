@@ -14,16 +14,215 @@ interface SearchBarProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.searchbarprops.customcssclasses.md) |  | [SearchBarCssClasses](./search-ui-react.searchbarcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [geolocationOptions?](./search-ui-react.searchbarprops.geolocationoptions.md) |  | PositionOptions | _(Optional)_ Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->. |
-|  [hideRecentSearches?](./search-ui-react.searchbarprops.hiderecentsearches.md) |  | boolean | _(Optional)_ Hides recent searches if true. |
-|  [onSearch?](./search-ui-react.searchbarprops.onsearch.md) |  | [onSearchFunc](./search-ui-react.onsearchfunc.md) | _(Optional)_ A callback which is called when a search is ran. |
-|  [onSelectVerticalLink?](./search-ui-react.searchbarprops.onselectverticallink.md) |  | (data: { verticalLink: [VerticalLink](./search-ui-react.verticallink.md)<!-- -->; querySource: QuerySource; }) =&gt; void | _(Optional)_ A function which is called when a vertical link is selected. |
-|  [placeholder?](./search-ui-react.searchbarprops.placeholder.md) |  | string | _(Optional)_ The search bar's placeholder text. |
-|  [recentSearchesLimit?](./search-ui-react.searchbarprops.recentsearcheslimit.md) |  | number | _(Optional)_ Limits the number of recent searches shown. |
-|  [showVerticalLinks?](./search-ui-react.searchbarprops.showverticallinks.md) |  | boolean | _(Optional)_ Shows vertical links if true, set to false on default. |
-|  [verticalKeyToLabel?](./search-ui-react.searchbarprops.verticalkeytolabel.md) |  | (verticalKey: string) =&gt; string | _(Optional)_ A function which returns a display label for the given verticalKey. |
-|  [visualAutocompleteConfig?](./search-ui-react.searchbarprops.visualautocompleteconfig.md) |  | [VisualAutocompleteConfig](./search-ui-react.visualautocompleteconfig.md) | _(Optional)_ The configuration options for Visual Autocomplete. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.searchbarprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[SearchBarCssClasses](./search-ui-react.searchbarcssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[geolocationOptions?](./search-ui-react.searchbarprops.geolocationoptions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+PositionOptions
+
+
+</td><td>
+
+_(Optional)_ Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[hideRecentSearches?](./search-ui-react.searchbarprops.hiderecentsearches.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Hides recent searches if true.
+
+
+</td></tr>
+<tr><td>
+
+[onSearch?](./search-ui-react.searchbarprops.onsearch.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[onSearchFunc](./search-ui-react.onsearchfunc.md)
+
+
+</td><td>
+
+_(Optional)_ A callback which is called when a search is ran.
+
+
+</td></tr>
+<tr><td>
+
+[onSelectVerticalLink?](./search-ui-react.searchbarprops.onselectverticallink.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(data: { verticalLink: [VerticalLink](./search-ui-react.verticallink.md)<!-- -->; querySource: QuerySource; }) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function which is called when a vertical link is selected.
+
+
+</td></tr>
+<tr><td>
+
+[placeholder?](./search-ui-react.searchbarprops.placeholder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The search bar's placeholder text.
+
+
+</td></tr>
+<tr><td>
+
+[recentSearchesLimit?](./search-ui-react.searchbarprops.recentsearcheslimit.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ Limits the number of recent searches shown.
+
+
+</td></tr>
+<tr><td>
+
+[showVerticalLinks?](./search-ui-react.searchbarprops.showverticallinks.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Shows vertical links if true, set to false on default.
+
+
+</td></tr>
+<tr><td>
+
+[verticalKeyToLabel?](./search-ui-react.searchbarprops.verticalkeytolabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(verticalKey: string) =&gt; string
+
+
+</td><td>
+
+_(Optional)_ A function which returns a display label for the given verticalKey.
+
+
+</td></tr>
+<tr><td>
+
+[visualAutocompleteConfig?](./search-ui-react.searchbarprops.visualautocompleteconfig.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[VisualAutocompleteConfig](./search-ui-react.visualautocompleteconfig.md)
+
+
+</td><td>
+
+_(Optional)_ The configuration options for Visual Autocomplete.
+
+
+</td></tr>
+</tbody></table>

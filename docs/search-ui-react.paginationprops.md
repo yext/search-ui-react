@@ -14,8 +14,63 @@ interface PaginationProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.paginationprops.customcssclasses.md) |  | [PaginationCssClasses](./search-ui-react.paginationcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [paginateAllOnNoResults?](./search-ui-react.paginationprops.paginateallonnoresults.md) |  | boolean | _(Optional)_ Whether or not to paginate based on the total results count of the vertical when there are none returned from the search. Defaults to false. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.paginationprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[PaginationCssClasses](./search-ui-react.paginationcssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[paginateAllOnNoResults?](./search-ui-react.paginationprops.paginateallonnoresults.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not to paginate based on the total results count of the vertical when there are none returned from the search. Defaults to false.
+
+
+</td></tr>
+</tbody></table>
