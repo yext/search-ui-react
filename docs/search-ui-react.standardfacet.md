@@ -14,39 +14,10 @@ declare function StandardFacet(props: StandardFacetProps): null;
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | [StandardFacetProps](./search-ui-react.standardfacetprops.md) | [StandardFacetProps](./search-ui-react.standardfacetprops.md) |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-props
-
-
-</td><td>
-
-[StandardFacetProps](./search-ui-react.standardfacetprops.md)
-
-
-</td><td>
-
-[StandardFacetProps](./search-ui-react.standardfacetprops.md)
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 null

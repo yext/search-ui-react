@@ -14,39 +14,10 @@ declare function StandardCard(props: StandardCardProps<any>): JSX.Element;
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | [StandardCardProps](./search-ui-react.standardcardprops.md)<!-- -->&lt;any&gt; | An object containing the result itself and any additional information needed to render the card |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-props
-
-
-</td><td>
-
-[StandardCardProps](./search-ui-react.standardcardprops.md)<!-- -->&lt;any&gt;
-
-
-</td><td>
-
-An object containing the result itself and any additional information needed to render the card
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element

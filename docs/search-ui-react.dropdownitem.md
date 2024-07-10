@@ -14,37 +14,10 @@ declare function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  \_props | [DropdownItemProps](./search-ui-react.dropdownitemprops.md) |  |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-\_props
-
-
-</td><td>
-
-[DropdownItemProps](./search-ui-react.dropdownitemprops.md)
-
-
-</td><td>
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element \| null

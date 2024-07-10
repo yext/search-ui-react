@@ -15,63 +15,8 @@ interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasse
 
 ## Properties
 
-<table><thead><tr><th>
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [divider?](./search-ui-react.hierarchicalfacetscssclasses.divider.md) |  | string | _(Optional)_ |
+|  [hierarchicalFacetsContainer?](./search-ui-react.hierarchicalfacetscssclasses.hierarchicalfacetscontainer.md) |  | string | _(Optional)_ |
 
-Property
-
-
-</th><th>
-
-Modifiers
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-[divider?](./search-ui-react.hierarchicalfacetscssclasses.divider.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-<tr><td>
-
-[hierarchicalFacetsContainer?](./search-ui-react.hierarchicalfacetscssclasses.hierarchicalfacetscontainer.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-</tbody></table>

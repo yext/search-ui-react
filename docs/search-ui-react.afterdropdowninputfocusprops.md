@@ -14,44 +14,7 @@ interface AfterDropdownInputFocusProps
 
 ## Properties
 
-<table><thead><tr><th>
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [value](./search-ui-react.afterdropdowninputfocusprops.value.md) |  | string | The input element's value. |
 
-Property
-
-
-</th><th>
-
-Modifiers
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-[value](./search-ui-react.afterdropdowninputfocusprops.value.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-The input element's value.
-
-
-</td></tr>
-</tbody></table>
