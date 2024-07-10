@@ -14,63 +14,8 @@ interface VerticalResultsCssClasses
 
 ## Properties
 
-<table><thead><tr><th>
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [verticalResultsContainer?](./search-ui-react.verticalresultscssclasses.verticalresultscontainer.md) |  | string | _(Optional)_ |
+|  [verticalResultsLoading?](./search-ui-react.verticalresultscssclasses.verticalresultsloading.md) |  | string | _(Optional)_ |
 
-Property
-
-
-</th><th>
-
-Modifiers
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-[verticalResultsContainer?](./search-ui-react.verticalresultscssclasses.verticalresultscontainer.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-<tr><td>
-
-[verticalResultsLoading?](./search-ui-react.verticalresultscssclasses.verticalresultsloading.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-</tbody></table>

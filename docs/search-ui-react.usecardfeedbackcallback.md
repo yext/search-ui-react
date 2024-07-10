@@ -14,39 +14,10 @@ declare function useCardFeedbackCallback<T = DefaultRawDataType>(result: CardAna
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  result | [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md)<!-- -->&lt;T&gt; | card result that contains data use in the feedback analytics event. |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-result
-
-
-</td><td>
-
-[CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md)<!-- -->&lt;T&gt;
-
-
-</td><td>
-
-card result that contains data use in the feedback analytics event.
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 (analyticsType: [FeedbackType](./search-ui-react.feedbacktype.md)<!-- -->) =&gt; void

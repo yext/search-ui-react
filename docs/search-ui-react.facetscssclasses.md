@@ -15,63 +15,8 @@ interface FacetsCssClasses extends FilterGroupCssClasses
 
 ## Properties
 
-<table><thead><tr><th>
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [divider?](./search-ui-react.facetscssclasses.divider.md) |  | string | _(Optional)_ |
+|  [facetsContainer?](./search-ui-react.facetscssclasses.facetscontainer.md) |  | string | _(Optional)_ |
 
-Property
-
-
-</th><th>
-
-Modifiers
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-[divider?](./search-ui-react.facetscssclasses.divider.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-<tr><td>
-
-[facetsContainer?](./search-ui-react.facetscssclasses.facetscontainer.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-</tbody></table>

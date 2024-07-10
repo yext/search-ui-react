@@ -14,39 +14,10 @@ declare function NumericalFacet(props: NumericalFacetProps): null;
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) | [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-props
-
-
-</td><td>
-
-[NumericalFacetProps](./search-ui-react.numericalfacetprops.md)
-
-
-</td><td>
-
-[NumericalFacetProps](./search-ui-react.numericalfacetprops.md)
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 null

@@ -14,63 +14,8 @@ interface ApplyFiltersButtonProps
 
 ## Properties
 
-<table><thead><tr><th>
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [customCssClasses?](./search-ui-react.applyfiltersbuttonprops.customcssclasses.md) |  | [ApplyFiltersButtonCssClasses](./search-ui-react.applyfiltersbuttoncssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+|  [label?](./search-ui-react.applyfiltersbuttonprops.label.md) |  | string | _(Optional)_ The label for the button, defaults to 'Apply Filters' |
 
-Property
-
-
-</th><th>
-
-Modifiers
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-[customCssClasses?](./search-ui-react.applyfiltersbuttonprops.customcssclasses.md)
-
-
-</td><td>
-
-
-</td><td>
-
-[ApplyFiltersButtonCssClasses](./search-ui-react.applyfiltersbuttoncssclasses.md)
-
-
-</td><td>
-
-_(Optional)_ CSS classes for customizing the component styling.
-
-
-</td></tr>
-<tr><td>
-
-[label?](./search-ui-react.applyfiltersbuttonprops.label.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_ The label for the button, defaults to 'Apply Filters'
-
-
-</td></tr>
-</tbody></table>

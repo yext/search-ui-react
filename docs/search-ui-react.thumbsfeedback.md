@@ -14,39 +14,10 @@ declare function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | [ThumbsFeedbackProps](./search-ui-react.thumbsfeedbackprops.md) | The configuration for the the feedback component. |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-props
-
-
-</td><td>
-
-[ThumbsFeedbackProps](./search-ui-react.thumbsfeedbackprops.md)
-
-
-</td><td>
-
-The configuration for the the feedback component.
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element

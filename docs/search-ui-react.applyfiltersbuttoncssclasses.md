@@ -14,44 +14,7 @@ interface ApplyFiltersButtonCssClasses
 
 ## Properties
 
-<table><thead><tr><th>
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [button?](./search-ui-react.applyfiltersbuttoncssclasses.button.md) |  | string | _(Optional)_ |
 
-Property
-
-
-</th><th>
-
-Modifiers
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-[button?](./search-ui-react.applyfiltersbuttoncssclasses.button.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-</tbody></table>

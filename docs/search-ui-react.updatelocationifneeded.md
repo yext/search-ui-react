@@ -14,67 +14,12 @@ declare function updateLocationIfNeeded(searchActions: SearchActions, intents: S
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  searchActions | SearchActions |  |
+|  intents | SearchIntent\[\] |  |
+|  geolocationOptions | PositionOptions | _(Optional)_ |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-searchActions
-
-
-</td><td>
-
-SearchActions
-
-
-</td><td>
-
-
-</td></tr>
-<tr><td>
-
-intents
-
-
-</td><td>
-
-SearchIntent\[\]
-
-
-</td><td>
-
-
-</td></tr>
-<tr><td>
-
-geolocationOptions
-
-
-</td><td>
-
-PositionOptions
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 Promise&lt;void&gt;
