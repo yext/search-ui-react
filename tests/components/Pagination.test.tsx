@@ -18,6 +18,7 @@ const mockedState: Partial<State> = {
 
 const mockedActions = {
   state: mockedState,
+  setIsPagination: jest.fn(),
   setOffset: jest.fn(),
   executeVerticalQuery: jest.fn()
 };
@@ -157,6 +158,7 @@ describe('results are returned from search', () => {
     // navigate to the last results page
     await userEvent.click(screen.getByText(`${mockedResultsCount}`));
     expect(actions.setOffset).toHaveBeenCalledWith(mockedResultsCount - 1);
+    expect(actions.setIsPagination).toHaveBeenCalledWith(true);
     expect(actions.executeVerticalQuery).toHaveBeenCalledTimes(1);
   });
 });
