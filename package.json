@@ -147,14 +147,17 @@
       "<rootDir>/tests/__fixtures__/*"
     ],
     "moduleNameMapper": {
-      "./SearchCore": "<rootDir>/tests/__fixtures__/core/SearchCore.ts"
+      "./SearchCore": "<rootDir>/tests/__fixtures__/core/SearchCore.ts",
+      "react-markdown": "<rootDir>/tests/__fixtures__/react-markdown.tsx"
     },
     "resetMocks": true,
     "restoreMocks": true
   },
   "dependencies": {
     "@restart/ui": "^1.0.1",
+    "@swc/core": "^1.3.89",
     "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@yext/analytics": "^0.6.5",
     "classnames": "^2.3.1",
     "lodash": "^4.17.21",
@@ -162,11 +165,10 @@
     "mapbox-gl": "^2.9.2",
     "prop-types": "^15.8.1",
     "react-collapsed": "^4.1.2",
+    "react-markdown": "^8.0.7",
     "recent-searches": "^1.0.5",
     "tailwind-merge": "^1.3.0",
-    "use-isomorphic-layout-effect": "^1.1.2",
-    "react-markdown": "^6.0.3",
-    "@tailwindcss/line-clamp": "^0.4.4"
+    "use-isomorphic-layout-effect": "^1.1.2"
   },
   "repository": {
     "type": "git",
