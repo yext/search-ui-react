@@ -4,6 +4,8 @@
 
 ## CitationsProps.gdaResponse property
 
+Response object containing generative direct answer info.
+
 **Signature:**
 
 ```typescript

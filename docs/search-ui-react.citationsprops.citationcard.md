@@ -4,6 +4,8 @@
 
 ## CitationsProps.CitationCard property
 
+The component for citation card
+
 **Signature:**
 
 ```typescript

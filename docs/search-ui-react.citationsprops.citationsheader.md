@@ -4,6 +4,8 @@
 
 ## CitationsProps.citationsHeader property
 
+The header for the citations section generative direct answer.
+
 **Signature:**
 
 ```typescript

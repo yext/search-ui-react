@@ -4,6 +4,8 @@
 
 ## CitationsProps.cssClasses property
 
+CSS classes for customizing the component styling.
+
 **Signature:**
 
 ```typescript

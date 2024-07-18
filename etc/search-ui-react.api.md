@@ -146,15 +146,10 @@ export interface CitationProps {
 
 // @public
 export interface CitationsProps {
-    // (undocumented)
     CitationCard?: (props: CitationProps) => JSX.Element | null;
-    // (undocumented)
     citationsHeader?: string | JSX.Element;
-    // (undocumented)
     cssClasses: GenerativeDirectAnswerCssClasses;
-    // (undocumented)
     gdaResponse: GenerativeDirectAnswerResponse;
-    // (undocumented)
     searchResults: Result[];
 }
 
@@ -335,7 +330,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsComponent, }: GenerativeDirectAnswerProps): JSX.Element | null;
+export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }: GenerativeDirectAnswerProps): JSX.Element | null;
 
 // @public
 export interface GenerativeDirectAnswerCssClasses {
@@ -361,7 +356,7 @@ export interface GenerativeDirectAnswerCssClasses {
 export interface GenerativeDirectAnswerProps {
     answerHeader?: string | JSX.Element;
     CitationCard?: (props: CitationProps) => JSX.Element | null;
-    CitationsComponent?: (props: CitationsProps) => JSX.Element | null;
+    CitationsContainer?: (props: CitationsProps) => JSX.Element | null;
     citationsHeader?: string | JSX.Element;
     customCssClasses?: GenerativeDirectAnswerCssClasses;
 }

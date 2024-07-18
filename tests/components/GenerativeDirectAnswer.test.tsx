@@ -61,7 +61,7 @@ describe('GenerativeDirectAnswer', () => {
 
   it('Citations component overridden with dummy text', () => {
     render(<GenerativeDirectAnswer
-      CitationsComponent={CustomCitationsComponent}
+        CitationsContainer={CustomCitationsComponent}
     />);
     expect(screen.getByText(generativeDirectAnswerResponse.directAnswer)).toBeDefined();
     expect(screen.getByText("CustomCitationsComponentTest")).toBeTruthy();

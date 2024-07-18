@@ -52,7 +52,7 @@ export interface GenerativeDirectAnswerProps {
   /** The component for citation card */
   CitationCard?: (props: CitationProps) => JSX.Element | null
   /** The component for citations container */
-  CitationsComponent?: (props: CitationsProps) => JSX.Element | null
+  CitationsContainer?: (props: CitationsProps) => JSX.Element | null
 }
 
 /**
@@ -68,7 +68,7 @@ export function GenerativeDirectAnswer({
   answerHeader,
   citationsHeader,
   CitationCard,
-  CitationsComponent = Citations,
+  CitationsContainer = Citations,
 }: GenerativeDirectAnswerProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
@@ -103,7 +103,7 @@ export function GenerativeDirectAnswer({
     <div className={cssClasses.container}>
       <Answer gdaResponse={gdaResponse} cssClasses={cssClasses} answerHeader={answerHeader}/>
       <div className={cssClasses.divider} />
-      <CitationsComponent
+      <CitationsContainer
         gdaResponse={gdaResponse}
         cssClasses={cssClasses}
         searchResults={searchResults}
@@ -143,10 +143,15 @@ function Answer(props: AnswerProps) {
  * @public
  */
 export interface CitationsProps {
+  /** Response object containing generative direct answer info. */
   gdaResponse: GenerativeDirectAnswerResponse,
+  /** CSS classes for customizing the component styling. */
   cssClasses: GenerativeDirectAnswerCssClasses,
+  /** Returned results relevant to the users' query to be used in Citations. */
   searchResults: Result[],
+  /** The header for the citations section generative direct answer. */
   citationsHeader?: string | JSX.Element,
+  /** The component for citation card */
   CitationCard?: (props: CitationProps) => JSX.Element | null
 }
 

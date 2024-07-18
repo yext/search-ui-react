@@ -16,9 +16,9 @@ interface CitationsProps
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [CitationCard?](./search-ui-react.citationsprops.citationcard.md) |  | (props: [CitationProps](./search-ui-react.citationprops.md)<!-- -->) =&gt; JSX.Element \| null | _(Optional)_ |
-|  [citationsHeader?](./search-ui-react.citationsprops.citationsheader.md) |  | string \| JSX.Element | _(Optional)_ |
-|  [cssClasses](./search-ui-react.citationsprops.cssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) |  |
-|  [gdaResponse](./search-ui-react.citationsprops.gdaresponse.md) |  | GenerativeDirectAnswerResponse |  |
-|  [searchResults](./search-ui-react.citationsprops.searchresults.md) |  | Result\[\] |  |
+|  [CitationCard?](./search-ui-react.citationsprops.citationcard.md) |  | (props: [CitationProps](./search-ui-react.citationprops.md)<!-- -->) =&gt; JSX.Element \| null | _(Optional)_ The component for citation card |
+|  [citationsHeader?](./search-ui-react.citationsprops.citationsheader.md) |  | string \| JSX.Element | _(Optional)_ The header for the citations section generative direct answer. |
+|  [cssClasses](./search-ui-react.citationsprops.cssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) | CSS classes for customizing the component styling. |
+|  [gdaResponse](./search-ui-react.citationsprops.gdaresponse.md) |  | GenerativeDirectAnswerResponse | Response object containing generative direct answer info. |
+|  [searchResults](./search-ui-react.citationsprops.searchresults.md) |  | Result\[\] | Returned results relevant to the users' query to be used in Citations. |
 

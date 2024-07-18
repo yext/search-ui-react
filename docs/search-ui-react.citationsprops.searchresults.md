@@ -4,6 +4,8 @@
 
 ## CitationsProps.searchResults property
 
+Returned results relevant to the users' query to be used in Citations.
+
 **Signature:**
 
 ```typescript
