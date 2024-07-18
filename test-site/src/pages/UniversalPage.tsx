@@ -8,7 +8,8 @@ import {
   UniversalResults,
   VisualAutocompleteConfig,
   GenerativeDirectAnswer,
-  CitationProps
+  CitationProps,
+  CitationsProps,
 } from '@yext/search-ui-react';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
@@ -72,6 +73,12 @@ function CustomCitationCard(props: CitationProps): JSX.Element | null {
   </a>;
 }
 
+function CustomCitationsComponent(props: CitationsProps): JSX.Element | null {
+  return (
+      <>This is a custom component for citations</>
+  )
+}
+
 export default function UniversalPage(): JSX.Element {
   const searchActions = useSearchActions();
   useLayoutEffect(() => {
@@ -87,14 +94,23 @@ export default function UniversalPage(): JSX.Element {
       />
       <SpellCheck />
       <GenerativeDirectAnswer 
-        answerHeader='A custom answer header' 
+        answerHeader='A custom answer header'
         CitationCard={CustomCitationCard}
       />
+
+      {/* Example of passing in custom citations component to GDA */}
+      {/*<GenerativeDirectAnswer*/}
+      {/*    answerHeader='A custom answer header'*/}
+      {/*    CitationsComponent={CustomCitationsComponent}*/}
+      {/*    CitationCard={CustomCitationCard}*/}
+      {/*/>*/}
+
       <DirectAnswer />
       <ResultsCount />
       <UniversalResults
         verticalConfigMap={universalVerticalConfigMap}
       />
+
       {/* Test generic result type  */}
       {/* <UniversalResults
         verticalConfigMap={{

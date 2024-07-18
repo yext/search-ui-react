@@ -145,6 +145,20 @@ export interface CitationProps {
 }
 
 // @public
+export interface CitationsProps {
+    // (undocumented)
+    CitationCard?: (props: CitationProps) => JSX.Element | null;
+    // (undocumented)
+    citationsHeader?: string | JSX.Element;
+    // (undocumented)
+    cssClasses: GenerativeDirectAnswerCssClasses;
+    // (undocumented)
+    gdaResponse: GenerativeDirectAnswerResponse;
+    // (undocumented)
+    searchResults: Result[];
+}
+
+// @public
 export const ComponentsContentPath = "node_modules/@yext/search-ui-react/lib/**/*.{js,jsx}";
 
 // @public
@@ -321,7 +335,7 @@ export interface FilterSearchProps {
 export type FocusedItemData = Record<string, unknown>;
 
 // @public
-export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, }: GenerativeDirectAnswerProps): JSX.Element | null;
+export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsComponent, }: GenerativeDirectAnswerProps): JSX.Element | null;
 
 // @public
 export interface GenerativeDirectAnswerCssClasses {
@@ -347,6 +361,7 @@ export interface GenerativeDirectAnswerCssClasses {
 export interface GenerativeDirectAnswerProps {
     answerHeader?: string | JSX.Element;
     CitationCard?: (props: CitationProps) => JSX.Element | null;
+    CitationsComponent?: (props: CitationsProps) => JSX.Element | null;
     citationsHeader?: string | JSX.Element;
     customCssClasses?: GenerativeDirectAnswerCssClasses;
 }

@@ -180,5 +180,6 @@ export {
   GenerativeDirectAnswer,
   GenerativeDirectAnswerCssClasses,
   GenerativeDirectAnswerProps,
-  CitationProps
+  CitationProps,
+  CitationsProps,
 } from './GenerativeDirectAnswer';
