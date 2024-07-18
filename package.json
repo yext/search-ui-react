@@ -154,7 +154,6 @@
   },
   "dependencies": {
     "@restart/ui": "^1.0.1",
-    "@swc/core": "^1.7.0",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@yext/analytics": "^0.6.5",
