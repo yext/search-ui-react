@@ -51,6 +51,8 @@ export interface GenerativeDirectAnswerProps {
   citationsHeader?: string | JSX.Element,
   /** The component for citation card */
   CitationCard?: (props: CitationProps) => JSX.Element | null
+  /** The component for citations component */
+  CitationsComponent?: (props: CitationsProps) => JSX.Element | null
 }
 
 /**
@@ -66,6 +68,7 @@ export function GenerativeDirectAnswer({
   answerHeader,
   citationsHeader,
   CitationCard,
+  CitationsComponent = Citations,
 }: GenerativeDirectAnswerProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
@@ -100,7 +103,7 @@ export function GenerativeDirectAnswer({
     <div className={cssClasses.container}>
       <Answer gdaResponse={gdaResponse} cssClasses={cssClasses} answerHeader={answerHeader}/>
       <div className={cssClasses.divider} />
-      <Citations 
+      <CitationsComponent
         gdaResponse={gdaResponse} 
         cssClasses={cssClasses} 
         searchResults={searchResults} 
