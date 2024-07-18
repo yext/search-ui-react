@@ -51,7 +51,7 @@ export interface GenerativeDirectAnswerProps {
   citationsHeader?: string | JSX.Element,
   /** The component for citation card */
   CitationCard?: (props: CitationProps) => JSX.Element | null
-  /** The component for citations component */
+  /** The component for citations container */
   CitationsComponent?: (props: CitationsProps) => JSX.Element | null
 }
 
@@ -87,7 +87,7 @@ export function GenerativeDirectAnswer({
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
-  
+
   React.useEffect(() => {
     if (!searchResults?.length) {
       return;
@@ -104,10 +104,10 @@ export function GenerativeDirectAnswer({
       <Answer gdaResponse={gdaResponse} cssClasses={cssClasses} answerHeader={answerHeader}/>
       <div className={cssClasses.divider} />
       <CitationsComponent
-        gdaResponse={gdaResponse} 
-        cssClasses={cssClasses} 
-        searchResults={searchResults} 
-        citationsHeader={citationsHeader} 
+        gdaResponse={gdaResponse}
+        cssClasses={cssClasses}
+        searchResults={searchResults}
+        citationsHeader={citationsHeader}
         CitationCard={CitationCard}
       />
     </div>
@@ -137,7 +137,12 @@ function Answer(props: AnswerProps) {
   </>;
 }
 
-interface CitationsProps {
+/**
+ * Props for citations component.
+ *
+ * @public
+ */
+export interface CitationsProps {
   gdaResponse: GenerativeDirectAnswerResponse,
   cssClasses: GenerativeDirectAnswerCssClasses,
   searchResults: Result[],
