@@ -51,6 +51,8 @@ export interface GenerativeDirectAnswerProps {
   citationsHeader?: string | JSX.Element,
   /** The component for citation card */
   CitationCard?: (props: CitationProps) => JSX.Element | null
+  /** The component for citations container */
+  CitationsContainer?: (props: CitationsProps) => JSX.Element | null
 }
 
 /**
@@ -66,6 +68,7 @@ export function GenerativeDirectAnswer({
   answerHeader,
   citationsHeader,
   CitationCard,
+  CitationsContainer = Citations,
 }: GenerativeDirectAnswerProps): JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
@@ -84,7 +87,7 @@ export function GenerativeDirectAnswer({
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
-  
+
   React.useEffect(() => {
     if (!searchResults?.length) {
       return;
@@ -100,11 +103,11 @@ export function GenerativeDirectAnswer({
     <div className={cssClasses.container}>
       <Answer gdaResponse={gdaResponse} cssClasses={cssClasses} answerHeader={answerHeader}/>
       <div className={cssClasses.divider} />
-      <Citations 
-        gdaResponse={gdaResponse} 
-        cssClasses={cssClasses} 
-        searchResults={searchResults} 
-        citationsHeader={citationsHeader} 
+      <CitationsContainer
+        gdaResponse={gdaResponse}
+        cssClasses={cssClasses}
+        searchResults={searchResults}
+        citationsHeader={citationsHeader}
         CitationCard={CitationCard}
       />
     </div>
@@ -134,11 +137,21 @@ function Answer(props: AnswerProps) {
   </>;
 }
 
-interface CitationsProps {
+/**
+ * Props for citations component.
+ *
+ * @public
+ */
+export interface CitationsProps {
+  /** Response object containing generative direct answer info. */
   gdaResponse: GenerativeDirectAnswerResponse,
+  /** CSS classes for customizing the component styling. */
   cssClasses: GenerativeDirectAnswerCssClasses,
+  /** Returned results relevant to the users' query to be used in Citations. */
   searchResults: Result[],
+  /** The header for the citations section generative direct answer. */
   citationsHeader?: string | JSX.Element,
+  /** The component for citation card */
   CitationCard?: (props: CitationProps) => JSX.Element | null
 }
 
