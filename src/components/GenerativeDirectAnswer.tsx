@@ -75,6 +75,7 @@ export function GenerativeDirectAnswer({
   const isUniversal = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Universal;
   const universalResults = useSearchState(state => state.universal);
   const verticalResults = useSearchState(state => state.vertical);
+  const searchId = useSearchState(state => state.meta.uuid);
 
   const searchResults: Result[] | undefined = React.useMemo(() => {
     if (isUniversal) {
@@ -89,11 +90,11 @@ export function GenerativeDirectAnswer({
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
 
   React.useEffect(() => {
-    if (!searchResults?.length) {
+    if (!searchResults?.length || !searchId) {
       return;
     }
     executeGenerativeDirectAnswer(searchActions);
-  }, [searchResults]);
+  }, [searchResults, searchId]);
 
   if (!searchResults?.length || isLoading || !gdaResponse || gdaResponse.resultStatus !== 'SUCCESS') {
     return null;
