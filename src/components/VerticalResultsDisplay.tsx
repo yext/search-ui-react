@@ -56,5 +56,6 @@ function renderResult<T>(
   CardComponent: CardComponent<T>,
   result: Result<T>
 ): JSX.Element {
-  return <CardComponent result={result} key={result.id || result.index}/>;
+  const key = result.id && result.index ? `${result.id}-${result.index}` : result.id || result.index;
+  return <CardComponent result={result} key={key}/>;
 }
