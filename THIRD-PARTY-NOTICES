@@ -1189,7 +1189,7 @@ This package contains the following license and notice below:
 Contains information from the language-subtag-registry JSON Database (https://github.com/mattcg/language-subtag-registry/tree/master/data/json)
 which is made available under the ODC Attribution License (https://github.com/mattcg/language-subtag-registry/blob/master/LICENSE.md).
 
-The Search Headless React files listed in this repository are licensed under the below license. All other features and products are subject to
+The Search Headless React files listed in this repository are licensed under the below license. All other features and products are subject to 
 separate agreements and certain functionality requires paid subscriptions to Yext products.
 
 BSD 3-Clause License
@@ -1226,7 +1226,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-headless@2.6.0-beta.4
+ - @yext/search-headless@2.6.0-beta.3
 
 This package contains the following license and notice below:
 
@@ -3557,12 +3557,12 @@ These algorithms take a JavaScript string (and a seed), and quickly create a non
 More information about these algorithms can be found at:
 
 *	[MurmurHash Homepage](http://sites.google.com/site/murmurhash/)
-*	[Wikipedia Entry on MurmurHash](http://en.wikipedia.org/wiki/MurmurHash)
+*	[Wikipedia Entry on MurmurHash](http://en.wikipedia.org/wiki/MurmurHash) 
 
 ## Install
 
     npm install murmurhash-js
-
+    
 ## API
 
 ```javascript
@@ -4510,11 +4510,11 @@ Setting and retrieving relevant searches.
 ```ts
 // Retrieve searches for a given query
 const previousSearchesForJohn = searches.getRecentSearches("John")
-/*
-  [
+/* 
+  [ 
     {query: "John", data: {...}, timestamp: ...},
     {query: "Marc John", data: {...}, timestamp: ...}
-  ]
+  ] 
 */
 
 // To set a recent search
