@@ -74,7 +74,8 @@ export function Facets(props: FacetsProps): JSX.Element {
 
           return fieldIds
             .filter(fieldId =>
-              !excludedFieldIds.includes(fieldId)
+              fieldIdToFacet.get(fieldId) !== undefined
+              && !excludedFieldIds.includes(fieldId)
               && fieldIdToFacet.get(fieldId).options.length > 0
               && (!onlyRenderChildren || fieldIdToCustomFacetProps.has(fieldId)))
             .map((fieldId, i) => {
