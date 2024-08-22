@@ -2925,6 +2925,7 @@ The following npm packages may be included in this product:
  - react-is@16.13.1
  - react-is@17.0.2
  - react@18.3.1
+ - scheduler@0.23.2
 
 These packages each contain the following license and notice below:
 
