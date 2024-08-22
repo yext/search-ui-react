@@ -19,10 +19,37 @@ declare function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDi
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps } | [NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }
+
+
+</td><td>
+
+[NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element

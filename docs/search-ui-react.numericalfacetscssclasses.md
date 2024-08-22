@@ -15,8 +15,63 @@ interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCss
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [divider?](./search-ui-react.numericalfacetscssclasses.divider.md) |  | string | _(Optional)_ |
-|  [numericalFacetsContainer?](./search-ui-react.numericalfacetscssclasses.numericalfacetscontainer.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[divider?](./search-ui-react.numericalfacetscssclasses.divider.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[numericalFacetsContainer?](./search-ui-react.numericalfacetscssclasses.numericalfacetscontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>

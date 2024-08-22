@@ -15,8 +15,63 @@ interface UniversalResultsCssClasses extends SectionHeaderCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [universalResultsContainer?](./search-ui-react.universalresultscssclasses.universalresultscontainer.md) |  | string | _(Optional)_ |
-|  [universalResultsLoading?](./search-ui-react.universalresultscssclasses.universalresultsloading.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[universalResultsContainer?](./search-ui-react.universalresultscssclasses.universalresultscontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[universalResultsLoading?](./search-ui-react.universalresultscssclasses.universalresultsloading.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>

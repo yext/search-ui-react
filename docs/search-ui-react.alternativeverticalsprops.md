@@ -14,10 +14,101 @@ interface AlternativeVerticalsProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [currentVerticalLabel](./search-ui-react.alternativeverticalsprops.currentverticallabel.md) |  | string | The label for the current vertical. |
-|  [customCssClasses?](./search-ui-react.alternativeverticalsprops.customcssclasses.md) |  | [AlternativeVerticalsCssClasses](./search-ui-react.alternativeverticalscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [displayAllOnNoResults?](./search-ui-react.alternativeverticalsprops.displayallonnoresults.md) |  | boolean | _(Optional)_ Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |
-|  [verticalConfigMap](./search-ui-react.alternativeverticalsprops.verticalconfigmap.md) |  | [VerticalLabelMap](./search-ui-react.verticallabelmap.md) | A map of verticalKeys to the display label for that vertical. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[currentVerticalLabel](./search-ui-react.alternativeverticalsprops.currentverticallabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The label for the current vertical.
+
+
+</td></tr>
+<tr><td>
+
+[customCssClasses?](./search-ui-react.alternativeverticalsprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[AlternativeVerticalsCssClasses](./search-ui-react.alternativeverticalscssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[displayAllOnNoResults?](./search-ui-react.alternativeverticalsprops.displayallonnoresults.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not all results should be displayed when there are none returned from the search. Defaults to true.
+
+
+</td></tr>
+<tr><td>
+
+[verticalConfigMap](./search-ui-react.alternativeverticalsprops.verticalconfigmap.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[VerticalLabelMap](./search-ui-react.verticallabelmap.md)
+
+
+</td><td>
+
+A map of verticalKeys to the display label for that vertical.
+
+
+</td></tr>
+</tbody></table>

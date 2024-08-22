@@ -212,8 +212,8 @@ function Citation(props: CitationProps) {
   } = props;
   return (
     <a className={cssClasses.citation} href={typeof searchResult.rawData.link === 'string' ? searchResult.rawData.link : undefined}>
-      <div className={cssClasses.citationTitle}>{searchResult.rawData.name}</div>
-      <div className={cssClasses.citationSnippet}>{searchResult.rawData.description}</div>
+    <div className={cssClasses.citationTitle}>{typeof searchResult.rawData.name === 'string' ? searchResult.rawData.name : undefined}</div>
+    <div className={cssClasses.citationSnippet}>{typeof searchResult.rawData.description === 'string' ? searchResult.rawData.description : undefined}</div>
     </a>
   );
 }

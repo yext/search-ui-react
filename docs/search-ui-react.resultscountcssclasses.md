@@ -14,8 +14,63 @@ interface ResultsCountCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [resultsCountContainer?](./search-ui-react.resultscountcssclasses.resultscountcontainer.md) |  | string | _(Optional)_ |
-|  [resultsCountLoading?](./search-ui-react.resultscountcssclasses.resultscountloading.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[resultsCountContainer?](./search-ui-react.resultscountcssclasses.resultscountcontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[resultsCountLoading?](./search-ui-react.resultscountcssclasses.resultscountloading.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>
