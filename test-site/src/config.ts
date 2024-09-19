@@ -1,4 +1,4 @@
-import { CloudRegion, Environment } from '@yext/search-headless-react';
+import { CloudRegion, CloudChoice, Environment } from '@yext/search-headless-react';
 
 export const config = {
   apiKey: process.env.REACT_APP_LIVE_API_KEY || 'REPLACE_ME',
@@ -7,5 +7,6 @@ export const config = {
   experienceVersion: 'STAGING',
   businessId: 123123,
   cloudRegion: CloudRegion.US,
+  cloudChoice: CloudChoice.GLOBAL_MULTI,
   environment: Environment.PROD,
 };
