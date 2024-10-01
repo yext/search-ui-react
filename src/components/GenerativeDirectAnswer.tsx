@@ -100,17 +100,13 @@ export function GenerativeDirectAnswer({
     return null;
   }
 
+  const citationsContainer = CitationsContainer({ gdaResponse, cssClasses, searchResults, citationsHeader, CitationCard });
+
   return (
     <div className={cssClasses.container}>
       <Answer gdaResponse={gdaResponse} cssClasses={cssClasses} answerHeader={answerHeader}/>
-      <div className={cssClasses.divider} />
-      <CitationsContainer
-        gdaResponse={gdaResponse}
-        cssClasses={cssClasses}
-        searchResults={searchResults}
-        citationsHeader={citationsHeader}
-        CitationCard={CitationCard}
-      />
+      {citationsContainer && <div className={cssClasses.divider} />}
+      {citationsContainer}
     </div>
   );
 }
@@ -164,30 +160,24 @@ function Citations(props: CitationsProps) {
     gdaResponse, 
     cssClasses,
     searchResults,
-    citationsHeader = `Sources (${gdaResponse.citations.length})`,
+    citationsHeader,
     CitationCard = Citation
   } = props;
-  if (!gdaResponse.citations.length) {
+  const citationCards = gdaResponse.citations.map(citation => {
+    const searchResult: Result | undefined = searchResults.find(r => r.rawData.uid === citation);
+    if (searchResult) {
+      return CitationCard({ searchResult, cssClasses });
+    }
+    return null;
+  }).filter(card => card !== null);
+
+  if (!citationCards.length) {
     return null;
   }
-  const citationCards: JSX.Element[] = [];
-  gdaResponse.citations.forEach(
-    citation => {
-      const result: Result | undefined = searchResults.find(r => r.rawData.uid === citation);
-      if (result) {
-        citationCards.push(
-          <CitationCard 
-            key={citation} 
-            searchResult={result} 
-            cssClasses={cssClasses}
-          />
-        )
-      }
-    });
 
   return <>
     <div className={cssClasses.header}>
-      {citationsHeader}
+      {citationsHeader ?? `Sources (${citationCards.length})`}
     </div>
     <div className={cssClasses.citationsContainer}>
       {citationCards}
@@ -210,10 +200,14 @@ function Citation(props: CitationProps) {
     searchResult,
     cssClasses
   } = props;
+  const {uid, name, description, answer, link} = searchResult.rawData ?? {};
+  if (!uid || typeof uid != 'string' || !name) {
+    return null;
+  }
   return (
-    <a className={cssClasses.citation} href={typeof searchResult.rawData.link === 'string' ? searchResult.rawData.link : undefined}>
-      <div className={cssClasses.citationTitle}>{searchResult.rawData.name}</div>
-      <div className={cssClasses.citationSnippet}>{searchResult.rawData.description}</div>
+    <a key={uid} className={cssClasses.citation} href={typeof link === 'string' ? link : undefined}>
+      <div className={cssClasses.citationTitle}>{name}</div>
+      <div className={cssClasses.citationSnippet}>{description ?? answer}</div>
     </a>
   );
 }
