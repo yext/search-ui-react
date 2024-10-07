@@ -49,10 +49,14 @@ export interface GenerativeDirectAnswerProps {
   answerHeader?: string | JSX.Element,
   /** The header for the citations section of the generative direct answer. */
   citationsHeader?: string | JSX.Element,
-  /** The component for citation card */
-  CitationCard?: (props: CitationProps) => JSX.Element | null
-  /** The component for citations container */
+  /** 
+   * The citations container component for customizing the logic that determines which results can be rendered. 
+   * By default, a section for citations is displayed if the results that correspond to the
+   * citations have the default minimum required info, which is `rawData.uid` and `rawData.name`.
+  */
   CitationsContainer?: (props: CitationsProps) => JSX.Element | null
+  /** The citation card component for customizing how each citation is displayed. */
+  CitationCard?: (props: CitationProps) => JSX.Element | null
 }
 
 /**
@@ -156,7 +160,7 @@ export interface CitationsProps {
 }
 
 /**
- * The citations section of the Generative Direct Answer.
+ * Displays the citations section of the Generative Direct Answer. 
  */
 function Citations(props: CitationsProps) {
   const { 
@@ -172,9 +176,9 @@ function Citations(props: CitationsProps) {
       if (!uid || typeof uid != 'string' || !name) {
         return false;
       }
-      return gdaResponse.citations.includes(uid)
+      return gdaResponse.citations.includes(uid);
     })
-  }, [gdaResponse.citations, searchResults, cssClasses]);
+  }, [gdaResponse.citations, searchResults]);
 
   if (!citationResults.length) {
     return null;
@@ -201,6 +205,9 @@ export interface CitationProps {
   cssClasses: GenerativeDirectAnswerCssClasses
 }
 
+/**
+ * Displays a citation card for the citations section of the Generative Direct Answer. 
+ */
 function Citation(props: CitationProps) {
   const {
     searchResult,

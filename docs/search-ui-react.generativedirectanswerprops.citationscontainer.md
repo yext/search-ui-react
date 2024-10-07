@@ -4,7 +4,7 @@
 
 ## GenerativeDirectAnswerProps.CitationsContainer property
 
-The component for citations container
+The citations container component for customizing the logic that determines which results can be rendered. By default, a section for citations is displayed if the results that correspond to the citations have the default minimum required info, which is `rawData.uid` and `rawData.name`<!-- -->.
 
 **Signature:**
 

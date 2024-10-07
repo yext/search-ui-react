@@ -4,7 +4,7 @@
 
 ## GenerativeDirectAnswerProps.CitationCard property
 
-The component for citation card
+The citation card component for customizing how each citation is displayed.
 
 **Signature:**
 
