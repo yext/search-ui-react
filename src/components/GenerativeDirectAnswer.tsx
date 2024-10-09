@@ -49,10 +49,14 @@ export interface GenerativeDirectAnswerProps {
   answerHeader?: string | JSX.Element,
   /** The header for the citations section of the generative direct answer. */
   citationsHeader?: string | JSX.Element,
-  /** The component for citation card */
-  CitationCard?: (props: CitationProps) => JSX.Element | null
-  /** The component for citations container */
+  /** 
+   * The citations container component for customizing the logic that determines which results can be rendered. 
+   * By default, a section for citations is displayed if the results that correspond to the
+   * citations have the default minimum required info, which is `rawData.uid` and `rawData.name`.
+  */
   CitationsContainer?: (props: CitationsProps) => JSX.Element | null
+  /** The citation card component for customizing how each citation is displayed. */
+  CitationCard?: (props: CitationProps) => JSX.Element | null
 }
 
 /**
@@ -100,13 +104,16 @@ export function GenerativeDirectAnswer({
     return null;
   }
 
-  const citationsContainer = CitationsContainer({ gdaResponse, cssClasses, searchResults, citationsHeader, CitationCard });
-
   return (
     <div className={cssClasses.container}>
       <Answer gdaResponse={gdaResponse} cssClasses={cssClasses} answerHeader={answerHeader}/>
-      {citationsContainer && <div className={cssClasses.divider} />}
-      {citationsContainer}
+      <CitationsContainer
+        gdaResponse={gdaResponse}
+        cssClasses={cssClasses}
+        searchResults={searchResults}
+        citationsHeader={citationsHeader}
+        CitationCard={CitationCard}
+      />
     </div>
   );
 }
@@ -153,7 +160,7 @@ export interface CitationsProps {
 }
 
 /**
- * The citations section of the Generative Direct Answer.
+ * Displays the citations section of the Generative Direct Answer. 
  */
 function Citations(props: CitationsProps) {
   const { 
@@ -161,26 +168,29 @@ function Citations(props: CitationsProps) {
     cssClasses,
     searchResults,
     citationsHeader,
-    CitationCard = Citation
+    CitationCard = Citation,
   } = props;
-  const citationCards = gdaResponse.citations.map(citation => {
-    const searchResult: Result | undefined = searchResults.find(r => r.rawData.uid === citation);
-    if (searchResult) {
-      return CitationCard({ searchResult, cssClasses });
-    }
-    return null;
-  }).filter(card => card !== null);
+  const citationResults = React.useMemo(() => {
+    return searchResults.filter(result => {
+      const {uid, name} = result.rawData ?? {};
+      if (!uid || typeof uid != 'string' || !name) {
+        return false;
+      }
+      return gdaResponse.citations.includes(uid);
+    })
+  }, [gdaResponse.citations, searchResults]);
 
-  if (!citationCards.length) {
+  if (!citationResults.length) {
     return null;
   }
 
   return <>
+    <div className={cssClasses.divider} />
     <div className={cssClasses.header}>
-      {citationsHeader ?? `Sources (${citationCards.length})`}
+      {citationsHeader ?? `Sources (${citationResults.length})`}
     </div>
     <div className={cssClasses.citationsContainer}>
-      {citationCards}
+      {citationResults.map((r, i) => <CitationCard key={i} searchResult={r} cssClasses={cssClasses}/>)}
     </div>
   </>;
 }
@@ -195,17 +205,17 @@ export interface CitationProps {
   cssClasses: GenerativeDirectAnswerCssClasses
 }
 
+/**
+ * Displays a citation card for the citations section of the Generative Direct Answer. 
+ */
 function Citation(props: CitationProps) {
   const {
     searchResult,
     cssClasses
   } = props;
-  const {uid, name, description, answer, link} = searchResult.rawData ?? {};
-  if (!uid || typeof uid != 'string' || !name) {
-    return null;
-  }
+  const {name, description, answer, link} = searchResult.rawData ?? {};
   return (
-    <a key={uid} className={cssClasses.citation} href={typeof link === 'string' ? link : undefined}>
+    <a className={cssClasses.citation} href={typeof link === 'string' ? link : undefined}>
       <div className={cssClasses.citationTitle}>{name}</div>
       <div className={cssClasses.citationSnippet}>{description ?? answer}</div>
     </a>
