@@ -64,7 +64,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
   } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const screenReaderUUID = useId();
+  const screenReaderUUID = useId('dropdown');
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
