@@ -167,6 +167,7 @@
     "use-isomorphic-layout-effect": "^1.1.2"
   },
   "overrides": {
+    "@babel/plugin-transform-runtime": "^7.23.2",
     "rollup": "4.22.4"
   },
   "repository": {
