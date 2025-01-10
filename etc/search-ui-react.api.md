@@ -273,7 +273,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -295,6 +295,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 export interface FilterSearchProps {
     afterDropdownInputFocus?: (params: AfterDropdownInputFocusProps) => void;
     customCssClasses?: FilterSearchCssClasses;
+    disableBuiltInClasses?: boolean;
     label?: string;
     onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
     onSelect?: (params: OnSelectParams) => void;
@@ -869,7 +870,7 @@ export function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAna
 export function useCardFeedbackCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>): (analyticsType: FeedbackType) => void;
 
 // @public
-export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>): ClassInterface;
+export function useComposedCssClasses<ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>>(builtInClasses: Readonly<ClassInterface>, customClasses?: Partial<ClassInterface>, disableBuiltInClasses?: boolean): ClassInterface;
 
 // @public
 export interface VerticalConfig<T = DefaultRawDataType> {

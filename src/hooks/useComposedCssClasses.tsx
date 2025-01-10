@@ -44,15 +44,20 @@ export const twMerge = extendTailwindMerge({
  *
  * @param builtInClasses - The component's built-in tailwind classes
  * @param customClasses - The custom tailwind classes to merge with the built-in ones
+ * @param disableBuiltInClasses - If set to true, the customClasses with replace (not merge with) the builtInClasses
  * @returns The composed CSS classes
  */
 export function useComposedCssClasses<
   ClassInterface extends Partial<Record<keyof ClassInterface & string, string>>
 >(
   builtInClasses: Readonly<ClassInterface>,
-  customClasses?: Partial<ClassInterface>
+  customClasses?: Partial<ClassInterface>,
+  disableBuiltInClasses: boolean = false
 ): ClassInterface {
   return useMemo(() => {
+    if (disableBuiltInClasses && customClasses) {
+      return customClasses as Readonly<ClassInterface>;
+    }
     const mergedCssClasses = { ...builtInClasses };
     if (!customClasses) {
       return mergedCssClasses;
@@ -67,5 +72,5 @@ export function useComposedCssClasses<
       }
     });
     return mergedCssClasses;
-  }, [builtInClasses, customClasses]);
+  }, [builtInClasses, customClasses, disableBuiltInClasses]);
 }
