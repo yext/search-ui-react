@@ -12,3 +12,6 @@ dist/
 .env
 test-site/.env
 .idea/
+
+# misc
+.DS_Store
