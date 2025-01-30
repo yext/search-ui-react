@@ -52,8 +52,14 @@ const newGeoPosition: GeolocationPosition = {
     latitude: 40.741591687843005,
     longitude: -74.00530254443494,
     speed: null,
+    toJSON(): any {
+      return JSON.stringify(this);
+    }
   },
-  timestamp: 0
+  timestamp: 0,
+  toJSON(): any {
+    return JSON.stringify(this);
+  }
 };
 
 beforeEach(() => {
