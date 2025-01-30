@@ -36,7 +36,7 @@
   ],
   "scripts": {
     "build": "rm -rf lib/** && rm -rf dist/** && npm run build:js && npm run build:css && npm run api-extractor && npm run generate-docs && npm run generate-notices",
-    "build:js": "tsup src/index.ts --dts --sourcemap --format esm,cjs && npm run create:lib-esm && npm run create:lib-commonjs",
+    "build:js": "NODE_OPTIONS='--max-old-space-size=16384' tsup src/index.ts --dts --sourcemap --format esm,cjs && npm run create:lib-esm && npm run create:lib-commonjs",
     "create:lib-esm": "mkdir -p lib/esm && cp dist/index.mjs dist/index.d.mts dist/index.mjs.map lib/esm",
     "create:lib-commonjs": "mkdir -p lib/commonjs && cp dist/index.js dist/index.d.ts dist/index.js.map lib/commonjs",
     "build:css": "tailwindcss -o ./lib/bundle.css --minify -c tailwind.config.cjs && tailwindcss -o ./lib/bundle-no-resets.css --minify -c tailwind-no-resets.config.cjs",
