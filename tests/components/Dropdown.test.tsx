@@ -1,11 +1,27 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown';
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
 import { DropdownMenu } from '../../src/components/Dropdown/DropdownMenu';
 import { DropdownItem } from '../../src/components/Dropdown/DropdownItem';
 import { testSSR } from '../ssr/utils';
+
+async function click(element : HTMLElement) {
+  return waitFor(() => userEvent.click(element));
+}
+
+async function tab() {
+  return waitFor(() => userEvent.tab());
+}
+
+async function type(element : HTMLElement, input: string) {
+  return waitFor(() => userEvent.type(element, input));
+}
+
+async function keyboard(input: string) {
+  return waitFor(() => userEvent.keyboard(input));
+}
 
 describe('Dropdown', () => {
   it('renders identical content between the server and the client.', () => {
@@ -27,7 +43,7 @@ describe('Dropdown', () => {
       screenReaderText: 'screen reader text here',
       onToggle: mockedOnToggleFn
     };
-    render(
+    await React.act(() => render(
       <div data-testid='container'>
         <Dropdown {...dropdownProps}>
           <DropdownInput />
@@ -39,31 +55,31 @@ describe('Dropdown', () => {
         </Dropdown>
         <div>external div</div>
       </div>
-    );
+    ));
     // hidden by default
     expect(screen.queryByText('item1')).toBeNull();
 
     // display when click into dropdown input
-    await userEvent.click(screen.getByRole('textbox'));
+    await click(screen.getByRole('textbox'));
     expect(screen.getByText('item1')).toBeDefined();
-    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
+    await waitFor(() => expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined));
 
     // hidden when click elsewhere outside of dropdown component
-    await userEvent.click(screen.getByText('external div'));
+    await click(screen.getByText('external div'));
     expect(screen.queryByText('item1')).toBeNull();
-    expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined);
+    await waitFor(() => expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined));
 
     // display when tab into dropdown input
-    await userEvent.tab();
+    await tab();
     expect(screen.getByText('item1')).toBeDefined();
-    expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
+    await waitFor(() => expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined));
   });
 
   it('handles arrowkey navigation properly and focuses on the option and input text', async () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
-    render(
+    await React.act(() => render(
       <Dropdown {...dropdownProps}>
         <DropdownInput />
         <DropdownMenu>
@@ -72,16 +88,16 @@ describe('Dropdown', () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.click(inputNode);
+    await click(inputNode);
     const itemNode = screen.getByText('item1');
 
-    await userEvent.keyboard('{arrowdown}');
+    await keyboard('{arrowdown}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
 
-    await userEvent.keyboard('{arrowup}');
+    await keyboard('{arrowup}');
     expect(itemNode.className).not.toContain('FocusedItem1');
     expect(inputNode).not.toHaveValue('item1');
   });
@@ -90,7 +106,7 @@ describe('Dropdown', () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
-    render(
+    await React.act(() => render(
       <Dropdown {...dropdownProps}>
         <DropdownInput />
         <DropdownMenu>
@@ -99,16 +115,16 @@ describe('Dropdown', () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.click(inputNode);
+    await click(inputNode);
     const itemNode = screen.getByText('item1');
 
-    await userEvent.keyboard('{Tab}');
+    await keyboard('{Tab}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
 
-    await userEvent.keyboard('{Shift>}{Tab}{/Shift}');
+    await keyboard('{Shift>}{Tab}{/Shift}');
     expect(itemNode.className).not.toContain('FocusedItem1');
     expect(inputNode).not.toHaveValue('item1');
   });
@@ -119,7 +135,7 @@ describe('Dropdown', () => {
       screenReaderText: 'screen reader text here',
       onToggle: mockedOnToggleFn
     };
-    render(
+    await React.act(() => render(
       <Dropdown {...dropdownProps}>
         <DropdownInput />
         <DropdownMenu>
@@ -128,10 +144,10 @@ describe('Dropdown', () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.click(inputNode);
-    await userEvent.keyboard('{Tab}{Tab}');
+    await click(inputNode);
+    await keyboard('{Tab}{Tab}');
 
     expect(mockedOnToggleFn).toHaveBeenLastCalledWith(false, '', 'item1', 0, undefined);
   });
@@ -142,7 +158,7 @@ describe('Dropdown', () => {
       screenReaderText: 'screen reader text here',
       onSelect: mockedOnSelectFn
     };
-    render(
+    await React.act(() => render(
       <Dropdown {...dropdownProps}>
         <DropdownInput />
         <DropdownMenu>
@@ -151,14 +167,14 @@ describe('Dropdown', () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.click(inputNode);
+    await click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await userEvent.keyboard('{arrowdown}');
-    await userEvent.keyboard('{enter}');
+    await keyboard('{arrowdown}');
+    await keyboard('{enter}');
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
@@ -173,7 +189,7 @@ describe('Dropdown', () => {
       screenReaderText: 'screen reader text here',
       onSelect: mockedOnSelectFn
     };
-    render(
+    await React.act(() => render(
       <Dropdown {...dropdownProps}>
         <DropdownInput />
         <DropdownMenu>
@@ -182,14 +198,14 @@ describe('Dropdown', () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.click(inputNode);
+    await click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await userEvent.keyboard('{arrowdown}');
-    await userEvent.click(screen.getByTestId('item1'));
+    await keyboard('{arrowdown}');
+    await click(screen.getByTestId('item1'));
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
@@ -205,7 +221,7 @@ describe('Dropdown', () => {
       screenReaderText: 'screen reader text here',
       onToggle: mockedOnToggleFn
     };
-    render(
+    await React.act(() => render(
       <div>
         <Dropdown {...dropdownProps}>
           <DropdownInput />
@@ -217,15 +233,15 @@ describe('Dropdown', () => {
         </Dropdown>
         <div>external div</div>
       </div>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.click(inputNode);
+    await click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await userEvent.keyboard('i');
-    await userEvent.keyboard('{arrowdown}');
-    await userEvent.click(screen.getByText('external div'));
+    await keyboard('i');
+    await keyboard('{arrowdown}');
+    await click(screen.getByText('external div'));
 
     expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
@@ -238,7 +254,7 @@ describe('Dropdown', () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
-    render(
+    await React.act(() => render(
       <Dropdown {...dropdownProps}>
         <DropdownInput onChange={mockedOnChangeFn} />
         <DropdownMenu>
@@ -247,19 +263,19 @@ describe('Dropdown', () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.click(inputNode);
+    await click(inputNode);
     const itemNode = screen.getByText('item1');
     expect(itemNode).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await userEvent.keyboard('{arrowdown}');
+    await keyboard('{arrowdown}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
 
     const userInput = ' someText';
-    await userEvent.type(inputNode, userInput);
+    await type(inputNode, userInput);
     expect(inputNode).toHaveValue('item1' + userInput);
     expect(mockedOnChangeFn).toBeCalledTimes(userInput.length);
     expect(mockedOnChangeFn).toHaveBeenCalledWith('item1' + userInput);
@@ -274,7 +290,7 @@ describe('Dropdown', () => {
       screenReaderText: 'screen reader text here',
       onSelect: mockedOnSelectFn
     };
-    render(
+    await React.act(() => render(
       <Dropdown {...dropdownProps}>
         <DropdownInput onSubmit={mockedOnSubmitFn} />
         <DropdownMenu>
@@ -283,10 +299,10 @@ describe('Dropdown', () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.type(inputNode, 'someText');
-    await userEvent.keyboard('{enter}');
+    await type(inputNode, 'someText');
+    await keyboard('{enter}');
 
     expect(inputNode).toHaveValue('someText');
     expect(mockedOnSelectFn).toBeCalledTimes(0);
@@ -301,7 +317,7 @@ describe('Dropdown', () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
-    render(
+    await React.act(() => render(
       <Dropdown {...dropdownProps}>
         <DropdownInput
           onSubmit={mockedOnSubmitFn}
@@ -313,10 +329,10 @@ describe('Dropdown', () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.type(inputNode, 'someText');
-    await userEvent.keyboard('{enter}');
+    await type(inputNode, 'someText');
+    await keyboard('{enter}');
 
     expect(inputNode).toHaveValue('someText');
     expect(mockedSubmitCriteriaFn).toBeCalledTimes(1);
@@ -333,7 +349,7 @@ describe('Always Select Option', () => {
       onSelect: mockedOnSelectFn,
       alwaysSelectOption: true
     };
-    render(
+    await React.act(() => render(
       <div>
         <Dropdown {...dropdownProps}>
           <DropdownInput />
@@ -345,14 +361,14 @@ describe('Always Select Option', () => {
         </Dropdown>
         <div>external div</div>
       </div>
-    );
+    ));
     const inputNode = screen.getByRole('textbox');
-    await userEvent.click(inputNode);
+    await click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
 
-    await userEvent.keyboard('i');
-    await userEvent.click(screen.getByText('external div'));
+    await keyboard('i');
+    await click(screen.getByText('external div'));
 
     expect(inputNode).toHaveValue('i');
     expect(screen.queryByTestId('item1')).toBeNull();

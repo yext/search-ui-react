@@ -49,7 +49,11 @@ const mockStandardFacet = (props?: StandardFacetProps) => {
   return (
     <FacetsProvider>
       {facets => facets.map(facet => (
-        <StandardFacetContent {...props} fieldId={facet.fieldId} facet={facet}/>))}
+        <StandardFacetContent
+            {...props}
+            key={facet.fieldId}
+            fieldId={facet.fieldId}
+            facet={facet}/>))}
     </FacetsProvider>);
 };
 

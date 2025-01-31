@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LocationBias } from '../../src/components/LocationBias';
 import { State, LocationBiasMethod, LocationBias as LocationBiasType } from '@yext/search-headless-react';
@@ -142,5 +142,5 @@ it('renders nothing if there is no display name', () => {
 
 async function clickUpdateLocation() {
   const updateLocationButton = screen.getByRole('button', { name: 'Update your location' });
-  await userEvent.click(updateLocationButton);
+  await waitFor(() => userEvent.click(updateLocationButton));
 }

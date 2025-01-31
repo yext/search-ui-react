@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Geolocation } from '../../src/components/Geolocation';
 import { Matcher, SelectableStaticFilter, State } from '@yext/search-headless-react';
@@ -131,14 +131,18 @@ beforeEach(() => {
   jest.spyOn(locationOperations, 'getUserLocation').mockResolvedValue(newGeoPosition);
 });
 
+function renderElement(element: React.ReactElement) {
+  return React.act(() => render(element));
+}
+
 it('renders custom label when provided', () => {
-  render(<Geolocation label='Click me!' />);
+  renderElement(<Geolocation label='Click me!' />);
   const updateLocationButton = screen.getByRole('button', { name: 'Click me!' });
   expect(updateLocationButton).toBeDefined();
 });
 
 it('renders custom icon when provided', () => {
-  render(<Geolocation GeolocationIcon={() => <img src="graphic1.png" alt="Custom Icon" />} />);
+  renderElement(<Geolocation GeolocationIcon={() => <img src="graphic1.png" alt="Custom Icon" />} />);
   const LocationIcon = screen.getByAltText('Custom Icon');
   expect(LocationIcon).toBeDefined();
 });
@@ -147,7 +151,7 @@ describe('custom click handler', () => {
   it('executes handleClick when user\'s location is successfully determined', async () => {
     const mockedHandleClickFn = jest.fn();
     const actions = spyOnActions();
-    render(<Geolocation handleClick={mockedHandleClickFn} />);
+    await renderElement(<Geolocation handleClick={mockedHandleClickFn} />);
     await clickUpdateLocation();
 
     expect(mockedHandleClickFn).toHaveBeenCalledWith(newGeoPosition);
@@ -243,7 +247,7 @@ describe('default click handler', () => {
 
 async function clickUpdateLocation() {
   const updateLocationButton = screen.getByRole('button');
-  await userEvent.click(updateLocationButton);
+  await waitFor(() => userEvent.click(updateLocationButton));
 }
 
 function createLocationFilter(radius: number = 50 * 1609.344): SelectableStaticFilter {

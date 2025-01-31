@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {render, screen, waitFor} from '@testing-library/react';
 import { SearchActions, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FilterOptionConfig } from '../../src/components/Filters';
@@ -33,6 +33,14 @@ const mockedUtils = {
     return searchValue ? false : true;
   }
 };
+
+async function type(element : HTMLElement, input: string) {
+  return waitFor(() => userEvent.type(element, input));
+}
+
+async function click(element : HTMLElement) {
+  return waitFor(() => userEvent.click(element));
+}
 
 jest.mock('@yext/search-headless-react');
 
@@ -68,7 +76,7 @@ describe('Static Filters', () => {
     );
     expect(martyCheckbox.checked).toBeFalsy();
 
-    await userEvent.click(martyCheckbox);
+    await click(martyCheckbox);
     expectFilterOptionSet(actions, staticFiltersProps.fieldId, martyFilter, true);
   });
 
@@ -80,7 +88,7 @@ describe('Static Filters', () => {
     const bleeckerCheckbox: HTMLInputElement = screen.getByLabelText(bleeckerFilter.value.toString());
     expect(bleeckerCheckbox.checked).toBeTruthy();
 
-    await userEvent.click(bleeckerCheckbox);
+    await click(bleeckerCheckbox);
     expectFilterOptionSet(actions, staticFiltersProps.fieldId, bleeckerFilter, false);
   });
 
@@ -135,7 +143,7 @@ describe('Static Filters', () => {
     const searchInput = screen.getByRole('textbox');
     expect(searchInput).toBeDefined();
     expect(screen.getAllByRole('checkbox')).toHaveLength(4);
-    await userEvent.type(searchInput, 'dog');
+    await type(searchInput, 'dog');
     expect(screen.queryByRole('checkbox')).toBeNull();
   });
 
@@ -144,7 +152,7 @@ describe('Static Filters', () => {
     render(<StaticFilters {...staticFiltersProps} />);
 
     const martyCheckbox: HTMLInputElement = screen.getByLabelText('MARTY!');
-    await userEvent.click(martyCheckbox);
+    await click(martyCheckbox);
     expect(actions.executeVerticalQuery).toBeCalled();
   });
 
@@ -153,7 +161,7 @@ describe('Static Filters', () => {
     render(<StaticFilters {...staticFiltersProps} searchOnChange={false} />);
 
     const martyCheckbox: HTMLInputElement = screen.getByLabelText('MARTY!');
-    await userEvent.click(martyCheckbox);
+    await click(martyCheckbox);
     expect(actions.executeVerticalQuery).not.toBeCalled();
   });
 });

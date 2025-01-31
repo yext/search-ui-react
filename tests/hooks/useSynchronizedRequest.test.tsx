@@ -1,5 +1,6 @@
 import { useSynchronizedRequest } from '../../src/hooks/useSynchronizedRequest';
 import { renderHook } from './getRenderHook';
+import {waitFor} from '@testing-library/react';
 
 it('returns an updated execute request function with the same reference', async () => {
   let requestFunction = async () => 0;
@@ -8,13 +9,13 @@ it('returns an updated execute request function with the same reference', async 
   );
 
   const oldReturnedRequestFunction = result.current[1];
-  expect(await oldReturnedRequestFunction()).toBe(0);
+  expect(await waitFor(() => oldReturnedRequestFunction())).toBe(0);
 
   requestFunction = async () => 1;
   rerender();
 
   const newReturnedRequestFunction = result.current[1];
-  expect(await newReturnedRequestFunction()).toBe(1);
+  expect(await waitFor(() => newReturnedRequestFunction())).toBe(1);
 
   expect(oldReturnedRequestFunction).toBe(newReturnedRequestFunction);
 });

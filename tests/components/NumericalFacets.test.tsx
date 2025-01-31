@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import {render, screen, waitFor} from '@testing-library/react';
 import { SearchActions, FacetOption, Matcher, NumberRangeValue, SelectableStaticFilter, Source, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
@@ -41,6 +41,14 @@ const mockedUtils = {
 
 jest.mock('@yext/search-headless-react');
 
+async function type(element : HTMLElement, input: string) {
+  return waitFor(() => userEvent.type(element, input));
+}
+
+async function click(element : HTMLElement) {
+  return waitFor(() => userEvent.click(element));
+}
+
 describe('NumericalFacets', () => {
   beforeEach(() => {
     mockAnswersHooks({ mockedState, mockedActions, mockedUtils });
@@ -71,7 +79,7 @@ describe('NumericalFacets', () => {
     const expensiveCheckbox: HTMLInputElement = screen.getByLabelText(priceFacet.options[0].displayName);
     expect(expensiveCheckbox.checked).toBeTruthy();
 
-    await userEvent.click(expensiveCheckbox);
+    await click(expensiveCheckbox);
     expectFacetOptionSet(actions, priceFacet.fieldId, priceFacet.options[0], false);
   });
 
@@ -83,7 +91,7 @@ describe('NumericalFacets', () => {
     const cheapCheckbox: HTMLInputElement = screen.getByLabelText(priceFacet.options[1].displayName);
     expect(cheapCheckbox.checked).toBeFalsy();
 
-    await userEvent.click(cheapCheckbox);
+    await click(cheapCheckbox);
     expectFacetOptionSet(actions, priceFacet.fieldId, priceFacet.options[1], true);
   });
 
@@ -103,9 +111,9 @@ describe('NumericalFacets', () => {
     };
     const actions = spyOnActions();
     render(<NumericalFacets getFilterDisplayName={getFilterDisplayName}/>);
-    await userEvent.type(screen.getByPlaceholderText('Min'), '1');
-    await userEvent.type(screen.getByPlaceholderText('Max'), '5');
-    await userEvent.click(screen.getByText('Apply'));
+    await type(screen.getByPlaceholderText('Min'), '1');
+    await type(screen.getByPlaceholderText('Max'), '5');
+    await click(screen.getByText('Apply'));
 
     const expectedSelectableFilter: SelectableStaticFilter = {
       displayName: 'start-1 end-5',

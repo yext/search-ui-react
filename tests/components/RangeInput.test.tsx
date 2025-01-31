@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 import { State } from '@yext/search-headless-react';
-import { render, screen } from '@testing-library/react';
+import {render, screen, waitFor} from '@testing-library/react';
 import { RangeInput } from '../../src/components/Filters';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FiltersContext, FiltersContextType } from '../../src/components/Filters/FiltersContext';
@@ -27,6 +27,14 @@ const mockedActions = {
 
 jest.mock('@yext/search-headless-react');
 
+async function type(element : HTMLElement, input: string) {
+  return waitFor(() => userEvent.type(element, input));
+}
+
+async function click(element : HTMLElement) {
+  return waitFor(() => userEvent.click(element));
+}
+
 it('renders the correct inital state', () => {
   renderRangeInput(filterContextValue);
   const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
@@ -44,11 +52,11 @@ describe('Renders correctly for min input', () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const minTextbox = screen.getAllByRole('textbox')[0];
-    await userEvent.type(minTextbox, '10');
+    await type(minTextbox, '10');
     expect(minTextbox).toHaveValue('10');
     expect(screen.getByText('Clear min and max')).toBeDefined();
     expect(screen.getByText('Apply')).toBeDefined();
-    await userEvent.click(screen.getByText('Apply'));
+    await click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Over 10',
       selected: true,
@@ -70,10 +78,10 @@ describe('Renders correctly for min input', () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const minTextbox = screen.getAllByRole('textbox')[0];
-    await userEvent.type(minTextbox, '10');
+    await type(minTextbox, '10');
     expect(minTextbox).toHaveValue('10');
-    
-    await userEvent.click(screen.getByText('Clear min and max'));
+
+    await click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Over 10',
@@ -102,11 +110,11 @@ describe('Renders correctly for max input', () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const maxTextbox = screen.getAllByRole('textbox')[1];
-    await userEvent.type(maxTextbox, '20');
+    await type(maxTextbox, '20');
     expect(maxTextbox).toHaveValue('20');
     expect(screen.getByText('Clear min and max')).toBeDefined();
     expect(screen.getByText('Apply')).toBeDefined();
-    await userEvent.click(screen.getByText('Apply'));
+    await click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Up to 20',
       selected: true,
@@ -128,10 +136,10 @@ describe('Renders correctly for max input', () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const maxTextbox = screen.getAllByRole('textbox')[1];
-    await userEvent.type(maxTextbox, '20');
+    await type(maxTextbox, '20');
     expect(maxTextbox).toHaveValue('20');
 
-    await userEvent.click(screen.getByText('Clear min and max'));
+    await click(screen.getByText('Clear min and max'));
     expect(maxTextbox).toHaveValue('');
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Up to 20',
@@ -160,13 +168,13 @@ describe('Renders correctly for min and max inputs', () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
-    await userEvent.type(minTextbox, '10');
-    await userEvent.type(maxTextbox, '20');
+    await type(minTextbox, '10');
+    await type(maxTextbox, '20');
     expect(minTextbox).toHaveValue('10');
     expect(maxTextbox).toHaveValue('20');
     expect(screen.getByText('Apply')).toBeDefined();
     expect(screen.getByText('Clear min and max')).toBeDefined();
-    await userEvent.click(screen.getByText('Apply'));
+    await click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: '10 - 20',
       selected: true,
@@ -192,12 +200,12 @@ describe('Renders correctly for min and max inputs', () => {
     renderRangeInput(filterContextValue);
     const actions = spyOnActions();
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
-    await userEvent.type(minTextbox, '10');
-    await userEvent.type(maxTextbox, '20');
-    
+    await type(minTextbox, '10');
+    await type(maxTextbox, '20');
+
     expect(minTextbox).toHaveValue('10');
     expect(maxTextbox).toHaveValue('20');
-    await userEvent.click(screen.getByText('Clear min and max'));
+    await click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
     expect(maxTextbox).toHaveValue('');
     expect(actions.setFilterOption).toHaveBeenCalledWith({
@@ -224,10 +232,10 @@ describe('Renders correctly for min and max inputs', () => {
   it('renders correctly when input range is invalid and no filter is set in state', async () => {
     renderRangeInput(filterContextValue);
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
-    await userEvent.type(minTextbox, '20');
-    await userEvent.type(maxTextbox, '10');
+    await type(minTextbox, '20');
+    await type(maxTextbox, '10');
     const actions = spyOnActions();
-      
+
     expect(minTextbox).toHaveValue('20');
     expect(maxTextbox).toHaveValue('10');
     expect(screen.getByText('Invalid range')).toBeDefined();
