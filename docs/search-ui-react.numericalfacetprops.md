@@ -15,10 +15,101 @@ interface NumericalFacetProps extends StandardFacetProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.numericalfacetprops.customcssclasses.md) |  | [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) &amp; [RangeInputCssClasses](./search-ui-react.rangeinputcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [getFilterDisplayName?](./search-ui-react.numericalfacetprops.getfilterdisplayname.md) |  | (value: NumberRangeValue) =&gt; string | _(Optional)_ Returns the filter's display name based on the range values which is used when the filter is displayed by other components such as AppliedFilters. |
-|  [inputPrefix?](./search-ui-react.numericalfacetprops.inputprefix.md) |  | JSX.Element | _(Optional)_ An optional element which renders in front of the input text. |
-|  [showOptionCounts?](./search-ui-react.numericalfacetprops.showoptioncounts.md) |  | boolean | _(Optional)_ Whether or not to show the option counts for each filter. Defaults to false. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.numericalfacetprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) &amp; [RangeInputCssClasses](./search-ui-react.rangeinputcssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[getFilterDisplayName?](./search-ui-react.numericalfacetprops.getfilterdisplayname.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(value: NumberRangeValue) =&gt; string
+
+
+</td><td>
+
+_(Optional)_ Returns the filter's display name based on the range values which is used when the filter is displayed by other components such as AppliedFilters.
+
+
+</td></tr>
+<tr><td>
+
+[inputPrefix?](./search-ui-react.numericalfacetprops.inputprefix.md)
+
+
+</td><td>
+
+
+</td><td>
+
+JSX.Element
+
+
+</td><td>
+
+_(Optional)_ An optional element which renders in front of the input text.
+
+
+</td></tr>
+<tr><td>
+
+[showOptionCounts?](./search-ui-react.numericalfacetprops.showoptioncounts.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not to show the option counts for each filter. Defaults to false.
+
+
+</td></tr>
+</tbody></table>

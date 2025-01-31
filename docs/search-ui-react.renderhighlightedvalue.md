@@ -14,11 +14,55 @@ declare function renderHighlightedValue(highlightedValueOrString: Partial<Highli
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  highlightedValueOrString | Partial&lt;HighlightedValue&gt; \| string | the text to add highlight to. |
-|  customCssClasses | [HighlightedValueCssClasses](./search-ui-react.highlightedvaluecssclasses.md) | _(Optional)_ css classes use for the non-highlighted and highlighted text. |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+highlightedValueOrString
+
+
+</td><td>
+
+Partial&lt;HighlightedValue&gt; \| string
+
+
+</td><td>
+
+the text to add highlight to.
+
+
+</td></tr>
+<tr><td>
+
+customCssClasses
+
+
+</td><td>
+
+[HighlightedValueCssClasses](./search-ui-react.highlightedvaluecssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ css classes use for the non-highlighted and highlighted text.
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element

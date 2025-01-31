@@ -14,10 +14,37 @@ declare function DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay }: Dir
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { customCssClasses, UnknownFieldTypeDisplay } | [DirectAnswerProps](./search-ui-react.directanswerprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ customCssClasses, UnknownFieldTypeDisplay }
+
+
+</td><td>
+
+[DirectAnswerProps](./search-ui-react.directanswerprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element \| null

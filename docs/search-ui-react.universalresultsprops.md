@@ -14,9 +14,82 @@ interface UniversalResultsProps<T>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.universalresultsprops.customcssclasses.md) |  | [UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [showAppliedFilters?](./search-ui-react.universalresultsprops.showappliedfilters.md) |  | boolean | _(Optional)_ Whether or not to show the applied filters. |
-|  [verticalConfigMap](./search-ui-react.universalresultsprops.verticalconfigmap.md) |  | [VerticalConfigMap](./search-ui-react.verticalconfigmap.md)<!-- -->&lt;T&gt; | A mapping of verticalKey to the configuration for each vertical. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.universalresultsprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[showAppliedFilters?](./search-ui-react.universalresultsprops.showappliedfilters.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not to show the applied filters.
+
+
+</td></tr>
+<tr><td>
+
+[verticalConfigMap](./search-ui-react.universalresultsprops.verticalconfigmap.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[VerticalConfigMap](./search-ui-react.verticalconfigmap.md)<!-- -->&lt;T&gt;
+
+
+</td><td>
+
+A mapping of verticalKey to the configuration for each vertical.
+
+
+</td></tr>
+</tbody></table>

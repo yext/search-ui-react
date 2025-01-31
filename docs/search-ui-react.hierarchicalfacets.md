@@ -19,10 +19,37 @@ declare function HierarchicalFacets({ searchOnChange, collapsible, defaultExpand
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit } | [HierarchicalFacetsProps](./search-ui-react.hierarchicalfacetsprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }
+
+
+</td><td>
+
+[HierarchicalFacetsProps](./search-ui-react.hierarchicalfacetsprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element

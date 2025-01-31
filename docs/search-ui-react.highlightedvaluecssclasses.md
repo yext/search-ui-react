@@ -14,8 +14,63 @@ interface HighlightedValueCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [highlighted?](./search-ui-react.highlightedvaluecssclasses.highlighted.md) |  | string | _(Optional)_ |
-|  [nonHighlighted?](./search-ui-react.highlightedvaluecssclasses.nonhighlighted.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[highlighted?](./search-ui-react.highlightedvaluecssclasses.highlighted.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[nonHighlighted?](./search-ui-react.highlightedvaluecssclasses.nonhighlighted.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>

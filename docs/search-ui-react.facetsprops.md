@@ -14,12 +14,139 @@ interface FacetsProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [children?](./search-ui-react.facetsprops.children.md) |  | ReactElement\[\] \| ReactElement \| undefined \| null | _(Optional)_ The custom facet components that will override the default rendering. |
-|  [customCssClasses?](./search-ui-react.facetsprops.customcssclasses.md) |  | [FacetsCssClasses](./search-ui-react.facetscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [excludedFieldIds?](./search-ui-react.facetsprops.excludedfieldids.md) |  | string\[\] | _(Optional)_ List of field ids that should not be displayed. |
-|  [hierarchicalFieldIds?](./search-ui-react.facetsprops.hierarchicalfieldids.md) |  | string\[\] | _(Optional)_ List of field ids that should be rendered as hierarchical facets. |
-|  [onlyRenderChildren?](./search-ui-react.facetsprops.onlyrenderchildren.md) |  | boolean | _(Optional)_ If set to true, only the facets specified in the children are rendered. If set to false, all facets are rendered with the ones specified in the children overridden. Default to false. |
-|  [searchOnChange?](./search-ui-react.facetsprops.searchonchange.md) |  | boolean | _(Optional)_ Whether or not a search is automatically run when a filter is selected. Defaults to true. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[children?](./search-ui-react.facetsprops.children.md)
+
+
+</td><td>
+
+
+</td><td>
+
+ReactElement\[\] \| ReactElement \| undefined \| null
+
+
+</td><td>
+
+_(Optional)_ The custom facet components that will override the default rendering.
+
+
+</td></tr>
+<tr><td>
+
+[customCssClasses?](./search-ui-react.facetsprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[FacetsCssClasses](./search-ui-react.facetscssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[excludedFieldIds?](./search-ui-react.facetsprops.excludedfieldids.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ List of field ids that should not be displayed.
+
+
+</td></tr>
+<tr><td>
+
+[hierarchicalFieldIds?](./search-ui-react.facetsprops.hierarchicalfieldids.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ List of field ids that should be rendered as hierarchical facets.
+
+
+</td></tr>
+<tr><td>
+
+[onlyRenderChildren?](./search-ui-react.facetsprops.onlyrenderchildren.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ If set to true, only the facets specified in the children are rendered. If set to false, all facets are rendered with the ones specified in the children overridden. Default to false.
+
+
+</td></tr>
+<tr><td>
+
+[searchOnChange?](./search-ui-react.facetsprops.searchonchange.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not a search is automatically run when a filter is selected. Defaults to true.
+
+
+</td></tr>
+</tbody></table>
