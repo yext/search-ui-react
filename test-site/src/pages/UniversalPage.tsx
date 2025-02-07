@@ -10,6 +10,7 @@ import {
   GenerativeDirectAnswer,
   CitationProps,
   CitationsProps,
+  useCardAnalyticsCallback
 } from '@yext/search-ui-react';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
@@ -65,9 +66,10 @@ function CustomCitationCard(props: CitationProps): JSX.Element | null {
   const {
     searchResult,
     cssClasses,
+    citationClickHandler
   } = props;
-  const citationLink = typeof searchResult.rawData.link  === 'string' ? searchResult.rawData.link : undefined;
-  return <a className={cssClasses.citation} href={citationLink}>
+  const citationUrl = typeof searchResult.rawData.link  === 'string' ? searchResult.rawData.link : undefined;
+  return <a className={cssClasses.citation} href={citationUrl} onClick={() => citationUrl && citationClickHandler?.({searchResult, citationUrl})}>
     {typeof searchResult.rawData.id === 'string' && <div className={cssClasses.citationTitle}>{searchResult.rawData.id}</div>}
     {typeof searchResult.rawData.s_snippet === 'string' && <div className={cssClasses.citationSnippet}>{searchResult.rawData.s_snippet}</div>}
   </a>;

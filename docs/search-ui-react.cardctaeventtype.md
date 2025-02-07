@@ -4,10 +4,10 @@
 
 ## CardCtaEventType type
 
-Analytics event types for cta click and title click.
+Analytics event types for cta click, title click, and citation click.
 
 **Signature:**
 
 ```typescript
-type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
+type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
 ```

@@ -119,8 +119,10 @@ export interface AutocompleteResultCssClasses {
     option?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "GenerativeDirectAnswerData" needs to be exported by the entry point index.d.ts
+//
 // @public
-export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T>;
+export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T> | GenerativeDirectAnswerData;
 
 // @public
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
@@ -129,7 +131,7 @@ export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
 
 // @public
 export interface CardProps<T = DefaultRawDataType> {
@@ -139,6 +141,8 @@ export interface CardProps<T = DefaultRawDataType> {
 // @public
 export interface CitationProps {
     // (undocumented)
+    citationClickHandler?: (data: GenerativeDirectAnswerData) => void;
+    // (undocumented)
     cssClasses: GenerativeDirectAnswerCssClasses;
     // (undocumented)
     searchResult: Result;
@@ -147,6 +151,7 @@ export interface CitationProps {
 // @public
 export interface CitationsProps {
     CitationCard?: (props: CitationProps) => JSX.Element | null;
+    citationClickHandler?: (data: GenerativeDirectAnswerData) => void;
     citationsHeader?: string | JSX.Element;
     cssClasses: GenerativeDirectAnswerCssClasses;
     gdaResponse: GenerativeDirectAnswerResponse;

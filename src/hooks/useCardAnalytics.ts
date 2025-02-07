@@ -9,20 +9,21 @@ import { useCallback } from 'react';
 import { FeedbackType } from '../components/ThumbsFeedback';
 import { DefaultRawDataType } from '../models/index';
 import { useAnalytics } from './useAnalytics';
+import { GenerativeDirectAnswerData } from '../components/GenerativeDirectAnswer'
 
 /**
- * Analytics event types for cta click and title click.
+ * Analytics event types for cta click, title click, and citation click.
  *
  * @public
  */
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
 
 /**
  * The data types use to construct the payload in the analytics event.
  *
  * @public
  */
-export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | Result<T>;
+export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | Result<T> | GenerativeDirectAnswerData;
 
 /**
  * Analytics event types for interactions on a card.
@@ -36,11 +37,15 @@ function isDirectAnswer(data: unknown): data is DirectAnswerData {
     (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
 }
 
+function isGenerativeDirectAnswer(data: unknown): data is GenerativeDirectAnswerData {
+  return !!(data as GenerativeDirectAnswerData);
+}
+
 export function useCardAnalytics<T>(): (
   cardResult: CardAnalyticsDataType<T>, analyticsEventType: CardAnalyticsType
 ) => void {
   const analytics = useAnalytics();
-  const verticalKey = useSearchState(state => state.vertical.verticalKey);
+  const verticalKey = useSearchState(state => state.vertical?.verticalKey);
   const queryId = useSearchState(state => state.query.queryId);
 
   const reportCtaEvent = useCallback((
@@ -49,6 +54,7 @@ export function useCardAnalytics<T>(): (
   ) => {
     let url: string | undefined, entityId: string | undefined, fieldName: string | undefined;
     let directAnswer = false;
+    let generativeDirectAnswer = false;
     if (isDirectAnswer(result)) {
       url = result.relatedResult.link;
       entityId = result.relatedResult.id;
@@ -56,6 +62,12 @@ export function useCardAnalytics<T>(): (
         ? undefined
         : (result as FieldValueDirectAnswer).fieldName;
       directAnswer = true;
+    } else if (isGenerativeDirectAnswer(result)) {
+      url = result.citationUrl;
+      entityId = result.searchResult.id;
+      fieldName = 'gda-snippet';
+      directAnswer = true;
+      generativeDirectAnswer = true;
     } else {
       url = result.link;
       entityId = result.id;
@@ -77,7 +89,8 @@ export function useCardAnalytics<T>(): (
       verticalKey: verticalKey || '',
       url,
       fieldName,
-      directAnswer
+      directAnswer,
+      generativeDirectAnswer
     });
   }, [analytics, queryId, verticalKey]);
 
@@ -94,6 +107,9 @@ export function useCardAnalytics<T>(): (
     if (isDirectAnswer(result)) {
       directAnswer = true;
       entityId = result.relatedResult.id;
+    } else if (isGenerativeDirectAnswer(result)) {
+      directAnswer = true;
+      entityId = result.searchResult.id;
     } else {
       entityId = result.id;
     }
@@ -114,7 +130,7 @@ export function useCardAnalytics<T>(): (
     if (!analytics) {
       return;
     }
-    if (analyticsEventType === 'TITLE_CLICK' || analyticsEventType === 'CTA_CLICK') {
+    if (analyticsEventType === 'TITLE_CLICK' || analyticsEventType === 'CTA_CLICK' || analyticsEventType === 'CITATION_CLICK') {
       reportCtaEvent(cardResult, analyticsEventType);
     }
     if (analyticsEventType === 'THUMBS_DOWN' || analyticsEventType === 'THUMBS_UP') {

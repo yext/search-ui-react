@@ -6,6 +6,8 @@ import {
   Result
 } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks';
+import { useCardAnalytics } from '../hooks/useCardAnalytics';
+import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
 import ReactMarkdown from "react-markdown";
 import React from 'react';
@@ -92,6 +94,7 @@ export function GenerativeDirectAnswer({
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
+  const handleCitationClick = useReportCitationClick();
 
   React.useEffect(() => {
     if (!searchResults?.length || !searchId) {
@@ -113,6 +116,7 @@ export function GenerativeDirectAnswer({
         searchResults={searchResults}
         citationsHeader={citationsHeader}
         CitationCard={CitationCard}
+        citationClickHandler={handleCitationClick}
       />
     </div>
   );
@@ -156,7 +160,9 @@ export interface CitationsProps {
   /** The header for the citations section generative direct answer. */
   citationsHeader?: string | JSX.Element,
   /** The component for citation card */
-  CitationCard?: (props: CitationProps) => JSX.Element | null
+  CitationCard?: (props: CitationProps) => JSX.Element | null,
+  /** Handle onClick event for citation link. */
+  citationClickHandler?: (data: GenerativeDirectAnswerData) => void
 }
 
 /**
@@ -169,6 +175,7 @@ function Citations(props: CitationsProps) {
     searchResults,
     citationsHeader,
     CitationCard = Citation,
+    citationClickHandler
   } = props;
   const citationResults = React.useMemo(() => {
     return searchResults.filter(result => {
@@ -190,7 +197,7 @@ function Citations(props: CitationsProps) {
       {citationsHeader ?? `Sources (${citationResults.length})`}
     </div>
     <div className={cssClasses.citationsContainer}>
-      {citationResults.map((r, i) => <CitationCard key={i} searchResult={r} cssClasses={cssClasses}/>)}
+      {citationResults.map((r, i) => <CitationCard key={i} searchResult={r} cssClasses={cssClasses} citationClickHandler={citationClickHandler}/>)}
     </div>
   </>;
 }
@@ -202,7 +209,8 @@ function Citations(props: CitationsProps) {
  */
 export interface CitationProps {
   searchResult: Result,
-  cssClasses: GenerativeDirectAnswerCssClasses
+  cssClasses: GenerativeDirectAnswerCssClasses,
+  citationClickHandler?: (data: GenerativeDirectAnswerData) => void
 }
 
 /**
@@ -211,13 +219,36 @@ export interface CitationProps {
 function Citation(props: CitationProps) {
   const {
     searchResult,
-    cssClasses
+    cssClasses,
+    citationClickHandler
   } = props;
   const {name, description, answer, link} = searchResult.rawData ?? {};
+  const citationUrl = typeof link === 'string' ? link : undefined;
   return (
-    <a className={cssClasses.citation} href={typeof link === 'string' ? link : undefined}>
+    <a 
+      className={cssClasses.citation} 
+      href={citationUrl}
+      onClick={() => citationUrl && citationClickHandler?.({searchResult, citationUrl})}
+    >
       <div className={cssClasses.citationTitle}>{name}</div>
       <div className={cssClasses.citationSnippet}>{description ?? answer}</div>
     </a>
   );
+}
+
+/**
+ * Payload for events fired on a generative direct answer card.
+ *
+ * @public
+ */
+export interface GenerativeDirectAnswerData {
+  searchResult: Result,
+  citationUrl: string
+}
+
+function useReportCitationClick<T = DefaultRawDataType>(): (data: GenerativeDirectAnswerData) => void {
+  const reportAnalyticsEvent = useCardAnalytics<T>();
+  return React.useCallback((data: GenerativeDirectAnswerData) => {
+    reportAnalyticsEvent(data, 'CITATION_CLICK');
+  }, [reportAnalyticsEvent]);
 }
