@@ -119,8 +119,6 @@ export interface AutocompleteResultCssClasses {
     option?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "GenerativeDirectAnswerData" needs to be exported by the entry point index.d.ts
-//
 // @public
 export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T> | GenerativeDirectAnswerData;
 
@@ -355,6 +353,14 @@ export interface GenerativeDirectAnswerCssClasses {
     divider?: string;
     // (undocumented)
     header?: string;
+}
+
+// @public
+export interface GenerativeDirectAnswerData {
+    // (undocumented)
+    citationUrl: string;
+    // (undocumented)
+    searchResult: Result;
 }
 
 // @public

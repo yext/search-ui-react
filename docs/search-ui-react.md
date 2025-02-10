@@ -77,6 +77,7 @@
 |  [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./search-ui-react.filtersearchprops.md) | The props for the [FilterSearch()](./search-ui-react.filtersearch.md) component. |
 |  [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) | The CSS class interface used for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
+|  [GenerativeDirectAnswerData](./search-ui-react.generativedirectanswerdata.md) | Payload for events fired on a generative direct answer card. |
 |  [GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md) | Props for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
 |  [GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md) | The CSS class interface for the Geolocation component. |
 |  [GeolocationProps](./search-ui-react.geolocationprops.md) | The props for the Geolocation component. |

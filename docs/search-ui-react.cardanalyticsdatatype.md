@@ -11,5 +11,5 @@ The data types use to construct the payload in the analytics event.
 ```typescript
 type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer$1 | Result<T> | GenerativeDirectAnswerData;
 ```
-**References:** [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)
+**References:** [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)<!-- -->, [GenerativeDirectAnswerData](./search-ui-react.generativedirectanswerdata.md)
 
