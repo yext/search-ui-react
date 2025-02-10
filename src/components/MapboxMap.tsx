@@ -3,7 +3,6 @@ import mapboxgl from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import ReactDOM from 'react-dom';
-import {createRoot} from 'react-dom/client';
 
 /**
  * Props for rendering a custom marker on the map.
@@ -159,7 +158,6 @@ export function MapboxMap<T>({
         if (markerLocation) {
           const { latitude, longitude } = markerLocation;
           const el = document.createElement('div');
-          const root = createRoot(el);
           const markerOptions: mapboxgl.MarkerOptions = {};
           if (PinComponent) {
             if (renderPin) {
@@ -167,11 +165,11 @@ export function MapboxMap<T>({
                 'Found both PinComponent and renderPin props. Using PinComponent.'
               );
             }
-            root.render(<PinComponent
+            ReactDOM.render(<PinComponent
               index={i}
               mapbox={mapbox}
               result={result}
-            />);
+            />, el);
             markerOptions.element = el;
           } else if (renderPin) {
             renderPin({ index: i, mapbox, result, container: el });

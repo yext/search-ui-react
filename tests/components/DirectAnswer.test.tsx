@@ -1,4 +1,4 @@
-import {render, screen, waitFor} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { DirectAnswerState } from '@yext/search-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
@@ -6,14 +6,6 @@ import { RecursivePartial, ignoreLinkClickErrors, mockAnswersState } from '../__
 import { fieldValueDAState, featuredSnippetDAState } from '../__fixtures__/data/directanswers';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-
-function renderElement(element: React.ReactElement) {
-  return React.act(() => render(element));
-}
-
-async function click(element : HTMLElement) {
-  return waitFor(() => userEvent.click(element));
-}
 
 jest.mock('@yext/search-headless-react');
 
@@ -42,10 +34,10 @@ describe('Featured snippet direct answer analytics', () => {
 
 function runAnalyticsTestSuite() {
   it('reports link click analytics', async () => {
-    await renderElement(<DirectAnswer />);
+    render(<DirectAnswer />);
     ignoreLinkClickErrors();
     const link = screen.getByRole('link');
-    await click(link);
+    await userEvent.click(link);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'CTA_CLICK',
@@ -56,9 +48,9 @@ function runAnalyticsTestSuite() {
   });
 
   it('reports THUMBS_UP feedback', async () => {
-    await renderElement(<DirectAnswer />);
+    render(<DirectAnswer />);
     const thumbsUp = screen.queryAllByRole('button')[0];
-    await click(thumbsUp);
+    await userEvent.click(thumbsUp);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_UP',
@@ -69,9 +61,9 @@ function runAnalyticsTestSuite() {
   });
 
   it('reports THUMBS_DOWN feedback', async () => {
-    await renderElement(<DirectAnswer />);
+    render(<DirectAnswer />);
     const thumbsDown = screen.queryAllByRole('button')[1];
-    await click(thumbsDown);
+    await userEvent.click(thumbsDown);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
       type: 'THUMBS_DOWN',

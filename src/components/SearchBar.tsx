@@ -386,7 +386,7 @@ export function SearchBar({
     entityPreviewsCount
   );
   const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {
-    ['shadow-lg']: hasItems
+    ['shadow-lg' ?? '']: hasItems
   });
 
   const handleToggleDropdown = useCallback((isActive) => {

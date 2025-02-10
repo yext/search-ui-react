@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { LocationBias } from '../../src/components/LocationBias';
 import { State, LocationBiasMethod, LocationBias as LocationBiasType } from '@yext/search-headless-react';
@@ -52,14 +52,8 @@ const newGeoPosition: GeolocationPosition = {
     latitude: 40.741591687843005,
     longitude: -74.00530254443494,
     speed: null,
-    toJSON(): any {
-      return JSON.stringify(this);
-    }
   },
-  timestamp: 0,
-  toJSON(): any {
-    return JSON.stringify(this);
-  }
+  timestamp: 0
 };
 
 beforeEach(() => {
@@ -142,5 +136,5 @@ it('renders nothing if there is no display name', () => {
 
 async function clickUpdateLocation() {
   const updateLocationButton = screen.getByRole('button', { name: 'Update your location' });
-  await waitFor(() => userEvent.click(updateLocationButton));
+  await userEvent.click(updateLocationButton);
 }

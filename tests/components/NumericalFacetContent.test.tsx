@@ -1,4 +1,4 @@
-import {render, screen, waitFor} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { SearchActions, FacetOption, Matcher, NumberRangeValue, SelectableStaticFilter, Source, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
@@ -50,21 +50,9 @@ const mockNumericalFacet = (props?: NumericalFacetProps) => {
   return (
     <FacetsProvider>
       {facets => facets.map(facet => (
-        <NumericalFacetContent
-            {...props}
-            key={facet.fieldId}
-            fieldId={facet.fieldId}
-            facet={facet}/>))}
+        <NumericalFacetContent {...props} fieldId={facet.fieldId} facet={facet}/>))}
     </FacetsProvider>);
 };
-
-async function type(element : HTMLElement, input: string) {
-  return waitFor(() => userEvent.type(element, input));
-}
-
-async function click(element : HTMLElement) {
-  return waitFor(() => userEvent.click(element));
-}
 
 describe('NumericalFacetContent', () => {
   beforeEach(() => {
@@ -88,7 +76,7 @@ describe('NumericalFacetContent', () => {
       screen.getByLabelText(numericalFacet.options[0].displayName);
     expect(expensiveCheckbox.checked).toBeTruthy();
 
-    await click(expensiveCheckbox);
+    await userEvent.click(expensiveCheckbox);
     expectFacetOptionSet(actions, numericalFacet.fieldId, numericalFacet.options[0], false);
   });
 
@@ -100,7 +88,7 @@ describe('NumericalFacetContent', () => {
       screen.getByLabelText(numericalFacet.options[1].displayName);
     expect(cheapCheckbox.checked).toBeFalsy();
 
-    await click(cheapCheckbox);
+    await userEvent.click(cheapCheckbox);
     expectFacetOptionSet(actions, numericalFacet.fieldId, numericalFacet.options[1], true);
   });
 
@@ -120,9 +108,9 @@ describe('NumericalFacetContent', () => {
     render(mockNumericalFacet(
       { fieldId: numericalFacet.fieldId, getFilterDisplayName: getFilterDisplayName }));
 
-    await type(screen.getByPlaceholderText('Min'), '1');
-    await type(screen.getByPlaceholderText('Max'), '5');
-    await click(screen.getByText('Apply'));
+    await userEvent.type(screen.getByPlaceholderText('Min'), '1');
+    await userEvent.type(screen.getByPlaceholderText('Max'), '5');
+    await userEvent.click(screen.getByText('Apply'));
 
     const expectedSelectableFilter: SelectableStaticFilter = {
       displayName: 'start-1 end-5',

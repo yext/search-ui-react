@@ -14,37 +14,10 @@ declare function UniversalResults<T>({ verticalConfigMap, showAppliedFilters, cu
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  { verticalConfigMap, showAppliedFilters, customCssClasses } | [UniversalResultsProps](./search-ui-react.universalresultsprops.md)<!-- -->&lt;T&gt; |  |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-{ verticalConfigMap, showAppliedFilters, customCssClasses }
-
-
-</td><td>
-
-[UniversalResultsProps](./search-ui-react.universalresultsprops.md)<!-- -->&lt;T&gt;
-
-
-</td><td>
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element \| null

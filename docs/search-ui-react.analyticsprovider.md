@@ -14,39 +14,10 @@ declare function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): J
 
 ## Parameters
 
-<table><thead><tr><th>
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  props | PropsWithChildren&lt;AnalyticsConfig&gt; | The configuration for the analytics service |
 
-Parameter
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-props
-
-
-</td><td>
-
-PropsWithChildren&lt;AnalyticsConfig&gt;
-
-
-</td><td>
-
-The configuration for the analytics service
-
-
-</td></tr>
-</tbody></table>
 **Returns:**
 
 JSX.Element

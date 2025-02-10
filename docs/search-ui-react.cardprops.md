@@ -14,44 +14,7 @@ interface CardProps<T = DefaultRawDataType>
 
 ## Properties
 
-<table><thead><tr><th>
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [result](./search-ui-react.cardprops.result.md) |  | Result&lt;T&gt; | The result data provided to the card for rendering. |
 
-Property
-
-
-</th><th>
-
-Modifiers
-
-
-</th><th>
-
-Type
-
-
-</th><th>
-
-Description
-
-
-</th></tr></thead>
-<tbody><tr><td>
-
-[result](./search-ui-react.cardprops.result.md)
-
-
-</td><td>
-
-
-</td><td>
-
-Result&lt;T&gt;
-
-
-</td><td>
-
-The result data provided to the card for rendering.
-
-
-</td></tr>
-</tbody></table>

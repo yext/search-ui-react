@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Geolocation } from '../../src/components/Geolocation';
 import { Matcher, SelectableStaticFilter, State } from '@yext/search-headless-react';
@@ -98,14 +98,8 @@ const newGeoPosition: GeolocationPosition = {
     latitude: 40.741591687843005,
     longitude: -74.00530254443494,
     speed: null,
-    toJSON(): any {
-      return JSON.stringify(this);
-    }
   },
-  timestamp: 0,
-  toJSON(): any {
-    return JSON.stringify(this);
-  }
+  timestamp: 0
 };
 
 const newGeoPositionWithLowAccuracy: GeolocationPosition = {
@@ -113,10 +107,7 @@ const newGeoPositionWithLowAccuracy: GeolocationPosition = {
     ...newGeoPosition.coords,
     accuracy: 100000,
   },
-  timestamp: 0,
-  toJSON(): any {
-    return JSON.stringify(this);
-  }
+  timestamp: 0
 };
 
 beforeEach(() => {
@@ -131,18 +122,14 @@ beforeEach(() => {
   jest.spyOn(locationOperations, 'getUserLocation').mockResolvedValue(newGeoPosition);
 });
 
-function renderElement(element: React.ReactElement) {
-  return React.act(() => render(element));
-}
-
 it('renders custom label when provided', () => {
-  renderElement(<Geolocation label='Click me!' />);
+  render(<Geolocation label='Click me!' />);
   const updateLocationButton = screen.getByRole('button', { name: 'Click me!' });
   expect(updateLocationButton).toBeDefined();
 });
 
 it('renders custom icon when provided', () => {
-  renderElement(<Geolocation GeolocationIcon={() => <img src="graphic1.png" alt="Custom Icon" />} />);
+  render(<Geolocation GeolocationIcon={() => <img src="graphic1.png" alt="Custom Icon" />} />);
   const LocationIcon = screen.getByAltText('Custom Icon');
   expect(LocationIcon).toBeDefined();
 });
@@ -151,7 +138,7 @@ describe('custom click handler', () => {
   it('executes handleClick when user\'s location is successfully determined', async () => {
     const mockedHandleClickFn = jest.fn();
     const actions = spyOnActions();
-    await renderElement(<Geolocation handleClick={mockedHandleClickFn} />);
+    render(<Geolocation handleClick={mockedHandleClickFn} />);
     await clickUpdateLocation();
 
     expect(mockedHandleClickFn).toHaveBeenCalledWith(newGeoPosition);
@@ -164,7 +151,7 @@ describe('custom click handler', () => {
     const mockedHandleClickFn = jest.fn();
     render(<Geolocation handleClick={mockedHandleClickFn} />);
     await clickUpdateLocation();
-
+    
     expect(consoleWarnSpy).toBeCalledWith('mocked error!');
     expect(mockedHandleClickFn).not.toBeCalled();
   });
@@ -247,7 +234,7 @@ describe('default click handler', () => {
 
 async function clickUpdateLocation() {
   const updateLocationButton = screen.getByRole('button');
-  await waitFor(() => userEvent.click(updateLocationButton));
+  await userEvent.click(updateLocationButton);
 }
 
 function createLocationFilter(radius: number = 50 * 1609.344): SelectableStaticFilter {

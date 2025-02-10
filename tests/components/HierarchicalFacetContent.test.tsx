@@ -48,11 +48,7 @@ const mockHierarchicalFacet = (props?: HierarchicalFacetProps) => {
   return (
     <FacetsProvider>
       {facets => facets.map(facet => (
-        <HierarchicalFacetContent
-            {...props}
-            key={facet.fieldId}
-            fieldId={facet.fieldId}
-            facet={facet}/>))}
+        <HierarchicalFacetContent {...props} fieldId={facet.fieldId} facet={facet}/>))}
     </FacetsProvider>);
 };
 
