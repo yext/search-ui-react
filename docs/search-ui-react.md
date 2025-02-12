@@ -63,6 +63,7 @@
 |  [ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md) | Props for [ApplyFiltersButton()](./search-ui-react.applyfiltersbutton.md) |
 |  [AutocompleteResultCssClasses](./search-ui-react.autocompleteresultcssclasses.md) | The CSS class interface for the Autocomplete Result. |
 |  [CardProps](./search-ui-react.cardprops.md) | The props provided to every [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->. |
+|  [CitationClickData](./search-ui-react.citationclickdata.md) | Payload specific to CITATION\_CLICK events. |
 |  [CitationProps](./search-ui-react.citationprops.md) | Props for citation card. |
 |  [CitationsProps](./search-ui-react.citationsprops.md) | Props for citations component. |
 |  [Coordinate](./search-ui-react.coordinate.md) | Coordinate use to represent the result's location on a map. |
@@ -77,7 +78,6 @@
 |  [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./search-ui-react.filtersearchprops.md) | The props for the [FilterSearch()](./search-ui-react.filtersearch.md) component. |
 |  [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) | The CSS class interface used for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
-|  [GenerativeDirectAnswerData](./search-ui-react.generativedirectanswerdata.md) | Payload for events fired on a generative direct answer card. |
 |  [GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md) | Props for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
 |  [GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md) | The CSS class interface for the Geolocation component. |
 |  [GeolocationProps](./search-ui-react.geolocationprops.md) | The props for the Geolocation component. |

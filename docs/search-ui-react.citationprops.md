@@ -16,7 +16,7 @@ interface CitationProps
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [citationClickHandler?](./search-ui-react.citationprops.citationclickhandler.md) |  | (data: [GenerativeDirectAnswerData](./search-ui-react.generativedirectanswerdata.md)<!-- -->) =&gt; void | _(Optional)_ |
+|  [citationClickHandler?](./search-ui-react.citationprops.citationclickhandler.md) |  | (data: [CitationClickData](./search-ui-react.citationclickdata.md)<!-- -->) =&gt; void | _(Optional)_ |
 |  [cssClasses](./search-ui-react.citationprops.cssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) |  |
 |  [searchResult](./search-ui-react.citationprops.searchresult.md) |  | Result |  |
 

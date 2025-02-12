@@ -9,5 +9,5 @@ Handle onClick event for citation link.
 **Signature:**
 
 ```typescript
-citationClickHandler?: (data: GenerativeDirectAnswerData) => void;
+citationClickHandler?: (data: CitationClickData) => void;
 ```

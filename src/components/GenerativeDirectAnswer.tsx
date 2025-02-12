@@ -162,7 +162,7 @@ export interface CitationsProps {
   /** The component for citation card */
   CitationCard?: (props: CitationProps) => JSX.Element | null,
   /** Handle onClick event for citation link. */
-  citationClickHandler?: (data: GenerativeDirectAnswerData) => void
+  citationClickHandler?: (data: CitationClickData) => void
 }
 
 /**
@@ -210,7 +210,7 @@ function Citations(props: CitationsProps) {
 export interface CitationProps {
   searchResult: Result,
   cssClasses: GenerativeDirectAnswerCssClasses,
-  citationClickHandler?: (data: GenerativeDirectAnswerData) => void
+  citationClickHandler?: (data: CitationClickData) => void
 }
 
 /**
@@ -237,18 +237,18 @@ function Citation(props: CitationProps) {
 }
 
 /**
- * Payload for events fired on a generative direct answer card.
+ * Payload specific to CITATION_CLICK events.
  *
  * @public
  */
-export interface GenerativeDirectAnswerData {
+export interface CitationClickData {
   searchResult: Result,
   citationUrl: string
 }
 
-function useReportCitationClick<T = DefaultRawDataType>(): (data: GenerativeDirectAnswerData) => void {
+function useReportCitationClick<T = DefaultRawDataType>(): (data: CitationClickData) => void {
   const reportAnalyticsEvent = useCardAnalytics<T>();
-  return React.useCallback((data: GenerativeDirectAnswerData) => {
+  return React.useCallback((data: CitationClickData) => {
     reportAnalyticsEvent(data, 'CITATION_CLICK');
   }, [reportAnalyticsEvent]);
 }

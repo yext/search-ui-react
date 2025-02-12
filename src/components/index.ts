@@ -182,5 +182,5 @@ export {
   GenerativeDirectAnswerProps,
   CitationProps,
   CitationsProps,
-  GenerativeDirectAnswerData
+  CitationClickData
 } from './GenerativeDirectAnswer';

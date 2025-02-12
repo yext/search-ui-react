@@ -9,7 +9,7 @@ import { useCallback } from 'react';
 import { FeedbackType } from '../components/ThumbsFeedback';
 import { DefaultRawDataType } from '../models/index';
 import { useAnalytics } from './useAnalytics';
-import { GenerativeDirectAnswerData } from '../components/GenerativeDirectAnswer'
+import { CitationClickData } from '../components/GenerativeDirectAnswer'
 
 /**
  * Analytics event types for cta click, title click, and citation click.
@@ -23,7 +23,7 @@ export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
  *
  * @public
  */
-export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | Result<T> | GenerativeDirectAnswerData;
+export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | Result<T> | CitationClickData;
 
 /**
  * Analytics event types for interactions on a card.
@@ -37,8 +37,8 @@ function isDirectAnswer(data: unknown): data is DirectAnswerData {
     (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
 }
 
-function isGenerativeDirectAnswer(data: unknown): data is GenerativeDirectAnswerData {
-  return !!(data as GenerativeDirectAnswerData);
+function isGenerativeDirectAnswer(data: unknown): data is CitationClickData {
+  return !!(data as CitationClickData);
 }
 
 export function useCardAnalytics<T>(): (
