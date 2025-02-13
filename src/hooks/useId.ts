@@ -6,9 +6,9 @@ import { useLayoutEffect } from "./useLayoutEffect";
 
 let serverHandoffComplete = false;
 let id = 0;
-function genId(): string {
+function genId(baseName: string): string {
   ++id;
-  return id.toString();
+  return baseName + '-' + id.toString();
 }
 
 // Workaround for https://github.com/webpack/webpack/issues/14814
@@ -28,14 +28,14 @@ const maybeReactUseId: undefined | (() => string) = (React as any)[
  * @see Docs https://reach.tech/auto-id
  */
 
-export function useId(): string {
+export function useId(baseName: string): string {
   if (maybeReactUseId !== undefined) {
     return maybeReactUseId();
   }
 
   // If this instance isn't part of the initial render, we don't have to do the
   // double render/patch-up dance. We can just generate the ID and return it.
-  const initialId = (serverHandoffComplete ? genId() : '');
+  const initialId = (serverHandoffComplete ? genId(baseName) : '');
   const [id, setId] = useState(initialId);
 
   useLayoutEffect(() => {
@@ -44,7 +44,7 @@ export function useId(): string {
       // rendering flicker, though it'll make the first render slower (unlikely
       // to matter, but you're welcome to measure your app and let us know if
       // it's a problem).
-      setId(genId());
+      setId(genId(baseName));
     }
   }, [id]);
 

@@ -49,7 +49,7 @@ export function PeoplePage() {
    * This example function that's being used for onDropdownInputChange allows for clearing the filter in the search state when the input is empty.
    * This is especially useful for implementations that have multiple FilterSearch components.
    * Ex. a user can search using both inputs initially, but then wants to clear one of the FilterSearch inputs and re-run a search.
-   */  
+   */
   const removeAssociatedFilterWhenInputIsEmpty = (searchFields: { fieldApiName: string; entityType: string; }[]) => (params: OnDropdownInputChangeProps) => {
     const { value, executeFilterSearch } = params;
     // If there is still an input value, execute the filter search as normal
