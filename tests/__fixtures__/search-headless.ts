@@ -26,6 +26,7 @@ export function generateMockedHeadless(state?: RecursivePartial<State>): SearchH
       searchType: SearchTypeEnum.Universal
     },
     location: {},
+    generativeDirectAnswer: {},
   };
   const mergedState = merge(emptyState, state);
 
