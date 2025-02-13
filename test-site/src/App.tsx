@@ -4,6 +4,7 @@ import { PeoplePage } from './pages/PeoplePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { LocationsPage } from './pages/LocationsPage';
 import UniversalPage from './pages/UniversalPage';
+import { FunctionPage } from './pages/FunctionPage';
 import {
   BrowserRouter,
   Route,
@@ -31,6 +32,7 @@ function App() {
               <Route path='people' element={<PeoplePage />} />
               <Route path='products' element={<ProductsPage />} />
               <Route path='locations' element={<LocationsPage />} />
+              <Route path='function' element={<FunctionPage/>} />
             </Routes>
           </BrowserRouter>
         </AnalyticsProvider>

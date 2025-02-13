@@ -1,6 +1,7 @@
 import {
   SearchActions,
   AutocompleteResponse,
+  GenerativeDirectAnswerResponse,
   SearchIntent,
   SearchTypeEnum
 } from '@yext/search-headless-react';
@@ -49,4 +50,19 @@ export async function getSearchIntents(
 ): Promise<SearchIntent[] | undefined> {
   const results = await executeAutocomplete(searchActions);
   return results?.inputIntents;
+}
+
+/**
+ * Executes a generative direct answer and return the corresponding response.
+ *
+ * @public
+ */
+export async function executeGenerativeDirectAnswer(
+  searchActions: SearchActions
+): Promise<GenerativeDirectAnswerResponse | undefined> {
+  try {
+    return await searchActions.executeGenerativeDirectAnswer();
+  } catch (e) {
+    console.error(`Error occured executing generative direct answer.\n`, e);
+  }
 }
