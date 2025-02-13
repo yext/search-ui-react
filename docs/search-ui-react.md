@@ -76,6 +76,7 @@
 |  [FilterOptionConfig](./search-ui-react.filteroptionconfig.md) | The configuration data for a field value filter option. |
 |  [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<!-- -->. |
 |  [FilterSearchProps](./search-ui-react.filtersearchprops.md) | The props for the [FilterSearch()](./search-ui-react.filtersearch.md) component. |
+|  [GdaClickEventData](./search-ui-react.gdaclickeventdata.md) | Payload for click events fired on a generative direct answer card. |
 |  [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) | The CSS class interface used for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
 |  [GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md) | Props for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
 |  [GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md) | The CSS class interface for the Geolocation component. |
@@ -139,7 +140,7 @@
 |  [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md) | The data types use to construct the payload in the analytics event. |
 |  [CardAnalyticsType](./search-ui-react.cardanalyticstype.md) | Analytics event types for interactions on a card. |
 |  [CardComponent](./search-ui-react.cardcomponent.md) | A functional component that can be used to render a result card. |
-|  [CardCtaEventType](./search-ui-react.cardctaeventtype.md) | Analytics event types for cta click and title click. |
+|  [CardCtaEventType](./search-ui-react.cardctaeventtype.md) | Analytics event types for cta click, title click, and citation click. |
 |  [CoordinateGetter](./search-ui-react.coordinategetter.md) | A function use to derive a result's coordinate. |
 |  [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md) | The default type for "rawData" field of type Result. |
 |  [DropdownItemProps](./search-ui-react.dropdownitemprops.md) | Props for the [DropdownItem()](./search-ui-react.dropdownitem.md)<!-- -->. |

@@ -34,7 +34,8 @@ const vertical1: VerticalResults = {
     rawData: {
       name: 'title2',
       description: 'text2',
-      uid: 'uid2'
+      uid: 'uid2',
+      link: 'link2'
     },
     source: Source.KnowledgeManager,
     id: 'id2'

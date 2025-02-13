@@ -6,8 +6,10 @@ import {
   Result
 } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks';
+import { useCardAnalytics } from '../hooks/useCardAnalytics';
+import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
-import ReactMarkdown from "react-markdown";
+import { Markdown } from './Markdown';
 import React from 'react';
 
 /**
@@ -92,6 +94,7 @@ export function GenerativeDirectAnswer({
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
+  const handleClickEvent = useReportClickEvent();
 
   React.useEffect(() => {
     if (!searchResults?.length || !searchId) {
@@ -106,13 +109,19 @@ export function GenerativeDirectAnswer({
 
   return (
     <div className={cssClasses.container}>
-      <Answer gdaResponse={gdaResponse} cssClasses={cssClasses} answerHeader={answerHeader}/>
+      <Answer 
+        gdaResponse={gdaResponse} 
+        cssClasses={cssClasses} 
+        answerHeader={answerHeader}
+        linkClickHandler={handleClickEvent}
+      />
       <CitationsContainer
         gdaResponse={gdaResponse}
         cssClasses={cssClasses}
         searchResults={searchResults}
         citationsHeader={citationsHeader}
         CitationCard={CitationCard}
+        citationClickHandler={handleClickEvent}
       />
     </div>
   );
@@ -121,7 +130,8 @@ export function GenerativeDirectAnswer({
 interface AnswerProps {
   gdaResponse: GenerativeDirectAnswerResponse,
   cssClasses: GenerativeDirectAnswerCssClasses,
-  answerHeader?: string | JSX.Element
+  answerHeader?: string | JSX.Element,
+  linkClickHandler?: (data: GdaClickEventData) => void
 }
 
 /**
@@ -131,13 +141,18 @@ function Answer(props: AnswerProps) {
   const { 
     gdaResponse, 
     cssClasses,
-    answerHeader = 'AI Generated Answer'
+    answerHeader = 'AI Generated Answer',
+    linkClickHandler
   } = props;
   return <>
     <div className={cssClasses.header}>
       {answerHeader}
     </div>
-    <ReactMarkdown className={cssClasses.answerText} children={gdaResponse.directAnswer} />
+    <Markdown 
+      content={gdaResponse.directAnswer} 
+      onLinkClick={(destinationUrl) => destinationUrl && linkClickHandler?.({destinationUrl})}
+      customCssClasses={cssClasses}
+    />
   </>;
 }
 
@@ -156,7 +171,9 @@ export interface CitationsProps {
   /** The header for the citations section generative direct answer. */
   citationsHeader?: string | JSX.Element,
   /** The component for citation card */
-  CitationCard?: (props: CitationProps) => JSX.Element | null
+  CitationCard?: (props: CitationProps) => JSX.Element | null,
+  /** Handle onClick event for citation link. */
+  citationClickHandler?: (data: GdaClickEventData) => void
 }
 
 /**
@@ -169,6 +186,7 @@ function Citations(props: CitationsProps) {
     searchResults,
     citationsHeader,
     CitationCard = Citation,
+    citationClickHandler
   } = props;
   const citationResults = React.useMemo(() => {
     return searchResults.filter(result => {
@@ -190,7 +208,7 @@ function Citations(props: CitationsProps) {
       {citationsHeader ?? `Sources (${citationResults.length})`}
     </div>
     <div className={cssClasses.citationsContainer}>
-      {citationResults.map((r, i) => <CitationCard key={i} searchResult={r} cssClasses={cssClasses}/>)}
+      {citationResults.map((r, i) => <CitationCard key={i} searchResult={r} cssClasses={cssClasses} citationClickHandler={citationClickHandler}/>)}
     </div>
   </>;
 }
@@ -202,7 +220,8 @@ function Citations(props: CitationsProps) {
  */
 export interface CitationProps {
   searchResult: Result,
-  cssClasses: GenerativeDirectAnswerCssClasses
+  cssClasses: GenerativeDirectAnswerCssClasses,
+  citationClickHandler?: (data: GdaClickEventData) => void
 }
 
 /**
@@ -211,13 +230,40 @@ export interface CitationProps {
 function Citation(props: CitationProps) {
   const {
     searchResult,
-    cssClasses
+    cssClasses,
+    citationClickHandler
   } = props;
   const {name, description, answer, link} = searchResult.rawData ?? {};
+  const citationUrl = typeof link === 'string' ? link : undefined;
   return (
-    <a className={cssClasses.citation} href={typeof link === 'string' ? link : undefined}>
+    <a 
+      className={cssClasses.citation} 
+      href={citationUrl}
+      onClick={() => citationUrl && citationClickHandler?.({searchResult, destinationUrl: citationUrl})}
+    >
       <div className={cssClasses.citationTitle}>{name}</div>
       <div className={cssClasses.citationSnippet}>{description ?? answer}</div>
     </a>
   );
+}
+
+/**
+ * Payload for click events fired on a generative direct answer card.
+ *
+ * @public
+ */
+export interface GdaClickEventData {
+  searchResult?: Result,
+  destinationUrl: string
+}
+
+function useReportClickEvent<T = DefaultRawDataType>(): (data: GdaClickEventData) => void {
+  const reportAnalyticsEvent = useCardAnalytics<T>();
+  return React.useCallback((data: GdaClickEventData) => {
+    if (data.searchResult) {
+      reportAnalyticsEvent(data, 'CITATION_CLICK');
+    } else {
+      reportAnalyticsEvent(data, 'CTA_CLICK');
+    }
+  }, [reportAnalyticsEvent]);
 }
