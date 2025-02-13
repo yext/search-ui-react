@@ -110,7 +110,9 @@ export interface FilterSearchProps {
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: FilterSearchCssClasses
+  customCssClasses?: FilterSearchCssClasses,
+  /** Whether to disable the default CSS classes entirely  */
+  disableBuiltInClasses?: boolean
 }
 
 /**
@@ -130,7 +132,8 @@ export function FilterSearch({
   onDropdownInputChange,
   afterDropdownInputFocus,
   sectioned = false,
-  customCssClasses
+  customCssClasses,
+  disableBuiltInClasses = false
 }: FilterSearchProps): JSX.Element {
   const searchActions = useSearchActions();
   const searchParamFields = searchFields.map((searchField) => {
@@ -144,7 +147,7 @@ export function FilterSearch({
     return fieldIds;
   }, [searchFields]);
 
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, disableBuiltInClasses);
   const [currentFilter, setCurrentFilter] = useState<StaticFilter>();
   const [filterQuery, setFilterQuery] = useState<string>();
   const staticFilters = useSearchState(state => state.filters.static);

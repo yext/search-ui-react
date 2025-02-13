@@ -19,7 +19,7 @@
 |  [executeSearch(searchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
 |  [Facets(props)](./search-ui-react.facets.md) | A component that displays all facets applicable to the current vertical search. |
 |  [FilterDivider({ className })](./search-ui-react.filterdivider.md) | A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters. |
-|  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
+|  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
 |  [GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, })](./search-ui-react.generativedirectanswer.md) | Displays the AI generated answer of a generative direct answer. |
 |  [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md) | A React Component which collects location information to create a location filter and perform a new search. |
 |  [getSearchIntents(searchActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
@@ -47,7 +47,7 @@
 |  [useAnalytics()](./search-ui-react.useanalytics.md) | Returns a service that can be used to report analytics events. |
 |  [useCardAnalyticsCallback(result, analyticsType)](./search-ui-react.usecardanalyticscallback.md) | Creates a memoized function for reporting card analytics. |
 |  [useCardFeedbackCallback(result)](./search-ui-react.usecardfeedbackcallback.md) | Creates a memoized function for reporting card feedback analytics. |
-|  [useComposedCssClasses(builtInClasses, customClasses)](./search-ui-react.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
+|  [useComposedCssClasses(builtInClasses, customClasses, disableBuiltInClasses)](./search-ui-react.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
 |  [VerticalResults(props)](./search-ui-react.verticalresults.md) | A component that renders search results for a vertical page. |
 
 ## Interfaces
