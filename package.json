@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
-    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.14.5",
     "@etchteam/storybook-addon-status": "^4.2.4",
@@ -169,6 +169,7 @@
     "use-isomorphic-layout-effect": "^1.1.2"
   },
   "overrides": {
+    "@babel/plugin-transform-runtime": "^7.23.2",
     "rollup": "4.22.4"
   },
   "repository": {
