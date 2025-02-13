@@ -10,6 +10,8 @@ export function Navbar() {
       <Link className='text-blue-500 hover:underline p-2' to='./products'>Products Page</Link>
       <div className='border-l-2 border-indigo-400 h-6 mt-2'></div>
       <Link className='text-blue-500 hover:underline p-2' to='./locations'>Locations Page</Link>
+      <div className='border-l-2 border-indigo-400 h-6 mt-2'></div>
+      <Link className='text-blue-500 hover:underline p-2' to='./function'>Functions Page</Link>
     </nav>
   );
 }
