@@ -79,7 +79,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     resultsCount
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
-  const optionId = useId();
+  const optionId = useId('facet');
   const { selectFilter, filters, applyFilters } = useFiltersContext();
 
   const handleClick = useCallback((checked: boolean) => {
