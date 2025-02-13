@@ -51,8 +51,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM packages may be included in this product:
 
- - @jridgewell/gen-mapping@0.3.2
- - @jridgewell/set-array@1.1.2
+ - @jridgewell/gen-mapping@0.3.5
+ - @jridgewell/set-array@1.2.1
 
 These packages each contain the following license and notice below:
 
@@ -138,7 +138,7 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - @jridgewell/trace-mapping@0.3.19
+ - @jridgewell/trace-mapping@0.3.25
 
 This package contains the following license and notice below:
 
