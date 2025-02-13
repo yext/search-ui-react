@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-citationClickHandler?: (data: CitationClickData) => void;
+citationClickHandler?: (data: GdaClickEventData) => void;
 ```

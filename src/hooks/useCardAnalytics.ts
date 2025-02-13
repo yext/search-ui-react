@@ -9,7 +9,7 @@ import { useCallback } from 'react';
 import { FeedbackType } from '../components/ThumbsFeedback';
 import { DefaultRawDataType } from '../models/index';
 import { useAnalytics } from './useAnalytics';
-import { CitationClickData } from '../components/GenerativeDirectAnswer'
+import { GdaClickEventData } from '../components/GenerativeDirectAnswer'
 
 /**
  * Analytics event types for cta click, title click, and citation click.
@@ -23,7 +23,7 @@ export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
  *
  * @public
  */
-export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | Result<T> | CitationClickData;
+export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | Result<T> | GdaClickEventData;
 
 /**
  * Analytics event types for interactions on a card.
@@ -37,8 +37,8 @@ function isDirectAnswer(data: unknown): data is DirectAnswerData {
     (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
 }
 
-function isGenerativeDirectAnswer(data: unknown): data is CitationClickData {
-  return !!(data as CitationClickData);
+function isGenerativeDirectAnswer(data: unknown): data is GdaClickEventData {
+  return !!(data as GdaClickEventData);
 }
 
 export function useCardAnalytics<T>(): (
@@ -63,8 +63,8 @@ export function useCardAnalytics<T>(): (
         : (result as FieldValueDirectAnswer).fieldName;
       directAnswer = true;
     } else if (isGenerativeDirectAnswer(result)) {
-      url = result.citationUrl;
-      entityId = result.searchResult.id;
+      url = result.destinationUrl;
+      entityId = result.searchResult?.id;
       fieldName = 'gda-snippet';
       directAnswer = true;
       generativeDirectAnswer = true;
@@ -77,13 +77,9 @@ export function useCardAnalytics<T>(): (
       console.error('Unable to report a CTA event. Missing field: queryId.');
       return;
     }
-    if (!entityId) {
-      console.error('Unable to report a CTA event. Missing field: entityId.');
-      return;
-    }
     analytics?.report({
       type: eventType,
-      entityId,
+      entityId: entityId,
       searcher: verticalKey ? 'VERTICAL' : 'UNIVERSAL',
       queryId,
       verticalKey: verticalKey || '',
@@ -109,7 +105,7 @@ export function useCardAnalytics<T>(): (
       entityId = result.relatedResult.id;
     } else if (isGenerativeDirectAnswer(result)) {
       directAnswer = true;
-      entityId = result.searchResult.id;
+      entityId = result.searchResult?.id;
     } else {
       entityId = result.id;
     }

@@ -120,7 +120,7 @@ export interface AutocompleteResultCssClasses {
 }
 
 // @public
-export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T> | CitationClickData;
+export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T> | GdaClickEventData;
 
 // @public
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
@@ -137,17 +137,9 @@ export interface CardProps<T = DefaultRawDataType> {
 }
 
 // @public
-export interface CitationClickData {
-    // (undocumented)
-    citationUrl: string;
-    // (undocumented)
-    searchResult: Result;
-}
-
-// @public
 export interface CitationProps {
     // (undocumented)
-    citationClickHandler?: (data: CitationClickData) => void;
+    citationClickHandler?: (data: GdaClickEventData) => void;
     // (undocumented)
     cssClasses: GenerativeDirectAnswerCssClasses;
     // (undocumented)
@@ -157,7 +149,7 @@ export interface CitationProps {
 // @public
 export interface CitationsProps {
     CitationCard?: (props: CitationProps) => JSX.Element | null;
-    citationClickHandler?: (data: CitationClickData) => void;
+    citationClickHandler?: (data: GdaClickEventData) => void;
     citationsHeader?: string | JSX.Element;
     cssClasses: GenerativeDirectAnswerCssClasses;
     gdaResponse: GenerativeDirectAnswerResponse;
@@ -339,6 +331,14 @@ export interface FilterSearchProps {
 
 // @public
 export type FocusedItemData = Record<string, unknown>;
+
+// @public
+export interface GdaClickEventData {
+    // (undocumented)
+    destinationUrl: string;
+    // (undocumented)
+    searchResult?: Result;
+}
 
 // @public
 export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }: GenerativeDirectAnswerProps): JSX.Element | null;
