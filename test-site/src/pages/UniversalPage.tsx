@@ -1,4 +1,4 @@
-import { provideHeadless, useSearchActions } from '@yext/search-headless-react';
+import { provideHeadless, useSearchActions, Result } from '@yext/search-headless-react';
 import {
   DirectAnswer,
   DropdownItem,
@@ -6,7 +6,10 @@ import {
   SearchBar,
   SpellCheck,
   UniversalResults,
-  VisualAutocompleteConfig
+  VisualAutocompleteConfig,
+  GenerativeDirectAnswer,
+  CitationProps,
+  CitationsProps
 } from '@yext/search-ui-react';
 import classNames from 'classnames';
 import { useLayoutEffect } from 'react';
@@ -58,6 +61,25 @@ const customSearchBarCss = {
   searchBarContainer: 'mb-3 text-emerald-800'
 };
 
+function CustomCitationCard(props: CitationProps): JSX.Element | null {
+  const {
+    searchResult,
+    cssClasses,
+    citationClickHandler
+  } = props;
+  const citationUrl = typeof searchResult.rawData.link  === 'string' ? searchResult.rawData.link : undefined;
+  return <a className={cssClasses.citation} href={citationUrl} onClick={() => citationUrl && citationClickHandler?.({searchResult, destinationUrl: citationUrl})}>
+    {typeof searchResult.rawData.id === 'string' && <div className={cssClasses.citationTitle}>{searchResult.rawData.id}</div>}
+    {typeof searchResult.rawData.s_snippet === 'string' && <div className={cssClasses.citationSnippet}>{searchResult.rawData.s_snippet}</div>}
+  </a>;
+}
+
+function CustomCitationsComponent(props: CitationsProps): JSX.Element | null {
+  return (
+      <>This is a custom component for citations</>
+  )
+}
+
 export default function UniversalPage(): JSX.Element {
   const searchActions = useSearchActions();
   useLayoutEffect(() => {
@@ -72,11 +94,24 @@ export default function UniversalPage(): JSX.Element {
         customCssClasses={customSearchBarCss}
       />
       <SpellCheck />
+      <GenerativeDirectAnswer 
+        answerHeader='A custom answer header'
+        CitationCard={CustomCitationCard}
+      />
+
+      {/* Example of passing in custom citations component to GDA */}
+      {/*<GenerativeDirectAnswer*/}
+      {/*    answerHeader='A custom answer header'*/}
+      {/*    CitationsComponent={CustomCitationsComponent}*/}
+      {/*    CitationCard={CustomCitationCard}*/}
+      {/*/>*/}
+
       <DirectAnswer />
       <ResultsCount />
       <UniversalResults
         verticalConfigMap={universalVerticalConfigMap}
       />
+
       {/* Test generic result type  */}
       {/* <UniversalResults
         verticalConfigMap={{
