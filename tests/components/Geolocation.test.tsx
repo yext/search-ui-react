@@ -98,8 +98,25 @@ const newGeoPosition: GeolocationPosition = {
     latitude: 40.741591687843005,
     longitude: -74.00530254443494,
     speed: null,
+    toJSON: function () {
+      return {
+        accuracy: this.accuracy,
+        altitude: this.altitude,
+        altitudeAccuracy: this.altitudeAccuracy,
+        heading: this.heading,
+        latitude: this.latitude,
+        longitude: this.longitude,
+        speed: this.speed,
+      };
+    },
   },
-  timestamp: 0
+  timestamp: 0,
+  toJSON: function () {
+    return {
+      coords: this.coords.toJSON(),
+      timestamp: this.timestamp,
+    };
+  }
 };
 
 const newGeoPositionWithLowAccuracy: GeolocationPosition = {
@@ -107,7 +124,13 @@ const newGeoPositionWithLowAccuracy: GeolocationPosition = {
     ...newGeoPosition.coords,
     accuracy: 100000,
   },
-  timestamp: 0
+  timestamp: 0,
+  toJSON: function () {
+    return {
+      coords: this.coords.toJSON(),
+      timestamp: this.timestamp,
+    };
+  }
 };
 
 beforeEach(() => {

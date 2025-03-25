@@ -14,10 +14,37 @@ declare function GenerativeDirectAnswer({ customCssClasses, answerHeader, citati
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, } | [GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }
+
+
+</td><td>
+
+[GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element \| null

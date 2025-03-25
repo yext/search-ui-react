@@ -14,10 +14,39 @@ declare function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  props | [AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md) | [AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md) |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+props
+
+
+</td><td>
+
+[AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md)
+
+
+</td><td>
+
+[AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md)
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element

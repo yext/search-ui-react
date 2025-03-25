@@ -19,10 +19,37 @@ declare function LocationBias({ geolocationOptions, customCssClasses }: Location
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { geolocationOptions, customCssClasses } | [LocationBiasProps](./search-ui-react.locationbiasprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ geolocationOptions, customCssClasses }
+
+
+</td><td>
+
+[LocationBiasProps](./search-ui-react.locationbiasprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element \| null

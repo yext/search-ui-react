@@ -14,10 +14,37 @@ declare function SearchBar({ placeholder, geolocationOptions, hideRecentSearches
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch } | [SearchBarProps](./search-ui-react.searchbarprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }
+
+
+</td><td>
+
+[SearchBarProps](./search-ui-react.searchbarprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element

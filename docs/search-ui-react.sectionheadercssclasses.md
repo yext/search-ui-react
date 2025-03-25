@@ -15,11 +15,120 @@ interface SectionHeaderCssClasses extends AppliedFiltersCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [sectionHeaderContainer?](./search-ui-react.sectionheadercssclasses.sectionheadercontainer.md) |  | string | _(Optional)_ |
-|  [sectionHeaderIconContainer?](./search-ui-react.sectionheadercssclasses.sectionheadericoncontainer.md) |  | string | _(Optional)_ |
-|  [sectionHeaderLabel?](./search-ui-react.sectionheadercssclasses.sectionheaderlabel.md) |  | string | _(Optional)_ |
-|  [viewMoreContainer?](./search-ui-react.sectionheadercssclasses.viewmorecontainer.md) |  | string | _(Optional)_ |
-|  [viewMoreLink?](./search-ui-react.sectionheadercssclasses.viewmorelink.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[sectionHeaderContainer?](./search-ui-react.sectionheadercssclasses.sectionheadercontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[sectionHeaderIconContainer?](./search-ui-react.sectionheadercssclasses.sectionheadericoncontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[sectionHeaderLabel?](./search-ui-react.sectionheadercssclasses.sectionheaderlabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[viewMoreContainer?](./search-ui-react.sectionheadercssclasses.viewmorecontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[viewMoreLink?](./search-ui-react.sectionheadercssclasses.viewmorelink.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>
