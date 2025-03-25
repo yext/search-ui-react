@@ -112,7 +112,9 @@ export interface FilterSearchProps {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FilterSearchCssClasses,
   /** Whether to disable the default CSS classes entirely  */
-  disableBuiltInClasses?: boolean
+  disableBuiltInClasses?: boolean,
+  /** The accessible label for the dropdown input. */
+  ariaLabel?: string
 }
 
 /**
@@ -133,7 +135,8 @@ export function FilterSearch({
   afterDropdownInputFocus,
   sectioned = false,
   customCssClasses,
-  disableBuiltInClasses = false
+  disableBuiltInClasses = false,
+  ariaLabel
 }: FilterSearchProps): JSX.Element {
   const searchActions = useSearchActions();
   const searchParamFields = searchFields.map((searchField) => {
@@ -328,6 +331,7 @@ export function FilterSearch({
           onChange={handleInputChange}
           onFocus={handleInputFocus}
           submitCriteria={meetsSubmitCritera}
+          ariaLabel={ariaLabel}
         />
         <DropdownMenu>
           {hasResults &&
