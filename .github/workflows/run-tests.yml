@@ -58,6 +58,7 @@ jobs:
           "@swc/core-win32-arm64-msvc" \
           "@swc/core-win32-ia32-msvc" \
           "@swc/core-win32-x64-msvc"
+        npx playwright install
         npm run build
       node_matrix: '["16.x", "18.x"]'
     secrets:
