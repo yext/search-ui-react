@@ -9,7 +9,7 @@ A component which allows a user to search for filters associated with specific e
 **Signature:**
 
 ```typescript
-declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses }: FilterSearchProps): JSX.Element;
+declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }: FilterSearchProps): JSX.Element;
 ```
 
 ## Parameters
