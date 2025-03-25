@@ -489,11 +489,13 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }: MapboxMapProps<T>): JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
+    allowUpdates?: boolean;
     getCoordinate?: CoordinateGetter<T>;
+    iframeWindow?: Window;
     mapboxAccessToken: string;
     mapboxOptions?: Omit<mapboxgl_2.MapboxOptions, 'container'>;
     onDrag?: OnDragHandler;
