@@ -14,12 +14,139 @@ interface GeolocationProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.geolocationprops.customcssclasses.md) |  | [GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [GeolocationIcon?](./search-ui-react.geolocationprops.geolocationicon.md) |  | React.FunctionComponent | _(Optional)_ Custom icon component to display along with the button. |
-|  [geolocationOptions?](./search-ui-react.geolocationprops.geolocationoptions.md) |  | PositionOptions | _(Optional)_ Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->. |
-|  [handleClick?](./search-ui-react.geolocationprops.handleclick.md) |  | (position: GeolocationPosition) =&gt; void | _(Optional)_ A function which is called when the geolocation button is clicked, after user's position is successfully determined. |
-|  [label?](./search-ui-react.geolocationprops.label.md) |  | string | _(Optional)_ The label for the button. Defaults to 'Use my location'. |
-|  [radius?](./search-ui-react.geolocationprops.radius.md) |  | number | _(Optional)_ The radius, in miles, around the user's location to find results. Defaults to 50. If location accuracy is low, a larger radius may be used automatically. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.geolocationprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[GeolocationIcon?](./search-ui-react.geolocationprops.geolocationicon.md)
+
+
+</td><td>
+
+
+</td><td>
+
+React.FunctionComponent
+
+
+</td><td>
+
+_(Optional)_ Custom icon component to display along with the button.
+
+
+</td></tr>
+<tr><td>
+
+[geolocationOptions?](./search-ui-react.geolocationprops.geolocationoptions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+PositionOptions
+
+
+</td><td>
+
+_(Optional)_ Configuration used when collecting the user's location. Definition: [https://w3c.github.io/geolocation-api/\#position\_options\_interface](https://w3c.github.io/geolocation-api/#position_options_interface)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[handleClick?](./search-ui-react.geolocationprops.handleclick.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(position: GeolocationPosition) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function which is called when the geolocation button is clicked, after user's position is successfully determined.
+
+
+</td></tr>
+<tr><td>
+
+[label?](./search-ui-react.geolocationprops.label.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The label for the button. Defaults to 'Use my location'.
+
+
+</td></tr>
+<tr><td>
+
+[radius?](./search-ui-react.geolocationprops.radius.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The radius, in miles, around the user's location to find results. Defaults to 50. If location accuracy is low, a larger radius may be used automatically.
+
+
+</td></tr>
+</tbody></table>

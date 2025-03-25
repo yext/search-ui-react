@@ -14,11 +14,120 @@ interface SectionProps<T = DefaultRawDataType>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [CardComponent?](./search-ui-react.sectionprops.cardcomponent.md) |  | [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->&lt;T&gt; | _(Optional)_ The card to use for this vertical. |
-|  [header?](./search-ui-react.sectionprops.header.md) |  | JSX.Element | _(Optional)_ A header to display above the results. |
-|  [results](./search-ui-react.sectionprops.results.md) |  | Result&lt;T&gt;\[\] | The results from this vertical. |
-|  [verticalKey](./search-ui-react.sectionprops.verticalkey.md) |  | string | The key for the vertical. |
-|  [viewMore?](./search-ui-react.sectionprops.viewmore.md) |  | boolean | _(Optional)_ Whether or not to allow more results to be viewed. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[CardComponent?](./search-ui-react.sectionprops.cardcomponent.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[CardComponent](./search-ui-react.cardcomponent.md)<!-- -->&lt;T&gt;
+
+
+</td><td>
+
+_(Optional)_ The card to use for this vertical.
+
+
+</td></tr>
+<tr><td>
+
+[header?](./search-ui-react.sectionprops.header.md)
+
+
+</td><td>
+
+
+</td><td>
+
+JSX.Element
+
+
+</td><td>
+
+_(Optional)_ A header to display above the results.
+
+
+</td></tr>
+<tr><td>
+
+[results](./search-ui-react.sectionprops.results.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Result&lt;T&gt;\[\]
+
+
+</td><td>
+
+The results from this vertical.
+
+
+</td></tr>
+<tr><td>
+
+[verticalKey](./search-ui-react.sectionprops.verticalkey.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The key for the vertical.
+
+
+</td></tr>
+<tr><td>
+
+[viewMore?](./search-ui-react.sectionprops.viewmore.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not to allow more results to be viewed.
+
+
+</td></tr>
+</tbody></table>

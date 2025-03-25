@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "watson@yext.com",
   "license": "BSD-3-Clause",
@@ -105,7 +105,8 @@
     "ts-jest": "^29.1.1",
     "tsup": "^8.0.1",
     "typescript": "^5.2.2",
-    "util": "^0.12.5"
+    "util": "^0.12.5",
+    "esbuild": "^0.25.1"
   },
   "peerDependencies": {
     "@yext/search-headless-react": "^2.5.0",

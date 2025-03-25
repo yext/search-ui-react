@@ -14,16 +14,215 @@ interface FilterSearchProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [afterDropdownInputFocus?](./search-ui-react.filtersearchprops.afterdropdowninputfocus.md) |  | (params: [AfterDropdownInputFocusProps](./search-ui-react.afterdropdowninputfocusprops.md)<!-- -->) =&gt; void | _(Optional)_ A function which is called immediately after the input gains focus. It does not replace the default focus behavior. |
-|  [customCssClasses?](./search-ui-react.filtersearchprops.customcssclasses.md) |  | [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [disableBuiltInClasses?](./search-ui-react.filtersearchprops.disablebuiltinclasses.md) |  | boolean | _(Optional)_ Whether to disable the default CSS classes entirely |
-|  [label?](./search-ui-react.filtersearchprops.label.md) |  | string | _(Optional)_ The display label for the component. |
-|  [onDropdownInputChange?](./search-ui-react.filtersearchprops.ondropdowninputchange.md) |  | (params: [OnDropdownInputChangeProps](./search-ui-react.ondropdowninputchangeprops.md)<!-- -->) =&gt; void | _(Optional)_ A function which is called when the input element's value changes. Replaces the default behavior. |
-|  [onSelect?](./search-ui-react.filtersearchprops.onselect.md) |  | (params: [OnSelectParams](./search-ui-react.onselectparams.md)<!-- -->) =&gt; void | _(Optional)_ A function which is called when a filter is selected. |
-|  [placeholder?](./search-ui-react.filtersearchprops.placeholder.md) |  | string | _(Optional)_ The search input's placeholder text when no text has been entered by the user. Defaults to "Search here...". |
-|  [searchFields](./search-ui-react.filtersearchprops.searchfields.md) |  | Omit&lt;SearchParameterField, 'fetchEntities'&gt;\[\] | An array of fieldApiName and entityType which indicates what to perform the filter search against. |
-|  [searchOnSelect?](./search-ui-react.filtersearchprops.searchonselect.md) |  | boolean | _(Optional)_ Whether to trigger a search when an option is selected. Defaults to false. |
-|  [sectioned?](./search-ui-react.filtersearchprops.sectioned.md) |  | boolean | _(Optional)_ Determines whether or not the results of the filter search are separated by field. Defaults to false. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[afterDropdownInputFocus?](./search-ui-react.filtersearchprops.afterdropdowninputfocus.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(params: [AfterDropdownInputFocusProps](./search-ui-react.afterdropdowninputfocusprops.md)<!-- -->) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function which is called immediately after the input gains focus. It does not replace the default focus behavior.
+
+
+</td></tr>
+<tr><td>
+
+[customCssClasses?](./search-ui-react.filtersearchprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[disableBuiltInClasses?](./search-ui-react.filtersearchprops.disablebuiltinclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to disable the default CSS classes entirely
+
+
+</td></tr>
+<tr><td>
+
+[label?](./search-ui-react.filtersearchprops.label.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The display label for the component.
+
+
+</td></tr>
+<tr><td>
+
+[onDropdownInputChange?](./search-ui-react.filtersearchprops.ondropdowninputchange.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(params: [OnDropdownInputChangeProps](./search-ui-react.ondropdowninputchangeprops.md)<!-- -->) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function which is called when the input element's value changes. Replaces the default behavior.
+
+
+</td></tr>
+<tr><td>
+
+[onSelect?](./search-ui-react.filtersearchprops.onselect.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(params: [OnSelectParams](./search-ui-react.onselectparams.md)<!-- -->) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function which is called when a filter is selected.
+
+
+</td></tr>
+<tr><td>
+
+[placeholder?](./search-ui-react.filtersearchprops.placeholder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The search input's placeholder text when no text has been entered by the user. Defaults to "Search here...".
+
+
+</td></tr>
+<tr><td>
+
+[searchFields](./search-ui-react.filtersearchprops.searchfields.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Omit&lt;SearchParameterField, 'fetchEntities'&gt;\[\]
+
+
+</td><td>
+
+An array of fieldApiName and entityType which indicates what to perform the filter search against.
+
+
+</td></tr>
+<tr><td>
+
+[searchOnSelect?](./search-ui-react.filtersearchprops.searchonselect.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to trigger a search when an option is selected. Defaults to false.
+
+
+</td></tr>
+<tr><td>
+
+[sectioned?](./search-ui-react.filtersearchprops.sectioned.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Determines whether or not the results of the filter search are separated by field. Defaults to false.
+
+
+</td></tr>
+</tbody></table>

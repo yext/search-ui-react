@@ -14,11 +14,55 @@ declare function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAn
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  result | [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md)<!-- -->&lt;T&gt; | result that contains data use in the card analytics event. |
-|  analyticsType | [CardAnalyticsType](./search-ui-react.cardanalyticstype.md) | the card analytics event type to report. |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+result
+
+
+</td><td>
+
+[CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md)<!-- -->&lt;T&gt;
+
+
+</td><td>
+
+result that contains data use in the card analytics event.
+
+
+</td></tr>
+<tr><td>
+
+analyticsType
+
+
+</td><td>
+
+[CardAnalyticsType](./search-ui-react.cardanalyticstype.md)
+
+
+</td><td>
+
+the card analytics event type to report.
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 () =&gt; void

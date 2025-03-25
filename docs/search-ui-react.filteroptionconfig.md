@@ -14,11 +14,120 @@ interface FilterOptionConfig
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [displayName?](./search-ui-react.filteroptionconfig.displayname.md) |  | string | _(Optional)_ The display name. Defaults to the value prop. |
-|  [matcher?](./search-ui-react.filteroptionconfig.matcher.md) |  | Matcher | _(Optional)_ The type of filtering operation used. Defaults to an equals comparison. |
-|  [resultsCount?](./search-ui-react.filteroptionconfig.resultscount.md) |  | number | _(Optional)_ The number of results associated with this filter. |
-|  [selectedByDefault?](./search-ui-react.filteroptionconfig.selectedbydefault.md) |  | boolean | _(Optional)_ If this particular filter should be selected by default. |
-|  [value](./search-ui-react.filteroptionconfig.value.md) |  | string \| number \| boolean \| NumberRangeValue | The value used to perform filtering. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[displayName?](./search-ui-react.filteroptionconfig.displayname.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The display name. Defaults to the value prop.
+
+
+</td></tr>
+<tr><td>
+
+[matcher?](./search-ui-react.filteroptionconfig.matcher.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Matcher
+
+
+</td><td>
+
+_(Optional)_ The type of filtering operation used. Defaults to an equals comparison.
+
+
+</td></tr>
+<tr><td>
+
+[resultsCount?](./search-ui-react.filteroptionconfig.resultscount.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The number of results associated with this filter.
+
+
+</td></tr>
+<tr><td>
+
+[selectedByDefault?](./search-ui-react.filteroptionconfig.selectedbydefault.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ If this particular filter should be selected by default.
+
+
+</td></tr>
+<tr><td>
+
+[value](./search-ui-react.filteroptionconfig.value.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string \| number \| boolean \| NumberRangeValue
+
+
+</td><td>
+
+The value used to perform filtering.
+
+
+</td></tr>
+</tbody></table>

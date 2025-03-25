@@ -14,10 +14,101 @@ interface AppliedFiltersProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.appliedfiltersprops.customcssclasses.md) |  | [AppliedFiltersCssClasses](./search-ui-react.appliedfilterscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [hiddenFields?](./search-ui-react.appliedfiltersprops.hiddenfields.md) |  | string\[\] | _(Optional)_ List of filters that should not be displayed. By default, builtin.entityType will be hidden. |
-|  [hierarchicalFacetsDelimiter?](./search-ui-react.appliedfiltersprops.hierarchicalfacetsdelimiter.md) |  | string | _(Optional)_ The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->". |
-|  [hierarchicalFacetsFieldIds?](./search-ui-react.appliedfiltersprops.hierarchicalfacetsfieldids.md) |  | string\[\] | _(Optional)_ A set of facet fieldIds that should be interpreted as "hierarchical". |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.appliedfiltersprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[AppliedFiltersCssClasses](./search-ui-react.appliedfilterscssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[hiddenFields?](./search-ui-react.appliedfiltersprops.hiddenfields.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ List of filters that should not be displayed. By default, builtin.entityType will be hidden.
+
+
+</td></tr>
+<tr><td>
+
+[hierarchicalFacetsDelimiter?](./search-ui-react.appliedfiltersprops.hierarchicalfacetsdelimiter.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->".
+
+
+</td></tr>
+<tr><td>
+
+[hierarchicalFacetsFieldIds?](./search-ui-react.appliedfiltersprops.hierarchicalfacetsfieldids.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ A set of facet fieldIds that should be interpreted as "hierarchical".
+
+
+</td></tr>
+</tbody></table>

@@ -14,10 +14,37 @@ declare function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersBut
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { customCssClasses, label } | [ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ customCssClasses, label }
+
+
+</td><td>
+
+[ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element

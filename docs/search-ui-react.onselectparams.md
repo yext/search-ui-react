@@ -14,11 +14,120 @@ interface OnSelectParams
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [currentFilter](./search-ui-react.onselectparams.currentfilter.md) |  | StaticFilter \| undefined | The previously selected filter. |
-|  [executeFilterSearch](./search-ui-react.onselectparams.executefiltersearch.md) |  | (query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt; | A function that executes a filter search and updates the input and dropdown options with the response. |
-|  [newDisplayName](./search-ui-react.onselectparams.newdisplayname.md) |  | string | The display name of the newly selected filter. |
-|  [newFilter](./search-ui-react.onselectparams.newfilter.md) |  | FieldValueStaticFilter | The newly selected filter. |
-|  [setCurrentFilter](./search-ui-react.onselectparams.setcurrentfilter.md) |  | (filter: StaticFilter) =&gt; void | A function that sets which filter the component is currently associated with. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[currentFilter](./search-ui-react.onselectparams.currentfilter.md)
+
+
+</td><td>
+
+
+</td><td>
+
+StaticFilter \| undefined
+
+
+</td><td>
+
+The previously selected filter.
+
+
+</td></tr>
+<tr><td>
+
+[executeFilterSearch](./search-ui-react.onselectparams.executefiltersearch.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt;
+
+
+</td><td>
+
+A function that executes a filter search and updates the input and dropdown options with the response.
+
+
+</td></tr>
+<tr><td>
+
+[newDisplayName](./search-ui-react.onselectparams.newdisplayname.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The display name of the newly selected filter.
+
+
+</td></tr>
+<tr><td>
+
+[newFilter](./search-ui-react.onselectparams.newfilter.md)
+
+
+</td><td>
+
+
+</td><td>
+
+FieldValueStaticFilter
+
+
+</td><td>
+
+The newly selected filter.
+
+
+</td></tr>
+<tr><td>
+
+[setCurrentFilter](./search-ui-react.onselectparams.setcurrentfilter.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(filter: StaticFilter) =&gt; void
+
+
+</td><td>
+
+A function that sets which filter the component is currently associated with.
+
+
+</td></tr>
+</tbody></table>
