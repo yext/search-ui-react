@@ -14,9 +14,82 @@ interface CtaData
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [label](./search-ui-react.ctadata.label.md) |  | string | The display label for the CTA element. |
-|  [link](./search-ui-react.ctadata.link.md) |  | string | The CTA link source. |
-|  [linkType](./search-ui-react.ctadata.linktype.md) |  | string | The CTA link type (e.g. URL, Phone, Email, Other). |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[label](./search-ui-react.ctadata.label.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The display label for the CTA element.
+
+
+</td></tr>
+<tr><td>
+
+[link](./search-ui-react.ctadata.link.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The CTA link source.
+
+
+</td></tr>
+<tr><td>
+
+[linkType](./search-ui-react.ctadata.linktype.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The CTA link type (e.g. URL, Phone, Email, Other).
+
+
+</td></tr>
+</tbody></table>

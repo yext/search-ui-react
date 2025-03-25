@@ -14,8 +14,63 @@ interface Coordinate
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [latitude](./search-ui-react.coordinate.latitude.md) |  | number | The latitude of the location. |
-|  [longitude](./search-ui-react.coordinate.longitude.md) |  | number | The longitude of the location. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[latitude](./search-ui-react.coordinate.latitude.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The latitude of the location.
+
+
+</td></tr>
+<tr><td>
+
+[longitude](./search-ui-react.coordinate.longitude.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+The longitude of the location.
+
+
+</td></tr>
+</tbody></table>

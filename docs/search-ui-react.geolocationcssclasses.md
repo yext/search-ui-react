@@ -14,9 +14,82 @@ interface GeolocationCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [button?](./search-ui-react.geolocationcssclasses.button.md) |  | string | _(Optional)_ |
-|  [geolocationContainer?](./search-ui-react.geolocationcssclasses.geolocationcontainer.md) |  | string | _(Optional)_ |
-|  [iconContainer?](./search-ui-react.geolocationcssclasses.iconcontainer.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[button?](./search-ui-react.geolocationcssclasses.button.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[geolocationContainer?](./search-ui-react.geolocationcssclasses.geolocationcontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[iconContainer?](./search-ui-react.geolocationcssclasses.iconcontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>

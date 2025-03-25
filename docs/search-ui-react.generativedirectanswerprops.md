@@ -14,11 +14,120 @@ interface GenerativeDirectAnswerProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [answerHeader?](./search-ui-react.generativedirectanswerprops.answerheader.md) |  | string \| JSX.Element | _(Optional)_ The header for the answer section of the generative direct answer. |
-|  [CitationCard?](./search-ui-react.generativedirectanswerprops.citationcard.md) |  | (props: [CitationProps](./search-ui-react.citationprops.md)<!-- -->) =&gt; JSX.Element \| null | _(Optional)_ The citation card component for customizing how each citation is displayed. |
-|  [CitationsContainer?](./search-ui-react.generativedirectanswerprops.citationscontainer.md) |  | (props: [CitationsProps](./search-ui-react.citationsprops.md)<!-- -->) =&gt; JSX.Element \| null | _(Optional)_ The citations container component for customizing the logic that determines which results can be rendered. By default, a section for citations is displayed if the results that correspond to the citations have the default minimum required info, which is <code>rawData.uid</code> and <code>rawData.name</code>. |
-|  [citationsHeader?](./search-ui-react.generativedirectanswerprops.citationsheader.md) |  | string \| JSX.Element | _(Optional)_ The header for the citations section of the generative direct answer. |
-|  [customCssClasses?](./search-ui-react.generativedirectanswerprops.customcssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[answerHeader?](./search-ui-react.generativedirectanswerprops.answerheader.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string \| JSX.Element
+
+
+</td><td>
+
+_(Optional)_ The header for the answer section of the generative direct answer.
+
+
+</td></tr>
+<tr><td>
+
+[CitationCard?](./search-ui-react.generativedirectanswerprops.citationcard.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(props: [CitationProps](./search-ui-react.citationprops.md)<!-- -->) =&gt; JSX.Element \| null
+
+
+</td><td>
+
+_(Optional)_ The citation card component for customizing how each citation is displayed.
+
+
+</td></tr>
+<tr><td>
+
+[CitationsContainer?](./search-ui-react.generativedirectanswerprops.citationscontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(props: [CitationsProps](./search-ui-react.citationsprops.md)<!-- -->) =&gt; JSX.Element \| null
+
+
+</td><td>
+
+_(Optional)_ The citations container component for customizing the logic that determines which results can be rendered. By default, a section for citations is displayed if the results that correspond to the citations have the default minimum required info, which is `rawData.uid` and `rawData.name`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[citationsHeader?](./search-ui-react.generativedirectanswerprops.citationsheader.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string \| JSX.Element
+
+
+</td><td>
+
+_(Optional)_ The header for the citations section of the generative direct answer.
+
+
+</td></tr>
+<tr><td>
+
+[customCssClasses?](./search-ui-react.generativedirectanswerprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+</tbody></table>

@@ -19,13 +19,158 @@ interface StandardFacetsProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [collapsible?](./search-ui-react.standardfacetsprops.collapsible.md) |  | boolean | _(Optional)_ Whether or not the filter is collapsible. Defaults to true. |
-|  [customCssClasses?](./search-ui-react.standardfacetsprops.customcssclasses.md) |  | [StandardFacetsCssClasses](./search-ui-react.standardfacetscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [defaultExpanded?](./search-ui-react.standardfacetsprops.defaultexpanded.md) |  | boolean | _(Optional)_ If the filter group is collapsible, whether or not it should start out expanded. Defaults to true. |
-|  [excludedFieldIds?](./search-ui-react.standardfacetsprops.excludedfieldids.md) |  | string\[\] | _(Optional)_ List of filter ids that should not be displayed. |
-|  [searchOnChange?](./search-ui-react.standardfacetsprops.searchonchange.md) |  | boolean | _(Optional)_ Whether or not a search is automatically run when a filter is selected. Defaults to true. |
-|  [showMoreLimit?](./search-ui-react.standardfacetsprops.showmorelimit.md) |  | number | _(Optional)_ Limit on the number of options to be displayed. Defaults to 10. |
-|  [showOptionCounts?](./search-ui-react.standardfacetsprops.showoptioncounts.md) |  | boolean | _(Optional)_ Whether or not to show the option counts for each filter. Defaults to true. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[collapsible?](./search-ui-react.standardfacetsprops.collapsible.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not the filter is collapsible. Defaults to true.
+
+
+</td></tr>
+<tr><td>
+
+[customCssClasses?](./search-ui-react.standardfacetsprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[StandardFacetsCssClasses](./search-ui-react.standardfacetscssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[defaultExpanded?](./search-ui-react.standardfacetsprops.defaultexpanded.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ If the filter group is collapsible, whether or not it should start out expanded. Defaults to true.
+
+
+</td></tr>
+<tr><td>
+
+[excludedFieldIds?](./search-ui-react.standardfacetsprops.excludedfieldids.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ List of filter ids that should not be displayed.
+
+
+</td></tr>
+<tr><td>
+
+[searchOnChange?](./search-ui-react.standardfacetsprops.searchonchange.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not a search is automatically run when a filter is selected. Defaults to true.
+
+
+</td></tr>
+<tr><td>
+
+[showMoreLimit?](./search-ui-react.standardfacetsprops.showmorelimit.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ Limit on the number of options to be displayed. Defaults to 10.
+
+
+</td></tr>
+<tr><td>
+
+[showOptionCounts?](./search-ui-react.standardfacetsprops.showoptioncounts.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not to show the option counts for each filter. Defaults to true.
+
+
+</td></tr>
+</tbody></table>

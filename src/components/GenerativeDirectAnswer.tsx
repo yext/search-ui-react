@@ -234,6 +234,8 @@ function Citation(props: CitationProps) {
     citationClickHandler
   } = props;
   const {name, description, answer, link} = searchResult.rawData ?? {};
+  const citationTitle = String(name ?? '');
+  const citationSnippet = String(description ?? answer ?? '');
   const citationUrl = typeof link === 'string' ? link : undefined;
   return (
     <a 
@@ -241,8 +243,8 @@ function Citation(props: CitationProps) {
       href={citationUrl}
       onClick={() => citationUrl && citationClickHandler?.({searchResult, destinationUrl: citationUrl})}
     >
-      <div className={cssClasses.citationTitle}>{name}</div>
-      <div className={cssClasses.citationSnippet}>{description ?? answer}</div>
+      <div className={cssClasses.citationTitle}>{citationTitle}</div>
+      <div className={cssClasses.citationSnippet}>{citationSnippet}</div>
     </a>
   );
 }
