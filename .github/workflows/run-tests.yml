@@ -9,6 +9,8 @@ jobs:
   call_run_tests-react-18:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
+      build_script: |
+        npx playwright install
       node_matrix: '["16.x", "18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
@@ -35,6 +37,7 @@ jobs:
           "@swc/core-win32-arm64-msvc" \
           "@swc/core-win32-ia32-msvc" \
           "@swc/core-win32-x64-msvc"
+        npx playwright install
         npm run build
       node_matrix: '["16.x", "18.x"]'
     secrets:
