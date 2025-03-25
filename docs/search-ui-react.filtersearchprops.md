@@ -56,6 +56,25 @@ _(Optional)_ A function which is called immediately after the input gains focus.
 </td></tr>
 <tr><td>
 
+[ariaLabel?](./search-ui-react.filtersearchprops.arialabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The accessible label for the dropdown input.
+
+
+</td></tr>
+<tr><td>
+
 [customCssClasses?](./search-ui-react.filtersearchprops.customcssclasses.md)
 
 
