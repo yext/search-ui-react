@@ -11,6 +11,7 @@ import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
 import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
+import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import { default as mapboxgl_2 } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
@@ -119,7 +120,7 @@ export interface AutocompleteResultCssClasses {
 }
 
 // @public
-export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T>;
+export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Result<T> | GdaClickEventData;
 
 // @public
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
@@ -128,11 +129,31 @@ export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK';
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
 
 // @public
 export interface CardProps<T = DefaultRawDataType> {
     result: Result<T>;
+}
+
+// @public
+export interface CitationProps {
+    // (undocumented)
+    citationClickHandler?: (data: GdaClickEventData) => void;
+    // (undocumented)
+    cssClasses: GenerativeDirectAnswerCssClasses;
+    // (undocumented)
+    searchResult: Result;
+}
+
+// @public
+export interface CitationsProps {
+    CitationCard?: (props: CitationProps) => JSX.Element | null;
+    citationClickHandler?: (data: GdaClickEventData) => void;
+    citationsHeader?: string | JSX.Element;
+    cssClasses: GenerativeDirectAnswerCssClasses;
+    gdaResponse: GenerativeDirectAnswerResponse;
+    searchResults: Result[];
 }
 
 // @public
@@ -199,6 +220,9 @@ export type DropdownItemProps = PropsWithChildren<{
 
 // @public
 export function executeAutocomplete(searchActions: SearchActions): Promise<AutocompleteResponse | undefined>;
+
+// @public
+export function executeGenerativeDirectAnswer(searchActions: SearchActions): Promise<GenerativeDirectAnswerResponse | undefined>;
 
 // @public
 export function executeSearch(searchActions: SearchActions): Promise<void>;
@@ -273,7 +297,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -294,6 +318,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
 // @public
 export interface FilterSearchProps {
     afterDropdownInputFocus?: (params: AfterDropdownInputFocusProps) => void;
+    ariaLabel?: string;
     customCssClasses?: FilterSearchCssClasses;
     disableBuiltInClasses?: boolean;
     label?: string;
@@ -308,6 +333,46 @@ export interface FilterSearchProps {
 
 // @public
 export type FocusedItemData = Record<string, unknown>;
+
+// @public
+export interface GdaClickEventData {
+    // (undocumented)
+    destinationUrl: string;
+    // (undocumented)
+    searchResult?: Result;
+}
+
+// @public
+export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }: GenerativeDirectAnswerProps): JSX.Element | null;
+
+// @public
+export interface GenerativeDirectAnswerCssClasses {
+    // (undocumented)
+    answerText?: string;
+    // (undocumented)
+    citation?: string;
+    // (undocumented)
+    citationsContainer?: string;
+    // (undocumented)
+    citationSnippet?: string;
+    // (undocumented)
+    citationTitle?: string;
+    // (undocumented)
+    container?: string;
+    // (undocumented)
+    divider?: string;
+    // (undocumented)
+    header?: string;
+}
+
+// @public
+export interface GenerativeDirectAnswerProps {
+    answerHeader?: string | JSX.Element;
+    CitationCard?: (props: CitationProps) => JSX.Element | null;
+    CitationsContainer?: (props: CitationsProps) => JSX.Element | null;
+    citationsHeader?: string | JSX.Element;
+    customCssClasses?: GenerativeDirectAnswerCssClasses;
+}
 
 // @public
 function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
