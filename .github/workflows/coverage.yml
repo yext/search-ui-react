@@ -12,7 +12,7 @@ jobs:
   combined_coverage:
     uses: yext/slapshot-reusable-workflows/.github/workflows/coverage.yml@v1
     with:
-      test_script: npm run build:css && npm run test
+      test_script: npx playwright install && npm run build:css && npm run test
     secrets:
       caller_github_token: ${{ secrets.GITHUB_TOKEN }}
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
