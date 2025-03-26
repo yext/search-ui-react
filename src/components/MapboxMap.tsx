@@ -223,7 +223,6 @@ export function MapboxMap<T>({
 
 function handleMapboxOptionsUpdates(mapboxOptions: Omit<mapboxgl.MapboxOptions, 'container'> | undefined, currentMap: mapboxgl.Map) {
   if (mapboxOptions?.style) {
-    console.log('updating style:', mapboxOptions.style);
     currentMap.setStyle(mapboxOptions.style);
   }
   // Add more options to update as needed
