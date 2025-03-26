@@ -37,6 +37,25 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[allowUpdates?](./search-ui-react.mapboxmapprops.allowupdates.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ If set to true, the map will update its options when the mapboxOptions prop changes. Otherwise, the map will not update its options once initially set.
+
+
+</td></tr>
+<tr><td>
+
 [getCoordinate?](./search-ui-react.mapboxmapprops.getcoordinate.md)
 
 
@@ -51,6 +70,25 @@ Description
 </td><td>
 
 _(Optional)_ A function to derive a result's coordinate for the corresponding marker's location on the map. By default, "yextDisplayCoordinate" field is used as the result's display coordinate.
+
+
+</td></tr>
+<tr><td>
+
+[iframeWindow?](./search-ui-react.mapboxmapprops.iframewindow.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Window
+
+
+</td><td>
+
+_(Optional)_ The window object of the iframe where the map should rendered. Must have mapboxgl loaded. If not provided or mapboxgl not loaded, the map will be rendered in the parent window.
 
 
 </td></tr>

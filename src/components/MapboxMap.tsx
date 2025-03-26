@@ -86,7 +86,17 @@ export interface MapboxMapProps<T> {
    */
   getCoordinate?: CoordinateGetter<T>,
   /** {@inheritDoc OnDragHandler} */
-  onDrag?: OnDragHandler
+  onDrag?: OnDragHandler,
+  /**
+   * The window object of the iframe where the map should rendered. Must have mapboxgl loaded.
+   * If not provided or mapboxgl not loaded, the map will be rendered in the parent window.
+   */
+  iframeWindow?: Window,
+  /**
+   * If set to true, the map will update its options when the mapboxOptions prop changes.
+   * Otherwise, the map will not update its options once initially set.
+   */
+  allowUpdates?: boolean
 }
 
 /**
@@ -114,10 +124,13 @@ export function MapboxMap<T>({
   PinComponent,
   renderPin,
   getCoordinate = getDefaultCoordinate,
-  onDrag
+  onDrag,
+  iframeWindow,
+  allowUpdates = false,
 }: MapboxMapProps<T>): JSX.Element {
+  const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
   useEffect(() => {
-    mapboxgl.accessToken = mapboxAccessToken;
+    mapboxInstance.accessToken = mapboxAccessToken;
   }, [mapboxAccessToken]);
 
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -128,21 +141,32 @@ export function MapboxMap<T>({
   const onDragDebounced = useDebouncedFunction(onDrag, 100);
 
   useEffect(() => {
-    if (mapContainer.current && !map.current) {
-      const options: mapboxgl.MapboxOptions = {
-        container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-74.005371, 40.741611],
-        zoom: 9,
-        ...mapboxOptions
-      };
-      map.current = new mapboxgl.Map(options);
-      const mapbox = map.current;
-      mapbox.resize();
-      if (onDragDebounced) {
-        mapbox.on('drag', () => {
-          onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
+    if (mapContainer.current) {
+      if (map.current && allowUpdates) {
+        // Update to existing Map
+        handleMapboxOptionsUpdates(mapboxOptions, map.current);
+      } else if (!map.current && mapboxInstance) {
+        const options: mapboxgl.MapboxOptions = {
+          container: mapContainer.current,
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [-74.005371, 40.741611],
+          zoom: 9,
+          ...mapboxOptions
+        };
+        map.current = new mapboxInstance.Map(options);
+        const mapbox = map.current;
+        mapbox.resize();
+        const nav = new mapboxgl.NavigationControl({
+          showCompass: false,
+          showZoom: true,
+          visualizePitch: false
         });
+        mapbox.addControl(nav, 'top-right');
+        if (onDragDebounced) {
+          mapbox.on('drag', () => {
+            onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
+          });
+        }
       }
     }
   }, [mapboxOptions, onDragDebounced]);
@@ -175,7 +199,7 @@ export function MapboxMap<T>({
             renderPin({ index: i, mapbox, result, container: el });
             markerOptions.element = el;
           }
-          const marker = new mapboxgl.Marker(markerOptions)
+          const marker = new mapboxInstance.Marker(markerOptions)
             .setLngLat({ lat: latitude, lng: longitude })
             .addTo(mapbox);
           markers.current.push(marker);
@@ -195,6 +219,14 @@ export function MapboxMap<T>({
   return (
     <div ref={mapContainer} className='h-full w-full' />
   );
+}
+
+function handleMapboxOptionsUpdates(mapboxOptions: Omit<mapboxgl.MapboxOptions, 'container'> | undefined, currentMap: mapboxgl.Map) {
+  if (mapboxOptions?.style) {
+    console.log('updating style:', mapboxOptions.style);
+    currentMap.setStyle(mapboxOptions.style);
+  }
+  // Add more options to update as needed
 }
 
 function isCoordinate(data: unknown): data is Coordinate {
