@@ -156,7 +156,7 @@ export function MapboxMap<T>({
         map.current = new mapboxInstance.Map(options);
         const mapbox = map.current;
         mapbox.resize();
-        const nav = new mapboxgl.NavigationControl({
+        const nav = new mapboxInstance.NavigationControl({
           showCompass: false,
           showZoom: true,
           visualizePitch: false
@@ -176,7 +176,7 @@ export function MapboxMap<T>({
     markers.current = [];
     const mapbox = map.current;
     if (mapbox && locationResults?.length > 0) {
-      const bounds = new mapboxgl.LngLatBounds();
+      const bounds = new mapboxInstance.LngLatBounds();
       locationResults.forEach((result, i) => {
         const markerLocation = getCoordinate(result);
         if (markerLocation) {
