@@ -11,4 +11,4 @@ jobs:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
     with:
-      build_script: npm run build:css && ./tests/scripts/start-storybook.sh
+      build_script: npx playwright install && npm run build:css && ./tests/scripts/start-storybook.sh

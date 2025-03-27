@@ -19,6 +19,7 @@ jobs:
       - run: ./tests/scripts/start-storybook.sh
         env:
           MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
+      - run: npx playwright install
       - run: npm run update-snapshots
       - name: Push changes
         id: push-changes

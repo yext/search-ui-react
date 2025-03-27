@@ -14,11 +14,120 @@ interface VerticalConfig<T = DefaultRawDataType>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [CardComponent?](./search-ui-react.verticalconfig.cardcomponent.md) |  | [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->&lt;T&gt; | _(Optional)_ The card to use for this vertical. |
-|  [getViewAllUrl?](./search-ui-react.verticalconfig.getviewallurl.md) |  | (data: [VerticalLink](./search-ui-react.verticallink.md)<!-- -->) =&gt; string | _(Optional)_ A function to provide user defined url path for each vertical's view all link. |
-|  [label?](./search-ui-react.verticalconfig.label.md) |  | string | _(Optional)_ The label for the vertical. |
-|  [SectionComponent?](./search-ui-react.verticalconfig.sectioncomponent.md) |  | [SectionComponent](./search-ui-react.sectioncomponent.md)<!-- -->&lt;T&gt; | _(Optional)_ A component that can be used to render a section template for vertical results. |
-|  [viewAllButton?](./search-ui-react.verticalconfig.viewallbutton.md) |  | boolean | _(Optional)_ Whether or not this vertical should show a button to view all results on the vertical page. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[CardComponent?](./search-ui-react.verticalconfig.cardcomponent.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[CardComponent](./search-ui-react.cardcomponent.md)<!-- -->&lt;T&gt;
+
+
+</td><td>
+
+_(Optional)_ The card to use for this vertical.
+
+
+</td></tr>
+<tr><td>
+
+[getViewAllUrl?](./search-ui-react.verticalconfig.getviewallurl.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(data: [VerticalLink](./search-ui-react.verticallink.md)<!-- -->) =&gt; string
+
+
+</td><td>
+
+_(Optional)_ A function to provide user defined url path for each vertical's view all link.
+
+
+</td></tr>
+<tr><td>
+
+[label?](./search-ui-react.verticalconfig.label.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The label for the vertical.
+
+
+</td></tr>
+<tr><td>
+
+[SectionComponent?](./search-ui-react.verticalconfig.sectioncomponent.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[SectionComponent](./search-ui-react.sectioncomponent.md)<!-- -->&lt;T&gt;
+
+
+</td><td>
+
+_(Optional)_ A component that can be used to render a section template for vertical results.
+
+
+</td></tr>
+<tr><td>
+
+[viewAllButton?](./search-ui-react.verticalconfig.viewallbutton.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not this vertical should show a button to view all results on the vertical page.
+
+
+</td></tr>
+</tbody></table>

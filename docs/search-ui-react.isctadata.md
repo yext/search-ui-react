@@ -14,10 +14,39 @@ declare function isCtaData(data: unknown): data is CtaData;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  data | unknown | the data to validate. |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+data
+
+
+</td><td>
+
+unknown
+
+
+</td><td>
+
+the data to validate.
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 data is [CtaData](./search-ui-react.ctadata.md)

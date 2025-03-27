@@ -9,15 +9,42 @@ A component that renders a map with markers to show result locations using Mapbo
 **Signature:**
 
 ```typescript
-declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag }: MapboxMapProps<T>): JSX.Element;
+declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }: MapboxMapProps<T>): JSX.Element;
 ```
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag } | [MapboxMapProps](./search-ui-react.mapboxmapprops.md)<!-- -->&lt;T&gt; |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }
+
+
+</td><td>
+
+[MapboxMapProps](./search-ui-react.mapboxmapprops.md)<!-- -->&lt;T&gt;
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element

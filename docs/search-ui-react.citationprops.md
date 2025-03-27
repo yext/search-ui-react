@@ -14,9 +14,78 @@ interface CitationProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [citationClickHandler?](./search-ui-react.citationprops.citationclickhandler.md) |  | (data: [GdaClickEventData](./search-ui-react.gdaclickeventdata.md)<!-- -->) =&gt; void | _(Optional)_ |
-|  [cssClasses](./search-ui-react.citationprops.cssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) |  |
-|  [searchResult](./search-ui-react.citationprops.searchresult.md) |  | Result |  |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[citationClickHandler?](./search-ui-react.citationprops.citationclickhandler.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(data: [GdaClickEventData](./search-ui-react.gdaclickeventdata.md)<!-- -->) =&gt; void
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[cssClasses](./search-ui-react.citationprops.cssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[searchResult](./search-ui-react.citationprops.searchresult.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Result
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
