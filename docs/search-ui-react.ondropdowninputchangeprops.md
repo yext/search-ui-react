@@ -14,8 +14,63 @@ interface OnDropdownInputChangeProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [executeFilterSearch](./search-ui-react.ondropdowninputchangeprops.executefiltersearch.md) |  | (query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt; | A function that executes a filter search and updates the input and dropdown options with the response. |
-|  [value](./search-ui-react.ondropdowninputchangeprops.value.md) |  | string | The input element's new value after the change |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[executeFilterSearch](./search-ui-react.ondropdowninputchangeprops.executefiltersearch.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(query?: string) =&gt; Promise&lt;FilterSearchResponse \| undefined&gt;
+
+
+</td><td>
+
+A function that executes a filter search and updates the input and dropdown options with the response.
+
+
+</td></tr>
+<tr><td>
+
+[value](./search-ui-react.ondropdowninputchangeprops.value.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The input element's new value after the change
+
+
+</td></tr>
+</tbody></table>

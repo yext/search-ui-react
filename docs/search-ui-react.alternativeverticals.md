@@ -14,10 +14,37 @@ declare function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap,
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses } | [AlternativeVerticalsProps](./search-ui-react.alternativeverticalsprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }
+
+
+</td><td>
+
+[AlternativeVerticalsProps](./search-ui-react.alternativeverticalsprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element \| null

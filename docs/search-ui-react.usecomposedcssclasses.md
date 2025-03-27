@@ -14,12 +14,71 @@ declare function useComposedCssClasses<ClassInterface extends Partial<Record<key
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  builtInClasses | Readonly&lt;ClassInterface&gt; | The component's built-in tailwind classes |
-|  customClasses | Partial&lt;ClassInterface&gt; | _(Optional)_ The custom tailwind classes to merge with the built-in ones |
-|  disableBuiltInClasses | boolean | _(Optional)_ If set to true, the customClasses with replace (not merge with) the builtInClasses |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+builtInClasses
+
+
+</td><td>
+
+Readonly&lt;ClassInterface&gt;
+
+
+</td><td>
+
+The component's built-in tailwind classes
+
+
+</td></tr>
+<tr><td>
+
+customClasses
+
+
+</td><td>
+
+Partial&lt;ClassInterface&gt;
+
+
+</td><td>
+
+_(Optional)_ The custom tailwind classes to merge with the built-in ones
+
+
+</td></tr>
+<tr><td>
+
+disableBuiltInClasses
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ If set to true, the customClasses with replace (not merge with) the builtInClasses
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 ClassInterface

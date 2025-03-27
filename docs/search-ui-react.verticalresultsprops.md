@@ -14,9 +14,82 @@ interface VerticalResultsProps<T>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [CardComponent](./search-ui-react.verticalresultsprops.cardcomponent.md) |  | [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->&lt;T&gt; | A functional component that can be used to render a result card. |
-|  [customCssClasses?](./search-ui-react.verticalresultsprops.customcssclasses.md) |  | [VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [displayAllOnNoResults?](./search-ui-react.verticalresultsprops.displayallonnoresults.md) |  | boolean | _(Optional)_ Whether or not all results should be displayed when there are none returned from the search. Defaults to true. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[CardComponent](./search-ui-react.verticalresultsprops.cardcomponent.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[CardComponent](./search-ui-react.cardcomponent.md)<!-- -->&lt;T&gt;
+
+
+</td><td>
+
+A functional component that can be used to render a result card.
+
+
+</td></tr>
+<tr><td>
+
+[customCssClasses?](./search-ui-react.verticalresultsprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[displayAllOnNoResults?](./search-ui-react.verticalresultsprops.displayallonnoresults.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not all results should be displayed when there are none returned from the search. Defaults to true.
+
+
+</td></tr>
+</tbody></table>

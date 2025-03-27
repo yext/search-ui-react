@@ -14,10 +14,37 @@ declare function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Elem
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { customCssClasses } | [ResultsCountProps](./search-ui-react.resultscountprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ customCssClasses }
+
+
+</td><td>
+
+[ResultsCountProps](./search-ui-react.resultscountprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element \| null

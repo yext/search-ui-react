@@ -14,10 +14,37 @@ declare function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  { customCssClasses, onClick } | [SpellCheckProps](./search-ui-react.spellcheckprops.md) |  |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+{ customCssClasses, onClick }
+
+
+</td><td>
+
+[SpellCheckProps](./search-ui-react.spellcheckprops.md)
+
+
+</td><td>
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 JSX.Element \| null
