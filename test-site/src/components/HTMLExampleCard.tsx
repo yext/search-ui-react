@@ -30,7 +30,7 @@ function renderHTMLContent(htmlContent: { __html: string } | undefined) {
 
 export function HTMLExampleCard(props: CardProps<CustomRawDataType>): JSX.Element {
   const { result } = props;
-  const onClickTitle = useCardAnalyticsCallback(result, 'TITLE_CLICK');
+  const onClickTitle = useCardAnalyticsCallback(result, 'TITLE');
   const cardFeedbackCallback = useCardFeedbackCallback(result);
   const onClick = useCallback(() => {
     cardFeedbackCallback('THUMBS_UP');

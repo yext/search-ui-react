@@ -13,7 +13,7 @@ import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { RecursivePartial } from '../__utils__/mocks';
 import * as Analytics from '../../src/hooks/useAnalytics';
-import { SearchAnalyticsService } from '@yext/analytics';
+import { AnalyticsEventService } from '@yext/analytics';
 import React from 'react';
 
 const mockedState: Partial<State> = {
@@ -27,7 +27,9 @@ const mockedState: Partial<State> = {
     isLoading: false
   },
   meta: {
-    searchType: 'universal'
+    searchType: 'universal',
+    experienceKey: 'experienceKey',
+    locale: 'en'
   },
   query: {},
   location: {}
@@ -355,7 +357,7 @@ describe('SearchBar', () => {
 
     beforeEach(() => {
       jest.spyOn(Analytics, 'useAnalytics')
-        .mockImplementation(() => ({ report: mockedReport }) as unknown as SearchAnalyticsService);
+        .mockImplementation(() => ({ report: mockedReport }) as unknown as AnalyticsEventService);
     });
 
     it('reports AUTO_COMPLETE_SELECTION feedback', async () => {
@@ -370,8 +372,14 @@ describe('SearchBar', () => {
       expect(await screen.findByRole('textbox')).toHaveDisplayValue('query suggestion');
       expect(mockedReport).toHaveBeenCalledTimes(1);
       expect(mockedReport).toHaveBeenCalledWith({
-        type: 'AUTO_COMPLETE_SELECTION',
-        suggestedSearchText: 'query suggestion'
+        action: 'AUTO_COMPLETE_SELECTION',
+        locale: 'en',
+            search: {
+              searchId: undefined,
+              queryId: undefined,
+              verticalKey: undefined,
+              experienceKey: 'experienceKey',
+        },
       });
     });
 
@@ -389,9 +397,14 @@ describe('SearchBar', () => {
       expect(await screen.findByRole('textbox')).toHaveDisplayValue('');
       expect(mockedReport).toHaveBeenCalledTimes(1);
       expect(mockedReport).toHaveBeenCalledWith({
-        type: 'SEARCH_CLEAR_BUTTON',
-        queryId: 'someId',
-        verticalKey: undefined
+        action: 'SEARCH_CLEAR_BUTTON',
+        locale: 'en',
+        search: {
+          searchId: undefined,
+          queryId: 'someId',
+          verticalKey: undefined,
+          experienceKey: 'experienceKey',
+        },
       });
     });
   });

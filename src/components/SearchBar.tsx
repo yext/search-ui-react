@@ -244,7 +244,7 @@ export function SearchBar({
       executeQuery();
     }
     if (typeof index === 'number' && index >= 0 && !itemData?.isEntityPreview) {
-      reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
+      reportAnalyticsEvent('AUTO_COMPLETE_SELECTION');
     }
   }, [searchActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 

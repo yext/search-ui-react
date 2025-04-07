@@ -10,10 +10,10 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 jest.mock('../../src/hooks/useAnalytics', () => {
-  const report = jest.fn();
-  return {
-    useAnalytics: () => ({ report })
-  };
+    const report = jest.fn();
+    return {
+        useAnalytics: () => ({report})
+    };
 });
 
 function renderDirectAnswer(
