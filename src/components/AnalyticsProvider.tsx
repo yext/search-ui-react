@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { provideAnalytics, AnalyticsConfig } from '@yext/analytics';
+import { analytics, AnalyticsConfig } from '@yext/analytics';
 import { AnalyticsContext } from '../hooks/useAnalytics';
 
 /**
@@ -12,7 +12,7 @@ import { AnalyticsContext } from '../hooks/useAnalytics';
  */
 export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element {
   const { children, ...analyticsConfig } = props;
-  const analyticsReporter = provideAnalytics(analyticsConfig);
+  const analyticsReporter = analytics(analyticsConfig);
 
   return (
     <AnalyticsContext.Provider value={analyticsReporter}>

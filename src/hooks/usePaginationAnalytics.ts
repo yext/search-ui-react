@@ -1,16 +1,15 @@
-import { useAnalytics } from './useAnalytics';
-import { useSearchState } from '@yext/search-headless-react';
+import {useAnalytics} from './useAnalytics';
+import {useSearchState} from '@yext/search-headless-react';
 
-export function usePaginationAnalytics(): (
-  newPage: number,
-  currentPage: number,
-  totalPageCount: number
-) => void {
+export function usePaginationAnalytics(): () => void {
   const analytics = useAnalytics();
   const verticalKey = useSearchState(state => state.vertical.verticalKey);
   const queryId = useSearchState(state => state.query.queryId);
+  const searchId = useSearchState(state => state.meta.uuid);
+  const locale = useSearchState(state => state.meta.locale);
+  const experienceKey = useSearchState(state => state.meta.experienceKey);
 
-  const reportPaginateEvent = (newPage: number, currentPage: number, totalPageCount: number) => {
+  return () => {
     if (!analytics) {
       return;
     }
@@ -22,15 +21,20 @@ export function usePaginationAnalytics(): (
       console.error('Unable to report a pagination event. Missing field: verticalKey.');
       return;
     }
-    analytics.report({
-      type: 'PAGINATE',
-      queryId: queryId,
-      verticalKey: verticalKey,
-      newPage,
-      currentPage,
-      totalPageCount
+    if (!experienceKey) {
+      console.error('Unable to report a vertical view all event. Missing field: experienceKey.');
+      return;
+    }
+    analytics?.report({
+      action: 'PAGINATE',
+      locale,
+      search: {
+        searchId,
+        queryId,
+        verticalKey: verticalKey,
+        experienceKey,
+      },
     });
   };
-  return reportPaginateEvent;
 }
 

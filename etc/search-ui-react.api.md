@@ -5,7 +5,7 @@
 ```ts
 
 import { AnalyticsConfig } from '@yext/analytics';
-import { AnalyticsService } from '@yext/analytics';
+import { AnalyticsEventService } from '@yext/analytics';
 import { AutocompleteResponse } from '@yext/search-headless-react';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
 import { DisplayableFacetOption } from '@yext/search-headless-react';
@@ -129,7 +129,7 @@ export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE' | 'CITATION_CLICK';
 
 // @public
 export interface CardProps<T = DefaultRawDataType> {
@@ -928,7 +928,7 @@ export interface UnknownFieldTypeDisplayProps {
 export function updateLocationIfNeeded(searchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
 
 // @public
-export function useAnalytics(): AnalyticsService | null;
+export function useAnalytics(): AnalyticsEventService | null;
 
 // @public
 export function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>, analyticsType: CardAnalyticsType): () => void;
