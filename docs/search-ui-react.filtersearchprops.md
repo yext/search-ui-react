@@ -17,6 +17,7 @@ interface FilterSearchProps
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [afterDropdownInputFocus?](./search-ui-react.filtersearchprops.afterdropdowninputfocus.md) |  | (params: [AfterDropdownInputFocusProps](./search-ui-react.afterdropdowninputfocusprops.md)<!-- -->) =&gt; void | _(Optional)_ A function which is called immediately after the input gains focus. It does not replace the default focus behavior. |
+|  [ariaLabel?](./search-ui-react.filtersearchprops.arialabel.md) |  | string | _(Optional)_ The accessible label for the dropdown input. |
 |  [customCssClasses?](./search-ui-react.filtersearchprops.customcssclasses.md) |  | [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
 |  [disableBuiltInClasses?](./search-ui-react.filtersearchprops.disablebuiltinclasses.md) |  | boolean | _(Optional)_ Whether to disable the default CSS classes entirely |
 |  [label?](./search-ui-react.filtersearchprops.label.md) |  | string | _(Optional)_ The display label for the component. |
