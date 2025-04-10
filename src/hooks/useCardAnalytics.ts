@@ -1,22 +1,16 @@
-import {
-  DirectAnswer as DirectAnswerData,
-  DirectAnswerType,
-  FieldValueDirectAnswer,
-  Result,
-  useSearchState
-} from '@yext/search-headless-react';
-import { useCallback } from 'react';
-import { FeedbackType } from '../components/ThumbsFeedback';
-import { DefaultRawDataType } from '../models/index';
-import { useAnalytics } from './useAnalytics';
-import { GdaClickEventData } from '../components/GenerativeDirectAnswer'
+import {DirectAnswer as DirectAnswerData, DirectAnswerType, Result, useSearchState} from '@yext/search-headless-react';
+import {useCallback} from 'react';
+import {FeedbackType} from '../components/ThumbsFeedback';
+import {DefaultRawDataType} from '../models/index';
+import {useAnalytics} from './useAnalytics';
+import {GdaClickEventData} from '../components/GenerativeDirectAnswer'
 
 /**
  * Analytics event types for cta click, title click, and citation click.
  *
  * @public
  */
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE' | 'CITATION_CLICK';
 
 /**
  * The data types use to construct the payload in the analytics event.
@@ -32,12 +26,12 @@ export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | R
  */
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
-function isDirectAnswer(data: unknown): data is DirectAnswerData {
+function dataIsDirectAnswer(data: unknown): data is DirectAnswerData {
   return (data as DirectAnswerData)?.type === DirectAnswerType.FeaturedSnippet ||
     (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
 }
 
-function isGenerativeDirectAnswer(data: unknown): data is GdaClickEventData {
+function dataIsGenerativeDirectAnswer(data: unknown): data is GdaClickEventData {
   return !!(data as GdaClickEventData);
 }
 
@@ -47,27 +41,26 @@ export function useCardAnalytics<T>(): (
   const analytics = useAnalytics();
   const verticalKey = useSearchState(state => state.vertical?.verticalKey);
   const queryId = useSearchState(state => state.query.queryId);
+  const searchId = useSearchState(state => state.meta.uuid);
+  const locale = useSearchState(state => state.meta.locale);
+  const experienceKey = useSearchState(state => state.meta.experienceKey);
 
   const reportCtaEvent = useCallback((
     result: CardAnalyticsDataType<T>,
     eventType: CardCtaEventType
   ) => {
-    let url: string | undefined, entityId: string | undefined, fieldName: string | undefined;
-    let directAnswer = false;
-    let generativeDirectAnswer = false;
-    if (isDirectAnswer(result)) {
+    let url: string | undefined, entityId: string | undefined;
+    let isDirectAnswer = false;
+    let isGenerativeDirectAnswer = false;
+    if (dataIsDirectAnswer(result)) {
       url = result.relatedResult.link;
       entityId = result.relatedResult.id;
-      fieldName = result.type === DirectAnswerType.FeaturedSnippet
-        ? undefined
-        : (result as FieldValueDirectAnswer).fieldName;
-      directAnswer = true;
-    } else if (isGenerativeDirectAnswer(result)) {
+      isDirectAnswer = true;
+    } else if (dataIsGenerativeDirectAnswer(result)) {
       url = result.destinationUrl;
       entityId = result.searchResult?.id;
-      fieldName = 'gda-snippet';
-      directAnswer = true;
-      generativeDirectAnswer = true;
+      isDirectAnswer = true;
+      isGenerativeDirectAnswer = true;
     } else {
       url = result.link;
       entityId = result.id;
@@ -77,16 +70,23 @@ export function useCardAnalytics<T>(): (
       console.error('Unable to report a CTA event. Missing field: queryId.');
       return;
     }
+    if (!experienceKey) {
+      console.error('Unable to report a CTA event. Missing field: experienceKey.');
+      return;
+    }
     analytics?.report({
-      type: eventType,
-      entityId: entityId,
-      searcher: verticalKey ? 'VERTICAL' : 'UNIVERSAL',
-      queryId,
-      verticalKey: verticalKey || '',
-      url,
-      fieldName,
-      directAnswer,
-      generativeDirectAnswer
+      action: eventType,
+      destinationUrl: url,
+      entity: entityId,
+      locale,
+      search: {
+        searchId,
+        queryId,
+        verticalKey: verticalKey || '',
+        isDirectAnswer,
+        isGenerativeDirectAnswer,
+        experienceKey,
+      },
     });
   }, [analytics, queryId, verticalKey]);
 
@@ -98,40 +98,50 @@ export function useCardAnalytics<T>(): (
       console.error('Unable to report a result feedback event. Missing field: queryId.');
       return;
     }
-    let directAnswer = false;
+    if (!experienceKey) {
+      console.error('Unable to report a result feedback event. Missing field: experienceKey.');
+      return;
+    }
+    let isDirectAnswer = false;
+    let isGenerativeDirectAnswer = false;
     let entityId: string | undefined;
-    if (isDirectAnswer(result)) {
-      directAnswer = true;
+    if (dataIsDirectAnswer(result)) {
+      isDirectAnswer = true;
       entityId = result.relatedResult.id;
-    } else if (isGenerativeDirectAnswer(result)) {
-      directAnswer = true;
+    } else if (dataIsGenerativeDirectAnswer(result)) {
+      isDirectAnswer = true;
+      isGenerativeDirectAnswer = true;
       entityId = result.searchResult?.id;
     } else {
       entityId = result.id;
     }
     analytics?.report({
-      type: feedbackType,
-      entityId,
-      searcher: verticalKey ? 'VERTICAL' : 'UNIVERSAL',
-      queryId,
-      verticalKey: verticalKey || '',
-      directAnswer
+      action: feedbackType,
+      entity: entityId,
+      locale,
+      search: {
+        searchId,
+        queryId,
+        verticalKey: verticalKey || '',
+        isDirectAnswer,
+        isGenerativeDirectAnswer,
+        experienceKey
+      },
     });
   }, [analytics, queryId, verticalKey]);
 
-  const reportAnalyticsEvent = useCallback((
-    cardResult: CardAnalyticsDataType<T>,
-    analyticsEventType: CardAnalyticsType
+  return useCallback((
+      cardResult: CardAnalyticsDataType<T>,
+      analyticsEventType: CardAnalyticsType
   ) => {
     if (!analytics) {
       return;
     }
-    if (analyticsEventType === 'TITLE_CLICK' || analyticsEventType === 'CTA_CLICK' || analyticsEventType === 'CITATION_CLICK') {
+    if (analyticsEventType === 'TITLE' || analyticsEventType === 'CTA_CLICK' || analyticsEventType === 'CITATION_CLICK') {
       reportCtaEvent(cardResult, analyticsEventType);
     }
     if (analyticsEventType === 'THUMBS_DOWN' || analyticsEventType === 'THUMBS_UP') {
       reportFeedbackEvent(cardResult, analyticsEventType);
     }
   }, [analytics, reportCtaEvent, reportFeedbackEvent]);
-  return reportAnalyticsEvent;
 }
