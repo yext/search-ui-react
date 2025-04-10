@@ -26,7 +26,7 @@ export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | R
  */
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
-function isDirectAnswer(data: unknown): data is DirectAnswerData {
+function dataIsDirectAnswer(data: unknown): data is DirectAnswerData {
   return (data as DirectAnswerData)?.type === DirectAnswerType.FeaturedSnippet ||
     (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
 }
@@ -50,17 +50,17 @@ export function useCardAnalytics<T>(): (
     eventType: CardCtaEventType
   ) => {
     let url: string | undefined, entityId: string | undefined;
-    let directAnswer = false;
-    let generativeDirectAnswer = false;
-    if (isDirectAnswer(result)) {
+    let isDirectAnswer = false;
+    let isGenerativeDirectAnswer = false;
+    if (dataIsDirectAnswer(result)) {
       url = result.relatedResult.link;
       entityId = result.relatedResult.id;
-      directAnswer = true;
-    } else if (isGenerativeDirectAnswer(result)) {
+      isDirectAnswer = true;
+    } else if (dataIsGenerativeDirectAnswer(result)) {
       url = result.destinationUrl;
       entityId = result.searchResult?.id;
-      directAnswer = true;
-      generativeDirectAnswer = true;
+      isDirectAnswer = true;
+      isGenerativeDirectAnswer = true;
     } else {
       url = result.link;
       entityId = result.id;
@@ -71,7 +71,7 @@ export function useCardAnalytics<T>(): (
       return;
     }
     if (!experienceKey) {
-      console.error('Unable to report a vertical view all event. Missing field: experienceKey.');
+      console.error('Unable to report a CTA event. Missing field: experienceKey.');
       return;
     }
     analytics?.report({
@@ -82,9 +82,9 @@ export function useCardAnalytics<T>(): (
       search: {
         searchId,
         queryId,
-        ...verticalKey &&  {verticalKey: verticalKey},
-        isDirectAnswer: directAnswer,
-        isGenerativeDirectAnswer: generativeDirectAnswer,
+        verticalKey: verticalKey || '',
+        isDirectAnswer,
+        isGenerativeDirectAnswer,
         experienceKey,
       },
     });
@@ -99,18 +99,18 @@ export function useCardAnalytics<T>(): (
       return;
     }
     if (!experienceKey) {
-      console.error('Unable to report a vertical view all event. Missing field: experienceKey.');
+      console.error('Unable to report a result feedback event. Missing field: experienceKey.');
       return;
     }
-    let directAnswer = false;
-    let generativeDirectAnswer = false;
+    let isDirectAnswer = false;
+    let isGenerativeDirectAnswer = false;
     let entityId: string | undefined;
-    if (isDirectAnswer(result)) {
-      directAnswer = true;
+    if (dataIsDirectAnswer(result)) {
+      isDirectAnswer = true;
       entityId = result.relatedResult.id;
-    } else if (isGenerativeDirectAnswer(result)) {
-      directAnswer = true;
-      generativeDirectAnswer = true;
+    } else if (dataIsGenerativeDirectAnswer(result)) {
+      isDirectAnswer = true;
+      isGenerativeDirectAnswer = true;
       entityId = result.searchResult?.id;
     } else {
       entityId = result.id;
@@ -122,9 +122,9 @@ export function useCardAnalytics<T>(): (
       search: {
         searchId,
         queryId,
-        verticalKey,
-        isDirectAnswer: directAnswer,
-        isGenerativeDirectAnswer: generativeDirectAnswer,
+        verticalKey: verticalKey || '',
+        isDirectAnswer,
+        isGenerativeDirectAnswer,
         experienceKey
       },
     });
