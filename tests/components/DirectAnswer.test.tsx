@@ -50,7 +50,8 @@ function runAnalyticsTestSuite() {
                     "isDirectAnswer": true,
                     "isGenerativeDirectAnswer": false,
                     "queryId": "[queryId]",
-                    "searchId": "searchId"
+                    "searchId": "searchId",
+                    "verticalKey": ''
                 }
             }));
     });
@@ -70,7 +71,7 @@ function runAnalyticsTestSuite() {
                 "isGenerativeDirectAnswer": false,
                 "queryId": "[queryId]",
                 "searchId": "searchId",
-                "verticalKey": undefined
+                "verticalKey": ''
             }
         }));
     });
@@ -90,7 +91,7 @@ function runAnalyticsTestSuite() {
                     "isGenerativeDirectAnswer": false,
                     "queryId": "[queryId]",
                     "searchId": "searchId",
-                    "verticalKey": undefined
+                    "verticalKey": ''
                 }
             }
         ));

@@ -76,6 +76,7 @@ function runAnalyticsTestSuite() {
                 "isGenerativeDirectAnswer": true,
                 "queryId": "[queryId]",
                 "searchId": "searchId",
+                "verticalKey": ''
             },
         });
     });
@@ -93,7 +94,9 @@ function runAnalyticsTestSuite() {
                 "experienceKey": "experienceKey",
                 "isDirectAnswer": true,
                 "isGenerativeDirectAnswer": true,
-                "queryId": "[queryId]", "searchId": "searchId",
+                "queryId": "[queryId]",
+                "searchId": "searchId",
+                "verticalKey": ''
             },
         });
     });
