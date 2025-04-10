@@ -14,6 +14,7 @@ interface GenerativeDirectAnswerCssClasses
 
 ## Properties
 
+<<<<<<< HEAD
 <table><thead><tr><th>
 
 Property
@@ -188,3 +189,16 @@ _(Optional)_
 
 </td></tr>
 </tbody></table>
+=======
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [answerText?](./search-ui-react.generativedirectanswercssclasses.answertext.md) |  | string | _(Optional)_ |
+|  [citation?](./search-ui-react.generativedirectanswercssclasses.citation.md) |  | string | _(Optional)_ |
+|  [citationsContainer?](./search-ui-react.generativedirectanswercssclasses.citationscontainer.md) |  | string | _(Optional)_ |
+|  [citationSnippet?](./search-ui-react.generativedirectanswercssclasses.citationsnippet.md) |  | string | _(Optional)_ |
+|  [citationTitle?](./search-ui-react.generativedirectanswercssclasses.citationtitle.md) |  | string | _(Optional)_ |
+|  [container?](./search-ui-react.generativedirectanswercssclasses.container.md) |  | string | _(Optional)_ |
+|  [divider?](./search-ui-react.generativedirectanswercssclasses.divider.md) |  | string | _(Optional)_ |
+|  [header?](./search-ui-react.generativedirectanswercssclasses.header.md) |  | string | _(Optional)_ |
+
+>>>>>>> develop

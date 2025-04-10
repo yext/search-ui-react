@@ -14,7 +14,13 @@ declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect
 
 ## Parameters
 
+<<<<<<< HEAD
 <table><thead><tr><th>
+=======
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  { searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel } | [FilterSearchProps](./search-ui-react.filtersearchprops.md) |  |
+>>>>>>> develop
 
 Parameter
 

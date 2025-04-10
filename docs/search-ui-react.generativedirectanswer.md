@@ -14,6 +14,7 @@ declare function GenerativeDirectAnswer({ customCssClasses, answerHeader, citati
 
 ## Parameters
 
+<<<<<<< HEAD
 <table><thead><tr><th>
 
 Parameter
@@ -45,6 +46,12 @@ Description
 
 </td></tr>
 </tbody></table>
+=======
+|  Parameter | Type | Description |
+|  --- | --- | --- |
+|  { customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, } | [GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md) |  |
+
+>>>>>>> develop
 **Returns:**
 
 JSX.Element \| null
