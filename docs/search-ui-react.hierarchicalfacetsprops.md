@@ -20,10 +20,101 @@ interface HierarchicalFacetsProps extends Omit<StandardFacetsProps, 'excludedFie
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.hierarchicalfacetsprops.customcssclasses.md) |  | [HierarchicalFacetsCssClasses](./search-ui-react.hierarchicalfacetscssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [delimiter?](./search-ui-react.hierarchicalfacetsprops.delimiter.md) |  | string | _(Optional)_ The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->". |
-|  [includedFieldIds](./search-ui-react.hierarchicalfacetsprops.includedfieldids.md) |  | string\[\] | List of filter ids to render as hierarchical facets. |
-|  [showMoreLimit?](./search-ui-react.hierarchicalfacetsprops.showmorelimit.md) |  | number | _(Optional)_ The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.hierarchicalfacetsprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[HierarchicalFacetsCssClasses](./search-ui-react.hierarchicalfacetscssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[delimiter?](./search-ui-react.hierarchicalfacetsprops.delimiter.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->".
+
+
+</td></tr>
+<tr><td>
+
+[includedFieldIds](./search-ui-react.hierarchicalfacetsprops.includedfieldids.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+List of filter ids to render as hierarchical facets.
+
+
+</td></tr>
+<tr><td>
+
+[showMoreLimit?](./search-ui-react.hierarchicalfacetsprops.showmorelimit.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4.
+
+
+</td></tr>
+</tbody></table>

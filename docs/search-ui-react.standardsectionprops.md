@@ -15,7 +15,44 @@ interface StandardSectionProps<T = DefaultRawDataType> extends SectionProps<T>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.standardsectionprops.customcssclasses.md) |  | [StandardSectionCssClasses](./search-ui-react.standardsectioncssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.standardsectionprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[StandardSectionCssClasses](./search-ui-react.standardsectioncssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+</tbody></table>

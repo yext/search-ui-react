@@ -14,8 +14,63 @@ interface DirectAnswerProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.directanswerprops.customcssclasses.md) |  | [DirectAnswerCssClasses](./search-ui-react.directanswercssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [UnknownFieldTypeDisplay?](./search-ui-react.directanswerprops.unknownfieldtypedisplay.md) |  | [UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md) | _(Optional)_ A component to handle rendering results with "unknown" field type in field value direct answer. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.directanswerprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[DirectAnswerCssClasses](./search-ui-react.directanswercssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[UnknownFieldTypeDisplay?](./search-ui-react.directanswerprops.unknownfieldtypedisplay.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md)
+
+
+</td><td>
+
+_(Optional)_ A component to handle rendering results with "unknown" field type in field value direct answer.
+
+
+</td></tr>
+</tbody></table>

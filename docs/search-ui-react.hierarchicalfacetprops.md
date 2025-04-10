@@ -15,10 +15,101 @@ interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transformOpti
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.hierarchicalfacetprops.customcssclasses.md) |  | HierarchicalFacetCustomCssClasses | _(Optional)_ CSS classes for customizing the component styling. |
-|  [delimiter?](./search-ui-react.hierarchicalfacetprops.delimiter.md) |  | string | _(Optional)_ The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->". |
-|  [showMoreLimit?](./search-ui-react.hierarchicalfacetprops.showmorelimit.md) |  | number | _(Optional)_ The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4. |
-|  [transformOptions?](./search-ui-react.hierarchicalfacetprops.transformoptions.md) |  | (options: DisplayableFacetOption\[\]) =&gt; DisplayableFacetOption\[\] | _(Optional)_ A function to transform facet's options. The returned options need to be delimited to keep the hierarchy. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.hierarchicalfacetprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+HierarchicalFacetCustomCssClasses
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[delimiter?](./search-ui-react.hierarchicalfacetprops.delimiter.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The delimiter for determining facet hierarchies, defaults to "<!-- -->&gt;<!-- -->".
+
+
+</td></tr>
+<tr><td>
+
+[showMoreLimit?](./search-ui-react.hierarchicalfacetprops.showmorelimit.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ The maximum number of options to render before displaying the "Show more/less" button. Defaults to 4.
+
+
+</td></tr>
+<tr><td>
+
+[transformOptions?](./search-ui-react.hierarchicalfacetprops.transformoptions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(options: DisplayableFacetOption\[\]) =&gt; DisplayableFacetOption\[\]
+
+
+</td><td>
+
+_(Optional)_ A function to transform facet's options. The returned options need to be delimited to keep the hierarchy.
+
+
+</td></tr>
+</tbody></table>

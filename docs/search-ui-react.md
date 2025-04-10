@@ -6,154 +6,1523 @@
 
 ## Functions
 
-|  Function | Description |
-|  --- | --- |
-|  [AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses })](./search-ui-react.alternativeverticals.md) | A component that displays the alternative verticals that have results if a search returns none on the current vertical. |
-|  [AnalyticsProvider(props)](./search-ui-react.analyticsprovider.md) | A higher-order component which provides analytics for its children. |
-|  [AppliedFilters(props)](./search-ui-react.appliedfilters.md) | A component that displays a list of filters applied to the current vertical search, which may include any selected options from facets, NLP filters, and field value static filters. |
-|  [ApplyFiltersButton({ customCssClasses, label })](./search-ui-react.applyfiltersbutton.md) | Runs a vertical search. By default has <code>position: sticky</code> styling that anchors it to the bottom of the page. |
-|  [DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay })](./search-ui-react.directanswer.md) | Renders Direct Answers provided by the Search API. |
-|  [DropdownItem(\_props)](./search-ui-react.dropdownitem.md) | A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance. |
-|  [executeAutocomplete(searchActions)](./search-ui-react.executeautocomplete.md) | Executes a universal/vertical autocomplete search and return the corresponding response. |
-|  [executeGenerativeDirectAnswer(searchActions)](./search-ui-react.executegenerativedirectanswer.md) | Executes a generative direct answer and return the corresponding response. |
-|  [executeSearch(searchActions)](./search-ui-react.executesearch.md) | Executes a universal/vertical search. |
-|  [Facets(props)](./search-ui-react.facets.md) | A component that displays all facets applicable to the current vertical search. |
-|  [FilterDivider({ className })](./search-ui-react.filterdivider.md) | A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters. |
-|  [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel })](./search-ui-react.filtersearch.md) | A component which allows a user to search for filters associated with specific entities and fields. |
-|  [GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, })](./search-ui-react.generativedirectanswer.md) | Displays the AI generated answer of a generative direct answer. |
-|  [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md) | A React Component which collects location information to create a location filter and perform a new search. |
-|  [getSearchIntents(searchActions)](./search-ui-react.getsearchintents.md) | Get search intents of the current query stored in headless using autocomplete request. |
-|  [getUserLocation(geolocationOptions)](./search-ui-react.getuserlocation.md) | Retrieves user's location using navigator.geolocation API. |
-|  [HierarchicalFacet(props)](./search-ui-react.hierarchicalfacet.md) | A component that displays a single hierarchical facet, in a tree level structure, applicable to the current vertical search. Use this to override the default rendering. |
-|  [HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./search-ui-react.hierarchicalfacets.md) | A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search. |
-|  [isCtaData(data)](./search-ui-react.isctadata.md) | Type guard for CtaData. |
-|  [LocationBias({ geolocationOptions, customCssClasses })](./search-ui-react.locationbias.md) | A React Component which displays and collects location information in order to bias searches. |
-|  [MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag })](./search-ui-react.mapboxmap.md) | A component that renders a map with markers to show result locations using Mapbox GL. |
-|  [NumericalFacet(props)](./search-ui-react.numericalfacet.md) | A component that displays a single numerical facet. Use this to override the default rendering. |
-|  [NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps })](./search-ui-react.numericalfacets.md) | A component that displays numerical facets applicable to the current vertical search. |
-|  [Pagination(props)](./search-ui-react.pagination.md) | Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages. |
-|  [renderHighlightedValue(highlightedValueOrString, customCssClasses)](./search-ui-react.renderhighlightedvalue.md) | Renders a HighlightedValue with highlighting based on its matchedSubstrings. |
-|  [ResultsCount({ customCssClasses })](./search-ui-react.resultscount.md) | Renders results count of a universal/vertical search. |
-|  [SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch })](./search-ui-react.searchbar.md) | Renders a SearchBar that is hooked up with an InputDropdown component. |
-|  [SpellCheck({ customCssClasses, onClick })](./search-ui-react.spellcheck.md) | Renders a suggested query if the Search API provides one. |
-|  [StandardCard(props)](./search-ui-react.standardcard.md) | This Component renders the base result card. |
-|  [StandardFacet(props)](./search-ui-react.standardfacet.md) | A component that displays a single standard facet. Use this to override the default rendering. |
-|  [StandardFacets(props)](./search-ui-react.standardfacets.md) | A component that displays simple facets applicable to the current vertical search. |
-|  [StandardSection(props)](./search-ui-react.standardsection.md) | A component that displays all the results for a vertical using a standard section template. |
-|  [StaticFilters(props)](./search-ui-react.staticfilters.md) | A component that displays a group of user-configured field value filters that will be applied to the current vertical search. |
-|  [ThumbsFeedback(props)](./search-ui-react.thumbsfeedback.md) | Renders a quality feedback widget composed of thumbs up and thumbs down buttons. |
-|  [UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses })](./search-ui-react.universalresults.md) | Displays the results of a universal search with the results for each vertical separated into sections. |
-|  [updateLocationIfNeeded(searchActions, intents, geolocationOptions)](./search-ui-react.updatelocationifneeded.md) | If the provided search intents include a 'NEAR\_ME' intent and there's no existing user's location in state, retrieve and store user's location in headless state. |
-|  [useAnalytics()](./search-ui-react.useanalytics.md) | Returns a service that can be used to report analytics events. |
-|  [useCardAnalyticsCallback(result, analyticsType)](./search-ui-react.usecardanalyticscallback.md) | Creates a memoized function for reporting card analytics. |
-|  [useCardFeedbackCallback(result)](./search-ui-react.usecardfeedbackcallback.md) | Creates a memoized function for reporting card feedback analytics. |
-|  [useComposedCssClasses(builtInClasses, customClasses, disableBuiltInClasses)](./search-ui-react.usecomposedcssclasses.md) | useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes. |
-|  [VerticalResults(props)](./search-ui-react.verticalresults.md) | A component that renders search results for a vertical page. |
+<table><thead><tr><th>
+
+Function
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses })](./search-ui-react.alternativeverticals.md)
+
+
+</td><td>
+
+A component that displays the alternative verticals that have results if a search returns none on the current vertical.
+
+
+</td></tr>
+<tr><td>
+
+[AnalyticsProvider(props)](./search-ui-react.analyticsprovider.md)
+
+
+</td><td>
+
+A higher-order component which provides analytics for its children.
+
+
+</td></tr>
+<tr><td>
+
+[AppliedFilters(props)](./search-ui-react.appliedfilters.md)
+
+
+</td><td>
+
+A component that displays a list of filters applied to the current vertical search, which may include any selected options from facets, NLP filters, and field value static filters.
+
+
+</td></tr>
+<tr><td>
+
+[ApplyFiltersButton({ customCssClasses, label })](./search-ui-react.applyfiltersbutton.md)
+
+
+</td><td>
+
+Runs a vertical search. By default has `position: sticky` styling that anchors it to the bottom of the page.
+
+
+</td></tr>
+<tr><td>
+
+[DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay })](./search-ui-react.directanswer.md)
+
+
+</td><td>
+
+Renders Direct Answers provided by the Search API.
+
+
+</td></tr>
+<tr><td>
+
+[DropdownItem(\_props)](./search-ui-react.dropdownitem.md)
+
+
+</td><td>
+
+A wrapper component for specifying a DropdownItemWithIndex. The index will be automatically provided by the Dropdown component instance.
+
+
+</td></tr>
+<tr><td>
+
+[executeAutocomplete(searchActions)](./search-ui-react.executeautocomplete.md)
+
+
+</td><td>
+
+Executes a universal/vertical autocomplete search and return the corresponding response.
+
+
+</td></tr>
+<tr><td>
+
+[executeGenerativeDirectAnswer(searchActions)](./search-ui-react.executegenerativedirectanswer.md)
+
+
+</td><td>
+
+Executes a generative direct answer and return the corresponding response.
+
+
+</td></tr>
+<tr><td>
+
+[executeSearch(searchActions)](./search-ui-react.executesearch.md)
+
+
+</td><td>
+
+Executes a universal/vertical search.
+
+
+</td></tr>
+<tr><td>
+
+[Facets(props)](./search-ui-react.facets.md)
+
+
+</td><td>
+
+A component that displays all facets applicable to the current vertical search.
+
+
+</td></tr>
+<tr><td>
+
+[FilterDivider({ className })](./search-ui-react.filterdivider.md)
+
+
+</td><td>
+
+A divider component used to separate NumericalFacets, HierarchicalFacets, StandardFacets, and StaticFilters.
+
+
+</td></tr>
+<tr><td>
+
+[FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel })](./search-ui-react.filtersearch.md)
+
+
+</td><td>
+
+A component which allows a user to search for filters associated with specific entities and fields.
+
+
+</td></tr>
+<tr><td>
+
+[GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, })](./search-ui-react.generativedirectanswer.md)
+
+
+</td><td>
+
+Displays the AI generated answer of a generative direct answer.
+
+
+</td></tr>
+<tr><td>
+
+[Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md)
+
+
+</td><td>
+
+A React Component which collects location information to create a location filter and perform a new search.
+
+
+</td></tr>
+<tr><td>
+
+[getSearchIntents(searchActions)](./search-ui-react.getsearchintents.md)
+
+
+</td><td>
+
+Get search intents of the current query stored in headless using autocomplete request.
+
+
+</td></tr>
+<tr><td>
+
+[getUserLocation(geolocationOptions)](./search-ui-react.getuserlocation.md)
+
+
+</td><td>
+
+Retrieves user's location using navigator.geolocation API.
+
+
+</td></tr>
+<tr><td>
+
+[HierarchicalFacet(props)](./search-ui-react.hierarchicalfacet.md)
+
+
+</td><td>
+
+A component that displays a single hierarchical facet, in a tree level structure, applicable to the current vertical search. Use this to override the default rendering.
+
+
+</td></tr>
+<tr><td>
+
+[HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./search-ui-react.hierarchicalfacets.md)
+
+
+</td><td>
+
+A component that displays hierarchical facets, in a tree level structure, applicable to the current vertical search.
+
+
+</td></tr>
+<tr><td>
+
+[isCtaData(data)](./search-ui-react.isctadata.md)
+
+
+</td><td>
+
+Type guard for CtaData.
+
+
+</td></tr>
+<tr><td>
+
+[LocationBias({ geolocationOptions, customCssClasses })](./search-ui-react.locationbias.md)
+
+
+</td><td>
+
+A React Component which displays and collects location information in order to bias searches.
+
+
+</td></tr>
+<tr><td>
+
+[MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, })](./search-ui-react.mapboxmap.md)
+
+
+</td><td>
+
+A component that renders a map with markers to show result locations using Mapbox GL.
+
+
+</td></tr>
+<tr><td>
+
+[NumericalFacet(props)](./search-ui-react.numericalfacet.md)
+
+
+</td><td>
+
+A component that displays a single numerical facet. Use this to override the default rendering.
+
+
+</td></tr>
+<tr><td>
+
+[NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps })](./search-ui-react.numericalfacets.md)
+
+
+</td><td>
+
+A component that displays numerical facets applicable to the current vertical search.
+
+
+</td></tr>
+<tr><td>
+
+[Pagination(props)](./search-ui-react.pagination.md)
+
+
+</td><td>
+
+Renders a component that divide a series of vertical results into chunks across multiple pages and enable user to navigate between those pages.
+
+
+</td></tr>
+<tr><td>
+
+[renderHighlightedValue(highlightedValueOrString, customCssClasses)](./search-ui-react.renderhighlightedvalue.md)
+
+
+</td><td>
+
+Renders a HighlightedValue with highlighting based on its matchedSubstrings.
+
+
+</td></tr>
+<tr><td>
+
+[ResultsCount({ customCssClasses })](./search-ui-react.resultscount.md)
+
+
+</td><td>
+
+Renders results count of a universal/vertical search.
+
+
+</td></tr>
+<tr><td>
+
+[SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch })](./search-ui-react.searchbar.md)
+
+
+</td><td>
+
+Renders a SearchBar that is hooked up with an InputDropdown component.
+
+
+</td></tr>
+<tr><td>
+
+[SpellCheck({ customCssClasses, onClick })](./search-ui-react.spellcheck.md)
+
+
+</td><td>
+
+Renders a suggested query if the Search API provides one.
+
+
+</td></tr>
+<tr><td>
+
+[StandardCard(props)](./search-ui-react.standardcard.md)
+
+
+</td><td>
+
+This Component renders the base result card.
+
+
+</td></tr>
+<tr><td>
+
+[StandardFacet(props)](./search-ui-react.standardfacet.md)
+
+
+</td><td>
+
+A component that displays a single standard facet. Use this to override the default rendering.
+
+
+</td></tr>
+<tr><td>
+
+[StandardFacets(props)](./search-ui-react.standardfacets.md)
+
+
+</td><td>
+
+A component that displays simple facets applicable to the current vertical search.
+
+
+</td></tr>
+<tr><td>
+
+[StandardSection(props)](./search-ui-react.standardsection.md)
+
+
+</td><td>
+
+A component that displays all the results for a vertical using a standard section template.
+
+
+</td></tr>
+<tr><td>
+
+[StaticFilters(props)](./search-ui-react.staticfilters.md)
+
+
+</td><td>
+
+A component that displays a group of user-configured field value filters that will be applied to the current vertical search.
+
+
+</td></tr>
+<tr><td>
+
+[ThumbsFeedback(props)](./search-ui-react.thumbsfeedback.md)
+
+
+</td><td>
+
+Renders a quality feedback widget composed of thumbs up and thumbs down buttons.
+
+
+</td></tr>
+<tr><td>
+
+[UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses })](./search-ui-react.universalresults.md)
+
+
+</td><td>
+
+Displays the results of a universal search with the results for each vertical separated into sections.
+
+
+</td></tr>
+<tr><td>
+
+[updateLocationIfNeeded(searchActions, intents, geolocationOptions)](./search-ui-react.updatelocationifneeded.md)
+
+
+</td><td>
+
+If the provided search intents include a 'NEAR\_ME' intent and there's no existing user's location in state, retrieve and store user's location in headless state.
+
+
+</td></tr>
+<tr><td>
+
+[useAnalytics()](./search-ui-react.useanalytics.md)
+
+
+</td><td>
+
+Returns a service that can be used to report analytics events.
+
+
+</td></tr>
+<tr><td>
+
+[useCardAnalyticsCallback(result, analyticsType)](./search-ui-react.usecardanalyticscallback.md)
+
+
+</td><td>
+
+Creates a memoized function for reporting card analytics.
+
+
+</td></tr>
+<tr><td>
+
+[useCardFeedbackCallback(result)](./search-ui-react.usecardfeedbackcallback.md)
+
+
+</td><td>
+
+Creates a memoized function for reporting card feedback analytics.
+
+
+</td></tr>
+<tr><td>
+
+[useComposedCssClasses(builtInClasses, customClasses, disableBuiltInClasses)](./search-ui-react.usecomposedcssclasses.md)
+
+
+</td><td>
+
+useComposedCssClasses merges a component's built-in tailwind classes with custom tailwind classes.
+
+
+</td></tr>
+<tr><td>
+
+[VerticalResults(props)](./search-ui-react.verticalresults.md)
+
+
+</td><td>
+
+A component that renders search results for a vertical page.
+
+
+</td></tr>
+</tbody></table>
 
 ## Interfaces
 
-|  Interface | Description |
-|  --- | --- |
-|  [AfterDropdownInputFocusProps](./search-ui-react.afterdropdowninputfocusprops.md) | The parameters that are passed into [FilterSearchProps.afterDropdownInputFocus](./search-ui-react.filtersearchprops.afterdropdowninputfocus.md)<!-- -->. |
-|  [AlternativeVerticalsCssClasses](./search-ui-react.alternativeverticalscssclasses.md) | The CSS class interface used for [AlternativeVerticals()](./search-ui-react.alternativeverticals.md)<!-- -->. |
-|  [AlternativeVerticalsProps](./search-ui-react.alternativeverticalsprops.md) | Props for [AlternativeVerticals()](./search-ui-react.alternativeverticals.md)<!-- -->. |
-|  [AppliedFiltersCssClasses](./search-ui-react.appliedfilterscssclasses.md) | The CSS class interface used for [AppliedFilters()](./search-ui-react.appliedfilters.md)<!-- -->. |
-|  [AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md) | Properties for [AppliedFilters()](./search-ui-react.appliedfilters.md)<!-- -->. |
-|  [ApplyFiltersButtonCssClasses](./search-ui-react.applyfiltersbuttoncssclasses.md) | The CSS class interface for [ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md)<!-- -->. |
-|  [ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md) | Props for [ApplyFiltersButton()](./search-ui-react.applyfiltersbutton.md) |
-|  [AutocompleteResultCssClasses](./search-ui-react.autocompleteresultcssclasses.md) | The CSS class interface for the Autocomplete Result. |
-|  [CardProps](./search-ui-react.cardprops.md) | The props provided to every [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->. |
-|  [CitationProps](./search-ui-react.citationprops.md) | Props for citation card. |
-|  [CitationsProps](./search-ui-react.citationsprops.md) | Props for citations component. |
-|  [Coordinate](./search-ui-react.coordinate.md) | Coordinate use to represent the result's location on a map. |
-|  [CtaData](./search-ui-react.ctadata.md) | The shape of a StandardCard CTA field's data. |
-|  [DirectAnswerCssClasses](./search-ui-react.directanswercssclasses.md) | The CSS class interface for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->. |
-|  [DirectAnswerProps](./search-ui-react.directanswerprops.md) | Props for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->. |
-|  [FacetsCssClasses](./search-ui-react.facetscssclasses.md) | The CSS class interface for [Facets()](./search-ui-react.facets.md)<!-- -->. Any [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) props will be overridden by the same props from customCssClasses on [StandardFacetProps](./search-ui-react.standardfacetprops.md)<!-- -->, [NumericalFacetProps](./search-ui-react.numericalfacetprops.md)<!-- -->, or [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md)<!-- -->. |
-|  [FacetsProps](./search-ui-react.facetsprops.md) | Props for the [Facets()](./search-ui-react.facets.md) component. |
-|  [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) | The CSS class interface for FilterGroup. |
-|  [FilterGroupProps](./search-ui-react.filtergroupprops.md) | Props for the FilterGroup component. |
-|  [FilterOptionConfig](./search-ui-react.filteroptionconfig.md) | The configuration data for a field value filter option. |
-|  [FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md) | The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<!-- -->. |
-|  [FilterSearchProps](./search-ui-react.filtersearchprops.md) | The props for the [FilterSearch()](./search-ui-react.filtersearch.md) component. |
-|  [GdaClickEventData](./search-ui-react.gdaclickeventdata.md) | Payload for click events fired on a generative direct answer card. |
-|  [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) | The CSS class interface used for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
-|  [GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md) | Props for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->. |
-|  [GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md) | The CSS class interface for the Geolocation component. |
-|  [GeolocationProps](./search-ui-react.geolocationprops.md) | The props for the Geolocation component. |
-|  [HierarchicalFacetDisplayCssClasses](./search-ui-react.hierarchicalfacetdisplaycssclasses.md) | The CSS class interface for HierarchicalFacetDisplay. |
-|  [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md) | Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component. |
-|  [HierarchicalFacetsCssClasses](./search-ui-react.hierarchicalfacetscssclasses.md) | The CSS class interface for [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md)<!-- -->. |
-|  [HierarchicalFacetsProps](./search-ui-react.hierarchicalfacetsprops.md) | Props for the [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md) component. |
-|  [HighlightedValueCssClasses](./search-ui-react.highlightedvaluecssclasses.md) | The CSS class interface for [renderHighlightedValue()](./search-ui-react.renderhighlightedvalue.md)<!-- -->. |
-|  [LocationBiasCssClasses](./search-ui-react.locationbiascssclasses.md) | The CSS class interface for the [LocationBias()](./search-ui-react.locationbias.md) component. |
-|  [LocationBiasProps](./search-ui-react.locationbiasprops.md) | The props for the [LocationBias()](./search-ui-react.locationbias.md) component. |
-|  [MapboxMapProps](./search-ui-react.mapboxmapprops.md) | Props for the [MapboxMap()](./search-ui-react.mapboxmap.md) component. The type param "T" represents the type of "rawData" field of the results use in the map. |
-|  [NumericalFacetProps](./search-ui-react.numericalfacetprops.md) | Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component. |
-|  [NumericalFacetsCssClasses](./search-ui-react.numericalfacetscssclasses.md) | The CSS class interface for [NumericalFacets()](./search-ui-react.numericalfacets.md)<!-- -->. |
-|  [NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md) | Props for the [NumericalFacets()](./search-ui-react.numericalfacets.md) component. |
-|  [OnDropdownInputChangeProps](./search-ui-react.ondropdowninputchangeprops.md) | The parameters that are passed into [FilterSearchProps.onDropdownInputChange](./search-ui-react.filtersearchprops.ondropdowninputchange.md)<!-- -->. |
-|  [OnSelectParams](./search-ui-react.onselectparams.md) | The parameters that are passed into [FilterSearchProps.onSelect](./search-ui-react.filtersearchprops.onselect.md)<!-- -->. |
-|  [PaginationCssClasses](./search-ui-react.paginationcssclasses.md) | The CSS classes used for pagination. |
-|  [PaginationProps](./search-ui-react.paginationprops.md) | Props for [Pagination()](./search-ui-react.pagination.md) component |
-|  [RangeInputCssClasses](./search-ui-react.rangeinputcssclasses.md) | The CSS class interface for RangeInput. |
-|  [ResultsCountCssClasses](./search-ui-react.resultscountcssclasses.md) | The CSS class interface for [ResultsCount()](./search-ui-react.resultscount.md)<!-- -->. |
-|  [ResultsCountProps](./search-ui-react.resultscountprops.md) | Props for [ResultsCount()](./search-ui-react.resultscount.md)<!-- -->. |
-|  [SearchBarCssClasses](./search-ui-react.searchbarcssclasses.md) | The CSS class interface for the [SearchBar()](./search-ui-react.searchbar.md)<!-- -->. |
-|  [SearchBarProps](./search-ui-react.searchbarprops.md) | The props for the [SearchBar()](./search-ui-react.searchbar.md) component. |
-|  [SectionHeaderCssClasses](./search-ui-react.sectionheadercssclasses.md) | The CSS class interface used for the SectionHeader component. |
-|  [SectionProps](./search-ui-react.sectionprops.md) | The configuration of a section template for a vertical's results on a universal page. |
-|  [SpellCheckCssClasses](./search-ui-react.spellcheckcssclasses.md) | The CSS Class interface for SpellCheck. |
-|  [SpellCheckProps](./search-ui-react.spellcheckprops.md) | The props for the [SpellCheck()](./search-ui-react.spellcheck.md) component. |
-|  [StandardCardCssClasses](./search-ui-react.standardcardcssclasses.md) | The CSS class interface used for the StandardCardDisplay. |
-|  [StandardCardData](./search-ui-react.standardcarddata.md) | The data used by the [StandardCard()](./search-ui-react.standardcard.md) and taken from the original Result. |
-|  [StandardCardProps](./search-ui-react.standardcardprops.md) | Props for a StandardCard. |
-|  [StandardFacetProps](./search-ui-react.standardfacetprops.md) | Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component. |
-|  [StandardFacetsCssClasses](./search-ui-react.standardfacetscssclasses.md) | The CSS class interface for [StandardFacets()](./search-ui-react.standardfacets.md)<!-- -->. |
-|  [StandardFacetsProps](./search-ui-react.standardfacetsprops.md) | Props for the [StandardFacets()](./search-ui-react.standardfacets.md) component. |
-|  [StandardSectionCssClasses](./search-ui-react.standardsectioncssclasses.md) | The CSS class interface used for [StandardSection()](./search-ui-react.standardsection.md)<!-- -->. |
-|  [StandardSectionProps](./search-ui-react.standardsectionprops.md) | The configuration for a StandardSection. |
-|  [StaticFiltersCssClasses](./search-ui-react.staticfilterscssclasses.md) | The CSS class interface for [StaticFilters()](./search-ui-react.staticfilters.md)<!-- -->. |
-|  [StaticFiltersProps](./search-ui-react.staticfiltersprops.md) | Props for the [StaticFilters()](./search-ui-react.staticfilters.md) component. |
-|  [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md) | The CSS class interface used for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->. |
-|  [ThumbsFeedbackProps](./search-ui-react.thumbsfeedbackprops.md) | Props for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->. |
-|  [UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md) | The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
-|  [UniversalResultsProps](./search-ui-react.universalresultsprops.md) | Props for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->. |
-|  [UnknownFieldTypeDisplayProps](./search-ui-react.unknownfieldtypedisplayprops.md) | Props for [UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md)<!-- -->. |
-|  [VerticalConfig](./search-ui-react.verticalconfig.md) | The configuration for a vertical. |
-|  [VerticalLabelMap](./search-ui-react.verticallabelmap.md) | A map of vertical keys to labels. |
-|  [VerticalLink](./search-ui-react.verticallink.md) | Data needed to create a URL to a vertical search page. |
-|  [VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md) | The CSS class interface used for [VerticalResults()](./search-ui-react.verticalresults.md)<!-- -->. |
-|  [VerticalResultsProps](./search-ui-react.verticalresultsprops.md) | Props for the VerticalResults component. |
-|  [VisualAutocompleteConfig](./search-ui-react.visualautocompleteconfig.md) | The configuration options for Visual Autocomplete. |
+<table><thead><tr><th>
+
+Interface
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[AfterDropdownInputFocusProps](./search-ui-react.afterdropdowninputfocusprops.md)
+
+
+</td><td>
+
+The parameters that are passed into [FilterSearchProps.afterDropdownInputFocus](./search-ui-react.filtersearchprops.afterdropdowninputfocus.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[AlternativeVerticalsCssClasses](./search-ui-react.alternativeverticalscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface used for [AlternativeVerticals()](./search-ui-react.alternativeverticals.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[AlternativeVerticalsProps](./search-ui-react.alternativeverticalsprops.md)
+
+
+</td><td>
+
+Props for [AlternativeVerticals()](./search-ui-react.alternativeverticals.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[AppliedFiltersCssClasses](./search-ui-react.appliedfilterscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface used for [AppliedFilters()](./search-ui-react.appliedfilters.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[AppliedFiltersProps](./search-ui-react.appliedfiltersprops.md)
+
+
+</td><td>
+
+Properties for [AppliedFilters()](./search-ui-react.appliedfilters.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[ApplyFiltersButtonCssClasses](./search-ui-react.applyfiltersbuttoncssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[ApplyFiltersButtonProps](./search-ui-react.applyfiltersbuttonprops.md)
+
+
+</td><td>
+
+Props for [ApplyFiltersButton()](./search-ui-react.applyfiltersbutton.md)
+
+
+</td></tr>
+<tr><td>
+
+[AutocompleteResultCssClasses](./search-ui-react.autocompleteresultcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the Autocomplete Result.
+
+
+</td></tr>
+<tr><td>
+
+[CardProps](./search-ui-react.cardprops.md)
+
+
+</td><td>
+
+The props provided to every [CardComponent](./search-ui-react.cardcomponent.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[CitationProps](./search-ui-react.citationprops.md)
+
+
+</td><td>
+
+Props for citation card.
+
+
+</td></tr>
+<tr><td>
+
+[CitationsProps](./search-ui-react.citationsprops.md)
+
+
+</td><td>
+
+Props for citations component.
+
+
+</td></tr>
+<tr><td>
+
+[Coordinate](./search-ui-react.coordinate.md)
+
+
+</td><td>
+
+Coordinate use to represent the result's location on a map.
+
+
+</td></tr>
+<tr><td>
+
+[CtaData](./search-ui-react.ctadata.md)
+
+
+</td><td>
+
+The shape of a StandardCard CTA field's data.
+
+
+</td></tr>
+<tr><td>
+
+[DirectAnswerCssClasses](./search-ui-react.directanswercssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[DirectAnswerProps](./search-ui-react.directanswerprops.md)
+
+
+</td><td>
+
+Props for [DirectAnswer()](./search-ui-react.directanswer.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[FacetsCssClasses](./search-ui-react.facetscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [Facets()](./search-ui-react.facets.md)<!-- -->. Any [FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md) props will be overridden by the same props from customCssClasses on [StandardFacetProps](./search-ui-react.standardfacetprops.md)<!-- -->, [NumericalFacetProps](./search-ui-react.numericalfacetprops.md)<!-- -->, or [HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[FacetsProps](./search-ui-react.facetsprops.md)
+
+
+</td><td>
+
+Props for the [Facets()](./search-ui-react.facets.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[FilterGroupCssClasses](./search-ui-react.filtergroupcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for FilterGroup.
+
+
+</td></tr>
+<tr><td>
+
+[FilterGroupProps](./search-ui-react.filtergroupprops.md)
+
+
+</td><td>
+
+Props for the FilterGroup component.
+
+
+</td></tr>
+<tr><td>
+
+[FilterOptionConfig](./search-ui-react.filteroptionconfig.md)
+
+
+</td><td>
+
+The configuration data for a field value filter option.
+
+
+</td></tr>
+<tr><td>
+
+[FilterSearchCssClasses](./search-ui-react.filtersearchcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [FilterSearch()](./search-ui-react.filtersearch.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[FilterSearchProps](./search-ui-react.filtersearchprops.md)
+
+
+</td><td>
+
+The props for the [FilterSearch()](./search-ui-react.filtersearch.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[GdaClickEventData](./search-ui-react.gdaclickeventdata.md)
+
+
+</td><td>
+
+Payload for click events fired on a generative direct answer card.
+
+
+</td></tr>
+<tr><td>
+
+[GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md)
+
+
+</td><td>
+
+The CSS class interface used for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[GenerativeDirectAnswerProps](./search-ui-react.generativedirectanswerprops.md)
+
+
+</td><td>
+
+Props for [GenerativeDirectAnswer()](./search-ui-react.generativedirectanswer.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[GeolocationCssClasses](./search-ui-react.geolocationcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the Geolocation component.
+
+
+</td></tr>
+<tr><td>
+
+[GeolocationProps](./search-ui-react.geolocationprops.md)
+
+
+</td><td>
+
+The props for the Geolocation component.
+
+
+</td></tr>
+<tr><td>
+
+[HierarchicalFacetDisplayCssClasses](./search-ui-react.hierarchicalfacetdisplaycssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for HierarchicalFacetDisplay.
+
+
+</td></tr>
+<tr><td>
+
+[HierarchicalFacetProps](./search-ui-react.hierarchicalfacetprops.md)
+
+
+</td><td>
+
+Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[HierarchicalFacetsCssClasses](./search-ui-react.hierarchicalfacetscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[HierarchicalFacetsProps](./search-ui-react.hierarchicalfacetsprops.md)
+
+
+</td><td>
+
+Props for the [HierarchicalFacets()](./search-ui-react.hierarchicalfacets.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[HighlightedValueCssClasses](./search-ui-react.highlightedvaluecssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [renderHighlightedValue()](./search-ui-react.renderhighlightedvalue.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[LocationBiasCssClasses](./search-ui-react.locationbiascssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the [LocationBias()](./search-ui-react.locationbias.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[LocationBiasProps](./search-ui-react.locationbiasprops.md)
+
+
+</td><td>
+
+The props for the [LocationBias()](./search-ui-react.locationbias.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[MapboxMapProps](./search-ui-react.mapboxmapprops.md)
+
+
+</td><td>
+
+Props for the [MapboxMap()](./search-ui-react.mapboxmap.md) component. The type param "T" represents the type of "rawData" field of the results use in the map.
+
+
+</td></tr>
+<tr><td>
+
+[NumericalFacetProps](./search-ui-react.numericalfacetprops.md)
+
+
+</td><td>
+
+Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[NumericalFacetsCssClasses](./search-ui-react.numericalfacetscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [NumericalFacets()](./search-ui-react.numericalfacets.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[NumericalFacetsProps](./search-ui-react.numericalfacetsprops.md)
+
+
+</td><td>
+
+Props for the [NumericalFacets()](./search-ui-react.numericalfacets.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[OnDropdownInputChangeProps](./search-ui-react.ondropdowninputchangeprops.md)
+
+
+</td><td>
+
+The parameters that are passed into [FilterSearchProps.onDropdownInputChange](./search-ui-react.filtersearchprops.ondropdowninputchange.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[OnSelectParams](./search-ui-react.onselectparams.md)
+
+
+</td><td>
+
+The parameters that are passed into [FilterSearchProps.onSelect](./search-ui-react.filtersearchprops.onselect.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[PaginationCssClasses](./search-ui-react.paginationcssclasses.md)
+
+
+</td><td>
+
+The CSS classes used for pagination.
+
+
+</td></tr>
+<tr><td>
+
+[PaginationProps](./search-ui-react.paginationprops.md)
+
+
+</td><td>
+
+Props for [Pagination()](./search-ui-react.pagination.md) component
+
+
+</td></tr>
+<tr><td>
+
+[RangeInputCssClasses](./search-ui-react.rangeinputcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for RangeInput.
+
+
+</td></tr>
+<tr><td>
+
+[ResultsCountCssClasses](./search-ui-react.resultscountcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [ResultsCount()](./search-ui-react.resultscount.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[ResultsCountProps](./search-ui-react.resultscountprops.md)
+
+
+</td><td>
+
+Props for [ResultsCount()](./search-ui-react.resultscount.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[SearchBarCssClasses](./search-ui-react.searchbarcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for the [SearchBar()](./search-ui-react.searchbar.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[SearchBarProps](./search-ui-react.searchbarprops.md)
+
+
+</td><td>
+
+The props for the [SearchBar()](./search-ui-react.searchbar.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[SectionHeaderCssClasses](./search-ui-react.sectionheadercssclasses.md)
+
+
+</td><td>
+
+The CSS class interface used for the SectionHeader component.
+
+
+</td></tr>
+<tr><td>
+
+[SectionProps](./search-ui-react.sectionprops.md)
+
+
+</td><td>
+
+The configuration of a section template for a vertical's results on a universal page.
+
+
+</td></tr>
+<tr><td>
+
+[SpellCheckCssClasses](./search-ui-react.spellcheckcssclasses.md)
+
+
+</td><td>
+
+The CSS Class interface for SpellCheck.
+
+
+</td></tr>
+<tr><td>
+
+[SpellCheckProps](./search-ui-react.spellcheckprops.md)
+
+
+</td><td>
+
+The props for the [SpellCheck()](./search-ui-react.spellcheck.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[StandardCardCssClasses](./search-ui-react.standardcardcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface used for the StandardCardDisplay.
+
+
+</td></tr>
+<tr><td>
+
+[StandardCardData](./search-ui-react.standardcarddata.md)
+
+
+</td><td>
+
+The data used by the [StandardCard()](./search-ui-react.standardcard.md) and taken from the original Result.
+
+
+</td></tr>
+<tr><td>
+
+[StandardCardProps](./search-ui-react.standardcardprops.md)
+
+
+</td><td>
+
+Props for a StandardCard.
+
+
+</td></tr>
+<tr><td>
+
+[StandardFacetProps](./search-ui-react.standardfacetprops.md)
+
+
+</td><td>
+
+Props for the [StandardFacet()](./search-ui-react.standardfacet.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[StandardFacetsCssClasses](./search-ui-react.standardfacetscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [StandardFacets()](./search-ui-react.standardfacets.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[StandardFacetsProps](./search-ui-react.standardfacetsprops.md)
+
+
+</td><td>
+
+Props for the [StandardFacets()](./search-ui-react.standardfacets.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[StandardSectionCssClasses](./search-ui-react.standardsectioncssclasses.md)
+
+
+</td><td>
+
+The CSS class interface used for [StandardSection()](./search-ui-react.standardsection.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[StandardSectionProps](./search-ui-react.standardsectionprops.md)
+
+
+</td><td>
+
+The configuration for a StandardSection.
+
+
+</td></tr>
+<tr><td>
+
+[StaticFiltersCssClasses](./search-ui-react.staticfilterscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface for [StaticFilters()](./search-ui-react.staticfilters.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[StaticFiltersProps](./search-ui-react.staticfiltersprops.md)
+
+
+</td><td>
+
+Props for the [StaticFilters()](./search-ui-react.staticfilters.md) component.
+
+
+</td></tr>
+<tr><td>
+
+[ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md)
+
+
+</td><td>
+
+The CSS class interface used for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[ThumbsFeedbackProps](./search-ui-react.thumbsfeedbackprops.md)
+
+
+</td><td>
+
+Props for [ThumbsFeedback()](./search-ui-react.thumbsfeedback.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[UniversalResultsCssClasses](./search-ui-react.universalresultscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface used for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[UniversalResultsProps](./search-ui-react.universalresultsprops.md)
+
+
+</td><td>
+
+Props for [UniversalResults()](./search-ui-react.universalresults.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[UnknownFieldTypeDisplayProps](./search-ui-react.unknownfieldtypedisplayprops.md)
+
+
+</td><td>
+
+Props for [UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[VerticalConfig](./search-ui-react.verticalconfig.md)
+
+
+</td><td>
+
+The configuration for a vertical.
+
+
+</td></tr>
+<tr><td>
+
+[VerticalLabelMap](./search-ui-react.verticallabelmap.md)
+
+
+</td><td>
+
+A map of vertical keys to labels.
+
+
+</td></tr>
+<tr><td>
+
+[VerticalLink](./search-ui-react.verticallink.md)
+
+
+</td><td>
+
+Data needed to create a URL to a vertical search page.
+
+
+</td></tr>
+<tr><td>
+
+[VerticalResultsCssClasses](./search-ui-react.verticalresultscssclasses.md)
+
+
+</td><td>
+
+The CSS class interface used for [VerticalResults()](./search-ui-react.verticalresults.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[VerticalResultsProps](./search-ui-react.verticalresultsprops.md)
+
+
+</td><td>
+
+Props for the VerticalResults component.
+
+
+</td></tr>
+<tr><td>
+
+[VisualAutocompleteConfig](./search-ui-react.visualautocompleteconfig.md)
+
+
+</td><td>
+
+The configuration options for Visual Autocomplete.
+
+
+</td></tr>
+</tbody></table>
 
 ## Variables
 
-|  Variable | Description |
-|  --- | --- |
-|  [ComponentsContentPath](./search-ui-react.componentscontentpath.md) | Content path to the source files in component library that utilizes Tailwind class names. This is intended to be used in user's custom tailwind config. |
+<table><thead><tr><th>
+
+Variable
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[ComponentsContentPath](./search-ui-react.componentscontentpath.md)
+
+
+</td><td>
+
+Content path to the source files in component library that utilizes Tailwind class names. This is intended to be used in user's custom tailwind config.
+
+
+</td></tr>
+</tbody></table>
 
 ## Type Aliases
 
-|  Type Alias | Description |
-|  --- | --- |
-|  [CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md) | The data types use to construct the payload in the analytics event. |
-|  [CardAnalyticsType](./search-ui-react.cardanalyticstype.md) | Analytics event types for interactions on a card. |
-|  [CardComponent](./search-ui-react.cardcomponent.md) | A functional component that can be used to render a result card. |
-|  [CardCtaEventType](./search-ui-react.cardctaeventtype.md) | Analytics event types for cta click, title click, and citation click. |
-|  [CoordinateGetter](./search-ui-react.coordinategetter.md) | A function use to derive a result's coordinate. |
-|  [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md) | The default type for "rawData" field of type Result. |
-|  [DropdownItemProps](./search-ui-react.dropdownitemprops.md) | Props for the [DropdownItem()](./search-ui-react.dropdownitem.md)<!-- -->. |
-|  [FacetProps](./search-ui-react.facetprops.md) | Props for a single facet component. |
-|  [FeedbackType](./search-ui-react.feedbacktype.md) | Analytics event types for quality feedback. |
-|  [FocusedItemData](./search-ui-react.focuseditemdata.md) | The data associated with the currently focused item. |
-|  [OnDragHandler](./search-ui-react.ondraghandler.md) | A function which is called when user drag the map. |
-|  [onSearchFunc](./search-ui-react.onsearchfunc.md) | The interface of a function which is called on a search. |
-|  [PinComponent](./search-ui-react.pincomponent.md) | A functional component that can be used to render a custom marker on the map. |
-|  [PinComponentProps](./search-ui-react.pincomponentprops.md) | Props for rendering a custom marker on the map. |
-|  [RenderEntityPreviews](./search-ui-react.renderentitypreviews.md) | The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data. |
-|  [SectionComponent](./search-ui-react.sectioncomponent.md) | A component that can be used to render a section template for vertical results. |
-|  [StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md) | The configuration data for a field value static filter option. |
-|  [UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md) | A React component interface to render results with "unknown" field type in field value direct answer. |
-|  [VerticalConfigMap](./search-ui-react.verticalconfigmap.md) | A map of verticalKey to a VerticalConfig. |
+<table><thead><tr><th>
 
+Type Alias
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[CardAnalyticsDataType](./search-ui-react.cardanalyticsdatatype.md)
+
+
+</td><td>
+
+The data types use to construct the payload in the analytics event.
+
+
+</td></tr>
+<tr><td>
+
+[CardAnalyticsType](./search-ui-react.cardanalyticstype.md)
+
+
+</td><td>
+
+Analytics event types for interactions on a card.
+
+
+</td></tr>
+<tr><td>
+
+[CardComponent](./search-ui-react.cardcomponent.md)
+
+
+</td><td>
+
+A functional component that can be used to render a result card.
+
+
+</td></tr>
+<tr><td>
+
+[CardCtaEventType](./search-ui-react.cardctaeventtype.md)
+
+
+</td><td>
+
+Analytics event types for cta click, title click, and citation click.
+
+
+</td></tr>
+<tr><td>
+
+[CoordinateGetter](./search-ui-react.coordinategetter.md)
+
+
+</td><td>
+
+A function use to derive a result's coordinate.
+
+
+</td></tr>
+<tr><td>
+
+[DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)
+
+
+</td><td>
+
+The default type for "rawData" field of type Result.
+
+
+</td></tr>
+<tr><td>
+
+[DropdownItemProps](./search-ui-react.dropdownitemprops.md)
+
+
+</td><td>
+
+Props for the [DropdownItem()](./search-ui-react.dropdownitem.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[FacetProps](./search-ui-react.facetprops.md)
+
+
+</td><td>
+
+Props for a single facet component.
+
+
+</td></tr>
+<tr><td>
+
+[FeedbackType](./search-ui-react.feedbacktype.md)
+
+
+</td><td>
+
+Analytics event types for quality feedback.
+
+
+</td></tr>
+<tr><td>
+
+[FocusedItemData](./search-ui-react.focuseditemdata.md)
+
+
+</td><td>
+
+The data associated with the currently focused item.
+
+
+</td></tr>
+<tr><td>
+
+[OnDragHandler](./search-ui-react.ondraghandler.md)
+
+
+</td><td>
+
+A function which is called when user drag the map.
+
+
+</td></tr>
+<tr><td>
+
+[onSearchFunc](./search-ui-react.onsearchfunc.md)
+
+
+</td><td>
+
+The interface of a function which is called on a search.
+
+
+</td></tr>
+<tr><td>
+
+[PinComponent](./search-ui-react.pincomponent.md)
+
+
+</td><td>
+
+A functional component that can be used to render a custom marker on the map.
+
+
+</td></tr>
+<tr><td>
+
+[PinComponentProps](./search-ui-react.pincomponentprops.md)
+
+
+</td><td>
+
+Props for rendering a custom marker on the map.
+
+
+</td></tr>
+<tr><td>
+
+[RenderEntityPreviews](./search-ui-react.renderentitypreviews.md)
+
+
+</td><td>
+
+The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data.
+
+
+</td></tr>
+<tr><td>
+
+[SectionComponent](./search-ui-react.sectioncomponent.md)
+
+
+</td><td>
+
+A component that can be used to render a section template for vertical results.
+
+
+</td></tr>
+<tr><td>
+
+[StaticFilterOptionConfig](./search-ui-react.staticfilteroptionconfig.md)
+
+
+</td><td>
+
+The configuration data for a field value static filter option.
+
+
+</td></tr>
+<tr><td>
+
+[UnknownFieldTypeDisplayComponent](./search-ui-react.unknownfieldtypedisplaycomponent.md)
+
+
+</td><td>
+
+A React component interface to render results with "unknown" field type in field value direct answer.
+
+
+</td></tr>
+<tr><td>
+
+[VerticalConfigMap](./search-ui-react.verticalconfigmap.md)
+
+
+</td><td>
+
+A map of verticalKey to a VerticalConfig.
+
+
+</td></tr>
+</tbody></table>

@@ -14,8 +14,61 @@ interface GdaClickEventData
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [destinationUrl](./search-ui-react.gdaclickeventdata.destinationurl.md) |  | string |  |
-|  [searchResult?](./search-ui-react.gdaclickeventdata.searchresult.md) |  | Result | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[destinationUrl](./search-ui-react.gdaclickeventdata.destinationurl.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[searchResult?](./search-ui-react.gdaclickeventdata.searchresult.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Result
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>

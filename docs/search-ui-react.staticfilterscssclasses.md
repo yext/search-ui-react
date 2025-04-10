@@ -15,7 +15,44 @@ interface StaticFiltersCssClasses extends FilterGroupCssClasses
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [staticFiltersContainer?](./search-ui-react.staticfilterscssclasses.staticfilterscontainer.md) |  | string | _(Optional)_ |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[staticFiltersContainer?](./search-ui-react.staticfilterscssclasses.staticfilterscontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+</tbody></table>

@@ -14,8 +14,63 @@ interface SpellCheckProps
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.spellcheckprops.customcssclasses.md) |  | [SpellCheckCssClasses](./search-ui-react.spellcheckcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [onClick?](./search-ui-react.spellcheckprops.onclick.md) |  | (data: { correctedQuery: string; verticalKey: string; }) =&gt; void | _(Optional)_ A function which is called when a spell check suggestion is clicked. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.spellcheckprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[SpellCheckCssClasses](./search-ui-react.spellcheckcssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[onClick?](./search-ui-react.spellcheckprops.onclick.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(data: { correctedQuery: string; verticalKey: string; }) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function which is called when a spell check suggestion is clicked.
+
+
+</td></tr>
+</tbody></table>

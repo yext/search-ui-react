@@ -15,8 +15,63 @@ interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [customCssClasses?](./search-ui-react.standardcardprops.customcssclasses.md) |  | [StandardCardCssClasses](./search-ui-react.standardcardcssclasses.md) | _(Optional)_ CSS classes for customizing the component styling. |
-|  [showFeedbackButtons?](./search-ui-react.standardcardprops.showfeedbackbuttons.md) |  | boolean | _(Optional)_ Whether to show thumbs up/down buttons to provide feedback on the result card |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[customCssClasses?](./search-ui-react.standardcardprops.customcssclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[StandardCardCssClasses](./search-ui-react.standardcardcssclasses.md)
+
+
+</td><td>
+
+_(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[showFeedbackButtons?](./search-ui-react.standardcardprops.showfeedbackbuttons.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to show thumbs up/down buttons to provide feedback on the result card
+
+
+</td></tr>
+</tbody></table>

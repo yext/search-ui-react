@@ -14,8 +14,63 @@ interface VerticalLink
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [query?](./search-ui-react.verticallink.query.md) |  | string | _(Optional)_ The query used when the vertical link is selected. |
-|  [verticalKey](./search-ui-react.verticallink.verticalkey.md) |  | string | The vertical key associated with the vertical link. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[query?](./search-ui-react.verticallink.query.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The query used when the vertical link is selected.
+
+
+</td></tr>
+<tr><td>
+
+[verticalKey](./search-ui-react.verticallink.verticalkey.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The vertical key associated with the vertical link.
+
+
+</td></tr>
+</tbody></table>
