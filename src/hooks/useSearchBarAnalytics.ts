@@ -15,7 +15,7 @@ export function useSearchBarAnalytics(): (
 
     const reportAutocompleteEvent = () => {
         if (!experienceKey) {
-            console.error('Unable to report a vertical view all event. Missing field: experienceKey.');
+            console.error('Unable to report an autocomplete event. Missing field: experienceKey.');
             return;
         }
         analytics?.report({
@@ -35,7 +35,7 @@ export function useSearchBarAnalytics(): (
             return;
         }
         if (!experienceKey) {
-            console.error('Unable to report a vertical view all event. Missing field: experienceKey.');
+            console.error('Unable to report a search clear event. Missing field: experienceKey.');
             return;
         }
         analytics?.report({

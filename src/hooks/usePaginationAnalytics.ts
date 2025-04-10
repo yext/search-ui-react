@@ -22,7 +22,7 @@ export function usePaginationAnalytics(): () => void {
       return;
     }
     if (!experienceKey) {
-      console.error('Unable to report a vertical view all event. Missing field: experienceKey.');
+      console.error('Unable to report a pagination event. Missing field: experienceKey.');
       return;
     }
     analytics?.report({
