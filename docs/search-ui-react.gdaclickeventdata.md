@@ -14,7 +14,6 @@ interface GdaClickEventData
 
 ## Properties
 
-<<<<<<< HEAD
 <table><thead><tr><th>
 
 Property
@@ -73,10 +72,3 @@ _(Optional)_
 
 </td></tr>
 </tbody></table>
-=======
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [destinationUrl](./search-ui-react.gdaclickeventdata.destinationurl.md) |  | string |  |
-|  [searchResult?](./search-ui-react.gdaclickeventdata.searchresult.md) |  | Result | _(Optional)_ |
-
->>>>>>> develop

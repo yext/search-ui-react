@@ -14,7 +14,6 @@ interface CitationProps
 
 ## Properties
 
-<<<<<<< HEAD
 <table><thead><tr><th>
 
 Property
@@ -90,11 +89,3 @@ Result
 
 </td></tr>
 </tbody></table>
-=======
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [citationClickHandler?](./search-ui-react.citationprops.citationclickhandler.md) |  | (data: [GdaClickEventData](./search-ui-react.gdaclickeventdata.md)<!-- -->) =&gt; void | _(Optional)_ |
-|  [cssClasses](./search-ui-react.citationprops.cssclasses.md) |  | [GenerativeDirectAnswerCssClasses](./search-ui-react.generativedirectanswercssclasses.md) |  |
-|  [searchResult](./search-ui-react.citationprops.searchresult.md) |  | Result |  |
-
->>>>>>> develop

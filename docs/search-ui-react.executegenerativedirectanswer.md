@@ -14,7 +14,6 @@ declare function executeGenerativeDirectAnswer(searchActions: SearchActions): Pr
 
 ## Parameters
 
-<<<<<<< HEAD
 <table><thead><tr><th>
 
 Parameter
@@ -46,12 +45,6 @@ SearchActions
 
 </td></tr>
 </tbody></table>
-=======
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  searchActions | SearchActions |  |
-
->>>>>>> develop
 **Returns:**
 
 Promise&lt;GenerativeDirectAnswerResponse \| undefined&gt;
