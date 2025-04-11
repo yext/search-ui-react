@@ -14,6 +14,7 @@ import { useEntityPreviews } from '../hooks/useEntityPreviews';
 import { useRecentSearches } from '../hooks/useRecentSearches';
 import { useSearchWithNearMeHandling } from '../hooks/useSearchWithNearMeHandling';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
+import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import { VerticalDividerIcon } from '../icons/VerticalDividerIcon';
 import { HistoryIcon as RecentSearchIcon } from '../icons/HistoryIcon';
 import { CloseIcon } from '../icons/CloseIcon';
@@ -186,8 +187,13 @@ export function SearchBar({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
   const verticalKey = useSearchState(state => state.vertical.verticalKey);
+  const debouncedExecuteAutocompleteSearch = useDebouncedFunction( () => executeAutocompleteSearch(searchActions), 200);
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
-    () => executeAutocompleteSearch(searchActions)
+    async () => {
+      return debouncedExecuteAutocompleteSearch ?
+        debouncedExecuteAutocompleteSearch() :
+        undefined;
+    }
   );
   const [
     executeQueryWithNearMeHandling,
