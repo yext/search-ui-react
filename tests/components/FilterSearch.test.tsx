@@ -65,7 +65,8 @@ const mockedStateWithMultipleFilters: Partial<State> = {
 };
 
 const pause = (millis: number) => new Promise(resolve => setTimeout(resolve, millis));
-const waitForDebounce = () => pause(250); // wait for debounce period plus a little extra for safety
+// wait for debounce period + extra buffer to address flakiness
+const waitForDebounce = () => pause(200 + 200);
 
 function renderFilterSearch(
   props: FilterSearchProps = { searchFields: searchFieldsProp },
