@@ -2,6 +2,7 @@ import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, Searc
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks';
 import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
+import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import { executeSearch } from '../utils';
 import { isDuplicateStaticFilter } from '../utils/filterutils';
 import { Dropdown } from './Dropdown/Dropdown';
@@ -162,16 +163,23 @@ export function FilterSearch({
     ) ?? [];
   }, [staticFilters, matchingFieldIds]);
 
+  const debouncedExecuteFilterSearch = useDebouncedFunction(
+    (query: string) => searchActions.executeFilterSearch(query, sectioned, searchParamFields),
+    200
+  );
+
   const [
     filterSearchResponse,
     executeFilterSearch,
     clearFilterSearchResponse
   ] = useSynchronizedRequest<string, FilterSearchResponse>(
-    inputValue => {
+    async (inputValue) => {
       setFilterQuery(inputValue);
-      return searchActions.executeFilterSearch(inputValue ?? '', sectioned, searchParamFields);
+      return debouncedExecuteFilterSearch
+        ? debouncedExecuteFilterSearch(inputValue ?? '')
+        : undefined;
     },
-    (e) => console.error('Error occured executing a filter search request.\n', e)
+    (e) => console.error('Error occurred executing a filter search request.\n', e)
   );
 
   useEffect(() => {
@@ -212,7 +220,7 @@ export function FilterSearch({
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
-  const handleSelectDropdown = useCallback((_value, _index, itemData) => {
+  const handleSelectDropdown = useCallback(async (_value, _index, itemData) => {
     const newFilter = itemData?.filter as FieldValueStaticFilter;
     const newDisplayName = itemData?.displayName as string;
     if (!newFilter || !newDisplayName) {
