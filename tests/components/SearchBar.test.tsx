@@ -1,11 +1,11 @@
 import { SearchIntent, QuerySource, SearchCore, SearchHeadlessContext, State } from '@yext/search-headless-react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import { SearchBar } from '../../src/components/SearchBar';
 import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import * as Analytics from '../../src/hooks/useAnalytics';
 import { SearchAnalyticsService } from '@yext/analytics';
-import React, { act } from 'react';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {

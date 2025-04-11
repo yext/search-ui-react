@@ -1,5 +1,5 @@
 import { FilterSearch, FilterSearchProps } from '../../src/components/FilterSearch';
-import { render, RenderResult, screen } from '@testing-library/react';
+import { render, RenderResult, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
 import {
@@ -11,7 +11,6 @@ import { Matcher, State, SearchHeadless, SearchHeadlessContext, useSearchActions
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import React from 'react';
 
-import { act } from 'react';
 const searchFieldsProp = [{
   fieldApiName: 'name',
   entityType: 'ce_person'
