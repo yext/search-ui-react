@@ -1329,7 +1329,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-core@2.6.0
+ - @yext/search-core@2.6.1
 
 This package contains the following license and notice below:
 
@@ -1373,7 +1373,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-headless-react@2.5.0
+ - @yext/search-headless-react@2.5.1
 
 This package contains the following license and notice below:
 
@@ -1417,7 +1417,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-headless@2.6.0
+ - @yext/search-headless@2.6.1
 
 This package contains the following license and notice below:
 
@@ -4536,7 +4536,7 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - pirates@4.0.6
+ - pirates@4.0.7
 
 This package contains the following license and notice below:
 
@@ -6480,7 +6480,7 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - use-sync-external-store@1.4.0
+ - use-sync-external-store@1.5.0
 
 This package contains the following license and notice below:
 
@@ -6716,7 +6716,7 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - yaml@2.7.0
+ - yaml@2.7.1
 
 This package contains the following license and notice below:
 
