@@ -1,7 +1,7 @@
-import { 
-  GenerativeDirectAnswerResponse, 
-  useSearchActions, 
-  useSearchState, 
+import {
+  GenerativeDirectAnswerResponse,
+  useSearchActions,
+  useSearchState,
   SearchTypeEnum,
   Result
 } from '@yext/search-headless-react';
@@ -51,8 +51,8 @@ export interface GenerativeDirectAnswerProps {
   answerHeader?: string | JSX.Element,
   /** The header for the citations section of the generative direct answer. */
   citationsHeader?: string | JSX.Element,
-  /** 
-   * The citations container component for customizing the logic that determines which results can be rendered. 
+  /**
+   * The citations container component for customizing the logic that determines which results can be rendered.
    * By default, a section for citations is displayed if the results that correspond to the
    * citations have the default minimum required info, which is `rawData.uid` and `rawData.name`.
   */
@@ -109,9 +109,9 @@ export function GenerativeDirectAnswer({
 
   return (
     <div className={cssClasses.container}>
-      <Answer 
-        gdaResponse={gdaResponse} 
-        cssClasses={cssClasses} 
+      <Answer
+        gdaResponse={gdaResponse}
+        cssClasses={cssClasses}
         answerHeader={answerHeader}
         linkClickHandler={handleClickEvent}
       />
@@ -138,8 +138,8 @@ interface AnswerProps {
  * The answer section of the Generative Direct Answer.
  */
 function Answer(props: AnswerProps) {
-  const { 
-    gdaResponse, 
+  const {
+    gdaResponse,
     cssClasses,
     answerHeader = 'AI Generated Answer',
     linkClickHandler
@@ -148,8 +148,8 @@ function Answer(props: AnswerProps) {
     <div className={cssClasses.header}>
       {answerHeader}
     </div>
-    <Markdown 
-      content={gdaResponse.directAnswer} 
+    <Markdown
+      content={gdaResponse.directAnswer}
       onLinkClick={(destinationUrl) => destinationUrl && linkClickHandler?.({destinationUrl})}
       customCssClasses={cssClasses}
     />
@@ -177,11 +177,11 @@ export interface CitationsProps {
 }
 
 /**
- * Displays the citations section of the Generative Direct Answer. 
+ * Displays the citations section of the Generative Direct Answer.
  */
 function Citations(props: CitationsProps) {
-  const { 
-    gdaResponse, 
+  const {
+    gdaResponse,
     cssClasses,
     searchResults,
     citationsHeader,
@@ -195,7 +195,17 @@ function Citations(props: CitationsProps) {
         return false;
       }
       return gdaResponse.citations.includes(uid);
-    })
+    }).filter((result, index, self) => {
+      // If an entity is returned by multiple different verticals, it will be present in
+      // searchResults multiple times. We want to only show it once in the citations.
+      const {uid} = result.rawData ?? {};
+      if (!uid) {
+        return false;
+      }
+      return self.findIndex(r => {
+        return uid === r.rawData?.uid;
+      }) === index;
+    });
   }, [gdaResponse.citations, searchResults]);
 
   if (!citationResults.length) {
@@ -225,7 +235,7 @@ export interface CitationProps {
 }
 
 /**
- * Displays a citation card for the citations section of the Generative Direct Answer. 
+ * Displays a citation card for the citations section of the Generative Direct Answer.
  */
 function Citation(props: CitationProps) {
   const {
@@ -238,8 +248,8 @@ function Citation(props: CitationProps) {
   const citationSnippet = String(description ?? answer ?? '');
   const citationUrl = typeof link === 'string' ? link : undefined;
   return (
-    <a 
-      className={cssClasses.citation} 
+    <a
+      className={cssClasses.citation}
       href={citationUrl}
       onClick={() => citationUrl && citationClickHandler?.({searchResult, destinationUrl: citationUrl})}
     >
