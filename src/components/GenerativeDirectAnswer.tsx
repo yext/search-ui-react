@@ -189,22 +189,17 @@ function Citations(props: CitationsProps) {
     citationClickHandler
   } = props;
   const citationResults = React.useMemo(() => {
+    // If an entity is returned by multiple different verticals, it will be present in
+    // searchResults multiple times. We want to only show it once in the citations.
+    let citationIds = new Set(gdaResponse.citations);
     return searchResults.filter(result => {
       const {uid, name} = result.rawData ?? {};
-      if (!uid || typeof uid != 'string' || !name) {
+      const dataIsInvalid = !uid || !name || typeof name != 'string' || typeof uid != 'string';
+      if (dataIsInvalid || !citationIds.has(uid)) {
         return false;
       }
-      return gdaResponse.citations.includes(uid);
-    }).filter((result, index, self) => {
-      // If an entity is returned by multiple different verticals, it will be present in
-      // searchResults multiple times. We want to only show it once in the citations.
-      const {uid} = result.rawData ?? {};
-      if (!uid) {
-        return false;
-      }
-      return self.findIndex(r => {
-        return uid === r.rawData?.uid;
-      }) === index;
+      citationIds.delete(uid);
+      return true;
     });
   }, [gdaResponse.citations, searchResults]);
 

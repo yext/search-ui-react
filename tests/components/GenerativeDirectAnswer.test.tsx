@@ -5,7 +5,10 @@ import { useAnalytics } from '../../src/hooks/useAnalytics';
 
 import { State } from '@yext/search-headless-react';
 import { mockAnswersState, ignoreLinkClickErrors } from '../__utils__/mocks';
-import { verticalResults } from '../__fixtures__/data/universalresults';
+import {
+  verticalResults,
+  verticalResultsWithDuplicateEntity
+} from '../__fixtures__/data/universalresults';
 import { generativeDirectAnswerText, generativeDirectAnswerLink, generativeDirectAnswerResponse } from '../__fixtures__/data/generativeDirectAnswer';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
@@ -17,6 +20,23 @@ const mockedState: Partial<State> = {
   },
   universal: {
     verticals: verticalResults
+  },
+  query: {
+    queryId: '[queryId]',
+    mostRecentSearch: 'test'
+  },
+  meta: {
+    searchType: 'universal'
+  }
+};
+
+const mockedStateWithDuplicateEntity: Partial<State> = {
+  generativeDirectAnswer: {
+    isLoading: false,
+    response: generativeDirectAnswerResponse,
+  },
+  universal: {
+    verticals: verticalResultsWithDuplicateEntity
   },
   query: {
     queryId: '[queryId]',
@@ -109,6 +129,17 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
     expect(screen.getByText(generativeDirectAnswerText)).toBeDefined();
     expect(screen.getByText("CustomCitationsComponentTest")).toBeTruthy();
   });
+
+  it('citations are deduplicated', () => {
+    mockAnswersState(mockedStateWithDuplicateEntity);
+    render(<GenerativeDirectAnswer />);
+    expect(screen.getByText(generativeDirectAnswerText)).toBeDefined();
+    expect(screen.getByText('Sources (2)')).toBeDefined();
+
+    checkResultData(verticalResultsWithDuplicateEntity[0].results[0].rawData, false); //not a citation
+    checkResultData(verticalResultsWithDuplicateEntity[0].results[1].rawData, true);
+    checkResultData(verticalResultsWithDuplicateEntity[1].results[0].rawData, true);
+  });
 });
 
 describe('GenerativeDirectAnswer without sufficient citation fields', () => {
@@ -139,6 +170,14 @@ describe('GenerativeDirectAnswer without sufficient citation fields', () => {
   });
 });
 
+// describe('GenerativeDirectAnswer with same entity appearing twice in search results', () => {
+//   beforeEach(() => {
+//     mockAnswersState(mockedStateWithDuplicateEntity);
+//   });
+//
+//
+// });
+
 function checkResultData(resultData: Record<string, unknown>, shouldDisplay: boolean) {
   if (typeof resultData.name === 'string') {
     if (shouldDisplay) {
@@ -153,5 +192,5 @@ function checkResultData(resultData: Record<string, unknown>, shouldDisplay: boo
     } else {
       expect(screen.queryByText(resultData.description)).toBeNull();
     }
-  } 
+  }
 }
