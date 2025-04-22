@@ -170,14 +170,6 @@ describe('GenerativeDirectAnswer without sufficient citation fields', () => {
   });
 });
 
-// describe('GenerativeDirectAnswer with same entity appearing twice in search results', () => {
-//   beforeEach(() => {
-//     mockAnswersState(mockedStateWithDuplicateEntity);
-//   });
-//
-//
-// });
-
 function checkResultData(resultData: Record<string, unknown>, shouldDisplay: boolean) {
   if (typeof resultData.name === 'string') {
     if (shouldDisplay) {
