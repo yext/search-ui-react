@@ -9,8 +9,8 @@ import { useComposedCssClasses } from '../hooks';
 import { useCardAnalytics } from '../hooks/useCardAnalytics';
 import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
-import { Markdown } from './Markdown';
-import React from 'react';
+import { Markdown, MarkdownCssClasses } from './Markdown';
+import React, { useMemo } from 'react';
 
 /**
  * The CSS class interface used for {@link GenerativeDirectAnswer}.
@@ -31,7 +31,7 @@ export interface GenerativeDirectAnswerCssClasses {
 const builtInCssClasses: Readonly<GenerativeDirectAnswerCssClasses> = {
   container: 'p-6 border border-gray-200 rounded-lg shadow-sm',
   header: 'text-xl',
-  answerText: 'mt-4',
+  answerText: 'mt-4 prose',
   divider: 'border-b border-gray-200 w-full pb-6 mb-6',
   citationsContainer: 'mt-4 flex overflow-x-auto gap-4',
   citation: 'p-4 border border-gray-200 rounded-lg shadow-sm bg-slate-100 flex flex-col grow-0 shrink-0 basis-64 text-sm text-neutral overflow-x-auto cursor-pointer hover:border-indigo-500',
@@ -108,7 +108,7 @@ export function GenerativeDirectAnswer({
   }
 
   return (
-    <div className={cssClasses.container}>
+    <div>
       <Answer
         gdaResponse={gdaResponse}
         cssClasses={cssClasses}
@@ -144,6 +144,14 @@ function Answer(props: AnswerProps) {
     answerHeader = 'AI Generated Answer',
     linkClickHandler
   } = props;
+
+  const markdownCssClasses: MarkdownCssClasses = useMemo(
+    () => ({
+      container: cssClasses.answerText,
+    }),
+    [cssClasses.answerText]
+  );
+
   return <>
     <div className={cssClasses.header}>
       {answerHeader}
@@ -151,7 +159,7 @@ function Answer(props: AnswerProps) {
     <Markdown
       content={gdaResponse.directAnswer}
       onLinkClick={(destinationUrl) => destinationUrl && linkClickHandler?.({destinationUrl})}
-      customCssClasses={cssClasses}
+      customCssClasses={markdownCssClasses}
     />
   </>;
 }
