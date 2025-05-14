@@ -108,7 +108,7 @@ export function GenerativeDirectAnswer({
   }
 
   return (
-    <div>
+    <div className={cssClasses.container}>
       <Answer
         gdaResponse={gdaResponse}
         cssClasses={cssClasses}
