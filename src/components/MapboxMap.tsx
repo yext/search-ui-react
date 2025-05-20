@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
@@ -15,7 +15,11 @@ export type PinComponentProps<T> = {
   /** The Mapbox map. */
   mapbox: mapboxgl.Map,
   /** The search result corresponding to the pin. */
-  result: Result<T>
+  result: Result<T>,
+  /** Where the pin is selected. */
+  selected?: boolean,
+  /** A function that handles pin clicks. */
+  onClick?: (result: Result<T>) => void
 };
 
 /**
@@ -96,7 +100,9 @@ export interface MapboxMapProps<T> {
    * If set to true, the map will update its options when the mapboxOptions prop changes.
    * Otherwise, the map will not update its options once initially set.
    */
-  allowUpdates?: boolean
+  allowUpdates?: boolean,
+  /** A function that scrolls to the search result corresponding to the selected pin. */
+  scrollToResult?: (result: Result<T> | undefined) => void
 }
 
 /**
@@ -127,6 +133,7 @@ export function MapboxMap<T>({
   onDrag,
   iframeWindow,
   allowUpdates = false,
+  scrollToResult,
 }: MapboxMapProps<T>): JSX.Element {
   const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
   useEffect(() => {
@@ -139,6 +146,15 @@ export function MapboxMap<T>({
 
   const locationResults = useSearchState(state => state.vertical.results) as Result<T>[];
   const onDragDebounced = useDebouncedFunction(onDrag, 100);
+  const [selectedResult, setSelectedResult] = useState<Result<T> | undefined>(undefined);
+
+  const handlePinClick = useCallback((result: Result<T>) => {
+    setSelectedResult(prev => prev === result ? undefined : result)
+  }, [])
+
+  useEffect(() => {
+    scrollToResult?.(selectedResult);
+  }, [selectedResult])
 
   useEffect(() => {
     if (mapContainer.current) {
@@ -193,6 +209,8 @@ export function MapboxMap<T>({
               index={i}
               mapbox={mapbox}
               result={result}
+              selected={selectedResult === result}
+              onClick={handlePinClick}
             />, el);
             markerOptions.element = el;
           } else if (renderPin) {
@@ -214,7 +232,7 @@ export function MapboxMap<T>({
         });
       }
     }
-  }, [PinComponent, getCoordinate, locationResults]);
+  }, [PinComponent, getCoordinate, locationResults, selectedResult]);
 
   return (
     <div ref={mapContainer} className='h-full w-full' />

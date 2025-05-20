@@ -187,4 +187,23 @@ _(Optional)_ Render function for a custom marker on the map. This function takes
 
 
 </td></tr>
+<tr><td>
+
+[scrollToResult?](./search-ui-react.mapboxmapprops.scrolltoresult.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(result: Result&lt;T&gt; \| undefined) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function that scrolls to the search result corresponding to the selected pin.
+
+
+</td></tr>
 </tbody></table>
