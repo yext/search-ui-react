@@ -13,7 +13,8 @@ interface VerticalResultsDisplayProps<T> {
   CardComponent: CardComponent<T>,
   isLoading?: boolean,
   results: Result<T>[],
-  customCssClasses?: VerticalResultsCssClasses
+  customCssClasses?: VerticalResultsCssClasses,
+  setResultsRef?: (index: number) => ((result: HTMLDivElement) => void) | null
 }
 
 /**
@@ -27,7 +28,8 @@ export function VerticalResultsDisplay<T>(props: VerticalResultsDisplayProps<T>)
     CardComponent,
     results,
     isLoading = false,
-    customCssClasses
+    customCssClasses,
+    setResultsRef
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
@@ -41,7 +43,7 @@ export function VerticalResultsDisplay<T>(props: VerticalResultsDisplayProps<T>)
 
   return (
     <div className={resultsClassNames}>
-      {results?.map(result => renderResult(CardComponent, result))}
+      {results?.map(result => renderResult(CardComponent, result, setResultsRef))}
     </div>
   );
 }
@@ -54,8 +56,13 @@ export function VerticalResultsDisplay<T>(props: VerticalResultsDisplayProps<T>)
  */
 function renderResult<T>(
   CardComponent: CardComponent<T>,
-  result: Result<T>
+  result: Result<T>,
+  setResultsRef?: (index: number) => ((result: HTMLDivElement) => void) | null
 ): JSX.Element {
   const key = result.id && result.index ? `${result.id}-${result.index}` : result.id || result.index;
-  return <CardComponent result={result} key={key}/>;
+  return (
+    <div key={result.id} ref={result.index ? setResultsRef?.(result.index) : null}>
+      <CardComponent result={result} key={key}/>
+    </div>
+  );
 }

@@ -490,7 +490,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }: MapboxMapProps<T>): JSX.Element;
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, scrollToResult, }: MapboxMapProps<T>): JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
@@ -504,6 +504,7 @@ export interface MapboxMapProps<T> {
     renderPin?: (props: PinComponentProps<T> & {
         container: HTMLElement;
     }) => void;
+    scrollToResult?: (result: Result<T> | undefined) => void;
 }
 
 // @public
@@ -595,6 +596,8 @@ export type PinComponentProps<T> = {
     index: number;
     mapbox: mapboxgl_2.Map;
     result: Result<T>;
+    selected?: boolean;
+    onClick?: (result: Result<T>) => void;
 };
 
 // @public
@@ -980,6 +983,7 @@ export interface VerticalResultsProps<T> {
     CardComponent: CardComponent<T>;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
+    setResultsRef?: (index: number) => ((result: HTMLDivElement) => void) | null;
 }
 
 // @public
