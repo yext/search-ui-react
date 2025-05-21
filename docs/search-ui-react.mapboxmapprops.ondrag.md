@@ -4,7 +4,7 @@
 
 ## MapboxMapProps.onDrag property
 
-A function which is called when user drag the map.
+A function which is called when user drags or zooms the map.
 
 **Signature:**
 

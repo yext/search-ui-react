@@ -49,7 +49,7 @@ export interface Coordinate {
 }
 
 /**
- * A function which is called when user drag the map.
+ * A function which is called when user drags or zooms the map.
  *
  * @public
  */
@@ -102,7 +102,15 @@ export interface MapboxMapProps<T> {
    */
   allowUpdates?: boolean,
   /** A function that scrolls to the search result corresponding to the selected pin. */
-  scrollToResult?: (result: Result<T> | undefined) => void
+  scrollToResult?: (result: Result<T> | undefined) => void,
+  /**
+   * The color that default map markers should be, in the form of a HEX color code.
+   * By default, the standard Mapbox pin color is used, which is light blue (#3FB1CE).
+   * This prop should not be used with {@link MapboxMapProps.PinComponent | PinComponent}
+   * or with {@link MapboxMapProps.renderPin | renderPin}. If either are provided,
+   * pinColor will be ignored.
+  */
+  pinColor?: string
 }
 
 /**
@@ -134,6 +142,7 @@ export function MapboxMap<T>({
   iframeWindow,
   allowUpdates = false,
   scrollToResult,
+  pinColor,
 }: MapboxMapProps<T>): JSX.Element {
   const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
   useEffect(() => {
@@ -182,10 +191,22 @@ export function MapboxMap<T>({
           mapbox.on('drag', () => {
             onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
           });
+          mapbox.on('zoom', (e) => {
+            if (e.originalEvent) {
+              // only trigger on user zoom, not programmatic zoom (e.g. from fitBounds)
+              onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
+            }
+          });
         }
       }
     }
   }, [mapboxOptions, onDragDebounced]);
+
+  useEffect(() => {
+    if (iframeWindow && map.current) {
+      map.current.resize();
+    }
+  }, [mapContainer.current]);
 
   useEffect(() => {
     markers.current.forEach(marker => marker.remove());
@@ -216,6 +237,8 @@ export function MapboxMap<T>({
           } else if (renderPin) {
             renderPin({ index: i, mapbox, result, container: el });
             markerOptions.element = el;
+          } else if (pinColor) {
+            markerOptions.color = pinColor;
           }
           const marker = new mapboxInstance.Marker(markerOptions)
             .setLngLat({ lat: latitude, lng: longitude })
@@ -228,11 +251,11 @@ export function MapboxMap<T>({
       if (!bounds.isEmpty()){
         mapbox.fitBounds(bounds, {
           padding: { top: 50, bottom: 50, left: 50, right: 50 },
-          maxZoom: 15
+          maxZoom: mapboxOptions?.maxZoom ?? 15
         });
       }
     }
-  }, [PinComponent, getCoordinate, locationResults, selectedResult]);
+  }, [PinComponent, getCoordinate, locationResults, selectedResult, pinColor]);
 
   return (
     <div ref={mapContainer} className='h-full w-full' />

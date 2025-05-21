@@ -145,7 +145,26 @@ _(Optional)_ Interface for map customization derived from Mapbox GL's Map option
 
 </td><td>
 
-_(Optional)_ A function which is called when user drag the map.
+_(Optional)_ A function which is called when user drags or zooms the map.
+
+
+</td></tr>
+<tr><td>
+
+[pinColor?](./search-ui-react.mapboxmapprops.pincolor.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The color that default map markers should be, in the form of a HEX color code. By default, the standard Mapbox pin color is used, which is light blue (\#3FB1CE). This prop should not be used with [PinComponent](./search-ui-react.mapboxmapprops.pincomponent.md) or with [renderPin](./search-ui-react.mapboxmapprops.renderpin.md)<!-- -->. If either are provided, pinColor will be ignored.
 
 
 </td></tr>
