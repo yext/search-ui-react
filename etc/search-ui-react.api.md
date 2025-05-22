@@ -14,6 +14,7 @@ import { FilterSearchResponse } from '@yext/search-headless-react';
 import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import { default as mapboxgl_2 } from 'mapbox-gl';
+import { MarkerOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
@@ -490,7 +491,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, scrollToResult, pinColor, }: MapboxMapProps<T>): JSX.Element;
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, scrollToResult, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
@@ -499,8 +500,8 @@ export interface MapboxMapProps<T> {
     iframeWindow?: Window;
     mapboxAccessToken: string;
     mapboxOptions?: Omit<mapboxgl_2.MapboxOptions, 'container'>;
+    markerOptionsOverride?: (selected: boolean) => MarkerOptions;
     onDrag?: OnDragHandler;
-    pinColor?: string;
     PinComponent?: PinComponent<T>;
     renderPin?: (props: PinComponentProps<T> & {
         container: HTMLElement;
