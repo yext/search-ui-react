@@ -246,7 +246,11 @@ export function MapboxMap<T>({
           const marker = new mapboxInstance.Marker(markerOptions)
             .setLngLat({ lat: latitude, lng: longitude })
             .addTo(mapbox);
-          marker?.getElement().addEventListener('click', () => handlePinClick(result));
+
+          if (!PinComponent) {
+            marker?.getElement().addEventListener('click', () => handlePinClick(result));
+          }
+
           markers.current.push(marker);
           bounds.extend([longitude, latitude]);
         }

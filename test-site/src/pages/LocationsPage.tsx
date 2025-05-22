@@ -105,7 +105,7 @@ export function LocationsPage() {
 
   /**
    * uncomment this to test side by side view of search results and interactive map pins
-   * note that scroll to results do not fully work due to extra height in the StandardCard padding
+   * note that scroll to results do not fully work ONLY on this test-site due to extra height in the StandardCard padding
    */
   // return (
   //   <div className="flex h-96">
