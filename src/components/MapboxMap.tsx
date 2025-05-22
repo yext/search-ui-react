@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl, { MarkerOptions } from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import ReactDOM from 'react-dom';
@@ -104,13 +104,13 @@ export interface MapboxMapProps<T> {
   /** A function that scrolls to the search result corresponding to the selected pin. */
   scrollToResult?: (result: Result<T> | undefined) => void,
   /**
-   * The color that default map markers should be, in the form of a HEX color code.
-   * By default, the standard Mapbox pin color is used, which is light blue (#3FB1CE).
+   * The options to apply to the map markers based whether it is selected.
+   * By default, the standard Mapbox pin is used regardless of the pin selection.
    * This prop should not be used with {@link MapboxMapProps.PinComponent | PinComponent}
    * or with {@link MapboxMapProps.renderPin | renderPin}. If either are provided,
-   * pinColor will be ignored.
+   * markerOptionsOverride will be ignored.
   */
-  pinColor?: string
+  markerOptionsOverride?: (selected: boolean) => MarkerOptions,
 }
 
 /**
@@ -142,7 +142,7 @@ export function MapboxMap<T>({
   iframeWindow,
   allowUpdates = false,
   scrollToResult,
-  pinColor,
+  markerOptionsOverride,
 }: MapboxMapProps<T>): JSX.Element {
   const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
   useEffect(() => {
@@ -219,7 +219,7 @@ export function MapboxMap<T>({
         if (markerLocation) {
           const { latitude, longitude } = markerLocation;
           const el = document.createElement('div');
-          const markerOptions: mapboxgl.MarkerOptions = {};
+          let markerOptions: mapboxgl.MarkerOptions = {};
           if (PinComponent) {
             if (renderPin) {
               console.warn(
@@ -237,12 +237,16 @@ export function MapboxMap<T>({
           } else if (renderPin) {
             renderPin({ index: i, mapbox, result, container: el });
             markerOptions.element = el;
-          } else if (pinColor) {
-            markerOptions.color = pinColor;
+          } else if (markerOptionsOverride) {
+            markerOptions = {
+              ...markerOptions,
+              ...markerOptionsOverride(selectedResult === result)
+            }
           }
           const marker = new mapboxInstance.Marker(markerOptions)
             .setLngLat({ lat: latitude, lng: longitude })
             .addTo(mapbox);
+          marker.getElement().addEventListener('click', () => handlePinClick(result));
           markers.current.push(marker);
           bounds.extend([longitude, latitude]);
         }
@@ -255,7 +259,7 @@ export function MapboxMap<T>({
         });
       }
     }
-  }, [PinComponent, getCoordinate, locationResults, selectedResult, pinColor]);
+  }, [PinComponent, getCoordinate, locationResults, selectedResult, markerOptionsOverride]);
 
   return (
     <div ref={mapContainer} className='h-full w-full' />
