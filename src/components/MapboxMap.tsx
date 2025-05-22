@@ -105,7 +105,7 @@ export interface MapboxMapProps<T> {
   scrollToResult?: (result: Result<T> | undefined) => void,
   /**
    * The options to apply to the map markers based whether it is selected.
-   * By default, the standard Mapbox pin is used regardless of the pin selection.
+   * By default, the standard Mapbox pin is used.
    * This prop should not be used with {@link MapboxMapProps.PinComponent | PinComponent}
    * or with {@link MapboxMapProps.renderPin | renderPin}. If either are provided,
    * markerOptionsOverride will be ignored.
@@ -246,7 +246,7 @@ export function MapboxMap<T>({
           const marker = new mapboxInstance.Marker(markerOptions)
             .setLngLat({ lat: latitude, lng: longitude })
             .addTo(mapbox);
-          marker.getElement().addEventListener('click', () => handlePinClick(result));
+          marker?.getElement().addEventListener('click', () => handlePinClick(result));
           markers.current.push(marker);
           bounds.extend([longitude, latitude]);
         }
