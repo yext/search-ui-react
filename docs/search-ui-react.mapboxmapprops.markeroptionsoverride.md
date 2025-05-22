@@ -4,7 +4,7 @@
 
 ## MapboxMapProps.markerOptionsOverride property
 
-The options to apply to the map markers based whether it is selected. By default, the standard Mapbox pin is used. This prop should not be used with [PinComponent](./search-ui-react.mapboxmapprops.pincomponent.md) or with [renderPin](./search-ui-react.mapboxmapprops.renderpin.md)<!-- -->. If either are provided, markerOptionsOverride will be ignored.
+The options to apply to the map markers based on whether it is selected. By default, the standard Mapbox pin is used. This prop should not be used with [PinComponent](./search-ui-react.mapboxmapprops.pincomponent.md) or with [renderPin](./search-ui-react.mapboxmapprops.renderpin.md)<!-- -->. If either are provided, markerOptionsOverride will be ignored.
 
 **Signature:**
 

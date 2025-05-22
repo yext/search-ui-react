@@ -104,7 +104,7 @@ export interface MapboxMapProps<T> {
   /** A function that scrolls to the search result corresponding to the selected pin. */
   scrollToResult?: (result: Result<T> | undefined) => void,
   /**
-   * The options to apply to the map markers based whether it is selected.
+   * The options to apply to the map markers based on whether it is selected.
    * By default, the standard Mapbox pin is used.
    * This prop should not be used with {@link MapboxMapProps.PinComponent | PinComponent}
    * or with {@link MapboxMapProps.renderPin | renderPin}. If either are provided,
