@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import mapboxgl, { MarkerOptions } from 'mapbox-gl';
+import Language from '@mapbox/mapbox-gl-language';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import ReactDOM from 'react-dom';
@@ -153,6 +154,7 @@ export function MapboxMap<T>({
   const map = useRef<mapboxgl.Map | null>(null);
   const markers = useRef<mapboxgl.Marker[]>([]);
 
+  const locale = useSearchState(state => state.meta?.locale);
   const locationResults = useSearchState(state => state.vertical.results) as Result<T>[];
   const onDragDebounced = useDebouncedFunction(onDrag, 100);
   const [selectedResult, setSelectedResult] = useState<Result<T> | undefined>(undefined);
@@ -187,6 +189,9 @@ export function MapboxMap<T>({
           visualizePitch: false
         });
         mapbox.addControl(nav, 'top-right');
+        mapbox.addControl(new Language({
+          defaultLanguage: locale
+        }));
         if (onDragDebounced) {
           mapbox.on('drag', () => {
             onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
