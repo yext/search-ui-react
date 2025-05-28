@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.8.8",
+  "version": "1.8.9",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "watson@yext.com",
   "license": "BSD-3-Clause",
@@ -154,6 +154,7 @@
     "restoreMocks": true
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-language": "^1.0.1",
     "@restart/ui": "^1.0.1",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/line-clamp": "^0.4.4",
