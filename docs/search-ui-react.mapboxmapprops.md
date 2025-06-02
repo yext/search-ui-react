@@ -145,7 +145,7 @@ _(Optional)_ Interface for map customization derived from Mapbox GL's Map option
 
 </td><td>
 
-_(Optional)_ The options to apply to the map markers based on whether it is selected. By default, the standard Mapbox pin is used. This prop should not be used with [PinComponent](./search-ui-react.mapboxmapprops.pincomponent.md) or with [renderPin](./search-ui-react.mapboxmapprops.renderpin.md)<!-- -->. If either are provided, markerOptionsOverride will be ignored.
+_(Optional)_ The options to apply to the map markers based on whether it is selected.
 
 
 </td></tr>
@@ -165,6 +165,25 @@ _(Optional)_ The options to apply to the map markers based on whether it is sele
 </td><td>
 
 _(Optional)_ A function which is called when user drags or zooms the map.
+
+
+</td></tr>
+<tr><td>
+
+[onPinClick?](./search-ui-react.mapboxmapprops.onpinclick.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(result: Result&lt;T&gt; \| undefined) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function that handles a pin click event.
 
 
 </td></tr>
@@ -203,25 +222,6 @@ _(Optional)_ Custom Pin component to render for markers on the map. By default, 
 </td><td>
 
 _(Optional)_ Render function for a custom marker on the map. This function takes in an HTML element and is responible for rendering the pin into that element, which will be used as the marker. By default, the built-in marker image from Mapbox GL is used. This prop should not be used with [PinComponent](./search-ui-react.mapboxmapprops.pincomponent.md)<!-- -->. If both are provided, only PinComponent will be used.
-
-
-</td></tr>
-<tr><td>
-
-[scrollToResult?](./search-ui-react.mapboxmapprops.scrolltoresult.md)
-
-
-</td><td>
-
-
-</td><td>
-
-(result: Result&lt;T&gt; \| undefined) =&gt; void
-
-
-</td><td>
-
-_(Optional)_ A function that scrolls to the search result corresponding to the selected pin.
 
 
 </td></tr>
