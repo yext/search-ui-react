@@ -159,7 +159,7 @@ export function MapboxMap<T>({
     onPinClick?.(selectedResult);
   }, [selectedResult])
 
-  const locale = useSearchState(state => state.meta.locale);
+  const locale = useSearchState(state => state.meta?.locale);
   // keep track of the previous value of mapboxOptions across renders
   const prevMapboxOptions = useRef(mapboxOptions);
 
