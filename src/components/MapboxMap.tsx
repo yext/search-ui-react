@@ -169,7 +169,7 @@ export function MapboxMap<T>({
         // Compare current and previous mapboxOptions using deep equality
         if (!_.isEqual(prevMapboxOptions.current, mapboxOptions)) {
           // Update to existing Map
-          handleMapboxOptionsUpdates(mapboxOptions, map.current, locale);
+          handleMapboxOptionsUpdates(mapboxOptions, map.current);
           prevMapboxOptions.current = (mapboxOptions);
         }
       } else if (!map.current && mapboxInstance) {
@@ -298,7 +298,7 @@ export function MapboxMap<T>({
   );
 }
 
-function handleMapboxOptionsUpdates(mapboxOptions: Omit<mapboxgl.MapboxOptions, 'container'> | undefined, currentMap: mapboxgl.Map, locale) {
+function handleMapboxOptionsUpdates(mapboxOptions: Omit<mapboxgl.MapboxOptions, 'container'> | undefined, currentMap: mapboxgl.Map) {
   if (mapboxOptions?.style) {
     currentMap.setStyle(mapboxOptions.style);
   }
