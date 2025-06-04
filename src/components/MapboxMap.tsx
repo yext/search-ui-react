@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import mapboxgl, { MarkerOptions } from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
+import _ from 'lodash';
+
 import ReactDOM from 'react-dom';
 
 /**
@@ -18,8 +20,6 @@ export type PinComponentProps<T> = {
   result: Result<T>,
   /** Where the pin is selected. */
   selected?: boolean,
-  /** A function that handles pin clicks. */
-  onClick?: (result: Result<T>) => void
 };
 
 /**
@@ -101,15 +101,9 @@ export interface MapboxMapProps<T> {
    * Otherwise, the map will not update its options once initially set.
    */
   allowUpdates?: boolean,
-  /** A function that scrolls to the search result corresponding to the selected pin. */
-  scrollToResult?: (result: Result<T> | undefined) => void,
-  /**
-   * The options to apply to the map markers based on whether it is selected.
-   * By default, the standard Mapbox pin is used.
-   * This prop should not be used with {@link MapboxMapProps.PinComponent | PinComponent}
-   * or with {@link MapboxMapProps.renderPin | renderPin}. If either are provided,
-   * markerOptionsOverride will be ignored.
-  */
+  /** A function that handles a pin click event. */
+  onPinClick?: (result: Result<T> | undefined) => void,
+  /** The options to apply to the map markers based on whether it is selected. */
   markerOptionsOverride?: (selected: boolean) => MarkerOptions,
 }
 
@@ -141,7 +135,7 @@ export function MapboxMap<T>({
   onDrag,
   iframeWindow,
   allowUpdates = false,
-  scrollToResult,
+  onPinClick,
   markerOptionsOverride,
 }: MapboxMapProps<T>): JSX.Element {
   const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
@@ -162,14 +156,22 @@ export function MapboxMap<T>({
   }, [])
 
   useEffect(() => {
-    scrollToResult?.(selectedResult);
+    onPinClick?.(selectedResult);
   }, [selectedResult])
+
+  const locale = useSearchState(state => state.meta?.locale);
+  // keep track of the previous value of mapboxOptions across renders
+  const prevMapboxOptions = useRef(mapboxOptions);
 
   useEffect(() => {
     if (mapContainer.current) {
       if (map.current && allowUpdates) {
-        // Update to existing Map
-        handleMapboxOptionsUpdates(mapboxOptions, map.current);
+        // Compare current and previous mapboxOptions using deep equality
+        if (!_.isEqual(prevMapboxOptions.current, mapboxOptions)) {
+          // Update to existing Map
+          handleMapboxOptionsUpdates(mapboxOptions, map.current);
+          prevMapboxOptions.current = (mapboxOptions);
+        }
       } else if (!map.current && mapboxInstance) {
         const options: mapboxgl.MapboxOptions = {
           container: mapContainer.current,
@@ -203,6 +205,33 @@ export function MapboxMap<T>({
   }, [mapboxOptions, onDragDebounced]);
 
   useEffect(() => {
+    const mapbox = map.current;
+    if (!mapbox || !locale) return;
+
+    const localizeMap = () => {
+      mapbox.getStyle().layers.forEach(layer => {
+        if (layer.type === "symbol" && layer.layout?.["text-field"]) {
+          mapbox.setLayoutProperty(
+            layer.id,
+            "text-field",
+            [
+              'coalesce',
+              ['get', `name_${getMapboxLanguage(locale)}`],
+              ['get', 'name']
+            ]
+          );
+        }
+      });
+    }
+
+    if (mapbox.isStyleLoaded()) {
+      localizeMap();
+    } else {
+      mapbox.once("styledata", () => localizeMap())
+    }
+  }, [locale]);
+
+  useEffect(() => {
     if (iframeWindow && map.current) {
       map.current.resize();
     }
@@ -231,26 +260,25 @@ export function MapboxMap<T>({
               mapbox={mapbox}
               result={result}
               selected={selectedResult === result}
-              onClick={handlePinClick}
             />, el);
             markerOptions.element = el;
           } else if (renderPin) {
             renderPin({ index: i, mapbox, result, container: el });
             markerOptions.element = el;
-          } else if (markerOptionsOverride) {
+          }
+          
+          if (markerOptionsOverride) {
             markerOptions = {
               ...markerOptions,
               ...markerOptionsOverride(selectedResult === result)
             }
           }
+
           const marker = new mapboxInstance.Marker(markerOptions)
             .setLngLat({ lat: latitude, lng: longitude })
             .addTo(mapbox);
 
-          if (!PinComponent) {
-            marker?.getElement().addEventListener('click', () => handlePinClick(result));
-          }
-
+          marker?.getElement().addEventListener('click', () => handlePinClick(result));
           markers.current.push(marker);
           bounds.extend([longitude, latitude]);
         }
@@ -295,4 +323,14 @@ function getDefaultCoordinate<T>(result: Result<T>): Coordinate | undefined {
     return undefined;
   }
   return yextDisplayCoordinate;
+}
+
+export function getMapboxLanguage(locale: string) {
+  try {
+    const localeOptions = new Intl.Locale(locale.replaceAll('_', '-'));
+    return localeOptions.script ? `${localeOptions.language}-${localeOptions.script}` : localeOptions.language;
+  } catch (e) {
+    console.warn(`Locale "${locale}" is not supported.`)
+  }
+  return 'en';
 }

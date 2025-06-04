@@ -14,6 +14,5 @@ type PinComponentProps<T> = {
     mapbox: mapboxgl.Map;
     result: Result<T>;
     selected?: boolean;
-    onClick?: (result: Result<T>) => void;
 };
 ```
