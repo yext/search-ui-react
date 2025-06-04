@@ -325,7 +325,7 @@ function getDefaultCoordinate<T>(result: Result<T>): Coordinate | undefined {
   return yextDisplayCoordinate;
 }
 
-function getMapboxLanguage(locale: string) {
+export function getMapboxLanguage(locale: string) {
   try {
     const localeOptions = new Intl.Locale(locale.replaceAll('_', '-'));
     return localeOptions.script ? `${localeOptions.language}-${localeOptions.script}` : localeOptions.language;
