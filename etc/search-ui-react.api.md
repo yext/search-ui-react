@@ -491,7 +491,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, scrollToResult, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
@@ -502,11 +502,11 @@ export interface MapboxMapProps<T> {
     mapboxOptions?: Omit<mapboxgl_2.MapboxOptions, 'container'>;
     markerOptionsOverride?: (selected: boolean) => MarkerOptions;
     onDrag?: OnDragHandler;
+    onPinClick?: (result: Result<T> | undefined) => void;
     PinComponent?: PinComponent<T>;
     renderPin?: (props: PinComponentProps<T> & {
         container: HTMLElement;
     }) => void;
-    scrollToResult?: (result: Result<T> | undefined) => void;
 }
 
 // @public
@@ -599,7 +599,6 @@ export type PinComponentProps<T> = {
     mapbox: mapboxgl_2.Map;
     result: Result<T>;
     selected?: boolean;
-    onClick?: (result: Result<T>) => void;
 };
 
 // @public
