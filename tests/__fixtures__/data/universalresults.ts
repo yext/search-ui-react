@@ -71,8 +71,32 @@ const vertical3: VerticalResults = {
   verticalKey: 'vertical3'
 };
 
+const vertical4: VerticalResults = {
+  appliedQueryFilters: [],
+  queryDurationMillis: 500,
+  results: [{
+    rawData: {
+      name: 'title3',
+      description: 'text3',
+      uid: 'uid3'
+    },
+    source: Source.KnowledgeManager,
+    id: 'id3'
+  }],
+  resultsCount: 1,
+  source: Source.KnowledgeManager,
+  verticalKey: 'vertical4'
+};
+
 export const verticalResults = [
   vertical1,
   vertical2,
   vertical3
+];
+
+export const verticalResultsWithDuplicateEntity = [
+  vertical1,
+  vertical2,
+  vertical3,
+  vertical4
 ];
