@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from 'react';
-import mapboxgl from 'mapbox-gl';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
+import mapboxgl, { MarkerOptions } from 'mapbox-gl';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
+import _ from 'lodash';
+
 import ReactDOM from 'react-dom';
 
 /**
@@ -15,7 +17,9 @@ export type PinComponentProps<T> = {
   /** The Mapbox map. */
   mapbox: mapboxgl.Map,
   /** The search result corresponding to the pin. */
-  result: Result<T>
+  result: Result<T>,
+  /** Where the pin is selected. */
+  selected?: boolean,
 };
 
 /**
@@ -45,7 +49,7 @@ export interface Coordinate {
 }
 
 /**
- * A function which is called when user drag the map.
+ * A function which is called when user drags or zooms the map.
  *
  * @public
  */
@@ -96,7 +100,11 @@ export interface MapboxMapProps<T> {
    * If set to true, the map will update its options when the mapboxOptions prop changes.
    * Otherwise, the map will not update its options once initially set.
    */
-  allowUpdates?: boolean
+  allowUpdates?: boolean,
+  /** A function that handles a pin click event. */
+  onPinClick?: (result: Result<T> | undefined) => void,
+  /** The options to apply to the map markers based on whether it is selected. */
+  markerOptionsOverride?: (selected: boolean) => MarkerOptions,
 }
 
 /**
@@ -127,6 +135,8 @@ export function MapboxMap<T>({
   onDrag,
   iframeWindow,
   allowUpdates = false,
+  onPinClick,
+  markerOptionsOverride,
 }: MapboxMapProps<T>): JSX.Element {
   const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
   useEffect(() => {
@@ -139,12 +149,29 @@ export function MapboxMap<T>({
 
   const locationResults = useSearchState(state => state.vertical.results) as Result<T>[];
   const onDragDebounced = useDebouncedFunction(onDrag, 100);
+  const [selectedResult, setSelectedResult] = useState<Result<T> | undefined>(undefined);
+
+  const handlePinClick = useCallback((result: Result<T>) => {
+    setSelectedResult(prev => prev === result ? undefined : result)
+  }, [])
+
+  useEffect(() => {
+    onPinClick?.(selectedResult);
+  }, [selectedResult])
+
+  const locale = useSearchState(state => state.meta?.locale);
+  // keep track of the previous value of mapboxOptions across renders
+  const prevMapboxOptions = useRef(mapboxOptions);
 
   useEffect(() => {
     if (mapContainer.current) {
       if (map.current && allowUpdates) {
-        // Update to existing Map
-        handleMapboxOptionsUpdates(mapboxOptions, map.current);
+        // Compare current and previous mapboxOptions using deep equality
+        if (!_.isEqual(prevMapboxOptions.current, mapboxOptions)) {
+          // Update to existing Map
+          handleMapboxOptionsUpdates(mapboxOptions, map.current);
+          prevMapboxOptions.current = (mapboxOptions);
+        }
       } else if (!map.current && mapboxInstance) {
         const options: mapboxgl.MapboxOptions = {
           container: mapContainer.current,
@@ -166,10 +193,49 @@ export function MapboxMap<T>({
           mapbox.on('drag', () => {
             onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
           });
+          mapbox.on('zoom', (e) => {
+            if (e.originalEvent) {
+              // only trigger on user zoom, not programmatic zoom (e.g. from fitBounds)
+              onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
+            }
+          });
         }
       }
     }
   }, [mapboxOptions, onDragDebounced]);
+
+  useEffect(() => {
+    const mapbox = map.current;
+    if (!mapbox || !locale) return;
+
+    const localizeMap = () => {
+      mapbox.getStyle().layers.forEach(layer => {
+        if (layer.type === "symbol" && layer.layout?.["text-field"]) {
+          mapbox.setLayoutProperty(
+            layer.id,
+            "text-field",
+            [
+              'coalesce',
+              ['get', `name_${getMapboxLanguage(locale)}`],
+              ['get', 'name']
+            ]
+          );
+        }
+      });
+    }
+
+    if (mapbox.isStyleLoaded()) {
+      localizeMap();
+    } else {
+      mapbox.once("styledata", () => localizeMap())
+    }
+  }, [locale]);
+
+  useEffect(() => {
+    if (iframeWindow && map.current) {
+      map.current.resize();
+    }
+  }, [mapContainer.current]);
 
   useEffect(() => {
     markers.current.forEach(marker => marker.remove());
@@ -182,7 +248,7 @@ export function MapboxMap<T>({
         if (markerLocation) {
           const { latitude, longitude } = markerLocation;
           const el = document.createElement('div');
-          const markerOptions: mapboxgl.MarkerOptions = {};
+          let markerOptions: mapboxgl.MarkerOptions = {};
           if (PinComponent) {
             if (renderPin) {
               console.warn(
@@ -193,15 +259,26 @@ export function MapboxMap<T>({
               index={i}
               mapbox={mapbox}
               result={result}
+              selected={selectedResult === result}
             />, el);
             markerOptions.element = el;
           } else if (renderPin) {
             renderPin({ index: i, mapbox, result, container: el });
             markerOptions.element = el;
           }
+          
+          if (markerOptionsOverride) {
+            markerOptions = {
+              ...markerOptions,
+              ...markerOptionsOverride(selectedResult === result)
+            }
+          }
+
           const marker = new mapboxInstance.Marker(markerOptions)
             .setLngLat({ lat: latitude, lng: longitude })
             .addTo(mapbox);
+
+          marker?.getElement().addEventListener('click', () => handlePinClick(result));
           markers.current.push(marker);
           bounds.extend([longitude, latitude]);
         }
@@ -210,11 +287,11 @@ export function MapboxMap<T>({
       if (!bounds.isEmpty()){
         mapbox.fitBounds(bounds, {
           padding: { top: 50, bottom: 50, left: 50, right: 50 },
-          maxZoom: 15
+          maxZoom: mapboxOptions?.maxZoom ?? 15
         });
       }
     }
-  }, [PinComponent, getCoordinate, locationResults]);
+  }, [PinComponent, getCoordinate, locationResults, selectedResult, markerOptionsOverride]);
 
   return (
     <div ref={mapContainer} className='h-full w-full' />
@@ -246,4 +323,14 @@ function getDefaultCoordinate<T>(result: Result<T>): Coordinate | undefined {
     return undefined;
   }
   return yextDisplayCoordinate;
+}
+
+export function getMapboxLanguage(locale: string) {
+  try {
+    const localeOptions = new Intl.Locale(locale.replaceAll('_', '-'));
+    return localeOptions.script ? `${localeOptions.language}-${localeOptions.script}` : localeOptions.language;
+  } catch (e) {
+    console.warn(`Locale "${locale}" is not supported.`)
+  }
+  return 'en';
 }

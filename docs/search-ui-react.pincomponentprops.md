@@ -13,5 +13,6 @@ type PinComponentProps<T> = {
     index: number;
     mapbox: mapboxgl.Map;
     result: Result<T>;
+    selected?: boolean;
 };
 ```

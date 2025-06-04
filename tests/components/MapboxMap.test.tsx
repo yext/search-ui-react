@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { mockAnswersState } from '../__utils__/mocks';
-import { CoordinateGetter, MapboxMap, Coordinate } from '../../src/components/MapboxMap';
+import { CoordinateGetter, MapboxMap, Coordinate, getMapboxLanguage } from '../../src/components/MapboxMap';
 import { Source, State } from '@yext/search-headless-react';
 import { Map, Marker } from 'mapbox-gl';
 import React from 'react';
@@ -133,4 +133,35 @@ it('uses PinComponent and logs warning if both PinComponent and renderPin are pr
   );
   expect(PinComponent).toBeCalledTimes(1);
   expect(renderPin).not.toBeCalled();
+});
+describe('localize the map based on the search locale', () => {
+  // list of languages that mapbox supports: (https://github.com/mapbox/mapbox-gl-language/blob/v1.0.1/index.js#L46)
+  // ['ar', 'de', 'en', 'es', 'fr', 'it', 'ja', 'ko', 'mul', 'pt', 'ru', 'vi', 'zh-Hans', 'zh-Hant']
+  const expectedMapboxLanguage: Record<string, string> = {
+    'ar_DZ': 'ar',
+    'de': 'de', 
+    'de_EU': 'de', 
+    'en': 'en', 
+    'en_FR': 'en', 
+    'en_US': 'en', 
+    'es': 'es', 
+    'es_US': 'es', 
+    'fr': 'fr', 
+    'fr_CA': 'fr', 
+    'fr_FR': 'fr', 
+    'it': 'it', 
+    'ja': 'ja',
+    'ja_JP': 'ja', 
+    'ko_KR': 'ko',
+    'pt': 'pt',
+    'ru_UA': 'ru',
+    'vi': 'vi',
+    'zh_Hans': 'zh-Hans', 
+    'zh_Hans_CN': 'zh-Hans', 
+    'zh_Hans_HK': 'zh-Hans',
+    'zh_Hant_TW': 'zh-Hant'
+  };
+  test.each(Object.entries(expectedMapboxLanguage))('updates map labels correctly for locale %s', (searchLocale, mapboxLanguage) => {
+    expect(getMapboxLanguage(searchLocale)).toEqual(mapboxLanguage);
+  });
 });

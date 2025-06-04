@@ -239,7 +239,7 @@ A React Component which displays and collects location information in order to b
 </td></tr>
 <tr><td>
 
-[MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, })](./search-ui-react.mapboxmap.md)
+[MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, })](./search-ui-react.mapboxmap.md)
 
 
 </td><td>
@@ -1433,7 +1433,7 @@ The data associated with the currently focused item.
 
 </td><td>
 
-A function which is called when user drag the map.
+A function which is called when user drags or zooms the map.
 
 
 </td></tr>

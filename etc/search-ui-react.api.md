@@ -14,6 +14,7 @@ import { FilterSearchResponse } from '@yext/search-headless-react';
 import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import { default as mapboxgl_2 } from 'mapbox-gl';
+import { MarkerOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
@@ -490,7 +491,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }: MapboxMapProps<T>): JSX.Element;
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
@@ -499,7 +500,9 @@ export interface MapboxMapProps<T> {
     iframeWindow?: Window;
     mapboxAccessToken: string;
     mapboxOptions?: Omit<mapboxgl_2.MapboxOptions, 'container'>;
+    markerOptionsOverride?: (selected: boolean) => MarkerOptions;
     onDrag?: OnDragHandler;
+    onPinClick?: (result: Result<T> | undefined) => void;
     PinComponent?: PinComponent<T>;
     renderPin?: (props: PinComponentProps<T> & {
         container: HTMLElement;
@@ -595,6 +598,7 @@ export type PinComponentProps<T> = {
     index: number;
     mapbox: mapboxgl_2.Map;
     result: Result<T>;
+    selected?: boolean;
 };
 
 // @public
@@ -980,6 +984,7 @@ export interface VerticalResultsProps<T> {
     CardComponent: CardComponent<T>;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
+    setResultsRef?: (index: number) => ((result: HTMLDivElement) => void) | null;
 }
 
 // @public

@@ -132,6 +132,25 @@ _(Optional)_ Interface for map customization derived from Mapbox GL's Map option
 </td></tr>
 <tr><td>
 
+[markerOptionsOverride?](./search-ui-react.mapboxmapprops.markeroptionsoverride.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(selected: boolean) =&gt; MarkerOptions
+
+
+</td><td>
+
+_(Optional)_ The options to apply to the map markers based on whether it is selected.
+
+
+</td></tr>
+<tr><td>
+
 [onDrag?](./search-ui-react.mapboxmapprops.ondrag.md)
 
 
@@ -145,7 +164,26 @@ _(Optional)_ Interface for map customization derived from Mapbox GL's Map option
 
 </td><td>
 
-_(Optional)_ A function which is called when user drag the map.
+_(Optional)_ A function which is called when user drags or zooms the map.
+
+
+</td></tr>
+<tr><td>
+
+[onPinClick?](./search-ui-react.mapboxmapprops.onpinclick.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(result: Result&lt;T&gt; \| undefined) =&gt; void
+
+
+</td><td>
+
+_(Optional)_ A function that handles a pin click event.
 
 
 </td></tr>
