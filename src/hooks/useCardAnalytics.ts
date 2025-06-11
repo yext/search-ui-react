@@ -16,7 +16,7 @@ import { GdaClickEventData } from '../components/GenerativeDirectAnswer'
  *
  * @public
  */
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
 
 /**
  * The data types use to construct the payload in the analytics event.
@@ -38,7 +38,7 @@ function isDirectAnswer(data: unknown): data is DirectAnswerData {
 }
 
 function isGenerativeDirectAnswer(data: unknown): data is GdaClickEventData {
-  return !!(data as GdaClickEventData);
+  return !!(data as GdaClickEventData)?.destinationUrl;
 }
 
 export function useCardAnalytics<T>(): (
@@ -126,7 +126,7 @@ export function useCardAnalytics<T>(): (
     if (!analytics) {
       return;
     }
-    if (analyticsEventType === 'TITLE_CLICK' || analyticsEventType === 'CTA_CLICK' || analyticsEventType === 'CITATION_CLICK') {
+    if (analyticsEventType === 'TITLE_CLICK' || analyticsEventType === 'CTA_CLICK' || analyticsEventType === 'CITATION_CLICK' || analyticsEventType === 'DRIVING_DIRECTIONS' || analyticsEventType === 'VIEW_WEBSITE' || analyticsEventType === 'TAP_TO_CALL') {
       reportCtaEvent(cardResult, analyticsEventType);
     }
     if (analyticsEventType === 'THUMBS_DOWN' || analyticsEventType === 'THUMBS_UP') {
