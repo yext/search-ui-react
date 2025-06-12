@@ -9,5 +9,5 @@ Analytics event types for cta click, title click, and citation click.
 **Signature:**
 
 ```typescript
-type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
+type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
 ```
