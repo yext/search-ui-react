@@ -9,7 +9,7 @@ import { Dropdown } from './Dropdown/Dropdown';
 import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
 import { DropdownMenu } from './Dropdown/DropdownMenu';
-import { Geolocation } from './Geolocation';
+import { Geolocation, GeolocationProps } from './Geolocation';
 import { CurrentLocationIcon } from '../icons/CurrentLocationIcon';
 import { processTranslation } from './utils/processTranslation';
 import { renderAutocompleteResult, AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
@@ -37,7 +37,7 @@ const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   sectionLabel: 'text-sm text-neutral-dark font-semibold py-2 px-4',
   focusedOption: 'bg-gray-100',
   option: 'text-sm text-neutral-dark py-1 cursor-pointer hover:bg-gray-100 px-4',
-  currentLocationButton: 'h-4 w-4',
+  currentLocationButton: 'h-5 w-5',
   currentLocationAndInputContainer: 'w-full flex items-center justify-start gap-2'
 };
 
@@ -124,6 +124,8 @@ export interface FilterSearchProps {
   ariaLabel?: string
   /** Whether to include a button to search on the user's location. Defaults to false. */
   showCurrentLocationButton?: boolean;
+  /** The props for the geolocation component, if the current location button is enabled. */
+  geolocationProps?: GeolocationProps;
 }
 
 /**
@@ -146,7 +148,8 @@ export function FilterSearch({
   customCssClasses,
   disableBuiltInClasses = false,
   ariaLabel,
-  showCurrentLocationButton = false
+  showCurrentLocationButton = false,
+  geolocationProps = {}
 }: FilterSearchProps): JSX.Element {
   const searchActions = useSearchActions();
   const searchParamFields = searchFields.map((searchField) => {
@@ -365,7 +368,7 @@ export function FilterSearch({
       >
         {showCurrentLocationButton ? (
           <div className={cssClasses.currentLocationAndInputContainer}>
-            <div style={{ position: 'relative', flex: 1 }}>
+            <div className="relative flex-1">
               {dropdownInput}
               {dropdownMenu}
             </div>
@@ -376,12 +379,14 @@ export function FilterSearch({
                 iconContainer: 'w-full h-full ml-0'
               }}
               useIconAsButton={true}
+              {...geolocationProps}
             />
           </div>
-        ) : (<>
-          {dropdownInput}
-          {dropdownMenu}
-        </>
+        ) : (
+          <>
+            {dropdownInput}
+            {dropdownMenu}
+          </>
         )}
       </Dropdown>
     </div>

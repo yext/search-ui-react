@@ -88,7 +88,15 @@ export function LocationsPage() {
         searchFields={filterSearchFields}
         searchOnSelect={true}
         label='FilterSearch Location Filter'
+        customCssClasses={
+          {
+            currentLocationAndInputContainer: 'w-1/5'
+          }
+        }
         showCurrentLocationButton={true}
+        geolocationProps={{
+          radius: 25,
+        }}
       />
       <div className='flex flex-col'>
         <div className='flex items-baseline'>

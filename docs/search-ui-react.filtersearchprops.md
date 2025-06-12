@@ -113,6 +113,25 @@ _(Optional)_ Whether to disable the default CSS classes entirely
 </td></tr>
 <tr><td>
 
+[geolocationProps?](./search-ui-react.filtersearchprops.geolocationprops.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[GeolocationProps](./search-ui-react.geolocationprops.md)
+
+
+</td><td>
+
+_(Optional)_ The props for the geolocation component, if the current location button is enabled.
+
+
+</td></tr>
+<tr><td>
+
 [label?](./search-ui-react.filtersearchprops.label.md)
 
 
