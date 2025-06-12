@@ -298,10 +298,14 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
+    // (undocumented)
+    currentLocationAndInputContainer?: string;
+    // (undocumented)
+    currentLocationButton?: string;
     // (undocumented)
     filterSearchContainer?: string;
     // (undocumented)
@@ -322,6 +326,7 @@ export interface FilterSearchProps {
     ariaLabel?: string;
     customCssClasses?: FilterSearchCssClasses;
     disableBuiltInClasses?: boolean;
+    geolocationProps?: GeolocationProps;
     label?: string;
     onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
     onSelect?: (params: OnSelectParams) => void;
@@ -330,6 +335,7 @@ export interface FilterSearchProps {
     // @deprecated
     searchOnSelect?: boolean;
     sectioned?: boolean;
+    showCurrentLocationButton?: boolean;
 }
 
 // @public
@@ -376,7 +382,7 @@ export interface GenerativeDirectAnswerProps {
 }
 
 // @public
-function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
+function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }: GeolocationProps): JSX.Element | null;
 export { Geolocation_2 as Geolocation }
 
 // @public
@@ -392,11 +398,13 @@ export interface GeolocationCssClasses {
 // @public
 export interface GeolocationProps {
     customCssClasses?: GeolocationCssClasses;
+    disableBuiltInClasses?: boolean;
     GeolocationIcon?: React_2.FunctionComponent;
     geolocationOptions?: PositionOptions;
     handleClick?: (position: GeolocationPosition) => void;
     label?: string;
     radius?: number;
+    useIconAsButton?: boolean;
 }
 
 // @public

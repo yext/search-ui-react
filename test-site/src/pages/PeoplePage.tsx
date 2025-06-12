@@ -86,6 +86,7 @@ export function PeoplePage() {
             searchOnSelect={true}
             label='FilterSearch Department Filter'
             onDropdownInputChange={removeAssociatedFilterWhenInputIsEmpty(employeeFilterSearchFields)}
+            showCurrentLocationButton={true}
           />
           <FilterDivider />
           <StaticFilters
