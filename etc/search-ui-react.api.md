@@ -130,7 +130,7 @@ export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
 
 // @public
 export interface CardProps<T = DefaultRawDataType> {
