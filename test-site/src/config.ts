@@ -5,7 +5,7 @@ export const config = {
   experienceKey: 'slanswers-hier-facets',
   locale: 'en',
   experienceVersion: 'STAGING',
-  businessId: 123123,
+  businessId: 3350634,
   cloudRegion: CloudRegion.US,
   cloudChoice: CloudChoice.GLOBAL_MULTI,
   environment: Environment.PROD,

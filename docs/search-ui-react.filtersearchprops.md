@@ -244,4 +244,23 @@ _(Optional)_ Determines whether or not the results of the filter search are sepa
 
 
 </td></tr>
+<tr><td>
+
+[showCurrentLocationButton?](./search-ui-react.filtersearchprops.showcurrentlocationbutton.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to include a button to search on the user's location. Defaults to false.
+
+
+</td></tr>
 </tbody></table>

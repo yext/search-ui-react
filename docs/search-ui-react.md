@@ -140,7 +140,7 @@ A divider component used to separate NumericalFacets, HierarchicalFacets, Standa
 </td></tr>
 <tr><td>
 
-[FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel })](./search-ui-react.filtersearch.md)
+[FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton })](./search-ui-react.filtersearch.md)
 
 
 </td><td>
@@ -162,7 +162,7 @@ Displays the AI generated answer of a generative direct answer.
 </td></tr>
 <tr><td>
 
-[Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md)
+[Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses })](./search-ui-react.geolocation_2.md)
 
 
 </td><td>

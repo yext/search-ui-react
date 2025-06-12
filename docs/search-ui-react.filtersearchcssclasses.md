@@ -38,6 +38,44 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[currentLocationAndInputContainer?](./search-ui-react.filtersearchcssclasses.currentlocationandinputcontainer.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[currentLocationButton?](./search-ui-react.filtersearchcssclasses.currentlocationbutton.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
 [filterSearchContainer?](./search-ui-react.filtersearchcssclasses.filtersearchcontainer.md)
 
 
