@@ -282,17 +282,19 @@ describe('SearchBar', () => {
     expect(mockedUniversalSearch).toHaveBeenCalledTimes(1);
   });
 
-  it('clear button deletes text in input element', async () => {
+  it('clear button deletes text in input element, but does not search', async () => {
     render(
       <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
         <SearchBar />
       </SearchHeadlessContext.Provider>
     );
+    const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
     await userEvent.type(screen.getByRole('textbox'), 'yext');
     expect(await screen.findByRole('textbox')).toHaveDisplayValue('yext');
     const clearSearchButton = screen.getByRole('button', { name: 'Clear the search bar' });
     await userEvent.click(clearSearchButton);
     expect(await screen.findByRole('textbox')).toHaveDisplayValue('');
+    expect(mockedUniversalSearch).toHaveBeenCalledTimes(0);
   });
 
   it('executes onSearch callback when click on submit button', async () => {

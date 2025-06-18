@@ -278,7 +278,7 @@ export function SearchBar({
 
   const handleClickClearButton = useCallback(() => {
     updateEntityPreviews('');
-    handleSubmit('');
+    searchActions.setQuery('');
     reportAnalyticsEvent('SEARCH_CLEAR_BUTTON');
   }, [handleSubmit, reportAnalyticsEvent, updateEntityPreviews]);
 
