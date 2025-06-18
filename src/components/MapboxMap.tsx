@@ -163,6 +163,33 @@ export function MapboxMap<T>({
   // keep track of the previous value of mapboxOptions across renders
   const prevMapboxOptions = useRef(mapboxOptions);
 
+  const localizeMap = useCallback(() => {
+    const mapbox = map.current;
+    if (!mapbox || !locale) return;
+
+    const localizeLabels = () => {
+      mapbox.getStyle().layers.forEach(layer => {
+        if (layer.type === "symbol" && layer.layout?.["text-field"]) {
+          mapbox.setLayoutProperty(
+            layer.id,
+            "text-field",
+            [
+              'coalesce',
+              ['get', `name_${getMapboxLanguage(locale)}`],
+              ['get', 'name']
+            ]
+          );
+        }
+      });
+    }
+
+    if (mapbox.isStyleLoaded()) {
+      localizeLabels();
+    } else {
+      mapbox.once("styledata", () => localizeLabels())
+    }
+  }, [locale]);
+
   useEffect(() => {
     if (mapContainer.current) {
       if (map.current && allowUpdates) {
@@ -199,37 +226,21 @@ export function MapboxMap<T>({
               onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
             }
           });
+          return () => {
+            mapbox.off('drag', () => {
+              onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
+            });
+            mapbox.off('zoom', (e) => {
+              if (e.originalEvent) {
+                onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
+              }
+            });
+          };
         }
       }
-    }
-  }, [mapboxOptions, onDragDebounced]);
-
-  useEffect(() => {
-    const mapbox = map.current;
-    if (!mapbox || !locale) return;
-
-    const localizeMap = () => {
-      mapbox.getStyle().layers.forEach(layer => {
-        if (layer.type === "symbol" && layer.layout?.["text-field"]) {
-          mapbox.setLayoutProperty(
-            layer.id,
-            "text-field",
-            [
-              'coalesce',
-              ['get', `name_${getMapboxLanguage(locale)}`],
-              ['get', 'name']
-            ]
-          );
-        }
-      });
-    }
-
-    if (mapbox.isStyleLoaded()) {
       localizeMap();
-    } else {
-      mapbox.once("styledata", () => localizeMap())
     }
-  }, [locale]);
+  }, [mapboxOptions, onDragDebounced, localizeMap]);
 
   useEffect(() => {
     if (iframeWindow && map.current) {
@@ -288,6 +299,12 @@ export function MapboxMap<T>({
         mapbox.fitBounds(bounds, {
           padding: { top: 50, bottom: 50, left: 50, right: 50 },
           maxZoom: mapboxOptions?.maxZoom ?? 15
+        });
+      }
+
+      return () => {
+        markers.current.forEach((marker, i) => {
+          marker?.getElement().removeEventListener('click', () => handlePinClick(locationResults[i]));
         });
       }
     }
