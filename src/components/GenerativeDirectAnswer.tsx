@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   GenerativeDirectAnswerResponse,
   useSearchActions,
@@ -141,20 +142,20 @@ function Answer(props: AnswerProps) {
   const {
     gdaResponse,
     cssClasses,
-    answerHeader = 'AI Generated Answer',
+    answerHeader,
     linkClickHandler
   } = props;
-
+  const { t } = useTranslation();
   const markdownCssClasses: MarkdownCssClasses = useMemo(
     () => ({
       container: cssClasses.answerText,
     }),
     [cssClasses.answerText]
   );
-
+  
   return <>
     <div className={cssClasses.header}>
-      {answerHeader}
+      {answerHeader ?? t('aiGeneratedAnswer', 'AI Generated Answer')}
     </div>
     <Markdown
       content={gdaResponse.directAnswer}
@@ -196,6 +197,7 @@ function Citations(props: CitationsProps) {
     CitationCard = Citation,
     citationClickHandler
   } = props;
+  const { t } = useTranslation();
   const citationResults = React.useMemo(() => {
     // If an entity is returned by multiple different verticals, it will be present in
     // searchResults multiple times. We want to only show it once in the citations.
@@ -211,14 +213,15 @@ function Citations(props: CitationsProps) {
     });
   }, [gdaResponse.citations, searchResults]);
 
-  if (!citationResults.length) {
+  const count = citationResults.length;
+  if (!count) {
     return null;
   }
 
   return <>
     <div className={cssClasses.divider} />
     <div className={cssClasses.header}>
-      {citationsHeader ?? `Sources (${citationResults.length})`}
+      {citationsHeader ?? t('sources', `Sources (${citationResults.length})`, { count })}
     </div>
     <div className={cssClasses.citationsContainer}>
       {citationResults.map((r, i) => <CitationCard key={i} searchResult={r} cssClasses={cssClasses} citationClickHandler={citationClickHandler}/>)}

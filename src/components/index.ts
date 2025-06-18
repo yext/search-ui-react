@@ -184,3 +184,8 @@ export {
   CitationsProps,
   GdaClickEventData
 } from './GenerativeDirectAnswer';
+
+export {
+  SearchTranslationOverrides,
+  SearchI18nextProvider,
+} from './SearchI18nextProvider';

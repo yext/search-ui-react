@@ -1,3 +1,4 @@
+import { useTranslation, Trans } from 'react-i18next';
 import { processTranslation } from './utils/processTranslation';
 import { StarIcon } from '../icons/StarIcon';
 import { useSearchState, VerticalResults as VerticalResultsData } from '@yext/search-headless-react';
@@ -122,20 +123,26 @@ export function AlternativeVerticals({
     return null;
   }
 
+  const count = verticalSuggestions.length;
+  const fallbackText = processTranslation({
+    phrase: 'The following category yielded results for - <strong>{{query}}</strong>',
+    pluralForm: 'The following categories yielded results for - <strong>{{query}}</strong>',
+    count
+  })
+
   return (
     <div className={containerClassNames}>
       {renderNoResultsInfo()}
       {verticalSuggestions &&
         <div className='pt-4 text-neutral-dark'>
           <div className={cssClasses.categoriesText}>
-            <span>
-              {processTranslation({
-                phrase: 'The following category yielded results for - ',
-                pluralForm: 'The following categories yielded results for - ',
-                count: verticalSuggestions.length
-              })}
-            </span>
-            <strong>{query}</strong>
+            <Trans
+              i18nKey='categoriesText'
+              count={count}
+              values={{ query }}
+              components={{ strong: <strong /> }}
+              default={fallbackText}
+            />
           </div>
           <ul className='pt-4'>
             {verticalSuggestions.map(renderSuggestion)}
@@ -146,26 +153,34 @@ export function AlternativeVerticals({
   );
 
   function renderNoResultsInfo() {
+    const { t } = useTranslation();
     return (
       <div className={cssClasses.noResultsText}>
-        <span>No results found in {currentVerticalLabel}.</span>
+        <span>{t('noResultsFoundIn', `No results found in ${currentVerticalLabel}.`, { currentVerticalLabel })}</span>
         {isShowingAllResults &&
-          <span> Showing all {currentVerticalLabel} instead.</span>
+          <span> {t('showingAllInstead', `Showing all ${currentVerticalLabel} instead.`, { currentVerticalLabel })}</span>
         }
       </div>
     );
   }
-
+  
   function renderSuggestion(suggestion: VerticalSuggestion) {
-    const resultsCountText = processTranslation({
-      phrase: `${suggestion.resultsCount} result`,
-      pluralForm: `${suggestion.resultsCount} results`,
-      count: suggestion.resultsCount
+    const { t } = useTranslation();
+    const {verticalKey, resultsCount, label} = suggestion;
+    const fallbackText = processTranslation({
+      phrase: `${label} - ${resultsCount} result`,
+      pluralForm: `${label} - ${resultsCount} results`,
+      count: resultsCount
     });
     return (
-      <li key={suggestion.verticalKey} className={cssClasses.suggestion}>
+      <li key={verticalKey} className={cssClasses.suggestion}>
         <div className={cssClasses.verticalIcon}><StarIcon/></div>
-        <span className='font-bold'>{suggestion.label} - {resultsCountText}</span>
+        <span className='font-bold'>{
+          t('suggestionResultsCount', fallbackText, {
+            label,
+            count: resultsCount,
+          })}
+        </span>
       </li>
     );
   }

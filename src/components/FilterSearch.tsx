@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { AutocompleteResult, FieldValueStaticFilter, FilterSearchResponse, SearchParameterField, SelectableStaticFilter, StaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useComposedCssClasses } from '../hooks';
@@ -129,7 +130,7 @@ export interface FilterSearchProps {
 export function FilterSearch({
   searchFields,
   label,
-  placeholder = 'Search here...',
+  placeholder,
   searchOnSelect,
   onSelect,
   onDropdownInputChange,
@@ -139,6 +140,7 @@ export function FilterSearch({
   disableBuiltInClasses = false,
   ariaLabel
 }: FilterSearchProps): JSX.Element {
+  const { t } = useTranslation();
   const searchActions = useSearchActions();
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
@@ -335,7 +337,7 @@ export function FilterSearch({
       >
         <DropdownInput
           className={cssClasses.inputElement}
-          placeholder={placeholder}
+          placeholder={placeholder ?? t('searchHere', 'Search here...')}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
           submitCriteria={meetsSubmitCritera}
@@ -357,24 +359,22 @@ function getScreenReaderText(sections: {
   results: AutocompleteResult[],
   label?: string
 }[]) {
-  let screenReaderText = processTranslation({
-    phrase: '0 autocomplete option found.',
-    pluralForm: '0 autocomplete options found.',
-    count: 0
-  });
+  const { t } = useTranslation();
   if (sections.length === 0) {
-    return screenReaderText;
+    return t('noAutocompleteOptionsFound', '0 autocomplete options found.');
   }
   const screenReaderPhrases = sections.map(section => {
-    const optionInfo = section.label
-      ? `${section.results.length} ${section.label}`
-      : `${section.results.length}`;
-    return processTranslation({
-      phrase: `${optionInfo} autocomplete option found.`,
-      pluralForm: `${optionInfo} autocomplete options found.`,
-      count: section.results.length
+    const label = section.label ? ` ${section.label}` : '';
+    const count = section.results.length;
+    const fallbackText = processTranslation({
+      phrase: `${count}${label} autocomplete option found.`,
+      pluralForm: `${count}${label} autocomplete options found.`,
+      count,
     });
+    return t('autocompleteOptionsFound', fallbackText, {
+      count,
+      label,
+    })
   });
-  screenReaderText = screenReaderPhrases.join(' ');
-  return screenReaderText;
+  return screenReaderPhrases.join(' ');
 }
