@@ -162,7 +162,7 @@ Displays the AI generated answer of a generative direct answer.
 </td></tr>
 <tr><td>
 
-[Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md)
+[Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses })](./search-ui-react.geolocation_2.md)
 
 
 </td><td>

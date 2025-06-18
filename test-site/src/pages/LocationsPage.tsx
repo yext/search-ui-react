@@ -11,6 +11,7 @@ import {
   MapboxMapProps,
   OnDragHandler,
   Coordinate,
+  FilterSearch,
 } from '@yext/search-ui-react';
 import { LngLat, LngLatBounds } from 'mapbox-gl';
 import { useCallback, useLayoutEffect, useRef } from 'react';
@@ -23,6 +24,8 @@ export interface Location {
 const mapboxOptions: MapboxMapProps<Record<string, unknown>>['mapboxOptions'] = {
   zoom: 10
 };
+
+const filterSearchFields = [{ fieldApiName: 'builtin.location', entityType: 'location' }];
 
 export function LocationsPage() {
   const searchActions = useSearchActions();
@@ -81,6 +84,20 @@ export function LocationsPage() {
   return (
     <div>
       <SearchBar />
+      <FilterSearch
+        searchFields={filterSearchFields}
+        searchOnSelect={true}
+        label='FilterSearch Location Filter'
+        customCssClasses={
+          {
+            currentLocationAndInputContainer: 'w-1/5'
+          }
+        }
+        showCurrentLocationButton={true}
+        geolocationProps={{
+          radius: 25,
+        }}
+      />
       <div className='flex flex-col'>
         <div className='flex items-baseline'>
           <ResultsCount />

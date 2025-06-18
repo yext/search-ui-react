@@ -376,7 +376,7 @@ export interface GenerativeDirectAnswerProps {
 }
 
 // @public
-function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
+function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }: GeolocationProps): JSX.Element | null;
 export { Geolocation_2 as Geolocation }
 
 // @public
@@ -392,11 +392,13 @@ export interface GeolocationCssClasses {
 // @public
 export interface GeolocationProps {
     customCssClasses?: GeolocationCssClasses;
+    disableBuiltInClasses?: boolean;
     GeolocationIcon?: React_2.FunctionComponent;
     geolocationOptions?: PositionOptions;
     handleClick?: (position: GeolocationPosition) => void;
     label?: string;
     radius?: number;
+    useIconAsButton?: boolean;
 }
 
 // @public
