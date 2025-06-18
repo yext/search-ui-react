@@ -9,8 +9,6 @@ import { Dropdown } from './Dropdown/Dropdown';
 import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
 import { DropdownMenu } from './Dropdown/DropdownMenu';
-import { Geolocation, GeolocationProps } from './Geolocation';
-import { CurrentLocationIcon } from '../icons/CurrentLocationIcon';
 import { processTranslation } from './utils/processTranslation';
 import { renderAutocompleteResult, AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 
@@ -25,9 +23,7 @@ export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
   inputElement?: string,
   sectionLabel?: string,
   focusedOption?: string,
-  optionsContainer?: string,
-  currentLocationButton?: string,
-  currentLocationAndInputContainer?: string
+  optionsContainer?: string
 }
 
 const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
@@ -36,9 +32,7 @@ const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
   sectionLabel: 'text-sm text-neutral-dark font-semibold py-2 px-4',
   focusedOption: 'bg-gray-100',
-  option: 'text-sm text-neutral-dark py-1 cursor-pointer hover:bg-gray-100 px-4',
-  currentLocationButton: 'h-5 w-5',
-  currentLocationAndInputContainer: 'w-full flex items-center justify-start gap-2'
+  option: 'text-sm text-neutral-dark py-1 cursor-pointer hover:bg-gray-100 px-4'
 };
 
 /**
@@ -122,10 +116,6 @@ export interface FilterSearchProps {
   disableBuiltInClasses?: boolean,
   /** The accessible label for the dropdown input. */
   ariaLabel?: string
-  /** Whether to include a button to search on the user's location. Defaults to false. */
-  showCurrentLocationButton?: boolean;
-  /** The props for the geolocation component, if the current location button is enabled. */
-  geolocationProps?: GeolocationProps;
 }
 
 /**
@@ -147,9 +137,7 @@ export function FilterSearch({
   sectioned = false,
   customCssClasses,
   disableBuiltInClasses = false,
-  ariaLabel,
-  showCurrentLocationButton = false,
-  geolocationProps = {}
+  ariaLabel
 }: FilterSearchProps): JSX.Element {
   const searchActions = useSearchActions();
   const searchParamFields = searchFields.map((searchField) => {
@@ -336,27 +324,6 @@ export function FilterSearch({
     afterDropdownInputFocus?.({value});
   }, [afterDropdownInputFocus, executeFilterSearch]);
 
-  const dropdownInput = (
-    <DropdownInput
-      className={cssClasses.inputElement}
-      placeholder={placeholder}
-      onChange={handleInputChange}
-      onFocus={handleInputFocus}
-      submitCriteria={meetsSubmitCritera}
-      ariaLabel={ariaLabel}
-    />
-  );
-
-  const dropdownMenu = (
-    <DropdownMenu>
-      {hasResults &&
-        <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 mt-1'>
-          {renderDropdownItems()}
-        </div>
-      }
-    </DropdownMenu>
-  )
-
   return (
     <div className={cssClasses.filterSearchContainer}>
       {label && <h1 className={cssClasses.label}>{label}</h1>}
@@ -366,28 +333,21 @@ export function FilterSearch({
         alwaysSelectOption={true}
         parentQuery={filterQuery}
       >
-        {showCurrentLocationButton ? (
-          <div className={cssClasses.currentLocationAndInputContainer}>
-            <div className="relative flex-1">
-              {dropdownInput}
-              {dropdownMenu}
+        <DropdownInput
+          className={cssClasses.inputElement}
+          placeholder={placeholder}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+          submitCriteria={meetsSubmitCritera}
+          ariaLabel={ariaLabel}
+        />
+        <DropdownMenu>
+          {hasResults &&
+            <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 mt-1'>
+              {renderDropdownItems()}
             </div>
-            <Geolocation
-              GeolocationIcon={CurrentLocationIcon}
-              customCssClasses={{
-                button: cssClasses.currentLocationButton,
-                iconContainer: 'w-full h-full ml-0'
-              }}
-              useIconAsButton={true}
-              {...geolocationProps}
-            />
-          </div>
-        ) : (
-          <>
-            {dropdownInput}
-            {dropdownMenu}
-          </>
-        )}
+          }
+        </DropdownMenu>
       </Dropdown>
     </div>
   );

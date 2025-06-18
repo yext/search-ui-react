@@ -298,14 +298,10 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
-    // (undocumented)
-    currentLocationAndInputContainer?: string;
-    // (undocumented)
-    currentLocationButton?: string;
     // (undocumented)
     filterSearchContainer?: string;
     // (undocumented)
@@ -326,7 +322,6 @@ export interface FilterSearchProps {
     ariaLabel?: string;
     customCssClasses?: FilterSearchCssClasses;
     disableBuiltInClasses?: boolean;
-    geolocationProps?: GeolocationProps;
     label?: string;
     onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
     onSelect?: (params: OnSelectParams) => void;
@@ -335,7 +330,6 @@ export interface FilterSearchProps {
     // @deprecated
     searchOnSelect?: boolean;
     sectioned?: boolean;
-    showCurrentLocationButton?: boolean;
 }
 
 // @public

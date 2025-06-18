@@ -113,25 +113,6 @@ _(Optional)_ Whether to disable the default CSS classes entirely
 </td></tr>
 <tr><td>
 
-[geolocationProps?](./search-ui-react.filtersearchprops.geolocationprops.md)
-
-
-</td><td>
-
-
-</td><td>
-
-[GeolocationProps](./search-ui-react.geolocationprops.md)
-
-
-</td><td>
-
-_(Optional)_ The props for the geolocation component, if the current location button is enabled.
-
-
-</td></tr>
-<tr><td>
-
 [label?](./search-ui-react.filtersearchprops.label.md)
 
 
@@ -260,25 +241,6 @@ boolean
 </td><td>
 
 _(Optional)_ Determines whether or not the results of the filter search are separated by field. Defaults to false.
-
-
-</td></tr>
-<tr><td>
-
-[showCurrentLocationButton?](./search-ui-react.filtersearchprops.showcurrentlocationbutton.md)
-
-
-</td><td>
-
-
-</td><td>
-
-boolean
-
-
-</td><td>
-
-_(Optional)_ Whether to include a button to search on the user's location. Defaults to false.
 
 
 </td></tr>
