@@ -34,6 +34,10 @@ export function useSearchBarAnalytics(): (
             console.error('Unable to report a search clear event. Missing field: queryId.');
             return;
         }
+        if (!searchId) {
+            console.error('Unable to report a search clear event. Missing field: searchId.');
+            return;
+        }
         if (!experienceKey) {
             console.error('Unable to report a search clear event. Missing field: experienceKey.');
             return;
