@@ -95,6 +95,10 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
       console.error('Unable to report a vertical view all event. Missing field: queryId.');
       return;
     }
+    if (!searchId) {
+      console.error('Unable to report a vertical view all event. Missing field: searchId.');
+      return;
+    }
     if (!experienceKey) {
       console.error('Unable to report a vertical view all event. Missing field: experienceKey.');
       return;

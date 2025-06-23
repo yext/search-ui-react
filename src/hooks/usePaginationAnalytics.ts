@@ -17,6 +17,10 @@ export function usePaginationAnalytics(): () => void {
       console.error('Unable to report a pagination event. Missing field: queryId.');
       return;
     }
+    if (!searchId) {
+      console.error('Unable to report a pagination event. Missing field: searchId.');
+      return;
+    }
     if (!verticalKey) {
       console.error('Unable to report a pagination event. Missing field: verticalKey.');
       return;

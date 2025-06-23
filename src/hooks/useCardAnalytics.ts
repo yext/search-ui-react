@@ -70,6 +70,10 @@ export function useCardAnalytics<T>(): (
       console.error('Unable to report a CTA event. Missing field: queryId.');
       return;
     }
+    if (!searchId) {
+      console.error('Unable to report a CTA event. Missing field: searchId.');
+      return;
+    }
     if (!experienceKey) {
       console.error('Unable to report a CTA event. Missing field: experienceKey.');
       return;
@@ -96,6 +100,10 @@ export function useCardAnalytics<T>(): (
   ) => {
     if (!queryId) {
       console.error('Unable to report a result feedback event. Missing field: queryId.');
+      return;
+    }
+    if (!searchId) {
+      console.error('Unable to report a result feedback event. Missing field: searchId.');
       return;
     }
     if (!experienceKey) {
