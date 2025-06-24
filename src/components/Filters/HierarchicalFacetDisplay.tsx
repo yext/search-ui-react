@@ -342,7 +342,7 @@ function ShowMoreButton({ className, isShowingMore, toggleShowMore }: {
   const { t } = useTranslation();
   return (
     <button className={className} onClick={toggleShowMore}>
-      {isShowingMore ? t('showLess', 'Show less') :  t('showLess', 'Show more')}
+      {isShowingMore ? t('showLess', 'Show Less') : t('showMore', 'Show More')}
     </button>
   );
 }

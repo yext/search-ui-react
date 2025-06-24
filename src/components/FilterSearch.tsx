@@ -370,7 +370,7 @@ export function FilterSearch({
       >
         {showCurrentLocationButton ? (
           <div className={cssClasses.currentLocationAndInputContainer}>
-            <div className="relative flex-1">
+            <div className='relative flex-1'>
               {dropdownInput}
               {dropdownMenu}
             </div>

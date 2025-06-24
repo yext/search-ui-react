@@ -69,8 +69,8 @@ export function LocationBias({
   if (!locationBias?.displayName) return null;
 
   const attributionMessage =
-      locationBias?.method === LocationBiasMethod.Ip ? ' (based on your internet address)'
-        : locationBias?.method === LocationBiasMethod.Device ? ' (based on your device)'
+      locationBias?.method === LocationBiasMethod.Ip ? t('basedOnYourInternetAddress', ' (based on your internet address)')
+        : locationBias?.method === LocationBiasMethod.Device ? t('basedOnYourDevice', ' (based on your device)')
           : '';
 
   async function handleGeolocationClick() {

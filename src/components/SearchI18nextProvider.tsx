@@ -8,16 +8,21 @@ type translationKeys =
   'allCategories' | 
   'appliedFiltersToCurrentSearch' | 
   'apply' | 
+  'applyFilters' |
   'autocompleteOptionsFound_zero' | 'autocompleteOptionsFound_one' | 'autocompleteOptionsFound_two' | 'autocompleteOptionsFound_few' | 'autocompleteOptionsFound_many' | 'autocompleteOptionsFound_other' |
   'autocompleteSuggestion' | 
   'autocompleteSuggestionsFound_zero' | 'autocompleteSuggestionsFound_one' | 'autocompleteSuggestionsFound_two' | 'autocompleteSuggestionsFound_few' | 'autocompleteSuggestionsFound_many' | 'autocompleteSuggestionsFound_other' |
+  'basedOnYourDevice' |
+  'basedOnYourInternetAddress' |
   'categoriesText_zero' | 'categoriesText_one'| 'categoriesText_two'  | 'categoriesText_few' | 'categoriesText_many' | 'categoriesText_other' |
   'clearAll' |
   'clearMinAndMax' |
   'clearTheRangeToSelectOptions' |
   'clearTheSearchBar' |
   'conductASearch' |
+  'currentLocation' |
   'didYouMean' |
+  'dropDownScreenReaderInstructions' |
   'feedback' |
   'invalidRange' |
   'max' |
@@ -28,6 +33,7 @@ type translationKeys =
   'noAutocompleteSuggestionsFound' |
   'noResultsFoundIn' |
   'pagination' |
+  'readMoreAbout' |
   'recentSearch' |
   'recentSearchesFound_zero' | 'recentSearchesFound_one' | 'recentSearchesFound_two' | 'recentSearchesFound_few' | 'recentSearchesFound_many' | 'recentSearchesFound_other' |
   'removeFilter' |
@@ -37,6 +43,7 @@ type translationKeys =
   'resultsCountWithPaginationText' |
   'searchHere' |
   'showLess' |
+  'showMore' |
   'showingAllInstead' |
   'sources_zero' | 'sources_one' | 'sources_two' | 'sources_few' | 'sources_many' | 'sources_other' |
   'submitSearch' |
@@ -45,6 +52,9 @@ type translationKeys =
   'thisDidNotAnswerMyQuestion' |
   'unselectAnOptionToEnterInARange' |
   'updateYourLocation' |
+  'viewAll' |
+  'viewDetails' |
+  'useMyLocation' |
   'viewAll' |
   'viewDetails';
 

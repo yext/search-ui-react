@@ -1,13 +1,13 @@
-import { render, screen } from '@testing-library/react';
-import { DirectAnswerState } from '@yext/search-headless-react';
+import { render, RenderResult, screen } from '@testing-library/react';
+import { DirectAnswerState, SearchHeadlessContext } from '@yext/search-headless-react';
 import { useAnalytics } from '../../src/hooks/useAnalytics';
 import { DirectAnswer } from '../../src/components/DirectAnswer';
-import { RecursivePartial, ignoreLinkClickErrors, mockAnswersState } from '../__utils__/mocks';
+import { SearchI18nextProvider } from '../../src/components/SearchI18nextProvider';
+import { RecursivePartial, ignoreLinkClickErrors } from '../__utils__/mocks';
 import { fieldValueDAState, featuredSnippetDAState } from '../__fixtures__/data/directanswers';
+import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-
-jest.mock('@yext/search-headless-react');
 
 jest.mock('../../src/hooks/useAnalytics', () => {
   const report = jest.fn();
@@ -16,25 +16,71 @@ jest.mock('../../src/hooks/useAnalytics', () => {
   };
 });
 
+function renderDirectAnswer(
+  directAnswer: RecursivePartial<DirectAnswerState>,
+  isLoading?: boolean,
+  locale?: string
+): RenderResult & { rerenderWithLocale: (newLocale?: string) => void } {
+  const searcher = generateMockedHeadless({
+    directAnswer,
+    searchStatus: { isLoading },
+    vertical: {},
+    query: {
+      queryId: '[queryId]'
+    },
+    meta: {
+      locale
+    }
+  });
+
+  const utils = render(<SearchHeadlessContext.Provider value={searcher}>
+    <SearchI18nextProvider searcher={searcher}>
+      <DirectAnswer />
+    </SearchI18nextProvider>
+  </SearchHeadlessContext.Provider>);
+
+  function rerenderWithLocale(newLocale?: string) {
+    const newSearcher = generateMockedHeadless({
+      directAnswer,
+      searchStatus: { isLoading },
+      vertical: {},
+      query: {
+        queryId: '[queryId]'
+      },
+      meta: {
+        locale: newLocale
+      }
+    });
+
+    utils.rerender(<SearchHeadlessContext.Provider value={newSearcher}>
+      <SearchI18nextProvider searcher={newSearcher}>
+        <DirectAnswer />
+      </SearchI18nextProvider>
+    </SearchHeadlessContext.Provider>);
+  }
+
+  return {
+    ...utils,
+    rerenderWithLocale,
+  };
+}
+
 it('renders null when there is no direct answer in state', () => {
-  mockState({ result: undefined });
-  const { container } = render(<DirectAnswer />);
+  const { container } = renderDirectAnswer({ result: undefined });
   expect(container).toBeEmptyDOMElement();
 });
 
 describe('Field value direct answer analytics', () => {
-  beforeEach(() => mockState(fieldValueDAState));
-  runAnalyticsTestSuite();
+  runAnalyticsTestSuite(fieldValueDAState);
 });
 
 describe('Featured snippet direct answer analytics', () => {
-  beforeEach(() => mockState(featuredSnippetDAState));
-  runAnalyticsTestSuite();
+  runAnalyticsTestSuite(featuredSnippetDAState);
 });
 
-function runAnalyticsTestSuite() {
+function runAnalyticsTestSuite(mockState: DirectAnswerState) {
   it('reports link click analytics', async () => {
-    render(<DirectAnswer />);
+    renderDirectAnswer(mockState);
     ignoreLinkClickErrors();
     const link = screen.getByRole('link');
     await userEvent.click(link);
@@ -48,7 +94,7 @@ function runAnalyticsTestSuite() {
   });
 
   it('reports THUMBS_UP feedback', async () => {
-    render(<DirectAnswer />);
+    renderDirectAnswer(mockState);
     const thumbsUp = screen.queryAllByRole('button')[0];
     await userEvent.click(thumbsUp);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
@@ -61,7 +107,7 @@ function runAnalyticsTestSuite() {
   });
 
   it('reports THUMBS_DOWN feedback', async () => {
-    render(<DirectAnswer />);
+    renderDirectAnswer(mockState);
     const thumbsDown = screen.queryAllByRole('button')[1];
     await userEvent.click(thumbsDown);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
@@ -74,16 +120,28 @@ function runAnalyticsTestSuite() {
   });
 }
 
-function mockState(
-  directAnswer: RecursivePartial<DirectAnswerState>,
-  isLoading?: boolean
-) {
-  return mockAnswersState({
-    directAnswer,
-    searchStatus: { isLoading },
-    vertical: {},
-    query: {
-      queryId: '[queryId]'
-    }
+function runTranslationTestSuite(mockState: DirectAnswerState) {
+  it('translate the feedback button', async () => {
+    const { rerenderWithLocale } = renderDirectAnswer(mockState);
+
+    expect(screen.getByText('Feedback')).toBeDefined();
+
+    const [thumbsUp, thumbsDown] = screen.queryAllByRole('button');
+    expect(thumbsUp).toHaveAttribute('aria-label', 'This answered my question');
+    expect(thumbsDown).toHaveAttribute('aria-label', 'This did not answer my question');
+
+    await userEvent.click(thumbsUp);
+    expect(screen.getByText('Thank you for your feedback!')).toBeDefined();
+
+    rerenderWithLocale('es');
+
+    expect(screen.getByText('Comentarios')).toBeDefined();
+
+    const [localizedThumbsUp, localizedThumbsDown] = screen.queryAllByRole('button');
+    expect(localizedThumbsUp).toHaveAttribute('aria-label', 'Esto respondió mi pregunta');
+    expect(localizedThumbsDown).toHaveAttribute('aria-label', 'Esto no respondió mi pregunta');
+
+    await userEvent.click(localizedThumbsDown);
+    expect(screen.getByText('¡Gracias por tus comentarios!')).toBeDefined();
   });
 }

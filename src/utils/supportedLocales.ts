@@ -33,6 +33,7 @@ const supportedLocales =
   'sk',
   'sv',
   'tr',
+  'vi',
   'zh-CN',
   'zh-TW',
 ]

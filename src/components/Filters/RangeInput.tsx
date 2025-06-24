@@ -188,7 +188,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   function renderInput(value: string, onChange: (event: unknown) => void, placeholder: string) {
     return (
       <div className={cssClasses.inputContainer}>
-        {inputPrefix && <span className={inputPrefixClasses} aria-hidden="true">{inputPrefix}</span>}
+        {inputPrefix && <span className={inputPrefixClasses} aria-hidden='true'>{inputPrefix}</span>}
         <input
           type='text'
           inputMode='decimal'
