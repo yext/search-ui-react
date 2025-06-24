@@ -1289,7 +1289,7 @@ MIT License
 
 The following NPM package may be included in this product:
 
- - @yext/analytics@1.0.2
+ - @yext/analytics@1.1.0
 
 This package contains the following license and notice below:
 
@@ -1379,10 +1379,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 The following NPM package may be included in this product:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  - @yext/search-headless-react@2.5.4
 =======
  - @yext/search-headless-react@2.5.1
 >>>>>>> 104ba37 (ksearch: upgrade to Events API)
+=======
+ - @yext/search-headless-react@2.5.2
+>>>>>>> 3c5a6e2 (Automated update to THIRD-PARTY-NOTICES from github action's 3rd party notices check)
 
 This package contains the following license and notice below:
 
@@ -1427,10 +1431,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 The following NPM package may be included in this product:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  - @yext/search-headless@2.6.4
 =======
  - @yext/search-headless@2.6.1
 >>>>>>> 104ba37 (ksearch: upgrade to Events API)
+=======
+ - @yext/search-headless@2.6.2
+>>>>>>> 3c5a6e2 (Automated update to THIRD-PARTY-NOTICES from github action's 3rd party notices check)
 
 This package contains the following license and notice below:
 
