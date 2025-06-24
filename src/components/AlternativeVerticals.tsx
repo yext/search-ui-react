@@ -85,6 +85,7 @@ export function AlternativeVerticals({
   displayAllOnNoResults = true,
   customCssClasses
 }: AlternativeVerticalsProps): JSX.Element | null {
+  const { t } = useTranslation();
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const alternativeVerticals = useSearchState(state => state.vertical.noResults?.alternativeVerticals) || [];
@@ -153,7 +154,6 @@ export function AlternativeVerticals({
   );
 
   function renderNoResultsInfo() {
-    const { t } = useTranslation();
     return (
       <div className={cssClasses.noResultsText}>
         <span>{t('noResultsFoundIn', `No results found in ${currentVerticalLabel}.`, { currentVerticalLabel })}</span>
@@ -165,7 +165,6 @@ export function AlternativeVerticals({
   }
   
   function renderSuggestion(suggestion: VerticalSuggestion) {
-    const { t } = useTranslation();
     const {verticalKey, resultsCount, label} = suggestion;
     const fallbackText = processTranslation({
       phrase: `${label} - ${resultsCount} result`,

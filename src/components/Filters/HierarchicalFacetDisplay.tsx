@@ -184,7 +184,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
     applyFilters();
     resetShowMore();
   }, [applyFilters, facet.fieldId, facet.options, resetShowMore, selectFilter]);
-  const allCategoriesText = t('allCategories', 'All Categories')
+  const allCategoriesText = t('allCategories', 'All Categories');
 
   if (facet.options.find(o => o.selected)) {
     return (
