@@ -56,6 +56,25 @@ _(Optional)_ CSS classes for customizing the component styling.
 </td></tr>
 <tr><td>
 
+[disableBuiltInClasses?](./search-ui-react.geolocationprops.disablebuiltinclasses.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to disable built-in classes and use only custom classes.
+
+
+</td></tr>
+<tr><td>
+
 [GeolocationIcon?](./search-ui-react.geolocationprops.geolocationicon.md)
 
 
@@ -146,6 +165,25 @@ number
 </td><td>
 
 _(Optional)_ The radius, in miles, around the user's location to find results. Defaults to 50. If location accuracy is low, a larger radius may be used automatically.
+
+
+</td></tr>
+<tr><td>
+
+[useIconAsButton?](./search-ui-react.geolocationprops.useiconasbutton.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to use the icon as a button, rather than the label.
 
 
 </td></tr>

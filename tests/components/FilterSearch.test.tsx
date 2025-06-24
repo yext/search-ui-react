@@ -862,3 +862,9 @@ it('toggling the dropdown does not change selected filters', async () => {
 
   expect(setFilterOption).toHaveBeenCalledTimes(1);
 });
+
+it('displays near me button when showCurrentLocationButton is true', () => {
+  renderFilterSearch({ searchFields: searchFieldsProp, showCurrentLocationButton: true });
+  const nearMeButton = screen.getByRole('button', { name: 'Use Current Location' });
+  expect(nearMeButton).toBeDefined();
+});

@@ -47,7 +47,11 @@ export interface GeolocationProps {
    */
   handleClick?: (position: GeolocationPosition) => void,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: GeolocationCssClasses
+  customCssClasses?: GeolocationCssClasses,
+  /** Whether to use the icon as a button, rather than the label. */
+  useIconAsButton?: boolean,
+  /** Whether to disable built-in classes and use only custom classes. */
+  disableBuiltInClasses?: boolean
 }
 
 /**
@@ -67,22 +71,40 @@ export function Geolocation({
   GeolocationIcon = YextIcon,
   handleClick,
   customCssClasses,
+  useIconAsButton = false,
+  disableBuiltInClasses = false
 }: GeolocationProps): JSX.Element | null {
-  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
+  const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, disableBuiltInClasses);
   const [handleGeolocationClick, isFetchingUserLocation] = useGeolocationHandler({
     geolocationOptions,
     radius,
     handleUserPosition: handleClick
   });
 
-  return (
-    <div className={cssClasses.geolocationContainer}>
-      <button className={cssClasses.button} onClick={handleGeolocationClick}>
-        {label}
-      </button>
-      <div className={cssClasses.iconContainer}>
-        {isFetchingUserLocation ? <LoadingIndicator /> : <GeolocationIcon />}
-      </div>
+  const iconContainer = (
+    <div className={cssClasses.iconContainer}>
+      {isFetchingUserLocation ? <LoadingIndicator /> : <GeolocationIcon />}
     </div>
   );
+
+  if (useIconAsButton) {
+    return (
+      <button
+        className={cssClasses.button}
+        onClick={handleGeolocationClick}
+        aria-label={"Use Current Location"}
+      >
+        {iconContainer}
+      </button>
+    );
+  } else {
+    return (
+      <div className={cssClasses.geolocationContainer}>
+        <button className={cssClasses.button} onClick={handleGeolocationClick}>
+          {label}
+        </button>
+        {iconContainer}
+      </div>
+    )
+  }
 }
