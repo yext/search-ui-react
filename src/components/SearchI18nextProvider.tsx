@@ -8,10 +8,10 @@ type translationKeys =
   'allCategories' | 
   'appliedFiltersToCurrentSearch' | 
   'apply' | 
-  'autocompleteOptionsFound_zero' | 'autocompleteOptionsFound_one' | 'autocompleteOptionsFound_few' | 'autocompleteOptionsFound_many' | 'autocompleteOptionsFound_other' |
+  'autocompleteOptionsFound_zero' | 'autocompleteOptionsFound_one' | 'autocompleteOptionsFound_two' | 'autocompleteOptionsFound_few' | 'autocompleteOptionsFound_many' | 'autocompleteOptionsFound_other' |
   'autocompleteSuggestion' | 
-  'autocompleteSuggestionsFound_zero' | 'autocompleteSuggestionsFound_one' | 'autocompleteSuggestionsFound_few' | 'autocompleteSuggestionsFound_many' | 'autocompleteSuggestionsFound_other' |
-  'categoriesText_zero' | 'categoriesText_one' | 'categoriesText_few' | 'categoriesText_many' | 'categoriesText_other' |
+  'autocompleteSuggestionsFound_zero' | 'autocompleteSuggestionsFound_one' | 'autocompleteSuggestionsFound_two' | 'autocompleteSuggestionsFound_few' | 'autocompleteSuggestionsFound_many' | 'autocompleteSuggestionsFound_other' |
+  'categoriesText_zero' | 'categoriesText_one'| 'categoriesText_two'  | 'categoriesText_few' | 'categoriesText_many' | 'categoriesText_other' |
   'clearAll' |
   'clearMinAndMax' |
   'clearTheRangeToSelectOptions' |
@@ -29,22 +29,18 @@ type translationKeys =
   'noResultsFoundIn' |
   'pagination' |
   'recentSearch' |
-  'recentSearchesFound_one' |
-  'recentSearchesFound_other' |
+  'recentSearchesFound_zero' | 'recentSearchesFound_one' | 'recentSearchesFound_two' | 'recentSearchesFound_few' | 'recentSearchesFound_many' | 'recentSearchesFound_other' |
   'removeFilter' |
   'resultPreview' |
-  'resultPreviewsFound_one' |
-  'resultPreviewsFound_other' |
-  'resultsCountText_one' |
-  'resultsCountText_other' |
+  'resultPreviewsFound_zero' | 'resultPreviewsFound_one' | 'resultPreviewsFound_two' | 'resultPreviewsFound_few' | 'resultPreviewsFound_many' | 'resultPreviewsFound_other' |
+  'resultsCountText_zero' | 'resultsCountText_one' | 'resultsCountText_two' | 'resultsCountText_few' | 'resultsCountText_many' | 'resultsCountText_other' |
   'resultsCountWithPaginationText' |
   'searchHere' |
   'showLess' |
   'showingAllInstead' |
-  'sources_zero' | 'sources_one' | 'sources_few' | 'sources_many' | 'sources_other' |
+  'sources_zero' | 'sources_one' | 'sources_two' | 'sources_few' | 'sources_many' | 'sources_other' |
   'submitSearch' |
-  'suggestionResultsCount_one' |
-  'suggestionResultsCount_other' |
+  'suggestionResultsCount_zero' | 'suggestionResultsCount_one' | 'suggestionResultsCount_two' | 'suggestionResultsCount_few' | 'suggestionResultsCount_many' | 'suggestionResultsCount_other' |
   'thisAnsweredMyQuestion' |
   'thisDidNotAnswerMyQuestion' |
   'unselectAnOptionToEnterInARange' |
@@ -79,7 +75,7 @@ declare interface SearchI18nextConfig {
 }
 
 /**
- * A higher-order component which provides translations for search headless.
+ * A higher-order component which provides translations for search react components.
  *
  * @public
  *
@@ -92,8 +88,8 @@ export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConf
   React.useEffect(() => {
     translationOverrides && Object.entries(translationOverrides).forEach(([locale, translation]) => {
       i18nInstance.addResourceBundle(locale, 'search-ui-react', translation, true, true);
-    })
-    i18nInstance.changeLanguage(searcher.state.meta.locale)
+    });
+    i18nInstance.changeLanguage(searcher.state.meta.locale);
     searcher.addListener<string | undefined>({
       valueAccessor: state => state.meta.locale,
       callback: locale => {

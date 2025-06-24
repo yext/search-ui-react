@@ -117,7 +117,7 @@ function renderRemovableFilter(
       <button
         className='w-2 h-2 text-neutral m-1.5'
         onClick={handleRemove}
-        aria-label={t('removeFilter', `Remove ${displayName} filter`, { displayName })}
+        aria-label={t('removeFilter', `Remove "${displayName}" filter`, { displayName })}
       >
         <CloseIcon />
       </button>

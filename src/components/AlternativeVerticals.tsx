@@ -141,7 +141,7 @@ export function AlternativeVerticals({
               count={count}
               values={{ query }}
               components={{ strong: <strong /> }}
-              default={fallbackText}
+              defaults={fallbackText}
             />
           </div>
           <ul className='pt-4'>

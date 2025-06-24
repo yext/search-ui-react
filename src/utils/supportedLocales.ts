@@ -1,23 +1,27 @@
 /**
- * The locales that have search-ui-react translation support.
+ * The locales that have default translation support.
  *
  * @internal
  */
 const supportedLocales =
 [
+  'ar',
   'cs',
   'da',
   'de',
+  'el',
   'en-GB',
   'en',
   'es',
   'et',
   'fi',
   'fr',
+  'hi',
   'hr',
   'hu',
   'it',
   'ja',
+  'ko',
   'lt',
   'lv',
   'nb',
@@ -25,6 +29,7 @@ const supportedLocales =
   'pl',
   'pt',
   'ro',
+  'ru',
   'sk',
   'sv',
   'tr',

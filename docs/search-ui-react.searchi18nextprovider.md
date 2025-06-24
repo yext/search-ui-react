@@ -4,7 +4,7 @@
 
 ## SearchI18nextProvider() function
 
-A higher-order component which provides translations for search headless.
+A higher-order component which provides translations for search react components.
 
 **Signature:**
 

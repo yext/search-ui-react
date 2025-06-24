@@ -321,7 +321,7 @@ Renders a SearchBar that is hooked up with an InputDropdown component.
 
 </td><td>
 
-A higher-order component which provides translations for search headless.
+A higher-order component which provides translations for search react components.
 
 
 </td></tr>

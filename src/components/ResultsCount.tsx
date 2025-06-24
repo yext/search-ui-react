@@ -82,10 +82,10 @@ function useResultsCount() {
   if (resultsCount > limit && isVertical){
     const paginateStart = offset + 1;
     const paginateEnd = Math.min((offset + limit), resultsCount);
-    const resultCountWithPaginationFallbackText = `${paginateStart - paginateEnd} of ${resultsCount} Results`;
-    return t('resultsCountWithPaginationText', '{{paginateStart}} - {{paginateEnd}} of {{resultsCount}} Results', { paginateStart, paginateEnd, resultsCount });
+    const resultCountWithPaginationFallbackText = `${paginateStart} - ${paginateEnd} of ${resultsCount} Results`;
+    return t('resultsCountWithPaginationText', resultCountWithPaginationFallbackText, { paginateStart, paginateEnd, resultsCount });
   } else {
-    return t('resultsCountText', '{{count}} Results', { count: resultsCount });
+    return t('resultsCountText', resultsCountFallbackText, { count: resultsCount });
   }
 }
 

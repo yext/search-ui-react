@@ -345,9 +345,7 @@ export function SearchBar({
             result,
             cssClasses,
             MagnifyingGlassIcon,
-            t('autocompleteSuggestion', `autocomplete suggestion: ${result.value}`, {
-              suggestion: result.value
-            })
+            t('autocompleteSuggestion', `autocomplete suggestion: ${result.value}`, { suggestion: result.value })
           )}
         </DropdownItem>
         {showVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
