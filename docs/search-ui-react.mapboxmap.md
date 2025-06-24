@@ -9,7 +9,11 @@ A component that renders a map with markers to show result locations using Mapbo
 **Signature:**
 
 ```typescript
+<<<<<<< HEAD
 declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
+=======
+declare function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }: MapboxMapProps<T>): JSX.Element;
+>>>>>>> develop
 ```
 
 ## Parameters
@@ -32,7 +36,11 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+<<<<<<< HEAD
 { mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }
+=======
+{ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }
+>>>>>>> develop
 
 
 </td><td>

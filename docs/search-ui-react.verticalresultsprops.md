@@ -92,6 +92,7 @@ _(Optional)_ Whether or not all results should be displayed when there are none 
 
 
 </td></tr>
+<<<<<<< HEAD
 <tr><td>
 
 [setResultsRef?](./search-ui-react.verticalresultsprops.setresultsref.md)
@@ -111,4 +112,6 @@ _(Optional)_ set individual result refs.
 
 
 </td></tr>
+=======
+>>>>>>> develop
 </tbody></table>

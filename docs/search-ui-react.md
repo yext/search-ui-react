@@ -140,7 +140,11 @@ A divider component used to separate NumericalFacets, HierarchicalFacets, Standa
 </td></tr>
 <tr><td>
 
+<<<<<<< HEAD
 [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps })](./search-ui-react.filtersearch.md)
+=======
+[FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel })](./search-ui-react.filtersearch.md)
+>>>>>>> develop
 
 
 </td><td>
@@ -162,7 +166,11 @@ Displays the AI generated answer of a generative direct answer.
 </td></tr>
 <tr><td>
 
+<<<<<<< HEAD
 [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses })](./search-ui-react.geolocation_2.md)
+=======
+[Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md)
+>>>>>>> develop
 
 
 </td><td>
@@ -239,7 +247,11 @@ A React Component which displays and collects location information in order to b
 </td></tr>
 <tr><td>
 
+<<<<<<< HEAD
 [MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, })](./search-ui-react.mapboxmap.md)
+=======
+[MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, })](./search-ui-react.mapboxmap.md)
+>>>>>>> develop
 
 
 </td><td>
@@ -1433,7 +1445,11 @@ The data associated with the currently focused item.
 
 </td><td>
 
+<<<<<<< HEAD
 A function which is called when user drags or zooms the map.
+=======
+A function which is called when user drag the map.
+>>>>>>> develop
 
 
 </td></tr>

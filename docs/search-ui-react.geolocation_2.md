@@ -32,7 +32,11 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+<<<<<<< HEAD
 { geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }
+=======
+{ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }
+>>>>>>> develop
 
 
 </td><td>

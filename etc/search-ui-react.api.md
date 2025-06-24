@@ -130,7 +130,11 @@ export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
+<<<<<<< HEAD
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
+=======
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
+>>>>>>> develop
 
 // @public
 export interface CardProps<T = DefaultRawDataType> {
@@ -298,7 +302,11 @@ export interface FilterOptionConfig {
 }
 
 // @public
+<<<<<<< HEAD
 export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): JSX.Element;
+=======
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }: FilterSearchProps): JSX.Element;
+>>>>>>> develop
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -382,7 +390,11 @@ export interface GenerativeDirectAnswerProps {
 }
 
 // @public
+<<<<<<< HEAD
 function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }: GeolocationProps): JSX.Element | null;
+=======
+function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
+>>>>>>> develop
 export { Geolocation_2 as Geolocation }
 
 // @public
@@ -499,7 +511,11 @@ export interface LocationBiasProps {
 }
 
 // @public
+<<<<<<< HEAD
 export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
+=======
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }: MapboxMapProps<T>): JSX.Element;
+>>>>>>> develop
 
 // @public
 export interface MapboxMapProps<T> {

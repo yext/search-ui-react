@@ -26,7 +26,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 The following NPM packages may be included in this product:
 
+<<<<<<< HEAD
  - @babel/runtime-corejs3@7.27.6
+=======
+ - @babel/runtime-corejs3@7.27.0
+>>>>>>> develop
  - @babel/runtime@7.27.0
 
 These packages each contain the following license and notice below:
@@ -1192,7 +1196,10 @@ limitations under the License.
 The following NPM packages may be included in this product:
 
  - @tailwindcss/forms@0.5.10
+<<<<<<< HEAD
  - @tailwindcss/typography@0.5.16
+=======
+>>>>>>> develop
  - tailwindcss@3.4.17
 
 These packages each contain the following license and notice below:
@@ -1330,7 +1337,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
+<<<<<<< HEAD
  - @yext/search-core@2.6.2
+=======
+ - @yext/search-core@2.6.0
+>>>>>>> develop
 
 This package contains the following license and notice below:
 
@@ -1374,7 +1385,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
+<<<<<<< HEAD
  - @yext/search-headless-react@2.5.3
+=======
+ - @yext/search-headless-react@2.5.0
+>>>>>>> develop
 
 This package contains the following license and notice below:
 
@@ -1418,7 +1433,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
+<<<<<<< HEAD
  - @yext/search-headless@2.6.3
+=======
+ - @yext/search-headless@2.6.0
+>>>>>>> develop
 
 This package contains the following license and notice below:
 
@@ -3491,6 +3510,39 @@ terms above.
 
 -----------
 
+The following NPM packages may be included in this product:
+
+ - longest-streak@2.0.4
+ - parse-entities@2.0.0
+ - property-information@5.6.0
+
+These packages each contain the following license and notice below:
+
+(The MIT License)
+
+Copyright (c) 2015 Titus Wormer <mailto:tituswormer@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-----------
+
 The following NPM package may be included in this product:
 
  - lodash.castarray@4.4.0
@@ -4626,7 +4678,11 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
+<<<<<<< HEAD
  - pirates@4.0.7
+=======
+ - pirates@4.0.6
+>>>>>>> develop
 
 This package contains the following license and notice below:
 
@@ -4772,7 +4828,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM packages may be included in this product:
 
+<<<<<<< HEAD
  - postcss-selector-parser@6.0.10
+=======
+>>>>>>> develop
  - postcss-selector-parser@6.1.2
 
 These packages each contain the following license and notice below:
@@ -6571,7 +6630,11 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
+<<<<<<< HEAD
  - use-sync-external-store@1.5.0
+=======
+ - use-sync-external-store@1.4.0
+>>>>>>> develop
 
 This package contains the following license and notice below:
 
@@ -6807,7 +6870,11 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
+<<<<<<< HEAD
  - yaml@2.7.1
+=======
+ - yaml@2.7.0
+>>>>>>> develop
 
 This package contains the following license and notice below:
 
