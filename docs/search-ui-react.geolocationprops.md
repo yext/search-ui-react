@@ -57,6 +57,9 @@ _(Optional)_ CSS classes for customizing the component styling.
 <tr><td>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 [disableBuiltInClasses?](./search-ui-react.geolocationprops.disablebuiltinclasses.md)
 
 
@@ -76,6 +79,9 @@ _(Optional)_ Whether to disable built-in classes and use only custom classes.
 </td></tr>
 <tr><td>
 
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 =======
 >>>>>>> develop
 [GeolocationIcon?](./search-ui-react.geolocationprops.geolocationicon.md)
@@ -172,6 +178,9 @@ _(Optional)_ The radius, in miles, around the user's location to find results. D
 
 </td></tr>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 <tr><td>
 
 [useIconAsButton?](./search-ui-react.geolocationprops.useiconasbutton.md)
@@ -191,6 +200,9 @@ _(Optional)_ Whether to use the icon as a button, rather than the label.
 
 
 </td></tr>
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 =======
 >>>>>>> develop
 </tbody></table>

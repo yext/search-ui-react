@@ -33,9 +33,13 @@ Description
 <tbody><tr><td>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 { geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }
 =======
 { geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }
+>>>>>>> develop
+=======
+{ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }
 >>>>>>> develop
 
 

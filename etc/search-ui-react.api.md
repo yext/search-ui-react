@@ -131,9 +131,13 @@ export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX
 
 // @public
 <<<<<<< HEAD
+<<<<<<< HEAD
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
 =======
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK';
+>>>>>>> develop
+=======
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
 >>>>>>> develop
 
 // @public
@@ -391,9 +395,13 @@ export interface GenerativeDirectAnswerProps {
 
 // @public
 <<<<<<< HEAD
+<<<<<<< HEAD
 function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }: GeolocationProps): JSX.Element | null;
 =======
 function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
+>>>>>>> develop
+=======
+function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }: GeolocationProps): JSX.Element | null;
 >>>>>>> develop
 export { Geolocation_2 as Geolocation }
 
@@ -512,9 +520,13 @@ export interface LocationBiasProps {
 
 // @public
 <<<<<<< HEAD
+<<<<<<< HEAD
 export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
 =======
 export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }: MapboxMapProps<T>): JSX.Element;
+>>>>>>> develop
+=======
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
 >>>>>>> develop
 
 // @public

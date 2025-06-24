@@ -133,6 +133,9 @@ _(Optional)_ Interface for map customization derived from Mapbox GL's Map option
 <tr><td>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 [markerOptionsOverride?](./search-ui-react.mapboxmapprops.markeroptionsoverride.md)
 
 
@@ -152,6 +155,9 @@ _(Optional)_ The options to apply to the map markers based on whether it is sele
 </td></tr>
 <tr><td>
 
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 =======
 >>>>>>> develop
 [onDrag?](./search-ui-react.mapboxmapprops.ondrag.md)
@@ -168,6 +174,9 @@ _(Optional)_ The options to apply to the map markers based on whether it is sele
 </td><td>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> develop
 _(Optional)_ A function which is called when user drags or zooms the map.
 
 
@@ -188,8 +197,11 @@ _(Optional)_ A function which is called when user drags or zooms the map.
 </td><td>
 
 _(Optional)_ A function that handles a pin click event.
+<<<<<<< HEAD
 =======
 _(Optional)_ A function which is called when user drag the map.
+>>>>>>> develop
+=======
 >>>>>>> develop
 
 

@@ -167,9 +167,13 @@ Displays the AI generated answer of a generative direct answer.
 <tr><td>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses })](./search-ui-react.geolocation_2.md)
 =======
 [Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, })](./search-ui-react.geolocation_2.md)
+>>>>>>> develop
+=======
+[Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses })](./search-ui-react.geolocation_2.md)
 >>>>>>> develop
 
 
@@ -248,9 +252,13 @@ A React Component which displays and collects location information in order to b
 <tr><td>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 [MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, })](./search-ui-react.mapboxmap.md)
 =======
 [MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, })](./search-ui-react.mapboxmap.md)
+>>>>>>> develop
+=======
+[MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, })](./search-ui-react.mapboxmap.md)
 >>>>>>> develop
 
 
@@ -1446,9 +1454,13 @@ The data associated with the currently focused item.
 </td><td>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 A function which is called when user drags or zooms the map.
 =======
 A function which is called when user drag the map.
+>>>>>>> develop
+=======
+A function which is called when user drags or zooms the map.
 >>>>>>> develop
 
 
