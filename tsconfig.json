@@ -10,7 +10,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "jsx": "react",
-    "target": "es2017"
+    "target": "es2021"
   },
   "include": [
     "src"

@@ -14,6 +14,7 @@ import { FilterSearchResponse } from '@yext/search-headless-react';
 import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import { default as mapboxgl_2 } from 'mapbox-gl';
+import { MarkerOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
@@ -129,7 +130,11 @@ export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
+<<<<<<< HEAD
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE' | 'CITATION_CLICK';
+=======
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
+>>>>>>> main
 
 // @public
 export interface CardProps<T = DefaultRawDataType> {
@@ -297,10 +302,14 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
+    // (undocumented)
+    currentLocationAndInputContainer?: string;
+    // (undocumented)
+    currentLocationButton?: string;
     // (undocumented)
     filterSearchContainer?: string;
     // (undocumented)
@@ -321,6 +330,7 @@ export interface FilterSearchProps {
     ariaLabel?: string;
     customCssClasses?: FilterSearchCssClasses;
     disableBuiltInClasses?: boolean;
+    geolocationProps?: GeolocationProps;
     label?: string;
     onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
     onSelect?: (params: OnSelectParams) => void;
@@ -329,6 +339,7 @@ export interface FilterSearchProps {
     // @deprecated
     searchOnSelect?: boolean;
     sectioned?: boolean;
+    showCurrentLocationButton?: boolean;
 }
 
 // @public
@@ -375,7 +386,7 @@ export interface GenerativeDirectAnswerProps {
 }
 
 // @public
-function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, }: GeolocationProps): JSX.Element | null;
+function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }: GeolocationProps): JSX.Element | null;
 export { Geolocation_2 as Geolocation }
 
 // @public
@@ -391,11 +402,13 @@ export interface GeolocationCssClasses {
 // @public
 export interface GeolocationProps {
     customCssClasses?: GeolocationCssClasses;
+    disableBuiltInClasses?: boolean;
     GeolocationIcon?: React_2.FunctionComponent;
     geolocationOptions?: PositionOptions;
     handleClick?: (position: GeolocationPosition) => void;
     label?: string;
     radius?: number;
+    useIconAsButton?: boolean;
 }
 
 // @public
@@ -490,7 +503,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, }: MapboxMapProps<T>): JSX.Element;
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
@@ -499,7 +512,9 @@ export interface MapboxMapProps<T> {
     iframeWindow?: Window;
     mapboxAccessToken: string;
     mapboxOptions?: Omit<mapboxgl_2.MapboxOptions, 'container'>;
+    markerOptionsOverride?: (selected: boolean) => MarkerOptions;
     onDrag?: OnDragHandler;
+    onPinClick?: (result: Result<T> | undefined) => void;
     PinComponent?: PinComponent<T>;
     renderPin?: (props: PinComponentProps<T> & {
         container: HTMLElement;
@@ -595,6 +610,7 @@ export type PinComponentProps<T> = {
     index: number;
     mapbox: mapboxgl_2.Map;
     result: Result<T>;
+    selected?: boolean;
 };
 
 // @public
@@ -980,6 +996,7 @@ export interface VerticalResultsProps<T> {
     CardComponent: CardComponent<T>;
     customCssClasses?: VerticalResultsCssClasses;
     displayAllOnNoResults?: boolean;
+    setResultsRef?: (index: number) => ((result: HTMLDivElement) => void) | null;
 }
 
 // @public

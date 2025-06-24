@@ -1,7 +1,7 @@
-import { 
-  GenerativeDirectAnswerResponse, 
-  useSearchActions, 
-  useSearchState, 
+import {
+  GenerativeDirectAnswerResponse,
+  useSearchActions,
+  useSearchState,
   SearchTypeEnum,
   Result
 } from '@yext/search-headless-react';
@@ -9,8 +9,8 @@ import { useComposedCssClasses } from '../hooks';
 import { useCardAnalytics } from '../hooks/useCardAnalytics';
 import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
-import { Markdown } from './Markdown';
-import React from 'react';
+import { Markdown, MarkdownCssClasses } from './Markdown';
+import React, { useMemo } from 'react';
 
 /**
  * The CSS class interface used for {@link GenerativeDirectAnswer}.
@@ -31,7 +31,7 @@ export interface GenerativeDirectAnswerCssClasses {
 const builtInCssClasses: Readonly<GenerativeDirectAnswerCssClasses> = {
   container: 'p-6 border border-gray-200 rounded-lg shadow-sm',
   header: 'text-xl',
-  answerText: 'mt-4',
+  answerText: 'mt-4 prose',
   divider: 'border-b border-gray-200 w-full pb-6 mb-6',
   citationsContainer: 'mt-4 flex overflow-x-auto gap-4',
   citation: 'p-4 border border-gray-200 rounded-lg shadow-sm bg-slate-100 flex flex-col grow-0 shrink-0 basis-64 text-sm text-neutral overflow-x-auto cursor-pointer hover:border-indigo-500',
@@ -51,8 +51,8 @@ export interface GenerativeDirectAnswerProps {
   answerHeader?: string | JSX.Element,
   /** The header for the citations section of the generative direct answer. */
   citationsHeader?: string | JSX.Element,
-  /** 
-   * The citations container component for customizing the logic that determines which results can be rendered. 
+  /**
+   * The citations container component for customizing the logic that determines which results can be rendered.
    * By default, a section for citations is displayed if the results that correspond to the
    * citations have the default minimum required info, which is `rawData.uid` and `rawData.name`.
   */
@@ -109,9 +109,9 @@ export function GenerativeDirectAnswer({
 
   return (
     <div className={cssClasses.container}>
-      <Answer 
-        gdaResponse={gdaResponse} 
-        cssClasses={cssClasses} 
+      <Answer
+        gdaResponse={gdaResponse}
+        cssClasses={cssClasses}
         answerHeader={answerHeader}
         linkClickHandler={handleClickEvent}
       />
@@ -138,20 +138,28 @@ interface AnswerProps {
  * The answer section of the Generative Direct Answer.
  */
 function Answer(props: AnswerProps) {
-  const { 
-    gdaResponse, 
+  const {
+    gdaResponse,
     cssClasses,
     answerHeader = 'AI Generated Answer',
     linkClickHandler
   } = props;
+
+  const markdownCssClasses: MarkdownCssClasses = useMemo(
+    () => ({
+      container: cssClasses.answerText,
+    }),
+    [cssClasses.answerText]
+  );
+
   return <>
     <div className={cssClasses.header}>
       {answerHeader}
     </div>
-    <Markdown 
-      content={gdaResponse.directAnswer} 
+    <Markdown
+      content={gdaResponse.directAnswer}
       onLinkClick={(destinationUrl) => destinationUrl && linkClickHandler?.({destinationUrl})}
-      customCssClasses={cssClasses}
+      customCssClasses={markdownCssClasses}
     />
   </>;
 }
@@ -177,11 +185,11 @@ export interface CitationsProps {
 }
 
 /**
- * Displays the citations section of the Generative Direct Answer. 
+ * Displays the citations section of the Generative Direct Answer.
  */
 function Citations(props: CitationsProps) {
-  const { 
-    gdaResponse, 
+  const {
+    gdaResponse,
     cssClasses,
     searchResults,
     citationsHeader,
@@ -189,13 +197,18 @@ function Citations(props: CitationsProps) {
     citationClickHandler
   } = props;
   const citationResults = React.useMemo(() => {
+    // If an entity is returned by multiple different verticals, it will be present in
+    // searchResults multiple times. We want to only show it once in the citations.
+    let citationIds = new Set(gdaResponse.citations);
     return searchResults.filter(result => {
       const {uid, name} = result.rawData ?? {};
-      if (!uid || typeof uid != 'string' || !name) {
+      const dataIsInvalid = !uid || !name || typeof name != 'string' || typeof uid != 'string';
+      if (dataIsInvalid || !citationIds.has(uid)) {
         return false;
       }
-      return gdaResponse.citations.includes(uid);
-    })
+      citationIds.delete(uid);
+      return true;
+    });
   }, [gdaResponse.citations, searchResults]);
 
   if (!citationResults.length) {
@@ -225,7 +238,7 @@ export interface CitationProps {
 }
 
 /**
- * Displays a citation card for the citations section of the Generative Direct Answer. 
+ * Displays a citation card for the citations section of the Generative Direct Answer.
  */
 function Citation(props: CitationProps) {
   const {
@@ -238,8 +251,8 @@ function Citation(props: CitationProps) {
   const citationSnippet = String(description ?? answer ?? '');
   const citationUrl = typeof link === 'string' ? link : undefined;
   return (
-    <a 
-      className={cssClasses.citation} 
+    <a
+      className={cssClasses.citation}
       href={citationUrl}
       onClick={() => citationUrl && citationClickHandler?.({searchResult, destinationUrl: citationUrl})}
     >

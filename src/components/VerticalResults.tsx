@@ -27,7 +27,9 @@ export interface VerticalResultsProps<T> {
    */
   displayAllOnNoResults?: boolean,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: VerticalResultsCssClasses
+  customCssClasses?: VerticalResultsCssClasses,
+  /** set individual result refs. */
+  setResultsRef?: (index: number) => ((result: HTMLDivElement) => void) | null
 }
 
 /**

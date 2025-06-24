@@ -92,4 +92,23 @@ _(Optional)_ Whether or not all results should be displayed when there are none 
 
 
 </td></tr>
+<tr><td>
+
+[setResultsRef?](./search-ui-react.verticalresultsprops.setresultsref.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(index: number) =&gt; ((result: HTMLDivElement) =&gt; void) \| null
+
+
+</td><td>
+
+_(Optional)_ set individual result refs.
+
+
+</td></tr>
 </tbody></table>

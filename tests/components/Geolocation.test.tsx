@@ -157,6 +157,13 @@ it('renders custom icon when provided', () => {
   expect(LocationIcon).toBeDefined();
 });
 
+it('uses icon as button when useIconAsButton is true', () => {
+  render(<Geolocation useIconAsButton={true} />);
+  const updateLocationButton = screen.getByRole('button', { name: 'Use Current Location' });
+  expect(updateLocationButton).toBeDefined();
+  expect(screen.queryByText('Use my location')).not.toBeInTheDocument();
+});
+
 describe('custom click handler', () => {
   it('executes handleClick when user\'s location is successfully determined', async () => {
     const mockedHandleClickFn = jest.fn();

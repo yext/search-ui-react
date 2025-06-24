@@ -5,7 +5,10 @@ import {useAnalytics} from '../../src/hooks/useAnalytics';
 
 import {State} from '@yext/search-headless-react';
 import {mockAnswersState, ignoreLinkClickErrors} from '../__utils__/mocks';
-import {verticalResults} from '../__fixtures__/data/universalresults';
+import {
+    verticalResults,
+    verticalResultsWithDuplicateEntity
+} from '../__fixtures__/data/universalresults';
 import {
     generativeDirectAnswerText,
     generativeDirectAnswerLink,
@@ -31,6 +34,23 @@ const mockedState: Partial<State> = {
         experienceKey: 'experienceKey',
         locale: 'en',
         uuid: 'searchId'
+    }
+};
+
+const mockedStateWithDuplicateEntity: Partial<State> = {
+    generativeDirectAnswer: {
+        isLoading: false,
+        response: generativeDirectAnswerResponse,
+    },
+    universal: {
+        verticals: verticalResultsWithDuplicateEntity
+    },
+    query: {
+        queryId: '[queryId]',
+        mostRecentSearch: 'test'
+    },
+    meta: {
+        searchType: 'universal'
     }
 };
 
@@ -122,6 +142,17 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
         />);
         expect(screen.getByText(generativeDirectAnswerText)).toBeDefined();
         expect(screen.getByText("CustomCitationsComponentTest")).toBeTruthy();
+    });
+
+    it('citations are deduplicated', () => {
+        mockAnswersState(mockedStateWithDuplicateEntity);
+        render(<GenerativeDirectAnswer/>);
+        expect(screen.getByText(generativeDirectAnswerText)).toBeDefined();
+        expect(screen.getByText('Sources (2)')).toBeDefined();
+
+        checkResultData(verticalResultsWithDuplicateEntity[0].results[0].rawData, false); //not a citation
+        checkResultData(verticalResultsWithDuplicateEntity[0].results[1].rawData, true);
+        checkResultData(verticalResultsWithDuplicateEntity[1].results[0].rawData, true);
     });
 });
 

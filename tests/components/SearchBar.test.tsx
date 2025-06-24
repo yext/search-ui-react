@@ -1,4 +1,10 @@
-import { SearchIntent, QuerySource, SearchCore, SearchHeadlessContext, State } from '@yext/search-headless-react';
+import {
+  SearchIntent,
+  QuerySource,
+  SearchCore,
+  SearchHeadlessContext,
+  State
+} from '@yext/search-headless-react';
 import { render, screen } from '@testing-library/react';
 import { SearchBar } from '../../src/components/SearchBar';
 import userEvent from '@testing-library/user-event';
@@ -25,6 +31,10 @@ const mockedState: Partial<State> = {
   query: {},
   location: {}
 };
+
+const pause = (millis: number) => new Promise(resolve => setTimeout(resolve, millis));
+// wait for debounce period + extra buffer to address flakiness
+const waitForDebounce = () => pause(200 + 200);
 
 describe('SearchBar', () => {
   describe('query suggestions', () => {
@@ -80,7 +90,7 @@ describe('SearchBar', () => {
       await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
       expect(await screen.findByText('query suggestion 2')).toBeInTheDocument();
-      expect(mockedVerticalAutocomplete).toBeCalledTimes(1);
+      expect(mockedVerticalAutocomplete).toHaveBeenCalledTimes(1);
     });
 
     it('updates query suggestions with new autocomplete results when type in search bar', async () => {
@@ -110,7 +120,7 @@ describe('SearchBar', () => {
       await userEvent.type(screen.getByRole('textbox'), 't');
       expect(await screen.findByText('query suggestion 2')).toBeInTheDocument();
       expect(screen.queryByText('query suggestion 1')).not.toBeInTheDocument();
-      expect(mockedUniversalAutocomplete).toBeCalledTimes(2);
+      expect(mockedUniversalAutocomplete).toHaveBeenCalledTimes(2);
     });
 
     it('executes a new search when a query suggestion option is selected', async () => {
@@ -201,7 +211,7 @@ describe('SearchBar', () => {
       await userEvent.click(screen.getByRole('textbox'));
       expect(await screen.findByText('in verticalKey1')).toBeInTheDocument();
       await userEvent.click(screen.getByText('in verticalKey1'));
-      expect(mockedOnSelectVerticalLink).toBeCalledTimes(1);
+      expect(mockedOnSelectVerticalLink).toHaveBeenCalledTimes(1);
       expect(mockedOnSelectVerticalLink).toHaveBeenCalledWith({
         verticalLink: {
           query: 'query suggestion',
@@ -274,17 +284,19 @@ describe('SearchBar', () => {
     expect(mockedUniversalSearch).toHaveBeenCalledTimes(1);
   });
 
-  it('clear button deletes text in input element', async () => {
+  it('clear button deletes text in input element, but does not search', async () => {
     render(
       <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
         <SearchBar />
       </SearchHeadlessContext.Provider>
     );
+    const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
     await userEvent.type(screen.getByRole('textbox'), 'yext');
     expect(await screen.findByRole('textbox')).toHaveDisplayValue('yext');
     const clearSearchButton = screen.getByRole('button', { name: 'Clear the search bar' });
     await userEvent.click(clearSearchButton);
     expect(await screen.findByRole('textbox')).toHaveDisplayValue('');
+    expect(mockedUniversalSearch).toHaveBeenCalledTimes(0);
   });
 
   it('executes onSearch callback when click on submit button', async () => {
@@ -296,6 +308,7 @@ describe('SearchBar', () => {
     );
     const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
     await userEvent.type(screen.getByRole('textbox'), 'yext');
+    await waitForDebounce(); // Submit button won't fire query until debounce period is over
     const submitSearchButton = screen.getByRole('button', { name: 'Submit Search' });
     await userEvent.click(submitSearchButton);
     expect(mockedOnSearch).toHaveBeenCalledTimes(1);
