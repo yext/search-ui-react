@@ -17,7 +17,7 @@ export interface StaticFiltersCssClasses extends FilterGroupCssClasses {
  *
  * @public
  */
-export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher' | 'value'> & {
+export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'value'> & {
   /** The value used to perform filtering. */
   value: string | number | boolean
 };
