@@ -9,9 +9,9 @@ Returns a service that can be used to report analytics events.
 **Signature:**
 
 ```typescript
-declare function useAnalytics(): AnalyticsService | null;
+declare function useAnalytics(): AnalyticsEventService | null;
 ```
 **Returns:**
 
-AnalyticsService \| null
+AnalyticsEventService \| null
 

@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom';
 import { AnalyticsProvider } from '@yext/search-ui-react';
 import acquireSessionId from './utils/acquireSessionId';
-import { config } from './config';
+import {analyticsConfig, config} from './config';
 
 const searcher = provideHeadless(config);
 
@@ -24,7 +24,7 @@ function App() {
   return (
     <div className='p-4'>
       <SearchHeadlessProvider searcher={searcher}>
-        <AnalyticsProvider {...config}>
+        <AnalyticsProvider {...analyticsConfig}>
           <BrowserRouter>
             <Navbar/>
             <Routes>
