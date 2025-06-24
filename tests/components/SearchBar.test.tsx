@@ -3,7 +3,7 @@ import {
   QuerySource,
   SearchCore,
   SearchHeadlessContext,
-  State
+  State, SearchTypeEnum
 } from '@yext/search-headless-react';
 import { render, screen } from '@testing-library/react';
 import { SearchBar } from '../../src/components/SearchBar';
@@ -424,6 +424,12 @@ describe('SearchBar', () => {
         query: {
           queryId: 'someId',
           input: 't'
+        },
+        meta: {
+          searchType: SearchTypeEnum.Universal,
+          experienceKey: 'experienceKey',
+          locale: 'en',
+          uuid: 'someId'
         }
       };
       render(
@@ -439,7 +445,7 @@ describe('SearchBar', () => {
         action: 'SEARCH_CLEAR_BUTTON',
         locale: 'en',
         search: {
-          searchId: undefined,
+          searchId: 'someId',
           queryId: 'someId',
           verticalKey: undefined,
           experienceKey: 'experienceKey',
