@@ -73,8 +73,12 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
     <div className={cssClasses.appliedFiltersContainer} aria-label={t('appliedFiltersToCurrentSearch', 'Applied filters to current search')}>
       {dedupedNlpFilterDisplayNames.map((displayName, i) => renderNlpFilter(displayName, i, cssClasses))}
       {dedupedRemovableFilters.map((f, i) => {
-        return renderRemovableFilter(f.displayName, () => handleRemoveDedupedFilter(f), i, cssClasses);
-      })}
+        return <RemovableFilter 
+          displayName={f.displayName} 
+          handleRemove={() => handleRemoveDedupedFilter(f)}
+          index={i}
+          cssClasses={cssClasses}/>;
+        })}
       {removableFilters.length > 0 &&
         <button onClick={handleClickClearAllButton} className={cssClasses.clearAllButton}>
           {t('clearAll', 'Clear All')}</button>
@@ -104,12 +108,17 @@ function getDedupedRemovableFilters(filters: RemovableFilter[]) {
   return dedupedFilters;
 }
 
-function renderRemovableFilter(
+function RemovableFilter({
+  displayName,
+  handleRemove,
+  index,
+  cssClasses
+}: {
   displayName: string | undefined,
   handleRemove: () => void,
   index: number,
   cssClasses: AppliedFiltersCssClasses
-): JSX.Element {
+}): JSX.Element {
   const { t } = useTranslation();
   return (
     <div className={cssClasses.removableFilter} key={`${displayName}-${index}`}>
