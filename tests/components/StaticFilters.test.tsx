@@ -202,7 +202,7 @@ function expectFilterOptionSet(
     filter: {
       kind: 'fieldValue',
       fieldId,
-      matcher: filterOption.matcher ? filterOption.matcher : '$eq',
+      matcher: filterOption.matcher ?? '$eq',
       value: filterOption.value
     },
     displayName: filterOption.displayName ?? filterOption.value,
