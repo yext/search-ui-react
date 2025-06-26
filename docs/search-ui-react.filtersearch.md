@@ -9,11 +9,7 @@ A component which allows a user to search for filters associated with specific e
 **Signature:**
 
 ```typescript
-<<<<<<< HEAD
 declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): JSX.Element;
-=======
-declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }: FilterSearchProps): JSX.Element;
->>>>>>> develop
 ```
 
 ## Parameters
@@ -36,11 +32,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-<<<<<<< HEAD
 { searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }
-=======
-{ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }
->>>>>>> develop
 
 
 </td><td>

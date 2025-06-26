@@ -140,11 +140,7 @@ A divider component used to separate NumericalFacets, HierarchicalFacets, Standa
 </td></tr>
 <tr><td>
 
-<<<<<<< HEAD
 [FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps })](./search-ui-react.filtersearch.md)
-=======
-[FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel })](./search-ui-react.filtersearch.md)
->>>>>>> develop
 
 
 </td><td>

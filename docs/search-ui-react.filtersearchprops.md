@@ -113,7 +113,6 @@ _(Optional)_ Whether to disable the default CSS classes entirely
 </td></tr>
 <tr><td>
 
-<<<<<<< HEAD
 [geolocationProps?](./search-ui-react.filtersearchprops.geolocationprops.md)
 
 
@@ -133,8 +132,6 @@ _(Optional)_ The props for the geolocation component, if the current location bu
 </td></tr>
 <tr><td>
 
-=======
->>>>>>> develop
 [label?](./search-ui-react.filtersearchprops.label.md)
 
 
@@ -266,7 +263,6 @@ _(Optional)_ Determines whether or not the results of the filter search are sepa
 
 
 </td></tr>
-<<<<<<< HEAD
 <tr><td>
 
 [showCurrentLocationButton?](./search-ui-react.filtersearchprops.showcurrentlocationbutton.md)
@@ -286,6 +282,4 @@ _(Optional)_ Whether to include a button to search on the user's location. Defau
 
 
 </td></tr>
-=======
->>>>>>> develop
 </tbody></table>
