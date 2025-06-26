@@ -298,10 +298,14 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
+    // (undocumented)
+    currentLocationAndInputContainer?: string;
+    // (undocumented)
+    currentLocationButton?: string;
     // (undocumented)
     filterSearchContainer?: string;
     // (undocumented)
@@ -322,6 +326,7 @@ export interface FilterSearchProps {
     ariaLabel?: string;
     customCssClasses?: FilterSearchCssClasses;
     disableBuiltInClasses?: boolean;
+    geolocationProps?: GeolocationProps;
     label?: string;
     onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
     onSelect?: (params: OnSelectParams) => void;
@@ -330,6 +335,7 @@ export interface FilterSearchProps {
     // @deprecated
     searchOnSelect?: boolean;
     sectioned?: boolean;
+    showCurrentLocationButton?: boolean;
 }
 
 // @public
@@ -857,7 +863,7 @@ export interface StandardSectionProps<T = DefaultRawDataType> extends SectionPro
 }
 
 // @public
-export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher' | 'value'> & {
+export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'value'> & {
     value: string | number | boolean;
 };
 

@@ -163,6 +163,33 @@ export function MapboxMap<T>({
   // keep track of the previous value of mapboxOptions across renders
   const prevMapboxOptions = useRef(mapboxOptions);
 
+  const localizeMap = useCallback(() => {
+    const mapbox = map.current;
+    if (!mapbox || !locale) return;
+
+    const localizeLabels = () => {
+      mapbox.getStyle().layers.forEach(layer => {
+        if (layer.type === "symbol" && layer.layout?.["text-field"]) {
+          mapbox.setLayoutProperty(
+            layer.id,
+            "text-field",
+            [
+              'coalesce',
+              ['get', `name_${getMapboxLanguage(locale)}`],
+              ['get', 'name']
+            ]
+          );
+        }
+      });
+    }
+
+    if (mapbox.isStyleLoaded()) {
+      localizeLabels();
+    } else {
+      mapbox.once("styledata", () => localizeLabels())
+    }
+  }, [locale]);
+
   useEffect(() => {
     if (mapContainer.current) {
       if (map.current && allowUpdates) {
@@ -199,10 +226,27 @@ export function MapboxMap<T>({
               onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
             }
           });
+          return () => {
+            mapbox.off('drag', () => {
+              onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
+            });
+            mapbox.off('zoom', (e) => {
+              if (e.originalEvent) {
+                onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
+              }
+            });
+          };
         }
       }
+      localizeMap();
     }
-  }, [mapboxOptions, onDragDebounced]);
+  }, [mapboxOptions, onDragDebounced, localizeMap]);
+
+  useEffect(() => {
+    if (iframeWindow && map.current) {
+      map.current.resize();
+    }
+  }, [mapContainer.current]);
 
   useEffect(() => {
     const mapbox = map.current;
@@ -266,7 +310,7 @@ export function MapboxMap<T>({
             renderPin({ index: i, mapbox, result, container: el });
             markerOptions.element = el;
           }
-          
+
           if (markerOptionsOverride) {
             markerOptions = {
               ...markerOptions,
@@ -288,6 +332,12 @@ export function MapboxMap<T>({
         mapbox.fitBounds(bounds, {
           padding: { top: 50, bottom: 50, left: 50, right: 50 },
           maxZoom: mapboxOptions?.maxZoom ?? 15
+        });
+      }
+
+      return () => {
+        markers.current.forEach((marker, i) => {
+          marker?.getElement().removeEventListener('click', () => handlePinClick(locationResults[i]));
         });
       }
     }
