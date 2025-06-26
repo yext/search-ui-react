@@ -1,12 +1,23 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { SearchActions, State } from '@yext/search-headless-react';
-import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
-import { FilterOptionConfig } from '../../src/components/Filters';
+import {render, screen} from '@testing-library/react';
+import {Matcher, SearchActions, State} from '@yext/search-headless-react';
+import {mockAnswersHooks, spyOnActions} from '../__utils__/mocks';
+import {FilterOptionConfig} from '../../src/components/Filters';
 import userEvent from '@testing-library/user-event';
-import { StaticFilters } from '../../src/components';
-import { staticFilters, staticFiltersProps } from '../__fixtures__/data/filters';
-import { testSSR } from '../ssr/utils';
+import {StaticFilters, StaticFiltersProps} from '../../src/components';
+import {staticFilters, staticFiltersProps} from '../__fixtures__/data/filters';
+import {testSSR} from '../ssr/utils';
+
+const hoursFilterProps: StaticFiltersProps = {
+  fieldId: 'builtin.hours',
+  title: 'Open Now',
+  filterOptions: [
+    {
+      value: 'now',
+      matcher: Matcher.OpenAt
+    }
+  ]
+};
 
 const mockedState: Partial<State> = {
   filters: {
@@ -58,6 +69,15 @@ describe('Static Filters', () => {
     expect(screen.getByText('Clifford')).toBeDefined();
   });
 
+  it('Properly renders static filters with Matchers other than Equals', () => {
+    render(<StaticFilters {...hoursFilterProps} />);
+
+    expect(screen.getByRole('button', { name: 'Open Now' })).toBeDefined();
+    expect(screen.queryByRole('textbox')).toBeNull();
+
+    expect(screen.getByText('Open Now')).toBeDefined();
+  });
+
   it('Clicking an unselected filter option checkbox selects it', async () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} />);
@@ -70,6 +90,20 @@ describe('Static Filters', () => {
 
     await userEvent.click(martyCheckbox);
     expectFilterOptionSet(actions, staticFiltersProps.fieldId, martyFilter, true);
+  });
+
+  it('Clicking an unselected openAt filter option checkbox selects it', async () => {
+    const actions = spyOnActions();
+    render(<StaticFilters {...hoursFilterProps} />);
+
+    const hoursFilter = hoursFilterProps.filterOptions[0];
+    const hoursCheckbox: HTMLInputElement = screen.getByLabelText(
+        hoursFilter.displayName ?? hoursFilter.value.toString()
+    );
+    expect(hoursCheckbox.checked).toBeFalsy();
+
+    await userEvent.click(hoursCheckbox);
+    expectFilterOptionSet(actions, hoursFilterProps.fieldId, hoursFilter, true);
   });
 
   it('Clicking a selected filter option checkbox unselects it', async () => {
@@ -168,7 +202,7 @@ function expectFilterOptionSet(
     filter: {
       kind: 'fieldValue',
       fieldId,
-      matcher: '$eq',
+      matcher: filterOption.matcher ?? '$eq',
       value: filterOption.value
     },
     displayName: filterOption.displayName ?? filterOption.value,

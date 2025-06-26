@@ -9,7 +9,7 @@ The configuration data for a field value static filter option.
 **Signature:**
 
 ```typescript
-type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher' | 'value'> & {
+type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'value'> & {
     value: string | number | boolean;
 };
 ```
