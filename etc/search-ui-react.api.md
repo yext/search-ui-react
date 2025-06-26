@@ -298,7 +298,11 @@ export interface FilterOptionConfig {
 }
 
 // @public
+<<<<<<< HEAD
 export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): JSX.Element;
+=======
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel }: FilterSearchProps): JSX.Element;
+>>>>>>> develop
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {

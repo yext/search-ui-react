@@ -38,6 +38,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+<<<<<<< HEAD
 [currentLocationAndInputContainer?](./search-ui-react.filtersearchcssclasses.currentlocationandinputcontainer.md)
 
 
@@ -76,6 +77,8 @@ _(Optional)_
 </td></tr>
 <tr><td>
 
+=======
+>>>>>>> develop
 [filterSearchContainer?](./search-ui-react.filtersearchcssclasses.filtersearchcontainer.md)
 
 
