@@ -42,7 +42,7 @@
   "showingAllInstead": "顯示所有 {{currentVerticalLabel}}。",
   "sources_other": "來源（{{count}}）",
   "submitSearch": "提交搜尋",
-  "suggestionResultsCount_other": "{{label}} – {{resultsCount}} 筆結果",
+  "suggestionResultsCount_other": "{{label}} – {{count}} 筆結果",
   "thankYouForYourFeedback": "感謝您的意見回饋！",
   "thisAnsweredMyQuestion": "這有回答到我的問題",
   "thisDidNotAnswerMyQuestion": "這沒有回答到我的問題",

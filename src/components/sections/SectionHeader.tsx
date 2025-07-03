@@ -111,7 +111,7 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
       {viewAllButton &&
         <div className={cssClasses.viewMoreContainer}>
           <a className={cssClasses.viewMoreLink} href={href} onClick={handleClickViewAllButton}>
-            {t('viewAll', 'View all')}
+            {t('viewAll')}
           </a>
         </div>}
     </div>

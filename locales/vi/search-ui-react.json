@@ -42,7 +42,7 @@
   "showingAllInstead": "Hiển thị tất cả {{currentVerticalLabel}} thay vào đó.",
   "sources_other": "Nguồn ({{count}})",
   "submitSearch": "Gửi tìm kiếm",
-  "suggestionResultsCount_other": "{{label}} – {{resultsCount}} kết quả",
+  "suggestionResultsCount_other": "{{label}} – {{count}} kết quả",
   "thankYouForYourFeedback": "Cảm ơn bạn đã phản hồi!",
   "thisAnsweredMyQuestion": "Điều này đã trả lời câu hỏi của tôi",
   "thisDidNotAnswerMyQuestion": "Điều này không trả lời câu hỏi của tôi",

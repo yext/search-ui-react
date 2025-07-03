@@ -94,7 +94,7 @@ export function Geolocation({
       <button
         className={cssClasses.button}
         onClick={handleGeolocationClick}
-        aria-label={t('useCurrentLocation', 'Use Current Location')}
+        aria-label={t('useCurrentLocation')}
       >
         {iconContainer}
       </button>
@@ -103,7 +103,7 @@ export function Geolocation({
     return (
       <div className={cssClasses.geolocationContainer}>
         <button className={cssClasses.button} onClick={handleGeolocationClick}>
-          {label ?? t('useMyLocation', 'Use my location')}
+          {label ?? t('useMyLocation')}
         </button>
         {iconContainer}
       </div>

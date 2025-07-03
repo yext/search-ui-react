@@ -48,7 +48,7 @@ export function useGeolocationHandler({
   const defaultHandleUserPosition = useCallback((position: GeolocationPosition) => {
     const { latitude, longitude, accuracy } = position.coords;
     const locationFilter: SelectableStaticFilter = {
-      displayName: t('currentLocation', 'Current Location'),
+      displayName: t('currentLocation'),
       selected: true,
       filter: {
         kind: 'fieldValue',

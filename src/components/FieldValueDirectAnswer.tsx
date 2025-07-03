@@ -57,7 +57,7 @@ export function FieldValueDirectAnswer({
       <div className={cssClasses.content}>
         <div className={cssClasses.body}>{resultContent}</div>
         {link && <div className='mt-4'>
-          <a href={link} className='text-primary' onClick={viewDetailsClickHandler}>{t('viewDetails', 'View Details')}</a>
+          <a href={link} className='text-primary' onClick={viewDetailsClickHandler}>{t('viewDetails')}</a>
         </div>
         }
       </div>

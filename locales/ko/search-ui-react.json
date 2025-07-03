@@ -42,7 +42,7 @@
   "showingAllInstead": "{{currentVerticalLabel}} 전체를 표시하고 있습니다.",
   "sources_other": "출처 ({{count}})",
   "submitSearch": "검색",
-  "suggestionResultsCount_other": "{{label}} - {{resultsCount}}개 결과",
+  "suggestionResultsCount_other": "{{label}} - {{count}}개 결과",
   "thankYouForYourFeedback": "피드백 감사합니다!",
   "thisAnsweredMyQuestion": "질문에 대한 답변이 되었습니다",
   "thisDidNotAnswerMyQuestion": "질문에 대한 답변이 아닙니다",

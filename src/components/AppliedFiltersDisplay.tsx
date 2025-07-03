@@ -70,7 +70,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   }
 
   return (
-    <div className={cssClasses.appliedFiltersContainer} aria-label={t('appliedFiltersToCurrentSearch', 'Applied filters to current search')}>
+    <div className={cssClasses.appliedFiltersContainer} aria-label={t('appliedFiltersToCurrentSearch')}>
       {dedupedNlpFilterDisplayNames.map((displayName, i) => renderNlpFilter(displayName, i, cssClasses))}
       {dedupedRemovableFilters.map((f, i) => {
         return <RemovableFilter 
@@ -81,7 +81,7 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
         })}
       {removableFilters.length > 0 &&
         <button onClick={handleClickClearAllButton} className={cssClasses.clearAllButton}>
-          {t('clearAll', 'Clear All')}</button>
+          {t('clearAll')}</button>
       }
     </div>
   );
@@ -126,7 +126,7 @@ function RemovableFilter({
       <button
         className='w-2 h-2 text-neutral m-1.5'
         onClick={handleRemove}
-        aria-label={t('removeFilter', `Remove "${displayName}" filter`, { displayName })}
+        aria-label={t('removeFilter', { displayName })}
       >
         <CloseIcon />
       </button>

@@ -94,9 +94,9 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
 
   return (
     <div className={paginationContainerClassNames}>
-      <nav className='inline-flex shadow-sm -space-x-px' aria-label={t('pagination', 'Pagination')}>
+      <nav className='inline-flex shadow-sm -space-x-px' aria-label={t('pagination')}>
         <PaginationButton
-          ariaLabel={t('navigateToThePreviousResultsPage', 'Navigate to the previous results page')}
+          ariaLabel={t('navigateToThePreviousResultsPage')}
           className={cssClasses.leftIconContainer}
           navigateToPage={navigateToPage}
           newPageNumber={currentPageNumber - 1}
@@ -140,7 +140,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
           }
         })}
         <PaginationButton
-          ariaLabel={t('navigateToTheNextResultsPage', 'Navigate to the next results page')}
+          ariaLabel={t('navigateToTheNextResultsPage')}
           className={cssClasses.rightIconContainer}
           navigateToPage={navigateToPage}
           newPageNumber={currentPageNumber + 1}

@@ -1,5 +1,4 @@
 import { useTranslation, Trans } from 'react-i18next';
-import { processTranslation } from './utils/processTranslation';
 import { StarIcon } from '../icons/StarIcon';
 import { useSearchState, VerticalResults as VerticalResultsData } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks';
@@ -125,11 +124,6 @@ export function AlternativeVerticals({
   }
 
   const count = verticalSuggestions.length;
-  const fallbackText = processTranslation({
-    phrase: 'The following category yielded results for - <strong>{{query}}</strong>',
-    pluralForm: 'The following categories yielded results for - <strong>{{query}}</strong>',
-    count
-  })
 
   return (
     <div className={containerClassNames}>
@@ -142,7 +136,6 @@ export function AlternativeVerticals({
               count={count}
               values={{ query }}
               components={{ strong: <strong /> }}
-              defaults={fallbackText}
             />
           </div>
           <ul className='pt-4'>
@@ -156,9 +149,9 @@ export function AlternativeVerticals({
   function renderNoResultsInfo() {
     return (
       <div className={cssClasses.noResultsText}>
-        <span>{t('noResultsFoundIn', `No results found in ${currentVerticalLabel}.`, { currentVerticalLabel })}</span>
+        <span>{t('noResultsFoundIn', { currentVerticalLabel })}</span>
         {isShowingAllResults &&
-          <span> {t('showingAllInstead', `Showing all ${currentVerticalLabel} instead.`, { currentVerticalLabel })}</span>
+          <span> {t('showingAllInstead', { currentVerticalLabel })}</span>
         }
       </div>
     );
@@ -166,16 +159,11 @@ export function AlternativeVerticals({
   
   function renderSuggestion(suggestion: VerticalSuggestion) {
     const {verticalKey, resultsCount, label} = suggestion;
-    const fallbackText = processTranslation({
-      phrase: `${label} - ${resultsCount} result`,
-      pluralForm: `${label} - ${resultsCount} results`,
-      count: resultsCount
-    });
     return (
       <li key={verticalKey} className={cssClasses.suggestion}>
         <div className={cssClasses.verticalIcon}><StarIcon/></div>
         <span className='font-bold'>{
-          t('suggestionResultsCount', fallbackText, {
+          t('suggestionResultsCount', {
             label,
             count: resultsCount,
           })}

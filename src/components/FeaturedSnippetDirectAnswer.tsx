@@ -71,7 +71,6 @@ export function FeaturedSnippetDirectAnswer({
             i18nKey='readMoreAbout'
             components={{ a: <a className='text-primary' href={link} onClick={readMoreClickHandler} /> }}
             values={{ name }}
-            defaults='Read more about <a>{{name}}</a>'
           />
         </div>}
       </div>

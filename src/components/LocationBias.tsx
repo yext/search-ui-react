@@ -69,8 +69,8 @@ export function LocationBias({
   if (!locationBias?.displayName) return null;
 
   const attributionMessage =
-      locationBias?.method === LocationBiasMethod.Ip ? t('basedOnYourInternetAddress', ' (based on your internet address)')
-        : locationBias?.method === LocationBiasMethod.Device ? t('basedOnYourDevice', ' (based on your device)')
+      locationBias?.method === LocationBiasMethod.Ip ? t('basedOnYourInternetAddress')
+        : locationBias?.method === LocationBiasMethod.Device ? t('basedOnYourDevice')
           : '';
 
   async function handleGeolocationClick() {
@@ -103,7 +103,7 @@ export function LocationBias({
           className={cssClasses.button}
           onClick={handleGeolocationClick}
         >
-          {t('updateYourLocation', 'Update your location')}
+          {t('updateYourLocation')}
         </button>
         <div className={loadingIndicatorCss}>
           <LoadingIndicator />

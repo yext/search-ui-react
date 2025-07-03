@@ -150,7 +150,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
       {isOptionsDisabled &&
         <div className={cssClasses.tooltipContainer}>
           <div className={cssClasses.tooltip}>
-            {t('clearTheRangeToSelectOptions', 'Clear the range to select options.')}
+            {t('clearTheRangeToSelectOptions')}
           </div>
         </div>
       }

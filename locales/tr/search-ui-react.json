@@ -42,7 +42,7 @@
   "showingAllInstead": "Bunun yerine tüm {{currentVerticalLabel}} gösteriliyor.",
   "sources_other": "Kaynaklar ({{count}})",
   "submitSearch": "Aramayı Gönder",
-  "suggestionResultsCount_other": "{{label}} - {{resultsCount}} sonuç",
+  "suggestionResultsCount_other": "{{label}} - {{count}} sonuç",
   "thankYouForYourFeedback": "Geri bildiriminiz için teşekkürler!",
   "thisAnsweredMyQuestion": "Bu sorumu yanıtladı",
   "thisDidNotAnswerMyQuestion": "Bu sorumu yanıtlamadı",

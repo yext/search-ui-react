@@ -12,7 +12,6 @@ import { DropdownItem } from './Dropdown/DropdownItem';
 import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { Geolocation, GeolocationProps } from './Geolocation';
 import { CurrentLocationIcon } from '../icons/CurrentLocationIcon';
-import { processTranslation } from './utils/processTranslation';
 import { renderAutocompleteResult, AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 
 /**
@@ -341,7 +340,7 @@ export function FilterSearch({
   const dropdownInput = (
     <DropdownInput
       className={cssClasses.inputElement}
-      placeholder={placeholder ?? t('searchHere', 'Search here...')}
+      placeholder={placeholder ?? t('searchHere')}
       onChange={handleInputChange}
       onFocus={handleInputFocus}
       submitCriteria={meetsSubmitCritera}
@@ -401,17 +400,12 @@ function getScreenReaderText(sections: {
 }[]) {
   const { t } = useTranslation();
   if (sections.length === 0) {
-    return t('noAutocompleteOptionsFound', '0 autocomplete options found.');
+    return t('noAutocompleteOptionsFound');
   }
   const screenReaderPhrases = sections.map(section => {
     const label = section.label ? ` ${section.label}` : '';
     const count = section.results.length;
-    const fallbackText = processTranslation({
-      phrase: `${count}${label} autocomplete option found.`,
-      pluralForm: `${count}${label} autocomplete options found.`,
-      count,
-    });
-    return t('autocompleteOptionsFound', fallbackText, {
+    return t('autocompleteOptionsFound', {
       count,
       label,
     })

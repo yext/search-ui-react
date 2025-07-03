@@ -73,7 +73,6 @@ export function SpellCheck({
           i18nKey='didYouMean'
           components={{ button: <button className={cssClasses.link} onClick={handleClickSuggestion} /> }}
           values={{ correctedQuery }}
-          defaults='Did you mean <button>{{correctedQuery}}</button>'
         />
       </span>
     </div>

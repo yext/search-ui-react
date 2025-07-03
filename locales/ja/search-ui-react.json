@@ -42,7 +42,7 @@
   "showingAllInstead": "代わりにすべての{{currentVerticalLabel}}を表示しています。",
   "sources_other": "出典（{{count}}）",
   "submitSearch": "検索を送信します",
-  "suggestionResultsCount_other": "{{label}} – {{resultsCount}} 件の結果",
+  "suggestionResultsCount_other": "{{label}} – {{count}} 件の結果",
   "thankYouForYourFeedback": "ご意見ありがとうございます！",
   "thisAnsweredMyQuestion": "この回答で疑問が解決しました",
   "thisDidNotAnswerMyQuestion": "この回答では疑問が解決しませんでした",

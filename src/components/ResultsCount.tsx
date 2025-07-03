@@ -6,7 +6,6 @@ import {
   VerticalSearchState
 } from '@yext/search-headless-react';
 import classNames from 'classnames';
-import { processTranslation } from './utils/processTranslation';
 import { useComposedCssClasses } from '../hooks';
 import React from 'react';
 
@@ -73,19 +72,13 @@ function useResultsCount() {
   if (resultsCount === 0) {
     return null;
   }
-  const resultsCountFallbackText = processTranslation({
-    phrase: `${resultsCount} Result`,
-    pluralForm: `${resultsCount} Results`,
-    count: resultsCount
-  });
 
   if (resultsCount > limit && isVertical){
     const paginateStart = offset + 1;
     const paginateEnd = Math.min((offset + limit), resultsCount);
-    const resultCountWithPaginationFallbackText = `${paginateStart} - ${paginateEnd} of ${resultsCount} Results`;
-    return t('resultsCountWithPaginationText', resultCountWithPaginationFallbackText, { paginateStart, paginateEnd, resultsCount });
+    return t('resultsCountWithPaginationText', { paginateStart, paginateEnd, resultsCount });
   } else {
-    return t('resultsCountText', resultsCountFallbackText, { count: resultsCount });
+    return t('resultsCountText', { count: resultsCount });
   }
 }
 

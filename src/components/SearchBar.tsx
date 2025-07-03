@@ -28,7 +28,6 @@ import { DropdownMenu } from './Dropdown/DropdownMenu';
 import { FocusedItemData } from './Dropdown/FocusContext';
 import { useComposedCssClasses, twMerge } from '../hooks/useComposedCssClasses';
 import { SearchButton } from './SearchButton';
-import { processTranslation } from './utils/processTranslation';
 import {
   renderAutocompleteResult,
   AutocompleteResultCssClasses,
@@ -292,7 +291,7 @@ export function SearchBar({
         onSubmit={handleSubmit}
         onFocus={handleInputFocus}
         onChange={handleInputChange}
-        ariaLabel={t('conductASearch', 'Conduct a search')}
+        ariaLabel={t('conductASearch')}
       />
     );
   }
@@ -316,7 +315,7 @@ export function SearchBar({
           { value: result.query, inputIntents: [] },
           recentSearchesCssClasses,
           RecentSearchIcon,
-          t('recentSearch', `recent search: ${result.query}`, {
+          t('recentSearch', {
             query: result.query
           })
         )}
@@ -345,7 +344,7 @@ export function SearchBar({
             result,
             cssClasses,
             MagnifyingGlassIcon,
-            t('autocompleteSuggestion', `autocomplete suggestion: ${result.value}`, { suggestion: result.value })
+            t('autocompleteSuggestion', { suggestion: result.value })
           )}
         </DropdownItem>
         {showVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (
@@ -374,7 +373,7 @@ export function SearchBar({
     return (
       <>
         <button
-          aria-label={t('clearTheSearchBar', 'Clear the search bar')}
+          aria-label={t('clearTheSearchBar')}
           className={cssClasses.clearButton}
           onClick={handleClickClearButton}
         >
@@ -456,40 +455,20 @@ function getScreenReaderText(
   entityPreviewsCount = 0
 ): string {
   const { t } = useTranslation();
-  const recentSearchesFallbackText = recentSearchesOptions > 0
-    ? processTranslation({
-      phrase: `${recentSearchesOptions} recent search found.`,
-      pluralForm: `${recentSearchesOptions} recent searches found.`,
-      count: recentSearchesOptions
-    })
-    : '';
-  const recentSearchesText = t('recentSearchesFound', recentSearchesFallbackText, {
+  let texts: string[] = [];
+  recentSearchesOptions > 0 && texts.push(t('recentSearchesFound', {
     count: recentSearchesOptions
-  })
-  const entityPreviewsFallbackText = entityPreviewsCount > 0
-    ? ' ' + processTranslation({
-      phrase: `${entityPreviewsCount} result preview found.`,
-      pluralForm: `${entityPreviewsCount} result previews found.`,
-      count: entityPreviewsCount
-    })
-    : '';
-  const entityPreviewsText = t('resultPreviewsFound', entityPreviewsFallbackText, {
+  }));
+  entityPreviewsCount > 0  && texts.push(t('resultPreviewsFound', {
     count: entityPreviewsCount
-  })
-  const autocompleteFallbackText = autocompleteOptions > 0
-    ? ' ' + processTranslation({
-      phrase: `${autocompleteOptions} autocomplete suggestion found.`,
-      pluralForm: `${autocompleteOptions} autocomplete suggestions found.`,
-      count: autocompleteOptions
-    })
-    : '';
-  const autocompleteText = t('autocompleteSuggestionsFound', autocompleteFallbackText, {
+  }));
+  autocompleteOptions > 0 && texts.push(t('autocompleteSuggestionsFound', {
     count: autocompleteOptions
-  })
+  }));
 
-  const text = recentSearchesText + autocompleteText + entityPreviewsText;
+  const text = texts.join(' ');
   if (text === '') {
-    return t('noAutocompleteSuggestionsFound', '0 autocomplete suggestions found.')
+    return t('noAutocompleteSuggestionsFound')
   }
   return text.trim();
 }
@@ -518,7 +497,7 @@ function DropdownSearchButton({ handleSubmit, cssClasses }: {
 
 function getAriaLabel(value: string): string {
   const { t } = useTranslation();
-  return t('resultPreview', `result preview: ${value}`, { value })
+  return t('resultPreview', { value })
 }
 
 /**

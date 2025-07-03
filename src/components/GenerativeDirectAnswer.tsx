@@ -155,7 +155,7 @@ function Answer(props: AnswerProps) {
   
   return <>
     <div className={cssClasses.header}>
-      {answerHeader ?? t('aiGeneratedAnswer', 'AI Generated Answer')}
+      {answerHeader ?? t('aiGeneratedAnswer')}
     </div>
     <Markdown
       content={gdaResponse.directAnswer}
@@ -221,7 +221,7 @@ function Citations(props: CitationsProps) {
   return <>
     <div className={cssClasses.divider} />
     <div className={cssClasses.header}>
-      {citationsHeader ?? t('sources', `Sources (${citationResults.length})`, { count })}
+      {citationsHeader ?? t('sources', { count })}
     </div>
     <div className={cssClasses.citationsContainer}>
       {citationResults.map((r, i) => <CitationCard key={i} searchResult={r} cssClasses={cssClasses} citationClickHandler={citationClickHandler}/>)}

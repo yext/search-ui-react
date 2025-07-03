@@ -82,20 +82,20 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
   return (
     <div className={cssClasses.thumbsFeedbackContainer}>
       {isFeedbackProvided
-        ? feedbackTextOnSubmission ?? t('thankYouForYourFeedback', 'Thank you for your feedback!')
+        ? feedbackTextOnSubmission ?? t('thankYouForYourFeedback')
         : <>
           {feedbackText ?? t('feedback', 'Feedback')}
           <button
             className={cssClasses.thumbsUpIcon}
             onClick={handleClickThumbsUp}
-            aria-label={t('thisAnsweredMyQuestion', 'This answered my question')}
+            aria-label={t('thisAnsweredMyQuestion')}
           >
             <ThumbIcon/>
           </button>
           <button
             className={cssClasses.thumbsDownIcon}
             onClick={handleClickThumbsDown}
-            aria-label={t('thisDidNotAnswerMyQuestion', 'This did not answer my question')}
+            aria-label={t('thisDidNotAnswerMyQuestion')}
           >
             <ThumbIcon/>
           </button>

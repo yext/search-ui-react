@@ -42,7 +42,7 @@
   "showingAllInstead": "正在显示所有{{currentVerticalLabel}}。",
   "sources_other": "来源（{{count}}）",
   "submitSearch": "提交搜索",
-  "suggestionResultsCount_other": "{{label}} – {{resultsCount}} 个结果",
+  "suggestionResultsCount_other": "{{label}} – {{count}} 个结果",
   "thankYouForYourFeedback": "感谢您的反馈！",
   "thisAnsweredMyQuestion": "这个回答了我的问题",
   "thisDidNotAnswerMyQuestion": "这个没有回答我的问题",

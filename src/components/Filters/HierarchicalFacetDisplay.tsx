@@ -184,7 +184,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
     applyFilters();
     resetShowMore();
   }, [applyFilters, facet.fieldId, facet.options, resetShowMore, selectFilter]);
-  const allCategoriesText = t('allCategories', 'All Categories');
+  const allCategoriesText = t('allCategories');
 
   if (facet.options.find(o => o.selected)) {
     return (
@@ -342,7 +342,7 @@ function ShowMoreButton({ className, isShowingMore, toggleShowMore }: {
   const { t } = useTranslation();
   return (
     <button className={className} onClick={toggleShowMore}>
-      {isShowingMore ? t('showLess', 'Show Less') : t('showMore', 'Show More')}
+      {isShowingMore ? t('showLess') : t('showMore')}
     </button>
   );
 }

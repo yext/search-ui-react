@@ -205,20 +205,20 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   return (
     <div className={cssClasses.rangeInputContainer}>
       <div className={cssClasses.inputRowContainer}>
-        {renderInput(minRangeInput, handleMinChange, t('min', 'Min'))}
+        {renderInput(minRangeInput, handleMinChange, t('min'))}
         <div className='w-2.5 text-sm text-neutral'>-</div>
-        {renderInput(maxRangeInput, handleMaxChange, t('max', 'Max'))}
+        {renderInput(maxRangeInput, handleMaxChange, t('max'))}
         {isDisabled &&
         <div className={cssClasses.tooltipContainer}>
           <div className={cssClasses.tooltip}>
-            {t('unselectAnOptionToEnterInARange', 'Unselect an option to enter in a range.')}</div>
+            {t('unselectAnOptionToEnterInARange')}</div>
         </div>
         }
       </div>
       {!isValid &&
         <div className={cssClasses.invalidRowContainer}>
           <InvalidIcon/>
-          <div className={cssClasses.invalidMessage}>{t('invalidRange', 'Invalid range')}</div>
+          <div className={cssClasses.invalidMessage}>{t('invalidRange')}</div>
         </div>
       }
       {hasUserInput &&
@@ -227,13 +227,13 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
             className={cssClasses.clearButton}
             onClick={handleClickClear}
           >
-            {t('clearMinAndMax', 'Clear min and max')}</button>
+            {t('clearMinAndMax')}</button>
           {shouldRenderApplyButton &&
             <button
               className={cssClasses.applyButton}
               onClick={handleClickApply}
             >
-              {t('apply', 'Apply')}</button>
+              {t('apply')}</button>
           }
         </div>
       }

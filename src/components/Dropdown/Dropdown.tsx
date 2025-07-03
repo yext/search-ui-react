@@ -172,7 +172,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
         announcementKey={screenReaderKey}
         announcementText={isActive && (hasTyped || items.length || value) ? screenReaderText : ''}
         instructionsId={screenReaderUUID}
-        instructions={screenReaderInstructions ?? t('dropDownScreenReaderInstructions', 'When autocomplete results are available, use up and down arrows to review and enter to select.')}
+        instructions={screenReaderInstructions ?? t('dropDownScreenReaderInstructions')}
       />
     </div>
   );

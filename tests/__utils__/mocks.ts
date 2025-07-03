@@ -7,6 +7,10 @@ import {
   useSearchUtilities,
   SearchActions
 } from '@yext/search-headless-react';
+import i18next from 'i18next';
+import { i18nInstance } from '../../src/utils';
+
+Object.assign(i18next, i18nInstance);
 
 export function spyOnActions(): jest.Mocked<SearchActions> {
   const spy = jest.spyOn(require('@yext/search-headless-react'), 'useSearchActions');

@@ -37,7 +37,7 @@ export function SearchInput(props: SearchInputProps): JSX.Element {
     <input
       className={className}
       type='text'
-      placeholder={placeholder ?? t('searchHere', 'Search here...')}
+      placeholder={placeholder ?? t('searchHere')}
       value={searchValue}
       onChange={handleChange}
     />

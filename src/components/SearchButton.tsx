@@ -13,7 +13,7 @@ export function SearchButton({ handleClick, className }: Props): JSX.Element {
     <button
       className={className}
       onClick={handleClick}
-      aria-label={t('submitSearch', 'Submit Search')}
+      aria-label={t('submitSearch')}
     >
       <MagnifyingGlassIcon />
     </button>
