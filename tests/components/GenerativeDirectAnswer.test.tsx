@@ -90,14 +90,12 @@ function runAnalyticsTestSuite() {
             "destinationUrl": generativeDirectAnswerLink,
             "entity": undefined,
             "locale": "en",
-            "search": {
-                "experienceKey": "experienceKey",
-                "isDirectAnswer": true,
-                "isGenerativeDirectAnswer": true,
-                "queryId": "[queryId]",
-                "searchId": "searchId",
-                "verticalKey": ''
-            },
+            "experienceKey": "experienceKey",
+            "isDirectAnswer": true,
+            "isGenerativeDirectAnswer": true,
+            "queryId": "[queryId]",
+            "searchId": "searchId",
+            "verticalKey": ''
         });
     });
     it('reports citation click analytics', async () => {
@@ -110,14 +108,12 @@ function runAnalyticsTestSuite() {
             "destinationUrl": verticalResults[0].results[1].rawData.link,
             "entity": verticalResults[0].results[1].id,
             "locale": "en",
-            "search": {
-                "experienceKey": "experienceKey",
-                "isDirectAnswer": true,
-                "isGenerativeDirectAnswer": true,
-                "queryId": "[queryId]",
-                "searchId": "searchId",
-                "verticalKey": ''
-            },
+            "experienceKey": "experienceKey",
+            "isDirectAnswer": true,
+            "isGenerativeDirectAnswer": true,
+            "queryId": "[queryId]",
+            "searchId": "searchId",
+            "verticalKey": ''
         });
     });
 }

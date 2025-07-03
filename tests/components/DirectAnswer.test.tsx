@@ -45,14 +45,12 @@ function runAnalyticsTestSuite() {
                 "destinationUrl": "[relatedResult.link]",
                 "entity": "[relatedResult.id]",
                 "locale": "en",
-                "search": {
-                    "experienceKey": "experienceKey",
-                    "isDirectAnswer": true,
-                    "isGenerativeDirectAnswer": false,
-                    "queryId": "[queryId]",
-                    "searchId": "searchId",
-                    "verticalKey": ''
-                }
+                "experienceKey": "experienceKey",
+                "isDirectAnswer": true,
+                "isGenerativeDirectAnswer": false,
+                "queryId": "[queryId]",
+                "searchId": "searchId",
+                "verticalKey": ''
             }));
     });
 
@@ -65,14 +63,12 @@ function runAnalyticsTestSuite() {
             "action": "THUMBS_UP",
             "entity": "[relatedResult.id]",
             "locale": "en",
-            "search": {
-                "experienceKey": "experienceKey",
-                "isDirectAnswer": true,
-                "isGenerativeDirectAnswer": false,
-                "queryId": "[queryId]",
-                "searchId": "searchId",
-                "verticalKey": ''
-            }
+            "experienceKey": "experienceKey",
+            "isDirectAnswer": true,
+            "isGenerativeDirectAnswer": false,
+            "queryId": "[queryId]",
+            "searchId": "searchId",
+            "verticalKey": ''
         }));
     });
 
@@ -85,14 +81,12 @@ function runAnalyticsTestSuite() {
                 "action": "THUMBS_DOWN",
                 "entity": "[relatedResult.id]",
                 "locale": "en",
-                "search": {
-                    "experienceKey": "experienceKey",
-                    "isDirectAnswer": true,
-                    "isGenerativeDirectAnswer": false,
-                    "queryId": "[queryId]",
-                    "searchId": "searchId",
-                    "verticalKey": ''
-                }
+                "experienceKey": "experienceKey",
+                "isDirectAnswer": true,
+                "isGenerativeDirectAnswer": false,
+                "queryId": "[queryId]",
+                "searchId": "searchId",
+                "verticalKey": ''
             }
         ));
     });

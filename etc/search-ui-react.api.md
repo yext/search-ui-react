@@ -4,11 +4,11 @@
 
 ```ts
 
-import { AnalyticsConfig } from '@yext/analytics';
-import { AnalyticsEventService } from '@yext/analytics';
 import { AutocompleteResponse } from '@yext/search-headless-react';
+import { CloudRegion } from '@yext/search-core';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
 import { DisplayableFacetOption } from '@yext/search-headless-react';
+import { Environment } from '@yext/search-core';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
 import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
@@ -64,7 +64,7 @@ export interface AlternativeVerticalsProps {
 }
 
 // @public
-export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element;
+export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): JSX.Element;
 
 // @public
 export function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
@@ -130,11 +130,7 @@ export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
-<<<<<<< HEAD
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE' | 'CITATION_CLICK';
-=======
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
->>>>>>> main
+export type CardCtaEventType = 'CTA_CLICK' | 'TITLE' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'WEBSITE' | 'TAP_TO_CALL';
 
 // @public
 export interface CardProps<T = DefaultRawDataType> {
@@ -682,6 +678,14 @@ export interface ResultsCountProps {
     customCssClasses?: ResultsCountCssClasses;
 }
 
+// @public (undocumented)
+export interface SearchAnalyticsConfig {
+    apiKey: string;
+    cloudRegion?: CloudRegion;
+    environment?: Environment;
+    sessionTrackingEnabled?: boolean;
+}
+
 // @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
 
@@ -943,8 +947,10 @@ export interface UnknownFieldTypeDisplayProps {
 // @public
 export function updateLocationIfNeeded(searchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
 
+// Warning: (ae-forgotten-export) The symbol "SearchAnalyticsEventService" needs to be exported by the entry point index.d.ts
+//
 // @public
-export function useAnalytics(): AnalyticsEventService | null;
+export function useAnalytics(): SearchAnalyticsEventService | null;
 
 // @public
 export function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>, analyticsType: CardAnalyticsType): () => void;
