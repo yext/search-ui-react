@@ -83,14 +83,12 @@ export function useCardAnalytics<T>(): (
       destinationUrl: url,
       entity: entityId,
       locale,
-      search: {
         searchId,
         queryId,
         verticalKey: verticalKey || '',
         isDirectAnswer,
         isGenerativeDirectAnswer,
         experienceKey,
-      },
     });
   }, [analytics, queryId, verticalKey]);
 
@@ -127,14 +125,12 @@ export function useCardAnalytics<T>(): (
       action: feedbackType,
       entity: entityId,
       locale,
-      search: {
         searchId,
         queryId,
         verticalKey: verticalKey || '',
         isDirectAnswer,
         isGenerativeDirectAnswer,
         experienceKey
-      },
     });
   }, [analytics, queryId, verticalKey]);
 

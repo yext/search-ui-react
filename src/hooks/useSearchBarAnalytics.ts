@@ -18,15 +18,17 @@ export function useSearchBarAnalytics(): (
             console.error('Unable to report an autocomplete event. Missing field: experienceKey.');
             return;
         }
+        if (!searchId) {
+            console.error('Unable to report an autocomplete event. Missing field: searchId.');
+            return;
+        }
         analytics?.report({
             action: 'AUTO_COMPLETE_SELECTION',
             locale,
-            search: {
-                searchId,
-                queryId,
-                verticalKey,
-                experienceKey,
-            },
+            searchId,
+            queryId,
+            verticalKey,
+            experienceKey,
         });
     }
     const reportSearchClearEvent = () => {
@@ -45,12 +47,10 @@ export function useSearchBarAnalytics(): (
         analytics?.report({
             action: 'SEARCH_CLEAR_BUTTON',
             locale,
-            search: {
-                searchId,
-                queryId,
-                verticalKey,
-                experienceKey,
-            },
+            searchId,
+            queryId,
+            verticalKey,
+            experienceKey,
         });
     };
     return (

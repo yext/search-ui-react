@@ -2,6 +2,7 @@ import React, {PropsWithChildren} from 'react';
 import {analytics, AnalyticsConfig} from '@yext/analytics';
 import {AnalyticsContext} from '../hooks/useAnalytics';
 import {CloudRegion, Environment} from "@yext/search-core";
+import {SearchAnalyticsEventServiceImpl} from "../models/SearchAnalyticsEventServiceImpl";
 
 /**
  * A higher-order component which provides analytics for its children.
@@ -13,17 +14,8 @@ import {CloudRegion, Environment} from "@yext/search-core";
  */
 export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): JSX.Element {
     const {children, ...searchAnalyticsConfig} = props;
-
-    const analyticsConfig: AnalyticsConfig = {
-        authorizationType: 'apiKey',
-        authorization: searchAnalyticsConfig.apiKey,
-        env: searchAnalyticsConfig.environment &&
-            searchAnalyticsConfig.environment === Environment.PROD ? "PRODUCTION" :
-            searchAnalyticsConfig.environment === Environment.SANDBOX ? "SANDBOX" : undefined,
-        region: searchAnalyticsConfig.cloudRegion && searchAnalyticsConfig.cloudRegion === CloudRegion.US ? "US" : "EU",
-        sessionTrackingEnabled: searchAnalyticsConfig.sessionTrackingEnabled
-    }
-    const analyticsReporter = analytics(analyticsConfig);
+    const analyticsReporter =
+        new SearchAnalyticsEventServiceImpl(searchAnalyticsConfig)
 
     return (
         <AnalyticsContext.Provider value={analyticsReporter}>
