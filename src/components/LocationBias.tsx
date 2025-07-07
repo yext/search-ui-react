@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useSearchActions, useSearchState, LocationBiasMethod } from '@yext/search-headless-react';
 import { executeSearch } from '../utils';
 import { getUserLocation } from '../utils';
@@ -58,6 +59,7 @@ export function LocationBias({
   geolocationOptions,
   customCssClasses
 }: LocationBiasProps): JSX.Element | null {
+  const { t } = useTranslation();
   const searchActions = useSearchActions();
   const locationBias = useSearchState(s => s.location.locationBias);
   const [isFetchingLocation, setIsFetchingLocation] = useState<boolean>(false);
@@ -67,8 +69,8 @@ export function LocationBias({
   if (!locationBias?.displayName) return null;
 
   const attributionMessage =
-      locationBias?.method === LocationBiasMethod.Ip ? ' (based on your internet address)'
-        : locationBias?.method === LocationBiasMethod.Device ? ' (based on your device)'
+      locationBias?.method === LocationBiasMethod.Ip ? t('basedOnYourInternetAddress')
+        : locationBias?.method === LocationBiasMethod.Device ? t('basedOnYourDevice')
           : '';
 
   async function handleGeolocationClick() {
@@ -101,7 +103,7 @@ export function LocationBias({
           className={cssClasses.button}
           onClick={handleGeolocationClick}
         >
-          Update your location
+          {t('updateYourLocation')}
         </button>
         <div className={loadingIndicatorCss}>
           <LoadingIndicator />

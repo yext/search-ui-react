@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, {
   createElement,
   isValidElement,
@@ -51,10 +52,11 @@ export interface DropdownProps {
  * and also registers some global event listeners.
  */
 export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
+  const { t } = useTranslation();
   const {
     children,
     screenReaderText,
-    screenReaderInstructions = 'When autocomplete results are available, use up and down arrows to review and enter to select.',
+    screenReaderInstructions,
     onSelect,
     onToggle,
     className,
@@ -170,7 +172,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
         announcementKey={screenReaderKey}
         announcementText={isActive && (hasTyped || items.length || value) ? screenReaderText : ''}
         instructionsId={screenReaderUUID}
-        instructions={screenReaderInstructions}
+        instructions={screenReaderInstructions ?? t('dropDownScreenReaderInstructions')}
       />
     </div>
   );

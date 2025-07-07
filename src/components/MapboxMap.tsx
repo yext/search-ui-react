@@ -249,39 +249,6 @@ export function MapboxMap<T>({
   }, [mapContainer.current]);
 
   useEffect(() => {
-    const mapbox = map.current;
-    if (!mapbox || !locale) return;
-
-    const localizeMap = () => {
-      mapbox.getStyle().layers.forEach(layer => {
-        if (layer.type === "symbol" && layer.layout?.["text-field"]) {
-          mapbox.setLayoutProperty(
-            layer.id,
-            "text-field",
-            [
-              'coalesce',
-              ['get', `name_${getMapboxLanguage(locale)}`],
-              ['get', 'name']
-            ]
-          );
-        }
-      });
-    }
-
-    if (mapbox.isStyleLoaded()) {
-      localizeMap();
-    } else {
-      mapbox.once("styledata", () => localizeMap())
-    }
-  }, [locale]);
-
-  useEffect(() => {
-    if (iframeWindow && map.current) {
-      map.current.resize();
-    }
-  }, [mapContainer.current]);
-
-  useEffect(() => {
     markers.current.forEach(marker => marker.remove());
     markers.current = [];
     const mapbox = map.current;
@@ -310,7 +277,7 @@ export function MapboxMap<T>({
             renderPin({ index: i, mapbox, result, container: el });
             markerOptions.element = el;
           }
-
+          
           if (markerOptionsOverride) {
             markerOptions = {
               ...markerOptions,

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { DisplayableFacet } from '@yext/search-headless-react';
 import React, { ReactNode, useCallback, useState } from 'react';
 import { useComposedCssClasses } from '../../hooks';
@@ -174,6 +175,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
   inactiveClassName?: string,
   resetShowMore: () => void
 }) {
+  const { t } = useTranslation();
   const { applyFilters, selectFilter } = useFiltersContext();
   const handleClickAllCategories = useCallback(() => {
     facet.options
@@ -182,6 +184,7 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
     applyFilters();
     resetShowMore();
   }, [applyFilters, facet.fieldId, facet.options, resetShowMore, selectFilter]);
+  const allCategoriesText = t('allCategories');
 
   if (facet.options.find(o => o.selected)) {
     return (
@@ -189,13 +192,12 @@ function AllCategories({ facet, inactiveClassName, activeClassName, resetShowMor
         className={inactiveClassName}
         onClick={handleClickAllCategories}
       >
-        All Categories /
-      </button>
+        {`${allCategoriesText} + /`}</button>
     );
   }
 
   return (
-    <div className={activeClassName}>All Categories</div>
+    <div className={activeClassName}>{allCategoriesText}</div>
   );
 }
 
@@ -337,9 +339,10 @@ function ShowMoreButton({ className, isShowingMore, toggleShowMore }: {
   isShowingMore: boolean,
   toggleShowMore: () => void
 }) {
+  const { t } = useTranslation();
   return (
     <button className={className} onClick={toggleShowMore}>
-      {isShowingMore ? 'Show less' : 'Show more'}
+      {isShowingMore ? t('showLess') : t('showMore')}
     </button>
   );
 }

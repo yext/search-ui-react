@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Matcher, NumberRangeValue, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
@@ -90,6 +91,7 @@ const builtInCssClasses: Readonly<RangeInputCssClasses> = {
  * @param props - RangeInputProps
  */
 export function RangeInput(props: RangeInputProps): JSX.Element | null {
+  const { t } = useTranslation();
   const { filters } = useFiltersContext();
   const { fieldId, setIsOptionsDisabled } = useFilterGroupContext();
   const {
@@ -186,7 +188,7 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   function renderInput(value: string, onChange: (event: unknown) => void, placeholder: string) {
     return (
       <div className={cssClasses.inputContainer}>
-        {inputPrefix && <span className={inputPrefixClasses} aria-hidden="true">{inputPrefix}</span>}
+        {inputPrefix && <span className={inputPrefixClasses} aria-hidden='true'>{inputPrefix}</span>}
         <input
           type='text'
           inputMode='decimal'
@@ -203,21 +205,20 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
   return (
     <div className={cssClasses.rangeInputContainer}>
       <div className={cssClasses.inputRowContainer}>
-        {renderInput(minRangeInput, handleMinChange, 'Min')}
+        {renderInput(minRangeInput, handleMinChange, t('min'))}
         <div className='w-2.5 text-sm text-neutral'>-</div>
-        {renderInput(maxRangeInput, handleMaxChange, 'Max')}
+        {renderInput(maxRangeInput, handleMaxChange, t('max'))}
         {isDisabled &&
         <div className={cssClasses.tooltipContainer}>
           <div className={cssClasses.tooltip}>
-            Unselect an option to enter in a range.
-          </div>
+            {t('unselectAnOptionToEnterInARange')}</div>
         </div>
         }
       </div>
       {!isValid &&
         <div className={cssClasses.invalidRowContainer}>
           <InvalidIcon/>
-          <div className={cssClasses.invalidMessage}>Invalid range</div>
+          <div className={cssClasses.invalidMessage}>{t('invalidRange')}</div>
         </div>
       }
       {hasUserInput &&
@@ -226,15 +227,13 @@ export function RangeInput(props: RangeInputProps): JSX.Element | null {
             className={cssClasses.clearButton}
             onClick={handleClickClear}
           >
-            Clear min and max
-          </button>
+            {t('clearMinAndMax')}</button>
           {shouldRenderApplyButton &&
             <button
               className={cssClasses.applyButton}
               onClick={handleClickApply}
             >
-              Apply
-            </button>
+              {t('apply')}</button>
           }
         </div>
       }

@@ -1,3 +1,4 @@
+import { Trans } from 'react-i18next';
 import { useSearchState, useSearchActions } from '@yext/search-headless-react';
 import classNames from 'classnames';
 import React, { useCallback } from 'react';
@@ -67,8 +68,13 @@ export function SpellCheck({
   }
   return (
     <div className={containerClassNames}>
-      <span className={cssClasses.helpText}>Did you mean </span>
-      <button className={cssClasses.link} onClick={handleClickSuggestion}>{correctedQuery}</button>
+      <span className={cssClasses.helpText}>
+        <Trans
+          i18nKey='didYouMean'
+          components={{ button: <button className={cssClasses.link} onClick={handleClickSuggestion} /> }}
+          values={{ correctedQuery }}
+        />
+      </span>
     </div>
   );
 }
