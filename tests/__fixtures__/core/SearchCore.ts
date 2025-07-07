@@ -17,6 +17,9 @@ import {
   FilterSearchRequest,
   FilterSearchResponse
 } from '@yext/search-headless-react';
+import { I18nextProvider } from 'react-i18next';
+import { i18nInstance } from '../../../src/utils';
+import React from 'react';
 
 let mockedSearchService = generateMockedSearchService();
 let mockedQuestionSubmissionService = generateMockedQuestionSubmissionService();
@@ -78,5 +81,5 @@ export function SearchCoreDecorator(story, { parameters }) {
       mockedAutoCompleteService = services.autoCompleteService;
     }
   }
-  return story();
+  return React.createElement(I18nextProvider, { i18n: i18nInstance }, story());
 }
