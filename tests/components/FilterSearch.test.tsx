@@ -2,6 +2,7 @@ import { FilterSearch, FilterSearchProps } from '../../src/components/FilterSear
 import { render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
+import { SearchI18nextProvider } from '../../src/components/SearchI18nextProvider';
 import {
   labeledFilterSearchResponse,
   unlabeledFilterSearchResponse,
@@ -9,11 +10,11 @@ import {
 } from '../../tests/__fixtures__/data/filtersearch';
 import {
   Matcher,
-  State,
   SearchHeadless,
   SearchHeadlessContext,
   useSearchActions,
-  SelectableStaticFilter
+  SelectableStaticFilter,
+  FiltersState
 } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import React from 'react';
@@ -23,45 +24,30 @@ const searchFieldsProp = [{
   entityType: 'ce_person'
 }];
 
-const mockedState: Partial<State> = {
-  vertical: {
-    verticalKey: 'vertical',
-  },
-  meta: {
-    searchType: 'vertical'
-  }
+const mockedStateWithSingleFilter: FiltersState = {
+  static: [{
+    filter: {
+      kind: 'fieldValue',
+      fieldId: 'name',
+      matcher: Matcher.Equals,
+      value: 'Real Person'
+    },
+    selected: true,
+    displayName: 'Real Person'
+  }]
 };
 
-const mockedStateWithSingleFilter: Partial<State> = {
-  ...mockedState,
-  filters: {
-    static: [{
-      filter: {
-        kind: 'fieldValue',
-        fieldId: 'name',
-        matcher: Matcher.Equals,
-        value: 'Real Person'
-      },
-      selected: true,
-      displayName: 'Real Person'
-    }]
-  }
-};
-
-const mockedStateWithMultipleFilters: Partial<State> = {
-  ...mockedState,
-  filters: {
-    static: [...(mockedStateWithSingleFilter.filters?.static ?? []), {
-      filter: {
-        kind: 'fieldValue',
-        fieldId: 'name',
-        matcher: Matcher.Equals,
-        value: 'Fake Person'
-      },
-      selected: true,
-      displayName: 'Fake Person'
-    }]
-  }
+const mockedStateWithMultipleFilters: FiltersState = {
+  static: [...(mockedStateWithSingleFilter.static ?? []), {
+    filter: {
+      kind: 'fieldValue',
+      fieldId: 'name',
+      matcher: Matcher.Equals,
+      value: 'Fake Person'
+    },
+    selected: true,
+    displayName: 'Fake Person'
+  }]
 };
 
 const pause = (millis: number) => new Promise(resolve => setTimeout(resolve, millis));
@@ -70,16 +56,54 @@ const waitForDebounce = () => pause(200 + 200);
 
 function renderFilterSearch(
   props: FilterSearchProps = { searchFields: searchFieldsProp },
-  state = mockedState
-): RenderResult {
-  return render(<SearchHeadlessContext.Provider value={generateMockedHeadless(state)}>
-    <FilterSearch {...props} />
+  filters?: FiltersState,
+  locale?: string
+): RenderResult & { rerenderWithLocale: (newLocale?: string) => void } {
+  const searcher = generateMockedHeadless({
+    vertical: {
+      verticalKey: 'vertical',
+    },
+    meta: {
+      searchType: 'vertical',
+      locale
+    }, 
+    filters
+  });
+
+  const utils = render(<SearchHeadlessContext.Provider value={searcher}>
+    <SearchI18nextProvider searcher={searcher}>
+      <FilterSearch {...props} />
+    </SearchI18nextProvider>
   </SearchHeadlessContext.Provider>);
+
+  function rerenderWithLocale(newLocale?: string) {
+    const newSearcher = generateMockedHeadless({
+      vertical: {
+        verticalKey: 'vertical',
+      },
+      meta: {
+        searchType: 'vertical',
+        locale: newLocale
+      }, 
+      filters
+    });
+
+    utils.rerender(<SearchHeadlessContext.Provider value={newSearcher}>
+      <SearchI18nextProvider searcher={newSearcher}>
+        <FilterSearch {...props} />
+      </SearchI18nextProvider>
+    </SearchHeadlessContext.Provider>);
+  }
+
+  return {
+    ...utils,
+    rerenderWithLocale,
+  };
 }
 
 describe('search with section labels', () => {
-  it('renders the filter search bar, "Filter" label, and default placeholder text', () => {
-    renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
+  it('renders the filter search bar, "Filter" label, and default placeholder text translated based on the locale', () => {
+    const { rerenderWithLocale } = renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
     const label = 'Filter';
     const labelElement = screen.getByText(label);
     const searchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
@@ -87,12 +111,20 @@ describe('search with section labels', () => {
     expect(labelElement).toBeDefined();
     expect(searchBarElement.length).toBe(1);
     expect(searchBarElement[0].placeholder).toBe('Search here...');
+    
+    rerenderWithLocale('ja');
+    const localizedSearchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
+    expect(localizedSearchBarElement[0].placeholder).toBe('ここで検索…');
   });
 
-  it('sets the placeholder text to the specified value', () => {
-    renderFilterSearch({ searchFields: searchFieldsProp, placeholder: 'Search...' });
+  it('sets the placeholder text to the specified value regardless of the search locale', () => {
+    const { rerenderWithLocale } = renderFilterSearch({ searchFields: searchFieldsProp, placeholder: 'Search...' });
     const searchBarElement = screen.getByRole<HTMLInputElement>('textbox');
     expect(searchBarElement.placeholder).toBe('Search...');
+    
+    rerenderWithLocale('ja');
+    const localizedSearchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
+    expect(localizedSearchBarElement[0].placeholder).toBe('Search...');
   });
 
   it('displays characters typed in search bar correctly', async () => {
@@ -371,38 +403,35 @@ describe('search with section labels', () => {
         entityType: 'ce_person'
       }
     ];
-    const mockedStateWithLocationFilters: Partial<State> = {
-      ...mockedState,
-      filters: {
-        static: [{
-          filter: {
-            kind: 'fieldValue',
-            fieldId: 'builtin.region',
-            matcher: Matcher.Equals,
-            value: 'VA'
-          },
-          selected: true,
-          displayName: 'Virginia'
-        }, {
-          filter: {
-            kind: 'fieldValue',
-            fieldId: 'address.countryCode',
-            matcher: Matcher.Equals,
-            value: 'US'
-          },
-          selected: true,
-          displayName: 'United States'
-        }, {
-          filter: {
-            kind: 'fieldValue',
-            fieldId: 'builtin.location',
-            matcher: Matcher.Equals,
-            value: 'P-place.2618194975855570'
-          },
-          selected: true,
-          displayName: 'New York City, New York, United States'
-        }]
-      }
+    const mockedStateWithLocationFilters: FiltersState = {
+      static: [{
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'builtin.region',
+          matcher: Matcher.Equals,
+          value: 'VA'
+        },
+        selected: true,
+        displayName: 'Virginia'
+      }, {
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'address.countryCode',
+          matcher: Matcher.Equals,
+          value: 'US'
+        },
+        selected: true,
+        displayName: 'United States'
+      }, {
+        filter: {
+          kind: 'fieldValue',
+          fieldId: 'builtin.location',
+          matcher: Matcher.Equals,
+          value: 'P-place.2618194975855570'
+        },
+        selected: true,
+        displayName: 'New York City, New York, United States'
+      }]
     };
 
     it('displays text of other location fields in state and lists all fields in the warning', async () => {
@@ -721,7 +750,7 @@ describe('screen reader', () => {
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
-    renderFilterSearch();
+    const { rerenderWithLocale } = renderFilterSearch();
 
     const searchBarElement = screen.getByRole('textbox');
 
@@ -733,6 +762,12 @@ describe('screen reader', () => {
 
     const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
     expect(screenReaderMessage).toBeDefined();
+
+    rerenderWithLocale('fr');
+    const expectedLocalizedScreenReaderMessage = '2 options d\'autocomplétion First name trouvées. 1 option d\'autocomplétion Last name trouvée.';
+
+    const rerenderedScreenReaderMessage = screen.getByText(expectedLocalizedScreenReaderMessage);
+    expect(rerenderedScreenReaderMessage).toBeDefined();
   });
 
   it('renders ScreenReader messages without section labels', async () => {
@@ -805,7 +840,7 @@ it('clears input when old filters are removed', async () => {
   }
 
   render(
-    <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+    <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
       <FilterSearch searchFields={searchFieldsProp} />
       <DeselectFiltersButton />
     </SearchHeadlessContext.Provider>
@@ -839,7 +874,7 @@ it('toggling the dropdown does not change selected filters', async () => {
 
   render(
     <div>
-      <SearchHeadlessContext.Provider value={generateMockedHeadless(mockedState)}>
+      <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
         <FilterSearch searchFields={searchFieldsProp} />
       </SearchHeadlessContext.Provider>
       <div>external div</div>
@@ -864,7 +899,11 @@ it('toggling the dropdown does not change selected filters', async () => {
 });
 
 it('displays near me button when showCurrentLocationButton is true', () => {
-  renderFilterSearch({ searchFields: searchFieldsProp, showCurrentLocationButton: true });
+  const { rerenderWithLocale } = renderFilterSearch({ searchFields: searchFieldsProp, showCurrentLocationButton: true });
   const nearMeButton = screen.getByRole('button', { name: 'Use Current Location' });
   expect(nearMeButton).toBeDefined();
+
+  rerenderWithLocale('vi');
+  const localizedNearMeButton = screen.getByRole('button', { name: 'Dùng vị trí hiện tại' });
+  expect(localizedNearMeButton).toBeDefined();
 });

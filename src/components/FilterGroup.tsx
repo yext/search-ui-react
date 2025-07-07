@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useSearchUtilities } from '@yext/search-headless-react';
 import React, { PropsWithChildren, useMemo, useState } from 'react';
 import {
@@ -109,6 +110,7 @@ function CheckboxOptions({
   showMoreLimit: number,
   cssClasses: CheckboxCssClasses
 }) {
+  const { t } = useTranslation();
   const searchUtilities = useSearchUtilities();
   const { searchValue } = useFilterGroupContext();
 
@@ -139,7 +141,7 @@ function CheckboxOptions({
       {isLimited &&
         /* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */
         <button className='text-primary py-1 text-sm' onClick={() => setShowAll(!showAll)}>
-          {showAll ? 'Show Less' : 'Show More'}
+          {showAll ? t('showLess') : t('showMore')}
         </button>
       }
     </>

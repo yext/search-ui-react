@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   FieldValueDirectAnswer as FieldValueDirectAnswerType,
   BuiltInFieldType,
@@ -42,6 +43,7 @@ export function FieldValueDirectAnswer({
   UnknownFieldTypeDisplay,
   cssClasses = {}
 }: FieldValueDirectAnswerProps): JSX.Element {
+  const { t } = useTranslation();
   const title = `${result.entityName} / ${result.fieldName}`;
   const link = result.relatedResult.link ?? result.relatedResult.rawData.landingPageUrl as string;
   const resultContent = useMemo(() => {
@@ -55,7 +57,7 @@ export function FieldValueDirectAnswer({
       <div className={cssClasses.content}>
         <div className={cssClasses.body}>{resultContent}</div>
         {link && <div className='mt-4'>
-          <a href={link} className='text-primary' onClick={viewDetailsClickHandler}>View Details</a>
+          <a href={link} className='text-primary' onClick={viewDetailsClickHandler}>{t('viewDetails')}</a>
         </div>
         }
       </div>

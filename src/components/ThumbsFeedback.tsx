@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useSearchState } from '@yext/search-headless-react';
 import React, { useCallback, useState } from 'react';
 import { ThumbIcon } from '../icons/ThumbIcon';
@@ -53,10 +54,11 @@ export const builtInCssClasses: Readonly<ThumbsFeedbackCssClasses> = {
  * @returns A React element for quality feedback widget.
  */
 export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
+  const { t } = useTranslation();
   const {
     onClick,
-    feedbackText = 'Feedback',
-    feedbackTextOnSubmission = 'Thank you for your feedback!',
+    feedbackText,
+    feedbackTextOnSubmission,
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const query = useSearchState(state => state.query.mostRecentSearch);
@@ -80,20 +82,20 @@ export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
   return (
     <div className={cssClasses.thumbsFeedbackContainer}>
       {isFeedbackProvided
-        ? feedbackTextOnSubmission
+        ? feedbackTextOnSubmission ?? t('thankYouForYourFeedback')
         : <>
-          {feedbackText}
+          {feedbackText ?? t('feedback', 'Feedback')}
           <button
             className={cssClasses.thumbsUpIcon}
             onClick={handleClickThumbsUp}
-            aria-label='This answered my question'
+            aria-label={t('thisAnsweredMyQuestion')}
           >
             <ThumbIcon/>
           </button>
           <button
             className={cssClasses.thumbsDownIcon}
             onClick={handleClickThumbsDown}
-            aria-label='This did not answer my question'
+            aria-label={t('thisDidNotAnswerMyQuestion')}
           >
             <ThumbIcon/>
           </button>

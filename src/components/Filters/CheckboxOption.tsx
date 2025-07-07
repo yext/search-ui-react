@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { FieldValueFilter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useFiltersContext } from './FiltersContext';
@@ -70,6 +71,7 @@ const builtInCssClasses: Readonly<CheckboxCssClasses> = {
  * @param props - {@link Filters.CheckboxOptionProps}
  */
 export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
+    const { t } = useTranslation();
   const { fieldId, isOptionsDisabled } = useFilterGroupContext();
   const {
     value,
@@ -148,7 +150,7 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
       {isOptionsDisabled &&
         <div className={cssClasses.tooltipContainer}>
           <div className={cssClasses.tooltip}>
-            Clear the range to select options.
+            {t('clearTheRangeToSelectOptions')}
           </div>
         </div>
       }

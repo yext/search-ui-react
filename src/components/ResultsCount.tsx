@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   SearchTypeEnum,
   useSearchState,
@@ -5,7 +6,6 @@ import {
   VerticalSearchState
 } from '@yext/search-headless-react';
 import classNames from 'classnames';
-import { processTranslation } from './utils/processTranslation';
 import { useComposedCssClasses } from '../hooks';
 import React from 'react';
 
@@ -56,6 +56,7 @@ export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Eleme
  * Generates a string for the results count of the recent universal/vertical search.
  */
 function useResultsCount() {
+  const { t } = useTranslation();
   const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
   const results = useSearchState(state => isVertical ? state.vertical : state.universal.verticals);
   const offset = useSearchState(state => state.vertical.offset) || 0;
@@ -71,20 +72,13 @@ function useResultsCount() {
   if (resultsCount === 0) {
     return null;
   }
-  const resultsCountText = processTranslation({
-    phrase: `${resultsCount} Result`,
-    pluralForm: `${resultsCount} Results`,
-    count: resultsCount
-  });
 
   if (resultsCount > limit && isVertical){
     const paginateStart = offset + 1;
     const paginateEnd = Math.min((offset + limit), resultsCount);
-    const paginateRange = `${paginateStart} - ${paginateEnd}`;
-    const resultCountWithPaginationText = `${paginateRange} of ${resultsCount} Results`;
-    return resultCountWithPaginationText;
+    return t('resultsCountWithPaginationText', { paginateStart, paginateEnd, resultsCount });
   } else {
-    return resultsCountText;
+    return t('resultsCountText', { count: resultsCount });
   }
 }
 

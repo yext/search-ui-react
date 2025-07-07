@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useComposedCssClasses } from '../hooks';
 import LoadingIndicator from '../icons/LoadingIndicator';
 import { YextIcon } from '../icons/YextIcon';
@@ -66,7 +67,7 @@ export interface GeolocationProps {
 export function Geolocation({
   geolocationOptions,
   radius = 50,
-  label = 'Use my location',
+  label,
   //TODO: replace default icon with SVG create from design team
   GeolocationIcon = YextIcon,
   handleClick,
@@ -74,6 +75,7 @@ export function Geolocation({
   useIconAsButton = false,
   disableBuiltInClasses = false
 }: GeolocationProps): JSX.Element | null {
+  const { t } = useTranslation();
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, disableBuiltInClasses);
   const [handleGeolocationClick, isFetchingUserLocation] = useGeolocationHandler({
     geolocationOptions,
@@ -92,7 +94,7 @@ export function Geolocation({
       <button
         className={cssClasses.button}
         onClick={handleGeolocationClick}
-        aria-label={"Use Current Location"}
+        aria-label={t('useCurrentLocation')}
       >
         {iconContainer}
       </button>
@@ -101,7 +103,7 @@ export function Geolocation({
     return (
       <div className={cssClasses.geolocationContainer}>
         <button className={cssClasses.button} onClick={handleGeolocationClick}>
-          {label}
+          {label ?? t('useMyLocation')}
         </button>
         {iconContainer}
       </div>

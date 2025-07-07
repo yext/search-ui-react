@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useCallback } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 
@@ -22,9 +23,10 @@ export interface SearchInputProps {
  * @public
  */
 export function SearchInput(props: SearchInputProps): JSX.Element {
+  const { t } = useTranslation();
   const {
     className = 'text-sm form-input bg-white h-9 w-full outline-none p-2 mb-2 rounded-md border border-gray-300 focus:ring-primary focus:ring-0 text-neutral-dark placeholder:text-neutral',
-    placeholder = 'Search here...'
+    placeholder
   } = props;
   const { searchValue, setSearchValue } = useFilterGroupContext();
   const handleChange = useCallback(e => {
@@ -35,7 +37,7 @@ export function SearchInput(props: SearchInputProps): JSX.Element {
     <input
       className={className}
       type='text'
-      placeholder={placeholder}
+      placeholder={placeholder ?? t('searchHere')}
       value={searchValue}
       onChange={handleChange}
     />

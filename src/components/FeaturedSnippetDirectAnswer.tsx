@@ -1,3 +1,4 @@
+import { Trans } from 'react-i18next';
 import { FeaturedSnippetDirectAnswer as FeaturedSnippetDirectAnswerType } from '@yext/search-headless-react';
 import { renderHighlightedValue } from './utils/renderHighlightedValue';
 import React, { useMemo } from 'react';
@@ -58,7 +59,6 @@ export function FeaturedSnippetDirectAnswer({
   }
   const link = result.relatedResult.link || result.relatedResult.rawData.landingPageUrl as string;
   const name = result.relatedResult.name;
-  const snippetLinkMessage = 'Read more about ';
 
   return (
     <div className={cssClasses.answerContainer}>
@@ -67,14 +67,11 @@ export function FeaturedSnippetDirectAnswer({
       <div className={cssClasses.content}>
         <div className={cssClasses.body}>{snippet}</div>
         {link && name && <div className='pt-4 text-neutral'>
-          {snippetLinkMessage}
-          <a
-            className='text-primary'
-            href={link}
-            onClick={readMoreClickHandler}
-          >
-            {name}
-          </a>
+          <Trans
+            i18nKey='readMoreAbout'
+            components={{ a: <a className='text-primary' href={link} onClick={readMoreClickHandler} /> }}
+            values={{ name }}
+          />
         </div>}
       </div>
     </div>

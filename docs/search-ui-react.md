@@ -316,6 +316,17 @@ Renders a SearchBar that is hooked up with an InputDropdown component.
 </td></tr>
 <tr><td>
 
+[SearchI18nextProvider(props)](./search-ui-react.searchi18nextprovider.md)
+
+
+</td><td>
+
+A higher-order component which provides translations for search react components.
+
+
+</td></tr>
+<tr><td>
+
 [SpellCheck({ customCssClasses, onClick })](./search-ui-react.spellcheck.md)
 
 
@@ -1478,6 +1489,19 @@ Props for rendering a custom marker on the map.
 </td><td>
 
 The type of a functional React component which renders entity previews using a map of vertical key to the corresponding VerticalResults data.
+
+
+</td></tr>
+<tr><td>
+
+[SearchTranslationOverrides](./search-ui-react.searchtranslationoverrides.md)
+
+
+</td><td>
+
+SearchI18next translation overrides
+
+The key is the locale to override. The value is the translation object that define specific translations override.
 
 
 </td></tr>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Matcher, SelectableStaticFilter, useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { executeSearch } from '../utils/search-operations';
 import { getUserLocation } from '../utils/location-operations';
@@ -39,6 +40,7 @@ export function useGeolocationHandler({
   radius = 50,
   handleUserPosition
 }: GeolocationHandlerArgs): [() => Promise<void>, boolean] {
+  const { t } = useTranslation();
   const [isFetchingUserLocation, setIsFetchingUserLocation] = useState<boolean>(false);
   const searchActions = useSearchActions();
   const staticFilters = useSearchState(s => s.filters.static || []);
@@ -46,7 +48,7 @@ export function useGeolocationHandler({
   const defaultHandleUserPosition = useCallback((position: GeolocationPosition) => {
     const { latitude, longitude, accuracy } = position.coords;
     const locationFilter: SelectableStaticFilter = {
-      displayName: 'Current Location',
+      displayName: t('currentLocation'),
       selected: true,
       filter: {
         kind: 'fieldValue',
