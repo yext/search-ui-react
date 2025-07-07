@@ -879,7 +879,7 @@ export interface StandardSectionProps<T = DefaultRawDataType> extends SectionPro
 }
 
 // @public
-export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'matcher' | 'value'> & {
+export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'value'> & {
     value: string | number | boolean;
 };
 
