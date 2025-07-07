@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useSearchActions } from '@yext/search-headless-react';
 import { useCallback } from 'react';
 import { useComposedCssClasses } from '../hooks';
@@ -42,8 +43,9 @@ const builtInCssClasses: Readonly<ApplyFiltersButtonCssClasses> = {
  */
 export function ApplyFiltersButton({
   customCssClasses,
-  label = 'Apply Filters'
+  label
 }: ApplyFiltersButtonProps): JSX.Element {
+  const { t } = useTranslation();
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const searchActions = useSearchActions();
   const handleClick = useCallback(() => {
@@ -57,7 +59,7 @@ export function ApplyFiltersButton({
       onClick={handleClick}
       className={cssClasses.button}
     >
-      {label}
+      {label ?? t('applyFilters')}
     </button>
   );
 }

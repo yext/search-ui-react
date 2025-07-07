@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { MagnifyingGlassIcon } from '../icons/MagnifyingGlassIcon';
 import React from 'react';
 
@@ -7,11 +8,12 @@ interface Props {
 }
 
 export function SearchButton({ handleClick, className }: Props): JSX.Element {
+  const { t } = useTranslation();
   return (
     <button
       className={className}
       onClick={handleClick}
-      aria-label='Submit Search'
+      aria-label={t('submitSearch')}
     >
       <MagnifyingGlassIcon />
     </button>

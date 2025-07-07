@@ -13,6 +13,7 @@ import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
 import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
+import * as i18next from 'i18next';
 import { default as mapboxgl_2 } from 'mapbox-gl';
 import { MarkerOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
@@ -472,6 +473,11 @@ export interface HighlightedValueCssClasses {
     nonHighlighted?: string;
 }
 
+// Warning: (ae-internal-missing-underscore) The name "i18nInstance" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export const i18nInstance: i18next.i18n;
+
 // @public
 export function isCtaData(data: unknown): data is CtaData;
 
@@ -727,6 +733,16 @@ export interface SearchBarProps {
     verticalKeyToLabel?: (verticalKey: string) => string;
     visualAutocompleteConfig?: VisualAutocompleteConfig;
 }
+
+// Warning: (ae-forgotten-export) The symbol "SearchI18nextConfig" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConfig>): JSX.Element;
+
+// @public
+export type SearchTranslationOverrides = {
+    [key: string]: translations;
+};
 
 // @public
 export type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => JSX.Element | null;
@@ -1003,6 +1019,10 @@ export interface VisualAutocompleteConfig {
     renderEntityPreviews: RenderEntityPreviews;
     universalLimit?: UniversalLimit;
 }
+
+// Warnings were encountered during analysis:
+//
+// dist/index.d.ts:1658:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

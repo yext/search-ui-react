@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { CloseIcon } from '../icons/CloseIcon';
 import { AppliedFiltersCssClasses } from './AppliedFilters';
 import { useClearFiltersCallback } from '../hooks/useClearFiltersCallback';
@@ -40,6 +41,7 @@ export interface AppliedFiltersDisplayProps {
  * @returns A React element for the applied filters
  */
 export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
+  const { t } = useTranslation();
   const {
     nlpFilterDisplayNames = [],
     removableFilters = [],
@@ -68,15 +70,18 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.El
   }
 
   return (
-    <div className={cssClasses.appliedFiltersContainer} aria-label='Applied filters to current search'>
+    <div className={cssClasses.appliedFiltersContainer} aria-label={t('appliedFiltersToCurrentSearch')}>
       {dedupedNlpFilterDisplayNames.map((displayName, i) => renderNlpFilter(displayName, i, cssClasses))}
       {dedupedRemovableFilters.map((f, i) => {
-        return renderRemovableFilter(f.displayName, () => handleRemoveDedupedFilter(f), i, cssClasses);
-      })}
+        return <RemovableFilter 
+          displayName={f.displayName} 
+          handleRemove={() => handleRemoveDedupedFilter(f)}
+          index={i}
+          cssClasses={cssClasses}/>;
+        })}
       {removableFilters.length > 0 &&
         <button onClick={handleClickClearAllButton} className={cssClasses.clearAllButton}>
-          Clear All
-        </button>
+          {t('clearAll')}</button>
       }
     </div>
   );
@@ -103,19 +108,25 @@ function getDedupedRemovableFilters(filters: RemovableFilter[]) {
   return dedupedFilters;
 }
 
-function renderRemovableFilter(
+function RemovableFilter({
+  displayName,
+  handleRemove,
+  index,
+  cssClasses
+}: {
   displayName: string | undefined,
   handleRemove: () => void,
   index: number,
   cssClasses: AppliedFiltersCssClasses
-): JSX.Element {
+}): JSX.Element {
+  const { t } = useTranslation();
   return (
     <div className={cssClasses.removableFilter} key={`${displayName}-${index}`}>
       <div className={cssClasses.filterLabel}>{displayName}</div>
       <button
         className='w-2 h-2 text-neutral m-1.5'
         onClick={handleRemove}
-        aria-label={`Remove "${displayName}" filter`}
+        aria-label={t('removeFilter', { displayName })}
       >
         <CloseIcon />
       </button>

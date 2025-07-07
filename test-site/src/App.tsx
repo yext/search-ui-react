@@ -10,7 +10,7 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
-import { AnalyticsProvider } from '@yext/search-ui-react';
+import { AnalyticsProvider, SearchTranslationOverrides, SearchI18nextProvider } from '@yext/search-ui-react';
 import acquireSessionId from './utils/acquireSessionId';
 import { config } from './config';
 
@@ -20,22 +20,33 @@ searcher.setSessionTrackingEnabled(true);
 const sessionId = acquireSessionId();
 sessionId && searcher.setSessionId(sessionId);
 
+const translationOverrides: SearchTranslationOverrides = {
+  en: {
+    aiGeneratedAnswer: 'The ✨ ANSWER ✨'
+  },
+  es: {
+    aiGeneratedAnswer: '✨ RESPUETA ✨'
+  }
+}
+
 function App() {
   return (
     <div className='p-4'>
       <SearchHeadlessProvider searcher={searcher}>
-        <AnalyticsProvider {...config}>
-          <BrowserRouter>
-            <Navbar/>
-            <Routes>
-              <Route index element={<UniversalPage />} />
-              <Route path='people' element={<PeoplePage />} />
-              <Route path='products' element={<ProductsPage />} />
-              <Route path='locations' element={<LocationsPage />} />
-              <Route path='function' element={<FunctionPage/>} />
-            </Routes>
-          </BrowserRouter>
-        </AnalyticsProvider>
+        <SearchI18nextProvider searcher={searcher} translationOverrides={translationOverrides}>
+          <AnalyticsProvider {...config}>
+            <BrowserRouter>
+              <Navbar/>
+              <Routes>
+                <Route index element={<UniversalPage />} />
+                <Route path='people' element={<PeoplePage />} />
+                <Route path='products' element={<ProductsPage />} />
+                <Route path='locations' element={<LocationsPage />} />
+                <Route path='function' element={<FunctionPage/>} />
+              </Routes>
+            </BrowserRouter>
+          </AnalyticsProvider>
+        </SearchI18nextProvider>
       </SearchHeadlessProvider>
     </div>
   );

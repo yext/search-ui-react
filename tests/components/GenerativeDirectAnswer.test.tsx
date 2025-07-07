@@ -149,7 +149,7 @@ describe('GenerativeDirectAnswer without sufficient citation fields', () => {
 
     render(<GenerativeDirectAnswer />);
     expect(screen.getByText(generativeDirectAnswerText)).toBeDefined();
-    expect(screen.getByText('Sources (1)')).toBeDefined();
+    expect(screen.getByText('Source')).toBeDefined();
 
     checkResultData(verticalResults[0].results[0].rawData, false); //not a citation
     checkResultData(verticalResults[0].results[1].rawData, false); //citation without name

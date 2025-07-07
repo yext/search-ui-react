@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useSearchState, useSearchActions } from '@yext/search-headless-react';
 import { useComposedCssClasses } from '../hooks';
 import { ChevronIcon as PageNavigationIcon } from '../icons/ChevronIcon';
@@ -54,6 +55,7 @@ const builtInPaginationCssClasses: Readonly<PaginationCssClasses> = {
  * @public
  */
 export function Pagination(props: PaginationProps): JSX.Element | null {
+  const { t } = useTranslation();
   const { customCssClasses = {}, paginateAllOnNoResults = false } = props;
   const cssClasses = useComposedCssClasses(builtInPaginationCssClasses, customCssClasses);
   const searchActions = useSearchActions();
@@ -92,9 +94,9 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
 
   return (
     <div className={paginationContainerClassNames}>
-      <nav className='inline-flex shadow-sm -space-x-px' aria-label="Pagination">
+      <nav className='inline-flex shadow-sm -space-x-px' aria-label={t('pagination')}>
         <PaginationButton
-          ariaLabel='Navigate to the previous results page'
+          ariaLabel={t('navigateToThePreviousResultsPage')}
           className={cssClasses.leftIconContainer}
           navigateToPage={navigateToPage}
           newPageNumber={currentPageNumber - 1}
@@ -138,7 +140,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
           }
         })}
         <PaginationButton
-          ariaLabel='Navigate to the next results page'
+          ariaLabel={t('navigateToTheNextResultsPage')}
           className={cssClasses.rightIconContainer}
           navigateToPage={navigateToPage}
           newPageNumber={currentPageNumber + 1}
