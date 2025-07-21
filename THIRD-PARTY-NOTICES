@@ -26,7 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 The following NPM packages may be included in this product:
 
- - @babel/runtime-corejs3@7.27.6
+ - @babel/runtime-corejs3@7.28.0
  - @babel/runtime@7.27.6
 
 These packages each contain the following license and notice below:
@@ -1330,7 +1330,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-core@2.6.2
+ - @yext/search-core@2.6.3
 
 This package contains the following license and notice below:
 
@@ -1374,14 +1374,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-headless-react@2.5.3
+ - @yext/search-headless-react@2.5.4
 
 This package contains the following license and notice below:
 
 Contains information from the language-subtag-registry JSON Database (https://github.com/mattcg/language-subtag-registry/tree/master/data/json)
 which is made available under the ODC Attribution License (https://github.com/mattcg/language-subtag-registry/blob/master/LICENSE.md).
 
-The Search Headless React files listed in this repository are licensed under the below license. All other features and products are subject to 
+The Search Headless React files listed in this repository are licensed under the below license. All other features and products are subject to
 separate agreements and certain functionality requires paid subscriptions to Yext products.
 
 BSD 3-Clause License
@@ -1418,7 +1418,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
- - @yext/search-headless@2.6.3
+ - @yext/search-headless@2.6.4
 
 This package contains the following license and notice below:
 
@@ -1940,7 +1940,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - core-js-pure@3.41.0
+ - core-js-pure@3.44.0
 
 This package contains the following license and notice below:
 
@@ -2784,7 +2784,7 @@ console.log(ast)
 
     // name of tag if relevant
     name: 'div',
-    
+
     // parsed attribute object
     attrs: {
         class: 'oh'
@@ -4319,12 +4319,12 @@ These algorithms take a JavaScript string (and a seed), and quickly create a non
 More information about these algorithms can be found at:
 
 *	[MurmurHash Homepage](http://sites.google.com/site/murmurhash/)
-*	[Wikipedia Entry on MurmurHash](http://en.wikipedia.org/wiki/MurmurHash) 
+*	[Wikipedia Entry on MurmurHash](http://en.wikipedia.org/wiki/MurmurHash)
 
 ## Install
 
     npm install murmurhash-js
-    
+
 ## API
 
 ```javascript
@@ -5433,11 +5433,11 @@ Setting and retrieving relevant searches.
 ```ts
 // Retrieve searches for a given query
 const previousSearchesForJohn = searches.getRecentSearches("John")
-/* 
-  [ 
+/*
+  [
     {query: "John", data: {...}, timestamp: ...},
     {query: "Marc John", data: {...}, timestamp: ...}
-  ] 
+  ]
 */
 
 // To set a recent search
@@ -6590,7 +6590,7 @@ Apache License
 
 Version 2.0, January 2004
 
-http://www.apache.org/licenses/ 
+http://www.apache.org/licenses/
 
 TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
