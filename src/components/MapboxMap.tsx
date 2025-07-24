@@ -277,7 +277,7 @@ export function MapboxMap<T>({
             renderPin({ index: i, mapbox, result, container: el });
             markerOptions.element = el;
           }
-          
+
           if (markerOptionsOverride) {
             markerOptions = {
               ...markerOptions,
@@ -297,8 +297,10 @@ export function MapboxMap<T>({
 
       if (!bounds.isEmpty()){
         mapbox.fitBounds(bounds, {
+          // these settings are defaults and will be overriden if present on fitBoundsOptions
           padding: { top: 50, bottom: 50, left: 50, right: 50 },
-          maxZoom: mapboxOptions?.maxZoom ?? 15
+          maxZoom: mapboxOptions?.maxZoom ?? 15,
+          ...mapboxOptions?.fitBoundsOptions,
         });
       }
 
