@@ -11,7 +11,7 @@ import { useCardAnalytics } from '../hooks/useCardAnalytics';
 import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
 import { Markdown, MarkdownCssClasses } from './Markdown';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 /**
  * The CSS class interface used for {@link GenerativeDirectAnswer}.
@@ -83,7 +83,6 @@ export function GenerativeDirectAnswer({
   const universalResults = useSearchState(state => state.universal);
   const verticalResults = useSearchState(state => state.vertical);
   const searchId = useSearchState(state => state.meta.uuid);
-
   const searchResults: Result[] | undefined = React.useMemo(() => {
     if (isUniversal) {
       return universalResults.verticals?.flatMap(v => v.results);
@@ -92,17 +91,19 @@ export function GenerativeDirectAnswer({
     }
   }, [isUniversal, universalResults, verticalResults]);
 
+  const [lastExecutedSearchResults, setLastExecutedSearchResults] = useState(searchResults);
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
   const handleClickEvent = useReportClickEvent();
 
   React.useEffect(() => {
-    if (!searchResults?.length || !searchId) {
+    if (!searchResults?.length || !searchId || searchResults === lastExecutedSearchResults) {
       return;
     }
     executeGenerativeDirectAnswer(searchActions);
-  }, [searchResults, searchId]);
+    setLastExecutedSearchResults(searchResults);
+  }, [searchResults, searchId, lastExecutedSearchResults]);
 
   if (!searchResults?.length || isLoading || !gdaResponse || gdaResponse.resultStatus !== 'SUCCESS') {
     return null;
@@ -152,7 +153,7 @@ function Answer(props: AnswerProps) {
     }),
     [cssClasses.answerText]
   );
-  
+
   return <>
     <div className={cssClasses.header}>
       {answerHeader ?? t('aiGeneratedAnswer')}
