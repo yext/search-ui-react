@@ -105,7 +105,7 @@ export function GenerativeDirectAnswer({
     }
     executeGenerativeDirectAnswer(searchActions);
     setLastExecutedSearchResults(searchResults);
-  }, [searchResults, searchId, lastExecutedSearchResults]);
+  }, [searchResults, searchId]);
 
   if (!searchResults?.length || isLoading || !gdaResponse || gdaResponse.resultStatus !== 'SUCCESS') {
     return null;
