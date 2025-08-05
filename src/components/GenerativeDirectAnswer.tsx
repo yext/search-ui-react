@@ -92,7 +92,8 @@ export function GenerativeDirectAnswer({
     }
   }, [isUniversal, universalResults, verticalResults]);
 
-  const [lastExecutedSearchResults, setLastExecutedSearchResults] = useState(searchResults);
+  const [lastExecutedSearchResults, setLastExecutedSearchResults] =
+      useState(undefined as Result[] | undefined);
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
