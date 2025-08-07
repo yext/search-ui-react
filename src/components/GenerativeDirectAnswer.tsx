@@ -11,7 +11,7 @@ import { useCardAnalytics } from '../hooks/useCardAnalytics';
 import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
 import { Markdown, MarkdownCssClasses } from './Markdown';
-import React, { useMemo } from 'react';
+import React, {useMemo, useRef} from 'react';
 
 /**
  * The CSS class interface used for {@link GenerativeDirectAnswer}.
@@ -92,16 +92,18 @@ export function GenerativeDirectAnswer({
     }
   }, [isUniversal, universalResults, verticalResults]);
 
+  const lastExecutedSearchResults = useRef(undefined as Result[] | undefined);
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
   const handleClickEvent = useReportClickEvent();
 
   React.useEffect(() => {
-    if (!searchResults?.length || !searchId) {
+    if (!searchResults?.length || !searchId || searchResults === lastExecutedSearchResults.current) {
       return;
     }
     executeGenerativeDirectAnswer(searchActions);
+    lastExecutedSearchResults.current = searchResults;
   }, [searchResults, searchId]);
 
   if (!searchResults?.length || isLoading || !gdaResponse || gdaResponse.resultStatus !== 'SUCCESS') {
@@ -152,7 +154,7 @@ function Answer(props: AnswerProps) {
     }),
     [cssClasses.answerText]
   );
-  
+
   return <>
     <div className={cssClasses.header}>
       {answerHeader ?? t('aiGeneratedAnswer')}
