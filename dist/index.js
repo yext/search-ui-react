@@ -5796,7 +5796,8 @@ function CheckboxOption(props) {
   return /* @__PURE__ */ import_react67.default.createElement("div", { className: cssClasses.container }, /* @__PURE__ */ import_react67.default.createElement("div", { className: cssClasses.optionContainer }, /* @__PURE__ */ import_react67.default.createElement(
     "input",
     {
-      type: "checkbox",
+      type: "radio",
+      name: fieldId,
       id: optionId,
       checked: isSelected,
       className: inputClasses,

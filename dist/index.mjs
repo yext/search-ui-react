@@ -5747,7 +5747,8 @@ function CheckboxOption(props) {
   return /* @__PURE__ */ React43.createElement("div", { className: cssClasses.container }, /* @__PURE__ */ React43.createElement("div", { className: cssClasses.optionContainer }, /* @__PURE__ */ React43.createElement(
     "input",
     {
-      type: "checkbox",
+      type: "radio",
+      name: fieldId,
       id: optionId,
       checked: isSelected,
       className: inputClasses,
