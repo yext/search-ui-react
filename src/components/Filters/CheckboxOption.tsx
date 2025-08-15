@@ -138,7 +138,8 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     <div className={cssClasses.container}>
       <div className={cssClasses.optionContainer}>
         <input
-          type='checkbox'
+          type='radio'
+          name={fieldId}
           id={optionId}
           checked={isSelected}
           className={inputClasses}
