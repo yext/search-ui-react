@@ -45,6 +45,8 @@ export interface StandardFacetsProps {
    * Defaults to 10.
    */
   showMoreLimit?: number
+  /** Set to true if you want single selection (radio buttons instead of checkboxes). */
+  singleSelection?: boolean
 }
 
 /**
@@ -68,6 +70,7 @@ export function StandardFacets(props: StandardFacetsProps): JSX.Element {
     customCssClasses = {},
     showMoreLimit = 10,
     showOptionCounts = true,
+    singleSelection = false,
     ...filterGroupProps
   } = props;
   return (
@@ -86,6 +89,7 @@ export function StandardFacets(props: StandardFacetsProps): JSX.Element {
                 customCssClasses={customCssClasses}
                 showMoreLimit={showMoreLimit}
                 searchable={f.options.length > showMoreLimit}
+                singleSelection={singleSelection}
                 {...filterGroupProps}
               />
               {(i < facets.length - 1) && <FilterDivider className={customCssClasses.divider}/>}

@@ -66,6 +66,8 @@ export interface StandardFacetProps {
   showMoreLimit?: number,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FilterGroupCssClasses
+  /** Set to true if you want single selection (radio buttons instead of checkboxes). */
+  singleSelection?: boolean
 }
 
 /**

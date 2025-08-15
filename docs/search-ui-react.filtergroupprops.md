@@ -170,6 +170,25 @@ _(Optional)_ Limit on the number of options to be displayed.
 </td></tr>
 <tr><td>
 
+[singleSelection?](./search-ui-react.filtergroupprops.singleselection.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Set to true if you want single selection (radio buttons instead of checkboxes).
+
+
+</td></tr>
+<tr><td>
+
 [title](./search-ui-react.filtergroupprops.title.md)
 
 

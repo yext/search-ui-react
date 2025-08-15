@@ -514,6 +514,8 @@ export declare interface FilterGroupProps {
     customCssClasses?: FilterGroupCssClasses;
     /** Limit on the number of options to be displayed. */
     showMoreLimit?: number;
+    /** Set to true if you want single selection (radio buttons instead of checkboxes). */
+    singleSelection?: boolean;
 }
 
 /**
@@ -1511,6 +1513,8 @@ export declare interface StandardFacetProps {
     showMoreLimit?: number;
     /** CSS classes for customizing the component styling. */
     customCssClasses?: FilterGroupCssClasses;
+    /** Set to true if you want single selection (radio buttons instead of checkboxes). */
+    singleSelection?: boolean;
 }
 
 /**
@@ -1570,6 +1574,8 @@ export declare interface StandardFacetsProps {
      * Defaults to 10.
      */
     showMoreLimit?: number;
+    /** Set to true if you want single selection (radio buttons instead of checkboxes). */
+    singleSelection?: boolean;
 }
 
 /**

@@ -5700,7 +5700,8 @@ function CheckboxOption(props) {
     matcher = Matcher5.Equals,
     selectedByDefault = false,
     displayName = props.value,
-    resultsCount
+    resultsCount,
+    singleSelection = false
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses18, props.customCssClasses);
   const optionId = useId("facet");
@@ -5744,11 +5745,21 @@ function CheckboxOption(props) {
   const labelClasses = classNames10(cssClasses.label, {
     [cssClasses.label___disabled ?? ""]: isOptionsDisabled
   });
-  return /* @__PURE__ */ React43.createElement("div", { className: cssClasses.container }, /* @__PURE__ */ React43.createElement("div", { className: cssClasses.optionContainer }, /* @__PURE__ */ React43.createElement(
+  return /* @__PURE__ */ React43.createElement("div", { className: cssClasses.container }, /* @__PURE__ */ React43.createElement("div", { className: cssClasses.optionContainer }, singleSelection ? /* @__PURE__ */ React43.createElement(
     "input",
     {
       type: "radio",
       name: fieldId,
+      id: optionId,
+      checked: isSelected,
+      className: inputClasses,
+      onChange: handleChange,
+      disabled: isOptionsDisabled
+    }
+  ) : /* @__PURE__ */ React43.createElement(
+    "input",
+    {
+      type: "checkbox",
       id: optionId,
       checked: isSelected,
       className: inputClasses,
@@ -6124,6 +6135,7 @@ function FilterGroup({
   searchable,
   customCssClasses = DEFAULT_CUSTOM_CSS_CLASSES,
   showMoreLimit = filterOptions.length,
+  singleSelection,
   children
 }) {
   const cssClasses = useMemo17(() => {
@@ -6154,7 +6166,8 @@ function FilterGroup({
       {
         filterOptions,
         showMoreLimit,
-        cssClasses
+        cssClasses,
+        singleSelection
       }
     ), children)
   );
@@ -6162,7 +6175,8 @@ function FilterGroup({
 function CheckboxOptions({
   filterOptions,
   showMoreLimit,
-  cssClasses
+  cssClasses,
+  singleSelection
 }) {
   const { t } = useTranslation19();
   const searchUtilities = useSearchUtilities2();
@@ -6176,7 +6190,8 @@ function CheckboxOptions({
       {
         ...o,
         key: o.displayName || o.value.toString(),
-        customCssClasses: cssClasses
+        customCssClasses: cssClasses,
+        singleSelection
       }
     );
   });
@@ -6219,6 +6234,7 @@ function StandardFacets(props) {
     customCssClasses = {},
     showMoreLimit = 10,
     showOptionCounts = true,
+    singleSelection = false,
     ...filterGroupProps
   } = props;
   return /* @__PURE__ */ React56.createElement(FacetsProvider, { searchOnChange, className: customCssClasses.standardFacetsContainer }, (facets) => facets.filter((f) => !excludedFieldIds.includes(f.fieldId) && isStringFacet(f)).map((f, i) => {
@@ -6233,6 +6249,7 @@ function StandardFacets(props) {
         customCssClasses,
         showMoreLimit,
         searchable: f.options.length > showMoreLimit,
+        singleSelection,
         ...filterGroupProps
       }
     ), i < facets.length - 1 && /* @__PURE__ */ React56.createElement(FilterDivider, { className: customCssClasses.divider }));

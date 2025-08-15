@@ -286,6 +286,7 @@ export interface FilterGroupProps {
     filterOptions: FilterOptionConfig[];
     searchable?: boolean;
     showMoreLimit?: number;
+    singleSelection?: boolean;
     title: string;
 }
 
@@ -839,6 +840,7 @@ export interface StandardFacetProps {
     label?: string;
     showMoreLimit?: number;
     showOptionCounts?: boolean;
+    singleSelection?: boolean;
     transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];
 }
 
@@ -862,6 +864,7 @@ export interface StandardFacetsProps {
     searchOnChange?: boolean;
     showMoreLimit?: number;
     showOptionCounts?: boolean;
+    singleSelection?: boolean;
 }
 
 // @public
@@ -1022,7 +1025,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1658:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1664:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

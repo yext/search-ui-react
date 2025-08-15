@@ -170,6 +170,25 @@ _(Optional)_ Whether or not to show the option counts for each filter. Defaults 
 </td></tr>
 <tr><td>
 
+[singleSelection?](./search-ui-react.standardfacetprops.singleselection.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Set to true if you want single selection (radio buttons instead of checkboxes).
+
+
+</td></tr>
+<tr><td>
+
 [transformOptions?](./search-ui-react.standardfacetprops.transformoptions.md)
 
 

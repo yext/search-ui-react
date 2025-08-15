@@ -53,6 +53,8 @@ export interface FilterGroupProps {
   customCssClasses?: FilterGroupCssClasses,
   /** Limit on the number of options to be displayed. */
   showMoreLimit?: number
+  /** Set to true if you want single selection (radio buttons instead of checkboxes). */
+  singleSelection?: boolean
 }
 
 /**
@@ -67,6 +69,7 @@ export function FilterGroup({
   searchable,
   customCssClasses = DEFAULT_CUSTOM_CSS_CLASSES,
   showMoreLimit = filterOptions.length,
+  singleSelection,
   children
 }: PropsWithChildren<FilterGroupProps>) {
   const cssClasses = useMemo(() => {
@@ -94,7 +97,8 @@ export function FilterGroup({
         <CheckboxOptions
           filterOptions={filterOptions}
           showMoreLimit={showMoreLimit}
-          cssClasses={cssClasses} />
+          cssClasses={cssClasses}
+          singleSelection={singleSelection} />
         {children}
       </CollapsibleSection>
     </FilterGroupProvider>
@@ -104,11 +108,13 @@ export function FilterGroup({
 function CheckboxOptions({
   filterOptions,
   showMoreLimit,
-  cssClasses
+  cssClasses,
+  singleSelection
 }: {
   filterOptions: FilterOptionConfig[],
   showMoreLimit: number,
   cssClasses: CheckboxCssClasses
+  singleSelection?: boolean
 }) {
   const { t } = useTranslation();
   const searchUtilities = useSearchUtilities();
@@ -126,6 +132,7 @@ function CheckboxOptions({
         {...o}
         key={o.displayName || o.value.toString()}
         customCssClasses={cssClasses}
+        singleSelection={singleSelection}
       />
     );
   });

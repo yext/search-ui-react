@@ -34,6 +34,7 @@ export interface FilterOptionConfig {
 export interface CheckboxOptionProps extends FilterOptionConfig {
   /** CSS classes for customizing the component styling defined by {@link Filters.CheckboxCssClasses}. */
   customCssClasses?: CheckboxCssClasses
+  singleSelection?: boolean
 }
 
 /**
@@ -78,7 +79,8 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
     matcher = Matcher.Equals,
     selectedByDefault = false,
     displayName = props.value,
-    resultsCount
+    resultsCount,
+    singleSelection = false
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const optionId = useId('facet');
@@ -137,15 +139,27 @@ export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
   return (
     <div className={cssClasses.container}>
       <div className={cssClasses.optionContainer}>
-        <input
-          type='radio'
-          name={fieldId}
-          id={optionId}
-          checked={isSelected}
-          className={inputClasses}
-          onChange={handleChange}
-          disabled={isOptionsDisabled}
-        />
+        {singleSelection ? (
+          <input
+            type='radio'
+            name={fieldId}
+            id={optionId}
+            checked={isSelected}
+            className={inputClasses}
+            onChange={handleChange}
+            disabled={isOptionsDisabled}
+          />
+        ) : (
+            <input
+              type='checkbox'
+              id={optionId}
+              checked={isSelected}
+              className={inputClasses}
+              onChange={handleChange}
+              disabled={isOptionsDisabled}
+            />
+          )
+        }
         <label className={labelClasses} htmlFor={optionId}>{labelText}</label>
       </div>
       {isOptionsDisabled &&
