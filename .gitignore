@@ -3,7 +3,6 @@ node_modules/
 
 # production
 lib/
-dist/
 
 # testing
 /coverage
