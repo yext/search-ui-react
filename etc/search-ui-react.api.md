@@ -131,15 +131,7 @@ export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
 
 // @public
-<<<<<<< HEAD
-<<<<<<< HEAD
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
-=======
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE' | 'CITATION_CLICK';
->>>>>>> 104ba37 (ksearch: upgrade to Events API)
-=======
-export type CardCtaEventType = 'CTA_CLICK' | 'TITLE' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'WEBSITE' | 'TAP_TO_CALL';
->>>>>>> 89b34f0 (Add more wraparound services and values, to fully hide the)
 
 // @public
 export interface CardProps<T = DefaultRawDataType> {
@@ -692,12 +684,18 @@ export interface ResultsCountProps {
     customCssClasses?: ResultsCountCssClasses;
 }
 
-// @public (undocumented)
+// @public
 export interface SearchAnalyticsConfig {
     apiKey: string;
     cloudRegion?: CloudRegion;
     environment?: Environment;
     sessionTrackingEnabled?: boolean;
+}
+
+// @public
+export interface SearchAnalyticsEventService {
+    // Warning: (ae-forgotten-export) The symbol "SearchEventPayload" needs to be exported by the entry point index.d.ts
+    report(payload: SearchEventPayload): Promise<string>;
 }
 
 // @public
@@ -971,8 +969,6 @@ export interface UnknownFieldTypeDisplayProps {
 // @public
 export function updateLocationIfNeeded(searchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
 
-// Warning: (ae-forgotten-export) The symbol "SearchAnalyticsEventService" needs to be exported by the entry point index.d.ts
-//
 // @public
 export function useAnalytics(): SearchAnalyticsEventService | null;
 
@@ -1040,7 +1036,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1658:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1727:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

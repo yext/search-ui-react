@@ -9,7 +9,7 @@ A higher-order component which provides analytics for its children.
 **Signature:**
 
 ```typescript
-declare function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element;
+declare function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): JSX.Element;
 ```
 
 ## Parameters
@@ -37,7 +37,7 @@ props
 
 </td><td>
 
-PropsWithChildren&lt;AnalyticsConfig&gt;
+PropsWithChildren&lt;[SearchAnalyticsConfig](./search-ui-react.searchanalyticsconfig.md)<!-- -->&gt;
 
 
 </td><td>

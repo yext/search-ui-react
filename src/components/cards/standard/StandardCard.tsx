@@ -44,7 +44,7 @@ export function StandardCard(props: StandardCardProps<any>): JSX.Element {
   // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
   const clickHandlers = {
     handleCtaClick: useCardAnalyticsCallback(result, 'CTA_CLICK'),
-    handleTitleClick: useCardAnalyticsCallback(result, 'TITLE'),
+    handleTitleClick: useCardAnalyticsCallback(result, 'TITLE_CLICK'),
     handleFeedbackClick: useCardFeedbackCallback(result)
   };
 

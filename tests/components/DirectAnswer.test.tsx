@@ -28,7 +28,9 @@ function renderDirectAnswer(
       queryId: '[queryId]'
     },
     meta: {
-      locale
+      experienceKey: 'experienceKey',
+      locale,
+      uuid: 'searchId'
     }
   });
 
@@ -46,7 +48,9 @@ function renderDirectAnswer(
         queryId: '[queryId]'
       },
       meta: {
-        locale: newLocale
+        experienceKey: 'experienceKey',
+        locale: newLocale,
+        uuid: 'searchId'
       }
     });
 
@@ -86,10 +90,16 @@ function runAnalyticsTestSuite(mockState: DirectAnswerState) {
     await userEvent.click(link);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
-      type: 'CTA_CLICK',
-      queryId: '[queryId]',
-      searcher: 'UNIVERSAL',
-      directAnswer: true
+      "action": "CTA_CLICK",
+      "destinationUrl": "[relatedResult.link]",
+      "entity": "[relatedResult.id]",
+      "locale": undefined,
+      "experienceKey": "experienceKey",
+      "isDirectAnswer": true,
+      "isGenerativeDirectAnswer": false,
+      "queryId": "[queryId]",
+      "searchId": "searchId",
+      "verticalKey": ''
     }));
   });
 
@@ -99,10 +109,15 @@ function runAnalyticsTestSuite(mockState: DirectAnswerState) {
     await userEvent.click(thumbsUp);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
-      type: 'THUMBS_UP',
-      queryId: '[queryId]',
-      searcher: 'UNIVERSAL',
-      directAnswer: true
+      "action": "THUMBS_UP",
+      "entity": "[relatedResult.id]",
+      "locale": undefined,
+      "experienceKey": "experienceKey",
+      "isDirectAnswer": true,
+      "isGenerativeDirectAnswer": false,
+      "queryId": "[queryId]",
+      "searchId": "searchId",
+      "verticalKey": ''
     }));
   });
 
@@ -112,10 +127,15 @@ function runAnalyticsTestSuite(mockState: DirectAnswerState) {
     await userEvent.click(thumbsDown);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
-      type: 'THUMBS_DOWN',
-      queryId: '[queryId]',
-      searcher: 'UNIVERSAL',
-      directAnswer: true
+      "action": "THUMBS_DOWN",
+      "entity": "[relatedResult.id]",
+      "locale": undefined,
+      "experienceKey": "experienceKey",
+      "isDirectAnswer": true,
+      "isGenerativeDirectAnswer": false,
+      "queryId": "[queryId]",
+      "searchId": "searchId",
+      "verticalKey": ''
     }));
   });
 }

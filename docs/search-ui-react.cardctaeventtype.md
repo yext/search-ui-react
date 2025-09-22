@@ -9,12 +9,5 @@ Analytics event types for cta click, title click, and citation click.
 **Signature:**
 
 ```typescript
-<<<<<<< HEAD
-<<<<<<< HEAD
 type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
-=======
-type CardCtaEventType = 'CTA_CLICK' | 'TITLE' | 'CITATION_CLICK';
->>>>>>> 104ba37 (ksearch: upgrade to Events API)
 ```
-=======
->>>>>>> 39e70b3 (Formatting changes, keeping the old event type for reporter)

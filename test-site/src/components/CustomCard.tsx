@@ -8,7 +8,7 @@ interface CustomRawDataType {
 
 export function CustomCard(props: CardProps<CustomRawDataType>): JSX.Element {
   const { result } = props;
-  const onClickTitle = useCardAnalyticsCallback(result, 'TITLE');
+  const onClickTitle = useCardAnalyticsCallback(result, 'TITLE_CLICK');
   const cardFeedbackCallback = useCardFeedbackCallback(result);
   const onClick = useCallback(() => {
     cardFeedbackCallback('THUMBS_UP');

@@ -9,9 +9,9 @@ Returns a service that can be used to report analytics events.
 **Signature:**
 
 ```typescript
-declare function useAnalytics(): AnalyticsEventService | null;
+declare function useAnalytics(): SearchAnalyticsEventService | null;
 ```
 **Returns:**
 
-AnalyticsEventService \| null
+[SearchAnalyticsEventService](./search-ui-react.searchanalyticseventservice.md) \| null
 

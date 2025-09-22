@@ -27,9 +27,9 @@ export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswerData | R
  */
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
-function dataIsDirectAnswer(data: unknown): data is DirectAnswerData {
+function isDirectAnswer(data: unknown): data is DirectAnswerData {
   return (data as DirectAnswerData)?.type === DirectAnswerType.FeaturedSnippet ||
-    (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
+      (data as DirectAnswerData)?.type === DirectAnswerType.FieldValue;
 }
 
 function isGenerativeDirectAnswer(data: unknown): data is GdaClickEventData {
@@ -51,17 +51,17 @@ export function useCardAnalytics<T>(): (
     eventType: CardCtaEventType
   ) => {
     let url: string | undefined, entityId: string | undefined;
-    let isDirectAnswer = false;
-    let isGenerativeDirectAnswer = false;
-    if (dataIsDirectAnswer(result)) {
+    let directAnswer = false;
+    let generativeDirectAnswer = false;
+    if (isDirectAnswer(result)) {
       url = result.relatedResult.link;
       entityId = result.relatedResult.id;
-      isDirectAnswer = true;
-    } else if (dataIsGenerativeDirectAnswer(result)) {
+      directAnswer = true;
+    } else if (isGenerativeDirectAnswer(result)) {
       url = result.destinationUrl;
       entityId = result.searchResult?.id;
-      isDirectAnswer = true;
-      isGenerativeDirectAnswer = true;
+      directAnswer = true;
+      generativeDirectAnswer = true;
     } else {
       url = result.link;
       entityId = result.id;
@@ -89,8 +89,8 @@ export function useCardAnalytics<T>(): (
       searchId,
       queryId,
       verticalKey: verticalKey || '',
-      isDirectAnswer,
-      isGenerativeDirectAnswer,
+      isDirectAnswer: directAnswer,
+      isGenerativeDirectAnswer: generativeDirectAnswer,
       experienceKey,
     });
   }, [analytics, queryId, verticalKey]);
@@ -111,15 +111,15 @@ export function useCardAnalytics<T>(): (
       console.error('Unable to report a result feedback event. Missing field: experienceKey.');
       return;
     }
-    let isDirectAnswer = false;
-    let isGenerativeDirectAnswer = false;
+    let directAnswer = false;
+    let generativeDirectAnswer = false;
     let entityId: string | undefined;
-    if (dataIsDirectAnswer(result)) {
-      isDirectAnswer = true;
+    if (isDirectAnswer(result)) {
+      directAnswer = true;
       entityId = result.relatedResult.id;
-    } else if (dataIsGenerativeDirectAnswer(result)) {
-      isDirectAnswer = true;
-      isGenerativeDirectAnswer = true;
+    } else if (isGenerativeDirectAnswer(result)) {
+      directAnswer = true;
+      generativeDirectAnswer = true;
       entityId = result.searchResult?.id;
     } else {
       entityId = result.id;
@@ -128,12 +128,12 @@ export function useCardAnalytics<T>(): (
       action: feedbackType,
       entity: entityId,
       locale,
-        searchId,
-        queryId,
-        verticalKey: verticalKey || '',
-        isDirectAnswer,
-        isGenerativeDirectAnswer,
-        experienceKey
+      searchId,
+      queryId,
+      verticalKey: verticalKey || '',
+      isDirectAnswer: directAnswer,
+      isGenerativeDirectAnswer: generativeDirectAnswer,
+      experienceKey
     });
   }, [analytics, queryId, verticalKey]);
 

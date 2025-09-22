@@ -8,7 +8,7 @@ interface CustomRawDataType {
 
 export function FunctionCard(props: CardProps<CustomRawDataType>): JSX.Element {
   const { result } = props;
-  const onClickTitle = useCardAnalyticsCallback(result, 'TITLE');
+  const onClickTitle = useCardAnalyticsCallback(result, 'TITLE_CLICK');
 
   return (
     <div className='flex flex-col justify-between border rounded-lg mb-4 p-4 shadow-sm'>

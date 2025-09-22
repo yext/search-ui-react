@@ -52,7 +52,7 @@ function renderSearchBar(
 
   return render(<SearchHeadlessContext.Provider value={searcher}>
     <SearchI18nextProvider searcher={searcher}>
-      <SearchBar 
+      <SearchBar
         showVerticalLinks={showVerticalLinks}
         onSelectVerticalLink={onSelectVerticalLink}
         verticalKeyToLabel={verticalKeyToLabel}
@@ -94,7 +94,7 @@ describe('SearchBar', () => {
       const mockedVerticalAutocomplete = jest
         .spyOn(SearchCore.prototype, 'verticalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
-      
+
       renderSearchBar({
           ...mockedState,
           vertical: {
@@ -374,12 +374,10 @@ describe('SearchBar', () => {
       expect(mockedReport).toHaveBeenCalledWith({
         action: 'AUTO_COMPLETE_SELECTION',
         locale: 'en',
-            search: {
-              searchId: undefined,
-              queryId: undefined,
-              verticalKey: undefined,
-              experienceKey: 'experienceKey',
-        },
+        searchId: undefined,
+        queryId: undefined,
+        verticalKey: undefined,
+        experienceKey: 'experienceKey',
       });
     });
 
@@ -405,12 +403,10 @@ describe('SearchBar', () => {
       expect(mockedReport).toHaveBeenCalledWith({
         action: 'SEARCH_CLEAR_BUTTON',
         locale: 'en',
-        search: {
-          searchId: 'someId',
-          queryId: 'someId',
-          verticalKey: undefined,
-          experienceKey: 'experienceKey',
-        },
+        searchId: 'someId',
+        queryId: 'someId',
+        verticalKey: undefined,
+        experienceKey: 'experienceKey'
       });
     });
   });

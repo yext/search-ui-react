@@ -24,6 +24,11 @@ export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig
     );
 }
 
+/**
+ * An interface representing the configuration for search analytics reporting.
+ *
+ * @public
+ */
 export interface SearchAnalyticsConfig {
     /** The apiKey of the App with Events SDK access. */
     apiKey: string
