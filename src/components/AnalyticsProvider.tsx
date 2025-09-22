@@ -13,15 +13,15 @@ import {SearchAnalyticsEventServiceImpl} from "../models/SearchAnalyticsEventSer
  * @returns A React element that provides analytics context
  */
 export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): JSX.Element {
-    const {children, ...searchAnalyticsConfig} = props;
-    const analyticsReporter =
-        new SearchAnalyticsEventServiceImpl(searchAnalyticsConfig)
+  const {children, ...searchAnalyticsConfig} = props;
+  const analyticsReporter =
+      new SearchAnalyticsEventServiceImpl(searchAnalyticsConfig)
 
-    return (
-        <AnalyticsContext.Provider value={analyticsReporter}>
-            {children}
-        </AnalyticsContext.Provider>
-    );
+  return (
+      <AnalyticsContext.Provider value={analyticsReporter}>
+        {children}
+      </AnalyticsContext.Provider>
+  );
 }
 
 /**
@@ -30,12 +30,12 @@ export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig
  * @public
  */
 export interface SearchAnalyticsConfig {
-    /** The apiKey of the App with Events SDK access. */
-    apiKey: string
-    /** The Yext environment to send requests to. Defaults to 'PRODUCTION'. */
-    environment?: Environment
-    /** The region to send requests to. Defaults to 'US'. */
-    cloudRegion?: CloudRegion;
-    /** Whether to enable session tracking for analytics events. */
-    sessionTrackingEnabled?: boolean;
+  /** The apiKey of the App with Events SDK access. */
+  apiKey: string
+  /** The Yext environment to send requests to. Defaults to 'PRODUCTION'. */
+  environment?: Environment
+  /** The region to send requests to. Defaults to 'US'. */
+  cloudRegion?: CloudRegion;
+  /** Whether to enable session tracking for analytics events. */
+  sessionTrackingEnabled?: boolean;
 }

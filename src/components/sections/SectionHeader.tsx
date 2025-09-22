@@ -106,10 +106,10 @@ export function SectionHeader(props: SectionHeaderProps): JSX.Element {
     analytics?.report({
       action: 'VERTICAL_VIEW_ALL',
       locale,
-        searchId,
-        queryId,
-        verticalKey,
-        experienceKey,
+      searchId,
+      queryId,
+      verticalKey,
+      experienceKey,
     });
   }, [analytics, queryId, verticalKey]);
 
