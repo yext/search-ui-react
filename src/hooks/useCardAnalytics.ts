@@ -4,6 +4,7 @@ import {FeedbackType} from '../components/ThumbsFeedback';
 import {DefaultRawDataType} from '../models/index';
 import {useAnalytics} from './useAnalytics';
 import {GdaClickEventData} from '../components/GenerativeDirectAnswer'
+import {SearchAction} from "../models/SearchEventPayload";
 
 /**
  * Analytics event types for cta click, title click, and citation click.
@@ -78,17 +79,19 @@ export function useCardAnalytics<T>(): (
       console.error('Unable to report a CTA event. Missing field: experienceKey.');
       return;
     }
+    // convert the legacy card event type to the format the current reporter expects.
+    let action:SearchAction = eventType === 'TITLE_CLICK' ? 'TITLE' : eventType === 'VIEW_WEBSITE' ? 'WEBSITE': eventType;
     analytics?.report({
-      action: eventType,
+      action: action,
       destinationUrl: url,
       entity: entityId,
       locale,
-        searchId,
-        queryId,
-        verticalKey: verticalKey || '',
-        isDirectAnswer,
-        isGenerativeDirectAnswer,
-        experienceKey,
+      searchId,
+      queryId,
+      verticalKey: verticalKey || '',
+      isDirectAnswer,
+      isGenerativeDirectAnswer,
+      experienceKey,
     });
   }, [analytics, queryId, verticalKey]);
 
