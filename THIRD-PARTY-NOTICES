@@ -26,8 +26,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 The following NPM packages may be included in this product:
 
- - @babel/runtime-corejs3@7.28.0
- - @babel/runtime@7.27.6
+ - @babel/runtime-corejs3@7.28.4
+ - @babel/runtime@7.28.4
 
 These packages each contain the following license and notice below:
 
@@ -1330,11 +1330,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
-<<<<<<< HEAD
  - @yext/search-core@2.6.3
-=======
- - @yext/search-core@2.6.1
->>>>>>> 104ba37 (ksearch: upgrade to Events API)
 
 This package contains the following license and notice below:
 
@@ -1378,15 +1374,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
-<<<<<<< HEAD
-<<<<<<< HEAD
  - @yext/search-headless-react@2.5.4
-=======
- - @yext/search-headless-react@2.5.1
->>>>>>> 104ba37 (ksearch: upgrade to Events API)
-=======
- - @yext/search-headless-react@2.5.2
->>>>>>> 3c5a6e2 (Automated update to THIRD-PARTY-NOTICES from github action's 3rd party notices check)
 
 This package contains the following license and notice below:
 
@@ -1430,15 +1418,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM package may be included in this product:
 
-<<<<<<< HEAD
-<<<<<<< HEAD
  - @yext/search-headless@2.6.4
-=======
- - @yext/search-headless@2.6.1
->>>>>>> 104ba37 (ksearch: upgrade to Events API)
-=======
- - @yext/search-headless@2.6.2
->>>>>>> 3c5a6e2 (Automated update to THIRD-PARTY-NOTICES from github action's 3rd party notices check)
 
 This package contains the following license and notice below:
 
@@ -1960,7 +1940,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - core-js-pure@3.44.0
+ - core-js-pure@3.45.1
 
 This package contains the following license and notice below:
 
@@ -2897,7 +2877,7 @@ MIT
 
 The following NPM package may be included in this product:
 
- - i18next@25.2.1
+ - i18next@25.5.2
 
 This package contains the following license and notice below:
 
@@ -5255,7 +5235,7 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - react-i18next@15.5.3
+ - react-i18next@15.7.3
 
 This package contains the following license and notice below:
 
