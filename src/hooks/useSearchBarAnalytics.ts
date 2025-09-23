@@ -18,10 +18,6 @@ export function useSearchBarAnalytics(): (
       console.error('Unable to report an autocomplete event. Missing field: experienceKey.');
       return;
     }
-    if (!searchId) {
-      console.error('Unable to report an autocomplete event. Missing field: searchId.');
-      return;
-    }
     analytics?.report({
       action: 'AUTO_COMPLETE_SELECTION',
       locale,
@@ -32,14 +28,6 @@ export function useSearchBarAnalytics(): (
     });
   }
   const reportSearchClearEvent = () => {
-    if (!queryId) {
-      console.error('Unable to report a search clear event. Missing field: queryId.');
-      return;
-    }
-    if (!searchId) {
-      console.error('Unable to report a search clear event. Missing field: searchId.');
-      return;
-    }
     if (!experienceKey) {
       console.error('Unable to report a search clear event. Missing field: experienceKey.');
       return;

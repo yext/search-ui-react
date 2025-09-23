@@ -17,7 +17,7 @@ export interface SearchEventPayload {
      */
     locale?: string;
     /** Unique identifier of the search */
-    searchId: string;
+    searchId?: string;
     /** Unique identifier for a single query across pagination */
     queryId?: string;
     /** The vertical key on which the event occurred, if any */
