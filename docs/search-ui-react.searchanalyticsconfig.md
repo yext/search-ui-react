@@ -112,3 +112,4 @@ _(Optional)_ Whether to enable session tracking for analytics events.
 
 </td></tr>
 </tbody></table>
+

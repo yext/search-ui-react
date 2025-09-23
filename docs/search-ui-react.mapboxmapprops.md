@@ -226,3 +226,4 @@ _(Optional)_ Render function for a custom marker on the map. This function takes
 
 </td></tr>
 </tbody></table>
+

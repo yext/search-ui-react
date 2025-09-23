@@ -47,6 +47,7 @@ desired values to be applied
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 Promise&lt;string&gt;

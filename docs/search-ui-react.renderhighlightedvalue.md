@@ -63,6 +63,7 @@ _(Optional)_ css classes use for the non-highlighted and highlighted text.
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 JSX.Element

@@ -47,6 +47,7 @@ The configuration for the analytics service
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 JSX.Element

@@ -47,6 +47,7 @@ An object containing the result itself and any additional information needed to 
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 JSX.Element
