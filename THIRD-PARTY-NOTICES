@@ -1135,7 +1135,7 @@ limitations under the License.
 The following NPM packages may be included in this product:
 
  - @tailwindcss/forms@0.5.10
- - @tailwindcss/typography@0.5.18
+ - @tailwindcss/typography@0.5.19
  - tailwindcss@3.4.17
 
 These packages each contain the following license and notice below:
