@@ -131,3 +131,4 @@ A function that sets which filter the component is currently associated with.
 
 </td></tr>
 </tbody></table>
+

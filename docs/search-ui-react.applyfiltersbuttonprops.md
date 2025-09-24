@@ -74,3 +74,4 @@ _(Optional)_ The label for the button, defaults to 'Apply Filters'
 
 </td></tr>
 </tbody></table>
+

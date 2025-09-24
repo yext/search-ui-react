@@ -283,3 +283,4 @@ _(Optional)_ Whether to include a button to search on the user's location. Defau
 
 </td></tr>
 </tbody></table>
+

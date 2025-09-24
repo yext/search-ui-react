@@ -4,3 +4,4 @@ export { SectionProps, SectionComponent } from './sectionComponent';
 export { VerticalLink } from './verticalLink';
 export { VerticalConfig, VerticalConfigMap } from './verticalConfig';
 export { DefaultRawDataType } from './DefaultRawDataType';
+export {SearchAnalyticsEventService} from './SearchAnalyticsEventService'

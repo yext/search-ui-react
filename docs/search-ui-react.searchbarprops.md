@@ -226,3 +226,4 @@ _(Optional)_ The configuration options for Visual Autocomplete.
 
 </td></tr>
 </tbody></table>
+

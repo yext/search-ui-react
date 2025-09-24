@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.9.4",
+  "version": "2.0.0",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "watson@yext.com",
   "license": "BSD-3-Clause",
@@ -160,7 +160,7 @@
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.9",
-    "@yext/analytics": "^0.6.8",
+    "@yext/analytics": "^1.0.2",
     "classnames": "^2.3.1",
     "i18next": "^25.2.1",
     "lodash": "^4.17.21",
@@ -179,7 +179,8 @@
   },
   "overrides": {
     "@babel/plugin-transform-runtime": "^7.23.2",
-    "rollup": "4.22.4"
+    "rollup": "4.22.4",
+    "playwright": "1.51.1"
   },
   "repository": {
     "type": "git",

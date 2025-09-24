@@ -1,13 +1,13 @@
-import { AnalyticsService } from '@yext/analytics';
 import { createContext, useContext } from 'react';
+import {SearchAnalyticsEventService} from "../models/SearchAnalyticsEventService";
 
-export const AnalyticsContext = createContext<AnalyticsService | null>(null);
+export const AnalyticsContext = createContext<SearchAnalyticsEventService | null>(null);
 
 /**
  * Returns a service that can be used to report analytics events.
  *
  * @public
  */
-export function useAnalytics(): AnalyticsService | null {
+export function useAnalytics(): SearchAnalyticsEventService | null {
   return useContext(AnalyticsContext);
 }
