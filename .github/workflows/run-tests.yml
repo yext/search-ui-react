@@ -16,7 +16,7 @@ jobs:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-17:
-    uses: anguyen-yext2/slapshot-reusable-workflows-test/.github/workflows/run_tests.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       # We have to install these swc libraries manually because 
       # the post install script doesn't seem to run properly 
@@ -44,7 +44,7 @@ jobs:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-16:
-    uses: anguyen-yext2/slapshot-reusable-workflows-test/.github/workflows/run_tests.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       build_script: |
         npm i \
