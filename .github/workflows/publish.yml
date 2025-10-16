@@ -10,4 +10,4 @@ permissions:
 
 jobs:
   publish:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/publish.yml@v1
+    uses: anguyen-yext2/slapshot-reusable-workflows-test/.github/workflows/publish.yml@v1
