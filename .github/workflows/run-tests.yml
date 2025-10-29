@@ -11,15 +11,15 @@ jobs:
     with:
       build_script: |
         npx playwright install
-      node_matrix: '["16.x", "18.x"]'
+      node_matrix: '["18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-17:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
-      # We have to install these swc libraries manually because 
-      # the post install script doesn't seem to run properly 
+      # We have to install these swc libraries manually because
+      # the post install script doesn't seem to run properly
       # after we install specific versions of packages.
       # More info at https://github.com/swc-project/swc/issues/5616#issuecomment-1651214641
       build_script: |
@@ -39,7 +39,7 @@ jobs:
           "@swc/core-win32-x64-msvc"
         npx playwright install
         npm run build
-      node_matrix: '["16.x", "18.x"]'
+      node_matrix: '["18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
@@ -63,6 +63,6 @@ jobs:
           "@swc/core-win32-x64-msvc"
         npx playwright install
         npm run build
-      node_matrix: '["16.x", "18.x"]'
+      node_matrix: '["18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
