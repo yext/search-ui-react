@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import mapboxgl, { MarkerOptions } from 'mapbox-gl';
-import { Result, useSearchState } from '@yext/search-headless-react';
+import { Result, useSearchState, SelectableStaticFilter } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import _ from 'lodash';
 
@@ -148,6 +148,7 @@ export function MapboxMap<T>({
   const markers = useRef<mapboxgl.Marker[]>([]);
 
   const locationResults = useSearchState(state => state.vertical.results) as Result<T>[];
+  const staticFilters = useSearchState(state => state.filters?.static);
   const onDragDebounced = useDebouncedFunction(onDrag, 100);
   const [selectedResult, setSelectedResult] = useState<Result<T> | undefined>(undefined);
 
@@ -252,63 +253,72 @@ export function MapboxMap<T>({
     markers.current.forEach(marker => marker.remove());
     markers.current = [];
     const mapbox = map.current;
-    if (mapbox && locationResults?.length > 0) {
-      const bounds = new mapboxInstance.LngLatBounds();
-      locationResults.forEach((result, i) => {
-        const markerLocation = getCoordinate(result);
-        if (markerLocation) {
-          const { latitude, longitude } = markerLocation;
-          const el = document.createElement('div');
-          let markerOptions: mapboxgl.MarkerOptions = {};
-          if (PinComponent) {
-            if (renderPin) {
-              console.warn(
-                'Found both PinComponent and renderPin props. Using PinComponent.'
-              );
+    if (mapbox && locationResults) {
+      if (locationResults.length > 0) {
+        const bounds = new mapboxInstance.LngLatBounds();
+        locationResults.forEach((result, i) => {
+          const markerLocation = getCoordinate(result);
+          if (markerLocation) {
+            const { latitude, longitude } = markerLocation;
+            const el = document.createElement('div');
+            let markerOptions: mapboxgl.MarkerOptions = {};
+            if (PinComponent) {
+              if (renderPin) {
+                console.warn(
+                  'Found both PinComponent and renderPin props. Using PinComponent.'
+                );
+              }
+              ReactDOM.render(<PinComponent
+                index={i}
+                mapbox={mapbox}
+                result={result}
+                selected={selectedResult === result}
+              />, el);
+              markerOptions.element = el;
+            } else if (renderPin) {
+              renderPin({ index: i, mapbox, result, container: el });
+              markerOptions.element = el;
             }
-            ReactDOM.render(<PinComponent
-              index={i}
-              mapbox={mapbox}
-              result={result}
-              selected={selectedResult === result}
-            />, el);
-            markerOptions.element = el;
-          } else if (renderPin) {
-            renderPin({ index: i, mapbox, result, container: el });
-            markerOptions.element = el;
-          }
 
-          if (markerOptionsOverride) {
-            markerOptions = {
-              ...markerOptions,
-              ...markerOptionsOverride(selectedResult === result)
+            if (markerOptionsOverride) {
+              markerOptions = {
+                ...markerOptions,
+                ...markerOptionsOverride(selectedResult === result)
+              }
             }
+
+            const marker = new mapboxInstance.Marker(markerOptions)
+              .setLngLat({ lat: latitude, lng: longitude })
+              .addTo(mapbox);
+
+            marker?.getElement().addEventListener('click', () => handlePinClick(result));
+            markers.current.push(marker);
+            bounds.extend([longitude, latitude]);
           }
+        })
 
-          const marker = new mapboxInstance.Marker(markerOptions)
-            .setLngLat({ lat: latitude, lng: longitude })
-            .addTo(mapbox);
-
-          marker?.getElement().addEventListener('click', () => handlePinClick(result));
-          markers.current.push(marker);
-          bounds.extend([longitude, latitude]);
+        if (!bounds.isEmpty()){
+          mapbox.fitBounds(bounds, {
+            // these settings are defaults and will be overriden if present on fitBoundsOptions
+            padding: { top: 50, bottom: 50, left: 50, right: 50 },
+            maxZoom: mapboxOptions?.maxZoom ?? 15,
+            ...mapboxOptions?.fitBoundsOptions,
+          });
         }
-      });
 
-      if (!bounds.isEmpty()){
-        mapbox.fitBounds(bounds, {
-          // these settings are defaults and will be overriden if present on fitBoundsOptions
-          padding: { top: 50, bottom: 50, left: 50, right: 50 },
-          maxZoom: mapboxOptions?.maxZoom ?? 15,
-          ...mapboxOptions?.fitBoundsOptions,
-        });
-      }
-
-      return () => {
-        markers.current.forEach((marker, i) => {
-          marker?.getElement().removeEventListener('click', () => handlePinClick(locationResults[i]));
-        });
-      }
+        return () => {
+          markers.current.forEach((marker, i) => {
+            marker?.getElement().removeEventListener('click', () => handlePinClick(locationResults[i]));
+          });
+        }
+      } else if (staticFilters?.length) {
+        const locationFilterValue = getLocationFilterValue(staticFilters);
+        if (locationFilterValue) {
+          mapbox.flyTo({
+            center: locationFilterValue
+          });
+        }
+      };
     }
   }, [PinComponent, getCoordinate, locationResults, selectedResult, markerOptionsOverride]);
 
@@ -352,4 +362,12 @@ export function getMapboxLanguage(locale: string) {
     console.warn(`Locale "${locale}" is not supported.`)
   }
   return 'en';
+}
+
+function getLocationFilterValue(staticFilters: SelectableStaticFilter[]): [number, number] | undefined {
+  const locationFilter = staticFilters.find(f => f.filter['fieldId'] === 'builtin.location' && f.filter['value'])?.filter;
+  if (locationFilter) {
+    const {lat, lng} = locationFilter['value'];
+    return [lng, lat];
+  }
 }
