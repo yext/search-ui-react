@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "1.10.0",
+  "version": "1.10.2",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "watson@yext.com",
   "license": "BSD-3-Clause",
@@ -179,7 +179,8 @@
   },
   "overrides": {
     "@babel/plugin-transform-runtime": "^7.23.2",
-    "rollup": "4.22.4"
+    "rollup": "4.22.4",
+    "playwright": "^1.55.1"
   },
   "repository": {
     "type": "git",
