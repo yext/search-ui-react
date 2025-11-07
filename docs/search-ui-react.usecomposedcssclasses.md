@@ -79,6 +79,7 @@ _(Optional)_ If set to true, the customClasses with replace (not merge with) the
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 ClassInterface

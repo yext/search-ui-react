@@ -27,7 +27,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 The following NPM packages may be included in this product:
 
  - @babel/runtime-corejs3@7.28.4
- - @babel/runtime@7.27.6
+ - @babel/runtime@7.28.4
 
 These packages each contain the following license and notice below:
 
@@ -81,12 +81,13 @@ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 The following NPM packages may be included in this product:
 
- - @jridgewell/gen-mapping@0.3.8
- - @jridgewell/set-array@1.2.1
+ - @jridgewell/gen-mapping@0.3.13
+ - @jridgewell/sourcemap-codec@1.5.5
+ - @jridgewell/trace-mapping@0.3.31
 
 These packages each contain the following license and notice below:
 
-Copyright 2022 Justin Ridgewell <jridgewell@google.com>
+Copyright 2024 Justin Ridgewell <justin@ridgewell.name>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -115,64 +116,6 @@ The following NPM package may be included in this product:
 This package contains the following license and notice below:
 
 Copyright 2019 Justin Ridgewell <jridgewell@google.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following NPM package may be included in this product:
-
- - @jridgewell/sourcemap-codec@1.5.0
-
-This package contains the following license and notice below:
-
-The MIT License
-
-Copyright (c) 2015 Rich Harris
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
------------
-
-The following NPM package may be included in this product:
-
- - @jridgewell/trace-mapping@0.3.25
-
-This package contains the following license and notice below:
-
-Copyright 2022 Justin Ridgewell <justin@ridgewell.name>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -293,12 +236,12 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - @mapbox/tiny-sdf@2.0.6
+ - @mapbox/tiny-sdf@2.0.7
 
 This package contains the following license and notice below:
 
 BSD-2-Clause
-Copyright (c) 2016-2022 Mapbox, Inc.
+Copyright (c) 2016-2024 Mapbox, Inc.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
@@ -681,7 +624,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - @react-aria/ssr@3.9.7
+ - @react-aria/ssr@3.9.10
 
 This package contains the following license and notice below:
 
@@ -981,7 +924,7 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - @swc/helpers@0.5.15
+ - @swc/helpers@0.5.17
 
 This package contains the following license and notice below:
 
@@ -1192,8 +1135,8 @@ limitations under the License.
 The following NPM packages may be included in this product:
 
  - @tailwindcss/forms@0.5.10
- - @tailwindcss/typography@0.5.16
- - tailwindcss@3.4.17
+ - @tailwindcss/typography@0.5.19
+ - tailwindcss@3.4.18
 
 These packages each contain the following license and notice below:
 
@@ -1256,8 +1199,8 @@ The following NPM packages may be included in this product:
  - @types/hast@2.3.10
  - @types/mdast@3.0.15
  - @types/parse5@5.0.3
- - @types/prop-types@15.7.14
- - @types/react@18.3.20
+ - @types/prop-types@15.7.15
+ - @types/react@18.3.26
  - @types/unist@2.0.11
  - @types/warning@3.0.3
 
@@ -1462,12 +1405,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The following NPM packages may be included in this product:
 
- - ansi-regex@6.1.0
- - ansi-styles@6.2.1
+ - ansi-regex@6.2.2
+ - ansi-styles@6.2.3
  - escape-string-regexp@4.0.0
  - get-stream@6.0.1
  - string-width@5.1.2
- - strip-ansi@7.1.0
+ - strip-ansi@7.1.2
  - wrap-ansi@7.0.0
  - wrap-ansi@8.1.0
 
@@ -1656,7 +1599,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 The following NPM package may be included in this product:
 
- - brace-expansion@2.0.1
+ - brace-expansion@2.0.2
 
 This package contains the following license and notice below:
 
@@ -1940,11 +1883,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - core-js-pure@3.44.0
+ - core-js-pure@3.46.0
 
 This package contains the following license and notice below:
 
-Copyright (c) 2014-2025 Denis Pushkarev
+Copyright (c) 2014-2025 Denis Pushkarev, 2025 CoreJS Company
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -2141,7 +2084,7 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - debug@4.4.0
+ - debug@4.4.3
 
 This package contains the following license and notice below:
 
@@ -2562,11 +2505,11 @@ THIS SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - gl-matrix@3.4.3
+ - gl-matrix@3.4.4
 
 This package contains the following license and notice below:
 
-Copyright (c) 2015-2021, Brandon Jones, Colin MacKenzie IV.
+Copyright (c) 2015-2025, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -2877,7 +2820,7 @@ MIT
 
 The following NPM package may be included in this product:
 
- - i18next@25.2.1
+ - i18next@25.6.1
 
 This package contains the following license and notice below:
 
@@ -3629,100 +3572,11 @@ THE SOFTWARE.
 The following NPM packages may be included in this product:
 
  - lodash-es@4.17.21
- - lodash.merge@4.6.2
  - lodash@4.17.21
 
 These packages each contain the following license and notice below:
 
 Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
-
-Based on Underscore.js, copyright Jeremy Ashkenas,
-DocumentCloud and Investigative Reporters & Editors <http://underscorejs.org/>
-
-This software consists of voluntary contributions made by many
-individuals. For exact contribution history, see the revision history
-available at https://github.com/lodash/lodash
-
-The following license applies to all parts of this software except as
-documented below:
-
-====
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-====
-
-Copyright and related rights for sample code are waived via CC0. Sample
-code is defined as all source code displayed within the prose of the
-documentation.
-
-CC0: http://creativecommons.org/publicdomain/zero/1.0/
-
-====
-
-Files located in the node_modules and vendor directories are externally
-maintained libraries used by this software which have their own
-licenses; we recommend you read them, as their terms may differ from the
-terms above.
-
------------
-
-The following NPM package may be included in this product:
-
- - lodash.castarray@4.4.0
-
-This package contains the following license and notice below:
-
-The MIT License (MIT)
-
-Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
-Based on Underscore.js, copyright 2009-2016 Jeremy Ashkenas,
-DocumentCloud and Investigative Reporters & Editors <http://underscorejs.org/>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
------------
-
-The following NPM package may be included in this product:
-
- - lodash.isplainobject@4.0.6
-
-This package contains the following license and notice below:
-
-Copyright jQuery Foundation and other contributors <https://jquery.org/>
 
 Based on Underscore.js, copyright Jeremy Ashkenas,
 DocumentCloud and Investigative Reporters & Editors <http://underscorejs.org/>
@@ -4878,7 +4732,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - postcss-js@4.0.1
+ - postcss-js@4.1.0
 
 This package contains the following license and notice below:
 
@@ -4907,7 +4761,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - postcss-load-config@4.0.2
+ - postcss-load-config@6.0.1
 
 This package contains the following license and notice below:
 
@@ -5028,7 +4882,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - postcss@8.5.3
+ - postcss@8.5.6
 
 This package contains the following license and notice below:
 
@@ -5057,13 +4911,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - potpack@2.0.0
+ - potpack@2.1.0
 
 This package contains the following license and notice below:
 
 ISC License
 
-Copyright (c) 2018, Mapbox
+Copyright (c) 2025, Mapbox
 
 Permission to use, copy, modify, and/or distribute this software for any purpose
 with or without fee is hereby granted, provided that the above copyright notice
@@ -5235,7 +5089,7 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - react-i18next@15.5.3
+ - react-i18next@15.7.4
 
 This package contains the following license and notice below:
 
@@ -5848,7 +5702,7 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - resolve@1.22.10
+ - resolve@1.22.11
 
 This package contains the following license and notice below:
 
@@ -6582,7 +6436,7 @@ PERFORMANCE OF THIS SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - typescript@5.8.3
+ - typescript@5.9.3
 
 This package contains the following license and notice below:
 
@@ -6798,7 +6652,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - use-isomorphic-layout-effect@1.2.0
+ - use-isomorphic-layout-effect@1.2.1
 
 This package contains the following license and notice below:
 
@@ -6828,7 +6682,7 @@ SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - use-sync-external-store@1.5.0
+ - use-sync-external-store@1.6.0
 
 This package contains the following license and notice below:
 
@@ -7095,7 +6949,7 @@ THE SOFTWARE.
 
 The following NPM package may be included in this product:
 
- - yaml@2.7.1
+ - yaml@2.8.1
 
 This package contains the following license and notice below:
 
