@@ -89,7 +89,7 @@ export function FilterGroup({
         customCssClasses={customCssClasses}
         collapsible={collapsible}
       />
-      <CollapsibleSection className={cssClasses.optionsContainer}>
+      <CollapsibleSection className={cssClasses.optionsContainer} collapsible={collapsible}>
         {searchable && <SearchInput className={cssClasses.searchInput} />}
         <CheckboxOptions
           filterOptions={filterOptions}

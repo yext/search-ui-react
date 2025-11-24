@@ -37,7 +37,7 @@ export function HierarchicalFacetContent({
         customCssClasses={customCssClasses}
         collapsible={collapsible}
       />
-      <CollapsibleSection >
+      <CollapsibleSection collapsible={collapsible}>
         <HierarchicalFacetDisplay
           // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
           facet={{

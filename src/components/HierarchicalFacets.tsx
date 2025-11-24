@@ -71,7 +71,7 @@ export function HierarchicalFacets({
                   ? <CollapsibleLabel label={f.displayName} />
                   : (f.displayName && <div className='text-neutral-dark text-sm font-medium text-left mb-4'>{f.displayName}</div>)
                 }
-                <CollapsibleSection >
+                <CollapsibleSection collapsible={collapsible}>
                   <HierarchicalFacetDisplay
                     facet={f}
                     delimiter={delimiter}
