@@ -30,6 +30,7 @@ const translationOverrides: SearchTranslationOverrides = {
 }
 
 function App() {
+  console.log('test log');
   return (
     <div className='p-4'>
       <SearchHeadlessProvider searcher={searcher}>
