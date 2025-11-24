@@ -31,8 +31,17 @@ export function CollapsibleSection(props: CollapsibleSectionProps): JSX.Element 
 
   const { getCollapseProps } = useFilterGroupContext();
 
-  // When collapsible is false, don't apply collapse props to avoid orphaned ARIA attributes
-  const collapseProps = collapsible ? getCollapseProps() : {};
+  // When collapsible is false, remove only the ARIA attributes to avoid orphaned references
+  // while keeping other collapse props (hidden, style, etc.) to prevent regressions
+  let collapseProps = getCollapseProps();
+  if (!collapsible) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const propsWithoutAria = { ...collapseProps } as any;
+    delete propsWithoutAria['aria-labelledby'];
+    delete propsWithoutAria['role'];
+    delete propsWithoutAria['aria-hidden'];
+    collapseProps = propsWithoutAria;
+  }
 
   return (
     <div className={className} {...collapseProps}>
