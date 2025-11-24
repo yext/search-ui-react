@@ -89,14 +89,25 @@ export function FilterGroup({
         customCssClasses={customCssClasses}
         collapsible={collapsible}
       />
-      <CollapsibleSection className={cssClasses.optionsContainer}>
-        {searchable && <SearchInput className={cssClasses.searchInput} />}
-        <CheckboxOptions
-          filterOptions={filterOptions}
-          showMoreLimit={showMoreLimit}
-          cssClasses={cssClasses} />
-        {children}
-      </CollapsibleSection>
+      {collapsible ? (
+        <CollapsibleSection className={cssClasses.optionsContainer}>
+          {searchable && <SearchInput className={cssClasses.searchInput} />}
+          <CheckboxOptions
+            filterOptions={filterOptions}
+            showMoreLimit={showMoreLimit}
+            cssClasses={cssClasses} />
+          {children}
+        </CollapsibleSection>
+      ) : (
+        <div className={cssClasses.optionsContainer || 'space-y-3'}>
+          {searchable && <SearchInput className={cssClasses.searchInput} />}
+          <CheckboxOptions
+            filterOptions={filterOptions}
+            showMoreLimit={showMoreLimit}
+            cssClasses={cssClasses} />
+          {children}
+        </div>
+      )}
     </FilterGroupProvider>
   );
 }
