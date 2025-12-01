@@ -66,7 +66,7 @@ function renderFilterSearch(
     meta: {
       searchType: 'vertical',
       locale
-    }, 
+    },
     filters
   });
 
@@ -84,7 +84,7 @@ function renderFilterSearch(
       meta: {
         searchType: 'vertical',
         locale: newLocale
-      }, 
+      },
       filters
     });
 
@@ -106,30 +106,30 @@ describe('search with section labels', () => {
     const { rerenderWithLocale } = renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
     const label = 'Filter';
     const labelElement = screen.getByText(label);
-    const searchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
+    const searchBarElement = screen.getAllByRole<HTMLInputElement>('combobox');
 
     expect(labelElement).toBeDefined();
     expect(searchBarElement.length).toBe(1);
     expect(searchBarElement[0].placeholder).toBe('Search here...');
-    
+
     rerenderWithLocale('ja');
-    const localizedSearchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
+    const localizedSearchBarElement = screen.getAllByRole<HTMLInputElement>('combobox');
     expect(localizedSearchBarElement[0].placeholder).toBe('ここで検索…');
   });
 
   it('sets the placeholder text to the specified value regardless of the search locale', () => {
     const { rerenderWithLocale } = renderFilterSearch({ searchFields: searchFieldsProp, placeholder: 'Search...' });
-    const searchBarElement = screen.getByRole<HTMLInputElement>('textbox');
+    const searchBarElement = screen.getByRole<HTMLInputElement>('combobox');
     expect(searchBarElement.placeholder).toBe('Search...');
-    
+
     rerenderWithLocale('ja');
-    const localizedSearchBarElement = screen.getAllByRole<HTMLInputElement>('textbox');
+    const localizedSearchBarElement = screen.getAllByRole<HTMLInputElement>('combobox');
     expect(localizedSearchBarElement[0].placeholder).toBe('Search...');
   });
 
   it('displays characters typed in search bar correctly', async () => {
     renderFilterSearch();
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'na');
     expect(searchBarElement).toHaveValue('na');
@@ -144,7 +144,7 @@ describe('search with section labels', () => {
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
     renderFilterSearch();
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
     const expectedFilterSearchFields = [{
       entityType: 'ce_person',
       fetchEntities: false,
@@ -167,7 +167,7 @@ describe('search with section labels', () => {
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
     renderFilterSearch();
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, '{backspace}');
     expect(searchBarElement).toHaveValue('');
@@ -179,7 +179,7 @@ describe('search with section labels', () => {
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
@@ -195,7 +195,7 @@ describe('search with section labels', () => {
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
     renderFilterSearch();
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
     await screen.findByText('first name 1');
@@ -211,7 +211,7 @@ describe('search with section labels', () => {
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
     const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
@@ -260,14 +260,14 @@ describe('search with section labels', () => {
 
   it('displays name of matching filter in state when no filter is selected from component', async () => {
     renderFilterSearch(undefined, mockedStateWithSingleFilter);
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
     expect(searchBarElement).toHaveValue('Real Person');
   });
 
   it('logs a warning when multiple matching filters in state and no current filter selected', async () => {
     const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
     renderFilterSearch(undefined, mockedStateWithMultipleFilters);
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
     expect(searchBarElement).toHaveValue('Real Person');
     expect(consoleWarnSpy).toHaveBeenCalledWith(
       'More than one selected static filter found that matches the filter search fields: [name].'
@@ -283,7 +283,7 @@ describe('search with section labels', () => {
       { searchFields: searchFieldsProp, onSelect: mockedOnSelect },
       mockedStateWithMultipleFilters
     );
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
     expect(searchBarElement).toHaveValue('Real Person');
     expect(consoleWarnSpy).not.toHaveBeenCalled();
   });
@@ -295,7 +295,7 @@ describe('search with section labels', () => {
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
     const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     userEvent.clear(searchBarElement);
     await userEvent.type(searchBarElement, 'n');
@@ -334,7 +334,7 @@ describe('search with section labels', () => {
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
     const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     userEvent.clear(searchBarElement);
     await userEvent.type(searchBarElement, 'n');
@@ -383,7 +383,7 @@ describe('search with section labels', () => {
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
     renderFilterSearch({ searchFields: searchFieldsProp, onSelect: mockedOnSelect });
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
     await screen.findByText('first name 1');
@@ -437,7 +437,7 @@ describe('search with section labels', () => {
     it('displays text of other location fields in state and lists all fields in the warning', async () => {
       const consoleWarnSpy = jest.spyOn(global.console, 'warn').mockImplementation();
       renderFilterSearch({ searchFields: locationSearchFieldsProp }, mockedStateWithLocationFilters);
-      const searchBarElement = screen.getByRole('textbox');
+      const searchBarElement = screen.getByRole('combobox');
       expect(searchBarElement).toHaveValue('Virginia');
       expect(consoleWarnSpy).toHaveBeenCalledWith(
         'More than one selected static filter found that matches the filter search fields:'
@@ -454,7 +454,7 @@ describe('search with section labels', () => {
         .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
         .mockResolvedValue(labeledFilterSearchResponse);
       const setFilterOption = jest.spyOn(SearchHeadless.prototype, 'setFilterOption');
-      const searchBarElement = screen.getByRole('textbox');
+      const searchBarElement = screen.getByRole('combobox');
 
       userEvent.clear(searchBarElement);
       await userEvent.type(searchBarElement, 'f');
@@ -517,7 +517,7 @@ describe('search with section labels', () => {
         .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
         .mockResolvedValue(labeledFilterSearchResponse);
       renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true });
-      const searchBarElement = screen.getByRole('textbox');
+      const searchBarElement = screen.getByRole('combobox');
 
       await userEvent.type(searchBarElement, 'n');
       await waitForDebounce();
@@ -556,7 +556,7 @@ describe('search with section labels', () => {
       const setOffset = jest.spyOn(SearchHeadless.prototype, 'setOffset');
       const resetFacets = jest.spyOn(SearchHeadless.prototype, 'resetFacets');
       renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true });
-      const searchBarElement = screen.getByRole('textbox');
+      const searchBarElement = screen.getByRole('combobox');
 
       await userEvent.type(searchBarElement, 'n{enter}');
 
@@ -576,7 +576,7 @@ describe('search with section labels', () => {
         .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
         .mockResolvedValue(labeledFilterSearchResponse);
       renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: true });
-      const searchBarElement = screen.getByRole('textbox');
+      const searchBarElement = screen.getByRole('combobox');
 
       await userEvent.type(searchBarElement, 'n');
       await waitForDebounce();
@@ -624,7 +624,7 @@ describe('search with section labels', () => {
           searchOnSelect: true,
           onSelect: mockedOnSelect
         });
-        const searchBarElement = screen.getByRole('textbox');
+        const searchBarElement = screen.getByRole('combobox');
 
         await userEvent.type(searchBarElement, 'n');
         await screen.findByText('first name 1');
@@ -651,7 +651,7 @@ describe('search with section labels', () => {
         .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
         .mockResolvedValue(labeledFilterSearchResponse);
       renderFilterSearch({ searchFields: searchFieldsProp, searchOnSelect: false });
-      const searchBarElement = screen.getByRole('textbox');
+      const searchBarElement = screen.getByRole('combobox');
 
       await userEvent.type(searchBarElement, 'n');
       await screen.findByText('first name 1');
@@ -683,7 +683,7 @@ describe('search without section labels', () => {
       .mockResolvedValue(unlabeledFilterSearchResponse);
     renderFilterSearch();
 
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
@@ -698,7 +698,7 @@ describe('search without section labels', () => {
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(unlabeledFilterSearchResponse);
     renderFilterSearch();
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.type(inputNode, 'n');
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalled();
@@ -712,7 +712,7 @@ describe('search without section labels', () => {
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch');
     renderFilterSearch({ searchFields: searchFieldsProp, onDropdownInputChange: mockedOnDropdownInputChange});
-    await userEvent.type(screen.getByRole('textbox'), 'a');
+    await userEvent.type(screen.getByRole('combobox'), 'a');
     expect(mockedOnDropdownInputChange).toHaveBeenCalledTimes(1);
     expect(executeFilterSearch).toHaveBeenCalledTimes(0);
   });
@@ -726,19 +726,19 @@ describe('search without section labels', () => {
       {searchFields: searchFieldsProp, afterDropdownInputFocus: mockedAfterDropdownInputFocus});
 
     // Click into input. ExecuteFilterSearch wouldn't be triggered since the input is empty.
-    await userEvent.click(screen.getByRole('textbox'));
+    await userEvent.click(screen.getByRole('combobox'));
     expect(mockedAfterDropdownInputFocus).toHaveBeenCalledTimes(1);
     expect(executeFilterSearch).toHaveBeenCalledTimes(0);
 
     // Update input.
-    await userEvent.type(screen.getByRole('textbox'), 'a');
+    await userEvent.type(screen.getByRole('combobox'), 'a');
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalledTimes(1);
 
     // Click out of input and then click into input.
     // ExecuteFilterSearch would be triggered since input no longer empty.
     await userEvent.click(document.body);
-    await userEvent.click(screen.getByRole('textbox'));
+    await userEvent.click(screen.getByRole('combobox'));
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalledTimes(2);
     expect(mockedAfterDropdownInputFocus).toHaveBeenCalledTimes(2);
@@ -752,7 +752,7 @@ describe('screen reader', () => {
       .mockResolvedValue(labeledFilterSearchResponse);
     const { rerenderWithLocale } = renderFilterSearch();
 
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
@@ -776,7 +776,7 @@ describe('screen reader', () => {
       .mockResolvedValue(unlabeledFilterSearchResponse);
     renderFilterSearch();
 
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
 
@@ -795,7 +795,7 @@ describe('screen reader', () => {
       .mockResolvedValue(noResultsFilterSearchResponse);
     renderFilterSearch();
 
-    const searchBarElement = screen.getByRole('textbox');
+    const searchBarElement = screen.getByRole('combobox');
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
     await pause(50); // wait for the screen reader message to be updated
@@ -846,12 +846,12 @@ it('clears input when old filters are removed', async () => {
     </SearchHeadlessContext.Provider>
   );
 
-  const searchBarElement = screen.getByRole('textbox');
+  const searchBarElement = screen.getByRole('combobox');
   expect(searchBarElement).toHaveValue('');
   await userEvent.type(searchBarElement, 'first name 1');
   await waitForDebounce();
 
-  expect(await screen.findByRole('textbox')).toHaveDisplayValue('first name 1');
+  expect(await screen.findByRole('combobox')).toHaveDisplayValue('first name 1');
   await userEvent.type(searchBarElement, '{enter}');
 
   expect(executeFilterSearch).toHaveBeenCalled();
@@ -881,11 +881,11 @@ it('toggling the dropdown does not change selected filters', async () => {
     </div>
   );
 
-  const searchBarElement = screen.getByRole('textbox');
+  const searchBarElement = screen.getByRole('combobox');
   const externalDiv = screen.getByText('external div');
   await userEvent.type(searchBarElement, 'first name 1');
   await waitForDebounce();
-  expect(await screen.findByRole('textbox')).toHaveDisplayValue('first name 1');
+  expect(await screen.findByRole('combobox')).toHaveDisplayValue('first name 1');
   await userEvent.type(searchBarElement, '{enter}');
 
   expect(executeFilterSearch).toHaveBeenCalled();
