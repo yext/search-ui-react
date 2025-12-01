@@ -15,8 +15,8 @@ export default meta;
 const cssClasses = {
   filterSearchContainer: 'relative mb-2',
   inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
-  focusedOption: 'bg-gray-100 text-sm text-neutral-dark py-1 cursor-pointer hover:bg-gray-100 px-4',
-  option: 'text-sm text-neutral-dark py-1 cursor-pointer hover:bg-gray-100 px-4'
+  focusedOption: 'flex bg-gray-100 text-sm text-neutral-dark py-1 cursor-pointer hover:bg-gray-100 px-4',
+  option: 'flex text-sm text-neutral-dark py-1 cursor-pointer hover:bg-gray-100 px-4'
 };
 
 const dropdownItemProps = {
