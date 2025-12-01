@@ -27,7 +27,7 @@ export function DropdownInput(props: {
   } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const { toggleDropdown, onSelect, screenReaderUUID } = useDropdownContext();
+  const { toggleDropdown, onSelect, screenReaderUUID, dropdownListUUID } = useDropdownContext();
   const { value = '', setLastTypedOrSubmittedValue } = useInputContext();
   const {
     focusedIndex = -1,
@@ -91,6 +91,9 @@ export function DropdownInput(props: {
       aria-describedby={screenReaderUUID}
       aria-activedescendant={isTyping ? '' : generateDropdownId(screenReaderUUID, focusedIndex)}
       aria-label={ariaLabel}
+      aria-autocomplete="list"
+      role="combobox"
+      aria-controls={dropdownListUUID}
     />
   );
 }

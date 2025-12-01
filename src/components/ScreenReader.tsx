@@ -25,7 +25,8 @@ export function ScreenReader({
       <div
         className='sr-only'
         key={announcementKey}
-        aria-live='assertive'
+        aria-live='polite'
+        aria-atomic='true'
       >
         {announcementText}
       </div>
