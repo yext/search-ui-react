@@ -310,14 +310,14 @@ export function SearchBar({
         key={i}
         value={result.query}
         onClick={handleSubmit}
+        ariaLabel={t('recentSearch', {
+            query: result.query
+          })}
       >
         {renderAutocompleteResult(
           { value: result.query, inputIntents: [] },
           recentSearchesCssClasses,
-          RecentSearchIcon,
-          t('recentSearch', {
-            query: result.query
-          })
+          RecentSearchIcon
         )}
       </DropdownItem>
     ));
@@ -339,12 +339,12 @@ export function SearchBar({
           focusedClassName={twMerge('flex items-stretch py-1.5 px-3.5 cursor-pointer hover:bg-gray-100', cssClasses.focusedOption)}
           value={result.value}
           onClick={handleSubmit}
+          ariaLabel={t('autocompleteSuggestion', { suggestion: result.value })}
         >
           {renderAutocompleteResult(
             result,
             cssClasses,
-            MagnifyingGlassIcon,
-            t('autocompleteSuggestion', { suggestion: result.value })
+            MagnifyingGlassIcon
           )}
         </DropdownItem>
         {showVerticalLinks && !isVertical && result.verticalKeys?.map((verticalKey, j) => (

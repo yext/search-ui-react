@@ -217,7 +217,7 @@ export type DropdownItemProps = PropsWithChildren<{
     focusedClassName?: string;
     itemData?: Record<string, unknown> | undefined;
     onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
-    ariaLabel?: (value: string) => string;
+    ariaLabel?: string | ((value: string) => string);
 }>;
 
 // @public

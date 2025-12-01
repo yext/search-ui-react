@@ -27,14 +27,13 @@ export const builtInCssClasses: Readonly<AutocompleteResultCssClasses> = {
 export function renderAutocompleteResult(
   result: AutocompleteResult,
   cssClasses: AutocompleteResultCssClasses = {},
-  Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
-  ariaLabel?: string
+  Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 ): JSX.Element {
   return (<>
     {Icon && <div className={cssClasses.icon}>
       <Icon />
     </div>}
-    <div aria-label={ariaLabel || ''} className={cssClasses.option}>
+    <div className={cssClasses.option}>
       {renderHighlightedValue(result, cssClasses)}
     </div>
   </>);
