@@ -67,6 +67,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const screenReaderUUID = useId('dropdown');
+  const dropdownListUUID = useId('dropdown-list');
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
@@ -92,6 +93,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     focusedIndex,
     focusedItemData,
     screenReaderUUID,
+    dropdownListUUID,
     setHasTyped,
     onToggle,
     onSelect
@@ -257,6 +259,7 @@ function useDropdownContextInstance(
   index: number,
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string | undefined,
+  dropdownListUUID: string | undefined,
   setHasTyped: (hasTyped: boolean) => void,
   onToggle?: (
     isActive: boolean,
@@ -279,7 +282,8 @@ function useDropdownContextInstance(
     isActive,
     toggleDropdown,
     onSelect,
-    screenReaderUUID
+    screenReaderUUID,
+    dropdownListUUID
   };
 }
 
