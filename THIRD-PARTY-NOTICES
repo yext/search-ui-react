@@ -2960,6 +2960,23 @@ THIS SOFTWARE.
 
 The following npm package may be included in this product:
 
+ - @mapbox/jsonlint-lines-primitives@2.0.2
+
+This package contains the following license:
+
+JSON Lint
+=========
+
+A fork of the `lines-primitive` branch of [tmcw/jsonlint](https://github.com/tmcw/jsonlint), which is a fork of [zaach/jsonlint](https://github.com/zaach/jsonlint) that adds line number annotations to the parsed JSON.
+
+This fork is used by Mapbox GL JS, specifically for providing helpful error messages when validating Mapbox GL style JSON documents.
+
+-----------
+
+-----------
+
+The following npm package may be included in this product:
+
  - mapbox-gl@2.15.0
 
 This package contains the following license:
@@ -5818,17 +5835,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - @mapbox/jsonlint-lines-primitives@2.0.2
-
-This package contains the following license:
-
-This package does not provide a license.
-It is considered UNLICENSED for the purposes of third-party notices.
 
 -----------
 
