@@ -8,5 +8,6 @@ jobs:
     with:
       environment: macos-latest
       generate_license_args: "--config .generatelicensefile.json"
+      generate_license_version: "4"
     secrets:
       REPO_SCOPED_TOKEN: ${{ secrets.BOT_REPO_SCOPED_TOKEN }}
