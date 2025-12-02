@@ -1,0 +1,8 @@
+{
+  "inputs": ["./package.json"],
+  "output": "./THIRD-PARTY-NOTICES",
+  "overwrite": true,
+  "replace": {
+    "@mapbox/jsonlint-lines-primitives@2.0.2": "./licenses/jsonlint-lines-primitives.txt"
+  }
+}
