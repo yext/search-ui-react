@@ -4,8 +4,9 @@ on: pull_request
 
 jobs:
   call_notices_check:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/third_party_notices_check.yml@v1
+    uses: yext/slapshot-reusable-workflows/.github/workflows/third_party_notices_check.yml@third-party-notices-configurable
     with:
       environment: macos-latest
+      generate_license_args: "--config .generatelicensefile.json"
     secrets:
       REPO_SCOPED_TOKEN: ${{ secrets.BOT_REPO_SCOPED_TOKEN }}
