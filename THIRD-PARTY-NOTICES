@@ -2973,8 +2973,6 @@ This fork is used by Mapbox GL JS, specifically for providing helpful error mess
 
 -----------
 
------------
-
 The following npm package may be included in this product:
 
  - mapbox-gl@2.15.0
