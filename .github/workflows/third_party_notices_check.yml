@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
   call_notices_check:
-    uses: yext/slapshot-reusable-workflows/.github/workflows/third_party_notices_check.yml@third-party-notices-configurable
+    uses: yext/slapshot-reusable-workflows/.github/workflows/third_party_notices_check.yml@third=party-notices-configurable
     with:
       environment: macos-latest
       generate_license_args: "--config .generatelicensefile.json"
