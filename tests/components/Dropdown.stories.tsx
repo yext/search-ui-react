@@ -46,12 +46,12 @@ export const Primary: StoryFn<DropdownProps> = (args) => {
 
 export const DropdownExpanded: StoryFn<DropdownProps> = Primary.bind({});
 DropdownExpanded.play = async ({ canvasElement }) => {
-  await clickcombobox(canvasElement);
+  await clickComboBox(canvasElement);
 };
 
 export const DropdownSelected: StoryFn<DropdownProps> = Primary.bind({});
 DropdownSelected.play = async ({ canvasElement }) => {
-  await clickcombobox(canvasElement);
+  await clickComboBox(canvasElement);
   await userEvent.keyboard('{arrowdown}{arrowdown}');
   await userEvent.keyboard('{enter}');
 };
@@ -61,10 +61,10 @@ AlwaysSelectExpanded.args = {
   alwaysSelectOption: true
 };
 AlwaysSelectExpanded.play = async ({ canvasElement }) => {
-  await clickcombobox(canvasElement);
+  await clickComboBox(canvasElement);
 };
 
-async function clickcombobox(canvasElement: HTMLElement) {
+async function clickComboBox(canvasElement: HTMLElement) {
   const canvas = within(canvasElement);
   const comboboxEl = canvas.getByRole('combobox');
   await userEvent.click(comboboxEl);

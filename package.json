@@ -45,7 +45,7 @@
     "api-extractor": "api-extractor run --local --verbose && npm run copyTypes",
     "copyTypes": "cp dist/index.d.ts dist/index.d.mts && cp dist/index.d.mts lib/esm && cp dist/index.d.ts lib/commonjs",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
-    "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite",
+    "generate-notices": "generate-license-file --config .generatelicensefile.json",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
