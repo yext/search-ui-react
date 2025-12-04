@@ -74,4 +74,3 @@ _(Optional)_ Whether or not to paginate based on the total results count of the 
 
 </td></tr>
 </tbody></table>
-

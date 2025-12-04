@@ -113,4 +113,3 @@ _(Optional)_ A function to transform facet's options. The returned options need 
 
 </td></tr>
 </tbody></table>
-

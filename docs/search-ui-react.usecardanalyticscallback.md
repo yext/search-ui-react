@@ -63,7 +63,6 @@ the card analytics event type to report.
 
 </td></tr>
 </tbody></table>
-
 **Returns:**
 
 () =&gt; void

@@ -1550,4 +1550,3 @@ A map of verticalKey to a VerticalConfig.
 
 </td></tr>
 </tbody></table>
-

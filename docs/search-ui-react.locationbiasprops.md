@@ -79,4 +79,3 @@ _(Optional)_ Configuration used when collecting the user's location. Definition:
 
 </td></tr>
 </tbody></table>
-

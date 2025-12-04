@@ -47,7 +47,6 @@ The configuration for the the feedback component.
 
 </td></tr>
 </tbody></table>
-
 **Returns:**
 
 JSX.Element

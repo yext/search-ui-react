@@ -188,4 +188,3 @@ _(Optional)_ Whether to use the icon as a button, rather than the label.
 
 </td></tr>
 </tbody></table>
-

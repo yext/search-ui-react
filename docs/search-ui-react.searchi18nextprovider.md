@@ -47,7 +47,6 @@ The configuration for the search headless service
 
 </td></tr>
 </tbody></table>
-
 **Returns:**
 
 JSX.Element

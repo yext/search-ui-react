@@ -47,7 +47,6 @@ card result that contains data use in the feedback analytics event.
 
 </td></tr>
 </tbody></table>
-
 **Returns:**
 
 (analyticsType: [FeedbackType](./search-ui-react.feedbacktype.md)<!-- -->) =&gt; void

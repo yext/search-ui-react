@@ -112,4 +112,3 @@ A function which is called when a quality feedback button is clicked.
 
 </td></tr>
 </tbody></table>
-
