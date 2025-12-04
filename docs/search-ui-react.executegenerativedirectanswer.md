@@ -45,6 +45,7 @@ SearchActions
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 Promise&lt;GenerativeDirectAnswerResponse \| undefined&gt;
