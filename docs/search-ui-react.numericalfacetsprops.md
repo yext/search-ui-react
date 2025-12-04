@@ -118,4 +118,3 @@ _(Optional)_ An optional element which renders in front of the input text.
 
 </td></tr>
 </tbody></table>
-

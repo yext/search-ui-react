@@ -74,4 +74,3 @@ The input element's new value after the change
 
 </td></tr>
 </tbody></table>
-

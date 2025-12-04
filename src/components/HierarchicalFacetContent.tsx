@@ -37,18 +37,33 @@ export function HierarchicalFacetContent({
         customCssClasses={customCssClasses}
         collapsible={collapsible}
       />
-      <CollapsibleSection >
-        <HierarchicalFacetDisplay
-          // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
-          facet={{
-            ...facet,
-            options: transformedOptions,
-          }}
-          delimiter={delimiter}
-          showMoreLimit={showMoreLimit}
-          customCssClasses={customCssClasses}
-        />
-      </CollapsibleSection>
+      {collapsible ? (
+        <CollapsibleSection >
+          <HierarchicalFacetDisplay
+            // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
+            facet={{
+              ...facet,
+              options: transformedOptions,
+            }}
+            delimiter={delimiter}
+            showMoreLimit={showMoreLimit}
+            customCssClasses={customCssClasses}
+          />
+        </CollapsibleSection>
+      ) : (
+        <div className='space-y-3'>
+          <HierarchicalFacetDisplay
+            // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
+            facet={{
+              ...facet,
+              options: transformedOptions,
+            }}
+            delimiter={delimiter}
+            showMoreLimit={showMoreLimit}
+            customCssClasses={customCssClasses}
+          />
+        </div>
+      )}
     </FilterGroupProvider>
   );
 }

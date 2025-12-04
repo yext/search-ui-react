@@ -113,4 +113,3 @@ _(Optional)_ Whether or not to show the option counts for each filter. Defaults 
 
 </td></tr>
 </tbody></table>
-

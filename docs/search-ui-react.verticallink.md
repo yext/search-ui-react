@@ -74,4 +74,3 @@ The vertical key associated with the vertical link.
 
 </td></tr>
 </tbody></table>
-

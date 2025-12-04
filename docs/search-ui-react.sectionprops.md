@@ -131,4 +131,3 @@ _(Optional)_ Whether or not to allow more results to be viewed.
 
 </td></tr>
 </tbody></table>
-

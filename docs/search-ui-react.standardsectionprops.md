@@ -56,4 +56,3 @@ _(Optional)_ CSS classes for customizing the component styling.
 
 </td></tr>
 </tbody></table>
-

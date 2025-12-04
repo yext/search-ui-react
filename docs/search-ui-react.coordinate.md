@@ -74,4 +74,3 @@ The longitude of the location.
 
 </td></tr>
 </tbody></table>
-

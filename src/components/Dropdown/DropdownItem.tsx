@@ -21,7 +21,7 @@ export type DropdownItemProps = PropsWithChildren<{
   /** A function which is fired when the item is clicked. */
   onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void,
   /** Screenreader text. */
-  ariaLabel?: (value: string) => string
+  ariaLabel?: string | ((value: string) => string)
 }>;
 
 /**
@@ -70,14 +70,14 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
   ]);
 
   return (
-    <div
+    <a
       id={generateDropdownId(screenReaderUUID, index)}
-      tabIndex={0}
+      href="#"
       className={isFocused ? focusedClassName : className}
       onClick={handleClick}
       aria-label={typeof ariaLabel === 'function' ? ariaLabel(value) : ariaLabel}
     >
       {children}
-    </div>
+    </a>
   );
 }

@@ -55,4 +55,3 @@ The input element's value.
 
 </td></tr>
 </tbody></table>
-

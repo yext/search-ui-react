@@ -188,4 +188,3 @@ The displayed label for the static filter group.
 
 </td></tr>
 </tbody></table>
-

@@ -47,7 +47,6 @@ the data to validate.
 
 </td></tr>
 </tbody></table>
-
 **Returns:**
 
 data is [CtaData](./search-ui-react.ctadata.md)

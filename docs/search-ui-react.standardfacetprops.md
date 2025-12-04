@@ -188,4 +188,3 @@ _(Optional)_ A function to transform facet's options.
 
 </td></tr>
 </tbody></table>
-

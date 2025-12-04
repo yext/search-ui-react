@@ -74,4 +74,3 @@ _(Optional)_ A function which is called when a spell check suggestion is clicked
 
 </td></tr>
 </tbody></table>
-

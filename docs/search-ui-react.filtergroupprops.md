@@ -188,4 +188,3 @@ The displayed label for the filter group.
 
 </td></tr>
 </tbody></table>
-

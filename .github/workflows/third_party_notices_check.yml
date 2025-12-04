@@ -7,5 +7,7 @@ jobs:
     uses: yext/slapshot-reusable-workflows/.github/workflows/third_party_notices_check.yml@v1
     with:
       environment: macos-latest
+      generate_license_args: "--config .generatelicensefile.json"
+      generate_license_version: "4"
     secrets:
       REPO_SCOPED_TOKEN: ${{ secrets.BOT_REPO_SCOPED_TOKEN }}
