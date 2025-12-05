@@ -6,6 +6,28 @@ import _ from 'lodash';
 
 import ReactDOM from 'react-dom';
 
+type LegacyReactDOM = {
+  render?: (element: React.ReactElement, container: Element) => void;
+  unmountComponentAtNode?: (container: Element | DocumentFragment) => boolean;
+};
+
+type RootHandle = {
+  render: (children: React.ReactNode) => void;
+  unmount: () => void;
+};
+
+const legacyReactDOM = ReactDOM as unknown as LegacyReactDOM;
+const reactMajorVersion = Number(React.version.split('.')[0]);
+const supportsCreateRoot = !Number.isNaN(reactMajorVersion) && reactMajorVersion >= 18;
+let reactDomClientPromise: Promise<typeof import('react-dom/client')> | null = null;
+
+const loadReactDomClient = () => {
+  if (!reactDomClientPromise) {
+    reactDomClientPromise = import('react-dom/client');
+  }
+  return reactDomClientPromise;
+};
+
 /**
  * Props for rendering a custom marker on the map.
  *
@@ -146,6 +168,9 @@ export function MapboxMap<T>({
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const markers = useRef<mapboxgl.Marker[]>([]);
+  const markerRoots = useRef(new Map<HTMLElement, RootHandle>());
+  const activeMarkerElements = useRef(new Set<HTMLElement>());
+  const markerData = useRef<Array<{ marker: mapboxgl.Marker, result: Result<T>, index: number }>>([]);
 
   const locationResults = useSearchState(state => state.vertical.results) as Result<T>[];
   const staticFilters = useSearchState(state => state.filters?.static);
@@ -159,6 +184,61 @@ export function MapboxMap<T>({
   useEffect(() => {
     onPinClick?.(selectedResult);
   }, [selectedResult])
+
+  const cleanupPinComponent = useCallback((element: HTMLElement) => {
+    activeMarkerElements.current.delete(element);
+    if (supportsCreateRoot) {
+      const root = markerRoots.current.get(element);
+      if (root) {
+        root.unmount();
+        markerRoots.current.delete(element);
+      }
+    } else {
+      legacyReactDOM.unmountComponentAtNode?.(element);
+    }
+  }, []);
+
+  const attachPinComponent = useCallback((element: HTMLElement, component: JSX.Element) => {
+    activeMarkerElements.current.add(element);
+    if (supportsCreateRoot) {
+      const existingRoot = markerRoots.current.get(element);
+      if (existingRoot) {
+        existingRoot.render(component);
+        return;
+      }
+      loadReactDomClient()
+        .then(({ createRoot }) => {
+          if (!activeMarkerElements.current.has(element)) {
+            return;
+          }
+          const root = createRoot(element);
+          markerRoots.current.set(element, root);
+          root.render(component);
+        })
+        .catch(() => {
+          legacyReactDOM.render?.(component, element);
+        });
+    } else {
+      legacyReactDOM.render?.(component, element);
+    }
+  }, []);
+
+  const removeMarkers = useCallback(() => {
+    markers.current.forEach(marker => {
+      if (!marker) {
+        return;
+      }
+      const element = typeof marker.getElement === 'function' ? marker.getElement() : null;
+      if (element) {
+        cleanupPinComponent(element);
+      }
+      if (typeof marker.remove === 'function') {
+        marker.remove();
+      }
+    });
+    markers.current = [];
+    markerData.current = [];
+  }, [cleanupPinComponent]);
 
   const locale = useSearchState(state => state.meta?.locale);
   // keep track of the previous value of mapboxOptions across renders
@@ -250,8 +330,7 @@ export function MapboxMap<T>({
   }, [mapContainer.current]);
 
   useEffect(() => {
-    markers.current.forEach(marker => marker.remove());
-    markers.current = [];
+    removeMarkers();
     const mapbox = map.current;
     if (mapbox && locationResults) {
       if (locationResults.length > 0) {
@@ -268,12 +347,14 @@ export function MapboxMap<T>({
                   'Found both PinComponent and renderPin props. Using PinComponent.'
                 );
               }
-              ReactDOM.render(<PinComponent
-                index={i}
-                mapbox={mapbox}
-                result={result}
-                selected={selectedResult === result}
-              />, el);
+              attachPinComponent(el, (
+                <PinComponent
+                  index={i}
+                  mapbox={mapbox}
+                  result={result}
+                  selected={selectedResult === result}
+                />
+              ));
               markerOptions.element = el;
             } else if (renderPin) {
               renderPin({ index: i, mapbox, result, container: el });
@@ -293,6 +374,9 @@ export function MapboxMap<T>({
 
             marker?.getElement().addEventListener('click', () => handlePinClick(result));
             markers.current.push(marker);
+            if (marker) {
+              markerData.current.push({ marker, result, index: i });
+            }
             bounds.extend([longitude, latitude]);
           }
         })
@@ -310,6 +394,7 @@ export function MapboxMap<T>({
           markers.current.forEach((marker, i) => {
             marker?.getElement().removeEventListener('click', () => handlePinClick(locationResults[i]));
           });
+          removeMarkers();
         }
       } else if (staticFilters?.length) {
         const locationFilterValue = getLocationFilterValue(staticFilters);
@@ -320,7 +405,28 @@ export function MapboxMap<T>({
         }
       };
     }
-  }, [PinComponent, getCoordinate, locationResults, selectedResult, markerOptionsOverride]);
+  }, [PinComponent, getCoordinate, locationResults, removeMarkers, markerOptionsOverride, renderPin]);
+
+  useEffect(() => {
+    const mapbox = map.current;
+    if (!mapbox || !PinComponent) {
+      return;
+    }
+    markerData.current.forEach(({ marker, result, index }) => {
+      const element = typeof marker.getElement === 'function' ? marker.getElement() : null;
+      if (!element) {
+        return;
+      }
+      attachPinComponent(element, (
+        <PinComponent
+          index={index}
+          mapbox={mapbox}
+          result={result}
+          selected={selectedResult === result}
+        />
+      ));
+    });
+  }, [attachPinComponent, PinComponent, selectedResult]);
 
   return (
     <div ref={mapContainer} className='h-full w-full' />

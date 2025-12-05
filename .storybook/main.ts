@@ -1,13 +1,13 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import React from 'react';
 
+const reactMajorVersion = Number(React.version.split('.')[0]);
+const isLegacyReact = Number.isNaN(reactMajorVersion) ? false : reactMajorVersion < 18;
+
 const config: StorybookConfig = {
   stories: [
     '../tests/**/*.stories.tsx'
   ],
-  features: {
-    storyStoreV7: false,
-  },
   addons: [
     '@etchteam/storybook-addon-status',
     '@storybook/addon-links',
@@ -35,13 +35,41 @@ const config: StorybookConfig = {
     ...config,
     resolve: {
       ...config.resolve,
+      extensions: [
+        ...(config.resolve?.extensions ?? []),
+        '.ts',
+        '.tsx',
+      ],
       alias: {
         ...config.resolve?.alias,
         './SearchCore': require.resolve('../tests/__fixtures__/core/SearchCore.ts'),
         '../utils/location-operations': require.resolve('../tests/__fixtures__/utils/location-operations.ts')
       },
     },
-    ...(!React.version.startsWith('18') && { externals: ["react-dom/client"] })
+    ...(isLegacyReact && { externals: ['react-dom/client'] }),
+    module: {
+      ...config.module,
+      rules: [
+        ...(config.module?.rules ?? []),
+        {
+          test: /\.(ts|tsx)$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: require.resolve('babel-loader'),
+              options: {
+                cacheDirectory: true,
+                presets: [
+                  require.resolve('@babel/preset-env'),
+                  require.resolve('@babel/preset-react'),
+                  require.resolve('@babel/preset-typescript'),
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
   }),
 
   env: (config) => {
