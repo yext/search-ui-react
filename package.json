@@ -47,7 +47,7 @@
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "generate-notices": "generate-license-file --config .generatelicensefile.json",
     "prepublishOnly": "npm run build",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev --port 6006",
     "build-storybook": "storybook build",
     "wcag": "test-storybook -c .storybook/wcag",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest",
