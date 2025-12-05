@@ -19,11 +19,15 @@ type RootHandle = {
 const legacyReactDOM = ReactDOM as unknown as LegacyReactDOM;
 const reactMajorVersion = Number(React.version.split('.')[0]);
 const supportsCreateRoot = !Number.isNaN(reactMajorVersion) && reactMajorVersion >= 18;
-let reactDomClientPromise: Promise<typeof import('react-dom/client')> | null = null;
+type ReactDomClientModule = {
+  createRoot: (container: Element | DocumentFragment) => RootHandle;
+};
+let reactDomClientPromise: Promise<ReactDomClientModule> | null = null;
+const reactDomClientModuleId: string = 'react-dom/client';
 
 const loadReactDomClient = () => {
   if (!reactDomClientPromise) {
-    reactDomClientPromise = import('react-dom/client');
+    reactDomClientPromise = import(reactDomClientModuleId) as Promise<ReactDomClientModule>;
   }
   return reactDomClientPromise;
 };
