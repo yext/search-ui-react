@@ -66,7 +66,7 @@ export function HierarchicalFacetDisplay({
   delimiter = DEFAULT_HIERARCHICAL_DELIMITER,
   showMoreLimit = 4,
   customCssClasses
-}: HierarchicalFacetDisplayProps): JSX.Element {
+}: HierarchicalFacetDisplayProps): React.JSX.Element {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const tree = useHierarchicalFacetTree(facet, delimiter);
   const [isShowingMore, setIsShowingMore] = useState(false);

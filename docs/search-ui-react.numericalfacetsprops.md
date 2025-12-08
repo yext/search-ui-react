@@ -108,7 +108,7 @@ _(Optional)_ List of filter ids to render as numerical facets.
 
 </td><td>
 
-JSX.Element
+React.JSX.Element
 
 
 </td><td>
@@ -118,3 +118,4 @@ _(Optional)_ An optional element which renders in front of the input text.
 
 </td></tr>
 </tbody></table>
+

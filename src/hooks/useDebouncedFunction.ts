@@ -8,7 +8,7 @@ export function useDebouncedFunction<F extends Func>(
   func: F | undefined,
   milliseconds: number
 ): DebouncedFunction<F> | undefined {
-  const timeoutIdRef = useRef<number | undefined>();
+  const timeoutIdRef = useRef<number | undefined>(undefined);
   if (!func) {
     return undefined;
   }

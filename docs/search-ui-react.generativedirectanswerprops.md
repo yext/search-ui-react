@@ -45,7 +45,7 @@ Description
 
 </td><td>
 
-string \| JSX.Element
+string \| React.JSX.Element
 
 
 </td><td>
@@ -64,7 +64,7 @@ _(Optional)_ The header for the answer section of the generative direct answer.
 
 </td><td>
 
-(props: [CitationProps](./search-ui-react.citationprops.md)<!-- -->) =&gt; JSX.Element \| null
+(props: [CitationProps](./search-ui-react.citationprops.md)<!-- -->) =&gt; React.JSX.Element \| null
 
 
 </td><td>
@@ -83,7 +83,7 @@ _(Optional)_ The citation card component for customizing how each citation is di
 
 </td><td>
 
-(props: [CitationsProps](./search-ui-react.citationsprops.md)<!-- -->) =&gt; JSX.Element \| null
+(props: [CitationsProps](./search-ui-react.citationsprops.md)<!-- -->) =&gt; React.JSX.Element \| null
 
 
 </td><td>
@@ -102,7 +102,7 @@ _(Optional)_ The citations container component for customizing the logic that de
 
 </td><td>
 
-string \| JSX.Element
+string \| React.JSX.Element
 
 
 </td><td>
@@ -131,3 +131,4 @@ _(Optional)_ CSS classes for customizing the component styling.
 
 </td></tr>
 </tbody></table>
+

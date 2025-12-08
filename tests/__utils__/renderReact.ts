@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 type LegacyReactDOM = {
-  render?: (element: JSX.Element, container: Element) => void;
+  render?: (element: React.JSX.Element, container: Element) => void;
 };
 
 const legacyReactDOM = ReactDOM as unknown as LegacyReactDOM;
@@ -10,7 +10,7 @@ const legacyReactDOM = ReactDOM as unknown as LegacyReactDOM;
 const reactMajorVersion = Number(React.version.split('.')[0]);
 const supportsCreateRoot = !Number.isNaN(reactMajorVersion) && reactMajorVersion >= 18;
 
-export function renderReact(children: JSX.Element, container: Element) {
+export function renderReact(children: React.JSX.Element, container: Element) {
   if (supportsCreateRoot) {
     import('react-dom/client')
       .then(({ createRoot }) => {

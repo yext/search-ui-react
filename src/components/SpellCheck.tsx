@@ -47,7 +47,7 @@ export interface SpellCheckProps {
 export function SpellCheck({
   customCssClasses,
   onClick
-}: SpellCheckProps): JSX.Element | null {
+}: SpellCheckProps): React.JSX.Element | null {
   const verticalKey = useSearchState(state => state.vertical.verticalKey) ?? '';
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const correctedQuery = useSearchState(state => state.spellCheck.correctedQuery) ?? '';

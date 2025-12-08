@@ -9,7 +9,7 @@ A higher-order component which provides analytics for its children.
 **Signature:**
 
 ```typescript
-declare function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element;
+declare function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): React.JSX.Element;
 ```
 
 ## Parameters
@@ -47,9 +47,10 @@ The configuration for the analytics service
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
 A React element that provides analytics context
 

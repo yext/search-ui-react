@@ -59,7 +59,7 @@ export interface SectionHeaderProps {
  * @param props - {@link SectionHeaderProps}
  * @returns A React element for a Section Header
  */
-export function SectionHeader(props: SectionHeaderProps): JSX.Element {
+export function SectionHeader(props: SectionHeaderProps): React.JSX.Element {
   const { t } = useTranslation();
   const {
     label,

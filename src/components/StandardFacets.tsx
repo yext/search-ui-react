@@ -61,7 +61,7 @@ export interface StandardFacetsProps {
  * @deprecated Use {@link Facets} instead.
  * @public
  */
-export function StandardFacets(props: StandardFacetsProps): JSX.Element {
+export function StandardFacets(props: StandardFacetsProps): React.JSX.Element {
   const {
     searchOnChange,
     excludedFieldIds = [],

@@ -14,7 +14,7 @@ A React Component which displays and collects location information in order to b
 **Signature:**
 
 ```typescript
-declare function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): JSX.Element | null;
+declare function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -50,9 +50,10 @@ Description
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element \| null
+React.JSX.Element \| null
 
 A react component for Location Bias
 

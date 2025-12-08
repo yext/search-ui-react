@@ -7,7 +7,7 @@ interface Props {
   className?: string
 }
 
-export function SearchButton({ handleClick, className }: Props): JSX.Element {
+export function SearchButton({ handleClick, className }: Props): React.JSX.Element {
   const { t } = useTranslation();
   return (
     <button

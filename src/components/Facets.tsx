@@ -32,7 +32,7 @@ enum FacetType {
  *
  * @public
  */
-export function Facets(props: FacetsProps): JSX.Element {
+export function Facets(props: FacetsProps): React.JSX.Element {
   const {
     searchOnChange,
     onlyRenderChildren = false,
@@ -46,7 +46,8 @@ export function Facets(props: FacetsProps): JSX.Element {
   const fieldIds: string[] = [];
   if (children) {
     (Array.isArray(children) ? children : [children])
-      .filter(child => child?.props?.fieldId)
+      .filter((child): child is ReactElement<FacetProps> =>
+        React.isValidElement<FacetProps>(child) && child?.props?.fieldId !== undefined)
       .forEach(child => {
         fieldIdToCustomFacetProps.set(child.props.fieldId, child);
         fieldIds.push(child.props.fieldId);
@@ -154,7 +155,7 @@ export function Facet({
     label: facet.displayName,
   };
   if (fieldIdToCustomFacetProps.has(facet.fieldId)) {
-    const customFacetElement: ReactElement = fieldIdToCustomFacetProps.get(facet.fieldId);
+    const customFacetElement: ReactElement<FacetProps> = fieldIdToCustomFacetProps.get(facet.fieldId);
     facetProps = { ...facetProps, ...customFacetElement.props };
     facetType = getFacetTypeFromReactElementType(
       (typeof customFacetElement.type === 'function')

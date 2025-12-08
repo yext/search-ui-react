@@ -64,7 +64,7 @@ _(Optional)_ The card to use for this vertical.
 
 </td><td>
 
-JSX.Element
+React.JSX.Element
 
 
 </td><td>
@@ -131,3 +131,4 @@ _(Optional)_ Whether or not to allow more results to be viewed.
 
 </td></tr>
 </tbody></table>
+

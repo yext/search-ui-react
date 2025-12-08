@@ -1,5 +1,6 @@
 import { Result } from '@yext/search-headless-react';
 import { DefaultRawDataType } from './DefaultRawDataType';
+import React from 'react';
 /**
  * The props provided to every {@link CardComponent}.
  *
@@ -15,4 +16,4 @@ export interface CardProps<T = DefaultRawDataType> {
  *
  * @public
  */
-export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
+export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => React.JSX.Element;

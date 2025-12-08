@@ -150,3 +150,4 @@ _(Optional)_ Whether or not a search is automatically run when a filter is selec
 
 </td></tr>
 </tbody></table>
+

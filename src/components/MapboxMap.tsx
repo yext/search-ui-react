@@ -5,6 +5,8 @@ import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import _ from 'lodash';
 
 import ReactDOM from 'react-dom';
+// Try to statically import createRoot, will be undefined for <18.
+import * as ReactDomClient from 'react-dom/client';
 
 type LegacyReactDOM = {
   render?: (element: React.ReactElement, container: Element) => void;
@@ -19,18 +21,7 @@ type RootHandle = {
 const legacyReactDOM = ReactDOM as unknown as LegacyReactDOM;
 const reactMajorVersion = Number(React.version.split('.')[0]);
 const supportsCreateRoot = !Number.isNaN(reactMajorVersion) && reactMajorVersion >= 18;
-type ReactDomClientModule = {
-  createRoot: (container: Element | DocumentFragment) => RootHandle;
-};
-let reactDomClientPromise: Promise<ReactDomClientModule> | null = null;
-const reactDomClientModuleId: string = 'react-dom/client';
 
-const loadReactDomClient = () => {
-  if (!reactDomClientPromise) {
-    reactDomClientPromise = import(reactDomClientModuleId) as Promise<ReactDomClientModule>;
-  }
-  return reactDomClientPromise;
-};
 
 /**
  * Props for rendering a custom marker on the map.
@@ -53,7 +44,7 @@ export type PinComponentProps<T> = {
  *
  * @public
  */
-export type PinComponent<T> = (props: PinComponentProps<T>) => JSX.Element;
+export type PinComponent<T> = (props: PinComponentProps<T>) => React.JSX.Element;
 
 /**
  * A function use to derive a result's coordinate.
@@ -163,7 +154,7 @@ export function MapboxMap<T>({
   allowUpdates = false,
   onPinClick,
   markerOptionsOverride,
-}: MapboxMapProps<T>): JSX.Element {
+}: MapboxMapProps<T>): React.JSX.Element {
   const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
   useEffect(() => {
     mapboxInstance.accessToken = mapboxAccessToken;
@@ -202,28 +193,18 @@ export function MapboxMap<T>({
     }
   }, []);
 
-  const attachPinComponent = useCallback((element: HTMLElement, component: JSX.Element) => {
-    activeMarkerElements.current.add(element);
-    if (supportsCreateRoot) {
-      const existingRoot = markerRoots.current.get(element);
-      if (existingRoot) {
-        existingRoot.render(component);
-        return;
+  const attachPinComponent = useCallback((element: HTMLElement, component: React.JSX.Element) => {
+    if (supportsCreateRoot && typeof ReactDomClient.createRoot === 'function') {
+      // Use React 18+ API
+      let root = markerRoots.current.get(element);
+      if (!root) {
+        root = ReactDomClient.createRoot(element);
+        markerRoots.current.set(element, root);
       }
-      loadReactDomClient()
-        .then(({ createRoot }) => {
-          if (!activeMarkerElements.current.has(element)) {
-            return;
-          }
-          const root = createRoot(element);
-          markerRoots.current.set(element, root);
-          root.render(component);
-        })
-        .catch(() => {
-          legacyReactDOM.render?.(component, element);
-        });
-    } else {
-      legacyReactDOM.render?.(component, element);
+      root.render(component);
+    } else if (typeof legacyReactDOM.render === 'function') {
+      // Fallback for React <18
+      legacyReactDOM.render(component, element);
     }
   }, []);
 
