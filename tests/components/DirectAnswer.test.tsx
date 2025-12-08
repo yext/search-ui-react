@@ -7,7 +7,7 @@ import { RecursivePartial, ignoreLinkClickErrors } from '../__utils__/mocks';
 import { fieldValueDAState, featuredSnippetDAState } from '../__fixtures__/data/directanswers';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import React, { act } from 'react';
 
 jest.mock('../../src/hooks/useAnalytics', () => {
   const report = jest.fn();
@@ -50,12 +50,14 @@ function renderDirectAnswer(
       }
     });
 
-    utils.rerender(<SearchHeadlessContext.Provider value={newSearcher}>
-      <SearchI18nextProvider searcher={newSearcher} translationOverrides={translationOverrides}>
-        <DirectAnswer />
-      </SearchI18nextProvider>
-    </SearchHeadlessContext.Provider>);
-  }
+    act(() => {
+      utils.rerender(<SearchHeadlessContext.Provider value={newSearcher}>
+        <SearchI18nextProvider searcher={newSearcher} translationOverrides={translationOverrides}>
+          <DirectAnswer />
+        </SearchI18nextProvider>
+      </SearchHeadlessContext.Provider>);
+    })
+  };
 
   return {
     ...utils,
@@ -130,7 +132,9 @@ function runTranslationTestSuite(mockState: DirectAnswerState) {
     expect(thumbsUp).toHaveAttribute('aria-label', 'This answered my question');
     expect(thumbsDown).toHaveAttribute('aria-label', 'This did not answer my question');
 
-    rerenderWithLocale('el');
+    act(() => {
+      rerenderWithLocale('el');
+    });
 
     expect(screen.getByText('Σχόλια')).toBeDefined();
 

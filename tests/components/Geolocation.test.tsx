@@ -4,7 +4,7 @@ import { Geolocation } from '../../src/components/Geolocation';
 import { Matcher, SelectableStaticFilter, State } from '@yext/search-headless-react';
 import * as locationOperations from '../../src/utils/location-operations';
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
-import React from 'react';
+import React, { act } from 'react';
 
 jest.mock('@yext/search-headless-react');
 
@@ -264,7 +264,9 @@ describe('default click handler', () => {
 
 async function clickUpdateLocation() {
   const updateLocationButton = screen.getByRole('button');
-  await userEvent.click(updateLocationButton);
+  await act(async () => {
+    await userEvent.click(updateLocationButton);
+  });
 }
 
 function createLocationFilter(radius: number = 50 * 1609.344): SelectableStaticFilter {
