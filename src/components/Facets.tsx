@@ -47,7 +47,7 @@ export function Facets(props: FacetsProps): React.JSX.Element {
   if (children) {
     (Array.isArray(children) ? children : [children])
       .filter((child): child is ReactElement<FacetProps> =>
-        React.isValidElement<FacetProps>(child) && child?.props?.fieldId !== undefined)
+        React.isValidElement<FacetProps>(child) && !!child?.props?.fieldId)
       .forEach(child => {
         fieldIdToCustomFacetProps.set(child.props.fieldId, child);
         fieldIds.push(child.props.fieldId);
