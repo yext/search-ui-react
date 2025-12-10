@@ -5,7 +5,7 @@ type LegacyReactDOM = {
   render?: (element: React.JSX.Element, container: Element) => void;
 };
 
-const legacyReactDOM = ReactDOM as unknown as LegacyReactDOM;
+const legacyReactDOM = ReactDOM as LegacyReactDOM;
 
 const reactMajorVersion = Number(React.version.split('.')[0]);
 const supportsCreateRoot = !Number.isNaN(reactMajorVersion) && reactMajorVersion >= 18;
