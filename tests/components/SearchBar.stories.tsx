@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -35,6 +36,9 @@ const meta: Meta<typeof SearchBar> = {
     geolocationOptions: {
       control: false
     }
+  },
+  args: {
+    onSearch: fn()
   }
 };
 export default meta;

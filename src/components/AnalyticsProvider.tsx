@@ -10,7 +10,7 @@ import { AnalyticsContext } from '../hooks/useAnalytics';
  * @param props - The configuration for the analytics service
  * @returns A React element that provides analytics context
  */
-export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): JSX.Element {
+export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): React.JSX.Element {
   const { children, ...analyticsConfig } = props;
   const analyticsReporter = provideAnalytics(analyticsConfig);
 

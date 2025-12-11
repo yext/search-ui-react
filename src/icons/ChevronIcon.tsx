@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function ChevronIcon({ className }: { className?: string }): JSX.Element {
+export function ChevronIcon({ className }: { className?: string }): React.JSX.Element {
   return (
     <svg
       viewBox="0 0 12 8"

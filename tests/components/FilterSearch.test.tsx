@@ -825,7 +825,7 @@ it('clears input when old filters are removed', async () => {
     displayName: 'first name 1',
     selected: false
   };
-  function DeselectFiltersButton(): JSX.Element {
+  function DeselectFiltersButton(): React.JSX.Element {
     const answerAction = useSearchActions();
 
     const handleClickDeselectFilter = () => {

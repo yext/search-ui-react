@@ -9,7 +9,7 @@ Renders a suggested query if the Search API provides one.
 **Signature:**
 
 ```typescript
-declare function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX.Element | null;
+declare function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -45,9 +45,10 @@ Description
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element \| null
+React.JSX.Element \| null
 
 A react component for spell check, or null if none exists
 

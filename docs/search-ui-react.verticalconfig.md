@@ -131,3 +131,4 @@ _(Optional)_ Whether or not this vertical should show a button to view all resul
 
 </td></tr>
 </tbody></table>
+

@@ -1,12 +1,12 @@
 import { CardProps, useCardAnalyticsCallback, useCardFeedbackCallback } from '@yext/search-ui-react';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 interface CustomRawDataType {
   name: string,
   uppercased_input: string
 }
 
-export function FunctionCard(props: CardProps<CustomRawDataType>): JSX.Element {
+export function FunctionCard(props: CardProps<CustomRawDataType>): React.JSX.Element {
   const { result } = props;
   const onClickTitle = useCardAnalyticsCallback(result, 'TITLE_CLICK');
 

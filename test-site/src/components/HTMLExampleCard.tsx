@@ -1,7 +1,7 @@
 import { CardProps, useCardAnalyticsCallback, useCardFeedbackCallback } from '@yext/search-ui-react';
 import { useCallback } from 'react';
 import '../styles/resetStyles.css';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 const builtInCssClasses = {
   container: 'flex flex-col justify-between border border-gray-200 rounded-lg mb-4 p-4 shadow-sm',
@@ -28,7 +28,7 @@ function renderHTMLContent(htmlContent: { __html: string } | undefined) {
   return null;
 }
 
-export function HTMLExampleCard(props: CardProps<CustomRawDataType>): JSX.Element {
+export function HTMLExampleCard(props: CardProps<CustomRawDataType>): React.JSX.Element {
   const { result } = props;
   const onClickTitle = useCardAnalyticsCallback(result, 'TITLE_CLICK');
   const cardFeedbackCallback = useCardFeedbackCallback(result);

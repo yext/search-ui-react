@@ -9,7 +9,7 @@ Renders a component that divide a series of vertical results into chunks across 
 **Signature:**
 
 ```typescript
-declare function Pagination(props: PaginationProps): JSX.Element | null;
+declare function Pagination(props: PaginationProps): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -45,7 +45,8 @@ props
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element \| null
+React.JSX.Element \| null
 

@@ -44,7 +44,7 @@ const builtInCssClasses: Readonly<ApplyFiltersButtonCssClasses> = {
 export function ApplyFiltersButton({
   customCssClasses,
   label
-}: ApplyFiltersButtonProps): JSX.Element {
+}: ApplyFiltersButtonProps): React.JSX.Element {
   const { t } = useTranslation();
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const searchActions = useSearchActions();

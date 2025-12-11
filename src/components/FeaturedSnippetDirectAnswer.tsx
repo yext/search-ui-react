@@ -38,14 +38,14 @@ export function FeaturedSnippetDirectAnswer({
   result,
   readMoreClickHandler,
   cssClasses = {}
-}: FeaturedSnippetDirectAnswerProps): JSX.Element {
+}: FeaturedSnippetDirectAnswerProps): React.JSX.Element {
   const answer = result.fieldType === 'multi_line_text' && result.value;
   if (unsupportedTextFormats.includes(result.fieldType)) {
     console.warn('Rendering ' + result.fieldType + ' direct answer is currently not supported. ' +
         'You can modify your search configuration to convert ' + result.fieldType + ' to HTML to be rendered '
         + 'on the page.');
   }
-  let snippet: JSX.Element;
+  let snippet: React.JSX.Element;
   const snippetValue = useMemo(() =>
   { return { __html: result.snippet?.value }; }, [result.snippet?.value]);
 

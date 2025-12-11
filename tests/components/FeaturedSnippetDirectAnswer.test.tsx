@@ -5,7 +5,7 @@ import { SearchI18nextProvider } from '../../src/components/SearchI18nextProvide
 import { featuredSnippetDAState } from '../__fixtures__/data/directanswers';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import React, { act } from 'react';
 import { ignoreLinkClickErrors } from '../__utils__/mocks';
 
 const featuredSnippetDAResult = featuredSnippetDAState.result as FeaturedSnippetDirectAnswerType;
@@ -40,12 +40,15 @@ function renderFeaturedSnippetDirectAnswer(
     }
   });
 
-    utils.rerender(<SearchHeadlessContext.Provider value={newSearcher}>
-      <SearchI18nextProvider searcher={newSearcher}>
-        <FeaturedSnippetDirectAnswer result={result} readMoreClickHandler={readMoreClickHandler} />
-      </SearchI18nextProvider>
-    </SearchHeadlessContext.Provider>);
-  }
+    act(() => {
+      utils.rerender(<SearchHeadlessContext.Provider value={newSearcher}>
+        <SearchI18nextProvider searcher={newSearcher}>
+          <FeaturedSnippetDirectAnswer result={result} readMoreClickHandler={readMoreClickHandler} />
+        </SearchI18nextProvider>
+      </SearchHeadlessContext.Provider>);
+    })
+  };
+
 
   return {
     ...utils,

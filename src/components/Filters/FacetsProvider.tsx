@@ -46,7 +46,7 @@ export function FacetsProvider({
   children,
   className = 'w-full',
   searchOnChange = true
-}: FacetsProviderProps): JSX.Element {
+}: FacetsProviderProps): React.JSX.Element {
   const searchActions = useSearchActions();
   const facetsInState = useSearchState(state => state.filters.facets);
   const facets = useMemo(() => facetsInState ?? [], [facetsInState]);

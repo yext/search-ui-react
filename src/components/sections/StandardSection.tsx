@@ -37,7 +37,7 @@ export interface StandardSectionProps<T = DefaultRawDataType> extends SectionPro
  * @param props - {@link StandardSectionProps}
  * @returns A React element for a standard section, or null if there are no results to display
  */
-export function StandardSection<T>(props: StandardSectionProps<T>): JSX.Element | null {
+export function StandardSection<T>(props: StandardSectionProps<T>): React.JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, props.customCssClasses);
   const { results, CardComponent = StandardCard, header } = props;
 

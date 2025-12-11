@@ -9,6 +9,9 @@ dist/
 /coverage
 /storybook-static
 
+.npm-cache/
+test-site/yext-search-ui-react-*.tgz
+
 .env
 test-site/.env
 .idea/

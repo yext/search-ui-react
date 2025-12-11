@@ -9,7 +9,7 @@ A component that displays a group of user-configured field value filters that wi
 **Signature:**
 
 ```typescript
-declare function StaticFilters(props: StaticFiltersProps): JSX.Element;
+declare function StaticFilters(props: StaticFiltersProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -47,9 +47,10 @@ props
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
 A React component for field value static filters
 

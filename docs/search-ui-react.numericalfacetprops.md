@@ -84,7 +84,7 @@ _(Optional)_ Returns the filter's display name based on the range values which i
 
 </td><td>
 
-JSX.Element
+React.JSX.Element
 
 
 </td><td>
@@ -113,3 +113,4 @@ _(Optional)_ Whether or not to show the option counts for each filter. Defaults 
 
 </td></tr>
 </tbody></table>
+

@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noImplicitAny": false,
+    "module": "es2020",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "declaration": true,

@@ -83,3 +83,5 @@ import '@yext/search-ui-react/bundle.css'
 ## Compatibility Notes
 
 This library and its dependencies use optional chaining and other modern TS syntax that is not inherently supported by Webpack <5 (e.g. via `create-react-app@4`). Additional Babel plugins are needed for transpiling if using legacy versions.
+
+If you need to verify this package against multiple major React releases while developing locally, follow the workflow in [guides/react-compatibility.md](./guides/react-compatibility.md) to install the library into the `test-site` the same way end users consume it.

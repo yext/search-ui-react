@@ -9,7 +9,7 @@ A component that displays all the results for a vertical using a standard sectio
 **Signature:**
 
 ```typescript
-declare function StandardSection<T>(props: StandardSectionProps<T>): JSX.Element | null;
+declare function StandardSection<T>(props: StandardSectionProps<T>): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -47,9 +47,10 @@ props
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element \| null
+React.JSX.Element \| null
 
 A React element for a standard section, or null if there are no results to display
 

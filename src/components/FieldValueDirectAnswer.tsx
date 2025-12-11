@@ -42,7 +42,7 @@ export function FieldValueDirectAnswer({
   viewDetailsClickHandler,
   UnknownFieldTypeDisplay,
   cssClasses = {}
-}: FieldValueDirectAnswerProps): JSX.Element {
+}: FieldValueDirectAnswerProps): React.JSX.Element {
   const { t } = useTranslation();
   const title = `${result.entityName} / ${result.fieldName}`;
   const link = result.relatedResult.link ?? result.relatedResult.rawData.landingPageUrl as string;
@@ -65,7 +65,7 @@ export function FieldValueDirectAnswer({
   );
 }
 
-function DefaultUnknownFieldTypeDisplay({ result }: { result: UnknownFieldValueDirectAnswer }): JSX.Element {
+function DefaultUnknownFieldTypeDisplay({ result }: { result: UnknownFieldValueDirectAnswer }): React.JSX.Element {
   let val: string | number;
   if (typeof result.value !== 'string' && typeof result.value !== 'number') {
     console.warn(`Unknown field type for direct answer with "${result.fieldApiName}" fieldApiName. Rendering result's value as a string.`
@@ -80,7 +80,7 @@ function DefaultUnknownFieldTypeDisplay({ result }: { result: UnknownFieldValueD
 function getResultContent(
   result: FieldValueDirectAnswerType,
   UnknownFieldTypeDisplay: UnknownFieldTypeDisplayComponent = DefaultUnknownFieldTypeDisplay
-): JSX.Element {
+): React.JSX.Element {
   switch (result.fieldType) {
     case BuiltInFieldType.InstagramHandle:
       return getAnchorTagJsxElement(`https://www.instagram.com/${result.value}`, result.value);
@@ -123,8 +123,8 @@ function getResultContent(
 
 function getListJsxElement<T>(
   list: T[],
-  getItemJsxElement: (el: T) => JSX.Element
-): JSX.Element {
+  getItemJsxElement: (el: T) => React.JSX.Element
+): React.JSX.Element {
   return (<ul className='list-disc list-inside'>
     {list.map((el, i) =>
       <li key={i}>
@@ -133,15 +133,15 @@ function getListJsxElement<T>(
   </ul>);
 }
 
-function getTextJsxElement(text: string | number): JSX.Element {
+function getTextJsxElement(text: string | number): React.JSX.Element {
   return <p className='whitespace-pre-wrap'>{text}</p>;
 }
 
-function getAnchorTagJsxElement(href: string, displayText?: string): JSX.Element {
+function getAnchorTagJsxElement(href: string, displayText?: string): React.JSX.Element {
   return <a href={href} className='text-primary'>{displayText ?? href}</a>;
 }
 
-function getAddressJsxElement(address: Address): JSX.Element {
+function getAddressJsxElement(address: Address): React.JSX.Element {
   // user specified display Address in KM
   if (address.extraDescription) {
     return <div>{address.extraDescription}</div>;

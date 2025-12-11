@@ -39,7 +39,7 @@ export const builtInCssClasses: Readonly<CollapsibleLabelCssClasses> = {
  *
  * @public
  */
-export function CollapsibleLabel({ label, customCssClasses }: CollapsibleLabelProps): JSX.Element {
+export function CollapsibleLabel({ label, customCssClasses }: CollapsibleLabelProps): React.JSX.Element {
   const { isExpanded, getToggleProps } = useFilterGroupContext();
   const iconClassName = classNames('w-3 text-gray-400', {
     'transform rotate-180': !isExpanded

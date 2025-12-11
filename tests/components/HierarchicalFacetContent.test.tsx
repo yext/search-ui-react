@@ -7,7 +7,7 @@ import { HierarchicalFacetContent } from '../../src/components/HierarchicalFacet
 import { FacetsProvider } from '../../src/components/Filters';
 import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
-import React from 'react';
+import React, { act } from 'react';
 
 const hierarchicalFacet = DisplayableFacets[2];
 
@@ -48,7 +48,7 @@ const mockHierarchicalFacet = (props?: HierarchicalFacetProps) => {
   return (
     <FacetsProvider>
       {facets => facets.map(facet => (
-        <HierarchicalFacetContent {...props} fieldId={facet.fieldId} facet={facet}/>))}
+        <HierarchicalFacetContent {...props} fieldId={facet.fieldId} facet={facet} key={facet.fieldId} />))}
     </FacetsProvider>);
 };
 
@@ -70,7 +70,9 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const bananaButton = screen.getByRole('button', { name: /banana/i });
-    await userEvent.click(bananaButton);
+    await act(async () => {
+      await userEvent.click(bananaButton);
+    });
 
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
@@ -80,7 +82,9 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const appleButton = screen.getByRole('button', { name: /apple/i });
-    await userEvent.click(appleButton);
+    await act(async () => {
+      await userEvent.click(appleButton);
+    });
 
     expectFacetOptionSet(actions, { value: 'food > fruit > apple', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
@@ -91,7 +95,9 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const currentCategoryButton = screen.getAllByRole('button', { name: /fruit/i })[1];
-    await userEvent.click(currentCategoryButton);
+    await act(async () => {
+      await userEvent.click(currentCategoryButton);
+    });
 
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit > banana', selected: false });
@@ -115,7 +121,9 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const currentCategoryButton = screen.getAllByRole('button', { name: /fruit/i })[1];
-    await userEvent.click(currentCategoryButton);
+    await act(async () => {
+      await userEvent.click(currentCategoryButton);
+    });
 
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: false });
     expectFacetOptionSet(actions, { value: 'food', selected: true });
@@ -125,7 +133,9 @@ describe('HierarchicalFacetsContent', () => {
     render(mockHierarchicalFacet());
 
     const parentCategoryButton = screen.getByRole('button', { name: /food/i });
-    await userEvent.click(parentCategoryButton);
+    await act(async () => {
+      await userEvent.click(parentCategoryButton);
+    });
 
     expectFacetOptionSet(actions, { value: 'food', selected: true });
     expectFacetOptionSet(actions, { value: 'food > fruit', selected: false });

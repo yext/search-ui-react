@@ -15,7 +15,7 @@ export function DropdownInput(props: {
   onFocus?: (value: string) => void,
   onChange?: (value: string) => void,
   submitCriteria?: (index: number) => boolean
-}): JSX.Element {
+}): React.JSX.Element {
   const {
     className,
     placeholder,

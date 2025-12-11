@@ -9,7 +9,7 @@ A component that renders search results for a vertical page.
 **Signature:**
 
 ```typescript
-declare function VerticalResults<T>(props: VerticalResultsProps<T>): JSX.Element | null;
+declare function VerticalResults<T>(props: VerticalResultsProps<T>): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -47,9 +47,10 @@ props
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element \| null
+React.JSX.Element \| null
 
 A React element for the results, or null if no results should be displayed
 

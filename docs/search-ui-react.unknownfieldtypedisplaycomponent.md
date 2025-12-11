@@ -9,7 +9,7 @@ A React component interface to render results with "unknown" field type in field
 **Signature:**
 
 ```typescript
-type UnknownFieldTypeDisplayComponent = (props: UnknownFieldTypeDisplayProps) => JSX.Element;
+type UnknownFieldTypeDisplayComponent = (props: UnknownFieldTypeDisplayProps) => React.JSX.Element;
 ```
 **References:** [UnknownFieldTypeDisplayProps](./search-ui-react.unknownfieldtypedisplayprops.md)
 

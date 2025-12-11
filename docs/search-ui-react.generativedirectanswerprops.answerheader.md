@@ -9,5 +9,5 @@ The header for the answer section of the generative direct answer.
 **Signature:**
 
 ```typescript
-answerHeader?: string | JSX.Element;
+answerHeader?: string | React.JSX.Element;
 ```
