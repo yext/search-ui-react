@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function CurrentLocationIcon(): JSX.Element {
+export function CurrentLocationIcon(): React.JSX.Element {
   return (
      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
       <line x1="2" x2="5" y1="12" y2="12"/>

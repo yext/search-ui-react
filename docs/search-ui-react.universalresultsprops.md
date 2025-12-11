@@ -93,3 +93,4 @@ A mapping of verticalKey to the configuration for each vertical.
 
 </td></tr>
 </tbody></table>
+

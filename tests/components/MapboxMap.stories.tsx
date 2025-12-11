@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { within } from '@storybook/testing-library';
+import { fn } from '@storybook/test';
 import { fireEvent } from '@testing-library/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
@@ -27,6 +28,7 @@ const meta: Meta<typeof MapboxMap> = {
   },
   args: {
     mapboxAccessToken: process.env.REACT_APP_MAPBOX_API_KEY,
+    onPinClick: fn(),
   },
   parameters: { layout: 'fullscreen' },
   decorators: [(Story) => (<div style={{ height: '100vh' }}><Story /></div>)]

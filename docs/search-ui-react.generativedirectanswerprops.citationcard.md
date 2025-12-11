@@ -9,5 +9,5 @@ The citation card component for customizing how each citation is displayed.
 **Signature:**
 
 ```typescript
-CitationCard?: (props: CitationProps) => JSX.Element | null;
+CitationCard?: (props: CitationProps) => React.JSX.Element | null;
 ```

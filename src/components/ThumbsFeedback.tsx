@@ -53,7 +53,7 @@ export const builtInCssClasses: Readonly<ThumbsFeedbackCssClasses> = {
  * @param props - The configuration for the the feedback component.
  * @returns A React element for quality feedback widget.
  */
-export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element {
+export function ThumbsFeedback(props: ThumbsFeedbackProps): React.JSX.Element {
   const { t } = useTranslation();
   const {
     onClick,

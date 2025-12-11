@@ -83,7 +83,7 @@ export function AlternativeVerticals({
   verticalConfigMap,
   displayAllOnNoResults = true,
   customCssClasses
-}: AlternativeVerticalsProps): JSX.Element | null {
+}: AlternativeVerticalsProps): React.JSX.Element | null {
   const { t } = useTranslation();
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 

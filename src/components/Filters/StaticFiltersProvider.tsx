@@ -32,7 +32,7 @@ export function StaticFiltersProvider({
   children,
   className = 'w-full',
   searchOnChange = true
-}: StaticFiltersProviderProps): JSX.Element {
+}: StaticFiltersProviderProps): React.JSX.Element {
   const searchActions = useSearchActions();
   const displayableFilters = useSearchState(state => state.filters.static);
 

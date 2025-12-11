@@ -4,7 +4,7 @@ import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/m
 import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { NumericalFacets } from '../../src/components';
-import React from 'react';
+import React, { act } from 'react';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -71,7 +71,9 @@ describe('NumericalFacets', () => {
     const expensiveCheckbox: HTMLInputElement = screen.getByLabelText(priceFacet.options[0].displayName);
     expect(expensiveCheckbox.checked).toBeTruthy();
 
-    await userEvent.click(expensiveCheckbox);
+    await act(async () => {
+      await userEvent.click(expensiveCheckbox);
+    });
     expectFacetOptionSet(actions, priceFacet.fieldId, priceFacet.options[0], false);
   });
 
@@ -83,7 +85,9 @@ describe('NumericalFacets', () => {
     const cheapCheckbox: HTMLInputElement = screen.getByLabelText(priceFacet.options[1].displayName);
     expect(cheapCheckbox.checked).toBeFalsy();
 
-    await userEvent.click(cheapCheckbox);
+    await act(async () => {
+      await userEvent.click(cheapCheckbox);
+    });
     expectFacetOptionSet(actions, priceFacet.fieldId, priceFacet.options[1], true);
   });
 
@@ -105,7 +109,9 @@ describe('NumericalFacets', () => {
     render(<NumericalFacets getFilterDisplayName={getFilterDisplayName}/>);
     await userEvent.type(screen.getByPlaceholderText('Min'), '1');
     await userEvent.type(screen.getByPlaceholderText('Max'), '5');
-    await userEvent.click(screen.getByText('Apply'));
+    await act(async () => {
+      await userEvent.click(screen.getByText('Apply'));
+    });
 
     const expectedSelectableFilter: SelectableStaticFilter = {
       displayName: 'start-1 end-5',

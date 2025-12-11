@@ -1,6 +1,6 @@
 import { DisplayableFacetOption } from '@yext/search-headless-react';
 import { FilterGroupCssClasses } from './FilterGroup';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { HierarchicalFacetDisplayCssClasses, RangeInputCssClasses } from './Filters';
 
@@ -90,7 +90,7 @@ export interface NumericalFacetProps extends StandardFacetProps {
   /**
    * An optional element which renders in front of the input text.
    */
-  inputPrefix?: JSX.Element
+  inputPrefix?: React.JSX.Element
 }
 
 /**

@@ -30,9 +30,9 @@ export type DropdownItemProps = PropsWithChildren<{
  *
  * @public
  */
-export function DropdownItem(_props: DropdownItemProps): JSX.Element | null { return null; }
+export function DropdownItem(_props: DropdownItemProps): React.JSX.Element | null { return null; }
 
-export function DropdownItemWithIndex(props: DropdownItemProps & { index: number }): JSX.Element {
+export function DropdownItemWithIndex(props: DropdownItemProps & { index: number }): React.JSX.Element {
   const {
     children,
     value,

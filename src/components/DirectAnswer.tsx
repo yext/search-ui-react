@@ -32,7 +32,7 @@ export interface UnknownFieldTypeDisplayProps {
  */
 export type UnknownFieldTypeDisplayComponent = (
   props: UnknownFieldTypeDisplayProps
-) => JSX.Element;
+) => React.JSX.Element;
 
 /**
  * Props for {@link DirectAnswer}.
@@ -85,7 +85,7 @@ const builtInCssClasses: Readonly<DirectAnswerCssClasses> = {
 export function DirectAnswer({
   customCssClasses,
   UnknownFieldTypeDisplay
-}: DirectAnswerProps): JSX.Element | null {
+}: DirectAnswerProps): React.JSX.Element | null {
   const directAnswerResult = useSearchState(state => state.directAnswer.result);
   const isLoading = useSearchState(state => state.searchStatus.isLoading || false);
   const composedCssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);

@@ -1,5 +1,6 @@
-import { addons } from '@storybook/addons';
+import { addons } from '@storybook/manager-api';
+import yextTheme from './yextTheme';
 
 addons.setConfig({
-  theme: require('./yextTheme.ts')
+  theme: yextTheme,
 });

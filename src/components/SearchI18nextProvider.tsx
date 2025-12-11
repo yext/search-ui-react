@@ -92,7 +92,7 @@ declare interface SearchI18nextConfig {
  * @param props - The configuration for the search headless service
  * @returns A React element that provides translation context
  */
-export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConfig>): JSX.Element {
+export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConfig>):React.JSX.Element {
   const { searcher, translationOverrides, children } = props;
 
   React.useEffect(() => {

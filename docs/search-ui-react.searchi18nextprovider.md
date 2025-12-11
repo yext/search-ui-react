@@ -9,7 +9,7 @@ A higher-order component which provides translations for search react components
 **Signature:**
 
 ```typescript
-declare function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConfig>): JSX.Element;
+declare function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConfig>): React.JSX.Element;
 ```
 
 ## Parameters
@@ -47,9 +47,10 @@ The configuration for the search headless service
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
 A React element that provides translation context
 

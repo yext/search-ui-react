@@ -9,7 +9,7 @@ A component that can be used to render a section template for vertical results.
 **Signature:**
 
 ```typescript
-type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => JSX.Element | null;
+type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => React.JSX.Element | null;
 ```
 **References:** [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)<!-- -->, [SectionProps](./search-ui-react.sectionprops.md)
 

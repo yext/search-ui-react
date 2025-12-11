@@ -1,6 +1,7 @@
 import { Result } from '@yext/search-headless-react';
 import { CardComponent } from './cardComponent';
 import { DefaultRawDataType } from './DefaultRawDataType';
+import React from 'react';
 
 /**
  * The configuration of a section template for a vertical's results on a universal page.
@@ -13,7 +14,7 @@ export interface SectionProps<T = DefaultRawDataType> {
   /** The key for the vertical. */
   verticalKey: string,
   /** A header to display above the results. */
-  header?: JSX.Element,
+  header?: React.JSX.Element,
   /** The card to use for this vertical. */
   CardComponent?: CardComponent<T>,
   /** Whether or not to allow more results to be viewed. */
@@ -25,4 +26,4 @@ export interface SectionProps<T = DefaultRawDataType> {
  *
  * @public
  */
-export type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => JSX.Element | null;
+export type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => React.JSX.Element | null;

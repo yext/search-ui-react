@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { within, userEvent } from '@storybook/testing-library';
 import { DropdownItem } from '../../src/components';
 import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown';
@@ -8,7 +9,11 @@ import React from 'react';
 
 const meta: Meta<typeof Dropdown> = {
   title: 'Dropdown',
-  component: Dropdown
+  component: Dropdown,
+  args: {
+    onToggle: fn(),
+    onSelect: fn(),
+  }
 };
 export default meta;
 

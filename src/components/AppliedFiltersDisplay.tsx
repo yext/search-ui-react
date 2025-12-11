@@ -40,7 +40,7 @@ export interface AppliedFiltersDisplayProps {
  * @param props - {@link AppliedFiltersDisplayProps}
  * @returns A React element for the applied filters
  */
-export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): JSX.Element | null {
+export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): React.JSX.Element | null {
   const { t } = useTranslation();
   const {
     nlpFilterDisplayNames = [],
@@ -118,7 +118,7 @@ function RemovableFilter({
   handleRemove: () => void,
   index: number,
   cssClasses: AppliedFiltersCssClasses
-}): JSX.Element {
+}): React.JSX.Element {
   const { t } = useTranslation();
   return (
     <div className={cssClasses.removableFilter} key={`${displayName}-${index}`}>
@@ -138,7 +138,7 @@ function renderNlpFilter(
   displayName: string | undefined,
   index: number,
   cssClasses: AppliedFiltersCssClasses
-): JSX.Element {
+): React.JSX.Element {
   return (
     <div className={cssClasses.nlpFilter} key={`${displayName}-${index}`}>
       <span className={cssClasses.filterLabel}>{displayName}</span>

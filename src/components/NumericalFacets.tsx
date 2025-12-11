@@ -37,7 +37,7 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
   /**
    * An optional element which renders in front of the input text.
    */
-  inputPrefix?: JSX.Element,
+  inputPrefix?: React.JSX.Element,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: NumericalFacetsCssClasses
 }
@@ -60,7 +60,7 @@ export function NumericalFacets({
   inputPrefix = DEFAULT_RANGE_INPUT_PREFIX,
   customCssClasses = {},
   ...filterGroupProps
-}: NumericalFacetsProps): JSX.Element {
+}: NumericalFacetsProps): React.JSX.Element {
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.numericalFacetsContainer}>
       {facets => facets

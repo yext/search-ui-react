@@ -9,7 +9,7 @@ A functional component that can be used to render a result card.
 **Signature:**
 
 ```typescript
-type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
+type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => React.JSX.Element;
 ```
 **References:** [DefaultRawDataType](./search-ui-react.defaultrawdatatype.md)<!-- -->, [CardProps](./search-ui-react.cardprops.md)
 

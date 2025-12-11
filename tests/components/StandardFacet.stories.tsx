@@ -7,7 +7,7 @@ import { DisplayableFacets } from '../__fixtures__/data/filters';
 import React from 'react';
 
 const meta: Meta<typeof Facets> = {
-  title: 'Facets',
+  title: 'Filters/Facets/Standard',
   component: Facets
 };
 export default meta;

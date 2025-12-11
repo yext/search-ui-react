@@ -5,7 +5,7 @@ import { ResultsCount, ResultsCountProps } from '../../src/components/ResultsCou
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { VerticalSearcherState } from '../__fixtures__/headless-state';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 const meta: Meta<typeof ResultsCount> = {
   title: 'ResultsCount',
@@ -14,42 +14,44 @@ const meta: Meta<typeof ResultsCount> = {
 export default meta;
 
 export const Primary: StoryFn<ResultsCountProps> = (args) => {
+  const headless = useMemo(() => generateMockedHeadless({
+    ...VerticalSearcherState,
+    vertical: { resultsCount: 5 },
+  }), []);
   return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless({
-      ...VerticalSearcherState,
-      vertical: {
-        resultsCount: 5
-      }
-    })}>
+    <SearchHeadlessContext.Provider value={headless}>
       <ResultsCount {...args} />
     </SearchHeadlessContext.Provider>
   );
 };
 
+
 export const PaginationRange: StoryFn<ResultsCountProps> = (args) => {
+  const headless = useMemo(() => generateMockedHeadless({
+    ...VerticalSearcherState,
+    vertical: {
+      resultsCount: 30
+    }
+  }), []);
   return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless({
-      ...VerticalSearcherState,
-      vertical: {
-        resultsCount: 30
-      }
-    })}>
+    <SearchHeadlessContext.Provider value={headless}>
       <ResultsCount {...args} />
     </SearchHeadlessContext.Provider>
   );
 };
 
 export const Loading: StoryFn<ResultsCountProps> = (args) => {
+  const headless = useMemo(() => generateMockedHeadless({
+    ...VerticalSearcherState,
+    vertical: {
+      resultsCount: 5
+    },
+    searchStatus: {
+      isLoading: true
+    }
+  }), []);
   return (
-    <SearchHeadlessContext.Provider value={generateMockedHeadless({
-      ...VerticalSearcherState,
-      vertical: {
-        resultsCount: 5
-      },
-      searchStatus: {
-        isLoading: true
-      }
-    })}>
+    <SearchHeadlessContext.Provider value={headless}>
       <ResultsCount {...args} />
     </SearchHeadlessContext.Provider>
   );

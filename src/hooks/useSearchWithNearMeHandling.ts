@@ -28,7 +28,7 @@ export function useSearchWithNearMeHandling(
    * Allow a query search to wait on the response to the autocomplete request right
    * before the search execution in order to retrieve the search intents.
    */
-  const autocompletePromiseRef = useRef<Promise<AutocompleteResponse | undefined>>();
+  const autocompletePromiseRef = useRef<Promise<AutocompleteResponse | undefined>>(undefined);
   const searchActions = useSearchActions();
 
   async function executeQuery() {

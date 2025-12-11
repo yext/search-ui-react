@@ -40,7 +40,7 @@ export interface VerticalResultsProps<T> {
  * @param props - {@link VerticalResultsProps}
  * @returns A React element for the results, or null if no results should be displayed
  */
-export function VerticalResults<T>(props: VerticalResultsProps<T>): JSX.Element | null {
+export function VerticalResults<T>(props: VerticalResultsProps<T>): React.JSX.Element | null {
   const { displayAllOnNoResults = true, ...otherProps } = props;
   const verticalResults = useSearchState(state => state.vertical.results) || [];
   const allResultsForVertical =

@@ -9,6 +9,6 @@ import React from 'react';
  *
  * @public
  */
-export function FilterDivider({ className }: { className?: string }): JSX.Element {
+export function FilterDivider({ className }: { className?: string }): React.JSX.Element {
   return <div className={twMerge('w-full h-px bg-gray-200 my-4', className)} />;
 }

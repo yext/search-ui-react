@@ -100,7 +100,7 @@ export type RenderEntityPreviews = (
     onClick: (value: string, _index: number, itemData?: FocusedItemData) => void,
     ariaLabel: (value: string) => string
   }
-) => JSX.Element | null;
+) => React.JSX.Element | null;
 
 /**
  * The configuration options for Visual Autocomplete.
@@ -171,7 +171,7 @@ export function SearchBar({
   recentSearchesLimit = 5,
   customCssClasses,
   onSearch
-}: SearchBarProps): JSX.Element {
+}: SearchBarProps): React.JSX.Element {
   const { t } = useTranslation();
   const {
     entityPreviewSearcher,

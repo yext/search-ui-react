@@ -23,7 +23,7 @@ interface VerticalResultsDisplayProps<T> {
  * @param props - The props for the Component, including the results and the card type
  *                to be used.
  */
-export function VerticalResultsDisplay<T>(props: VerticalResultsDisplayProps<T>): JSX.Element | null {
+export function VerticalResultsDisplay<T>(props: VerticalResultsDisplayProps<T>): React.JSX.Element | null {
   const {
     CardComponent,
     results,
@@ -58,7 +58,7 @@ function renderResult<T>(
   CardComponent: CardComponent<T>,
   result: Result<T>,
   setResultsRef?: (index: number) => ((result: HTMLDivElement) => void) | null
-): JSX.Element {
+): React.JSX.Element {
   const key = result.id && result.index ? `${result.id}-${result.index}` : result.id || result.index;
   return (
     <div key={result.id} ref={result.index ? setResultsRef?.(result.index) : null}>

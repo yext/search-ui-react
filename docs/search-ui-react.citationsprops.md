@@ -45,7 +45,7 @@ Description
 
 </td><td>
 
-(props: [CitationProps](./search-ui-react.citationprops.md)<!-- -->) =&gt; JSX.Element \| null
+(props: [CitationProps](./search-ui-react.citationprops.md)<!-- -->) =&gt; React.JSX.Element \| null
 
 
 </td><td>
@@ -83,7 +83,7 @@ _(Optional)_ Handle onClick event for citation link.
 
 </td><td>
 
-string \| JSX.Element
+string \| React.JSX.Element
 
 
 </td><td>
@@ -150,3 +150,4 @@ Returned results relevant to the users' query to be used in Citations.
 
 </td></tr>
 </tbody></table>
+

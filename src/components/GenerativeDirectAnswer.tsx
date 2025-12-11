@@ -49,17 +49,17 @@ export interface GenerativeDirectAnswerProps {
   /** CSS classes for customizing the component styling. */
   customCssClasses?: GenerativeDirectAnswerCssClasses,
   /** The header for the answer section of the generative direct answer. */
-  answerHeader?: string | JSX.Element,
+  answerHeader?: string | React.JSX.Element,
   /** The header for the citations section of the generative direct answer. */
-  citationsHeader?: string | JSX.Element,
+  citationsHeader?: string | React.JSX.Element,
   /**
    * The citations container component for customizing the logic that determines which results can be rendered.
    * By default, a section for citations is displayed if the results that correspond to the
    * citations have the default minimum required info, which is `rawData.uid` and `rawData.name`.
   */
-  CitationsContainer?: (props: CitationsProps) => JSX.Element | null
+  CitationsContainer?: (props: CitationsProps) => React.JSX.Element | null
   /** The citation card component for customizing how each citation is displayed. */
-  CitationCard?: (props: CitationProps) => JSX.Element | null
+  CitationCard?: (props: CitationProps) => React.JSX.Element | null
 }
 
 /**
@@ -76,7 +76,7 @@ export function GenerativeDirectAnswer({
   citationsHeader,
   CitationCard,
   CitationsContainer = Citations,
-}: GenerativeDirectAnswerProps): JSX.Element | null {
+}: GenerativeDirectAnswerProps): React.JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
   const isUniversal = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Universal;
@@ -133,7 +133,7 @@ export function GenerativeDirectAnswer({
 interface AnswerProps {
   gdaResponse: GenerativeDirectAnswerResponse,
   cssClasses: GenerativeDirectAnswerCssClasses,
-  answerHeader?: string | JSX.Element,
+  answerHeader?: string | React.JSX.Element,
   linkClickHandler?: (data: GdaClickEventData) => void
 }
 
@@ -180,9 +180,9 @@ export interface CitationsProps {
   /** Returned results relevant to the users' query to be used in Citations. */
   searchResults: Result[],
   /** The header for the citations section generative direct answer. */
-  citationsHeader?: string | JSX.Element,
+  citationsHeader?: string | React.JSX.Element,
   /** The component for citation card */
-  CitationCard?: (props: CitationProps) => JSX.Element | null,
+  CitationCard?: (props: CitationProps) => React.JSX.Element | null,
   /** Handle onClick event for citation link. */
   citationClickHandler?: (data: GdaClickEventData) => void
 }

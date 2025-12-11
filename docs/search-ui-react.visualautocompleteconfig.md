@@ -131,3 +131,4 @@ _(Optional)_ Specify the number of entities to return per vertical. \*
 
 </td></tr>
 </tbody></table>
+

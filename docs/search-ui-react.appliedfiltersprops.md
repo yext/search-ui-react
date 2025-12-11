@@ -112,3 +112,4 @@ _(Optional)_ A set of facet fieldIds that should be interpreted as "hierarchical
 
 </td></tr>
 </tbody></table>
+

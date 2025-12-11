@@ -9,7 +9,7 @@ A component that displays a list of filters applied to the current vertical sear
 **Signature:**
 
 ```typescript
-declare function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
+declare function AppliedFilters(props: AppliedFiltersProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -47,9 +47,10 @@ props
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
 A React element for the applied filters
 

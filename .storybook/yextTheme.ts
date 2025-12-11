@@ -1,6 +1,6 @@
 import { create } from '@storybook/theming';
 
-module.exports = create({
+const yextTheme = create({
   base: 'light',
   colorPrimary: '#eeeff0',
   colorSecondary: '#2563eb',
@@ -30,3 +30,5 @@ module.exports = create({
   brandUrl: 'https://github.com/yext/search-ui-react',
   brandImage: './logo.png'
 });
+
+export default yextTheme;
