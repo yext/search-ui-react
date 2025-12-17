@@ -366,13 +366,42 @@ export function MapboxMap<T>({
           }
         })
 
-        if (!bounds.isEmpty()){
-          mapbox.fitBounds(bounds, {
+        const canvas = mapbox.getCanvas();
+        if (!bounds.isEmpty() && !!canvas && canvas.height > 0 && canvas.width > 0) {
+          const resolvedOptions = {
             // these settings are defaults and will be overriden if present on fitBoundsOptions
             padding: { top: 50, bottom: 50, left: 50, right: 50 },
             maxZoom: mapboxOptions?.maxZoom ?? 15,
             ...mapboxOptions?.fitBoundsOptions,
-          });
+          };
+
+          let resolvedPadding;
+          if (typeof resolvedOptions.padding === 'number') {
+            resolvedPadding = { top: resolvedOptions.padding, bottom: resolvedOptions.padding, left: resolvedOptions.padding, right: resolvedOptions.padding };
+          } else {
+            resolvedPadding = {
+              top: resolvedOptions.padding?.top ?? 0,
+              bottom: resolvedOptions.padding?.bottom ?? 0,
+              left: resolvedOptions.padding?.left ?? 0,
+              right: resolvedOptions.padding?.right ?? 0
+            };
+          }
+
+          // Padding must not exceed the map's canvas dimensions
+          const verticalPaddingSum = resolvedPadding.top + resolvedPadding.bottom;
+          if (verticalPaddingSum >= canvas.height) {
+            const ratio = canvas.height / (verticalPaddingSum || 1);
+            resolvedPadding.top = Math.max(0, resolvedPadding.top * ratio - 1);
+            resolvedPadding.bottom = Math.max(0, resolvedPadding.bottom * ratio - 1);
+          }
+          const horizontalPaddingSum = resolvedPadding.left + resolvedPadding.right;
+          if (horizontalPaddingSum >= canvas.width) {
+            const ratio = canvas.width / (horizontalPaddingSum || 1);
+            resolvedPadding.left = Math.max(0, resolvedPadding.left * ratio - 1);
+            resolvedPadding.right = Math.max(0, resolvedPadding.right * ratio - 1);
+          }
+          resolvedOptions.padding = resolvedPadding;
+          mapbox.fitBounds(bounds, resolvedOptions);
         }
 
         return () => {
