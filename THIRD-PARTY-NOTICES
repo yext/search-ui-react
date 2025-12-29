@@ -587,7 +587,7 @@ Apache License
 
 The following npm package may be included in this product:
 
- - @swc/helpers@0.5.17
+ - @swc/helpers@0.5.18
 
 This package contains the following license:
 
@@ -1737,7 +1737,7 @@ IN THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - fastq@1.19.1
+ - fastq@1.20.1
 
 This package contains the following license:
 
@@ -2124,7 +2124,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - lodash-es@4.17.21
+ - lodash-es@4.17.22
  - lodash@4.17.21
 
 These packages each contain the following license:
@@ -3115,8 +3115,8 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - react-dom@19.2.1
- - react@19.2.1
+ - react-dom@19.2.3
+ - react@19.2.3
  - scheduler@0.27.0
 
 These packages each contain the following license:
@@ -3234,9 +3234,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 The following npm packages may be included in this product:
 
- - @tailwindcss/forms@0.5.10
+ - @tailwindcss/forms@0.5.11
  - @tailwindcss/typography@0.5.19
- - tailwindcss@3.4.18
+ - tailwindcss@3.4.19
 
 These packages each contain the following license:
 
@@ -3261,37 +3261,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
------------
-
-The following npm package may be included in this product:
-
- - fsevents@2.3.3
-
-This package contains the following license:
-
-MIT License
------------
-
-Copyright (C) 2010-2020 by Philipp Dunkel, Ben Noordhuis, Elan Shankar, Paul Miller
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
 
 -----------
 
@@ -4524,7 +4493,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - i18next@25.7.1
+ - i18next@25.7.3
 
 This package contains the following license:
 
