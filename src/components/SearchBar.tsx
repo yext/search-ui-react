@@ -151,6 +151,14 @@ export interface SearchBarProps {
   hideRecentSearches?: boolean,
   /** Limits the number of recent searches shown. */
   recentSearchesLimit?: number,
+  /** Limits the number of universal query suggestions returned by autocomplete. */
+  universalAutocompleteLimit?: number,
+  /**
+   * Limits the number of query suggestions returned by autocomplete for verticals.
+   * The keys of the record correspond to the vertical keys, and the values correspond to the maximum number of suggestions to return for that vertical.
+   * If a limit for the current vertical is not specified, the default limit will be used.
+   */
+  verticalAutocompleteLimits?: Record<string, number>,
   /** A callback which is called when a search is ran. */
   onSearch?: onSearchFunc
 }
@@ -169,6 +177,8 @@ export function SearchBar({
   onSelectVerticalLink,
   verticalKeyToLabel,
   recentSearchesLimit = 5,
+  universalAutocompleteLimit,
+  verticalAutocompleteLimits,
   customCssClasses,
   onSearch
 }: SearchBarProps): React.JSX.Element {
@@ -214,6 +224,19 @@ export function SearchBar({
       clearRecentSearches();
     }
   }, [clearRecentSearches, hideRecentSearches]);
+
+  useEffect(() => {
+    if (universalAutocompleteLimit) {
+      searchActions.setUniversalAutocompleteLimit(universalAutocompleteLimit);
+    } else {
+      searchActions.setUniversalAutocompleteLimit(undefined);
+    }
+    if (verticalKey && verticalAutocompleteLimits?.[verticalKey]) {
+      searchActions.setVerticalAutocompleteLimit(verticalAutocompleteLimits[verticalKey]);
+    } else {
+      searchActions.setVerticalAutocompleteLimit(undefined);
+    }
+  }, [searchActions, universalAutocompleteLimit, verticalAutocompleteLimits, verticalKey]);
 
   const clearAutocomplete = useCallback(() => {
     clearAutocompleteData();

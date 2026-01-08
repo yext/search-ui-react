@@ -92,6 +92,7 @@ export default function UniversalPage(): React.JSX.Element {
       <SearchBar
         visualAutocompleteConfig={visualAutocompleteConfig}
         customCssClasses={customSearchBarCss}
+        universalAutocompleteLimit={20}
       />
       <SpellCheck />
       <GenerativeDirectAnswer 
