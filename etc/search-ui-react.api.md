@@ -685,7 +685,7 @@ export interface ResultsCountProps {
 }
 
 // @public
-export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): React_2.JSX.Element;
+export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch }: SearchBarProps): React_2.JSX.Element;
 
 // @public
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
@@ -730,6 +730,8 @@ export interface SearchBarProps {
     placeholder?: string;
     recentSearchesLimit?: number;
     showVerticalLinks?: boolean;
+    universalAutocompleteLimit?: number;
+    verticalAutocompleteLimits?: Record<string, number>;
     verticalKeyToLabel?: (verticalKey: string) => string;
     visualAutocompleteConfig?: VisualAutocompleteConfig;
 }
@@ -1022,7 +1024,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1658:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1666:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
