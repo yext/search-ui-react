@@ -13,8 +13,7 @@ export interface SearchEventPayload {
      * If passed as a number, it is the immutable entity ID (UID) set by the system. This is an internal ID.
      */
     entity?: string | number;
-    /** The locale of the user who generated the event.
-     */
+    /** The locale of the user who generated the event.*/
     locale?: string;
     /** Unique identifier of the search */
     searchId?: string;

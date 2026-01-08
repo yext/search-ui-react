@@ -33,11 +33,11 @@ export class SearchAnalyticsEventServiceImpl implements SearchAnalyticsEventServ
             search: {
                 searchId: payload.searchId,
                 queryId: payload.queryId,
+                experienceKey: payload.experienceKey,
                 verticalKey: payload.verticalKey,
-                isDirectAnswer: payload.isDirectAnswer,
                 versionLabel: payload.versionLabel,
                 versionNumber: payload.versionNumber,
-                experienceKey: payload.experienceKey,
+                isDirectAnswer: payload.isDirectAnswer,
                 isGenerativeDirectAnswer: payload.isGenerativeDirectAnswer
             },
             searchTerm: payload.searchTerm
