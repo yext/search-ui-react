@@ -108,7 +108,7 @@ _(Optional)_ List of filter ids to render as numerical facets.
 
 </td><td>
 
-JSX.Element
+React.JSX.Element
 
 
 </td><td>

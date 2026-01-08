@@ -1,4 +1,5 @@
 import { Meta, StoryFn } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -35,6 +36,9 @@ const meta: Meta<typeof SearchBar> = {
     geolocationOptions: {
       control: false
     }
+  },
+  args: {
+    onSearch: fn()
   }
 };
 export default meta;
@@ -50,17 +54,17 @@ export const Primary: StoryFn<SearchBarProps> = (args) => {
 export const DropdownExpanded: StoryFn<SearchBarProps> = Primary.bind({});
 DropdownExpanded.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const textboxEl = canvas.getByRole('textbox');
-  await conductRecentSearches(textboxEl);
-  await userEvent.click(textboxEl);
+  const comboboxEl = canvas.getByRole('combobox');
+  await conductRecentSearches(comboboxEl);
+  await userEvent.click(comboboxEl);
 };
 
 export const DropdownHighlight: StoryFn<SearchBarProps> = Primary.bind({});
 DropdownHighlight.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const textboxEl = canvas.getByRole('textbox');
-  await conductRecentSearches(textboxEl);
-  await userEvent.click(textboxEl);
+  const comboboxEl = canvas.getByRole('combobox');
+  await conductRecentSearches(comboboxEl);
+  await userEvent.click(comboboxEl);
   await userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
 
@@ -70,15 +74,15 @@ DropdownExpandedVerticalLinks.args = {
 };
 DropdownExpandedVerticalLinks.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  const textboxEl = canvas.getByRole('textbox');
-  await conductRecentSearches(textboxEl);
-  await userEvent.click(textboxEl);
+  const comboboxEl = canvas.getByRole('combobox');
+  await conductRecentSearches(comboboxEl);
+  await userEvent.click(comboboxEl);
 };
 
-async function conductRecentSearches(textboxEl: HTMLElement) {
-  await userEvent.type(textboxEl, 'recent search 1');
+async function conductRecentSearches(comboboxEl: HTMLElement) {
+  await userEvent.type(comboboxEl, 'recent search 1');
   await userEvent.keyboard('{enter}');
-  await userEvent.clear(textboxEl);
-  await userEvent.type(textboxEl, 'recent search 2');
+  await userEvent.clear(comboboxEl);
+  await userEvent.type(comboboxEl, 'recent search 2');
   await userEvent.keyboard('{enter}');
 }

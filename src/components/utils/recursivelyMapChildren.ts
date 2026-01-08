@@ -15,7 +15,10 @@ export function recursivelyMapChildren(
     if (!replacedElement || !isValidElement(replacedElement)) {
       return replacedElement;
     }
-    const grandchildren = replacedElement.props.children;
+    if (!("props" in replacedElement)) {
+      return replacedElement;
+    }
+    const grandchildren = (replacedElement as ReactElement<{ children?: ReactNode }>).props.children;
     if (!grandchildren) {
       return replacedElement;
     }

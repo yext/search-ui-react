@@ -15,7 +15,7 @@ export function DropdownInput(props: {
   onFocus?: (value: string) => void,
   onChange?: (value: string) => void,
   submitCriteria?: (index: number) => boolean
-}): JSX.Element {
+}): React.JSX.Element {
   const {
     className,
     placeholder,
@@ -27,7 +27,7 @@ export function DropdownInput(props: {
   } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const { toggleDropdown, onSelect, screenReaderUUID } = useDropdownContext();
+  const { toggleDropdown, onSelect, screenReaderUUID, dropdownListUUID, isActive } = useDropdownContext();
   const { value = '', setLastTypedOrSubmittedValue } = useInputContext();
   const {
     focusedIndex = -1,
@@ -89,8 +89,15 @@ export function DropdownInput(props: {
       id={generateDropdownId(screenReaderUUID, -1)}
       autoComplete='off'
       aria-describedby={screenReaderUUID}
-      aria-activedescendant={isTyping ? '' : generateDropdownId(screenReaderUUID, focusedIndex)}
+      aria-activedescendant={
+        !isTyping ? generateDropdownId(screenReaderUUID, focusedIndex) : undefined
+      }
       aria-label={ariaLabel}
+      aria-autocomplete="list"
+      role="combobox"
+      aria-controls={dropdownListUUID}
+      aria-expanded={isActive ? 'true' : 'false'}
+      aria-haspopup="listbox"
     />
   );
 }

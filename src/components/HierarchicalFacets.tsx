@@ -55,7 +55,7 @@ export function HierarchicalFacets({
   customCssClasses = {},
   delimiter,
   showMoreLimit
-}: HierarchicalFacetsProps): JSX.Element {
+}: HierarchicalFacetsProps): React.JSX.Element {
   return (
     <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.hierarchicalFacetsContainer}>
       {facets => facets

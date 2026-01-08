@@ -50,7 +50,7 @@ const mockNumericalFacet = (props?: NumericalFacetProps) => {
   return (
     <FacetsProvider>
       {facets => facets.map(facet => (
-        <NumericalFacetContent {...props} fieldId={facet.fieldId} facet={facet}/>))}
+        <NumericalFacetContent {...props} fieldId={facet.fieldId} facet={facet} key={facet.fieldId} />))}
     </FacetsProvider>);
 };
 

@@ -9,5 +9,5 @@ The header for the citations section of the generative direct answer.
 **Signature:**
 
 ```typescript
-citationsHeader?: string | JSX.Element;
+citationsHeader?: string | React.JSX.Element;
 ```

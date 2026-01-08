@@ -51,7 +51,7 @@ export interface DropdownProps {
  * It provides multiple shared contexts, which are consumed by its child components,
  * and also registers some global event listeners.
  */
-export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
+export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Element {
   const { t } = useTranslation();
   const {
     children,
@@ -65,8 +65,9 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     alwaysSelectOption = false
   } = props;
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null!);
   const screenReaderUUID = useId('dropdown');
+  const dropdownListUUID = useId('dropdown-list');
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
@@ -92,6 +93,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): JSX.Element {
     focusedIndex,
     focusedItemData,
     screenReaderUUID,
+    dropdownListUUID,
     setHasTyped,
     onToggle,
     onSelect
@@ -257,6 +259,7 @@ function useDropdownContextInstance(
   index: number,
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string | undefined,
+  dropdownListUUID: string | undefined,
   setHasTyped: (hasTyped: boolean) => void,
   onToggle?: (
     isActive: boolean,
@@ -279,7 +282,8 @@ function useDropdownContextInstance(
     isActive,
     toggleDropdown,
     onSelect,
-    screenReaderUUID
+    screenReaderUUID,
+    dropdownListUUID
   };
 }
 
@@ -289,7 +293,7 @@ function getTransformedChildrenAndItemData(children: ReactNode): [ReactNode, Dro
     if (!(isValidElement(child) && child.type === DropdownItem)) {
       return child;
     }
-    const props: DropdownItemProps = child.props;
+    const props = child.props as DropdownItemProps;
     items.push({
       value: props.value,
       itemData: props.itemData

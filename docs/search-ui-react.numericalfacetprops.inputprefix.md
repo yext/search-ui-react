@@ -9,5 +9,5 @@ An optional element which renders in front of the input text.
 **Signature:**
 
 ```typescript
-inputPrefix?: JSX.Element;
+inputPrefix?: React.JSX.Element;
 ```

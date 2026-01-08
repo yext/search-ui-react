@@ -84,7 +84,7 @@ _(Optional)_ Returns the filter's display name based on the range values which i
 
 </td><td>
 
-JSX.Element
+React.JSX.Element
 
 
 </td><td>

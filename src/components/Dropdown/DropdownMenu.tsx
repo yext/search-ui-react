@@ -6,11 +6,11 @@ import { useDropdownContext } from './DropdownContext';
  */
 export function DropdownMenu(
   { children }: PropsWithChildren<unknown>
-): JSX.Element | null {
-  const { isActive } = useDropdownContext();
+): React.JSX.Element | null {
+  const { isActive, dropdownListUUID } = useDropdownContext();
   if (!isActive) {
     return null;
   }
 
-  return <>{children}</>;
+  return <div id={dropdownListUUID}>{children}</div>;
 }

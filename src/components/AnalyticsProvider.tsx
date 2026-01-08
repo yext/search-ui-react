@@ -12,7 +12,7 @@ import {SearchAnalyticsEventServiceImpl} from "../models/SearchAnalyticsEventSer
  * @param props - The configuration for the analytics service
  * @returns A React element that provides analytics context
  */
-export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): JSX.Element {
+export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): React.JSX.Element {
   const {children, ...searchAnalyticsConfig} = props;
   const analyticsReporter =
       new SearchAnalyticsEventServiceImpl(searchAnalyticsConfig)

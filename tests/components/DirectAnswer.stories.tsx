@@ -30,7 +30,7 @@ function generateFieldValueDirectAnswer(
   args: DirectAnswerProps,
   fieldType?: FieldValueDirectAnswerType['fieldType'],
   value?: unknown,
-): JSX.Element {
+): React.JSX.Element {
   return (
     <SearchHeadlessContext.Provider value={generateMockedHeadless({
       directAnswer: {

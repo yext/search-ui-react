@@ -64,7 +64,7 @@ _(Optional)_ The card to use for this vertical.
 
 </td><td>
 
-JSX.Element
+React.JSX.Element
 
 
 </td><td>

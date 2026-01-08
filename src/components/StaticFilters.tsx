@@ -58,7 +58,7 @@ export interface StaticFiltersProps {
  *
  * @public
  */
-export function StaticFilters(props: StaticFiltersProps): JSX.Element {
+export function StaticFilters(props: StaticFiltersProps): React.JSX.Element {
   const { searchOnChange, customCssClasses = {}, ...filterGroupProps } = props;
   const { staticFiltersContainer: containerClassName, ...filterGroupCssClasses } = customCssClasses;
   return (

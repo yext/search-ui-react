@@ -9,7 +9,7 @@ Runs a vertical search. By default has `position: sticky` styling that anchors i
 **Signature:**
 
 ```typescript
-declare function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): JSX.Element;
+declare function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -48,7 +48,7 @@ Description
 
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
 ## Remarks
 

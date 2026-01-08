@@ -7,7 +7,7 @@ import { getOptionLabelTextWithCount } from '../__utils__/facets';
 import { StandardFacetContent } from '../../src/components/StandardFacetContent';
 import { StandardFacetProps } from '../../src/components';
 import { FacetsProvider } from '../../src/components/Filters';
-import React from 'react';
+import React, { act } from 'react';
 
 const standardFacet = DisplayableFacets[0];
 
@@ -49,7 +49,7 @@ const mockStandardFacet = (props?: StandardFacetProps) => {
   return (
     <FacetsProvider>
       {facets => facets.map(facet => (
-        <StandardFacetContent {...props} fieldId={facet.fieldId} facet={facet}/>))}
+        <StandardFacetContent {...props} fieldId={facet.fieldId} facet={facet} key={facet.fieldId} />))}
     </FacetsProvider>);
 };
 
@@ -90,7 +90,9 @@ describe('StandardFacetContent', () => {
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     const coffeeLabel = screen.getByText(labelText);
-    await userEvent.click(coffeeLabel);
+    await act(async () => {
+      await userEvent.click(coffeeLabel);
+    });
     expectFacetOptionSet(actions, standardFacet.fieldId, coffeeFacetOption, true);
   });
 
@@ -102,7 +104,9 @@ describe('StandardFacetContent', () => {
       getOptionLabelTextWithCount(standardFacet.options[1]));
     expect(teaCheckbox.checked).toBeTruthy();
 
-    await userEvent.click(teaCheckbox);
+    await act(async () => {
+      await userEvent.click(teaCheckbox);
+    });
     expectFacetOptionSet(actions, standardFacet.fieldId, standardFacet.options[1], false);
   });
 });

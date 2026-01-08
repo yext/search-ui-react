@@ -27,7 +27,7 @@ export interface StandardCardProps<T = DefaultRawDataType> extends CardProps<T> 
  * @returns A React element for the result card
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function StandardCard(props: StandardCardProps<any>): JSX.Element {
+export function StandardCard(props: StandardCardProps<any>): React.JSX.Element {
   const {
     result,
     customCssClasses,

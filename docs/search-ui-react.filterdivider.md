@@ -11,7 +11,7 @@ A divider component used to separate NumericalFacets, HierarchicalFacets, Standa
 ```typescript
 declare function FilterDivider({ className }: {
     className?: string;
-}): JSX.Element;
+}): React.JSX.Element;
 ```
 
 ## Parameters
@@ -50,7 +50,7 @@ Description
 
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
 A React component for filter divider
 

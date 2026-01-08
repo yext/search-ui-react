@@ -6,20 +6,43 @@ name: Run Tests
 on: [push, pull_request]
 
 jobs:
-  call_run_tests-react-18:
+  call_run_tests-react-19:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
       build_script: |
         npx playwright install
-      node_matrix: '["16.x", "18.x"]'
+        npm run build
+      node_matrix: '["20.x"]'
+    secrets:
+      MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
+
+  call_run_tests-react-18:
+    uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
+    with:
+      build_script: |
+        npm i \
+          react@^18.2.0 \
+          react-dom@^18.2.0
+        npm install --save-optional \
+          "@swc/core-linux-arm-gnueabihf" \
+          "@swc/core-linux-arm64-gnu" \
+          "@swc/core-linux-arm64-musl" \
+          "@swc/core-linux-x64-gnu" \
+          "@swc/core-linux-x64-musl" \
+          "@swc/core-win32-arm64-msvc" \
+          "@swc/core-win32-ia32-msvc" \
+          "@swc/core-win32-x64-msvc"
+        npx playwright install
+        npm run build
+      node_matrix: '["18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
   call_run_tests-react-17:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
     with:
-      # We have to install these swc libraries manually because 
-      # the post install script doesn't seem to run properly 
+      # We have to install these swc libraries manually because
+      # the post install script doesn't seem to run properly
       # after we install specific versions of packages.
       # More info at https://github.com/swc-project/swc/issues/5616#issuecomment-1651214641
       build_script: |
@@ -39,7 +62,7 @@ jobs:
           "@swc/core-win32-x64-msvc"
         npx playwright install
         npm run build
-      node_matrix: '["16.x", "18.x"]'
+      node_matrix: '["18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
 
@@ -63,6 +86,6 @@ jobs:
           "@swc/core-win32-x64-msvc"
         npx playwright install
         npm run build
-      node_matrix: '["16.x", "18.x"]'
+      node_matrix: '["18.x"]'
     secrets:
       MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}

@@ -9,7 +9,7 @@ Renders a SearchBar that is hooked up with an InputDropdown component.
 **Signature:**
 
 ```typescript
-declare function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
+declare function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch }: SearchBarProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -32,7 +32,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-{ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }
+{ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch }
 
 
 </td><td>
@@ -48,5 +48,5 @@ Description
 
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 

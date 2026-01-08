@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function StarIcon({ className }: { className?: string }): JSX.Element {
+export function StarIcon({ className }: { className?: string }): React.JSX.Element {
   return (
     <svg
       fill="currentColor"

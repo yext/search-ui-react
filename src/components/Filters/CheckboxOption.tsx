@@ -70,7 +70,7 @@ const builtInCssClasses: Readonly<CheckboxCssClasses> = {
  *
  * @param props - {@link Filters.CheckboxOptionProps}
  */
-export function CheckboxOption(props: CheckboxOptionProps): JSX.Element | null {
+export function CheckboxOption(props: CheckboxOptionProps): React.JSX.Element | null {
     const { t } = useTranslation();
   const { fieldId, isOptionsDisabled } = useFilterGroupContext();
   const {

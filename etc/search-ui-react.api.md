@@ -38,7 +38,7 @@ export interface AfterDropdownInputFocusProps {
 }
 
 // @public
-export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }: AlternativeVerticalsProps): JSX.Element | null;
+export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }: AlternativeVerticalsProps): React_2.JSX.Element | null;
 
 // @public
 export interface AlternativeVerticalsCssClasses {
@@ -65,10 +65,14 @@ export interface AlternativeVerticalsProps {
 }
 
 // @public
+<<<<<<< HEAD
 export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): JSX.Element;
+=======
+export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): React_2.JSX.Element;
+>>>>>>> main
 
 // @public
-export function AppliedFilters(props: AppliedFiltersProps): JSX.Element;
+export function AppliedFilters(props: AppliedFiltersProps): React_2.JSX.Element;
 
 // @public
 export interface AppliedFiltersCssClasses {
@@ -95,7 +99,7 @@ export interface AppliedFiltersProps {
 }
 
 // @public
-export function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): JSX.Element;
+export function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): React_2.JSX.Element;
 
 // @public
 export interface ApplyFiltersButtonCssClasses {
@@ -128,7 +132,7 @@ export type CardAnalyticsDataType<T = DefaultRawDataType> = DirectAnswer_2 | Res
 export type CardAnalyticsType = CardCtaEventType | FeedbackType;
 
 // @public
-export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => JSX.Element;
+export type CardComponent<T = DefaultRawDataType> = (props: CardProps<T>) => React_2.JSX.Element;
 
 // @public
 export type CardCtaEventType = 'CTA_CLICK' | 'TITLE_CLICK' | 'CITATION_CLICK' | 'DRIVING_DIRECTIONS' | 'VIEW_WEBSITE' | 'TAP_TO_CALL';
@@ -150,9 +154,9 @@ export interface CitationProps {
 
 // @public
 export interface CitationsProps {
-    CitationCard?: (props: CitationProps) => JSX.Element | null;
+    CitationCard?: (props: CitationProps) => React_2.JSX.Element | null;
     citationClickHandler?: (data: GdaClickEventData) => void;
-    citationsHeader?: string | JSX.Element;
+    citationsHeader?: string | React_2.JSX.Element;
     cssClasses: GenerativeDirectAnswerCssClasses;
     gdaResponse: GenerativeDirectAnswerResponse;
     searchResults: Result[];
@@ -181,7 +185,7 @@ export interface CtaData {
 export type DefaultRawDataType = Record<string, unknown>;
 
 // @public
-export function DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay }: DirectAnswerProps): JSX.Element | null;
+export function DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay }: DirectAnswerProps): React_2.JSX.Element | null;
 
 // @public
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
@@ -208,7 +212,7 @@ export interface DirectAnswerProps {
 }
 
 // @public
-export function DropdownItem(_props: DropdownItemProps): JSX.Element | null;
+export function DropdownItem(_props: DropdownItemProps): React_2.JSX.Element | null;
 
 // @public
 export type DropdownItemProps = PropsWithChildren<{
@@ -217,7 +221,7 @@ export type DropdownItemProps = PropsWithChildren<{
     focusedClassName?: string;
     itemData?: Record<string, unknown> | undefined;
     onClick?: (value: string, index: number, focusedItemData: FocusedItemData | undefined) => void;
-    ariaLabel?: (value: string) => string;
+    ariaLabel?: string | ((value: string) => string);
 }>;
 
 // @public
@@ -233,7 +237,7 @@ export function executeSearch(searchActions: SearchActions): Promise<void>;
 export type FacetProps = StandardFacetProps | NumericalFacetProps | HierarchicalFacetProps;
 
 // @public
-export function Facets(props: FacetsProps): JSX.Element;
+export function Facets(props: FacetsProps): React_2.JSX.Element;
 
 // @public
 export interface FacetsCssClasses extends FilterGroupCssClasses {
@@ -259,7 +263,7 @@ export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 // @public
 export function FilterDivider({ className }: {
     className?: string;
-}): JSX.Element;
+}): React_2.JSX.Element;
 
 // @public
 export interface FilterGroupCssClasses {
@@ -299,7 +303,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): React_2.JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -351,7 +355,7 @@ export interface GdaClickEventData {
 }
 
 // @public
-export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }: GenerativeDirectAnswerProps): JSX.Element | null;
+export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }: GenerativeDirectAnswerProps): React_2.JSX.Element | null;
 
 // @public
 export interface GenerativeDirectAnswerCssClasses {
@@ -375,15 +379,15 @@ export interface GenerativeDirectAnswerCssClasses {
 
 // @public
 export interface GenerativeDirectAnswerProps {
-    answerHeader?: string | JSX.Element;
-    CitationCard?: (props: CitationProps) => JSX.Element | null;
-    CitationsContainer?: (props: CitationsProps) => JSX.Element | null;
-    citationsHeader?: string | JSX.Element;
+    answerHeader?: string | React_2.JSX.Element;
+    CitationCard?: (props: CitationProps) => React_2.JSX.Element | null;
+    CitationsContainer?: (props: CitationsProps) => React_2.JSX.Element | null;
+    citationsHeader?: string | React_2.JSX.Element;
     customCssClasses?: GenerativeDirectAnswerCssClasses;
 }
 
 // @public
-function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }: GeolocationProps): JSX.Element | null;
+function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }: GeolocationProps): React_2.JSX.Element | null;
 export { Geolocation_2 as Geolocation }
 
 // @public
@@ -447,7 +451,7 @@ export interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transf
 }
 
 // @public @deprecated
-export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): JSX.Element;
+export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): React_2.JSX.Element;
 
 // @public
 export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses {
@@ -482,7 +486,7 @@ export const i18nInstance: i18next.i18n;
 export function isCtaData(data: unknown): data is CtaData;
 
 // @public @deprecated
-export function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): JSX.Element | null;
+export function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): React_2.JSX.Element | null;
 
 // @public @deprecated
 export interface LocationBiasCssClasses {
@@ -505,7 +509,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): JSX.Element;
+export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): React_2.JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
@@ -530,12 +534,12 @@ export function NumericalFacet(props: NumericalFacetProps): null;
 export interface NumericalFacetProps extends StandardFacetProps {
     customCssClasses?: FilterGroupCssClasses & RangeInputCssClasses;
     getFilterDisplayName?: (value: NumberRangeValue) => string;
-    inputPrefix?: JSX.Element;
+    inputPrefix?: React_2.JSX.Element;
     showOptionCounts?: boolean;
 }
 
 // @public @deprecated
-export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): JSX.Element;
+export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): React_2.JSX.Element;
 
 // @public
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
@@ -550,7 +554,7 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
     customCssClasses?: NumericalFacetsCssClasses;
     getFilterDisplayName?: (value: NumberRangeValue) => string;
     includedFieldIds?: string[];
-    inputPrefix?: JSX.Element;
+    inputPrefix?: React_2.JSX.Element;
 }
 
 // @public
@@ -578,7 +582,7 @@ export interface OnSelectParams {
 }
 
 // @public
-export function Pagination(props: PaginationProps): JSX.Element | null;
+export function Pagination(props: PaginationProps): React_2.JSX.Element | null;
 
 // @public
 export interface PaginationCssClasses {
@@ -605,7 +609,7 @@ export interface PaginationProps {
 }
 
 // @public
-export type PinComponent<T> = (props: PinComponentProps<T>) => JSX.Element;
+export type PinComponent<T> = (props: PinComponentProps<T>) => React_2.JSX.Element;
 
 // @public
 export type PinComponentProps<T> = {
@@ -663,13 +667,13 @@ export interface RangeInputCssClasses {
 export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToResults: Record<string, VerticalResults_2>, dropdownItemProps: {
     onClick: (value: string, _index: number, itemData?: FocusedItemData) => void;
     ariaLabel: (value: string) => string;
-}) => JSX.Element | null;
+}) => React_2.JSX.Element | null;
 
 // @public
-export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
+export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): React_2.JSX.Element;
 
 // @public
-export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Element | null;
+export function ResultsCount({ customCssClasses }: ResultsCountProps): React_2.JSX.Element | null;
 
 // @public
 export interface ResultsCountCssClasses {
@@ -685,6 +689,7 @@ export interface ResultsCountProps {
 }
 
 // @public
+<<<<<<< HEAD
 export interface SearchAnalyticsConfig {
     apiKey: string;
     cloudRegion?: CloudRegion;
@@ -700,6 +705,9 @@ export interface SearchAnalyticsEventService {
 
 // @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
+=======
+export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch }: SearchBarProps): React_2.JSX.Element;
+>>>>>>> main
 
 // @public
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
@@ -744,6 +752,8 @@ export interface SearchBarProps {
     placeholder?: string;
     recentSearchesLimit?: number;
     showVerticalLinks?: boolean;
+    universalAutocompleteLimit?: number;
+    verticalAutocompleteLimits?: Record<string, number>;
     verticalKeyToLabel?: (verticalKey: string) => string;
     visualAutocompleteConfig?: VisualAutocompleteConfig;
 }
@@ -751,7 +761,7 @@ export interface SearchBarProps {
 // Warning: (ae-forgotten-export) The symbol "SearchI18nextConfig" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConfig>): JSX.Element;
+export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConfig>): React_2.JSX.Element;
 
 // @public
 export type SearchTranslationOverrides = {
@@ -759,7 +769,7 @@ export type SearchTranslationOverrides = {
 };
 
 // @public
-export type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => JSX.Element | null;
+export type SectionComponent<T = DefaultRawDataType> = (props: SectionProps<T>) => React_2.JSX.Element | null;
 
 // @public
 export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
@@ -778,14 +788,14 @@ export interface SectionHeaderCssClasses extends AppliedFiltersCssClasses {
 // @public
 export interface SectionProps<T = DefaultRawDataType> {
     CardComponent?: CardComponent<T>;
-    header?: JSX.Element;
+    header?: React_2.JSX.Element;
     results: Result<T>[];
     verticalKey: string;
     viewMore?: boolean;
 }
 
 // @public
-export function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): JSX.Element | null;
+export function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): React_2.JSX.Element | null;
 
 // @public
 export interface SpellCheckCssClasses {
@@ -809,7 +819,7 @@ export interface SpellCheckProps {
 }
 
 // @public
-export function StandardCard(props: StandardCardProps<any>): JSX.Element;
+export function StandardCard(props: StandardCardProps<any>): React_2.JSX.Element;
 
 // @public
 export interface StandardCardCssClasses extends ThumbsFeedbackCssClasses {
@@ -857,7 +867,7 @@ export interface StandardFacetProps {
 }
 
 // @public @deprecated
-export function StandardFacets(props: StandardFacetsProps): JSX.Element;
+export function StandardFacets(props: StandardFacetsProps): React_2.JSX.Element;
 
 // @public @deprecated
 export interface StandardFacetsCssClasses extends FilterGroupCssClasses {
@@ -879,7 +889,7 @@ export interface StandardFacetsProps {
 }
 
 // @public
-export function StandardSection<T>(props: StandardSectionProps<T>): JSX.Element | null;
+export function StandardSection<T>(props: StandardSectionProps<T>): React_2.JSX.Element | null;
 
 // @public
 export interface StandardSectionCssClasses extends VerticalResultsCssClasses {
@@ -898,7 +908,7 @@ export type StaticFilterOptionConfig = Omit<FilterOptionConfig, 'value'> & {
 };
 
 // @public
-export function StaticFilters(props: StaticFiltersProps): JSX.Element;
+export function StaticFilters(props: StaticFiltersProps): React_2.JSX.Element;
 
 // @public
 export interface StaticFiltersCssClasses extends FilterGroupCssClasses {
@@ -919,7 +929,7 @@ export interface StaticFiltersProps {
 }
 
 // @public
-export function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
+export function ThumbsFeedback(props: ThumbsFeedbackProps): React_2.JSX.Element;
 
 // @public
 export interface ThumbsFeedbackCssClasses {
@@ -940,7 +950,7 @@ export interface ThumbsFeedbackProps {
 }
 
 // @public
-export function UniversalResults<T>({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps<T>): JSX.Element | null;
+export function UniversalResults<T>({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps<T>): React_2.JSX.Element | null;
 
 // @public
 export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {
@@ -958,7 +968,7 @@ export interface UniversalResultsProps<T> {
 }
 
 // @public
-export type UnknownFieldTypeDisplayComponent = (props: UnknownFieldTypeDisplayProps) => JSX.Element;
+export type UnknownFieldTypeDisplayComponent = (props: UnknownFieldTypeDisplayProps) => React_2.JSX.Element;
 
 // @public
 export interface UnknownFieldTypeDisplayProps {
@@ -1007,7 +1017,7 @@ export interface VerticalLink {
 }
 
 // @public
-export function VerticalResults<T>(props: VerticalResultsProps<T>): JSX.Element | null;
+export function VerticalResults<T>(props: VerticalResultsProps<T>): React_2.JSX.Element | null;
 
 // @public
 export interface VerticalResultsCssClasses {
@@ -1036,7 +1046,11 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
+<<<<<<< HEAD
 // dist/index.d.ts:1727:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+=======
+// dist/index.d.ts:1666:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+>>>>>>> main
 
 // (No @packageDocumentation comment for this package)
 

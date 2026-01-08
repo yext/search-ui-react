@@ -44,7 +44,7 @@ describe('Dropdown', () => {
     expect(screen.queryByText('item1')).toBeNull();
 
     // display when click into dropdown input
-    await userEvent.click(screen.getByRole('textbox'));
+    await userEvent.click(screen.getByRole('combobox'));
     expect(screen.getByText('item1')).toBeDefined();
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
 
@@ -73,7 +73,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.click(inputNode);
     const itemNode = screen.getByText('item1');
 
@@ -100,7 +100,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.click(inputNode);
     const itemNode = screen.getByText('item1');
 
@@ -129,7 +129,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.click(inputNode);
     await userEvent.keyboard('{Tab}{Tab}');
 
@@ -152,7 +152,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
@@ -183,7 +183,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
@@ -218,7 +218,7 @@ describe('Dropdown', () => {
         <div>external div</div>
       </div>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');
@@ -248,7 +248,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.click(inputNode);
     const itemNode = screen.getByText('item1');
     expect(itemNode).toBeDefined();
@@ -284,7 +284,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.type(inputNode, 'someText');
     await userEvent.keyboard('{enter}');
 
@@ -314,7 +314,7 @@ describe('Dropdown', () => {
         </DropdownMenu>
       </Dropdown>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.type(inputNode, 'someText');
     await userEvent.keyboard('{enter}');
 
@@ -346,7 +346,7 @@ describe('Always Select Option', () => {
         <div>external div</div>
       </div>
     );
-    const inputNode = screen.getByRole('textbox');
+    const inputNode = screen.getByRole('combobox');
     await userEvent.click(inputNode);
     expect(screen.getByTestId('item1')).toBeDefined();
     expect(inputNode).toHaveValue('');

@@ -9,7 +9,7 @@ Renders a HighlightedValue with highlighting based on its matchedSubstrings.
 **Signature:**
 
 ```typescript
-declare function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): JSX.Element;
+declare function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): React.JSX.Element;
 ```
 
 ## Parameters
@@ -66,7 +66,7 @@ _(Optional)_ css classes use for the non-highlighted and highlighted text.
 
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
-JSX.Element
+React.JSX.Element
 
