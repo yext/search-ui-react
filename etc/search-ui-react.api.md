@@ -65,11 +65,7 @@ export interface AlternativeVerticalsProps {
 }
 
 // @public
-<<<<<<< HEAD
-export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): JSX.Element;
-=======
-export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): React_2.JSX.Element;
->>>>>>> main
+export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): React_2.JSX.Element;
 
 // @public
 export function AppliedFilters(props: AppliedFiltersProps): React_2.JSX.Element;
@@ -689,7 +685,6 @@ export interface ResultsCountProps {
 }
 
 // @public
-<<<<<<< HEAD
 export interface SearchAnalyticsConfig {
     apiKey: string;
     cloudRegion?: CloudRegion;
@@ -704,10 +699,7 @@ export interface SearchAnalyticsEventService {
 }
 
 // @public
-export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch }: SearchBarProps): JSX.Element;
-=======
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch }: SearchBarProps): React_2.JSX.Element;
->>>>>>> main
 
 // @public
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
@@ -1046,11 +1038,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-<<<<<<< HEAD
-// dist/index.d.ts:1727:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
-=======
-// dist/index.d.ts:1666:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
->>>>>>> main
+// dist/index.d.ts:1734:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
