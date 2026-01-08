@@ -9,7 +9,7 @@ Renders a quality feedback widget composed of thumbs up and thumbs down buttons.
 **Signature:**
 
 ```typescript
-declare function ThumbsFeedback(props: ThumbsFeedbackProps): JSX.Element;
+declare function ThumbsFeedback(props: ThumbsFeedbackProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -47,9 +47,10 @@ The configuration for the the feedback component.
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
 A React element for quality feedback widget.
 

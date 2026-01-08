@@ -9,7 +9,7 @@ A component that displays all facets applicable to the current vertical search.
 **Signature:**
 
 ```typescript
-declare function Facets(props: FacetsProps): JSX.Element;
+declare function Facets(props: FacetsProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -47,9 +47,10 @@ props
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
 A React component for facets
 

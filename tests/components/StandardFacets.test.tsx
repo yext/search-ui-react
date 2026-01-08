@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { DisplayableFacets } from '../__fixtures__/data/filters';
 import { StandardFacets } from '../../src/components';
 import { expectFacetOptionSet, getOptionLabelTextWithCount } from '../__utils__/facets';
-import React from 'react';
+import React, { act } from 'react';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -73,7 +73,9 @@ describe('StandardFacets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await userEvent.click(coffeeCheckbox);
+    await act(async () => {
+      await userEvent.click(coffeeCheckbox);
+    });
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
   });
 
@@ -101,7 +103,9 @@ describe('StandardFacets', () => {
     expect(coffeeCheckbox.checked).toBeFalsy();
 
     const coffeeLabel = screen.getByText(labelText);
-    await userEvent.click(coffeeLabel);
+    await act(async () => {
+      await userEvent.click(coffeeLabel);
+    });
     expectFacetOptionSet(actions, productFacet.fieldId, coffeeFacetOption, true);
   });
 
@@ -114,7 +118,9 @@ describe('StandardFacets', () => {
       getOptionLabelTextWithCount(productFacet.options[1]));
     expect(teaCheckbox.checked).toBeTruthy();
 
-    await userEvent.click(teaCheckbox);
+    await act(async () => {
+      await userEvent.click(teaCheckbox);
+    });
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[1], false);
   });
 
@@ -128,7 +134,9 @@ describe('StandardFacets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await userEvent.click(coffeeCheckbox);
+    await act(async () => {
+      await userEvent.click(coffeeCheckbox);
+    });
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
     expect(actions.executeVerticalQuery).toBeCalled();
   });
@@ -143,7 +151,9 @@ describe('StandardFacets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await userEvent.click(coffeeCheckbox);
+    await act(async () => {
+      await userEvent.click(coffeeCheckbox);
+    });
     expectFacetOptionSet(actions, productFacet.fieldId, productFacet.options[0], true);
     expect(actions.executeVerticalQuery).not.toBeCalled();
   });

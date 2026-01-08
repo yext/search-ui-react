@@ -9,5 +9,5 @@ The component for citation card
 **Signature:**
 
 ```typescript
-CitationCard?: (props: CitationProps) => JSX.Element | null;
+CitationCard?: (props: CitationProps) => React.JSX.Element | null;
 ```

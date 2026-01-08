@@ -305,7 +305,7 @@ Renders results count of a universal/vertical search.
 </td></tr>
 <tr><td>
 
-[SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, customCssClasses, onSearch })](./search-ui-react.searchbar.md)
+[SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch })](./search-ui-react.searchbar.md)
 
 
 </td><td>
@@ -1550,3 +1550,4 @@ A map of verticalKey to a VerticalConfig.
 
 </td></tr>
 </tbody></table>
+

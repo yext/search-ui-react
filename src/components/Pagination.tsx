@@ -54,7 +54,7 @@ const builtInPaginationCssClasses: Readonly<PaginationCssClasses> = {
  *
  * @public
  */
-export function Pagination(props: PaginationProps): JSX.Element | null {
+export function Pagination(props: PaginationProps): React.JSX.Element | null {
   const { t } = useTranslation();
   const { customCssClasses = {}, paginateAllOnNoResults = false } = props;
   const cssClasses = useComposedCssClasses(builtInPaginationCssClasses, customCssClasses);
@@ -161,7 +161,7 @@ interface PaginationButtonProps {
   disabled?: boolean
 }
 
-function PaginationButton(props: PropsWithChildren<PaginationButtonProps>): JSX.Element | null {
+function PaginationButton(props: PropsWithChildren<PaginationButtonProps>): React.JSX.Element | null {
   const { navigateToPage, newPageNumber } = props;
   const handleClick = useCallback(() => {
     navigateToPage(newPageNumber);

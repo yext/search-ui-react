@@ -9,7 +9,7 @@ This Component renders the base result card.
 **Signature:**
 
 ```typescript
-declare function StandardCard(props: StandardCardProps<any>): JSX.Element;
+declare function StandardCard(props: StandardCardProps<any>): React.JSX.Element;
 ```
 
 ## Parameters
@@ -47,9 +47,10 @@ An object containing the result itself and any additional information needed to 
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
-JSX.Element
+React.JSX.Element
 
 A React element for the result card
 

@@ -12,7 +12,7 @@ export function ScreenReader({
   instructions,
   announcementKey,
   announcementText,
-}: Props): JSX.Element | null {
+}: Props): React.JSX.Element | null {
 
   return (
     <>

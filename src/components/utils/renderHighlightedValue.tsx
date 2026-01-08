@@ -18,7 +18,7 @@ export interface HighlightedValueCssClasses {
 
 /**
  * Renders a HighlightedValue with highlighting based on its matchedSubstrings.
- * @returns JSX.Element
+ * @returns React.JSX.Element
  *
  * @public
  *
@@ -28,7 +28,7 @@ export interface HighlightedValueCssClasses {
 export function renderHighlightedValue(
   highlightedValueOrString: Partial<HighlightedValue> | string,
   customCssClasses?: HighlightedValueCssClasses
-): JSX.Element {
+): React.JSX.Element {
   const { value = '', matchedSubstrings } =
     typeof highlightedValueOrString === 'string'
       ? { value: highlightedValueOrString, matchedSubstrings: [] }
@@ -40,7 +40,7 @@ export function renderHighlightedValue(
   }
   const substrings = [...matchedSubstrings];
   substrings.sort((a, b) => a.offset - b.offset);
-  const highlightedJSX: JSX.Element[] = [];
+  const highlightedJSX: React.JSX.Element[] = [];
   let curr = 0;
   for (const { offset, length } of substrings) {
     if (offset > curr) {

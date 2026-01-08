@@ -58,7 +58,7 @@ export interface LocationBiasProps {
 export function LocationBias({
   geolocationOptions,
   customCssClasses
-}: LocationBiasProps): JSX.Element | null {
+}: LocationBiasProps): React.JSX.Element | null {
   const { t } = useTranslation();
   const searchActions = useSearchActions();
   const locationBias = useSearchState(s => s.location.locationBias);

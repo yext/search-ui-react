@@ -12,9 +12,9 @@ it('returns recent searches', () => {
     useRecentSearches(10, verticalKey)
   );
   const setRecentSearch = result.current[1];
-  setRecentSearch('bob');
-  setRecentSearch('carrie');
-  setRecentSearch('williard');
+  act(() => setRecentSearch('bob'));
+  act(() => setRecentSearch('carrie'));
+  act(() => setRecentSearch('williard'));
 
   rerender();
   const [recentSearches] = result.current;
@@ -29,8 +29,8 @@ it('preserves recent searches when returning to a vertical', () => {
     useRecentSearches(10, verticalKey)
   );
   const setRecentPeopleSearch = result.current[1];
-  setRecentPeopleSearch('bob');
-  setRecentPeopleSearch('carrie');
+  act(() => setRecentPeopleSearch('bob'));
+  act(() => setRecentPeopleSearch('carrie'));
   rerender();
   let recentSearches = result.current[0];
   expect(recentSearches?.length).toBe(2);
@@ -41,7 +41,7 @@ it('preserves recent searches when returning to a vertical', () => {
   const setRecentPlacesSearch = result.current[1];
   expect(recentSearches?.length).toBe(0);
 
-  setRecentPlacesSearch('yext');
+  act(() => setRecentPlacesSearch('yext'));
   rerender();
   recentSearches = result.current[0];
   expect(recentSearches?.length).toBe(1);
@@ -58,8 +58,8 @@ it('clears searches properly', () => {
     useRecentSearches(10, verticalKey)
   );
   const [, setRecentPeopleSearch, clearPeopleSearches] = result.current;
-  setRecentPeopleSearch('bob');
-  setRecentPeopleSearch('carrie');
+  act(() => setRecentPeopleSearch('bob'));
+  act(() => setRecentPeopleSearch('carrie'));
 
   act(() => clearPeopleSearches());
   verticalKey = 'people';

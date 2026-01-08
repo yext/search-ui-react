@@ -12,7 +12,7 @@ import {
   CitationsProps
 } from '@yext/search-ui-react';
 import classNames from 'classnames';
-import { useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 // import { CustomCard } from '../components/CustomCard';
 // import { CustomCard2 } from '../components/CustomCard2';
 // import { CustomSection } from '../components/CustomSection';
@@ -61,7 +61,7 @@ const customSearchBarCss = {
   searchBarContainer: 'mb-3 text-emerald-800'
 };
 
-function CustomCitationCard(props: CitationProps): JSX.Element | null {
+function CustomCitationCard(props: CitationProps): React.JSX.Element | null {
   const {
     searchResult,
     cssClasses,
@@ -74,13 +74,13 @@ function CustomCitationCard(props: CitationProps): JSX.Element | null {
   </a>;
 }
 
-function CustomCitationsComponent(props: CitationsProps): JSX.Element | null {
+function CustomCitationsComponent(props: CitationsProps): React.JSX.Element | null {
   return (
       <>This is a custom component for citations</>
   )
 }
 
-export default function UniversalPage(): JSX.Element {
+export default function UniversalPage(): React.JSX.Element {
   const searchActions = useSearchActions();
   useLayoutEffect(() => {
     searchActions.setUniversal();
@@ -92,6 +92,7 @@ export default function UniversalPage(): JSX.Element {
       <SearchBar
         visualAutocompleteConfig={visualAutocompleteConfig}
         customCssClasses={customSearchBarCss}
+        universalAutocompleteLimit={20}
       />
       <SpellCheck />
       <GenerativeDirectAnswer 

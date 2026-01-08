@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { mockAnswersState } from '../__utils__/mocks';
 import { CoordinateGetter, MapboxMap, Coordinate, getMapboxLanguage } from '../../src/components/MapboxMap';
 import { Source, State } from '@yext/search-headless-react';
@@ -114,7 +114,7 @@ it('registers "onDrag" callback to Mapbox\'s event listener for "drag to pan" in
   expect(onDragFn).toBeCalledTimes(1);
 });
 
-it('uses PinComponent and logs warning if both PinComponent and renderPin are provided', () => {
+it('uses PinComponent and logs warning if both PinComponent and renderPin are provided', async () => {
   mockAnswersState(mockedStateDefaultCoordinate);
   jest.spyOn(Marker.prototype, 'setLngLat').mockReturnValue(Marker.prototype);
   const PinComponent = jest.fn().mockImplementation(() => null);
@@ -131,7 +131,7 @@ it('uses PinComponent and logs warning if both PinComponent and renderPin are pr
   expect(warnSpy).toBeCalledWith(
     'Found both PinComponent and renderPin props. Using PinComponent.'
   );
-  expect(PinComponent).toBeCalledTimes(1);
+  await waitFor(() => expect(PinComponent).toBeCalledTimes(1));
   expect(renderPin).not.toBeCalled();
 });
 describe('localize the map based on the search locale', () => {

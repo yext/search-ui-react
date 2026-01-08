@@ -150,7 +150,7 @@ export function FilterSearch({
   ariaLabel,
   showCurrentLocationButton = false,
   geolocationProps = {}
-}: FilterSearchProps): JSX.Element {
+}: FilterSearchProps): React.JSX.Element {
   const { t } = useTranslation();
   const searchActions = useSearchActions();
   const searchParamFields = searchFields.map((searchField) => {

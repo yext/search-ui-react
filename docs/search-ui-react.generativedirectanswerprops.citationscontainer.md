@@ -9,5 +9,5 @@ The citations container component for customizing the logic that determines whic
 **Signature:**
 
 ```typescript
-CitationsContainer?: (props: CitationsProps) => JSX.Element | null;
+CitationsContainer?: (props: CitationsProps) => React.JSX.Element | null;
 ```

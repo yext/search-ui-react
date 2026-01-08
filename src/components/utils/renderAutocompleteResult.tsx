@@ -22,13 +22,13 @@ export const builtInCssClasses: Readonly<AutocompleteResultCssClasses> = {
 /**
  * Renders an autocomplete result, including an icon to the left if provided.
  * @param result - The result to render
- * @returns JSX.Element
+ * @returns React.JSX.Element
  */
 export function renderAutocompleteResult(
   result: AutocompleteResult,
   cssClasses: AutocompleteResultCssClasses = {},
   Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
-): JSX.Element {
+): React.JSX.Element {
   return (<>
     {Icon && <div className={cssClasses.icon}>
       <Icon />

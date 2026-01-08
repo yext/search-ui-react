@@ -41,7 +41,7 @@ const builtInCssClasses: Readonly<ResultsCountCssClasses> = {
  *
  * @param props - {@link ResultsCountProps}
  */
-export function ResultsCount({ customCssClasses }: ResultsCountProps): JSX.Element | null {
+export function ResultsCount({ customCssClasses }: ResultsCountProps): React.JSX.Element | null {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
   const resultsCountText = useResultsCount();

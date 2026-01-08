@@ -27,7 +27,7 @@ export interface RangeInputProps {
   /**
    * An optional element which renders in front of the input text.
    */
-  inputPrefix?: JSX.Element,
+  inputPrefix?: React.JSX.Element,
   /** CSS classes for customizing the component styling defined by RangeInputCssClasses */
   customCssClasses?: RangeInputCssClasses
 }
@@ -90,7 +90,7 @@ const builtInCssClasses: Readonly<RangeInputCssClasses> = {
  *
  * @param props - RangeInputProps
  */
-export function RangeInput(props: RangeInputProps): JSX.Element | null {
+export function RangeInput(props: RangeInputProps): React.JSX.Element | null {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
   const { fieldId, setIsOptionsDisabled } = useFilterGroupContext();

@@ -189,6 +189,44 @@ _(Optional)_ Shows vertical links if true, set to false on default.
 </td></tr>
 <tr><td>
 
+[universalAutocompleteLimit?](./search-ui-react.searchbarprops.universalautocompletelimit.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_ Limits the number of universal query suggestions returned by autocomplete.
+
+
+</td></tr>
+<tr><td>
+
+[verticalAutocompleteLimits?](./search-ui-react.searchbarprops.verticalautocompletelimits.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Record&lt;string, number&gt;
+
+
+</td><td>
+
+_(Optional)_ Limits the number of query suggestions returned by autocomplete for verticals. The keys of the record correspond to the vertical keys, and the values correspond to the maximum number of suggestions to return for that vertical. If a limit for the current vertical is not specified, the default limit will be used.
+
+
+</td></tr>
+<tr><td>
+
 [verticalKeyToLabel?](./search-ui-react.searchbarprops.verticalkeytolabel.md)
 
 
@@ -226,3 +264,4 @@ _(Optional)_ The configuration options for Visual Autocomplete.
 
 </td></tr>
 </tbody></table>
+

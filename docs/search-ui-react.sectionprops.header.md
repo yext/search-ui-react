@@ -9,5 +9,5 @@ A header to display above the results.
 **Signature:**
 
 ```typescript
-header?: JSX.Element;
+header?: React.JSX.Element;
 ```

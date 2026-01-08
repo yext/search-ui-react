@@ -8,7 +8,7 @@ import { createHierarchicalFacet } from '../__utils__/hierarchicalfacets';
 import React from 'react';
 
 const meta: Meta<typeof Facets> = {
-  title: 'Facets',
+  title: 'Filters/Facets/Hierarchical',
   component: Facets
 };
 export default meta;
