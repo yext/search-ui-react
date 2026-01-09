@@ -64,6 +64,7 @@ DropdownUnsectioned.parameters = {
 DropdownUnsectioned.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.type(canvas.getByRole('combobox'), 'name');
+  await canvas.findByText('first name 1');
 };
 
 export const DropdownSectioned: StoryFn<FilterSearchProps> = Primary.bind({});
@@ -78,6 +79,7 @@ DropdownSectioned.parameters = {
 DropdownSectioned.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   await userEvent.type(canvas.getByRole('combobox'), 'name');
+  await canvas.findByText('first name 1');
 };
 
 export const NoLabel: StoryFn<FilterSearchProps> = Primary.bind({});
