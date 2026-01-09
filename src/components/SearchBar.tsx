@@ -421,7 +421,7 @@ export function SearchBar({
     ['shadow-lg']: hasItems
   });
 
-  const handleToggleDropdown = useCallback((isActive) => {
+  const handleToggleDropdown = useCallback((isActive: boolean) => {
     if (!isActive) {
       clearAutocomplete();
     }

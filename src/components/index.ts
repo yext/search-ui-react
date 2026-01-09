@@ -1,5 +1,7 @@
 export {
-  SearchBar,
+  SearchBar
+} from './SearchBar';
+export type {
   SearchBarCssClasses,
   SearchBarProps,
   VisualAutocompleteConfig,
@@ -7,18 +9,23 @@ export {
   onSearchFunc
 } from './SearchBar';
 
-export { DropdownItem, DropdownItemProps } from './Dropdown/DropdownItem';
-export { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
-export { FocusedItemData } from './Dropdown/FocusContext';
+export { DropdownItem} from './Dropdown/DropdownItem';
+export type { DropdownItemProps } from './Dropdown/DropdownItem';
+export type { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
+export type { FocusedItemData } from './Dropdown/FocusContext';
 
 export {
-  SpellCheck,
+  SpellCheck
+} from './SpellCheck';
+export type {
   SpellCheckCssClasses,
   SpellCheckProps
 } from './SpellCheck';
 
 export {
-  DirectAnswer,
+  DirectAnswer
+} from './DirectAnswer';
+export type {
   DirectAnswerCssClasses,
   DirectAnswerProps,
   UnknownFieldTypeDisplayComponent,
@@ -26,14 +33,18 @@ export {
 } from './DirectAnswer';
 
 export {
-  ThumbsFeedback,
+  ThumbsFeedback
+} from './ThumbsFeedback';
+export type {
   FeedbackType,
   ThumbsFeedbackCssClasses,
   ThumbsFeedbackProps
 } from './ThumbsFeedback';
 
 export {
-  FilterSearch,
+  FilterSearch
+} from './FilterSearch';
+export type {
   FilterSearchCssClasses,
   FilterSearchProps,
   OnSelectParams,
@@ -42,87 +53,114 @@ export {
 } from './FilterSearch';
 
 export {
-  LocationBias,
+  LocationBias
+} from './LocationBias';
+export type {
   LocationBiasCssClasses,
   LocationBiasProps
 } from './LocationBias';
 
 export {
-  Geolocation,
+  Geolocation
+} from './Geolocation';
+export type {
   GeolocationCssClasses,
   GeolocationProps
 } from './Geolocation';
 
 export {
-  AppliedFilters,
+  AppliedFilters
+} from './AppliedFilters';
+export type {
   AppliedFiltersCssClasses,
   AppliedFiltersProps
 } from './AppliedFilters';
 
 export {
-  UniversalResults,
+  UniversalResults
+} from './UniversalResults';
+export type {
   UniversalResultsCssClasses,
   UniversalResultsProps,
 } from './UniversalResults';
 
 export {
-  VerticalResults,
+  VerticalResults
+} from './VerticalResults';
+export type {
   VerticalResultsCssClasses,
   VerticalResultsProps
 } from './VerticalResults';
 
 export {
-  Pagination,
+  Pagination
+} from './Pagination';
+export type {
   PaginationCssClasses,
   PaginationProps
 } from './Pagination';
 
 export {
-  StandardCard,
+  StandardCard
+} from './cards/standard/StandardCard';
+export type {
   StandardCardCssClasses,
   StandardCardProps
 } from './cards/standard/StandardCard';
 
 export {
-  AlternativeVerticals,
+  AlternativeVerticals
+} from './AlternativeVerticals';
+export type {
   AlternativeVerticalsCssClasses,
   AlternativeVerticalsProps,
   VerticalLabelMap
 } from './AlternativeVerticals';
 
 export {
-  ResultsCount,
+  ResultsCount
+} from './ResultsCount';
+export type {
   ResultsCountCssClasses,
   ResultsCountProps
 } from './ResultsCount';
 
-export {
+
+export type {
   FilterOptionConfig,
   RangeInputCssClasses,
   HierarchicalFacetDisplayCssClasses
 } from './Filters/index';
 
 export {
-  StaticFilters,
+  StaticFilters
+} from './StaticFilters';
+export type {
   StaticFiltersCssClasses,
   StaticFiltersProps,
   StaticFilterOptionConfig
 } from './StaticFilters';
 
 export {
-  StandardFacets,
+  StandardFacets
+} from './StandardFacets';
+export type {
   StandardFacetsCssClasses,
   StandardFacetsProps
 } from './StandardFacets';
 
 export {
-  HierarchicalFacets,
+  HierarchicalFacets
+} from './HierarchicalFacets';
+export type {
   HierarchicalFacetsCssClasses,
   HierarchicalFacetsProps
 } from './HierarchicalFacets';
 
 export {
-  NumericalFacets,
+  NumericalFacets
+} from './NumericalFacets';
+export type {
   NumericalFacetsCssClasses,
   NumericalFacetsProps
 } from './NumericalFacets';
@@ -134,7 +172,7 @@ export {
   HierarchicalFacet
 } from './Facets';
 
-export {
+export type {
   FacetsCssClasses,
   FacetsProps,
   FacetProps,
@@ -143,7 +181,7 @@ export {
   HierarchicalFacetProps
 } from './FacetProps';
 
-export {
+export type {
   FilterGroupProps,
   FilterGroupCssClasses
 } from './FilterGroup';
@@ -153,13 +191,17 @@ export {
 } from './FilterDivider';
 
 export {
-  ApplyFiltersButton,
+  ApplyFiltersButton
+} from './ApplyFiltersButton';
+export type {
   ApplyFiltersButtonCssClasses,
   ApplyFiltersButtonProps
 } from './ApplyFiltersButton';
 
 export {
-  MapboxMap,
+  MapboxMap
+} from './MapboxMap';
+export type {
   PinComponent,
   PinComponentProps,
   MapboxMapProps,
@@ -169,7 +211,9 @@ export {
 } from './MapboxMap';
 
 export {
-  renderHighlightedValue,
+  renderHighlightedValue
+} from './utils/renderHighlightedValue';
+export type {
   HighlightedValueCssClasses
 } from './utils/renderHighlightedValue';
 
@@ -177,7 +221,9 @@ export * from './sections/index';
 export * from './AnalyticsProvider';
 
 export {
-  GenerativeDirectAnswer,
+  GenerativeDirectAnswer
+} from './GenerativeDirectAnswer';
+export type {
   GenerativeDirectAnswerCssClasses,
   GenerativeDirectAnswerProps,
   CitationProps,
@@ -185,7 +231,10 @@ export {
   GdaClickEventData
 } from './GenerativeDirectAnswer';
 
+
 export {
-  SearchTranslationOverrides,
-  SearchI18nextProvider,
+  SearchI18nextProvider
+} from './SearchI18nextProvider';
+export type {
+  SearchTranslationOverrides
 } from './SearchI18nextProvider';
