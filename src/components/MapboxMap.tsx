@@ -251,7 +251,7 @@ export function MapboxMap<T>({
         const textField = layer.layout?.["text-field"];
         if (typeof textField === "string" 
           ? textField.includes("name") 
-          : Array.isArray(textField) && JSON.stringify(textField).includes("name")) {
+          : (Array.isArray(textField) && JSON.stringify(textField).includes("name"))) {
           mapbox.setLayoutProperty(
             layer.id,
             "text-field",
