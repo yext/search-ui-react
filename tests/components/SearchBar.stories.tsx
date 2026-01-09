@@ -57,6 +57,7 @@ DropdownExpanded.play = async ({ canvasElement }) => {
   const comboboxEl = canvas.getByRole('combobox');
   await conductRecentSearches(comboboxEl);
   await userEvent.click(comboboxEl);
+  await canvas.findByText('query suggestion 1');
 };
 
 export const DropdownHighlight: StoryFn<SearchBarProps> = Primary.bind({});
@@ -65,6 +66,7 @@ DropdownHighlight.play = async ({ canvasElement }) => {
   const comboboxEl = canvas.getByRole('combobox');
   await conductRecentSearches(comboboxEl);
   await userEvent.click(comboboxEl);
+  await canvas.findByText('query suggestion 1');
   await userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
 };
 
@@ -77,6 +79,7 @@ DropdownExpandedVerticalLinks.play = async ({ canvasElement }) => {
   const comboboxEl = canvas.getByRole('combobox');
   await conductRecentSearches(comboboxEl);
   await userEvent.click(comboboxEl);
+  await canvas.findByText('query suggestion 1');
 };
 
 async function conductRecentSearches(comboboxEl: HTMLElement) {
