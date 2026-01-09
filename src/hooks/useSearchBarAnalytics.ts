@@ -12,6 +12,7 @@ export function useSearchBarAnalytics(): (
   const searchId = useSearchState(state => state.meta.uuid);
   const locale = useSearchState(state => state.meta.locale);
   const experienceKey = useSearchState(state => state.meta.experienceKey);
+  const searchTerm = useSearchState(state => state.query.mostRecentSearch);
 
   const reportAutocompleteEvent = () => {
     if (!experienceKey) {
@@ -25,6 +26,7 @@ export function useSearchBarAnalytics(): (
       queryId,
       verticalKey,
       experienceKey,
+      searchTerm,
     });
   }
   const reportSearchClearEvent = () => {
@@ -39,6 +41,7 @@ export function useSearchBarAnalytics(): (
       queryId,
       verticalKey,
       experienceKey,
+      searchTerm,
     });
   };
   return (

@@ -77,6 +77,7 @@ export function SectionHeader(props: SectionHeaderProps): React.JSX.Element {
   const searchId = useSearchState(state => state.meta.uuid);
   const locale = useSearchState(state => state.meta.locale);
   const experienceKey = useSearchState(state => state.meta.experienceKey);
+  const searchTerm = useSearchState(state => state.query.mostRecentSearch);
 
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
@@ -110,6 +111,7 @@ export function SectionHeader(props: SectionHeaderProps): React.JSX.Element {
       queryId,
       verticalKey,
       experienceKey,
+      searchTerm,
     });
   }, [analytics, queryId, verticalKey]);
 

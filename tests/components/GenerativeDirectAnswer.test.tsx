@@ -91,7 +91,8 @@ function runAnalyticsTestSuite() {
       "isGenerativeDirectAnswer": true,
       "queryId": "[queryId]",
       "searchId": "searchId",
-      "verticalKey": ''
+      "verticalKey": '',
+      "searchTerm": "test"
     });
   });
   it('reports citation click analytics', async () => {
@@ -109,7 +110,8 @@ function runAnalyticsTestSuite() {
       "isGenerativeDirectAnswer": true,
       "queryId": "[queryId]",
       "searchId": "searchId",
-      "verticalKey": ''
+      "verticalKey": '',
+      "searchTerm": "test"
     });
   });
 }

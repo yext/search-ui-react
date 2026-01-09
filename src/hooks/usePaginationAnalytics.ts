@@ -8,6 +8,7 @@ export function usePaginationAnalytics(): () => void {
   const searchId = useSearchState(state => state.meta.uuid);
   const locale = useSearchState(state => state.meta.locale);
   const experienceKey = useSearchState(state => state.meta.experienceKey);
+  const searchTerm = useSearchState(state => state.query.mostRecentSearch);
 
   return () => {
     if (!analytics) {
@@ -36,6 +37,7 @@ export function usePaginationAnalytics(): () => void {
       queryId,
       verticalKey: verticalKey,
       experienceKey,
+      searchTerm,
     });
   };
 }

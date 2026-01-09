@@ -45,6 +45,7 @@ export function useCardAnalytics<T>(): (
   const searchId = useSearchState(state => state.meta.uuid);
   const locale = useSearchState(state => state.meta.locale);
   const experienceKey = useSearchState(state => state.meta.experienceKey);
+  const searchTerm = useSearchState(state => state.query.mostRecentSearch);
 
   const reportCtaEvent = useCallback((
     result: CardAnalyticsDataType<T>,
@@ -92,6 +93,7 @@ export function useCardAnalytics<T>(): (
       isDirectAnswer: directAnswer,
       isGenerativeDirectAnswer: generativeDirectAnswer,
       experienceKey,
+      searchTerm,
     });
   }, [analytics, queryId, verticalKey]);
 
@@ -133,7 +135,8 @@ export function useCardAnalytics<T>(): (
       verticalKey: verticalKey || '',
       isDirectAnswer: directAnswer,
       isGenerativeDirectAnswer: generativeDirectAnswer,
-      experienceKey
+      experienceKey,
+      searchTerm
     });
   }, [analytics, queryId, verticalKey]);
 
