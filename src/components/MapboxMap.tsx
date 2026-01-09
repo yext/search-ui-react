@@ -229,13 +229,29 @@ export function MapboxMap<T>({
   // keep track of the previous value of mapboxOptions across renders
   const prevMapboxOptions = useRef(mapboxOptions);
 
+  /**
+   * Localizes Mapbox label text to a specific locale.
+   *
+   * Updates symbol layers that are place names such that labels prefer `name_<lang>`
+   * (e.g. `name_fr`) and fall back to `name` when unavailable.
+   * 
+   * Note:
+   * - Symbol layers that are place names would have `text-field` properties that includes 'name', which are localized.
+   * - Other symbol layers (e.g. road shields, transit, icons) are left unchanged.
+   */
   const localizeMap = useCallback(() => {
     const mapbox = map.current;
     if (!mapbox || !locale) return;
 
     const localizeLabels = () => {
       mapbox.getStyle().layers.forEach(layer => {
-        if (layer.type === "symbol" && layer.layout?.["text-field"]) {
+        if (layer.type !== "symbol") {
+          return;
+        }
+        const textField = layer.layout?.["text-field"];
+        if (typeof textField === "string" 
+          ? textField.includes("name") 
+          : (Array.isArray(textField) && JSON.stringify(textField).includes("name"))) {
           mapbox.setLayoutProperty(
             layer.id,
             "text-field",
