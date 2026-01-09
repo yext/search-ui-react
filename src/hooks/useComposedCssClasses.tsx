@@ -63,12 +63,12 @@ export function useComposedCssClasses<
       return mergedCssClasses;
     }
     Object.keys(customClasses).forEach(key => {
-      const builtIn = builtInClasses[key];
-      const custom = customClasses[key];
+      const builtIn = (builtInClasses as any)[key];
+      const custom = (customClasses as any)[key];
       if (!builtIn || !custom) {
-        mergedCssClasses[key] = custom || builtIn;
+        (mergedCssClasses as any)[key] = custom || builtIn;
       } else {
-        mergedCssClasses[key] = twMerge(builtIn, custom);
+        (mergedCssClasses as any)[key] = twMerge(builtIn, custom);
       }
     });
     return mergedCssClasses;

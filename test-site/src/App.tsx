@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom';
 import { AnalyticsProvider, SearchTranslationOverrides, SearchI18nextProvider } from '@yext/search-ui-react';
 import acquireSessionId from './utils/acquireSessionId';
-import { config } from './config';
+import {analyticsConfig, config} from './config';
 
 const searcher = provideHeadless(config);
 
@@ -34,18 +34,18 @@ function App() {
     <div className='p-4'>
       <SearchHeadlessProvider searcher={searcher}>
         <SearchI18nextProvider searcher={searcher} translationOverrides={translationOverrides}>
-          <AnalyticsProvider {...config}>
-            <BrowserRouter>
-              <Navbar/>
-              <Routes>
-                <Route index element={<UniversalPage />} />
-                <Route path='people' element={<PeoplePage />} />
-                <Route path='products' element={<ProductsPage />} />
-                <Route path='locations' element={<LocationsPage />} />
-                <Route path='function' element={<FunctionPage/>} />
-              </Routes>
-            </BrowserRouter>
-          </AnalyticsProvider>
+        <AnalyticsProvider {...analyticsConfig}>
+          <BrowserRouter>
+            <Navbar/>
+            <Routes>
+              <Route index element={<UniversalPage />} />
+              <Route path='people' element={<PeoplePage />} />
+              <Route path='products' element={<ProductsPage />} />
+              <Route path='locations' element={<LocationsPage />} />
+              <Route path='function' element={<FunctionPage/>} />
+            </Routes>
+          </BrowserRouter>
+        </AnalyticsProvider>
         </SearchI18nextProvider>
       </SearchHeadlessProvider>
     </div>

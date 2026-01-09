@@ -1,7 +1,7 @@
 import { FacetsProvider } from './Filters';
 import { StandardFacetContent } from './StandardFacetContent';
 import {
-  FacetProps,
+  FacetProps, FacetsCssClasses,
   FacetsProps, HierarchicalFacetProps, NumericalFacetProps,
   StandardFacetProps
 } from './FacetProps';
@@ -87,7 +87,7 @@ export function Facets(props: FacetsProps): React.JSX.Element {
                     facet={facet}
                     facetsCustomCssClasses={customCssClasses}
                     fieldIdToCustomFacetProps={fieldIdToCustomFacetProps}
-                    hierarchicalFieldIds={hierarchicalFieldIds}
+                    hierarchicalFieldIds={hierarchicalFieldIds ?? []}
                   />
                   {(i < facets.length - 1)
                     && <FilterDivider className={customCssClasses?.divider}/>}
@@ -148,7 +148,7 @@ export function Facet({
   facetsCustomCssClasses,
   fieldIdToCustomFacetProps,
   hierarchicalFieldIds,
-}) {
+}: {facet: DisplayableFacet,facetsCustomCssClasses: FacetsCssClasses, fieldIdToCustomFacetProps: Map<string, any>,hierarchicalFieldIds: string[]}) {
   let facetType: FacetType;
   let facetProps: FacetProps = {
     fieldId: facet.fieldId,

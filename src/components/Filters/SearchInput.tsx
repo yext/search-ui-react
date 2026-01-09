@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import React, { useCallback } from 'react';
+import React, {ChangeEvent, useCallback} from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 
 /**
@@ -29,7 +29,7 @@ export function SearchInput(props: SearchInputProps): React.JSX.Element {
     placeholder
   } = props;
   const { searchValue, setSearchValue } = useFilterGroupContext();
-  const handleChange = useCallback(e => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   }, [setSearchValue]);
 

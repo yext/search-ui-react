@@ -991,6 +991,28 @@ Props for [ResultsCount()](./search-ui-react.resultscount.md)<!-- -->.
 </td></tr>
 <tr><td>
 
+[SearchAnalyticsConfig](./search-ui-react.searchanalyticsconfig.md)
+
+
+</td><td>
+
+An interface representing the configuration for search analytics reporting.
+
+
+</td></tr>
+<tr><td>
+
+[SearchAnalyticsEventService](./search-ui-react.searchanalyticseventservice.md)
+
+
+</td><td>
+
+A service for reporting Yext Search analytics events
+
+
+</td></tr>
+<tr><td>
+
 [SearchBarCssClasses](./search-ui-react.searchbarcssclasses.md)
 
 

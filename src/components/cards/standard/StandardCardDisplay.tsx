@@ -183,4 +183,5 @@ StandardCardDisplay.propTypes = {
   })
 };
 
-export { StandardCardDisplay, StandardCardCssClasses };
+export { StandardCardDisplay };
+export type { StandardCardCssClasses };
