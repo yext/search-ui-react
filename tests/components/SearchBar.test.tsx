@@ -79,7 +79,7 @@ describe('SearchBar', () => {
       uuid: ''
     };
 
-    it('does not display query suggestions when autocomplete is disabled', async () => {
+    it('does not call autocomplete endpoint when autocomplete is disabled', async () => {
       const mockedUniversalAutocomplete = jest
         .spyOn(SearchCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
