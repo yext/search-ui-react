@@ -37,6 +37,25 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[autocompleteDisabled?](./search-ui-react.searchbarprops.autocompletedisabled.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Disable autocomplete if true, set to false on default.
+
+
+</td></tr>
+<tr><td>
+
 [customCssClasses?](./search-ui-react.searchbarprops.customcssclasses.md)
 
 

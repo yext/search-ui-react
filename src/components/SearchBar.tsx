@@ -160,7 +160,9 @@ export interface SearchBarProps {
    */
   verticalAutocompleteLimits?: Record<string, number>,
   /** A callback which is called when a search is ran. */
-  onSearch?: onSearchFunc
+  onSearch?: onSearchFunc,
+  /** Disable autocomplete if true, set to false on default. */
+  autocompleteDisabled?: boolean
 }
 
 /**
@@ -180,7 +182,8 @@ export function SearchBar({
   universalAutocompleteLimit,
   verticalAutocompleteLimits,
   customCssClasses,
-  onSearch
+  onSearch,
+  autocompleteDisabled = false
 }: SearchBarProps): React.JSX.Element {
   const { t } = useTranslation();
   const {
@@ -201,7 +204,7 @@ export function SearchBar({
   const debouncedExecuteAutocompleteSearch = useDebouncedFunction( () => executeAutocompleteSearch(searchActions), 200);
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
     async () => {
-      return debouncedExecuteAutocompleteSearch ?
+      return !autocompleteDisabled && debouncedExecuteAutocompleteSearch ?
         debouncedExecuteAutocompleteSearch() :
         undefined;
     }
