@@ -74,6 +74,10 @@ export function SectionHeader(props: SectionHeaderProps): React.JSX.Element {
 
   const analytics = useAnalytics();
   const queryId = useSearchState(state => state.query.queryId);
+  const searchId = useSearchState(state => state.meta.uuid);
+  const locale = useSearchState(state => state.meta.locale);
+  const experienceKey = useSearchState(state => state.meta.experienceKey);
+  const searchTerm = useSearchState(state => state.query.mostRecentSearch);
 
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
   cssClasses.appliedFiltersContainer = classNames(cssClasses.appliedFiltersContainer, {
@@ -92,10 +96,22 @@ export function SectionHeader(props: SectionHeaderProps): React.JSX.Element {
       console.error('Unable to report a vertical view all event. Missing field: queryId.');
       return;
     }
+    if (!searchId) {
+      console.error('Unable to report a vertical view all event. Missing field: searchId.');
+      return;
+    }
+    if (!experienceKey) {
+      console.error('Unable to report a vertical view all event. Missing field: experienceKey.');
+      return;
+    }
     analytics?.report({
-      type: 'VERTICAL_VIEW_ALL',
+      action: 'VERTICAL_VIEW_ALL',
+      locale,
+      searchId,
       queryId,
-      verticalKey
+      verticalKey,
+      experienceKey,
+      searchTerm,
     });
   }, [analytics, queryId, verticalKey]);
 

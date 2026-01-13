@@ -270,7 +270,7 @@ export function SearchBar({
       executeQuery();
     }
     if (typeof index === 'number' && index >= 0 && !itemData?.isEntityPreview) {
-      reportAnalyticsEvent('AUTO_COMPLETE_SELECTION', value);
+      reportAnalyticsEvent('AUTO_COMPLETE_SELECTION');
     }
   }, [searchActions, executeQuery, onSelectVerticalLink, reportAnalyticsEvent]);
 
@@ -424,7 +424,7 @@ export function SearchBar({
     ['shadow-lg']: hasItems
   });
 
-  const handleToggleDropdown = useCallback((isActive) => {
+  const handleToggleDropdown = useCallback((isActive: boolean) => {
     if (!isActive) {
       clearAutocomplete();
     }

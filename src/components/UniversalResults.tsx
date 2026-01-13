@@ -89,7 +89,7 @@ function renderVerticalSections<T>(props: VerticalSectionsProps<T>): React.JSX.E
       .filter(verticalResults => verticalResults.results)
       .map(verticalResults => {
         const verticalKey = verticalResults.verticalKey;
-        const verticalConfig = verticalConfigMap[verticalKey] || {};
+        const verticalConfig = (verticalConfigMap as any)[verticalKey] || {};
 
         const label = verticalConfig.label ?? verticalKey;
         const results = verticalResults.results;

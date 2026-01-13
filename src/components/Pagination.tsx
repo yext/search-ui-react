@@ -80,7 +80,7 @@ export function Pagination(props: PaginationProps): React.JSX.Element | null {
     searchActions.setOffset(newOffset);
     searchActions.setIsPagination(true);
     executeSearch(searchActions);
-    reportAnalyticsEvent(newPageNumber, currentPageNumber, maxPageCount);
+    reportAnalyticsEvent();
   }, [searchActions, limit, maxPageCount, currentPageNumber, reportAnalyticsEvent]);
 
   if (maxPageCount <= 1) {
