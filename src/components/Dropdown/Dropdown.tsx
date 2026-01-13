@@ -65,7 +65,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
     alwaysSelectOption = false
   } = props;
 
-  const containerRef = useRef<HTMLDivElement>(null!);
+  const containerRef = useRef<HTMLDivElement>(null);
   const screenReaderUUID = useId('dropdown');
   const dropdownListUUID = useId('dropdown-list');
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
@@ -112,7 +112,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
     setLastTypedOrSubmittedValue
   ]);
 
-  useRootClose(containerRef, () => {
+  useRootClose(containerRef as React.RefObject<Element>, () => {
     toggleDropdown(false);
   }, { disabled: !isActive });
 

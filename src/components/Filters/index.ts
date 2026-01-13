@@ -5,7 +5,7 @@ export type { CollapsibleLabelProps, CollapsibleLabelCssClasses } from './Collap
 export { CollapsibleSection } from './CollapsibleSection';
 export type { CollapsibleSectionProps } from './CollapsibleSection';
 export { FacetsProvider } from './FacetsProvider';
-export type {  FacetsProviderProps } from './FacetsProvider';
+export type { FacetsProviderProps } from './FacetsProvider';
 export { FiltersContext, useFiltersContext } from './FiltersContext';
 export type { FiltersContextType } from './FiltersContext';
 export { FilterGroupProvider } from './FilterGroupProvider';
@@ -17,6 +17,6 @@ export type { SearchInputProps } from './SearchInput';
 export { StaticFiltersProvider } from './StaticFiltersProvider';
 export type { StaticFiltersProviderProps } from './StaticFiltersProvider';
 export { HierarchicalFacetDisplay } from './HierarchicalFacetDisplay';
-export type {  HierarchicalFacetDisplayProps, HierarchicalFacetDisplayCssClasses } from './HierarchicalFacetDisplay';
+export type { HierarchicalFacetDisplayProps, HierarchicalFacetDisplayCssClasses } from './HierarchicalFacetDisplay';
 export { RangeInput } from './RangeInput';
 export type { RangeInputProps, RangeInputCssClasses } from './RangeInput';

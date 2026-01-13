@@ -9,7 +9,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import { fieldValueDAState } from '../__fixtures__/data/directanswers';
 import { UnknownFieldTypeDisplayComponent } from '../../src/components/DirectAnswer';
-import React, { act } from 'react';
+import React from 'react';
 import { ignoreLinkClickErrors } from '../__utils__/mocks';
 
 const fieldValueDAResult = fieldValueDAState.result as FieldValueDirectAnswerType;
@@ -23,9 +23,7 @@ describe('FieldValue direct answer', () => {
     );
     ignoreLinkClickErrors();
     const viewDetailsLink = screen.getByRole('link', { name: 'View Details' });
-    await act(async () => {
-      await userEvent.click(viewDetailsLink);
-    });
+    await userEvent.click(viewDetailsLink);
 
     expect(viewDetailsClickHandler).toHaveBeenCalledTimes(1);
   });

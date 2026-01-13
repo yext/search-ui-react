@@ -7,13 +7,13 @@ import { RecursivePartial, ignoreLinkClickErrors } from '../__utils__/mocks';
 import { fieldValueDAState, featuredSnippetDAState } from '../__fixtures__/data/directanswers';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import userEvent from '@testing-library/user-event';
-import React, { act } from 'react';
+import React from 'react';
 
 jest.mock('../../src/hooks/useAnalytics', () => {
-    const report = jest.fn();
-    return {
-        useAnalytics: () => ({report})
-    };
+  const report = jest.fn();
+  return {
+    useAnalytics: () => ({ report })
+  };
 });
 
 function renderDirectAnswer(
@@ -54,14 +54,14 @@ function renderDirectAnswer(
       }
     });
 
-    act(() => {
-      utils.rerender(<SearchHeadlessContext.Provider value={newSearcher}>
+    utils.rerender(
+      <SearchHeadlessContext.Provider value={newSearcher}>
         <SearchI18nextProvider searcher={newSearcher} translationOverrides={translationOverrides}>
           <DirectAnswer />
         </SearchI18nextProvider>
-      </SearchHeadlessContext.Provider>);
-    })
-  };
+      </SearchHeadlessContext.Provider>
+    );
+  }
 
   return {
     ...utils,
@@ -92,16 +92,16 @@ function runAnalyticsTestSuite(mockState: DirectAnswerState) {
     await userEvent.click(link);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
-      "action": "CTA_CLICK",
-      "destinationUrl": "[relatedResult.link]",
-      "entity": "[relatedResult.id]",
-      "locale": undefined,
-      "experienceKey": "experienceKey",
-      "isDirectAnswer": true,
-      "isGenerativeDirectAnswer": false,
-      "queryId": "[queryId]",
-      "searchId": "searchId",
-      "verticalKey": ''
+      'action': 'CTA_CLICK',
+      'destinationUrl': '[relatedResult.link]',
+      'entity': '[relatedResult.id]',
+      'locale': undefined,
+      'experienceKey': 'experienceKey',
+      'isDirectAnswer': true,
+      'isGenerativeDirectAnswer': false,
+      'queryId': '[queryId]',
+      'searchId': 'searchId',
+      'verticalKey': ''
     }));
   });
 
@@ -111,15 +111,15 @@ function runAnalyticsTestSuite(mockState: DirectAnswerState) {
     await userEvent.click(thumbsUp);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
-      "action": "THUMBS_UP",
-      "entity": "[relatedResult.id]",
-      "locale": undefined,
-      "experienceKey": "experienceKey",
-      "isDirectAnswer": true,
-      "isGenerativeDirectAnswer": false,
-      "queryId": "[queryId]",
-      "searchId": "searchId",
-      "verticalKey": ''
+      'action': 'THUMBS_UP',
+      'entity': '[relatedResult.id]',
+      'locale': undefined,
+      'experienceKey': 'experienceKey',
+      'isDirectAnswer': true,
+      'isGenerativeDirectAnswer': false,
+      'queryId': '[queryId]',
+      'searchId': 'searchId',
+      'verticalKey': ''
     }));
   });
 
@@ -129,15 +129,15 @@ function runAnalyticsTestSuite(mockState: DirectAnswerState) {
     await userEvent.click(thumbsDown);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith(expect.objectContaining({
-      "action": "THUMBS_DOWN",
-      "entity": "[relatedResult.id]",
-      "locale": undefined,
-      "experienceKey": "experienceKey",
-      "isDirectAnswer": true,
-      "isGenerativeDirectAnswer": false,
-      "queryId": "[queryId]",
-      "searchId": "searchId",
-      "verticalKey": ''
+      'action': 'THUMBS_DOWN',
+      'entity': '[relatedResult.id]',
+      'locale': undefined,
+      'experienceKey': 'experienceKey',
+      'isDirectAnswer': true,
+      'isGenerativeDirectAnswer': false,
+      'queryId': '[queryId]',
+      'searchId': 'searchId',
+      'verticalKey': ''
     }));
   });
 }
@@ -152,9 +152,7 @@ function runTranslationTestSuite(mockState: DirectAnswerState) {
     expect(thumbsUp).toHaveAttribute('aria-label', 'This answered my question');
     expect(thumbsDown).toHaveAttribute('aria-label', 'This did not answer my question');
 
-    act(() => {
-      rerenderWithLocale('el');
-    });
+    rerenderWithLocale('el');
 
     expect(screen.getByText('Σχόλια')).toBeDefined();
 
@@ -199,7 +197,8 @@ function runTranslationTestSuite(mockState: DirectAnswerState) {
     expect(screen.getByText('Overriden Feedback')).toBeDefined();
 
     const [thumbsUp, thumbsDown] = screen.queryAllByRole('button');
-    // Defaults to English translation because the overrides did not contain this key and the locale key is not supported
+    // Defaults to English translation because the overrides did not contain this key
+    // and the locale key is not supported.
     expect(thumbsUp).toHaveAttribute('aria-label', 'This answered my question');
     expect(thumbsDown).toHaveAttribute('aria-label', 'This did not answer my question');
 

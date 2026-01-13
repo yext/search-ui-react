@@ -1,4 +1,4 @@
-import { SearchEventPayload } from "./SearchEventPayload";
+import { SearchEventPayload } from './SearchEventPayload';
 
 /**
  * A service for reporting Yext Search analytics events
@@ -11,5 +11,5 @@ export interface SearchAnalyticsEventService {
      *
      * @param payload - desired values to be applied
      */
-    report(payload: SearchEventPayload): Promise<string>;
+  report(payload: SearchEventPayload): Promise<string>
 }

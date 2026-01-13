@@ -113,7 +113,7 @@ export function SectionHeader(props: SectionHeaderProps): React.JSX.Element {
       experienceKey,
       searchTerm,
     });
-  }, [analytics, queryId, verticalKey]);
+  }, [analytics, experienceKey, locale, queryId, searchId, searchTerm, verticalKey]);
 
   return (
     <div className={cssClasses.sectionHeaderContainer}>

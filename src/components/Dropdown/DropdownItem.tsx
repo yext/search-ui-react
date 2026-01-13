@@ -70,14 +70,14 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
   ]);
 
   return (
-    <a
+    <button
       id={generateDropdownId(screenReaderUUID, index)}
-      href="#"
+      type="button"
       className={isFocused ? focusedClassName : className}
       onClick={handleClick}
       aria-label={typeof ariaLabel === 'function' ? ariaLabel(value) : ariaLabel}
     >
       {children}
-    </a>
+    </button>
   );
 }

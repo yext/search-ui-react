@@ -139,7 +139,8 @@ describe('search with section labels', () => {
   });
 
   it('triggers a filter search only when user stops typing', async () => {
-    await waitForDebounce();  // async nature of the debouncing means we may get a delayed call from a different test
+    // Async debouncing can leak a delayed call from a different test.
+    await waitForDebounce();
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
@@ -711,7 +712,10 @@ describe('search without section labels', () => {
     const mockedOnDropdownInputChange = jest.fn();
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch');
-    renderFilterSearch({ searchFields: searchFieldsProp, onDropdownInputChange: mockedOnDropdownInputChange});
+    renderFilterSearch({
+      searchFields: searchFieldsProp,
+      onDropdownInputChange: mockedOnDropdownInputChange
+    });
     await userEvent.type(screen.getByRole('combobox'), 'a');
     expect(mockedOnDropdownInputChange).toHaveBeenCalledTimes(1);
     expect(executeFilterSearch).toHaveBeenCalledTimes(0);
@@ -719,11 +723,14 @@ describe('search without section labels', () => {
 
   it('when an afterDropdownInputFocus prop is provided, invokes it in addition to the original ' +
     'behavior when input gains focus', async () => {
-    await waitForDebounce();  // async nature of the debouncing means we may get a delayed call from a different test
+    // Async debouncing can leak a delayed call from a different test.
+    await waitForDebounce();
     const mockedAfterDropdownInputFocus = jest.fn();
     const executeFilterSearch = jest.spyOn(SearchHeadless.prototype, 'executeFilterSearch');
-    renderFilterSearch(
-      {searchFields: searchFieldsProp, afterDropdownInputFocus: mockedAfterDropdownInputFocus});
+    renderFilterSearch({
+      searchFields: searchFieldsProp,
+      afterDropdownInputFocus: mockedAfterDropdownInputFocus
+    });
 
     // Click into input. ExecuteFilterSearch wouldn't be triggered since the input is empty.
     await userEvent.click(screen.getByRole('combobox'));
@@ -899,7 +906,10 @@ it('toggling the dropdown does not change selected filters', async () => {
 });
 
 it('displays near me button when showCurrentLocationButton is true', () => {
-  const { rerenderWithLocale } = renderFilterSearch({ searchFields: searchFieldsProp, showCurrentLocationButton: true });
+  const { rerenderWithLocale } = renderFilterSearch({
+    searchFields: searchFieldsProp,
+    showCurrentLocationButton: true
+  });
   const nearMeButton = screen.getByRole('button', { name: 'Use Current Location' });
   expect(nearMeButton).toBeDefined();
 

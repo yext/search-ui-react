@@ -65,7 +65,9 @@ export function FieldValueDirectAnswer({
   );
 }
 
-function DefaultUnknownFieldTypeDisplay({ result }: { result: UnknownFieldValueDirectAnswer }): React.JSX.Element {
+function DefaultUnknownFieldTypeDisplay(
+  { result }: { result: UnknownFieldValueDirectAnswer }
+): React.JSX.Element {
   let val: string | number;
   if (typeof result.value !== 'string' && typeof result.value !== 'number') {
     console.warn(`Unknown field type for direct answer with "${result.fieldApiName}" fieldApiName. Rendering result's value as a string.`

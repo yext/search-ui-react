@@ -107,6 +107,6 @@ export function Geolocation({
         </button>
         {iconContainer}
       </div>
-    )
+    );
   }
 }

@@ -5,7 +5,7 @@ const { supportedLocales } = require('./supportedLocales.ts');
 const NAMESPACE = 'search-ui-react';
 const resources: Record<string, any> = {};
 
-supportedLocales.forEach((locale:string) => {
+supportedLocales.forEach((locale: string) => {
   resources[locale] = {
     [NAMESPACE]: require(`../../locales/${locale}/search-ui-react.json`),
   };

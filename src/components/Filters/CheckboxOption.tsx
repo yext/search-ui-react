@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { FieldValueFilter, Matcher, NumberRangeValue } from '@yext/search-headless-react';
-import React, {ChangeEvent, useCallback, useEffect, useMemo} from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useMemo } from 'react';
 import { useFiltersContext } from './FiltersContext';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks';
@@ -71,7 +71,7 @@ const builtInCssClasses: Readonly<CheckboxCssClasses> = {
  * @param props - {@link Filters.CheckboxOptionProps}
  */
 export function CheckboxOption(props: CheckboxOptionProps): React.JSX.Element | null {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
   const { fieldId, isOptionsDisabled } = useFilterGroupContext();
   const {
     value,
