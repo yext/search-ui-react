@@ -685,7 +685,6 @@ export interface ResultsCountProps {
 }
 
 // @public
-<<<<<<< HEAD
 export interface SearchAnalyticsConfig {
     apiKey: string;
     cloudRegion?: CloudRegion;
@@ -1040,7 +1039,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1668:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1736:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
