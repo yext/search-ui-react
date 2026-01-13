@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Matcher, NumberRangeValue, useSearchActions, useSearchState } from '@yext/search-headless-react';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {ChangeEvent, useCallback, useEffect, useMemo, useState} from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks';
 import { getDefaultFilterDisplayName, clearStaticRangeFilters, findSelectableFieldValueFilter, getSelectableFieldValueFilters, parseNumberRangeInput } from '../../utils/filterutils';
@@ -130,12 +130,12 @@ export function RangeInput(props: RangeInputProps): React.JSX.Element | null {
     setIsOptionsDisabled(hasUserInput);
   }, [hasUserInput, setIsOptionsDisabled]);
 
-  const handleMinChange = useCallback(event => {
+  const handleMinChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const input = event?.target?.value;
     validateNumericInput(input) && setMinRangeInput(input);
   }, []);
 
-  const handleMaxChange = useCallback(event => {
+  const handleMaxChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const input = event?.target?.value;
     validateNumericInput(input) && setMaxRangeInput(input);
   }, []);
@@ -185,7 +185,7 @@ export function RangeInput(props: RangeInputProps): React.JSX.Element | null {
     [cssClasses.inputPrefix___enabled ?? '']: !isDisabled,
   });
 
-  function renderInput(value: string, onChange: (event: unknown) => void, placeholder: string) {
+  function renderInput(value: string, onChange: React.ChangeEventHandler<HTMLInputElement> | undefined, placeholder: string) {
     return (
       <div className={cssClasses.inputContainer}>
         {inputPrefix && <span className={inputPrefixClasses} aria-hidden='true'>{inputPrefix}</span>}

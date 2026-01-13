@@ -233,7 +233,7 @@ export function FilterSearch({
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
-  const handleSelectDropdown = useCallback(async (_value, _index, itemData) => {
+  const handleSelectDropdown = useCallback(async (_value: string, _index: number, itemData: (Record<string, unknown> | undefined)) => {
     const newFilter = itemData?.filter as FieldValueStaticFilter;
     const newDisplayName = itemData?.displayName as string;
     if (!newFilter || !newDisplayName) {
@@ -282,7 +282,7 @@ export function FilterSearch({
     matchingFieldIds
   ]);
 
-  const handleInputChange = useCallback((value) => {
+  const handleInputChange = useCallback((value: string) => {
     onDropdownInputChange ? onDropdownInputChange({
       value,
       executeFilterSearch
@@ -292,7 +292,7 @@ export function FilterSearch({
     executeFilterSearch
   ]);
 
-  const meetsSubmitCritera = useCallback(index => index >= 0, []);
+  const meetsSubmitCritera = useCallback((index: number) => index >= 0, []);
 
   const itemDataMatrix = useMemo(() => {
     return sections.map(section => {

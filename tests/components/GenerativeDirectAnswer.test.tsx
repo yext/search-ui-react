@@ -26,7 +26,10 @@ const mockedState: Partial<State> = {
     mostRecentSearch: 'test'
   },
   meta: {
-    searchType: 'universal'
+    searchType: 'universal',
+    experienceKey: 'experienceKey',
+    locale: 'en',
+    uuid: 'searchId'
   }
 };
 
@@ -79,14 +82,17 @@ function runAnalyticsTestSuite() {
     await userEvent.click(link);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith({
-      type: 'CTA_CLICK',
-      queryId: '[queryId]',
-      verticalKey: '',
-      searcher: 'UNIVERSAL',
-      url: generativeDirectAnswerLink,
-      fieldName: 'gda-snippet',
-      directAnswer: true,
-      generativeDirectAnswer: true
+      "action": "CTA_CLICK",
+      "destinationUrl": generativeDirectAnswerLink,
+      "entity": undefined,
+      "locale": "en",
+      "experienceKey": "experienceKey",
+      "isDirectAnswer": true,
+      "isGenerativeDirectAnswer": true,
+      "queryId": "[queryId]",
+      "searchId": "searchId",
+      "verticalKey": '',
+      "searchTerm": "test"
     });
   });
   it('reports citation click analytics', async () => {
@@ -95,15 +101,17 @@ function runAnalyticsTestSuite() {
     await userEvent.click(links[0]);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith({
-      type: 'CITATION_CLICK',
-      queryId: '[queryId]',
-      verticalKey: '',
-      searcher: 'UNIVERSAL',
-      entityId: verticalResults[0].results[1].id,
-      url: verticalResults[0].results[1].rawData.link,
-      fieldName: 'gda-snippet',
-      directAnswer: true,
-      generativeDirectAnswer: true
+      "action": "CITATION_CLICK",
+      "destinationUrl": verticalResults[0].results[1].rawData.link,
+      "entity": verticalResults[0].results[1].id,
+      "locale": "en",
+      "experienceKey": "experienceKey",
+      "isDirectAnswer": true,
+      "isGenerativeDirectAnswer": true,
+      "queryId": "[queryId]",
+      "searchId": "searchId",
+      "verticalKey": '',
+      "searchTerm": "test"
     });
   });
 }
