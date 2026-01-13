@@ -48,7 +48,8 @@ function renderSearchBar(
   recentSearchesLimit?: number,
   onSearch?: onSearchFunc,
   universalAutocompleteLimit?: number,
-  verticalAutocompleteLimits?: Record<string, number>
+  verticalAutocompleteLimits?: Record<string, number>,
+  autocompleteDisabled?: boolean
 ): RenderResult {
   const searcher = generateMockedHeadless(mockState);
 
@@ -63,6 +64,7 @@ function renderSearchBar(
         onSearch={onSearch}
         universalAutocompleteLimit={universalAutocompleteLimit}
         verticalAutocompleteLimits={verticalAutocompleteLimits}
+        autocompleteDisabled={autocompleteDisabled}
       />
     </SearchI18nextProvider>
   </SearchHeadlessContext.Provider>);
@@ -78,6 +80,24 @@ describe('SearchBar', () => {
       inputIntents: [],
       uuid: ''
     };
+
+    it('does not call autocomplete endpoint when autocomplete is disabled', async () => {
+      const mockedUniversalAutocomplete = jest
+        .spyOn(SearchCore.prototype, 'universalAutocomplete')
+        .mockResolvedValue(mockedAutocompleteResult);
+
+      renderSearchBar(mockedState, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, true);
+
+      await userEvent.click(screen.getByRole('combobox'));
+      expect(screen.queryByText('query suggestion 1')).not.toBeInTheDocument();
+      expect(screen.queryByText('query suggestion 2')).not.toBeInTheDocument();
+
+      await userEvent.type(screen.getByRole('combobox'), 't');
+      expect(screen.queryByText('query suggestion 1')).not.toBeInTheDocument();
+      expect(screen.queryByText('query suggestion 2')).not.toBeInTheDocument();
+
+      expect(mockedUniversalAutocomplete).toBeCalledTimes(0);
+    });
 
     it('displays universal query suggestions when click on universal search bar', async () => {
       const mockedUniversalAutocomplete = jest
