@@ -41,3 +41,8 @@ Searchable.args = {
   ...Primary.args,
   searchable: true
 };
+Searchable.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  await canvas.findByText('Clifford');
+  await new Promise(resolve => setTimeout(resolve, 300));
+};
