@@ -4,11 +4,11 @@
 
 ```ts
 
-import { AnalyticsConfig } from '@yext/analytics';
-import { AnalyticsService } from '@yext/analytics';
 import { AutocompleteResponse } from '@yext/search-headless-react';
+import { CloudRegion } from '@yext/search-core';
 import { DirectAnswer as DirectAnswer_2 } from '@yext/search-headless-react';
 import { DisplayableFacetOption } from '@yext/search-headless-react';
+import { Environment } from '@yext/search-core';
 import { FieldValueStaticFilter } from '@yext/search-headless-react';
 import { FilterSearchResponse } from '@yext/search-headless-react';
 import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
@@ -65,7 +65,7 @@ export interface AlternativeVerticalsProps {
 }
 
 // @public
-export function AnalyticsProvider(props: PropsWithChildren<AnalyticsConfig>): React_2.JSX.Element;
+export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): React_2.JSX.Element;
 
 // @public
 export function AppliedFilters(props: AppliedFiltersProps): React_2.JSX.Element;
@@ -685,6 +685,20 @@ export interface ResultsCountProps {
 }
 
 // @public
+export interface SearchAnalyticsConfig {
+    apiKey: string;
+    cloudRegion?: CloudRegion;
+    environment?: Environment;
+    sessionTrackingEnabled?: boolean;
+}
+
+// @public
+export interface SearchAnalyticsEventService {
+    // Warning: (ae-forgotten-export) The symbol "SearchEventPayload" needs to be exported by the entry point index.d.ts
+    report(payload: SearchEventPayload): Promise<string>;
+}
+
+// @public
 export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch, autocompleteDisabled }: SearchBarProps): React_2.JSX.Element;
 
 // @public
@@ -959,7 +973,7 @@ export interface UnknownFieldTypeDisplayProps {
 export function updateLocationIfNeeded(searchActions: SearchActions, intents: SearchIntent[], geolocationOptions?: PositionOptions): Promise<void>;
 
 // @public
-export function useAnalytics(): AnalyticsService | null;
+export function useAnalytics(): SearchAnalyticsEventService | null;
 
 // @public
 export function useCardAnalyticsCallback<T = DefaultRawDataType>(result: CardAnalyticsDataType<T>, analyticsType: CardAnalyticsType): () => void;
@@ -1025,7 +1039,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1668:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1736:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

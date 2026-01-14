@@ -1,44 +1,57 @@
-import { useAnalytics } from './useAnalytics';
-import { useSearchState } from '@yext/search-headless-react';
+import {useAnalytics} from './useAnalytics';
+import {useSearchState} from '@yext/search-headless-react';
 
 type SearchBarAnalyticsType = 'AUTO_COMPLETE_SELECTION' | 'SEARCH_CLEAR_BUTTON';
 
 export function useSearchBarAnalytics(): (
-  analyticsEventType: SearchBarAnalyticsType,
-  suggestedSearchText?: string
+    analyticsEventType: SearchBarAnalyticsType
 ) => void {
   const analytics = useAnalytics();
   const verticalKey = useSearchState(state => state.vertical.verticalKey);
   const queryId = useSearchState(state => state.query.queryId);
+  const searchId = useSearchState(state => state.meta.uuid);
+  const locale = useSearchState(state => state.meta.locale);
+  const experienceKey = useSearchState(state => state.meta.experienceKey);
+  const searchTerm = useSearchState(state => state.query.mostRecentSearch);
 
-  const reportAutocompleteEvent = (suggestedSearchText: string) => {
-    analytics?.report({
-      type: 'AUTO_COMPLETE_SELECTION',
-      ...(queryId && { queryId }),
-      suggestedSearchText
-    });
-  };
-  const reportSearchClearEvent = () => {
-    if (!queryId) {
-      console.error('Unable to report a search clear event. Missing field: queryId.');
+  const reportAutocompleteEvent = () => {
+    if (!experienceKey) {
+      console.error('Unable to report an autocomplete event. Missing field: experienceKey.');
       return;
     }
     analytics?.report({
-      type: 'SEARCH_CLEAR_BUTTON',
+      action: 'AUTO_COMPLETE_SELECTION',
+      locale,
+      searchId,
       queryId,
-      verticalKey
+      verticalKey,
+      experienceKey,
+      searchTerm,
+    });
+  }
+  const reportSearchClearEvent = () => {
+    if (!experienceKey) {
+      console.error('Unable to report a search clear event. Missing field: experienceKey.');
+      return;
+    }
+    analytics?.report({
+      action: 'SEARCH_CLEAR_BUTTON',
+      locale,
+      searchId,
+      queryId,
+      verticalKey,
+      experienceKey,
+      searchTerm,
     });
   };
-  const reportAnalyticsEvent = (
-    analyticsEventType: SearchBarAnalyticsType,
-    suggestedSearchText?: string
+  return (
+      analyticsEventType: SearchBarAnalyticsType
   ) => {
     if (!analytics) {
       return;
     }
     analyticsEventType === 'AUTO_COMPLETE_SELECTION'
-      ? reportAutocompleteEvent(suggestedSearchText || '')
-      : reportSearchClearEvent();
+        ? reportAutocompleteEvent()
+        : reportSearchClearEvent();
   };
-  return reportAnalyticsEvent;
 }
