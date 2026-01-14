@@ -82,4 +82,4 @@ export function ignoreLinkClickErrors() {
         originalConsoleError(msg, ...params);
       }
     });
-};
+}

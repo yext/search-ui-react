@@ -1,8 +1,8 @@
 // Copied with minor modifications from
 // https://github.com/reach/reach-ui/blob/dev/packages/auto-id/src/reach-auto-id.ts
 
-import React, { useEffect, useState } from "react";
-import { useLayoutEffect } from "./useLayoutEffect";
+import React, { useEffect, useState } from 'react';
+import { useLayoutEffect } from './useLayoutEffect';
 
 let serverHandoffComplete = false;
 let id = 0;
@@ -14,7 +14,7 @@ function genId(baseName: string): string {
 // Workaround for https://github.com/webpack/webpack/issues/14814
 // https://github.com/eps1lon/material-ui/blob/8d5f135b4d7a58253a99ab56dce4ac8de61f5dc1/packages/mui-utils/src/useId.ts#L21
 const maybeReactUseId: undefined | (() => string) = (React as any)[
-  "useId".toString()
+  'useId'.toString()
 ];
 
 /**
@@ -29,9 +29,7 @@ const maybeReactUseId: undefined | (() => string) = (React as any)[
  */
 
 export function useId(baseName: string): string {
-  if (maybeReactUseId !== undefined) {
-    return maybeReactUseId();
-  }
+  const reactId = maybeReactUseId?.();
 
   // If this instance isn't part of the initial render, we don't have to do the
   // double render/patch-up dance. We can just generate the ID and return it.
@@ -46,7 +44,7 @@ export function useId(baseName: string): string {
       // it's a problem).
       setId(genId(baseName));
     }
-  }, [id]);
+  }, [baseName, id]);
 
   useEffect(() => {
     if (serverHandoffComplete === false) {
@@ -57,5 +55,5 @@ export function useId(baseName: string): string {
     }
   }, []);
 
-  return id;
+  return reactId ?? id;
 }

@@ -3,18 +3,18 @@ import { I18nextProvider } from 'react-i18next';
 import { SearchHeadless } from '@yext/search-headless-react';
 import { i18nInstance } from '../utils';
 
-type translationKeys = 
-  'aiGeneratedAnswer' | 
-  'allCategories' | 
-  'appliedFiltersToCurrentSearch' | 
-  'apply' | 
+type translationKeys =
+  'aiGeneratedAnswer' |
+  'allCategories' |
+  'appliedFiltersToCurrentSearch' |
+  'apply' |
   'applyFilters' |
   'autocompleteOptionsFound_zero' | 'autocompleteOptionsFound_one' | 'autocompleteOptionsFound_two' | 'autocompleteOptionsFound_few' | 'autocompleteOptionsFound_many' | 'autocompleteOptionsFound_other' |
-  'autocompleteSuggestion' | 
+  'autocompleteSuggestion' |
   'autocompleteSuggestionsFound_zero' | 'autocompleteSuggestionsFound_one' | 'autocompleteSuggestionsFound_two' | 'autocompleteSuggestionsFound_few' | 'autocompleteSuggestionsFound_many' | 'autocompleteSuggestionsFound_other' |
   'basedOnYourDevice' |
   'basedOnYourInternetAddress' |
-  'categoriesText_zero' | 'categoriesText_one'| 'categoriesText_two'  | 'categoriesText_few' | 'categoriesText_many' | 'categoriesText_other' |
+  'categoriesText_zero' | 'categoriesText_one' | 'categoriesText_two' | 'categoriesText_few' | 'categoriesText_many' | 'categoriesText_other' |
   'clearAll' |
   'clearMinAndMax' |
   'clearTheRangeToSelectOptions' |
@@ -60,19 +60,19 @@ type translationKeys =
 
 type translations = {
   [key in translationKeys]?: string;
-}
+};
 
 /**
  * SearchI18next translation overrides
- * 
+ *
  * The key is the locale to override.
  * The value is the translation object that define specific translations override.
  *
  * @public
  */
 export type SearchTranslationOverrides = {
-  [key: string]: translations;
-}
+  [key: string]: translations
+};
 
 /**
  * The configuration options for Search I18next.
@@ -80,8 +80,8 @@ export type SearchTranslationOverrides = {
  * @public
  */
 declare interface SearchI18nextConfig {
-  searcher: SearchHeadless;
-  translationOverrides?: SearchTranslationOverrides;
+  searcher: SearchHeadless,
+  translationOverrides?: SearchTranslationOverrides
 }
 
 /**
@@ -92,7 +92,7 @@ declare interface SearchI18nextConfig {
  * @param props - The configuration for the search headless service
  * @returns A React element that provides translation context
  */
-export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConfig>):React.JSX.Element {
+export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConfig>): React.JSX.Element {
   const { searcher, translationOverrides, children } = props;
 
   React.useEffect(() => {
@@ -106,8 +106,7 @@ export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConf
         i18nInstance.changeLanguage(locale);
       }
     });
-  }, [])
-
+  }, [searcher, translationOverrides]);
 
   return (
     <I18nextProvider i18n={i18nInstance}>

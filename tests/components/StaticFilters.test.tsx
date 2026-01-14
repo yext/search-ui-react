@@ -1,12 +1,12 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
-import {Matcher, SearchActions, State} from '@yext/search-headless-react';
-import {mockAnswersHooks, spyOnActions} from '../__utils__/mocks';
-import {FilterOptionConfig} from '../../src/components/Filters';
+import { render, screen } from '@testing-library/react';
+import { Matcher, SearchActions, State } from '@yext/search-headless-react';
+import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
+import { FilterOptionConfig } from '../../src/components/Filters';
 import userEvent from '@testing-library/user-event';
-import {StaticFilters, StaticFiltersProps} from '../../src/components';
-import {staticFilters, staticFiltersProps} from '../__fixtures__/data/filters';
-import {testSSR} from '../ssr/utils';
+import { StaticFilters, StaticFiltersProps } from '../../src/components';
+import { staticFilters, staticFiltersProps } from '../__fixtures__/data/filters';
+import { testSSR } from '../ssr/utils';
 
 const hoursFilterProps: StaticFiltersProps = {
   fieldId: 'builtin.hours',
@@ -98,7 +98,7 @@ describe('Static Filters', () => {
 
     const hoursFilter = hoursFilterProps.filterOptions[0];
     const hoursCheckbox: HTMLInputElement = screen.getByLabelText(
-        hoursFilter.displayName ?? hoursFilter.value.toString()
+      hoursFilter.displayName ?? hoursFilter.value.toString()
     );
     expect(hoursCheckbox.checked).toBeFalsy();
 

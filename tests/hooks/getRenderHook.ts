@@ -8,5 +8,5 @@ function getRenderHook() {
     return require('@testing-library/react').renderHook;
   }
 }
-  
+
 export const renderHook = getRenderHook();

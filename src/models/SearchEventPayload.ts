@@ -5,34 +5,34 @@
  */
 export interface SearchEventPayload {
     /** The user action which caused the event, e.g. THUMBS_UP, AUTO_COMPLETE_SELECTION  */
-    action?: SearchAction;
+  action?: SearchAction,
     /** The URL of the page the event is directing the visitor to. */
-    destinationUrl?: string;
+  destinationUrl?: string,
     /** The Yext entity to which the event corresponds. If passed as a string, the value is
      * the mutable, customer-settable entity ID for the entity associated with the event.
      * If passed as a number, it is the immutable entity ID (UID) set by the system. This is an internal ID.
      */
-    entity?: string | number;
+  entity?: string | number,
     /** The locale of the user who generated the event.*/
-    locale?: string;
+  locale?: string,
     /** Unique identifier of the search */
-    searchId?: string;
+  searchId?: string,
     /** Unique identifier for a single query across pagination */
-    queryId?: string;
+  queryId?: string,
     /** The vertical key on which the event occurred, if any */
-    verticalKey?: string;
+  verticalKey?: string,
     /** Whether or not the event occurred on a direct answer card */
-    isDirectAnswer?: boolean;
+  isDirectAnswer?: boolean,
     /** The label of the version number of the search config. Either "PRODUCTION" or "STAGING" */
-    versionLabel?: VersionLabel;
+  versionLabel?: VersionLabel,
     /** The version number of the search config */
-    versionNumber?: number;
+  versionNumber?: number,
     /** The identifier of the search experience. */
-    experienceKey: string;
+  experienceKey: string,
     /** Whether or not the event occurred on a generative direct answer card */
-    isGenerativeDirectAnswer?: boolean;
+  isGenerativeDirectAnswer?: boolean,
     /** The query entered by the user. */
-    searchTerm?: string;
+  searchTerm?: string
 }
 
 export declare type SearchAction =
@@ -75,4 +75,4 @@ export declare type SearchAction =
     | 'VOICE_STOP'
     | 'WEBSITE';
 
-export declare type VersionLabel = "PRODUCTION" | "STAGING"
+export declare type VersionLabel = 'PRODUCTION' | 'STAGING';

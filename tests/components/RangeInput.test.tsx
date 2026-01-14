@@ -6,7 +6,7 @@ import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FiltersContext, FiltersContextType } from '../../src/components/Filters/FiltersContext';
 import { filterContextValue, filterContextValueDisabled } from '../__fixtures__/data/filtercontext';
 import { FilterGroupProvider } from '../../src/components/Filters/FilterGroupProvider';
-import React, { act } from 'react';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -48,9 +48,7 @@ describe('Renders correctly for min input', () => {
     expect(minTextbox).toHaveValue('10');
     expect(screen.getByText('Clear min and max')).toBeDefined();
     expect(screen.getByText('Apply')).toBeDefined();
-    await act(async () => {
-      await userEvent.click(screen.getByText('Apply'));
-    });
+    await userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Over 10',
       selected: true,
@@ -74,10 +72,8 @@ describe('Renders correctly for min input', () => {
     const minTextbox = screen.getAllByRole('textbox')[0];
     await userEvent.type(minTextbox, '10');
     expect(minTextbox).toHaveValue('10');
-    
-    await act(async () => {
-      await userEvent.click(screen.getByText('Clear min and max'));
-    });
+
+    await userEvent.click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Over 10',
@@ -110,9 +106,7 @@ describe('Renders correctly for max input', () => {
     expect(maxTextbox).toHaveValue('20');
     expect(screen.getByText('Clear min and max')).toBeDefined();
     expect(screen.getByText('Apply')).toBeDefined();
-    await act(async () => {
-      await userEvent.click(screen.getByText('Apply'));
-    });
+    await userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Up to 20',
       selected: true,
@@ -137,9 +131,7 @@ describe('Renders correctly for max input', () => {
     await userEvent.type(maxTextbox, '20');
     expect(maxTextbox).toHaveValue('20');
 
-    await act(async () => {
-      await userEvent.click(screen.getByText('Clear min and max'));
-    });
+    await userEvent.click(screen.getByText('Clear min and max'));
     expect(maxTextbox).toHaveValue('');
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: 'Up to 20',
@@ -174,9 +166,7 @@ describe('Renders correctly for min and max inputs', () => {
     expect(maxTextbox).toHaveValue('20');
     expect(screen.getByText('Apply')).toBeDefined();
     expect(screen.getByText('Clear min and max')).toBeDefined();
-    await act(async () => {
-      await userEvent.click(screen.getByText('Apply'));
-    });
+    await userEvent.click(screen.getByText('Apply'));
     expect(actions.setFilterOption).toHaveBeenCalledWith({
       displayName: '10 - 20',
       selected: true,
@@ -204,12 +194,10 @@ describe('Renders correctly for min and max inputs', () => {
     const [minTextbox, maxTextbox] = screen.getAllByRole('textbox');
     await userEvent.type(minTextbox, '10');
     await userEvent.type(maxTextbox, '20');
-    
+
     expect(minTextbox).toHaveValue('10');
     expect(maxTextbox).toHaveValue('20');
-    await act(async () => {
-      await userEvent.click(screen.getByText('Clear min and max'));
-    });
+    await userEvent.click(screen.getByText('Clear min and max'));
     expect(minTextbox).toHaveValue('');
     expect(maxTextbox).toHaveValue('');
     expect(actions.setFilterOption).toHaveBeenCalledWith({
@@ -239,7 +227,7 @@ describe('Renders correctly for min and max inputs', () => {
     await userEvent.type(minTextbox, '20');
     await userEvent.type(maxTextbox, '10');
     const actions = spyOnActions();
-      
+
     expect(minTextbox).toHaveValue('20');
     expect(maxTextbox).toHaveValue('10');
     expect(screen.getByText('Invalid range')).toBeDefined();
@@ -258,7 +246,7 @@ it('renders correctly when disabled', () => {
 function renderRangeInput(filtersContextValue: FiltersContextType) {
   return (
     render(
-      <FilterGroupProvider fieldId={'123'}>
+      <FilterGroupProvider fieldId="123">
         <FiltersContext.Provider value={filtersContextValue}>
           <RangeInput />
         </FiltersContext.Provider>

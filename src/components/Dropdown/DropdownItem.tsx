@@ -70,9 +70,11 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
   ]);
 
   return (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
       id={generateDropdownId(screenReaderUUID, index)}
       href="#"
+      tabIndex={-1}
       className={isFocused ? focusedClassName : className}
       onClick={handleClick}
       aria-label={typeof ariaLabel === 'function' ? ariaLabel(value) : ariaLabel}

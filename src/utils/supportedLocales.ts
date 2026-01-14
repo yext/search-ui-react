@@ -36,6 +36,6 @@ const supportedLocales =
   'vi',
   'zh-CN',
   'zh-TW',
-]
+];
 
 module.exports = { supportedLocales };

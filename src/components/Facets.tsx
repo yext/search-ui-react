@@ -7,7 +7,7 @@ import {
 } from './FacetProps';
 import { isNumericalFacet, isStringFacet } from '../utils/filterutils';
 import { FilterDivider } from './FilterDivider';
-import React, { Fragment, ReactElement } from 'react';
+import React, { Fragment, ReactElement, useMemo } from 'react';
 import { NumericalFacetContent } from './NumericalFacetContent';
 import { HierarchicalFacetContent } from './HierarchicalFacetContent';
 import { DisplayableFacet } from '@yext/search-headless-react';
@@ -41,6 +41,7 @@ export function Facets(props: FacetsProps): React.JSX.Element {
     excludedFieldIds = [],
     customCssClasses = {},
   } = props;
+  const resolvedHierarchicalFieldIds = useMemo(() => hierarchicalFieldIds ?? [], [hierarchicalFieldIds]);
 
   const fieldIdToCustomFacetProps = new Map();
   const fieldIds: string[] = [];
@@ -58,7 +59,7 @@ export function Facets(props: FacetsProps): React.JSX.Element {
     <div>
       <FacetsProvider searchOnChange={searchOnChange} className={customCssClasses.facetsContainer}>
         {facets => {
-          if (!facets || !facets.length) {
+          if (!facets?.length) {
             return;
           }
 
@@ -87,7 +88,7 @@ export function Facets(props: FacetsProps): React.JSX.Element {
                     facet={facet}
                     facetsCustomCssClasses={customCssClasses}
                     fieldIdToCustomFacetProps={fieldIdToCustomFacetProps}
-                    hierarchicalFieldIds={hierarchicalFieldIds ?? []}
+                    hierarchicalFieldIds={resolvedHierarchicalFieldIds}
                   />
                   {(i < facets.length - 1)
                     && <FilterDivider className={customCssClasses?.divider}/>}
@@ -148,14 +149,19 @@ export function Facet({
   facetsCustomCssClasses,
   fieldIdToCustomFacetProps,
   hierarchicalFieldIds,
-}: {facet: DisplayableFacet,facetsCustomCssClasses: FacetsCssClasses, fieldIdToCustomFacetProps: Map<string, any>,hierarchicalFieldIds: string[]}) {
+}: {
+  facet: DisplayableFacet,
+  facetsCustomCssClasses: FacetsCssClasses,
+  fieldIdToCustomFacetProps: Map<string, any>,
+  hierarchicalFieldIds: string[]
+}) {
   let facetType: FacetType;
   let facetProps: FacetProps = {
     fieldId: facet.fieldId,
     label: facet.displayName,
   };
-  if (fieldIdToCustomFacetProps.has(facet.fieldId)) {
-    const customFacetElement: ReactElement<FacetProps> = fieldIdToCustomFacetProps.get(facet.fieldId);
+  const customFacetElement = fieldIdToCustomFacetProps.get(facet.fieldId);
+  if (customFacetElement) {
     facetProps = { ...facetProps, ...customFacetElement.props };
     facetType = getFacetTypeFromReactElementType(
       (typeof customFacetElement.type === 'function')
