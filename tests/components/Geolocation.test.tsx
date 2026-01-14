@@ -4,7 +4,7 @@ import { Geolocation } from '../../src/components/Geolocation';
 import { Matcher, SelectableStaticFilter, State } from '@yext/search-headless-react';
 import * as locationOperations from '../../src/utils/location-operations';
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
-import React, { act } from 'react';
+import React from 'react';
 
 jest.mock('@yext/search-headless-react');
 
@@ -98,7 +98,7 @@ const newGeoPosition: GeolocationPosition = {
     latitude: 40.741591687843005,
     longitude: -74.00530254443494,
     speed: null,
-    toJSON: function () {
+    toJSON: function() {
       return {
         accuracy: this.accuracy,
         altitude: this.altitude,
@@ -111,7 +111,7 @@ const newGeoPosition: GeolocationPosition = {
     },
   },
   timestamp: 0,
-  toJSON: function () {
+  toJSON: function() {
     return {
       coords: this.coords.toJSON(),
       timestamp: this.timestamp,
@@ -125,7 +125,7 @@ const newGeoPositionWithLowAccuracy: GeolocationPosition = {
     accuracy: 100000,
   },
   timestamp: 0,
-  toJSON: function () {
+  toJSON: function() {
     return {
       coords: this.coords.toJSON(),
       timestamp: this.timestamp,
@@ -181,7 +181,7 @@ describe('custom click handler', () => {
     const mockedHandleClickFn = jest.fn();
     render(<Geolocation handleClick={mockedHandleClickFn} />);
     await clickUpdateLocation();
-    
+
     expect(consoleWarnSpy).toBeCalledWith('mocked error!');
     expect(mockedHandleClickFn).not.toBeCalled();
   });
@@ -264,9 +264,7 @@ describe('default click handler', () => {
 
 async function clickUpdateLocation() {
   const updateLocationButton = screen.getByRole('button');
-  await act(async () => {
-    await userEvent.click(updateLocationButton);
-  });
+  await userEvent.click(updateLocationButton);
 }
 
 function createLocationFilter(radius: number = 50 * 1609.344): SelectableStaticFilter {

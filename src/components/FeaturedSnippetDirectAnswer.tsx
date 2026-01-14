@@ -60,6 +60,18 @@ export function FeaturedSnippetDirectAnswer({
   const link = result.relatedResult.link || result.relatedResult.rawData.landingPageUrl as string;
   const name = result.relatedResult.name;
 
+  const readMoreComponents = useMemo(() => ({
+    a: (
+      <a
+        className="text-primary"
+        href={link}
+        onClick={readMoreClickHandler}
+        aria-label={name}
+      />
+    )
+  }), [link, name, readMoreClickHandler]);
+  const readMoreValues = useMemo(() => ({ name }), [name]);
+
   return (
     <div className={cssClasses.answerContainer}>
       {answer &&
@@ -69,8 +81,8 @@ export function FeaturedSnippetDirectAnswer({
         {link && name && <div className='pt-4 text-neutral'>
           <Trans
             i18nKey='readMoreAbout'
-            components={{ a: <a className='text-primary' href={link} onClick={readMoreClickHandler} /> }}
-            values={{ name }}
+            components={readMoreComponents}
+            values={readMoreValues}
           />
         </div>}
       </div>

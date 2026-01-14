@@ -84,7 +84,7 @@ export interface OnDropdownInputChangeProps {
  */
 export interface AfterDropdownInputFocusProps {
   /** The input element's value. */
-  value: string,
+  value: string
 }
 
 /**
@@ -112,7 +112,10 @@ export interface FilterSearchProps {
   onSelect?: (params: OnSelectParams) => void,
   /** A function which is called when the input element's value changes. Replaces the default behavior. */
   onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void,
-  /** A function which is called immediately after the input gains focus. It does not replace the default focus behavior. */
+  /**
+   * A function which is called immediately after the input gains focus.
+   * It does not replace the default focus behavior.
+   */
   afterDropdownInputFocus?: (params: AfterDropdownInputFocusProps) => void,
   /** Determines whether or not the results of the filter search are separated by field. Defaults to false. */
   sectioned?: boolean,
@@ -121,11 +124,11 @@ export interface FilterSearchProps {
   /** Whether to disable the default CSS classes entirely  */
   disableBuiltInClasses?: boolean,
   /** The accessible label for the dropdown input. */
-  ariaLabel?: string
+  ariaLabel?: string,
   /** Whether to include a button to search on the user's location. Defaults to false. */
-  showCurrentLocationButton?: boolean;
+  showCurrentLocationButton?: boolean,
   /** The props for the geolocation component, if the current location button is enabled. */
-  geolocationProps?: GeolocationProps;
+  geolocationProps?: GeolocationProps
 }
 
 /**
@@ -227,13 +230,22 @@ export function FilterSearch({
     matchingFieldIds
   ]);
 
+  const currentLocationCssClasses = useMemo(() => ({
+    button: cssClasses.currentLocationButton,
+    iconContainer: 'w-full h-full ml-0'
+  }), [cssClasses.currentLocationButton]);
+
   const sections = useMemo(() => {
     return filterSearchResponse?.sections.filter(section => section.results.length > 0) ?? [];
   }, [filterSearchResponse?.sections]);
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
 
-  const handleSelectDropdown = useCallback(async (_value: string, _index: number, itemData: (Record<string, unknown> | undefined)) => {
+  const handleSelectDropdown = useCallback(async (
+    _value: string,
+    _index: number,
+    itemData: Record<string, unknown> | undefined
+  ) => {
     const newFilter = itemData?.filter as FieldValueStaticFilter;
     const newDisplayName = itemData?.displayName as string;
     if (!newFilter || !newDisplayName) {
@@ -334,7 +346,7 @@ export function FilterSearch({
       executeFilterSearch(value);
     }
 
-    afterDropdownInputFocus?.({value});
+    afterDropdownInputFocus?.({ value });
   }, [afterDropdownInputFocus, executeFilterSearch]);
 
   const dropdownInput = (
@@ -356,13 +368,13 @@ export function FilterSearch({
         </div>
       }
     </DropdownMenu>
-  )
+  );
 
   return (
     <div className={cssClasses.filterSearchContainer}>
       {label && <h1 className={cssClasses.label}>{label}</h1>}
       <Dropdown
-        screenReaderText={getScreenReaderText(sections)}
+        screenReaderText={getScreenReaderText(sections, t)}
         onSelect={handleSelectDropdown}
         alwaysSelectOption={true}
         parentQuery={filterQuery}
@@ -375,10 +387,7 @@ export function FilterSearch({
             </div>
             <Geolocation
               GeolocationIcon={CurrentLocationIcon}
-              customCssClasses={{
-                button: cssClasses.currentLocationButton,
-                iconContainer: 'w-full h-full ml-0'
-              }}
+              customCssClasses={currentLocationCssClasses}
               useIconAsButton={true}
               {...geolocationProps}
             />
@@ -394,11 +403,13 @@ export function FilterSearch({
   );
 }
 
-function getScreenReaderText(sections: {
-  results: AutocompleteResult[],
-  label?: string
-}[]) {
-  const { t } = useTranslation();
+function getScreenReaderText(
+  sections: {
+    results: AutocompleteResult[],
+    label?: string
+  }[],
+  t: ReturnType<typeof useTranslation>['t']
+) {
   if (sections.length === 0) {
     return t('noAutocompleteOptionsFound');
   }
@@ -408,7 +419,7 @@ function getScreenReaderText(sections: {
     return t('autocompleteOptionsFound', {
       count,
       label,
-    })
+    });
   });
   return screenReaderPhrases.join(' ');
 }

@@ -52,7 +52,7 @@ const newGeoPosition: GeolocationPosition = {
     latitude: 40.741591687843005,
     longitude: -74.00530254443494,
     speed: null,
-    toJSON: function () {
+    toJSON: function() {
       return {
         accuracy: this.accuracy,
         altitude: this.altitude,
@@ -65,7 +65,7 @@ const newGeoPosition: GeolocationPosition = {
     },
   },
   timestamp: 0,
-  toJSON: function () {
+  toJSON: function() {
     return {
       coords: this.coords.toJSON(),
       timestamp: this.timestamp,

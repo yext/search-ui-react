@@ -1,10 +1,10 @@
-import {DirectAnswer as DirectAnswerData, DirectAnswerType, Result, useSearchState} from '@yext/search-headless-react';
-import {useCallback} from 'react';
-import {FeedbackType} from '../components/ThumbsFeedback';
-import {DefaultRawDataType} from '../models/index';
-import {useAnalytics} from './useAnalytics';
-import {GdaClickEventData} from '../components/GenerativeDirectAnswer'
-import {SearchAction} from "../models/SearchEventPayload";
+import { DirectAnswer as DirectAnswerData, DirectAnswerType, Result, useSearchState } from '@yext/search-headless-react';
+import { useCallback } from 'react';
+import { FeedbackType } from '../components/ThumbsFeedback';
+import { DefaultRawDataType } from '../models/index';
+import { useAnalytics } from './useAnalytics';
+import { GdaClickEventData } from '../components/GenerativeDirectAnswer';
+import { SearchAction } from '../models/SearchEventPayload';
 
 /**
  * Analytics event types for cta click, title click, and citation click.
@@ -81,7 +81,11 @@ export function useCardAnalytics<T>(): (
       return;
     }
     // convert the legacy card event type to the format the current reporter expects.
-    let action:SearchAction = eventType === 'TITLE_CLICK' ? 'TITLE' : eventType === 'VIEW_WEBSITE' ? 'WEBSITE': eventType;
+    const action: SearchAction = eventType === 'TITLE_CLICK'
+      ? 'TITLE'
+      : eventType === 'VIEW_WEBSITE'
+        ? 'WEBSITE'
+        : eventType;
     analytics?.report({
       action: action,
       destinationUrl: url,
@@ -95,7 +99,7 @@ export function useCardAnalytics<T>(): (
       experienceKey,
       searchTerm,
     });
-  }, [analytics, queryId, verticalKey]);
+  }, [analytics, experienceKey, locale, queryId, searchId, searchTerm, verticalKey]);
 
   const reportFeedbackEvent = useCallback((
     result: CardAnalyticsDataType<T>,
@@ -138,11 +142,11 @@ export function useCardAnalytics<T>(): (
       experienceKey,
       searchTerm
     });
-  }, [analytics, queryId, verticalKey]);
+  }, [analytics, experienceKey, locale, queryId, searchId, searchTerm, verticalKey]);
 
   return useCallback((
-      cardResult: CardAnalyticsDataType<T>,
-      analyticsEventType: CardAnalyticsType
+    cardResult: CardAnalyticsDataType<T>,
+    analyticsEventType: CardAnalyticsType
   ) => {
     if (!analytics) {
       return;

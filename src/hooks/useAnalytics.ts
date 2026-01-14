@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import {SearchAnalyticsEventService} from "../models/SearchAnalyticsEventService";
+import { SearchAnalyticsEventService } from '../models/SearchAnalyticsEventService';
 
 export const AnalyticsContext = createContext<SearchAnalyticsEventService | null>(null);
 

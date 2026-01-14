@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Matcher, NumberRangeValue, useSearchActions, useSearchState } from '@yext/search-headless-react';
-import React, {ChangeEvent, useCallback, useEffect, useMemo, useState} from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 import { useComposedCssClasses } from '../../hooks';
 import { getDefaultFilterDisplayName, clearStaticRangeFilters, findSelectableFieldValueFilter, getSelectableFieldValueFilters, parseNumberRangeInput } from '../../utils/filterutils';
@@ -185,7 +185,11 @@ export function RangeInput(props: RangeInputProps): React.JSX.Element | null {
     [cssClasses.inputPrefix___enabled ?? '']: !isDisabled,
   });
 
-  function renderInput(value: string, onChange: React.ChangeEventHandler<HTMLInputElement> | undefined, placeholder: string) {
+  function renderInput(
+    value: string,
+    onChange: React.ChangeEventHandler<HTMLInputElement> | undefined,
+    placeholder: string
+  ) {
     return (
       <div className={cssClasses.inputContainer}>
         {inputPrefix && <span className={inputPrefixClasses} aria-hidden='true'>{inputPrefix}</span>}
@@ -240,7 +244,6 @@ export function RangeInput(props: RangeInputProps): React.JSX.Element | null {
     </div>
   );
 }
-
 
 /**
  * Returns true only if the provided string passes the numeric validation.

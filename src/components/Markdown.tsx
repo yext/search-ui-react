@@ -1,15 +1,15 @@
 import ReactMarkdown, {
   PluggableList,
   ReactMarkdownOptions,
-} from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
-import rehypeSanitize from "rehype-sanitize";
-import React, { useMemo } from "react";
-import { useComposedCssClasses } from "../hooks/useComposedCssClasses";
+} from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
+import React, { useMemo } from 'react';
+import { useComposedCssClasses } from '../hooks/useComposedCssClasses';
 
 // The Remark and Rehype plugins to use in conjunction with ReactMarkdown.
-const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
+const unifiedPlugins: { remark?: PluggableList, rehype: PluggableList } = {
   remark: [
     remarkGfm, //renders Github-Flavored Markdown
   ],
@@ -25,21 +25,21 @@ const unifiedPlugins: { remark?: PluggableList; rehype: PluggableList } = {
  * @internal
  */
 export interface MarkdownCssClasses {
-  container?: string;
-  link?: string;
+  container?: string,
+  link?: string
 }
 
 const builtInCssClasses: MarkdownCssClasses = {
-  link: "cursor-pointer",
+  link: 'cursor-pointer',
 };
 
 interface MarkdownProps {
   /** Stringified markdown. */
-  content: string;
+  content: string,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: MarkdownCssClasses;
+  customCssClasses?: MarkdownCssClasses,
   /** A callback which is called when a link is clicked. */
-  onLinkClick?: (href?: string) => void;
+  onLinkClick?: (href?: string) => void
 }
 
 /**
@@ -58,7 +58,7 @@ export function Markdown({
 }: MarkdownProps) {
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
 
-  const components: ReactMarkdownOptions["components"] = useMemo(() => {
+  const components: ReactMarkdownOptions['components'] = useMemo(() => {
     const createClickHandlerFn = (href?: string) => () => {
       onLinkClick?.(href);
     };

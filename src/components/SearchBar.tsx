@@ -155,7 +155,8 @@ export interface SearchBarProps {
   universalAutocompleteLimit?: number,
   /**
    * Limits the number of query suggestions returned by autocomplete for verticals.
-   * The keys of the record correspond to the vertical keys, and the values correspond to the maximum number of suggestions to return for that vertical.
+   * The keys of the record correspond to the vertical keys, and the values correspond
+   * to the maximum number of suggestions to return for that vertical.
    * If a limit for the current vertical is not specified, the default limit will be used.
    */
   verticalAutocompleteLimits?: Record<string, number>,
@@ -201,7 +202,10 @@ export function SearchBar({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
   const isVertical = useSearchState(state => state.meta.searchType) === SearchTypeEnum.Vertical;
   const verticalKey = useSearchState(state => state.vertical.verticalKey);
-  const debouncedExecuteAutocompleteSearch = useDebouncedFunction( () => executeAutocompleteSearch(searchActions), 200);
+  const debouncedExecuteAutocompleteSearch = useDebouncedFunction(
+    () => executeAutocompleteSearch(searchActions),
+    200
+  );
   const [autocompleteResponse, executeAutocomplete, clearAutocompleteData] = useSynchronizedRequest(
     async () => {
       return !autocompleteDisabled && debouncedExecuteAutocompleteSearch ?
@@ -279,10 +283,13 @@ export function SearchBar({
     executeEntityPreviewsQuery
   ] = useEntityPreviews(entityPreviewSearcher, entityPreviewsDebouncingTime);
   const { verticalKeyToResults, isLoading: entityPreviewsLoading } = entityPreviewsState;
+  const getAriaLabelText = useCallback((value: string) => {
+    return t('resultPreview', { value });
+  }, [t]);
   const entityPreviews = renderEntityPreviews?.(
     entityPreviewsLoading,
     verticalKeyToResults,
-    { onClick: handleSubmit, ariaLabel: getAriaLabel }
+    { onClick: handleSubmit, ariaLabel: getAriaLabelText }
   );
   const updateEntityPreviews = useCallback((query: string) => {
     if (!renderEntityPreviews || !includedVerticals) {
@@ -307,7 +314,7 @@ export function SearchBar({
     updateEntityPreviews('');
     searchActions.setQuery('');
     reportAnalyticsEvent('SEARCH_CLEAR_BUTTON');
-  }, [handleSubmit, reportAnalyticsEvent, updateEntityPreviews]);
+  }, [reportAnalyticsEvent, searchActions, updateEntityPreviews]);
 
   function renderInput() {
     return (
@@ -337,8 +344,8 @@ export function SearchBar({
         value={result.query}
         onClick={handleSubmit}
         ariaLabel={t('recentSearch', {
-            query: result.query
-          })}
+          query: result.query
+        })}
       >
         {renderAutocompleteResult(
           { value: result.query, inputIntents: [] },
@@ -418,10 +425,11 @@ export function SearchBar({
   const screenReaderText = getScreenReaderText(
     autocompleteResponse?.results.length,
     filteredRecentSearches?.length,
-    entityPreviewsCount
+    entityPreviewsCount,
+    t
   );
   const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {
-    ['shadow-lg']: hasItems
+    'shadow-lg': hasItems
   });
 
   const handleToggleDropdown = useCallback((isActive: boolean) => {
@@ -478,14 +486,14 @@ function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
 function getScreenReaderText(
   autocompleteOptions = 0,
   recentSearchesOptions = 0,
-  entityPreviewsCount = 0
+  entityPreviewsCount = 0,
+  t: ReturnType<typeof useTranslation>['t']
 ): string {
-  const { t } = useTranslation();
-  let texts: string[] = [];
+  const texts: string[] = [];
   recentSearchesOptions > 0 && texts.push(t('recentSearchesFound', {
     count: recentSearchesOptions
   }));
-  entityPreviewsCount > 0  && texts.push(t('resultPreviewsFound', {
+  entityPreviewsCount > 0 && texts.push(t('resultPreviewsFound', {
     count: entityPreviewsCount
   }));
   autocompleteOptions > 0 && texts.push(t('autocompleteSuggestionsFound', {
@@ -494,7 +502,7 @@ function getScreenReaderText(
 
   const text = texts.join(' ');
   if (text === '') {
-    return t('noAutocompleteSuggestionsFound')
+    return t('noAutocompleteSuggestionsFound');
   }
   return text.trim();
 }
@@ -519,11 +527,6 @@ function DropdownSearchButton({ handleSubmit, cssClasses }: {
       />
     </div>
   );
-}
-
-function getAriaLabel(value: string): string {
-  const { t } = useTranslation();
-  return t('resultPreview', { value })
 }
 
 /**

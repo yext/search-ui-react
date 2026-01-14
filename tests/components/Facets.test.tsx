@@ -13,7 +13,7 @@ import {
 import { expectFacetOptionSet, getOptionLabelTextWithCount } from '../__utils__/facets';
 import { DisplayableFacetOption } from '@yext/search-headless-react';
 import userEvent from '@testing-library/user-event';
-import React, { act } from 'react';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   filters: {
@@ -178,9 +178,7 @@ describe('Facets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await act(async () => {
-      await userEvent.click(coffeeCheckbox);
-    });
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, facet.fieldId, facet.options[0], true);
     expect(actions.executeVerticalQuery).toBeCalled();
   });
@@ -199,9 +197,7 @@ describe('Facets', () => {
     );
     expect(coffeeCheckbox.checked).toBeFalsy();
 
-    await act(async () => {
-      await userEvent.click(coffeeCheckbox);
-    });
+    await userEvent.click(coffeeCheckbox);
     expectFacetOptionSet(actions, facet.fieldId, facet.options[0], true);
     expect(actions.executeVerticalQuery).not.toBeCalled();
   });

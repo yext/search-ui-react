@@ -67,7 +67,7 @@ DropdownHighlight.play = async ({ canvasElement }) => {
   await conductRecentSearches(comboboxEl);
   await userEvent.click(comboboxEl);
   await canvas.findByText('query suggestion 1');
-  await userEvent.keyboard('{Tab}{Tab}{Tab}', { delay: 1 });
+  await userEvent.keyboard('{arrowdown}{arrowdown}{arrowdown}', { delay: 1 });
 };
 
 export const DropdownExpandedVerticalLinks: StoryFn<SearchBarProps> = Primary.bind({});

@@ -5,7 +5,7 @@ import { useClearFiltersCallback } from '../hooks/useClearFiltersCallback';
 import { FieldValueFilter, useSearchActions } from '@yext/search-headless-react';
 import { isDuplicateFieldValueFilter } from '../utils/filterutils';
 import { executeSearch } from '../utils';
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 /**
  * A representation of a filter that can be removed from the AppliedFilters component.
@@ -50,35 +50,43 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): React.
   const handleClickClearAllButton = useClearFiltersCallback();
   const searchActions = useSearchActions();
 
-  if (removableFilters.length + nlpFilterDisplayNames.length === 0) {
-    return null;
-  }
-
   const dedupedNlpFilterDisplayNames = nlpFilterDisplayNames.filter(displayName => {
     return !removableFilters.some(f => f.displayName === displayName);
   });
 
   const dedupedRemovableFilters = getDedupedRemovableFilters(removableFilters);
-
-  function handleRemoveDedupedFilter(dedupedFilter: DedupedRemovableFilter) {
+  const handleRemoveDedupedFilter = useCallback((dedupedFilter: DedupedRemovableFilter) => {
     dedupedFilter.handleRemove();
     for (const f of dedupedFilter.duplicates ?? []) {
       f.handleRemove();
     }
     searchActions.setOffset(0);
     executeSearch(searchActions);
+  }, [searchActions]);
+  const removableFiltersWithHandlers = useMemo(() => {
+    return dedupedRemovableFilters.map(filter => ({
+      filter,
+      handleRemove: () => handleRemoveDedupedFilter(filter)
+    }));
+  }, [dedupedRemovableFilters, handleRemoveDedupedFilter]);
+
+  if (removableFilters.length + nlpFilterDisplayNames.length === 0) {
+    return null;
   }
 
   return (
     <div className={cssClasses.appliedFiltersContainer} aria-label={t('appliedFiltersToCurrentSearch')}>
       {dedupedNlpFilterDisplayNames.map((displayName, i) => renderNlpFilter(displayName, i, cssClasses))}
-      {dedupedRemovableFilters.map((f, i) => {
-        return <RemovableFilter 
-          displayName={f.displayName} 
-          handleRemove={() => handleRemoveDedupedFilter(f)}
-          index={i}
-          cssClasses={cssClasses}/>;
-        })}
+      {removableFiltersWithHandlers.map(({ filter, handleRemove }, i) => {
+        return (
+          <RemovableFilter
+            displayName={filter.displayName}
+            handleRemove={handleRemove}
+            index={i}
+            cssClasses={cssClasses}
+          />
+        );
+      })}
       {removableFilters.length > 0 &&
         <button onClick={handleClickClearAllButton} className={cssClasses.clearAllButton}>
           {t('clearAll')}</button>
