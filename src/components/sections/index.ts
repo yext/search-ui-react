@@ -6,4 +6,4 @@ export type {
   StandardSectionProps
 } from './StandardSection';
 
-export { type SectionHeaderCssClasses } from './SectionHeader';
+export type { SectionHeaderCssClasses } from './SectionHeader';
