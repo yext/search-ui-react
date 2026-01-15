@@ -340,6 +340,9 @@ export function MapboxMap<T>({
           const markerLocation = getCoordinate(result);
           if (markerLocation) {
             const { latitude, longitude } = markerLocation;
+            if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+              return;
+            }
             const el = document.createElement('div');
             let markerOptions: mapboxgl.MarkerOptions = {};
             if (PinComponent) {
@@ -382,8 +385,14 @@ export function MapboxMap<T>({
           }
         });
 
+        mapbox.resize();
         const canvas = mapbox.getCanvas();
-        if (!bounds.isEmpty() && !!canvas && canvas.height > 0 && canvas.width > 0) {
+
+        if (!bounds.isEmpty()
+            && !!canvas
+            && canvas.clientHeight > 0
+            && canvas.clientWidth > 0
+        ) {
           const resolvedOptions = {
             // these settings are defaults and will be overriden if present on fitBoundsOptions
             padding: { top: 50, bottom: 50, left: 50, right: 50 },
@@ -410,14 +419,14 @@ export function MapboxMap<T>({
 
           // Padding must not exceed the map's canvas dimensions
           const verticalPaddingSum = resolvedPadding.top + resolvedPadding.bottom;
-          if (verticalPaddingSum >= canvas.height) {
-            const ratio = canvas.height / (verticalPaddingSum || 1);
+          if (verticalPaddingSum >= canvas.clientHeight) {
+            const ratio = canvas.clientHeight / (verticalPaddingSum || 1);
             resolvedPadding.top = Math.max(0, resolvedPadding.top * ratio - 1);
             resolvedPadding.bottom = Math.max(0, resolvedPadding.bottom * ratio - 1);
           }
           const horizontalPaddingSum = resolvedPadding.left + resolvedPadding.right;
-          if (horizontalPaddingSum >= canvas.width) {
-            const ratio = canvas.width / (horizontalPaddingSum || 1);
+          if (horizontalPaddingSum >= canvas.clientWidth) {
+            const ratio = canvas.clientWidth / (horizontalPaddingSum || 1);
             resolvedPadding.left = Math.max(0, resolvedPadding.left * ratio - 1);
             resolvedPadding.right = Math.max(0, resolvedPadding.right * ratio - 1);
           }
