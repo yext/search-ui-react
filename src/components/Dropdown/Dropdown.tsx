@@ -65,7 +65,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
     alwaysSelectOption = false
   } = props;
 
-  const containerRef = useRef<HTMLDivElement>(null!);
+  const containerRef = useRef<HTMLDivElement>(null);
   const screenReaderUUID = useId('dropdown');
   const dropdownListUUID = useId('dropdown-list');
   const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
@@ -112,7 +112,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
     setLastTypedOrSubmittedValue
   ]);
 
-  useRootClose(containerRef, () => {
+  useRootClose(containerRef as React.RefObject<Element>, () => {
     toggleDropdown(false);
   }, { disabled: !isActive });
 
@@ -138,23 +138,8 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
         updateFocusedItem(focusedIndex - 1);
       }
     } else if (e.key === 'Tab' && !e.shiftKey) {
-      if (items.length !== 0) {
-        if (focusedIndex >= items.length - 1) {
-          updateFocusedItem(-1);
-          toggleDropdown(false);
-        } else {
-          updateFocusedItem(focusedIndex + 1);
-          e.preventDefault();
-        }
-      }
-    } else if (e.key === 'Tab' && e.shiftKey) {
-      if (focusedIndex > 0 || (!alwaysSelectOption && focusedIndex === 0)) {
-        updateFocusedItem(focusedIndex - 1);
-        e.preventDefault();
-      } else {
-        updateFocusedItem(-1);
-        toggleDropdown(false);
-      }
+      updateFocusedItem(-1);
+      toggleDropdown(false);
     } else if (!hasTyped) {
       setHasTyped(true);
     }

@@ -63,6 +63,6 @@ export async function executeGenerativeDirectAnswer(
   try {
     return await searchActions.executeGenerativeDirectAnswer();
   } catch (e) {
-    console.error(`Error occured executing generative direct answer.\n`, e);
+    console.error('Error occured executing generative direct answer.\n', e);
   }
 }

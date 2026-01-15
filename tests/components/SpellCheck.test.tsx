@@ -4,7 +4,7 @@ import { SpellCheck } from '../../src/components/SpellCheck';
 import { State } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
-import React, { act } from 'react';
+import React from 'react';
 
 const mockedState: Partial<State> = {
   spellCheck: {
@@ -57,9 +57,7 @@ describe('SpellCheck', () => {
     const actions = spyOnActions();
 
     render(<SpellCheck {...props} />);
-    await act(async () => {
-      await userEvent.click(screen.getByRole('button'));
-    });
+    await userEvent.click(screen.getByRole('button'));
 
     const verticalKey = mockedState.vertical?.verticalKey;
     const correctedQuery = mockedState.spellCheck?.correctedQuery;
@@ -70,9 +68,7 @@ describe('SpellCheck', () => {
   it('Fires executeSearch when no onClick is provided', async () => {
     const actions = spyOnActions();
     render(<SpellCheck />);
-    await act(async () => {
-      await userEvent.click(screen.getByRole('button'));
-    });
+    await userEvent.click(screen.getByRole('button'));
 
     const correctedQuery = mockedState.spellCheck?.correctedQuery;
     expect(actions.setQuery).toHaveBeenCalledWith(correctedQuery);

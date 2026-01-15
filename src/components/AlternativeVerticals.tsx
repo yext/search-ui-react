@@ -4,7 +4,7 @@ import { useSearchState, VerticalResults as VerticalResultsData } from '@yext/se
 import { useComposedCssClasses } from '../hooks';
 import classNames from 'classnames';
 import { VerticalConfig } from '../models';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 /**
  * The CSS class interface used for {@link AlternativeVerticals}.
@@ -119,6 +119,9 @@ export function AlternativeVerticals({
       .filter(verticalSuggestion => verticalSuggestion.resultsCount > 0);
   }
 
+  const values = useMemo(() => ({ query }), [query]);
+  const components = useMemo(() => ({ strong: <strong /> }), []);
+
   if (verticalSuggestions.length <= 0) {
     return null;
   }
@@ -134,8 +137,8 @@ export function AlternativeVerticals({
             <Trans
               i18nKey='categoriesText'
               count={count}
-              values={{ query }}
-              components={{ strong: <strong /> }}
+              values={values}
+              components={components}
             />
           </div>
           <ul className='pt-4'>
@@ -156,9 +159,9 @@ export function AlternativeVerticals({
       </div>
     );
   }
-  
+
   function renderSuggestion(suggestion: VerticalSuggestion) {
-    const {verticalKey, resultsCount, label} = suggestion;
+    const { verticalKey, resultsCount, label } = suggestion;
     return (
       <li key={verticalKey} className={cssClasses.suggestion}>
         <div className={cssClasses.verticalIcon}><StarIcon/></div>

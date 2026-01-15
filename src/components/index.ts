@@ -9,7 +9,7 @@ export type {
   onSearchFunc
 } from './SearchBar';
 
-export { DropdownItem} from './Dropdown/DropdownItem';
+export { DropdownItem } from './Dropdown/DropdownItem';
 export type { DropdownItemProps } from './Dropdown/DropdownItem';
 export type { AutocompleteResultCssClasses } from './utils/renderAutocompleteResult';
 export type { FocusedItemData } from './Dropdown/FocusContext';
@@ -125,7 +125,6 @@ export type {
   ResultsCountProps
 } from './ResultsCount';
 
-
 export type {
   FilterOptionConfig,
   RangeInputCssClasses,
@@ -230,7 +229,6 @@ export type {
   CitationsProps,
   GdaClickEventData
 } from './GenerativeDirectAnswer';
-
 
 export {
   SearchI18nextProvider

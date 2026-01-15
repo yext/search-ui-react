@@ -18,7 +18,7 @@ const meta: Meta<typeof RangeInput> = {
   },
   decorators: [(Story) => (
     <SearchHeadlessContext.Provider value={generateMockedHeadless()}>
-      <FilterGroupProvider fieldId={'123'}>
+      <FilterGroupProvider fieldId="123">
         <Story />
       </FilterGroupProvider>
     </SearchHeadlessContext.Provider>

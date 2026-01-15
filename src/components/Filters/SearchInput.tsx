@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import React, {ChangeEvent, useCallback} from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import { useFilterGroupContext } from './FilterGroupContext';
 
 /**

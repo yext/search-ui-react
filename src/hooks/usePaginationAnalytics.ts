@@ -1,5 +1,5 @@
-import {useAnalytics} from './useAnalytics';
-import {useSearchState} from '@yext/search-headless-react';
+import { useAnalytics } from './useAnalytics';
+import { useSearchState } from '@yext/search-headless-react';
 
 export function usePaginationAnalytics(): () => void {
   const analytics = useAnalytics();

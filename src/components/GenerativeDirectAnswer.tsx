@@ -11,7 +11,7 @@ import { useCardAnalytics } from '../hooks/useCardAnalytics';
 import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
 import { Markdown, MarkdownCssClasses } from './Markdown';
-import React, {useMemo, useRef} from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 
 /**
  * The CSS class interface used for {@link GenerativeDirectAnswer}.
@@ -53,11 +53,12 @@ export interface GenerativeDirectAnswerProps {
   /** The header for the citations section of the generative direct answer. */
   citationsHeader?: string | React.JSX.Element,
   /**
-   * The citations container component for customizing the logic that determines which results can be rendered.
+   * The citations container component for customizing the logic that determines which results
+   * can be rendered.
    * By default, a section for citations is displayed if the results that correspond to the
    * citations have the default minimum required info, which is `rawData.uid` and `rawData.name`.
   */
-  CitationsContainer?: (props: CitationsProps) => React.JSX.Element | null
+  CitationsContainer?: (props: CitationsProps) => React.JSX.Element | null,
   /** The citation card component for customizing how each citation is displayed. */
   CitationCard?: (props: CitationProps) => React.JSX.Element | null
 }
@@ -104,7 +105,7 @@ export function GenerativeDirectAnswer({
     }
     executeGenerativeDirectAnswer(searchActions);
     lastExecutedSearchResults.current = searchResults;
-  }, [searchResults, searchId]);
+  }, [searchActions, searchResults, searchId]);
 
   if (!searchResults?.length || isLoading || !gdaResponse || gdaResponse.resultStatus !== 'SUCCESS') {
     return null;
@@ -155,13 +156,19 @@ function Answer(props: AnswerProps) {
     [cssClasses.answerText]
   );
 
+  const handleMarkdownLinkClick = useCallback((destinationUrl?: string) => {
+    if (destinationUrl) {
+      linkClickHandler?.({ destinationUrl });
+    }
+  }, [linkClickHandler]);
+
   return <>
     <div className={cssClasses.header}>
       {answerHeader ?? t('aiGeneratedAnswer')}
     </div>
     <Markdown
       content={gdaResponse.directAnswer}
-      onLinkClick={(destinationUrl) => destinationUrl && linkClickHandler?.({destinationUrl})}
+      onLinkClick={handleMarkdownLinkClick}
       customCssClasses={markdownCssClasses}
     />
   </>;
@@ -203,9 +210,9 @@ function Citations(props: CitationsProps) {
   const citationResults = React.useMemo(() => {
     // If an entity is returned by multiple different verticals, it will be present in
     // searchResults multiple times. We want to only show it once in the citations.
-    let citationIds = new Set(gdaResponse.citations);
+    const citationIds = new Set(gdaResponse.citations);
     return searchResults.filter(result => {
-      const {uid, name} = result.rawData ?? {};
+      const { uid, name } = result.rawData ?? {};
       const dataIsInvalid = !uid || !name || typeof name != 'string' || typeof uid != 'string';
       if (dataIsInvalid || !citationIds.has(uid)) {
         return false;
@@ -226,7 +233,14 @@ function Citations(props: CitationsProps) {
       {citationsHeader ?? t('sources', { count })}
     </div>
     <div className={cssClasses.citationsContainer}>
-      {citationResults.map((r, i) => <CitationCard key={i} searchResult={r} cssClasses={cssClasses} citationClickHandler={citationClickHandler}/>)}
+      {citationResults.map((result, index) => (
+        <CitationCard
+          key={index}
+          searchResult={result}
+          cssClasses={cssClasses}
+          citationClickHandler={citationClickHandler}
+        />
+      ))}
     </div>
   </>;
 }
@@ -251,15 +265,21 @@ function Citation(props: CitationProps) {
     cssClasses,
     citationClickHandler
   } = props;
-  const {name, description, answer, link} = searchResult.rawData ?? {};
+  const { name, description, answer, link } = searchResult.rawData ?? {};
   const citationTitle = String(name ?? '');
   const citationSnippet = String(description ?? answer ?? '');
   const citationUrl = typeof link === 'string' ? link : undefined;
+  const handleCitationClick = useCallback(() => {
+    if (citationUrl) {
+      citationClickHandler?.({ searchResult, destinationUrl: citationUrl });
+    }
+  }, [citationClickHandler, citationUrl, searchResult]);
+
   return (
     <a
       className={cssClasses.citation}
       href={citationUrl}
-      onClick={() => citationUrl && citationClickHandler?.({searchResult, destinationUrl: citationUrl})}
+      onClick={handleCitationClick}
     >
       <div className={cssClasses.citationTitle}>{citationTitle}</div>
       <div className={cssClasses.citationSnippet}>{citationSnippet}</div>

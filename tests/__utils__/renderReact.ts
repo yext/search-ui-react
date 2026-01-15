@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 type LegacyReactDOM = {
-  render?: (element: React.JSX.Element, container: Element) => void;
+  render?: (element: React.JSX.Element, container: Element) => void
 };
 
 const legacyReactDOM = ReactDOM as LegacyReactDOM;

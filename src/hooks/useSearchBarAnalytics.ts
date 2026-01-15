@@ -1,10 +1,10 @@
-import {useAnalytics} from './useAnalytics';
-import {useSearchState} from '@yext/search-headless-react';
+import { useAnalytics } from './useAnalytics';
+import { useSearchState } from '@yext/search-headless-react';
 
 type SearchBarAnalyticsType = 'AUTO_COMPLETE_SELECTION' | 'SEARCH_CLEAR_BUTTON';
 
 export function useSearchBarAnalytics(): (
-    analyticsEventType: SearchBarAnalyticsType
+  analyticsEventType: SearchBarAnalyticsType
 ) => void {
   const analytics = useAnalytics();
   const verticalKey = useSearchState(state => state.vertical.verticalKey);
@@ -28,7 +28,7 @@ export function useSearchBarAnalytics(): (
       experienceKey,
       searchTerm,
     });
-  }
+  };
   const reportSearchClearEvent = () => {
     if (!experienceKey) {
       console.error('Unable to report a search clear event. Missing field: experienceKey.');
@@ -45,13 +45,13 @@ export function useSearchBarAnalytics(): (
     });
   };
   return (
-      analyticsEventType: SearchBarAnalyticsType
+    analyticsEventType: SearchBarAnalyticsType
   ) => {
     if (!analytics) {
       return;
     }
     analyticsEventType === 'AUTO_COMPLETE_SELECTION'
-        ? reportAutocompleteEvent()
-        : reportSearchClearEvent();
+      ? reportAutocompleteEvent()
+      : reportSearchClearEvent();
   };
 }

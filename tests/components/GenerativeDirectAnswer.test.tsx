@@ -50,13 +50,13 @@ const mockedStateWithDuplicateEntity: Partial<State> = {
   }
 };
 
-const CustomCitationsComponent = (props: CitationsProps) => {
+const CustomCitationsComponent = (_props: CitationsProps) => {
   return (
-      <>
-        CustomCitationsComponentTest
-      </>
-  )
-}
+    <>
+      CustomCitationsComponentTest
+    </>
+  );
+};
 
 jest.mock('@yext/search-headless-react');
 
@@ -70,7 +70,6 @@ jest.mock('../../src/hooks/useAnalytics', () => {
 describe('Generative direct answer analytics', () => {
   beforeEach(() => {
     mockAnswersState(mockedState);
-    render(<GenerativeDirectAnswer />);
     ignoreLinkClickErrors();
   });
   runAnalyticsTestSuite();
@@ -78,40 +77,42 @@ describe('Generative direct answer analytics', () => {
 
 function runAnalyticsTestSuite() {
   it('reports cta click analytics', async () => {
+    render(<GenerativeDirectAnswer />);
     const link = screen.getByRole('link', { name: generativeDirectAnswerText });
     await userEvent.click(link);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith({
-      "action": "CTA_CLICK",
-      "destinationUrl": generativeDirectAnswerLink,
-      "entity": undefined,
-      "locale": "en",
-      "experienceKey": "experienceKey",
-      "isDirectAnswer": true,
-      "isGenerativeDirectAnswer": true,
-      "queryId": "[queryId]",
-      "searchId": "searchId",
-      "verticalKey": '',
-      "searchTerm": "test"
+      'action': 'CTA_CLICK',
+      'destinationUrl': generativeDirectAnswerLink,
+      'entity': undefined,
+      'locale': 'en',
+      'experienceKey': 'experienceKey',
+      'isDirectAnswer': true,
+      'isGenerativeDirectAnswer': true,
+      'queryId': '[queryId]',
+      'searchId': 'searchId',
+      'verticalKey': '',
+      'searchTerm': 'test'
     });
   });
   it('reports citation click analytics', async () => {
+    render(<GenerativeDirectAnswer />);
     const links = screen.getAllByRole('link').filter(l => l.textContent?.includes('title2'));
     expect(links.length).toEqual(1);
     await userEvent.click(links[0]);
     expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
     expect(useAnalytics()?.report).toHaveBeenCalledWith({
-      "action": "CITATION_CLICK",
-      "destinationUrl": verticalResults[0].results[1].rawData.link,
-      "entity": verticalResults[0].results[1].id,
-      "locale": "en",
-      "experienceKey": "experienceKey",
-      "isDirectAnswer": true,
-      "isGenerativeDirectAnswer": true,
-      "queryId": "[queryId]",
-      "searchId": "searchId",
-      "verticalKey": '',
-      "searchTerm": "test"
+      'action': 'CITATION_CLICK',
+      'destinationUrl': verticalResults[0].results[1].rawData.link,
+      'entity': verticalResults[0].results[1].id,
+      'locale': 'en',
+      'experienceKey': 'experienceKey',
+      'isDirectAnswer': true,
+      'isGenerativeDirectAnswer': true,
+      'queryId': '[queryId]',
+      'searchId': 'searchId',
+      'verticalKey': '',
+      'searchTerm': 'test'
     });
   });
 }
@@ -132,10 +133,10 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
 
   it('Citations component overridden with dummy text', () => {
     render(<GenerativeDirectAnswer
-        CitationsContainer={CustomCitationsComponent}
+      CitationsContainer={CustomCitationsComponent}
     />);
     expect(screen.getByText(generativeDirectAnswerText)).toBeDefined();
-    expect(screen.getByText("CustomCitationsComponentTest")).toBeTruthy();
+    expect(screen.getByText('CustomCitationsComponentTest')).toBeTruthy();
   });
 
   it('citations are deduplicated', () => {
@@ -153,7 +154,7 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
 describe('GenerativeDirectAnswer without sufficient citation fields', () => {
   it('first citation does not have name field but second citation does', () => {
     verticalResults[0].results[1].rawData.name = undefined;
-    mockAnswersState({...mockedState, universal: {verticals: verticalResults}});
+    mockAnswersState({ ...mockedState, universal: { verticals: verticalResults } });
 
     render(<GenerativeDirectAnswer />);
     expect(screen.getByText(generativeDirectAnswerText)).toBeDefined();
@@ -166,7 +167,7 @@ describe('GenerativeDirectAnswer without sufficient citation fields', () => {
 
   it('all citations do not have name field', () => {
     verticalResults[1].results[0].rawData.name = undefined;
-    mockAnswersState({...mockedState, universal: {verticals: verticalResults}});
+    mockAnswersState({ ...mockedState, universal: { verticals: verticalResults } });
 
     render(<GenerativeDirectAnswer />);
     expect(screen.getByText(generativeDirectAnswerText)).toBeDefined();

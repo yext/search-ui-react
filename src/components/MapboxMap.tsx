@@ -9,19 +9,18 @@ import ReactDOM from 'react-dom';
 import * as ReactDomClient from 'react-dom/client';
 
 type LegacyReactDOM = {
-  render?: (element: React.ReactElement, container: Element) => void;
-  unmountComponentAtNode?: (container: Element | DocumentFragment) => boolean;
+  render?: (element: React.ReactElement, container: Element) => void,
+  unmountComponentAtNode?: (container: Element | DocumentFragment) => boolean
 };
 
 type RootHandle = {
-  render: (children: React.ReactNode) => void;
-  unmount: () => void;
+  render: (children: React.ReactNode) => void,
+  unmount: () => void
 };
 
 const legacyReactDOM = ReactDOM as LegacyReactDOM;
 const reactMajorVersion = Number(React.version.split('.')[0]);
 const supportsCreateRoot = !Number.isNaN(reactMajorVersion) && reactMajorVersion >= 18;
-
 
 /**
  * Props for rendering a custom marker on the map.
@@ -36,7 +35,7 @@ export type PinComponentProps<T> = {
   /** The search result corresponding to the pin. */
   result: Result<T>,
   /** Where the pin is selected. */
-  selected?: boolean,
+  selected?: boolean
 };
 
 /**
@@ -121,7 +120,7 @@ export interface MapboxMapProps<T> {
   /** A function that handles a pin click event. */
   onPinClick?: (result: Result<T> | undefined) => void,
   /** The options to apply to the map markers based on whether it is selected. */
-  markerOptionsOverride?: (selected: boolean) => MarkerOptions,
+  markerOptionsOverride?: (selected: boolean) => MarkerOptions
 }
 
 /**
@@ -158,7 +157,7 @@ export function MapboxMap<T>({
   const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
   useEffect(() => {
     mapboxInstance.accessToken = mapboxAccessToken;
-  }, [mapboxAccessToken]);
+  }, [mapboxAccessToken, mapboxInstance]);
 
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
@@ -173,12 +172,12 @@ export function MapboxMap<T>({
   const [selectedResult, setSelectedResult] = useState<Result<T> | undefined>(undefined);
 
   const handlePinClick = useCallback((result: Result<T>) => {
-    setSelectedResult(prev => prev === result ? undefined : result)
-  }, [])
+    setSelectedResult(prev => prev === result ? undefined : result);
+  }, []);
 
   useEffect(() => {
     onPinClick?.(selectedResult);
-  }, [selectedResult])
+  }, [onPinClick, selectedResult]);
 
   const cleanupPinComponent = useCallback((element: HTMLElement) => {
     activeMarkerElements.current.delete(element);
@@ -236,7 +235,8 @@ export function MapboxMap<T>({
    * (e.g. `name_fr`) and fall back to `name` when unavailable.
    *
    * Note:
-   * - Symbol layers that are place names would have `text-field` properties that includes 'name', which are localized.
+   * - Symbol layers that are place names would have `text-field` properties that includes
+   *   'name', which are localized.
    * - Other symbol layers (e.g. road shields, transit, icons) are left unchanged.
    */
   const localizeMap = useCallback(() => {
@@ -245,16 +245,16 @@ export function MapboxMap<T>({
 
     const localizeLabels = () => {
       mapbox.getStyle().layers.forEach(layer => {
-        if (layer.type !== "symbol") {
+        if (layer.type !== 'symbol') {
           return;
         }
-        const textField = layer.layout?.["text-field"];
-        if (typeof textField === "string"
-          ? textField.includes("name")
-          : (Array.isArray(textField) && JSON.stringify(textField).includes("name"))) {
+        const textField = layer.layout?.['text-field'];
+        if (typeof textField === 'string'
+          ? textField.includes('name')
+          : (Array.isArray(textField) && JSON.stringify(textField).includes('name'))) {
           mapbox.setLayoutProperty(
             layer.id,
-            "text-field",
+            'text-field',
             [
               'coalesce',
               ['get', `name_${getMapboxLanguage(locale)}`],
@@ -263,12 +263,12 @@ export function MapboxMap<T>({
           );
         }
       });
-    }
+    };
 
     if (mapbox.isStyleLoaded()) {
       localizeLabels();
     } else {
-      mapbox.once("styledata", () => localizeLabels())
+      mapbox.once('styledata', () => localizeLabels());
     }
   }, [locale]);
 
@@ -322,13 +322,13 @@ export function MapboxMap<T>({
       }
       localizeMap();
     }
-  }, [mapboxOptions, onDragDebounced, localizeMap]);
+  }, [allowUpdates, mapboxInstance, mapboxOptions, onDragDebounced, localizeMap]);
 
   useEffect(() => {
     if (iframeWindow && map.current) {
       map.current.resize();
     }
-  }, [mapContainer.current]);
+  }, [iframeWindow]);
 
   useEffect(() => {
     removeMarkers();
@@ -340,6 +340,9 @@ export function MapboxMap<T>({
           const markerLocation = getCoordinate(result);
           if (markerLocation) {
             const { latitude, longitude } = markerLocation;
+            if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+              return;
+            }
             const el = document.createElement('div');
             let markerOptions: mapboxgl.MarkerOptions = {};
             if (PinComponent) {
@@ -366,7 +369,7 @@ export function MapboxMap<T>({
               markerOptions = {
                 ...markerOptions,
                 ...markerOptionsOverride(selectedResult === result)
-              }
+              };
             }
 
             const marker = new mapboxInstance.Marker(markerOptions)
@@ -380,10 +383,16 @@ export function MapboxMap<T>({
             }
             bounds.extend([longitude, latitude]);
           }
-        })
+        });
 
+        mapbox.resize();
         const canvas = mapbox.getCanvas();
-        if (!bounds.isEmpty() && !!canvas && canvas.height > 0 && canvas.width > 0) {
+
+        if (!bounds.isEmpty()
+            && !!canvas
+            && canvas.clientHeight > 0
+            && canvas.clientWidth > 0
+        ) {
           const resolvedOptions = {
             // these settings are defaults and will be overriden if present on fitBoundsOptions
             padding: { top: 50, bottom: 50, left: 50, right: 50 },
@@ -393,7 +402,12 @@ export function MapboxMap<T>({
 
           let resolvedPadding;
           if (typeof resolvedOptions.padding === 'number') {
-            resolvedPadding = { top: resolvedOptions.padding, bottom: resolvedOptions.padding, left: resolvedOptions.padding, right: resolvedOptions.padding };
+            resolvedPadding = {
+              top: resolvedOptions.padding,
+              bottom: resolvedOptions.padding,
+              left: resolvedOptions.padding,
+              right: resolvedOptions.padding
+            };
           } else {
             resolvedPadding = {
               top: resolvedOptions.padding?.top ?? 0,
@@ -405,14 +419,14 @@ export function MapboxMap<T>({
 
           // Padding must not exceed the map's canvas dimensions
           const verticalPaddingSum = resolvedPadding.top + resolvedPadding.bottom;
-          if (verticalPaddingSum >= canvas.height) {
-            const ratio = canvas.height / (verticalPaddingSum || 1);
+          if (verticalPaddingSum >= canvas.clientHeight) {
+            const ratio = canvas.clientHeight / (verticalPaddingSum || 1);
             resolvedPadding.top = Math.max(0, resolvedPadding.top * ratio - 1);
             resolvedPadding.bottom = Math.max(0, resolvedPadding.bottom * ratio - 1);
           }
           const horizontalPaddingSum = resolvedPadding.left + resolvedPadding.right;
-          if (horizontalPaddingSum >= canvas.width) {
-            const ratio = canvas.width / (horizontalPaddingSum || 1);
+          if (horizontalPaddingSum >= canvas.clientWidth) {
+            const ratio = canvas.clientWidth / (horizontalPaddingSum || 1);
             resolvedPadding.left = Math.max(0, resolvedPadding.left * ratio - 1);
             resolvedPadding.right = Math.max(0, resolvedPadding.right * ratio - 1);
           }
@@ -425,7 +439,7 @@ export function MapboxMap<T>({
             marker?.getElement().removeEventListener('click', () => handlePinClick(locationResults[i]));
           });
           removeMarkers();
-        }
+        };
       } else if (staticFilters?.length) {
         const locationFilterValue = getLocationFilterValue(staticFilters);
         if (locationFilterValue) {
@@ -433,9 +447,22 @@ export function MapboxMap<T>({
             center: locationFilterValue
           });
         }
-      };
+      }
     }
-  }, [PinComponent, getCoordinate, locationResults, removeMarkers, markerOptionsOverride, renderPin]);
+  }, [
+    PinComponent,
+    attachPinComponent,
+    getCoordinate,
+    handlePinClick,
+    locationResults,
+    mapboxInstance,
+    mapboxOptions,
+    markerOptionsOverride,
+    removeMarkers,
+    renderPin,
+    selectedResult,
+    staticFilters
+  ]);
 
   useEffect(() => {
     const mapbox = map.current;
@@ -477,7 +504,7 @@ function isCoordinate(data: unknown): data is Coordinate {
 }
 
 function getDefaultCoordinate<T>(result: Result<T>): Coordinate | undefined {
-  const yextDisplayCoordinate: Coordinate =(result.rawData as any)["yextDisplayCoordinate"];
+  const yextDisplayCoordinate: Coordinate = (result.rawData as any)['yextDisplayCoordinate'];
   if (!yextDisplayCoordinate) {
     console.error('Unable to use the default "yextDisplayCoordinate" field as the result\'s coordinate to display on map.'
     + '\nConsider providing the "getCoordinate" prop to MapboxMap component to fetch the desire coordinate from result.');
@@ -495,7 +522,7 @@ export function getMapboxLanguage(locale: string) {
     const localeOptions = new Intl.Locale(locale.replaceAll('_', '-'));
     return localeOptions.script ? `${localeOptions.language}-${localeOptions.script}` : localeOptions.language;
   } catch (e) {
-    console.warn(`Locale "${locale}" is not supported.`)
+    console.warn(`Locale "${locale}" is not supported.`);
   }
   return 'en';
 }
@@ -503,7 +530,7 @@ export function getMapboxLanguage(locale: string) {
 function getLocationFilterValue(staticFilters: SelectableStaticFilter[]): [number, number] | undefined {
   const locationFilter = staticFilters.find(f => (f.filter as any)['fieldId'] === 'builtin.location' && (f.filter as any)['value'])?.filter;
   if (locationFilter) {
-    const {lat, lng} = (locationFilter as any)['value'];
+    const { lat, lng } = (locationFilter as any)['value'];
     return [lng, lat];
   }
 }

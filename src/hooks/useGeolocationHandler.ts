@@ -67,7 +67,7 @@ export function useGeolocationHandler({
     });
     searchActions.setStaticFilters([...nonLocationFilters, locationFilter]);
     executeSearch(searchActions);
-  }, [radius, searchActions, staticFilters]);
+  }, [radius, searchActions, staticFilters, t]);
 
   const geolocationHandler = useCallback(async () => {
     setIsFetchingUserLocation(true);

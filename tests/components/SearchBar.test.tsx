@@ -86,7 +86,18 @@ describe('SearchBar', () => {
         .spyOn(SearchCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
 
-      renderSearchBar(mockedState, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined, true);
+      renderSearchBar(
+        mockedState,
+        undefined,
+        undefined,
+        undefined,
+        true,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        true
+      );
 
       await userEvent.click(screen.getByRole('combobox'));
       expect(screen.queryByText('query suggestion 1')).not.toBeInTheDocument();
@@ -119,7 +130,8 @@ describe('SearchBar', () => {
         .spyOn(SearchCore.prototype, 'verticalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
 
-      renderSearchBar({
+      renderSearchBar(
+        {
           ...mockedState,
           vertical: {
             verticalKey: 'someKey'
@@ -162,7 +174,17 @@ describe('SearchBar', () => {
         .mockResolvedValueOnce(mockedUniversalAutocompleteResultOne)
         .mockResolvedValueOnce(mockedUniversalAutocompleteResultTwo);
 
-      renderSearchBar(mockedState, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined);
+      renderSearchBar(
+        mockedState,
+        undefined,
+        undefined,
+        undefined,
+        true,
+        undefined,
+        undefined,
+        undefined,
+        undefined
+      );
       await userEvent.click(screen.getByRole('combobox'));
       expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
       expect(screen.queryByText('query suggestion 2')).not.toBeInTheDocument();
@@ -178,13 +200,23 @@ describe('SearchBar', () => {
 
       const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
 
-      renderSearchBar(mockedState, undefined, undefined, undefined, true, undefined, undefined, undefined, undefined);
+      renderSearchBar(
+        mockedState,
+        undefined,
+        undefined,
+        undefined,
+        true,
+        undefined,
+        undefined,
+        undefined,
+        undefined
+      );
       await userEvent.click(screen.getByRole('combobox'));
       expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
       await userEvent.keyboard('{arrowdown}');
       await userEvent.keyboard('{enter}');
       expect(await screen.findByRole('combobox')).toHaveDisplayValue('query suggestion 1');
-      expect(mockedUniversalSearch).toHaveBeenCalledTimes(1)
+      expect(mockedUniversalSearch).toHaveBeenCalledTimes(1);
       expect(mockedUniversalSearch).toHaveBeenCalledWith(expect.objectContaining({
         query: 'query suggestion 1'
       }));
@@ -195,7 +227,16 @@ describe('SearchBar', () => {
         .spyOn(SearchCore.prototype, 'universalAutocomplete')
         .mockResolvedValue(mockedAutocompleteResult);
 
-      renderSearchBar(mockedState, undefined, undefined, undefined, undefined, undefined, undefined, 5);
+      renderSearchBar(
+        mockedState,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        5
+      );
       await userEvent.click(screen.getByRole('combobox'));
       expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
 
@@ -205,26 +246,99 @@ describe('SearchBar', () => {
       }));
     });
 
-    it('does not use universal autocomplete limit when universalAutocompleteLimit is not provided', async () => {
-      const mockedUniversalAutocomplete = jest
-        .spyOn(SearchCore.prototype, 'universalAutocomplete')
-        .mockResolvedValue(mockedAutocompleteResult);
-      renderSearchBar(mockedState);
-      await userEvent.click(screen.getByRole('combobox'));
-      expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
+    it(
+      'does not use universal autocomplete limit when universalAutocompleteLimit is not provided',
+      async () => {
+        const mockedUniversalAutocomplete = jest
+          .spyOn(SearchCore.prototype, 'universalAutocomplete')
+          .mockResolvedValue(mockedAutocompleteResult);
+        renderSearchBar(mockedState);
+        await userEvent.click(screen.getByRole('combobox'));
+        expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
 
-      expect(mockedUniversalAutocomplete).toHaveBeenCalledTimes(1);
-      expect(mockedUniversalAutocomplete).toHaveBeenCalledWith(expect.not.objectContaining({
-        limit: expect.anything()
-      }));
-    });
+        expect(mockedUniversalAutocomplete).toHaveBeenCalledTimes(1);
+        expect(mockedUniversalAutocomplete).toHaveBeenCalledWith(expect.not.objectContaining({
+          limit: expect.anything()
+        }));
+      });
 
-    it('uses vertical autocomplete limit when verticalAutocompleteLimits matches current vertical', async () => {
-      const mockedVerticalAutocomplete = jest
-        .spyOn(SearchCore.prototype, 'verticalAutocomplete')
-        .mockResolvedValue(mockedAutocompleteResult);
+    it(
+      'uses vertical autocomplete limit when verticalAutocompleteLimits matches current vertical',
+      async () => {
+        const mockedVerticalAutocomplete = jest
+          .spyOn(SearchCore.prototype, 'verticalAutocomplete')
+          .mockResolvedValue(mockedAutocompleteResult);
 
-      renderSearchBar({
+        renderSearchBar(
+          {
+            ...mockedState,
+            vertical: {
+              verticalKey: 'products'
+            },
+            meta: {
+              searchType: 'vertical'
+            }
+          },
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          { products: 3, locations: 5 }
+        );
+        await userEvent.click(screen.getByRole('combobox'));
+        expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
+
+        expect(mockedVerticalAutocomplete).toHaveBeenCalledTimes(1);
+        expect(mockedVerticalAutocomplete).toHaveBeenCalledWith(expect.objectContaining({
+          limit: 3
+        }));
+      });
+
+    it(
+      'does not use vertical autocomplete limit when verticalAutocompleteLimits ' +
+        'does not match current vertical',
+      async () => {
+        const mockedVerticalAutocomplete = jest
+          .spyOn(SearchCore.prototype, 'verticalAutocomplete')
+          .mockResolvedValue(mockedAutocompleteResult);
+
+        renderSearchBar(
+          {
+            ...mockedState,
+            vertical: {
+              verticalKey: 'events'
+            },
+            meta: {
+              searchType: 'vertical'
+            }
+          },
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          { products: 3, locations: 5 }
+        );
+        await userEvent.click(screen.getByRole('combobox'));
+        expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
+        expect(mockedVerticalAutocomplete).toHaveBeenCalledTimes(1);
+        expect(mockedVerticalAutocomplete).toHaveBeenCalledWith(expect.not.objectContaining({
+          limit: expect.anything()
+        }));
+      });
+
+    it(
+      'does not use vertical autocomplete limit when verticalAutocompleteLimits is not provided',
+      async () => {
+        const mockedVerticalAutocomplete = jest
+          .spyOn(SearchCore.prototype, 'verticalAutocomplete')
+          .mockResolvedValue(mockedAutocompleteResult);
+        renderSearchBar({
           ...mockedState,
           vertical: {
             verticalKey: 'products'
@@ -232,58 +346,14 @@ describe('SearchBar', () => {
           meta: {
             searchType: 'vertical'
           }
-        }, undefined, undefined, undefined, undefined, undefined, undefined, undefined, { products: 3, locations: 5 });
-      await userEvent.click(screen.getByRole('combobox'));
-      expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
-
-      expect(mockedVerticalAutocomplete).toHaveBeenCalledTimes(1);
-      expect(mockedVerticalAutocomplete).toHaveBeenCalledWith(expect.objectContaining({
-        limit: 3
-      }));
-    });
-
-    it('does not use vertical autocomplete limit when verticalAutocompleteLimits does not match current vertical', async () => {
-      const mockedVerticalAutocomplete = jest
-        .spyOn(SearchCore.prototype, 'verticalAutocomplete')
-        .mockResolvedValue(mockedAutocompleteResult);
-
-      renderSearchBar({
-        ...mockedState,
-        vertical: {
-          verticalKey: 'events'
-        },
-        meta: {
-          searchType: 'vertical'
-        }
-      }, undefined, undefined, undefined, undefined, undefined, undefined, undefined, { products: 3, locations: 5 });
-      await userEvent.click(screen.getByRole('combobox'));
-      expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
-      expect(mockedVerticalAutocomplete).toHaveBeenCalledTimes(1);
-      expect(mockedVerticalAutocomplete).toHaveBeenCalledWith(expect.not.objectContaining({
-        limit: expect.anything()
-      }));
-    });
-
-    it('does not use vertical autocomplete limit when verticalAutocompleteLimits is not provided', async () => {
-      const mockedVerticalAutocomplete = jest
-        .spyOn(SearchCore.prototype, 'verticalAutocomplete')
-        .mockResolvedValue(mockedAutocompleteResult);
-      renderSearchBar({
-        ...mockedState,
-        vertical: {
-          verticalKey: 'products'
-        },
-        meta: {
-          searchType: 'vertical'
-        }
+        });
+        await userEvent.click(screen.getByRole('combobox'));
+        expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
+        expect(mockedVerticalAutocomplete).toHaveBeenCalledTimes(1);
+        expect(mockedVerticalAutocomplete).toHaveBeenCalledWith(expect.not.objectContaining({
+          limit: expect.anything()
+        }));
       });
-      await userEvent.click(screen.getByRole('combobox'));
-      expect(await screen.findByText('query suggestion 1')).toBeInTheDocument();
-      expect(mockedVerticalAutocomplete).toHaveBeenCalledTimes(1);
-      expect(mockedVerticalAutocomplete).toHaveBeenCalledWith(expect.not.objectContaining({
-        limit: expect.anything()
-      }));
-    });
   });
 
   describe('vertical links', () => {
@@ -302,13 +372,15 @@ describe('SearchBar', () => {
         .mockResolvedValue(mockedUniversalAutocompleteResult);
     });
 
-    it('displays vertical links as part of the query suggestions when showVerticalLinks is set to true', async () => {
-      renderSearchBar(mockedState, true);
-      await userEvent.click(screen.getByRole('combobox'));
-      expect(await screen.findByText('query suggestion')).toBeInTheDocument();
-      expect(await screen.findByText('in verticalKey1')).toBeInTheDocument();
-      expect(await screen.findByText('in verticalKey2')).toBeInTheDocument();
-    });
+    it(
+      'displays vertical links as part of the query suggestions when showVerticalLinks is set to true',
+      async () => {
+        renderSearchBar(mockedState, true);
+        await userEvent.click(screen.getByRole('combobox'));
+        expect(await screen.findByText('query suggestion')).toBeInTheDocument();
+        expect(await screen.findByText('in verticalKey1')).toBeInTheDocument();
+        expect(await screen.findByText('in verticalKey2')).toBeInTheDocument();
+      });
 
     it('does not display vertical links on default', async () => {
       renderSearchBar(mockedState);
@@ -405,7 +477,15 @@ describe('SearchBar', () => {
 
   it('executes onSearch callback when click on submit button', async () => {
     const mockedOnSearch = jest.fn();
-    renderSearchBar(mockedState, undefined, undefined, undefined, undefined, undefined, mockedOnSearch);
+    renderSearchBar(
+      mockedState,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      mockedOnSearch
+    );
     const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');
     await userEvent.type(screen.getByRole('combobox'), 'yext');
     await waitForDebounce(); // Submit button won't fire query until debounce period is over
