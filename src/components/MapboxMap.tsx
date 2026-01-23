@@ -179,18 +179,26 @@ export function MapboxMap<T>({
     onPinClick?.(selectedResult);
   }, [onPinClick, selectedResult]);
 
+  const scheduleRootUnmount = useCallback((root: RootHandle) => {
+    if (typeof queueMicrotask === 'function') {
+      queueMicrotask(() => root.unmount());
+    } else {
+      setTimeout(() => root.unmount(), 0);
+    }
+  }, []);
+
   const cleanupPinComponent = useCallback((element: HTMLElement) => {
     activeMarkerElements.current.delete(element);
     if (supportsCreateRoot) {
       const root = markerRoots.current.get(element);
       if (root) {
-        root.unmount();
+        scheduleRootUnmount(root);
         markerRoots.current.delete(element);
       }
     } else {
       legacyReactDOM.unmountComponentAtNode?.(element);
     }
-  }, []);
+  }, [scheduleRootUnmount]);
 
   const attachPinComponent = useCallback((element: HTMLElement, component: React.JSX.Element) => {
     if (supportsCreateRoot && typeof ReactDomClient.createRoot === 'function') {
