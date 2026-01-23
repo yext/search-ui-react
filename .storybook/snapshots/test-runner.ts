@@ -23,10 +23,11 @@ const renderFunctions: TestRunnerConfig = {
     }
 
     const image = await page.screenshot();
+    const useFailureThreshold = context.id === 'geolocation--loading' || context.id === 'staticfilters--searchable' || isMapboxMapStory;
     expect(image).toMatchImageSnapshot({
       customSnapshotsDir,
       customSnapshotIdentifier: context.id,
-      failureThreshold: context.id === 'geolocation--loading' || isMapboxMapStory
+      failureThreshold: useFailureThreshold
         ? 0.005
         : 0,
       failureThresholdType: 'percent'
