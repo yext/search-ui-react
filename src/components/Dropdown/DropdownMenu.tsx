@@ -12,5 +12,5 @@ export function DropdownMenu(
     return null;
   }
 
-  return <div id={dropdownListUUID}>{children}</div>;
+  return <div id={dropdownListUUID} role="listbox">{children}</div>;
 }
