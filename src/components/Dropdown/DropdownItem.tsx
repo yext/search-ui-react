@@ -78,6 +78,8 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
       className={isFocused ? focusedClassName : className}
       onClick={handleClick}
       aria-label={typeof ariaLabel === 'function' ? ariaLabel(value) : ariaLabel}
+      role="option"
+      aria-selected={isFocused}
     >
       {children}
     </a>
