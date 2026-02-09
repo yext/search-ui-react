@@ -36,7 +36,7 @@ const builtInCssClasses: Readonly<FilterSearchCssClasses> = {
   inputElement: 'text-sm bg-white outline-none h-9 w-full p-2 rounded-md border border-gray-300 focus:border-primary text-neutral-dark placeholder:text-neutral',
   sectionLabel: 'text-sm text-neutral-dark font-semibold py-2 px-4',
   focusedOption: 'bg-gray-100',
-  option: 'text-sm text-neutral-dark py-1 cursor-pointer hover:bg-gray-100 px-4',
+  option: 'text-sm text-neutral-dark py-1 cursor-pointer px-4',
   currentLocationButton: 'h-5 w-5',
   currentLocationAndInputContainer: 'w-full flex items-center justify-start gap-2'
 };

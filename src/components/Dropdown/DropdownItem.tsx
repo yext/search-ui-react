@@ -69,6 +69,9 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
     updateFocusedItem,
     value
   ]);
+  const handleMouseEnter = useCallback(() => {
+    updateFocusedItem(index);
+  }, [index, updateFocusedItem]);
 
   const baseButtonClasses = 'bg-transparent border-0 p-0 m-0 font-inherit text-inherit text-left '
     + 'cursor-pointer w-full self-stretch box-border';
@@ -77,12 +80,14 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
     isFocused ? focusedClassName ?? '' : className ?? ''
   );
 
+  console.log('index: ', index, 'isFocused: ', isFocused, 'focusedIndex', focusedIndex);
   return (
     <button
       id={generateDropdownId(screenReaderUUID, index)}
       type="button"
       tabIndex={-1}
       className={combinedClassName}
+      onMouseEnter={handleMouseEnter}
       onClick={handleClick}
       aria-label={typeof ariaLabel === 'function' ? ariaLabel(value) : ariaLabel}
       role="option"
