@@ -71,7 +71,7 @@ export function LocationsPage() {
         top: scrollTop,
         behavior: "smooth",
       });
-    }
+    } 
   }, [resultsRef.current, resultsContainer])
 
   const markerOptionsOverride = useCallback((selected: boolean) => {

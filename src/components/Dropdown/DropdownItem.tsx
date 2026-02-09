@@ -50,8 +50,7 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
 
   const isFocused = focusedIndex === index;
 
-  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+  const handleClick = useCallback(() => {
     toggleDropdown(false);
     updateFocusedItem(-1);
     setLastTypedOrSubmittedValue(value);
