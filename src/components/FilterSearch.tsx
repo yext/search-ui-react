@@ -376,7 +376,6 @@ export function FilterSearch({
       <Dropdown
         screenReaderText={getScreenReaderText(sections, t)}
         onSelect={handleSelectDropdown}
-        alwaysSelectOption={true}
         parentQuery={filterQuery}
       >
         {showCurrentLocationButton ? (
