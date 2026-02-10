@@ -80,7 +80,6 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
     isFocused ? focusedClassName ?? '' : className ?? ''
   );
 
-  console.log('index: ', index, 'isFocused: ', isFocused, 'focusedIndex', focusedIndex);
   return (
     <button
       id={generateDropdownId(screenReaderUUID, index)}
