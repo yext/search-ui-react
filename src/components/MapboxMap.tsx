@@ -286,7 +286,7 @@ export function MapboxMap<T>({
       if (!marker) {
         return;
       }
-      const element = typeof marker.getElement === 'function' ? marker.getElement() : null;
+      const element = marker?.getElement?.();
       if (element) {
         cleanupPinComponent(element);
       }
@@ -531,11 +531,11 @@ export function MapboxMap<T>({
       }
       // recreate the marker to apply new markerOptionsOverride (e.g. color/scale).
       const oldMarker = markerEntry.marker;
-      const element = oldMarker.getElement?.();
+      const element = oldMarker?.getElement?.();
       if (element) {
         cleanupPinComponent(element);
       }
-      oldMarker.remove?.();
+      oldMarker?.remove?.();
 
       const created = createMarker(mapbox, result, markerEntry.index, selectedResult === result);
       if (!created) {
@@ -553,7 +553,7 @@ export function MapboxMap<T>({
       return;
     }
     markerData.current.forEach(({ marker, result, index }) => {
-      const element = typeof marker.getElement === 'function' ? marker.getElement() : null;
+      const element = marker?.getElement?.();
       if (!element) {
         return;
       }
