@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { Popup, LngLatLike, Map } from 'mapbox-gl';
 import { PinComponent, Coordinate } from '@yext/search-ui-react';
 import { Location } from '../pages/LocationsPage';
@@ -9,7 +9,7 @@ const transformToMapboxCoord = (coordinate: Coordinate): LngLatLike => ({
 });
 
 export const MapPin: PinComponent<Location> = props => {
-  const { mapbox, result } = props;
+  const { mapbox, result, selected } = props;
   const yextCoordinate = result.rawData.yextDisplayCoordinate;
   const [active, setActive] = useState(false);
   const popupRef = useRef(new Popup({ offset: 15 })
@@ -29,10 +29,23 @@ export const MapPin: PinComponent<Location> = props => {
     setActive(true);
   }, []);
 
+  const { width, height } = useMemo(() => {
+    return selected
+      ? {
+          width: 49.5,
+          height: 63
+        }
+      : {
+          width: 33,
+          height: 42
+        };
+  }, [selected]);
+
   return (
     <button onClick={handleClick} aria-label='Show pin details'>
       <svg
-        width="33" height="42"
+        width={width}
+        height={height}
         viewBox="0 0 30 38"
         fill="#1e293b"
         stroke="#fff"
