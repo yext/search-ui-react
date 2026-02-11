@@ -58,7 +58,8 @@ const universalVerticalConfigMap = {
 };
 
 const customSearchBarCss = {
-  searchBarContainer: 'mb-3 text-emerald-800'
+  searchBarContainer: 'mb-3 text-emerald-800',
+  focusedOption: "bg-emerald-200",
 };
 
 function CustomCitationCard(props: CitationProps): React.JSX.Element | null {
@@ -95,7 +96,7 @@ export default function UniversalPage(): React.JSX.Element {
         universalAutocompleteLimit={20}
       />
       <SpellCheck />
-      <GenerativeDirectAnswer 
+      <GenerativeDirectAnswer
         answerHeader='A custom answer header'
         CitationCard={CustomCitationCard}
       />

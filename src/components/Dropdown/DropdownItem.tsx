@@ -3,6 +3,7 @@ import { useDropdownContext } from './DropdownContext';
 import { FocusedItemData, useFocusContext } from './FocusContext';
 import { generateDropdownId } from './generateDropdownId';
 import { useInputContext } from './InputContext';
+import { twMerge } from '../../hooks/useComposedCssClasses';
 
 /**
  * Props for the {@link DropdownItem}.
@@ -69,19 +70,25 @@ export function DropdownItemWithIndex(props: DropdownItemProps & { index: number
     value
   ]);
 
+  const baseButtonClasses = 'bg-transparent border-0 p-0 m-0 font-inherit text-inherit text-left '
+    + 'cursor-pointer w-full self-stretch box-border';
+  const combinedClassName = twMerge(
+    baseButtonClasses,
+    isFocused ? focusedClassName ?? '' : className ?? ''
+  );
+
   return (
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <a
+    <button
       id={generateDropdownId(screenReaderUUID, index)}
-      href="#"
+      type="button"
       tabIndex={-1}
-      className={isFocused ? focusedClassName : className}
+      className={combinedClassName}
       onClick={handleClick}
       aria-label={typeof ariaLabel === 'function' ? ariaLabel(value) : ariaLabel}
       role="option"
       aria-selected={isFocused}
     >
       {children}
-    </a>
+    </button>
   );
 }

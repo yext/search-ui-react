@@ -90,7 +90,8 @@ export function LocationsPage() {
         label='FilterSearch Location Filter'
         customCssClasses={
           {
-            currentLocationAndInputContainer: 'w-1/5'
+            currentLocationAndInputContainer: 'w-1/5',
+            focusedOption: 'bg-red-500'
           }
         }
         showCurrentLocationButton={true}
