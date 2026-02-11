@@ -108,6 +108,7 @@ export function LocationsPage() {
           <MapboxMap
             mapboxAccessToken={process.env.REACT_APP_MAPBOX_API_KEY || 'REPLACE_KEY'}
             mapboxOptions={mapboxOptions}
+            // markerOptionsOverride={markerOptionsOverride}
             PinComponent={MapPin}
             onDrag={onDrag}
           />
