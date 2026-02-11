@@ -155,6 +155,7 @@ export function MapboxMap<T>({
   markerOptionsOverride,
 }: MapboxMapProps<T>): React.JSX.Element {
   const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
+  // keep the mapbox access token in sync with prop changes.
   useEffect(() => {
     mapboxInstance.accessToken = mapboxAccessToken;
   }, [mapboxAccessToken, mapboxInstance]);
@@ -175,6 +176,7 @@ export function MapboxMap<T>({
     setSelectedResult(prev => prev === result ? undefined : result);
   }, []);
 
+  // notify consumers when the selected pin changes.
   useEffect(() => {
     onPinClick?.(selectedResult);
   }, [onPinClick, selectedResult]);
@@ -192,6 +194,8 @@ export function MapboxMap<T>({
     if (supportsCreateRoot) {
       const root = markerRoots.current.get(element);
       if (root) {
+        // unmount must be called after the current render finishes, so schedule it for the next
+        // microtask
         scheduleRootUnmount(root);
         markerRoots.current.delete(element);
       }
@@ -215,12 +219,74 @@ export function MapboxMap<T>({
     }
   }, []);
 
+  // builds and attaches a single marker to the mapbox map
+  const createMarker = useCallback((
+    mapbox: mapboxgl.Map,
+    result: Result<T>,
+    index: number,
+    selected: boolean
+  ) => {
+    const markerLocation = getCoordinate(result);
+    if (!markerLocation) {
+      return null;
+    }
+    const { latitude, longitude } = markerLocation;
+    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+      return null;
+    }
+
+    const el = document.createElement('div');
+    let markerOptions: mapboxgl.MarkerOptions = {};
+    if (PinComponent) {
+      if (renderPin) {
+        console.warn(
+          'Found both PinComponent and renderPin props. Using PinComponent.'
+        );
+      }
+      attachPinComponent(el, (
+        <PinComponent
+          index={index}
+          mapbox={mapbox}
+          result={result}
+          selected={selected}
+        />
+      ));
+      markerOptions.element = el;
+    } else if (renderPin) {
+      renderPin({ index, mapbox, result, container: el });
+      markerOptions.element = el;
+    }
+
+    if (markerOptionsOverride) {
+      markerOptions = {
+        ...markerOptions,
+        ...markerOptionsOverride(selected)
+      };
+    }
+
+    const marker = new mapboxInstance.Marker(markerOptions)
+      .setLngLat({ lat: latitude, lng: longitude })
+      .addTo(mapbox);
+
+    marker?.getElement().addEventListener('click', () => handlePinClick(result));
+
+    return { marker, location: markerLocation };
+  }, [
+    PinComponent,
+    attachPinComponent,
+    getCoordinate,
+    handlePinClick,
+    mapboxInstance,
+    markerOptionsOverride,
+    renderPin
+  ]);
+
   const removeMarkers = useCallback(() => {
     markers.current.forEach(marker => {
       if (!marker) {
         return;
       }
-      const element = typeof marker.getElement === 'function' ? marker.getElement() : null;
+      const element = marker?.getElement?.();
       if (element) {
         cleanupPinComponent(element);
       }
@@ -280,6 +346,7 @@ export function MapboxMap<T>({
     }
   }, [locale]);
 
+  // initialize the map once and update mapbox options when allowUpdates is true.
   useEffect(() => {
     if (mapContainer.current) {
       if (map.current && allowUpdates) {
@@ -332,70 +399,36 @@ export function MapboxMap<T>({
     }
   }, [allowUpdates, mapboxInstance, mapboxOptions, onDragDebounced, localizeMap]);
 
+  // resize the map when its iframe container changes size.
   useEffect(() => {
     if (iframeWindow && map.current) {
       map.current.resize();
     }
   }, [iframeWindow]);
 
+  // create and place markers when results change, then cleanup on teardown
   useEffect(() => {
     removeMarkers();
     const mapbox = map.current;
     if (mapbox && locationResults) {
       if (locationResults.length > 0) {
         const bounds = new mapboxInstance.LngLatBounds();
+        // create a marker for each result
         locationResults.forEach((result, i) => {
-          const markerLocation = getCoordinate(result);
-          if (markerLocation) {
-            const { latitude, longitude } = markerLocation;
-            if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-              return;
-            }
-            const el = document.createElement('div');
-            let markerOptions: mapboxgl.MarkerOptions = {};
-            if (PinComponent) {
-              if (renderPin) {
-                console.warn(
-                  'Found both PinComponent and renderPin props. Using PinComponent.'
-                );
-              }
-              attachPinComponent(el, (
-                <PinComponent
-                  index={i}
-                  mapbox={mapbox}
-                  result={result}
-                  selected={selectedResult === result}
-                />
-              ));
-              markerOptions.element = el;
-            } else if (renderPin) {
-              renderPin({ index: i, mapbox, result, container: el });
-              markerOptions.element = el;
-            }
-
-            if (markerOptionsOverride) {
-              markerOptions = {
-                ...markerOptions,
-                ...markerOptionsOverride(selectedResult === result)
-              };
-            }
-
-            const marker = new mapboxInstance.Marker(markerOptions)
-              .setLngLat({ lat: latitude, lng: longitude })
-              .addTo(mapbox);
-
-            marker?.getElement().addEventListener('click', () => handlePinClick(result));
-            markers.current.push(marker);
-            if (marker) {
-              markerData.current.push({ marker, result, index: i });
-            }
-            bounds.extend([longitude, latitude]);
+          const created = createMarker(mapbox, result, i, false);
+          if (!created) {
+            return;
           }
+          markers.current.push(created.marker);
+          markerData.current.push({ marker: created.marker, result, index: i });
+          bounds.extend([created.location.longitude, created.location.latitude]);
         });
 
+        // fit the map to the markers
         mapbox.resize();
         const canvas = mapbox.getCanvas();
 
+        // add padding to map
         if (!bounds.isEmpty()
             && !!canvas
             && canvas.clientHeight > 0
@@ -442,6 +475,7 @@ export function MapboxMap<T>({
           mapbox.fitBounds(bounds, resolvedOptions);
         }
 
+        // return a cleanup function to remove markers when the map component unmounts
         return () => {
           markers.current.forEach((marker, i) => {
             marker?.getElement().removeEventListener('click', () => handlePinClick(locationResults[i]));
@@ -458,27 +492,68 @@ export function MapboxMap<T>({
       }
     }
   }, [
-    PinComponent,
-    attachPinComponent,
-    getCoordinate,
+    createMarker,
     handlePinClick,
     locationResults,
     mapboxInstance,
     mapboxOptions,
-    markerOptionsOverride,
     removeMarkers,
-    renderPin,
-    selectedResult,
     staticFilters
   ]);
 
+  const previousSelectedResult = useRef<Result<T> | undefined>(undefined);
+
+  // update marker options when markerOptionsOverride changes or selectedResult changes
+  useEffect(() => {
+    const mapbox = map.current;
+    if (!mapbox || !markerOptionsOverride) {
+      previousSelectedResult.current = selectedResult;
+      return;
+    }
+
+    const prevSelected = previousSelectedResult.current;
+    previousSelectedResult.current = selectedResult;
+
+    // markerOptionsOverride is applied at creation time, so we recreate only the affected
+    // markers to reflect selection changes without tearing down all pins.
+    const resultsToUpdate = new Set<Result<T>>();
+    if (prevSelected) {
+      resultsToUpdate.add(prevSelected);
+    }
+    if (selectedResult) {
+      resultsToUpdate.add(selectedResult);
+    }
+
+    resultsToUpdate.forEach((result) => {
+      const markerEntry = markerData.current.find(entry => entry.result === result);
+      if (!markerEntry) {
+        return;
+      }
+      // recreate the marker to apply new markerOptionsOverride (e.g. color/scale).
+      const oldMarker = markerEntry.marker;
+      const element = oldMarker?.getElement?.();
+      if (element) {
+        cleanupPinComponent(element);
+      }
+      oldMarker?.remove?.();
+
+      const created = createMarker(mapbox, result, markerEntry.index, selectedResult === result);
+      if (!created) {
+        return;
+      }
+      markerEntry.marker = created.marker;
+      markers.current[markerEntry.index] = created.marker;
+    });
+  }, [cleanupPinComponent, createMarker, markerOptionsOverride, selectedResult]);
+
+  // re-render custom PinComponent on selection changes to update the visual state
   useEffect(() => {
     const mapbox = map.current;
     if (!mapbox || !PinComponent) {
       return;
     }
     markerData.current.forEach(({ marker, result, index }) => {
-      const element = typeof marker.getElement === 'function' ? marker.getElement() : null;
+      const element = marker?.getElement?.();
       if (!element) {
         return;
       }
