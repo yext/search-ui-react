@@ -1,7 +1,8 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import { AnalyticsContext } from '../hooks/useAnalytics';
 import { CloudRegion, Environment } from '@yext/search-core';
 import { SearchAnalyticsEventServiceImpl } from '../models/SearchAnalyticsEventServiceImpl';
+import { SearchAnalyticsEventService } from '../models';
 
 /**
  * A higher-order component which provides analytics for its children.
@@ -13,11 +14,28 @@ import { SearchAnalyticsEventServiceImpl } from '../models/SearchAnalyticsEventS
  */
 export function AnalyticsProvider(props: PropsWithChildren<SearchAnalyticsConfig>): React.JSX.Element {
   const { children, ...searchAnalyticsConfig } = props;
-  const analyticsReporter =
-      new SearchAnalyticsEventServiceImpl(searchAnalyticsConfig);
+
+  const analyticsRef = useRef<SearchAnalyticsEventService | null>(null);
+
+  if (analyticsRef.current === null) {
+    analyticsRef.current = new SearchAnalyticsEventServiceImpl(searchAnalyticsConfig);
+  }
+
+  const analytics = analyticsRef.current;
+
+  // Adds enableYextAnalytics to the window. Typically used during consent banner implementation.
+  useEffect(() => {
+    (window as any).enableYextAnalytics = () => {
+      analytics.optIn();
+    };
+
+    return () => {
+      delete (window as any).enableYextAnalytics;
+    };
+  }, [analytics]);
 
   return (
-    <AnalyticsContext.Provider value={ analyticsReporter }>
+    <AnalyticsContext.Provider value={ analytics }>
       {children}
     </AnalyticsContext.Provider>
   );
@@ -36,5 +54,7 @@ export interface SearchAnalyticsConfig {
   /** The region to send requests to. Defaults to 'US'. */
   cloudRegion?: CloudRegion,
   /** Whether to enable session tracking for analytics events. */
-  sessionTrackingEnabled?: boolean
+  sessionTrackingEnabled?: boolean,
+  /** Whether a user must consent to analytics tracking before events are fired. Defaults to false. */
+  requireOptIn?: boolean
 }

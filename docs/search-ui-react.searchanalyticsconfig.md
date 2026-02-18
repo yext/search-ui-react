@@ -94,6 +94,25 @@ _(Optional)_ The Yext environment to send requests to. Defaults to 'PRODUCTION'.
 </td></tr>
 <tr><td>
 
+[requireOptIn?](./search-ui-react.searchanalyticsconfig.requireoptin.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether a user must consent to analytics tracking before events are fired. Defaults to false.
+
+
+</td></tr>
+<tr><td>
+
 [sessionTrackingEnabled?](./search-ui-react.searchanalyticsconfig.sessiontrackingenabled.md)
 
 

@@ -6,14 +6,11 @@ import {
   State, SearchTypeEnum
 } from '@yext/search-headless-react';
 import { render, RenderResult, screen } from '@testing-library/react';
-import { SearchBar, onSearchFunc } from '../../src/components/SearchBar';
-import { VerticalLink } from '../../src/models/verticalLink';
-import { SearchI18nextProvider } from '../../src/components/SearchI18nextProvider';
+import { SearchBar, onSearchFunc, VerticalLink, SearchI18nextProvider, SearchAnalyticsEventService } from '../../src';
 import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { RecursivePartial } from '../__utils__/mocks';
 import * as Analytics from '../../src/hooks/useAnalytics';
-import { AnalyticsEventService } from '@yext/analytics';
 import React from 'react';
 
 const mockedState: Partial<State> = {
@@ -560,7 +557,7 @@ describe('SearchBar', () => {
 
     beforeEach(() => {
       jest.spyOn(Analytics, 'useAnalytics')
-        .mockImplementation(() => ({ report: mockedReport }) as unknown as AnalyticsEventService);
+        .mockImplementation(() => ({ report: mockedReport }) as unknown as SearchAnalyticsEventService);
     });
 
     it('reports AUTO_COMPLETE_SELECTION feedback', async () => {
