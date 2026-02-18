@@ -1,5 +1,4 @@
 import { CloudRegion, CloudChoice, Environment } from '@yext/search-headless-react';
-import {AnalyticsConfig} from "@yext/analytics";
 import {SearchAnalyticsConfig} from "../../src";
 
 export const config = {
@@ -17,4 +16,5 @@ export const analyticsConfig: SearchAnalyticsConfig = {
   apiKey: process.env.REACT_APP_EVENTS_API_KEY || 'REPLACE_ME',
   environment: Environment.PROD,
   cloudRegion: CloudRegion.US,
+  analyticsEnabled: true,
 };

@@ -686,6 +686,7 @@ export interface ResultsCountProps {
 
 // @public
 export interface SearchAnalyticsConfig {
+    analyticsEnabled?: boolean;
     apiKey: string;
     cloudRegion?: CloudRegion;
     environment?: Environment;
@@ -694,6 +695,9 @@ export interface SearchAnalyticsConfig {
 
 // @public
 export interface SearchAnalyticsEventService {
+    disableYextAnalytics(): void;
+    enableYextAnalytics(): void;
+    getYextAnalyticsEnabled(): boolean;
     // Warning: (ae-forgotten-export) The symbol "SearchEventPayload" needs to be exported by the entry point index.d.ts
     report(payload: SearchEventPayload): Promise<string>;
 }
@@ -1039,7 +1043,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1741:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1749:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

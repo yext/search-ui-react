@@ -7,6 +7,7 @@ import { SearchAnalyticsEventService } from './SearchAnalyticsEventService';
 /** An implementation of {@link SearchAnalyticsEventService} which makes calls to the Analytics Events API */
 export class SearchAnalyticsEventServiceImpl implements SearchAnalyticsEventService {
   private internalService: AnalyticsEventService;
+  private analyticsEnabled: boolean;
   /**
    * @param searchAnalyticsConfig - configuration for analytics reporting.
    */
@@ -21,9 +22,26 @@ export class SearchAnalyticsEventServiceImpl implements SearchAnalyticsEventServ
       sessionTrackingEnabled: searchAnalyticsConfig.sessionTrackingEnabled
     };
     this.internalService = analytics(analyticsConfig);
+    this.analyticsEnabled = searchAnalyticsConfig.analyticsEnabled ||
+        searchAnalyticsConfig.analyticsEnabled === undefined;
+  }
+
+  public enableYextAnalytics(): void {
+    this.analyticsEnabled = true;
+  }
+
+  public disableYextAnalytics(): void {
+    this.analyticsEnabled = false;
+  }
+
+  public getYextAnalyticsEnabled(): boolean {
+    return this.analyticsEnabled;
   }
 
   public async report(payload: SearchEventPayload): Promise<string> {
+    if (!this.analyticsEnabled) {
+      return Promise.resolve('');
+    }
     const eventPayload: EventPayload = {
       action: payload.action,
       destinationUrl: payload.destinationUrl,

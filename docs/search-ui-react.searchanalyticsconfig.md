@@ -37,6 +37,25 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[analyticsEnabled?](./search-ui-react.searchanalyticsconfig.analyticsenabled.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to send analytics events when 'report' is called. Defaults to true.
+
+
+</td></tr>
+<tr><td>
+
 [apiKey](./search-ui-react.searchanalyticsconfig.apikey.md)
 
 
