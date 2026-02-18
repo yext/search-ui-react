@@ -16,5 +16,5 @@ export const analyticsConfig: SearchAnalyticsConfig = {
   apiKey: process.env.REACT_APP_EVENTS_API_KEY || 'REPLACE_ME',
   environment: Environment.PROD,
   cloudRegion: CloudRegion.US,
-  analyticsEnabled: true,
+  requireOptIn: false,
 };

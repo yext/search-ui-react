@@ -12,10 +12,10 @@ export interface SearchAnalyticsEventService {
      * @param payload - desired values to be applied
      */
   report(payload: SearchEventPayload): Promise<string>,
-  /** Allows analytics reporting */
-  enableYextAnalytics(): void,
-  /** Disallows analytics reporting */
-  disableYextAnalytics(): void,
-  /** Returns whether analytics reporting is currently enabled*/
-  getYextAnalyticsEnabled(): boolean
+  /** Enables analytics reporting */
+  optIn(): void,
+  /** Disables analytics reporting */
+  optOut(): void,
+  /** Returns whether analytics reporting is currently enabled */
+  isYextAnalyticsEnabled(): boolean
 }

@@ -22,19 +22,19 @@ export class SearchAnalyticsEventServiceImpl implements SearchAnalyticsEventServ
       sessionTrackingEnabled: searchAnalyticsConfig.sessionTrackingEnabled
     };
     this.internalService = analytics(analyticsConfig);
-    this.analyticsEnabled = searchAnalyticsConfig.analyticsEnabled ||
-        searchAnalyticsConfig.analyticsEnabled === undefined;
+    // if requireOptIn is undefined or set to false, analytics are enabled
+    this.analyticsEnabled = !(searchAnalyticsConfig.requireOptIn);
   }
 
-  public enableYextAnalytics(): void {
+  public optIn(): void {
     this.analyticsEnabled = true;
   }
 
-  public disableYextAnalytics(): void {
+  public optOut(): void {
     this.analyticsEnabled = false;
   }
 
-  public getYextAnalyticsEnabled(): boolean {
+  public isYextAnalyticsEnabled(): boolean {
     return this.analyticsEnabled;
   }
 

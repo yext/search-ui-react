@@ -37,6 +37,6 @@ export interface SearchAnalyticsConfig {
   cloudRegion?: CloudRegion,
   /** Whether to enable session tracking for analytics events. */
   sessionTrackingEnabled?: boolean,
-  /** Whether to send analytics events when 'report' is called. Defaults to true. */
-  analyticsEnabled?: boolean
+  /** Whether a user must consent to analytics tracking before events are fired. Defaults to false. */
+  requireOptIn?: boolean
 }
