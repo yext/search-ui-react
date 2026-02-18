@@ -37,25 +37,6 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[analyticsEnabled?](./search-ui-react.searchanalyticsconfig.analyticsenabled.md)
-
-
-</td><td>
-
-
-</td><td>
-
-boolean
-
-
-</td><td>
-
-_(Optional)_ Whether to send analytics events when 'report' is called. Defaults to true.
-
-
-</td></tr>
-<tr><td>
-
 [apiKey](./search-ui-react.searchanalyticsconfig.apikey.md)
 
 
@@ -108,6 +89,25 @@ Environment
 </td><td>
 
 _(Optional)_ The Yext environment to send requests to. Defaults to 'PRODUCTION'.
+
+
+</td></tr>
+<tr><td>
+
+[requireOptIn?](./search-ui-react.searchanalyticsconfig.requireoptin.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether a user must consent to analytics tracking before events are fired. Defaults to false.
 
 
 </td></tr>

@@ -27,34 +27,34 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[disableYextAnalytics()](./search-ui-react.searchanalyticseventservice.disableyextanalytics.md)
-
-
-</td><td>
-
-Disallows analytics reporting
-
-
-</td></tr>
-<tr><td>
-
-[enableYextAnalytics()](./search-ui-react.searchanalyticseventservice.enableyextanalytics.md)
-
-
-</td><td>
-
-Allows analytics reporting
-
-
-</td></tr>
-<tr><td>
-
-[getYextAnalyticsEnabled()](./search-ui-react.searchanalyticseventservice.getyextanalyticsenabled.md)
+[isYextAnalyticsEnabled()](./search-ui-react.searchanalyticseventservice.isyextanalyticsenabled.md)
 
 
 </td><td>
 
 Returns whether analytics reporting is currently enabled
+
+
+</td></tr>
+<tr><td>
+
+[optIn()](./search-ui-react.searchanalyticseventservice.optin.md)
+
+
+</td><td>
+
+Enables analytics reporting
+
+
+</td></tr>
+<tr><td>
+
+[optOut()](./search-ui-react.searchanalyticseventservice.optout.md)
+
+
+</td><td>
+
+Disables analytics reporting
 
 
 </td></tr>

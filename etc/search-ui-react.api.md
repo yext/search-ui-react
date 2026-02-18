@@ -686,18 +686,18 @@ export interface ResultsCountProps {
 
 // @public
 export interface SearchAnalyticsConfig {
-    analyticsEnabled?: boolean;
     apiKey: string;
     cloudRegion?: CloudRegion;
     environment?: Environment;
+    requireOptIn?: boolean;
     sessionTrackingEnabled?: boolean;
 }
 
 // @public
 export interface SearchAnalyticsEventService {
-    disableYextAnalytics(): void;
-    enableYextAnalytics(): void;
-    getYextAnalyticsEnabled(): boolean;
+    isYextAnalyticsEnabled(): boolean;
+    optIn(): void;
+    optOut(): void;
     // Warning: (ae-forgotten-export) The symbol "SearchEventPayload" needs to be exported by the entry point index.d.ts
     report(payload: SearchEventPayload): Promise<string>;
 }
