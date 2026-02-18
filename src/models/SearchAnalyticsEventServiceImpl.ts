@@ -23,7 +23,7 @@ export class SearchAnalyticsEventServiceImpl implements SearchAnalyticsEventServ
     };
     this.internalService = analytics(analyticsConfig);
     // if requireOptIn is undefined or set to false, analytics are enabled
-    this.analyticsEnabled = !(searchAnalyticsConfig.requireOptIn);
+    this.analyticsEnabled = !searchAnalyticsConfig.requireOptIn;
   }
 
   public optIn(): void {
