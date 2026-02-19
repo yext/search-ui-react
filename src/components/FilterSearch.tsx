@@ -6,6 +6,7 @@ import { useSynchronizedRequest } from '../hooks/useSynchronizedRequest';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import { executeSearch } from '../utils';
 import { isDuplicateStaticFilter } from '../utils/filterutils';
+import { useId } from '../hooks/useId';
 import { Dropdown } from './Dropdown/Dropdown';
 import { DropdownInput } from './Dropdown/DropdownInput';
 import { DropdownItem } from './Dropdown/DropdownItem';
@@ -156,6 +157,8 @@ export function FilterSearch({
 }: FilterSearchProps): React.JSX.Element {
   const { t } = useTranslation();
   const searchActions = useSearchActions();
+  const inputId = useId('filter-search-input');
+  const labelId = useId('filter-search-label');
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
   });
@@ -356,7 +359,9 @@ export function FilterSearch({
       onChange={handleInputChange}
       onFocus={handleInputFocus}
       submitCriteria={meetsSubmitCritera}
+      inputId={inputId}
       ariaLabel={ariaLabel}
+      ariaLabelledBy={label ? labelId : undefined}
     />
   );
 
@@ -372,7 +377,11 @@ export function FilterSearch({
 
   return (
     <div className={cssClasses.filterSearchContainer}>
-      {label && <h1 className={cssClasses.label}>{label}</h1>}
+      {label && (
+        <label id={labelId} htmlFor={inputId} className={cssClasses.label}>
+          {label}
+        </label>
+      )}
       <Dropdown
         screenReaderText={getScreenReaderText(sections, t)}
         onSelect={handleSelectDropdown}
