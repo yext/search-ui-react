@@ -18,7 +18,7 @@ export function ScreenReader({
     <>
       <div
         id={instructionsId}
-        className='hidden'
+        className='sr-only'
       >
         {instructions}
       </div>
