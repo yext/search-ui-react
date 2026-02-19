@@ -10,7 +10,10 @@ import { useInputContext } from './InputContext';
 export function DropdownInput(props: {
   className?: string,
   placeholder?: string,
+  inputId?: string,
   ariaLabel?: string,
+  ariaLabelledBy?: string,
+  ariaDescribedBy?: string,
   onSubmit?: (value: string, index: number, focusedItemData: FocusedItemData | undefined ) => void,
   onFocus?: (value: string) => void,
   onChange?: (value: string) => void,
@@ -19,7 +22,10 @@ export function DropdownInput(props: {
   const {
     className,
     placeholder,
+    inputId,
     ariaLabel,
+    ariaLabelledBy,
+    ariaDescribedBy,
     onSubmit,
     onFocus,
     onChange,
@@ -36,6 +42,8 @@ export function DropdownInput(props: {
     updateFocusedItem
   } = useFocusContext();
   const [isTyping, setIsTyping] = useState<boolean>(true);
+  const describedBy = [screenReaderUUID, ariaDescribedBy].filter(Boolean).join(' ') || undefined;
+  const resolvedAriaLabel = ariaLabelledBy ? undefined : ariaLabel;
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setIsTyping(true);
@@ -86,13 +94,14 @@ export function DropdownInput(props: {
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
-      id={generateDropdownId(screenReaderUUID, -1)}
+      id={inputId ?? generateDropdownId(screenReaderUUID, -1)}
       autoComplete='off'
-      aria-describedby={screenReaderUUID}
+      aria-describedby={describedBy}
       aria-activedescendant={
         !isTyping ? generateDropdownId(screenReaderUUID, focusedIndex) : undefined
       }
-      aria-label={ariaLabel}
+      aria-label={resolvedAriaLabel}
+      aria-labelledby={ariaLabelledBy}
       aria-autocomplete="list"
       role="combobox"
       aria-controls={dropdownListUUID}
