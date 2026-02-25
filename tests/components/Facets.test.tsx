@@ -57,7 +57,7 @@ describe('Facets', () => {
     render(<Facets/>);
     const facet = DisplayableFacets[0];
 
-    expect(screen.getByText(facet.displayName)).toBeDefined();
+    expect(screen.getByRole('button', { name: facet.displayName })).toBeDefined();
     facet.options.forEach(o => {
       expect(screen.getByText(getOptionLabelTextWithCount(o))).toBeDefined();
     });
@@ -67,7 +67,7 @@ describe('Facets', () => {
     render(<Facets/>);
     const numericalFilter = DisplayableFacets[1];
 
-    expect(screen.getByText(numericalFilter.displayName)).toBeDefined();
+    expect(screen.getByRole('button', { name: numericalFilter.displayName })).toBeDefined();
     numericalFilter.options.forEach(o => {
       expect(screen.getByText(o.displayName)).toBeDefined();
     });
@@ -85,12 +85,12 @@ describe('Facets', () => {
     const facet = DisplayableFacets[0];
     const numericalFilter = DisplayableFacets[1];
 
-    expect(screen.queryByText(numericalFilter.displayName)).toBeNull();
+    expect(screen.queryByRole('button', { name: numericalFilter.displayName })).toBeNull();
     numericalFilter.options.forEach(o => {
       expect(screen.queryByText(o.displayName)).toBeNull();
     });
 
-    expect(screen.queryByText(facet.displayName)).toBeNull();
+    expect(screen.queryByRole('button', { name: facet.displayName })).toBeNull();
     facet.options.forEach(o => {
       expect(screen.queryByText(`${o.displayName} (${o.count})}`)).toBeNull();
     });
@@ -114,8 +114,8 @@ describe('Facets', () => {
       </Facets>);
     const facet = DisplayableFacets[0];
 
-    expect(screen.getByText(overrideLabel)).toBeDefined();
-    expect(screen.queryByText(facet.displayName)).toBeNull();
+    expect(screen.getByRole('button', { name: overrideLabel })).toBeDefined();
+    expect(screen.queryByRole('button', { name: facet.displayName })).toBeNull();
     expect(
       screen
         .getByText(
@@ -141,8 +141,8 @@ describe('Facets', () => {
       </Facets>);
     const facet = DisplayableFacets[1];
 
-    expect(screen.getByText(overrideLabel)).toBeDefined();
-    expect(screen.queryByText(facet.displayName)).toBeNull();
+    expect(screen.getByRole('button', { name: overrideLabel })).toBeDefined();
+    expect(screen.queryByRole('button', { name: facet.displayName })).toBeNull();
     expect(screen.getByText(`Price is ${facet.options[0].displayName}`)).toBeDefined();
   });
 
@@ -160,8 +160,8 @@ describe('Facets', () => {
       </Facets>);
     const facet = DisplayableFacets[2];
 
-    expect(screen.getByText(overrideLabel)).toBeDefined();
-    expect(screen.queryByText(facet.displayName)).toBeNull();
+    expect(screen.getByRole('button', { name: overrideLabel })).toBeDefined();
+    expect(screen.queryByRole('button', { name: facet.displayName })).toBeNull();
   });
 
   it('Clicking a facet option executes a search by default', async () => {
@@ -215,9 +215,9 @@ describe('Facets', () => {
         <StandardFacet {...props}/>
       </Facets>);
 
-    expect(screen.getByText(overrideLabel)).toBeDefined();
-    expect(screen.getByText(DisplayableFacets[1].displayName)).toBeDefined();
-    expect(screen.getByText(DisplayableFacets[2].displayName)).toBeDefined();
+    expect(screen.getByRole('button', { name: overrideLabel })).toBeDefined();
+    expect(screen.getByRole('button', { name: DisplayableFacets[1].displayName })).toBeDefined();
+    expect(screen.getByRole('button', { name: DisplayableFacets[2].displayName })).toBeDefined();
   });
 
   it('Only render customize facets if onlyRenderChildren is set to true', () => {
@@ -233,9 +233,9 @@ describe('Facets', () => {
         <StandardFacet {...props}/>
       </Facets>);
 
-    expect(screen.getByText(overrideLabel)).toBeDefined();
-    expect(screen.queryByText(DisplayableFacets[1].displayName)).toBeNull();
-    expect(screen.queryByText(DisplayableFacets[2].displayName)).toBeNull();
+    expect(screen.getByRole('button', { name: overrideLabel })).toBeDefined();
+    expect(screen.queryByRole('button', { name: DisplayableFacets[1].displayName })).toBeNull();
+    expect(screen.queryByRole('button', { name: DisplayableFacets[2].displayName })).toBeNull();
   });
 
   it('Use FilterGroupCssClasses provided on the Facets level if not provided on the singular facet',
@@ -253,10 +253,15 @@ describe('Facets', () => {
           <StandardFacet {...props}/>
         </Facets>);
 
-      expect(screen.getByText(overrideLabel)).toBeDefined();
-      expect(screen.getByText(overrideLabel)).toHaveClass(facetsTitleLabelClass);
-      expect(screen.getByText(DisplayableFacets[1].displayName)).toBeDefined();
-      expect(screen.getByText(DisplayableFacets[1].displayName)).toHaveClass(facetsTitleLabelClass);
+      const overrideTitleButton = screen.getByRole('button', { name: overrideLabel });
+      const overrideTitleLabel = screen.getByText(overrideLabel, { selector: 'div' });
+      const numericalTitleButton = screen.getByRole('button', { name: DisplayableFacets[1].displayName });
+      const numericalTitleLabel = screen.getByText(DisplayableFacets[1].displayName, { selector: 'div' });
+
+      expect(overrideTitleButton).toBeDefined();
+      expect(overrideTitleLabel).toHaveClass(facetsTitleLabelClass);
+      expect(numericalTitleButton).toBeDefined();
+      expect(numericalTitleLabel).toHaveClass(facetsTitleLabelClass);
     });
 
   it('Use FilterGroupCssClasses provided on the singular facet level if provided',
@@ -276,7 +281,10 @@ describe('Facets', () => {
           <StandardFacet {...props}/>
         </Facets>);
 
-      expect(screen.getByText(overrideLabel)).toBeDefined();
-      expect(screen.getByText(overrideLabel)).toHaveClass(standardFacetTitleLabelClass);
+      const overrideTitleButton = screen.getByRole('button', { name: overrideLabel });
+      const overrideTitleLabel = screen.getByText(overrideLabel, { selector: 'div' });
+
+      expect(overrideTitleButton).toBeDefined();
+      expect(overrideTitleLabel).toHaveClass(standardFacetTitleLabelClass);
     });
 });

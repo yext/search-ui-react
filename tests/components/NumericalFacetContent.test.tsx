@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { SearchActions, FacetOption, Matcher, NumberRangeValue, SelectableStaticFilter, Source, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, mockAnswersState, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
@@ -62,10 +62,19 @@ describe('NumericalFacetContent', () => {
   it('Properly renders number range facets', () => {
     render(mockNumericalFacet());
 
-    expect(screen.getByText(numericalFacet.displayName)).toBeDefined();
+    expect(screen.getByRole('button', { name: numericalFacet.displayName })).toBeDefined();
     numericalFacet.options.forEach(o => {
       expect(screen.getByText(o.displayName)).toBeDefined();
     });
+  });
+
+  it('Renders checkbox options in a fieldset with a first-child legend', () => {
+    render(mockNumericalFacet());
+
+    const fieldset = screen.getByRole('group', { name: numericalFacet.displayName });
+    expect(within(fieldset).getAllByRole('checkbox')).toHaveLength(
+      numericalFacet.options.length
+    );
   });
 
   it('Clicking a selected number range facet option checkbox unselects it', async () => {
