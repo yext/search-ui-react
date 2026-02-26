@@ -208,6 +208,25 @@ _(Optional)_ The search input's placeholder text when no text has been entered b
 </td></tr>
 <tr><td>
 
+[resultsRegionAriaLabel?](./search-ui-react.filtersearchprops.resultsregionarialabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The accessible label for the region which contains the filter search input and its filtered content. If provided, this overrides `label` for the region accessible label.
+
+
+</td></tr>
+<tr><td>
+
 [searchFields](./search-ui-react.filtersearchprops.searchfields.md)
 
 
