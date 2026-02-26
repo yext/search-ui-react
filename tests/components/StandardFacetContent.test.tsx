@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { FacetOption, Source, State, SearchActions } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import userEvent from '@testing-library/user-event';
@@ -67,6 +67,15 @@ describe('StandardFacetContent', () => {
 
     expect(coffeeLabel).toBeNull();
     expect(coffeeLabelAndCount).toBeDefined();
+  });
+
+  it('Renders checkbox options in a fieldset with a first-child legend', () => {
+    render(mockStandardFacet());
+
+    const fieldset = screen.getByRole('group', { name: standardFacet.displayName });
+    expect(within(fieldset).getAllByRole('checkbox')).toHaveLength(
+      standardFacet.options.length
+    );
   });
 
   it('Does not display option counts if showOptionCounts is set to false', () => {

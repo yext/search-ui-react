@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { Matcher, SearchActions, State } from '@yext/search-headless-react';
 import { mockAnswersHooks, spyOnActions } from '../__utils__/mocks';
 import { FilterOptionConfig } from '../../src/components/Filters';
@@ -69,13 +69,21 @@ describe('Static Filters', () => {
     expect(screen.getByText('Clifford')).toBeDefined();
   });
 
+  it('Renders checkbox options in a fieldset with a first-child legend', () => {
+    render(<StaticFilters {...staticFiltersProps} />);
+
+    const fieldset = screen.getByRole('group', { name: staticFiltersProps.title });
+    expect(within(fieldset).getAllByRole('checkbox')).toHaveLength(
+      staticFiltersProps.filterOptions.length
+    );
+  });
+
   it('Properly renders static filters with Matchers other than Equals', () => {
     render(<StaticFilters {...hoursFilterProps} />);
 
     expect(screen.getByRole('button', { name: 'Open Now' })).toBeDefined();
     expect(screen.queryByRole('textbox')).toBeNull();
-
-    expect(screen.getByText('Open Now')).toBeDefined();
+    expect(screen.getByRole('checkbox', { name: 'now' })).toBeDefined();
   });
 
   it('Clicking an unselected filter option checkbox selects it', async () => {
@@ -152,14 +160,14 @@ describe('Static Filters', () => {
     render(<StaticFilters {...staticFiltersProps} collapsible={false} />);
 
     expect(screen.queryByRole('button', { name: 'Puppy Preference' })).toBeNull();
-    expect(screen.getByText('Puppy Preference')).toBeDefined();
+    expect(screen.getByRole('group', { name: 'Puppy Preference' })).toBeDefined();
     expect(screen.getByRole('checkbox', { name: 'Clifford' })).toBeDefined();
   });
 
   it('Stays expanded whenever collapsible is false, even if defaultExpanded is false', () => {
     render(<StaticFilters {...staticFiltersProps} collapsible={false} defaultExpanded={false} />);
 
-    expect(screen.getByText('Puppy Preference')).toBeDefined();
+    expect(screen.getByRole('group', { name: 'Puppy Preference' })).toBeDefined();
     expect(screen.getByRole('checkbox', { name: 'Clifford' })).toBeDefined();
   });
 

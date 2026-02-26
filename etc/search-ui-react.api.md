@@ -264,6 +264,8 @@ export function FilterDivider({ className }: {
 // @public
 export interface FilterGroupCssClasses {
     // (undocumented)
+    groupLegendClassName?: string;
+    // (undocumented)
     option?: string;
     // (undocumented)
     optionInput?: string;
@@ -299,7 +301,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): React_2.JSX.Element;
+export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, resultsRegionAriaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): React_2.JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -332,6 +334,7 @@ export interface FilterSearchProps {
     onDropdownInputChange?: (params: OnDropdownInputChangeProps) => void;
     onSelect?: (params: OnSelectParams) => void;
     placeholder?: string;
+    resultsRegionAriaLabel?: string;
     searchFields: Omit<SearchParameterField, 'fetchEntities'>[];
     // @deprecated
     searchOnSelect?: boolean;
@@ -1043,7 +1046,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1749:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1755:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

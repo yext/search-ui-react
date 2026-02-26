@@ -52,12 +52,12 @@ describe('NumericalFacets', () => {
     const regularFilter = DisplayableFacets[0];
     const numericalFilter = DisplayableFacets[1];
 
-    expect(screen.getByText(numericalFilter.displayName)).toBeDefined();
+    expect(screen.getByRole('button', { name: numericalFilter.displayName })).toBeDefined();
     numericalFilter.options.forEach(o => {
       expect(screen.getByText(o.displayName)).toBeDefined();
     });
 
-    expect(screen.queryByText(regularFilter.displayName)).toBeNull();
+    expect(screen.queryByRole('button', { name: regularFilter.displayName })).toBeNull();
     regularFilter.options.forEach(o => {
       expect(screen.queryByText(`${o.displayName} (${o.count})}`)).toBeNull();
     });
