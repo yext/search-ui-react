@@ -22,7 +22,8 @@ i18nInstance.use(initReactI18next).init({
   ns: [NAMESPACE],
   defaultNS: NAMESPACE,
   interpolation: { escapeValue: false },
-  resources
+  resources,
+  showSupportNotice: false
 });
 
 export { i18nInstance };
