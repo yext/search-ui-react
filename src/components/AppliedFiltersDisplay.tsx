@@ -80,9 +80,9 @@ export function AppliedFiltersDisplay(props: AppliedFiltersDisplayProps): React.
       {removableFiltersWithHandlers.map(({ filter, handleRemove }, i) => {
         return (
           <RemovableFilter
+            key={`${filter.displayName ?? 'filter'}-${i}`}
             displayName={filter.displayName}
             handleRemove={handleRemove}
-            index={i}
             cssClasses={cssClasses}
           />
         );
@@ -119,17 +119,15 @@ function getDedupedRemovableFilters(filters: RemovableFilter[]) {
 function RemovableFilter({
   displayName,
   handleRemove,
-  index,
   cssClasses
 }: {
   displayName: string | undefined,
   handleRemove: () => void,
-  index: number,
   cssClasses: AppliedFiltersCssClasses
 }): React.JSX.Element {
   const { t } = useTranslation();
   return (
-    <div className={cssClasses.removableFilter} key={`${displayName}-${index}`}>
+    <div className={cssClasses.removableFilter}>
       <div className={cssClasses.filterLabel}>{displayName}</div>
       <button
         className='w-2 h-2 text-neutral m-1.5'
