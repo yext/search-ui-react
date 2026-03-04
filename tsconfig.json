@@ -6,6 +6,7 @@
     "noImplicitAny": false,
     "module": "es2020",
     "moduleResolution": "node",
+    "outDir": "dist",
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "declarationMap": true,

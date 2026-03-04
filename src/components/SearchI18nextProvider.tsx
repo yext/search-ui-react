@@ -99,13 +99,24 @@ export function SearchI18nextProvider(props: PropsWithChildren<SearchI18nextConf
     translationOverrides && Object.entries(translationOverrides).forEach(([locale, translation]) => {
       i18nInstance.addResourceBundle(locale, 'search-ui-react', translation, true, true);
     });
-    i18nInstance.changeLanguage(searcher.state.meta.locale);
-    searcher.addListener<string | undefined>({
+    const initialLocale = searcher.state.meta.locale ?? 'en';
+    if (i18nInstance.language !== initialLocale) {
+      void i18nInstance.changeLanguage(initialLocale);
+    }
+
+    const unsubscribe = searcher.addListener<string | undefined>({
       valueAccessor: state => state.meta.locale,
       callback: locale => {
-        i18nInstance.changeLanguage(locale);
+        const normalizedLocale = locale ?? 'en';
+        if (i18nInstance.language !== normalizedLocale) {
+          void i18nInstance.changeLanguage(normalizedLocale);
+        }
       }
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, [searcher, translationOverrides]);
 
   return (
