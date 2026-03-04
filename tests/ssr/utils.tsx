@@ -1,12 +1,19 @@
 import { render } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
+import { I18nextProvider } from 'react-i18next';
+import { i18nInstance } from '../../src/utils';
 
 const USE_LAYOUT_EFFECT_ERROR = /useLayoutEffect does nothing on the server/;
 const originalConsoleError = console.error.bind(console.error);
 
 export function testSSR(App: ReactElement) {
-  const renderOnServer = () => renderToString(App);
+  const wrappedApp = (
+    <I18nextProvider i18n={i18nInstance}>
+      {App}
+    </I18nextProvider>
+  );
+  const renderOnServer = () => renderToString(wrappedApp);
   const container = document.body.appendChild(document.createElement('div'));
   let unexpectedErrorCount = 0;
   jest.spyOn(global.console, 'error')
@@ -28,6 +35,6 @@ export function testSSR(App: ReactElement) {
   container.innerHTML = renderOnServer();
 
   // hydrate a container whose HTML contents were rendered by ReactDOMServer
-  render(App, { container, hydrate: true });
+  render(wrappedApp, { container, hydrate: true });
   expect(unexpectedErrorCount).toEqual(0);
 }
