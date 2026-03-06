@@ -274,6 +274,8 @@ export interface FilterGroupCssClasses {
     // (undocumented)
     searchInput?: string;
     // (undocumented)
+    searchInputLabel?: string;
+    // (undocumented)
     titleLabel?: string;
 }
 
@@ -286,6 +288,7 @@ export interface FilterGroupProps {
     filterOptions: FilterOptionConfig[];
     searchable?: boolean;
     showMoreLimit?: number;
+    showOptionsSearchInputLabel?: boolean;
     title: string;
 }
 
@@ -861,6 +864,7 @@ export interface StandardFacetProps {
     label?: string;
     showMoreLimit?: number;
     showOptionCounts?: boolean;
+    showOptionsSearchInputLabel?: boolean;
     transformOptions?: (options: DisplayableFacetOption[]) => DisplayableFacetOption[];
 }
 
@@ -923,6 +927,7 @@ export interface StaticFiltersProps {
     filterOptions: StaticFilterOptionConfig[];
     searchable?: boolean;
     searchOnChange?: boolean;
+    showOptionsSearchInputLabel?: boolean;
     title: string;
 }
 
@@ -1044,7 +1049,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1754:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1764:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -327,10 +327,17 @@ export function FilterSearch({
 
   function renderDropdownItems() {
     return sections.map((section, sectionIndex) => {
+      const sectionLabelId = section.label ? `${inputId}-section-${sectionIndex}` : undefined;
+
       return (
-        <div className='pb-2' key={sectionIndex}>
+        <div
+          className='pb-2'
+          key={sectionIndex}
+          role={section.label ? 'group' : undefined}
+          aria-labelledby={sectionLabelId}
+        >
           {section.label &&
-            <div className={cssClasses.sectionLabel}>
+            <div id={sectionLabelId} className={cssClasses.sectionLabel}>
               {section.label}
             </div>
           }
