@@ -102,6 +102,37 @@ function renderFilterSearch(
 }
 
 describe('search with section labels', () => {
+  it('uses the display label as the accessible name for a containing region', () => {
+    renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
+
+    expect(screen.getByRole('region', { name: 'Filter' })).toBeDefined();
+  });
+
+  it('uses resultsRegionAriaLabel as the accessible name for a containing region when label is absent', () => {
+    renderFilterSearch({
+      searchFields: searchFieldsProp,
+      resultsRegionAriaLabel: 'Location filter'
+    });
+
+    expect(screen.getByRole('region', { name: 'Location filter' })).toBeDefined();
+  });
+
+  it('uses resultsRegionAriaLabel as the accessible name for a containing region when both labels are provided', () => {
+    renderFilterSearch({
+      searchFields: searchFieldsProp,
+      label: 'Filter',
+      resultsRegionAriaLabel: 'Location filter'
+    });
+
+    expect(screen.getByRole('region', { name: 'Location filter' })).toBeDefined();
+  });
+
+  it('does not render a region role when neither label nor resultsRegionAriaLabel is provided', () => {
+    renderFilterSearch({ searchFields: searchFieldsProp });
+
+    expect(screen.queryByRole('region')).toBeNull();
+  });
+
   it('renders the filter search bar, "Filter" label, and default placeholder text translated based on the locale', () => {
     const { rerenderWithLocale } = renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
     const label = 'Filter';
