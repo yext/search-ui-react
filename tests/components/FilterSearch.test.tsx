@@ -148,6 +148,11 @@ describe('search with section labels', () => {
     expect(localizedSearchBarElement[0].placeholder).toBe('ここで検索…');
   });
 
+  it('associates the filter label to the filter search input', () => {
+    renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
+    expect(screen.getByRole('combobox', { name: 'Filter' })).toBeDefined();
+  });
+
   it('sets the placeholder text to the specified value regardless of the search locale', () => {
     const { rerenderWithLocale } = renderFilterSearch({ searchFields: searchFieldsProp, placeholder: 'Search...' });
     const searchBarElement = screen.getByRole<HTMLInputElement>('combobox');

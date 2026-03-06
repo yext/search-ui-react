@@ -65,7 +65,12 @@ export interface StandardFacetProps {
    */
   showMoreLimit?: number,
   /** CSS classes for customizing the component styling. */
-  customCssClasses?: FilterGroupCssClasses
+  customCssClasses?: FilterGroupCssClasses,
+  /**
+   * Whether or not to show the label for the search bar when present.
+   * Defaults to false.
+   */
+  showOptionsSearchInputLabel?: boolean
 }
 
 /**

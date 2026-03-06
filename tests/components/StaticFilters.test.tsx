@@ -173,6 +173,19 @@ describe('Static Filters', () => {
     expect(screen.queryByRole('checkbox')).toBeNull();
   });
 
+  it('Can show the search input label', () => {
+    render(
+      <StaticFilters
+        {...staticFiltersProps}
+        searchable={true}
+        showOptionsSearchInputLabel={true}
+      />
+    );
+
+    expect(screen.getByText(`Search ${staticFiltersProps.title} Options`)).toBeDefined();
+    expect(screen.getByLabelText(`Search ${staticFiltersProps.title} Options`)).toBeDefined();
+  });
+
   it('Clicking a filter option executes a search when searchOnChange is true', async () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} />);
