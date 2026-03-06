@@ -21,7 +21,6 @@ const DEFAULT_CUSTOM_CSS_CLASSES = {};
  */
 export interface FilterGroupCssClasses {
   titleLabel?: string,
-  groupLegendClassName?: string,
   searchInput?: string,
   optionsContainer?: string,
   option?: string,
@@ -80,22 +79,6 @@ export function FilterGroup({
     };
   }, [customCssClasses]);
 
-  const filterOptionsAndChildren = (
-    <fieldset>
-      <legend className={cssClasses.groupLegendClassName || 'sr-only'}>
-        {title}
-      </legend>
-      <div className={cssClasses.optionsContainer || 'space-y-3'}>
-        {searchable && <SearchInput className={cssClasses.searchInput} />}
-        <CheckboxOptions
-          filterOptions={filterOptions}
-          showMoreLimit={showMoreLimit}
-          cssClasses={cssClasses} />
-        {children}
-      </div>
-    </fieldset>
-  );
-
   return (
     <FilterGroupProvider
       fieldId={fieldId}
@@ -107,11 +90,23 @@ export function FilterGroup({
         collapsible={collapsible}
       />
       {collapsible ? (
-        <CollapsibleSection className=''>
-          {filterOptionsAndChildren}
+        <CollapsibleSection className={cssClasses.optionsContainer}>
+          {searchable && <SearchInput className={cssClasses.searchInput} />}
+          <CheckboxOptions
+            filterOptions={filterOptions}
+            showMoreLimit={showMoreLimit}
+            cssClasses={cssClasses} />
+          {children}
         </CollapsibleSection>
       ) : (
-        filterOptionsAndChildren
+        <div className={cssClasses.optionsContainer || 'space-y-3'}>
+          {searchable && <SearchInput className={cssClasses.searchInput} />}
+          <CheckboxOptions
+            filterOptions={filterOptions}
+            showMoreLimit={showMoreLimit}
+            cssClasses={cssClasses} />
+          {children}
+        </div>
       )}
     </FilterGroupProvider>
   );

@@ -37,25 +37,6 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[groupLegendClassName?](./search-ui-react.filtergroupcssclasses.grouplegendclassname.md)
-
-
-</td><td>
-
-
-</td><td>
-
-string
-
-
-</td><td>
-
-_(Optional)_
-
-
-</td></tr>
-<tr><td>
-
 [option?](./search-ui-react.filtergroupcssclasses.option.md)
 
 
