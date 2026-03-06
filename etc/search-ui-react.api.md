@@ -264,8 +264,6 @@ export function FilterDivider({ className }: {
 // @public
 export interface FilterGroupCssClasses {
     // (undocumented)
-    groupLegendClassName?: string;
-    // (undocumented)
     option?: string;
     // (undocumented)
     optionInput?: string;
@@ -1046,7 +1044,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1755:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1754:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
