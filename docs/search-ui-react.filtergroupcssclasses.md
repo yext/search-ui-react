@@ -132,6 +132,25 @@ _(Optional)_
 </td></tr>
 <tr><td>
 
+[searchInputLabel?](./search-ui-react.filtergroupcssclasses.searchinputlabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
 [titleLabel?](./search-ui-react.filtergroupcssclasses.titlelabel.md)
 
 

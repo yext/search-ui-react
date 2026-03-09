@@ -170,6 +170,25 @@ _(Optional)_ Limit on the number of options to be displayed.
 </td></tr>
 <tr><td>
 
+[showOptionsSearchInputLabel?](./search-ui-react.filtergroupprops.showoptionssearchinputlabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not to display the visible search input label. Defaults to false.
+
+
+</td></tr>
+<tr><td>
+
 [title](./search-ui-react.filtergroupprops.title.md)
 
 

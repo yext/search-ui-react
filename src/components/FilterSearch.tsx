@@ -126,6 +126,11 @@ export interface FilterSearchProps {
   disableBuiltInClasses?: boolean,
   /** The accessible label for the dropdown input. */
   ariaLabel?: string,
+  /**
+   * The accessible label for the region which contains the filter search input and its filtered content.
+   * If provided, this overrides `label` for the region accessible label.
+   */
+  resultsRegionAriaLabel?: string,
   /** Whether to include a button to search on the user's location. Defaults to false. */
   showCurrentLocationButton?: boolean,
   /** The props for the geolocation component, if the current location button is enabled. */
@@ -152,6 +157,7 @@ export function FilterSearch({
   customCssClasses,
   disableBuiltInClasses = false,
   ariaLabel,
+  resultsRegionAriaLabel,
   showCurrentLocationButton = false,
   geolocationProps = {}
 }: FilterSearchProps): React.JSX.Element {
@@ -243,6 +249,7 @@ export function FilterSearch({
   }, [filterSearchResponse?.sections]);
 
   const hasResults = sections.flatMap(s => s.results).length > 0;
+  const regionAriaLabel = resultsRegionAriaLabel ?? label;
 
   const handleSelectDropdown = useCallback(async (
     _value: string,
@@ -320,10 +327,17 @@ export function FilterSearch({
 
   function renderDropdownItems() {
     return sections.map((section, sectionIndex) => {
+      const sectionLabelId = section.label ? `${inputId}-section-${sectionIndex}` : undefined;
+
       return (
-        <div className='pb-2' key={sectionIndex}>
+        <div
+          className='pb-2'
+          key={sectionIndex}
+          role={section.label ? 'group' : undefined}
+          aria-labelledby={sectionLabelId}
+        >
           {section.label &&
-            <div className={cssClasses.sectionLabel}>
+            <div id={sectionLabelId} className={cssClasses.sectionLabel}>
               {section.label}
             </div>
           }
@@ -376,7 +390,11 @@ export function FilterSearch({
   );
 
   return (
-    <div className={cssClasses.filterSearchContainer}>
+    <div
+      className={cssClasses.filterSearchContainer}
+      role={regionAriaLabel ? 'region' : undefined}
+      aria-label={regionAriaLabel}
+    >
       {label && (
         <label id={labelId} htmlFor={inputId} className={cssClasses.label}>
           {label}

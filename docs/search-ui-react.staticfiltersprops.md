@@ -170,6 +170,25 @@ _(Optional)_ Whether or not a search is automatically run when a filter is selec
 </td></tr>
 <tr><td>
 
+[showOptionsSearchInputLabel?](./search-ui-react.staticfiltersprops.showoptionssearchinputlabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not to display the visible search input label. Defaults to false.
+
+
+</td></tr>
+<tr><td>
+
 [title](./search-ui-react.staticfiltersprops.title.md)
 
 

@@ -22,6 +22,7 @@ const DEFAULT_CUSTOM_CSS_CLASSES = {};
 export interface FilterGroupCssClasses {
   titleLabel?: string,
   searchInput?: string,
+  searchInputLabel?: string,
   optionsContainer?: string,
   option?: string,
   optionInput?: string,
@@ -49,6 +50,8 @@ export interface FilterGroupProps {
   defaultExpanded?: boolean,
   /** Whether or not to display a text input to search for filter options. */
   searchable?: boolean,
+  /** Whether or not to display the visible search input label. Defaults to false. */
+  showOptionsSearchInputLabel?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FilterGroupCssClasses,
   /** Limit on the number of options to be displayed. */
@@ -65,10 +68,12 @@ export function FilterGroup({
   collapsible = true,
   defaultExpanded = true,
   searchable,
+  showOptionsSearchInputLabel = false,
   customCssClasses = DEFAULT_CUSTOM_CSS_CLASSES,
   showMoreLimit = filterOptions.length,
   children
 }: PropsWithChildren<FilterGroupProps>) {
+  const { t } = useTranslation();
   const cssClasses = useMemo(() => {
     const { option, optionLabel, optionInput, ...remainingClasses } = customCssClasses;
     return {
@@ -78,6 +83,11 @@ export function FilterGroup({
       ...optionInput && { input: optionInput }
     };
   }, [customCssClasses]);
+  const searchInputLabel = showOptionsSearchInputLabel
+    ? t('filterGroupSearchInputLabel', {
+      title
+    })
+    : undefined;
 
   return (
     <FilterGroupProvider
@@ -91,7 +101,12 @@ export function FilterGroup({
       />
       {collapsible ? (
         <CollapsibleSection className={cssClasses.optionsContainer}>
-          {searchable && <SearchInput className={cssClasses.searchInput} />}
+          {searchable &&
+            <SearchInput
+              className={cssClasses.searchInput}
+              labelClassName={cssClasses.searchInputLabel}
+              label={searchInputLabel}
+            />}
           <CheckboxOptions
             filterOptions={filterOptions}
             showMoreLimit={showMoreLimit}
@@ -100,7 +115,12 @@ export function FilterGroup({
         </CollapsibleSection>
       ) : (
         <div className={cssClasses.optionsContainer || 'space-y-3'}>
-          {searchable && <SearchInput className={cssClasses.searchInput} />}
+          {searchable &&
+            <SearchInput
+              className={cssClasses.searchInput}
+              labelClassName={cssClasses.searchInputLabel}
+              label={searchInputLabel}
+            />}
           <CheckboxOptions
             filterOptions={filterOptions}
             showMoreLimit={showMoreLimit}
