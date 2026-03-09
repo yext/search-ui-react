@@ -18,7 +18,6 @@
   "currentLocation": "現在地",
   "didYouMean": "<button>{{correctedQuery}}</button> と言いたかったですか",
   "dropDownScreenReaderInstructions": "オートコンプリート結果が利用可能な場合、↑↓キーで選択し、Enter キーで選択。",
-  "filterSearchScreenReaderInstructions": "次のテキストフィールドは、入力中に下に表示される結果を絞り込みます。候補は下に表示されます。上下矢印キーで候補間を移動し、Enterキーでフィルターを選択します。",
   "feedback": "フィードバック",
   "filterGroupSearchInputLabel": "{{title}} のオプションを検索",
   "invalidRange": "無効な範囲",

@@ -24,7 +24,6 @@ type translationKeys =
   'didYouMean' |
   'dropDownScreenReaderInstructions' |
   'feedback' |
-  'filterSearchScreenReaderInstructions' |
   'invalidRange' |
   'max' |
   'min' |

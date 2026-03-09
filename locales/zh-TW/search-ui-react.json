@@ -18,7 +18,6 @@
   "currentLocation": "目前位置",
   "didYouMean": "您的意思是 <button>{{correctedQuery}}</button> 嗎",
   "dropDownScreenReaderInstructions": "有自動完成結果時，請使用上下鍵瀏覽並按 Enter 鍵選取。",
-  "filterSearchScreenReaderInstructions": "以下文字欄位會在您輸入時篩選下方結果。建議會顯示在下方。使用向上與向下方向鍵瀏覽選項，並按 Enter 選取篩選條件。",
   "feedback": "回饋",
   "filterGroupSearchInputLabel": "搜尋{{title}}選項",
   "invalidRange": "無效範圍",

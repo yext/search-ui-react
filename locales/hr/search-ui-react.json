@@ -24,7 +24,6 @@
   "currentLocation": "Trenutna lokacija",
   "didYouMean": "Jeste li mislili na <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Kad su dostupni rezultati automatskog dovršavanja, koristite strelice gore i dolje za pregled i Enter za odabir.",
-  "filterSearchScreenReaderInstructions": "Sljedeće tekstualno polje filtrira rezultate koji slijede dok tipkate. Prijedlozi se prikazuju ispod. Koristite tipke sa strelicama gore i dolje za kretanje kroz opcije te pritisnite Enter za odabir filtra.",
   "feedback": "Povratne informacije",
   "filterGroupSearchInputLabel": "Pretraži opcije za {{title}}",
   "invalidRange": "Nevažeći raspon",

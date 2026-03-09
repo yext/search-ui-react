@@ -26,7 +26,6 @@
   "currentLocation": "Aktuální poloha",
   "didYouMean": "Mysleli jste <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Pokud jsou dostupné výsledky automatického doplnění, použijte šipky nahoru/dolů pro výběr a Enter pro potvrzení.",
-  "filterSearchScreenReaderInstructions": "Následující textové pole při psaní filtruje výsledky níže. Návrhy se zobrazují níže. Pomocí kláves se šipkami nahoru a dolů procházejte možnosti a stisknutím Enter vyberte filtr.",
   "feedback": "Zpětná vazba",
   "filterGroupSearchInputLabel": "Hledat možnosti {{title}}",
   "invalidRange": "Neplatný rozsah",

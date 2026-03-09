@@ -21,7 +21,6 @@
   "currentLocation": "Current Location",
   "didYouMean": "Did you mean <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "When autocomplete results are available, use up and down arrows to review and enter to select.",
-  "filterSearchScreenReaderInstructions": "This field filters the results below as you type. Suggestions appear below; use up and down arrows to review and Enter to select a filter.",
   "feedback": "Feedback",
   "filterGroupSearchInputLabel": "Search {{title}} Options",
   "invalidRange": "Invalid range",

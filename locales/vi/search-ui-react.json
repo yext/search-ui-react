@@ -18,7 +18,6 @@
   "currentLocation": "Vị trí hiện tại",
   "didYouMean": "Ý bạn là <button>{{correctedQuery}}</button> phải không",
   "dropDownScreenReaderInstructions": "Khi có kết quả tự động hoàn thành, dùng phím mũi lên/xuống để duyệt và Enter để chọn.",
-  "filterSearchScreenReaderInstructions": "Trường văn bản sau sẽ lọc các kết quả bên dưới khi bạn nhập. Gợi ý xuất hiện bên dưới. Dùng phím mũi tên lên và xuống để di chuyển giữa các tùy chọn và nhấn Enter để chọn bộ lọc.",
   "feedback": "Phản hồi",
   "filterGroupSearchInputLabel": "Tìm kiếm trong các tùy chọn {{title}}",
   "invalidRange": "Phạm vi không hợp lệ",

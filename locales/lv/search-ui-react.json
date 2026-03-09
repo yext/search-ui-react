@@ -24,7 +24,6 @@
   "currentLocation": "Pašreizējā atrašanās vieta",
   "didYouMean": "Vai jūs domājāt <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Kad ir pieejami automātiskās pabeigšanas rezultāti, izmantojiet bultiņas uz augšu un leju, lai pārlūkotu, un Enter, lai izvēlētos.",
-  "filterSearchScreenReaderInstructions": "Tālāk esošais teksta lauks filtrē zemāk redzamos rezultātus, kamēr rakstāt. Ieteikumi tiek rādīti zemāk. Izmantojiet augšup un lejup bulttaustiņus, lai pārvietotos pa opcijām, un nospiediet Enter, lai izvēlētos filtru.",
   "feedback": "Atsauksmes",
   "filterGroupSearchInputLabel": "Meklēt {{title}} opcijās",
   "invalidRange": "Nederīgs diapazons",

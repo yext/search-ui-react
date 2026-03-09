@@ -42,7 +42,7 @@ export function DropdownInput(props: {
     updateFocusedItem
   } = useFocusContext();
   const [isTyping, setIsTyping] = useState<boolean>(true);
-  const describedBy = [ariaDescribedBy, screenReaderUUID].filter(Boolean).join(' ') || undefined;
+  const describedBy = [screenReaderUUID, ariaDescribedBy].filter(Boolean).join(' ') || undefined;
   const resolvedAriaLabel = ariaLabelledBy ? undefined : ariaLabel;
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {

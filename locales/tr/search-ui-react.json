@@ -20,7 +20,6 @@
   "currentLocation": "Mevcut Konum",
   "didYouMean": "Demek istediniz mi <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Tamamlayıcı sonuçlar mevcut olduğunda, yukarı/aşağı okları kullanarak gezinip enter ile seçin.",
-  "filterSearchScreenReaderInstructions": "Aşağıdaki metin alanı, siz yazdıkça aşağıda yer alan sonuçları filtreler. Öneriler aşağıda görünür. Seçenekler arasında gezinmek için yukarı ve aşağı ok tuşlarını kullanın ve bir filtre seçmek için Enter’a basın.",
   "feedback": "Geri bildirim",
   "filterGroupSearchInputLabel": "{{title}} seçeneklerinde ara",
   "invalidRange": "Geçersiz aralık",

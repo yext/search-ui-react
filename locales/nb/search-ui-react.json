@@ -21,7 +21,6 @@
   "currentLocation": "Nåværende posisjon",
   "didYouMean": "Mente du <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Når autofullføringsresultater er tilgjengelige, bruk opp- og nedpiler for å bla gjennom og enter for å velge.",
-  "filterSearchScreenReaderInstructions": "Det følgende tekstfeltet filtrerer resultatene nedenfor mens du skriver. Forslag vises nedenfor. Bruk pil opp- og pil ned-tastene for å navigere mellom alternativer, og trykk Enter for å velge et filter.",
   "feedback": "Tilbakemelding",
   "filterGroupSearchInputLabel": "Søk i alternativer for {{title}}",
   "invalidRange": "Ugyldig område",
