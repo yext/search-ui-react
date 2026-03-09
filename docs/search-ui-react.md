@@ -19,7 +19,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses })](./search-ui-react.alternativeverticals.md)
+[AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }, input)](./search-ui-react.alternativeverticals.md)
 
 
 </td><td>
@@ -52,7 +52,7 @@ A component that displays a list of filters applied to the current vertical sear
 </td></tr>
 <tr><td>
 
-[ApplyFiltersButton({ customCssClasses, label })](./search-ui-react.applyfiltersbutton.md)
+[ApplyFiltersButton({ customCssClasses, label }, input)](./search-ui-react.applyfiltersbutton.md)
 
 
 </td><td>
@@ -63,7 +63,7 @@ Runs a vertical search. By default has `position: sticky` styling that anchors i
 </td></tr>
 <tr><td>
 
-[DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay })](./search-ui-react.directanswer.md)
+[DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay }, input)](./search-ui-react.directanswer.md)
 
 
 </td><td>
@@ -129,7 +129,7 @@ A component that displays all facets applicable to the current vertical search.
 </td></tr>
 <tr><td>
 
-[FilterDivider({ className })](./search-ui-react.filterdivider.md)
+[FilterDivider({ className }, input)](./search-ui-react.filterdivider.md)
 
 
 </td><td>
@@ -140,7 +140,7 @@ A divider component used to separate NumericalFacets, HierarchicalFacets, Standa
 </td></tr>
 <tr><td>
 
-[FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, resultsRegionAriaLabel, showCurrentLocationButton, geolocationProps })](./search-ui-react.filtersearch.md)
+[FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, resultsRegionAriaLabel, showCurrentLocationButton, geolocationProps }, input)](./search-ui-react.filtersearch.md)
 
 
 </td><td>
@@ -151,7 +151,7 @@ A component which allows a user to search for filters associated with specific e
 </td></tr>
 <tr><td>
 
-[GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, })](./search-ui-react.generativedirectanswer.md)
+[GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }, input)](./search-ui-react.generativedirectanswer.md)
 
 
 </td><td>
@@ -162,7 +162,7 @@ Displays the AI generated answer of a generative direct answer.
 </td></tr>
 <tr><td>
 
-[Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses })](./search-ui-react.geolocation_2.md)
+[Geolocation\_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }, input)](./search-ui-react.geolocation_2.md)
 
 
 </td><td>
@@ -206,7 +206,7 @@ A component that displays a single hierarchical facet, in a tree level structure
 </td></tr>
 <tr><td>
 
-[HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit })](./search-ui-react.hierarchicalfacets.md)
+[HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }, input)](./search-ui-react.hierarchicalfacets.md)
 
 
 </td><td>
@@ -228,7 +228,7 @@ Type guard for CtaData.
 </td></tr>
 <tr><td>
 
-[LocationBias({ geolocationOptions, customCssClasses })](./search-ui-react.locationbias.md)
+[LocationBias({ geolocationOptions, customCssClasses }, input)](./search-ui-react.locationbias.md)
 
 
 </td><td>
@@ -239,7 +239,7 @@ A React Component which displays and collects location information in order to b
 </td></tr>
 <tr><td>
 
-[MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, })](./search-ui-react.mapboxmap.md)
+[MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }, input)](./search-ui-react.mapboxmap.md)
 
 
 </td><td>
@@ -261,7 +261,7 @@ A component that displays a single numerical facet. Use this to override the def
 </td></tr>
 <tr><td>
 
-[NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps })](./search-ui-react.numericalfacets.md)
+[NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }, input)](./search-ui-react.numericalfacets.md)
 
 
 </td><td>
@@ -294,7 +294,7 @@ Renders a HighlightedValue with highlighting based on its matchedSubstrings.
 </td></tr>
 <tr><td>
 
-[ResultsCount({ customCssClasses })](./search-ui-react.resultscount.md)
+[ResultsCount({ customCssClasses }, input)](./search-ui-react.resultscount.md)
 
 
 </td><td>
@@ -305,7 +305,7 @@ Renders results count of a universal/vertical search.
 </td></tr>
 <tr><td>
 
-[SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch, autocompleteDisabled })](./search-ui-react.searchbar.md)
+[SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch, autocompleteDisabled }, input)](./search-ui-react.searchbar.md)
 
 
 </td><td>
@@ -327,7 +327,7 @@ A higher-order component which provides translations for search react components
 </td></tr>
 <tr><td>
 
-[SpellCheck({ customCssClasses, onClick })](./search-ui-react.spellcheck.md)
+[SpellCheck({ customCssClasses, onClick }, input)](./search-ui-react.spellcheck.md)
 
 
 </td><td>
@@ -404,7 +404,7 @@ Renders a quality feedback widget composed of thumbs up and thumbs down buttons.
 </td></tr>
 <tr><td>
 
-[UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses })](./search-ui-react.universalresults.md)
+[UniversalResults({ verticalConfigMap, showAppliedFilters, customCssClasses }, input)](./search-ui-react.universalresults.md)
 
 
 </td><td>

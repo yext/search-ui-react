@@ -9,7 +9,7 @@ Renders results count of a universal/vertical search.
 **Signature:**
 
 ```typescript
-declare function ResultsCount({ customCssClasses }: ResultsCountProps): React.JSX.Element | null;
+declare function ResultsCount(input: ResultsCountProps): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -33,6 +33,20 @@ Description
 <tbody><tr><td>
 
 { customCssClasses }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>
