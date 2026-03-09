@@ -171,7 +171,7 @@ function CheckboxOptions({
       {displayedOptions}
       {isLimited &&
         /* eslint-disable-next-line react-perf/jsx-no-new-function-as-prop */
-        <button className='text-primary py-1 text-sm' onClick={() => setShowAll(!showAll)}>
+        <button className='text-primary py-1 text-sm' onClick={() => setShowAll(prev => !prev)}>
           {showAll ? t('showLess') : t('showMore')}
         </button>
       }

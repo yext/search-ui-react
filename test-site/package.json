@@ -22,13 +22,14 @@
     "autoprefixer": "^10.4.4",
     "eslint-config-react-app": "file:../node_modules/eslint-config-react-app",
     "postcss": "^8.4.12",
-    "react-scripts": "5.0.0",
+    "react-scripts": "5.0.1",
     "tailwindcss": "^3.0.23",
     "typescript": "^4.6.2"
   },
   "overrides": {
     "@babel/plugin-transform-runtime": "^7.23.2",
-    "rollup": "4.22.4"
+    "rollup": "4.22.4",
+    "svgo": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

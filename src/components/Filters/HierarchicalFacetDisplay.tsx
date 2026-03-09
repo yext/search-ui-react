@@ -72,8 +72,8 @@ export function HierarchicalFacetDisplay({
   const [isShowingMore, setIsShowingMore] = useState(false);
   const resetShowMore = useCallback(() => setIsShowingMore(false), []);
   const toggleShowMore = useCallback(() => {
-    setIsShowingMore(!isShowingMore);
-  }, [isShowingMore]);
+    setIsShowingMore(prev => !prev);
+  }, []);
 
   /** Iteratively parses the `HierarchicalFacetTree` into an array of ReactNodes */
   function renderTree(): ReactNode[] {

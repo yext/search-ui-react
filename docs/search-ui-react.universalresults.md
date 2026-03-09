@@ -9,7 +9,7 @@ Displays the results of a universal search with the results for each vertical se
 **Signature:**
 
 ```typescript
-declare function UniversalResults<T>({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps<T>): React.JSX.Element | null;
+declare function UniversalResults<T>(input: UniversalResultsProps<T>): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -33,6 +33,20 @@ Description
 <tbody><tr><td>
 
 { verticalConfigMap, showAppliedFilters, customCssClasses }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>

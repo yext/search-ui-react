@@ -9,7 +9,7 @@ A component that displays the alternative verticals that have results if a searc
 **Signature:**
 
 ```typescript
-declare function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }: AlternativeVerticalsProps): React.JSX.Element | null;
+declare function AlternativeVerticals(input: AlternativeVerticalsProps): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -33,6 +33,20 @@ Description
 <tbody><tr><td>
 
 { currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>

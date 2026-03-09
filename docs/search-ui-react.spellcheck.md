@@ -9,7 +9,7 @@ Renders a suggested query if the Search API provides one.
 **Signature:**
 
 ```typescript
-declare function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): React.JSX.Element | null;
+declare function SpellCheck(input: SpellCheckProps): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -33,6 +33,20 @@ Description
 <tbody><tr><td>
 
 { customCssClasses, onClick }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>

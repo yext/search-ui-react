@@ -9,7 +9,7 @@ Renders Direct Answers provided by the Search API.
 **Signature:**
 
 ```typescript
-declare function DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay }: DirectAnswerProps): React.JSX.Element | null;
+declare function DirectAnswer(input: DirectAnswerProps): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -33,6 +33,20 @@ Description
 <tbody><tr><td>
 
 { customCssClasses, UnknownFieldTypeDisplay }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>

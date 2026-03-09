@@ -9,7 +9,7 @@ A component which allows a user to search for filters associated with specific e
 **Signature:**
 
 ```typescript
-declare function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, resultsRegionAriaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): React.JSX.Element;
+declare function FilterSearch(input: FilterSearchProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -33,6 +33,20 @@ Description
 <tbody><tr><td>
 
 { searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, resultsRegionAriaLabel, showCurrentLocationButton, geolocationProps }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>
