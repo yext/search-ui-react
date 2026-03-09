@@ -26,6 +26,7 @@
   "currentLocation": "Dabartinė vieta",
   "didYouMean": "Ar turėjote omenyje <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Kai yra automatinio užbaigimo rezultatai, naudokite rodykles aukštyn ir žemyn naršymui ir Enter pasirinkimui.",
+  "filterSearchScreenReaderInstructions": "Toliau esantis teksto laukas filtruos toliau pateikiamus rezultatus jums rašant. Pasiūlymai rodomi žemiau. Naudokite rodyklių aukštyn ir žemyn klavišus parinktims naršyti, o filtrui pasirinkti paspauskite Enter. Pasirinkus filtrą atnaujinami aktyvūs filtrai ir rezultatai.",
   "feedback": "Atsiliepimai",
   "filterGroupSearchInputLabel": "Ieškoti {{title}} parinkčių",
   "invalidRange": "Neteisingas diapazonas",

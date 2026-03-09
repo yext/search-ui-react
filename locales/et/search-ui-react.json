@@ -21,6 +21,7 @@
   "currentLocation": "Praegune asukoht",
   "didYouMean": "Kas mõtlesite <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Kui automaattäite tulemused on saadaval, kasuta üles-/allanooleid eelvaateks ja Enterit valimiseks.",
+  "filterSearchScreenReaderInstructions": "Järgmine tekstiväli filtreerib allpool kuvatavaid tulemusi sisestamise ajal. Soovitused kuvatakse allpool. Kasutage valikutes liikumiseks üles- ja allanoolt ning filtri valimiseks vajutage Enter. Filtri valimine värskendab aktiivseid filtreid ja tulemusi.",
   "feedback": "Tagasiside",
   "filterGroupSearchInputLabel": "Otsi {{title}} valikute seast",
   "invalidRange": "Kehtetu vahemik",

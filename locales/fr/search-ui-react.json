@@ -23,6 +23,7 @@
   "currentLocation": "Localisation actuelle",
   "didYouMean": "Vouliez-vous dire <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Lorsque des résultats de saisie semi-automatique sont disponibles, utilisez les flèches haut et bas pour naviguer et appuyez sur Entrée pour sélectionner.",
+  "filterSearchScreenReaderInstructions": "Le champ de texte suivant filtre les résultats ci-dessous au fur et à mesure de la saisie. Des suggestions apparaissent ci-dessous. Utilisez les touches fléchées haut et bas pour parcourir les options, puis appuyez sur Entrée pour sélectionner un filtre. La sélection d’un filtre met à jour les filtres actifs et les résultats.",
   "feedback": "Retour",
   "filterGroupSearchInputLabel": "Rechercher parmi les options de {{title}}",
   "invalidRange": "Gamme non valide",

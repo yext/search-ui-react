@@ -23,6 +23,7 @@ const searchFieldsProp = [{
   fieldApiName: 'name',
   entityType: 'ce_person'
 }];
+const filterSearchInstructionText = 'The following text field filters the results that follow as you type. Suggestions appear below. Use the up and down arrow keys to navigate options and press Enter to select a filter. Selecting a filter updates the active filters and results.';
 
 const mockedStateWithSingleFilter: FiltersState = {
   static: [{
@@ -151,6 +152,35 @@ describe('search with section labels', () => {
   it('associates the filter label to the filter search input', () => {
     renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
     expect(screen.getByRole('combobox', { name: 'Filter' })).toBeDefined();
+  });
+
+  it('renders one hidden filter instruction and composes aria-describedby ids', () => {
+    renderFilterSearch({ searchFields: searchFieldsProp, label: 'Filter' });
+    const input = screen.getByRole('combobox');
+    const dropdownInstructions = screen.getByText('When autocomplete results are available, use up and down arrows to review and enter to select.');
+    const filterInstructions = screen.getByText(filterSearchInstructionText);
+
+    expect(filterInstructions).toHaveClass('sr-only');
+    expect(screen.getAllByText(filterSearchInstructionText)).toHaveLength(1);
+
+    const describedBy = input.getAttribute('aria-describedby');
+    expect(describedBy).toBeTruthy();
+    const describedByIds = new Set(describedBy?.split(' '));
+    expect(describedByIds).toContain(dropdownInstructions.getAttribute('id'));
+    expect(describedByIds).toContain(filterInstructions.getAttribute('id'));
+  });
+
+  it('composes aria-describedby ids when showCurrentLocationButton is enabled', () => {
+    renderFilterSearch({ searchFields: searchFieldsProp, showCurrentLocationButton: true });
+    const input = screen.getByRole('combobox');
+    const dropdownInstructions = screen.getByText('When autocomplete results are available, use up and down arrows to review and enter to select.');
+    const filterInstructions = screen.getByText(filterSearchInstructionText);
+
+    const describedBy = input.getAttribute('aria-describedby');
+    expect(describedBy).toBeTruthy();
+    const describedByIds = new Set(describedBy?.split(' '));
+    expect(describedByIds).toContain(dropdownInstructions.getAttribute('id'));
+    expect(describedByIds).toContain(filterInstructions.getAttribute('id'));
   });
 
   it('sets the placeholder text to the specified value regardless of the search locale', () => {

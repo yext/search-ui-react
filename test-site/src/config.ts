@@ -2,11 +2,11 @@ import { CloudRegion, CloudChoice, Environment } from '@yext/search-headless-rea
 import {SearchAnalyticsConfig} from "../../src";
 
 export const config = {
-  apiKey: process.env.REACT_APP_LIVE_API_KEY || 'REPLACE_ME',
-  experienceKey: 'slanswers-hier-facets',
+  apiKey: process.env.REACT_APP_LIVE_API_KEY || '722d20ad53157666ea2df0d3831433c2',
+  experienceKey: 'max-test',
   locale: 'en',
   experienceVersion: 'STAGING',
-  businessId: 3350634,
+  businessId: 70452,
   cloudRegion: CloudRegion.US,
   cloudChoice: CloudChoice.GLOBAL_MULTI,
   environment: Environment.PROD,

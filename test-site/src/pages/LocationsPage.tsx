@@ -31,7 +31,7 @@ export function LocationsPage() {
   const searchActions = useSearchActions();
   const filters = useSearchState(state => state.filters.static);
   useLayoutEffect(() => {
-    searchActions.setVertical('KM');
+    searchActions.setVertical('locations');
     searchActions.executeVerticalQuery();
   }, [searchActions]);
 

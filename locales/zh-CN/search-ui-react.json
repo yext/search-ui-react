@@ -18,6 +18,7 @@
   "currentLocation": "当前位置",
   "didYouMean": "您的意思是 <button>{{correctedQuery}}</button> 吗",
   "dropDownScreenReaderInstructions": "当有自动完成结果时，使用上下箭头浏览，按回车键选择。",
+  "filterSearchScreenReaderInstructions": "以下文本字段会在您输入时筛选后续结果。建议会显示在下方。使用向上和向下箭头键浏览选项，并按 Enter 选择筛选条件。选择筛选条件后，会更新当前生效的筛选条件和结果。",
   "feedback": "反馈",
   "filterGroupSearchInputLabel": "搜索{{title}}选项",
   "invalidRange": "无效范围",
