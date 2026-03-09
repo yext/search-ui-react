@@ -105,6 +105,17 @@ describe('StandardFacetContent', () => {
     await userEvent.click(teaCheckbox);
     expectFacetOptionSet(actions, standardFacet.fieldId, standardFacet.options[1], false);
   });
+
+  it('Shows the options search input label when enabled', () => {
+    render(mockStandardFacet({
+      fieldId: standardFacet.fieldId,
+      showMoreLimit: 1,
+      showOptionsSearchInputLabel: true
+    }));
+
+    expect(screen.getByText(`Search ${standardFacet.displayName} Options`)).toBeDefined();
+    expect(screen.getByLabelText(`Search ${standardFacet.displayName} Options`)).toBeDefined();
+  });
 });
 
 function expectFacetOptionSet(

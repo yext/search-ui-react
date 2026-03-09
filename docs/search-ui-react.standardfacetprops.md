@@ -170,6 +170,25 @@ _(Optional)_ Whether or not to show the option counts for each filter. Defaults 
 </td></tr>
 <tr><td>
 
+[showOptionsSearchInputLabel?](./search-ui-react.standardfacetprops.showoptionssearchinputlabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not to show the label for the search bar when present. Defaults to false.
+
+
+</td></tr>
+<tr><td>
+
 [transformOptions?](./search-ui-react.standardfacetprops.transformoptions.md)
 
 

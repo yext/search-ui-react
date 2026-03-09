@@ -123,6 +123,20 @@ describe('Facets', () => {
       .toBeDefined();
   });
 
+  it('Passes the options search input label setting to an override standard facet', () => {
+    render(
+      <Facets onlyRenderChildren={true}>
+        <StandardFacet
+          fieldId='products'
+          showMoreLimit={1}
+          showOptionsSearchInputLabel={true}
+        />
+      </Facets>);
+
+    expect(screen.getByText('Search Products Options')).toBeDefined();
+    expect(screen.getByLabelText('Search Products Options')).toBeDefined();
+  });
+
   it('Properly renders an override numerical facet if present', () => {
     const mockTransformOptions = (options: DisplayableFacetOption[]) =>
       options.map(option => ({ ...option, displayName: `Price is ${option.displayName}` }));
@@ -144,6 +158,20 @@ describe('Facets', () => {
     expect(screen.getByText(overrideLabel)).toBeDefined();
     expect(screen.queryByText(facet.displayName)).toBeNull();
     expect(screen.getByText(`Price is ${facet.options[0].displayName}`)).toBeDefined();
+  });
+
+  it('Passes the options search input label setting to an override numerical facet', () => {
+    render(
+      <Facets onlyRenderChildren={true}>
+        <NumericalFacet
+          fieldId='price'
+          showMoreLimit={1}
+          showOptionsSearchInputLabel={true}
+        />
+      </Facets>);
+
+    expect(screen.getByText('Search Price Options')).toBeDefined();
+    expect(screen.getByLabelText('Search Price Options')).toBeDefined();
   });
 
   it('Properly renders an override hierarchical facet if present', () => {
