@@ -23,7 +23,7 @@
   "currentLocation": "Posizione attuale",
   "didYouMean": "Volevi dire <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Quando sono disponibili i risultati di completamento automatico, usa le frecce su e giù per rivedere e invio per selezionare.",
-  "filterSearchScreenReaderInstructions": "Il seguente campo di testo filtra i risultati sottostanti durante la digitazione. I suggerimenti vengono visualizzati sotto. Usa i tasti freccia su e giù per navigare tra le opzioni e premi Invio per selezionare un filtro. La selezione di un filtro aggiorna i filtri attivi e i risultati.",
+  "filterSearchScreenReaderInstructions": "Il seguente campo di testo filtra i risultati sottostanti durante la digitazione. I suggerimenti vengono visualizzati sotto. Usa i tasti freccia su e giù per navigare tra le opzioni e premi Invio per selezionare un filtro.",
   "feedback": "Feedback",
   "filterGroupSearchInputLabel": "Cerca tra le opzioni di {{title}}",
   "invalidRange": "Gamma non valida",

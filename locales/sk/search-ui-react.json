@@ -26,7 +26,7 @@
   "currentLocation": "Aktuálna poloha",
   "didYouMean": "Mali ste na mysli <button>{{correctedQuery}}</button>?",
   "dropDownScreenReaderInstructions": "Keď sú k dispozícii výsledky automatického dokončenia, použite šípky nahor a nadol na preskúmanie a enter na výber.",
-  "filterSearchScreenReaderInstructions": "Nasledujúce textové pole filtruje výsledky nižšie počas písania. Návrhy sa zobrazujú nižšie. Na pohyb medzi možnosťami použite klávesy so šípkou nahor a nadol a stlačte Enter na výber filtra. Výber filtra aktualizuje aktívne filtre a výsledky.",
+  "filterSearchScreenReaderInstructions": "Nasledujúce textové pole filtruje výsledky nižšie počas písania. Návrhy sa zobrazujú nižšie. Na pohyb medzi možnosťami použite klávesy so šípkou nahor a nadol a stlačte Enter na výber filtra.",
   "feedback": "Spätná väzba",
   "filterGroupSearchInputLabel": "Hľadať možnosti {{title}}",
   "invalidRange": "Neplatný rozsah",

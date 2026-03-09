@@ -21,7 +21,7 @@
   "currentLocation": "Aktuell plats",
   "didYouMean": "Menade du <button>{{correctedQuery}}</button>?",
   "dropDownScreenReaderInstructions": "När autofyllningsresultat är tillgängliga, använd upp- och nedpilar för att bläddra och enter för att välja.",
-  "filterSearchScreenReaderInstructions": "Följande textfält filtrerar resultaten nedan medan du skriver. Förslag visas nedan. Använd upp- och nedpiltangenterna för att navigera mellan alternativ och tryck på Enter för att välja ett filter. När du väljer ett filter uppdateras aktiva filter och resultat.",
+  "filterSearchScreenReaderInstructions": "Följande textfält filtrerar resultaten nedan medan du skriver. Förslag visas nedan. Använd upp- och nedpiltangenterna för att navigera mellan alternativ och tryck på Enter för att välja ett filter.",
   "feedback": "Feedback",
   "filterGroupSearchInputLabel": "Sök bland alternativ för {{title}}",
   "invalidRange": "Ogiltigt intervall",

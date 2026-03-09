@@ -26,7 +26,7 @@
   "currentLocation": "Aktualna lokalizacja",
   "didYouMean": "Czy chodziło Ci o <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Gdy dostępne są wyniki autouzupełniania, użyj strzałek w górę i w dół, aby przejrzeć, a enter, aby wybrać.",
-  "filterSearchScreenReaderInstructions": "Poniższe pole tekstowe filtruje wyniki poniżej podczas pisania. Sugestie pojawiają się poniżej. Użyj klawiszy strzałek w górę i w dół, aby poruszać się po opcjach, i naciśnij Enter, aby wybrać filtr. Wybranie filtra aktualizuje aktywne filtry i wyniki.",
+  "filterSearchScreenReaderInstructions": "Poniższe pole tekstowe filtruje wyniki poniżej podczas pisania. Sugestie pojawiają się poniżej. Użyj klawiszy strzałek w górę i w dół, aby poruszać się po opcjach, i naciśnij Enter, aby wybrać filtr.",
   "feedback": "Informacja zwrotna",
   "filterGroupSearchInputLabel": "Szukaj w opcjach {{title}}",
   "invalidRange": "Nieprawidłowy zasięg",

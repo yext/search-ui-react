@@ -21,7 +21,7 @@
   "currentLocation": "Huidige locatie",
   "didYouMean": "Bedoelde je <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Wanneer automatische aanvulresultaten beschikbaar zijn, gebruik de pijltjestoetsen omhoog en omlaag om te navigeren en Enter om te selecteren.",
-  "filterSearchScreenReaderInstructions": "Het volgende tekstveld filtert de onderstaande resultaten terwijl u typt. Suggesties verschijnen hieronder. Gebruik de pijltoetsen omhoog en omlaag om door opties te navigeren en druk op Enter om een filter te selecteren. Het selecteren van een filter werkt de actieve filters en resultaten bij.",
+  "filterSearchScreenReaderInstructions": "Het volgende tekstveld filtert de onderstaande resultaten terwijl u typt. Suggesties verschijnen hieronder. Gebruik de pijltoetsen omhoog en omlaag om door opties te navigeren en druk op Enter om een filter te selecteren.",
   "feedback": "Feedback",
   "filterGroupSearchInputLabel": "Zoek in opties voor {{title}}",
   "invalidRange": "Ongeldig bereik",
