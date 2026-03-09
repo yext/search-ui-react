@@ -40,6 +40,8 @@ export interface StaticFiltersProps {
   defaultExpanded?: boolean,
   /** {@inheritDoc FilterGroupProps.searchable} */
   searchable?: boolean,
+  /** {@inheritDoc FilterGroupProps.showOptionsSearchInputLabel} */
+  showOptionsSearchInputLabel?: boolean,
   /**
    * Whether or not a search is automatically run when a filter is selected.
    * Defaults to true.

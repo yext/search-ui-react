@@ -113,7 +113,7 @@ export function PeoplePage() {
           />
           <Facets/>
           <Facets onlyRenderChildren={true}>
-            <StandardFacet fieldId="c_employeeDepartment" label='Yext Department 1' />
+            <StandardFacet fieldId="c_employeeDepartment" label='Yext Department 1' showOptionsSearchInputLabel={true} />
           </Facets>
           <Facets>
             <StandardFacet fieldId="c_employeeDepartment" label='Yext Department 2' />
