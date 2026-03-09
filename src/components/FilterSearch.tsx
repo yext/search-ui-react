@@ -165,6 +165,7 @@ export function FilterSearch({
   const searchActions = useSearchActions();
   const inputId = useId('filter-search-input');
   const labelId = useId('filter-search-label');
+  const filterSearchInstructionsId = useId('filter-search-screen-reader-instructions');
   const searchParamFields = searchFields.map((searchField) => {
     return { ...searchField, fetchEntities: false };
   });
@@ -376,6 +377,7 @@ export function FilterSearch({
       inputId={inputId}
       ariaLabel={ariaLabel}
       ariaLabelledBy={label ? labelId : undefined}
+      ariaDescribedBy={filterSearchInstructionsId}
     />
   );
 
@@ -400,6 +402,9 @@ export function FilterSearch({
           {label}
         </label>
       )}
+      <div id={filterSearchInstructionsId} className='sr-only'>
+        {t('filterSearchScreenReaderInstructions')}
+      </div>
       <Dropdown
         screenReaderText={getScreenReaderText(sections, t)}
         onSelect={handleSelectDropdown}

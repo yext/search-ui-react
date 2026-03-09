@@ -21,6 +21,7 @@
   "currentLocation": "Jelenlegi helyzet",
   "didYouMean": "Ezt szerette volna: <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Ha automatikus kiegészítési eredmények érhetők el, használd a fel/le nyilakat a böngészéshez, és az Entert a kiválasztáshoz.",
+  "filterSearchScreenReaderInstructions": "A következő szövegmező gépelés közben szűri az alábbi találatokat. Az ajánlatok alább jelennek meg. A lehetőségek közti navigáláshoz használja a fel és le nyílbillentyűket, majd a szűrő kiválasztásához nyomja meg az Enter billentyűt. A szűrő kiválasztása frissíti az aktív szűrőket és találatokat.",
   "feedback": "Visszacsatolás",
   "filterGroupSearchInputLabel": "Keresés a(z) {{title}} lehetőségei között",
   "invalidRange": "Érvénytelen hatótávolság",

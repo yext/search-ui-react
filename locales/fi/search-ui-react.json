@@ -21,6 +21,7 @@
   "currentLocation": "Nykyinen sijainti",
   "didYouMean": "Tarkoititko <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Kun automaattiset tulokset ovat saatavilla, käytä nuolinäppäimiä selaamiseen ja Enteriä valitsemiseen.",
+  "filterSearchScreenReaderInstructions": "Seuraava tekstikenttä suodattaa alla näkyviä tuloksia kirjoittaessasi. Ehdotukset näkyvät alla. Siirry vaihtoehtojen välillä ylä- ja alanuolinäppäimillä ja valitse suodatin painamalla Enteriä. Suodattimen valinta päivittää aktiiviset suodattimet ja tulokset.",
   "feedback": "Palaute",
   "filterGroupSearchInputLabel": "Hae {{title}}-vaihtoehdoista",
   "invalidRange": "Virheellinen väli",

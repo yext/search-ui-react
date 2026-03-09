@@ -21,6 +21,7 @@
   "currentLocation": "Aktueller Standort",
   "didYouMean": "Meinten Sie <button>{{correctedQuery}}</button>",
   "dropDownScreenReaderInstructions": "Wenn Autovervollständigungsergebnisse verfügbar sind, mit Pfeiltasten navigieren und mit Enter auswählen.",
+  "filterSearchScreenReaderInstructions": "Das folgende Textfeld filtert die nachfolgenden Ergebnisse während der Eingabe. Vorschläge werden unten angezeigt. Verwenden Sie die Pfeiltasten nach oben und unten, um durch Optionen zu navigieren, und drücken Sie die Eingabetaste, um einen Filter auszuwählen. Die Auswahl eines Filters aktualisiert die aktiven Filter und Ergebnisse.",
   "feedback": "Rückmeldung",
   "filterGroupSearchInputLabel": "Optionen für {{title}} durchsuchen",
   "invalidRange": "Ungültiger Bereich",
