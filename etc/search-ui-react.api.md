@@ -38,7 +38,7 @@ export interface AfterDropdownInputFocusProps {
 }
 
 // @public
-export function AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }: AlternativeVerticalsProps): React_2.JSX.Element | null;
+export function AlternativeVerticals(input: AlternativeVerticalsProps): React_2.JSX.Element | null;
 
 // @public
 export interface AlternativeVerticalsCssClasses {
@@ -95,7 +95,7 @@ export interface AppliedFiltersProps {
 }
 
 // @public
-export function ApplyFiltersButton({ customCssClasses, label }: ApplyFiltersButtonProps): React_2.JSX.Element;
+export function ApplyFiltersButton(input: ApplyFiltersButtonProps): React_2.JSX.Element;
 
 // @public
 export interface ApplyFiltersButtonCssClasses {
@@ -181,7 +181,7 @@ export interface CtaData {
 export type DefaultRawDataType = Record<string, unknown>;
 
 // @public
-export function DirectAnswer({ customCssClasses, UnknownFieldTypeDisplay }: DirectAnswerProps): React_2.JSX.Element | null;
+export function DirectAnswer(input: DirectAnswerProps): React_2.JSX.Element | null;
 
 // @public
 export interface DirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
@@ -257,7 +257,7 @@ export interface FacetsProps {
 export type FeedbackType = 'THUMBS_UP' | 'THUMBS_DOWN';
 
 // @public
-export function FilterDivider({ className }: {
+export function FilterDivider(input: {
     className?: string;
 }): React_2.JSX.Element;
 
@@ -302,7 +302,7 @@ export interface FilterOptionConfig {
 }
 
 // @public
-export function FilterSearch({ searchFields, label, placeholder, searchOnSelect, onSelect, onDropdownInputChange, afterDropdownInputFocus, sectioned, customCssClasses, disableBuiltInClasses, ariaLabel, resultsRegionAriaLabel, showCurrentLocationButton, geolocationProps }: FilterSearchProps): React_2.JSX.Element;
+export function FilterSearch(input: FilterSearchProps): React_2.JSX.Element;
 
 // @public
 export interface FilterSearchCssClasses extends AutocompleteResultCssClasses {
@@ -355,7 +355,7 @@ export interface GdaClickEventData {
 }
 
 // @public
-export function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }: GenerativeDirectAnswerProps): React_2.JSX.Element | null;
+export function GenerativeDirectAnswer(input: GenerativeDirectAnswerProps): React_2.JSX.Element | null;
 
 // @public
 export interface GenerativeDirectAnswerCssClasses {
@@ -387,7 +387,7 @@ export interface GenerativeDirectAnswerProps {
 }
 
 // @public
-function Geolocation_2({ geolocationOptions, radius, label, GeolocationIcon, handleClick, customCssClasses, useIconAsButton, disableBuiltInClasses }: GeolocationProps): React_2.JSX.Element | null;
+function Geolocation_2(input: GeolocationProps): React_2.JSX.Element | null;
 export { Geolocation_2 as Geolocation }
 
 // @public
@@ -451,7 +451,7 @@ export interface HierarchicalFacetProps extends Omit<StandardFacetProps, 'transf
 }
 
 // @public @deprecated
-export function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): React_2.JSX.Element;
+export function HierarchicalFacets(input: HierarchicalFacetsProps): React_2.JSX.Element;
 
 // @public
 export interface HierarchicalFacetsCssClasses extends HierarchicalFacetDisplayCssClasses {
@@ -486,7 +486,7 @@ export const i18nInstance: i18next.i18n;
 export function isCtaData(data: unknown): data is CtaData;
 
 // @public @deprecated
-export function LocationBias({ geolocationOptions, customCssClasses }: LocationBiasProps): React_2.JSX.Element | null;
+export function LocationBias(input: LocationBiasProps): React_2.JSX.Element | null;
 
 // @public @deprecated
 export interface LocationBiasCssClasses {
@@ -509,7 +509,7 @@ export interface LocationBiasProps {
 }
 
 // @public
-export function MapboxMap<T>({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }: MapboxMapProps<T>): React_2.JSX.Element;
+export function MapboxMap<T>(input: MapboxMapProps<T>): React_2.JSX.Element;
 
 // @public
 export interface MapboxMapProps<T> {
@@ -539,7 +539,7 @@ export interface NumericalFacetProps extends StandardFacetProps {
 }
 
 // @public @deprecated
-export function NumericalFacets({ searchOnChange, includedFieldIds, getFilterDisplayName, inputPrefix, customCssClasses, ...filterGroupProps }: NumericalFacetsProps): React_2.JSX.Element;
+export function NumericalFacets(input: NumericalFacetsProps): React_2.JSX.Element;
 
 // @public
 export interface NumericalFacetsCssClasses extends FilterGroupCssClasses, RangeInputCssClasses {
@@ -673,7 +673,7 @@ export type RenderEntityPreviews = (autocompleteLoading: boolean, verticalKeyToR
 export function renderHighlightedValue(highlightedValueOrString: Partial<HighlightedValue> | string, customCssClasses?: HighlightedValueCssClasses): React_2.JSX.Element;
 
 // @public
-export function ResultsCount({ customCssClasses }: ResultsCountProps): React_2.JSX.Element | null;
+export function ResultsCount(input: ResultsCountProps): React_2.JSX.Element | null;
 
 // @public
 export interface ResultsCountCssClasses {
@@ -707,7 +707,7 @@ export interface SearchAnalyticsEventService {
 }
 
 // @public
-export function SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch, autocompleteDisabled }: SearchBarProps): React_2.JSX.Element;
+export function SearchBar(input: SearchBarProps): React_2.JSX.Element;
 
 // @public
 export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
@@ -796,7 +796,7 @@ export interface SectionProps<T = DefaultRawDataType> {
 }
 
 // @public
-export function SpellCheck({ customCssClasses, onClick }: SpellCheckProps): React_2.JSX.Element | null;
+export function SpellCheck(input: SpellCheckProps): React_2.JSX.Element | null;
 
 // @public
 export interface SpellCheckCssClasses {
@@ -953,7 +953,7 @@ export interface ThumbsFeedbackProps {
 }
 
 // @public
-export function UniversalResults<T>({ verticalConfigMap, showAppliedFilters, customCssClasses }: UniversalResultsProps<T>): React_2.JSX.Element | null;
+export function UniversalResults<T>(input: UniversalResultsProps<T>): React_2.JSX.Element | null;
 
 // @public
 export interface UniversalResultsCssClasses extends SectionHeaderCssClasses {

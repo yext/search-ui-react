@@ -9,7 +9,7 @@ A divider component used to separate NumericalFacets, HierarchicalFacets, Standa
 **Signature:**
 
 ```typescript
-declare function FilterDivider({ className }: {
+declare function FilterDivider(input: {
     className?: string;
 }): React.JSX.Element;
 ```
@@ -35,6 +35,20 @@ Description
 <tbody><tr><td>
 
 { className }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>
