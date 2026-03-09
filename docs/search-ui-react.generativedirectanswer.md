@@ -9,7 +9,7 @@ Displays the AI generated answer of a generative direct answer.
 **Signature:**
 
 ```typescript
-declare function GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }: GenerativeDirectAnswerProps): React.JSX.Element | null;
+declare function GenerativeDirectAnswer(input: GenerativeDirectAnswerProps): React.JSX.Element | null;
 ```
 
 ## Parameters
@@ -33,6 +33,20 @@ Description
 <tbody><tr><td>
 
 { customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>
