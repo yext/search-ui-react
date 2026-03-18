@@ -101,9 +101,12 @@ it('executes custom "getCoordinate" and use the derived coordinate for marker lo
 it('registers "onDrag" callback to Mapbox\'s event listener for "drag to pan" interaction', () => {
   jest.useFakeTimers();
   jest.spyOn(Marker.prototype, 'setLngLat').mockReturnValue(Marker.prototype);
+  jest.spyOn(Map.prototype, 'getBounds').mockReturnValue({} as ReturnType<Map['getBounds']>);
   const mapOnEventListener = jest.spyOn(Map.prototype, 'on')
     .mockImplementation((e, cb) => {
-      e === 'drag' && cb({});
+      if (e === 'drag' && typeof cb === 'function') {
+        (cb as (event: unknown) => void)({});
+      }
       return Map.prototype;
     });
   const onDragFn = jest.fn();
