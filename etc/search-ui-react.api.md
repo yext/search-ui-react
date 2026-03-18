@@ -14,7 +14,6 @@ import { FilterSearchResponse } from '@yext/search-headless-react';
 import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import * as i18next from 'i18next';
-import { default as mapboxgl_2 } from 'mapbox-gl';
 import { MarkerOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
@@ -517,7 +516,7 @@ export interface MapboxMapProps<T> {
     getCoordinate?: CoordinateGetter<T>;
     iframeWindow?: Window;
     mapboxAccessToken: string;
-    mapboxOptions?: Omit<mapboxgl_2.MapboxOptions, 'container'>;
+    mapboxOptions?: Omit<mapboxgl.MapboxOptions, 'container'>;
     markerOptionsOverride?: (selected: boolean) => MarkerOptions;
     onDrag?: OnDragHandler;
     onPinClick?: (result: Result<T> | undefined) => void;
@@ -558,7 +557,7 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
 }
 
 // @public
-export type OnDragHandler = (center: mapboxgl_2.LngLat, bounds: mapboxgl_2.LngLatBounds) => void;
+export type OnDragHandler = (center: mapboxgl.LngLat, bounds: mapboxgl.LngLatBounds) => void;
 
 // @public
 export interface OnDropdownInputChangeProps {
@@ -614,7 +613,7 @@ export type PinComponent<T> = (props: PinComponentProps<T>) => React_2.JSX.Eleme
 // @public
 export type PinComponentProps<T> = {
     index: number;
-    mapbox: mapboxgl_2.Map;
+    mapbox: mapboxgl.Map;
     result: Result<T>;
     selected?: boolean;
 };

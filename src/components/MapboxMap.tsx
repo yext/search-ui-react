@@ -135,7 +135,7 @@ export interface MapboxMapProps<T> {
  * `import 'mapbox-gl/dist/mapbox-gl.css';`
  *
  * Or, user may add a stylesheet link in their html page:
- * `<link href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet" />`
+ * `<link href="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.css" rel="stylesheet" />`
  *
  * @param props - {@link MapboxMapProps}
  * @returns A React element containing a Mapbox Map
@@ -374,24 +374,27 @@ export function MapboxMap<T>({
         });
         mapbox.addControl(nav, 'top-right');
         if (onDragDebounced) {
-          mapbox.on('drag', () => {
-            onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
-          });
-          mapbox.on('zoom', (e) => {
-            if (e.originalEvent) {
-              // only trigger on user zoom, not programmatic zoom (e.g. from fitBounds)
-              onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
+          const dispatchDrag = () => {
+            const bounds = mapbox.getBounds();
+            if (!bounds) {
+              return;
             }
-          });
+            onDragDebounced(mapbox.getCenter(), bounds);
+          };
+          const onDrag = () => {
+            dispatchDrag();
+          };
+          const onZoom = (e: mapboxgl.MapboxEvent) => {
+            if ('originalEvent' in e && e.originalEvent) {
+              // only trigger on user zoom, not programmatic zoom (e.g. from fitBounds)
+              dispatchDrag();
+            }
+          };
+          mapbox.on('drag', onDrag);
+          mapbox.on('zoom', onZoom);
           return () => {
-            mapbox.off('drag', () => {
-              onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
-            });
-            mapbox.off('zoom', (e) => {
-              if (e.originalEvent) {
-                onDragDebounced(mapbox.getCenter(), mapbox.getBounds());
-              }
-            });
+            mapbox.off('drag', onDrag);
+            mapbox.off('zoom', onZoom);
           };
         }
       }
