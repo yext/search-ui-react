@@ -4,10 +4,10 @@
 
 ## MapboxMapProps.mapboxOptions property
 
-Interface for map customization derived from Mapbox GL's Map options.
+Interface for map customization supported by this component.
 
 **Signature:**
 
 ```typescript
-mapboxOptions?: Omit<mapboxgl.MapboxOptions, 'container'>;
+mapboxOptions?: MapboxMapOptions;
 ```

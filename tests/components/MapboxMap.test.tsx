@@ -1,6 +1,13 @@
 import { render, waitFor } from '@testing-library/react';
 import { mockAnswersState } from '../__utils__/mocks';
-import { CoordinateGetter, MapboxMap, Coordinate, getMapboxLanguage } from '../../src/components/MapboxMap';
+import {
+  CoordinateGetter,
+  MapboxMap,
+  Coordinate,
+  MapBounds,
+  MapCenter,
+  getMapboxLanguage
+} from '../../src/components/MapboxMap';
 import { Source, State } from '@yext/search-headless-react';
 import { Map, Marker } from 'mapbox-gl';
 import React from 'react';
@@ -54,6 +61,18 @@ const mockedStateWrongCoordinateType: Partial<State> = {
   }
 };
 
+beforeEach(() => {
+  mockAnswersState(mockedStateDefaultCoordinate);
+  jest.spyOn(Marker.prototype, 'setLngLat').mockReturnValue(Marker.prototype);
+  jest.spyOn(Marker.prototype, 'addTo').mockReturnValue(Marker.prototype);
+  jest.spyOn(Marker.prototype, 'getElement').mockReturnValue(document.createElement('div'));
+  jest.spyOn(Map.prototype, 'getCenter').mockReturnValue({ lat: 40.741611, lng: -74.005371 } as ReturnType<Map['getCenter']>);
+  jest.spyOn(Map.prototype, 'getCanvas').mockReturnValue({
+    clientHeight: 400,
+    clientWidth: 400
+  } as HTMLCanvasElement);
+});
+
 describe('default "getCoordinate"', () => {
   it('uses result\'s "yextDisplayCoordinate" for marker location', () => {
     mockAnswersState(mockedStateDefaultCoordinate);
@@ -98,10 +117,24 @@ it('executes custom "getCoordinate" and use the derived coordinate for marker lo
   expect(setLngLat).toBeCalledWith({ lat: 2, lng: 2 });
 });
 
-it('registers "onDrag" callback to Mapbox\'s event listener for "drag to pan" interaction', () => {
+it('registers "onDrag" callback with library-owned map wrappers', () => {
   jest.useFakeTimers();
-  jest.spyOn(Marker.prototype, 'setLngLat').mockReturnValue(Marker.prototype);
-  jest.spyOn(Map.prototype, 'getBounds').mockReturnValue({} as ReturnType<Map['getBounds']>);
+  const distanceTo = jest.fn().mockReturnValue(157000);
+  const getNorthEast = jest.fn().mockReturnValue({ lat: 42, lng: -73 });
+  const getNorthWest = jest.fn().mockReturnValue({ lat: 42, lng: -75 });
+  const getSouthEast = jest.fn().mockReturnValue({ lat: 40, lng: -73 });
+  const getSouthWest = jest.fn().mockReturnValue({ lat: 40, lng: -75 });
+  jest.spyOn(Map.prototype, 'getBounds').mockReturnValue({
+    getNorthEast,
+    getNorthWest,
+    getSouthEast,
+    getSouthWest
+  } as unknown as ReturnType<Map['getBounds']>);
+  jest.spyOn(Map.prototype, 'getCenter').mockReturnValue({
+    lat: 41,
+    lng: -74,
+    distanceTo
+  } as unknown as ReturnType<Map['getCenter']>);
   const mapOnEventListener = jest.spyOn(Map.prototype, 'on')
     .mockImplementation((e, cb) => {
       if (e === 'drag' && typeof cb === 'function') {
@@ -113,13 +146,19 @@ it('registers "onDrag" callback to Mapbox\'s event listener for "drag to pan" in
   render(<MapboxMap mapboxAccessToken='TEST_KEY' onDrag={onDragFn} />);
   expect(mapOnEventListener).toBeCalledWith('drag', expect.anything());
   expect(onDragFn).toBeCalledTimes(0);
-  jest.advanceTimersByTime(100); //debounce time
+  jest.advanceTimersByTime(100);
   expect(onDragFn).toBeCalledTimes(1);
+
+  const [center, bounds] = onDragFn.mock.calls[0] as [MapCenter, MapBounds];
+  expect(center.latitude).toEqual(41);
+  expect(center.longitude).toEqual(-74);
+  expect(center.distanceTo(bounds.getNorthEast())).toBeGreaterThan(0);
+  expect(distanceTo).toBeCalled();
+  expect(bounds.getNorthEast()).toMatchObject({ latitude: 42, longitude: -73 });
 });
 
 it('uses PinComponent and logs warning if both PinComponent and renderPin are provided', async () => {
   mockAnswersState(mockedStateDefaultCoordinate);
-  jest.spyOn(Marker.prototype, 'setLngLat').mockReturnValue(Marker.prototype);
   const PinComponent = jest.fn().mockImplementation(() => null);
   const renderPin = jest.fn();
   const warnSpy = jest.spyOn(console, 'warn').mockImplementation();
@@ -134,9 +173,100 @@ it('uses PinComponent and logs warning if both PinComponent and renderPin are pr
   expect(warnSpy).toBeCalledWith(
     'Found both PinComponent and renderPin props. Using PinComponent.'
   );
-  await waitFor(() => expect(PinComponent).toBeCalledTimes(1));
+  await waitFor(() => expect(PinComponent).toHaveBeenCalled());
   expect(renderPin).not.toBeCalled();
 });
+
+it('exposes the native map through the pin component escape hatch', async () => {
+  const PinComponent = jest.fn().mockImplementation(() => null);
+
+  render(<MapboxMap
+    mapboxAccessToken='TEST_KEY'
+    PinComponent={PinComponent}
+  />);
+
+  await waitFor(() => expect(PinComponent).toHaveBeenCalled());
+  const firstProps = PinComponent.mock.calls[0][0];
+  expect(firstProps.mapbox.getNativeInstance()).toBeInstanceOf(Map);
+  expect(firstProps.mapbox.getCenter())
+    .toMatchObject({ latitude: expect.any(Number), longitude: expect.any(Number) });
+});
+
+it('converts supported mapbox options before creating the native map', () => {
+  render(
+    <MapboxMap
+      mapboxAccessToken='TEST_KEY'
+      mapboxOptions={{
+        center: { latitude: 12, longitude: 34 },
+        style: 'mapbox://styles/custom/style',
+        zoom: 6
+      }}
+    />
+  );
+
+  const MapConstructor = Map as unknown as jest.Mock;
+  expect(MapConstructor.mock.calls[0][0]).toMatchObject({
+    center: [34, 12],
+    style: 'mapbox://styles/custom/style',
+    zoom: 6
+  });
+});
+
+it('passes converted fit-bounds options through to the native map', () => {
+  const fitBounds = jest.spyOn(Map.prototype, 'fitBounds').mockReturnValue(Map.prototype);
+
+  render(
+    <MapboxMap
+      mapboxAccessToken='TEST_KEY'
+      mapboxOptions={{
+        fitBoundsOptions: {
+          maxZoom: 11,
+          padding: {
+            top: 10,
+            bottom: 20,
+            left: 30,
+            right: 40
+          }
+        }
+      }}
+    />
+  );
+
+  expect(fitBounds).toBeCalledWith(
+    expect.anything(),
+    expect.objectContaining({
+      maxZoom: 11,
+      padding: {
+        top: 10,
+        bottom: 20,
+        left: 30,
+        right: 40
+      }
+    })
+  );
+});
+
+it('updates supported options when allowUpdates is true', () => {
+  const setStyle = jest.spyOn(Map.prototype, 'setStyle').mockReturnValue(Map.prototype);
+  const { rerender } = render(
+    <MapboxMap
+      mapboxAccessToken='TEST_KEY'
+      allowUpdates={true}
+      mapboxOptions={{ style: 'mapbox://styles/initial/style' }}
+    />
+  );
+
+  rerender(
+    <MapboxMap
+      mapboxAccessToken='TEST_KEY'
+      allowUpdates={true}
+      mapboxOptions={{ style: 'mapbox://styles/updated/style' }}
+    />
+  );
+
+  expect(setStyle).toBeCalledWith('mapbox://styles/updated/style');
+});
+
 describe('localize the map based on the search locale', () => {
   // list of languages that mapbox supports: (https://github.com/mapbox/mapbox-gl-language/blob/v1.0.1/index.js#L46)
   // ['ar', 'de', 'en', 'es', 'fr', 'it', 'ja', 'ko', 'mul', 'pt', 'ru', 'vi', 'zh-Hans', 'zh-Hant']

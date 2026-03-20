@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import mapboxgl, { MarkerOptions } from 'mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 import { Result, useSearchState, SelectableStaticFilter } from '@yext/search-headless-react';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import _ from 'lodash';
@@ -23,6 +23,117 @@ const reactMajorVersion = Number(React.version.split('.')[0]);
 const supportsCreateRoot = !Number.isNaN(reactMajorVersion) && reactMajorVersion >= 18;
 
 /**
+ * Coordinate use to represent the result's location on a map.
+ *
+ * @public
+ */
+export interface Coordinate {
+  /** The latitude of the location. */
+  latitude: number,
+  /** The longitude of the location. */
+  longitude: number
+}
+
+/**
+ * A map center coordinate with helper methods that are owned by this library.
+ *
+ * @public
+ */
+export interface MapCenter extends Coordinate {
+  /** Calculates the distance in meters between this coordinate and another coordinate. */
+  distanceTo: (coordinate: Coordinate) => number
+}
+
+/**
+ * A library-owned map bounds interface for drag and zoom callbacks.
+ *
+ * @public
+ */
+export interface MapBounds {
+  /** Gets the north east corner of the current bounds. */
+  getNorthEast: () => MapCenter,
+  /** Gets the north west corner of the current bounds. */
+  getNorthWest: () => MapCenter,
+  /** Gets the south east corner of the current bounds. */
+  getSouthEast: () => MapCenter,
+  /** Gets the south west corner of the current bounds. */
+  getSouthWest: () => MapCenter
+}
+
+/**
+ * Padding around a fit-bounds request.
+ *
+ * @public
+ */
+export interface MapPadding {
+  top?: number,
+  bottom?: number,
+  left?: number,
+  right?: number
+}
+
+/**
+ * Options used when fitting the map view to a set of bounds.
+ *
+ * @public
+ */
+export interface MapFitBoundsOptions {
+  padding?: number | MapPadding,
+  maxZoom?: number
+}
+
+/**
+ * The subset of map configuration supported by this component.
+ *
+ * @public
+ */
+export interface MapboxMapOptions {
+  center?: Coordinate,
+  fitBoundsOptions?: MapFitBoundsOptions,
+  maxZoom?: number,
+  style?: string | Record<string, unknown>,
+  zoom?: number
+}
+
+/**
+ * Marker options supported by this component.
+ *
+ * @public
+ */
+export interface MapMarkerOptions {
+  anchor?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right',
+  className?: string,
+  clickTolerance?: number,
+  color?: string,
+  draggable?: boolean,
+  occludedOpacity?: number,
+  pitchAlignment?: 'map' | 'viewport' | 'auto',
+  rotation?: number,
+  rotationAlignment?: 'map' | 'viewport' | 'auto' | 'horizon',
+  scale?: number
+}
+
+/**
+ * A library-owned facade over the backing map implementation.
+ *
+ * @public
+ */
+export interface MapInstance {
+  fitBounds: (bounds: MapBounds, options?: MapFitBoundsOptions) => void,
+  flyTo: (options: { center: Coordinate }) => void,
+  getBounds: () => MapBounds | undefined,
+  getCenter: () => MapCenter,
+  /**
+   * Returns the native map implementation instance for advanced integrations.
+   *
+   * @remarks
+   * This value is intentionally untyped because it is implementation-specific.
+   */
+  getNativeInstance: () => unknown,
+  resize: () => void
+}
+
+/**
  * Props for rendering a custom marker on the map.
  *
  * @public
@@ -30,11 +141,11 @@ const supportsCreateRoot = !Number.isNaN(reactMajorVersion) && reactMajorVersion
 export type PinComponentProps<T> = {
   /** The index of the pin. */
   index: number,
-  /** The Mapbox map. */
-  mapbox: mapboxgl.Map,
+  /** A stable map facade for advanced pin interactions. */
+  mapbox: MapInstance,
   /** The search result corresponding to the pin. */
   result: Result<T>,
-  /** Where the pin is selected. */
+  /** Whether the pin is selected. */
   selected?: boolean
 };
 
@@ -53,23 +164,11 @@ export type PinComponent<T> = (props: PinComponentProps<T>) => React.JSX.Element
 export type CoordinateGetter<T> = (result: Result<T>) => Coordinate | undefined;
 
 /**
- * Coordinate use to represent the result's location on a map.
- *
- * @public
- */
-export interface Coordinate {
-  /** The latitude of the location. */
-  latitude: number,
-  /** The longitude of the location. */
-  longitude: number
-}
-
-/**
  * A function which is called when user drags or zooms the map.
  *
  * @public
  */
-export type OnDragHandler = (center: mapboxgl.LngLat, bounds: mapboxgl.LngLatBounds) => void;
+export type OnDragHandler = (center: MapCenter, bounds: MapBounds) => void;
 
 /**
  * Props for the {@link MapboxMap} component.
@@ -80,8 +179,8 @@ export type OnDragHandler = (center: mapboxgl.LngLat, bounds: mapboxgl.LngLatBou
 export interface MapboxMapProps<T> {
   /** Mapbox access token. */
   mapboxAccessToken: string,
-  /** Interface for map customization derived from Mapbox GL's Map options. */
-  mapboxOptions?: Omit<mapboxgl.MapboxOptions, 'container'>,
+  /** Interface for map customization supported by this component. */
+  mapboxOptions?: MapboxMapOptions,
   /**
    * Custom Pin component to render for markers on the map.
    * By default, the built-in marker image from Mapbox GL is used.
@@ -120,7 +219,7 @@ export interface MapboxMapProps<T> {
   /** A function that handles a pin click event. */
   onPinClick?: (result: Result<T> | undefined) => void,
   /** The options to apply to the map markers based on whether it is selected. */
-  markerOptionsOverride?: (selected: boolean) => MarkerOptions
+  markerOptionsOverride?: (selected: boolean) => MapMarkerOptions
 }
 
 /**
@@ -133,9 +232,6 @@ export interface MapboxMapProps<T> {
  * For instance, user may add the following import statement in their application's index file
  * or in the file where `MapboxMap` is used:
  * `import 'mapbox-gl/dist/mapbox-gl.css';`
- *
- * Or, user may add a stylesheet link in their html page:
- * `<link href="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.css" rel="stylesheet" />`
  *
  * @param props - {@link MapboxMapProps}
  * @returns A React element containing a Mapbox Map
@@ -163,6 +259,7 @@ export function MapboxMap<T>({
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const markers = useRef<mapboxgl.Marker[]>([]);
+  const mapFacade = useRef<MapInstance | null>(null);
   const markerRoots = useRef(new Map<HTMLElement, RootHandle>());
   const activeMarkerElements = useRef(new Set<HTMLElement>());
   const markerData = useRef<Array<{ marker: mapboxgl.Marker, result: Result<T>, index: number }>>([]);
@@ -221,7 +318,7 @@ export function MapboxMap<T>({
 
   // builds and attaches a single marker to the mapbox map
   const createMarker = useCallback((
-    mapbox: mapboxgl.Map,
+    mapbox: MapInstance,
     result: Result<T>,
     index: number,
     selected: boolean
@@ -260,13 +357,18 @@ export function MapboxMap<T>({
     if (markerOptionsOverride) {
       markerOptions = {
         ...markerOptions,
-        ...markerOptionsOverride(selected)
+        ...toNativeMarkerOptions(markerOptionsOverride(selected))
       };
+    }
+
+    const nativeMap = mapbox.getNativeInstance();
+    if (!(nativeMap instanceof mapboxgl.Map)) {
+      return null;
     }
 
     const marker = new mapboxInstance.Marker(markerOptions)
       .setLngLat({ lat: latitude, lng: longitude })
-      .addTo(mapbox);
+      .addTo(nativeMap);
 
     marker?.getElement().addEventListener('click', () => handlePinClick(result));
 
@@ -354,53 +456,64 @@ export function MapboxMap<T>({
         if (!_.isEqual(prevMapboxOptions.current, mapboxOptions)) {
           // Update to existing Map
           handleMapboxOptionsUpdates(mapboxOptions, map.current);
-          prevMapboxOptions.current = (mapboxOptions);
+          prevMapboxOptions.current = mapboxOptions;
         }
       } else if (!map.current && mapboxInstance) {
-        const options: mapboxgl.MapboxOptions = {
+        const options: mapboxgl.MapOptions = {
           container: mapContainer.current,
           style: 'mapbox://styles/mapbox/streets-v11',
           center: [-74.005371, 40.741611],
           zoom: 9,
-          ...mapboxOptions
+          ...toNativeMapboxOptions(mapboxOptions)
         };
         map.current = new mapboxInstance.Map(options);
-        const mapbox = map.current;
-        mapbox.resize();
+        const nativeMap = map.current;
+        mapFacade.current = createMapInstanceFacade(nativeMap);
+        nativeMap.resize();
         const nav = new mapboxInstance.NavigationControl({
           showCompass: false,
           showZoom: true,
           visualizePitch: false
         });
-        mapbox.addControl(nav, 'top-right');
-        if (onDragDebounced) {
-          const dispatchDrag = () => {
-            const bounds = mapbox.getBounds();
-            if (!bounds) {
-              return;
-            }
-            onDragDebounced(mapbox.getCenter(), bounds);
-          };
-          const onDrag = () => {
-            dispatchDrag();
-          };
-          const onZoom = (e: mapboxgl.MapboxEvent) => {
-            if ('originalEvent' in e && e.originalEvent) {
-              // only trigger on user zoom, not programmatic zoom (e.g. from fitBounds)
-              dispatchDrag();
-            }
-          };
-          mapbox.on('drag', onDrag);
-          mapbox.on('zoom', onZoom);
-          return () => {
-            mapbox.off('drag', onDrag);
-            mapbox.off('zoom', onZoom);
-          };
-        }
+        nativeMap.addControl(nav, 'top-right');
       }
       localizeMap();
     }
-  }, [allowUpdates, mapboxInstance, mapboxOptions, onDragDebounced, localizeMap]);
+  }, [allowUpdates, localizeMap, mapboxInstance, mapboxOptions]);
+
+  // Register drag listeners separately from map initialization so rerenders do not
+  // accidentally remove them without reattaching them.
+  useEffect(() => {
+    const nativeMap = map.current;
+    if (!nativeMap || !onDragDebounced) {
+      return;
+    }
+
+    const dispatchDrag = () => {
+      const bounds = nativeMap.getBounds();
+      if (!bounds) {
+        return;
+      }
+      onDragDebounced(toMapCenter(nativeMap.getCenter()), toMapBounds(bounds));
+    };
+    const onDrag = () => {
+      dispatchDrag();
+    };
+    const onZoom = (e: mapboxgl.MapEventOf<'zoom'>) => {
+      if ('originalEvent' in e && e.originalEvent) {
+        // only trigger on user zoom, not programmatic zoom (e.g. from fitBounds)
+        dispatchDrag();
+      }
+    };
+
+    nativeMap.on('drag', onDrag);
+    nativeMap.on('zoom', onZoom);
+
+    return () => {
+      nativeMap.off('drag', onDrag);
+      nativeMap.off('zoom', onZoom);
+    };
+  }, [onDragDebounced]);
 
   // resize the map when its iframe container changes size.
   useEffect(() => {
@@ -412,8 +525,9 @@ export function MapboxMap<T>({
   // create and place markers when results change, then cleanup on teardown
   useEffect(() => {
     removeMarkers();
-    const mapbox = map.current;
-    if (mapbox && locationResults) {
+    const nativeMap = map.current;
+    const mapbox = mapFacade.current;
+    if (nativeMap && mapbox && locationResults) {
       if (locationResults.length > 0) {
         const bounds = new mapboxInstance.LngLatBounds();
         // create a marker for each result
@@ -428,8 +542,8 @@ export function MapboxMap<T>({
         });
 
         // fit the map to the markers
-        mapbox.resize();
-        const canvas = mapbox.getCanvas();
+        nativeMap.resize();
+        const canvas = nativeMap.getCanvas();
 
         // add padding to map
         if (!bounds.isEmpty()
@@ -441,7 +555,7 @@ export function MapboxMap<T>({
             // these settings are defaults and will be overriden if present on fitBoundsOptions
             padding: { top: 50, bottom: 50, left: 50, right: 50 },
             maxZoom: mapboxOptions?.maxZoom ?? 15,
-            ...mapboxOptions?.fitBoundsOptions,
+            ...toNativeFitBoundsOptions(mapboxOptions?.fitBoundsOptions),
           };
 
           let resolvedPadding;
@@ -475,7 +589,7 @@ export function MapboxMap<T>({
             resolvedPadding.right = Math.max(0, resolvedPadding.right * ratio - 1);
           }
           resolvedOptions.padding = resolvedPadding;
-          mapbox.fitBounds(bounds, resolvedOptions);
+          nativeMap.fitBounds(bounds, resolvedOptions);
         }
 
         // return a cleanup function to remove markers when the map component unmounts
@@ -488,7 +602,7 @@ export function MapboxMap<T>({
       } else if (staticFilters?.length) {
         const locationFilterValue = getLocationFilterValue(staticFilters);
         if (locationFilterValue) {
-          mapbox.flyTo({
+          nativeMap.flyTo({
             center: locationFilterValue
           });
         }
@@ -508,7 +622,7 @@ export function MapboxMap<T>({
 
   // update marker options when markerOptionsOverride changes or selectedResult changes
   useEffect(() => {
-    const mapbox = map.current;
+    const mapbox = mapFacade.current;
     if (!mapbox || !markerOptionsOverride) {
       previousSelectedResult.current = selectedResult;
       return;
@@ -551,7 +665,7 @@ export function MapboxMap<T>({
 
   // re-render custom PinComponent on selection changes to update the visual state
   useEffect(() => {
-    const mapbox = map.current;
+    const mapbox = mapFacade.current;
     if (!mapbox || !PinComponent) {
       return;
     }
@@ -576,9 +690,101 @@ export function MapboxMap<T>({
   );
 }
 
-function handleMapboxOptionsUpdates(mapboxOptions: Omit<mapboxgl.MapboxOptions, 'container'> | undefined, currentMap: mapboxgl.Map) {
+function toMapCenter(lngLat: mapboxgl.LngLat): MapCenter {
+  const coordinate = {
+    latitude: lngLat.lat,
+    longitude: lngLat.lng
+  };
+
+  return {
+    ...coordinate,
+    distanceTo: (nextCoordinate: Coordinate) => lngLat.distanceTo(
+      new mapboxgl.LngLat(nextCoordinate.longitude, nextCoordinate.latitude)
+    )
+  };
+}
+
+function toMapBounds(bounds: mapboxgl.LngLatBounds): MapBounds {
+  return {
+    getNorthEast: () => toMapCenter(bounds.getNorthEast()),
+    getNorthWest: () => toMapCenter(bounds.getNorthWest()),
+    getSouthEast: () => toMapCenter(bounds.getSouthEast()),
+    getSouthWest: () => toMapCenter(bounds.getSouthWest())
+  };
+}
+
+function toNativeCoordinate(coordinate: Coordinate): [number, number] {
+  return [coordinate.longitude, coordinate.latitude];
+}
+
+function toNativeFitBoundsOptions(
+  fitBoundsOptions: MapFitBoundsOptions | undefined
+): mapboxgl.MapOptions['fitBoundsOptions'] | undefined {
+  if (!fitBoundsOptions) {
+    return undefined;
+  }
+
+  return {
+    ...fitBoundsOptions,
+    padding: fitBoundsOptions.padding
+      ? typeof fitBoundsOptions.padding === 'number'
+        ? fitBoundsOptions.padding
+        : {
+          top: fitBoundsOptions.padding.top ?? 0,
+          bottom: fitBoundsOptions.padding.bottom ?? 0,
+          left: fitBoundsOptions.padding.left ?? 0,
+          right: fitBoundsOptions.padding.right ?? 0
+        }
+      : undefined
+  };
+}
+
+function toNativeMapboxOptions(mapboxOptions: MapboxMapOptions | undefined): Omit<mapboxgl.MapOptions, 'container'> {
+  if (!mapboxOptions) {
+    return {};
+  }
+
+  return {
+    ...mapboxOptions,
+    center: mapboxOptions.center ? toNativeCoordinate(mapboxOptions.center) : undefined,
+    fitBoundsOptions: toNativeFitBoundsOptions(mapboxOptions.fitBoundsOptions),
+    style: mapboxOptions.style as mapboxgl.StyleSpecification | string | undefined
+  };
+}
+
+function toNativeMarkerOptions(markerOptions: MapMarkerOptions): mapboxgl.MarkerOptions {
+  return { ...markerOptions };
+}
+
+function createMapInstanceFacade(map: mapboxgl.Map): MapInstance {
+  return {
+    fitBounds: (bounds, options) => {
+      map.fitBounds(
+        [
+          toNativeCoordinate(bounds.getSouthWest()),
+          toNativeCoordinate(bounds.getNorthEast())
+        ],
+        toNativeFitBoundsOptions(options)
+      );
+    },
+    flyTo: ({ center }) => {
+      map.flyTo({ center: toNativeCoordinate(center) });
+    },
+    getBounds: () => {
+      const bounds = map.getBounds();
+      return bounds ? toMapBounds(bounds) : undefined;
+    },
+    getCenter: () => toMapCenter(map.getCenter()),
+    getNativeInstance: () => map,
+    resize: () => {
+      map.resize();
+    }
+  };
+}
+
+function handleMapboxOptionsUpdates(mapboxOptions: MapboxMapOptions | undefined, currentMap: mapboxgl.Map) {
   if (mapboxOptions?.style) {
-    currentMap.setStyle(mapboxOptions.style);
+    currentMap.setStyle(mapboxOptions.style as mapboxgl.StyleSpecification | string);
   }
   // Add more options to update as needed
 }

@@ -60,5 +60,3 @@ For the map to work properly, be sure to include Mapbox GL stylesheet in the app
 
 For instance, user may add the following import statement in their application's index file or in the file where `MapboxMap` is used: `import 'mapbox-gl/dist/mapbox-gl.css';`
 
-Or, user may add a stylesheet link in their html page: `<link href="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.css" rel="stylesheet" />`
-
