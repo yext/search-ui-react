@@ -37,6 +37,25 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[altitude?](./search-ui-react.mapmarkeroptions.altitude.md)
+
+
+</td><td>
+
+
+</td><td>
+
+number
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
 [anchor?](./search-ui-react.mapmarkeroptions.anchor.md)
 
 
@@ -132,6 +151,25 @@ _(Optional)_
 </td></tr>
 <tr><td>
 
+[element?](./search-ui-react.mapmarkeroptions.element.md)
+
+
+</td><td>
+
+
+</td><td>
+
+HTMLElement
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
 [occludedOpacity?](./search-ui-react.mapmarkeroptions.occludedopacity.md)
 
 
@@ -141,6 +179,25 @@ _(Optional)_
 </td><td>
 
 number
+
+
+</td><td>
+
+_(Optional)_
+
+
+</td></tr>
+<tr><td>
+
+[offset?](./search-ui-react.mapmarkeroptions.offset.md)
+
+
+</td><td>
+
+
+</td><td>
+
+\[number, number\]
 
 
 </td><td>

@@ -580,6 +580,8 @@ export interface MapInstance {
 // @public
 export interface MapMarkerOptions {
     // (undocumented)
+    altitude?: number;
+    // (undocumented)
     anchor?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
     // (undocumented)
     className?: string;
@@ -590,7 +592,11 @@ export interface MapMarkerOptions {
     // (undocumented)
     draggable?: boolean;
     // (undocumented)
+    element?: HTMLElement;
+    // (undocumented)
     occludedOpacity?: number;
+    // (undocumented)
+    offset?: [number, number];
     // (undocumented)
     pitchAlignment?: 'map' | 'viewport' | 'auto';
     // (undocumented)
@@ -1135,7 +1141,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1854:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1857:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
