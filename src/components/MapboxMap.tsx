@@ -101,16 +101,19 @@ export interface MapboxMapOptions {
  * @public
  */
 export interface MapMarkerOptions {
+  element?: HTMLElement,
+  offset?: [number, number],
   anchor?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right',
-  className?: string,
-  clickTolerance?: number,
   color?: string,
+  scale?: number,
   draggable?: boolean,
-  occludedOpacity?: number,
-  pitchAlignment?: 'map' | 'viewport' | 'auto',
+  clickTolerance?: number,
   rotation?: number,
   rotationAlignment?: 'map' | 'viewport' | 'auto' | 'horizon',
-  scale?: number
+  pitchAlignment?: 'map' | 'viewport' | 'auto',
+  occludedOpacity?: number,
+  className?: string,
+  altitude?: number
 }
 
 /**

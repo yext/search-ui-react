@@ -91,6 +91,7 @@ export function LocationsPage() {
     return {
       color: '#FFB6C1',
       scale: selected ? 1.5 : 1,
+      offset: (selected ? [0, -21] : [0, -14]) as [number, number]
     }
   }, [])
 
