@@ -587,7 +587,7 @@ Apache License
 
 The following npm package may be included in this product:
 
- - @swc/helpers@0.5.18
+ - @swc/helpers@0.5.19
 
 This package contains the following license:
 
@@ -1975,8 +1975,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - lodash-es@4.17.22
- - lodash@4.17.21
+ - lodash-es@4.17.23
+ - lodash@4.17.23
 
 These packages each contain the following license:
 
@@ -2466,7 +2466,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - @babel/runtime@7.28.4
+ - @babel/runtime@7.28.6
 
 This package contains the following license:
 
@@ -2966,8 +2966,8 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - react-dom@19.2.3
- - react@19.2.3
+ - react-dom@19.2.4
+ - react@19.2.4
  - scheduler@0.27.0
 
 These packages each contain the following license:
@@ -4222,7 +4222,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - i18next@25.7.4
+ - i18next@25.8.17
 
 This package contains the following license:
 
@@ -4466,7 +4466,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - postcss@8.5.6
+ - postcss@8.5.8
 
 This package contains the following license:
 

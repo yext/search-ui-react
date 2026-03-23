@@ -81,7 +81,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
     items,
     lastTypedOrSubmittedValue,
     setValue,
-    screenReaderKey,
     setScreenReaderKey,
     alwaysSelectOption
   );
@@ -180,8 +179,7 @@ function useFocusContextInstance(
   items: DropdownItemData[],
   lastTypedOrSubmittedValue: string,
   setValue: (newValue: string) => void,
-  screenReaderKey: number,
-  setScreenReaderKey: (newKey: number) => void,
+  setScreenReaderKey: React.Dispatch<React.SetStateAction<number>>,
   alwaysSelectOption: boolean
 ): FocusContextType {
   const [focusedIndex, setFocusedIndex] = useState(-1);
@@ -210,11 +208,11 @@ function useFocusContextInstance(
       if (alwaysSelectOption && numItems !== 0) {
         setFocusedIndex(0);
         setFocusedItemData(items[0].itemData);
-        setScreenReaderKey(screenReaderKey + 1);
+        setScreenReaderKey(prev => prev + 1);
       } else {
         setFocusedIndex(-1);
         setFocusedItemData(undefined);
-        setScreenReaderKey(screenReaderKey + 1);
+        setScreenReaderKey(prev => prev + 1);
       }
     } else if (updatedFocusedIndex < -1) {
       const loopedAroundIndex = (numItems + updatedFocusedIndex + 1) % numItems;

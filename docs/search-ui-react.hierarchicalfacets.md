@@ -14,7 +14,7 @@ A component that displays hierarchical facets, in a tree level structure, applic
 **Signature:**
 
 ```typescript
-declare function HierarchicalFacets({ searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }: HierarchicalFacetsProps): React.JSX.Element;
+declare function HierarchicalFacets(input: HierarchicalFacetsProps): React.JSX.Element;
 ```
 
 ## Parameters
@@ -38,6 +38,20 @@ Description
 <tbody><tr><td>
 
 { searchOnChange, collapsible, defaultExpanded, includedFieldIds, customCssClasses, delimiter, showMoreLimit }
+
+
+</td><td>
+
+(not declared)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+input
 
 
 </td><td>
