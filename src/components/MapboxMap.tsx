@@ -362,7 +362,7 @@ export function MapboxMap<T>({
     }
 
     const nativeMap = mapbox.getNativeInstance();
-    if (!(nativeMap instanceof mapboxgl.Map)) {
+    if (!(nativeMap instanceof mapboxInstance.Map)) {
       return null;
     }
 
