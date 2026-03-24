@@ -55,5 +55,100 @@ Calculates the distance in meters between this coordinate and another coordinate
 
 
 </td></tr>
+<tr><td>
+
+[toArray](./search-ui-react.mapcenter.toarray.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; \[number, number\]
+
+
+</td><td>
+
+Returns the coordinate as a longitude-latitude tuple.
+
+
+</td></tr>
+<tr><td>
+
+[toBounds](./search-ui-react.mapcenter.tobounds.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(radius?: number) =&gt; [MapBounds](./search-ui-react.mapbounds.md)
+
+
+</td><td>
+
+Returns bounds expanded by the provided radius in meters.
+
+
+</td></tr>
+<tr><td>
+
+[toEcef](./search-ui-react.mapcenter.toecef.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(altitude: number) =&gt; \[number, number, number\]
+
+
+</td><td>
+
+Converts this coordinate to Earth-Centered, Earth-Fixed coordinates.
+
+
+</td></tr>
+<tr><td>
+
+[toString](./search-ui-react.mapcenter.tostring.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; string
+
+
+</td><td>
+
+Returns a string representation of the coordinate.
+
+
+</td></tr>
+<tr><td>
+
+[wrap](./search-ui-react.mapcenter.wrap.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; [MapCenter](./search-ui-react.mapcenter.md)
+
+
+</td><td>
+
+Returns a new coordinate whose longitude is wrapped to the range (-180, 180).
+
+
+</td></tr>
 </tbody></table>
 

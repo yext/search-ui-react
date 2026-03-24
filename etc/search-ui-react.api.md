@@ -508,10 +508,22 @@ export interface LocationBiasProps {
 
 // @public
 export interface MapBounds {
+    contains: (coordinate: Coordinate) => boolean;
+    extend: (coordinateOrBounds: Coordinate | MapBounds) => MapBounds;
+    getCenter: () => MapCenter;
+    getEast: () => number;
+    getNorth: () => number;
     getNorthEast: () => MapCenter;
     getNorthWest: () => MapCenter;
+    getSouth: () => number;
     getSouthEast: () => MapCenter;
     getSouthWest: () => MapCenter;
+    getWest: () => number;
+    isEmpty: () => boolean;
+    setNorthEast: (coordinate: Coordinate) => MapBounds;
+    setSouthWest: (coordinate: Coordinate) => MapBounds;
+    toArray: () => [[number, number], [number, number]];
+    toString: () => string;
 }
 
 // @public
@@ -550,6 +562,11 @@ export interface MapboxMapProps<T> {
 // @public
 export interface MapCenter extends Coordinate {
     distanceTo: (coordinate: Coordinate) => number;
+    toArray: () => [number, number];
+    toBounds: (radius?: number) => MapBounds;
+    toEcef: (altitude: number) => [number, number, number];
+    toString: () => string;
+    wrap: () => MapCenter;
 }
 
 // @public
@@ -1141,7 +1158,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1857:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1891:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

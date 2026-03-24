@@ -40,8 +40,18 @@ export interface Coordinate {
  * @public
  */
 export interface MapCenter extends Coordinate {
+  /** Returns a new coordinate whose longitude is wrapped to the range (-180, 180). */
+  wrap: () => MapCenter,
+  /** Returns the coordinate as a longitude-latitude tuple. */
+  toArray: () => [number, number],
+  /** Returns a string representation of the coordinate. */
+  toString: () => string,
   /** Calculates the distance in meters between this coordinate and another coordinate. */
-  distanceTo: (coordinate: Coordinate) => number
+  distanceTo: (coordinate: Coordinate) => number,
+  /** Returns bounds expanded by the provided radius in meters. */
+  toBounds: (radius?: number) => MapBounds,
+  /** Converts this coordinate to Earth-Centered, Earth-Fixed coordinates. */
+  toEcef: (altitude: number) => [number, number, number]
 }
 
 /**
@@ -50,14 +60,38 @@ export interface MapCenter extends Coordinate {
  * @public
  */
 export interface MapBounds {
+  /** Sets the north east corner of the bounds. */
+  setNorthEast: (coordinate: Coordinate) => MapBounds,
+  /** Sets the south west corner of the bounds. */
+  setSouthWest: (coordinate: Coordinate) => MapBounds,
+  /** Extends the bounds to include the provided coordinate or bounds. */
+  extend: (coordinateOrBounds: Coordinate | MapBounds) => MapBounds,
+  /** Gets the center of the current bounds. */
+  getCenter: () => MapCenter,
+  /** Gets the south west corner of the current bounds. */
+  getSouthWest: () => MapCenter,
   /** Gets the north east corner of the current bounds. */
   getNorthEast: () => MapCenter,
   /** Gets the north west corner of the current bounds. */
   getNorthWest: () => MapCenter,
   /** Gets the south east corner of the current bounds. */
   getSouthEast: () => MapCenter,
-  /** Gets the south west corner of the current bounds. */
-  getSouthWest: () => MapCenter
+  /** Gets the west edge of the current bounds. */
+  getWest: () => number,
+  /** Gets the south edge of the current bounds. */
+  getSouth: () => number,
+  /** Gets the east edge of the current bounds. */
+  getEast: () => number,
+  /** Gets the north edge of the current bounds. */
+  getNorth: () => number,
+  /** Returns the bounds as southwest and northeast longitude-latitude tuples. */
+  toArray: () => [[number, number], [number, number]],
+  /** Returns a string representation of the bounds. */
+  toString: () => string,
+  /** Returns whether the bounds are empty. */
+  isEmpty: () => boolean,
+  /** Returns whether the provided coordinate is contained within the bounds. */
+  contains: (coordinate: Coordinate) => boolean
 }
 
 /**
@@ -701,18 +735,48 @@ function toMapCenter(lngLat: mapboxgl.LngLat): MapCenter {
 
   return {
     ...coordinate,
+    wrap: () => toMapCenter(lngLat.wrap()),
+    toArray: () => lngLat.toArray(),
+    toString: () => lngLat.toString(),
     distanceTo: (nextCoordinate: Coordinate) => lngLat.distanceTo(
       new mapboxgl.LngLat(nextCoordinate.longitude, nextCoordinate.latitude)
-    )
+    ),
+    toBounds: (radius?: number) => toMapBounds(lngLat.toBounds(radius)),
+    toEcef: (altitude: number) => lngLat.toEcef(altitude)
   };
 }
 
 function toMapBounds(bounds: mapboxgl.LngLatBounds): MapBounds {
   return {
+    setNorthEast: (coordinate: Coordinate) => toMapBounds(
+      bounds.setNorthEast(toNativeCoordinate(coordinate))
+    ),
+    setSouthWest: (coordinate: Coordinate) => toMapBounds(
+      bounds.setSouthWest(toNativeCoordinate(coordinate))
+    ),
+    extend: (coordinateOrBounds: Coordinate | MapBounds) => toMapBounds(
+      bounds.extend(
+        'getNorthEast' in coordinateOrBounds
+          ? [
+            toNativeCoordinate(coordinateOrBounds.getSouthWest()),
+            toNativeCoordinate(coordinateOrBounds.getNorthEast())
+          ]
+          : toNativeCoordinate(coordinateOrBounds)
+      )
+    ),
+    getCenter: () => toMapCenter(bounds.getCenter()),
+    getSouthWest: () => toMapCenter(bounds.getSouthWest()),
     getNorthEast: () => toMapCenter(bounds.getNorthEast()),
     getNorthWest: () => toMapCenter(bounds.getNorthWest()),
     getSouthEast: () => toMapCenter(bounds.getSouthEast()),
-    getSouthWest: () => toMapCenter(bounds.getSouthWest())
+    getWest: () => bounds.getWest(),
+    getSouth: () => bounds.getSouth(),
+    getEast: () => bounds.getEast(),
+    getNorth: () => bounds.getNorth(),
+    toArray: () => bounds.toArray(),
+    toString: () => bounds.toString(),
+    isEmpty: () => bounds.isEmpty(),
+    contains: (coordinate: Coordinate) => bounds.contains(toNativeCoordinate(coordinate))
   };
 }
 

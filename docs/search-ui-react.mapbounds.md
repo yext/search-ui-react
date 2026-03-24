@@ -37,6 +37,101 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[contains](./search-ui-react.mapbounds.contains.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(coordinate: [Coordinate](./search-ui-react.coordinate.md)<!-- -->) =&gt; boolean
+
+
+</td><td>
+
+Returns whether the provided coordinate is contained within the bounds.
+
+
+</td></tr>
+<tr><td>
+
+[extend](./search-ui-react.mapbounds.extend.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(coordinateOrBounds: [Coordinate](./search-ui-react.coordinate.md) \| [MapBounds](./search-ui-react.mapbounds.md)<!-- -->) =&gt; [MapBounds](./search-ui-react.mapbounds.md)
+
+
+</td><td>
+
+Extends the bounds to include the provided coordinate or bounds.
+
+
+</td></tr>
+<tr><td>
+
+[getCenter](./search-ui-react.mapbounds.getcenter.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; [MapCenter](./search-ui-react.mapcenter.md)
+
+
+</td><td>
+
+Gets the center of the current bounds.
+
+
+</td></tr>
+<tr><td>
+
+[getEast](./search-ui-react.mapbounds.geteast.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; number
+
+
+</td><td>
+
+Gets the east edge of the current bounds.
+
+
+</td></tr>
+<tr><td>
+
+[getNorth](./search-ui-react.mapbounds.getnorth.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; number
+
+
+</td><td>
+
+Gets the north edge of the current bounds.
+
+
+</td></tr>
+<tr><td>
+
 [getNorthEast](./search-ui-react.mapbounds.getnortheast.md)
 
 
@@ -75,6 +170,25 @@ Gets the north west corner of the current bounds.
 </td></tr>
 <tr><td>
 
+[getSouth](./search-ui-react.mapbounds.getsouth.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; number
+
+
+</td><td>
+
+Gets the south edge of the current bounds.
+
+
+</td></tr>
+<tr><td>
+
 [getSouthEast](./search-ui-react.mapbounds.getsoutheast.md)
 
 
@@ -108,6 +222,120 @@ Gets the south east corner of the current bounds.
 </td><td>
 
 Gets the south west corner of the current bounds.
+
+
+</td></tr>
+<tr><td>
+
+[getWest](./search-ui-react.mapbounds.getwest.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; number
+
+
+</td><td>
+
+Gets the west edge of the current bounds.
+
+
+</td></tr>
+<tr><td>
+
+[isEmpty](./search-ui-react.mapbounds.isempty.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; boolean
+
+
+</td><td>
+
+Returns whether the bounds are empty.
+
+
+</td></tr>
+<tr><td>
+
+[setNorthEast](./search-ui-react.mapbounds.setnortheast.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(coordinate: [Coordinate](./search-ui-react.coordinate.md)<!-- -->) =&gt; [MapBounds](./search-ui-react.mapbounds.md)
+
+
+</td><td>
+
+Sets the north east corner of the bounds.
+
+
+</td></tr>
+<tr><td>
+
+[setSouthWest](./search-ui-react.mapbounds.setsouthwest.md)
+
+
+</td><td>
+
+
+</td><td>
+
+(coordinate: [Coordinate](./search-ui-react.coordinate.md)<!-- -->) =&gt; [MapBounds](./search-ui-react.mapbounds.md)
+
+
+</td><td>
+
+Sets the south west corner of the bounds.
+
+
+</td></tr>
+<tr><td>
+
+[toArray](./search-ui-react.mapbounds.toarray.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; \[\[number, number\], \[number, number\]\]
+
+
+</td><td>
+
+Returns the bounds as southwest and northeast longitude-latitude tuples.
+
+
+</td></tr>
+<tr><td>
+
+[toString](./search-ui-react.mapbounds.tostring.md)
+
+
+</td><td>
+
+
+</td><td>
+
+() =&gt; string
+
+
+</td><td>
+
+Returns a string representation of the bounds.
 
 
 </td></tr>
