@@ -11,8 +11,10 @@ Props for rendering a custom marker on the map.
 ```typescript
 type PinComponentProps<T> = {
     index: number;
-    mapbox: mapboxgl.Map;
+    mapbox: MapInstance;
     result: Result<T>;
     selected?: boolean;
 };
 ```
+**References:** [MapInstance](./search-ui-react.mapinstance.md)
+
