@@ -10,10 +10,11 @@ import {
   Pagination,
   MapboxMapProps,
   OnDragHandler,
+  MapBounds,
+  MapCenter,
   Coordinate,
   FilterSearch,
 } from '@yext/search-ui-react';
-import { LngLat, LngLatBounds } from 'mapbox-gl';
 import { useCallback, useLayoutEffect, useRef } from 'react';
 import { MapPin } from '../components/MapPin';
 
@@ -31,7 +32,7 @@ export function LocationsPage() {
   const searchActions = useSearchActions();
   const filters = useSearchState(state => state.filters.static);
   useLayoutEffect(() => {
-    searchActions.setVertical('KM');
+    searchActions.setVertical('locations');
     searchActions.executeVerticalQuery();
   }, [searchActions]);
 
@@ -44,7 +45,7 @@ export function LocationsPage() {
   }, []);
 
   const onDrag: OnDragHandler = useCallback(
-    (center: LngLat, bounds: LngLatBounds) => {
+    (center: MapCenter, bounds: MapBounds) => {
       const radius = center.distanceTo(bounds.getNorthEast());
       const nonLocationFilters: SelectableStaticFilter[] = filters?.filter(f => f.filter.kind !== 'fieldValue' || f.filter.fieldId !== 'builtin.location') ?? [];
       const nearFilter: SelectableStaticFilter = {
@@ -54,30 +55,43 @@ export function LocationsPage() {
           kind: 'fieldValue',
           fieldId: 'builtin.location',
           matcher: Matcher.Near,
-          value: { ...center, radius }
+          value: { lat: center.latitude, lng: center.longitude, radius }
         }
       };
       searchActions.setStaticFilters([...nonLocationFilters, nearFilter]);
       searchActions.executeVerticalQuery();
     }, [filters, searchActions]);
 
-  const scrollToResult = useCallback((result: Result | undefined) => {
-    if (result) {
-      const scrollTop = resultsRef.current
-        .filter((r, index) => r && result.index ? index < result.index : false)
-        .map((elem) => elem?.scrollHeight ?? 0)
-        .reduce((total, height) => total + height + 16);
-      resultsContainer.current?.scroll({
-        top: scrollTop,
-        behavior: "smooth",
-      });
-    }
-  }, [resultsRef.current, resultsContainer])
+  const scrollToResult = useCallback(
+    (result: Result | undefined) => {
+      if (result) {
+        let scrollPos = 0;
+        // the search results that are listed above this result
+        const previousResultsRef = resultsRef.current.filter(
+          (r, index) => r && result.index && index < result.index
+        );
+
+        // sum up the height of all search results that are listed above this result
+        if (previousResultsRef.length > 0) {
+          scrollPos = previousResultsRef
+            .map((elem) => elem?.scrollHeight ?? 0)
+            .reduce((total, height) => total + height);
+        }
+
+        resultsContainer.current?.scroll({
+          top: scrollPos,
+          behavior: "smooth",
+        });
+      }
+    },
+    [resultsContainer]
+  );
 
   const markerOptionsOverride = useCallback((selected: boolean) => {
     return {
       color: '#FFB6C1',
       scale: selected ? 1.5 : 1,
+      offset: (selected ? [0, -21] : [0, -14]) as [number, number]
     }
   }, [])
 
@@ -108,7 +122,7 @@ export function LocationsPage() {
           <MapboxMap
             mapboxAccessToken={process.env.REACT_APP_MAPBOX_API_KEY || 'REPLACE_KEY'}
             mapboxOptions={mapboxOptions}
-            // markerOptionsOverride={markerOptionsOverride}
+            markerOptionsOverride={markerOptionsOverride}
             PinComponent={MapPin}
             onDrag={onDrag}
           />
@@ -142,7 +156,7 @@ export function LocationsPage() {
   //         mapboxAccessToken={process.env.REACT_APP_MAPBOX_API_KEY || 'REPLACE_KEY'}
   //         mapboxOptions={mapboxOptions}
   //         onDrag={onDrag}
-  //         scrollToResult={scrollToResult}
+  //         onPinClick={scrollToResult}
   //         markerOptionsOverride={markerOptionsOverride}
   //       />
   //     </div>

@@ -14,8 +14,6 @@ import { FilterSearchResponse } from '@yext/search-headless-react';
 import { GenerativeDirectAnswerResponse } from '@yext/search-headless-react';
 import { HighlightedValue } from '@yext/search-headless-react';
 import * as i18next from 'i18next';
-import { default as mapboxgl_2 } from 'mapbox-gl';
-import { MarkerOptions } from 'mapbox-gl';
 import { Matcher } from '@yext/search-headless-react';
 import { NumberRangeValue } from '@yext/search-headless-react';
 import { PropsWithChildren } from 'react';
@@ -509,7 +507,41 @@ export interface LocationBiasProps {
 }
 
 // @public
+export interface MapBounds {
+    contains: (coordinate: Coordinate) => boolean;
+    extend: (coordinateOrBounds: Coordinate | MapBounds) => MapBounds;
+    getCenter: () => MapCenter;
+    getEast: () => number;
+    getNorth: () => number;
+    getNorthEast: () => MapCenter;
+    getNorthWest: () => MapCenter;
+    getSouth: () => number;
+    getSouthEast: () => MapCenter;
+    getSouthWest: () => MapCenter;
+    getWest: () => number;
+    isEmpty: () => boolean;
+    setNorthEast: (coordinate: Coordinate) => MapBounds;
+    setSouthWest: (coordinate: Coordinate) => MapBounds;
+    toArray: () => [[number, number], [number, number]];
+    toString: () => string;
+}
+
+// @public
 export function MapboxMap<T>(input: MapboxMapProps<T>): React_2.JSX.Element;
+
+// @public
+export interface MapboxMapOptions {
+    // (undocumented)
+    center?: Coordinate;
+    // (undocumented)
+    fitBoundsOptions?: MapFitBoundsOptions;
+    // (undocumented)
+    maxZoom?: number;
+    // (undocumented)
+    style?: string | Record<string, unknown>;
+    // (undocumented)
+    zoom?: number;
+}
 
 // @public
 export interface MapboxMapProps<T> {
@@ -517,14 +549,91 @@ export interface MapboxMapProps<T> {
     getCoordinate?: CoordinateGetter<T>;
     iframeWindow?: Window;
     mapboxAccessToken: string;
-    mapboxOptions?: Omit<mapboxgl_2.MapboxOptions, 'container'>;
-    markerOptionsOverride?: (selected: boolean) => MarkerOptions;
+    mapboxOptions?: MapboxMapOptions;
+    markerOptionsOverride?: (selected: boolean) => MapMarkerOptions;
     onDrag?: OnDragHandler;
     onPinClick?: (result: Result<T> | undefined) => void;
     PinComponent?: PinComponent<T>;
     renderPin?: (props: PinComponentProps<T> & {
         container: HTMLElement;
     }) => void;
+}
+
+// @public
+export interface MapCenter extends Coordinate {
+    distanceTo: (coordinate: Coordinate) => number;
+    toArray: () => [number, number];
+    toBounds: (radius?: number) => MapBounds;
+    toEcef: (altitude: number) => [number, number, number];
+    toString: () => string;
+    wrap: () => MapCenter;
+}
+
+// @public
+export interface MapFitBoundsOptions {
+    // (undocumented)
+    maxZoom?: number;
+    // (undocumented)
+    padding?: number | MapPadding;
+}
+
+// @public
+export interface MapInstance {
+    // (undocumented)
+    fitBounds: (bounds: MapBounds, options?: MapFitBoundsOptions) => void;
+    // (undocumented)
+    flyTo: (options: {
+        center: Coordinate;
+    }) => void;
+    // (undocumented)
+    getBounds: () => MapBounds | undefined;
+    // (undocumented)
+    getCenter: () => MapCenter;
+    getNativeInstance: () => unknown;
+    // (undocumented)
+    resize: () => void;
+}
+
+// @public
+export interface MapMarkerOptions {
+    // (undocumented)
+    altitude?: number;
+    // (undocumented)
+    anchor?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+    // (undocumented)
+    className?: string;
+    // (undocumented)
+    clickTolerance?: number;
+    // (undocumented)
+    color?: string;
+    // (undocumented)
+    draggable?: boolean;
+    // (undocumented)
+    element?: HTMLElement;
+    // (undocumented)
+    occludedOpacity?: number;
+    // (undocumented)
+    offset?: [number, number];
+    // (undocumented)
+    pitchAlignment?: 'map' | 'viewport' | 'auto';
+    // (undocumented)
+    rotation?: number;
+    // (undocumented)
+    rotationAlignment?: 'map' | 'viewport' | 'auto' | 'horizon';
+    // (undocumented)
+    scale?: number;
+}
+
+// @public
+export interface MapPadding {
+    // (undocumented)
+    bottom?: number;
+    // (undocumented)
+    left?: number;
+    // (undocumented)
+    right?: number;
+    // (undocumented)
+    top?: number;
 }
 
 // @public
@@ -558,7 +667,7 @@ export interface NumericalFacetsProps extends Omit<StandardFacetsProps, 'exclude
 }
 
 // @public
-export type OnDragHandler = (center: mapboxgl_2.LngLat, bounds: mapboxgl_2.LngLatBounds) => void;
+export type OnDragHandler = (center: MapCenter, bounds: MapBounds) => void;
 
 // @public
 export interface OnDropdownInputChangeProps {
@@ -614,7 +723,7 @@ export type PinComponent<T> = (props: PinComponentProps<T>) => React_2.JSX.Eleme
 // @public
 export type PinComponentProps<T> = {
     index: number;
-    mapbox: mapboxgl_2.Map;
+    mapbox: MapInstance;
     result: Result<T>;
     selected?: boolean;
 };
@@ -1049,7 +1158,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1764:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1891:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

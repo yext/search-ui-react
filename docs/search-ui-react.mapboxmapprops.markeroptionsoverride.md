@@ -9,5 +9,5 @@ The options to apply to the map markers based on whether it is selected.
 **Signature:**
 
 ```typescript
-markerOptionsOverride?: (selected: boolean) => MarkerOptions;
+markerOptionsOverride?: (selected: boolean) => MapMarkerOptions;
 ```

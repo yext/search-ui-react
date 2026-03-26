@@ -121,12 +121,12 @@ Mapbox access token.
 
 </td><td>
 
-Omit&lt;mapboxgl.MapboxOptions, 'container'&gt;
+[MapboxMapOptions](./search-ui-react.mapboxmapoptions.md)
 
 
 </td><td>
 
-_(Optional)_ Interface for map customization derived from Mapbox GL's Map options.
+_(Optional)_ Interface for map customization supported by this component.
 
 
 </td></tr>
@@ -140,7 +140,7 @@ _(Optional)_ Interface for map customization derived from Mapbox GL's Map option
 
 </td><td>
 
-(selected: boolean) =&gt; MarkerOptions
+(selected: boolean) =&gt; [MapMarkerOptions](./search-ui-react.mapmarkeroptions.md)
 
 
 </td><td>
