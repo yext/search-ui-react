@@ -31,6 +31,7 @@
   "noAutocompleteOptionsFound": "कोई स्वतः पूर्ति विकल्प नहीं मिला।",
   "noAutocompleteSuggestionsFound": "कोई स्वतः पूर्ति सुझाव नहीं मिला।",
   "noResultsFoundIn": "{{currentVerticalLabel}} में कोई परिणाम नहीं मिला।",
+  "paginationPage": "पृष्ठ {{pageNumber}}",
   "pagination": "पृष्ठांकन",
   "readMoreAbout": "<a>{{name}}</a> के बारे में और पढ़ें",
   "recentSearch": "हाल की खोज: {{query}}",

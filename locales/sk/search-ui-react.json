@@ -36,6 +36,7 @@
   "noAutocompleteOptionsFound": "0 nájdených možností automatického dokončenia.",
   "noAutocompleteSuggestionsFound": "0 nájdených návrhov automatického dokončenia.",
   "noResultsFoundIn": "Nenašli sa žiadne výsledky v {{currentVerticalLabel}}.",
+  "paginationPage": "strana {{pageNumber}}",
   "pagination": "Stránkovanie",
   "readMoreAbout": "Čítať viac o <a>{{name}}</a>",
   "recentSearch": "nedávne vyhľadávanie: {{query}}",

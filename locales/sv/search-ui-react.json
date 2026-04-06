@@ -31,6 +31,7 @@
   "noAutocompleteOptionsFound": "0 autofyllningsval hittades.",
   "noAutocompleteSuggestionsFound": "0 autofyllningsförslag hittades.",
   "noResultsFoundIn": "Inga resultat hittades i {{currentVerticalLabel}}.",
+  "paginationPage": "sida {{pageNumber}}",
   "pagination": "Pagination",
   "readMoreAbout": "Läs mer om <a>{{name}}</a>",
   "recentSearch": "senaste sökningen: {{query}}",

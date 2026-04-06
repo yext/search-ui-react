@@ -130,11 +130,11 @@ function RemovableFilter({
     <div className={cssClasses.removableFilter}>
       <div className={cssClasses.filterLabel}>{displayName}</div>
       <button
-        className='w-2 h-2 text-neutral m-1.5'
+        className='ml-1 inline-flex h-5 w-5 shrink-0 items-center justify-center text-neutral'
         onClick={handleRemove}
         aria-label={t('removeFilter', { displayName })}
       >
-        <CloseIcon />
+        <CloseIcon className='h-2 w-2' />
       </button>
     </div>
   );

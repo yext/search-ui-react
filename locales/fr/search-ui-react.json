@@ -33,6 +33,7 @@
   "noAutocompleteOptionsFound": "0 option de saisie semi-automatique trouvée.",
   "noAutocompleteSuggestionsFound": "0 suggestion de saisie semi-automatique trouvées.",
   "noResultsFoundIn": "Aucun résultat trouvé dans {{currentVerticalLabel}}.",
+  "paginationPage": "page {{pageNumber}}",
   "pagination": "Pagination",
   "readMoreAbout": "En savoir plus sur <a>{{name}}</a>",
   "recentSearch": "recherche récente : {{query}}",

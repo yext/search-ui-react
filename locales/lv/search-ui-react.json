@@ -34,6 +34,7 @@
   "noAutocompleteOptionsFound": "Atrasta 0 automātiskās pabeigšanas opcija.",
   "noAutocompleteSuggestionsFound": "Atrasti 0 automātiskās pabeigšanas ieteikumi.",
   "noResultsFoundIn": "Rezultāti nav atrasti {{currentVerticalLabel}}.",
+  "paginationPage": "{{pageNumber}}. lapa",
   "pagination": "Lappuļošana",
   "readMoreAbout": "Lasīt vairāk par <a>{{name}}</a>",
   "recentSearch": "nesenā meklēšana: {{query}}",
