@@ -37,6 +37,7 @@
   "noAutocompleteOptionsFound": "Автозаполняющих опций не найдено.",
   "noAutocompleteSuggestionsFound": "Подсказок автозаполнения не найдено.",
   "noResultsFoundIn": "Результатов не найдено в {{currentVerticalLabel}}.",
+  "paginationPage": "страница {{pageNumber}}",
   "pagination": "Пагинация",
   "readMoreAbout": "Подробнее о <a>{{name}}</a>",
   "recentSearch": "недавний поиск: {{query}}",

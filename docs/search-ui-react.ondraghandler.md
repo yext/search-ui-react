@@ -4,10 +4,12 @@
 
 ## OnDragHandler type
 
-A function which is called when user drags or zooms the map.
+A function which is called when the user changes the map viewport.
 
 **Signature:**
 
 ```typescript
-type OnDragHandler = (center: mapboxgl.LngLat, bounds: mapboxgl.LngLatBounds) => void;
+type OnDragHandler = (center: MapCenter, bounds: MapBounds) => void;
 ```
+**References:** [MapCenter](./search-ui-react.mapcenter.md)<!-- -->, [MapBounds](./search-ui-react.mapbounds.md)
+

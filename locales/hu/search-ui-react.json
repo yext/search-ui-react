@@ -31,6 +31,7 @@
   "noAutocompleteOptionsFound": "0 automatikus kiegészítési lehetőség található.",
   "noAutocompleteSuggestionsFound": "0 automatikus kiegészítési javaslat található.",
   "noResultsFoundIn": "Nem találhatók találatok a(z) {{currentVerticalLabel}}-ben.",
+  "paginationPage": "{{pageNumber}}. oldal",
   "pagination": "Lapozás",
   "readMoreAbout": "Olvass többet erről: <a>{{name}}</a>",
   "recentSearch": "legutóbbi keresés: {{query}}",

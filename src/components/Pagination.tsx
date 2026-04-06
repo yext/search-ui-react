@@ -82,6 +82,12 @@ export function Pagination(props: PaginationProps): React.JSX.Element | null {
     executeSearch(searchActions);
     reportAnalyticsEvent();
   }, [searchActions, limit, reportAnalyticsEvent]);
+  const getPaginationButtonAriaLabel = useCallback((pageNumber: number) => {
+    return t('paginationPage', {
+      pageNumber,
+      defaultValue: 'page {{pageNumber}}'
+    });
+  }, [t]);
 
   if (maxPageCount <= 1) {
     return null;
@@ -119,9 +125,11 @@ export function Pagination(props: PaginationProps): React.JSX.Element | null {
               return (
                 <PaginationButton
                   key={index}
+                  ariaLabel={getPaginationButtonAriaLabel(currentPageNumber)}
                   className={cssClasses.selectedLabel}
                   navigateToPage={navigateToPage}
                   newPageNumber={currentPageNumber}
+                  isCurrent={true}
                 >
                   {label}
                 </PaginationButton>
@@ -130,6 +138,7 @@ export function Pagination(props: PaginationProps): React.JSX.Element | null {
               return (
                 <PaginationButton
                   key={index}
+                  ariaLabel={getPaginationButtonAriaLabel(Number(label))}
                   className={cssClasses.label}
                   navigateToPage={navigateToPage}
                   newPageNumber={Number(label)}
@@ -158,7 +167,8 @@ interface PaginationButtonProps {
   navigateToPage: (newPageNumber: number) => void,
   newPageNumber: number,
   ariaLabel?: string,
-  disabled?: boolean
+  disabled?: boolean,
+  isCurrent?: boolean
 }
 
 function PaginationButton(props: PropsWithChildren<PaginationButtonProps>): React.JSX.Element | null {
@@ -169,7 +179,9 @@ function PaginationButton(props: PropsWithChildren<PaginationButtonProps>): Reac
 
   return (
     <button
+      type="button"
       aria-label={props.ariaLabel}
+      aria-current={props.isCurrent ? 'true' : undefined}
       className={props.className}
       onClick={handleClick}
       disabled={props.disabled}

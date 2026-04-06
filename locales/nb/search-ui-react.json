@@ -31,6 +31,7 @@
   "noAutocompleteOptionsFound": "0 autofullføringsvalg funnet.",
   "noAutocompleteSuggestionsFound": "0 autofullføringsforslag funnet.",
   "noResultsFoundIn": "Ingen resultater funnet i {{currentVerticalLabel}}.",
+  "paginationPage": "side {{pageNumber}}",
   "pagination": "Sideinndeling",
   "readMoreAbout": "Les mer om <a>{{name}}</a>",
   "recentSearch": "siste søk: {{query}}",

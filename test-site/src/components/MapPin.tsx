@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import { Popup, LngLatLike, Map } from 'mapbox-gl';
 import { PinComponent, Coordinate } from '@yext/search-ui-react';
 import { Location } from '../pages/LocationsPage';
@@ -11,22 +11,25 @@ const transformToMapboxCoord = (coordinate: Coordinate): LngLatLike => ({
 export const MapPin: PinComponent<Location> = props => {
   const { mapbox, result, selected } = props;
   const yextCoordinate = result.rawData.yextDisplayCoordinate;
-  const [active, setActive] = useState(false);
-  const popupRef = useRef(new Popup({ offset: 15 })
-    .on('close', () => setActive(false))
-  );
+  const popupRef = useRef(new Popup({ offset: 15 }));
 
   useEffect(() => {
-    if (active && yextCoordinate) {
+    if (selected && yextCoordinate) {
+      const nativeMap = mapbox.getNativeInstance();
       popupRef.current
         .setLngLat(transformToMapboxCoord(yextCoordinate))
         .setText(result.name || 'unknown location')
-        .addTo(mapbox as Map);
+        .addTo(nativeMap as Map);
+      return;
     }
-  }, [active, mapbox, result, yextCoordinate]);
 
-  const handleClick = useCallback(() => {
-    setActive(true);
+    popupRef.current.remove();
+  }, [mapbox, result, selected, yextCoordinate]);
+
+  useEffect(() => {
+    return () => {
+      popupRef.current.remove();
+    };
   }, []);
 
   const { width, height } = useMemo(() => {
@@ -42,7 +45,7 @@ export const MapPin: PinComponent<Location> = props => {
   }, [selected]);
 
   return (
-    <button onClick={handleClick} aria-label='Show pin details'>
+    <button type='button' aria-label='Show pin details'>
       <svg
         width={width}
         height={height}

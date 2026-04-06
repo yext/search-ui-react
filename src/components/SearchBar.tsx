@@ -459,8 +459,12 @@ export function SearchBar({
           <StyledDropdownMenu cssClasses={cssClasses}>
             {renderRecentSearches()}
             {renderQuerySuggestions()}
-            {showEntityPreviewsDivider && <div className={cssClasses.entityPreviewsDivider}></div>}
-            {entityPreviews}
+            {entityPreviews && (
+              <div role='group'>
+                {showEntityPreviewsDivider && <div className={cssClasses.entityPreviewsDivider} aria-hidden='true' />}
+                {entityPreviews}
+              </div>
+            )}
           </StyledDropdownMenu>
         }
       </Dropdown>
@@ -474,12 +478,12 @@ function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   }
 }>) {
   return (
-    <DropdownMenu>
-      <div className={cssClasses.inputDivider} />
-      <div className='bg-white py-4'>
+    <div>
+      <div className={cssClasses.inputDivider} aria-hidden='true' />
+      <DropdownMenu className='bg-white py-4'>
         {children}
-      </div>
-    </DropdownMenu>
+      </DropdownMenu>
+    </div>
   );
 }
 

@@ -870,12 +870,89 @@ The props for the [LocationBias()](./search-ui-react.locationbias.md) component.
 </td></tr>
 <tr><td>
 
+[MapBounds](./search-ui-react.mapbounds.md)
+
+
+</td><td>
+
+A library-owned map bounds interface for drag and zoom callbacks.
+
+
+</td></tr>
+<tr><td>
+
+[MapboxMapOptions](./search-ui-react.mapboxmapoptions.md)
+
+
+</td><td>
+
+The subset of map configuration supported by this component.
+
+
+</td></tr>
+<tr><td>
+
 [MapboxMapProps](./search-ui-react.mapboxmapprops.md)
 
 
 </td><td>
 
 Props for the [MapboxMap()](./search-ui-react.mapboxmap.md) component. The type param "T" represents the type of "rawData" field of the results use in the map.
+
+
+</td></tr>
+<tr><td>
+
+[MapCenter](./search-ui-react.mapcenter.md)
+
+
+</td><td>
+
+A map center coordinate with helper methods that are owned by this library.
+
+
+</td></tr>
+<tr><td>
+
+[MapFitBoundsOptions](./search-ui-react.mapfitboundsoptions.md)
+
+
+</td><td>
+
+Options used when fitting the map view to a set of bounds.
+
+
+</td></tr>
+<tr><td>
+
+[MapInstance](./search-ui-react.mapinstance.md)
+
+
+</td><td>
+
+A library-owned facade over the backing map implementation.
+
+
+</td></tr>
+<tr><td>
+
+[MapMarkerOptions](./search-ui-react.mapmarkeroptions.md)
+
+
+</td><td>
+
+Marker options supported by this component.
+
+
+</td></tr>
+<tr><td>
+
+[MapPadding](./search-ui-react.mappadding.md)
+
+
+</td><td>
+
+Padding around a fit-bounds request.
 
 
 </td></tr>
@@ -1466,7 +1543,7 @@ The data associated with the currently focused item.
 
 </td><td>
 
-A function which is called when user drags or zooms the map.
+A function which is called when the user changes the map viewport.
 
 
 </td></tr>

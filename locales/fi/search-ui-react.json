@@ -31,6 +31,7 @@
   "noAutocompleteOptionsFound": "0 automaattista ehdotusta löytyi.",
   "noAutocompleteSuggestionsFound": "0 automaattista ehdotusta löytyi.",
   "noResultsFoundIn": "Tuloksia ei löytynyt kohdasta {{currentVerticalLabel}}.",
+  "paginationPage": "sivu {{pageNumber}}",
   "pagination": "Sivutus",
   "readMoreAbout": "Lue lisää aiheesta <a>{{name}}</a>",
   "recentSearch": "viimeisin haku: {{query}}",
