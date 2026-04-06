@@ -333,7 +333,7 @@ export function FilterSearch({
         <div
           className='pb-2'
           key={sectionIndex}
-          role={section.label ? 'group' : undefined}
+          role='group'
           aria-labelledby={sectionLabelId}
         >
           {section.label &&
@@ -341,7 +341,7 @@ export function FilterSearch({
               {section.label}
             </div>
           }
-          <div className={cssClasses.optionsContainer}>
+          <div className={cssClasses.optionsContainer} role='presentation'>
             {section.results.map((result, index) => (
               <DropdownItem
                 key={index}
@@ -379,15 +379,13 @@ export function FilterSearch({
     />
   );
 
-  const dropdownMenu = (
-    <DropdownMenu>
-      {hasResults &&
-        <div className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 mt-1'>
-          {renderDropdownItems()}
-        </div>
-      }
+  const dropdownMenu = hasResults ? (
+    <DropdownMenu
+      className='absolute z-10 w-full shadow-lg rounded-md border border-gray-300 bg-white pt-3 pb-1 mt-1'
+    >
+      {renderDropdownItems()}
     </DropdownMenu>
-  );
+  ) : null;
 
   return (
     <div

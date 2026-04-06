@@ -96,6 +96,7 @@ export function PeoplePage() {
             title='Static Employee Department'
             filterOptions={employeeFilterConfigs}
           />
+          <AppliedFilters />
           <FilterDivider />
           <StaticFilters
             fieldId='c_hierarchicalFacet'

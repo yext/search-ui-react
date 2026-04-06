@@ -36,6 +36,7 @@
   "noAutocompleteOptionsFound": "Nenalezeny žádné možností automatického doplňování.",
   "noAutocompleteSuggestionsFound": "Nenalezeny žádné návrhy automatického doplňování.",
   "noResultsFoundIn": "V {{currentVerticalLabel}} nebyly nalezeny žádné výsledky.",
+  "paginationPage": "stránka {{pageNumber}}",
   "pagination": "Stránkování",
   "readMoreAbout": "Přečíst si více o <a>{{name}}</a>",
   "recentSearch": "nedávné vyhledávání: {{query}}",

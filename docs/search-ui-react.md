@@ -1543,7 +1543,7 @@ The data associated with the currently focused item.
 
 </td><td>
 
-A function which is called when user drags or zooms the map.
+A function which is called when the user changes the map viewport.
 
 
 </td></tr>

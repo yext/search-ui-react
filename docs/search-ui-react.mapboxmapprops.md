@@ -164,7 +164,7 @@ _(Optional)_ The options to apply to the map markers based on whether it is sele
 
 </td><td>
 
-_(Optional)_ A function which is called when user drags or zooms the map.
+_(Optional)_ A function which is called when the user changes the map viewport.
 
 
 </td></tr>
