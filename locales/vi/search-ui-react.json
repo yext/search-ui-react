@@ -28,6 +28,7 @@
   "noAutocompleteOptionsFound": "0 tùy chọn tự động hoàn thành được tìm thấy.",
   "noAutocompleteSuggestionsFound": "0 đề xuất tự động hoàn thành được tìm thấy.",
   "noResultsFoundIn": "Không tìm thấy kết quả trong {{currentVerticalLabel}}.",
+  "paginationPage": "trang {{pageNumber}}",
   "pagination": "Phân trang",
   "readMoreAbout": "Tìm hiểu thêm về <a>{{name}}</a>",
   "recentSearch": "Tìm kiếm gần đây: {{query}}",

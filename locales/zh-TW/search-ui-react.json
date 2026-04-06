@@ -28,6 +28,7 @@
   "noAutocompleteOptionsFound": "未找到自動完成選項。",
   "noAutocompleteSuggestionsFound": "未找到自動完成建議。",
   "noResultsFoundIn": "在{{currentVerticalLabel}}中找不到結果。",
+  "paginationPage": "第 {{pageNumber}} 頁",
   "pagination": "分頁",
   "readMoreAbout": "閱讀更多關於<a>{{name}}</a>的資訊",
   "recentSearch": "最近搜尋：{{query}}",

@@ -32,6 +32,7 @@ type translationKeys =
   'noAutocompleteOptionsFound' |
   'noAutocompleteSuggestionsFound' |
   'noResultsFoundIn' |
+  'paginationPage' |
   'pagination' |
   'readMoreAbout' |
   'recentSearch' |

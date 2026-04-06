@@ -21,6 +21,7 @@ type RootHandle = {
 const legacyReactDOM = ReactDOM as LegacyReactDOM;
 const reactMajorVersion = Number(React.version.split('.')[0]);
 const supportsCreateRoot = !Number.isNaN(reactMajorVersion) && reactMajorVersion >= 18;
+const KEYBOARD_MOVE_KEYS = new Set(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
 
 /**
  * Coordinate use to represent the result's location on a map.
@@ -201,7 +202,7 @@ export type PinComponent<T> = (props: PinComponentProps<T>) => React.JSX.Element
 export type CoordinateGetter<T> = (result: Result<T>) => Coordinate | undefined;
 
 /**
- * A function which is called when user drags or zooms the map.
+ * A function which is called when the user changes the map viewport.
  *
  * @public
  */
@@ -518,13 +519,15 @@ export function MapboxMap<T>({
     }
   }, [allowUpdates, localizeMap, mapboxInstance, mapboxOptions]);
 
-  // Register drag listeners separately from map initialization so rerenders do not
+  // Register movement listeners separately from map initialization so rerenders do not
   // accidentally remove them without reattaching them.
   useEffect(() => {
     const nativeMap = map.current;
     if (!nativeMap || !onDragDebounced) {
       return;
     }
+    const canvasContainer = nativeMap.getCanvasContainer();
+    let keyboardMovePending = false;
 
     const dispatchDrag = () => {
       const bounds = nativeMap.getBounds();
@@ -533,22 +536,35 @@ export function MapboxMap<T>({
       }
       onDragDebounced(toMapCenter(nativeMap.getCenter()), toMapBounds(bounds));
     };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (KEYBOARD_MOVE_KEYS.has(event.key)) {
+        keyboardMovePending = true;
+      }
+    };
+    const clearPendingKeyboardMove = () => {
+      keyboardMovePending = false;
+    };
     const onDrag = () => {
       dispatchDrag();
     };
-    const onZoom = (e: mapboxgl.MapEventOf<'zoom'>) => {
-      if ('originalEvent' in e && e.originalEvent) {
-        // only trigger on user zoom, not programmatic zoom (e.g. from fitBounds)
+    const onMove = (e: mapboxgl.MapEventOf<'move'>) => {
+      if (keyboardMovePending || ('originalEvent' in e && e.originalEvent)) {
+        // only trigger on user movement, not programmatic movement (e.g. from fitBounds)
         dispatchDrag();
       }
     };
 
+    canvasContainer?.addEventListener('keydown', onKeyDown);
     nativeMap.on('drag', onDrag);
-    nativeMap.on('zoom', onZoom);
+    nativeMap.on('move', onMove);
+    nativeMap.on('moveend', clearPendingKeyboardMove);
 
     return () => {
+      keyboardMovePending = false;
+      canvasContainer?.removeEventListener('keydown', onKeyDown);
       nativeMap.off('drag', onDrag);
-      nativeMap.off('zoom', onZoom);
+      nativeMap.off('move', onMove);
+      nativeMap.off('moveend', clearPendingKeyboardMove);
     };
   }, [onDragDebounced]);
 

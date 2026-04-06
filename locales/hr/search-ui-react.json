@@ -34,6 +34,7 @@
   "noAutocompleteOptionsFound": "Nije pronađena 0 opcija automatskog dovršavanja.",
   "noAutocompleteSuggestionsFound": "Nije pronađen 0 prijedloga za automatsko dovršavanje.",
   "noResultsFoundIn": "Nema rezultata u {{currentVerticalLabel}}.",
+  "paginationPage": "stranica {{pageNumber}}",
   "pagination": "Paginacija",
   "readMoreAbout": "Pročitaj više o <a>{{name}}</a>",
   "recentSearch": "nedavno pretraživanje: {{query}}",

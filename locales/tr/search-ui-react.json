@@ -30,6 +30,7 @@
   "noAutocompleteOptionsFound": "0 tamamlayıcı seçenek bulundu.",
   "noAutocompleteSuggestionsFound": "0 tamamlayıcı öneri bulundu.",
   "noResultsFoundIn": "{{currentVerticalLabel}} içinde sonuç bulunamadı.",
+  "paginationPage": "sayfa {{pageNumber}}",
   "pagination": "Sayfalandırma",
   "readMoreAbout": "<a>{{name}}</a> hakkında daha fazla oku",
   "recentSearch": "son arama: {{query}}",

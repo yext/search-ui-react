@@ -116,6 +116,21 @@ describe('results are returned from search', () => {
     expect(totalPaginationButtons - numIconNavButtons).toEqual(numLabelNavButtons);
   });
 
+  it('marks the active page with aria-current', () => {
+    const mockedVerticalSearchState: VerticalSearchState = {
+      resultsCount: 3,
+      verticalKey: 'vertical',
+      limit: 1,
+      offset: 1
+    };
+    mockVerticalSearchState(mockedVerticalSearchState);
+    render(<Pagination />);
+
+    expect(screen.getByRole('button', { name: 'page 2' })).toHaveAttribute('aria-current', 'true');
+    expect(screen.getByRole('button', { name: 'page 1' })).not.toHaveAttribute('aria-current');
+    expect(screen.getByRole('button', { name: 'page 3' })).not.toHaveAttribute('aria-current');
+  });
+
   it('is displayed with ellipses label', () => {
     const customCssClasses = {
       leftIconContainer: 'leftNavButton',

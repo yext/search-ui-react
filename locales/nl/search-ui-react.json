@@ -31,6 +31,7 @@
   "noAutocompleteOptionsFound": "0 automatisch aanvulopties gevonden.",
   "noAutocompleteSuggestionsFound": "0 automatisch aanvultips gevonden.",
   "noResultsFoundIn": "Geen resultaten gevonden in {{currentVerticalLabel}}.",
+  "paginationPage": "pagina {{pageNumber}}",
   "pagination": "Paginering",
   "readMoreAbout": "Lees meer over <a>{{name}}</a>",
   "recentSearch": "recente zoekopdracht: {{query}}",

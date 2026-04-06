@@ -31,6 +31,7 @@
   "noAutocompleteOptionsFound": "0 leitud automaatse täitmise valikud.",
   "noAutocompleteSuggestionsFound": "0 leitud automaatse täitmise ettepanekuid.",
   "noResultsFoundIn": "Tulemusi ei leitud kategoorias {{currentVerticalLabel}}.",
+  "paginationPage": "leht {{pageNumber}}",
   "pagination": "Lehekülgede navigeerimine",
   "readMoreAbout": "Loe rohkem: <a>{{name}}</a>",
   "recentSearch": "hiljutine otsing: {{query}}",
