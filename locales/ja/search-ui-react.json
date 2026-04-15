@@ -28,6 +28,7 @@
   "noAutocompleteOptionsFound": "オートコンプリート オプションが 0 件見つかりました。",
   "noAutocompleteSuggestionsFound": "オートコンプリート候補が 0 件見つかりました。",
   "noResultsFoundIn": "{{currentVerticalLabel}}で結果が見つかりませんでした。",
+  "paginationPage": "{{pageNumber}}ページ",
   "pagination": "ページネーション",
   "readMoreAbout": "<a>{{name}}</a> について詳しく読む",
   "recentSearch": "最近の検索：{{query}}",

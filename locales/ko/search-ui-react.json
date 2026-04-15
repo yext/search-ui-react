@@ -28,6 +28,7 @@
   "noAutocompleteOptionsFound": "자동완성 옵션이 없습니다.",
   "noAutocompleteSuggestionsFound": "자동완성 제안이 없습니다.",
   "noResultsFoundIn": "{{currentVerticalLabel}}에서 결과를 찾을 수 없습니다.",
+  "paginationPage": "{{pageNumber}}페이지",
   "pagination": "페이지네이션",
   "readMoreAbout": "<a>{{name}}</a>에 대해 더 읽기",
   "recentSearch": "최근 검색: {{query}}",

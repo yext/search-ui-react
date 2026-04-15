@@ -31,6 +31,7 @@
   "noAutocompleteOptionsFound": "0 autovervollständigung Optionen gefunden.",
   "noAutocompleteSuggestionsFound": "0 autovervollständigung Vorschläge gefunden.",
   "noResultsFoundIn": "Keine Ergebnisse in {{currentVerticalLabel}} gefunden.",
+  "paginationPage": "Seite {{pageNumber}}",
   "pagination": "Seitennavigation",
   "readMoreAbout": "Mehr erfahren über <a>{{name}}</a>",
   "recentSearch": "neuere Suche: {{query}}",

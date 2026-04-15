@@ -28,6 +28,7 @@
   "noAutocompleteOptionsFound": "0已找到自动完成选项。",
   "noAutocompleteSuggestionsFound": "0发现自动完成建议。",
   "noResultsFoundIn": "在{{currentVerticalLabel}}中未找到结果。",
+  "paginationPage": "第 {{pageNumber}} 页",
   "pagination": "分页",
   "readMoreAbout": "阅读关于<a>{{name}}</a>的更多内容",
   "recentSearch": "最近的搜索：{{query}}",

@@ -36,6 +36,7 @@
   "noAutocompleteOptionsFound": "0 automaatse täitmise valikut ei leitud.",
   "noAutocompleteSuggestionsFound": "0 automaatse täitmise soovitust ei leitud.",
   "noResultsFoundIn": "Rezultatų nerasta {{currentVerticalLabel}}.",
+  "paginationPage": "{{pageNumber}} puslapis",
   "pagination": "Puslapiavimas",
   "readMoreAbout": "Skaityti daugiau apie <a>{{name}}</a>",
   "recentSearch": "Naujausia paieška: {{query}}",
