@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { within } from '@storybook/testing-library';
-import { fn } from '@storybook/test';
+import { expect, fn } from '@storybook/test';
 import { fireEvent } from '@testing-library/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
@@ -72,11 +72,13 @@ CustomRenderPin.args = {
   renderPin: (props) => renderReact(<MapPin {...props} />, props.container),
 };
 
-CustomRenderPin.play = async ({ canvasElement }) => {
+CustomRenderPin.play = async ({ canvasElement, args }) => {
   const canvas = within(canvasElement);
   const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
     timeout: 30000
   });
   fireEvent.click(mapPin);
-  await canvas.findByText('title1');
+  await expect(args.onPinClick).toHaveBeenCalledWith(expect.objectContaining({
+    name: 'title1',
+  }));
 };

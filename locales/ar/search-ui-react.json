@@ -39,6 +39,7 @@
   "noAutocompleteOptionsFound": "لم يتم العثور على خيارات للإكمال التلقائي.",
   "noAutocompleteSuggestionsFound": "لم يتم العثور على اقتراحات.",
   "noResultsFoundIn": "لم يتم العثور على نتائج في {{currentVerticalLabel}}.",
+  "paginationPage": "الصفحة {{pageNumber}}",
   "pagination": "ترقيم الصفحات",
   "readMoreAbout": "اقرأ المزيد عن <a>{{name}}</a>",
   "recentSearch": "بحث حديث: {{query}}",

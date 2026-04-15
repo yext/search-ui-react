@@ -204,6 +204,13 @@ export type {
   PinComponent,
   PinComponentProps,
   MapboxMapProps,
+  MapboxMapOptions,
+  MapCenter,
+  MapBounds,
+  MapPadding,
+  MapFitBoundsOptions,
+  MapInstance,
+  MapMarkerOptions,
   OnDragHandler,
   CoordinateGetter,
   Coordinate
