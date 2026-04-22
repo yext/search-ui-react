@@ -1,6 +1,6 @@
 {
   "name": "@yext/search-ui-react",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "A library of React Components for powering Yext Search integrations",
   "author": "watson@yext.com",
   "license": "BSD-3-Clause",
@@ -177,8 +177,8 @@
     "@yext/analytics": "^1.0.2",
     "classnames": "^2.3.1",
     "i18next": "^25.2.1",
-    "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21",
+    "lodash": "^4.18.1",
+    "lodash-es": "^4.18.1",
     "mapbox-gl": "^3.20.0",
     "prop-types": "^15.8.1",
     "react-collapsed": "^4.1.2",
