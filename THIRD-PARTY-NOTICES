@@ -1444,7 +1444,7 @@ http://svn.webkit.org/repository/webkit/trunk/Source/WebCore/platform/graphics/U
 
 The following npm package may be included in this product:
 
- - @mapbox/tiny-sdf@2.2.0
+ - @mapbox/tiny-sdf@2.1.0
 
 This package contains the following license:
 
@@ -1645,6 +1645,28 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+-----------
+
+The following npm package may be included in this product:
+
+ - grid-index@1.1.0
+
+This package contains the following license:
+
+Copyright (c) 2016, Mapbox
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.
 
 -----------
 
@@ -2016,6 +2038,30 @@ terms above.
 
 The following npm package may be included in this product:
 
+ - geojson-vt@4.0.2
+
+This package contains the following license:
+
+ISC License
+
+Copyright (c) 2015, Mapbox
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.
+
+-----------
+
+The following npm package may be included in this product:
+
  - tinyqueue@3.0.0
 
 This package contains the following license:
@@ -2114,7 +2160,6 @@ The following npm packages may be included in this product:
 
  - cheap-ruler@4.0.0
  - earcut@3.0.2
- - geojson-vt@4.0.3
 
 These packages each contain the following license:
 
@@ -2186,7 +2231,7 @@ THIS SOFTWARE.
 
 The following npm package may be included in this product:
 
- - mapbox-gl@3.24.0
+ - mapbox-gl@3.22.0
 
 This package contains the following license:
 
@@ -2990,8 +3035,8 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - react-dom@19.2.6
- - react@19.2.6
+ - react-dom@19.2.5
+ - react@19.2.5
  - scheduler@0.27.0
  - use-sync-external-store@1.6.0
 
@@ -3345,7 +3390,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - is-core-module@2.16.2
+ - is-core-module@2.16.1
 
 This package contains the following license:
 
@@ -4491,7 +4536,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - postcss@8.5.14
+ - postcss@8.5.10
 
 This package contains the following license:
 
@@ -4607,7 +4652,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - nanoid@3.3.12
+ - nanoid@3.3.11
 
 This package contains the following license:
 
