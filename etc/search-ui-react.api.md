@@ -36,6 +36,23 @@ export interface AfterDropdownInputFocusProps {
 }
 
 // @public
+export function AISignpostIcon(input: {
+    className?: string;
+}): React_2.JSX.Element;
+
+// @public
+export interface AISignpostProps {
+    // (undocumented)
+    icon?: React_2.ReactNode;
+    // (undocumented)
+    label?: React_2.ReactNode;
+    // (undocumented)
+    popoverBody?: React_2.ReactNode;
+    // (undocumented)
+    popoverHeader?: React_2.ReactNode;
+}
+
+// @public
 export function AlternativeVerticals(input: AlternativeVerticalsProps): React_2.JSX.Element | null;
 
 // @public
@@ -377,11 +394,14 @@ export interface GenerativeDirectAnswerCssClasses {
 
 // @public
 export interface GenerativeDirectAnswerProps {
+    aiSignpostProps?: AISignpostProps;
     answerHeader?: string | React_2.JSX.Element;
     CitationCard?: (props: CitationProps) => React_2.JSX.Element | null;
     CitationsContainer?: (props: CitationsProps) => React_2.JSX.Element | null;
     citationsHeader?: string | React_2.JSX.Element;
+    customAISignpost?: () => React_2.JSX.Element;
     customCssClasses?: GenerativeDirectAnswerCssClasses;
+    hideAISignpost?: boolean;
 }
 
 // @public
@@ -1158,7 +1178,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1891:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1917:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -19,6 +19,17 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[AISignpostIcon({ className }, input)](./search-ui-react.aisignposticon.md)
+
+
+</td><td>
+
+Default icon for the AI signpost.
+
+
+</td></tr>
+<tr><td>
+
 [AlternativeVerticals({ currentVerticalLabel, verticalConfigMap, displayAllOnNoResults, customCssClasses }, input)](./search-ui-react.alternativeverticals.md)
 
 
@@ -151,7 +162,7 @@ A component which allows a user to search for filters associated with specific e
 </td></tr>
 <tr><td>
 
-[GenerativeDirectAnswer({ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }, input)](./search-ui-react.generativedirectanswer.md)
+[GenerativeDirectAnswer({ customCssClasses, answerHeader, hideAISignpost, aiSignpostProps, customAISignpost, citationsHeader, CitationCard, CitationsContainer, }, input)](./search-ui-react.generativedirectanswer.md)
 
 
 </td><td>
@@ -502,6 +513,17 @@ Description
 </td><td>
 
 The parameters that are passed into [FilterSearchProps.afterDropdownInputFocus](./search-ui-react.filtersearchprops.afterdropdowninputfocus.md)<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[AISignpostProps](./search-ui-react.aisignpostprops.md)
+
+
+</td><td>
+
+Props for the built-in AI signpost component.
 
 
 </td></tr>

@@ -10,6 +10,8 @@ import { useComposedCssClasses } from '../hooks';
 import { useCardAnalytics } from '../hooks/useCardAnalytics';
 import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
+import { AISignpostIcon } from '../icons/AISignpostIcon';
+import { CloseIcon } from '../icons/CloseIcon';
 import { Markdown, MarkdownCssClasses } from './Markdown';
 import React, { useCallback, useMemo, useRef } from 'react';
 
@@ -50,6 +52,12 @@ export interface GenerativeDirectAnswerProps {
   customCssClasses?: GenerativeDirectAnswerCssClasses,
   /** The header for the answer section of the generative direct answer. */
   answerHeader?: string | React.JSX.Element,
+  /** Whether to hide the AI signpost for the generative direct answer. */
+  hideAISignpost?: boolean,
+  /** The props to pass to the AI signpost component. */
+  aiSignpostProps?: AISignpostProps,
+  /** Custom component to render in place of the built-in AI signpost. */
+  customAISignpost?: () => React.JSX.Element,
   /** The header for the citations section of the generative direct answer. */
   citationsHeader?: string | React.JSX.Element,
   /**
@@ -74,6 +82,9 @@ export interface GenerativeDirectAnswerProps {
 export function GenerativeDirectAnswer({
   customCssClasses,
   answerHeader,
+  hideAISignpost = false,
+  aiSignpostProps,
+  customAISignpost,
   citationsHeader,
   CitationCard,
   CitationsContainer = Citations,
@@ -117,6 +128,9 @@ export function GenerativeDirectAnswer({
         gdaResponse={gdaResponse}
         cssClasses={cssClasses}
         answerHeader={answerHeader}
+        hideAISignpost={hideAISignpost}
+        aiSignpostProps={aiSignpostProps}
+        CustomAISignpost={customAISignpost}
         linkClickHandler={handleClickEvent}
       />
       <CitationsContainer
@@ -135,7 +149,86 @@ interface AnswerProps {
   gdaResponse: GenerativeDirectAnswerResponse,
   cssClasses: GenerativeDirectAnswerCssClasses,
   answerHeader?: string | React.JSX.Element,
+  hideAISignpost: boolean,
+  aiSignpostProps?: AISignpostProps,
+  CustomAISignpost?: () => React.JSX.Element,
   linkClickHandler?: (data: GdaClickEventData) => void
+}
+
+/**
+ * Props for the built-in AI signpost component.
+ *
+ * @public
+ */
+export interface AISignpostProps {
+  icon?: React.ReactNode,
+  label?: React.ReactNode,
+  popoverHeader?: React.ReactNode,
+  popoverBody?: React.ReactNode
+}
+
+/**
+ * Displays AI signpost content for the generative direct answer.
+ */
+function AISignpost({
+  icon,
+  label,
+  popoverHeader,
+  popoverBody
+}: AISignpostProps): React.JSX.Element {
+  const { t } = useTranslation();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const popoverHeaderId = React.useId();
+  const popoverBodyId = React.useId();
+  const handleSignpostClick = useCallback(() => {
+    setIsOpen(current => !current);
+  }, []);
+  const onSignpostClose = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  return (
+    <div className='relative mt-4 text-sm text-gray-700'>
+      <button
+        type='button'
+        aria-expanded={isOpen}
+        aria-controls={popoverBodyId}
+        className='inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-slate-100'
+        onClick={handleSignpostClick}
+      >
+        {icon ?? <AISignpostIcon className='h-4 w-4' />}
+        <span>{label ?? t('aiGeneratedAnswerSignpostLabel')}</span>
+      </button>
+      {isOpen && (
+        <div
+          id={popoverBodyId}
+          role='dialog'
+          aria-labelledby={popoverHeaderId}
+          aria-describedby={popoverBodyId + '-description'}
+          className='absolute left-0 top-full z-10 mt-2 w-80 max-w-full rounded-lg border border-gray-200 bg-white shadow-lg'
+        >
+          <div className='flex flex-col px-4 py-3 gap-3'>
+            <div className='flex items-center justify-between'>
+              <div id={popoverHeaderId} className='text-sm font-semibold text-gray-900'>
+                {popoverHeader ?? t('aiGeneratedAnswerSignpostPopoverHeader')}
+              </div>
+              <button
+                type='button'
+                className='inline-flex h-6 w-6 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+                aria-label={t('dismiss')}
+                onClick={onSignpostClose}
+              >
+                <CloseIcon className='h-3 w-3' />
+              </button>
+            </div>
+            <div id={popoverBodyId + '-description'} className='text-sm text-gray-700'>
+              {popoverBody ?? t('aiGeneratedAnswerSignpostPopoverBody')}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 /**
@@ -146,6 +239,9 @@ function Answer(props: AnswerProps) {
     gdaResponse,
     cssClasses,
     answerHeader,
+    hideAISignpost,
+    aiSignpostProps,
+    CustomAISignpost,
     linkClickHandler
   } = props;
   const { t } = useTranslation();
@@ -166,6 +262,7 @@ function Answer(props: AnswerProps) {
     <div className={cssClasses.header}>
       {answerHeader ?? t('aiGeneratedAnswer')}
     </div>
+    {!hideAISignpost && (CustomAISignpost ? <CustomAISignpost /> : <AISignpost {...aiSignpostProps} />)}
     <Markdown
       content={gdaResponse.directAnswer}
       onLinkClick={handleMarkdownLinkClick}

@@ -1,5 +1,6 @@
 import { provideHeadless, useSearchActions, Result } from '@yext/search-headless-react';
 import {
+  AISignpostIcon,
   DirectAnswer,
   DropdownItem,
   ResultsCount,
@@ -81,6 +82,18 @@ function CustomCitationsComponent(props: CitationsProps): React.JSX.Element | nu
   )
 }
 
+function CustomAISignpost(): React.JSX.Element {
+  return (
+    <button
+      type='button'
+      className='mt-4 inline-flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-800'
+    >
+      <AISignpostIcon className='h-4 w-4' />
+      <span>Custom Signpost Label</span>
+    </button>
+  );
+}
+
 export default function UniversalPage(): React.JSX.Element {
   const searchActions = useSearchActions();
   useLayoutEffect(() => {
@@ -98,6 +111,7 @@ export default function UniversalPage(): React.JSX.Element {
       <SpellCheck />
       <GenerativeDirectAnswer
         answerHeader='A custom answer header'
+        // customAISignpost={CustomAISignpost}
         CitationCard={CustomCitationCard}
       />
 
