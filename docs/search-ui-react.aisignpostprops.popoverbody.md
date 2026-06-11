@@ -4,6 +4,8 @@
 
 ## AISignpostProps.popoverBody property
 
+Body displayed in the signpost popover.
+
 **Signature:**
 
 ```typescript

@@ -4,6 +4,8 @@
 
 ## AISignpostProps.label property
 
+Label displayed in the signpost button. Defaults to "AI-Generated".
+
 **Signature:**
 
 ```typescript

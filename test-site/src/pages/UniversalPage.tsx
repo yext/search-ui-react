@@ -111,15 +111,21 @@ export default function UniversalPage(): React.JSX.Element {
       <SpellCheck />
       <GenerativeDirectAnswer
         answerHeader='A custom answer header'
-        // customAISignpost={CustomAISignpost}
         CitationCard={CustomCitationCard}
       />
 
-      {/* Example of passing in custom citations component to GDA */}
+      {/* Example of passing in custom citations cards & signposting to GDA */}
       {/*<GenerativeDirectAnswer*/}
       {/*    answerHeader='A custom answer header'*/}
-      {/*    CitationsComponent={CustomCitationsComponent}*/}
       {/*    CitationCard={CustomCitationCard}*/}
+      {/*    aiSignpostProps={{*/}
+      {/*      icon: CustomAISignpost(),*/}
+      {/*      popoverBody: (<div>*/}
+      {/*        <p>This is a <b>custom</b> popover body</p>*/}
+      {/*      </div>),*/}
+      {/*      popoverHeader: "Custom Popover Header",*/}
+      {/*      label: "Yes it's ugly",*/}
+      {/*    }}*/}
       {/*/>*/}
 
       <DirectAnswer />

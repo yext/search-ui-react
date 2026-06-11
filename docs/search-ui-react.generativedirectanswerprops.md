@@ -132,25 +132,6 @@ _(Optional)_ The header for the citations section of the generative direct answe
 </td></tr>
 <tr><td>
 
-[customAISignpost?](./search-ui-react.generativedirectanswerprops.customaisignpost.md)
-
-
-</td><td>
-
-
-</td><td>
-
-() =&gt; React.JSX.Element
-
-
-</td><td>
-
-_(Optional)_ Custom component to render in place of the built-in AI signpost.
-
-
-</td></tr>
-<tr><td>
-
 [customCssClasses?](./search-ui-react.generativedirectanswerprops.customcssclasses.md)
 
 

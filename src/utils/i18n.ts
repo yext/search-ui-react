@@ -1,4 +1,4 @@
-import i18next from 'i18next';
+import { createInstance} from "i18next";
 import { initReactI18next } from 'react-i18next';
 const { supportedLocales } = require('./supportedLocales.ts');
 
@@ -16,7 +16,7 @@ supportedLocales.forEach((locale: string) => {
  *
  * @internal
  */
-const i18nInstance = i18next.createInstance();
+const i18nInstance = createInstance();
 i18nInstance.use(initReactI18next).init({
   fallbackLng: 'en',
   ns: [NAMESPACE],

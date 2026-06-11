@@ -162,7 +162,7 @@ A component which allows a user to search for filters associated with specific e
 </td></tr>
 <tr><td>
 
-[GenerativeDirectAnswer({ customCssClasses, answerHeader, hideAISignpost, aiSignpostProps, customAISignpost, citationsHeader, CitationCard, CitationsContainer, }, input)](./search-ui-react.generativedirectanswer.md)
+[GenerativeDirectAnswer({ customCssClasses, answerHeader, hideAISignpost, aiSignpostProps, citationsHeader, CitationCard, CitationsContainer, }, input)](./search-ui-react.generativedirectanswer.md)
 
 
 </td><td>

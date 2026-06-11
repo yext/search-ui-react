@@ -13,6 +13,7 @@ import { executeGenerativeDirectAnswer } from '../utils/search-operations';
 import { AISignpostIcon } from '../icons/AISignpostIcon';
 import { CloseIcon } from '../icons/CloseIcon';
 import { Markdown, MarkdownCssClasses } from './Markdown';
+import { useId } from '../hooks/useId';
 import React, { useCallback, useMemo, useRef } from 'react';
 
 /**
@@ -56,8 +57,6 @@ export interface GenerativeDirectAnswerProps {
   hideAISignpost?: boolean,
   /** The props to pass to the AI signpost component. */
   aiSignpostProps?: AISignpostProps,
-  /** Custom component to render in place of the built-in AI signpost. */
-  customAISignpost?: () => React.JSX.Element,
   /** The header for the citations section of the generative direct answer. */
   citationsHeader?: string | React.JSX.Element,
   /**
@@ -84,7 +83,6 @@ export function GenerativeDirectAnswer({
   answerHeader,
   hideAISignpost = false,
   aiSignpostProps,
-  customAISignpost,
   citationsHeader,
   CitationCard,
   CitationsContainer = Citations,
@@ -130,7 +128,6 @@ export function GenerativeDirectAnswer({
         answerHeader={answerHeader}
         hideAISignpost={hideAISignpost}
         aiSignpostProps={aiSignpostProps}
-        CustomAISignpost={customAISignpost}
         linkClickHandler={handleClickEvent}
       />
       <CitationsContainer
@@ -151,7 +148,6 @@ interface AnswerProps {
   answerHeader?: string | React.JSX.Element,
   hideAISignpost: boolean,
   aiSignpostProps?: AISignpostProps,
-  CustomAISignpost?: () => React.JSX.Element,
   linkClickHandler?: (data: GdaClickEventData) => void
 }
 
@@ -161,9 +157,13 @@ interface AnswerProps {
  * @public
  */
 export interface AISignpostProps {
+  /** Icon displayed before the signpost label. Defaults to the SDK's AI signpost icon. */
   icon?: React.ReactNode,
+  /** Label displayed in the signpost button. Defaults to "AI-Generated". */
   label?: React.ReactNode,
+  /** Header displayed in the signpost popover. Defaults to "AI-Generated Content". */
   popoverHeader?: React.ReactNode,
+  /** Body displayed in the signpost popover. */
   popoverBody?: React.ReactNode
 }
 
@@ -178,8 +178,9 @@ function AISignpost({
 }: AISignpostProps): React.JSX.Element {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
-  const popoverHeaderId = React.useId();
-  const popoverBodyId = React.useId();
+  const popoverId = useId('ai-signpost-popover');
+  const popoverHeaderId = useId('ai-signpost-popover-header');
+  const popoverDescriptionId = useId('ai-signpost-popover-description');
   const handleSignpostClick = useCallback(() => {
     setIsOpen(current => !current);
   }, []);
@@ -192,7 +193,7 @@ function AISignpost({
       <button
         type='button'
         aria-expanded={isOpen}
-        aria-controls={popoverBodyId}
+        aria-controls={popoverId}
         className='inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-slate-100'
         onClick={handleSignpostClick}
       >
@@ -201,10 +202,10 @@ function AISignpost({
       </button>
       {isOpen && (
         <div
-          id={popoverBodyId}
+          id={popoverId}
           role='dialog'
           aria-labelledby={popoverHeaderId}
-          aria-describedby={popoverBodyId + '-description'}
+          aria-describedby={popoverDescriptionId}
           className='absolute left-0 top-full z-10 mt-2 w-80 max-w-full rounded-lg border border-gray-200 bg-white shadow-lg'
         >
           <div className='flex flex-col px-4 py-3 gap-3'>
@@ -221,7 +222,7 @@ function AISignpost({
                 <CloseIcon className='h-3 w-3' />
               </button>
             </div>
-            <div id={popoverBodyId + '-description'} className='text-sm text-gray-700'>
+            <div id={popoverDescriptionId} className='text-sm text-gray-700'>
               {popoverBody ?? t('aiGeneratedAnswerSignpostPopoverBody')}
             </div>
           </div>
@@ -241,7 +242,6 @@ function Answer(props: AnswerProps) {
     answerHeader,
     hideAISignpost,
     aiSignpostProps,
-    CustomAISignpost,
     linkClickHandler
   } = props;
   const { t } = useTranslation();
@@ -262,7 +262,7 @@ function Answer(props: AnswerProps) {
     <div className={cssClasses.header}>
       {answerHeader ?? t('aiGeneratedAnswer')}
     </div>
-    {!hideAISignpost && (CustomAISignpost ? <CustomAISignpost /> : <AISignpost {...aiSignpostProps} />)}
+    {!hideAISignpost && <AISignpost {...aiSignpostProps} />}
     <Markdown
       content={gdaResponse.directAnswer}
       onLinkClick={handleMarkdownLinkClick}

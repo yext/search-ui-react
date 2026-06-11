@@ -4,6 +4,8 @@
 
 ## AISignpostProps.icon property
 
+Icon displayed before the signpost label. Defaults to the SDK's AI signpost icon.
+
 **Signature:**
 
 ```typescript

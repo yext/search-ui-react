@@ -50,7 +50,7 @@ React.ReactNode
 
 </td><td>
 
-_(Optional)_
+_(Optional)_ Icon displayed before the signpost label. Defaults to the SDK's AI signpost icon.
 
 
 </td></tr>
@@ -69,7 +69,7 @@ React.ReactNode
 
 </td><td>
 
-_(Optional)_
+_(Optional)_ Label displayed in the signpost button. Defaults to "AI-Generated".
 
 
 </td></tr>
@@ -88,7 +88,7 @@ React.ReactNode
 
 </td><td>
 
-_(Optional)_
+_(Optional)_ Body displayed in the signpost popover.
 
 
 </td></tr>
@@ -107,7 +107,7 @@ React.ReactNode
 
 </td><td>
 
-_(Optional)_
+_(Optional)_ Header displayed in the signpost popover. Defaults to "AI-Generated Content".
 
 
 </td></tr>
