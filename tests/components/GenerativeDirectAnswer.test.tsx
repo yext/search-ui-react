@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
 import { GenerativeDirectAnswer, CitationsProps } from '../../src/components/GenerativeDirectAnswer';
+import { useAnalytics } from '../../src/hooks/useAnalytics';
 
 import { State } from '@yext/search-headless-react';
 import { mockAnswersState, ignoreLinkClickErrors } from '../__utils__/mocks';
