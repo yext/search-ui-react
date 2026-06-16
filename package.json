@@ -197,6 +197,7 @@
     "playwright": "1.57.0",
     "handlebars": "^4.7.9",
     "vite": "^6.4.2",
+    "esbuild": "^0.28.1",
     "axios": "^1.16.0"
   },
   "repository": {
