@@ -45,7 +45,7 @@ Description
 
 </td><td>
 
-React.ReactNode
+React.JSX.Element
 
 
 </td><td>
@@ -64,7 +64,7 @@ _(Optional)_ Icon displayed before the signpost label. Defaults to the SDK's AI 
 
 </td><td>
 
-React.ReactNode
+string
 
 
 </td><td>
@@ -83,7 +83,7 @@ _(Optional)_ Label displayed in the signpost button. Defaults to "AI-Generated".
 
 </td><td>
 
-React.ReactNode
+string
 
 
 </td><td>
@@ -102,7 +102,7 @@ _(Optional)_ Body displayed in the signpost popover.
 
 </td><td>
 
-React.ReactNode
+string
 
 
 </td><td>

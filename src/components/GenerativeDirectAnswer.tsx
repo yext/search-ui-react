@@ -158,13 +158,13 @@ interface AnswerProps {
  */
 export interface AISignpostProps {
   /** Icon displayed before the signpost label. Defaults to the SDK's AI signpost icon. */
-  icon?: React.ReactNode,
+  icon?: React.JSX.Element,
   /** Label displayed in the signpost button. Defaults to "AI-Generated". */
-  label?: React.ReactNode,
+  label?: string,
   /** Header displayed in the signpost popover. Defaults to "AI-Generated Content". */
-  popoverHeader?: React.ReactNode,
+  popoverHeader?: string,
   /** Body displayed in the signpost popover. */
-  popoverBody?: React.ReactNode
+  popoverBody?: string
 }
 
 /**

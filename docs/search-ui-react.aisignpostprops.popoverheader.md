@@ -9,5 +9,5 @@ Header displayed in the signpost popover. Defaults to "AI-Generated Content".
 **Signature:**
 
 ```typescript
-popoverHeader?: React.ReactNode;
+popoverHeader?: string;
 ```

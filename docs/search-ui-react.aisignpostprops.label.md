@@ -9,5 +9,5 @@ Label displayed in the signpost button. Defaults to "AI-Generated".
 **Signature:**
 
 ```typescript
-label?: React.ReactNode;
+label?: string;
 ```

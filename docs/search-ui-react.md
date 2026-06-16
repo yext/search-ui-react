@@ -19,7 +19,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-[AISignpostIcon({ className }, input)](./search-ui-react.aisignposticon.md)
+[AISignpostIcon({ className, variant }, input)](./search-ui-react.aisignposticon.md)
 
 
 </td><td>

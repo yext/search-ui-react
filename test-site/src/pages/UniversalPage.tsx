@@ -84,13 +84,7 @@ function CustomCitationsComponent(props: CitationsProps): React.JSX.Element | nu
 
 function CustomAISignpost(): React.JSX.Element {
   return (
-    <button
-      type='button'
-      className='mt-4 inline-flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-sm font-medium text-emerald-800'
-    >
-      <AISignpostIcon className='h-4 w-4' />
-      <span>Custom Signpost Label</span>
-    </button>
+    <AISignpostIcon variant='dark' className='h-6 w-6'/>
   );
 }
 
@@ -120,11 +114,9 @@ export default function UniversalPage(): React.JSX.Element {
       {/*    CitationCard={CustomCitationCard}*/}
       {/*    aiSignpostProps={{*/}
       {/*      icon: CustomAISignpost(),*/}
-      {/*      popoverBody: (<div>*/}
-      {/*        <p>This is a <b>custom</b> popover body</p>*/}
-      {/*      </div>),*/}
+      {/*      popoverBody: 'Custom body text for the popover.',*/}
       {/*      popoverHeader: "Custom Popover Header",*/}
-      {/*      label: "Yes it's ugly",*/}
+      {/*      label: "Custom Label",*/}
       {/*    }}*/}
       {/*/>*/}
 

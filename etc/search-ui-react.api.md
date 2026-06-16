@@ -38,14 +38,15 @@ export interface AfterDropdownInputFocusProps {
 // @public
 export function AISignpostIcon(input: {
     className?: string;
+    variant?: 'light' | 'dark';
 }): React_2.JSX.Element;
 
 // @public
 export interface AISignpostProps {
-    icon?: React_2.ReactNode;
-    label?: React_2.ReactNode;
-    popoverBody?: React_2.ReactNode;
-    popoverHeader?: React_2.ReactNode;
+    icon?: React_2.JSX.Element;
+    label?: string;
+    popoverBody?: string;
+    popoverHeader?: string;
 }
 
 // @public
@@ -1173,7 +1174,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1919:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1920:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -9,5 +9,5 @@ Body displayed in the signpost popover.
 **Signature:**
 
 ```typescript
-popoverBody?: React.ReactNode;
+popoverBody?: string;
 ```
