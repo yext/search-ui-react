@@ -11,7 +11,6 @@ Default icon for the AI signpost.
 ```typescript
 declare function AISignpostIcon(input: {
     className?: string;
-    variant?: 'light' | 'dark';
 }): React.JSX.Element;
 ```
 
@@ -35,7 +34,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-{ className, variant }
+{ className }
 
 
 </td><td>
@@ -54,7 +53,7 @@ input
 
 </td><td>
 
-{ className?: string; variant?: 'light' \| 'dark'; }
+{ className?: string; }
 
 
 </td><td>
