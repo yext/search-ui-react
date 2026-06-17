@@ -83,8 +83,9 @@ function CustomCitationsComponent(props: CitationsProps): React.JSX.Element | nu
 }
 
 function CustomAISignpost(): React.JSX.Element {
-  return (
-    <AISignpostIcon variant='dark' className='h-6 w-6'/>
+  return (<span style={{color: 'red'}}>
+    <AISignpostIcon className='h-6 w-6'/>
+  </span>
   );
 }
 
@@ -103,22 +104,22 @@ export default function UniversalPage(): React.JSX.Element {
         universalAutocompleteLimit={20}
       />
       <SpellCheck />
-      <GenerativeDirectAnswer
-        answerHeader='A custom answer header'
-        CitationCard={CustomCitationCard}
-      />
+      {/*<GenerativeDirectAnswer*/}
+      {/*  answerHeader='A custom answer header'*/}
+      {/*  CitationCard={CustomCitationCard}*/}
+      {/*/>*/}
 
       {/* Example of passing in custom citations cards & signposting to GDA */}
-      {/*<GenerativeDirectAnswer*/}
-      {/*    answerHeader='A custom answer header'*/}
-      {/*    CitationCard={CustomCitationCard}*/}
-      {/*    aiSignpostProps={{*/}
-      {/*      icon: CustomAISignpost(),*/}
-      {/*      popoverBody: 'Custom body text for the popover.',*/}
-      {/*      popoverHeader: "Custom Popover Header",*/}
-      {/*      label: "Custom Label",*/}
-      {/*    }}*/}
-      {/*/>*/}
+      <GenerativeDirectAnswer
+          answerHeader='A custom answer header'
+          CitationCard={CustomCitationCard}
+          aiSignpostProps={{
+            icon: CustomAISignpost(),
+            popoverBody: 'Custom body text for the popover.',
+            popoverHeader: "Custom Popover Header",
+            label: "Custom Label",
+          }}
+      />
 
       <DirectAnswer />
       <ResultsCount />

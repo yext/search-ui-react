@@ -3,10 +3,10 @@ import {SearchAnalyticsConfig} from "../../src";
 
 export const config = {
   apiKey: process.env.REACT_APP_LIVE_API_KEY || 'REPLACE_ME',
-  experienceKey: 'max-test',
+  experienceKey: 'slanswers-hier-facets',
   locale: 'en',
   experienceVersion: 'STAGING',
-  businessId: 70452,
+  businessId: 3350634,
   cloudRegion: CloudRegion.US,
   cloudChoice: CloudChoice.GLOBAL_MULTI,
   environment: Environment.PROD,
