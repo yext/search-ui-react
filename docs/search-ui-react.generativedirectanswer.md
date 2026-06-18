@@ -32,7 +32,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-{ customCssClasses, answerHeader, citationsHeader, CitationCard, CitationsContainer, }
+{ customCssClasses, answerHeader, hideAISignpost, aiSignpostProps, citationsHeader, CitationCard, CitationsContainer, }
 
 
 </td><td>
