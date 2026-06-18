@@ -37,6 +37,25 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[aiSignpostProps?](./search-ui-react.generativedirectanswerprops.aisignpostprops.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[AISignpostProps](./search-ui-react.aisignpostprops.md)
+
+
+</td><td>
+
+_(Optional)_ The props to pass to the AI signpost component.
+
+
+</td></tr>
+<tr><td>
+
 [answerHeader?](./search-ui-react.generativedirectanswerprops.answerheader.md)
 
 
@@ -127,6 +146,25 @@ _(Optional)_ The header for the citations section of the generative direct answe
 </td><td>
 
 _(Optional)_ CSS classes for customizing the component styling.
+
+
+</td></tr>
+<tr><td>
+
+[hideAISignpost?](./search-ui-react.generativedirectanswerprops.hideaisignpost.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to hide the AI signpost for the generative direct answer.
 
 
 </td></tr>
