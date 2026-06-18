@@ -1,5 +1,6 @@
 import { provideHeadless, useSearchActions, Result } from '@yext/search-headless-react';
 import {
+  AISignpostIcon,
   DirectAnswer,
   DropdownItem,
   ResultsCount,
@@ -81,6 +82,13 @@ function CustomCitationsComponent(props: CitationsProps): React.JSX.Element | nu
   )
 }
 
+function CustomAISignpost(): React.JSX.Element {
+  return (<span style={{color: 'red'}}>
+    <AISignpostIcon className='h-6 w-6'/>
+  </span>
+  );
+}
+
 export default function UniversalPage(): React.JSX.Element {
   const searchActions = useSearchActions();
   useLayoutEffect(() => {
@@ -96,17 +104,22 @@ export default function UniversalPage(): React.JSX.Element {
         universalAutocompleteLimit={20}
       />
       <SpellCheck />
-      <GenerativeDirectAnswer
-        answerHeader='A custom answer header'
-        CitationCard={CustomCitationCard}
-      />
-
-      {/* Example of passing in custom citations component to GDA */}
       {/*<GenerativeDirectAnswer*/}
-      {/*    answerHeader='A custom answer header'*/}
-      {/*    CitationsComponent={CustomCitationsComponent}*/}
-      {/*    CitationCard={CustomCitationCard}*/}
+      {/*  answerHeader='A custom answer header'*/}
+      {/*  CitationCard={CustomCitationCard}*/}
       {/*/>*/}
+
+      {/* Example of passing in custom citations cards & signposting to GDA */}
+      <GenerativeDirectAnswer
+          answerHeader='A custom answer header'
+          CitationCard={CustomCitationCard}
+          aiSignpostProps={{
+            icon: CustomAISignpost(),
+            popoverBody: 'Custom body text for the popover.',
+            popoverHeader: "Custom Popover Header",
+            label: "Custom Label",
+          }}
+      />
 
       <DirectAnswer />
       <ResultsCount />

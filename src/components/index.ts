@@ -229,7 +229,9 @@ export * from './AnalyticsProvider';
 export {
   GenerativeDirectAnswer
 } from './GenerativeDirectAnswer';
+export { AISignpostIcon } from '../icons/AISignpostIcon';
 export type {
+  AISignpostProps,
   GenerativeDirectAnswerCssClasses,
   GenerativeDirectAnswerProps,
   CitationProps,

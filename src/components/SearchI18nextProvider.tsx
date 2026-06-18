@@ -5,6 +5,9 @@ import { i18nInstance } from '../utils';
 
 type translationKeys =
   'aiGeneratedAnswer' |
+  'aiGeneratedAnswerSignpostLabel' |
+  'aiGeneratedAnswerSignpostPopoverHeader' |
+  'aiGeneratedAnswerSignpostPopoverBody' |
   'allCategories' |
   'appliedFiltersToCurrentSearch' |
   'apply' |
@@ -22,6 +25,7 @@ type translationKeys =
   'conductASearch' |
   'currentLocation' |
   'didYouMean' |
+  'dismiss' |
   'dropDownScreenReaderInstructions' |
   'feedback' |
   'invalidRange' |
