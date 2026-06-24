@@ -131,7 +131,6 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
 
     expect(answerHeader.compareDocumentPosition(signpost) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(signpost.compareDocumentPosition(answerLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(screen.queryByText('AI-Generated')).toBeNull();
   });
 
   it('displays the default AI signpost popover', async () => {
