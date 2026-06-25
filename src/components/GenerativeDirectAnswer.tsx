@@ -14,6 +14,7 @@ import { AISignpostIcon } from '../icons/AISignpostIcon';
 import { CloseIcon } from '../icons/CloseIcon';
 import { Markdown, MarkdownCssClasses } from './Markdown';
 import { useId } from '../hooks/useId';
+import { twMerge } from '../hooks/useComposedCssClasses';
 import React, { useCallback, useMemo, useRef } from 'react';
 
 /**
@@ -159,7 +160,7 @@ interface AnswerProps {
 export interface AISignpostProps {
   /** Icon displayed before the signpost label. Defaults to the SDK's AI signpost icon. */
   icon?: React.JSX.Element,
-  /** Label displayed in the signpost button. Defaults to "AI-Generated". */
+  /** Label displayed in the signpost button. */
   label?: string,
   /** Header displayed in the signpost popover. Defaults to "AI-Generated Content". */
   popoverHeader?: string,
@@ -181,6 +182,7 @@ function AISignpost({
   const popoverId = useId('ai-signpost-popover');
   const popoverHeaderId = useId('ai-signpost-popover-header');
   const popoverDescriptionId = useId('ai-signpost-popover-description');
+  const ariaLabel = label ?? t('aiGeneratedAnswerSignpostLabel');
   const handleSignpostClick = useCallback(() => {
     setIsOpen(current => !current);
   }, []);
@@ -189,16 +191,17 @@ function AISignpost({
   }, []);
 
   return (
-    <div className='relative mt-4 text-sm text-gray-700'>
+    <div className='relative text-sm text-gray-700'>
       <button
         type='button'
         aria-expanded={isOpen}
         aria-controls={popoverId}
-        className='inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-slate-100'
+        aria-label={ariaLabel}
+        className='inline-flex gap-1.5 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-1.5 h-8 min-w-8 text-sm font-medium text-gray-700 transition-colors hover:bg-slate-100'
         onClick={handleSignpostClick}
       >
         {icon ?? <AISignpostIcon className='h-4 w-4' />}
-        <span>{label ?? t('aiGeneratedAnswerSignpostLabel')}</span>
+        {label && <span>{label}</span>}
       </button>
       {isOpen && (
         <div
@@ -206,7 +209,7 @@ function AISignpost({
           role='dialog'
           aria-labelledby={popoverHeaderId}
           aria-describedby={popoverDescriptionId}
-          className='absolute left-0 top-full z-10 mt-2 w-80 max-w-full rounded-lg border border-gray-200 bg-white shadow-lg'
+          className='absolute left-0 top-full z-10 mt-2 w-80 rounded-lg border border-gray-200 bg-white shadow-lg'
         >
           <div className='flex flex-col px-4 py-3 gap-3'>
             <div className='flex items-center justify-between'>
@@ -259,10 +262,10 @@ function Answer(props: AnswerProps) {
   }, [linkClickHandler]);
 
   return <>
-    <div className={cssClasses.header}>
-      {answerHeader ?? t('aiGeneratedAnswer')}
+    <div className={twMerge(cssClasses.header, 'flex items-center gap-2')}>
+      <div>{answerHeader ?? t('aiGeneratedAnswer')}</div>
+      {!hideAISignpost && <AISignpost {...aiSignpostProps} />}
     </div>
-    {!hideAISignpost && <AISignpost {...aiSignpostProps} />}
     <Markdown
       content={gdaResponse.directAnswer}
       onLinkClick={handleMarkdownLinkClick}
