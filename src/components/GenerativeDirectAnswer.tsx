@@ -197,7 +197,7 @@ function AISignpost({
         aria-expanded={isOpen}
         aria-controls={popoverId}
         aria-label={ariaLabel}
-        className='inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-slate-100'
+        className='inline-flex gap-1.5 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-1.5 h-8 min-w-8 text-sm font-medium text-gray-700 transition-colors hover:bg-slate-100'
         onClick={handleSignpostClick}
       >
         {icon ?? <AISignpostIcon className='h-4 w-4' />}
