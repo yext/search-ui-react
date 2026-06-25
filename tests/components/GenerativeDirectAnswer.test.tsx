@@ -122,7 +122,7 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
     mockAnswersState(mockedState);
   });
 
-  it('displays the default AI signpost below the answer header', () => {
+  it('displays the default AI signpost next to the answer header', () => {
     render(<GenerativeDirectAnswer />);
 
     const answerHeader = screen.getByText('AI Generated Answer');
@@ -161,7 +161,7 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
     />);
 
     expect(screen.getByTestId('custom-ai-signpost-icon')).toBeTruthy();
-    await userEvent.click(screen.getByRole('button', { name: 'Custom Icon Custom Label' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Custom Label' }));
 
     expect(screen.getByRole('dialog', { name: 'Custom Header' })).toBeTruthy();
     expect(screen.getByText('Custom Body')).toBeTruthy();

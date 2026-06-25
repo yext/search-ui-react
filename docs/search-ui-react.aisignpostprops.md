@@ -69,7 +69,7 @@ string
 
 </td><td>
 
-_(Optional)_ Label displayed in the signpost button. Defaults to "AI-Generated".
+_(Optional)_ Label displayed in the signpost button.
 
 
 </td></tr>
