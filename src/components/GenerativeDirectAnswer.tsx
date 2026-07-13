@@ -118,7 +118,7 @@ export function GenerativeDirectAnswer({
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
-  const handleClickEvent = useReportClickEvent();
+  const handleContentClickEvent = useReportClickEvent();
   const handleClickFeedbackButton = useCardFeedbackCallback({
     destinationUrl: gdaResponse?.directAnswer ?? ''
   });
@@ -143,7 +143,7 @@ export function GenerativeDirectAnswer({
         answerHeader={answerHeader}
         hideAISignpost={hideAISignpost}
         aiSignpostProps={aiSignpostProps}
-        linkClickHandler={handleClickEvent}
+        linkClickHandler={handleContentClickEvent}
       />
       <CitationsContainer
         gdaResponse={gdaResponse}
@@ -151,7 +151,7 @@ export function GenerativeDirectAnswer({
         searchResults={searchResults}
         citationsHeader={citationsHeader}
         CitationCard={CitationCard}
-        citationClickHandler={handleClickEvent}
+        citationClickHandler={handleContentClickEvent}
       />
       {showFeedbackButtons && <ThumbsFeedback
         onClick={handleClickFeedbackButton}
