@@ -168,5 +168,24 @@ _(Optional)_ Whether to hide the AI signpost for the generative direct answer.
 
 
 </td></tr>
+<tr><td>
+
+[showFeedbackButtons?](./search-ui-react.generativedirectanswerprops.showfeedbackbuttons.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to show thumbs up/down buttons to provide feedback on the generative direct answer.
+
+
+</td></tr>
 </tbody></table>
 

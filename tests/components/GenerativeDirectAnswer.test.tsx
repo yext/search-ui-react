@@ -115,6 +115,54 @@ function runAnalyticsTestSuite() {
       'searchTerm': 'test'
     });
   });
+
+  it('does not render feedback buttons by default', () => {
+    render(<GenerativeDirectAnswer />);
+    expect(screen.queryByRole('button', { name: 'This answered my question' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'This did not answer my question' })).toBeNull();
+  });
+
+  it('reports thumbs up feedback for the generative direct answer', async () => {
+    render(<GenerativeDirectAnswer showFeedbackButtons />);
+    await userEvent.click(screen.getByRole('button', { name: 'This answered my question' }));
+    expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
+    expect(useAnalytics()?.report).toHaveBeenCalledWith({
+      action: 'THUMBS_UP',
+      entity: undefined,
+      locale: 'en',
+      experienceKey: 'experienceKey',
+      isDirectAnswer: true,
+      isGenerativeDirectAnswer: true,
+      queryId: '[queryId]',
+      searchId: 'searchId',
+      verticalKey: '',
+      searchTerm: 'test'
+    });
+  });
+
+  it('reports thumbs down feedback for the generative direct answer', async () => {
+    render(<GenerativeDirectAnswer showFeedbackButtons />);
+    await userEvent.click(screen.getByRole('button', { name: 'This did not answer my question' }));
+    expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
+    expect(useAnalytics()?.report).toHaveBeenCalledWith({
+      action: 'THUMBS_DOWN',
+      entity: undefined,
+      locale: 'en',
+      experienceKey: 'experienceKey',
+      isDirectAnswer: true,
+      isGenerativeDirectAnswer: true,
+      queryId: '[queryId]',
+      searchId: 'searchId',
+      verticalKey: '',
+      searchTerm: 'test'
+    });
+  });
+
+  it('shows a thank-you message after submitting feedback', async () => {
+    render(<GenerativeDirectAnswer showFeedbackButtons />);
+    await userEvent.click(screen.getByRole('button', { name: 'This answered my question' }));
+    expect(screen.getByText('Thank you for your feedback!')).toBeDefined();
+  });
 }
 
 describe('GenerativeDirectAnswer with sufficient citation fields', () => {
