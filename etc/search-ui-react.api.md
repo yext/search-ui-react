@@ -369,7 +369,7 @@ export interface GdaClickEventData {
 export function GenerativeDirectAnswer(input: GenerativeDirectAnswerProps): React_2.JSX.Element | null;
 
 // @public
-export interface GenerativeDirectAnswerCssClasses {
+export interface GenerativeDirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
     // (undocumented)
     answerText?: string;
     // (undocumented)
@@ -397,6 +397,7 @@ export interface GenerativeDirectAnswerProps {
     citationsHeader?: string | React_2.JSX.Element;
     customCssClasses?: GenerativeDirectAnswerCssClasses;
     hideAISignpost?: boolean;
+    showFeedbackButtons?: boolean;
 }
 
 // @public
@@ -1173,7 +1174,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1919:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1921:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

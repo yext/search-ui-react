@@ -9,8 +9,9 @@ The CSS class interface used for [GenerativeDirectAnswer()](./search-ui-react.ge
 **Signature:**
 
 ```typescript
-interface GenerativeDirectAnswerCssClasses 
+interface GenerativeDirectAnswerCssClasses extends ThumbsFeedbackCssClasses 
 ```
+**Extends:** [ThumbsFeedbackCssClasses](./search-ui-react.thumbsfeedbackcssclasses.md)
 
 ## Properties
 

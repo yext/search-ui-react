@@ -115,6 +115,54 @@ function runAnalyticsTestSuite() {
       'searchTerm': 'test'
     });
   });
+
+  it('does not render feedback buttons by default', () => {
+    render(<GenerativeDirectAnswer />);
+    expect(screen.queryByRole('button', { name: 'This answered my question' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'This did not answer my question' })).toBeNull();
+  });
+
+  it('reports thumbs up feedback for the generative direct answer', async () => {
+    render(<GenerativeDirectAnswer showFeedbackButtons />);
+    await userEvent.click(screen.getByRole('button', { name: 'This answered my question' }));
+    expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
+    expect(useAnalytics()?.report).toHaveBeenCalledWith({
+      action: 'THUMBS_UP',
+      entity: undefined,
+      locale: 'en',
+      experienceKey: 'experienceKey',
+      isDirectAnswer: true,
+      isGenerativeDirectAnswer: true,
+      queryId: '[queryId]',
+      searchId: 'searchId',
+      verticalKey: '',
+      searchTerm: 'test'
+    });
+  });
+
+  it('reports thumbs down feedback for the generative direct answer', async () => {
+    render(<GenerativeDirectAnswer showFeedbackButtons />);
+    await userEvent.click(screen.getByRole('button', { name: 'This did not answer my question' }));
+    expect(useAnalytics()?.report).toHaveBeenCalledTimes(1);
+    expect(useAnalytics()?.report).toHaveBeenCalledWith({
+      action: 'THUMBS_DOWN',
+      entity: undefined,
+      locale: 'en',
+      experienceKey: 'experienceKey',
+      isDirectAnswer: true,
+      isGenerativeDirectAnswer: true,
+      queryId: '[queryId]',
+      searchId: 'searchId',
+      verticalKey: '',
+      searchTerm: 'test'
+    });
+  });
+
+  it('shows a thank-you message after submitting feedback', async () => {
+    render(<GenerativeDirectAnswer showFeedbackButtons />);
+    await userEvent.click(screen.getByRole('button', { name: 'This answered my question' }));
+    expect(screen.getByText('Thank you for your feedback!')).toBeDefined();
+  });
 }
 
 describe('GenerativeDirectAnswer with sufficient citation fields', () => {
@@ -122,7 +170,7 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
     mockAnswersState(mockedState);
   });
 
-  it('displays the default AI signpost below the answer header', () => {
+  it('displays the default AI signpost next to the answer header', () => {
     render(<GenerativeDirectAnswer />);
 
     const answerHeader = screen.getByText('AI Generated Answer');
@@ -161,7 +209,7 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
     />);
 
     expect(screen.getByTestId('custom-ai-signpost-icon')).toBeTruthy();
-    await userEvent.click(screen.getByRole('button', { name: 'Custom Icon Custom Label' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Custom Label' }));
 
     expect(screen.getByRole('dialog', { name: 'Custom Header' })).toBeTruthy();
     expect(screen.getByText('Custom Body')).toBeTruthy();

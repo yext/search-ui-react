@@ -6,7 +6,7 @@ import {
   SearchTypeEnum,
   Result
 } from '@yext/search-headless-react';
-import { useComposedCssClasses } from '../hooks';
+import { useCardFeedbackCallback, useComposedCssClasses } from '../hooks';
 import { useCardAnalytics } from '../hooks/useCardAnalytics';
 import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
@@ -14,6 +14,12 @@ import { AISignpostIcon } from '../icons/AISignpostIcon';
 import { CloseIcon } from '../icons/CloseIcon';
 import { Markdown, MarkdownCssClasses } from './Markdown';
 import { useId } from '../hooks/useId';
+import { twMerge } from '../hooks/useComposedCssClasses';
+import {
+  ThumbsFeedback,
+  ThumbsFeedbackCssClasses,
+  builtInCssClasses as thumbsFeedbackCssClasses
+} from './ThumbsFeedback';
 import React, { useCallback, useMemo, useRef } from 'react';
 
 /**
@@ -21,7 +27,7 @@ import React, { useCallback, useMemo, useRef } from 'react';
  *
  * @public
  */
-export interface GenerativeDirectAnswerCssClasses {
+export interface GenerativeDirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
   container?: string,
   header?: string,
   answerText?: string,
@@ -40,7 +46,10 @@ const builtInCssClasses: Readonly<GenerativeDirectAnswerCssClasses> = {
   citationsContainer: 'mt-4 flex overflow-x-auto gap-4',
   citation: 'p-4 border border-gray-200 rounded-lg shadow-sm bg-slate-100 flex flex-col grow-0 shrink-0 basis-64 text-sm text-neutral overflow-x-auto cursor-pointer hover:border-indigo-500',
   citationTitle: 'font-bold',
-  citationSnippet: 'line-clamp-2 text-ellipsis break-words'
+  citationSnippet: 'line-clamp-2 text-ellipsis break-words',
+  thumbsFeedbackContainer: thumbsFeedbackCssClasses.thumbsFeedbackContainer,
+  thumbsUpIcon: thumbsFeedbackCssClasses.thumbsUpIcon,
+  thumbsDownIcon: thumbsFeedbackCssClasses.thumbsDownIcon
 };
 
 /**
@@ -55,6 +64,8 @@ export interface GenerativeDirectAnswerProps {
   answerHeader?: string | React.JSX.Element,
   /** Whether to hide the AI signpost for the generative direct answer. */
   hideAISignpost?: boolean,
+  /** Whether to show thumbs up/down buttons to provide feedback on the generative direct answer. */
+  showFeedbackButtons?: boolean,
   /** The props to pass to the AI signpost component. */
   aiSignpostProps?: AISignpostProps,
   /** The header for the citations section of the generative direct answer. */
@@ -82,6 +93,7 @@ export function GenerativeDirectAnswer({
   customCssClasses,
   answerHeader,
   hideAISignpost = false,
+  showFeedbackButtons = false,
   aiSignpostProps,
   citationsHeader,
   CitationCard,
@@ -106,7 +118,10 @@ export function GenerativeDirectAnswer({
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
-  const handleClickEvent = useReportClickEvent();
+  const handleContentClickEvent = useReportClickEvent();
+  const handleClickFeedbackButton = useCardFeedbackCallback({
+    destinationUrl: gdaResponse?.directAnswer ?? ''
+  });
 
   React.useEffect(() => {
     if (!searchResults?.length || !searchId || searchResults === lastExecutedSearchResults.current) {
@@ -128,7 +143,7 @@ export function GenerativeDirectAnswer({
         answerHeader={answerHeader}
         hideAISignpost={hideAISignpost}
         aiSignpostProps={aiSignpostProps}
-        linkClickHandler={handleClickEvent}
+        linkClickHandler={handleContentClickEvent}
       />
       <CitationsContainer
         gdaResponse={gdaResponse}
@@ -136,8 +151,12 @@ export function GenerativeDirectAnswer({
         searchResults={searchResults}
         citationsHeader={citationsHeader}
         CitationCard={CitationCard}
-        citationClickHandler={handleClickEvent}
+        citationClickHandler={handleContentClickEvent}
       />
+      {showFeedbackButtons && <ThumbsFeedback
+        onClick={handleClickFeedbackButton}
+        customCssClasses={cssClasses}
+      />}
     </div>
   );
 }
@@ -159,7 +178,7 @@ interface AnswerProps {
 export interface AISignpostProps {
   /** Icon displayed before the signpost label. Defaults to the SDK's AI signpost icon. */
   icon?: React.JSX.Element,
-  /** Label displayed in the signpost button. Defaults to "AI-Generated". */
+  /** Label displayed in the signpost button. */
   label?: string,
   /** Header displayed in the signpost popover. Defaults to "AI-Generated Content". */
   popoverHeader?: string,
@@ -181,6 +200,7 @@ function AISignpost({
   const popoverId = useId('ai-signpost-popover');
   const popoverHeaderId = useId('ai-signpost-popover-header');
   const popoverDescriptionId = useId('ai-signpost-popover-description');
+  const ariaLabel = label ?? t('aiGeneratedAnswerSignpostLabel');
   const handleSignpostClick = useCallback(() => {
     setIsOpen(current => !current);
   }, []);
@@ -189,16 +209,17 @@ function AISignpost({
   }, []);
 
   return (
-    <div className='relative mt-4 text-sm text-gray-700'>
+    <div className='relative text-sm text-gray-700'>
       <button
         type='button'
         aria-expanded={isOpen}
         aria-controls={popoverId}
-        className='inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-slate-100'
+        aria-label={ariaLabel}
+        className='inline-flex gap-1.5 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-1.5 h-8 min-w-8 text-sm font-medium text-gray-700 transition-colors hover:bg-slate-100'
         onClick={handleSignpostClick}
       >
         {icon ?? <AISignpostIcon className='h-4 w-4' />}
-        <span>{label ?? t('aiGeneratedAnswerSignpostLabel')}</span>
+        {label && <span>{label}</span>}
       </button>
       {isOpen && (
         <div
@@ -206,7 +227,7 @@ function AISignpost({
           role='dialog'
           aria-labelledby={popoverHeaderId}
           aria-describedby={popoverDescriptionId}
-          className='absolute left-0 top-full z-10 mt-2 w-80 max-w-full rounded-lg border border-gray-200 bg-white shadow-lg'
+          className='absolute left-0 top-full z-10 mt-2 w-80 rounded-lg border border-gray-200 bg-white shadow-lg'
         >
           <div className='flex flex-col px-4 py-3 gap-3'>
             <div className='flex items-center justify-between'>
@@ -259,10 +280,10 @@ function Answer(props: AnswerProps) {
   }, [linkClickHandler]);
 
   return <>
-    <div className={cssClasses.header}>
-      {answerHeader ?? t('aiGeneratedAnswer')}
+    <div className={twMerge(cssClasses.header, 'flex items-center gap-2')}>
+      <div>{answerHeader ?? t('aiGeneratedAnswer')}</div>
+      {!hideAISignpost && <AISignpost {...aiSignpostProps} />}
     </div>
-    {!hideAISignpost && <AISignpost {...aiSignpostProps} />}
     <Markdown
       content={gdaResponse.directAnswer}
       onLinkClick={handleMarkdownLinkClick}
