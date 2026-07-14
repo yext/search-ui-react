@@ -88,6 +88,7 @@
     "@types/jest": "^29.5.12",
     "@types/jest-image-snapshot": "^6.2.3",
     "@types/lodash": "^4.14.199",
+    "@types/mapbox-gl": "^2.7.5",
     "@types/prop-types": "^15.7.15",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
@@ -193,7 +194,7 @@
   },
   "overrides": {
     "@babel/plugin-transform-runtime": "^7.23.2",
-    "rollup": "4.22.4",
+    "rollup": "4.59.0",
     "playwright": "1.57.0",
     "handlebars": "^4.7.9",
     "vite": "^6.4.2",
