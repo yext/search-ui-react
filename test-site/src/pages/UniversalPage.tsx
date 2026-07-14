@@ -119,6 +119,7 @@ export default function UniversalPage(): React.JSX.Element {
             popoverHeader: "Custom Popover Header",
             label: "Custom Label",
           }}
+          showFeedbackButtons={true}
       />
 
       <DirectAnswer />

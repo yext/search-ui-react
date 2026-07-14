@@ -6,7 +6,7 @@ import {
   SearchTypeEnum,
   Result
 } from '@yext/search-headless-react';
-import { useComposedCssClasses } from '../hooks';
+import { useCardFeedbackCallback, useComposedCssClasses } from '../hooks';
 import { useCardAnalytics } from '../hooks/useCardAnalytics';
 import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
@@ -15,6 +15,11 @@ import { CloseIcon } from '../icons/CloseIcon';
 import { Markdown, MarkdownCssClasses } from './Markdown';
 import { useId } from '../hooks/useId';
 import { twMerge } from '../hooks/useComposedCssClasses';
+import {
+  ThumbsFeedback,
+  ThumbsFeedbackCssClasses,
+  builtInCssClasses as thumbsFeedbackCssClasses
+} from './ThumbsFeedback';
 import React, { useCallback, useMemo, useRef } from 'react';
 
 /**
@@ -22,7 +27,7 @@ import React, { useCallback, useMemo, useRef } from 'react';
  *
  * @public
  */
-export interface GenerativeDirectAnswerCssClasses {
+export interface GenerativeDirectAnswerCssClasses extends ThumbsFeedbackCssClasses {
   container?: string,
   header?: string,
   answerText?: string,
@@ -41,7 +46,10 @@ const builtInCssClasses: Readonly<GenerativeDirectAnswerCssClasses> = {
   citationsContainer: 'mt-4 flex overflow-x-auto gap-4',
   citation: 'p-4 border border-gray-200 rounded-lg shadow-sm bg-slate-100 flex flex-col grow-0 shrink-0 basis-64 text-sm text-neutral overflow-x-auto cursor-pointer hover:border-indigo-500',
   citationTitle: 'font-bold',
-  citationSnippet: 'line-clamp-2 text-ellipsis break-words'
+  citationSnippet: 'line-clamp-2 text-ellipsis break-words',
+  thumbsFeedbackContainer: thumbsFeedbackCssClasses.thumbsFeedbackContainer,
+  thumbsUpIcon: thumbsFeedbackCssClasses.thumbsUpIcon,
+  thumbsDownIcon: thumbsFeedbackCssClasses.thumbsDownIcon
 };
 
 /**
@@ -56,6 +64,8 @@ export interface GenerativeDirectAnswerProps {
   answerHeader?: string | React.JSX.Element,
   /** Whether to hide the AI signpost for the generative direct answer. */
   hideAISignpost?: boolean,
+  /** Whether to show thumbs up/down buttons to provide feedback on the generative direct answer. */
+  showFeedbackButtons?: boolean,
   /** The props to pass to the AI signpost component. */
   aiSignpostProps?: AISignpostProps,
   /** The header for the citations section of the generative direct answer. */
@@ -83,6 +93,7 @@ export function GenerativeDirectAnswer({
   customCssClasses,
   answerHeader,
   hideAISignpost = false,
+  showFeedbackButtons = false,
   aiSignpostProps,
   citationsHeader,
   CitationCard,
@@ -107,7 +118,10 @@ export function GenerativeDirectAnswer({
   const searchActions = useSearchActions();
   const gdaResponse = useSearchState(state => state.generativeDirectAnswer?.response);
   const isLoading = useSearchState(state => state.generativeDirectAnswer?.isLoading);
-  const handleClickEvent = useReportClickEvent();
+  const handleContentClickEvent = useReportClickEvent();
+  const handleClickFeedbackButton = useCardFeedbackCallback({
+    destinationUrl: gdaResponse?.directAnswer ?? ''
+  });
 
   React.useEffect(() => {
     if (!searchResults?.length || !searchId || searchResults === lastExecutedSearchResults.current) {
@@ -129,7 +143,7 @@ export function GenerativeDirectAnswer({
         answerHeader={answerHeader}
         hideAISignpost={hideAISignpost}
         aiSignpostProps={aiSignpostProps}
-        linkClickHandler={handleClickEvent}
+        linkClickHandler={handleContentClickEvent}
       />
       <CitationsContainer
         gdaResponse={gdaResponse}
@@ -137,8 +151,12 @@ export function GenerativeDirectAnswer({
         searchResults={searchResults}
         citationsHeader={citationsHeader}
         CitationCard={CitationCard}
-        citationClickHandler={handleClickEvent}
+        citationClickHandler={handleContentClickEvent}
       />
+      {showFeedbackButtons && <ThumbsFeedback
+        onClick={handleClickFeedbackButton}
+        customCssClasses={cssClasses}
+      />}
     </div>
   );
 }

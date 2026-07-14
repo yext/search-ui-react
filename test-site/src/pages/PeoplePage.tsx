@@ -20,7 +20,8 @@ import {
   AlternativeVerticals,
   StandardFacet,
   NumericalFacet,
-  OnDropdownInputChangeProps
+  OnDropdownInputChangeProps,
+  DirectAnswer
 } from '@yext/search-ui-react';
 // import { CustomCard } from '../components/CustomCard';
 
@@ -133,6 +134,7 @@ export function PeoplePage() {
             <ResultsCount />
             <AppliedFilters hierarchicalFacetsFieldIds={hierarchicalFacetFieldIds} />
           </div>
+          <DirectAnswer />
           <VerticalResults
             CardComponent={StandardCard}
           />
