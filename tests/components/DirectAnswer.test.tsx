@@ -100,8 +100,7 @@ function runAnalyticsTestSuite(mockState: DirectAnswerState) {
       'isDirectAnswer': true,
       'isGenerativeDirectAnswer': false,
       'queryId': '[queryId]',
-      'searchId': 'searchId',
-      'verticalKey': ''
+      'searchId': 'searchId'
     }));
   });
 
@@ -118,8 +117,7 @@ function runAnalyticsTestSuite(mockState: DirectAnswerState) {
       'isDirectAnswer': true,
       'isGenerativeDirectAnswer': false,
       'queryId': '[queryId]',
-      'searchId': 'searchId',
-      'verticalKey': ''
+      'searchId': 'searchId'
     }));
   });
 
@@ -136,8 +134,7 @@ function runAnalyticsTestSuite(mockState: DirectAnswerState) {
       'isDirectAnswer': true,
       'isGenerativeDirectAnswer': false,
       'queryId': '[queryId]',
-      'searchId': 'searchId',
-      'verticalKey': ''
+      'searchId': 'searchId'
     }));
   });
 }
