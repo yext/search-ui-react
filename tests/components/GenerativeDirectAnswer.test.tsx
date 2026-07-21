@@ -91,7 +91,6 @@ function runAnalyticsTestSuite() {
       'isGenerativeDirectAnswer': true,
       'queryId': '[queryId]',
       'searchId': 'searchId',
-      'verticalKey': '',
       'searchTerm': 'test'
     });
   });
@@ -111,7 +110,6 @@ function runAnalyticsTestSuite() {
       'isGenerativeDirectAnswer': true,
       'queryId': '[queryId]',
       'searchId': 'searchId',
-      'verticalKey': '',
       'searchTerm': 'test'
     });
   });
@@ -135,7 +133,6 @@ function runAnalyticsTestSuite() {
       isGenerativeDirectAnswer: true,
       queryId: '[queryId]',
       searchId: 'searchId',
-      verticalKey: '',
       searchTerm: 'test'
     });
   });
@@ -153,7 +150,6 @@ function runAnalyticsTestSuite() {
       isGenerativeDirectAnswer: true,
       queryId: '[queryId]',
       searchId: 'searchId',
-      verticalKey: '',
       searchTerm: 'test'
     });
   });
