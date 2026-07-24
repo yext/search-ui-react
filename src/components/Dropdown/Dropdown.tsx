@@ -21,6 +21,7 @@ import { useLayoutEffect } from '../../hooks/useLayoutEffect';
 import { useId } from '../../hooks/useId';
 
 const useRootClose = typeof useRootClosePkg === 'function' ? useRootClosePkg : useRootClosePkg['default'];
+const resultAnnouncementDelayMs = 800;
 
 interface DropdownItemData {
   value: string,
@@ -68,8 +69,11 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
   const containerRef = useRef<HTMLDivElement>(null);
   const screenReaderUUID = useId('dropdown');
   const dropdownListUUID = useId('dropdown-list');
-  const [screenReaderKey, setScreenReaderKey] = useState<number>(0);
   const [hasTyped, setHasTyped] = useState<boolean>(false);
+  const [isNavigatingOptions, setIsNavigatingOptions] = useState(false);
+  const [instructionsAnnouncement, setInstructionsAnnouncement] = useState('');
+  const hasAnnouncedInstructionsRef = useRef(false);
+  const wasActiveRef = useRef(false);
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
     return getTransformedChildrenAndItemData(children);
   }, [children]);
@@ -81,7 +85,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
     items,
     lastTypedOrSubmittedValue,
     setValue,
-    setScreenReaderKey,
     alwaysSelectOption
   );
   const { focusedIndex, focusedItemData, updateFocusedItem } = focusContext;
@@ -93,11 +96,25 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
     focusedItemData,
     screenReaderUUID,
     dropdownListUUID,
+    items.length > 0,
     setHasTyped,
+    setIsNavigatingOptions,
     onToggle,
     onSelect
   );
   const { toggleDropdown, isActive } = dropdownContext;
+
+  useEffect(() => {
+    if (isActive && !wasActiveRef.current && !hasAnnouncedInstructionsRef.current) {
+      setInstructionsAnnouncement(
+        screenReaderInstructions ?? t('dropDownScreenReaderInstructions')
+      );
+      hasAnnouncedInstructionsRef.current = true;
+    } else if (!isActive) {
+      setInstructionsAnnouncement('');
+    }
+    wasActiveRef.current = isActive;
+  }, [isActive, screenReaderInstructions, t]);
 
   useLayoutEffect(() => {
     if (parentQuery !== undefined && parentQuery !== lastTypedOrSubmittedValue) {
@@ -122,6 +139,9 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
 
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();
+      setIsNavigatingOptions(true);
+    } else {
+      setIsNavigatingOptions(false);
     }
 
     if (e.key === 'ArrowDown') {
@@ -144,6 +164,9 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
     }
   }
 
+  const resultAnnouncement = isActive && !isNavigatingOptions && (hasTyped || items.length || value)
+    ? screenReaderText
+    : '';
   return (
     <div ref={containerRef} className={isActive ? activeClassName : className} onKeyDown={handleKeyDown}>
       <DropdownContext.Provider value={dropdownContext}>
@@ -154,11 +177,12 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
         </InputContext.Provider>
       </DropdownContext.Provider>
 
+      <div className='sr-only' aria-live='polite' aria-atomic='true'>
+        {instructionsAnnouncement}
+      </div>
       <ScreenReader
-        announcementKey={screenReaderKey}
-        announcementText={isActive && (hasTyped || items.length || value) ? screenReaderText : ''}
-        instructionsId={screenReaderUUID}
-        instructions={screenReaderInstructions ?? t('dropDownScreenReaderInstructions')}
+        announcementText={resultAnnouncement}
+        announcementDelayMs={resultAnnouncementDelayMs}
       />
     </div>
   );
@@ -179,7 +203,6 @@ function useFocusContextInstance(
   items: DropdownItemData[],
   lastTypedOrSubmittedValue: string,
   setValue: (newValue: string) => void,
-  setScreenReaderKey: React.Dispatch<React.SetStateAction<number>>,
   alwaysSelectOption: boolean
 ): FocusContextType {
   const [focusedIndex, setFocusedIndex] = useState(-1);
@@ -208,11 +231,9 @@ function useFocusContextInstance(
       if (alwaysSelectOption && numItems !== 0) {
         setFocusedIndex(0);
         setFocusedItemData(items[0].itemData);
-        setScreenReaderKey(prev => prev + 1);
       } else {
         setFocusedIndex(-1);
         setFocusedItemData(undefined);
-        setScreenReaderKey(prev => prev + 1);
       }
     } else if (updatedFocusedIndex < -1) {
       const loopedAroundIndex = (numItems + updatedFocusedIndex + 1) % numItems;
@@ -225,7 +246,9 @@ function useFocusContextInstance(
       setFocusedItemData(items[updatedFocusedIndex].itemData);
     }
     setFocusedValue(updatedValue);
-    setValue(alwaysSelectOption ? (value ?? lastTypedOrSubmittedValue) : updatedValue);
+    if (alwaysSelectOption || updatedFocusedIndex === -1 || updatedFocusedIndex >= numItems) {
+      setValue(alwaysSelectOption ? (value ?? lastTypedOrSubmittedValue) : updatedValue);
+    }
   }
 
   return {
@@ -243,7 +266,9 @@ function useDropdownContextInstance(
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string | undefined,
   dropdownListUUID: string | undefined,
+  hasPopup: boolean,
   setHasTyped: (hasTyped: boolean) => void,
+  setIsNavigatingOptions: (isNavigating: boolean) => void,
   onToggle?: (
     isActive: boolean,
     prevValue: string,
@@ -255,6 +280,7 @@ function useDropdownContextInstance(
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
+    setIsNavigatingOptions(false);
     if (!willBeOpen) {
       setHasTyped(false);
     }
@@ -263,6 +289,7 @@ function useDropdownContextInstance(
   };
   return {
     isActive,
+    isExpanded: isActive && hasPopup,
     toggleDropdown,
     onSelect,
     screenReaderUUID,

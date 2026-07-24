@@ -460,7 +460,7 @@ export function SearchBar({
             {renderRecentSearches()}
             {renderQuerySuggestions()}
             {entityPreviews && (
-              <div role='group'>
+              <div>
                 {showEntityPreviewsDivider && <div className={cssClasses.entityPreviewsDivider} aria-hidden='true' />}
                 {entityPreviews}
               </div>

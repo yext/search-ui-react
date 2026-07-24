@@ -1,35 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface Props {
-  instructionsId?: string,
-  instructions: string,
-  announcementKey: number,
-  announcementText: string
+  announcementText: string,
+  announcementDelayMs?: number
 }
 
 export function ScreenReader({
-  instructionsId,
-  instructions,
-  announcementKey,
   announcementText,
-}: Props): React.JSX.Element | null {
+  announcementDelayMs = 0
+}: Props): React.JSX.Element {
+  const [renderedAnnouncement, setRenderedAnnouncement] = useState('');
+
+  useEffect(() => {
+    setRenderedAnnouncement('');
+    if (!announcementText) {
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
+      setRenderedAnnouncement(announcementText);
+    }, announcementDelayMs);
+    return () => clearTimeout(timeoutId);
+  }, [announcementDelayMs, announcementText]);
 
   return (
-    <>
-      <div
-        id={instructionsId}
-        className='sr-only'
-      >
-        {instructions}
-      </div>
-      <div
-        className='sr-only'
-        key={announcementKey}
-        aria-live='polite'
-        aria-atomic='true'
-      >
-        {announcementText}
-      </div>
-    </>
+    <div
+      className='sr-only'
+      role='status'
+      aria-live='polite'
+      aria-atomic='true'
+    >
+      {renderedAnnouncement}
+    </div>
   );
 }

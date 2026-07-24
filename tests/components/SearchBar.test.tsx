@@ -5,8 +5,14 @@ import {
   SearchHeadlessContext,
   State, SearchTypeEnum
 } from '@yext/search-headless-react';
-import { render, RenderResult, screen } from '@testing-library/react';
-import { SearchBar, onSearchFunc, VerticalLink, SearchI18nextProvider, SearchAnalyticsEventService } from '../../src';
+import { render, RenderResult, screen, waitFor } from '@testing-library/react';
+import {
+  SearchBar,
+  onSearchFunc,
+  VerticalLink,
+  SearchI18nextProvider,
+  SearchAnalyticsEventService
+} from '../../src';
 import userEvent from '@testing-library/user-event';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import { RecursivePartial } from '../__utils__/mocks';
@@ -217,6 +223,33 @@ describe('SearchBar', () => {
       expect(mockedUniversalSearch).toHaveBeenCalledWith(expect.objectContaining({
         query: 'query suggestion 1'
       }));
+    });
+
+    it('keeps the typed query intact while a highlighted suggestion is active', async () => {
+      jest.spyOn(SearchCore.prototype, 'universalAutocomplete').mockResolvedValue({
+        results: [{
+          value: 'got any grapes?',
+          inputIntents: [],
+          matchedSubstrings: [{ offset: 4, length: 1 }]
+        }],
+        inputIntents: [],
+        uuid: ''
+      });
+
+      renderSearchBar(mockedState);
+      const input = screen.getByRole('combobox');
+      await userEvent.type(input, 'a');
+      const option = await screen.findByRole('option', {
+        name: 'autocomplete suggestion: got any grapes?'
+      });
+
+      await userEvent.keyboard('{arrowdown}');
+
+      expect(input).toHaveValue('a');
+      expect(input).toHaveAttribute('aria-activedescendant', option.id);
+
+      await userEvent.keyboard('{enter}');
+      expect(input).toHaveValue('got any grapes?');
     });
 
     it('uses universal autocomplete limit when universalAutocompleteLimit is provided', async () => {
@@ -612,11 +645,37 @@ describe('SearchBar', () => {
   });
 
   describe('Screen reader text', () => {
-    it('search bar instruction text for screen reader is present in DOM', () => {
+    it('announces search bar usage instructions only on initial focus', async () => {
+      jest.spyOn(SearchCore.prototype, 'universalAutocomplete').mockResolvedValue({
+        results: [{ value: 'query suggestion', inputIntents: [] }],
+        inputIntents: [],
+        uuid: ''
+      });
       renderSearchBar(mockedState);
-      expect(screen.getByText(
+      const input = screen.getByRole('combobox');
+      const liveRegion = screen.getByRole('status');
+
+      expect(input).not.toHaveAttribute('aria-describedby');
+
+      await userEvent.click(input);
+      expect(await screen.findByText(
         'When autocomplete results are available, use up and down arrows to review and enter to select.'
       )).toBeInTheDocument();
+      await waitFor(() => expect(liveRegion).toHaveTextContent(
+        '1 autocomplete suggestion found.'
+      ), { timeout: 2000 });
+
+      await userEvent.tab();
+      expect(input).not.toHaveAttribute('aria-describedby');
+
+      await userEvent.click(input);
+      await waitFor(
+        () => expect(liveRegion).toHaveTextContent('1 autocomplete suggestion found.'),
+        { timeout: 2000 }
+      );
+      expect(screen.queryByText(
+        'When autocomplete results are available, use up and down arrows to review and enter to select.'
+      )).not.toBeInTheDocument();
     });
 
     it('description text of number of available autocomplete options is present in DOM', async () => {
@@ -632,9 +691,9 @@ describe('SearchBar', () => {
         .mockResolvedValue(mockedAutocompleteResponse);
       renderSearchBar(mockedState);
       await userEvent.click(screen.getByRole('combobox'));
-      expect(await screen.findByText(
+      await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(
         '2 autocomplete suggestions found.'
-      )).toBeInTheDocument();
+      ), { timeout: 2000 });
     });
 
     it('description text of number of available recent search options is present in DOM', async () => {
@@ -642,9 +701,9 @@ describe('SearchBar', () => {
       await userEvent.type(screen.getByRole('combobox'), 'yext');
       await userEvent.keyboard('{enter}');
       await userEvent.click(screen.getByRole('combobox'));
-      expect(await screen.findByText(
+      await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent(
         '1 recent search found.'
-      )).toBeInTheDocument();
+      ));
     });
   });
 });
