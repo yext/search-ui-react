@@ -169,7 +169,19 @@ describe('NumericalFacetContent', () => {
       showOptionsSearchInputLabel: true
     }));
 
-    expect(screen.getByText(`Search ${numericalFacet.displayName} Options`)).toBeDefined();
+    const label = screen.getByText(`Search ${numericalFacet.displayName} Options`);
+    expect(label).not.toHaveClass('sr-only');
+    expect(screen.getByLabelText(`Search ${numericalFacet.displayName} Options`)).toBeDefined();
+  });
+
+  it('Associates a visually hidden options search input label by default', () => {
+    render(mockNumericalFacet({
+      fieldId: numericalFacet.fieldId,
+      showMoreLimit: 1
+    }));
+
+    const label = screen.getByText(`Search ${numericalFacet.displayName} Options`);
+    expect(label).toHaveClass('sr-only');
     expect(screen.getByLabelText(`Search ${numericalFacet.displayName} Options`)).toBeDefined();
   });
 });

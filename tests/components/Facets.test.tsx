@@ -133,7 +133,37 @@ describe('Facets', () => {
         />
       </Facets>);
 
-    expect(screen.getByText('Search Products Options')).toBeDefined();
+    expect(screen.getByText('Search Products Options')).not.toHaveClass('sr-only');
+    expect(screen.getByLabelText('Search Products Options')).toBeDefined();
+  });
+
+  it('Associates a visually hidden options search input label by default', () => {
+    render(
+      <Facets onlyRenderChildren={true}>
+        <StandardFacet fieldId='products' showMoreLimit={1}/>
+      </Facets>);
+
+    expect(screen.getByText('Search Products Options')).toHaveClass('sr-only');
+    expect(screen.getByLabelText('Search Products Options')).toBeDefined();
+  });
+
+  it('Passes the options search input label setting from Facets to a facet', () => {
+    render(
+      <Facets onlyRenderChildren={true} showOptionsSearchInputLabel={true}>
+        <StandardFacet fieldId='products' showMoreLimit={1}/>
+      </Facets>);
+
+    expect(screen.getByText('Search Products Options')).not.toHaveClass('sr-only');
+    expect(screen.getByLabelText('Search Products Options')).toBeDefined();
+  });
+
+  it('A facet overrides the options search input label setting from Facets', () => {
+    render(
+      <Facets onlyRenderChildren={true} showOptionsSearchInputLabel={true}>
+        <StandardFacet fieldId='products' showMoreLimit={1} showOptionsSearchInputLabel={false}/>
+      </Facets>);
+
+    expect(screen.getByText('Search Products Options')).toHaveClass('sr-only');
     expect(screen.getByLabelText('Search Products Options')).toBeDefined();
   });
 

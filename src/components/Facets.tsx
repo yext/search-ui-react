@@ -40,6 +40,7 @@ export function Facets(props: FacetsProps): React.JSX.Element {
     hierarchicalFieldIds,
     excludedFieldIds = [],
     customCssClasses = {},
+    showOptionsSearchInputLabel,
   } = props;
   const resolvedHierarchicalFieldIds = useMemo(() => hierarchicalFieldIds ?? [], [hierarchicalFieldIds]);
 
@@ -89,6 +90,7 @@ export function Facets(props: FacetsProps): React.JSX.Element {
                     facetsCustomCssClasses={customCssClasses}
                     fieldIdToCustomFacetProps={fieldIdToCustomFacetProps}
                     hierarchicalFieldIds={resolvedHierarchicalFieldIds}
+                    showOptionsSearchInputLabel={showOptionsSearchInputLabel}
                   />
                   {(i < facets.length - 1)
                     && <FilterDivider className={customCssClasses?.divider}/>}
@@ -140,6 +142,7 @@ export function HierarchicalFacet(props: HierarchicalFacetProps) { return null; 
  * @param facetsCustomCssClasses - {@link FacetsCssClasses}
  * @param fieldIdToCustomFacetProps - a map of fieldId to facet props
  * @param hierarchicalFieldIds - a list of hierarchical field ids
+ * @param showOptionsSearchInputLabel - whether to display the options search input label visibly
  * @returns {@link ReactElement}
  *
  * @internal
@@ -149,16 +152,19 @@ export function Facet({
   facetsCustomCssClasses,
   fieldIdToCustomFacetProps,
   hierarchicalFieldIds,
+  showOptionsSearchInputLabel,
 }: {
   facet: DisplayableFacet,
   facetsCustomCssClasses: FacetsCssClasses,
   fieldIdToCustomFacetProps: Map<string, any>,
-  hierarchicalFieldIds: string[]
+  hierarchicalFieldIds: string[],
+  showOptionsSearchInputLabel?: boolean
 }) {
   let facetType: FacetType;
   let facetProps: FacetProps = {
     fieldId: facet.fieldId,
     label: facet.displayName,
+    ...showOptionsSearchInputLabel !== undefined && { showOptionsSearchInputLabel },
   };
   const customFacetElement = fieldIdToCustomFacetProps.get(facet.fieldId);
   if (customFacetElement) {

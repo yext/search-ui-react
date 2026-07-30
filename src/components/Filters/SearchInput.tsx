@@ -15,8 +15,16 @@ export interface SearchInputProps {
   labelClassName?: string,
   /** {@inheritDoc FilterSearch.placeholder} */
   placeholder?: string,
-  /** The visible label text associated with the input. */
-  label?: string
+  /** The label text associated with the input. */
+  label?: string,
+  /**
+   * Whether the label is hidden from view while remaining associated with the input for
+   * assistive technology. Defaults to false.
+   *
+   * @remarks
+   * When true, labelClassName is not applied since the label is not rendered visibly.
+   */
+  visuallyHiddenLabel?: boolean
 }
 
 /**
@@ -33,7 +41,8 @@ export function SearchInput(props: SearchInputProps): React.JSX.Element {
     className = 'text-sm form-input bg-white h-9 w-full outline-none p-2 mb-2 rounded-md border border-gray-300 focus:ring-primary focus:ring-0 text-neutral-dark placeholder:text-neutral',
     labelClassName = 'mb-1 block text-sm font-medium text-neutral-dark',
     placeholder,
-    label
+    label,
+    visuallyHiddenLabel = false
   } = props;
   const { searchValue, setSearchValue } = useFilterGroupContext();
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +54,11 @@ export function SearchInput(props: SearchInputProps): React.JSX.Element {
   return (
     <>
       {label && (
-        <label id={labelId} htmlFor={inputId} className={labelClassName}>
+        <label
+          id={labelId}
+          htmlFor={inputId}
+          className={visuallyHiddenLabel ? 'sr-only' : labelClassName}
+        >
           {label}
         </label>
       )}

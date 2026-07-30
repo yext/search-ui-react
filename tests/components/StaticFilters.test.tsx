@@ -182,7 +182,16 @@ describe('Static Filters', () => {
       />
     );
 
-    expect(screen.getByText(`Search ${staticFiltersProps.title} Options`)).toBeDefined();
+    const label = screen.getByText(`Search ${staticFiltersProps.title} Options`);
+    expect(label).not.toHaveClass('sr-only');
+    expect(screen.getByLabelText(`Search ${staticFiltersProps.title} Options`)).toBeDefined();
+  });
+
+  it('Associates a visually hidden search input label by default', () => {
+    render(<StaticFilters {...staticFiltersProps} searchable={true} />);
+
+    const label = screen.getByText(`Search ${staticFiltersProps.title} Options`);
+    expect(label).toHaveClass('sr-only');
     expect(screen.getByLabelText(`Search ${staticFiltersProps.title} Options`)).toBeDefined();
   });
 

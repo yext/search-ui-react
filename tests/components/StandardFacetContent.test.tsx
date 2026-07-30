@@ -113,7 +113,19 @@ describe('StandardFacetContent', () => {
       showOptionsSearchInputLabel: true
     }));
 
-    expect(screen.getByText(`Search ${standardFacet.displayName} Options`)).toBeDefined();
+    const label = screen.getByText(`Search ${standardFacet.displayName} Options`);
+    expect(label).not.toHaveClass('sr-only');
+    expect(screen.getByLabelText(`Search ${standardFacet.displayName} Options`)).toBeDefined();
+  });
+
+  it('Associates a visually hidden options search input label by default', () => {
+    render(mockStandardFacet({
+      fieldId: standardFacet.fieldId,
+      showMoreLimit: 1
+    }));
+
+    const label = screen.getByText(`Search ${standardFacet.displayName} Options`);
+    expect(label).toHaveClass('sr-only');
     expect(screen.getByLabelText(`Search ${standardFacet.displayName} Options`)).toBeDefined();
   });
 });
