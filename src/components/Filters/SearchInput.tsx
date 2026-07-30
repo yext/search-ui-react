@@ -51,17 +51,18 @@ export function SearchInput(props: SearchInputProps): React.JSX.Element {
 
   const labelId = useId('filters-search-input-label');
   const inputId = useId('filter-group-search-input');
+  const labelElement = label && (
+    <label
+      id={labelId}
+      htmlFor={inputId}
+      className={visuallyHiddenLabel ? 'sr-only' : labelClassName}
+    >
+      {label}
+    </label>
+  );
   return (
     <>
-      {label && (
-        <label
-          id={labelId}
-          htmlFor={inputId}
-          className={visuallyHiddenLabel ? 'sr-only' : labelClassName}
-        >
-          {label}
-        </label>
-      )}
+      {!visuallyHiddenLabel && labelElement}
       <input
         id={inputId}
         className={className}
@@ -70,6 +71,11 @@ export function SearchInput(props: SearchInputProps): React.JSX.Element {
         value={searchValue}
         onChange={handleChange}
       />
+      {/* A hidden label follows the input so that the input remains the first child of its
+          container. Sibling spacing utilities such as Tailwind's space-y-* skip the first child,
+          so a preceding label would add a gap above the input even though the label itself takes
+          up no space. htmlFor keeps the association regardless of order. */}
+      {visuallyHiddenLabel && labelElement}
     </>
   );
 }

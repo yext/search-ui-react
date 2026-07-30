@@ -164,7 +164,7 @@ boolean
 
 </td><td>
 
-_(Optional)_ Whether or not to display the options search input label visibly on every rendered facet. Defaults to false, and is overridden by the same prop on a child facet.
+_(Optional)_ Whether or not to display the options search input label visibly on facets that render an options search input. Defaults to false, and is overridden by the same prop on a child facet.
 
 
 </td></tr>

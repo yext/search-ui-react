@@ -195,6 +195,20 @@ describe('Static Filters', () => {
     expect(screen.getByLabelText(`Search ${staticFiltersProps.title} Options`)).toBeDefined();
   });
 
+  it('Keeps the search input first in its container when the label is visually hidden', () => {
+    render(<StaticFilters {...staticFiltersProps} searchable={true} />);
+
+    const searchInput = screen.getByRole('textbox');
+    const label = screen.getByText(`Search ${staticFiltersProps.title} Options`);
+
+    // Sibling order is the subject here: an element in front of the input gives it a space-y-*
+    // margin that the input should not have when the label is hidden.
+    /* eslint-disable testing-library/no-node-access */
+    expect(searchInput.previousElementSibling).toBeNull();
+    expect(searchInput.nextElementSibling).toBe(label);
+    /* eslint-enable testing-library/no-node-access */
+  });
+
   it('Clicking a filter option executes a search when searchOnChange is true', async () => {
     const actions = spyOnActions();
     render(<StaticFilters {...staticFiltersProps} />);

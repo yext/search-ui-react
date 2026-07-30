@@ -4,7 +4,7 @@
 
 ## FacetsProps.showOptionsSearchInputLabel property
 
-Whether or not to display the options search input label visibly on every rendered facet. Defaults to false, and is overridden by the same prop on a child facet.
+Whether or not to display the options search input label visibly on facets that render an options search input. Defaults to false, and is overridden by the same prop on a child facet.
 
 **Signature:**
 
@@ -14,5 +14,5 @@ showOptionsSearchInputLabel?: boolean;
 
 ## Remarks
 
-The label is always associated with the search input so that it has an accessible name. When false, the label is visually hidden but remains available to assistive technology.
+The label is always associated with the search input so that it has an accessible name. When false, the label is visually hidden but remains available to assistive technology. Hierarchical facets do not render an options search input, so this has no effect on them.
 
