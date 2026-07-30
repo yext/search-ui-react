@@ -157,6 +157,19 @@ describe('Facets', () => {
     expect(screen.getByLabelText('Search Products Options')).toBeDefined();
   });
 
+  it('A facet passing the options search input label setting as undefined inherits Facets', () => {
+    render(
+      <Facets onlyRenderChildren={true} showOptionsSearchInputLabel={true}>
+        <StandardFacet
+          fieldId='products'
+          showMoreLimit={1}
+          showOptionsSearchInputLabel={undefined}
+        />
+      </Facets>);
+
+    expect(screen.getByText('Search Products Options')).not.toHaveClass('sr-only');
+  });
+
   it('A facet overrides the options search input label setting from Facets', () => {
     render(
       <Facets onlyRenderChildren={true} showOptionsSearchInputLabel={true}>

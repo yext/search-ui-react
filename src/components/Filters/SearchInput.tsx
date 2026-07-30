@@ -11,7 +11,10 @@ import { useId } from '../../hooks/useId';
 export interface SearchInputProps {
   /** CSS class names applied to the input element. */
   className?: string,
-  /** CSS class names applied to the label element. */
+  /**
+   * CSS class names applied to the label element. When visuallyHiddenLabel is true, this
+   * replaces the class that hides the label.
+   */
   labelClassName?: string,
   /** {@inheritDoc FilterSearch.placeholder} */
   placeholder?: string,
@@ -22,7 +25,8 @@ export interface SearchInputProps {
    * assistive technology. Defaults to false.
    *
    * @remarks
-   * When true, labelClassName is not applied since the label is not rendered visibly.
+   * The label is hidden with Tailwind's sr-only class unless labelClassName is provided, which
+   * lets consumers whose stylesheet does not define sr-only hide it another way.
    */
   visuallyHiddenLabel?: boolean
 }
@@ -55,7 +59,7 @@ export function SearchInput(props: SearchInputProps): React.JSX.Element {
     <label
       id={labelId}
       htmlFor={inputId}
-      className={visuallyHiddenLabel ? 'sr-only' : labelClassName}
+      className={visuallyHiddenLabel ? props.labelClassName ?? 'sr-only' : labelClassName}
     >
       {label}
     </label>

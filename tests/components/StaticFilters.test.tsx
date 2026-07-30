@@ -195,6 +195,21 @@ describe('Static Filters', () => {
     expect(screen.getByLabelText(`Search ${staticFiltersProps.title} Options`)).toBeDefined();
   });
 
+  it('Uses the searchInputLabel class in place of sr-only on a hidden label', () => {
+    render(
+      <StaticFilters
+        {...staticFiltersProps}
+        searchable={true}
+        // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
+        customCssClasses={{ searchInputLabel: 'custom-hidden' }}
+      />
+    );
+
+    const label = screen.getByText(`Search ${staticFiltersProps.title} Options`);
+    expect(label).toHaveClass('custom-hidden');
+    expect(label).not.toHaveClass('sr-only');
+  });
+
   it('Keeps the search input first in its container when the label is visually hidden', () => {
     render(<StaticFilters {...staticFiltersProps} searchable={true} />);
 

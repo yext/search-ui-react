@@ -168,7 +168,11 @@ export function Facet({
   };
   const customFacetElement = fieldIdToCustomFacetProps.get(facet.fieldId);
   if (customFacetElement) {
-    facetProps = { ...facetProps, ...customFacetElement.props };
+    // A prop passed as undefined counts as unspecified, so that values supplied by Facets are
+    // inherited instead of erased.
+    const specifiedCustomProps = Object.fromEntries(
+      Object.entries(customFacetElement.props).filter(([, value]) => value !== undefined));
+    facetProps = { ...facetProps, ...specifiedCustomProps };
     facetType = getFacetTypeFromReactElementType(
       (typeof customFacetElement.type === 'function')
         ? customFacetElement.type.name : '');
