@@ -246,9 +246,7 @@ function useFocusContextInstance(
       setFocusedItemData(items[updatedFocusedIndex].itemData);
     }
     setFocusedValue(updatedValue);
-    if (alwaysSelectOption || updatedFocusedIndex === -1 || updatedFocusedIndex >= numItems) {
-      setValue(alwaysSelectOption ? (value ?? lastTypedOrSubmittedValue) : updatedValue);
-    }
+    setValue(alwaysSelectOption ? (value ?? lastTypedOrSubmittedValue) : updatedValue);
   }
 
   return {

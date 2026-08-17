@@ -225,7 +225,7 @@ describe('SearchBar', () => {
       }));
     });
 
-    it('keeps the typed query intact while a highlighted suggestion is active', async () => {
+    it('previews a highlighted suggestion and restores the typed query', async () => {
       jest.spyOn(SearchCore.prototype, 'universalAutocomplete').mockResolvedValue({
         results: [{
           value: 'got any grapes?',
@@ -245,9 +245,13 @@ describe('SearchBar', () => {
 
       await userEvent.keyboard('{arrowdown}');
 
-      expect(input).toHaveValue('a');
+      expect(input).toHaveValue('got any grapes?');
       expect(input).toHaveAttribute('aria-activedescendant', option.id);
 
+      await userEvent.keyboard('{arrowup}');
+      expect(input).toHaveValue('a');
+
+      await userEvent.keyboard('{arrowdown}');
       await userEvent.keyboard('{enter}');
       expect(input).toHaveValue('got any grapes?');
     });

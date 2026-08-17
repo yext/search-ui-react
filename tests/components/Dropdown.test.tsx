@@ -120,7 +120,7 @@ describe('Dropdown', () => {
     expect(screen.queryByText('usage instructions')).not.toBeInTheDocument();
   });
 
-  it('focuses options with arrow keys without replacing the typed input or competing announcements', async () => {
+  it('previews focused options in the input without competing announcements', async () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
@@ -153,7 +153,7 @@ describe('Dropdown', () => {
 
     await userEvent.keyboard('{arrowdown}');
     expect(itemNode.className).toContain('FocusedItem1');
-    expect(inputNode).toHaveValue('i');
+    expect(inputNode).toHaveValue('item1');
     expect(inputNode).toHaveAttribute('aria-activedescendant', itemNode.id);
     expect(itemNode).toHaveAttribute('aria-selected', 'true');
     expect(liveRegion).toBeEmptyDOMElement();
@@ -278,10 +278,10 @@ describe('Dropdown', () => {
     await userEvent.keyboard('{arrowdown}');
     await userEvent.click(screen.getByText('external div'));
 
-    expect(inputNode).toHaveValue('i');
+    expect(inputNode).toHaveValue('item1');
     expect(screen.queryByTestId('item1')).toBeNull();
     expect(mockedOnToggleFn).toBeCalledTimes(3);
-    expect(mockedOnToggleFn).toHaveBeenCalledWith(false, 'i', 'i', 0, undefined);
+    expect(mockedOnToggleFn).toHaveBeenCalledWith(false, 'i', 'item1', 0, undefined);
   });
 
   it('updates options when user provide new input', async () => {
@@ -307,13 +307,13 @@ describe('Dropdown', () => {
 
     await userEvent.keyboard('{arrowdown}');
     expect(itemNode.className).toContain('FocusedItem1');
-    expect(inputNode).toHaveValue('');
+    expect(inputNode).toHaveValue('item1');
 
     const userInput = ' someText';
     await userEvent.type(inputNode, userInput);
-    expect(inputNode).toHaveValue(userInput);
+    expect(inputNode).toHaveValue('item1' + userInput);
     expect(mockedOnChangeFn).toBeCalledTimes(userInput.length);
-    expect(mockedOnChangeFn).toHaveBeenCalledWith(userInput);
+    expect(mockedOnChangeFn).toHaveBeenCalledWith('item1' + userInput);
     // item should no longer be in focus after dropdown update
     expect(itemNode.className).not.toContain('FocusedItem1');
   });
