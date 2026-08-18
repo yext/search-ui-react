@@ -183,7 +183,7 @@ boolean
 
 </td><td>
 
-_(Optional)_ Whether or not to display the visible search input label. Defaults to false.
+_(Optional)_ Whether or not to display the search input label visibly. Defaults to false.
 
 
 </td></tr>

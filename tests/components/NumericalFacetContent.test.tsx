@@ -169,8 +169,20 @@ describe('NumericalFacetContent', () => {
       showOptionsSearchInputLabel: true
     }));
 
-    expect(screen.getByText(`Search ${numericalFacet.displayName} Options`)).toBeDefined();
-    expect(screen.getByLabelText(`Search ${numericalFacet.displayName} Options`)).toBeDefined();
+    const accessibleName = `Search ${numericalFacet.displayName} Options`;
+    expect(screen.getByText(accessibleName)).not.toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: accessibleName })).toBeDefined();
+  });
+
+  it('Associates a visually hidden options search input label by default', () => {
+    render(mockNumericalFacet({
+      fieldId: numericalFacet.fieldId,
+      showMoreLimit: 1
+    }));
+
+    const accessibleName = `Search ${numericalFacet.displayName} Options`;
+    expect(screen.getByText(accessibleName)).toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: accessibleName })).toBeDefined();
   });
 });
 

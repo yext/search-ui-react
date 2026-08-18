@@ -28,6 +28,7 @@ type translationKeys =
   'dismiss' |
   'dropDownScreenReaderInstructions' |
   'feedback' |
+  'filterGroupSearchInputLabel' |
   'invalidRange' |
   'max' |
   'min' |

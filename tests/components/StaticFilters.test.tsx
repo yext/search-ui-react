@@ -182,8 +182,44 @@ describe('Static Filters', () => {
       />
     );
 
-    expect(screen.getByText(`Search ${staticFiltersProps.title} Options`)).toBeDefined();
-    expect(screen.getByLabelText(`Search ${staticFiltersProps.title} Options`)).toBeDefined();
+    const accessibleName = `Search ${staticFiltersProps.title} Options`;
+    expect(screen.getByText(accessibleName)).not.toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: accessibleName })).toBeDefined();
+  });
+
+  it('Associates a visually hidden search input label by default', () => {
+    render(<StaticFilters {...staticFiltersProps} searchable={true} />);
+
+    const accessibleName = `Search ${staticFiltersProps.title} Options`;
+    expect(screen.getByText(accessibleName)).toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: accessibleName })).toBeDefined();
+  });
+
+  it('Keeps custom visible-label classes from exposing a hidden label', () => {
+    render(
+      <StaticFilters
+        {...staticFiltersProps}
+        searchable={true}
+        // eslint-disable-next-line react-perf/jsx-no-new-object-as-prop
+        customCssClasses={{ searchInputLabel: 'custom-visible-label' }}
+      />
+    );
+
+    const label = screen.getByText(`Search ${staticFiltersProps.title} Options`);
+    expect(label).toHaveClass('sr-only');
+    expect(label).not.toHaveClass('custom-visible-label');
+  });
+
+  it('Keeps the search input first when its label is visually hidden', () => {
+    render(<StaticFilters {...staticFiltersProps} searchable={true} />);
+
+    const searchInput = screen.getByRole('textbox');
+    const label = screen.getByText(`Search ${staticFiltersProps.title} Options`);
+
+    /* eslint-disable testing-library/no-node-access */
+    expect(searchInput.previousElementSibling).toBeNull();
+    expect(searchInput.nextElementSibling).toBe(label);
+    /* eslint-enable testing-library/no-node-access */
   });
 
   it('Clicking a filter option executes a search when searchOnChange is true', async () => {
