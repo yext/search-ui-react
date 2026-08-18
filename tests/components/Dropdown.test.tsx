@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Dropdown, DropdownProps } from '../../src/components/Dropdown/Dropdown';
 import { DropdownInput } from '../../src/components/Dropdown/DropdownInput';
@@ -59,7 +59,68 @@ describe('Dropdown', () => {
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
   });
 
-  it('handles arrowkey navigation properly and focuses on the option and input text', async () => {
+  it('uses a stable live region and re-announces options when reopened', async () => {
+    render(
+      <div>
+        <Dropdown screenReaderText='1 autocomplete option found.'>
+          <DropdownInput />
+          <DropdownMenu>
+            <DropdownItem value='item1'>item1</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+        <button>outside</button>
+      </div>
+    );
+    const liveRegion = screen.getByRole('status');
+    const input = screen.getByRole('combobox');
+
+    await userEvent.click(input);
+    await waitFor(() => expect(liveRegion).toHaveTextContent('1 autocomplete option found.'));
+
+    await userEvent.click(screen.getByRole('button', { name: 'outside' }));
+    expect(liveRegion).toBeEmptyDOMElement();
+
+    await userEvent.click(input);
+    expect(screen.getByRole('status')).toBe(liveRegion);
+    await waitFor(() => expect(liveRegion).toHaveTextContent('1 autocomplete option found.'));
+  });
+
+  it('announces usage instructions only during the first activation', async () => {
+    render(
+      <div>
+        <div id='additional-description'>additional description</div>
+        <Dropdown
+          screenReaderText='screen reader text here'
+          screenReaderInstructions='usage instructions'
+        >
+          <DropdownInput ariaDescribedBy='additional-description' />
+          <DropdownMenu>
+            <DropdownItem value='item1'>item1</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+        <button>outside</button>
+      </div>
+    );
+    const input = screen.getByRole('combobox');
+    const liveRegion = screen.getByRole('status');
+
+    expect(input).toHaveAttribute('aria-describedby', 'additional-description');
+
+    await userEvent.click(input);
+    const instructions = await screen.findByText('usage instructions');
+    expect(instructions).toHaveAttribute('aria-live', 'polite');
+    expect(instructions).not.toHaveAttribute('role');
+    await waitFor(() => expect(liveRegion).toHaveTextContent('screen reader text here'));
+    await userEvent.click(screen.getByRole('button', { name: 'outside' }));
+    expect(input).toHaveAttribute('aria-describedby', 'additional-description');
+
+    await userEvent.click(input);
+    expect(input).toHaveAttribute('aria-describedby', 'additional-description');
+    await waitFor(() => expect(liveRegion).toHaveTextContent('screen reader text here'));
+    expect(screen.queryByText('usage instructions')).not.toBeInTheDocument();
+  });
+
+  it('previews focused options in the input without competing announcements', async () => {
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here'
     };
@@ -67,23 +128,40 @@ describe('Dropdown', () => {
       <Dropdown {...dropdownProps}>
         <DropdownInput />
         <DropdownMenu>
-          <DropdownItem value='item1' focusedClassName='FocusedItem1'>
+          <DropdownItem
+            value='item1'
+            focusedClassName='FocusedItem1'
+            ariaLabel={value => `autocomplete suggestion: ${value}`}
+          >
             item1
           </DropdownItem>
+          <DropdownItem value='item2'>item2</DropdownItem>
+          <DropdownItem value='item3'>item3</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );
     const inputNode = screen.getByRole('combobox');
-    await userEvent.click(inputNode);
-    const itemNode = screen.getByText('item1');
+    const liveRegion = screen.getByRole('status');
+    await userEvent.type(inputNode, 'i');
+    const itemNode = screen.getByRole('option', { name: 'autocomplete suggestion: item1' });
+    const itemLabelNode = screen.getByText('autocomplete suggestion: item1');
+
+    expect(itemNode.tagName).toBe('DIV');
+    expect(itemNode).toHaveAttribute('aria-labelledby', itemLabelNode.id);
+    expect(screen.getByText('item1')).toHaveAttribute('aria-hidden', 'true');
+    expect(inputNode).toHaveAttribute('aria-expanded', 'true');
 
     await userEvent.keyboard('{arrowdown}');
     expect(itemNode.className).toContain('FocusedItem1');
     expect(inputNode).toHaveValue('item1');
+    expect(inputNode).toHaveAttribute('aria-activedescendant', itemNode.id);
+    expect(itemNode).toHaveAttribute('aria-selected', 'true');
+    expect(liveRegion).toBeEmptyDOMElement();
 
     await userEvent.keyboard('{arrowup}');
     expect(itemNode.className).not.toContain('FocusedItem1');
-    expect(inputNode).not.toHaveValue('item1');
+    expect(itemNode).toHaveAttribute('aria-selected', 'false');
+    expect(inputNode).toHaveValue('i');
   });
 
   it('closes the dropdown menu when tab key is pressed', async () => {
@@ -172,7 +250,7 @@ describe('Dropdown', () => {
     expect(mockedOnSelectFn).toHaveBeenCalledWith('item1', 0, undefined);
   });
 
-  it('selects when an option is focused on toggle', async () => {
+  it('does not select a focused option when the dropdown is closed', async () => {
     const mockedOnToggleFn = jest.fn();
     const dropdownProps: DropdownProps = {
       screenReaderText: 'screen reader text here',
@@ -223,7 +301,7 @@ describe('Dropdown', () => {
     );
     const inputNode = screen.getByRole('combobox');
     await userEvent.click(inputNode);
-    const itemNode = screen.getByText('item1');
+    const itemNode = screen.getByRole('option');
     expect(itemNode).toBeDefined();
     expect(inputNode).toHaveValue('');
 

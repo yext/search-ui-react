@@ -40,7 +40,7 @@
   "removeFilter": "Remove \"{{displayName}}\" filter",
   "resultPreview": "result preview: {{value}}",
   "resultPreviewsFound_one": "{{count}} result preview found.",
-  "resultPreviewsFound_other": "{{count}} recent previews found.",
+  "resultPreviewsFound_other": "{{count}} result previews found.",
   "resultsCountText_one": "{{count}} Result",
   "resultsCountText_other": "{{count}} Results",
   "resultsCountWithPaginationText": "{{paginateStart}} - {{paginateEnd}} of {{resultsCount}} Results",

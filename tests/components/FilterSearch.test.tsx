@@ -1,5 +1,5 @@
 import { FilterSearch, FilterSearchProps } from '../../src/components/FilterSearch';
-import { render, RenderResult, screen } from '@testing-library/react';
+import { render, RenderResult, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as searchOperations from '../../src/utils/search-operations';
 import { SearchI18nextProvider } from '../../src/components/SearchI18nextProvider';
@@ -227,6 +227,49 @@ describe('search with section labels', () => {
 
   });
 
+  it('uses the complete filter result as its accessible name when highlighting splits the value', async () => {
+    const highlightedResponse = {
+      ...unlabeledFilterSearchResponse,
+      sections: [{
+        results: [{
+          ...unlabeledFilterSearchResponse.sections[0].results[0],
+          matchedSubstrings: [{ offset: 1, length: 1 }]
+        }]
+      }]
+    };
+    jest.spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(highlightedResponse);
+    renderFilterSearch();
+
+    await userEvent.type(screen.getByRole('combobox'), 'i');
+
+    expect(await screen.findByRole('option', { name: 'first name 1' }))
+      .toHaveAccessibleName('first name 1');
+    expect(screen.getByText('f')).toBeInTheDocument();
+    expect(screen.getByText('i')).toBeInTheDocument();
+    expect(screen.getByText('rst name 1')).toBeInTheDocument();
+  });
+
+  it('announces instructions when initially focused before filter results are requested', async () => {
+    const executeFilterSearch = jest.spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    renderFilterSearch();
+    const instructions = 'When autocomplete results are available, '
+      + 'use up and down arrows to review and enter to select.';
+
+    await userEvent.tab();
+
+    expect(screen.getByRole('combobox')).toHaveFocus();
+    expect(await screen.findByText(instructions)).toBeInTheDocument();
+    expect(executeFilterSearch).not.toHaveBeenCalled();
+
+    await userEvent.type(screen.getByRole('combobox'), 'n');
+
+    expect(await screen.findByRole('option', { name: 'first name 1' }))
+      .toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByText(instructions)).toBeInTheDocument();
+  });
+
   it('input value stays the same when a user selects a filter', async () => {
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
@@ -235,11 +278,30 @@ describe('search with section labels', () => {
     const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
-    await screen.findByText('first name 1');
+    await screen.findByRole('option', { name: 'first name 1' });
 
     await userEvent.type(searchBarElement, '{arrowdown}');
     expect(executeFilterSearch).toHaveBeenCalled();
     expect(searchBarElement).toHaveValue('n');
+  });
+
+  it('exposes the auto-selected first result before advancing to the next result', async () => {
+    jest.spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValue(labeledFilterSearchResponse);
+    renderFilterSearch();
+    const searchBarElement = screen.getByRole('combobox');
+
+    await userEvent.type(searchBarElement, 'n');
+    const firstOption = await screen.findByRole('option', { name: 'first name 1' });
+    const secondOption = screen.getByRole('option', { name: 'first name 2' });
+    expect(firstOption).toHaveAttribute('aria-selected', 'true');
+    expect(secondOption).toHaveAttribute('aria-selected', 'false');
+    expect(searchBarElement).toHaveAttribute('aria-activedescendant', firstOption.id);
+
+    await userEvent.keyboard('{arrowdown}');
+    expect(searchBarElement).toHaveAttribute('aria-activedescendant', secondOption.id);
+    expect(firstOption).toHaveAttribute('aria-selected', 'false');
+    expect(secondOption).toHaveAttribute('aria-selected', 'true');
   });
 
   it('remove old filter value when a new one is entered', async () => {
@@ -253,7 +315,7 @@ describe('search with section labels', () => {
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalled();
-    await screen.findByText('first name 1');
+    await screen.findByRole('option', { name: 'first name 1' });
     await userEvent.type(searchBarElement, '{enter}');
     expect(setFilterOption).toHaveBeenCalledWith({
       filter: {
@@ -269,7 +331,7 @@ describe('search with section labels', () => {
     await userEvent.clear(searchBarElement);
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
-    await screen.findByText('first name 2');
+    await screen.findByRole('option', { name: 'first name 2' });
     await userEvent.type(searchBarElement, '{arrowdown}');
     await userEvent.type(searchBarElement, '{enter}');
 
@@ -338,7 +400,7 @@ describe('search with section labels', () => {
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalled();
-    await screen.findByText('first name 1');
+    await screen.findByRole('option', { name: 'first name 1' });
     await userEvent.type(searchBarElement, '{enter}');
     expect(setFilterOption).toHaveBeenCalledWith({
       filter: {
@@ -377,7 +439,7 @@ describe('search with section labels', () => {
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalled();
-    await screen.findByText('first name 1');
+    await screen.findByRole('option', { name: 'first name 1' });
     await userEvent.type(searchBarElement, '{enter}');
     expect(setFilterOption).toHaveBeenCalledWith({
       filter: {
@@ -423,7 +485,7 @@ describe('search with section labels', () => {
     const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
-    await screen.findByText('first name 1');
+    await screen.findByRole('option', { name: 'first name 1' });
 
     await userEvent.type(searchBarElement, '{enter}');
     expect(executeFilterSearch).toHaveBeenCalled();
@@ -497,7 +559,7 @@ describe('search with section labels', () => {
       await userEvent.type(searchBarElement, 'f');
       await waitForDebounce();
       expect(executeFilterSearch).toHaveBeenCalled();
-      await screen.findByText('first name 1');
+      await screen.findByRole('option', { name: 'first name 1' });
       await userEvent.type(searchBarElement, '{enter}');
       expect(setFilterOption).toHaveBeenCalledWith({
         filter: {
@@ -559,7 +621,7 @@ describe('search with section labels', () => {
       await userEvent.type(searchBarElement, 'n');
       await waitForDebounce();
       expect(executeFilterSearch).toHaveBeenCalled();
-      await screen.findByText('first name 1');
+      await screen.findByRole('option', { name: 'first name 1' });
 
       const expectedSetFilterOptionParam = {
         filter: {
@@ -618,7 +680,7 @@ describe('search with section labels', () => {
       await userEvent.type(searchBarElement, 'n');
       await waitForDebounce();
       expect(executeFilterSearch).toHaveBeenCalled();
-      const autocompleteSuggestion = await screen.findByText('first name 1');
+      const autocompleteSuggestion = await screen.findByRole('option', { name: 'first name 1' });
 
 
       const expectedSetFilterOptionParam = {
@@ -664,7 +726,7 @@ describe('search with section labels', () => {
         const searchBarElement = screen.getByRole('combobox');
 
         await userEvent.type(searchBarElement, 'n');
-        await screen.findByText('first name 1');
+        await screen.findByRole('option', { name: 'first name 1' });
 
         await userEvent.type(searchBarElement, '{enter}');
         expect(executeFilterSearch).toHaveBeenCalled();
@@ -691,7 +753,7 @@ describe('search with section labels', () => {
       const searchBarElement = screen.getByRole('combobox');
 
       await userEvent.type(searchBarElement, 'n');
-      await screen.findByText('first name 1');
+      await screen.findByRole('option', { name: 'first name 1' });
 
       await userEvent.type(searchBarElement, '{enter}');
       expect(executeFilterSearch).toHaveBeenCalled();
@@ -726,8 +788,9 @@ describe('search without section labels', () => {
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalled();
 
-    const autocompleteSuggestion = screen.getByText('first name 1');
+    const autocompleteSuggestion = screen.getByRole('option', { name: 'first name 1' });
     expect(autocompleteSuggestion).toBeDefined();
+    expect(screen.queryByRole('group')).not.toBeInTheDocument();
   });
 
   it('pressing enter without navigating selects first filter in input', async () => {
@@ -789,6 +852,9 @@ describe('search without section labels', () => {
 });
 
 describe('screen reader', () => {
+  const expectedInstructions = 'When autocomplete results are available, '
+    + 'use up and down arrows to review and enter to select.';
+
   it('renders ScreenReader messages with section labels', async () => {
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
@@ -798,19 +864,23 @@ describe('screen reader', () => {
     const searchBarElement = screen.getByRole('combobox');
 
     await userEvent.type(searchBarElement, 'n');
+    expect(screen.getByRole('status')).toBeEmptyDOMElement();
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalled();
 
     const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found.';
 
-    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
-    expect(screenReaderMessage).toBeDefined();
+    const screenReaderMessage = screen.getByRole('status');
+    expect(await screen.findByText(expectedInstructions)).toBeInTheDocument();
+    await waitFor(() => expect(screenReaderMessage).toHaveTextContent(expectedScreenReaderMessage));
 
     rerenderWithLocale('fr');
     const expectedLocalizedScreenReaderMessage = '2 options d\'autocomplétion First name trouvées. 1 option d\'autocomplétion Last name trouvée.';
 
-    const rerenderedScreenReaderMessage = screen.getByText(expectedLocalizedScreenReaderMessage);
-    expect(rerenderedScreenReaderMessage).toBeDefined();
+    await waitFor(() => expect(screenReaderMessage).toHaveTextContent(
+      expectedLocalizedScreenReaderMessage
+    ));
+    expect(screen.getByText(expectedInstructions)).toBeInTheDocument();
   });
 
   it('renders ScreenReader messages without section labels', async () => {
@@ -827,9 +897,9 @@ describe('screen reader', () => {
     expect(executeFilterSearch).toHaveBeenCalled();
 
     const expectedScreenReaderMessage = '3 autocomplete options found.';
-    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+    const screenReaderMessage = screen.getByRole('status');
 
-    expect(screenReaderMessage).toBeDefined();
+    await waitFor(() => expect(screenReaderMessage).toHaveTextContent(expectedScreenReaderMessage));
   });
 
   it('renders 0 results ScreenReader message when there are no results', async () => {
@@ -840,14 +910,15 @@ describe('screen reader', () => {
 
     const searchBarElement = screen.getByRole('combobox');
     await userEvent.type(searchBarElement, 'n');
+    expect(screen.getByRole('status')).toBeEmptyDOMElement();
     await waitForDebounce();
-    await pause(50); // wait for the screen reader message to be updated
     expect(executeFilterSearch).toHaveBeenCalled();
 
     const expectedScreenReaderMessage = '0 autocomplete options found.';
-    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+    const screenReaderMessage = screen.getByRole('status');
 
-    expect(screenReaderMessage).toBeDefined();
+    expect(await screen.findByText(expectedInstructions)).toBeInTheDocument();
+    await waitFor(() => expect(screenReaderMessage).toHaveTextContent(expectedScreenReaderMessage));
   });
 });
 
