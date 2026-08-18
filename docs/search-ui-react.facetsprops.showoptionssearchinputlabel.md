@@ -15,3 +15,4 @@ showOptionsSearchInputLabel?: boolean;
 ## Remarks
 
 The label is always associated with the search input so that it has an accessible name. When false, the label is visually hidden but remains available to assistive technology. Hierarchical facets do not render an options search input, so this has no effect on them.
+
