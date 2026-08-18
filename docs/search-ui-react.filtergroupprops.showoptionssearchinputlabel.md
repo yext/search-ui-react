@@ -4,10 +4,15 @@
 
 ## FilterGroupProps.showOptionsSearchInputLabel property
 
-Whether or not to display the visible search input label. Defaults to false.
+Whether or not to display the search input label visibly. Defaults to false.
 
 **Signature:**
 
 ```typescript
 showOptionsSearchInputLabel?: boolean;
 ```
+
+## Remarks
+
+The label is always associated with the search input so that it has an accessible name. When false, the label is visually hidden but remains available to assistive technology.
+
