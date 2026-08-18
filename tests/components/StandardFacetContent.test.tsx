@@ -113,8 +113,20 @@ describe('StandardFacetContent', () => {
       showOptionsSearchInputLabel: true
     }));
 
-    expect(screen.getByText(`Search ${standardFacet.displayName} Options`)).toBeDefined();
-    expect(screen.getByLabelText(`Search ${standardFacet.displayName} Options`)).toBeDefined();
+    const accessibleName = `Search ${standardFacet.displayName} Options`;
+    expect(screen.getByText(accessibleName)).not.toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: accessibleName })).toBeDefined();
+  });
+
+  it('Associates a visually hidden options search input label by default', () => {
+    render(mockStandardFacet({
+      fieldId: standardFacet.fieldId,
+      showMoreLimit: 1
+    }));
+
+    const accessibleName = `Search ${standardFacet.displayName} Options`;
+    expect(screen.getByText(accessibleName)).toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: accessibleName })).toBeDefined();
   });
 });
 

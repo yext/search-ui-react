@@ -11,12 +11,17 @@ import { useId } from '../../hooks/useId';
 export interface SearchInputProps {
   /** CSS class names applied to the input element. */
   className?: string,
-  /** CSS class names applied to the label element. */
+  /** CSS class names applied to the label element when it is visible. */
   labelClassName?: string,
   /** {@inheritDoc FilterSearch.placeholder} */
   placeholder?: string,
-  /** The visible label text associated with the input. */
-  label?: string
+  /** The label text associated with the input. */
+  label?: string,
+  /**
+   * Whether the label is hidden from view while remaining associated with the input for
+   * assistive technology. Defaults to false.
+   */
+  visuallyHiddenLabel?: boolean
 }
 
 /**
@@ -33,7 +38,8 @@ export function SearchInput(props: SearchInputProps): React.JSX.Element {
     className = 'text-sm form-input bg-white h-9 w-full outline-none p-2 mb-2 rounded-md border border-gray-300 focus:ring-primary focus:ring-0 text-neutral-dark placeholder:text-neutral',
     labelClassName = 'mb-1 block text-sm font-medium text-neutral-dark',
     placeholder,
-    label
+    label,
+    visuallyHiddenLabel = false
   } = props;
   const { searchValue, setSearchValue } = useFilterGroupContext();
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -42,13 +48,18 @@ export function SearchInput(props: SearchInputProps): React.JSX.Element {
 
   const labelId = useId('filters-search-input-label');
   const inputId = useId('filter-group-search-input');
+  const labelElement = label && (
+    <label
+      id={labelId}
+      htmlFor={inputId}
+      className={visuallyHiddenLabel ? 'sr-only' : labelClassName}
+    >
+      {label}
+    </label>
+  );
   return (
     <>
-      {label && (
-        <label id={labelId} htmlFor={inputId} className={labelClassName}>
-          {label}
-        </label>
-      )}
+      {!visuallyHiddenLabel && labelElement}
       <input
         id={inputId}
         className={className}
@@ -57,6 +68,8 @@ export function SearchInput(props: SearchInputProps): React.JSX.Element {
         value={searchValue}
         onChange={handleChange}
       />
+      {/* Keep the input first so sibling spacing utilities do not add a gap above it. */}
+      {visuallyHiddenLabel && labelElement}
     </>
   );
 }

@@ -133,8 +133,76 @@ describe('Facets', () => {
         />
       </Facets>);
 
-    expect(screen.getByText('Search Products Options')).toBeDefined();
-    expect(screen.getByLabelText('Search Products Options')).toBeDefined();
+    expect(screen.getByText('Search Products Options')).not.toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: 'Search Products Options' })).toBeDefined();
+  });
+
+  it('Associates a visually hidden options search input label by default', () => {
+    render(
+      <Facets onlyRenderChildren={true}>
+        <StandardFacet fieldId='products' showMoreLimit={1}/>
+      </Facets>);
+
+    expect(screen.getByText('Search Products Options')).toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: 'Search Products Options' })).toBeDefined();
+  });
+
+  it('Associates distinct visually hidden labels with automatically rendered facets', () => {
+    const searchableFacets = DisplayableFacets.slice(0, 2).map(facet => ({
+      ...facet,
+      options: Array.from({ length: 11 }, (_, index) => ({
+        ...facet.options[0],
+        displayName: `${facet.displayName} ${index}`
+      }))
+    }));
+    mockAnswersState({
+      ...mockedState,
+      filters: {
+        facets: searchableFacets
+      }
+    });
+
+    render(<Facets/>);
+
+    expect(screen.getByText('Search Products Options')).toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: 'Search Products Options' })).toBeDefined();
+    expect(screen.getByText('Search Price Options')).toHaveClass('sr-only');
+    expect(screen.getByRole('textbox', { name: 'Search Price Options' })).toBeDefined();
+  });
+
+  it('Passes the options search input label setting from Facets to a child facet', () => {
+    render(
+      <Facets onlyRenderChildren={true} showOptionsSearchInputLabel={true}>
+        <StandardFacet fieldId='products' showMoreLimit={1}/>
+      </Facets>);
+
+    expect(screen.getByText('Search Products Options')).not.toHaveClass('sr-only');
+  });
+
+  it('Lets an unspecified child label setting inherit from Facets', () => {
+    render(
+      <Facets onlyRenderChildren={true} showOptionsSearchInputLabel={true}>
+        <StandardFacet
+          fieldId='products'
+          showMoreLimit={1}
+          showOptionsSearchInputLabel={undefined}
+        />
+      </Facets>);
+
+    expect(screen.getByText('Search Products Options')).not.toHaveClass('sr-only');
+  });
+
+  it('Lets a child facet override the label setting from Facets', () => {
+    render(
+      <Facets onlyRenderChildren={true} showOptionsSearchInputLabel={true}>
+        <StandardFacet
+          fieldId='products'
+          showMoreLimit={1}
+          showOptionsSearchInputLabel={false}
+        />
+      </Facets>);
+
+    expect(screen.getByText('Search Products Options')).toHaveClass('sr-only');
   });
 
   it('Properly renders an override numerical facet if present', () => {

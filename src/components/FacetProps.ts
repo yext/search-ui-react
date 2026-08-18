@@ -33,6 +33,16 @@ export interface FacetsProps {
   excludedFieldIds?: string[],
   /** List of field ids that should be rendered as hierarchical facets. */
   hierarchicalFieldIds?: string[],
+  /**
+   * Whether or not to display the options search input label visibly on facets that render an
+   * options search input. Defaults to false, and is overridden by the same prop on a child facet.
+   *
+   * @remarks
+   * The label is always associated with the search input so that it has an accessible name.
+   * When false, the label is visually hidden but remains available to assistive technology.
+   * Hierarchical facets do not render an options search input, so this has no effect on them.
+   */
+  showOptionsSearchInputLabel?: boolean,
   /** The custom facet components that will override the default rendering.
    *
    * @remarks
@@ -66,10 +76,7 @@ export interface StandardFacetProps {
   showMoreLimit?: number,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FilterGroupCssClasses,
-  /**
-   * Whether or not to show the label for the search bar when present.
-   * Defaults to false.
-   */
+  /** {@inheritDoc FilterGroupProps.showOptionsSearchInputLabel} */
   showOptionsSearchInputLabel?: boolean
 }
 

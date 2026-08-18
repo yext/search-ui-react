@@ -50,7 +50,13 @@ export interface FilterGroupProps {
   defaultExpanded?: boolean,
   /** Whether or not to display a text input to search for filter options. */
   searchable?: boolean,
-  /** Whether or not to display the visible search input label. Defaults to false. */
+  /**
+   * Whether or not to display the search input label visibly. Defaults to false.
+   *
+   * @remarks
+   * The label is always associated with the search input so that it has an accessible name.
+   * When false, the label is visually hidden but remains available to assistive technology.
+   */
   showOptionsSearchInputLabel?: boolean,
   /** CSS classes for customizing the component styling. */
   customCssClasses?: FilterGroupCssClasses,
@@ -83,11 +89,9 @@ export function FilterGroup({
       ...optionInput && { input: optionInput }
     };
   }, [customCssClasses]);
-  const searchInputLabel = showOptionsSearchInputLabel
-    ? t('filterGroupSearchInputLabel', {
-      title
-    })
-    : undefined;
+  const searchInputLabel = t('filterGroupSearchInputLabel', {
+    title
+  });
 
   return (
     <FilterGroupProvider
@@ -106,6 +110,7 @@ export function FilterGroup({
               className={cssClasses.searchInput}
               labelClassName={cssClasses.searchInputLabel}
               label={searchInputLabel}
+              visuallyHiddenLabel={!showOptionsSearchInputLabel}
             />}
           <CheckboxOptions
             filterOptions={filterOptions}
@@ -120,6 +125,7 @@ export function FilterGroup({
               className={cssClasses.searchInput}
               labelClassName={cssClasses.searchInputLabel}
               label={searchInputLabel}
+              visuallyHiddenLabel={!showOptionsSearchInputLabel}
             />}
           <CheckboxOptions
             filterOptions={filterOptions}

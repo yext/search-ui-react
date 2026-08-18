@@ -149,5 +149,24 @@ _(Optional)_ Whether or not a search is automatically run when a filter is selec
 
 
 </td></tr>
+<tr><td>
+
+[showOptionsSearchInputLabel?](./search-ui-react.facetsprops.showoptionssearchinputlabel.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether or not to display the options search input label visibly on facets that render an options search input. Defaults to false, and is overridden by the same prop on a child facet.
+
+
+</td></tr>
 </tbody></table>
 
