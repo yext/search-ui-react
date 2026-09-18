@@ -453,6 +453,64 @@ describe('SearchBar', () => {
     });
   });
 
+  describe('AI signpost', () => {
+    function renderSearchBarWithAISignpost(
+      aiSignpostProps?: React.ComponentProps<typeof SearchBar>['aiSignpostProps']
+    ) {
+      const searcher = generateMockedHeadless(mockedState);
+      return render(<SearchHeadlessContext.Provider value={searcher}>
+        <SearchI18nextProvider searcher={searcher}>
+          <SearchBar showAISignpost aiSignpostProps={aiSignpostProps} />
+        </SearchI18nextProvider>
+      </SearchHeadlessContext.Provider>);
+    }
+
+    it('is hidden by default', () => {
+      renderSearchBar(mockedState);
+
+      expect(screen.queryByRole('button', { name: 'AI-Powered' })).not.toBeInTheDocument();
+    });
+
+    it('displays the default signpost before the submit button', () => {
+      renderSearchBarWithAISignpost();
+
+      const signpost = screen.getByRole('button', { name: 'AI-Powered' });
+      const submitButton = screen.getByRole('button', { name: 'Submit Search' });
+      expect(signpost).not.toHaveTextContent('AI-Powered');
+      expect(signpost.compareDocumentPosition(submitButton) & Node.DOCUMENT_POSITION_FOLLOWING)
+        .toBeTruthy();
+    });
+
+    it('opens and closes the default signpost popover', async () => {
+      renderSearchBarWithAISignpost();
+
+      await userEvent.click(screen.getByRole('button', { name: 'AI-Powered' }));
+
+      expect(screen.getByRole('dialog', { name: 'Powered by AI' })).toBeInTheDocument();
+      expect(screen.getByText(
+        'Search may use AI to find, prioritize, and output results. AI responses may be incomplete or inaccurate and should be checked.'
+      )).toBeInTheDocument();
+
+      await userEvent.click(screen.getByRole('button', { name: 'Dismiss' }));
+      expect(screen.queryByRole('dialog', { name: 'Powered by AI' })).not.toBeInTheDocument();
+    });
+
+    it('overrides the AI signpost content', async () => {
+      renderSearchBarWithAISignpost({
+        icon: <span data-testid='custom-ai-signpost-icon'>Custom Icon</span>,
+        label: 'Custom Label',
+        popoverHeader: 'Custom Header',
+        popoverBody: 'Custom Body'
+      });
+
+      expect(screen.getByTestId('custom-ai-signpost-icon')).toBeInTheDocument();
+      await userEvent.click(screen.getByRole('button', { name: 'Custom Label' }));
+
+      expect(screen.getByRole('dialog', { name: 'Custom Header' })).toBeInTheDocument();
+      expect(screen.getByText('Custom Body')).toBeInTheDocument();
+    });
+  });
+
   it('submit button executes a new search', async () => {
     renderSearchBar(mockedState);
     const mockedUniversalSearch = jest.spyOn(SearchCore.prototype, 'universalSearch');

@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI生成された回答",
+  "aiSearchBarSignpostLabel": "AI搭載",
+  "aiSearchBarSignpostPopoverHeader": "AIを活用",
+  "aiSearchBarSignpostPopoverBody": "検索では、結果の検索、優先順位付け、表示にAIを使用する場合があります。AIの回答は不完全または不正確な場合があるため、確認してください。",
   "allCategories": "すべてのカテゴリー",
   "appliedFiltersToCurrentSearch": "現在の検索に適用されたフィルター",
   "apply": "適用",

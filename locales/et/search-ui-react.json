@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "Tehisintellekti loodud vastus",
+  "aiSearchBarSignpostLabel": "AI-toega",
+  "aiSearchBarSignpostPopoverHeader": "Tehisintellekti toel",
+  "aiSearchBarSignpostPopoverBody": "Otsing võib kasutada tehisintellekti tulemuste leidmiseks, järjestamiseks ja kuvamiseks. Tehisintellekti vastused võivad olla puudulikud või ebatäpsed ning need tuleks üle kontrollida.",
   "allCategories": "Kõik kategooriad",
   "appliedFiltersToCurrentSearch": "Rakendatud filtrid praegusele otsingule",
   "apply": "Rakendama",

@@ -8,6 +8,9 @@ type translationKeys =
   'aiGeneratedAnswerSignpostLabel' |
   'aiGeneratedAnswerSignpostPopoverHeader' |
   'aiGeneratedAnswerSignpostPopoverBody' |
+  'aiSearchBarSignpostLabel' |
+  'aiSearchBarSignpostPopoverHeader' |
+  'aiSearchBarSignpostPopoverBody' |
   'allCategories' |
   'appliedFiltersToCurrentSearch' |
   'apply' |
