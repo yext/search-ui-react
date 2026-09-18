@@ -40,23 +40,46 @@ describe('Dropdown', () => {
         <div>external div</div>
       </div>
     );
+    const input = screen.getByRole('combobox');
+
     // hidden by default
     expect(screen.queryByText('item1')).toBeNull();
+    expect(input).not.toHaveAttribute('aria-controls');
+    expect(input).toHaveAttribute('aria-expanded', 'false');
 
     // display when click into dropdown input
-    await userEvent.click(screen.getByRole('combobox'));
+    await userEvent.click(input);
     expect(screen.getByText('item1')).toBeDefined();
+    expect(input).toHaveAttribute('aria-controls', screen.getByRole('listbox').id);
+    expect(input).toHaveAttribute('aria-expanded', 'true');
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
 
     // hidden when click elsewhere outside of dropdown component
     await userEvent.click(screen.getByText('external div'));
     expect(screen.queryByText('item1')).toBeNull();
+    expect(input).not.toHaveAttribute('aria-controls');
+    expect(input).toHaveAttribute('aria-expanded', 'false');
     expect(mockedOnToggleFn).toBeCalledWith(false, '', '', -1, undefined);
 
     // display when tab into dropdown input
     await userEvent.tab();
     expect(screen.getByText('item1')).toBeDefined();
     expect(mockedOnToggleFn).toBeCalledWith(true, '', '', -1, undefined);
+  });
+
+  it('does not reference a listbox when no dropdown menu is rendered', async () => {
+    render(
+      <Dropdown screenReaderText='screen reader text here'>
+        <DropdownInput />
+      </Dropdown>
+    );
+    const input = screen.getByRole('combobox');
+
+    await userEvent.click(input);
+
+    expect(input).not.toHaveAttribute('aria-controls');
+    expect(input).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByRole('listbox')).toBeNull();
   });
 
   it('handles arrowkey navigation properly and focuses on the option and input text', async () => {
