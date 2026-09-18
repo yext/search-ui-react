@@ -5,7 +5,7 @@ import {
   FilterGroupProvider,
   HierarchicalFacetDisplay
 } from './Filters';
-import { FacetTitle } from './FacetTiltle';
+import { FacetTitle } from './FacetTitle';
 import React from 'react';
 
 /**
