@@ -33,7 +33,13 @@ export function DropdownInput(props: {
   } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const { toggleDropdown, onSelect, screenReaderUUID, dropdownListUUID, isActive } = useDropdownContext();
+  const {
+    toggleDropdown,
+    onSelect,
+    screenReaderUUID,
+    dropdownListUUID,
+    isDropdownListVisible
+  } = useDropdownContext();
   const { value = '', setLastTypedOrSubmittedValue } = useInputContext();
   const {
     focusedIndex = -1,
@@ -104,8 +110,8 @@ export function DropdownInput(props: {
       aria-labelledby={ariaLabelledBy}
       aria-autocomplete="list"
       role="combobox"
-      aria-controls={dropdownListUUID}
-      aria-expanded={isActive ? 'true' : 'false'}
+      aria-controls={isDropdownListVisible ? dropdownListUUID : undefined}
+      aria-expanded={isDropdownListVisible ? 'true' : 'false'}
       aria-haspopup="listbox"
     />
   );
