@@ -10,11 +10,9 @@ import { useCardFeedbackCallback, useComposedCssClasses } from '../hooks';
 import { useCardAnalytics } from '../hooks/useCardAnalytics';
 import { DefaultRawDataType } from '../models/index';
 import { executeGenerativeDirectAnswer } from '../utils/search-operations';
-import { AISignpostIcon } from '../icons/AISignpostIcon';
-import { CloseIcon } from '../icons/CloseIcon';
 import { Markdown, MarkdownCssClasses } from './Markdown';
-import { useId } from '../hooks/useId';
 import { twMerge } from '../hooks/useComposedCssClasses';
+import { AISignpost, AISignpostProps } from './AISignpost';
 import {
   ThumbsFeedback,
   ThumbsFeedbackCssClasses,
@@ -171,89 +169,6 @@ interface AnswerProps {
 }
 
 /**
- * Props for the built-in AI signpost component.
- *
- * @public
- */
-export interface AISignpostProps {
-  /** Icon displayed before the signpost label. Defaults to the SDK's AI signpost icon. */
-  icon?: React.JSX.Element,
-  /** Label displayed in the signpost button. */
-  label?: string,
-  /** Header displayed in the signpost popover. Defaults to "AI-Generated Content". */
-  popoverHeader?: string,
-  /** Body displayed in the signpost popover. */
-  popoverBody?: string
-}
-
-/**
- * Displays AI signpost content for the generative direct answer.
- */
-function AISignpost({
-  icon,
-  label,
-  popoverHeader,
-  popoverBody
-}: AISignpostProps): React.JSX.Element {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = React.useState(false);
-  const popoverId = useId('ai-signpost-popover');
-  const popoverHeaderId = useId('ai-signpost-popover-header');
-  const popoverDescriptionId = useId('ai-signpost-popover-description');
-  const ariaLabel = label ?? t('aiGeneratedAnswerSignpostLabel');
-  const handleSignpostClick = useCallback(() => {
-    setIsOpen(current => !current);
-  }, []);
-  const onSignpostClose = useCallback(() => {
-    setIsOpen(false);
-  }, []);
-
-  return (
-    <div className='relative text-sm text-gray-700'>
-      <button
-        type='button'
-        aria-expanded={isOpen}
-        aria-controls={popoverId}
-        aria-label={ariaLabel}
-        className='inline-flex gap-1.5 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-1.5 h-8 min-w-8 text-sm font-medium text-gray-700 transition-colors hover:bg-slate-100'
-        onClick={handleSignpostClick}
-      >
-        {icon ?? <AISignpostIcon className='h-4 w-4' />}
-        {label && <span>{label}</span>}
-      </button>
-      {isOpen && (
-        <div
-          id={popoverId}
-          role='dialog'
-          aria-labelledby={popoverHeaderId}
-          aria-describedby={popoverDescriptionId}
-          className='absolute left-0 top-full z-10 mt-2 w-80 rounded-lg border border-gray-200 bg-white shadow-lg'
-        >
-          <div className='flex flex-col px-4 py-3 gap-3'>
-            <div className='flex items-center justify-between'>
-              <div id={popoverHeaderId} className='text-sm font-semibold text-gray-900'>
-                {popoverHeader ?? t('aiGeneratedAnswerSignpostPopoverHeader')}
-              </div>
-              <button
-                type='button'
-                className='inline-flex h-6 w-6 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-700'
-                aria-label={t('dismiss')}
-                onClick={onSignpostClose}
-              >
-                <CloseIcon className='h-3 w-3' />
-              </button>
-            </div>
-            <div id={popoverDescriptionId} className='text-sm text-gray-700'>
-              {popoverBody ?? t('aiGeneratedAnswerSignpostPopoverBody')}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-/**
  * The answer section of the Generative Direct Answer.
  */
 function Answer(props: AnswerProps) {
@@ -282,7 +197,17 @@ function Answer(props: AnswerProps) {
   return <>
     <div className={twMerge(cssClasses.header, 'flex items-center gap-2')}>
       <div>{answerHeader ?? t('aiGeneratedAnswer')}</div>
-      {!hideAISignpost && <AISignpost {...aiSignpostProps} />}
+      {!hideAISignpost && <AISignpost
+        icon={aiSignpostProps?.icon}
+        label={aiSignpostProps?.label}
+        ariaLabel={aiSignpostProps?.label ?? t('aiGeneratedAnswerSignpostLabel')}
+        popoverHeader={
+          aiSignpostProps?.popoverHeader ?? t('aiGeneratedAnswerSignpostPopoverHeader')
+        }
+        popoverBody={
+          aiSignpostProps?.popoverBody ?? t('aiGeneratedAnswerSignpostPopoverBody')
+        }
+      />}
     </div>
     <Markdown
       content={gdaResponse.directAnswer}

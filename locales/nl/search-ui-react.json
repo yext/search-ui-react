@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI gegenereerd antwoord",
+  "aiSearchBarSignpostLabel": "AI-gestuurd",
+  "aiSearchBarSignpostPopoverHeader": "Mogelijk gemaakt door AI",
+  "aiSearchBarSignpostPopoverBody": "Zoeken kan AI gebruiken om resultaten te vinden, te prioriteren en weer te geven. AI-antwoorden kunnen onvolledig of onnauwkeurig zijn en moeten worden gecontroleerd.",
   "allCategories": "Alle categorieën",
   "appliedFiltersToCurrentSearch": "Toegepaste filters op de huidige zoekopdracht",
   "apply": "Toepassen",

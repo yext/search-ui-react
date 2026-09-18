@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "Răspuns generat de AI",
+  "aiSearchBarSignpostLabel": "Bazat pe AI",
+  "aiSearchBarSignpostPopoverHeader": "Susținut de AI",
+  "aiSearchBarSignpostPopoverBody": "Căutarea poate folosi AI pentru a găsi, prioritiza și afișa rezultate. Răspunsurile AI pot fi incomplete sau inexacte și trebuie verificate.",
   "allCategories": "Toate categoriile",
   "appliedFiltersToCurrentSearch": "Filtre aplicate la căutarea curentă",
   "apply": "Aplică",

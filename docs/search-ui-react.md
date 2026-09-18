@@ -316,7 +316,7 @@ Renders results count of a universal/vertical search.
 </td></tr>
 <tr><td>
 
-[SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch, autocompleteDisabled }, input)](./search-ui-react.searchbar.md)
+[SearchBar({ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch, autocompleteDisabled, showAISignpost, aiSignpostProps }, input)](./search-ui-react.searchbar.md)
 
 
 </td><td>

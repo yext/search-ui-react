@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "إجابة تم إنشاؤها بواسطة الذكاء الاصطناعي",
+  "aiSearchBarSignpostLabel": "مدعوم بالذكاء الاصطناعي",
+  "aiSearchBarSignpostPopoverHeader": "مدعوم بالذكاء الاصطناعي",
+  "aiSearchBarSignpostPopoverBody": "قد يستخدم البحث الذكاء الاصطناعي للعثور على النتائج وترتيبها حسب الأولوية وعرضها. قد تكون استجابات الذكاء الاصطناعي غير مكتملة أو غير دقيقة ويجب التحقق منها.",
   "allCategories": "جميع الفئات ",
   "appliedFiltersToCurrentSearch": "تم تطبيق الفلاتر على البحث الحالي",
   "apply": "تطبيق",
