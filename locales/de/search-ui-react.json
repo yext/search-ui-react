@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "KI-generierte Antwort",
+  "aiSearchBarSignpostLabel": "KI-gestützt",
+  "aiSearchBarSignpostPopoverHeader": "Unterstützt durch KI",
+  "aiSearchBarSignpostPopoverBody": "Die Suche kann KI verwenden, um Ergebnisse zu finden, zu priorisieren und auszugeben. KI-Antworten können unvollständig oder ungenau sein und sollten überprüft werden.",
   "allCategories": "Alle Kategorien",
   "appliedFiltersToCurrentSearch": "Angewandte Filter auf die aktuelle Suche",
   "apply": "Anwenden",

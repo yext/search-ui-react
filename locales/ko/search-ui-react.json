@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI 생성 답변",
+  "aiSearchBarSignpostLabel": "AI 기반",
+  "aiSearchBarSignpostPopoverHeader": "AI로 구동",
+  "aiSearchBarSignpostPopoverBody": "검색에서는 결과를 찾고 우선순위를 지정하여 표시하기 위해 AI를 사용할 수 있습니다. AI 응답은 불완전하거나 부정확할 수 있으므로 확인해야 합니다.",
   "allCategories": "전체 카테고리",
   "appliedFiltersToCurrentSearch": "현재 검색에 적용된 필터",
   "apply": "적용",
