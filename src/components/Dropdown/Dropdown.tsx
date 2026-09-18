@@ -254,6 +254,7 @@ function useDropdownContextInstance(
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
+  const [isDropdownListVisible, setDropdownListVisible] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
     if (!willBeOpen) {
       setHasTyped(false);
@@ -263,6 +264,8 @@ function useDropdownContextInstance(
   };
   return {
     isActive,
+    isDropdownListVisible,
+    setDropdownListVisible,
     toggleDropdown,
     onSelect,
     screenReaderUUID,
