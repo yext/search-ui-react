@@ -37,6 +37,25 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[aiSignpostProps?](./search-ui-react.searchbarprops.aisignpostprops.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[AISignpostProps](./search-ui-react.aisignpostprops.md)
+
+
+</td><td>
+
+_(Optional)_ The props to pass to the search bar's AI signpost component.
+
+
+</td></tr>
+<tr><td>
+
 [autocompleteDisabled?](./search-ui-react.searchbarprops.autocompletedisabled.md)
 
 
@@ -184,6 +203,25 @@ number
 </td><td>
 
 _(Optional)_ Limits the number of recent searches shown.
+
+
+</td></tr>
+<tr><td>
+
+[showAISignpost?](./search-ui-react.searchbarprops.showaisignpost.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to show an AI signpost in the search bar. Defaults to false and is independent of the signpost displayed by GenerativeDirectAnswer.
 
 
 </td></tr>

@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI 生成的答案",
+  "aiSearchBarSignpostLabel": "AI 驱动",
+  "aiSearchBarSignpostPopoverHeader": "由 AI 提供支持",
+  "aiSearchBarSignpostPopoverBody": "搜索可能会使用 AI 来查找结果、确定结果优先级并显示结果。AI 回答可能不完整或不准确，应进行核实。",
   "allCategories": "所有类别",
   "appliedFiltersToCurrentSearch": "已应用于当前搜索的筛选条件",
   "apply": "应用",

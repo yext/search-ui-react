@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "Απάντηση που δημιουργήθηκε από ΤΝ",
+  "aiSearchBarSignpostLabel": "Με υποστήριξη ΤΝ",
+  "aiSearchBarSignpostPopoverHeader": "Υποστηρίζεται από ΤΝ",
+  "aiSearchBarSignpostPopoverBody": "Η αναζήτηση μπορεί να χρησιμοποιεί ΤΝ για την εύρεση, την ιεράρχηση και την εμφάνιση αποτελεσμάτων. Οι απαντήσεις της ΤΝ μπορεί να είναι ελλιπείς ή ανακριβείς και θα πρέπει να ελέγχονται.",
   "allCategories": "Όλες οι κατηγορίες",
   "appliedFiltersToCurrentSearch": "Εφαρμοσμένα φίλτρα στην τρέχουσα αναζήτηση",
   "apply": "Εφαρμογή",

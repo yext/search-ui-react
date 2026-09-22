@@ -38,6 +38,7 @@ import { isVerticalLink, VerticalLink } from '../models/verticalLink';
 import { executeAutocomplete as executeAutocompleteSearch } from '../utils/search-operations';
 import { clearStaticRangeFilters } from '../utils/filterutils';
 import { recursivelyMapChildren } from './utils/recursivelyMapChildren';
+import { AISignpost, AISignpostProps } from './AISignpost';
 
 const builtInCssClasses: Readonly<SearchBarCssClasses> = {
   searchBarContainer: 'h-12 mb-6',
@@ -163,7 +164,14 @@ export interface SearchBarProps {
   /** A callback which is called when a search is ran. */
   onSearch?: onSearchFunc,
   /** Disable autocomplete if true, set to false on default. */
-  autocompleteDisabled?: boolean
+  autocompleteDisabled?: boolean,
+  /**
+   * Whether to show an AI signpost in the search bar. Defaults to false and is independent of
+   * the signpost displayed by GenerativeDirectAnswer.
+   */
+  showAISignpost?: boolean,
+  /** The props to pass to the search bar's AI signpost component. */
+  aiSignpostProps?: AISignpostProps
 }
 
 /**
@@ -184,7 +192,9 @@ export function SearchBar({
   verticalAutocompleteLimits,
   customCssClasses,
   onSearch,
-  autocompleteDisabled = false
+  autocompleteDisabled = false,
+  showAISignpost = false,
+  aiSignpostProps
 }: SearchBarProps): React.JSX.Element {
   const { t } = useTranslation();
   const {
@@ -428,8 +438,12 @@ export function SearchBar({
     entityPreviewsCount,
     t
   );
-  const activeClassName = classNames('relative z-10 bg-white border rounded-3xl border-gray-200 w-full overflow-hidden', {
-    'shadow-lg': hasItems
+  const dropdownClassName = classNames(
+    'relative bg-white border rounded-3xl border-gray-200 w-full',
+    { 'overflow-hidden': !showAISignpost }
+  );
+  const activeClassName = classNames(dropdownClassName, 'z-10', {
+    'shadow-lg': hasItems,
   });
 
   const handleToggleDropdown = useCallback((isActive: boolean) => {
@@ -441,7 +455,7 @@ export function SearchBar({
   return (
     <div className={cssClasses.searchBarContainer}>
       <Dropdown
-        className='relative bg-white border rounded-3xl border-gray-200 w-full overflow-hidden'
+        className={dropdownClassName}
         activeClassName={activeClassName}
         screenReaderText={screenReaderText}
         parentQuery={query}
@@ -450,6 +464,16 @@ export function SearchBar({
         <div className='inline-flex items-center justify-between w-full'>
           {renderInput()}
           {query && renderClearButton()}
+          {showAISignpost && <AISignpost
+            icon={aiSignpostProps?.icon}
+            label={aiSignpostProps?.label}
+            ariaLabel={aiSignpostProps?.label ?? t('aiSearchBarSignpostLabel')}
+            popoverHeader={
+              aiSignpostProps?.popoverHeader ?? t('aiSearchBarSignpostPopoverHeader')
+            }
+            popoverBody={aiSignpostProps?.popoverBody ?? t('aiSearchBarSignpostPopoverBody')}
+            popoverAlignment='right'
+          />}
           <DropdownSearchButton
             handleSubmit={handleSubmit}
             cssClasses={cssClasses}
@@ -478,7 +502,7 @@ function StyledDropdownMenu({ cssClasses, children }: PropsWithChildren<{
   }
 }>) {
   return (
-    <div>
+    <div className='overflow-hidden rounded-b-3xl'>
       <div className={cssClasses.inputDivider} aria-hidden='true' />
       <DropdownMenu className='bg-white py-4'>
         {children}

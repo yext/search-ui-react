@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI 產生的答案",
+  "aiSearchBarSignpostLabel": "AI 驅動",
+  "aiSearchBarSignpostPopoverHeader": "由 AI 提供支援",
+  "aiSearchBarSignpostPopoverBody": "搜尋可能會使用 AI 來尋找結果、排定結果優先順序並顯示結果。AI 回答可能不完整或不準確，應進行查核。",
   "allCategories": "所有分類",
   "appliedFiltersToCurrentSearch": "已套用至目前搜尋的篩選器",
   "apply": "套用",

@@ -230,8 +230,8 @@ export {
   GenerativeDirectAnswer
 } from './GenerativeDirectAnswer';
 export { AISignpostIcon } from '../icons/AISignpostIcon';
+export type { AISignpostProps } from './AISignpost';
 export type {
-  AISignpostProps,
   GenerativeDirectAnswerCssClasses,
   GenerativeDirectAnswerProps,
   CitationProps,

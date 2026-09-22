@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "Ответ, сгенерированный ИИ",
+  "aiSearchBarSignpostLabel": "На базе ИИ",
+  "aiSearchBarSignpostPopoverHeader": "Работает на базе ИИ",
+  "aiSearchBarSignpostPopoverBody": "Поиск может использовать ИИ для нахождения, приоритизации и отображения результатов. Ответы ИИ могут быть неполными или неточными, поэтому их следует проверять.",
   "allCategories": "Все категории",
   "appliedFiltersToCurrentSearch": "Применённые фильтры к текущему поиску",
   "apply": "Применить",
