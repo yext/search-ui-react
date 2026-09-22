@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "Réponse générée par l'IA",
+  "aiSearchBarSignpostLabel": "Optimisé par l’IA",
+  "aiSearchBarSignpostPopoverHeader": "Optimisé par l’IA",
+  "aiSearchBarSignpostPopoverBody": "La recherche peut utiliser l’IA pour trouver, hiérarchiser et afficher des résultats. Les réponses de l’IA peuvent être incomplètes ou inexactes et doivent être vérifiées.",
   "allCategories": "Toutes les catégories",
   "appliedFiltersToCurrentSearch": "Filtres appliqués à la recherche actuelle",
   "apply": "Appliquer",

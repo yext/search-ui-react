@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "एआई द्वारा जनरेट किया गया उत्तर",
+  "aiSearchBarSignpostLabel": "AI द्वारा संचालित",
+  "aiSearchBarSignpostPopoverHeader": "AI द्वारा संचालित",
+  "aiSearchBarSignpostPopoverBody": "खोज परिणामों को ढूँढने, प्राथमिकता देने और प्रदर्शित करने के लिए AI का उपयोग कर सकती है। AI के जवाब अधूरे या गलत हो सकते हैं और उनकी जाँच की जानी चाहिए।",
   "allCategories": "सभी श्रेणियाँ",
   "appliedFiltersToCurrentSearch": "वर्तमान खोज पर लागू फ़िल्टर",
   "apply": "लागू करें",

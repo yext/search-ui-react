@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI-genererat svar",
+  "aiSearchBarSignpostLabel": "AI-driven",
+  "aiSearchBarSignpostPopoverHeader": "Drivs av AI",
+  "aiSearchBarSignpostPopoverBody": "Sökningen kan använda AI för att hitta, prioritera och visa resultat. AI-svar kan vara ofullständiga eller felaktiga och bör kontrolleras.",
   "allCategories": "Alla kategorier",
   "appliedFiltersToCurrentSearch": "Tillämpade filter för aktuell sökning",
   "apply": "Tillämpa",

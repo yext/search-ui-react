@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI Generated Answer",
+  "aiSearchBarSignpostLabel": "AI-Powered",
+  "aiSearchBarSignpostPopoverHeader": "Powered by AI",
+  "aiSearchBarSignpostPopoverBody": "Search may use AI to find, prioritize, and output results. AI responses may be incomplete or inaccurate and should be checked.",
   "allCategories": "All Categories",
   "appliedFiltersToCurrentSearch": "Applied filters to current search",
   "apply": "Apply",
