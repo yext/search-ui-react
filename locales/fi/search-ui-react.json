@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "Tekoälyn luoma vastaus",
+  "aiSearchBarSignpostLabel": "Tekoälypohjainen",
+  "aiSearchBarSignpostPopoverHeader": "Tekoälyn tukema",
+  "aiSearchBarSignpostPopoverBody": "Haku voi käyttää tekoälyä tulosten löytämiseen, priorisointiin ja näyttämiseen. Tekoälyn vastaukset voivat olla puutteellisia tai epätarkkoja, ja ne tulee tarkistaa.",
   "allCategories": "Kaikki kategoriat",
   "appliedFiltersToCurrentSearch": "Käytetyt suodattimet nykyiseen hakuun",
   "apply": "Käytä",

@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "Odpoveď generovaná AI",
+  "aiSearchBarSignpostLabel": "S podporou AI",
+  "aiSearchBarSignpostPopoverHeader": "Využíva AI",
+  "aiSearchBarSignpostPopoverBody": "Vyhľadávanie môže používať AI na nájdenie, uprednostnenie a zobrazenie výsledkov. Odpovede AI môžu byť neúplné alebo nepresné a mali by sa overiť.",
   "allCategories": "Všetky kategórie",
   "appliedFiltersToCurrentSearch": "Použité filtre na aktuálne vyhľadávanie",
   "apply": "Použiť",

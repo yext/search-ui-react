@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI generált válasz",
+  "aiSearchBarSignpostLabel": "MI-alapú",
+  "aiSearchBarSignpostPopoverHeader": "Mesterséges intelligenciával működik",
+  "aiSearchBarSignpostPopoverBody": "A keresés mesterséges intelligenciát használhat a találatok megkereséséhez, rangsorolásához és megjelenítéséhez. Az MI válaszai hiányosak vagy pontatlanok lehetnek, ezért ellenőrizni kell őket.",
   "allCategories": "Összes kategória",
   "appliedFiltersToCurrentSearch": "Alkalmazott szűrők az aktuális keresésre",
   "apply": "Alkalmaz",

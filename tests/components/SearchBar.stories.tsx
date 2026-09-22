@@ -51,6 +51,11 @@ export const Primary: StoryFn<SearchBarProps> = (args) => {
   );
 };
 
+export const WithAISignpost: StoryFn<SearchBarProps> = Primary.bind({});
+WithAISignpost.args = {
+  showAISignpost: true
+};
+
 export const DropdownExpanded: StoryFn<SearchBarProps> = Primary.bind({});
 DropdownExpanded.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);

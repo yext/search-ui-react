@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI generirani odgovor",
+  "aiSearchBarSignpostLabel": "Pokreće AI",
+  "aiSearchBarSignpostPopoverHeader": "Pokreće umjetna inteligencija",
+  "aiSearchBarSignpostPopoverBody": "Pretraživanje može koristiti AI za pronalaženje, određivanje prioriteta i prikaz rezultata. Odgovori AI-ja mogu biti nepotpuni ili netočni i potrebno ih je provjeriti.",
   "allCategories": "Sve kategorije",
   "appliedFiltersToCurrentSearch": "Primijenjeni filtri na trenutnu pretragu",
   "apply": "Primijeni",
