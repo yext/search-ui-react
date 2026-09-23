@@ -64,5 +64,7 @@
   "useCurrentLocation": "Gebruik huidige locatie",
   "useMyLocation": "Gebruik mijn locatie",
   "viewAll": "Bekijk alles",
-  "viewDetails": "Bekijk details"
+  "viewDetails": "Bekijk details",
+  "searchResultsMap": "Kaart met zoekresultaten",
+  "mapDescription": "Kaart met de locaties van de huidige zoekresultaten."
 }

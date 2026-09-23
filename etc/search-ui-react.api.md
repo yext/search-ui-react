@@ -565,6 +565,7 @@ export interface MapboxMapProps<T> {
     allowUpdates?: boolean;
     getCoordinate?: CoordinateGetter<T>;
     iframeWindow?: Window;
+    keyboardNavigationEnabled?: boolean;
     mapboxAccessToken: string;
     mapboxOptions?: MapboxMapOptions;
     markerOptionsOverride?: (selected: boolean) => MapMarkerOptions;
@@ -1177,7 +1178,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1942:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1947:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

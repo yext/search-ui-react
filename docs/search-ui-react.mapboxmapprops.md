@@ -94,6 +94,25 @@ _(Optional)_ The window object of the iframe where the map should rendered. Must
 </td></tr>
 <tr><td>
 
+[keyboardNavigationEnabled?](./search-ui-react.mapboxmapprops.keyboardnavigationenabled.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether the map canvas is included in sequential keyboard navigation. Defaults to true to preserve Mapbox's keyboard controls.
+
+
+</td></tr>
+<tr><td>
+
 [mapboxAccessToken](./search-ui-react.mapboxmapprops.mapboxaccesstoken.md)
 
 

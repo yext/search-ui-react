@@ -19,6 +19,8 @@ interface Location {
   customCoordinate: Coordinate
 }
 
+let mapCanvas: HTMLCanvasElement;
+
 const mockedStateDefaultCoordinate: Partial<State> = {
   vertical: {
     verticalKey: 'vertical',
@@ -63,14 +65,39 @@ const mockedStateWrongCoordinateType: Partial<State> = {
 
 beforeEach(() => {
   mockAnswersState(mockedStateDefaultCoordinate);
+  mapCanvas = document.createElement('canvas');
+  mapCanvas.setAttribute('aria-label', 'Map');
+  mapCanvas.setAttribute('tabindex', '0');
+  Object.defineProperties(mapCanvas, {
+    clientHeight: { value: 400 },
+    clientWidth: { value: 400 }
+  });
   jest.spyOn(Marker.prototype, 'setLngLat').mockReturnValue(Marker.prototype);
   jest.spyOn(Marker.prototype, 'addTo').mockReturnValue(Marker.prototype);
   jest.spyOn(Marker.prototype, 'getElement').mockReturnValue(document.createElement('div'));
   jest.spyOn(Map.prototype, 'getCenter').mockReturnValue({ lat: 40.741611, lng: -74.005371 } as ReturnType<Map['getCenter']>);
-  jest.spyOn(Map.prototype, 'getCanvas').mockReturnValue({
-    clientHeight: 400,
-    clientWidth: 400
-  } as HTMLCanvasElement);
+  jest.spyOn(Map.prototype, 'getCanvas').mockReturnValue(mapCanvas);
+});
+
+describe('map canvas accessibility', () => {
+  it('adds a localized label and text equivalent', () => {
+    render(<MapboxMap mapboxAccessToken='TEST_KEY' />);
+
+    expect(mapCanvas).toHaveAttribute('aria-label', 'Search results map');
+    expect(mapCanvas).toHaveTextContent(
+      'Map showing locations for the current search results.'
+    );
+    expect(mapCanvas).toHaveAttribute('tabindex', '0');
+  });
+
+  it('removes the canvas from sequential keyboard navigation when disabled', () => {
+    render(<MapboxMap
+      mapboxAccessToken='TEST_KEY'
+      keyboardNavigationEnabled={false}
+    />);
+
+    expect(mapCanvas).not.toHaveAttribute('tabindex');
+  });
 });
 
 describe('default "getCoordinate"', () => {

@@ -56,5 +56,7 @@
   "useCurrentLocation": "Dùng vị trí hiện tại",
   "useMyLocation": "Dùng vị trí của tôi",
   "viewAll": "Xem tất cả",
-  "viewDetails": "Xem chi tiết"
+  "viewDetails": "Xem chi tiết",
+  "searchResultsMap": "Bản đồ kết quả tìm kiếm",
+  "mapDescription": "Bản đồ hiển thị vị trí của các kết quả tìm kiếm hiện tại."
 }
