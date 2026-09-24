@@ -56,5 +56,7 @@
   "useCurrentLocation": "현재 위치 사용",
   "useMyLocation": "내 위치 사용",
   "viewAll": "전체 보기",
-  "viewDetails": "자세히 보기"
+  "viewDetails": "자세히 보기",
+  "searchResultsMap": "검색 결과 지도",
+  "mapDescription": "현재 검색 결과의 위치를 표시하는 지도입니다."
 }

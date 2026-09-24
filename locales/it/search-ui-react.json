@@ -71,5 +71,7 @@
   "useCurrentLocation": "Usa la posizione attuale",
   "useMyLocation": "Usa la mia posizione",
   "viewAll": "Visualizza tutto",
-  "viewDetails": "Visualizza i dettagli"
+  "viewDetails": "Visualizza i dettagli",
+  "searchResultsMap": "Mappa dei risultati di ricerca",
+  "mapDescription": "Mappa che mostra le posizioni dei risultati di ricerca correnti."
 }

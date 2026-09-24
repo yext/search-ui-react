@@ -63,5 +63,7 @@
   "useCurrentLocation": "Mevcut Konumu Kullan",
   "useMyLocation": "Konumumu kullan",
   "viewAll": "Tümünü Gör",
-  "viewDetails": "Detayları Görüntüle"
+  "viewDetails": "Detayları Görüntüle",
+  "searchResultsMap": "Arama sonuçları haritası",
+  "mapDescription": "Mevcut arama sonuçlarının konumlarını gösteren harita."
 }

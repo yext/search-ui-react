@@ -79,5 +79,7 @@
   "useCurrentLocation": "Użyj aktualnej lokalizacji",
   "useMyLocation": "Użyj mojej lokalizacji",
   "viewAll": "Zobacz wszystkie",
-  "viewDetails": "Zobacz szczegóły"
+  "viewDetails": "Zobacz szczegóły",
+  "searchResultsMap": "Mapa wyników wyszukiwania",
+  "mapDescription": "Mapa przedstawiająca lokalizacje bieżących wyników wyszukiwania."
 }

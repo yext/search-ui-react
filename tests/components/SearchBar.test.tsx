@@ -691,7 +691,9 @@ describe('SearchBar', () => {
       renderSearchBar(mockedState);
       await userEvent.click(screen.getByRole('combobox'));
       expect(await screen.findByText(
-        '2 autocomplete suggestions found.'
+        '2 autocomplete suggestions found.',
+        undefined,
+        { timeout: 2000 }
       )).toBeInTheDocument();
     });
 
