@@ -803,13 +803,13 @@ describe('screen reader', () => {
 
     const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found.';
 
-    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+    const screenReaderMessage = await screen.findByText(expectedScreenReaderMessage);
     expect(screenReaderMessage).toBeDefined();
 
     rerenderWithLocale('fr');
     const expectedLocalizedScreenReaderMessage = '2 options d\'autocomplétion First name trouvées. 1 option d\'autocomplétion Last name trouvée.';
 
-    const rerenderedScreenReaderMessage = screen.getByText(expectedLocalizedScreenReaderMessage);
+    const rerenderedScreenReaderMessage = await screen.findByText(expectedLocalizedScreenReaderMessage);
     expect(rerenderedScreenReaderMessage).toBeDefined();
   });
 
@@ -827,7 +827,7 @@ describe('screen reader', () => {
     expect(executeFilterSearch).toHaveBeenCalled();
 
     const expectedScreenReaderMessage = '3 autocomplete options found.';
-    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+    const screenReaderMessage = await screen.findByText(expectedScreenReaderMessage);
 
     expect(screenReaderMessage).toBeDefined();
   });
@@ -841,11 +841,10 @@ describe('screen reader', () => {
     const searchBarElement = screen.getByRole('combobox');
     await userEvent.type(searchBarElement, 'n');
     await waitForDebounce();
-    await pause(50); // wait for the screen reader message to be updated
     expect(executeFilterSearch).toHaveBeenCalled();
 
     const expectedScreenReaderMessage = '0 autocomplete options found.';
-    const screenReaderMessage = screen.getByText(expectedScreenReaderMessage);
+    const screenReaderMessage = await screen.findByText(expectedScreenReaderMessage);
 
     expect(screenReaderMessage).toBeDefined();
   });

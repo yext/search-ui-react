@@ -79,5 +79,7 @@
   "useCurrentLocation": "Naudoti dabartinę vietą",
   "useMyLocation": "Naudoti mano vietą",
   "viewAll": "Peržiūrėti visus",
-  "viewDetails": "Peržiūrėti išsamią informaciją"
+  "viewDetails": "Peržiūrėti išsamią informaciją",
+  "searchResultsMap": "Paieškos rezultatų žemėlapis",
+  "mapDescription": "Žemėlapis, kuriame rodomos dabartinių paieškos rezultatų vietos."
 }

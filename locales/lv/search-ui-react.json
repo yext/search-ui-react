@@ -72,5 +72,7 @@
   "useCurrentLocation": "Izmantot pašreizējo atrašanās vietu",
   "useMyLocation": "Izmantot manu atrašanās vietu",
   "viewAll": "Skatīt visu",
-  "viewDetails": "Skatīt informāciju"
+  "viewDetails": "Skatīt informāciju",
+  "searchResultsMap": "Meklēšanas rezultātu karte",
+  "mapDescription": "Karte, kurā redzamas pašreizējo meklēšanas rezultātu atrašanās vietas."
 }

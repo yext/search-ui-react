@@ -92,5 +92,7 @@
   "useCurrentLocation": "استخدام الموقع الحالي",
   "useMyLocation": "استخدم موقعي",
   "viewAll": "عرض الكل",
-  "viewDetails": "عرض التفاصيل"
+  "viewDetails": "عرض التفاصيل",
+  "searchResultsMap": "خريطة نتائج البحث",
+  "mapDescription": "خريطة تعرض مواقع نتائج البحث الحالية."
 }
