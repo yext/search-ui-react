@@ -56,6 +56,25 @@ _(Optional)_ If set to true, the map will update its options when the mapboxOpti
 </td></tr>
 <tr><td>
 
+[excludeMapFromTabOrder?](./search-ui-react.mapboxmapprops.excludemapfromtaborder.md)
+
+
+</td><td>
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+_(Optional)_ Whether to exclude the map canvas from sequential keyboard navigation. Defaults to false to preserve Mapbox's default tab order.
+
+
+</td></tr>
+<tr><td>
+
 [getCoordinate?](./search-ui-react.mapboxmapprops.getcoordinate.md)
 
 
@@ -89,25 +108,6 @@ Window
 </td><td>
 
 _(Optional)_ The window object of the iframe where the map should rendered. Must have mapboxgl loaded. If not provided or mapboxgl not loaded, the map will be rendered in the parent window.
-
-
-</td></tr>
-<tr><td>
-
-[keyboardNavigationEnabled?](./search-ui-react.mapboxmapprops.keyboardnavigationenabled.md)
-
-
-</td><td>
-
-
-</td><td>
-
-boolean
-
-
-</td><td>
-
-_(Optional)_ Whether the map canvas is included in sequential keyboard navigation. Defaults to true to preserve Mapbox's keyboard controls.
 
 
 </td></tr>

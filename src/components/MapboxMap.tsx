@@ -221,10 +221,10 @@ export interface MapboxMapProps<T> {
   /** Interface for map customization supported by this component. */
   mapboxOptions?: MapboxMapOptions,
   /**
-   * Whether the map canvas is included in sequential keyboard navigation.
-   * Defaults to true to preserve Mapbox's keyboard controls.
+   * Whether to exclude the map canvas from sequential keyboard navigation.
+   * Defaults to false to preserve Mapbox's default tab order.
    */
-  keyboardNavigationEnabled?: boolean,
+  excludeMapFromTabOrder?: boolean,
   /**
    * Custom Pin component to render for markers on the map.
    * By default, the built-in marker image from Mapbox GL is used.
@@ -285,7 +285,7 @@ export interface MapboxMapProps<T> {
 export function MapboxMap<T>({
   mapboxAccessToken,
   mapboxOptions,
-  keyboardNavigationEnabled = true,
+  excludeMapFromTabOrder = false,
   PinComponent,
   renderPin,
   getCoordinate = getDefaultCoordinate,
@@ -544,7 +544,7 @@ export function MapboxMap<T>({
 
     canvas.setAttribute('aria-label', mapLabel);
     canvas.appendChild(fallbackContent);
-    if (!keyboardNavigationEnabled) {
+    if (excludeMapFromTabOrder) {
       canvas.removeAttribute('tabindex');
     }
 
@@ -553,7 +553,7 @@ export function MapboxMap<T>({
       restoreAttribute(canvas, 'aria-label', originalAriaLabel);
       restoreAttribute(canvas, 'tabindex', originalTabIndex);
     };
-  }, [keyboardNavigationEnabled, mapDescription, mapLabel]);
+  }, [excludeMapFromTabOrder, mapDescription, mapLabel]);
 
   // Register movement listeners separately from map initialization so rerenders do not
   // accidentally remove them without reattaching them.

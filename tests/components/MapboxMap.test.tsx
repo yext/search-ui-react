@@ -90,10 +90,10 @@ describe('map canvas accessibility', () => {
     expect(mapCanvas).toHaveAttribute('tabindex', '0');
   });
 
-  it('removes the canvas from sequential keyboard navigation when disabled', () => {
+  it('removes the canvas from sequential keyboard navigation when excluded', () => {
     render(<MapboxMap
       mapboxAccessToken='TEST_KEY'
-      keyboardNavigationEnabled={false}
+      excludeMapFromTabOrder
     />);
 
     expect(mapCanvas).not.toHaveAttribute('tabindex');

@@ -563,9 +563,9 @@ export interface MapboxMapOptions {
 // @public
 export interface MapboxMapProps<T> {
     allowUpdates?: boolean;
+    excludeMapFromTabOrder?: boolean;
     getCoordinate?: CoordinateGetter<T>;
     iframeWindow?: Window;
-    keyboardNavigationEnabled?: boolean;
     mapboxAccessToken: string;
     mapboxOptions?: MapboxMapOptions;
     markerOptionsOverride?: (selected: boolean) => MapMarkerOptions;
