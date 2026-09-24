@@ -64,5 +64,7 @@
   "useCurrentLocation": "वर्तमान स्थान का उपयोग करें",
   "useMyLocation": "मेरा स्थान उपयोग करें",
   "viewAll": "सभी देखें",
-  "viewDetails": "विवरण देखें"
+  "viewDetails": "विवरण देखें",
+  "searchResultsMap": "खोज परिणामों का मानचित्र",
+  "mapDescription": "वर्तमान खोज परिणामों के स्थान दिखाने वाला मानचित्र।"
 }

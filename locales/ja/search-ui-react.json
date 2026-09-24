@@ -56,5 +56,7 @@
   "useCurrentLocation": "現在地を使用",
   "useMyLocation": "現在地を使用",
   "viewAll": "すべてを表示します",
-  "viewDetails": "詳細を表示します"
+  "viewDetails": "詳細を表示します",
+  "searchResultsMap": "検索結果の地図",
+  "mapDescription": "現在の検索結果の場所を示す地図です。"
 }

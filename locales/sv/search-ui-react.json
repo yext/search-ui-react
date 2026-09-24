@@ -64,5 +64,7 @@
   "useCurrentLocation": "Använd aktuell plats",
   "useMyLocation": "Använd min plats",
   "viewAll": "Visa alla",
-  "viewDetails": "Visa detaljer"
+  "viewDetails": "Visa detaljer",
+  "searchResultsMap": "Karta över sökresultat",
+  "mapDescription": "Karta som visar platserna för de aktuella sökresultaten."
 }

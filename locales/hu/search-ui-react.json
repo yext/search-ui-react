@@ -64,5 +64,7 @@
   "useCurrentLocation": "Használd a jelenlegi helyzetet",
   "useMyLocation": "Használd a helyzetemet",
   "viewAll": "Tekintse meg az összeset",
-  "viewDetails": "A részletek megtekintése"
+  "viewDetails": "A részletek megtekintése",
+  "searchResultsMap": "Keresési eredmények térképe",
+  "mapDescription": "A jelenlegi keresési eredmények helyét mutató térkép."
 }

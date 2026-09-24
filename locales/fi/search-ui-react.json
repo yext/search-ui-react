@@ -64,5 +64,7 @@
   "useCurrentLocation": "Käytä nykyistä sijaintia",
   "useMyLocation": "Käytä sijaintiani",
   "viewAll": "Näytä kaikki",
-  "viewDetails": "Näytä tiedot"
+  "viewDetails": "Näytä tiedot",
+  "searchResultsMap": "Hakutulosten kartta",
+  "mapDescription": "Kartta, joka näyttää nykyisten hakutulosten sijainnit."
 }

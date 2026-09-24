@@ -250,7 +250,7 @@ A React Component which displays and collects location information in order to b
 </td></tr>
 <tr><td>
 
-[MapboxMap({ mapboxAccessToken, mapboxOptions, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }, input)](./search-ui-react.mapboxmap.md)
+[MapboxMap({ mapboxAccessToken, mapboxOptions, excludeMapFromTabOrder, PinComponent, renderPin, getCoordinate, onDrag, iframeWindow, allowUpdates, onPinClick, markerOptionsOverride, }, input)](./search-ui-react.mapboxmap.md)
 
 
 </td><td>

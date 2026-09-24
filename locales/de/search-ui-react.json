@@ -64,5 +64,7 @@
   "useCurrentLocation": "Aktuellen Standort verwenden",
   "useMyLocation": "Meinen Standort verwenden",
   "viewAll": "Alle anzeigen",
-  "viewDetails": "Details anzeigen"
+  "viewDetails": "Details anzeigen",
+  "searchResultsMap": "Karte der Suchergebnisse",
+  "mapDescription": "Karte mit den Standorten der aktuellen Suchergebnisse."
 }

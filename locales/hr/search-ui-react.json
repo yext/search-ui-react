@@ -72,5 +72,7 @@
   "useCurrentLocation": "Koristi trenutnu lokaciju",
   "useMyLocation": "Koristi moju lokaciju",
   "viewAll": "Pogledajte sve",
-  "viewDetails": "Pogledajte detalje"
+  "viewDetails": "Pogledajte detalje",
+  "searchResultsMap": "Karta rezultata pretraživanja",
+  "mapDescription": "Karta koja prikazuje lokacije trenutačnih rezultata pretraživanja."
 }

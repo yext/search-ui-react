@@ -79,5 +79,7 @@
   "useCurrentLocation": "Použiť aktuálnu polohu",
   "useMyLocation": "Použiť moju polohu",
   "viewAll": "Zobraziť všetko",
-  "viewDetails": "Zobraziť podrobnosti"
+  "viewDetails": "Zobraziť podrobnosti",
+  "searchResultsMap": "Mapa výsledkov vyhľadávania",
+  "mapDescription": "Mapa zobrazujúca polohy aktuálnych výsledkov vyhľadávania."
 }

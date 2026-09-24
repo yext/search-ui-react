@@ -56,5 +56,7 @@
   "useCurrentLocation": "使用目前位置",
   "useMyLocation": "使用我的位置",
   "viewAll": "查看全部",
-  "viewDetails": "查看詳細資料"
+  "viewDetails": "查看詳細資料",
+  "searchResultsMap": "搜尋結果地圖",
+  "mapDescription": "顯示目前搜尋結果位置的地圖。"
 }

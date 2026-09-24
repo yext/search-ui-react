@@ -68,5 +68,7 @@
   "useCurrentLocation": "Use Current Location",
   "useMyLocation": "Use my location",
   "viewAll": "View all",
-  "viewDetails": "View Details"
+  "viewDetails": "View Details",
+  "searchResultsMap": "Search results map",
+  "mapDescription": "Map showing locations for the current search results."
 }

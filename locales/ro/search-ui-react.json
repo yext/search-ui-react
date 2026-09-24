@@ -72,5 +72,7 @@
   "useCurrentLocation": "Folosește locația curentă",
   "useMyLocation": "Folosește locația mea",
   "viewAll": "Vizualizați toate",
-  "viewDetails": "Vizualizați detalii"
+  "viewDetails": "Vizualizați detalii",
+  "searchResultsMap": "Harta rezultatelor căutării",
+  "mapDescription": "Hartă care afișează locațiile rezultatelor căutării curente."
 }

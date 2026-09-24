@@ -64,5 +64,7 @@
   "useCurrentLocation": "Bruk nåværende posisjon",
   "useMyLocation": "Bruk min posisjon",
   "viewAll": "Se alle",
-  "viewDetails": "Se detaljer"
+  "viewDetails": "Se detaljer",
+  "searchResultsMap": "Kart over søkeresultater",
+  "mapDescription": "Kart som viser plasseringene for de gjeldende søkeresultatene."
 }
