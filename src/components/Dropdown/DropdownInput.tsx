@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, useCallback, useRef, useState } from 'react';
+import React, { ChangeEvent, KeyboardEvent, useCallback, useRef } from 'react';
 import { useDropdownContext } from './DropdownContext';
 import { useFocusContext, FocusedItemData } from './FocusContext';
 import { generateDropdownId } from './generateDropdownId';
@@ -47,12 +47,9 @@ export function DropdownInput(props: {
     focusedValue,
     updateFocusedItem
   } = useFocusContext();
-  const [isTyping, setIsTyping] = useState<boolean>(true);
-  const describedBy = [screenReaderUUID, ariaDescribedBy].filter(Boolean).join(' ') || undefined;
   const resolvedAriaLabel = ariaLabelledBy ? undefined : ariaLabel;
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setIsTyping(true);
     toggleDropdown(true);
     onChange?.(e.target.value);
     updateFocusedItem(-1, e.target.value);
@@ -60,18 +57,16 @@ export function DropdownInput(props: {
   }, [onChange, setLastTypedOrSubmittedValue, toggleDropdown, updateFocusedItem]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Tab') {
-      setIsTyping(false);
-    }
     if (e.key === 'Enter' && (!submitCriteria || submitCriteria(focusedIndex))) {
-      updateFocusedItem(focusedIndex);
+      const submittedValue = focusedIndex >= 0 ? focusedValue ?? value : value;
       toggleDropdown(false);
       inputRef.current?.blur();
-      onSubmit?.(value, focusedIndex, focusedItemData);
+      setLastTypedOrSubmittedValue(submittedValue);
+      onSubmit?.(submittedValue, focusedIndex, focusedItemData);
       if (focusedIndex >= 0) {
-        onSelect?.(value, focusedIndex, focusedItemData);
+        onSelect?.(submittedValue, focusedIndex, focusedItemData);
       }
-      updateFocusedItem(-1, focusedValue ?? undefined);
+      updateFocusedItem(-1, submittedValue);
     }
   }, [
     focusedIndex,
@@ -79,6 +74,7 @@ export function DropdownInput(props: {
     focusedItemData,
     onSelect,
     onSubmit,
+    setLastTypedOrSubmittedValue,
     submitCriteria,
     toggleDropdown,
     updateFocusedItem,
@@ -102,9 +98,9 @@ export function DropdownInput(props: {
       onFocus={handleFocus}
       id={inputId ?? generateDropdownId(screenReaderUUID, -1)}
       autoComplete='off'
-      aria-describedby={describedBy}
+      aria-describedby={ariaDescribedBy}
       aria-activedescendant={
-        !isTyping ? generateDropdownId(screenReaderUUID, focusedIndex) : undefined
+        focusedIndex >= 0 ? generateDropdownId(screenReaderUUID, focusedIndex) : undefined
       }
       aria-label={resolvedAriaLabel}
       aria-labelledby={ariaLabelledBy}

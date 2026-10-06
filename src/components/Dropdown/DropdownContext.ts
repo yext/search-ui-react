@@ -4,6 +4,7 @@ import { createContext, useContext } from 'react';
  * The Context responsible for the Dropdown state.
  */
 export type DropdownContextType = {
+  /** Whether the input box is active */
   isActive: boolean,
   isDropdownListVisible: boolean,
   screenReaderUUID?: string,

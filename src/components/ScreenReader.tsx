@@ -3,22 +3,17 @@ import React, { useEffect, useState } from 'react';
 const announcementDelayMs = 800;
 
 interface Props {
-  instructionsId?: string,
-  instructions: string,
-  announcementKey: number,
   announcementText: string
 }
 
 export function ScreenReader({
-  instructionsId,
-  instructions,
-  announcementKey,
-  announcementText,
-}: Props): React.JSX.Element | null {
+  announcementText
+}: Props): React.JSX.Element {
   const [renderedAnnouncement, setRenderedAnnouncement] = useState('');
 
   useEffect(() => {
     setRenderedAnnouncement('');
+
     if (!announcementText) {
       return;
     }
@@ -26,25 +21,18 @@ export function ScreenReader({
     const timeoutId = setTimeout(() => {
       setRenderedAnnouncement(announcementText);
     }, announcementDelayMs);
+
     return () => clearTimeout(timeoutId);
   }, [announcementText]);
 
   return (
-    <>
-      <div
-        id={instructionsId}
-        className='sr-only'
-      >
-        {instructions}
-      </div>
-      <div
-        className='sr-only'
-        key={announcementKey}
-        aria-live='polite'
-        aria-atomic='true'
-      >
-        {renderedAnnouncement}
-      </div>
-    </>
+    <div
+      className='sr-only'
+      role='status'
+      aria-live='polite'
+      aria-atomic='true'
+    >
+      {renderedAnnouncement}
+    </div>
   );
 }
