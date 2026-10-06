@@ -12,6 +12,14 @@ const renderFunctions: TestRunnerConfig = {
   setup() {
     expect.extend({ toMatchImageSnapshot });
   },
+  async preVisit(page: Page, context: TestContext) {
+    // Mapbox honors reduced motion by skipping camera animations. This prevents pin
+    // clicks from interrupting fitBounds at different zoom levels across snapshot runs,
+    // while preserving normal animations when browsing Storybook interactively.
+    await page.emulateMedia({
+      reducedMotion: context.id.startsWith('mapboxmap--') ? 'reduce' : 'no-preference',
+    });
+  },
   async postVisit(page: Page, context: TestContext) {
     if (context.id === 'locationbias--loading') {
       return;
