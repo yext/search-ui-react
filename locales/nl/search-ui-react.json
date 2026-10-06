@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI gegenereerd antwoord",
+  "aiSearchBarSignpostLabel": "AI-gestuurd",
+  "aiSearchBarSignpostPopoverHeader": "Mogelijk gemaakt door AI",
+  "aiSearchBarSignpostPopoverBody": "Zoeken kan AI gebruiken om resultaten te vinden, te prioriteren en weer te geven. AI-antwoorden kunnen onvolledig of onnauwkeurig zijn en moeten worden gecontroleerd.",
   "allCategories": "Alle categorieën",
   "appliedFiltersToCurrentSearch": "Toegepaste filters op de huidige zoekopdracht",
   "apply": "Toepassen",
@@ -61,5 +64,7 @@
   "useCurrentLocation": "Gebruik huidige locatie",
   "useMyLocation": "Gebruik mijn locatie",
   "viewAll": "Bekijk alles",
-  "viewDetails": "Bekijk details"
+  "viewDetails": "Bekijk details",
+  "searchResultsMap": "Kaart met zoekresultaten",
+  "mapDescription": "Kaart met de locaties van de huidige zoekresultaten."
 }

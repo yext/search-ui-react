@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI wygenerowało odpowiedź",
+  "aiSearchBarSignpostLabel": "Wspomagane przez AI",
+  "aiSearchBarSignpostPopoverHeader": "Obsługiwane przez AI",
+  "aiSearchBarSignpostPopoverBody": "Wyszukiwanie może korzystać z AI, aby znajdować, ustalać priorytety i wyświetlać wyniki. Odpowiedzi AI mogą być niepełne lub niedokładne i należy je zweryfikować.",
   "allCategories": "Wszystkie kategorie",
   "appliedFiltersToCurrentSearch": "Zastosowane filtry do bieżącego wyszukiwania",
   "apply": "Zastosuj",
@@ -76,5 +79,7 @@
   "useCurrentLocation": "Użyj aktualnej lokalizacji",
   "useMyLocation": "Użyj mojej lokalizacji",
   "viewAll": "Zobacz wszystkie",
-  "viewDetails": "Zobacz szczegóły"
+  "viewDetails": "Zobacz szczegóły",
+  "searchResultsMap": "Mapa wyników wyszukiwania",
+  "mapDescription": "Mapa przedstawiająca lokalizacje bieżących wyników wyszukiwania."
 }

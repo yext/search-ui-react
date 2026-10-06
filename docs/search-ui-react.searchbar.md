@@ -32,7 +32,7 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
-{ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch, autocompleteDisabled }
+{ placeholder, geolocationOptions, hideRecentSearches, visualAutocompleteConfig, showVerticalLinks, onSelectVerticalLink, verticalKeyToLabel, recentSearchesLimit, universalAutocompleteLimit, verticalAutocompleteLimits, customCssClasses, onSearch, autocompleteDisabled, showAISignpost, aiSignpostProps }
 
 
 </td><td>

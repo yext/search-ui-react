@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "Dirbtinio intelekto sugeneruotas atsakymas",
+  "aiSearchBarSignpostLabel": "Veikia su DI",
+  "aiSearchBarSignpostPopoverHeader": "Veikia naudojant DI",
+  "aiSearchBarSignpostPopoverBody": "Paieška gali naudoti DI rezultatams rasti, prioritetams nustatyti ir pateikti. DI atsakymai gali būti neišsamūs arba netikslūs, todėl juos reikėtų patikrinti.",
   "allCategories": "Visos kategorijos",
   "appliedFiltersToCurrentSearch": "Taikyti filtrai dabartiniam paieškai",
   "apply": "Taikyti",
@@ -76,5 +79,7 @@
   "useCurrentLocation": "Naudoti dabartinę vietą",
   "useMyLocation": "Naudoti mano vietą",
   "viewAll": "Peržiūrėti visus",
-  "viewDetails": "Peržiūrėti išsamią informaciją"
+  "viewDetails": "Peržiūrėti išsamią informaciją",
+  "searchResultsMap": "Paieškos rezultatų žemėlapis",
+  "mapDescription": "Žemėlapis, kuriame rodomos dabartinių paieškos rezultatų vietos."
 }

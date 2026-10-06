@@ -38,7 +38,7 @@ export function DropdownInput(props: {
     onSelect,
     screenReaderUUID,
     dropdownListUUID,
-    isExpanded
+    isDropdownListVisible
   } = useDropdownContext();
   const { value = '', setLastTypedOrSubmittedValue } = useInputContext();
   const {
@@ -106,8 +106,8 @@ export function DropdownInput(props: {
       aria-labelledby={ariaLabelledBy}
       aria-autocomplete="list"
       role="combobox"
-      aria-controls={dropdownListUUID}
-      aria-expanded={isExpanded ? 'true' : 'false'}
+      aria-controls={isDropdownListVisible ? dropdownListUUID : undefined}
+      aria-expanded={isDropdownListVisible ? 'true' : 'false'}
       aria-haspopup="listbox"
     />
   );

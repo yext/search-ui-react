@@ -8,6 +8,9 @@ type translationKeys =
   'aiGeneratedAnswerSignpostLabel' |
   'aiGeneratedAnswerSignpostPopoverHeader' |
   'aiGeneratedAnswerSignpostPopoverBody' |
+  'aiSearchBarSignpostLabel' |
+  'aiSearchBarSignpostPopoverHeader' |
+  'aiSearchBarSignpostPopoverBody' |
   'allCategories' |
   'appliedFiltersToCurrentSearch' |
   'apply' |
@@ -30,6 +33,7 @@ type translationKeys =
   'feedback' |
   'filterGroupSearchInputLabel' |
   'invalidRange' |
+  'mapDescription' |
   'max' |
   'min' |
   'navigateToTheNextResultsPage' |
@@ -47,6 +51,7 @@ type translationKeys =
   'resultPreviewsFound_zero' | 'resultPreviewsFound_one' | 'resultPreviewsFound_two' | 'resultPreviewsFound_few' | 'resultPreviewsFound_many' | 'resultPreviewsFound_other' |
   'resultsCountText_zero' | 'resultsCountText_one' | 'resultsCountText_two' | 'resultsCountText_few' | 'resultsCountText_many' | 'resultsCountText_other' |
   'resultsCountWithPaginationText' |
+  'searchResultsMap' |
   'searchHere' |
   'showLess' |
   'showMore' |

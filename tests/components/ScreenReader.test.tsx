@@ -20,7 +20,7 @@ describe('ScreenReader', () => {
     const liveRegion = screen.getByRole('status');
 
     expect(liveRegion).toBeEmptyDOMElement();
-    act(() => jest.advanceTimersByTime(0));
+    act(() => jest.advanceTimersByTime(800));
     expect(liveRegion).toHaveTextContent('first announcement');
 
     rerender(
@@ -31,7 +31,7 @@ describe('ScreenReader', () => {
     expect(screen.getByRole('status')).toBe(liveRegion);
     expect(liveRegion).toBeEmptyDOMElement();
 
-    act(() => jest.advanceTimersByTime(0));
+    act(() => jest.advanceTimersByTime(800));
     expect(liveRegion).toHaveTextContent('second announcement');
   });
 
@@ -39,7 +39,6 @@ describe('ScreenReader', () => {
     const { rerender } = render(
       <ScreenReader
         announcementText='stale announcement'
-        announcementDelayMs={800}
       />
     );
 
@@ -47,7 +46,6 @@ describe('ScreenReader', () => {
     rerender(
       <ScreenReader
         announcementText='latest complete announcement'
-        announcementDelayMs={800}
       />
     );
     act(() => jest.advanceTimersByTime(800));

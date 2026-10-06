@@ -6,10 +6,10 @@ import { createContext, useContext } from 'react';
 export type DropdownContextType = {
   /** Whether the input box is active */
   isActive: boolean,
-  /** Whether the options are loaded and present */
-  isExpanded: boolean,
+  isDropdownListVisible: boolean,
   screenReaderUUID?: string,
   dropdownListUUID?: string,
+  setDropdownListVisible: (visible: boolean) => void,
   toggleDropdown: (visible: boolean) => void,
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void
 };

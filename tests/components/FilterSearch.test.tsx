@@ -872,14 +872,17 @@ describe('screen reader', () => {
 
     const screenReaderMessage = screen.getByRole('status');
     expect(await screen.findByText(expectedInstructions)).toBeInTheDocument();
-    await waitFor(() => expect(screenReaderMessage).toHaveTextContent(expectedScreenReaderMessage));
+    await waitFor(
+      () => expect(screenReaderMessage).toHaveTextContent(expectedScreenReaderMessage),
+      { timeout: 2000 }
+    );
 
     rerenderWithLocale('fr');
     const expectedLocalizedScreenReaderMessage = '2 options d\'autocomplétion First name trouvées. 1 option d\'autocomplétion Last name trouvée.';
 
     await waitFor(() => expect(screenReaderMessage).toHaveTextContent(
       expectedLocalizedScreenReaderMessage
-    ));
+    ), { timeout: 2000 });
     expect(screen.getByText(expectedInstructions)).toBeInTheDocument();
   });
 
@@ -899,7 +902,10 @@ describe('screen reader', () => {
     const expectedScreenReaderMessage = '3 autocomplete options found.';
     const screenReaderMessage = screen.getByRole('status');
 
-    await waitFor(() => expect(screenReaderMessage).toHaveTextContent(expectedScreenReaderMessage));
+    await waitFor(
+      () => expect(screenReaderMessage).toHaveTextContent(expectedScreenReaderMessage),
+      { timeout: 2000 }
+    );
   });
 
   it('renders 0 results ScreenReader message when there are no results', async () => {
@@ -918,7 +924,10 @@ describe('screen reader', () => {
     const screenReaderMessage = screen.getByRole('status');
 
     expect(await screen.findByText(expectedInstructions)).toBeInTheDocument();
-    await waitFor(() => expect(screenReaderMessage).toHaveTextContent(expectedScreenReaderMessage));
+    await waitFor(
+      () => expect(screenReaderMessage).toHaveTextContent(expectedScreenReaderMessage),
+      { timeout: 2000 }
+    );
   });
 });
 

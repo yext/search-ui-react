@@ -21,7 +21,6 @@ import { useLayoutEffect } from '../../hooks/useLayoutEffect';
 import { useId } from '../../hooks/useId';
 
 const useRootClose = typeof useRootClosePkg === 'function' ? useRootClosePkg : useRootClosePkg['default'];
-const resultAnnouncementDelayMs = 800;
 
 interface DropdownItemData {
   value: string,
@@ -182,7 +181,6 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
       </div>
       <ScreenReader
         announcementText={resultAnnouncement}
-        announcementDelayMs={resultAnnouncementDelayMs}
       />
     </div>
   );
@@ -277,6 +275,7 @@ function useDropdownContextInstance(
   onSelect?: (value: string, index: number, focusedItemData: Record<string, unknown> | undefined) => void
 ): DropdownContextType {
   const [isActive, _toggleDropdown] = useState(false);
+  const [isDropdownListVisible, setDropdownListVisible] = useState(false);
   const toggleDropdown = (willBeOpen: boolean) => {
     setIsNavigatingOptions(false);
     if (!willBeOpen) {
@@ -287,7 +286,8 @@ function useDropdownContextInstance(
   };
   return {
     isActive,
-    isExpanded: isActive && hasPopup,
+    isDropdownListVisible,
+    setDropdownListVisible,
     toggleDropdown,
     onSelect,
     screenReaderUUID,

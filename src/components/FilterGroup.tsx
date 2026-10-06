@@ -10,7 +10,7 @@ import {
   useFilterGroupContext,
   CheckboxCssClasses
 } from './Filters';
-import { FacetTitle } from './FacetTiltle';
+import { FacetTitle } from './FacetTitle';
 
 const DEFAULT_CUSTOM_CSS_CLASSES = {};
 

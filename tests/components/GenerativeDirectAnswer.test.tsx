@@ -173,6 +173,7 @@ describe('GenerativeDirectAnswer with sufficient citation fields', () => {
     const signpost = screen.getByRole('button', { name: 'AI-Generated' });
     const answerLink = screen.getByRole('link', { name: generativeDirectAnswerText });
 
+    expect(signpost).not.toHaveTextContent('AI-Generated');
     expect(answerHeader.compareDocumentPosition(signpost) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(signpost.compareDocumentPosition(answerLink) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });

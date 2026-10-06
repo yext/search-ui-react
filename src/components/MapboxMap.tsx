@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { Result, useSearchState, SelectableStaticFilter } from '@yext/search-headless-react';
+import { useTranslation } from 'react-i18next';
 import { useDebouncedFunction } from '../hooks/useDebouncedFunction';
 import _ from 'lodash';
 
@@ -220,6 +221,11 @@ export interface MapboxMapProps<T> {
   /** Interface for map customization supported by this component. */
   mapboxOptions?: MapboxMapOptions,
   /**
+   * Whether to exclude the map canvas from sequential keyboard navigation.
+   * Defaults to false to preserve Mapbox's default tab order.
+   */
+  excludeMapFromTabOrder?: boolean,
+  /**
    * Custom Pin component to render for markers on the map.
    * By default, the built-in marker image from Mapbox GL is used.
    * This prop should not be used with
@@ -279,6 +285,7 @@ export interface MapboxMapProps<T> {
 export function MapboxMap<T>({
   mapboxAccessToken,
   mapboxOptions,
+  excludeMapFromTabOrder = false,
   PinComponent,
   renderPin,
   getCoordinate = getDefaultCoordinate,
@@ -288,6 +295,9 @@ export function MapboxMap<T>({
   onPinClick,
   markerOptionsOverride,
 }: MapboxMapProps<T>): React.JSX.Element {
+  const { t } = useTranslation();
+  const mapLabel = t('searchResultsMap');
+  const mapDescription = t('mapDescription');
   const mapboxInstance = (iframeWindow as Window & { mapboxgl?: typeof mapboxgl })?.mapboxgl ?? mapboxgl;
   // keep the mapbox access token in sync with prop changes.
   useEffect(() => {
@@ -518,6 +528,32 @@ export function MapboxMap<T>({
       localizeMap();
     }
   }, [allowUpdates, localizeMap, mapboxInstance, mapboxOptions]);
+
+  // Mapbox creates the canvas outside of React. Apply localized text equivalents after
+  // initialization and optionally remove the canvas from sequential keyboard navigation.
+  useEffect(() => {
+    const canvas = map.current?.getCanvas();
+    if (!canvas) {
+      return;
+    }
+
+    const originalAriaLabel = canvas.getAttribute('aria-label');
+    const originalTabIndex = canvas.getAttribute('tabindex');
+    const fallbackContent = canvas.ownerDocument.createElement('span');
+    fallbackContent.textContent = mapDescription;
+
+    canvas.setAttribute('aria-label', mapLabel);
+    canvas.appendChild(fallbackContent);
+    if (excludeMapFromTabOrder) {
+      canvas.removeAttribute('tabindex');
+    }
+
+    return () => {
+      fallbackContent.remove();
+      restoreAttribute(canvas, 'aria-label', originalAriaLabel);
+      restoreAttribute(canvas, 'tabindex', originalTabIndex);
+    };
+  }, [excludeMapFromTabOrder, mapDescription, mapLabel]);
 
   // Register movement listeners separately from map initialization so rerenders do not
   // accidentally remove them without reattaching them.
@@ -760,6 +796,14 @@ function toMapCenter(lngLat: mapboxgl.LngLat): MapCenter {
     toBounds: (radius?: number) => toMapBounds(lngLat.toBounds(radius)),
     toEcef: (altitude: number) => lngLat.toEcef(altitude)
   };
+}
+
+function restoreAttribute(element: HTMLElement, name: string, value: string | null) {
+  if (value === null) {
+    element.removeAttribute(name);
+  } else {
+    element.setAttribute(name, value);
+  }
 }
 
 function toMapBounds(bounds: mapboxgl.LngLatBounds): MapBounds {

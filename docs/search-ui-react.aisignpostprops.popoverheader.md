@@ -4,7 +4,7 @@
 
 ## AISignpostProps.popoverHeader property
 
-Header displayed in the signpost popover. Defaults to "AI-Generated Content".
+Header displayed in the signpost popover.
 
 **Signature:**
 

@@ -107,7 +107,7 @@ string
 
 </td><td>
 
-_(Optional)_ Header displayed in the signpost popover. Defaults to "AI-Generated Content".
+_(Optional)_ Header displayed in the signpost popover.
 
 
 </td></tr>

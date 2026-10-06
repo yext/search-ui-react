@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "AI ģenerēta atbilde",
+  "aiSearchBarSignpostLabel": "Darbojas ar MI",
+  "aiSearchBarSignpostPopoverHeader": "Darbojas, izmantojot MI",
+  "aiSearchBarSignpostPopoverBody": "Meklēšana var izmantot MI, lai atrastu, prioritizētu un parādītu rezultātus. MI atbildes var būt nepilnīgas vai neprecīzas, un tās ir jāpārbauda.",
   "allCategories": "Visas kategorijas",
   "appliedFiltersToCurrentSearch": "Pielietotie filtri pašreizējai meklēšanai",
   "apply": "Pielietot",
@@ -69,5 +72,7 @@
   "useCurrentLocation": "Izmantot pašreizējo atrašanās vietu",
   "useMyLocation": "Izmantot manu atrašanās vietu",
   "viewAll": "Skatīt visu",
-  "viewDetails": "Skatīt informāciju"
+  "viewDetails": "Skatīt informāciju",
+  "searchResultsMap": "Meklēšanas rezultātu karte",
+  "mapDescription": "Karte, kurā redzamas pašreizējo meklēšanas rezultātu atrašanās vietas."
 }

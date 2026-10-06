@@ -563,6 +563,7 @@ export interface MapboxMapOptions {
 // @public
 export interface MapboxMapProps<T> {
     allowUpdates?: boolean;
+    excludeMapFromTabOrder?: boolean;
     getCoordinate?: CoordinateGetter<T>;
     iframeWindow?: Window;
     mapboxAccessToken: string;
@@ -867,6 +868,7 @@ export interface SearchBarCssClasses extends AutocompleteResultCssClasses {
 
 // @public
 export interface SearchBarProps {
+    aiSignpostProps?: AISignpostProps;
     autocompleteDisabled?: boolean;
     customCssClasses?: SearchBarCssClasses;
     geolocationOptions?: PositionOptions;
@@ -878,6 +880,7 @@ export interface SearchBarProps {
     }) => void;
     placeholder?: string;
     recentSearchesLimit?: number;
+    showAISignpost?: boolean;
     showVerticalLinks?: boolean;
     universalAutocompleteLimit?: number;
     verticalAutocompleteLimits?: Record<string, number>;
@@ -1175,7 +1178,7 @@ export interface VisualAutocompleteConfig {
 
 // Warnings were encountered during analysis:
 //
-// dist/index.d.ts:1934:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
+// dist/index.d.ts:1947:5 - (ae-forgotten-export) The symbol "translations" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -1,5 +1,8 @@
 {
   "aiGeneratedAnswer": "Réponse générée par l'IA",
+  "aiSearchBarSignpostLabel": "Optimisé par l’IA",
+  "aiSearchBarSignpostPopoverHeader": "Optimisé par l’IA",
+  "aiSearchBarSignpostPopoverBody": "La recherche peut utiliser l’IA pour trouver, hiérarchiser et afficher des résultats. Les réponses de l’IA peuvent être incomplètes ou inexactes et doivent être vérifiées.",
   "allCategories": "Toutes les catégories",
   "appliedFiltersToCurrentSearch": "Filtres appliqués à la recherche actuelle",
   "apply": "Appliquer",
@@ -68,5 +71,7 @@
   "useCurrentLocation": "Utiliser la localisation actuelle",
   "useMyLocation": "Utiliser ma localisation",
   "viewAll": "Afficher tous",
-  "viewDetails": "Afficher les détails"
+  "viewDetails": "Afficher les détails",
+  "searchResultsMap": "Carte des résultats de recherche",
+  "mapDescription": "Carte montrant les emplacements des résultats de recherche actuels."
 }
