@@ -53,4 +53,28 @@ describe('ScreenReader', () => {
     expect(screen.getByRole('status')).toHaveTextContent('latest complete announcement');
     expect(screen.queryByText('stale announcement')).not.toBeInTheDocument();
   });
+
+  it('re-announces identical text when the announcement key changes', () => {
+    const { rerender } = render(
+      <ScreenReader
+        announcementKey='first results'
+        announcementText='3 autocomplete options found.'
+      />
+    );
+    const liveRegion = screen.getByRole('status');
+
+    act(() => jest.advanceTimersByTime(800));
+    expect(liveRegion).toHaveTextContent('3 autocomplete options found.');
+
+    rerender(
+      <ScreenReader
+        announcementKey='different results'
+        announcementText='3 autocomplete options found.'
+      />
+    );
+    expect(liveRegion).toBeEmptyDOMElement();
+
+    act(() => jest.advanceTimersByTime(800));
+    expect(liveRegion).toHaveTextContent('3 autocomplete options found.');
+  });
 });

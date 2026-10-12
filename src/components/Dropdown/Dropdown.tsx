@@ -76,6 +76,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
   const [childrenWithDropdownItemsTransformed, items] = useMemo(() => {
     return getTransformedChildrenAndItemData(children);
   }, [children]);
+  const itemsKey = JSON.stringify(items.map(item => item.value));
 
   const inputContext = useInputContextInstance();
   const { value, setValue, lastTypedOrSubmittedValue, setLastTypedOrSubmittedValue } = inputContext;
@@ -95,7 +96,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
     focusedItemData,
     screenReaderUUID,
     dropdownListUUID,
-    items.length > 0,
+    isNavigatingOptions,
     setHasTyped,
     setIsNavigatingOptions,
     onToggle,
@@ -180,6 +181,7 @@ export function Dropdown(props: PropsWithChildren<DropdownProps>): React.JSX.Ele
         {instructionsAnnouncement}
       </div>
       <ScreenReader
+        announcementKey={itemsKey}
         announcementText={resultAnnouncement}
       />
     </div>
@@ -262,7 +264,7 @@ function useDropdownContextInstance(
   focusedItemData: Record<string, unknown> | undefined,
   screenReaderUUID: string | undefined,
   dropdownListUUID: string | undefined,
-  hasPopup: boolean,
+  isNavigatingOptions: boolean,
   setHasTyped: (hasTyped: boolean) => void,
   setIsNavigatingOptions: (isNavigating: boolean) => void,
   onToggle?: (
@@ -287,6 +289,7 @@ function useDropdownContextInstance(
   return {
     isActive,
     isDropdownListVisible,
+    isNavigatingOptions,
     setDropdownListVisible,
     toggleDropdown,
     onSelect,

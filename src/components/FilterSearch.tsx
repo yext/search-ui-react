@@ -447,5 +447,9 @@ function getScreenReaderText(
       label,
     });
   });
+  const firstResultValue = sections.find(section => section.results.length > 0)?.results[0].value;
+  if (firstResultValue) {
+    screenReaderPhrases.push(firstResultValue);
+  }
   return screenReaderPhrases.join(' ');
 }

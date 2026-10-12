@@ -14,7 +14,8 @@ import {
   SearchHeadlessContext,
   useSearchActions,
   SelectableStaticFilter,
-  FiltersState
+  FiltersState,
+  FilterSearchResponse
 } from '@yext/search-headless-react';
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
 import React from 'react';
@@ -285,7 +286,7 @@ describe('search with section labels', () => {
     expect(searchBarElement).toHaveValue('n');
   });
 
-  it('exposes the auto-selected first result before advancing to the next result', async () => {
+  it('keeps the first result selected while exposing keyboard navigation', async () => {
     jest.spyOn(SearchHeadless.prototype, 'executeFilterSearch')
       .mockResolvedValue(labeledFilterSearchResponse);
     renderFilterSearch();
@@ -296,7 +297,7 @@ describe('search with section labels', () => {
     const secondOption = screen.getByRole('option', { name: 'first name 2' });
     expect(firstOption).toHaveAttribute('aria-selected', 'true');
     expect(secondOption).toHaveAttribute('aria-selected', 'false');
-    expect(searchBarElement).toHaveAttribute('aria-activedescendant', firstOption.id);
+    expect(searchBarElement).not.toHaveAttribute('aria-activedescendant');
 
     await userEvent.keyboard('{arrowdown}');
     expect(searchBarElement).toHaveAttribute('aria-activedescendant', secondOption.id);
@@ -855,6 +856,66 @@ describe('screen reader', () => {
   const expectedInstructions = 'When autocomplete results are available, '
     + 'use up and down arrows to review and enter to select.';
 
+  it('announces a changed result set and exposes the new first option', async () => {
+    const updatedFirstResultValue = 'different first name';
+    const updatedFilterSearchResponse: FilterSearchResponse = {
+      ...labeledFilterSearchResponse,
+      sections: [
+        {
+          ...labeledFilterSearchResponse.sections[0],
+          results: [
+            {
+              ...labeledFilterSearchResponse.sections[0].results[0],
+              value: updatedFirstResultValue,
+              filter: {
+                fieldId: 'name',
+                matcher: Matcher.Equals,
+                value: updatedFirstResultValue
+              }
+            },
+            labeledFilterSearchResponse.sections[0].results[1]
+          ]
+        },
+        labeledFilterSearchResponse.sections[1]
+      ]
+    };
+    jest.spyOn(SearchHeadless.prototype, 'executeFilterSearch')
+      .mockResolvedValueOnce(labeledFilterSearchResponse)
+      .mockResolvedValueOnce(updatedFilterSearchResponse);
+    renderFilterSearch();
+    const input = screen.getByRole('combobox');
+    const liveRegion = screen.getByRole('status');
+
+    await userEvent.type(input, 'n');
+    const initialFirstOption = await screen.findByRole('option', { name: 'first name 1' });
+    const initialFirstOptionId = initialFirstOption.id;
+    await waitFor(
+      () => expect(liveRegion).toHaveTextContent(
+        '2 First name autocomplete options found. 1 Last name autocomplete option found. '
+        + 'first name 1'
+      ),
+      { timeout: 2000 }
+    );
+    expect(input).not.toHaveAttribute('aria-activedescendant');
+
+    await userEvent.type(input, 'a');
+    const updatedFirstOption = await screen.findByRole('option', {
+      name: updatedFirstResultValue
+    });
+
+    expect(updatedFirstOption).toHaveAttribute('aria-selected', 'true');
+    expect(updatedFirstOption.id).toBe(initialFirstOptionId);
+    expect(input).not.toHaveAttribute('aria-activedescendant');
+    expect(liveRegion).toBeEmptyDOMElement();
+    await waitFor(
+      () => expect(liveRegion).toHaveTextContent(
+        '2 First name autocomplete options found. 1 Last name autocomplete option found. '
+        + updatedFirstResultValue
+      ),
+      { timeout: 2000 }
+    );
+  });
+
   it('renders ScreenReader messages with section labels', async () => {
     const executeFilterSearch = jest
       .spyOn(SearchHeadless.prototype, 'executeFilterSearch')
@@ -868,7 +929,8 @@ describe('screen reader', () => {
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalled();
 
-    const expectedScreenReaderMessage = '2 First name autocomplete options found. 1 Last name autocomplete option found.';
+    const expectedScreenReaderMessage = '2 First name autocomplete options found. '
+      + '1 Last name autocomplete option found. first name 1';
 
     const screenReaderMessage = screen.getByRole('status');
     expect(await screen.findByText(expectedInstructions)).toBeInTheDocument();
@@ -878,7 +940,8 @@ describe('screen reader', () => {
     );
 
     rerenderWithLocale('fr');
-    const expectedLocalizedScreenReaderMessage = '2 options d\'autocomplétion First name trouvées. 1 option d\'autocomplétion Last name trouvée.';
+    const expectedLocalizedScreenReaderMessage = '2 options d\'autocomplétion First name trouvées. '
+      + '1 option d\'autocomplétion Last name trouvée. first name 1';
 
     await waitFor(() => expect(screenReaderMessage).toHaveTextContent(
       expectedLocalizedScreenReaderMessage
@@ -899,7 +962,7 @@ describe('screen reader', () => {
     await waitForDebounce();
     expect(executeFilterSearch).toHaveBeenCalled();
 
-    const expectedScreenReaderMessage = '3 autocomplete options found.';
+    const expectedScreenReaderMessage = '3 autocomplete options found. first name 1';
     const screenReaderMessage = screen.getByRole('status');
 
     await waitFor(
