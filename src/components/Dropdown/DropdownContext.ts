@@ -4,8 +4,10 @@ import { createContext, useContext } from 'react';
  * The Context responsible for the Dropdown state.
  */
 export type DropdownContextType = {
+  /** Whether the input box is active */
   isActive: boolean,
   isDropdownListVisible: boolean,
+  isNavigatingOptions: boolean,
   screenReaderUUID?: string,
   dropdownListUUID?: string,
   setDropdownListVisible: (visible: boolean) => void,
