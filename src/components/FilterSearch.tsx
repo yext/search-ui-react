@@ -333,7 +333,7 @@ export function FilterSearch({
         <div
           className='pb-2'
           key={sectionIndex}
-          role='group'
+          role={section.label ? 'group' : undefined}
           aria-labelledby={sectionLabelId}
         >
           {section.label &&
@@ -348,6 +348,7 @@ export function FilterSearch({
                 focusedClassName={cssClasses.focusedOption}
                 value={result.value}
                 itemData={itemDataMatrix[sectionIndex][index]}
+                ariaLabel={result.value}
               >
                 {renderAutocompleteResult(result, cssClasses)}
               </DropdownItem>
@@ -399,7 +400,7 @@ export function FilterSearch({
         </label>
       )}
       <Dropdown
-        screenReaderText={getScreenReaderText(sections, t)}
+        screenReaderText={filterSearchResponse ? getScreenReaderText(sections, t) : ''}
         onSelect={handleSelectDropdown}
         alwaysSelectOption={true}
         parentQuery={filterQuery}
@@ -446,5 +447,9 @@ function getScreenReaderText(
       label,
     });
   });
+  const firstResultValue = sections.find(section => section.results.length > 0)?.results[0].value;
+  if (firstResultValue) {
+    screenReaderPhrases.push(firstResultValue);
+  }
   return screenReaderPhrases.join(' ');
 }
