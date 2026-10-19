@@ -1,7 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { within } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/testing-library';
 import { expect, fn } from '@storybook/test';
-import { fireEvent } from '@testing-library/react';
 import { SearchHeadlessContext } from '@yext/search-headless-react';
 
 import { generateMockedHeadless } from '../__fixtures__/search-headless';
@@ -62,7 +61,7 @@ CustomPin.play = async ({ canvasElement }) => {
   const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
     timeout: 30000
   });
-  fireEvent.click(mapPin);
+  await userEvent.click(mapPin);
   await canvas.findByText('title1');
 };
 
@@ -77,7 +76,7 @@ CustomRenderPin.play = async ({ canvasElement, args }) => {
   const mapPin = await canvas.findByLabelText('Show pin details', undefined, {
     timeout: 30000
   });
-  fireEvent.click(mapPin);
+  await userEvent.click(mapPin);
   await expect(args.onPinClick).toHaveBeenCalledWith(expect.objectContaining({
     name: 'title1',
   }));
